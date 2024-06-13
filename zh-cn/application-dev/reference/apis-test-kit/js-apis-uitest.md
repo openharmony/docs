@@ -806,8 +806,8 @@ click(): Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -836,8 +836,8 @@ doubleClick(): Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -866,8 +866,8 @@ longClick(): Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -902,8 +902,8 @@ getId(): Promise\<string>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -938,8 +938,8 @@ getText(): Promise\<string>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -974,8 +974,8 @@ getType(): Promise\<string>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1010,8 +1010,8 @@ getBounds(): Promise\<Rect>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1046,8 +1046,8 @@ getBoundsCenter(): Promise\<Point>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1082,8 +1082,8 @@ isClickable(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1122,8 +1122,8 @@ isLongClickable(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1162,8 +1162,8 @@ isChecked(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1202,8 +1202,8 @@ isCheckable(): Promise\<boolean>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1242,8 +1242,8 @@ isScrollable(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1283,8 +1283,8 @@ isEnabled(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1323,8 +1323,8 @@ isFocused(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1363,8 +1363,8 @@ isSelected(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1403,8 +1403,8 @@ inputText(text: string): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1433,8 +1433,8 @@ clearText(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1475,8 +1475,8 @@ scrollSearch(on: On): Promise\<Component>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1512,8 +1512,8 @@ scrollToTop(speed?: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 | 401 | 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
@@ -1549,8 +1549,8 @@ scrollToBottom(speed?: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 | 401 | 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
@@ -1586,8 +1586,8 @@ dragTo(target: Component): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1624,8 +1624,8 @@ pinchOut(scale: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1661,8 +1661,8 @@ pinchIn(scale: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1698,8 +1698,8 @@ getDescription(): Promise\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
-| 17000004 | if the component is invisible or destroyed.                  |
+| 17000002 | The async function is not called with await.             |
+| 17000004 | The window or component is invisible or destroyed.                  |
 
 **示例：**
 
@@ -1737,9 +1737,9 @@ static create(): Driver
 
 以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 17000001 | if the test framework failed to initialize. |
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17000001 | Initialization failed. |
 
 **示例：**
 
@@ -1772,7 +1772,7 @@ Driver对象在给定的时间内延时。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1813,7 +1813,7 @@ findComponent(on: On): Promise\<Component>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1854,7 +1854,7 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1895,7 +1895,7 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1937,7 +1937,7 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1972,8 +1972,8 @@ assertComponentExist(on: On): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000003 | if the assertion failed.    |
+| 17000002 | The async function is not called with await. |
+| 17000003 | Assertion failed.   |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2002,7 +2002,7 @@ Driver对象进行点击BACK键的操作。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
@@ -2036,7 +2036,7 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2073,7 +2073,7 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2110,7 +2110,7 @@ Driver对象采取如下操作：在目标坐标点单击。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2146,7 +2146,7 @@ Driver对象采取如下操作：在目标坐标点双击。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2182,7 +2182,7 @@ Driver对象采取如下操作：在目标坐标点长按。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2221,7 +2221,7 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2260,7 +2260,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2301,7 +2301,7 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2336,7 +2336,7 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2371,7 +2371,7 @@ getDisplayRotation(): Promise\<DisplayRotation>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
@@ -2405,7 +2405,7 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2440,7 +2440,7 @@ getDisplaySize(): Promise\<Point>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
@@ -2475,7 +2475,7 @@ getDisplayDensity(): Promise\<Point>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
@@ -2503,7 +2503,7 @@ wakeUpDisplay(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
@@ -2531,7 +2531,7 @@ pressHome(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
@@ -2572,7 +2572,7 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2610,7 +2610,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2652,7 +2652,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2699,7 +2699,7 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
+| 17000002 | The async function is not called with await.             |
 | 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2741,7 +2741,7 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
+| 17000002 | The async function is not called with await.             |
 | 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2779,7 +2779,7 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
+| 17000002 | The async function is not called with await.             |
 | 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2818,7 +2818,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
+| 17000002 | The async function is not called with await.             |
 | 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2853,7 +2853,7 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
+| 17000002 | The async function is not called with await.             |
 | 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2888,7 +2888,7 @@ createUIEventObserver(): UIEventObserver;
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 17000002 | The async function is not called with await. |
 
 **示例：**
 
@@ -2927,7 +2927,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
+| 17000002 | The async function is not called with await.             |
 | 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -2965,7 +2965,7 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
+| 17000002 | The async function is not called with await.             |
 | 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -3003,7 +3003,7 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
+| 17000002 | The async function is not called with await.             |
 | 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -3040,7 +3040,7 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
+| 17000002 | The async function is not called with await.             |
 | 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -3077,7 +3077,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
+| 17000002 | The async function is not called with await.             |
 | 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -3113,7 +3113,7 @@ inputText(p: Point, text: string): Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17000002 | if the async function was not called with await.             |
+| 17000002 | The async function is not called with await.             |
 | 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -3244,8 +3244,8 @@ getBundleName(): Promise\<string>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -3281,8 +3281,8 @@ getBounds(): Promise\<Rect>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -3317,8 +3317,8 @@ getTitle(): Promise\<string>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -3353,8 +3353,8 @@ getWindowMode(): Promise\<WindowMode>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.          |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.          |
 
 **示例：**
 
@@ -3389,8 +3389,8 @@ isFocused(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -3425,8 +3425,8 @@ isActived(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -3455,8 +3455,8 @@ focus(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 
 **示例：**
 
@@ -3492,8 +3492,8 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 | 17000005 | if the action is not supported on this window.         |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -3532,8 +3532,8 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 | 17000005 | if the action is not supported on this window.         |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -3564,8 +3564,8 @@ split(): Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.         |
 | 17000005 | if the action is not supported on this window.         |
 
 **示例：**
@@ -3595,8 +3595,8 @@ maximize(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 | 17000005 | if the action is not supported on this window.         |
 
 **示例：**
@@ -3626,8 +3626,8 @@ minimize(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.          |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.          |
 | 17000005 | if the action is not supported on this window.         |
 
 **示例：**
@@ -3657,8 +3657,8 @@ resume(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.          |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.          |
 | 17000005 | if the action is not supported on this window.         |
 
 **示例：**
@@ -3688,8 +3688,8 @@ close(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.           |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
 | 17000005 | if the action is not supported on this window.         |
 
 **示例：**
@@ -3725,8 +3725,8 @@ isActive(): Promise\<boolean>
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the window is invisible or destroyed.         |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.         |
 
 **示例：**
 
@@ -4705,8 +4705,8 @@ assertComponentExist(by: By): Promise\<void>
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
-| 17000003 | if the assertion failed.                         |
+| 17000002 | The async function is not called with await. |
+| 17000003 | Assertion failed.                      |
 
 **示例：**
 
