@@ -3760,7 +3760,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowGrayScale(grayScale: number): Promise&lt;void&gt;
 
-设置窗口灰阶，使用Promise异步回调。
+设置窗口灰阶，使用Promise异步回调。该接口需要在调用[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)使窗口加载页面内容后调用。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -3794,19 +3794,26 @@ setWindowGrayScale(grayScale: number): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let grayScale: number = 0.5;
-try {
-  if (canIUse("SystemCapability.Window.SessionManager")) {
-    let promise = windowClass.setWindowGrayScale(grayScale);
-    promise.then(() => {
-      console.info('Succeeded in setting the grayScale.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to set the grayScale. Cause code: ${err.code}, message: ${err.message}`);
-    });
+windowClass?.setUIContent('pages/Index', (error: BusinessError) => {
+  if (error.code) {
+    console.error(`Failed to set the content. Cause code: ${error.code}`);
+    return;
   }
-} catch (exception) {
-  console.error(`Failed to set the grayScale. Cause code: ${exception.code}, message: ${exception.message}`);
-}
+  console.info('Succeeded in setting the content.');
+  let grayScale: number = 0.5;
+  try {
+    if (canIUse("SystemCapability.Window.SessionManager")) {
+      let promise = windowClass?.setWindowGrayScale(grayScale);
+      promise?.then(() => {
+        console.info('Succeeded in setting the grayScale.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set the grayScale. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    }
+  } catch (exception) {
+    console.error(`Failed to set the grayScale. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+});
 ```
 
 ### on('windowTitleButtonRectChange')<sup>11+</sup>
