@@ -32,6 +32,8 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 Image组件默认按照居中裁剪，例如组件宽高设置相同，原图长宽不等，此时按照中间区域进行裁剪。
 
+Image加载成功且组件不设置宽高时，其显示大小自适应父组件。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -53,6 +55,8 @@ Image(src: PixelMap | ResourceStr | DrawableDescriptor, imageAIOptions: ImageAIO
 Image组件加载图片失败或图片尺寸为0时，图片组件大小自动为0，不跟随父组件的布局约束。
 
 Image组件默认按照居中裁剪，例如组件宽高设置相同，原图长宽不等，此时按照中间区域进行裁剪。
+
+Image加载成功且组件不设置宽高时，其显示大小自适应父组件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
