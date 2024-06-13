@@ -680,7 +680,7 @@
     - 剪贴板服务
       - [使用剪贴板的延迟复制粘贴功能](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
     - 上传下载
-      - [应用文件上传下载]((basic-services/request/app-file-upload-download.md)
+      - [应用文件上传下载](basic-services/request/app-file-upload-download.md)
   - Calendar Kit（日历服务）
     - [Calendar Kit简介](calendarmanager/calendarmanager-overview.md)
     - [Calendar Kit开发指南](calendarmanager/calendarmanager-guidelines.md)
