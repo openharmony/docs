@@ -447,8 +447,7 @@ getFrameNodeByUniqueId(id: number): FrameNode | null
 **示例：**
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { FrameNode } from '@ohos.arkui.node';
+import { UIContext, FrameNode } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -457,7 +456,7 @@ struct MyComponent {
     let uniqueId: number = this.getUniqueId();
     let uiContext: UIContext = this.getUIContext();
     if (uiContext) {
-      let node: FrameNode = uiContext.getFrameNodeByUniqueId(uniqueId);
+      let node: FrameNode | null = uiContext.getFrameNodeByUniqueId(uniqueId);
     }
   }
 
