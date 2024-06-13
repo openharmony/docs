@@ -18,6 +18,8 @@ DatePicker(options?: DatePickerOptions)
 
 根据指定范围的Date创建可以选择日期的滑动选择器。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
