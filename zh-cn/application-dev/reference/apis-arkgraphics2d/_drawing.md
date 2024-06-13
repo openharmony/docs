@@ -279,7 +279,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | uint8_t [OH_Drawing_BrushGetAlpha](#oh_drawing_brushgetalpha) (const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 获取画刷的透明度值。画刷在填充形状时透明通道会使用该值。 | 
 | void [OH_Drawing_BrushSetAlpha](#oh_drawing_brushsetalpha) ([OH_Drawing_Brush](#oh_drawing_brush) \*, uint8_t alpha) | 为画刷设置透明度值。画刷在填充形状时透明通道会使用该值。 | 
 | void [OH_Drawing_BrushSetShaderEffect](#oh_drawing_brushsetshadereffect) ([OH_Drawing_Brush](#oh_drawing_brush) \*, [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \*) | 为画刷设置着色器效果。 | 
-| void [OH_Drawing_BrushSetShadowLayer](#oh_drawing_brushsetshadowlayer) ([OH_Drawing_Brush](#oh_drawing_brush) \*, [OH_Drawing_ShadowLayer](#oh_drawing_shadowlayer) \*) | 为画刷设置阴影层，为空表示清空阴影层效果，当前仅对文字生效。 | 
+| void [OH_Drawing_BrushSetShadowLayer](#oh_drawing_brushsetshadowlayer) ([OH_Drawing_Brush](#oh_drawing_brush) \*, [OH_Drawing_ShadowLayer](#oh_drawing_shadowlayer) \*) | 为画刷设置阴影层，设置的阴影层效果当前仅在绘制文字时生效。 | 
 | void [OH_Drawing_BrushSetFilter](#oh_drawing_brushsetfilter) ([OH_Drawing_Brush](#oh_drawing_brush) \*, [OH_Drawing_Filter](#oh_drawing_filter) \*) | 为画刷设置滤波器[OH_Drawing_Filter](#oh_drawing_filter)。滤波器是一个容器，可以承载蒙版滤波器和颜色滤波器。 | 
 | void [OH_Drawing_BrushGetFilter](#oh_drawing_brushgetfilter) ([OH_Drawing_Brush](#oh_drawing_brush) \*, [OH_Drawing_Filter](#oh_drawing_filter) \*) | 从画刷获取滤波器[OH_Drawing_Filter](#oh_drawing_filter)。滤波器是一个容器，可以承载蒙版滤波器和颜色滤波器。 | 
 | void [OH_Drawing_BrushSetBlendMode](#oh_drawing_brushsetblendmode) ([OH_Drawing_Brush](#oh_drawing_brush) \*, [OH_Drawing_BlendMode](#oh_drawing_blendmode)) | 为画刷设置一个混合器，该混合器实现了指定的混合模式枚举。 | 
@@ -290,7 +290,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_CanvasAttachPen](#oh_drawing_canvasattachpen) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 用于设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓。 | 
 | void [OH_Drawing_CanvasDetachPen](#oh_drawing_canvasdetachpen) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于去除掉画布中的画笔，使用后画布将不去绘制图形形状的轮廓。 | 
 | void [OH_Drawing_CanvasAttachBrush](#oh_drawing_canvasattachbrush) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 用于设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状。 | 
-| void [OH_Drawing_CanvasDetachBrush](#oh_drawing_canvasdetachbrush) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于去除掉画布中的画刷，使用后画布将不去填充图形形状。 | 
+| void [OH_Drawing_CanvasDetachBrush](#oh_drawing_canvasdetachbrush) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于去除掉画布中的画刷，使用后画布将不使用此前设置的画刷去填充图形形状。 | 
 | void [OH_Drawing_CanvasSave](#oh_drawing_canvassave) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于保存当前画布的状态（画布矩阵）到一个栈顶。 | 
 | void [OH_Drawing_CanvasSaveLayer](#oh_drawing_canvassavelayer) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 保存矩阵和裁剪区域，为后续绘制分配位图。调用恢复接口 [OH_Drawing_CanvasRestore](#oh_drawing_canvasrestore)将放弃对矩阵和剪切区域所做的更改，并绘制位图。 | 
 | void [OH_Drawing_CanvasRestore](#oh_drawing_canvasrestore) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于恢复保存在栈顶的画布状态（画布矩阵）。 | 
@@ -422,21 +422,21 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_Path](#oh_drawing_path) \* [OH_Drawing_PathCopy](#oh_drawing_pathcopy) ([OH_Drawing_Path](#oh_drawing_path) \*) | 创建一个路径对象副本[OH_Drawing_Path](#oh_drawing_path)，用于拷贝一个已有路径对象。 | 
 | void [OH_Drawing_PathDestroy](#oh_drawing_pathdestroy) ([OH_Drawing_Path](#oh_drawing_path) \*) | 用于销毁路径对象并回收该对象占有的内存。 | 
 | void [OH_Drawing_PathMoveTo](#oh_drawing_pathmoveto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 用于设置自定义路径的起始点位置。 | 
-| void [OH_Drawing_PathLineTo](#oh_drawing_pathlineto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 用于添加一条从路径的最后点位置到目标点位置的线段。 | 
-| void [OH_Drawing_PathArcTo](#oh_drawing_patharcto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x1, float y1, float x2, float y2, float startDeg, float sweepDeg) | 用于给路径添加一段弧线，绘制弧线的方式为角度弧，该方式首先会指定一个矩形边框，矩形边框会包裹椭圆， 然后会指定一个起始角度和扫描度数，从起始角度扫描截取的椭圆周长一部分即为绘制的弧线。另外会默认添加一条从路径的最后点位置到弧线起始点位置的线段。 | 
-| void [OH_Drawing_PathQuadTo](#oh_drawing_pathquadto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX, float ctrlY, float endX, float endY) | 用于添加一条从路径最后点位置到目标点位置的二阶贝塞尔圆滑曲线。 | 
-| void [OH_Drawing_PathConicTo](#oh_drawing_pathconicto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX, float ctrlY, float endX, float endY, float weight) | 在当前路径上添加一个二次贝塞尔曲线段，其控制点为 (ctrlX, ctrlY)，结束点为 (endX, endY)。 | 
+| void [OH_Drawing_PathLineTo](#oh_drawing_pathlineto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 用于添加一条从路径的最后点位置到目标点位置的线段。若路径没有内容则将起始点设置为 (0, 0)。 | 
+| void [OH_Drawing_PathArcTo](#oh_drawing_patharcto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x1, float y1, float x2, float y2, float startDeg, float sweepDeg) | 用于给路径添加一段弧线，绘制弧线的方式为角度弧，该方式首先会指定一个矩形边框，矩形边框的内切椭圆将会被用来截取弧线，然后会指定一个起始角度和扫描度数， 从起始角度扫描截取的椭圆周长一部分即为绘制的弧线。若路径有内容则会默认添加一条从路径的最后点位置到弧线起始点位置的线段。 | 
+| void [OH_Drawing_PathQuadTo](#oh_drawing_pathquadto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX, float ctrlY, float endX, float endY) | 用于添加一条从路径最后点位置到目标点位置的二阶贝塞尔曲线。若路径没有内容则将起始点设置为 (0, 0)。 | 
+| void [OH_Drawing_PathConicTo](#oh_drawing_pathconicto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX, float ctrlY, float endX, float endY, float weight) | 在当前路径上添加一条路径终点到目标点位置的圆锥曲线段，其控制点为 (ctrlX, ctrlY)，结束点为 (endX, endY)。若路径没有内容则将起始点设置为 (0, 0)。 | 
 | void [OH_Drawing_PathCubicTo](#oh_drawing_pathcubicto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX1, float ctrlY1, float ctrlX2, float ctrlY2, float endX, float endY) | 用于添加一条从路径最后点位置到目标点位置的三阶贝塞尔圆滑曲线。 | 
 | void [OH_Drawing_PathRMoveTo](#oh_drawing_pathrmoveto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 用于设置一个相对于当前路径终点的路径起始点位置。 | 
-| void [OH_Drawing_PathRLineTo](#oh_drawing_pathrlineto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 使用相对位置在当前路径上添加一条当前路径终点到目标点位置的线段。 | 
-| void [OH_Drawing_PathRQuadTo](#oh_drawing_pathrquadto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX, float ctrlY, float endX, float endY) | 使用相对位置在当前路径上添加一条当前路径终点到目标点位置的二阶贝塞尔圆滑曲线。 | 
-| void [OH_Drawing_PathRConicTo](#oh_drawing_pathrconicto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX, float ctrlY, float endX, float endY, float weight) | 使用相对位置在当前路径上添加一条当前路径终点到目标点位置的圆锥曲线。 | 
+| void [OH_Drawing_PathRLineTo](#oh_drawing_pathrlineto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 使用相对位置在当前路径上添加一条当前路径终点到目标点位置的线段。若路径没有内容则将起始点设置为 (0, 0)。 | 
+| void [OH_Drawing_PathRQuadTo](#oh_drawing_pathrquadto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX, float ctrlY, float endX, float endY) | 使用相对位置在当前路径上添加一条当前路径终点到目标点位置的二阶贝塞尔曲线。若路径没有内容则将起始点设置为 (0, 0)。 | 
+| void [OH_Drawing_PathRConicTo](#oh_drawing_pathrconicto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX, float ctrlY, float endX, float endY, float weight) | 使用相对位置在当前路径上添加一条路径终点到目标点位置的圆锥曲线段，其控制点为 (ctrlX, ctrlY)，结束点为 (endX, endY)。若路径没有内容则将起始点设置为 (0, 0)。 | 
 | void [OH_Drawing_PathRCubicTo](#oh_drawing_pathrcubicto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX1, float ctrlY1, float ctrlX2, float ctrlY2, float endX, float endY) | 使用相对位置在当前路径上添加一条当前路径终点到目标点位置的三阶贝塞尔圆滑曲线。 | 
 | void [OH_Drawing_PathAddRect](#oh_drawing_pathaddrect) ([OH_Drawing_Path](#oh_drawing_path) \*, float left, float top, float right, float bottom, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | 按指定方向，向路径添加矩形轮廓。 | 
 | void [OH_Drawing_PathAddRectWithInitialCorner](#oh_drawing_pathaddrectwithinitialcorner) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, [OH_Drawing_PathDirection](#oh_drawing_pathdirection), uint32_t start) | 按指定方向，向路径添加矩形轮廓。 | 
 | void [OH_Drawing_PathAddRoundRect](#oh_drawing_pathaddroundrect) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_RoundRect](#oh_drawing_roundrect) \*roundRect, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | 按指定方向，向路径添加圆角矩形轮廓。 | 
 | void [OH_Drawing_PathAddOvalWithInitialPoint](#oh_drawing_pathaddovalwithinitialpoint) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, uint32_t start, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | 将椭圆添加到路径中，其中矩形对象作为椭圆的外切矩形区域，绘制方向用来指定绘制时是顺时针或者逆时针方向。 | 
-| void [OH_Drawing_PathAddArc](#oh_drawing_pathaddarc) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, float startAngle, float sweepAngle) | 将圆弧添加到路径中，作为新轮廓的起点。从起始角度到扫掠角度添加弧， 添加的弧是椭圆边界椭圆的一部分，单位为度。正扫掠表示按顺时针方向延长弧， 负扫掠表示按逆时针方向延长弧。如果扫掠角度&lt;= -360°，或扫掠角度&gt;= 360°， 并且起始角度对90取模接近于0，则添加椭圆而不是弧。 | 
+| void [OH_Drawing_PathAddArc](#oh_drawing_pathaddarc) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, float startAngle, float sweepAngle) | 将圆弧添加到路径中，作为新轮廓的起点。从起始角度到扫描角度添加弧，添加的弧是矩形内切椭圆的一部分，如果扫描角度<= -360°，或>= 360°，并且起始角度对90取模接近于0，则添加椭圆而不是弧。 | 
 | void [OH_Drawing_PathAddPath](#oh_drawing_pathaddpath) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Path](#oh_drawing_path) \*src, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 将源路径矩阵变换后，添加到当前路径中。 | 
 | void [OH_Drawing_PathAddPathWithMatrixAndMode](#oh_drawing_pathaddpathwithmatrixandmode) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Path](#oh_drawing_path) \*src, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode)) | 将源路径矩阵变换后，以规定模式添加到当前路径中。 | 
 | void [OH_Drawing_PathAddPathWithMode](#oh_drawing_pathaddpathwithmode) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Path](#oh_drawing_path) \*src, [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode)) | 将源路径以规定模式添加到当前路径中。 | 
@@ -444,7 +444,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_PathAddOval](#oh_drawing_pathaddoval) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | 按指定方向，向路径添加椭圆。 | 
 | bool [OH_Drawing_PathContains](#oh_drawing_pathcontains) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 判断指定坐标点是否被路径包含。 | 
 | void [OH_Drawing_PathTransform](#oh_drawing_pathtransform) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 对路径进行矩阵变换。 | 
-| void [OH_Drawing_PathTransformWithPerspectiveClip](#oh_drawing_pathtransformwithperspectiveclip) ([OH_Drawing_Path](#oh_drawing_path) \*src, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_Path](#oh_drawing_path) \*dst, bool applyPerspectiveClip) | 对路径进行矩阵变换。用转换后的路径替换目标路径，如果目标路径为空，则替换源路径。 | 
+| void [OH_Drawing_PathTransformWithPerspectiveClip](#oh_drawing_pathtransformwithperspectiveclip) ([OH_Drawing_Path](#oh_drawing_path) \*src, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_Path](#oh_drawing_path) \*dst, bool applyPerspectiveClip) | 对路径进行矩阵变换。用转换后的路径替换目标路径，如果目标路径为NULL，则替换源路径。 | 
 | void [OH_Drawing_PathSetFillType](#oh_drawing_pathsetfilltype) ([OH_Drawing_Path](#oh_drawing_path) \*, [OH_Drawing_PathFillType](#oh_drawing_pathfilltype)) | 设置填充路径的规则。 | 
 | float [OH_Drawing_PathGetLength](#oh_drawing_pathgetlength) ([OH_Drawing_Path](#oh_drawing_path) \*, bool forceClosed) | 获取当前路径的长度。 | 
 | void [OH_Drawing_PathClose](#oh_drawing_pathclose) ([OH_Drawing_Path](#oh_drawing_path) \*) | 用于闭合路径，会添加一条从路径起点位置到最后点位置的线段。 | 
@@ -469,7 +469,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle)[OH_Drawing_PenGetJoin](#oh_drawing_pengetjoin) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 用于获取画笔绘制折线转角的样式。 | 
 | void [OH_Drawing_PenSetJoin](#oh_drawing_pensetjoin) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle)) | 用于设置画笔绘制转角的样式。 | 
 | void [OH_Drawing_PenSetShaderEffect](#oh_drawing_pensetshadereffect) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \*) | 设置画笔着色器效果。 | 
-| void [OH_Drawing_PenSetShadowLayer](#oh_drawing_pensetshadowlayer) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_ShadowLayer](#oh_drawing_shadowlayer) \*) | 设置画笔阴影层效果，为空表示清空阴影层效果，当前仅对文字生效。 | 
+| void [OH_Drawing_PenSetShadowLayer](#oh_drawing_pensetshadowlayer) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_ShadowLayer](#oh_drawing_shadowlayer) \*) | 设置画笔阴影层效果，设置的阴影层效果当前仅在绘制文字时生效。 | 
 | void [OH_Drawing_PenSetPathEffect](#oh_drawing_pensetpatheffect) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PathEffect](#oh_drawing_patheffect) \*) | 设置画笔路径效果。 | 
 | void [OH_Drawing_PenSetFilter](#oh_drawing_pensetfilter) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_Filter](#oh_drawing_filter) \*) | 设置画笔滤波器。 | 
 | void [OH_Drawing_PenGetFilter](#oh_drawing_pengetfilter) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_Filter](#oh_drawing_filter) \*) | 从画笔获取滤波器[OH_Drawing_Filter](#oh_drawing_filter)。滤波器是一个容器，可以承载蒙版滤波器和颜色滤波器。 | 
@@ -477,13 +477,13 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_PenReset](#oh_drawing_penreset) ([OH_Drawing_Pen](#oh_drawing_pen) \*) | 将画笔重置至初始值。 | 
 | [OH_Drawing_Point](#oh_drawing_point) \* [OH_Drawing_PointCreate](#oh_drawing_pointcreate) (float x, float y) | 用于创建一个坐标点对象。 | 
 | void [OH_Drawing_PointDestroy](#oh_drawing_pointdestroy) ([OH_Drawing_Point](#oh_drawing_point) \*) | 用于销毁坐标点对象并回收该对象占有的内存。 | 
-| [OH_Drawing_Rect](#oh_drawing_rect) \* [OH_Drawing_RectCreate](#oh_drawing_rectcreate) (float left, float top, float right, float bottom) | 用于创建一个矩形对象。 | 
-| float [OH_Drawing_RectGetHeight](#oh_drawing_rectgetheight) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于获取矩形对象高度。 | 
-| float [OH_Drawing_RectGetWidth](#oh_drawing_rectgetwidth) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于获取矩形对象的宽度。 | 
-| float [OH_Drawing_RectGetLeft](#oh_drawing_rectgetleft) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于获取矩形左上角的横坐标。 | 
-| float [OH_Drawing_RectGetTop](#oh_drawing_rectgettop) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于获取矩形左上角的纵坐标。 | 
-| float [OH_Drawing_RectGetRight](#oh_drawing_rectgetright) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于获取矩形右下角的横坐标。 | 
-| float [OH_Drawing_RectGetBottom](#oh_drawing_rectgetbottom) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于获取矩形右下角的纵坐标。 | 
+| [OH_Drawing_Rect](#oh_drawing_rect) \* [OH_Drawing_RectCreate](#oh_drawing_rectcreate) (float left, float top, float right, float bottom) | 用于创建一个矩形对象，不会对设置的坐标排序，即允许矩形设置的左上角坐标大于对应的矩形右下角坐标。 | 
+| float [OH_Drawing_RectGetHeight](#oh_drawing_rectgetheight) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于获取矩形对象高度，计算方式为设置的矩形的右下角纵坐标减去左上角纵坐标。 | 
+| float [OH_Drawing_RectGetWidth](#oh_drawing_rectgetwidth) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于获取矩形对象的宽度，计算方式为设置的矩形的右下角横坐标减去左上角横坐标。 | 
+| float [OH_Drawing_RectGetLeft](#oh_drawing_rectgetleft) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于获取给矩形设置的左上角的横坐标。 | 
+| float [OH_Drawing_RectGetTop](#oh_drawing_rectgettop) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于获取给矩形设置的左上角的纵坐标。 | 
+| float [OH_Drawing_RectGetRight](#oh_drawing_rectgetright) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于获取给矩形设置的右下角的横坐标。 | 
+| float [OH_Drawing_RectGetBottom](#oh_drawing_rectgetbottom) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于获取给矩形设置的右下角的纵坐标。 | 
 | bool [OH_Drawing_RectIntersect](#oh_drawing_rectintersect) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect, const [OH_Drawing_Rect](#oh_drawing_rect) \*other) | 用于判断两个矩形是否相交。 | 
 | void [OH_Drawing_RectSetLeft](#oh_drawing_rectsetleft) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect, float left) | 用于设置矩形左上角的横坐标。 | 
 | void [OH_Drawing_RectSetTop](#oh_drawing_rectsettop) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect, float top) | 用于设置矩形左上角的纵坐标。 | 
@@ -513,9 +513,9 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_Canvas](#oh_drawing_canvas) \* [OH_Drawing_SurfaceGetCanvas](#oh_drawing_surfacegetcanvas) ([OH_Drawing_Surface](#oh_drawing_surface) \*) | 通过surface对象获取画布对象。 | 
 | void [OH_Drawing_SurfaceDestroy](#oh_drawing_surfacedestroy) ([OH_Drawing_Surface](#oh_drawing_surface) \*) | 销毁surface对象并回收该对象占用的内存。 | 
 | [OH_Drawing_TextBlobBuilder](#oh_drawing_textblobbuilder) \* [OH_Drawing_TextBlobBuilderCreate](#oh_drawing_textblobbuildercreate) (void) | 用于创建一个文本构造器对象。 | 
-| [OH_Drawing_TextBlob](#oh_drawing_textblob) \* [OH_Drawing_TextBlobCreateFromText](#oh_drawing_textblobcreatefromtext) (const void \*text, size_t byteLength, const [OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_TextEncoding](#oh_drawing_textencoding)) | 从文本中创建一个文本对象。 | 
-| [OH_Drawing_TextBlob](#oh_drawing_textblob) \* [OH_Drawing_TextBlobCreateFromPosText](#oh_drawing_textblobcreatefrompostext) (const void \*text, size_t byteLength, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*, const [OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_TextEncoding](#oh_drawing_textencoding)) | 从文本和文本的位置中创建一个文本对象。 | 
-| [OH_Drawing_TextBlob](#oh_drawing_textblob) \* [OH_Drawing_TextBlobCreateFromString](#oh_drawing_textblobcreatefromstring) (const char \*str, const [OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_TextEncoding](#oh_drawing_textencoding)) | 从字符串中创建文本对象。 | 
+| [OH_Drawing_TextBlob](#oh_drawing_textblob) \* [OH_Drawing_TextBlobCreateFromText](#oh_drawing_textblobcreatefromtext) (const void \*text, size_t byteLength, const [OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_TextEncoding](#oh_drawing_textencoding)) | 使用文本创建一个文本对象。 | 
+| [OH_Drawing_TextBlob](#oh_drawing_textblob) \* [OH_Drawing_TextBlobCreateFromPosText](#oh_drawing_textblobcreatefrompostext) (const void \*text, size_t byteLength, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*, const [OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_TextEncoding](#oh_drawing_textencoding)) | 使用文本创建文本对象，文本对象中每个字符的坐标由OH_Drawing_Point2D数组中对应的坐标信息决定。 | 
+| [OH_Drawing_TextBlob](#oh_drawing_textblob) \* [OH_Drawing_TextBlobCreateFromString](#oh_drawing_textblobcreatefromstring) (const char \*str, const [OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_TextEncoding](#oh_drawing_textencoding)) | 使用字符串创建文本对象。 | 
 | void [OH_Drawing_TextBlobGetBounds](#oh_drawing_textblobgetbounds) ([OH_Drawing_TextBlob](#oh_drawing_textblob) \*, [OH_Drawing_Rect](#oh_drawing_rect) \*) | 获取文本对象的边界范围。 | 
 | uint32_t [OH_Drawing_TextBlobUniqueID](#oh_drawing_textblobuniqueid) (const [OH_Drawing_TextBlob](#oh_drawing_textblob) \*) | 获取文本的标识符，该标识符是唯一的非零值。 | 
 | const [OH_Drawing_RunBuffer](_o_h___drawing___run_buffer.md) \* [OH_Drawing_TextBlobBuilderAllocRunPos](#oh_drawing_textblobbuilderallocrunpos) ([OH_Drawing_TextBlobBuilder](#oh_drawing_textblobbuilder) \*, const [OH_Drawing_Font](#oh_drawing_font) \*, int32_t count, const [OH_Drawing_Rect](#oh_drawing_rect) \*) | 申请一块内存，用于存储文字和位置信息。返回的指针无需调用者管理， 当调用[OH_Drawing_TextBlobBuilderMake](#oh_drawing_textblobbuildermake)后禁止使用。 | 
@@ -2459,10 +2459,10 @@ enum OH_Drawing_PathFillType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| PATH_FILL_TYPE_WINDING | 绘制所有线段包围的区域 | 
-| PATH_FILL_TYPE_EVEN_ODD | 绘制所有线段包围奇次数的区域 | 
-| PATH_FILL_TYPE_INVERSE_WINDING | PATH_FILL_TYPE_WINDING 取反，绘制不在所有线段包围区域的点 | 
-| PATH_FILL_TYPE_INVERSE_EVEN_ODD | PATH_FILL_TYPE_EVEN_ODD 取反，绘制不在所有线段包围奇次数区域的点 | 
+| PATH_FILL_TYPE_WINDING | 绘制区域中的任意一点，向任意方向射出一条射线，对于射线和路径的所有交点，初始计数为0，遇到每个顺时针的交点（路径从射线的左边向右穿过），计数加1，遇到每个逆时针的交点（路径从射线的右边向左穿过），计数减1，若最终的计数结果为0，则认为这个点在路径内部，需要被涂色；若计数为0则不被涂色 | 
+| PATH_FILL_TYPE_EVEN_ODD | 绘制区域中的任意一点，向任意方向射出一条射线，若这条射线和路径相交的次数是奇数，则这个点被认为在路径内部，需要被涂色；若是偶数则不被涂色 | 
+| PATH_FILL_TYPE_INVERSE_WINDING | PATH_FILL_TYPE_WINDING 涂色规则取反 | 
+| PATH_FILL_TYPE_INVERSE_EVEN_ODD | PATH_FILL_TYPE_EVEN_ODD 涂色规则取反 | 
 
 
 ### OH_Drawing_PenLineCapStyle
@@ -2911,7 +2911,7 @@ OH_Drawing_Filter为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Filter | 指示指向滤波器对象[OH_Drawing_Filter](#oh_drawing_filter)的指针。 | 
-| OH_Drawing_ImageFilter | 指示指向图像滤波器[OH_Drawing_ImageFilter](#oh_drawing_imagefilter)对象的指针。 | 
+| OH_Drawing_ImageFilter | 指示指向图像滤波器[OH_Drawing_ImageFilter](#oh_drawing_imagefilter)对象的指针，为NULL表示清空滤波器对象中的图像滤波器效果。 | 
 
 
 ### OH_Drawing_ImageFilterCreateBlur()
@@ -3720,7 +3720,7 @@ void OH_Drawing_PenSetShadowLayer (OH_Drawing_Pen* , OH_Drawing_ShadowLayer* )
 
 **描述**
 
-设置画笔阴影层效果，为空表示清空阴影层效果，当前仅对文字生效。
+设置画笔阴影层效果，设置的阴影层效果当前仅在绘制文字时生效。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -3735,7 +3735,7 @@ OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Pen | 指向画笔对象[OH_Drawing_Pen](#oh_drawing_pen)的指针。 | 
-| OH_Drawing_ShadowLayer | 指向阴影层对象[OH_Drawing_ShadowLayer](#oh_drawing_shadowlayer)的指针。 | 
+| OH_Drawing_ShadowLayer | 指向阴影层对象[OH_Drawing_ShadowLayer](#oh_drawing_shadowlayer)的指针，为NULL表示清空阴影层效果。 | 
 
 
 ### OH_Drawing_BrushSetShadowLayer()
@@ -3746,7 +3746,7 @@ void OH_Drawing_BrushSetShadowLayer (OH_Drawing_Brush* , OH_Drawing_ShadowLayer*
 
 **描述**
 
-为画刷设置阴影层，为空表示清空阴影层效果，当前仅对文字生效。
+为画刷设置阴影层，设置的阴影层效果当前仅在绘制文字时生效。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -3761,7 +3761,7 @@ OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Brush | 指向画刷对象的指针。 | 
-| OH_Drawing_ShadowLayer | 表示指向阴影层的指针。 | 
+| OH_Drawing_ShadowLayer | 表示指向阴影层的指针，为NULL表示清空画刷的阴影层效果。 | 
 
 
 ### OH_Drawing_ShadowLayerCreate()
@@ -3773,6 +3773,10 @@ OH_Drawing_ShadowLayer* OH_Drawing_ShadowLayerCreate (float blurRadius, float x,
 **描述**
 
 创建一个阴影层对象。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+blurRadius小于0等于时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4985,7 +4989,7 @@ OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Brush | 指向画刷对象的指针。 | 
-| OH_Drawing_Filter | 表示指向滤波器对象的指针，为空表示清空画刷滤波器。 | 
+| OH_Drawing_Filter | 表示指向滤波器对象的指针，为NULL表示清空画刷滤波器。 | 
 
 
 ### OH_Drawing_BrushSetShaderEffect()
@@ -5011,7 +5015,7 @@ OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Brush | 指向画刷对象的指针。 | 
-| OH_Drawing_ShaderEffect | 表示指向着色器对象的指针。 | 
+| OH_Drawing_ShaderEffect | 表示指向着色器对象的指针，为NULL表示清空画刷的着色器效果。 | 
 
 
 ### OH_Drawing_CanvasAttachBrush()
@@ -5274,7 +5278,7 @@ void OH_Drawing_CanvasDetachBrush (OH_Drawing_Canvas* )
 
 **描述**
 
-用于去除掉画布中的画刷，使用后画布将不去填充图形形状。
+用于去除掉画布中的画刷，使用后画布将不使用此前设置的画刷去填充图形形状。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -5422,9 +5426,9 @@ OH_Drawing_Canvas、OH_Drawing_Bitmap、dst任意一个为NULL时返回OH_DRAWIN
 | -------- | -------- |
 | OH_Drawing_Canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
 | OH_Drawing_Bitmap | 指向位图对象[OH_Drawing_Bitmap](#oh_drawing_bitmap)的指针。 | 
-| src | 源位图指定矩形区域，可以为空。 | 
+| src | 源位图指定矩形区域，为NULL将指定整个源位图区域。 | 
 | dst | 目标画布指定矩形区域。 | 
-| OH_Drawing_SamplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions)的指针。 | 
+| OH_Drawing_SamplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions)的指针，为NULL将使用默认采样选项。 | 
 
 
 ### OH_Drawing_CanvasDrawCircle()
@@ -5481,7 +5485,7 @@ OH_Drawing_Canvas、OH_Drawing_Image、dst任意一个为NULL时返回OH_DRAWING
 | OH_Drawing_Canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
 | OH_Drawing_Image | 指向图片对象[OH_Drawing_Image](#oh_drawing_image)的指针。 | 
 | dst | 指向矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针。 | 
-| OH_Drawing_SamplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions)的指针。 | 
+| OH_Drawing_SamplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions)的指针，为NULL将使用默认采样选项。 | 
 
 
 ### OH_Drawing_CanvasDrawImageRectWithSrc()
@@ -5510,8 +5514,8 @@ OH_Drawing_Canvas、OH_Drawing_Image、src、dst任意一个为NULL时返回OH_D
 | OH_Drawing_Image | 指向图片对象[OH_Drawing_Image](#oh_drawing_image)的指针。 | 
 | src | 指向源矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针。 | 
 | dst | 指向目标矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针。 | 
-| OH_Drawing_SamplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions)的指针。 | 
-| OH_Drawing_SrcRectConstraint | 约束类型，支持可选的具体类型可见{\@Link OH_Drawing_SrcRectConstraint}枚举。 | 
+| OH_Drawing_SamplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions)的指针，为NULL将使用默认采样选项。 | 
+| OH_Drawing_SrcRectConstraint | 约束类型，支持可选的具体类型可见[OH_Drawing_SrcRectConstraint](#oh_drawing_srcrectconstraint-1)枚举。 | 
 
 
 ### OH_Drawing_CanvasDrawLine()
@@ -5619,9 +5623,9 @@ OH_Drawing_Canvas、OH_Drawing_PixelMap、dst任意一个为NULL时返回OH_DRAW
 | -------- | -------- |
 | OH_Drawing_Canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
 | OH_Drawing_PixelMap | 指向像素图[OH_Drawing_PixelMap](#oh_drawing_pixelmap)的指针。 | 
-| src | 源画布指定矩形区域，可以为空。 | 
+| src | 像素图指定矩形区域，为NULL将指定整个像素图区域。 | 
 | dst | 目标画布指定矩形区域。 | 
-| OH_Drawing_SamplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions)的指针。 | 
+| OH_Drawing_SamplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions)的指针，为NULL将使用默认采样选项。 | 
 
 
 ### OH_Drawing_CanvasDrawPoints()
@@ -5906,7 +5910,7 @@ OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **返回：**
 
-函数会返回一个32位的值描述画布状态（画布矩阵）的数量。
+函数会返回一个32位的值描述画布状态（画布矩阵）的数量，画布初始状态数量为1。
 
 
 ### OH_Drawing_CanvasGetTotalMatrix()
@@ -6103,7 +6107,7 @@ OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Canvas | 指向画布对象的指针。 | 
-| saveCount | 指定的画布状态（画布矩阵）数量。 | 
+| saveCount | 要恢复的画布状态深度。小于等于1时，恢复为初始状态；大于已保存的画布状态数量时，不执行任何操作。 | 
 
 
 ### OH_Drawing_CanvasRotate()
@@ -6182,8 +6186,8 @@ OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
-| OH_Drawing_Rect | 指向矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针。 | 
-| OH_Drawing_Brush | 指向画刷对象[OH_Drawing_Brush](#oh_drawing_brush)的指针。 | 
+| OH_Drawing_Rect | 指向矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针，用于限制图层大小，为NULL表示无限制。 | 
+| OH_Drawing_Brush | 指向画刷对象[OH_Drawing_Brush](#oh_drawing_brush)的指针，绘制位图时会应用画刷对象的透明度，滤波器效果，混合模式，为NULL表示不应用任何效果。 | 
 
 
 ### OH_Drawing_CanvasScale()
@@ -7142,7 +7146,7 @@ OH_Drawing_Filter为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Filter | 指示指向滤波器对象的指针。 | 
-| OH_Drawing_ColorFilter | 指示指向颜色滤波器对象的指针。 | 
+| OH_Drawing_ColorFilter | 指示指向颜色滤波器对象的指针，为NULL表示清空滤波器对象中的颜色滤波器效果。 | 
 
 
 ### OH_Drawing_FilterSetMaskFilter()
@@ -7168,7 +7172,7 @@ OH_Drawing_Filter为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Filter | 指示指向滤波器对象的指针。 | 
-| OH_Drawing_MaskFilter | 指示指向模板滤波器对象的指针。 | 
+| OH_Drawing_MaskFilter | 指示指向模板滤波器对象的指针，为NULL表示清空滤波器对象中的模板滤波器效果。 | 
 
 
 ### OH_Drawing_FontCountText()
@@ -7719,7 +7723,7 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Font | 指向字体对象的指针。 | 
-| OH_Drawing_Typeface | 指向字形对象的指针。 | 
+| OH_Drawing_Typeface | 指向字形对象的指针，为NULL会使用系统默认字形对象。 | 
 
 
 ### OH_Drawing_FontStyleSetCount()
@@ -8982,9 +8986,9 @@ count小于0或者大于4时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针。 | 
-| src | 源点数组。 | 
-| dst | 目标点数组，个数要与源点相等。 | 
-| count | 源点数组以及目标点数组的个数。 | 
+| src | 源点数组，为NULL时count应当为0。 | 
+| dst | 目标点数组，个数要与源点相等，为NULL时count应当为0。 | 
+| count | 源点数组以及目标点数组的个数，为0时将矩阵对象设为单位矩阵。 | 
 
 **返回：**
 
@@ -9126,7 +9130,7 @@ OH_Drawing_Path、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_IN
 | OH_Drawing_Path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
 | OH_Drawing_Rect | 指向矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针。 | 
 | startAngle | 弧的起始角度，单位为度。 | 
-| sweepAngle | 扫掠角度，单位为度。正数表示顺时针方向，负数表示逆时针方向。 | 
+| sweepAngle | 扫描的度数，为正数时顺时针扫描，为负数时逆时针扫描。实际扫描的度数为该入参对360取模的结果。 | 
 
 ### OH_Drawing_PathAddOval()
 
@@ -9206,7 +9210,7 @@ OH_Drawing_Path、src任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAME
 | -------- | -------- |
 | OH_Drawing_Path | 指向当前路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
 | src | 指向源路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
-| OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针，为空表示单位矩阵。 | 
+| OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针，为NULL表示单位矩阵。 | 
 
 
 ### OH_Drawing_PathAddPathWithMatrixAndMode()
@@ -9233,7 +9237,7 @@ path、src任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | -------- | -------- |
 | path | 指向当前路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
 | src | 指向源路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
-| OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针。 | 
+| OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针，为NULL表示单位矩阵。 | 
 | OH_Drawing_PathAddMode | 路径添加模式[OH_Drawing_PathAddMode](#oh_drawing_pathaddmode)。 | 
 
 
@@ -9411,8 +9415,8 @@ OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | y1 | 包围椭圆的矩形左上角点位置的纵坐标。 | 
 | x2 | 包围椭圆的矩形右下角点位置的横坐标。 | 
 | y2 | 包围椭圆的矩形右下角点位置的纵坐标。 | 
-| startDeg | 起始的角度。 | 
-| sweepDeg | 扫描的度数。 | 
+| startDeg | 起始的角度，角度的起始方向（0°）为x轴正方向。 | 
+| sweepDeg | 扫描的度数，为正数时顺时针扫描，为负数时逆时针扫描。实际扫描的度数为该入参对360取模的结果。 | 
 
 
 ### OH_Drawing_PathClose()
@@ -9448,7 +9452,7 @@ void OH_Drawing_PathConicTo (OH_Drawing_Path* , float ctrlX, float ctrlY, float 
 
 **描述**
 
-在当前路径上添加一个二次贝塞尔曲线段，其控制点为 (ctrlX, ctrlY)，结束点为 (endX, endY)。
+在当前路径上添加一条路径终点到目标点位置的圆锥曲线段，其控制点为 (ctrlX, ctrlY)，结束点为 (endX, endY)。若路径没有内容则将起始点设置为 (0, 0)。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -9467,7 +9471,7 @@ OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | ctrlY | 控制点位置的纵坐标。 | 
 | endX | 结束点位置的横坐标。 | 
 | endY | 结束点位置的纵坐标。 | 
-| weight | 表示曲线的权重，决定了曲线的形状。通常在0到1之间，为0时是线段，为1时是椭圆曲线。 | 
+| weight | 表示曲线的权重，决定了曲线的形状，越大越接近控制点。若小于等于0则等同于使用[OH_Drawing_PathLineTo](#oh_drawing_pathlineto)添加一条到结束点的线段，若为1则等同于[OH_Drawing_PathQuadTo](#oh_drawing_pathquadto)。 | 
 
 
 ### OH_Drawing_PathContains()
@@ -9660,7 +9664,7 @@ void OH_Drawing_PathLineTo (OH_Drawing_Path* , float x, float y )
 
 **描述**
 
-用于添加一条从路径的最后点位置到目标点位置的线段。
+用于添加一条从路径的最后点位置到目标点位置的线段。若路径没有内容则将起始点设置为 (0, 0)。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -9729,7 +9733,7 @@ path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | path | 指向当前路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
-| dst | 指向目标路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| dst | 指向目标路径对象[OH_Drawing_Path](#oh_drawing_path)的指针，为NULL时会将结果存储到当前路径对象中。 | 
 | dx | x轴方向的偏移量。 | 
 | dy | y轴方向的偏移量。 | 
 
@@ -9742,7 +9746,7 @@ void OH_Drawing_PathQuadTo (OH_Drawing_Path* , float ctrlX, float ctrlY, float e
 
 **描述**
 
-用于添加一条从路径最后点位置到目标点位置的二阶贝塞尔圆滑曲线。
+用于添加一条从路径最后点位置到目标点位置的二阶贝塞尔曲线。若路径没有内容则将起始点设置为 (0, 0)。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -9771,7 +9775,7 @@ void OH_Drawing_PathRConicTo (OH_Drawing_Path* , float ctrlX, float ctrlY, float
 
 **描述**
 
-使用相对位置在当前路径上添加一条当前路径终点到目标点位置的圆锥曲线。
+使用相对位置在当前路径上添加一条路径终点到目标点位置的圆锥曲线段，其控制点为 (ctrlX, ctrlY)，结束点为 (endX, endY)。若路径没有内容则将起始点设置为 (0, 0)。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -9790,7 +9794,7 @@ OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | ctrlY | 相对于路径终点的y轴偏移量，用于指定控制点的纵坐标。 | 
 | endX | 相对于路径终点的x轴偏移量，用于指定目标点的横坐标。 | 
 | endY | 相对于路径终点的y轴偏移量，用于指定目标点的纵坐标。 | 
-| weight | 表示曲线的权重，决定了曲线的形状。通常在0到1之间，为0时是线段，为1时是椭圆曲线。 | 
+| weight | 表示曲线的权重，决定了曲线的形状，越大越接近控制点。若小于等于0则等同于使用[OH_Drawing_PathRLineTo](#oh_drawing_pathrlineto)添加一条到结束点的线段，若为1则等同于[OH_Drawing_PathRQuadTo](#oh_drawing_pathrquadto)。 | 
 
 
 ### OH_Drawing_PathRCubicTo()
@@ -9857,7 +9861,7 @@ void OH_Drawing_PathRLineTo (OH_Drawing_Path* , float x, float y )
 
 **描述**
 
-使用相对位置在当前路径上添加一条当前路径终点到目标点位置的线段。
+使用相对位置在当前路径上添加一条当前路径终点到目标点位置的线段。若路径没有内容则将起始点设置为 (0, 0)。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -9911,7 +9915,7 @@ void OH_Drawing_PathRQuadTo (OH_Drawing_Path* , float ctrlX, float ctrlY, float 
 
 **描述**
 
-使用相对位置在当前路径上添加一条当前路径终点到目标点位置的二阶贝塞尔圆滑曲线。
+使用相对位置在当前路径上添加一条当前路径终点到目标点位置的二阶贝塞尔曲线。若路径没有内容则将起始点设置为 (0, 0)。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -10179,7 +10183,7 @@ OH_Drawing_PenLineJoinStyle OH_Drawing_PenGetJoin (const OH_Drawing_Pen* )
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
-OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+OH_Drawing_Pen、OH_Drawing_Filter任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -10460,7 +10464,7 @@ OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Pen | 指向画笔对象[OH_Drawing_Pen](#oh_drawing_pen)的指针。 | 
-| OH_Drawing_Filter | 指向滤波器[OH_Drawing_Filter](#oh_drawing_filter)的指针，为空表示清空画笔滤波器。 | 
+| OH_Drawing_Filter | 指向滤波器[OH_Drawing_Filter](#oh_drawing_filter)的指针，为NULL表示清空画笔滤波器。 | 
 
 
 ### OH_Drawing_PenSetJoin()
@@ -10538,7 +10542,7 @@ OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Pen | 指向画笔对象[OH_Drawing_Pen](#oh_drawing_pen)的指针。 | 
-| OH_Drawing_PathEffect | 指向路径效果对象[OH_Drawing_PathEffect](#oh_drawing_patheffect)的指针。 | 
+| OH_Drawing_PathEffect | 指向路径效果对象[OH_Drawing_PathEffect](#oh_drawing_patheffect)的指针，为NULL表示清空路径效果。 | 
 
 
 ### OH_Drawing_PenSetShaderEffect()
@@ -10564,7 +10568,7 @@ OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Pen | 指向画笔对象[OH_Drawing_Pen](#oh_drawing_pen)的指针。 | 
-| OH_Drawing_ShaderEffect | 指向着色器对象[OH_Drawing_ShaderEffect](#oh_drawing_shadereffect)的指针。 | 
+| OH_Drawing_ShaderEffect | 指向着色器对象[OH_Drawing_ShaderEffect](#oh_drawing_shadereffect)的指针，为NULL表示清空着色器效果。 | 
 
 
 ### OH_Drawing_PenSetWidth()
@@ -10674,7 +10678,7 @@ OH_Drawing_Rect* OH_Drawing_RectCreate (float left, float top, float right, floa
 
 **描述**
 
-用于创建一个矩形对象。
+用于创建一个矩形对象，不会对设置的坐标排序，即允许矩形设置的左上角坐标大于对应的矩形右下角坐标。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -10723,7 +10727,7 @@ float OH_Drawing_RectGetBottom (OH_Drawing_Rect* )
 
 **描述**
 
-用于获取矩形右下角的纵坐标。
+用于获取给矩形设置的右下角的纵坐标。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -10752,7 +10756,7 @@ float OH_Drawing_RectGetHeight (OH_Drawing_Rect* )
 
 **描述**
 
-用于获取矩形对象高度。
+用于获取矩形对象高度，计算方式为设置的矩形的右下角纵坐标减去左上角纵坐标。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -10781,7 +10785,7 @@ float OH_Drawing_RectGetLeft (OH_Drawing_Rect* )
 
 **描述**
 
-用于获取矩形左上角的横坐标。
+用于获取给矩形设置的左上角的横坐标。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -10810,7 +10814,7 @@ float OH_Drawing_RectGetRight (OH_Drawing_Rect* )
 
 **描述**
 
-用于获取矩形右下角的横坐标。
+用于获取给矩形设置的右下角的横坐标。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -10839,7 +10843,7 @@ float OH_Drawing_RectGetTop (OH_Drawing_Rect* )
 
 **描述**
 
-用于获取矩形左上角的纵坐标。
+用于获取给矩形设置的左上角的纵坐标。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -10868,7 +10872,7 @@ float OH_Drawing_RectGetWidth (OH_Drawing_Rect* )
 
 **描述**
 
-用于获取矩形对象的宽度。
+用于获取矩形对象的宽度，计算方式为设置的矩形的右下角横坐标减去左上角横坐标。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -12558,7 +12562,7 @@ OH_Drawing_GpuContext为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | -------- | -------- |
 | OH_Drawing_GpuContext | 指向图形处理器上下文对象的指针[OH_Drawing_GpuContext](#oh_drawing_gpucontext)。 | 
 | budgeted | 用于控制内存分配是否计入缓存预算，true则计入高速缓存预算，false则不计入高速缓存预算。 | 
-| [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) | 指向图片信息[OH_Drawing_Image_Info](_o_h___drawing___image___info.md)的指针。 | 
+| [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) | 图片信息[OH_Drawing_Image_Info](_o_h___drawing___image___info.md)结构体。 | 
 
 **返回：**
 
@@ -12640,7 +12644,7 @@ OH_Drawing_TextBlobBuilder、OH_Drawing_Font任意一个为NULL或者count小于
 | OH_Drawing_TextBlobBuilder | 指向文本构造器对象的指针。 | 
 | OH_Drawing_Font | 指向字体对象的指针。 | 
 | count | 文字的数量。 | 
-| OH_Drawing_Rect | 文本的边界框。 | 
+| OH_Drawing_Rect | 文本的边界框，为NULL表示不设置边界框。 | 
 
 
 ### OH_Drawing_TextBlobBuilderCreate()
@@ -12720,7 +12724,7 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromPosText (const void * text, si
 
 **描述**
 
-从文本和文本的位置中创建一个文本对象。
+使用文本创建文本对象，文本对象中每个字符的坐标由OH_Drawing_Point2D数组中对应的坐标信息决定。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -12755,7 +12759,7 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromString (const char* str, const
 
 **描述**
 
-从字符串中创建文本对象。
+使用字符串创建文本对象。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -12788,7 +12792,7 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromText (const void * text, size_
 
 **描述**
 
-从文本中创建一个文本对象。
+使用文本创建一个文本对象。
 
 本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
