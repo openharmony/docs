@@ -126,6 +126,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
 | TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TYPE_CAST_PLUS_MIRROR<sup>     | 2    | Cast+的Mirror模式。表示媒体正在其他设备上展示。 |
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
 | TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
@@ -4704,7 +4705,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | deviceId   | string | 是   | 播放设备的ID。  |
 | deviceName | string | 是   | 播放设备的名称。    |
 | deviceType | DeviceType | 是   | 播放设备的类型。    |
-| supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype11)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
+| supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype10)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
 | supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 
 ## OutputDeviceInfo<sup>10+</sup>
