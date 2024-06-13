@@ -3,7 +3,7 @@
 
 ## 场景介绍
 
-为了满足数据库的安全特性，存有敏感信息的应用会在[el5](../application-models/application-context-stage.md#获取和修改加密分区)路径下创建了一个E类数据库。在锁屏的情况下，满足一定条件时，会触发密钥的销毁。此时，E类数据库不可操作。当锁屏解锁后，密钥会恢复，并且E类数据库恢复正常进行读写操作。这样的设计可以有效防止用户数据的泄露。
+为了满足数据库的安全特性，存有敏感信息的应用会在[el5](../application-models/application-context-stage.md#获取和修改加密分区)路径下创建了一个E类数据库。在锁屏的情况下，满足一定条件时，会触发密钥的销毁。此时，E类数据库不可操作。当锁屏解锁后，密钥会恢复，E类数据库恢复正常读写操作。这样的设计可以有效防止用户数据的泄露。
 
 然而，在锁屏的过程中，应用程序仍然可以继续写入数据，由于此时E类数据库不可读写，可能会导致数据丢失。为了解决这个问题，当前提供了一种方案：在锁屏的状态下，将数据存储在[el2](../application-models/application-context-stage.md#获取和修改加密分区)路径下的C类数据库中。当解锁后，再将数据迁移到E类数据库中。这样可以确保数据在锁屏期间的安全性和一致性。
 
@@ -11,9 +11,9 @@
 
 ### 类图
 
-Mover类：提供数据库数据迁移接口，在锁屏开启后若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
+Mover类：提供数据库数据迁移接口，在锁屏解锁后若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
 
-Store类：提供访问操作数据库的公共函数。
+Store类：提供访问当前可操作数据库，对数据库进行相关操作的接口。
 
 secretKeyObserve类：提供了获取当前密钥状态的接口，在密钥销毁后，关闭E类数据库。
 
@@ -46,7 +46,7 @@ ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 
 ### Mover
 
-提供数据库数据迁移接口，在锁屏开启后若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
+提供数据库数据迁移接口，在锁屏解锁后若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
 
 ```ts
 import { distributedKVStore } from '@kit.ArkData';
@@ -64,7 +64,7 @@ export class Mover {
 
 ### Store
 
-提供了在数据库中插入数据，删除数据，更新数据，获取当前数据条数的接口。其中StoreInfo类是一个用于存储获取数据库相关信息。
+提供了获取数据库，在数据库中插入数据，删除数据，更新数据和获取当前数据数量的接口。其中StoreInfo类用于存储获取数据库相关信息。
 
 ```ts
 import { distributedKVStore } from '@kit.ArkData';
@@ -307,7 +307,7 @@ export class ECStoreManager {
 
 ### EntryAbility
 
-在EntryAbility类的中模拟在应用启动时，注册对COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED公共事件的监听，并配置相应的数据库信息，密钥状态信息等。
+模拟应用启动期间，注册对COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED公共事件的监听，并配置相应的数据库信息，密钥状态信息等。
 
 ```ts
 import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -447,7 +447,7 @@ export default class EntryAbility extends UIAbility {
 
 ### index按键事件
 
-提供按键 模拟应用操作数据库，如插入数据，删除数据，更新数据和获取数据数量的操作等。
+模拟应用操作数据库，如插入数据，删除数据，更新数据和获取数据数量的操作等。
 
 ```ts
 import { storeManager, secretKeyObserve } from "../entryability/EntryAbility"
@@ -514,7 +514,7 @@ struct Index {
 ## 关系型数据库E类加密
 ### Mover
 
-提供数据库数据迁移接口，在锁屏开启后若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
+提供数据库数据迁移接口，在锁屏解锁后若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
 
 ```ts
 import { relationalStore } from '@kit.ArkData';
@@ -535,7 +535,7 @@ export class Mover {
 
 ### Store
 
-提供了在数据库中插入数据，删除数据，更新数据，获取当前数据条数的接口。其中StoreInfo类是一个用于存储获取数据库相关信息。
+提供了获取数据库，在数据库中插入数据，删除数据，更新数据和获取当前数据数量的接口。其中StoreInfo类用于存储获取数据库相关信息。
 
 ```ts
 import { relationalStore } from '@kit.ArkData';
@@ -739,7 +739,7 @@ export class ECStoreManager {
 
 ### EntryAbility
 
-在EntryAbility类的中模拟在应用启动时，注册对COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED公共事件的监听，并配置相应的数据库信息，密钥状态信息等。
+模拟在应用启动期间，注册对COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED公共事件的监听，并配置相应的数据库信息，密钥状态信息等。
 
 ```ts
 import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -861,7 +861,7 @@ export default class EntryAbility extends UIAbility {
 
 ### index按键事件
 
-提供按键 模拟应用操作数据库，如插入数据，删除数据，更新数据和获取数据数量的操作等。
+模拟应用操作数据库，如插入数据，删除数据，更新数据和获取数据数量的操作等。
 
 ```ts
 import { storeManager, secretKeyObserve } from "../entryability/EntryAbility"
