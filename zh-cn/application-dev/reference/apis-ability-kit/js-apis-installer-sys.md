@@ -1095,6 +1095,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, c
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
+| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **示例：**
 
@@ -1172,6 +1173,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
+| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **示例：**
 
@@ -1251,6 +1253,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam):
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
+| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **示例：**
 
