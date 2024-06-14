@@ -21,8 +21,8 @@
       - [屏幕录制(仅对系统应用开放)(C/C++)](onlyfortest/media/media/avscreen-capture.md)
       <!--DelEnd-->
 - API参考
-  - Audio Kit API参考<!--audo-kit-api-ref-->
-    - ArkTS API<!--universal-keystore-arkts-api-->
+  - Audio Kit API参考
+    - ArkTS API
       - [@ohos.multimedia.audio (音频管理)](onlyfortest/reference/apis-audio-kit/js-apis-audio.md)
       - [@ohos.multimedia.audioHaptic (音振协同)](onlyfortest/reference/apis-audio-kit/js-apis-audioHaptic.md)
       <!--Del-->
@@ -32,5 +32,5 @@
         - [ringtonePlayer (铃声播放器)(系统接口)](onlyfortest/reference/apis-audio-kit/js-apis-inner-multimedia-ringtonePlayer-sys.md)
         - [systemTonePlayer (系统提示音播放器)(系统接口)](onlyfortest/reference/apis-audio-kit/js-apis-inner-multimedia-systemTonePlayer-sys.md)
       <!--DelEnd-->
-    - 错误码<!--test-test-test-universal-keystore-test--error-code-test-->
+    - 错误码
       - [Media错误码](onlyfortest/reference/apis-media-kit/errorcode-media.md)
