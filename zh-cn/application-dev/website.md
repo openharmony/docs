@@ -1,7 +1,7 @@
 # OpenHarmony应用开发文档
 
 - 开发
-  - Audio Kit（音频服务）
+  - Media Kit（媒体服务/音频服务）测试相同父节点名称
     - [Audio Kit简介](onlyfortest/media/audio/audio-kit-intro.md)
     - 音频播放
       - [音频播放开发概述](onlyfortest/media/audio/audio-playback-overview.md)
@@ -12,7 +12,7 @@
       <!--Del-->
       - [分布式音频播放(仅对系统应用开放)](onlyfortest/media/audio/distributed-audio-playback.md)
       <!--DelEnd-->
-  - Media Kit（媒体服务）
+  - Media Kit（媒体服务/音频服务）测试相同父节点名称
     - [Media Kit简介](onlyfortest/media/media/media-kit-intro.md)
     - 视频播放和录制
       - [视频播放](onlyfortest/media/media/video-playback.md)
@@ -22,7 +22,7 @@
       <!--DelEnd-->
 - API参考
   - Audio Kit API参考
-    - ArkTS API
+    - ArkTS API<!--universal-keystore-structtest-test-test-test-test-test-->
       - [@ohos.multimedia.audio (音频管理)](onlyfortest/reference/apis-audio-kit/js-apis-audio.md)
       - [@ohos.multimedia.audioHaptic (音振协同)](onlyfortest/reference/apis-audio-kit/js-apis-audioHaptic.md)
       <!--Del-->
@@ -32,5 +32,5 @@
         - [ringtonePlayer (铃声播放器)(系统接口)](onlyfortest/reference/apis-audio-kit/js-apis-inner-multimedia-ringtonePlayer-sys.md)
         - [systemTonePlayer (系统提示音播放器)(系统接口)](onlyfortest/reference/apis-audio-kit/js-apis-inner-multimedia-systemTonePlayer-sys.md)
       <!--DelEnd-->
-    - 错误码
+    - ArkTS API<!--universal-keystore-structtest-test-test-test-test-test-->
       - [Media错误码](onlyfortest/reference/apis-media-kit/errorcode-media.md)
