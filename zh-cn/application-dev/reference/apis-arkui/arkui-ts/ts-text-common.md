@@ -78,7 +78,7 @@ getLineMetrics(lineNumber: number): LineMetrics
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| LineMetrics | 行信息、文本样式信息、以及字体属性信息。 |
+| [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | 行信息、文本样式信息、以及字体属性信息。 |
 
 ## PositionWithAffinity
 
