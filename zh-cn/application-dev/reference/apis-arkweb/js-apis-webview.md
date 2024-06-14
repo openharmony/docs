@@ -8130,7 +8130,7 @@ setUrlTrustList(urlTrustList: string): void
 
 | 参数名  | 类型    | 必填 | 说明                  |
 | ------- | ------ | ---- | :-------------------- |
-| urlTrustList | string | 是   | url白名单列表，使用json格式配置，最大支持10MB。<br/>白名单设置接口为覆盖方式，多次调用接口时，以最后一次设置为准。<br/>当本参数为空字符串时，表示取消白名单，放行所有url的访问。<br/>json格式示例： ```&nbsp;<br/>{<br>&emsp;"UrlPermissionList":[{<br/>&emsp;&emsp;"scheme":"https",<br/>&emsp;&emsp;"host":"www\.example1.com",<br/>&emsp;&emsp;"port":443,<br/>&emsp;&emsp;"path":"pathA/pathB"<br/>&emsp;},<br/>&emsp;{<br/>&emsp;&emsp;"scheme":"http",<br/>&emsp;&emsp;"host":"www\.example2.com"<br/>&emsp;&emsp;"port":80,<br/>&emsp;&emsp;"path":"test1/test2/test3"<br/>&emsp;}]<br/>}      |
+| urlTrustList | string | 是   | url白名单列表，使用json格式配置，最大支持10MB。<br/>白名单设置接口为覆盖方式，多次调用接口时，以最后一次设置为准。<br/>当本参数为空字符串时，表示取消白名单，放行所有url的访问。<br/>json格式示例： &nbsp;<br/>{<br>&emsp;"UrlPermissionList":[{<br/>&emsp;&emsp;"scheme":"https",<br/>&emsp;&emsp;"host":"www\.example1.com",<br/>&emsp;&emsp;"port":443,<br/>&emsp;&emsp;"path":"pathA/pathB"<br/>&emsp;},<br/>&emsp;{<br/>&emsp;&emsp;"scheme":"http",<br/>&emsp;&emsp;"host":"www\.example2.com"<br/>&emsp;&emsp;"port":80,<br/>&emsp;&emsp;"path":"test1/test2/test3"<br/>&emsp;}]<br/>}      |
 
 **白名单json格式参数**
 | 字段   | 参数类型 | 必填 | 参数描述                  |
