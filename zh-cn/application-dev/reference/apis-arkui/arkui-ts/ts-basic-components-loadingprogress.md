@@ -62,7 +62,7 @@ enableLoading(value: boolean)
 | ------ | ------- | ---- | ---------------------------------------------- |
 | value  | boolean | 是   | LoadingProgress动画是否显示。<br/>默认值：true |
 
-## contentModifier<sup>12+</sup>
+### contentModifier<sup>12+</sup>
 
 contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
@@ -80,7 +80,7 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-## LoadingProgressConfiguration<sup>12+</sup>对象说明
+### LoadingProgressConfiguration<sup>12+</sup>对象说明
 
 开发者需要自定义class实现ContentModifier接口。
 
