@@ -6,3 +6,52 @@ Scene将自定义的二级模块API组织在一起，方便开发者进行导出
 - [SceneType](js-apis-inner-scene-types.md)：本模块覆盖3D图形中的数据类型，包括向量、四元数等。
 - [SceneResources](js-apis-inner-scene-resources.md)：本模块提供3D图形中常用的基本资源类型，包括材质、图片、着色器等。
 - [ScenePostProcessSettings](js-apis-inner-scene-post-process-settings.md)：本模块提供3D图形中的色调映射等图像后处理方法。
+
+> **说明：**
+>
+> 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+## 导入模块
+```ts
+import {
+  ToneMappingType,
+  ToneMappingSettings,
+  PostProcessSettings,
+  Vec2,
+  Vec3,
+  Vec4,
+  Color,
+  Rect,
+  Quaternion,
+  Aabb,
+  Position3,
+  Rotation3,
+  Scale3,
+  SceneResourceType,
+  SceneResource,
+  Shader,
+  MaterialType,
+  Material,
+  ShaderMaterial,
+  SubMesh,
+  Mesh,
+  Animation,
+  EnvironmentBackgroundType,
+  Environment,
+  Image,
+  LayerMask,
+  NodeType,
+  Container,
+  Node,
+  Geometry,
+  LightType,
+  Light,
+  SpotLight,
+  DirectionalLight,
+  Camera,
+  SceneResourceParameters,
+  SceneNodeParameters,
+  SceneResourceFactory,
+  Scene
+} from '@kit.ArkGraphics3D';
+```

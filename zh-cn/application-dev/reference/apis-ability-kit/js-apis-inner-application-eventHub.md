@@ -41,7 +41,7 @@ on(event: string, callback: Function): void;
 >
 >  callback被emit触发时，调用方是EventHub对象，如果要修改callback中this的指向，可以使用箭头函数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -60,7 +60,8 @@ on(event: string, callback: Function): void;
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
-**示例：**
+**示例1：**
+callback被emit触发时，调用方是EventHub对象。EventHub对象没有value属性，因此结果是undefined。
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -70,6 +71,31 @@ export default class EntryAbility extends UIAbility {
 
     onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc);
+    }
+
+    onForeground() {
+        // 结果：
+        // eventFunc is called, value: undefined
+
+        this.context.eventHub.emit('myEvent');
+    }
+
+    eventFunc() {
+        console.log(`eventFunc is called, value: ${this.value}`);
+    }
+}
+```
+
+**示例2：**
+callback使用箭头函数时，调用方是EntryAbility对象。EntryAbility对象里存在value属性，因此结果是12。
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    value: number = 12;
+
+    onCreate() {
         // 支持使用匿名函数订阅事件
         this.context.eventHub.on('myEvent', () => {
             console.log(`anonymous eventFunc is called, value: ${this.value}`);
@@ -78,7 +104,6 @@ export default class EntryAbility extends UIAbility {
 
     onForeground() {
         // 结果：
-        // eventFunc is called, value: undefined
         // anonymous eventFunc is called, value: 12
         this.context.eventHub.emit('myEvent');
     }
@@ -97,7 +122,7 @@ off(event: string, callback?: Function): void;
  - 传入callback：取消指定的callback对指定事件的订阅，当该事件触发后，将不会回调该callback。
  - 不传callback：取消所有callback对指定事件的订阅。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -146,7 +171,7 @@ emit(event: string, ...args: Object[]): void;
 
 触发指定事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

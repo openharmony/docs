@@ -499,7 +499,7 @@ struct ArticleCard {
 5. 渲染第1个数组项对应的`ArticleCard`组件时，读取到的`isLiked`和`likesCount`为修改后的新值。
 
 ### 拖拽排序
-当ForEach在List组件下使用，并且设置了onMove事件，ForEach每次迭代都生成一个ListItem时，可以使能拖拽排序。拖拽排序离手后，如果数据位置发生变化，则会触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。
+当ForEach在List组件下使用，并且设置了onMove事件，ForEach每次迭代都生成一个ListItem时，可以使能拖拽排序。拖拽排序离手后，如果数据位置发生变化，则会触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。数据源修改前后，要保持每个数据的键值不变，只是顺序发生变化，才能保证落位动画正常执行。
 
 ```ts
 @Entry
@@ -510,7 +510,7 @@ struct ForEachSort {
   build() {
     Row() {
       List() {
-        ForEach(this.arr, (item:number)=> {
+        ForEach(this.arr, (item: string) => {
           ListItem() {
             Text(item.toString())
               .fontSize(16)
@@ -519,11 +519,11 @@ struct ForEachSort {
           }.margin(10)
           .borderRadius(10)
           .backgroundColor("#FFFFFFFF")
-        })
-        .onMove((from:number, to:number)=>{
-          let tmp = this.arr.splice(from, 1);
-          this.arr.splice(to, 0, tmp[0])
-        })
+        }, (item: string) => item)
+          .onMove((from:number, to:number) => {
+            let tmp = this.arr.splice(from, 1);
+            this.arr.splice(to, 0, tmp[0])
+          })
       }
       .width('100%')
       .height('100%')

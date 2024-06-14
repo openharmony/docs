@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## hidebug.getNativeHeapSize
@@ -28,9 +28,11 @@ getNativeHeapSize(): bigint
 
 **示例：**
 
-  ```ts
-  let nativeHeapSize: bigint = hidebug.getNativeHeapSize();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let nativeHeapSize: bigint = hidebug.getNativeHeapSize();
+```
 
 ## hidebug.getNativeHeapAllocatedSize
 
@@ -48,9 +50,11 @@ getNativeHeapAllocatedSize(): bigint
 
 
 **示例：**
-  ```ts
-  let nativeHeapAllocatedSize: bigint = hidebug.getNativeHeapAllocatedSize();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let nativeHeapAllocatedSize: bigint = hidebug.getNativeHeapAllocatedSize();
+```
 
 ## hidebug.getNativeHeapFreeSize
 
@@ -67,9 +71,11 @@ getNativeHeapFreeSize(): bigint
 | bigint | 返回内存分配器持有的缓存内存大小，单位为Byte。 |
 
 **示例：**
-  ```ts
-  let nativeHeapFreeSize: bigint = hidebug.getNativeHeapFreeSize();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let nativeHeapFreeSize: bigint = hidebug.getNativeHeapFreeSize();
+```
 
 ## hidebug.getPss
 
@@ -86,9 +92,11 @@ getPss(): bigint
 | bigint | 返回应用进程实际使用的物理内存大小，单位为kB。 |
 
 **示例：**
-  ```ts
-  let pss: bigint = hidebug.getPss();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let pss: bigint = hidebug.getPss();
+```
 
 ## hidebug.getVss<sup>11+<sup>
 
@@ -106,9 +114,11 @@ getVss(): bigint
 
 **示例：**
 
-  ```ts
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
 let vss: bigint = hidebug.getVss();
-  ```
+```
 
 ## hidebug.getSharedDirty
 
@@ -126,9 +136,11 @@ getSharedDirty(): bigint
 
 
 **示例：**
-  ```ts
-  let sharedDirty: bigint = hidebug.getSharedDirty();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let sharedDirty: bigint = hidebug.getSharedDirty();
+```
 
 ## hidebug.getPrivateDirty<sup>9+<sup>
 
@@ -145,9 +157,11 @@ getPrivateDirty(): bigint
 | bigint | 返回进程的私有脏内存大小，单位为kB。 |
 
 **示例：**
-  ```ts
-  let privateDirty: bigint = hidebug.getPrivateDirty();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let privateDirty: bigint = hidebug.getPrivateDirty();
+```
 
 ## hidebug.getCpuUsage<sup>9+<sup>
 
@@ -167,9 +181,11 @@ getCpuUsage(): number
 
 
 **示例：**
-  ```ts
-  let cpuUsage: number = hidebug.getCpuUsage();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let cpuUsage: number = hidebug.getCpuUsage();
+```
 
 ## hidebug.getServiceDump<sup>9+<sup>
 
@@ -203,7 +219,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import fs from '@ohos.file.fs';
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
@@ -261,7 +277,7 @@ startJsCpuProfiling(filename : string) : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -284,7 +300,7 @@ stopJsCpuProfiling() : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -321,7 +337,7 @@ dumpJsHeapData(filename : string) : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -351,6 +367,8 @@ startProfiling(filename : string) : void
 **示例：**
 
 ```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
 hidebug.startProfiling("cpuprofiler-20220216");
 // code block
 // ...
@@ -372,6 +390,8 @@ stopProfiling() : void
 **示例：**
 
 ```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
 hidebug.startProfiling("cpuprofiler-20220216");
 // code block
 // ...
@@ -399,6 +419,8 @@ dumpHeapData(filename : string) : void
 **示例：**
 
 ```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
 hidebug.dumpHeapData("heap-20220216");
 ```
 
@@ -418,15 +440,14 @@ getAppVMMemoryInfo(): VMMemoryInfo
 
 **示例：**
 
-  ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 let vmMemory: hidebug.VMMemoryInfo = hidebug.getAppVMMemoryInfo();
 hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
 hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
 hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
-  ```
+```
 
 ## hidebug.getAppThreadCpuUsage<sup>12+</sup>
 
@@ -446,16 +467,15 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 
 **示例：**
 
-  ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
 for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
     hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
     appThreadCpuUsage[ii].cpuUsage);
 }
-  ```
+```
 
 ## hidebug.startAppTraceCapture<sup>12+</sup>
 
@@ -495,7 +515,7 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
@@ -529,7 +549,7 @@ stopAppTraceCapture() : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
@@ -558,22 +578,41 @@ getAppMemoryLimit() : MemoryLimit
 **示例**
 
 ```ts
- import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
- let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
+let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
 ```
-## MemoryLimit<sup>12+</sup>
 
-应用程序进程内存限制。
+## hidebug.getSystemCpuUsage<sup>12+</sup>
 
-**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+getSystemCpuUsage() : number
 
-| 名称      | 类型   | 必填 | 说明         |
-| --------- | ------ | ---- | ------------ |
-| rssLimit    | bigint |  是  | 应用程序进程的驻留集的限制，以KB为单位     |
-| vssLimit  | bigint |  是  | 进程的虚拟内存限制，以KB为单位       |
-| vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制，以KB为单位      |
-| vmTotalHeapSize | bigint |  是  | 当前进程的 JS 堆内存大小限制，以KB为单位      |
+获取系统的CPU资源占用情况。
+
+例如，当系统资源CPU占用为 **50%**，将返回**0.5**。
+
+**系统能力**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值**
+
+| 类型     | 说明          |
+|--------|-------------|
+| number | 系统CPU资源占用情况。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Hidebug-CpuUsage错误码](errorcode-hiviewdfx-hidebug-cpuusage.md)。
+
+| 错误码ID | 错误信息                                            |
+| ------- |-------------------------------------------------|
+| 11400104 | The status of the system cpu usage is abnormal. |
+
+**示例**
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let cpuUsage: number = hidebug.getSystemCpuUsage();
+```
 
 ## hidebug.setAppResourceLimit<sup>12+</sup>
 
@@ -581,6 +620,8 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 设置应用的fd数量、线程数量、js内存或者native内存资源限制。
 **注意：** 当设置的开发者选项开关打开时,此功能有效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -604,13 +645,157 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let type: string = 'js_heap';
 let value: number = 85;
 let enableDebugLog: boolean = false;
 hidebug.setAppResourceLimit(type, value, enableDebugLog);
 ```
+
+## hidebug.getAppNativeMemInfo<sup>12+</sup>
+
+getAppNativeMemInfo(): NativeMemInfo
+
+获取应用进程内存信息。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型  | 说明                      |
+| ------ | -------------------------- |
+| [NativeMemInfo](#nativememinfo12) | 应用进程内存信息|
+
+**示例**
+
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+
+let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
+
+hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
+
+hilog.info(0x0000, 'testTag', "vss = %{public}d", nativeMemInfo.vss);
+
+hilog.info(0x0000, 'testTag', "rss = %{public}d", nativeMemInfo.rss);
+
+hilog.info(0x0000, 'testTag', "sharedDirty = %{public}d", nativeMemInfo.sharedDirty);
+
+hilog.info(0x0000, 'testTag', "privateDirty = %{public}d", nativeMemInfo.privateDirty);
+
+hilog.info(0x0000, 'testTag', "sharedClean = %{public}d", nativeMemInfo.sharedClean);
+
+hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.privateClean);
+```
+
+## hidebug.getSystemMemInfo<sup>12+</sup>
+
+getSystemMemInfo(): SystemMemInfo
+
+获取系统内存信息。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型  | 说明                      |
+| ------ | -------------------------- |
+| [SystemMemInfo](#systemmeminfo12) | 系统内存信息|
+
+**示例**
+
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+
+let systemMemInfo: hidebug.SystemMemInfo = hidebug.getSystemMemInfo();
+
+hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
+
+hilog.info(0x0000, 'testTag', "freeMem = %{public}d", systemMemInfo.freeMem);
+
+hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availableMem);
+```
+
+## hidebug.getVMRuntimeStats<sup>12+</sup>
+
+getVMRuntimeStats(): GcStats
+
+获取系统gc全部统计信息。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型                    | 说明       |
+|-----------------------|----------|
+| [GcStats](#gcstats12) | 系统GC统计信息。 |
+
+**示例**
+
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+
+let vMRuntimeStats: hidebug.GcStats = hidebug.getVMRuntimeStats();
+hilog.info(0x0000, "testTag", `gc-count: ${vMRuntimeStats['ark.gc.gc-count']}`);
+hilog.info(0x0000, "testTag", `gc-time: ${vMRuntimeStats['ark.gc.gc-time']}`);
+hilog.info(0x0000, "testTag", `gc-bytes-allocated: ${vMRuntimeStats['ark.gc.gc-bytes-allocated']}`);
+hilog.info(0x0000, "testTag", `gc-bytes-freed: ${vMRuntimeStats['ark.gc.gc-bytes-freed']}`);
+hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${vMRuntimeStats['ark.gc.fullgc-longtime-count']}`);
+```
+
+## hidebug.getVMRuntimeStat<sup>12+</sup>
+
+getVMRuntimeStat(item : string): number
+
+根据参数获取指定的系统gc统计信息。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明          |
+| -------- | ------ | ---- |-------------|
+| item | string | 是   | 需要获取GC信息的类型。 |
+
+| 输入参数                         | 返回值说明          |
+|------------------------------|----------------|
+| ark.gc.gc-count | 当前线程的GC次数。     |
+| ark.gc.gc-time | 当前线程触发的GC总耗时，以ms为单位。 |
+| ark.gc.gc-bytes-allocated | 当前线程Ark虚拟机已分配的内存大小，以B为单位。|
+| ark.gc.gc-bytes-freed | 当前线程GC成功回收的内存，以B为单位。 |
+| ark.gc.fullgc-longtime-count | 当前线程超长fullGC次数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                                                                           |
+| ------- |----------------------------------------------------------------------------------------------------------------|
+| 401 | the parameter check failed,Possible causes:1. the arg is not a string parameter. 2. the arg is unknown property. |
+
+**示例**
+
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+
+hilog.info(0x0000, "testTag", `gc-count: ${hidebug.getVMRuntimeStat('ark.gc.gc-count')}`);
+hilog.info(0x0000, "testTag", `gc-time: ${hidebug.getVMRuntimeStat('ark.gc.gc-time')}`);
+hilog.info(0x0000, "testTag", `gc-bytes-allocated: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-allocated')}`);
+hilog.info(0x0000, "testTag", `gc-bytes-freed: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-freed')}`);
+hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat('ark.gc.fullgc-longtime-count')}`);
+```
+
+## MemoryLimit<sup>12+</sup>
+
+应用程序进程内存限制。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称      | 类型   | 必填 | 说明         |
+| --------- | ------ | ---- | ------------ |
+| rssLimit    | bigint |  是  | 应用程序进程的驻留集的限制，以KB为单位     |
+| vssLimit  | bigint |  是  | 进程的虚拟内存限制，以KB为单位       |
+| vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制，以KB为单位      |
+| vmTotalHeapSize | bigint |  是  | 当前进程的 JS 堆内存大小限制，以KB为单位      |
 
 ## VMMemoryInfo<sup>12+</sup>
 
@@ -676,73 +861,6 @@ hidebug.setAppResourceLimit(type, value, enableDebugLog);
 | IMAGE                    | number  |  图片模块标签                        |
 | MEDIA                    | number  |  媒体模块标签                        |
 
-## hidebug.getSystemCpuUsage<sup>12+</sup>
-
-getSystemCpuUsage() : number
-
-获取系统的CPU资源占用情况。
-
-例如，当系统资源CPU占用为 **50%**，将返回**0.5**。
-
-**系统能力**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-**返回值**
-
-| 类型     | 说明          |
-|--------|-------------|
-| number | 系统CPU资源占用情况。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Hidebug-CpuUsage错误码](errorcode-hiviewdfx-hidebug-cpuusage.md)。
-
-| 错误码ID | 错误信息                                            |
-| ------- |-------------------------------------------------|
-| 11400104 | The status of the system cpu usage is abnormal. |
-
-**示例**
-  ```ts
-  import hidebug from '@ohos.hidebug';
-
-  let cpuUsage: number = hidebug.getSystemCpuUsage();
-  ```
-
-## hidebug.getAppNativeMemInfo<sup>12+</sup>
-
-getAppNativeMemInfo(): NativeMemInfo
-
-获取应用进程内存信息。
-
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-**返回值：**
-
-| 类型  | 说明                      |
-| ------ | -------------------------- |
-| [NativeMemInfo](#nativememinfo12) | 应用进程内存信息|
-
-**示例**
-
-```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
-
-let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
-
-hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
-
-hilog.info(0x0000, 'testTag', "vss = %{public}d", nativeMemInfo.vss);
-
-hilog.info(0x0000, 'testTag', "rss = %{public}d", nativeMemInfo.rss);
-
-hilog.info(0x0000, 'testTag', "sharedDirty = %{public}d", nativeMemInfo.sharedDirty);
-
-hilog.info(0x0000, 'testTag', "privateDirty = %{public}d", nativeMemInfo.privateDirty);
-
-hilog.info(0x0000, 'testTag', "sharedClean = %{public}d", nativeMemInfo.sharedClean);
-
-hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.privateClean);
-```
 ## NativeMemInfo<sup>12+</sup>
 
 描述应用进程内存信息。
@@ -759,34 +877,6 @@ hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.private
 | sharedClean  | bigint |  是  | 共享干净内存的大小，以KB为单位      |
 | privateClean  | bigint |  是  | 专用干净内存的大小，以KB为单位      |
 
-## hidebug.getSystemMemInfo<sup>12+</sup>
-
-getSystemMemInfo(): SystemMemInfo
-
-获取系统内存信息。
-
-**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-**返回值：**
-
-| 类型  | 说明                      |
-| ------ | -------------------------- |
-| [SystemMemInfo](#systemmeminfo12) | 系统内存信息|
-
-**示例**
-
-```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
-
-let systemMemInfo: hidebug.SystemMemInfo = hidebug.getSystemMemInfo();
-
-hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
-
-hilog.info(0x0000, 'testTag', "freeMem = %{public}d", systemMemInfo.freeMem);
-
-hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availableMem);
-```
 ## SystemMemInfo<sup>12+</sup>
 
 描述系统内存信息。
@@ -809,4 +899,22 @@ hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availab
 | --------- | ------------ |
 | MAIN_THREAD  | 只采集当前应用主线程     |
 | ALL_THREADS |  采集当前应用下所有线程   |
+
+## GcStats<sup>12+</sup>
+
+用于存储GC统计信息的键值对类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
+
+**系统能力：**  SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 键类型          | 值类型    |
+| ------------- |--------|
+|  string | number |
+
+| GC属性名称                       | GC属性说明                    |
+|------------------------------|---------------------------|
+| ark.gc.gc-count              | 当前线程的GC次数。                |
+| ark.gc.gc-time               | 当前线程触发的GC总耗时，以ms为单位。      |
+| ark.gc.gc-bytes-allocated    | 当前线程Ark虚拟机已分配的内存大小，以B为单位。 |
+| ark.gc.gc-bytes-freed        | 当前线程GC成功回收的内存，以B为单位。      |
+| ark.gc.fullgc-longtime-count | 当前线程超长fullGC次数。           |
 

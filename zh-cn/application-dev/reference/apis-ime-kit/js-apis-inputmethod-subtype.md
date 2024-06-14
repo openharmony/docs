@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { InputMethodSubtype } from '@kit.IMEKit';
 ```
 
 ## 属性
@@ -18,7 +18,7 @@ import InputMethodSubtype from '@ohos.InputMethodSubtype';
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | label | string | 是 | 否 | 非必填。输入法子类型的标签。 |
 | labelId<sup>10+</sup> | number | 是 | 否 | 非必填。输入法子类型的标签资源号。 |

@@ -11,10 +11,10 @@ The @ohos.app.appstartup.StartupConfig module provides the configuration of comp
 ## Modules to Import
 
 ```js
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
+import { StartupConfig } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AppStartup
 
@@ -26,17 +26,16 @@ import StartupConfig from '@ohos.app.appstartup.StartupConfig';
 **Example**
 
 ```ts
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
-import StartupConfigEntry from '@ohos.app.appstartup.StartupConfigEntry';
-import StartupListener from '@ohos.app.appstartup.StartupListener';
+import { StartupConfig, StartupConfigEntry, StartupListener } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
   onConfig() {
     console.info('StartupTest MyStartupConfigEntry onConfig');
-    let onCompletedCallback = (error) => {
+    let onCompletedCallback = (error: BusinessError) => {
       console.info('StartupTest MyStartupConfigEntry callback, error=' + JSON.stringify(error));
       if (error) {
-        console.error('onCompletedCallback: %{public}d, mssage: %{public}s', error.code, error.mssage);
+        console.error('onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
       } else {
         console.info('onCompletedCallback: success');
       }

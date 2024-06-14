@@ -171,7 +171,6 @@ setFoldDisplayMode(mode: FoldDisplayMode): void
 | ------- | ----------------------- |
 | 202     | Permission verification failed, non-system application uses system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -210,7 +209,6 @@ setFoldStatusLocked(locked: boolean): void
 | ------- | ----------------------- |
 | 202     | Permission verification failed, non-system application uses system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**

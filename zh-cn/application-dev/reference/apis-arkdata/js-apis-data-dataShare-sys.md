@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```ts
-import dataShare from '@ohos.data.dataShare'
+import { dataShare } from '@kit.ArkData';
 ```
 
 ## dataShare.createDataShareHelper
@@ -49,8 +49,8 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@kit.BasicServicesKit'
+import { UIAbility } from '@kit.AbilityKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
@@ -102,8 +102,8 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@kit.BasicServicesKit'
+import { UIAbility } from '@kit.AbilityKit';
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
@@ -161,8 +161,8 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@kit.BasicServicesKit'
+import { UIAbility } from '@kit.AbilityKit';
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
@@ -219,8 +219,8 @@ enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@kit.BasicServicesKit'
+import { UIAbility } from '@kit.AbilityKit';
 
 let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
 let context = getContext(UIAbility);
@@ -268,8 +268,8 @@ disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@kit.BasicServicesKit'
+import { UIAbility } from '@kit.AbilityKit';
 
 let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
 let context = getContext(UIAbility);
@@ -473,7 +473,7 @@ on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallb
 
 <!--code_no_check-->
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.acts.datasharetest");
 export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
@@ -553,7 +553,7 @@ off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCal
 
 <!--code_no_check-->
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.acts.datasharetest");
 export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
@@ -694,7 +694,7 @@ on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, cal
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let onCallback: (err: BusinessError, node: dataShare.RdbDataChangeNode) => void = (err: BusinessError, node:dataShare.RdbDataChangeNode): void => {
   console.info("onCallback " + JSON.stringify(node.uri));
@@ -789,7 +789,7 @@ on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string,
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let onPublishCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
   console.info("onPublishCallback node bundleName " + JSON.stringify(node.bundleName));
@@ -846,7 +846,7 @@ off(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let offCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
   console.info("**** Observer off callback ****");
@@ -888,7 +888,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let arrayBuffer = new ArrayBuffer(1);
 let version = 1;
@@ -935,7 +935,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let publishCallback: (err: BusinessError, result: Array<dataShare.OperationResult>) => void = (err: BusinessError, result: Array<dataShare.OperationResult>): void => {
   console.info("publishCallback " + JSON.stringify(result));
@@ -1021,7 +1021,7 @@ getPublishedData(bundleName: string, callback: AsyncCallback&lt;Array&lt;Publish
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let publishCallback: (err: BusinessError, data: Array<dataShare.PublishedItem>) => void = (err: BusinessError, result: Array<dataShare.PublishedItem>): void => {
   console.info("**** Observer publish callback ****");
@@ -1097,8 +1097,8 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
-import { BusinessError } from '@ohos.base'
+import { ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
@@ -1162,8 +1162,8 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@kit.BasicServicesKit'
+import { ValuesBucket } from '@kit.ArkData'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
@@ -1220,8 +1220,8 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base'
+import { dataSharePredicates } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -1276,8 +1276,8 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promis
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base'
+import { dataSharePredicates } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -1326,9 +1326,8 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base'
-import DataShareResultSet from '@ohos.data.DataShareResultSet'
+import { dataSharePredicates, DataShareResultSet } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
@@ -1385,9 +1384,8 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base'
-import DataShareResultSet from '@ohos.data.DataShareResultSet'
+import { dataSharePredicates, DataShareResultSet } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
@@ -1437,9 +1435,8 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base'
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { dataSharePredicates, ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -1506,9 +1503,8 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
-import { BusinessError } from '@ohos.base'
+import { dataSharePredicates, ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -1572,9 +1568,8 @@ batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Pro
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
-import { BusinessError } from '@ohos.base'
+import { dataSharePredicates, ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let record: Record<string, Array<dataShare.UpdateOperation>> = {};
 let operations1: Array<dataShare.UpdateOperation> = [];
@@ -1609,7 +1604,7 @@ try {
     (dataShareHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
       // 遍历data获取每条数据的更新结果， value为更新成功的数据记录数，若小于0，说明该次更新失败
       let a = Object.entries(data);
-      for (let i =0, i < a.length; i++) {
+      for (let i = 0; i < a.length; i++) {
         let key = a[i][0];
         let values = a[i][1]
         console.info(`Update uri:${key}`);
@@ -1656,8 +1651,8 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
-import { BusinessError } from '@ohos.base'
+import { ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
@@ -1722,8 +1717,8 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
-import { BusinessError } from '@ohos.base'
+import { ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
@@ -1810,7 +1805,7 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1856,7 +1851,7 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1895,7 +1890,7 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1941,7 +1936,7 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -2058,13 +2053,13 @@ notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import values from '@ohos.data.ValuesBucket';
+import { ValuesBucket } from '@kit.ArkData'
 
 let dsUri = ("datashare:///com.acts.datasharetest");
-let bucket1: values.ValuesBucket = {"name": "LiSi"};
-let bucket2: values.ValuesBucket = {"name": "WangWu"};
-let bucket3: values.ValuesBucket = {"name": "ZhaoLiu"};
-let people: Array<values.ValuesBucket> = new Array(bucket1, bucket2, bucket3);
+let bucket1: ValuesBucket = {"name": "LiSi"};
+let bucket2: ValuesBucket = {"name": "WangWu"};
+let bucket3: ValuesBucket = {"name": "ZhaoLiu"};
+let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3);
 let changeData:dataShare.ChangeInfo= { type:dataShare.ChangeType.INSERT, uri:dsUri, values:people};
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).notifyChange(changeData);

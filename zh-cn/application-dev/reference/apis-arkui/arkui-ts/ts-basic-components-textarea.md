@@ -18,7 +18,7 @@
 
 TextArea(value?: TextAreaOptions)
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -28,7 +28,7 @@ TextArea(value?: TextAreaOptions)
 
 ## TextAreaOptions对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名                     | 参数类型                                     | 必填   | 参数描述           |
 | ----------------------- | ---------------------------------------- | ---- | -------------- |
@@ -47,7 +47,7 @@ placeholderColor(value: ResourceColor)
 
 设置placeholder文本颜色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -63,7 +63,7 @@ placeholderFont(value: Font)
 
 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -87,7 +87,7 @@ textAlign(value: TextAlign)
 
 从API version 11开始，textAlign可设置TextAlign.JUSTIFY
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -103,7 +103,7 @@ caretColor(value: ResourceColor)
 
 设置输入框光标颜色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -122,7 +122,7 @@ inputFilter(value: ResourceStr, error?: (value: string) => void)
 
 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -141,7 +141,7 @@ copyOption(value: CopyOptions)
 
 copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -157,7 +157,7 @@ maxLength(value: number)
 
 设置文本的最大输入字符数。默认不设置最大输入字符数限制。到达文本最大字符限制，将无法继续输入字符，同时边框变为红色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -177,7 +177,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。内联模式下字符计数器不显示。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -194,7 +194,7 @@ style(value: TextContentStyle)
 
 设置文本框多态样式，内联输入风格只支持TextAreaType.Normal类型。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -212,7 +212,7 @@ enableKeyboardOnFocus(value: boolean)
 
 从API version 10开始，获焦默认绑定输入法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -228,7 +228,7 @@ selectionMenuHidden(value: boolean)
 
 设置长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -244,7 +244,7 @@ barState(value: BarState)
 
 设置输入框编辑态时滚动条的显示模式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -260,7 +260,7 @@ maxLines(value: number)
 
 设置内联输入风格编辑态和非内联模式下文本可显示的最大行数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -294,7 +294,7 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 | 参数名                | 类型                                        | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。                             |
 
 ### type<sup>11+</sup>
@@ -303,7 +303,7 @@ type(value: TextAreaType)
 
 设置输入框类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -347,7 +347,7 @@ enterKeyType(value: EnterKeyType)
 
 设置输入法回车键类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -584,11 +584,27 @@ lineSpacing(value: LengthMetrics)
 
 ### lineBreakStrategy<sup>12+</sup>
 
-lineBreakStrategy(value: LineBreakStrategy)
+lineBreakStrategy(strategy: LineBreakStrategy)
 
 设置折行规则。该属性在wordBreak不等于breakAll的时候生效，不支持连词符。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
+| strategy | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 是   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY |
+
+### selectionMenuOptions<sup>12+</sup>
+
+selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
+
+设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -596,7 +612,7 @@ lineBreakStrategy(value: LineBreakStrategy)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY |
+| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 否   | 扩展菜单选项。 |
 
 >  **说明：**
 >
@@ -614,7 +630,7 @@ onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 输入内容发生变化时，触发该回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -630,7 +646,7 @@ onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -646,7 +662,7 @@ onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -662,7 +678,7 @@ onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -678,7 +694,7 @@ onPaste(callback:(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;vo
 
 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -695,7 +711,7 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 文本选择的位置发生变化时，触发该回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -712,7 +728,7 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 文本内容滚动时，触发该回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -729,7 +745,7 @@ onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void)
 
 按下输入法回车键触发该回调。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -751,7 +767,7 @@ onWillInsert(callback: Callback\<InsertValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。 |
+| callback  | Callback\<[InsertValue](#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
 
 ### onDidInsert<sup>12+</sup>
 
@@ -765,7 +781,7 @@ onDidInsert(callback: Callback\<InsertValue>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](#insertvalue12对象说明)> | 是   | 在输入完成时调用的回调。 |
+| callback  | Callback\<[InsertValue](#insertvalue12对象说明)> | 是   | 在输入完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
 
 ### onWillDelete<sup>12+</sup>
 
@@ -779,7 +795,7 @@ onWillDelete(callback: Callback\<DeleteValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[DeleteValue](#deletevalue12对象说明), boolean> | 是   | 在将要删除时调用的回调。<br/>在返回true时，表示正常删除，返回false时，表示不删除。 |
+| callback  | Callback\<[DeleteValue](#deletevalue12对象说明), boolean> | 是   | 在将要删除时调用的回调。<br/>在返回true时，表示正常删除，返回false时，表示不删除。<br/>在预上屏删除操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
 
 ### onDidDelete<sup>12+</sup>
 
@@ -793,13 +809,13 @@ onDidDelete(callback: Callback\<DeleteValue>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[DeleteValue](#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。 |
+| callback  | Callback\<[DeleteValue](#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
 
 ## TextAreaController<sup>8+</sup>
 
 TextArea组件的控制器，目前可通过它设置TextArea组件的光标位置。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### 导入对象
 
@@ -813,7 +829,7 @@ caretPosition(value: number): void
 
 设置输入光标的位置。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -831,9 +847,9 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 
 | 参数名         | 参数类型 | 必填 | 参数描述                                                     |
 | -------------- | -------- | ---- | ------------------------------------------------------------ |
-| selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。<br/>当selectionStart小于0时、按照0处理；当selectionStart大于文字最大长度时、按照文字最大长度处理。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| selectionEnd   | number   | 是   | 文本选择区域结束位置。<br/>当selectionEnd小于0时、按照0处理；当selectionEnd大于文字最大长度时、按照文字最大长度处理。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。<br/>当selectionStart小于0时、按照0处理；当selectionStart大于文字最大长度时、按照文字最大长度处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| selectionEnd   | number   | 是   | 文本选择区域结束位置。<br/>当selectionEnd小于0时、按照0处理；当selectionEnd大于文字最大长度时、按照文字最大长度处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 >  **说明：**
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.SHOW，调用setTextSelection也不弹出菜单。
@@ -844,7 +860,7 @@ stopEditing(): void
 
 退出编辑态。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### getTextContentRect<sup>10+</sup>
 
@@ -852,7 +868,7 @@ getTextContentRect(): [RectResult](#rectresult10)
 
 获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -884,7 +900,7 @@ getTextContentLineCount(): number
 
 获取已编辑文本内容的行数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -898,7 +914,7 @@ getCaretOffset(): CaretOffset
 
 返回当前光标所在位置信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -922,10 +938,10 @@ getCaretOffset(): CaretOffset
 
 | 名称                 | 值            | 描述            |
 | ------------------ | ------ | ------------- |
-| NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| NUMBER   | 2 | 纯数字输入模式。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。      |
-| PHONE_NUMBER | 3 | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线，以及@字符（只能存在一个@字符）。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NUMBER   | 2 | 纯数字输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| PHONE_NUMBER | 3 | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER_DECIMAL<sup>12+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。 |
 
 ## ContentType<sup>12+</sup>枚举说明
@@ -1534,7 +1550,6 @@ struct TextExample1 {
 
 ```ts
 // xxx.ets
-// xxx.ets
 @Entry
 @Component
 struct TextAreaExample {
@@ -1584,3 +1599,57 @@ struct TextAreaExample {
 ```
 
 ![TextAreaInsertAndDelete](figures/TextAreaInsertAndDelete.PNG)
+
+### 示例15
+
+selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  @State text: string = 'This is ss01 on : 0123456789'
+  textAreaController: TextAreaController = new TextAreaController()
+  @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
+    {
+      content: 'TextArea扩展1', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    },
+    {
+      content: 'TextArea扩展2', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    },
+    {
+      content: 'TextArea扩展3', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    },
+    {
+      content: 'TextArea扩展4', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    }
+  ]
+
+  build() {
+    Column() {
+      TextArea({
+        text: this.text,
+        placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+        controller: this.textAreaController
+      })
+        .placeholderFont({ size: 16, weight: 400 })
+        .width(336)
+        .height(56)
+        .selectionMenuOptions(this.menuOptionArray)
+    }
+    .width("90%")
+    .margin("5%")
+  }
+}
+```
+
+![textAreaSelectionMenuOptions](figures/textAreaSelectionMenuOptions.png)

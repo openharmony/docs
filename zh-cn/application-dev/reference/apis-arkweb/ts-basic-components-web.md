@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
+| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
@@ -684,6 +684,10 @@ multiWindowAccess(multiWindow: boolean)
 horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
+> **说明：**
+>
+> - 通过@State变量控制横向滚动条的隐藏/显示后，需要调用controller.refresh()生效。
+> - 通过@State变量频繁动态改变时，建议切换开关变量和Web组件一一对应。
 
 **参数：**
 
@@ -701,10 +705,22 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State isShow: boolean = false
     build() {
       Column() {
+        //通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        Button('refresh')
+        .onClick(() => {
+          this.isShow = true;
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .horizontalScrollBarAccess(true)
+        .horizontalScrollBarAccess(this.isShow)
       }
     }
   }
@@ -739,6 +755,11 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
 
+> **说明：**
+>
+> - 通过@State变量控制纵向滚动条的隐藏/显示后，需要调用controller.refresh()生效。
+> - 通过@State变量频繁动态改变时，建议切换开关变量和Web组件一一对应。
+
 **参数：**
 
 | 参数名               | 参数类型    | 必填   | 默认值  | 参数描述         |
@@ -755,10 +776,22 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State isShow: boolean = false
     build() {
       Column() {
+        //通过@State变量改变纵向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        Button('refresh')
+        .onClick(() => {
+          this.isShow = true;
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .verticalScrollBarAccess(true)
+        .verticalScrollBarAccess(this.isShow)
       }
     }
   }
@@ -839,7 +872,7 @@ copyOptions(value: CopyOptions)
 
 | 参数名       | 参数类型                        | 必填   | 默认值               | 参数描述      |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | CopyOptions.Cross_Device | 要设置的剪贴板复制范围选项。 |
+| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | CopyOptions.LocalDevice | 要设置的剪贴板复制范围选项。 |
 
 **示例：**
 
@@ -1934,6 +1967,9 @@ struct WebComponent {
 </html>
 ```
 ### textAutosizing<sup>12+</sup>
+
+textAutosizing(textAutosizing: boolean)
+
 设置使能文本自动调整大小。
 
 **参数：**
@@ -2888,55 +2924,96 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
 **示例：**
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import picker from '@ohos.file.picker';
-  import { BusinessError } from '@ohos.base';
+1. 拉起文件选择器。
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { picker } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-    build() {
-      Column() {
-        Web({ src: $rawfile('index.html'), controller: this.controller })
-          .onShowFileSelector((event) => {
-            console.log('MyFileUploader onShowFileSelector invoked')
-            const documentSelectOptions = new picker.DocumentSelectOptions();
-            let uri: string | null = null;
-            const documentViewPicker = new picker.DocumentViewPicker();
-            documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
-              uri = documentSelectResult[0];
-              console.info('documentViewPicker.select to file succeed and uri is:' + uri);
-              if (event) {
-                event.result.handleFileList([uri]);
-              }
-            }).catch((err: BusinessError) => {
-              console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
-            })
-            return true
-          })
-      }
-    }
-  }
-  ```
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController()
 
-  加载的html文件。
-  ```html
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-  </head>
-  <body>
-    <form id="upload-form" enctype="multipart/form-data">
-      <input type="file" id="upload" name="upload"/>
-      </form>
-  </body>
-  </html>
-  ```
+     build() {
+       Column() {
+         Web({ src: $rawfile('index.html'), controller: this.controller })
+           .onShowFileSelector((event) => {
+             console.log('MyFileUploader onShowFileSelector invoked')
+             const documentSelectOptions = new picker.DocumentSelectOptions();
+             let uri: string | null = null;
+             const documentViewPicker = new picker.DocumentViewPicker();
+             documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
+               uri = documentSelectResult[0];
+               console.info('documentViewPicker.select to file succeed and uri is:' + uri);
+               if (event) {
+                 event.result.handleFileList([uri]);
+               }
+             }).catch((err: BusinessError) => {
+               console.error(`Invoke documentViewPicker.select failed, code is ${err.code},  message is ${err.message}`);
+             })
+             return true;
+           })
+       }
+     }
+   }
+   ```
+
+2. 拉起图库选择器。
+
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { picker } from '@kit.CoreFileKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+   @Entry
+   @Component
+   export struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController()
+
+     async selectFile(result: FileSelectorResult): Promise<void> {
+       let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+       let photoPicker = new photoAccessHelper.PhotoViewPicker();
+       // 过滤选择媒体文件类型为IMAGE
+       photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+       // 设置最大选择数量
+       photoSelectOptions.maxSelectNumber = 5;
+       let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+       // 获取选择的文件列表
+       result.handleFileList(chooseFile.photoUris);
+     }
+
+     build() {
+       Column() {
+         Web({ src: $rawfile('index.html'), controller: this.controller })
+           .onShowFileSelector((event) => {
+             if (event) {
+               this.selectFile(event.result);
+             }
+             return true;
+           })
+       }
+     }
+   }
+   ```
+
+   加载的html文件。
+   ```html
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+   </head>
+   <body>
+     <form id="upload-form" enctype="multipart/form-data">
+       <input type="file" id="upload" name="upload"/>
+       </form>
+   </body>
+   </html>
+   ```
 
 ### onResourceLoad<sup>9+</sup>
 
@@ -5129,6 +5206,291 @@ onViewportFitChanged(callback: OnViewportFitChangedCallback)
     </body>
   </html>
   ```
+
+### onInterceptKeyboardAttach<sup>12+</sup>
+
+onInterceptKeyboardAttach(callback: WebKeyboardCallback)
+
+网页中可编辑元素（如input标签）拉起软键盘之前会回调该接口，应用可以使用该接口拦截系统软键盘的弹出，配置应用定制的软键盘（应用根据该接口可以决定使用系统默认软键盘/定制enter键的系统软键盘/全部由应用自定义的软键盘）。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [WebKeyboardCallback](#webkeyboardcallback12) | 拦截网页拉起软键盘回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  import inputMethodEngine from '@ohos.inputMethodEngine'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    webKeyboardController: WebKeyboardController = new WebKeyboardController()
+    inputAttributeMap: Map<string, number> = new Map([
+        ['UNSPECIFIED', inputMethodEngine.ENTER_KEY_TYPE_UNSPECIFIED],
+        ['GO', inputMethodEngine.ENTER_KEY_TYPE_GO],
+        ['SEARCH', inputMethodEngine.ENTER_KEY_TYPE_SEARCH],
+        ['SEND', inputMethodEngine.ENTER_KEY_TYPE_SEND],
+        ['NEXT', inputMethodEngine.ENTER_KEY_TYPE_NEXT],
+        ['DONE', inputMethodEngine.ENTER_KEY_TYPE_DONE],
+        ['PREVIOUS', inputMethodEngine.ENTER_KEY_TYPE_PREVIOUS]
+      ])
+
+      /**
+       * 自定义键盘组件Builder
+       */
+      @Builder
+      customKeyboardBuilder() {
+		// 这里实现自定义键盘组件，对接WebKeyboardController实现输入、删除、关闭等操作。
+      }
+
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+        .onInterceptKeyboardAttach((KeyboardCallbackInfo) => {
+          // option初始化，默认使用系统默认键盘
+          let option: WebKeyboardOptions = {
+            useSystemKeyboard: true,
+          };
+          if (!KeyboardCallbackInfo) {
+            return option;
+          }
+
+          // 保存WebKeyboardController，使用自定义键盘时候，需要使用该handelr控制输入、删除、软键盘关闭等行为
+          this.webKeyboardController = KeyboardCallbackInfo.controller
+          let attributes: Record<string, string> = KeyboardCallbackInfo.attributes
+          // 遍历attributes
+          let attributeKeys = Object.keys(attributes)
+          for (let i = 0; i < attributeKeys.length; i++) {
+            console.log('WebCustomKeyboard key = ' + attributeKeys[i] + ', value = ' + attributes[attributeKeys[i]])
+          }
+
+          if (attributes) {
+            if (attributes['data-keyboard'] == 'customKeyboard') {
+              // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有data-keyboard，且值为customKeyboard，则使用自定义键盘
+              console.log('WebCustomKeyboard use custom keyboard')
+              option.useSystemKeyboard = false;
+              // 设置自定义键盘builder
+              option.customKeyboard = () => {
+                this.customKeyboardBuilder()
+              }
+              return option;
+            }
+
+            if (attributes['keyboard-return'] != undefined) {
+              // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有keyboard-return，使用系统键盘，并且指定系统软键盘enterKey类型
+              option.useSystemKeyboard = true;
+              let enterKeyType: number | undefined = this.inputAttributeMap.get(attributes['keyboard-return'])
+              if (enterKeyType != undefined) {
+                option.enterKeyType = enterKeyType
+              }
+              return option;
+            }
+          }
+
+          return option;
+        })
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
+    </head>
+
+    <body>
+
+    <p style="font-size:12px">input标签，原有默认行为：</p>
+    <input type="text" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key UNSPECIFIED：</p>
+    <input type="text" keyboard-return="UNSPECIFIED" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key GO：</p>
+    <input type="text" keyboard-return="GO" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key SEARCH：</p>
+    <input type="text" keyboard-return="SEARCH" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key SEND：</p>
+    <input type="text" keyboard-return="SEND" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key NEXT：</p>
+    <input type="text" keyboard-return="NEXT" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key DONE：</p>
+    <input type="text" keyboard-return="DONE" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key PREVIOUS：</p>
+    <input type="text" keyboard-return="PREVIOUS" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，应用自定义键盘：</p>
+    <input type="text" data-keyboard="customKeyboard" style="width: 300px; height: 20px"><br>
+
+    </body>
+
+    </html>
+  ```
+
+## WebKeyboardCallback<sup>12+</sup>
+
+type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => WebKeyboardOptions
+
+拦截网页可编辑元素拉起软键盘的回调，一般在点击网页input标签时触发。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名           | 类型   | 必填   | 说明               |
+| ------------- | ------ | ---- | ------------------ |
+| keyboardCallbackInfo    | [WebKeyboardCallbackInfo](#webkeyboardcallbackinfo12) | 是    | 拦截网页拉起软键盘回调通知的入参，其中包括[WebKeyboardController](#webkeyboardcontroller12)、可编辑元素的属性。  |
+
+
+**返回值：**
+
+| 类型               | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| [WebKeyboardOptions](#webkeyboardoptions12) | 回调函数通过返回[WebKeyboardOptions](#webkeyboardoptions12)来决定ArkWeb内核拉起不同类型的软键盘。 |
+
+## WebKeyboardCallbackInfo<sup>12+</sup>
+
+拦截网页可编辑元素拉起软键盘的回调入参，其中包括[WebKeyboardController](#webkeyboardcontroller12)、可编辑元素的属性。
+
+| 名称             | 类型      | 可读   | 可写   | 必填   | 说明                                       |
+| -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
+| controller | [WebKeyboardController](#webkeyboardcontroller12)  | 是    | 否    | 是    | 提供控制自定义键盘的输入、删除、关闭等操作。 |
+| attributes | Record<string, string> | 是    | 否    | 是    | 触发本次软键盘弹出的网页元素属性。
+
+## WebKeyboardOptions<sup>12+</sup>
+
+拦截网页可编辑元素拉起软键盘的回调返回值，可以指定使用的键盘类型，并返回给web内核，以控制拉起不同类型的软键盘；
+
+| 名称             | 类型      | 可读   | 可写   | 必填   | 说明                                       |
+| -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
+| useSystemKeyboard | boolean  | 是    | 是    | 是    | 是否使用系统默认软键盘。 |
+| enterKeyType | number | 是    | 是    | 否    | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
+| customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 是    | 是    | 否    | 指定自定义键盘组件builder，可选参数，当useSystemKeyboard为false时，需要设置该参数，然后web组件会拉起该自定义键盘。
+
+## WebKeyboardController<sup>12+</sup>
+
+控制自定义键盘的输入、删除、关闭等操作。示例代码参考[onInterceptKeyboardAttach](#oninterceptkeyboardattach12)。
+
+### insertText<sup>12+</sup>
+
+insertText(text: string): void
+
+插入字符。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述              |
+| ------ | -------- | ---- | ------ | --------------------- |
+| text   | string   | 是   | -      | 向Web输入框插入字符。 |
+
+### deleteForward<sup>12+</sup>
+
+deleteForward(length: number): void
+
+从后往前删除length参数指定长度的字符。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| length | number   | 是   | -      | 从后往前删除字符的长度。 |
+
+### deleteBackward12+</sup>
+
+deleteBackward(length: number): void
+
+从前往后删除length参数指定长度的字符。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| length | number   | 是   | -      | 从前往后删除字符的长度。 |
+
+### sendFunctionKey<sup>12+</sup>
+
+sendFunctionKey(key: number): void
+
+插入功能按键，目前仅支持enter键类型，取值见[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                                   |
+| ------ | -------- | ---- | ------ | ------------------------------------------ |
+| key    | number   | 是   | -      | 向Web输入框传递功能键，目前仅支持enter键。 |
+
+### close<sup>12+</sup>
+
+close(): void
+
+关闭自定义键盘。
+
+### onAdsBlocked<sup>12+</sup>
+
+onAdsBlocked(callback: OnAdsBlockedCallback)
+
+一个页面发生广告过滤后，通过此回调接口通知过滤的详细信息。由于页面可能随时发生变化并不断产生网络请求，为了减少通知频次、降低对页面加载过程的影响，仅在页面加载完成时进行首次通知，此后发生的过滤将间隔1秒钟上报，无广告过滤则无通知。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | onAdsBlocked的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State totalAdsBlockCounts: number = 0;
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'https://www.example.com', controller: this.controller })
+        .onAdsBlocked((details: AdsBlockedDetails) => {
+          if (details) {
+            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url)
+            let adList: Array<string> = Array.from(new Set(details.adsBlocked))
+            this.totalAdsBlockCounts += adList.length;
+            console.log('Total blocked counts :' + this.totalAdsBlockCounts)
+          }
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -5752,7 +6114,7 @@ getOrigin(): string
 
 grant(config: ScreenCaptureConfig): void
 
-**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAPTURE_SCREEN（仅系统应用可申请此权限）
+**需要权限：** ohos.permission.MICROPHONE
 
 对网页访问的屏幕捕获操作进行授权。
 
@@ -7106,7 +7468,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 | height            | number                              | 否    | Embed标签的高，单位为px。          |
 | url               | string                              | 否    | Embed标签的url信息。            |
 | tag<sup>12+</sup> | string              | 否    | 标签名，统一为大写字符。              |
-| params<sup>12+</sup>            | map<string, string> | 否    | object标签包含的param标签键值对列表。  |
+| params<sup>12+</sup>            | map<string, string> | 否    | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象。  |
 | position<sup>12+</sup>          | Position            | 否    | 同层标签在屏幕坐标系中相对于web组件的位置信息，此处区别于标准Position，单位为px。 |
 
 ## NativeEmbedDataInfo<sup>11+</sup>
@@ -7294,7 +7656,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | ---------- | -----------------------------------------------------| ------ | ---------------- |
 | content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 是     | 显示内容。     |
 | startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 显示图标。     |
-| action    | string                                                         | 是     | 选中的文本信息。|
+| action    | (selectedText: {plainText: string}) => void                                                         | 是     | 选中的文本信息。|
 
 ## OnPageEndEvent<sup>12+</sup>
 
@@ -7630,3 +7992,23 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | methodList | Array\<string\>                          | 是    | 参与注册的应用侧JavaScript对象的同步方法。                 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
+
+## AdsBlockedDetails<sup>12+</sup>
+
+发生广告拦截时，广告资源信息。
+
+| 名称 | 类型                                                                          | 描述                    |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| url | string  | 发生广告过滤的页面url。 |
+| adsBlocked | Array\<string\>  | 被过滤的资源的url或dompath标识，被过滤的多个对象url相同则可能出现重复元素。 |
+
+## OnAdsBlockedCallback<sup>12+</sup>
+
+type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
+
+当页面发生广告过滤时触发此回调。
+**参数：**
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| details | [AdsBlockedDetails](#adsblockeddetails12) | 发生广告拦截时，广告资源信息。 |

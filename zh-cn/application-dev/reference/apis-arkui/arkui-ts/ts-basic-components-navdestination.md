@@ -24,7 +24,7 @@
 
 NavDestination()
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ## 属性
 
@@ -36,7 +36,7 @@ title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestination
 
 设置页面标题。使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行2行后以...截断。如果设置副标题，先缩小后以...截断。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -53,7 +53,7 @@ hideTitleBar(value: boolean)
 
 设置是否隐藏标题栏。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -69,7 +69,7 @@ mode(value: NavDestinationMode)
 
 设置NavDestination类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -83,9 +83,14 @@ mode(value: NavDestinationMode)
 
 backButtonIcon(value: ResourceStr | PixelMap | SymbolGlyphModifier)
 
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
+
 设置标题栏返回键图标。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,6 +104,11 @@ backButtonIcon(value: ResourceStr | PixelMap | SymbolGlyphModifier)
 
 menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
+
 设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -111,7 +121,7 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
 ## NavDestinationMode枚举说明 <sup>11+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
@@ -128,7 +138,7 @@ onShown(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 当该NavDestination页面显示时触发此回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -138,7 +148,7 @@ onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 当该NavDestination页面隐藏时触发此回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -180,7 +190,7 @@ onWillDisappear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 返回值为true时，表示重写返回键逻辑，返回值为false时，表示回退到上一个页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -190,16 +200,17 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 当NavDestination即将构建子组件之前会触发此回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## NavDestinationContext<sup>11+</sup>类型说明
 
-| 名称   | 类型     | 描述     |
-| ---- | ------ | ------ |
-| pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 跳转NavDestination时指定的参数。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 当前NavDestination所处的页面栈。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| 名称   | 类型     | 必填   |  描述     |
+| ---- | ------ | ----- | ------ |
+| pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是 | 跳转NavDestination时指定的参数。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 是 | 当前NavDestination所处的页面栈。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| navDestinationId<sup>12+</sup> | string | 否 | 当前NavDestination的唯一ID，由系统自动生成，和组件通用属性id无关。 |
 
 ### getConfigInRouteMap<sup>12+</sup>
 

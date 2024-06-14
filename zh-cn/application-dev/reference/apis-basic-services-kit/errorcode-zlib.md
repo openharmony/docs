@@ -48,7 +48,7 @@ The input destination file is invalid.
 
 **错误信息**
 
-The input source file is not ZIP format or damaged.
+The input source file is not in ZIP format or is damaged.
 
 **错误描述**
 

@@ -3766,8 +3766,6 @@ setCameraShotKey(cameraShotKey: string): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-
 async function example(asset: photoAccessHelper.PhotoAsset) {
   console.info('setCameraShotKeyDemo');
   try {
@@ -3778,6 +3776,54 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
     console.info('apply setCameraShotKey successfully');
   } catch (err) {
     console.error(`apply setCameraShotKey failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### setEffectMode<sup>12+</sup>
+
+setEffectMode(mode: MovingPhotoEffectMode): void
+
+设置动态照片的效果模式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| mode | [MovingPhotoEffectMode](#movingphotoeffectmode12) | 是   | 动态照片效果模式。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | System inner fail.         |
+| 14000016       | Operation Not Support.         |
+
+**示例：**
+
+```ts
+async function example(asset: photoAccessHelper.PhotoAsset) {
+  console.info('setEffectModeDemo');
+  try {
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    assetChangeRequest.setEffectMode(photoAccessHelper.MovingPhotoEffectMode.LONG_EXPOSURE);
+    // 需要确保fileUri对应的资源存在
+    let imageFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/long_exposure.jpg';
+    let videoFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/long_exposure.mp4';
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, imageFileUri);
+    assetChangeRequest.addResource(photoAccessHelper.ResourceType.VIDEO_RESOURCE, videoFileUri);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply setEffectMode successfully');
+  } catch (err) {
+    console.error(`apply setEffectMode failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4954,6 +5000,7 @@ async function example() {
 | DATE_DAY<sup>11+</sup>  | 'date_day'            | 创建文件的日期。**系统接口**：此接口为系统接口。           |
 | PENDING<sup>11+</sup>  | 'pending'            | pending状态。**系统接口**：此接口为系统接口。           |
 | DATE_TRASHED_MS<sup>12+</sup>  | 'date_trashed_ms'  | 删除日期（删除文件时间距1970年1月1日的毫秒数值）。**系统接口**：此接口为系统接口。<br>注意：查询照片时，不支持基于该字段排序。 |
+| MOVING_PHOTO_EFFECT_MODE<sup>12+</sup>  | 'moving_photo_effect_mode' | 动态照片效果模式。**系统接口**：此接口为系统接口。 |
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 
@@ -5122,3 +5169,19 @@ async function example() {
 | RENDER\_VIEWED\_DURATION      | 101  | 轮播观看总时长类别。   |
 | ART\_LAYOUT\_VIEWED\_TIMES    | 102  | 二级界面观看次数类别。   |
 | ART\_LAYOUT\_VIEWED\_DURATION | 103  | 二级界面观看总时长类别。    |
+
+## MovingPhotoEffectMode<sup>12+</sup>
+
+枚举，动态照片效果模式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                           | 值  | 说明       |
+| :---------------------------- | :- | :------- |
+| DEFAULT          | 0  | 默认模式。|
+| BOUNCE\_PLAY     | 1  | 来回播放。|
+| LOOP\_PLAY       | 2  | 循环播放。|
+| LONG\_EXPOSURE   | 3  | 长曝光。  |
+| MULTI\_EXPOSURE  | 4  | 多曝光。  |

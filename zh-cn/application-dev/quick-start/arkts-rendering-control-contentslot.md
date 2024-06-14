@@ -1,4 +1,4 @@
-# ContentSlot: 混合开发
+# ContentSlot：混合开发
 
 用于渲染并管理Native层使用C-API创建的组件。
 
@@ -80,9 +80,9 @@ struct Parent {
 ```
 
 ### Native侧代码实现
-Napi的基础开发知识请查看以下文档：[开发导读](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/ndk-development-overview.md)
+Napi的基础开发知识请查看以下文档：[开发导读](../napi/ndk-development-overview.md)。
 
-本章节仅描述实现ContentSlot相关逻辑代码。
+本章节仅描述实现ContentSlot相关逻辑代码。创建C侧组件，具体请查看ArkUI api文档的[Capi章节](../reference/apis-arkui/_ark_u_i___native_module.md)。
 
 ```c++
 ArkUI_NodeContentHandle nodeContentHandle_ = nullptr;
@@ -112,7 +112,7 @@ napi_value Manager::CreateNativeNode(napi_env, napi_callback_info info) {
     if (nodeAPI != nullptr) {
         if (nodeAPI->createNode != nullptr && nodeAPI->addChild != nullptr) {
             ArkUINodeHandle component;
-            // 创建C侧组件，具体请查看ArkUI api文档的Capi章节(https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/apis-arkui)
+            // 创建C侧组件，具体请查看ArkUI api文档的Capi章节
             component = CreateNodeHandle();
             // 将组件添加到nodeContent管理器中
             OH_ArkUI_NodeContent_AddNode(nodeContentHandle_, component);

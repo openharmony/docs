@@ -20,7 +20,7 @@ getFont(): Font
 
 获取Font对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -41,7 +41,7 @@ getComponentUtils(): ComponentUtils
 
 获取ComponentUtils对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -63,7 +63,7 @@ getUIInspector(): UIInspector
 
 获取UIInspector对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -85,6 +85,8 @@ getUIObserver(): UIObserver
 
 获取UIObserver对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -105,7 +107,7 @@ getMediaQuery(): MediaQuery
 
 获取MediaQuery对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -127,7 +129,7 @@ getRouter(): Router
 
 获取Router对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -149,7 +151,7 @@ getPromptAction(): PromptAction
 
 获取PromptAction对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -171,6 +173,8 @@ getOverlayManager(): OverlayManager
 
 获取OverlayManager对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**: SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -191,7 +195,7 @@ animateTo(value: AnimateParam, event: () => void): void
 
 提供animateTo接口来指定由于闭包代码导致的状态变化插入过渡动效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -270,6 +274,8 @@ getSharedLocalStorage(): LocalStorage | undefined
 
 获取当前stage共享的LocalStorage实例。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **模型约束：** 此接口仅可在Stage模型下使用。
@@ -301,7 +307,7 @@ struct SharedLocalStorage {
           })
         Button("Get Local Storage")
           .onClick(() => {
-            console.log(`localStorage: ${this.localStorage?.get("propA")}`)
+            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
           })
         Button("To Page")
           .onClick(() => {
@@ -333,7 +339,7 @@ struct GetSharedLocalStorage {
           })
         Button("Get Local Storage")
           .onClick(() => {
-            console.log(`localStorage: ${this.localStorage?.get("propA")}`)
+            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
           })
 
         Button("Back Index")
@@ -353,6 +359,8 @@ getHostContext(): Context | undefined
 
 获得当前元能力的Context。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **模型约束：** 此接口仅可在Stage模型下使用。
@@ -361,8 +369,7 @@ getHostContext(): Context | undefined
 
 | 类型 | 说明                             |
 | ------ | ------------------------------- |
-| [Context](../../application-models/application-context-stage.md#应用上下文context)  | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。    |
-| undefined | ability上下文不存在时返回undefined。|
+| [Context](../../application-models/application-context-stage.md#应用上下文context)&nbsp;\|&nbsp;undefined | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。ability上下文不存在时返回undefined。 |
 
 **示例：**
 
@@ -390,6 +397,8 @@ struct Index {
 getFrameNodeById(id: string): FrameNode | null
 
 提供getFrameNodeById接口通过组件的id获取组件树的实体节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -420,6 +429,8 @@ getFrameNodeByUniqueId(id: number): FrameNode | null
 2. 当uniqueId对应的是自定义组件时，若其有渲染内容，则返回其FrameNode，类型为__Common__；若其无渲染内容，则返回其第一个子组件的FrameNode。
 3. 当uniqueId无对应的组件时，返回null。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -437,8 +448,7 @@ getFrameNodeByUniqueId(id: number): FrameNode | null
 **示例：**
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { FrameNode } from '@ohos.arkui.node';
+import { UIContext, FrameNode } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -447,7 +457,7 @@ struct MyComponent {
     let uniqueId: number = this.getUniqueId();
     let uiContext: UIContext = this.getUIContext();
     if (uiContext) {
-      let node: FrameNode = uiContext.getFrameNodeByUniqueId(uniqueId);
+      let node: FrameNode | null = uiContext.getFrameNodeByUniqueId(uniqueId);
     }
   }
 
@@ -463,7 +473,7 @@ showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButto
 
 显示警告弹窗组件，可设置文本内容与响应回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -504,7 +514,7 @@ showActionSheet(value: ActionSheetOptions): void
 
 定义列表弹窗并弹出。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -524,11 +534,11 @@ uiContext.showActionSheet({
   confirm: {
     value: 'Confirm button',
     action: () => {
-      console.log('Get Alert Dialog handled')
+      console.info('Get Alert Dialog handled')
     }
   },
   cancel: () => {
-    console.log('actionSheet canceled')
+    console.info('actionSheet canceled')
   },
   alignment: DialogAlignment.Bottom,
   offset: { dx: 0, dy: -10 },
@@ -536,19 +546,19 @@ uiContext.showActionSheet({
     {
       title: 'apples',
       action: () => {
-        console.log('apples')
+        console.info('apples')
       }
     },
     {
       title: 'bananas',
       action: () => {
-        console.log('bananas')
+        console.info('bananas')
       }
     },
     {
       title: 'pears',
       action: () => {
-        console.log('pears')
+        console.info('pears')
       }
     }
   ]
@@ -561,7 +571,7 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 定义日期滑动选择器弹窗并弹出。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -599,7 +609,7 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 定义时间滑动选择器弹窗并弹出。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -660,7 +670,7 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 
 定义文本滑动选择器弹窗并弹出。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -729,7 +739,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 定义Animator类。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -758,6 +768,8 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 ```ts
 import { AnimatorOptions } from '@ohos.animator';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -789,7 +801,7 @@ runScopedTask(callback: () => void): void
 
 在当前UI上下文执行传入的回调函数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -804,7 +816,7 @@ runScopedTask(callback: () => void): void
 ```ts
 uiContext.runScopedTask(
   () => {
-    console.log('Succeeded in runScopedTask');
+    console.info('Succeeded in runScopedTask');
   }
 );
 ```
@@ -815,7 +827,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 配置虚拟键盘弹出时，页面的避让模式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -829,6 +841,8 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 ```ts
 import { KeyboardAvoidMode, UIContext } from '@ohos.arkui.UIContext';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -851,7 +865,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 获取虚拟键盘弹出时，页面的避让模式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -865,6 +879,8 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 ```ts
 import { KeyboardAvoidMode, UIContext } from '@ohos.arkui.UIContext';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -872,7 +888,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
       let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
       let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
-      console.log("KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
+      console.info("KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -889,7 +905,7 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 
 获取AtomicServiceBar对象，通过该对象设置原子化服务menuBar的属性。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -925,7 +941,7 @@ getDragController(): DragController
 
 获取DragController对象，可通过该对象创建并发起拖拽。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -947,7 +963,7 @@ getDragPreview(): dragController.DragPreview
 
 返回一个代表拖拽背板的对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -969,7 +985,7 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 产生关键帧动画。该接口的使用说明请参考[keyframeAnimateTo](arkui-ts/ts-keyframeAnimateTo.md)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -985,6 +1001,8 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 getFocusController(): FocusController
 
 获取[FocusController](js-apis-arkui-UIContext.md#focuscontroller12)对象，可通过该对象控制焦点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1005,6 +1023,8 @@ uiContext.getFocusController();
 getFilteredInspectorTree(filters?: Array\<string\>): string
 
 获取组件树及组件属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1040,6 +1060,8 @@ uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
 getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\>): string
 
 获取指定的组件及其子组件的属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1078,6 +1100,8 @@ getCursorController(): CursorController
 
 获取[CursorController](js-apis-arkui-UIContext.md#cursorcontroller12)对象，可通过该对象控制光标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -1097,6 +1121,8 @@ uiContext.CursorController();
 getContextMenuController(): ContextMenuController
 
 获取[ContextMenuController](js-apis-arkui-UIContext.md#contextmenucontroller12)对象，可通过该对象控制菜单。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1118,6 +1144,8 @@ getMeasureUtils(): MeasureUtils
 
 允许用户通过UIContext对象，获取MeasureUtils对象进行文本计算。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：** 
@@ -1138,6 +1166,8 @@ getComponentSnapshot(): ComponentSnapshot
 
 获取ComponentSnapshot对象，可通过该对象获取组件截图的能力。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -1157,6 +1187,8 @@ uiContext.getComponentSnapshot();
 vp2px(value : number) : number
 
 将vp单位的数值转换为以px为单位的数值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1184,6 +1216,8 @@ px2vp(value : number) : number
 
 将px单位的数值转换为以vp为单位的数值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1209,6 +1243,8 @@ uiContext.px2vp(200);
 fp2px(value : number) : number
 
 将fp单位的数值转换为以px为单位的数值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1236,6 +1272,8 @@ px2fp(value : number) : number
 
 将px单位的数值转换为以fp为单位的数值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1261,6 +1299,8 @@ uiContext.px2fp(200);
 lpx2px(value : number) : number
 
 将lpx单位的数值转换为以px为单位的数值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1288,6 +1328,8 @@ px2lpx(value : number) : number
 
 将px单位的数值转换为以lpx为单位的数值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1314,6 +1356,8 @@ getWindowName(): string | undefined
 
 获取当前实例所在窗口的名称。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：** 
@@ -1334,10 +1378,10 @@ struct Index {
 
   aboutToAppear() {
     const windowName = this.getUIContext().getWindowName();
-    console.error('WindowName ' + windowName);
+    console.info('WindowName ' + windowName);
     const currWindow = window.findWindow(windowName);
     const windowProperties = currWindow.getWindowProperties();
-    console.error(`Window width ${windowProperties.windowRect.width}, height ${windowProperties.windowRect.height}`);
+    console.info(`Window width ${windowProperties.windowRect.width}, height ${windowProperties.windowRect.height}`);
   }
 
   build() {
@@ -1357,6 +1401,8 @@ struct Index {
 ### postFrameCallback<sup>12+</sup>
 
 注册一个在下一帧进行渲染时执行的回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1398,9 +1444,11 @@ struct Index {
 }
 ```
 
-## postDelayedFrameCallback<sup>12+</sup>
+### postDelayedFrameCallback<sup>12+</sup>
 
 注册一个回调，在延迟一段时间后的下一帧进行渲染时执行。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1409,7 +1457,7 @@ struct Index {
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
 | frameCallback | [FrameCallback](#framecallback12) | 是   | 下一帧需要执行的回调。 |
-| delayTime | number | 是   | 延迟的时间，以毫秒为单位。 |
+| delayTime | number | 是   | 延迟的时间，以毫秒为单位。传入null、undefined或小于0的值，会按0处理。 |
 
 **示例：**
 
@@ -1434,7 +1482,7 @@ class MyFrameCallback extends FrameCallback {
 struct Index {
   build() {
     Row() {
-      Button('点击触发postFrameCallback')
+      Button('点击触发postDelayedFrameCallback')
         .onClick(() => {
           this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
         })
@@ -1443,6 +1491,22 @@ struct Index {
 }
 ```
 
+### requireDynamicSyncScene<sup>12+</sup>
+
+请求组件的动态帧率场景，用于自定义场景相关帧率配置。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)
+
+**示例：**
+```ts
+uiContext.DynamicSyncScene("dynamicSyncScene")
+```
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
@@ -1453,7 +1517,7 @@ registerFont(options: font.FontOptions): void
 
 在字体管理中注册自定义字体。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1479,7 +1543,7 @@ getSystemFontList(): Array\<string>
 
 获取系统支持的字体名称列表。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1505,7 +1569,7 @@ getFontByName(fontName: string): font.FontInfo
 
 根据传入的系统字体名称获取系统字体的相关信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1541,7 +1605,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 获取组件大小、位置、平移缩放旋转及仿射矩阵属性信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1553,14 +1617,15 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 **返回值：**
 
-| 类型                                       | 说明                       |
-| ---------------------------------------- | ------------------------ |
-| [ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | 组件大小、位置、平移缩放旋转及仿射矩阵属性信息。 |
+| 类型                                                         | 说明                                             |
+| ------------------------------------------------------------ | ------------------------------------------------ |
+| [componentUtils.ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | 组件大小、位置、平移缩放旋转及仿射矩阵属性信息。 |
 
 **示例：**
 
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+
 let componentUtils:ComponentUtils = uiContext.getComponentUtils();
 let modePosition = componentUtils.getRectangleById("onClick");
 let localOffsetWidth = modePosition.size.width;
@@ -1577,7 +1642,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 注册组件布局和绘制完成回调通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1597,6 +1662,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+
 let inspector:UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
 ```
@@ -1611,7 +1677,7 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 监听NavDestination组件的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1626,6 +1692,7 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 ```ts
 import { UIObserver } from '@ohos.arkui.UIContext';
+
 let observer:UIObserver = uiContext.getUIObserver();
 observer.on('navDestinationUpdate', (info) => {
     console.info('NavDestination state update', JSON.stringify(info));
@@ -1638,7 +1705,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 取消监听NavDestination组件的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1653,6 +1720,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 ```ts
 import { UIObserver } from '@ohos.arkui.UIContext';
+
 let observer:UIObserver = uiContext.getUIObserver();
 observer.off('navDestinationUpdate');
 ```
@@ -1663,7 +1731,7 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 
 监听NavDestination组件的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1679,6 +1747,7 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 
 ```ts
 import { UIObserver } from '@ohos.arkui.UIContext';
+
 let observer:UIObserver = uiContext.getUIObserver();
 observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
     console.info('NavDestination state update', JSON.stringify(info));
@@ -1691,7 +1760,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 取消监听NavDestination组件的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1707,6 +1776,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 ```ts
 import { UIObserver } from '@ohos.arkui.UIContext';
+
 let observer:UIObserver = uiContext.getUIObserver();
 observer.off('navDestinationUpdate', { navigationId: "testId" });
 ```
@@ -1856,7 +1926,7 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 
 监听router中page页面的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1884,7 +1954,7 @@ off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): v
 
 取消监听router中page页面的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2021,7 +2091,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   willDrawCallback = () => {
-    console.log("willDraw指令下发");
+    console.info("willDraw指令下发");
   }
   build() {
     Column() {
@@ -2056,7 +2126,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   willDrawCallback = () => {
-    console.log("willDraw指令下发")
+    console.info("willDraw指令下发")
   }
 
   build() {
@@ -2096,7 +2166,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   didLayoutCallback = () => {
-    console.log("layout布局完成");
+    console.info("layout布局完成");
   }
   build() {
     Column() {
@@ -2131,7 +2201,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   didLayoutCallback = () => {
-    console.log("layout布局完成")
+    console.info("layout布局完成")
   }
 
   build() {
@@ -2181,7 +2251,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 @Entry
@@ -2271,7 +2341,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 @Entry
@@ -2349,8 +2419,9 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('willClick', callback);
 ```
@@ -2375,8 +2446,9 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('willClick', callback);
 ```
@@ -2401,8 +2473,9 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('didClick', callback);
 ```
@@ -2427,8 +2500,9 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('didClick', callback);
 ```
@@ -2453,8 +2527,9 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('willClick', callback);
 ```
@@ -2479,8 +2554,9 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('willClick', callback);
 ```
@@ -2505,8 +2581,9 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('didClick', callback);
 ```
@@ -2531,8 +2608,9 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('didClick', callback);
 ```
@@ -2544,7 +2622,7 @@ ArkTS GestureEvent事件监听函数类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2560,7 +2638,7 @@ ArkTS GestureEvent事件监听函数类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2579,7 +2657,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 设置媒体查询的查询条件，并返回对应的监听句柄。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2599,6 +2677,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+
 let mediaquery: MediaQuery = uiContext.getMediaQuery();
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
 ```
@@ -2613,7 +2692,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 跳转到应用内的指定页面，通过Promise获取跳转异常的返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2645,6 +2724,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
+
 let router:Router = uiContext.getRouter();
 try {
   router.pushUrl({
@@ -2669,7 +2749,7 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 
 跳转到应用内的指定页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2696,6 +2776,7 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
+
 let router:Router = uiContext.getRouter();
 router.pushUrl({
   url: 'pages/routerpage2',
@@ -2722,7 +2803,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 跳转到应用内的指定页面，通过Promise获取跳转异常的返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2784,7 +2865,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 
 跳转到应用内的指定页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2843,7 +2924,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回的结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2895,7 +2976,7 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2944,7 +3025,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3002,7 +3083,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3057,7 +3138,7 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 跳转到指定的命名路由页面，通过Promise获取跳转异常的返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3113,7 +3194,7 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 
 跳转到指定的命名路由页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3165,7 +3246,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 跳转到指定的命名路由页面，通过Promise获取跳转异常的返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3227,7 +3308,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 
 跳转到指定的命名路由页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3286,7 +3367,7 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3338,7 +3419,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3387,7 +3468,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3446,7 +3527,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3501,7 +3582,7 @@ back(options?: router.RouterOptions ): void
 
 返回上一页面或指定的页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3557,7 +3638,7 @@ clear(): void
 
 清空页面栈中的所有历史页面，仅保留当前页面作为栈顶页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3576,7 +3657,7 @@ getLength(): string
 
 获取当前在页面栈内的页面数量。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3593,7 +3674,7 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
-console.log('pages stack size = ' + size);    
+console.info('pages stack size = ' + size);    
 ```
 
 ### getState
@@ -3602,7 +3683,7 @@ getState(): router.RouterState
 
 获取当前页面的状态信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3619,9 +3700,9 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 let page = router.getState();
-console.log('current index = ' + page.index);
-console.log('current name = ' + page.name);
-console.log('current path = ' + page.path);
+console.info('current index = ' + page.index);
+console.info('current name = ' + page.name);
+console.info('current path = ' + page.path);
 ```
 
 ### getStateByIndex<sup>12+</sup>
@@ -3652,10 +3733,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 let options:router.RouterState = router.getStateByIndex(1);
-console.log('index = ' + options.index);
-console.log('name = ' + options.name);
-console.log('path = ' + options.path);
-console.log('params = ' + options.params);
+console.info('index = ' + options.index);
+console.info('name = ' + options.name);
+console.info('path = ' + options.path);
+console.info('params = ' + options.params);
 ```
 ### getStateByUrl<sup>12+</sup>
 
@@ -3685,10 +3766,10 @@ import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
-  console.log('index = ' + options[i].index);
-  console.log('name = ' + options[i].name);
-  console.log('path = ' + options[i].path);
-  console.log('params = ' + options[i].params);
+  console.info('index = ' + options[i].index);
+  console.info('name = ' + options[i].name);
+  console.info('path = ' + options[i].path);
+  console.info('params = ' + options[i].params);
 }
 ```
 
@@ -3698,7 +3779,7 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 开启页面返回询问对话框。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3740,7 +3821,7 @@ hideAlertBeforeBackPage(): void
 
 禁用页面返回询问对话框。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3759,7 +3840,7 @@ getParams(): Object
 
 获取发起跳转的页面往当前页传入的参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3788,7 +3869,7 @@ showToast(options: promptAction.ShowToastOptions): void
 
 创建并显示文本提示框。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3831,7 +3912,7 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 
 创建并显示对话框，对话框响应结果异步返回。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -3895,7 +3976,7 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 创建并显示对话框，对话框响应后同步返回结果，通过Promise获取对话框响应结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -3960,7 +4041,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 创建并显示操作菜单，菜单响应结果异步返回。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4076,7 +4157,7 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 创建并显示操作菜单，通过Promise获取菜单响应结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4139,6 +4220,8 @@ try {
 openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
 创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4223,6 +4306,8 @@ struct Index {
 closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promise&lt;void&gt;
 
 关闭已弹出的dialogContent对应的自定义弹窗，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4316,6 +4401,8 @@ struct Index {
 updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
 更新已弹出的dialogContent对应的自定义弹窗的样式，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4414,17 +4501,17 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回拖拽事件结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                             |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#属性)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
 **错误码：**
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
@@ -4494,7 +4581,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过Promise返回拖拽事件结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4509,7 +4596,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 | 类型                                                   | 说明               |
 | ------------------------------------------------------ | ------------------ |
-| Promise&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
+| Promise&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
@@ -4607,7 +4694,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 
 **说明：** 建议控制传递的拖拽背板数量，传递过多容易导致拖起的效率问题。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4669,7 +4756,7 @@ export default class EntryAbility extends UIAbility {
       windowStage.getMainWindow((err, data) =>
       {
         if (err.code) {
-          console.log('Failed to abtain the main window. Cause:' + err.message);
+          console.info('Failed to abtain the main window. Cause:' + err.message);
           return;
         }
         let windowClass: window.Window = data;
@@ -4734,7 +4821,7 @@ struct DragControllerPage {
       Button('多对象dragAction customBuilder拖拽').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
-            console.log("muti drag Down by listener");
+            console.info("muti drag Down by listener");
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
@@ -4749,14 +4836,14 @@ struct DragControllerPage {
               let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
               this.dragAction = uiContext.getDragController().createDragAction(this.customBuilders, dragInfo)
               if(!this.dragAction){
-                console.log("listener dragAction is null");
+                console.info("listener dragAction is null");
                 return
               }
               this.dragAction.on('statusChange', (dragAndDropInfo)=>{
                 if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
-                  console.log("drag has start");
+                  console.info("drag has start");
                 } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
-                  console.log("drag has end");
+                  console.info("drag has end");
                   if (!this.dragAction) {
                     return
                   }
@@ -4765,10 +4852,10 @@ struct DragControllerPage {
                 }
               })
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.log("start drag Error:" + err.message);
+                console.info("start drag Error:" + err.message);
               })
             } catch(err) {
-              console.log("create dragAction Error:" + err.message);
+              console.info("create dragAction Error:" + err.message);
             }
           }
         }
@@ -4905,7 +4992,7 @@ struct OverlayExample {
           let componentContent = this.contentArray.splice(this.arrayIndex, 1)
           this.overlayNode.removeComponentContent(componentContent.pop())
         } else {
-          console.log("arrayIndex有误")
+          console.info("arrayIndex有误")
         }
       })
       Button("显示ComponentContent" + this.arrayIndex).onClick(()=>{
@@ -4913,7 +5000,7 @@ struct OverlayExample {
           let componentContent = this.contentArray[this.arrayIndex]
           this.overlayNode.showComponentContent(componentContent)
         } else {
-          console.log("arrayIndex有误")
+          console.info("arrayIndex有误")
         }
       })
       Button("隐藏ComponentContent" + this.arrayIndex).onClick(()=>{
@@ -4921,7 +5008,7 @@ struct OverlayExample {
           let componentContent = this.contentArray[this.arrayIndex]
           this.overlayNode.hideComponentContent(componentContent)
         } else {
-          console.log("arrayIndex有误")
+          console.info("arrayIndex有误")
         }
       })
       Button("显示所有ComponentContent").onClick(()=>{
@@ -5037,7 +5124,7 @@ setVisible(visible: boolean): void
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，变为悬浮按钮，通过该接口无法改变menuBar的可见性。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5054,6 +5141,7 @@ setVisible(visible: boolean): void
 import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
 import hilog from '@ohos.hilog';
 import window from "@ohos.window";
+
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
@@ -5064,7 +5152,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
       hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
       atomicServiceBar.setVisible(false);
     } else {
-      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
     }
   });
 }
@@ -5079,7 +5167,7 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar的背景默认隐藏，通过该接口无法改变menuBar的背景颜色。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -5087,7 +5175,7 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| color | color:Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。|
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。|
 
 **示例：**
 
@@ -5120,7 +5208,7 @@ setTitleContent(content:string): void
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的标题内容。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -5136,6 +5224,7 @@ setTitleContent(content:string): void
 import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
 import hilog from '@ohos.hilog';
 import window from "@ohos.window";
+
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
@@ -5146,7 +5235,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
       hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
       atomicServiceBar.setTitleContent('text2');
     } else {
-      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
     }
   });
 }
@@ -5161,7 +5250,7 @@ setTitleFontStyle(font:FontStyle):void
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的字体样式。
 
-**元服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
@@ -5177,6 +5266,7 @@ setTitleFontStyle(font:FontStyle):void
 import { UIContext, Font, AtomicServiceBar } from '@ohos.arkui.UIContext';
 import hilog from '@ohos.hilog';
 import window from "@ohos.window";
+
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
@@ -5187,7 +5277,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
       hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
       atomicServiceBar.setTitleFontStyle(FontStyle.Normal);
     } else {
-      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
     }
   });
 }
@@ -5202,7 +5292,7 @@ setIconColor(color:Nullable<Color | number | string>): void
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，悬浮按钮图标不予用户设置，通过该接口无法改变menuBar的图标颜色。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5219,6 +5309,7 @@ setIconColor(color:Nullable<Color | number | string>): void
 import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
 import hilog from '@ohos.hilog';
 import window from "@ohos.window";
+
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
@@ -5229,7 +5320,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
       hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
       atomicServiceBar.setIconColor(0x12345678);
     } else {
-      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
     }
   });
 }
@@ -5238,14 +5329,14 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 配置键盘避让时页面的避让模式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 说明       |
-| ------ | ---------- |
-| OFFSET | 上抬模式。 |
-| RESIZE | 压缩模式。 |
+| 名称   | 值   | 说明       |
+| ------ | ---- | ---------- |
+| OFFSET | 0    | 上抬模式。 |
+| RESIZE | 1    | 压缩模式。 |
 
 
 ## FocusController<sup>12+</sup>
@@ -5256,6 +5347,8 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 clearFocus(): void
 
 清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5311,6 +5404,8 @@ struct ClearFocusExample {
 requestFocus(key: string): void
 
 通过组件的id将焦点转移到组件树对应的实体节点。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5395,6 +5490,8 @@ restoreDefault(): void
 
 恢复默认的光标样式
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -5417,7 +5514,7 @@ struct CursorControlExample {
           if (flag) {
             this.cursorCustom.setCursor(pointer.PointerStyle.EAST)
           } else {
-            console.log("restoreDefault");
+            console.info("restoreDefault");
             this.cursorCustom.restoreDefault();
           }
         })
@@ -5432,6 +5529,8 @@ struct CursorControlExample {
 setCursor(value: PointerStyle): void
 
 更改当前的鼠标光标样式
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5478,6 +5577,8 @@ struct CursorControlExample {
 close(): void
 
 关闭菜单
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5541,6 +5642,8 @@ measureText(options: MeasureOptions): number
 
 计算指定文本单行布局下的宽度。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -5589,6 +5692,8 @@ struct Index {
 measureTextSize(options: MeasureOptions): SizeOptions
 
 计算指定文本单行布局下的宽度和高度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5647,6 +5752,8 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 >
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -5655,12 +5762,6 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
-
-**错误码：** 
-
-| 错误码ID | 错误信息            |
-| -------- | ------------------- |
-| 100001   | if id is not valid. |
 
 **示例：**
 
@@ -5683,7 +5784,7 @@ struct SnapshotExample {
         .onClick(() => {
           this.uiContext.getComponentSnapshot().get("root", (error: Error, pixmap: image.PixelMap) => {
             if (error) {
-              console.log("error: " + JSON.stringify(error))
+              console.info("error: " + JSON.stringify(error))
               return;
             }
             this.pixmap = pixmap
@@ -5707,6 +5808,8 @@ get(id: string): Promise<image.PixelMap>
 >
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -5720,12 +5823,6 @@ get(id: string): Promise<image.PixelMap>
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
-
-**错误码：** 
-
-| 错误码ID | 错误信息            |
-| -------- | ------------------- |
-| 100001   | if id is not valid. |
 
 **示例：**
 
@@ -5753,7 +5850,7 @@ struct SnapshotExample {
               this.pixmap = pixmap
             })
             .catch((err: Error) => {
-              console.log("error: " + err)
+              console.info("error: " + err)
             })
         }).margin(10)
     }
@@ -5775,6 +5872,8 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -5783,12 +5882,6 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。      |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
-
-**错误码：** 
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 100001   | if builder is not a valid build function. |
 
 **示例：**
 
@@ -5829,7 +5922,7 @@ struct ComponentSnapshotExample {
           },
             (error: Error, pixmap: image.PixelMap) => {
               if (error) {
-                console.log("error: " + JSON.stringify(error))
+                console.info("error: " + JSON.stringify(error))
                 return;
               }
               this.pixmap = pixmap
@@ -5857,6 +5950,8 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -5870,12 +5965,6 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
-
-**错误码：** 
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 100001   | if builder is not a valid build function. |
 
 **示例：**
 
@@ -5918,7 +6007,7 @@ struct ComponentSnapshotExample {
               this.pixmap = pixmap
             })
             .catch((err: Error) => {
-              console.log("error: " + err)
+              console.info("error: " + err)
             })
         })
       Image(this.pixmap)
@@ -5938,6 +6027,8 @@ struct ComponentSnapshotExample {
 ### onFrame<sup>12+</sup>
 
 在下一帧进行渲染时，该方法将被执行。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5970,15 +6061,169 @@ class MyFrameCallback extends FrameCallback {
 struct Index {
   build() {
     Row() {
-      Button('点击触发postFrameCallback')
-        .onClick(() => {
-          this.getUIContext().postFrameCallback(new MyFrameCallback("normTask"));
+      Column() {
+        Button('点击触发postFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postFrameCallback(new MyFrameCallback("normTask"));
+          })
+        Button('点击触发postDelayedFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+## DynamicSyncScene<sup>12+</sup>
+
+以下接口需先使用UIContext中的requireDynamicSyncScene()方法获取DynamicSyncScene对象，再通过此实例调用对应方法。
+
+### setFrameRateRange<sup>12+</sup>
+
+setFrameRateRange(range: ExpectedFrameRateRange): void
+
+设置期望帧率范围。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| ExpectedFrameRateRange | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| 是    | 设置期望的帧率范围。<br />默认值:{min:0, max:120, expected: 120} |
+
+**示例：**
+
+```ts
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Frame {
+  @State ANIMATION:ExpectedFrameRateRange = {min:0, max:120, expected: 90}
+  @State GESTURE:ExpectedFrameRateRange = {min:0, max:120, expected: 30}
+  private scenes: SwiperDynamicSyncScene[] = []
+
+  build() {
+    Column() {
+      Text("动画"+ JSON.stringify(this.ANIMATION))
+      Text("跟手"+ JSON.stringify(this.GESTURE))
+      Row(){
+        Swiper() {
+          Text("one")
+          Text("two")
+          Text("three")
+        }
+        .width('100%')
+        .height('300vp')
+        .id("dynamicSwiper")
+        .backgroundColor(Color.Blue)
+        .autoPlay(true)
+        .onAppear(()=>{
+          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[]
         })
-      Button('点击触发postFrameCallback')
-        .onClick(() => {
-          this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
+      }
+
+      Button("set frame")
+        .onClick(()=>{
+          this.scenes.forEach((scenes: SwiperDynamicSyncScene) => {
+
+            if (scenes.type == SwiperDynamicSyncSceneType.ANIMATION) {
+              scenes.setFrameRateRange(this.ANIMATION)
+            }
+
+            if (scenes.type == SwiperDynamicSyncSceneType.GESTURE) {
+              scenes.setFrameRateRange(this.GESTURE)
+            }
+          });
         })
     }
   }
 }
 ```
+
+### getFrameRateRange<sup>12+</sup>
+
+getFrameRateRange(): ExpectedFrameRateRange
+
+获取期望帧率范围。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------- | ------- |
+| [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11) | 期望帧率范围。|
+
+**示例：**
+
+```ts
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Frame {
+  @State ANIMATION:ExpectedFrameRateRange = {min:0, max:120, expected: 90}
+  @State GESTURE:ExpectedFrameRateRange = {min:0, max:120, expected: 30}
+  private scenes: SwiperDynamicSyncScene[] = []
+
+  build() {
+    Column() {
+      Text("动画"+ JSON.stringify(this.ANIMATION))
+      Text("跟手"+ JSON.stringify(this.GESTURE))
+      Row(){
+        Swiper() {
+          Text("one")
+          Text("two")
+          Text("three")
+        }
+        .width('100%')
+        .height('300vp')
+        .id("dynamicSwiper")
+        .backgroundColor(Color.Blue)
+        .autoPlay(true)
+        .onAppear(()=>{
+          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[]
+        })
+      }
+
+      Button("set frame")
+        .onClick(()=>{
+          this.scenes.forEach((scenes: SwiperDynamicSyncScene) => {
+
+            if (scenes.type == SwiperDynamicSyncSceneType.ANIMATION) {
+              scenes.setFrameRateRange(this.ANIMATION)
+              scenes.getFrameRateRange()
+            }
+
+            if (scenes.type == SwiperDynamicSyncSceneType.GESTURE) {
+              scenes.setFrameRateRange(this.GESTURE)
+              scenes.getFrameRateRange()
+            }
+          });
+        })
+      }
+  }
+}
+```
+## SwiperDynamicSyncScene<sup>12+</sup>
+
+DynamicSyncScene的子类, 对应Swiper的动态帧率场景。
+
+### SwiperDynamicSyncSceneType<sup>12+</sup>
+
+枚举值，表示动态帧率场景的类型
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| GESTURE | 0   | 手势操作场景 |
+| ANIMATION | 1   | 动画过度场景 |

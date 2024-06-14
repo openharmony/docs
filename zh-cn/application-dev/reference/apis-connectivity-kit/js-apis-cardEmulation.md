@@ -54,7 +54,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
 ## 导入模块
 
 ```
-import cardEmulation from '@ohos.nfc.cardEmulation';
+import { cardEmulation } from '@kit.ConnectivityKit';
 ```
 
 ## FeatureType<sup>(deprecated)</sup>
@@ -78,7 +78,7 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称      | 值         | 说明                |
 | ------- | --------- | ----------------- |
@@ -118,7 +118,7 @@ hasHceCapability(): boolean
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -138,7 +138,7 @@ hasHceCapability(): boolean
 **示例：**
 
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
+import { cardEmulation } from '@kit.ConnectivityKit';
 
 let isHceSupported: boolean = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
 if (!isHceSupported) {
@@ -161,7 +161,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -188,9 +188,8 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 **示例：**
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import bundleManager from '@ohos.bundle.bundleManager';
-import Want from '@ohos.app.ability.Want';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { bundleManager, Want } from '@kit.AbilityKit';
 
 // init elementName here, bundleName and abilityName are required.
 let want: Want = {
@@ -248,7 +247,7 @@ start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -301,7 +300,7 @@ stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elemen
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -330,7 +329,7 @@ on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -341,13 +340,11 @@ on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 
 **示例：**
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import hilog from '@ohos.hilog';
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { AsyncCallback } from '@ohos.base';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { AsyncCallback } from '@kit.BasicServicesKit';
 import { ElementName } from './bundleManager/ElementName'
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 let element: ElementName;
@@ -404,7 +401,7 @@ transmit(response: number[]): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -431,8 +428,8 @@ transmit(response: number[]): Promise\<void>
 
 **示例：**
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
@@ -456,7 +453,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -478,8 +475,8 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 
 **示例：**
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 

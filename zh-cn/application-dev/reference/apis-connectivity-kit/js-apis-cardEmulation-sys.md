@@ -12,7 +12,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
 ## 导入模块
 
 ```
-import cardEmulation from '@ohos.nfc.cardEmulation';
+import { cardEmulation } from '@kit.ConnectivityKit';
 ```
 
 ## getPaymentServices<sup>11+</sup>
@@ -45,7 +45,7 @@ getPaymentServices(): [AbilityInfo](../apis-ability-kit/js-apis-bundleManager-ab
 
 **示例：**
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
+import { cardEmulation } from '@kit.ConnectivityKit';
 
 let paymentServices = cardEmulation.getPaymentServices();
 if (paymentServices == undefined || paymentServices.length == 0) {

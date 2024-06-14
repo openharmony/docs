@@ -1,8 +1,12 @@
 # Encryption and Decryption (C/C++)
 
 
-The topic uses a 128-bit AES key as an example to describe how to encrypt and decrypt data. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
+The topic uses a 256-bit AES key as an example to describe how to encrypt and decrypt data. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
 
+## Add the dynamic library in the CMake script.
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## How to Develop
 

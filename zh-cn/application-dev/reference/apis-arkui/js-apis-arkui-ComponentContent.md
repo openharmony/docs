@@ -23,6 +23,8 @@ constructor(uiContext: UIContext, builder: WrappedBuilder<[]>)
 
 ComponentContent的构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -37,6 +39,8 @@ ComponentContent的构造函数。
 constructor(uiContext: UIContext, builder: WrappedBuilder<[T]>, args: T)
 
 ComponentContent的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -53,6 +57,8 @@ ComponentContent的构造函数。
 update(args: T): void
 
 用于更新WrappedBuilder对象封装的builder函数参数，与constructor传入的参数类型保持一致。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -112,7 +118,7 @@ struct Index {
 }
 ```
 
-### reuse<sup>12+</sup>
+### reuse
 
 reuse(param?: Object): void
 
@@ -126,7 +132,7 @@ reuse(param?: Object): void
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
 | param  | Object | 否   | 用于复用WrappedBuilder对象封装的builder函数参数，与constructor传入的参数类型保持一致。 |
 
-### recycle<sup>12+</sup>
+### recycle
 
 recycle(): void
 

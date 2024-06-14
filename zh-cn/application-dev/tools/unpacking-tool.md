@@ -194,7 +194,7 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | description                    | String  | 标识应用的描述信息                                                                     | stage模型新增   |
 | minCompatibleVersionCode       | int     | 标识应用能够兼容的最低版本号                                                                | NA          |
 | distributedNotificationEnabled | boolean | 标记该应用是否开启分布式通知                                                              | stage模型新增   |
-| bundleType                     | String  | 标识bundle的类型，取值：<br/>- app：应用<br/>- atomicService：元服务 <br/>- shared：应用间共享库 | NA   |
+| bundleType                     | String  | 标识bundle的类型，取值：<br/>- app：应用<br/>- atomicService：原子化服务 <br/>- shared：应用间共享库 | NA   |
 | compileSdkVersion              | String  | 标识编译该应用时使用的sdk版本                                                              | 仅限API10及以后的应用   |
 | compileSdkType                 | String  | 标识编译该应用时使用的sdk类别                                                              | 仅限API10及以后的应用   |
 | labels                         | HashMap\<String, String> | 标识多语言应用程序AppJson的标签。 | NA          |
@@ -229,7 +229,7 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | uiSyntax             | String                                        | 定义该JS Component的语法类型         | stage模型新增       |
 | pages                | List\<String>                                 | 列举JS Component中每个页面信息       | stage模型新增       |
 | extensionAbilityInfos| List\<ExtensionAbilityInfo>                   | 描述extensionAbility的配置信息       | stage模型新增        |
-| moduleAtomicService  | ModuleAtomicService结构体（见下述ModuleAtomicService） | 描述hap的元服务信息          | NA              |
+| moduleAtomicService  | ModuleAtomicService结构体（见下述ModuleAtomicService） | 描述hap的原子化服务信息          | NA              |
 | formInfos            | List\<AbilityFormInfo>                        | 描述卡片的信息                       | NA              |
 | descriptions         | HashMap\<String, String>                      | 标识hap的说明信息                    | NA             |
 

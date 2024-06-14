@@ -4,10 +4,13 @@
 - Application Permission Management
   - [Application Permission Management Overview](app-permission-mgmt-overview.md)
   - Requesting Application Permissions
+    <!--Del-->
     - [Workflow for Using Permissions](determine-application-mode.md)
+    <!--DelEnd-->
     - [Declaring Permissions](declare-permissions.md)
-    - [Declaring Permissions in ACL](declare-permissions-in-acl.md)
     - [Requesting User Authorization](request-user-authorization.md)
+    - [Requesting One-Time User Authorization](one-time-authorization.md)
+    - [Requesting Restricted Permissions](declare-permissions-in-acl.md)
   - Application Permissions
     - [Permissions for All Applications](permissions-for-all.md)
     - [Permissions for System Applications](permissions-for-system-apps.md)

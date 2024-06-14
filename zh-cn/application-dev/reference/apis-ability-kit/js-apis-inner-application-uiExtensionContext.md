@@ -6,6 +6,7 @@ UIExtensionContext是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility
 >
 >  - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
+>  - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
 
 ## 导入模块
 
@@ -34,8 +35,11 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -52,9 +56,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -64,7 +69,7 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIExtensionAbility {
-  
+
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -113,8 +118,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -129,9 +137,10 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -200,8 +209,11 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -218,9 +230,10 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -285,8 +298,11 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -303,9 +319,10 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -326,15 +343,15 @@ export default class EntryAbility extends UIExtensionAbility {
 
     try {
       this.context.startAbilityForResult(want, (err: BusinessError, result: common.AbilityResult) => {
-        if (err.code) { 
+        if (err.code) {
           // 处理业务逻辑错误
           console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
           return;
-        } 
+        }
         // 执行正常业务
         console.info('startAbilityForResult succeed');
       });
-    } catch (err) { 
+    } catch (err) {
       // 处理入参错误异常
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
@@ -369,8 +386,11 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -385,9 +405,10 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -461,8 +482,11 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -479,9 +503,10 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -547,20 +572,22 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16000070 | The extension cannot start the service. |
 
 **示例：**
 
@@ -627,12 +654,13 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -685,12 +713,13 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -946,12 +975,12 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1003,7 +1032,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
- 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -1011,7 +1040,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | appId | string | 是 | 应用的唯一标识，由云端统一分配。 |
-| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | 否 | 跳出式启动元服务所携带的参数。 |
+| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | 否 | 跳出式启动原子化服务所携带的参数。 |
 
 
 **返回值：**
@@ -1022,17 +1051,20 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000002 | Incorrect ability type. |
 | 16000003 | The appId does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000050 | Internal error. |
+| 16000069 | The extension cannot start the third party application. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1086,7 +1118,7 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
- 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -1105,8 +1137,11 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1119,9 +1154,8 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000019 | Can not match any component. |
+| 16000069 | The extension cannot start the third party application. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 

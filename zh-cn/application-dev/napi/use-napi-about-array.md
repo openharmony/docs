@@ -2,47 +2,51 @@
 
 ## 简介
 
-使用Node-API接口进行array相关开发时，调用相关接口可以在NAPI模块中直接操作和处理JavaScript中的数组。
+使用Node-API接口进行array相关开发时，调用相关接口可以在Node-API模块中直接操作和处理ArkTS中的数组。
 
 ## 基本概念
 
-使用Node-API接口进行数组（array）相关开发时，涉及的基本概念主要包括数组的创建、访问、修改、遍历以及与数组相关的操作。这些概念对于理解如何在NAPI模块中与JavaScript数组交互非常重要。以下是一些关键概念：
+使用Node-API接口进行数组（array）相关开发时，涉及的基本概念主要包括数组的创建、访问、修改、遍历以及与数组相关的操作。这些概念对于理解如何在Node-API模块中与ArkTS数组交互非常重要。以下是一些关键概念：
 
-- **数组的创建**：在NAPI模块中需要创建一个新的JavaScript数组，可以使用napi_create_array接口创建数组，将数组传递给JavaScript层。
-- **数组相关操作**：在NAPI模块中通过对应的接口获取JavaScript数组的长度、检索指定索引处的元素以及设置指定索引处的元素值，从而实现NAPI模块与JavaScript数组的交互。
-- **TypedArray**：JavaScript中的TypedArray是一种用来描述二进制数据的类数组数据视图，可以简单理解为一种指定元素类型的数组，TypedArray没有直接构造器，但是可以用它的子类构造器构造TypedArray类型的数据。TypedArray的子类有：Int8Array、Uint8Array、Uint8ClampedArray、Int16Array、Int32Array等。
-- **DataView**：DataView是JavaScript中的一种视图，是可以从ArrayBuffer对象中读写多种数值类型的底层接口。
+- **数组的创建**：在Node-API模块中需要创建一个新的ArkTS数组，可以使用napi_create_array接口创建数组，将数组传递给ArkTS层。
+- **数组相关操作**：在Node-API模块中通过对应的接口获取ArkTS数组的长度、检索指定索引处的元素以及设置指定索引处的元素值，从而实现Node-API模块与ArkTS数组的交互。
+- **TypedArray**：ArkTS中的TypedArray是一种用来描述二进制数据的类数组数据视图，可以简单理解为一种指定元素类型的数组，TypedArray没有直接构造器，但是可以用它的子类构造器构造TypedArray类型的数据。TypedArray的子类有：Int8Array、Uint8Array、Uint8ClampedArray、Int16Array、Int32Array等。
+- **DataView**：DataView是ArkTS中的一种视图，是可以从ArrayBuffer对象中读写多种数值类型的底层接口。
 - **ArrayBuffer**：ArrayBuffer是固定长度的二进制数据缓冲区。
 
 ## 场景和功能介绍
 
-使用Node-API接口进行数组相关开发时，可以处理各种涉及JavaScript数组的操作和交互场景。以下是几个具体的使用场景介绍：
+使用Node-API接口进行数组相关开发时，可以处理各种涉及ArkTS数组的操作和交互场景。以下是几个具体的使用场景介绍：
 | 接口 | 描述 |
 | -------- | -------- |
-| napi_create_array | 用于在NAPI模块中向JavaScript层创建一个JavaScript数组对象。 |
-| napi_create_array_with_length | 用于在NAPI模块中向JavaScript层创建指定长度的JavaScript数组时。 |
-| napi_create_typedarray | 用于在NAPI模块中创建指定类型的TypedArray，例如Uint8Array、Int32Array等，通常用于将NAPI模块中的数据转换为JavaScript中的TypedArray，以便进行高性能的数据处理操作。 |
-| napi_create_dataview |  用于在NAPI模块中创建一个DataView对象，可以访问和操作二进制数据。 |
-| napi_get_array_length | 用于在NAPI模块中获取JavaScript数组对象的长度。 |
-| napi_get_typedarray_info | 用于在NAPI模块中获得某个TypedArray的各种属性。 |
-| napi_get_dataview_info | 用于在NAPI模块中获得某个DataView的各种属性。 |
-| napi_is_array | 用于在NAPI模块中判断一个napi_value值是否为数组。 |
-| napi_set_element | 用于在NAPI模块中对JavaScript数组对象的特定索引处设置一个值。 |
-| napi_get_element | 用于在NAPI模块中从JavaScript数组对象的特定索引处获取一个值。 |
-| napi_has_element | 用于在NAPI模块中判断JavaScript数组对象请求索引处是否包含元素。 |
-| napi_delete_element | 用于在NAPI模块中从JavaScript数组对象中删除请求索引对应的元素。 |
-| napi_is_dataview | 用于在NAPI模块中判断给定的napi_value是否为JavaScript中的DataView对象。 |
-| napi_is_typedarray | 用于在NAPI模块中判断一个给定的napi_value是否为TypedArray对象。 |
+| napi_create_array | 用于在Node-API模块中向ArkTS层创建一个ArkTS数组对象。 |
+| napi_create_array_with_length | 用于在Node-API模块中向ArkTS层创建指定长度的ArkTS数组时。 |
+| napi_create_typedarray | 用于在Node-API模块中创建指定类型的TypedArray，例如Uint8Array、Int32Array等，通常用于将Node-API模块中的数据转换为ArkTS中的TypedArray，以便进行高性能的数据处理操作。 |
+| napi_create_dataview |  用于在Node-API模块中创建一个DataView对象，可以访问和操作二进制数据。 |
+| napi_get_array_length | 用于在Node-API模块中获取ArkTS数组对象的长度。 |
+| napi_get_typedarray_info | 用于在Node-API模块中获得某个TypedArray的各种属性。 |
+| napi_get_dataview_info | 用于在Node-API模块中获得某个DataView的各种属性。 |
+| napi_is_array | 用于在Node-API模块中判断一个napi_value值是否为数组。 |
+| napi_set_element | 用于在Node-API模块中对ArkTS数组对象的特定索引处设置一个值。 |
+| napi_get_element | 用于在Node-API模块中从ArkTS数组对象的特定索引处获取一个值。 |
+| napi_has_element | 用于在Node-API模块中判断ArkTS数组对象请求索引处是否包含元素。 |
+| napi_delete_element | 用于在Node-API模块中从ArkTS数组对象中删除请求索引对应的元素。 |
+| napi_is_dataview | 用于在Node-API模块中判断给定的napi_value是否为ArkTS中的DataView对象。 |
+| napi_is_typedarray | 用于在Node-API模块中判断一个给定的napi_value是否为TypedArray对象。 |
 
 ## 使用示例
 
+Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。napi_create_typedarray方法除外，具体使用见示例。
+
 ### napi_create_array
 
-用于在NAPI模块中创建一个JavaScript数组。
+用于在Node-API模块中创建一个ArkTS数组。
 
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value CreateArray(napi_env env, napi_callback_info info)
 {
     // 创建一个空数组
@@ -69,19 +73,24 @@ export const createArray: () => number[];
 ArkTS侧示例代码
 
 ```ts
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_create_array:%{public}s', JSON.stringify(testNapi.createArray()));
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_array:%{public}s', JSON.stringify(testNapi.createArray()));
 ```
 
 ### napi_create_array_with_length
 
-用于在NAPI模块中创建一个具有指定长度的JavaScript数组。
+用于在Node-API模块中创建一个具有指定长度的ArkTS数组。
 
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value CreateArrayWithLength(napi_env env, napi_callback_info info)
 {
-    // 获取js侧传入的参数
+    // 获取ArkTS侧传入的参数
     size_t argc = 1;
     napi_value argv[1] = {nullptr};
     napi_value jsArray = nullptr;
@@ -106,8 +115,11 @@ export const createArrayWithLength: (length: number) => void[];
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
 let array = testNapi.createArrayWithLength(6);
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_create_array_with_length:%{public}d', array.length);
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_array_with_length:%{public}d', array.length);
 ```
 
 ### napi_get_array_length
@@ -117,9 +129,11 @@ hilog.info(0x0000, 'testTag', 'Test NAPI napi_create_array_with_length:%{public}
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value GetArrayLength(napi_env env, napi_callback_info info) 
 {
-    // 获取js侧传入的参数
+    // 获取ArkTS侧传入的参数
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_value result;
@@ -149,20 +163,25 @@ export const getArrayLength: (arr: Array<any>) => number | void;
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
 const arr = [0, 1, 2, 3, 4, 5];
-hilog.info(0x0000, 'testTag', 'Test NAPI get_array_length:%{public}d', testNapi.getArrayLength(arr));
+hilog.info(0x0000, 'testTag', 'Test Node-API get_array_length:%{public}d', testNapi.getArrayLength(arr));
 ```
 
 ### napi_is_array
 
-判断给定JavaScript值是否为数组。
+判断给定ArkTS值是否为数组。
 
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value IsArray(napi_env env, napi_callback_info info) 
 {
-    // 获取js侧传入的参数
+    // 获取ArkTS侧传入的参数
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -171,7 +190,7 @@ static napi_value IsArray(napi_env env, napi_callback_info info)
     napi_status status;
     status = napi_is_array(env, args[0], &result);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "NAPI napi_is_array fail");
+        napi_throw_error(env, nullptr, "Node-API napi_is_array fail");
         return nullptr;
     }
     // 将结果转成napi_value类型返回
@@ -192,27 +211,31 @@ export const isArray: <T>(data: Array<T> | T) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
 try {
   let value = new Array<number>(1);
   let data = "123";
-  hilog.info(0x0000, 'testTag', 'Test NAPI napi_is_array: %{public}s', testNapi.isArray<number>(value));
-  hilog.info(0x0000, 'testTag', 'Test NAPI napi_is_array: %{public}s', testNapi.isArray<string>(data));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_array: %{public}s', testNapi.isArray<number>(value));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_array: %{public}s', testNapi.isArray<string>(data));
 } catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test NAPI napi_is_array error: %{public}s', error.message);
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_array error: %{public}s', error.message);
 }
 ```
 
 ### napi_set_element
 
-用于在JavaScript数组中设置指定索引位置的元素。
+用于在ArkTS数组中设置指定索引位置的元素。
 对于以索引值为键的object，可以使用napi_set_property来设置属性值。
 
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value NapiSetElement(napi_env env, napi_callback_info info)
 {
-    // 获取js侧传入的参数
+    // 获取ArkTS侧传入的参数
     size_t argc = 3;
     napi_value args[3] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -242,11 +265,13 @@ export const napiSetElement: <T>(arr: Array<T>, index: number, value: T) => void
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
 let arr = [10, 20, 30];
 testNapi.napiSetElement<number | string>(arr, 1, 'newElement');
 testNapi.napiSetElement<number | string>(arr, 2, 50);
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_set_element arr: %{public}s', arr.toString());
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_set_element arr[3]: %{public}s', arr[3]);
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr: %{public}s', arr.toString());
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[3]: %{public}s', arr[3]);
 interface MyObject {
   first: number;
   second: number;
@@ -257,19 +282,21 @@ let obj: MyObject = {
 };
 testNapi.napiSetElement<number | string | Object>(arr, 4, obj);
 let objAsString = JSON.stringify(arr[4]);
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_set_element arr[4]: %{public}s', objAsString);
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[4]: %{public}s', objAsString);
 ```
 
 ### napi_get_element
 
-用于从JavaScript数组中获取请求索引位置的元素值。请求索引值应在数组的有效范围内，如果索引超出数组长度，函数会返回undefined。
+用于从ArkTS数组中获取请求索引位置的元素值。请求索引值应在数组的有效范围内，如果索引超出数组长度，函数会返回undefined。
 
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value NapiGetElement(napi_env env, napi_callback_info info)
 {
-    // 获取js侧传入的参数
+    // 获取ArkTS侧传入的参数
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -294,6 +321,9 @@ export const napiGetElement: <T>(arr: Array<T>, index: number) => number | strin
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
 interface MyObject {
   first: number;
   second: number;
@@ -303,24 +333,26 @@ let obj: MyObject = {
   second: 2
 };
 let arr = [10, 'hello', null, obj];
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_get_element arr[0]: %{public}d', testNapi.napiGetElement<number | string | null | Object>(arr, 0));
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_get_element arr[1]: %{public}s', testNapi.napiGetElement<number | string | null | Object>(arr, 1));
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_get_element arr[2]: %{public}s', testNapi.napiGetElement<number | string | null | Object>(arr, 2));
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_get_element arr[3]: %{public}s', testNapi.napiGetElement<number | string | null | Object>(arr, 3));
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_get_element arr[4]: %{public}s', JSON.stringify(testNapi.napiGetElement(arr, 4)));
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_get_element arr[null]: %{public}s', testNapi.napiGetElement<number | string | null | Object>(arr, 5));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_element arr[0]: %{public}d', testNapi.napiGetElement<number | string | null | Object>(arr, 0));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_element arr[1]: %{public}s', testNapi.napiGetElement<number | string | null | Object>(arr, 1));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_element arr[2]: %{public}s', testNapi.napiGetElement<number | string | null | Object>(arr, 2));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_element arr[3]: %{public}s', testNapi.napiGetElement<number | string | null | Object>(arr, 3));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_element arr[4]: %{public}s', JSON.stringify(testNapi.napiGetElement(arr, 4)));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_element arr[null]: %{public}s', testNapi.napiGetElement<number | string | null | Object>(arr, 5));
 ```
 
 ### napi_has_element
 
-用于判断JavaScript数组是否具有指定索引的元素。如果索引超出了对象的有效范围，函数返回false，表示没有元素。
+用于判断ArkTS数组是否具有指定索引的元素。如果索引超出了对象的有效范围，函数返回false，表示没有元素。
 
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value NapiHasElement(napi_env env, napi_callback_info info)
 {
-    // 获取js侧传入的参数
+    // 获取ArkTS侧传入的参数
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -347,21 +379,26 @@ export const napiHasElement: <T>(arr: Array<T>, index: number) => boolean;
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
 let arr = [10, 'hello', null, 'world'];
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_has_element arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_has_element arr[7]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 7));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element arr[7]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 7));
 ```
 
 ### napi_delete_element
 
-用于从JavaScript数组对象中删除请求索引的元素。
+用于从ArkTS数组对象中删除请求索引的元素。
 
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value NapiDeleteElement(napi_env env, napi_callback_info info)
 {
-    // 获取js侧传入的参数
+    // 获取ArkTS侧传入的参数
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -388,23 +425,28 @@ export const napiDeleteElement: <T>(arr: Array<T>, index: number) => boolean;
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
 let arr = [10, 'hello', null, 'world'];
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_has_element arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_delete_element arr[0]: %{public}s', testNapi.napiDeleteElement<number | string | null>(arr, 0));
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_has_element deleted arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_get_element arr[0]: %{public}d', testNapi.napiGetElement<number | string | null>(arr, 0));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_delete_element arr[0]: %{public}s', testNapi.napiDeleteElement<number | string | null>(arr, 0));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element deleted arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_element arr[0]: %{public}d', testNapi.napiGetElement<number | string | null>(arr, 0));
 ```
 
 ### napi_create_typedarray
 
-用于在NAPI模块中通过现有的ArrayBuffer创建指定类型的JavaScript TypedArray。
+用于在Node-API模块中通过现有的ArrayBuffer创建指定类型的ArkTS TypedArray。
 
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value CreateTypedArray(napi_env env, napi_callback_info info)
 {
-    // 获取js侧传入的参数
+    // 获取ArkTS侧传入的参数
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -461,22 +503,68 @@ static napi_value CreateTypedArray(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const TypedArrayTypes;
-export const createTypedArray: <T>(TypedArrayTypes: number) => T;
+export const enum TypedArrayTypes {
+  INT8_ARRAY = 0,
+  UINT8_ARRAY,
+  UINT8_CLAMPED_ARRAY,
+  INT16_ARRAY,
+  UINT16_ARRAY,
+  INT32_ARRAY,
+  UINT32_ARRAY,
+  FLOAT32_ARRAY,
+  FLOAT64_ARRAY,
+  BIGINT64_ARRAY,
+  BIGuINT64_ARRAY,
+}
+export const createTypedArray: <T>(type: TypedArrayTypes) => T;
 ```
 
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
 // 传递要创建的类型值
 let typedArray = testNapi.createTypedArray<Int8Array>(testNapi.TypedArrayTypes["INT8_ARRAY"]);
 if (typedArray instanceof Int8Array) {
-    hilog.info(0x0000, 'testTag', ' NAPI napi_create_typedarray: Int8Array');
+    hilog.info(0x0000, 'testTag', ' Node-API napi_create_typedarray: Int8Array');
 }
 let uint8Array = testNapi.createTypedArray<Uint8Array>(testNapi.TypedArrayTypes["UINT8_ARRAY"]);
 if (uint8Array instanceof Uint8Array) {
-    hilog.info(0x0000, 'testTag', ' NAPI napi_create_typedarray: Uint8Array');
+    hilog.info(0x0000, 'testTag', ' Node-API napi_create_typedarray: Uint8Array');
 }
+```
+
+需要对use-napi-process.md中的模块初始化部分进行修改，具体见如下：
+
+```cpp
+#include <string>
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    // 定义的TypedArray类型供ArkTS侧使用，用于存放typedArrayTypes类型，使用示例见ArkTS侧的createTypedArray函数
+    napi_value typedArrayTypes;
+    napi_create_object(env, &typedArrayTypes);
+    napi_value typeIndex;
+    std::string typeKeys[] = {
+        "INT8_ARRAY",   "UINT8_ARRAY",   "UINT8_CLAMPED_ARRAY", "INT16_ARRAY",      "UINT16_ARRAY",    "INT32_ARRAY",
+        "UINT32_ARRAY", "FLOAT32_ARRAY", "FLOAT64_ARRAY",       "BIGINT64_ARRAY", "BIGUINT64_ARRAY",
+    };
+    for (int32_t i = 0; i < sizeof(typeKeys) / sizeof(typeKeys[0]); i++) {
+        napi_create_int32(env, i, &typeIndex);
+        napi_set_named_property(env, typedArrayTypes, typeKeys[i].c_str(), typeIndex);
+    }
+    napi_property_descriptor desc[] = {
+        {"createTypedArray", nullptr, CreateTypedArray, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"TypedArrayTypes", nullptr, nullptr, nullptr, nullptr, typedArrayTypes, napi_default, nullptr}
+    };
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
+EXTERN_C_END
+
 ```
 
 ### napi_create_dataview
@@ -486,9 +574,11 @@ if (uint8Array instanceof Uint8Array) {
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value CreateDataView(napi_env env, napi_callback_info info) 
 {
-    // 获取js侧传入的参数
+    // 获取ArkTS侧传入的参数
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_value arraybuffer = nullptr;
@@ -530,10 +620,13 @@ export const createDataView: (arraybuffer:ArrayBuffer) => DataView | void;
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
 const arrayBuffer = new ArrayBuffer(16);
 const dataView = testNapi.createDataView(arrayBuffer);
-hilog.info(0x0000, 'testTag', 'Test NAPI dataView：%{public}d', dataView.byteLength);
-hilog.info(0x0000, 'testTag', 'Test NAPI dataView第一个数据：%{public}d', dataView.getInt8(0));
+hilog.info(0x0000, 'testTag', 'Test Node-API dataView：%{public}d', dataView.byteLength);
+hilog.info(0x0000, 'testTag', 'Test Node-API dataView第一个数据：%{public}d', dataView.getInt8(0));
 ```
 
 ### napi_get_typedarray_info
@@ -543,16 +636,18 @@ hilog.info(0x0000, 'testTag', 'Test NAPI dataView第一个数据：%{public}d', 
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
 {
-    // 获取js侧传入的参数，第一个参数为需要获得的信息的TypedArray类型数据，第二个参数为需要获得的信息类型的枚举值
+    // 获取ArkTS侧传入的参数，第一个参数为需要获得的信息的TypedArray类型数据，第二个参数为需要获得的信息类型的枚举值
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // 将第二个参数转为int32类型便于比较
     int32_t infoTypeParam;
     napi_get_value_int32(env, args[1], &infoTypeParam);
-    // 定义枚举类型与ArkTs侧枚举类型InfoType顺序含义一致
+    // 定义枚举类型与ArkTS侧枚举类型InfoType顺序含义一致
     enum InfoType { INFO_TYPE = 1, INFO_LENGTH, INFO_ARRAY_BUFFER, INFO_BYTE_OFFSET };
     void *data;
     napi_typedarray_type type;
@@ -602,6 +697,9 @@ export const getTypedarrayInfo: <T>(typeArray: T, infoType: number) => ArrayBuff
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
 // 传入TypedArray类型数据。TypedArray是一种用来描述二进制数据的类数组数据视图，没有直接构造器，可以用其子类构造类数组
 // TypedArray的子类有: Int8Array Uint8Array Uint8ClampedArray Int16Array Int32Array等
 let int8Array = new Int8Array([15, 7]);
@@ -615,10 +713,10 @@ enum InfoType {
 let arrbuff = testNapi.getTypedarrayInfo(int8Array, InfoType.ARRAY_BUFFER) as ArrayBuffer;
 // 将arraybuffer转为数组
 let arr = Array.prototype.slice.call(new Int8Array(arrbuff));
-hilog.info(0x0000, 'NAPI', 'get_typedarray_info_arraybuffer: %{public}s', arr.toString());
-hilog.info(0x0000, 'NAPI', 'get_typedarray_info_isIn8Array: %{public}s', testNapi.getTypedarrayInfo(int8Array, InfoType.TYPE).toString());
-hilog.info(0x0000, 'NAPI', 'get_typedarray_info_length: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));
-hilog.info(0x0000, 'NAPI', 'get_typedarray_info_byte_offset: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.BYTE_OFFSET));
+hilog.info(0x0000, 'Node-API', 'get_typedarray_info_arraybuffer: %{public}s', arr.toString());
+hilog.info(0x0000, 'Node-API', 'get_typedarray_info_isIn8Array: %{public}s', testNapi.getTypedarrayInfo(int8Array, InfoType.TYPE).toString());
+hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));
+hilog.info(0x0000, 'Node-API', 'get_typedarray_info_byte_offset: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.BYTE_OFFSET));
 ```
 
 ### napi_get_dataview_info
@@ -628,9 +726,11 @@ hilog.info(0x0000, 'NAPI', 'get_typedarray_info_byte_offset: %{public}d', testNa
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
 { 
-    // 获取js侧传入的参数
+    // 获取ArkTS侧传入的参数
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -641,7 +741,7 @@ static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
     void *data;
     napi_value arrayBuffer;
     size_t byteOffset;
-    // 定义枚举类型与ArkTs侧枚举类型InfoType顺序含义一致
+    // 定义枚举类型与ArkTS侧枚举类型InfoType顺序含义一致
     enum InfoType { BYTE_LENGTH = 0, ARRAY_BUFFER, BYTE_OFFSET };
     // 获取dataview信息
     napi_get_dataview_info(env, args[0], &byteLength, &data, &arrayBuffer, &byteOffset);
@@ -680,6 +780,9 @@ export const getDataViewInfo: (dataView: DataView, infoType: number) => ArrayBuf
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
 // 创建一个ArrayBuffer
 let arrayBuffer = new Int8Array([2, 5]).buffer;
 // 使用arrayBuffer创建一个dataView
@@ -691,26 +794,28 @@ enum InfoType {
     BYTE_OFFSET = 2,
 };
 // 传入DataView类型参数查询DataView的字节数
-hilog.info(0x0000, 'NAPI', 'get_dataview_info_bytelength %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_LENGTH));
+hilog.info(0x0000, 'Node-API', 'get_dataview_info_bytelength %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_LENGTH));
 // 传入DataView类型参数查询DataView的ArrayBuffer
 let arrbuff = testNapi.getDataViewInfo(dataView, InfoType.ARRAY_BUFFER) as ArrayBuffer;
 // 将arraybuffer转为数组
 let arr = Array.prototype.slice.call(new Int8Array(arrbuff));
-hilog.info(0x0000, 'NAPI', 'get_dataview_info_arraybuffer %{public}s', arr.toString());
+hilog.info(0x0000, 'Node-API', 'get_dataview_info_arraybuffer %{public}s', arr.toString());
 // 传入DataView类型参数查询DataView开始投影的数据缓冲区中的字节偏移量
-hilog.info(0x0000, 'NAPI', 'get_dataview_info_byteoffset %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));
+hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));
 ```
 
 ### napi_is_dataview
 
-用于在Napi模块中判断JavaScript侧给定的napi_value是否为DataView。
+用于在Node-API模块中判断ArkTS侧给定的napi_value是否为DataView。
 
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value IsDataView(napi_env env, napi_callback_info info)
 {
-    // 获取js侧传入的参数
+    // 获取ArkTS侧传入的参数
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -720,7 +825,7 @@ static napi_value IsDataView(napi_env env, napi_callback_info info)
     napi_status status;
     status = napi_is_dataview(env, args[0], &result);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "NAPI napi_is_dataview fail");
+        napi_throw_error(env, nullptr, "Node-API napi_is_dataview fail");
         return nullptr;
     }
     // 将结果转成napi_value类型返回。
@@ -741,27 +846,31 @@ export const isDataView: (date: DataView | string) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
 try {
   let buffer = new ArrayBuffer(16);
   let dataView = new DataView(buffer);
   let data = "123";
-  hilog.info(0x0000, 'testTag', 'Test NAPI napi_is_dataview: %{public}s', testNapi.isDataView(dataView));
-  hilog.info(0x0000, 'testTag', 'Test NAPI napi_is_dataview: %{public}s', testNapi.isDataView(data));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_dataview: %{public}s', testNapi.isDataView(dataView));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_dataview: %{public}s', testNapi.isDataView(data));
 } catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test NAPI napi_is_dataview error: %{public}s', error.message);
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_dataview error: %{public}s', error.message);
 }
 ```
 
 ### napi_is_typedarray
 
-用于在Napi模块中判断JavaScript侧给定的napi_value是否为TypedArray对象。
+用于在Node-API模块中判断ArkTS侧给定的napi_value是否为TypedArray对象。
 
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value IsTypedarray(napi_env env, napi_callback_info info) 
 {
-    // 获取js侧传入的参数
+    // 获取ArkTS侧传入的参数
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -770,7 +879,7 @@ static napi_value IsTypedarray(napi_env env, napi_callback_info info)
         napi_status status;
     status = napi_is_typedarray(env, args[0], &result);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "NAPI napi_is_typedarray fail");
+        napi_throw_error(env, nullptr, "Node-API napi_is_typedarray fail");
         return nullptr;
     }
     // 将结果转成napi_value类型返回。
@@ -791,72 +900,23 @@ export const isTypedarray: <T>(data: T) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
 try {
   let value = new Uint8Array([1, 2, 3, 4]);
   let data = "123";
-  hilog.info(0x0000, 'testTag', 'Test NAPI napi_is_typedarray: %{public}s', testNapi.isTypedarray<number>(value));
-  hilog.info(0x0000, 'testTag', 'Test NAPI napi_is_typedarray: %{public}s', testNapi.isTypedarray<string>(data));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray<number>(value));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray<string>(data));
 } catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test NAPI napi_is_typedarray error: %{public}s', error.message);
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_typedarray error: %{public}s', error.message);
 }
 ```
 
-### 编译配置、模块注册
-
-- 编译配置
+以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
 
 ```text
 // CMakeLists.txt
-# the minimum version of CMake.
-cmake_minimum_required(VERSION 3.4.1)
-project(AboutArray)
-
-set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-
-include_directories(${NATIVERENDER_ROOT_PATH}
-                    ${NATIVERENDER_ROOT_PATH}/include)
-
-add_library(entry SHARED array.cpp)
-target_link_libraries(entry PUBLIC libace_napi.z.so)
-```
-
-- 模块注册
-
-```cpp
-// array.cpp
-EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports)
-{
-    napi_value typedArrayTypes;
-    napi_create_object(env, &typedArrayTypes);
-    napi_value typeIndex;
-    std::string typeKeys[] = {
-        "INT8_ARRAY",   "UINT8_ARRAY",   "UINT8_CLAMPED_ARRAY", "INT_ARRAY",      "UINT16_ARRAY",    "INT32_ARRAY",
-        "UINT32_ARRAY", "FLOAT32_ARRAY", "FLOAT64_ARRAY",       "BIGINT64_ARRAY", "BIGUINT64_ARRAY",
-    };
-    for (int32_t i = 0; i < sizeof(typeKeys) / sizeof(typeKeys[0]); i++) {
-        napi_create_int32(env, i, &typeIndex);
-        napi_set_named_property(env, typedArrayTypes, typeKeys[i].c_str(), typeIndex);
-    }
-    napi_property_descriptor desc[] = {
-        {"createArray", nullptr, CreateArray, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"createArrayWithLength", nullptr, CreateArrayWithLength, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"createTypedArray", nullptr, CreateTypedArray, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"createDataView", nullptr, CreateDataView, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"getArrayLength", nullptr, GetArrayLength, nullptr, nullptr, nullptr, napi_default, nullptr },
-        {"getTypedarrayInfo", nullptr, GetTypedarrayInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"getDataViewInfo", nullptr, GetDataViewInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"isArray", nullptr, IsArray, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"napiSetElement", nullptr, NapiSetElement, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"napiGetElement", nullptr, NapiGetElement, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"napiHasElement", nullptr, NapiHasElement, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"napiDeleteElement", nullptr, NapiDeleteElement, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"isDataView", nullptr, IsDataView, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"isTypedarray", nullptr, IsTypedarray, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"TypedArrayTypes", nullptr, nullptr, nullptr, nullptr, typedArrayTypes, napi_default, nullptr}
-    };
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    return exports;
-}
-EXTERN_C_END
+add_definitions( "-DLOG_DOMAIN=0xd0d0" )
+add_definitions( "-DLOG_TAG=\"testTag\"" )
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```

@@ -47,7 +47,7 @@ Obtains information about the remote ability that matches the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|--------------------------------------|
@@ -112,7 +112,7 @@ Obtains information about the remote ability that matches the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|-------------------------|
@@ -170,7 +170,7 @@ Obtains information about the remote abilities that match the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|-------------------------|
@@ -242,7 +242,7 @@ Obtains information about the remote abilities that match the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|-------------------------|
@@ -308,7 +308,7 @@ Obtains information about the remote ability that matches the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|-------------------------|
@@ -374,7 +374,7 @@ Obtains information about the remote ability that matches the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|-------------------------|
@@ -433,7 +433,7 @@ Obtains information about the remote abilities that match the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID       |    Error Message                  |
 |---------------|-------------------------|
@@ -506,7 +506,7 @@ Obtains information about the remote abilities that match the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|-------------------------|

@@ -15,7 +15,7 @@ import common from '@ohos.app.ability.common';
 
 ## 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -30,8 +30,8 @@ import common from '@ohos.app.ability.common';
 | databaseDir         | string | 否    | 是    | 数据库目录。                                                           |
 | preferencesDir      | string | 否    | 是    | preferences目录。                                                   |
 | bundleCodeDir       | string | 否    | 是    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](../apis-localization-kit/js-apis-resource-manager.md)访问资源。 |
-| distributedFilesDir | string | 是    | 是    | 分布式文件目录。                                                         |
-| cloudFileDir<sup>12+</sup>        | string | 是    | 是    | 云文件目录。                                                        |
+| distributedFilesDir | string | 否    | 是    | 分布式文件目录。                                                         |
+| cloudFileDir<sup>12+</sup>        | string | 否    | 是    | 云文件目录。                                                        |
 | eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 是    | 事件中心，提供订阅、取消订阅、触发事件对象。                                           |
 | area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 是    | 文件分区信息。                                                          |
 
@@ -41,7 +41,7 @@ createModuleContext(moduleName: string): Context
 
 根据模块名创建上下文。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -56,6 +56,14 @@ createModuleContext(moduleName: string): Context
 | 类型 | 说明 |
 | -------- | -------- |
 | Context | 模块的上下文。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -84,7 +92,7 @@ getApplicationContext(): ApplicationContext
 
 获取本应用的应用上下文。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -93,6 +101,14 @@ getApplicationContext(): ApplicationContext
 | 类型 | 说明 |
 | -------- | -------- |
 | [ApplicationContext](js-apis-inner-application-applicationContext.md) | 应用上下文Context。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -119,7 +135,7 @@ getGroupDir(dataGroupID: string): Promise\<string>
 
 通过使用应用中的Group ID获取对应的共享目录，使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -127,7 +143,7 @@ getGroupDir(dataGroupID: string): Promise\<string>
 
 | 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
-| dataGroupID | string | 是    | 元服务应用项目创建时，系统会指定分配唯一Group ID。 |
+| dataGroupID | string | 是    | 原子化服务应用项目创建时，系统会指定分配唯一Group ID。 |
 
 **返回值：**
 
@@ -135,13 +151,14 @@ getGroupDir(dataGroupID: string): Promise\<string>
 | -------- | -------- |
 | Promise\<string> | 以Promise方式返回对应的共享目录。如果不存在则返回为空，仅支持应用el2加密级别。|
 
-**错误码**：
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | -------- |
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -171,7 +188,7 @@ getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
 通过使用应用中的Group ID获取对应的共享目录，使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -179,16 +196,17 @@ getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
 | 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
-| dataGroupID | string | 是    | 元服务应用项目创建时，系统会指定分配唯一Group ID。 |
+| dataGroupID | string | 是    | 原子化服务应用项目创建时，系统会指定分配唯一Group ID。 |
 | callback | AsyncCallback\<string> | 是    | 以callback方式返回对应的共享目录。如果不存在则返回为空，仅支持应用el2加密级别。|
 
-**错误码**：
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | -------- |
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 

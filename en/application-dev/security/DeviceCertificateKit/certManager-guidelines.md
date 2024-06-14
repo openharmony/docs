@@ -71,11 +71,10 @@ The following table describes the APIs used in the typical scenarios mentioned a
        /* Install a private credential. */
        const res = await certManager.installPrivateCertificate(keystore, keystorePwd, "testPriCredential");
        appKeyUri = (res.uri != undefined) ? res.uri : '';
-     } catch (err) {
-       let e: BusinessError = err as BusinessError;
-       console.error("installPrivateCertificates error, errcode:" + e.code);
+     } catch (err: BusinessError) {
+       console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
      }
-   
+
      try {
        /* srcData is the data to be signed and verified. */
        let srcData: Uint8Array = new Uint8Array([
@@ -105,18 +104,16 @@ The following table describes the APIs used in the typical scenarios mentioned a
        const verifyHandle: certManager.CMHandle = await certManager.init(appKeyUri, verifySpec);
        await certManager.update(verifyHandle.handle, srcData);
        const verifyResult = await certManager.finish(verifyHandle.handle, signResult.outData);
-       console.log("sign and verify success");
-     } catch (err) {
-       let e: BusinessError = err as BusinessError;
-       console.error("sign or verify failed, errcode:" + e.code);
+       console.info('Succeeded in signing and verifying.');
+     } catch (err: BusinessError) {
+       console.error(`Failed to sign or verify. Code: ${err.code}, message: ${err.message}`);
      }
-   
+
      try {
        /* Uninstall a private credential. */
        await certManager.uninstallPrivateCertificate(appKeyUri);
-     } catch (err) {
-       let e: BusinessError = err as BusinessError;
-       console.error("uninstallPrivateCertificate failed, errcode:" + e.code);
+     } catch (err: BusinessError) {
+       console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
      }
    }
    ```

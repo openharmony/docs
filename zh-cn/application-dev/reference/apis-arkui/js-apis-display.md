@@ -45,6 +45,8 @@ import display from '@ohos.display';
 
 当前可折叠设备的折叠状态枚举。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称 | 值 | 说明 |
@@ -57,6 +59,8 @@ import display from '@ohos.display';
 ## FoldDisplayMode<sup>10+</sup>
 
 可折叠设备的显示模式枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -124,7 +128,7 @@ getDefaultDisplaySync(): Display
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -234,6 +238,8 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 开启显示设备变化的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -268,6 +274,8 @@ display.on("add", callback);
 off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 关闭显示设备变化的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -315,11 +323,10 @@ isFoldable(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -346,11 +353,10 @@ getFoldStatus(): FoldStatus
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -377,11 +383,10 @@ getFoldDisplayMode(): FoldDisplayMode
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -408,11 +413,10 @@ getCurrentFoldCreaseRegion(): FoldCreaseRegion
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -430,6 +434,8 @@ on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 
 开启折叠设备折叠状态变化的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -446,7 +452,6 @@ on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -466,6 +471,8 @@ off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
 
 关闭折叠设备折叠状态变化的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -482,7 +489,6 @@ off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -505,6 +511,8 @@ on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
 
 开启折叠设备折叠角度变化的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -521,7 +529,6 @@ on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -541,6 +548,8 @@ off(type: 'foldAngleChange', callback?: Callback&lt;Array&lt;number&gt;&gt;): vo
 
 关闭折叠设备折叠角度变化的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -557,7 +566,6 @@ off(type: 'foldAngleChange', callback?: Callback&lt;Array&lt;number&gt;&gt;): vo
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -571,6 +579,8 @@ display.off('foldAngleChange');
 on(type: 'captureStatusChange', callback: Callback&lt;boolean&gt;): void
 
 开启屏幕截屏、投屏、录屏状态变化的监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -588,7 +598,6 @@ on(type: 'captureStatusChange', callback: Callback&lt;boolean&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -608,6 +617,8 @@ off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
 
 关闭屏幕截屏、投屏、录屏状态变化的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -624,7 +635,6 @@ off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -648,11 +658,10 @@ isCaptured(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -670,6 +679,8 @@ on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): vo
 
 开启折叠设备屏幕显示模式变化的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -686,7 +697,6 @@ on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): vo
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -706,6 +716,8 @@ off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): 
 
 关闭折叠设备屏幕显示模式变化的监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -722,7 +734,6 @@ off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -888,12 +899,12 @@ promise.then((data: Array<display.Display>) => {
 | alive | boolean | 是 | 否 | 显示设备是否启用。                                                                                                     |
 | state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。                                                                                                      |
 | refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数应为整数，单位为hz。                                                                                             |
-| rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数应为整数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                        |
-| height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数应为整数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                        |
+| rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数应为整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
+| height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数应为整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
 | densityDPI | number | 是 | 否 | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为浮点数，单位为px，支持的范围为[80.0，640.0]。一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。                                                                   |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。                                                                                                  |
-| densityPixels | number | 是 | 否 | 显示设备逻辑像素的密度，代表物理像素与逻辑像素的缩放系数，计算方式为：![densityPixels](figures/densityPixels.jpg)<br>该参数为浮点数，受densityDPI范围限制，取值范围在[0.5，4.0]。一般取值1.0、3.0等，实际取值取决于不同设备提供的densityDPI。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                  |
+| densityPixels | number | 是 | 否 | 显示设备逻辑像素的密度，代表物理像素与逻辑像素的缩放系数，计算方式为：![densityPixels](figures/densityPixels.jpg)<br>该参数为浮点数，受densityDPI范围限制，取值范围在[0.5，4.0]。一般取值1.0、3.0等，实际取值取决于不同设备提供的densityDPI。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                  |
 | scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。该参数为浮点数，通常与densityPixels相同。                                                                    |
 | xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
 | yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |

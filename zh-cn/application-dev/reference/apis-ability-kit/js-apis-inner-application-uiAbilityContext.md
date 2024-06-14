@@ -20,10 +20,10 @@ import common from '@ohos.app.ability.common';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是 | 否 | UIAbility的相关信息。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前HAP的信息。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 否 | 当前WindowStage对象。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是 | 否 | UIAbility的相关信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前HAP的信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 否 | 当前WindowStage对象。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 > **关于示例代码的说明：**
 >
@@ -39,7 +39,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -52,8 +52,11 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -71,8 +74,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -118,7 +120,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -132,8 +134,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -152,8 +157,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
 | 16300003 | The target application is not self application. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -204,7 +208,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -223,8 +227,11 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -245,8 +252,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
 | 16300003 | The target application is not self application. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -299,7 +305,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -312,8 +318,11 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -331,8 +340,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -383,7 +391,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -397,8 +405,11 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -415,8 +426,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -472,7 +482,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -492,8 +502,11 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -511,8 +524,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -563,7 +575,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 > 
 > 调用该接口后，任务中心的任务默认不会清理，如需清理，需要配置[removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities标签)为true。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -575,13 +587,14 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -622,7 +635,7 @@ terminateSelf(): Promise&lt;void&gt;
 > 
 > 调用该接口后，任务中心的任务默认不会清理，如需清理，需要配置[removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities标签)为true。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -634,13 +647,14 @@ terminateSelf(): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -681,7 +695,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 > 
 > 调用该接口后，任务中心的任务默认不会清理，如需清理，需要配置[removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities标签)为true。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -694,13 +708,15 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -754,7 +770,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 > 
 > 调用该接口后，任务中心的任务默认不会清理，如需清理，需要配置[removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities标签)为true。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -772,13 +788,15 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -844,8 +862,11 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -856,8 +877,6 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -924,12 +943,13 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -981,12 +1001,13 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1055,8 +1076,11 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1067,8 +1091,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 | 16000013 | The application is controlled by EDM.       |
 | 16000018 | The application is not allow jumping to other applications. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -1159,7 +1182,7 @@ setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
 设置UIAbility在任务中显示的名称（callback形式）。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1172,12 +1195,13 @@ setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1202,7 +1226,7 @@ setMissionLabel(label: string): Promise&lt;void&gt;
 
 设置UIAbility在任务中显示的名称（promise形式）。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1220,12 +1244,13 @@ setMissionLabel(label: string): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1254,7 +1279,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCal
 
 设置UIAbility任务中流转状态（callback形式）。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1271,7 +1296,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCal
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
@@ -1297,7 +1322,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 
 设置UIAbility任务中流转状态（promise形式）。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1319,7 +1344,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
@@ -1347,7 +1372,7 @@ restoreWindowStage(localStorage: LocalStorage): void
 
 恢复UIAbility中的WindowStage数据。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1359,12 +1384,13 @@ restoreWindowStage(localStorage: LocalStorage): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1385,7 +1411,7 @@ isTerminating(): boolean
 
 查询UIAbility是否在terminating状态。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1397,11 +1423,11 @@ isTerminating(): boolean
 
 **错误码：**
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1437,8 +1463,11 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1454,8 +1483,6 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1520,8 +1547,11 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1537,8 +1567,6 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1581,7 +1609,7 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 当页面加载完成（loadContent成功）时，为开发者提供打点功能（callback形式）。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1593,12 +1621,12 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1642,7 +1670,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 通过type隐式启动UIExtensionAbility。使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1657,11 +1685,12 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1701,7 +1730,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 通过type隐式启动UIExtensionAbility。使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1721,11 +1750,12 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1775,12 +1805,12 @@ showAbility(): Promise\<void>
 
 **错误码：**
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 | 16000067 | Start options check failed. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1874,12 +1904,12 @@ hideAbility(): Promise\<void>
 
 **错误码：**
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 | 16000067 | Start options check failed. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1960,7 +1990,7 @@ moveAbilityToBackground(): Promise\<void>
 
 将处于前台的Ability移动到后台。使用Promise异步回调。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1972,6 +2002,8 @@ moveAbilityToBackground(): Promise\<void>
 
 **错误码：**
 
+以下错误码详细介绍请参考[元能力子系统错误码]。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
@@ -1979,8 +2011,6 @@ moveAbilityToBackground(): Promise\<void>
 | 16000061 | Operation not supported. |
 | 16000065 | The interface can be called only when ability is foreground. |
 | 16000066 | An ability cannot move to foreground or background in Wukong mode. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -2029,7 +2059,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
  
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2038,7 +2068,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | appId | string | 是 | 应用的唯一标识，由云端统一分配。 |
-| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | 否 | 跳出式启动元服务所携带的参数。 |
+| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | 否 | 跳出式启动原子化服务所携带的参数。 |
 
 
 **返回值：**
@@ -2049,8 +2079,11 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000002 | Incorrect ability type. |
 | 16000003 | The appId does not exist. |
 | 16000004 | Can not start invisible component. |
@@ -2060,8 +2093,6 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -2116,7 +2147,7 @@ openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Ab
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2136,8 +2167,11 @@ openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Ab
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -2151,8 +2185,6 @@ openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Ab
 | 16000013 | The application is controlled by EDM.       |
 | 16000019 | Can not match any component. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 

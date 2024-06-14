@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-@ohos.web.webview提供web控制能力，[web](ts-basic-components-web.md)组件提供网页显示的能力。
+@ohos.web.webview提供web控制能力，[Web](ts-basic-components-web.md)组件提供网页显示的能力。
 
 > **说明：**
 >
@@ -718,6 +718,14 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 | secureDnsMode         |   [SecureDnsMode](#securednsmode10)   | 是   | 使用HTTPDNS的模式。|
 | secureDnsConfig       | string | 是 | HTTPDNS server的配置，必须是https协议并且只允许配置一个server。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
+
 **示例：**
 
 ```ts
@@ -962,7 +970,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
 > **说明：**
-> 
+>
 > 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
 > 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
 > 若html中的富文本中带有注入#等特殊字符，建议使用带有两个空格的loadData函数，将baseUrl和historyUrl置为空。
@@ -3186,7 +3194,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  
+
   build() {
     Column() {
       Button('getUserAgent')
@@ -3222,6 +3230,7 @@ struct WebComponent {
       try {
         // 应用侧用法示例，定制UserAgent。
         this.ua = this.controller.getUserAgent() + 'xxx';
+        this.controller.setCustomUserAgent(this.us);
       } catch(error) {
         let e:business_error.BusinessError = error as business_error.BusinessError;
         console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -3232,7 +3241,6 @@ struct WebComponent {
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
-        .userAgent(this.ua)
     }
   }
 }
@@ -3364,6 +3372,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100003 | Invalid resource path or file type.                          |
 
@@ -3432,6 +3441,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100003 | Invalid resource path or file type.                          |
 
@@ -3816,7 +3826,7 @@ struct WebComponent {
             this.controller.slideScroll(500, 500);
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`); 
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3853,6 +3863,7 @@ Scroll Test
 getOriginalUrl(): string
 
 获取当前页面的原始url地址。
+风险提示：如果想获取url来做JavascriptProxy通信接口认证，请使用[getLastJavascriptProxyCallingFrameUrl<sup>12+</sup>](#getlastjavascriptproxycallingframeurl12)
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4527,7 +4538,7 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.    |
 | 17100020 | Failed to register custom schemes. |
 
 **示例：**
@@ -4915,6 +4926,7 @@ setAudioMuted(mute: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -5378,7 +5390,15 @@ static setConnectionTimeout(timeout: number): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| timeout        | number  | 是   | socket连接超时时间，以秒为单位。 |
+| timeout        | number  | 是   | socket连接超时时间，以秒为单位，socket必须为大于0的整数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -5416,6 +5436,46 @@ struct WebComponent {
 }
 ```
 
+### warmupServiceWorker<sup>12+</sup>
+
+static warmupServiceWorker(url: string): void
+
+预热ServiceWorker，以提升首屏页面的加载速度（仅限于会使用ServiceWorker的页面）。在加载url之前调用此API。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| url            | string  | 是   | 需要预热ServiceWorker的url。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("EntryAbility onCreate");
+        webview.WebviewController.warmupServiceWorker("https://www.example.com");
+        AppStorage.setOrCreate("abilityWant", want);
+    }
+}
+```
+
 ### enableSafeBrowsing<sup>11+</sup>
 
 enableSafeBrowsing(enable: boolean): void
@@ -5436,7 +5496,7 @@ enableSafeBrowsing(enable: boolean): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 
 **示例：**
 
@@ -5745,6 +5805,149 @@ struct WebComponent {
   }
 }
 ```
+
+### enableAdsBlock<sup>12+</sup>
+
+enableAdsBlock(enable: boolean): void
+
+启用广告过滤功能，默认该功能未启用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  enable | boolean | 是   | 是否启用广告过滤功能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+|  401 | Invalid input parameter.    |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  build() {
+    Column() {
+      Button('enableAdsBlock')
+        .onClick(() => {
+          try {
+            this.controller.enableAdsBlock(true)
+            console.log("enableAdsBlock: true")
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`)
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### isAdsBlockEnabled<sup>12+</sup>
+
+isAdsBlockEnabled() : boolean
+
+查询广告过滤功能是否开启，默认该功能未启用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                   |
+| ------------------------------------------------------------ | ---------------------- |
+| boolean | 返回true代表广告过滤功能已开启，返回false代表广告过滤功能关闭。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  build() {
+    Column() {
+      Button('isAdsBlockEnabled')
+        .onClick(() => {
+          try {
+            let isAdsBlockEnabled: boolean = this.controller.isAdsBlockEnabled()
+            console.log("isAdsBlockEnabled:", isAdsBlockEnabled)
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`)
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### isAdsBlockEnabledForCurPage<sup>12+</sup>
+
+isAdsBlockEnabledForCurPage() : boolean
+
+查询当前网页是否开启广告过滤功能。
+当Web组件使能广告过滤功能后，默认所有页面都是开启广告过滤的，支持通过[addAdsBlockDisallowedList](#addadsblockdisallowedlist12)指定域名禁用广告过滤。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                   |
+| ------------------------------------------------------------ | ---------------------- |
+| boolean | 返回true代表此网页已开启广告过滤，返回false代表当前网页已关闭广告过滤。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  build() {
+    Column() {
+      Button('isAdsBlockEnabledForCurPage')
+        .onClick(() => {
+          try {
+            let isAdsBlockEnabledForCurPage: boolean = this.controller.isAdsBlockEnabledForCurPage()
+            console.log("isAdsBlockEnabledForCurPage:", isAdsBlockEnabledForCurPage)
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`)
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### setRenderProcessMode<sup>12+</sup>
 
 static setRenderProcessMode(mode: RenderProcessMode): void
@@ -6087,7 +6290,7 @@ getSecurityLevel(): SecurityLevel
 import webview from '@ohos.web.webview'
 
 
-	
+
 @Entry
 @Component
 struct WebComponent {
@@ -6714,7 +6917,7 @@ setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.                                     |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types.                                    |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6813,7 +7016,7 @@ setServiceWorkerWebSchemeHandler(scheme: string, handler: WebSchemeHandler): voi
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.                                     |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -7057,7 +7260,7 @@ closeCamera(): void
 
 precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: CacheOptions): Promise\<number\>
 
-预编译JavaScript生成字节码缓存或根据提供的参数更新已有的字节码缓存。   
+预编译JavaScript生成字节码缓存或根据提供的参数更新已有的字节码缓存。
 接口通过提供的文件信息、E-Tag响应头和Last-Modified响应头判断是否需要更新已有的字节码缓存。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -7119,7 +7322,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
    // DynamicComponent.ets
    import { NodeController, BuilderNode, FrameNode }  from '@ohos.arkui.node';
    import { UIContext } from '@ohos.arkui.UIContext';
-   
+
    export interface BuilderData {
      url: string;
      controller: WebviewController;
@@ -7166,6 +7369,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 3. 编写用于生成字节码缓存的组件，本例中的本地Javascript资源内容通过文件读取接口读取rawfile目录下的本地文件。
 
+   <!--code_no_check-->
    ```ts
    // PrecompileWebview.ets
    import { BuilderData } from "./DynamicComponent";
@@ -7212,6 +7416,7 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
 
 4. 编写业务用组件代码。
 
+   <!--code_no_check-->
    ```ts
    // BusinessWebview.ets
    import { BuilderData } from "./DynamicComponent";
@@ -7261,16 +7466,16 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
    import { createNode } from "./DynamicComponent"
    import { precompileWebview } from "./PrecompileWebview"
    import { businessWebview } from "./BusinessWebview"
-   
+
    @Entry
    @Component
    struct Index {
      @State precompileNode: NodeController | undefined = undefined;
      precompileController: web_webview.WebviewController = new web_webview.WebviewController();
-   
+
      @State businessNode: NodeController | undefined = undefined;
      businessController: web_webview.WebviewController = new web_webview.WebviewController();
-   
+
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件
        this.precompileNode = createNode(precompileWebview,
@@ -7300,7 +7505,7 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
 
 onCreateNativeMediaPlayer(callback: CreateNativeMediaPlayerCallback): void
 
-注册回调函数，开启[应用接管网页媒体播放功能](ts-basic-components-web.md#enablenativemediaplayer12)后，当网页中有播放媒体时，触发注册的回调函数。  
+注册回调函数，开启[应用接管网页媒体播放功能](ts-basic-components-web.md#enablenativemediaplayer12)后，当网页中有播放媒体时，触发注册的回调函数。
 如果应用接管网页媒体播放功能未开启，则注册的回调函数不会被触发。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -7493,9 +7698,9 @@ function shouldHandle(mediaInfo: webview.MediaInfo) {
 
 injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourcemap12)\>): void
 
-将本地离线资源注入到内存缓存中，以提升页面首次启动速度。   
-内存缓存中的资源由内核自动管理，当注入的资源过多导致内存压力过大，内核自动释放未使用的资源，应避免注入大量资源到内存缓存中。   
-正常情况下，资源的有效期由提供的Cache-Control或Expires响应头控制其有效期，默认的有效期为86400秒，即1天。   
+将本地离线资源注入到内存缓存中，以提升页面首次启动速度。
+内存缓存中的资源由内核自动管理，当注入的资源过多导致内存压力过大，内核自动释放未使用的资源，应避免注入大量资源到内存缓存中。
+正常情况下，资源的有效期由提供的Cache-Control或Expires响应头控制其有效期，默认的有效期为86400秒，即1天。
 资源的MIMEType通过提供的Content-Type响应头配置，Content-Type需符合标准，否则无法正常使用，MODULE_JS必须提供有效的MIMEType，其他类型可不提供。
 以此方式注入的资源，仅支持通过HTML中的标签加载。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。
 当调用`web_webview.WebviewController.SetRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE)`接口后，应用会启动多渲染进程模式，此接口在此场景下不会生效。
@@ -7598,6 +7803,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 
 3. 编写用于注入资源的组件代码，本例中的本地资源内容通过文件读取接口读取rawfile目录下的本地文件。
 
+   <!--code_no_check-->
    ```ts
    // InjectWebview.ets
    import web_webview from '@ohos.web.webview';
@@ -7652,6 +7858,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 
 4. 编写业务用组件代码。
 
+   <!--code_no_check-->
    ```ts
    // BusinessWebview.ets
    import { BuilderData } from "./DynamicComponent";
@@ -7850,6 +8057,165 @@ struct WebComponent {
   }
 }
 ```
+
+### getSurfaceId<sup>12+</sup>
+
+getSurfaceId(): string
+
+获取ArkWeb对应Surface的ID，仅Web组件渲染模式是ASYNC_RENDER时有效。getSurfaceId需要在Web组件初始化之后才能获取到值。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                |
+| ------ | ------------------- |
+| string | ArkWeb持有Surface的ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Example{
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  @State imagePixelMap: image.PixelMap | undefined = undefined;
+
+  build(){
+    Column(){
+      Button("截图")
+        .onClick(()=>{
+          try {
+            let surfaceId = this.controller.getSurfaceId();
+            console.log("surfaceId: " + surfaceId);
+            if(surfaceId.length != 0) {
+              let region:image.Region = { x: 0, y: 0, size: { height: 800, width: 1000}}
+              this.imagePixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region)
+            }
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Image(this.imagePixelMap)
+        .height(100)
+      Web({src: 'www.example.com', controller: this.controller})
+    }
+  }
+}
+```
+
+### setUrlTrustList<sup>12+</sup>
+
+setUrlTrustList(urlTrustList: string): void
+
+设置当前web的url白名单，只有白名单内的url才能允许加载/跳转，否则将拦截并弹出告警页。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                  |
+| ------- | ------ | ---- | :-------------------- |
+| urlTrustList | string | 是   | url白名单列表，使用json格式配置，最大支持10MB。<br/>白名单设置接口为覆盖方式，多次调用接口时，以最后一次设置为准。<br/>当本参数为空字符串时，表示取消白名单，放行所有url的访问。<br/>json格式示例： &nbsp;<br/>{<br>&emsp;"UrlPermissionList":[{<br/>&emsp;&emsp;"scheme":"https",<br/>&emsp;&emsp;"host":"www.example1.com",<br/>&emsp;&emsp;"port":443,<br/>&emsp;&emsp;"path":"pathA/pathB"<br/>&emsp;},<br/>&emsp;{<br/>&emsp;&emsp;"scheme":"http",<br/>&emsp;&emsp;"host":"www.example2.com"<br/>&emsp;&emsp;"port":80,<br/>&emsp;&emsp;"path":"test1/test2/test3"<br/>&emsp;}]<br/>}      |
+
+**白名单json格式参数**
+| 字段   | 参数类型 | 必填 | 参数描述                  |
+| -------- | -------- | ---- | ------------------------- |
+| scheme | string   | 否 | 可选参数，不设置即不匹配该项，支持协议：http、https。 |
+| host | string | 是 | 必选参数，精准匹配，即url的host字段和规则字段完全一致才会放行，可允许同一host多条规则同时生效。 |
+| port | number | 否 | 可选字段，不设置即不匹配该项。 |
+| path | string | 否 | 可选字段，不设置即不匹配该项，匹配方式为前缀匹配，以"pathA/pathB/pathC"为例：pathA/pathB/pathC三级目录下全部允许访问，其中pathC必须是完整的目录名或者文件名，不允许部分匹配。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Parameter string is too long.3. Parameter verification failed.                                     |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview';
+  import business_error from '@ohos.base';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    urltrustList: string = "{\"UrlPermissionList\":[{\"scheme\":\"http\", \"host\":\"trust.example.com\", \"port\":80, \"path\":\"test\"}]}"
+
+    build() {
+      Column() {
+        Button('Setting the trustlist')
+          .onClick(() => {
+            try {
+              // 设置白名单，只允许访问trust网页
+              this.controller.setUrlTrustList(this.urltrustList);
+            } catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            }
+          })
+        Button('Cancel the trustlist.')
+          .onClick(() => {
+            try {
+              // 白名单传入空字符串表示关闭白名单机制，所有url都可以允许访问
+              this.controller.setUrlTrustList("");
+            } catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            }
+          })
+        Button('Access the trust web')
+          .onClick(() => {
+            try {
+              // 白名单生效，可以访问untrust网页
+              this.controller.loadUrl('http://trust.example.com/test');
+            } catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            }
+          })
+        Button('Access the untrust web')
+          .onClick(() => {
+            try {
+              // 白名单生效，此时不可以访问untrust网页，并弹出错误页
+              this.controller.loadUrl('http://untrust.example.com/test');
+            } catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            }
+          })
+        Web({ src: 'http://untrust.example.com/test', controller: this.controller }).onControllerAttached(() => {
+            try {
+              // onControllerAttached回调中设置白名单，可以保证在加载url之前生效，此时不可以访问untrust网页，并弹出错误页
+              this.controller.setUrlTrustList(this.urltrustList);
+            } catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            }
+        })
+      }
+    }
+  }
+  ```
 
 ## WebCookieManager
 
@@ -8168,8 +8534,9 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 > **说明：**
 >
->configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
->同步cookie的时机建议在webview组件加载之前完成。
+>- configCookieSync中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
+>
+>- 同步cookie的时机建议在Web组件加载之前完成。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8207,8 +8574,8 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            // 设置多个cookie值时用','隔开，设置单个cookie值时不需要。
-            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b,c=d,e=f');
+            // 仅支持设置单个cookie值。
+            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10176,6 +10543,8 @@ Web组件发送的资源请求信息。
 
 ## WebMessage
 
+type WebMessage = ArrayBuffer | string
+
 用于描述[WebMessagePort](#webmessageport)所支持的数据类型。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -11743,6 +12112,14 @@ static deserialize(serializedData: Uint8Array): WebDownloadItem
 | ------ | ------------------------- |
 | [WebDownloadItem](#webdownloaditem11) | 从字节数组反序列化为一个WebDownloadItem对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -11821,6 +12198,14 @@ start(downloadPath: string): void
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | ------------------------------|
 | downloadPath   | string     | 是  | 下载文件的路径(包含文件名)。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed.  |
 
 **示例：**
 
@@ -13116,7 +13501,7 @@ read(size: number): Promise\<ArrayBuffer\>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 
 **示例：**
 
@@ -13460,7 +13845,7 @@ setUrl(url: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 ### setNetErrorCode<sup>12+</sup>
 
@@ -13482,7 +13867,7 @@ setNetErrorCode(code: WebNetErrorList): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.    |
 
 **示例：**
 
@@ -13508,7 +13893,7 @@ setStatus(code: number): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -13534,7 +13919,7 @@ setStatusText(text: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **示例：**
 
@@ -13560,7 +13945,7 @@ setMimeType(type: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **示例：**
 
@@ -13586,7 +13971,7 @@ setEncoding(encoding: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **示例：**
 
@@ -13614,7 +13999,7 @@ setHeaderByName(name: string, value: string, overwrite: boolean): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
 
 **示例：**
 
@@ -13625,6 +14010,7 @@ setHeaderByName(name: string, value: string, overwrite: boolean): void
 getUrl(): string
 
 获取重定向或由于HSTS而更改后的URL。
+风险提示：如果想获取url来做JavascriptProxy通信接口认证，请使用[getLastJavascriptProxyCallingFrameUrl<sup>12+</sup>](#getlastjavascriptproxycallingframeurl12)
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -13777,7 +14163,7 @@ didReceiveResponse(response: WebSchemeHandlerResponse): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
 | 17100021 | The resource handler is invalid. |
 
 **示例：**
@@ -13804,7 +14190,7 @@ didReceiveResponseBody(data: ArrayBuffer): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
 | 17100021 | The resource handler is invalid. |
 
 **示例：**
@@ -14059,7 +14445,7 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 ## NativeMediaPlayerHandler<sup>12+<sup>
 
-[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的参数。  
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的参数。
 应用通过该对象，将播放器的状态报告给ArkWeb内核。
 
 ### handleStatusChanged<sup>12+<sup>
@@ -14319,8 +14705,8 @@ handleVideoSizeChanged(width: number, height: number): void
 
 ## NativeMediaPlayerBridge<sup>12+<sup>
 
-[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的返回值类型。  
-接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。  
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的返回值类型。
+接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。
 ArkWeb 内核通过该接口类的实例对象来控制应用创建的用来接管网页媒体的播放器。
 
 ### updateRect<sup>12+<sup>
@@ -14390,7 +14776,7 @@ seek(targetTime: number): void
 
 setVolume(volume: number): void
 
-设置播放器音量值。  
+设置播放器音量值。
 取值范围: [0, 1.0]
 
 **参数：**
@@ -14427,7 +14813,7 @@ setMuted(muted: boolean): void
 
 setPlaybackRate(playbackRate: number): void
 
-设置播放速度。  
+设置播放速度。
 取值范围: [0, 10.0]
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -14537,7 +14923,7 @@ exitFullscreen(): void
 
 ## MediaInfo<sup>12+<sup>
 
-[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12)回调函数的一个参数。  
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12)回调函数的一个参数。
 包含了网页中媒体的信息。应用可以根据这些信息来创建接管网页媒体播放的播放器。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -14559,7 +14945,7 @@ exitFullscreen(): void
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>
 
-[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)方法的参数。  
+[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)方法的参数。
 一个回调函数， 创建一个播放器, 用于接管网页中的媒体播放。
 
 type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, mediaInfo: MediaInfo) => NativeMediaPlayerBridge
@@ -14650,3 +15036,578 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | y  | number   | 是   | 是   | 矩形区域左上角y坐标。    |
 | width  | number   | 是   | 是   | 矩形的宽度。    |
 | height  | number   | 是   | 是   | 矩形的高度。    |
+
+## AdsBlockManager<sup>12+</sup>
+
+通过AdsBlockManager可以向Web组件中设置自定义的广告过滤配置、关闭特定网站的广告过滤功能，其中每个应用中的所有Web组件都共享一个AdsBlockManager实例。
+
+### setAdsBlockRules<sup>12+</sup>
+
+static setAdsBlockRules(rulesFile: string, replace: boolean): void
+
+向Web组件中设置自定义的符合通用easylist语法规则的广告过滤配置文件。
+
+> **说明：**
+>
+> 此接口设置的广告过滤规则，内部解析成功后会持久化存储，应用重启后不需要重复设置。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | -------------------------------- |
+| rulesFile | string | 是   | 指定了符合 easylist 通用语法的规则文件路径，应用需要有此文件的读权限。 |
+| replace   | boolean | 是   | true表示强制替换掉内置的默认规则，false表示设置的自定义规则将与内置规则共同工作。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import picker from '@ohos.file.picker';
+import fileuri from '@ohos.file.fileuri';
+
+// 演示点击按钮，通过filepicker打开一个easylist规则文件并设置到Web组件中
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Row() {
+      Flex() {
+        Button({type: ButtonType.Capsule}) {
+          Text("setAdsBlockRules")
+        }
+        .onClick(() => {
+          try {
+            let documentSelectionOptions: ESObject = new picker.DocumentSelectOptions()
+            let documentPicker: ESObject = new picker.DocumentViewPicker()
+            documentPicker.select(documentSelectionOptions).then((documentSelectResult: ESObject) => {
+              if (documentSelectResult && documentSelectResult.length > 0) {
+                let fileRealPath = new fileuri.FileUri(documentSelectResult[0])
+                console.info('DocumentViewPicker.select successfully, uri: ' + fileRealPath)
+
+                web_webview.AdsBlockManager.setAdsBlockRules(fileRealPath.path, true)
+              }
+            })
+          } catch (err) {
+            console.error('DocumentViewPicker.select failed with err:' + err)
+          }
+        })
+      }
+    }
+  }
+}
+```
+
+### addAdsBlockDisallowedList<sup>12+</sup>
+
+static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
+
+向AdsBlockManager的DisallowedList中添加一组域名。广告过滤功能开启时，将禁用这些网站的广告过滤功能。
+
+> **说明：**
+>
+> 此接口设置的域名不会持久化，应用重启需要重新设置。
+>
+> 广告过滤特性会使用后缀匹配的方式判断domainSuffix和当前站点的url是否能匹配，例如，当前Web组件打开的网站是https://www.example.com，设置的DisallowList中有'example.com'或者'www.example.com'，后缀匹配成功，此网站将禁用广告过滤，访问'https://m.example.com'也将禁用广告过滤。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | -------------------------------- |
+| domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+// 演示通过一个按钮的点击向Web组件设置广告过滤的域名策略
+@Entry
+@Component
+struct WebComponent {
+  main_url: string = 'https://www.example.com'
+  text_input_controller: TextInputController = new TextInputController()
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  @State input_text: string = 'https://www.example.com'
+
+  build() {
+    Column() {
+      Row() {
+        Flex() {
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})
+            .id("input_url")
+            .height(40)
+            .margin(5)
+            .borderColor(Color.Blue)
+            .onChange((value: string) => {
+              this.input_text = value
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("Go") }
+            .onClick(() => {
+              this.controller.loadUrl(this.input_text)
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("addAdsBlockDisallowedList") }
+            .onClick(() => {
+              let arrDomainSuffixes = new Array<string>()
+              arrDomainSuffixes.push('example.com')
+              arrDomainSuffixes.push('abcdefg.cn')
+              web_webview.AdsBlockManager.addAdsBlockDisallowedList(arrDomainSuffixes)
+            })
+        }
+      }
+      Web({ src: this.main_url, controller: this.controller })
+      .onControllerAttached(()=>{
+        this.controller.enableAdsBlock(true)
+      })
+    }
+  }
+}
+```
+
+### removeAdsBlockDisallowedList<sup>12+</sup>
+
+static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
+
+从AdsBlockManager的DisallowedList中删除一组域名。
+
+> **说明：**
+>
+> AdsBlockManager的DisallowedList不会持久化，应用重启需要重新设置。删除不存在的条目不会触发异常。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | -------------------------------- |
+| domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+// 演示通过一个按钮的点击从AdsBlockManager的DisallowedList中删除域名元素
+@Entry
+@Component
+struct WebComponent {
+  main_url: string = 'https://www.example.com'
+  text_input_controller: TextInputController = new TextInputController()
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  @State input_text: string = 'https://www.example.com'
+
+  build() {
+    Column() {
+      Row() {
+        Flex() {
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})
+            .id("input_url")
+            .height(40)
+            .margin(5)
+            .borderColor(Color.Blue)
+            .onChange((value: string) => {
+              this.input_text = value
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("Go") }
+            .onClick(() => {
+              this.controller.loadUrl(this.input_text)
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("removeAdsBlockDisallowedList") }
+            .onClick(() => {
+              let arrDomainSuffixes = new Array<string>()
+              arrDomainSuffixes.push('example.com')
+              arrDomainSuffixes.push('abcdefg.cn')
+              web_webview.AdsBlockManager.removeAdsBlockDisallowedList(arrDomainSuffixes)
+            })
+        }
+      }
+      Web({ src: this.main_url, controller: this.controller })
+      .onControllerAttached(()=>{
+        this.controller.enableAdsBlock(true)
+      })
+    }
+  }
+}
+```
+
+### clearAdsBlockDisallowedList<sup>12+</sup>
+
+static clearAdsBlockDisallowedList(): void
+
+清空AdsBlockManager的DisallowedList。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  main_url: string = 'https://www.example.com'
+  text_input_controller: TextInputController = new TextInputController()
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  @State input_text: string = 'https://www.example.com'
+
+  build() {
+    Column() {
+      Row() {
+        Flex() {
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})
+            .id("input_url")
+            .height(40)
+            .margin(5)
+            .borderColor(Color.Blue)
+            .onChange((value: string) => {
+              this.input_text = value
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("Go") }
+            .onClick(() => {
+              this.controller.loadUrl(this.input_text)
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("clearAdsBlockDisallowedList") }
+            .onClick(() => {
+              web_webview.AdsBlockManager.clearAdsBlockDisallowedList()
+            })
+        }
+      }
+      Web({ src: this.main_url, controller: this.controller })
+      .onControllerAttached(()=>{
+        this.controller.enableAdsBlock(true)
+      })
+    }
+  }
+}
+```
+
+### addAdsBlockAllowedList<sup>12+</sup>
+
+static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
+
+向AdsBlockManager的AllowedList中添加一组域名，主要用于重新开启DisallowList中的部分网站的广告过滤。
+
+> **说明：**
+>
+> 此接口设置的域名不会持久化，应用重启需要重新设置。
+>
+> AllowedList的优先级比DisAllowList高，例如，DisallowList中配置了['example.com']，禁用了所有example.com域名下的网页，此时如果需要开启'news.example.com'下的广告过滤，可以使用addAdsBlockAllowedList(['news.example.com'])。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | -------------------------------- |
+| domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+// 演示通过一个按钮的点击向Web组件设置广告过滤的域名策略
+@Entry
+@Component
+struct WebComponent {
+  main_url: string = 'https://www.example.com'
+  text_input_controller: TextInputController = new TextInputController()
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  @State input_text: string = 'https://www.example.com'
+
+  build() {
+    Column() {
+      Row() {
+        Flex() {
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})
+            .id("input_url")
+            .height(40)
+            .margin(5)
+            .borderColor(Color.Blue)
+            .onChange((value: string) => {
+              this.input_text = value
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("Go") }
+            .onClick(() => {
+              this.controller.loadUrl(this.input_text)
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("addAdsBlockAllowedList") }
+            .onClick(() => {
+              let arrDisallowDomainSuffixes = new Array<string>()
+              arrDisallowDomainSuffixes.push('example.com')
+              web_webview.AdsBlockManager.addAdsBlockDisallowedList(arrDisallowDomainSuffixes)
+
+              let arrAllowedDomainSuffixes = new Array<string>()
+              arrAllowedDomainSuffixes.push('news.example.com')
+              web_webview.AdsBlockManager.addAdsBlockAllowedList(arrAllowedDomainSuffixes)
+            })
+        }
+      }
+      Web({ src: this.main_url, controller: this.controller })
+      .onControllerAttached(()=>{
+        this.controller.enableAdsBlock(true)
+      })
+    }
+  }
+}
+```
+
+### removeAdsBlockAllowedList<sup>12+</sup>
+
+static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
+
+从AdsBlockManager的AllowedList中删除一组域名。
+
+> **说明：**
+>
+> AdsBlockManager的AllowedList不会持久化，应用重启需要重新设置。删除不存在的条目不会触发异常。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | -------------------------------- |
+| domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+// 演示通过一个按钮的点击从AdsBlockManager的DisallowedList中删除域名元素
+@Entry
+@Component
+struct WebComponent {
+  main_url: string = 'https://www.example.com'
+  text_input_controller: TextInputController = new TextInputController()
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  @State input_text: string = 'https://www.example.com'
+
+  build() {
+    Column() {
+      Row() {
+        Flex() {
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})
+            .id("input_url")
+            .height(40)
+            .margin(5)
+            .borderColor(Color.Blue)
+            .onChange((value: string) => {
+              this.input_text = value
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("Go") }
+            .onClick(() => {
+              this.controller.loadUrl(this.input_text)
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("removeAdsBlockAllowedList") }
+            .onClick(() => {
+              let arrDomainSuffixes = new Array<string>()
+              arrDomainSuffixes.push('example.com')
+              arrDomainSuffixes.push('abcdefg.cn')
+              web_webview.AdsBlockManager.removeAdsBlockAllowedList(arrDomainSuffixes)
+            })
+        }
+      }
+      Web({ src: this.main_url, controller: this.controller })
+      .onControllerAttached(()=>{
+        this.controller.enableAdsBlock(true)
+      })
+    }
+  }
+}
+```
+
+### clearAdsBlockAllowedList<sup>12+</sup>
+
+static clearAdsBlockAllowedList(): void
+
+清空AdsBlockManager的AllowedList。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  main_url: string = 'https://www.example.com'
+  text_input_controller: TextInputController = new TextInputController()
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+  @State input_text: string = 'https://www.example.com'
+
+
+  build() {
+    Column() {
+      Row() {
+        Flex() {
+          TextInput({ text: this.input_text, placeholder: this.main_url, controller: this.text_input_controller})
+            .id("input_url")
+            .height(40)
+            .margin(5)
+            .borderColor(Color.Blue)
+            .onChange((value: string) => {
+              this.input_text = value
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("Go") }
+            .onClick(() => {
+              this.controller.loadUrl(this.input_text)
+            })
+
+          Button({type: ButtonType.Capsule}) { Text("clearAdsBlockAllowedList") }
+            .onClick(() => {
+              web_webview.AdsBlockManager.clearAdsBlockAllowedList()
+            })
+        }
+      }
+      Web({ src: this.main_url, controller: this.controller })
+      .onControllerAttached(()=>{
+        this.controller.enableAdsBlock(true)
+      })
+    }
+  }
+}
+```
+### enableWholeWebPageDrawing<sup>12+</sup>
+
+static enableWholeWebPageDrawing(): void
+
+设置开启网页全量绘制能力。仅在web初始化时设置。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  aboutToAppear():void {
+    try {
+      web_webview.WebviewController.enableWholeWebPageDrawing();
+    } catch (error) {
+      let e:business_error.BusinessError = error as business_error.BusinessError;
+      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+    }
+  }
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### webPageSnapshot<sup>12+</sup>
+
+webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
+
+获取网页全量绘制结果。（本地资源网页暂不支持）
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型           | 必填  | 说明                      |
+| ----------- | ------------- | ---- | ------------------------ |
+| info        | [SnapshotInfo](#snapshotinfo12)| 是   | 全量绘制结果入参。 |
+| callback        | [SnapshotResult](#snapshotresult12)| 是   | 全量绘制回调结果。 
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('webPageSnapshot')
+        .onClick(() => {
+          try {
+            this.controller.webPageSnapshot({id:"1234", size:{width:100,height:100}}, (error, result) => {
+              if(error) {
+                let e:business_error.BusinessError = error as business_error.BusinessError;
+                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                return;
+              }
+              if(result) {
+                console.info(`return value is:${result}`);
+                //开发者可以根据需要处理返回结果
+              }
+            });
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+## SnapshotInfo<sup>12+</sup>
+
+获取全量绘制结果入参。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 |  必填 | 说明 |
+|------|------|------|------|
+| id | string | 是 | snapshot的id。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 是 | web绘制的尺寸，最多支持16000px * 16000px, 长度单位支持px、vp、%，需保持不同参数传入长度单位一致, 默认单位vp，超过规格时返回最大规格。（示例：width:'100px', height:'200px'。或者 width:'20%', height'30%'。只写数字时单位为vp。）|
+
+## SnapshotResult<sup>12+</sup>
+
+全量绘制回调结果。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 |  说明 |
+|------|------|---------|
+| id | string | snapshot的id。|
+| status | boolean |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | web绘制的真实尺寸，number类型，单位vp。|
+| imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 全量绘制结果image.pixelMap格式。|

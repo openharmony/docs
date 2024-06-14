@@ -25,6 +25,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_SCREEN_LOCK
+
+允许应用访问锁屏信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.SYSTEM_FLOAT_WINDOW
 
 允许应用使用悬浮窗的能力。
@@ -877,6 +889,18 @@
 
 **起始版本**：9
 
+### ohos.permission.START_DLP_CRED
+
+允许系统应用或者系统服务拉起DLP凭据管理应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.START_SHORTCUT
 
 允许应用拉起快捷方式。
@@ -1202,6 +1226,18 @@
 **ACL使能**：true
 
 **起始版本**：8
+
+### ohos.permission.ACCESS_BOOSTER_SERVICE
+
+允许系统服务或系统应用调用网络增强服务中的网络质量感知，网络场景预测、或网络加速等功能接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ### ohos.permission.GET_WALLPAPER
 
@@ -2561,6 +2597,18 @@
 
 **起始版本**：11
 
+### ohos.permission.READ_PRIVACY_PUSH_DATA
+
+允许应用读取另一个应用中的Push隐私数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_NEARLINK
 
 允许应用配对星闪设备，并对设备的电话簿或消息进行访问。
@@ -2588,6 +2636,42 @@
 ### ohos.permission.GET_NEARLINK_PEER_MAC
 
 允许应用获取对端设备的星闪MAC地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_FINDNETWORK
+
+允许应用管理“查找”网络开关，并可以对物品进行配对、解配对。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.OPERATE_FINDNETWORK
+
+允许应用调用“查找”网络操作类接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.QUERY_FINDNETWORK_LOCATION
+
+允许应用使用“查找”网络查询设备离线位置的功能。
 
 **权限级别**：system_basic
 
@@ -3029,6 +3113,30 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_SCREEN_LOCK_MEDIA_DATA
+
+允许应用在锁屏后继续访问媒体图片和视频数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SCREEN_LOCK_ALL_DATA
+
+允许应用在锁屏后继续访问媒体图片和视频、通话记录、通话录音、短信内容、邮箱等敏感数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_DEVICE_COLLABORATION_PRIVATE_ABILITY
 
 允许系统服务或系统应用访问多屏协同私有应用能力。
@@ -3070,6 +3178,18 @@
 允许系统应用调用融合搜索服务提供的本地搜索能力。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.INJECT_INPUT_EVENT
+
+允许系统应用注入输入事件。
+
+**权限级别**：system_core
 
 **授权方式**：system_grant
 

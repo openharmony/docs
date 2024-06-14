@@ -340,7 +340,46 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     }
     ```
 
-11. 调用MediaKeySession类中的OH_MediaKeySession_Destroy方法销毁MediaKeySession实例。
+11. 调用MediaKeySession类中的OH_MediaKeySession_SetCallback方法设置MediaKeySystem监听回调。
+
+    ```c++
+    DRM_ErrCode TestSessoinEventCallBackWithObj(MediaKeySession *mediaKeySessoin, DRM_EventType eventType,
+    uint8_t *info, int32_t infoLen, char *extra)
+    {
+     return DRM_ERR_OK;
+    }
+    DRM_ErrCode TestSessoinKeyChangeCallBackWithObj(MediaKeySession *mediaKeySessoin, DRM_KeysInfo *keysInfo,
+    bool hasNewGoodKeys)
+    {
+     return DRM_ERR_OK;
+    }
+    DRM_ErrCode MediaKeySession_SetMediaKeySessionCallbackWithObj()
+    {
+     MediaKeySystem *keySystem = NULL;
+     const char *name = "com.clearplay.drm";
+     ret = OH_MediaKeySystem_Create(name, &keySystem);
+     if (ret != DRM_OK) {
+         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+         return ret;
+     }
+     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
+     MediaKeySession *keySession = NULL;
+     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
+     if (ret != DRM_OK) {
+         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
+         return ret;
+     }
+     OH_MediaKeySession_Callback sessionCallback = { TestSessoinEventCallBackWithObj, TestSessoinKeyChangeCallBackWithObj };
+     ret = OH_MediaKeySession_SetCallback(keySession,
+        &sessionCallback);
+     if (ret != DRM_OK) {
+         OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_SetCallback failed.");
+         return ret;
+     }
+    }
+    ```
+
+12. 调用MediaKeySession类中的OH_MediaKeySession_Destroy方法销毁MediaKeySession实例。
 
     ```c++
     MediaKeySystem *keySystem = NULL;

@@ -18,7 +18,7 @@ FolderStack(value?: { upperItems?:  Array<string\>})
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -38,7 +38,7 @@ alignContent(value: Alignment)
 
 设置子组件在容器内的对齐方式。该属性与[通用属性align](ts-universal-attributes-location.md)同时设置时，后设置的属性生效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -54,7 +54,7 @@ enableAnimation(value: boolean)
 
 设置是否使用默认动效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +70,7 @@ autoHalfFold(value: boolean)
 
 设置是否开启自动旋转，仅在系统自动旋转关闭时该属性生效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -134,12 +134,12 @@ struct Index {
       FolderStack({ upperItems: ["upperitemsId"] }) {
         // 此Column会自动上移到上半屏
         Column() {
-          Text("vedio zone").height("100%").width("100%").textAlign(TextAlign.Center).fontSize(25)
+          Text("video zone").height("100%").width("100%").textAlign(TextAlign.Center).fontSize(25)
         }.backgroundColor(Color.Pink).width("100%").height("100%").id("upperitemsId")
 
         // 下列两个Column堆叠在下半屏区域
         Column() {
-          Text("vedio title")
+          Text("video title")
             .width("100%")
             .height(50)
             .textAlign(TextAlign.Center)
@@ -148,7 +148,7 @@ struct Index {
         }.width("100%").height("100%").justifyContent(FlexAlign.Start)
 
         Column() {
-          Text("vedie bar ")
+          Text("video bar ")
             .width("100%")
             .height(50)
             .textAlign(TextAlign.Center)

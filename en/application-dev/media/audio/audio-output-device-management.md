@@ -59,6 +59,7 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (de
 audioRoutingManager.off('deviceChange');
 ```
 
+<!--Del-->
 ## Selecting an Audio Output Device (for System Applications only)
 
 Currently, only one output device can be selected, and the device ID is used as the unique identifier. For details about audio device descriptors, see [AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors).
@@ -94,6 +95,7 @@ async function selectOutputDevice() {
   });
 }
 ```
+<!--DelEnd-->
 
 ## Obtaining Information About the Output Device with the Highest Priority
 

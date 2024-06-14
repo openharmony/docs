@@ -31,3 +31,4 @@
 - [应用接管网页中的媒体播放](app-takeovers-web-media.md)
 - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
 - [使用crashpad收集Web组件崩溃信息](web-crashpad.md)
+- [使用Web组件的广告过滤功能](web-adsblock.md)

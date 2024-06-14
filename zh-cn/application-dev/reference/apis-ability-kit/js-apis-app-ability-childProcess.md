@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import ChildProcess from '@ohos.app.ability.ChildProcess';
+import { ChildProcess } from '@kit.AbilityKit';
 ```
 
 ## ChildProcess.onStart
@@ -24,7 +24,7 @@ onStart(): void
 
 **示例：**
 ```ts
-import ChildProcess from '@ohos.app.ability.ChildProcess';
+import { ChildProcess } from '@kit.AbilityKit';
 
 export default class DemoProcess extends ChildProcess {
   onStart() {

@@ -13,7 +13,7 @@ UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtension
 ## 导入模块
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { UIExtensionContentSession } from '@kit.AbilityKit';
 ```
 
 ## UIExtensionContentSession.sendData
@@ -588,42 +588,42 @@ getUIExtensionHostWindowProxy(): uiExtensionHost.UIExtensionHostWindowProxy
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-import Want from '@ohos.app.ability.Want';
-import uiExtensionHost from '@ohos.uiExtensionHost';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { uiExtensionHost } from '@kit.ArkUI';
 
-const TAG: string = '[UIExtAbility]'
+const TAG: string = '[UIExtAbility]';
+
 export default class UIExtAbility extends UIExtensionAbility {
 
   onCreate() {
-    console.log(TAG, `UIExtAbility onCreate`)
+    console.log(TAG, `UIExtAbility onCreate`);
   }
 
   onForeground() {
-    console.log(TAG, `UIExtAbility onForeground`)
+    console.log(TAG, `UIExtAbility onForeground`);
   }
 
   onBackground() {
-    console.log(TAG, `UIExtAbility onBackground`)
+    console.log(TAG, `UIExtAbility onBackground`);
   }
 
   onDestroy() {
-    console.log(TAG, `UIExtAbility onDestroy`)
+    console.log(TAG, `UIExtAbility onDestroy`);
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     let extensionHostWindow = session.getUIExtensionHostWindowProxy();
     let data: Record<string, UIExtensionContentSession | uiExtensionHost.UIExtensionHostWindowProxy> = {
-        'session': session,
-        'extensionHostWindow': extensionHostWindow
-    }
+      'session': session,
+      'extensionHostWindow': extensionHostWindow
+    };
     let storage: LocalStorage = new LocalStorage(data);
+
     session.loadContent('pages/extension', storage);
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    console.log(TAG, `UIExtAbility onSessionDestroy`)
+    console.log(TAG, `UIExtAbility onSessionDestroy`);
   }
 }
 ```

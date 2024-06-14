@@ -13,7 +13,7 @@ autoStartupManager模块提供注册、注销监听应用开机自启动状态�
 ## 导入模块
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { autoStartupManager } from '@kit.AbilityKit';
 ```
 
 ## on
@@ -36,11 +36,10 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
+import { autoStartupManager, common } from '@kit.AbilityKit';
 
 try {
-  AutoStartupManager.on('systemAutoStartup', {
+  autoStartupManager.on('systemAutoStartup', {
     onAutoStartupOn(data: common.AutoStartupInfo) {
       console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
     },
@@ -73,11 +72,10 @@ off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
+import { autoStartupManager, common } from '@kit.AbilityKit';
 
 try {
-  AutoStartupManager.off('systemAutoStartup', {
+  autoStartupManager.off('systemAutoStartup', {
     onAutoStartupOn(data: common.AutoStartupInfo) {
       console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
     },
@@ -120,10 +118,10 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { autoStartupManager } from '@kit.AbilityKit';
 
 try {
-  AutoStartupManager.setApplicationAutoStartup({
+  autoStartupManager.setApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
   }, (err, data) => {
@@ -169,11 +167,11 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import { BusinessError } from '@ohos.base';
+import { autoStartupManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  AutoStartupManager.setApplicationAutoStartup({
+  autoStartupManager.setApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
   }).then((data: void) => {
@@ -216,10 +214,10 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { autoStartupManager } from '@kit.AbilityKit';
 
 try {
-  AutoStartupManager.cancelApplicationAutoStartup({
+  autoStartupManager.cancelApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
   }, (err, data) => {
@@ -265,11 +263,11 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import { BusinessError } from '@ohos.base';
+import { autoStartupManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  AutoStartupManager.cancelApplicationAutoStartup({
+  autoStartupManager.cancelApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
   }).then((data: void) => {
@@ -309,10 +307,10 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { autoStartupManager } from '@kit.AbilityKit';
 
 try {
-  AutoStartupManager.queryAllAutoStartupApplications((err, data) => {
+  autoStartupManager.queryAllAutoStartupApplications((err, data) => {
     console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
   });
 } catch (err) {
@@ -347,12 +345,11 @@ try {
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { autoStartupManager, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  AutoStartupManager.queryAllAutoStartupApplications().then((autoStartupInfo: common.AutoStartupInfo[]) => {
+  autoStartupManager.queryAllAutoStartupApplications().then((autoStartupInfo: common.AutoStartupInfo[]) => {
     console.info('====> queryAllAutoStartupApplications data: ' + JSON.stringify(autoStartupInfo));
   }).catch((err: BusinessError) => {
     console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err));

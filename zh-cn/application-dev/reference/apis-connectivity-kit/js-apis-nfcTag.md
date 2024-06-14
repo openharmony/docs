@@ -57,17 +57,15 @@
 ## **导入模块**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 ```
 
 ## **tag.TagInfo**
 
 在对相关Tag类型卡片进行读写之前，必须先获取[TagInfo](#taginfo)相关属性值，以确认设备读取到的Tag卡片支持哪些技术类型。这样Tag应用程序才能调用正确的接口和所读取到的Tag卡片进行通信。
 ```js
-import tag from '@ohos.nfc.tag';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want'
+import { tag } from '@kit.ConnectivityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want : Want, launchParam: AbilityConstant.LaunchParam) {
@@ -78,7 +76,7 @@ export default class EntryAbility extends UIAbility {
     try {
       tagInfo = tag.getTagInfo(want);
     } catch (error) {
-      console.error("tag.getTagInfo catched error: " + error);
+      console.error("tag.getTagInfo catch error: " + error);
     }
     if (tagInfo == null || tagInfo == undefined) {
       console.log("no TagInfo to be created, ignore it.");
@@ -105,7 +103,7 @@ export default class EntryAbility extends UIAbility {
       try {
         nfcA = tag.getNfcATag(tagInfo);
       } catch (error) {
-        console.error("tag.getNfcATag catched error: " + error);
+        console.error("tag.getNfcATag catch error: " + error);
       }
       // other code to read or write this found tag.
     }
@@ -116,7 +114,7 @@ export default class EntryAbility extends UIAbility {
       try {
         isoDep = tag.getIsoDep(tagInfo);
       } catch (error) {
-        console.error("tag.getIsoDep catched error: " + error);
+        console.error("tag.getIsoDep catch error: " + error);
       }
       // other code to read or write this found tag.
     }
@@ -156,7 +154,7 @@ getNfcA(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -211,7 +209,7 @@ getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -266,7 +264,7 @@ getNfcF(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -321,7 +319,7 @@ getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -353,7 +351,7 @@ getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTa
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -385,7 +383,7 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -415,7 +413,7 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -447,7 +445,7 @@ getMifareUltralight(tagInfo: [TagInfo](#taginfo)): [MifareUltralightTag](js-apis
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 参数名  | 类型                | 必填 | 说明                                                          |
@@ -478,7 +476,7 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -504,7 +502,7 @@ getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#want)): 
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -537,7 +535,7 @@ registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-api
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -556,7 +554,7 @@ registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-api
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100202  | The element state is invalid. |
 
 **示例：**
 
@@ -572,7 +570,7 @@ unregisterForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-a
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -593,12 +591,10 @@ unregisterForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-a
 **示例：**
 
 ```js
-import Want from '@ohos.app.ability.Want';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import tag from '@ohos.nfc.tag';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
 let elementName : bundleManager.ElementName;
@@ -665,7 +661,7 @@ on(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-bu
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -701,7 +697,7 @@ off(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-b
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -725,12 +721,9 @@ off(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-b
 **示例：**
 
 ```js
-import Want from '@ohos.app.ability.Want';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import tag from '@ohos.nfc.tag';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
 let elementName : bundleManager.ElementName;
@@ -796,7 +789,7 @@ makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -821,7 +814,7 @@ makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 try {
     let uri = "https://www.example.com"; // change it to be correct.
@@ -832,8 +825,8 @@ try {
     } else {
         console.log("ndefMessage makeUriRecord ndefRecord: " + ndefRecord);
     }
-} catch (busiError) {
-    console.error("ndefMessage makeUriRecord catched busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndefMessage makeUriRecord catch businessError: " + businessError);
 }
 ```
 
@@ -845,7 +838,7 @@ makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -871,7 +864,7 @@ makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 try {
     let text = "Hello World";   // change it to be correct.
@@ -883,8 +876,8 @@ try {
     } else {
         console.log("ndefMessage makeTextRecord ndefRecord: " + ndefRecord);
     }
-} catch (busiError) {
-    console.error("ndefMessage makeTextRecord catched busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndefMessage makeTextRecord catch businessError: " + businessError);
 }
 ```
 
@@ -897,7 +890,7 @@ makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -923,7 +916,7 @@ makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 try {
     let mimeType = "text/plain";   // change it to be correct.
@@ -935,8 +928,8 @@ try {
     } else {
         console.log("ndefMessage makeMimeRecord ndefRecord: " + ndefRecord);
     }
-} catch (busiError) {
-    console.error("ndefMessage makeMimeRecord catched busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndefMessage makeMimeRecord catch businessError: " + businessError);
 }
 ```
 ## tag.ndef.makeExternalRecord<sup>9+</sup>
@@ -947,7 +940,7 @@ makeExternalRecord(domainName: string, type: string, externalData: number[]): [N
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -974,7 +967,7 @@ makeExternalRecord(domainName: string, type: string, externalData: number[]): [N
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 try {
     let domainName = "ohos.nfc.application"; // change it to be correct.
@@ -987,8 +980,8 @@ try {
     } else {
         console.log("ndefMessage makeExternalRecord ndefRecord: " + ndefRecord);
     }
-} catch (busiError) {
-    console.error("ndefMessage makeExternalRecord catched busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndefMessage makeExternalRecord catch businessError: " + businessError);
 }
 ```
 
@@ -1000,7 +993,7 @@ messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): num
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1025,7 +1018,7 @@ messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): num
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // MUST can be parsed as NDEF Record.
 try {
@@ -1033,8 +1026,8 @@ try {
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
     let rawData2 = tag.ndef.messageToBytes(ndefMessage);
     console.log("ndefMessage messageToBytes rawData2: " + rawData2);
-} catch (busiError) {
-    console.error("ndef createNdefMessage busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndef createNdefMessage businessError: " + businessError);
 }
 ```
 ## tag.ndef.createNdefMessage<sup>9+</sup>
@@ -1045,7 +1038,7 @@ createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1069,14 +1062,14 @@ createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9
 
 **示例：**
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43];  // MUST can be parsed as NDEF Record.
 try {
     let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
-} catch (busiError) {
-    console.error("ndef createNdefMessage busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndef createNdefMessage businessError: " + businessError);
 }
 ```
 
@@ -1088,7 +1081,7 @@ createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](js-apis-nfctech.md#n
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1113,7 +1106,7 @@ createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](js-apis-nfctech.md#n
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 let uriRecord : tag.NdefRecord = tag.ndef.makeUriRecord("https://www.example.com");
 let textRecord : tag.NdefRecord = tag.ndef.makeTextRecord("Hello World", "en");
@@ -1121,8 +1114,8 @@ let ndefRecords : tag.NdefRecord[] = [uriRecord, textRecord];
 try {
     let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(ndefRecords);
     console.log("ndef createNdefMessage ndefMessage: " + ndefMessage);
-} catch (busiError) {
-    console.error("ndef createNdefMessage busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndef createNdefMessage businessError: " + businessError);
 }
 ```
 
@@ -1136,8 +1129,8 @@ NFC服务在读取到标签时给出的对象，通过改对象属性，应用�
 
 | **名称**                      | **类型**                                                      | **可读** | **可写** | **说明**                                                                                     |
 | ----------------------------- | ------------------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
-| uid<sup>9+</sup>              | number[]                                                      | 是       | 否       | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                     |
-| technology<sup>9+</sup>       | number[]                                                      | 是       | 否       | 支持的技术类型，每个number值表示所支持技术类型的常量值。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                     |
+| uid<sup>9+</sup>              | number[]                                                      | 是       | 否       | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                     |
+| technology<sup>9+</sup>       | number[]                                                      | 是       | 否       | 支持的技术类型，每个number值表示所支持技术类型的常量值。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                     |
 | supportedProfiles             | number[]                                                      | 是       | 否       | 支持的技术类型，从API9开始不支持，使用[tag.TagInfo#technology](#taginfo)替代。            |
 
 ## NdefRecord<sup>9+</sup>
@@ -1145,7 +1138,7 @@ NDEF标签Record属性的定义，参考NDEF标签技术规范《NFCForum-TS-NDE
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | **名称** | **类型** | **可读** | **可写** | **说明**                                                                                  |
 | -------- | -------- | -------- | -------- | ----------------------------------------------------------------------------------------- |
@@ -1159,7 +1152,7 @@ NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型�
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | **名称**                     | **值** | **说明**                    |
 | ---------------------------- | ------ | --------------------------- |
@@ -1178,7 +1171,7 @@ NDEF Record的TNF(Type Name Field)类型值，参考NDEF标签技术规范《NFC
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | **名称**         | **值** | **说明**                                         |
 | ---------------- | ------ | ------------------------------------------------ |
@@ -1195,7 +1188,7 @@ NDEF Record的RTD(Record Type Definition)类型值，参考NDEF标签技术规�
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | **名称**              | **值** | **说明**                |
 | --------------------- | ------ | ----------------------- |
@@ -1207,7 +1200,7 @@ NFC Forum标准里面Tag类型的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | **名称**         | **值** | **说明**             |
 | ---------------- | ------ | -------------------- |
@@ -1222,7 +1215,7 @@ MIFARE Classic标签类型的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | **名称**     | **值** | **说明**             |
 | ------------ | ------ | -------------------- |
@@ -1236,7 +1229,7 @@ MIFARE Classic标签存储大小的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | **名称**     | **值** | **说明**                          |
 | ------------ | ------ | --------------------------------- |
@@ -1250,7 +1243,7 @@ MIFARE Ultralight标签类型的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | **名称**          | **值** | **说明**                  |
 | ----------------- | ------ | ------------------------- |

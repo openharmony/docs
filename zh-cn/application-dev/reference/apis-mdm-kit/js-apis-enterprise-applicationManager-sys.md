@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
 > 
 > 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.applicationManager](js-apis-enterprise-applicationManager.md)。
 
@@ -45,7 +45,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: Async
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.            |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200002 | The administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -98,7 +98,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number,
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.            |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200002 | The administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -155,7 +155,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.            |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200002 | The administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -205,7 +205,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: As
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.            |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200002 | The administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -257,7 +257,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: numb
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.            |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200002 | The administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -314,7 +314,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: num
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.            |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200002 | The administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -363,7 +363,7 @@ getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.            |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200002 | The administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -413,7 +413,7 @@ getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.            |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200002 | The administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -468,7 +468,7 @@ getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.            |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200002 | The administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |

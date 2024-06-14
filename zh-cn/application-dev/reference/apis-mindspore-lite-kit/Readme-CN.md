@@ -1,7 +1,7 @@
 # MindSpore Lite Kit API参考 
 
 - ArkTS API
-  - [@ohos.ai.mindSporeLite (推理能力)](js-apis-mindSporeLite.md)
+  - [@ohos.ai.mindSporeLite (端侧AI框架)](js-apis-mindSporeLite.md)
   <!--Del-->
   - [@ohos.ai.intelligentVoice (智能语音)(系统接口)](js-apis-intelligentVoice-sys.md)
   <!--DelEnd-->

@@ -199,7 +199,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
        })
      })
 
-     // 在自定义组件即将析构销毁时将dialogControlle置空
+     // 在自定义组件即将析构销毁时将dialogController置空
      aboutToDisappear() {
        this.dialogController = null // 将dialogController置空
      }
@@ -305,7 +305,7 @@ struct CustomDialogUser {
     cornerRadius: 10,
   })
 
-  // 在自定义组件即将析构销毁时将dialogControlle置空
+  // 在自定义组件即将析构销毁时将dialogController置空
   aboutToDisappear() {
     this.dialogController = null // 将dialogController置空
   }
@@ -362,7 +362,7 @@ struct CustomDialogUser {
     shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
   })
 
-  // 在自定义组件即将析构销毁时将dialogControlle置空
+  // 在自定义组件即将析构销毁时将dialogController置空
   aboutToDisappear() {
     this.dialogController = null // 将dialogController置空
   }
