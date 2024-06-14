@@ -2222,7 +2222,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 
-为视频添加外挂字幕，当前仅支持与视频资源同时设置（在avplayer设置fdSrc视频资源后设置外挂字幕）。
+为视频添加外挂字幕，当前仅支持与视频资源同时设置（在avplayer设置fdSrc视频资源后设置外挂字幕）。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2238,7 +2238,7 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| Promise\<void> | 添加外挂字幕addSubtitleFromFd方法的Promise返回值。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2262,7 +2262,7 @@ avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescrip
 
 addSubtitleFromUrl(url: string): Promise\<void>
 
-为视频添加外挂字幕，当前仅支持与视频资源同时设置（在avplayer设置fdSrc视频资源后设置外挂字幕）。
+为视频添加外挂字幕，当前仅支持与视频资源同时设置（在avplayer设置fdSrc视频资源后设置外挂字幕）。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2276,7 +2276,7 @@ addSubtitleFromUrl(url: string): Promise\<void>
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| Promise\<void> | 添加外挂字幕addSubtitleFromUrl方法的Promise返回值。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2306,7 +2306,7 @@ avPlayer.addSubtitleUrl(fdUrl)
 
 on(type: 'subtitleUpdate', callback: Callback\<SubtitleInfo>): void
 
-订阅获取外挂字幕的事件，当有外挂字幕时，会通过订阅的回调方法通知用户。用户只能订阅一个外挂字幕事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
+订阅获取外挂字幕的事件，当有外挂字幕时，会通过订阅的回调方法通知用户。用户只能订阅一个外挂字幕事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2315,7 +2315,7 @@ on(type: 'subtitleUpdate', callback: Callback\<SubtitleInfo>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'subtitleUpdate'。 |
-| callback | function | 是   | 外挂字幕事件回调方法。 |
+| callback | function | 是   | 回调函数。外挂字幕事件回调方法。 |
 
 **示例：**
 
@@ -2336,7 +2336,7 @@ avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
 
 off(type: 'subtitleUpdate', callback?: Callback\<SubtitleInfo>): void
 
-取消订阅获取外挂字幕的事件。
+取消订阅获取外挂字幕的事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2345,7 +2345,7 @@ off(type: 'subtitleUpdate', callback?: Callback\<SubtitleInfo>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'subtitleUpdate'。 |
-| callback | function | 否   | 取消外挂字幕事件的回调方法。 |
+| callback | function | 否   | 回调函数。取消外挂字幕事件的回调方法。 |
 
 **示例：**
 
