@@ -21,9 +21,9 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 | originLongitude      | 起点经度（路线规划场景有效）                                   | number   | 可缺省   |
 | vehicleType          | 交通出行工具：0：驾车 1：步行 2：骑行 3：公交（路线规划场景有效） | number   | 可缺省，缺省时由应用自行处理   |
 
-**说明：**
-
-本文中的经纬度均为GCJ-02坐标系统
+>**说明：**
+>
+>本文中的经纬度均为GCJ-02坐标系统
 
 
 ## 接入步骤
