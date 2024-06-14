@@ -95,7 +95,7 @@ onStateChange(callback: (isActivated: boolean) => void)
 
 | 参数名      | 类型    | 必填 | 描述                                    |
 | ----------- | ------- | ---- | --------------------------------------- |
-| isActivated | boolean | 是   | 为true时表示激活，为false时表示未激活。 |
+| isActivated | boolean | 是   | isActivated为true时表示激活，为false时表示未激活。 |
 
 ## 示例
 

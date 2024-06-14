@@ -53,8 +53,8 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | title<sup>11+</sup> | [SheetTitleOptions](#sheettitleoptions11) \| [CustomBuilder](ts-types.md#custombuilder8) | 否 | 半模态面板的标题。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | enableOutsideInteractive<sup>11+</sup> | boolean | 否 | 半模态所在页面是否允许交互。<br/>**说明：**<br/>设置为true时允许交互，不显示蒙层；设置为false时不允许交互，显示蒙层；若不进行设置，默认底部弹窗与居中弹窗不允许交互，跟手弹窗允许交互。当设置为true时，maskColor设置无效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | shouldDismiss<sup>11+</sup> | (sheetDismiss: [SheetDismiss](#sheetdismiss11)) => void | 否 | 半模态页面交互式关闭回调函数。<br/>**说明：**<br/>当用户执行下拉关闭/back事件/点击蒙层关闭/关闭按钮关闭交互操作时，如果注册该回调函数，则不会立刻关闭。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| onWillDismiss<sup>12+</sup> | [DismissSheetAction](#dismisssheetaction12) | 否    | 半模态页面交互式关闭回调函数。<br/>**说明：**<br />当用户执行关闭操作时，如果注册该回调函数，不会立刻关闭, 由开发者控制是否关闭。在回调函数中可以通过[reason](ts-appendix-enums.md#dismissreason12)得到关闭页面的操作类型，从而根据原因选择是否关闭半模态页面。在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
-| onWillSpringBackWhenDismiss<sup>12+</sup> | [SpringBackAction](#springbackaction12) | 否    | 半模态页面交互式关闭前控制回弹函数。<br/>**说明：**<br />当用户执行下拉关闭操作并注册shouldDimiss或onWillDismiss时，如果注册该回调函数，则不会回弹，由开发者控制下滑关闭时是否回弹。在回调函数中可以通过调用springBack来实现回弹效果。 |
+| onWillDismiss<sup>12+</sup> | [DismissSheetAction](#dismisssheetaction12) | 否    | 半模态页面交互式关闭回调函数。<br/>**说明：**<br />当用户执行关闭操作时，如果注册该回调函数，不会立刻关闭, 由开发者控制是否关闭。在回调函数中可以通过[reason](ts-appendix-enums.md#dismissreason12)得到关闭页面的操作类型，从而根据原因选择是否关闭半模态页面。在onWillDismiss回调中，不能再做onWillDismiss拦截。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onWillSpringBackWhenDismiss<sup>12+</sup> | [SpringBackAction](#springbackaction12) | 否    | 半模态页面交互式关闭前控制回弹函数。<br/>**说明：**<br />当用户执行下拉关闭操作并注册shouldDimiss或onWillDismiss时，如果注册该回调函数，则不会回弹，由开发者控制下滑关闭时是否回弹。在回调函数中可以通过调用springBack来实现回弹效果。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onHeightDidChange<sup>12+</sup> | Callback&lt;number&gt; | 否 | 半模态页面高度变化回调函数。<br/>**说明：**<br/>底部弹窗时，只有档位变化和拖拽跟手才返回每一帧高度，拉起半模态和避让软键盘只返回最后的高度，其他弹窗只在半模态拉起返回最后高度。<br/>返回值为px。 |
 | onDetentsDidChange<sup>12+</sup> | Callback&lt;number&gt; | 否 | 半模态页面档位变化回调函数。<br/>**说明：**<br/>底部弹窗时，档位变化返回最后的高度。<br/>返回值为px。 |
 | onWidthDidChange<sup>12+</sup> | Callback&lt;number&gt; | 否 | 半模态页面宽度变化回调函数。<br/>**说明：**<br/>宽度变化时返回最后的宽度。<br/>返回值为px。 |
@@ -79,10 +79,10 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 
 | 名称            | 类型                                       | 必填 | 说明                     |
 | --------------- | ------------------------------------------ | ---- | ------------------------ |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 半模态页面的背板颜色，默认为白色。<br />默认值：Color.White<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| onWillAppear<sup>12+</sup>        | () => void                                 | 否   | 半模态页面显示（动画开始前）回调函数。 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 半模态页面的背板颜色，默认为白色。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| onWillAppear<sup>12+</sup>        | () => void                                 | 否   | 半模态页面显示（动画开始前）回调函数。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onAppear        | () => void                                 | 否   | 半模态页面显示（动画结束后）回调函数。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| onWillDisappear<sup>12+</sup>     | () => void                                 | 否   | 半模态页面回退（动画开始前）回调函数。<br />**说明：**<br />不允许在onWillDisappear函数中修改状态变量，可能会导致组件行为不稳定。 |
+| onWillDisappear<sup>12+</sup>     | () => void                                 | 否   | 半模态页面回退（动画开始前）回调函数。<br />**说明：**<br />不允许在onWillDisappear函数中修改状态变量，可能会导致组件行为不稳定。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onDisappear     | () => void                                 | 否   | 半模态页面回退（动画结束后）回调函数。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## SheetType<sup>11+</sup>枚举说明
