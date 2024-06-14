@@ -127,14 +127,13 @@ toolBar(value: object | CustomBuilder)
 | ------ | ------------------------------------------------------------ | ---- | ------------ |
 | value  | object&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容。 |
 
-> **说明：**
->
-> object类型说明
->| 名称     | 类型            | 必填   | 描述              |
->| ------ | ------------- | ---- | --------------- |
->| value  | string        | 是    | 工具栏单个选项的显示文本。   |
->| icon   | string        | 否    | 工具栏单个选项的图标资源路径。 |
->| action | () =&gt; void | 否    | 当前选项被选中的事件回调。   |
+**object类型说明：** 
+
+| 名称     | 类型            | 必填   | 描述              |
+| ------ | ------------- | ---- | --------------- |
+| value  | string        | 是    | 工具栏单个选项的显示文本。   |
+| icon   | string        | 否    | 工具栏单个选项的图标资源路径。 |
+| action | () =&gt; void | 否    | 当前选项被选中的事件回调。   |
 
 ### toolbarConfiguration<sup>10+</sup>
 

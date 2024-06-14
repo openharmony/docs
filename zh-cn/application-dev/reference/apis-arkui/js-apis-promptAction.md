@@ -549,24 +549,24 @@ closeCustomDialog(dialogId: number): void
 
 文本提示框的选项。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full。
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                    | 类型                                                         | 必填 | 说明                                                         |
 | ----------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| message                 | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 是   | 显示的文本信息。<br>**说明：** <br/>默认字体为'Harmony Sans'，不支持设置其他字体。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| message                 | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource类型) | 是   | 显示的文本信息。<br>**说明：** <br/>默认字体为'Harmony Sans'，不支持设置其他字体。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | duration                | number                                                       | 否   | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bottom                  | string&nbsp;\|&nbsp;number                                   | 否   | 设置弹窗边框距离屏幕底部的位置。<br>默认值：80vp，设置了Alignment后不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | showMode<sup>11+</sup>  | [ToastShowMode](#toastshowmode11)                            | 否   | 设置弹窗是否显示在应用之上。<br>默认值：ToastShowMode.DEFAULT，默认显示在应用内。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | alignment<sup>12+</sup> | [Alignment](arkui-ts/ts-appendix-enums.md#alignment)         | 否   | 对齐方式。<br/>默认值：undefined，默认底部偏上位置。         |
 | offset<sup>12+</sup>    | [Offset](arkui-ts/ts-types.md#offset)                        | 否   | 在对齐方式上的偏移。<br/>默认值：{dx:0, dy:0}，默认没有偏移。 |
 
-### ToastShowMode<sup>11+</sup>
+## ToastShowMode<sup>11+</sup>
 
 设置弹窗显示模式，默认显示在应用内，支持显示在应用之上。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full。
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
@@ -581,8 +581,8 @@ closeCustomDialog(dialogId: number): void
 
 | 名称                              | 类型                                                         | 必填 | 说明                                                         |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| title                             | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 否   | 标题文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| message                           | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 否   | 内容文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| title                             | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource类型) | 否   | 标题文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| message                           | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource类型) | 否   | 内容文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | buttons                           | Array&lt;[Button](#button)&gt;                               | 否   | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持大于1个按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | alignment<sup>10+</sup>           | [DialogAlignment](arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。<br/>默认值：DialogAlignment.Default<br/>**说明**：<br/>若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | offset<sup>10+</sup>              | [Offset](arkui-ts/ts-types.md#offset)                        | 否   | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;}<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -613,7 +613,7 @@ closeCustomDialog(dialogId: number): void
 
 | 名称                          | 类型                                                         | 必填 | 说明                                                         |
 | ----------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| title                         | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 否   | 标题文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| title                         | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource类型) | 否   | 标题文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | buttons                       | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | 是   | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。按钮数量大于6个时，仅显示前6个按钮，之后的按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | showInSubWindow<sup>11+</sup> | boolean                                                      | 否   | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br/>默认值：false，在子窗口不显示弹窗。<br/>**说明**：<br/> - showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。 <br/> - 若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。 |
 | isModal<sup>11+</sup>         | boolean                                                      | 否   | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。 |
@@ -628,7 +628,7 @@ closeCustomDialog(dialogId: number): void
 
 | 名称  | 类型   | 必填 | 说明                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| index | number | 否   | 选中按钮在buttons数组中的索引，从0开始。 |
+| index | number | 是   | 选中按钮在buttons数组中的索引，从0开始。 |
 
 ## CustomDialogOptions<sup>11+</sup>
 
@@ -638,7 +638,7 @@ closeCustomDialog(dialogId: number): void
 
 | 名称    | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 否   | 设置自定义弹窗的内容。<br/>**说明：** <br/>builder需要使用bind(this)。<br/>builder根节点宽高百分比相对弹框容器大小。<br/>builder非根节点宽高百分比相对父节点大小。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是  | 设置自定义弹窗的内容。<br/>**说明：** <br/>builder需要使用bind(this)。<br/>builder根节点宽高百分比相对弹框容器大小。<br/>builder非根节点宽高百分比相对父节点大小。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundColor <sup>12+</sup>| [ResourceColor](arkui-ts/ts-types.md#resourcecolor)  | 否 | 设置弹窗背板颜色。 |
 | cornerRadius<sup>12+</sup>| [BorderRadiuses](arkui-ts/ts-types.md#borderradiuses9) &nbsp;\| &nbsp;[Dimension](arkui-ts/ts-types.md#dimension10) | 否 | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '32vp', topRight: '32vp', bottomLeft: '32vp', bottomRight: '32vp' }。<br /> 圆角大小受组件尺寸限制，最大值为组件宽或高的一半，若值为负，则按照默认值处理。 <br /> 百分比参数方式：以父元素弹窗宽和高的百分比来设置弹窗的圆角。|
 | borderWidth<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](arkui-ts/ts-types.md#edgewidths9)  | 否 | 设置弹窗背板的边框宽度。<br />可分别设置4个边框宽度。<br />默认值：0。<br /> 百分比参数方式：以父元素弹窗宽的百分比来设置弹窗的边框宽度。<br />当弹窗左边框和右边框大于弹窗宽度，弹窗上边框和下边框大于弹窗高度，显示可能不符合预期。|
@@ -673,29 +673,21 @@ closeCustomDialog(dialogId: number): void
 
 ## DismissDialogAction<sup>12+</sup>类型说明
 
-| 名称    | 类型                                      | 必填 | 描述                                                         |
-| ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| dismiss | Callback&lt;void&gt;                      | 是   | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
-| reason  | [DismissReason](#dismissreason12枚举说明) | 是   | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## DismissReason<sup>12+</sup>枚举说明
-
-| 名称          | 描述                               |
-| ------------- | ---------------------------------- |
-| PRESS_BACK    | 点击三键back、左滑/右滑、键盘ESC。 |
-| TOUCH_OUTSIDE | 点击遮障层时。                     |
-| CLOSE_BUTTON  | 点击关闭按钮。                     |
+| 名称    | 类型                                                         | 必填 | 描述                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| dismiss | Callback&lt;void&gt;                                         | 是   | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
+| reason  | [DismissReason](arkui-ts/ts-appendix-enums.md#dismissreason12) | 是   | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
 
 ## Button
 
 菜单中的菜单项按钮。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 类型                                       | 必填   | 说明      |
 | ----- | ---------------------------------------- | ---- | ------- |
-| text  | string&nbsp;\|&nbsp; [Resource](arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 是    | 按钮文本内容。 |
-| color | string&nbsp;\| &nbsp;[Resource](arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 是    | 按钮文本颜色。 |
+| text  | string&nbsp;\|&nbsp; [Resource](arkui-ts/ts-types.md#resource类型) | 是    | 按钮文本内容。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| color | string&nbsp;\| &nbsp;[Resource](arkui-ts/ts-types.md#resource类型) | 是    | 按钮文本颜色。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | primary<sup>12+</sup> | boolean | 否    | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。 |

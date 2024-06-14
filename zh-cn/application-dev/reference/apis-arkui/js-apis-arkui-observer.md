@@ -454,7 +454,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 注册监听，范围是abilityContext内的page
     observer.on('routerPageUpdate', this.context, (info: observer.RouterPageInfo) => {
-      console.log('[observer][abilityContext] got info: ' + JSON.stringify(info))
+      console.info('[observer][abilityContext] got info: ' + JSON.stringify(info))
     })
   }
 
@@ -466,7 +466,7 @@ export default class EntryAbility extends UIAbility {
         this.uiContext = windowInfo.getUIContext();
         // 注册监听，范围是uiContext内的page
         observer.on('routerPageUpdate', this.uiContext, (info: observer.RouterPageInfo)=>{
-          console.log('[observer][uiContext] got info: ' + JSON.stringify(info))
+          console.info('[observer][uiContext] got info: ' + JSON.stringify(info))
         })
       })
     });
@@ -651,7 +651,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   willDrawCallback = () => {
-    console.log("willDraw指令下发");
+    console.info("willDraw指令下发");
   }
   build() {
     Column() {
@@ -689,7 +689,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   willDrawCallback = () => {
-    console.log("willDraw指令下发")
+    console.info("willDraw指令下发")
   }
 
   build() {
@@ -734,7 +734,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   didLayoutCallback = () => {
-    console.log("Layout布局完成");
+    console.info("Layout布局完成");
   }
   build() {
     Column() {
@@ -772,7 +772,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   didLayoutCallback = () => {
-    console.log("Layout布局完成")
+    console.info("Layout布局完成")
   }
 
   build() {
@@ -822,7 +822,7 @@ import window from '@ohos.window';
 import observer from '@ohos.arkui.observer';
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 export default class EntryAbility extends UIAbility {
@@ -882,7 +882,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 @Entry
@@ -974,7 +974,7 @@ import window from '@ohos.window';
 import observer from '@ohos.arkui.observer';
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 export default class EntryAbility extends UIAbility {
@@ -1034,7 +1034,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 @Entry
