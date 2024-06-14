@@ -454,12 +454,14 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 ## EdgeWidths参数说明
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称 | 类型 | 必填 | 说明 |
 | --------- |-----------|-----------|-----------|
-|  top    |  number  |  否  | 图片顶部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
-|  right  |  number  |  否  | 图片右部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
-|  bottom |  number  |  否  | 图片底部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
-|  left   |  number  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  top    |  [Length](ts-types.md#length)  |  否  | 图片顶部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  right  |  [Length](ts-types.md#length)  |  否  | 图片右部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  bottom |  [Length](ts-types.md#length)  |  否  | 图片底部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  left   |  [Length](ts-types.md#length)  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
 
 ![edgewidths](figures/edgewidths.png)
 
@@ -489,7 +491,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 ### onComplete
 
-onComplete(callback: (event?: { width: number, height: number, componentWidth: number, componentHeight: number, loadingStatus: number,contentWidth: number, contentHeight: number, contentOffsetX: number, contentOffsetY: number}) =&gt; void) }) =&gt; void)
+onComplete(callback: (event?: { width: number, height: number, componentWidth: number, componentHeight: number, loadingStatus: number,contentWidth: number, contentHeight: number, contentOffsetX: number, contentOffsetY: number }) =&gt; void)  
 
 图片数据加载成功和解码成功时均触发该回调，返回成功加载的图片尺寸。
 
@@ -514,7 +516,6 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 | contentHeight<sup>10+</sup>  | number | 是   | 图片实际绘制的高度。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
 | contentOffsetX<sup>10+</sup> | number | 是   | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
 | contentOffsetY<sup>10+</sup> | number | 是   | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-
 
 ### onError<sup>9+</sup>
 

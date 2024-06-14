@@ -101,10 +101,10 @@
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
-| top    | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 上外边距，组件顶部距组件外元素的尺寸。  |
-| end    | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 右外边距，组件右边界距组件外元素的尺寸。<br />从右至左显示语言模式下为<br />左外边距，组件左边界距组件外元素的尺寸。 |
-| bottom | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 下外边距，组件底部距组件外元素的尺寸。  |
-| start  | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 左外边距，组件左边界距组件外元素的尺寸。<br />从右至左显示语言模式下为<br />右外边距，组件右边界距组件外元素的尺寸。 |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 上外边距，组件顶部距组件外元素的尺寸。  |
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 右外边距，组件右边界距组件外元素的尺寸。<br />从右至左显示语言模式下为<br />左外边距，组件左边界距组件外元素的尺寸。 |
+| bottom | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 下外边距，组件底部距组件外元素的尺寸。  |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 左外边距，组件左边界距组件外元素的尺寸。<br />从右至左显示语言模式下为<br />右外边距，组件右边界距组件外元素的尺寸。 |
 
 ## EdgeWidths<sup>9+</sup>
 
@@ -133,6 +133,8 @@
 ## BorderRadiuses<sup>9+</sup>
 
 圆角类型，用于描述组件边框圆角半径。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称          | 类型                | 必填   | 说明         |
 | ----------- | ----------------- | ---- | ---------- |
@@ -169,6 +171,8 @@
 
 边框颜色，用于描述组件边框四条边的颜色。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称     | 类型                              | 必填   | 说明       |
 | ------ | ------------------------------- | ---- | -------- |
 | top    | [ResourceColor](#resourcecolor) | 否    | 组件上边框颜色。 |
@@ -180,13 +184,14 @@
 
 边框样式，用于描述组件边框四条边的样式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称     | 类型                                       | 必填   | 说明       |
 | ------ | ---------------------------------------- | ---- | -------- |
 | top    | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件上边框样式。 |
 | right  | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件右边框样式。 |
 | bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件下边框样式。 |
 | left   | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件左边框样式。 |
-
 
 ## Offset
 
@@ -202,6 +207,8 @@
 ## RectResult<sup>10+</sup>
 
 位置和尺寸类型，用于描述组件的位置和宽高。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数      | 类型     | 描述 |
 | ------- | ------ | ----------------------- |
@@ -226,6 +233,8 @@
 ## ColoringStrategy<sup>10+</sup>
 
 智能取色枚举类型，用于设置前景色。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 描述              |
 | ------ | --------------- |
@@ -348,7 +357,7 @@
 
 | 名称     | 类型                                       | 必填   | 说明      |
 | ------ | ---------------------------------------- | ---- | ------- |
-| width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | 否    | 边框宽度。   |
+| width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> \| [LocalizedEdgeWidths](#localizededgewidths12)<sup>12+</sup> | 否    | 边框宽度。   |
 | color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | 否    | 边框圆角半径。 |
 | style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#EdgeStyles9)<sup>9+</sup>| 否    | 边框样式。   |
@@ -516,7 +525,7 @@ Tabs组件动画相关信息集合。
 
 | 名称     | 描述                                       |
 | -------- | ------------------------------------------ |
-| SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
+| SYSTEM   | 系统默认安全区域，包括状态栏、导航栏。   |
 | CUTOUT   | 设备的非安全区域，例如刘海屏或挖孔屏区域。 |
 | KEYBOARD | 软键盘区域。                               |
 
@@ -536,6 +545,8 @@ Tabs组件动画相关信息集合。
 ## KeyboardAvoidMode<sup>11+</sup>
 
 配置键盘避让时页面的避让模式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称   | 描述       |
 | ------ | ---------- |
@@ -579,6 +590,8 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 ## PixelRoundPolicy<sup>11+</sup>
 
 组件像素级取整对齐策略。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
@@ -657,8 +670,8 @@ type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => v
 
 | 名称              | 类型       | 必填 | 描述                                               |
 | ----------------- | ---------- | ---- | -------------------------------------------------- |
-| keepEditableState | () => void | 否   | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
-| text              | string     | 否   | 输入框文本内容。                                   |
+| keepEditableState | () => void | 是   | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
+| text              | string     | 是   | 输入框文本内容。                                   |
 
 ## EnterKeyType枚举说明
 
