@@ -46,6 +46,7 @@ ChipOptions定义chip的样式及具体式样参数。
 | allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onClicked<sup>12+</sup>       | ()=>void                                       | 否   | 操作块点击事件。                                       |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Auto<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 > **说明：**
 >
@@ -118,6 +119,7 @@ LabelOptions定义文本的属性。
 | activatedFontColor<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary') |
 | fontFamily  | string                                     | 否   | 文字字体。<br/>默认值："HarmonyOS Sans"<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | labelMargin | [LabelMarginOptions](#labelmarginoptions)  | 否   | 文本与左右侧图标之间间距。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| localizedLabelMargin<sup>12+</sup> | [LocalizedLabelMarginOptions](#localizedlabelmarginoptions12) | 否 | 本地化文本与左右侧图标之间间距。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## LabelMarginOptions
 
@@ -130,6 +132,18 @@ LabelMarginOptions定义文本与左右侧图标之间间距。
 | left  | [Dimension](ts-types.md#dimension10) | 否   | 文本与左侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
 | right | [Dimension](ts-types.md#dimension10) | 否   | 文本与右侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
 
+## LocalizedLabelMarginOptions<sup>12+</sup>
+
+LocalizedLabelMarginOptions定义本地化文本与左右侧图标之间间距。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型                                                         | 必填 | 说明                                                     |
+| ----- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
+| start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与左侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
+| end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与右侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
 
 ## 示例
 
@@ -304,3 +318,53 @@ struct Index {
 
 
 ![](figures/chip4.gif)
+
+### 示例6
+
+Chip布局镜像化展示
+
+```ts
+// xxx.ets
+import { Chip, ChipSize,LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct ChipPage {
+  @State message: string = 'Hello World';
+
+  build() {
+    Column() {
+      Chip({
+        direction: Direction.Auto,
+        prefixIcon: {
+          src: $r('app.media.chips'),
+          size: { width: 16, height: 16 },
+          fillColor: Color.Red,
+        },
+        label: {
+          text: "操作块",
+          fontSize: 12,
+          fontColor: Color.Blue,
+          fontFamily: "HarmonyOS Sans",
+          localizedLabelMargin: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) },
+        },
+        suffixIcon: {
+          src: $r('app.media.close'),
+          size: { width: 16, height: 16 },
+          fillColor: Color.Red,
+        },
+        size: ChipSize.NORMAL,
+        allowClose: false,
+        enabled: true,
+        backgroundColor: $r('sys.color.ohos_id_color_button_normal'),
+        borderRadius: $r('sys.float.ohos_id_corner_radius_button')
+      })
+    }.justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+
+![](figures/chip6.png)
