@@ -260,7 +260,7 @@ By default, all comments in the source code file generated after the build are r
 
 #### `-keep-property-name` [,identifiers,...]
 
-Keeps the specified property names from being obfuscated. [Name wildcards](#name-wildcards) are supported. An example is as follows.
+Keeps the specified property names from being obfuscated. Name wildcards are supported. An example is as follows.
 
 ```
 -keep-property-name
@@ -319,7 +319,7 @@ testNapi.foo()
 
 #### `-keep-global-name` [,identifiers,...]
 
-Keep the top-level scope names from being obfuscated. [Name wildcards](#name-wildcards) are supported. Example:
+Keep the top-level scope names from being obfuscated. Name wildcards are supported. Example:
 
 ```
 -keep-global-name
@@ -352,7 +352,7 @@ let d = new MyClass();      // MyClass can be correctly obfuscated.
 
 #### `-keep-file-name` [,identifiers,...]
 
-Keeps the file or folder names from being obfuscated. You do not need to specify the file name extension. [Name wildcards](#name-wildcards) are supported. Example:
+Keeps the file or folder names from being obfuscated. You do not need to specify the file name extension. Name wildcards are supported. Example:
 
 ```
 -keep-file-name
@@ -370,7 +370,7 @@ const module2 = import(moduleName)    // In dynamic reference mode, it cannot te
 
 #### `-keep-comments` [,identifiers,...]
 
-Keeps JSDoc comments above elements in the declaration file from being obfuscated. [Name wildcards](#name-wildcards) are supported. For example, to keep the JSDoc comments above the **Human** class in the declaration file, use the following configuration:
+Keeps JSDoc comments above elements in the declaration file from being obfuscated. Name wildcards are supported. For example, to keep the JSDoc comments above the **Human** class in the declaration file, use the following configuration:
 
 ```
 -keep-comments
@@ -399,7 +399,7 @@ If this option is used during HAR build, the names in the file are merged into t
 
 Keeps all names (such as variable names, class names, and property names) in the specified path from being obfuscated. The path can be a file or directory. If the path is a directory, the files in the directory and subdirectories are not obfuscated.
 
-The path must be a relative path. **./** and **../** are relative to the directory where the obfuscation configuration file is located. [Path wildcards](#path-wildcards) are supported.
+The path must be a relative path. **./** and **../** are relative to the directory where the obfuscation configuration file is located. Path wildcards are supported.
 
 ```
 -keep
@@ -451,8 +451,8 @@ The table below lists the path wildcards supported.
 
 | Wildcard| Description                                                                    | Example                                             |
 | ------ | ------------------------------------------------------------------------ | ------------------------------------------------- |
-| ?     | Matches any single character except the path separator (/).                                     | "../a?" matches "../ab", but not "../a/".        |
-| \*      | Matches any number of characters except the path separator (/).                               | "../a*/c" matches "../ab/c", but not "../ab/d/s/c".|
+| ?     | Matches any single character except the path separator `/`.                                     | "../a?" matches "../ab", but not "../a/".        |
+| \*      | Matches any number of characters except the path separator `/`.                               | "../a*/c" matches "../ab/c", but not "../ab/d/s/c".|
 | \*\*   | Matches any number of characters.                                                  | "../a**/c" matches "../ab/c" and "../ab/d/s/c". |
 | !      | Negation. It can only be placed at the beginning of a path to exclude a certain case configured in the trustlist.| "!../a/b/c.ets" indicates all paths other than "../a/b/c.ets".          |
 
@@ -480,16 +480,27 @@ Keep all files except the **c.ets** file in the **../a/b/** directory. The excla
 !../a/b/c.ets
 ```
 
-Keep all files.
-
+Indicates that all files in ../a/(excluding subfolders) will not be obfuscated:
 ```
 -keep
-*
+../a/*
+```
+
+Indicates that all files in all folders (including subfolders) within **../a/** will not be obfuscated:
+```
+-keep
+../a/**
+```
+
+Indicates that all files in the module will not be obfuscated:
+```
+-keep
+./**
 ```
 
 **NOTE**
 
-- In these options, the wildcards '*', '?', and '!' cannot be used for other meanings.
+- In these options, the wildcards `*`, `?`, and `!` cannot be used for other meanings.
   Example:
 
   ```
@@ -501,12 +512,9 @@ Keep all files.
   *
   ```
 
-  In this example, '\*' indicates any number of characters, and all property names are kept (not obfuscated). It does not mean that only the '\*' property is kept.
+  In this example, `*` indicates any number of characters, and all property names are kept (not obfuscated). It does not mean that only the `*` property is kept.
 
-- In the **-keep** option, only the path format '/' is allowed. The path format '\\' or '\\\\' is not supported.
-
-- The following special characters are not allowed in the trustlist: '\\', '\^', '\$', '\+', '\|', '\[', '\]', '\{', '\}', and '\(', '\)'.
-
+- In the **-keep** option, only the path format `/` is allowed. The path format `\` or `\\` is not supported.
 
 ### Comments
 
