@@ -65,7 +65,7 @@ import { window } from '@kit.ArkUI';
 
 ## SystemBarProperties
 
-状态栏、导航栏的属性。
+状态栏、导航栏的属性。在设置窗口级状态栏、导航栏属性时使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -79,6 +79,16 @@ import { window } from '@kit.ArkUI';
 | navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | enableStatusBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能状态栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 | enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
+
+## SystemBarStyle<sup>12+</sup>
+
+状态栏的属性。在设置页面级状态栏属性时使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称   | 类型 | 只读 | 可选 | 说明               |
+| ------ | -------- | ---- | ---- | ------------------ |
+| statusBarContentColor   | string   | 是   | 是   | 状态栏文字颜色。默认值：'#0xE5FFFFFF'。|
 
 ## Orientation<sup>9+</sup>
 

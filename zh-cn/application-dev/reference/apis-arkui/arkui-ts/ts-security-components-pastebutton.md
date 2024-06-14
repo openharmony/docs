@@ -22,12 +22,16 @@ PasteButton()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### PasteButton
 PasteButton(option:PasteButtonOptions)
 
 创建包含指定元素的粘贴按钮。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -38,6 +42,8 @@ PasteButton(option:PasteButtonOptions)
 ## PasteButtonOptions
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -55,6 +61,8 @@ PasteButton(option:PasteButtonOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
 | LINES | 0 | 粘贴按钮展示线条样式图标。 |
@@ -64,6 +72,8 @@ PasteButton(option:PasteButtonOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
 | PASTE | 0 | 粘贴按钮的文字描述为“粘贴”。 |
@@ -72,6 +82,8 @@ PasteButton(option:PasteButtonOptions)
 ## PasteButtonOnClickResult枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |

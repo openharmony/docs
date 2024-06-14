@@ -5,7 +5,6 @@
 > **说明：**
 >
 > 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## 子组件
 
@@ -14,6 +13,10 @@
 ## 接口
 
 ContainerSpan()
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 属性
 
