@@ -601,7 +601,7 @@
 | None        | 不支持复制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | InApp       | 支持应用内复制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | LocalDevice | 支持设备内复制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| CROSS_DEVICE<sup>11+</sup> | 支持跨设备复制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CROSS_DEVICE<sup>(deprecated)</sup> | 支持跨设备复制。<br/>**说明：** 从API version 11开始支持，从API version 12开始废弃。 |
 
 ## HitTestMode<sup>9+</sup>
 
@@ -886,10 +886,12 @@ Nullable\<T> {
 
 范围信息。
 
-| 名称 | 描述                               |
-| ------ | -------------------------------------- |
-| onAppear | 自定义选择菜单弹出时回调。 |
-| onDisappear | 自定义选择菜单关闭时回调。 |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+| 名称 | 类型  | 只读 | 必填  | 描述                               |
+| ------ | ------ | ------ | ------ | -------------------------------------- |
+| onAppear | [MenuOnAppearCallback](ts-basic-components-richeditor.md#menuonappearcallback12) | 否 | 否 | 自定义选择菜单弹出时回调。 |
+| onDisappear | () => void | 否 | 否 | 自定义选择菜单关闭时回调。 |
 
 ## SymbolEffectStrategy<sup>11+</sup>
 
@@ -997,8 +999,8 @@ Nullable\<T> {
 
 | 名称          | 类型        |  只读     | 必填      | 说明      |
 | ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | 是 | 否 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
-| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是 | 否 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
+| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | 否 | 否 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
+| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | 否 | 否 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
 
 ## MenuPolicy<sup>12+</sup>
 
