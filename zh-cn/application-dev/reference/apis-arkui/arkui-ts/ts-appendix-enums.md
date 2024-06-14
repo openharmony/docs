@@ -949,6 +949,8 @@ Nullable\<T> {
 
 定义屏障线的方向。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | LEFT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最左侧。    |
@@ -997,8 +999,8 @@ Nullable\<T> {
 
 | 名称          | 类型        |  只读     | 必填      | 说明      |
 | ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | 是 | 否 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
-| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是 | 否 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
+| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | 否 | 否 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
+| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | 否 | 否 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
 
 ## MenuPolicy<sup>12+</sup>
 
