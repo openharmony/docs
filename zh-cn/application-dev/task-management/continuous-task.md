@@ -80,6 +80,22 @@
                  // 长时任务类型的配置项
                 "audioRecording"
                 ], 
+                "skills": [
+                    // 长时任务通过第一个元素获取通知标题，如需添加隐式跳转等uris配置，参考如下所示
+                    {
+                        "entities": [
+                           "entity.system.home"
+                        ],
+                        "actions": [
+                            "action.system.home"
+                        ]    
+                    },
+                    {
+                        uris: [
+                            "scheme": "test"
+                        ]
+                    }
+                ]
             }
         ],
         ...
