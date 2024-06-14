@@ -254,7 +254,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **示例：**
 
@@ -315,7 +315,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001 | The input source file is invalid.      |
 | 900002 | The input destination file is invalid. |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **示例：**
 
@@ -370,7 +370,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **示例：**
 
@@ -422,7 +422,7 @@ getOriginalSize(compressedFile: string): Promise\<number>
 | ------ | ------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001 | The input source file is invalid.      |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **示例：**
 
