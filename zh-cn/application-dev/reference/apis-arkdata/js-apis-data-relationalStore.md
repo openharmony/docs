@@ -856,6 +856,20 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | code     | [ProgressCode](#progresscode10)                   | 是   | 表示端云同步过程的状态。                                     |
 | details  | Record<string, [TableDetails](#tabledetails10)> | 是   | 表示端云同步各表的统计信息。<br>键表示表名，值表示该表的端云同步过程统计信息。 |
 
+## SqlExecutionInfo<sup>12+</sup>
+
+描述数据库执行的SQL语句的统计信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称     | 类型                                               | 只读 | 可选  |说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ---- | -------------------------------------------------------- |
+| sql<sup>12+</sup>           | Array&lt;string&gt;            | 是   |   否   | 表示执行的SQL语句的数组。当[batchInsert](#batchinsert)的参数太大时，可能有多个SQL。      |
+| totalTime<sup>12+</sup>      | number                        | 是   |   否   | 表示执行SQL语句的总时间，单位为μs。                                    |
+| waitTime<sup>12+</sup>       | number                        | 是   |   否   | 表示获取句柄的时间，单位为μs。                                         |
+| prepareTime<sup>12+</sup>    | number                        | 是   |   否   | 表示准备SQL和绑定参数的时间，单位为μs。                                 |
+| executeTime<sup>12+</sup>    | number                        | 是   |   否   | 表示执行SQL语句的时间，单位为μs。 |
+
 ## RdbPredicates
 
 表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。不支持Sendable跨线程传递。 
@@ -6106,6 +6120,66 @@ try {
 }
 ```
 
+### on('statistics')<sup>12+</sup>
+
+on(event: 'statistics', observer: Callback&lt;SqlExecutionInfo&gt;): void
+
+订阅SQL统计信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名       | 类型                              | 必填 | 说明                                |
+| ------------ |---------------------------------| ---- |-----------------------------------|
+| event        | string                          | 是   | 订阅事件名称，取值为'statistics'，表示sql执行时间的统计。 |
+| observer     | Callback&lt;[SqlExecutionInfo](#sqlexecutioninfo12)&gt; | 是   | 回调函数。用于返回数据库中SQL执行时间的统计信息。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**    |
+|-----------|--------|
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 801       | Capability not supported.  |
+| 14800000  | Inner error.  |
+| 14800014  | Already closed.     |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).on('statistics', (sqlExecutionInfo: relationalStore.SqlExecutionInfo) => {
+      console.info(`sql: ${sqlExecutionInfo.sql[0]}`);
+      console.info(`totalTime: ${sqlExecutionInfo.totalTime}`);
+      console.info(`waitTime: ${sqlExecutionInfo.waitTime}`);
+      console.info(`prepareTime: ${sqlExecutionInfo.prepareTime}`);
+      console.info(`executeTime: ${sqlExecutionInfo.executeTime}`);
+    });
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+
+try {
+  const valueBucket = {
+    'name': 'zhangsan',
+    'age': 18,
+    'salary': 25000,
+    'blobType': new Uint8Array([1, 2, 3]),
+  };
+  await store.insert('test', valueBucket);
+} catch (error) {
+  console.error(`insert fail, code:${error.code}, message: ${error.message}`);
+}
+```
+
 ### off('dataChange')
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
@@ -6289,6 +6363,47 @@ try {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message;
   console.error(`Unregister failed, code is ${code},message is ${message}`);
+}
+```
+
+### off('statistics')<sup>12+</sup>
+
+off(event: 'statistics', observer?: Callback&lt;SqlExecutionInfo&gt;): void
+
+取消订阅SQL统计信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名       | 类型                              | 必填 | 说明                                |
+| ------------ |---------------------------------| ---- |-----------------------------------|
+| event        | string                          | 是   | 取消订阅事件名称。取值为'statistics'，表示sql执行时间的统计。 |
+| observer     | Callback&lt;[SqlExecutionInfo](#sqlexecutioninfo12)&gt; | 否   | 回调函数。该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。  |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**    |
+|-----------|--------|
+| 401       | Parameter error.  |
+| 801       | Capability not supported.  |
+| 14800000  | Inner error.  |
+| 14800014  | Already closed.     |
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).off('statistics');
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Unregister observer failed, code is ${code},message is ${message}`);
 }
 ```
 
