@@ -21,7 +21,7 @@ hiTraceMeter provides APIs for system performance tracing. You can call the APIs
 
 ## Available APIs
 
-The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [API Reference]( ../reference/apis/js-apis-hitracemeter.md).
+The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [API Reference]( ../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md).
 
 **APIs for performance tracing**
 

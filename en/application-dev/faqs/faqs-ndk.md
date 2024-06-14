@@ -288,3 +288,28 @@ Use **napi_create_threadsafe_function** to create a function that can be called 
 **References**
 
 [Thread Safety Development Using Node-API](../napi/use-napi-thread-safety.md)
+
+## What should I do to permanently hold a JS object created by napi_create_object or passed in as a parameter? (API version 10)
+
+**Question**
+
+What should I do if I need to permanently hold a JS object created by **napi_create_object** or passed in as a parameter, and destroy, increment, and decrement the reference count?
+
+**Solution**
+
+To hold an object persistently, use **napi_create_reference** to create a strong reference and then save the reference for use. To destroy a reference, use **napi_delete_reference**. To increment the reference count, use **napi_reference_ref**; to decrement the reference count, use **api_reference_unref**.
+
+## Can messages from C++ be passed to an ArkTS callback or object wrapped in a native object and synced to the application? (API version 11)
+
+**Question**
+
+Can messages from C++ be synced to an application via an ArkTS callback or object wrapped in a native object? Can **napi_env** of the ArkTS object or function be held permanently? Does a specific thread is required for syncing messages to an application?
+
+**Solution**
+
+An ArkTS object or function cannot be wrapped to a native object. You need to implement the related processing in C++. **env** can be held for a long period of time, but must be used in the ArkTS thread that creates **env**.
+
+**Reference**
+
+1. [Wrapping a Native Object in an ArkTS Object](../napi/use-napi-object-wrap.md)
+

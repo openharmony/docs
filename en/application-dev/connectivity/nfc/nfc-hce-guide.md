@@ -5,17 +5,12 @@ Near Field Communication (NFC) is a high-frequency radio technology that enables
 
 ## When to Use
 An application emulates a card and communicates with an NFC card reader through the NFC service. The device can communicate with an NFC card reader by using a started application (foreground mode) or without starting an application (background mode).
-- HCE foreground mode
-
-  The application started by the user communicates with the NFC card reader. Specifically, the user starts the application, opens the application page, and taps the device on the NFC card reader. In this case, the transaction data is distributed only to the foreground application.
-
-- HCE background mode
-
-  The user taps the device on an NFC card reader without starting any HCE application. Then, the device selects an HCE application based on the application ID (AID) provided by the NFC card reader, and completes the card swiping transaction. If multiple HCE applications are matched, a conflict occurs. In this case, the user needs to open the application to complete card swiping.
-
-- Constraints
-
-  No natter whether the foreground mode or background mode is used, the NFC service can be implemented only when the device screen is unlocked and illuminated.
+- HCE foreground mode<br>
+The application started by the user communicates with the NFC card reader. Specifically, the user starts the application, opens the application page, and taps the device on the NFC card reader. In this case, the transaction data is distributed only to the foreground application.
+- HCE background mode<br>
+The user taps the device on an NFC card reader without starting any HCE application. Then, the device selects an HCE application based on the application ID (AID) provided by the NFC card reader, and completes the card swiping transaction. If multiple HCE applications are matched, an application selector will be displayed, listing all the available applications for the user to choose.
+- Constraints<br>
+No matter whether the foreground mode or background mode is used, the NFC service can be implemented only when the device screen is unlocked and illuminated.
 
 ## Available APIs
 
@@ -25,10 +20,10 @@ The following table describes the APIs for implementing HCE.
 
 | API                            | Description                                                                      |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
-| start(elementName: ElementName, aidList: string[]): void                   | Starts HCE, including enabling this application to run in the foreground preferentially and dynamically registering the AID list.     |
-| stop(elementName: ElementName): void  | Stops HCE, including canceling the subscription of APDU data, exiting this application from the foreground, and releasing the dynamically registered AID list. |
+| start(elementName: ElementName, aidList: string[]): void                   | Starts HCE, including enabling this application to run in the foreground preferentially and dynamically registering the AID list.  |
+| stop(elementName: ElementName): void  | Stops HCE, including canceling the subscription of APDU data, exiting this application from the foreground, and releasing the dynamically registered AID list.| 
 | on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void                | Registers a callback to receive APDUs from the peer card reader.|
-| transmit(response: number[]): Promise\<void>                  | Transmits APDU data to the peer card reader.|
+| transmit(response: number[]): Promise\<void>                  | Transmits APDU data to the peer card reader.|                                                     
 
 ## How to Develop
 
@@ -108,7 +103,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // Check whether the device supports the NFC and HCE capabilities.
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }
@@ -118,8 +113,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName = '',
+      abilityName: want.abilityName = '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();
@@ -243,7 +238,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // Check whether the device supports the NFC and HCE capabilities.
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }
@@ -253,8 +248,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName = '',
+      abilityName: want.abilityName = '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();
