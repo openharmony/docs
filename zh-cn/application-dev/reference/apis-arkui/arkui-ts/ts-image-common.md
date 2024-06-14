@@ -15,7 +15,7 @@
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
-| types | [ImageAnalyzerType[]](#imageanalyzertype12) | 是 | 图像AI分析类型。
+| types | [ImageAnalyzerType[]](#imageanalyzertype) | 是 | 图像AI分析类型。
 
 ## ImageAnalyzerType
 
@@ -37,8 +37,8 @@
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
-| types | [ImageAnalyzerType[]](#imageanalyzertype12) | 否 | 图像AI分析类型。 |
-| aiController | [ImageAnalyzerController](#imageanalyzercontroller12) | 否 | 图像AI分析控制器。 |
+| types | [ImageAnalyzerType[]](#imageanalyzertype) | 否 | 图像AI分析类型。 |
+| aiController | [ImageAnalyzerController](#imageanalyzercontroller) | 否 | 图像AI分析控制器。 |
 
 > **说明：**
 >
