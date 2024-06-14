@@ -97,7 +97,7 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
                 "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
                 "host": "search",
                 "path": "",
-                "linkFeature": "TextSearch" // 声明应用支持位置搜索功能
+                "linkFeature": "PlaceSearch" // 声明应用支持位置搜索功能
                 }
             ]
             }
