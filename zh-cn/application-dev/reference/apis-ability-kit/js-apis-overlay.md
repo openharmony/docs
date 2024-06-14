@@ -47,20 +47,21 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>
 ```ts
 import overlay from '@ohos.bundle.overlay';
 import { BusinessError } from '@ohos.base';
+
 let moduleName = "feature";
 let isEnabled = false;
 
 try {
-    overlay.setOverlayEnabled(moduleName, isEnabled)
-        .then(() => {
-            console.info('setOverlayEnabled success');
-        }).catch((err: BusinessError) => {
-            console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
-        });
+  overlay.setOverlayEnabled(moduleName, isEnabled)
+    .then(() => {
+      console.info('setOverlayEnabled success');
+    }).catch((err: BusinessError) => {
+      console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+    });
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -94,21 +95,22 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback
 ```ts
 import overlay from '@ohos.bundle.overlay';
 import { BusinessError } from '@ohos.base';
+
 let moduleName = "feature";
 let isEnabled = false;
 
 try {
-    overlay.setOverlayEnabled(moduleName, isEnabled, (err, data) => {
-        if (err) {
-            console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
-            return;
-        }
-        console.info('setOverlayEnabled success');
-    });
+  overlay.setOverlayEnabled(moduleName, isEnabled, (err, data) => {
+    if (err) {
+      console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+      return;
+    }
+    console.info('setOverlayEnabled success');
+  });
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -147,17 +149,18 @@ getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>
 ```ts
 import overlay from '@ohos.bundle.overlay';
 import { BusinessError } from '@ohos.base';
+
 let moduleName = "feature";
 
-(async() => {
-    try {
-        let overlayModuleInfo = await overlay.getOverlayModuleInfo(moduleName);
-        console.log('overlayModuleInfo is ' + JSON.stringify(overlayModuleInfo));
-    } catch(err) {
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
-    }
+(async () => {
+  try {
+    let overlayModuleInfo = await overlay.getOverlayModuleInfo(moduleName);
+    console.log('overlayModuleInfo is ' + JSON.stringify(overlayModuleInfo));
+  } catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
+  }
 })();
 ```
 
@@ -191,19 +194,21 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 ```ts
 import overlay from '@ohos.bundle.overlay';
 import { BusinessError } from '@ohos.base';
+
 let moduleName = "feature";
+
 try {
-    overlay.getOverlayModuleInfo(moduleName, (err, data) => {
-        if (err) {
-            console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
-            return;
-        }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
-    });
+  overlay.getOverlayModuleInfo(moduleName, (err, data) => {
+    if (err) {
+      console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+      return;
+    }
+    console.log('overlayModuleInfo is ' + JSON.stringify(data));
+  });
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -241,17 +246,18 @@ getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayMo
 ```ts
 import overlay from '@ohos.bundle.overlay';
 import { BusinessError } from '@ohos.base';
+
 let targetModuleName = "feature";
 
-(async() => {
-    try {
-        let overlayModuleInfos = await overlay.getTargetOverlayModuleInfos(targetModuleName);
-        console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
-    } catch(err) {
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
-    }
+(async () => {
+  try {
+    let overlayModuleInfos = await overlay.getTargetOverlayModuleInfos(targetModuleName);
+    console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
+  } catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
+  }
 })();
 ```
 
@@ -284,19 +290,21 @@ getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<A
 ```ts
 import overlay from '@ohos.bundle.overlay';
 import { BusinessError } from '@ohos.base';
+
 let targetModuleName = "feature";
+
 try {
-    overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
-        if (err) {
-            console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
-            return;
-        }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
-    });
+  overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
+    if (err) {
+      console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+      return;
+    }
+    console.log('overlayModuleInfo is ' + JSON.stringify(data));
+  });
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 

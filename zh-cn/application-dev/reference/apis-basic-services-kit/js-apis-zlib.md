@@ -39,7 +39,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -53,9 +53,9 @@ let options: zlib.Options = {
 };
 
 zlib.zipFile(inFile, outFile, options).then((data: void) => {
-    console.info('zipFile result is ' + JSON.stringify(data));
+  console.info('zipFile result is ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error('error is ' + JSON.stringify(err));
+  console.error('error is ' + JSON.stringify(err));
 });
 ```
 
@@ -87,23 +87,23 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
 
 let inFile = '/xx/xxx.zip';
 let outFile = '/xxx';
-
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
+
 zlib.unzipFile(inFile, outFile, options).then((data: void) => {
-    console.info('unzipFile result is ' + JSON.stringify(data));
-}).catch((err: BusinessError)=>{
-    console.error('error is ' + JSON.stringify(err));
+  console.info('unzipFile result is ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('error is ' + JSON.stringify(err));
 })
 ```
 
@@ -135,7 +135,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -149,15 +149,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
-        if (errData !== null) {
-            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-        }
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
+    if (errData !== null) {
+      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    }
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -194,7 +194,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -208,15 +208,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.compressFile(inFile, outFile, options).then((data: void) => {
-        console.info('compressFile success. data: ' + JSON.stringify(data));
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.compressFile(inFile, outFile, options).then((data: void) => {
+    console.info('compressFile success. data: ' + JSON.stringify(data));
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -249,7 +249,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -261,15 +261,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
-        if (errData !== null) {
-            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-        }
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
+    if (errData !== null) {
+      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    }
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -307,7 +307,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -319,15 +319,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.decompressFile(inFile, outFileDir, options).then((data: void) => {
-        console.info('decompressFile success. data: ' + JSON.stringify(data));
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.decompressFile(inFile, outFileDir, options).then((data: void) => {
+    console.info('decompressFile success. data: ' + JSON.stringify(data));
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -359,23 +359,24 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
+
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
 
 try {
-    zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
-        if (errData !== null) {
-            console.error(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
-        }
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`decompressFile failed. code is ${code}, message is ${message}`);
+  zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
+    if (errData !== null) {
+      console.error(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
+    }
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`decompressFile failed. code is ${code}, message is ${message}`);
 }
 ```
 
