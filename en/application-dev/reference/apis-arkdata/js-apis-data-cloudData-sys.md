@@ -1,4 +1,4 @@
-# @ohos.data.cloudData (Cloud Service) (System API)
+# @ohos.data.cloudData (Device-Cloud Service) (System API)
 
 The **cloudData** module provides APIs for implementing device-cloud synergy and device-cloud sharing and setting the device-cloud sync strategy.
 
