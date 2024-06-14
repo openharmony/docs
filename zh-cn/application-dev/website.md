@@ -275,6 +275,7 @@
       - [数据库备份与恢复](database/data-backup-and-restore.md)
       - [数据库加密](database/data-encryption.md)
       - [基于设备分类和数据分级的访问控制](database/access-control-by-device-and-data-level.md)
+      - [E类加密数据库的使用](database/encrypted_estore_guidelines.md)
     - 跨应用数据共享
       - [跨应用数据共享概述](database/data-share-overview.md)
       <!--Del-->
