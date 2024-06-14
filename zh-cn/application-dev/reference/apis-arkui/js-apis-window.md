@@ -88,7 +88,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型 | 只读 | 可选 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| statusBarContentColor   | string   | 是   | 是   | 状态栏文字颜色。默认值：`#0xE5FFFFFF`。|
+| statusBarContentColor   | string   | 是   | 是   | 状态栏文字颜色。默认值：'#0xE5FFFFFF'。|
 
 ## Orientation<sup>9+</sup>
 
