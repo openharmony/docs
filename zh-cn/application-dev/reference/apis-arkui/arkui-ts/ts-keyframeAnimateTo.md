@@ -14,6 +14,8 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：** 
 
 | 参数名        | 类型                                              | 必填 | 描述                         |
