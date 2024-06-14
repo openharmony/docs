@@ -39,7 +39,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -53,9 +53,9 @@ let options: zlib.Options = {
 };
 
 zlib.zipFile(inFile, outFile, options).then((data: void) => {
-    console.info('zipFile result is ' + JSON.stringify(data));
+  console.info('zipFile result is ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error('error is ' + JSON.stringify(err));
+  console.error('error is ' + JSON.stringify(err));
 });
 ```
 
@@ -87,23 +87,23 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
 
 let inFile = '/xx/xxx.zip';
 let outFile = '/xxx';
-
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
+
 zlib.unzipFile(inFile, outFile, options).then((data: void) => {
-    console.info('unzipFile result is ' + JSON.stringify(data));
-}).catch((err: BusinessError)=>{
-    console.error('error is ' + JSON.stringify(err));
+  console.info('unzipFile result is ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('error is ' + JSON.stringify(err));
 })
 ```
 
@@ -138,7 +138,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -152,15 +152,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
-        if (errData !== null) {
-            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-        }
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
+    if (errData !== null) {
+      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    }
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -200,7 +200,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -214,15 +214,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.compressFile(inFile, outFile, options).then((data: void) => {
-        console.info('compressFile success. data: ' + JSON.stringify(data));
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.compressFile(inFile, outFile, options).then((data: void) => {
+    console.info('compressFile success. data: ' + JSON.stringify(data));
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -258,7 +258,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -270,15 +270,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
-        if (errData !== null) {
-            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-        }
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
+    if (errData !== null) {
+      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    }
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -319,7 +319,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -331,15 +331,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.decompressFile(inFile, outFileDir, options).then((data: void) => {
-        console.info('decompressFile success. data: ' + JSON.stringify(data));
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.decompressFile(inFile, outFileDir, options).then((data: void) => {
+    console.info('decompressFile success. data: ' + JSON.stringify(data));
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -374,23 +374,24 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
+
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
 
 try {
-    zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
-        if (errData !== null) {
-            console.error(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
-        }
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`decompressFile failed. code is ${code}, message is ${message}`);
+  zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
+    if (errData !== null) {
+      console.error(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
+    }
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`decompressFile failed. code is ${code}, message is ${message}`);
 }
 ```
 
@@ -426,7 +427,7 @@ getOriginalSize(compressedFile: string): Promise\<number>
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp，也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -434,15 +435,15 @@ import { BusinessError } from '@ohos.base';
 let compressedFile = '/data/storage/el2/base/temp/test.zip';
 
 try {
-    zlib.getOriginalSize(compressedFile).then((data: number) => {
-        console.info(`getOriginalSize success. getOriginalSize: ${data}`);
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.getOriginalSize(compressedFile).then((data: number) => {
+    console.info(`getOriginalSize success. getOriginalSize: ${data}`);
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -493,16 +494,17 @@ let options: zlib.Options = {
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
+
 try {
-    zlib.compressFiles([inFile, pathDir, pathDir], outFile, options).then((data: void) => {
-        console.info('compressFiles success. data: ' + JSON.stringify(data));
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.compressFiles([inFile, pathDir, pathDir], outFile, options).then((data: void) => {
+    console.info('compressFiles success. data: ' + JSON.stringify(data));
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -528,7 +530,7 @@ createChecksum(): Promise&lt;Checksum&gt;
 import zlib from '@ohos.zlib';
 
 zlib.createChecksum().then((data) => {
-   console.info('createChecksum success');
+  console.info('createChecksum success');
 })
 ```
 
@@ -599,12 +601,15 @@ import zlib from '@ohos.zlib';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
 let data = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    data[i] = str.charCodeAt(i);
+  data[i] = str.charCodeAt(i);
 }
+
 let checksum = zlib.createChecksumSync()
+
 checksum.adler32(0, arrayBufferIn).then(data => {
-    console.info('adler32 success', data);
+  console.info('adler32 success', data);
 })
 ```
 
@@ -647,28 +652,28 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(12);
-    let data = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        data[i] = str.charCodeAt(i);
-    }
-    let checksum = zlib.createChecksumSync()
-    let adler1 = 0;
-    let adler2 = 1;
-    await checksum.adler32(0, arrayBufferIn).then(data => {
-        console.info('adler32 success', data);
-        adler1 = data;
-    })
-    await checksum.adler32(1, arrayBufferIn).then(data => {
-        console.info('adler32 success', data);
-        adler2 = data;
-    })
-    await checksum.adler32Combine(adler1, adler2, 12).then((data) => {
-        console.info('adler32Combine success', data);
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(12);
+  let data = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    data[i] = str.charCodeAt(i);
+  }
+  let checksum = zlib.createChecksumSync()
+  let adler1 = 0;
+  let adler2 = 1;
+  await checksum.adler32(0, arrayBufferIn).then(data => {
+    console.info('adler32 success', data);
+    adler1 = data;
+  })
+  await checksum.adler32(1, arrayBufferIn).then(data => {
+    console.info('adler32 success', data);
+    adler2 = data;
+  })
+  await checksum.adler32Combine(adler1, adler2, 12).then((data) => {
+    console.info('adler32Combine success', data);
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -712,14 +717,17 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
 let data = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    data[i] = str.charCodeAt(i);
+  data[i] = str.charCodeAt(i);
 }
+
 let checksum = zlib.createChecksumSync()
+
 checksum.crc32(0, arrayBufferIn).then((data) => {
-    console.info('crc32 success', data);
+  console.info('crc32 success', data);
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -762,28 +770,28 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(12);
-    let data = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        data[i] = str.charCodeAt(i);
-    }
-    let checksum = zlib.createChecksumSync()
-    let crc1 = 0;
-    let crc2 = 1;
-    await checksum.crc32(0, arrayBufferIn).then(data => {
-        console.info('crc32 success', data);
-        crc1 = data;
-    })
-    await checksum.crc32(1, arrayBufferIn).then(data => {
-        console.info('crc32 success', data);
-        crc2 = data;
-    })
-    await checksum.crc32Combine(crc1, crc2, 12).then((data) => {
-        console.info('crc32Combine success', data);
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(12);
+  let data = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    data[i] = str.charCodeAt(i);
+  }
+  let checksum = zlib.createChecksumSync()
+  let crc1 = 0;
+  let crc2 = 1;
+  await checksum.crc32(0, arrayBufferIn).then(data => {
+    console.info('crc32 success', data);
+    crc1 = data;
+  })
+  await checksum.crc32(1, arrayBufferIn).then(data => {
+    console.info('crc32 success', data);
+    crc2 = data;
+  })
+  await checksum.crc32Combine(crc1, crc2, 12).then((data) => {
+    console.info('crc32Combine success', data);
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -827,14 +835,17 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
 let data = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    data[i] = str.charCodeAt(i);
+  data[i] = str.charCodeAt(i);
 }
+
 let checksum = zlib.createChecksumSync()
+
 checksum.crc64(0, arrayBufferIn).then((data) => {
-    console.info('crc64 success', data);
+  console.info('crc64 success', data);
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -861,10 +872,11 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 let checksum = zlib.createChecksumSync()
+
 checksum.getCrcTable().then((data) => {
-    console.info('getCrcTable success');
+  console.info('getCrcTable success');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -891,10 +903,11 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 let checksum = zlib.createChecksumSync()
+
 checksum.getCrc64Table().then((data) => {
-    console.info('getCrc64Table success');
+  console.info('getCrc64Table success');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -921,10 +934,11 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 let zip = zlib.createZipSync();
+
 zlib.createZip().then(data => {
-    console.info('createZip success');
+  console.info('createZip success');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -978,8 +992,9 @@ getZStream(): Promise&lt;ZStream&gt;
 import zlib from '@ohos.zlib';
 
 let zip = zlib.createZipSync();
+
 zip.getZStream().then(data => {
-    console.info('getZStream success');
+  console.info('getZStream success');
 })
 ```
 
@@ -1005,8 +1020,9 @@ zlibVersion(): Promise&lt;string&gt;
 import zlib from '@ohos.zlib';
 
 let zip = zlib.createZipSync();
+
 zip.zlibVersion().then((data) => {
-    console.info('zlibVersion success')
+  console.info('zlibVersion success')
 })
 ```
 
@@ -1032,8 +1048,9 @@ zlibCompileFlags(): Promise&lt;number&gt;
 import zlib from '@ohos.zlib';
 
 let zip = zlib.createZipSync();
+
 zip.zlibCompileFlags().then((data) => {
-    console.info('zlibCompileFlags success')
+  console.info('zlibCompileFlags success')
 })
 ```
 
@@ -1079,15 +1096,18 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    byteArray[i] = str.charCodeAt(i)
+  byteArray[i] = str.charCodeAt(i)
 }
+
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
+
 zip.compress(arrayBufferOut, arrayBufferOut, 20).then((data) => {
-    console.info('compress success:');
+  console.info('compress success:');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -1135,15 +1155,18 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    byteArray[i] = str.charCodeAt(i)
+  byteArray[i] = str.charCodeAt(i)
 }
+
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
+
 zip.compress2(arrayBufferOut, arrayBufferIn, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-    console.info('compress2 success');
+  console.info('compress2 success');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -1188,24 +1211,24 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.compress(arrayBufferOut, arrayBufferIn, 12).then((data) => {
-        console.info('compress success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.uncompress(arrayBufferIn, arrayBufferOut, 20).then((data) => {
-        console.info('uncompress success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.compress(arrayBufferOut, arrayBufferIn, 12).then((data) => {
+    console.info('compress success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.uncompress(arrayBufferIn, arrayBufferOut, 20).then((data) => {
+    console.info('uncompress success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1250,24 +1273,24 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.compress2(arrayBufferOut, arrayBufferIn, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('compress2 success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.uncompress2(arrayBufferIn, arrayBufferOut, 20).then((data) => {
-        console.info('uncompress2 success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.compress2(arrayBufferOut, arrayBufferIn, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('compress2 success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.uncompress2(arrayBufferIn, arrayBufferOut, 20).then((data) => {
+    console.info('uncompress2 success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1310,14 +1333,17 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    byteArray[i] = str.charCodeAt(i)
+  byteArray[i] = str.charCodeAt(i)
 }
+
 let zip = zlib.createZipSync();
+
 zip.compressBound(str.length).then((data) => {
-    console.info('compressBound success')
+  console.info('compressBound success')
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -1360,25 +1386,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateValidate({availableIn: 1}, 1).then(data => {
-        console.info('inflateValidate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateValidate({ availableIn: 1 }, 1).then(data => {
+    console.info('inflateValidate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1420,25 +1446,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateSyncPoint({availableIn: 1}).then(data => {
-        console.info('inflateSyncPoint success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateSyncPoint({ availableIn: 1 }).then(data => {
+    console.info('inflateSyncPoint success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1482,56 +1508,56 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello, hello!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.deflateInit({}, zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  let str = 'hello, hello!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.deflateInit({}, zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflate({ nextIn: arrayBufferIn, availableIn: 3, nextOut: arrayBufferOut, availableOut: 100 }, zlib.CompressFlushMode.FULL_FLUSH).then((data) => {
+    console.info('deflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflate({ availableIn: 11 }, zlib.CompressFlushMode.FINISH).then((data) => {
+    console.info('deflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateEnd({}).then(data => {
+    console.info('deflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  try {
+    await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 2 }).then(data => {
+      console.info('inflateInit2 success')
     })
-    await zip.deflate({nextIn: arrayBufferIn, availableIn: 3, nextOut: arrayBufferOut, availableOut: 100}, zlib.CompressFlushMode.FULL_FLUSH).then((data) => {
-        console.info('deflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflate({ availableIn: 11}, zlib.CompressFlushMode.FINISH).then((data) => {
-        console.info('deflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateEnd({}).then(data => {
-        console.info('deflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    try {
-        await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 2}).then(data => {
-            console.info('inflateInit2 success')
-        })
-    } catch (errData) {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    }
-    await zip.inflate({nextOut: arrayBufferIn, availableOut: 28}, zlib.CompressFlushMode.NO_FLUSH).then((data) => {
-        console.info('inflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateSync({availableIn: 26}).then(data => {
-        console.info('inflateSync success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateEnd({nextOut: arrayBufferOut}).then((data) => {
-        console.info('inflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  } catch (errData) {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  }
+  await zip.inflate({ nextOut: arrayBufferIn, availableOut: 28 }, zlib.CompressFlushMode.NO_FLUSH).then((data) => {
+    console.info('inflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateSync({ availableIn: 26 }).then(data => {
+    console.info('inflateSync success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateEnd({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('inflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1573,25 +1599,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateResetKeep({availableIn: 1}).then(data => {
-        console.info('inflateResetKeep success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateResetKeep({ availableIn: 1 }).then(data => {
+    console.info('inflateResetKeep success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1635,62 +1661,62 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello, hello!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    let dictionary = 'hello'
-    let dictionarybuf = new ArrayBuffer(dictionary.length);
-    let dictionarybufdata = new Uint8Array(dictionarybuf);
-    for (let i = 0, j = dictionary.length; i < j; i++) {
-        dictionarybufdata[i] = str.charCodeAt(i);
-    }
-    await zip.deflateInit({}, zlib.CompressLevel.COMPRESS_LEVEL_BEST_COMPRESSION).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  let str = 'hello, hello!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  let dictionary = 'hello'
+  let dictionarybuf = new ArrayBuffer(dictionary.length);
+  let dictionarybufdata = new Uint8Array(dictionarybuf);
+  for (let i = 0, j = dictionary.length; i < j; i++) {
+    dictionarybufdata[i] = str.charCodeAt(i);
+  }
+  await zip.deflateInit({}, zlib.CompressLevel.COMPRESS_LEVEL_BEST_COMPRESSION).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflateSetDictionary({}, dictionarybuf).then((data) => {
+    console.info('deflateSetDictionary success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflate({ nextIn: arrayBufferIn, availableIn: 14, nextOut: arrayBufferOut, availableOut: 100 }, zlib.CompressFlushMode.FINISH).then((data) => {
+    console.info('deflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflateEnd({}).then(data => {
+    console.info('deflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  try {
+    await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 100 }).then(data => {
+      console.info('inflateInit success')
     })
-    await zip.deflateSetDictionary({}, dictionarybuf).then((data) => {
-        console.info('deflateSetDictionary success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflate({nextIn: arrayBufferIn, availableIn: 14, nextOut: arrayBufferOut, availableOut: 100}, zlib.CompressFlushMode.FINISH).then((data) => {
-        console.info('deflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflateEnd({}).then(data => {
-        console.info('deflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    try {
-        await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 100}).then(data => {
-            console.info('inflateInit success')
-        })
-    } catch (errData) {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    }
-    await zip.inflate({nextOut: arrayBufferIn, availableOut: 28}, zlib.CompressFlushMode.NO_FLUSH).then((data) => {
-        console.info('inflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.inflateSetDictionary({}, dictionarybuf).then((data) => {
-        console.info('inflateSetDictionary success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.inflateEnd({nextOut: arrayBufferOut}).then((data) => {
-        console.info('inflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
+  } catch (errData) {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  }
+  await zip.inflate({ nextOut: arrayBufferIn, availableOut: 28 }, zlib.CompressFlushMode.NO_FLUSH).then((data) => {
+    console.info('inflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.inflateSetDictionary({}, dictionarybuf).then((data) => {
+    console.info('inflateSetDictionary success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.inflateEnd({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('inflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
 }
 ```
 
@@ -1733,25 +1759,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateReset2({availableOut: 8}, 15).then(data => {
-        console.info('inflateReset2 success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateReset2({ availableOut: 8 }, 15).then(data => {
+    console.info('inflateReset2 success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1793,25 +1819,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateReset({availableIn: 1, availableOut: 8}).then(data => {
-        console.info('inflateReset success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateReset({ availableIn: 1, availableOut: 8 }).then(data => {
+    console.info('inflateReset success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1855,25 +1881,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflatePrime({nextOut: arrayBufferOut}, 5, 2).then(data => {
-        console.info('inflatePrime success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflatePrime({ nextOut: arrayBufferOut }, 5, 2).then(data => {
+    console.info('inflatePrime success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1914,25 +1940,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateMark({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}).then(data => {
-        console.info('inflateMark success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateMark({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }).then(data => {
+    console.info('inflateMark success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1977,16 +2003,19 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    byteArray[i] = str.charCodeAt(i)
+  byteArray[i] = str.charCodeAt(i)
 }
+
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
-zip.inflateInit2({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}, 28
+
+zip.inflateInit2({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
 ).then(data => {
-    console.info('inflateInit2 success');
+  console.info('inflateInit2 success');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -2029,16 +2058,19 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    byteArray[i] = str.charCodeAt(i)
+  byteArray[i] = str.charCodeAt(i)
 }
+
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
-zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
+
+zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
 ).then(data => {
-    console.info('inflateInit success');
+  console.info('inflateInit success');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -2081,25 +2113,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit2({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}, 28
-    ).then(data => {
-        console.info('inflateInit2 success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateGetHeader({availableIn: 1, availableOut: 1},{isText: true, os: 1, time: 1, xflags: 1, extra: arrayBufferIn, extraLen: 12, name: arrayBufferIn, comment: arrayBufferOut, hcrc: true, done: true}).then(data => {
-        console.info('inflateGetHeader success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit2({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
+  ).then(data => {
+    console.info('inflateInit2 success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateGetHeader({ availableIn: 1, availableOut: 1 }, { isText: true, os: 1, time: 1, xflags: 1, extra: arrayBufferIn, extraLen: 12, name: arrayBufferIn, comment: arrayBufferOut, hcrc: true, done: true }).then(data => {
+    console.info('inflateGetHeader success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -2142,25 +2174,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit2({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}, 28
-    ).then(data => {
-        console.info('inflateInit2 success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateGetDictionary({nextOut: arrayBufferOut}, arrayBufferOut).then((data) => {
-        console.info('inflateGetDictionary success:')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit2({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
+  ).then(data => {
+    console.info('inflateInit2 success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateGetDictionary({ nextOut: arrayBufferOut }, arrayBufferOut).then((data) => {
+    console.info('inflateGetDictionary success:')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -2202,30 +2234,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflate({availableIn: 8, availableOut: 8}, 0).then((data) => {
-        console.info('inflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateEnd({nextOut: arrayBufferOut}).then((data) => {
-        console.info('inflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflate({ availableIn: 8, availableOut: 8 }, 0).then((data) => {
+    console.info('inflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateEnd({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('inflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -2267,25 +2299,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateCopy(zip).then((data) => {
-        console.info('inflateCopy success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateCopy(zip).then((data) => {
+    console.info('inflateCopy success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -2326,25 +2358,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateCodesUsed({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 8}).then(data => {
-        console.info('inflateCodesUsed success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateCodesUsed({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 8 }).then(data => {
+    console.info('inflateCodesUsed success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -2476,134 +2508,134 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let readIn:(inDesc:object) => ArrayBuffer = (inDesc:object): ArrayBuffer => {
-        console.info("inDesc = ", JSON.stringify(inDesc));
-        let buffer = new ArrayBuffer(26)
-        let array = new Uint8Array(buffer);
-        array.set([31,139,8,0,0,0,0,0,0,10,243,72,205,201,201,231,2,0,22,53,150,49,6,0,0,0]);
-        return buffer;
-    }
+  let readIn: (inDesc: object) => ArrayBuffer = (inDesc: object): ArrayBuffer => {
+    console.info("inDesc = ", JSON.stringify(inDesc));
+    let buffer = new ArrayBuffer(26)
+    let array = new Uint8Array(buffer);
+    array.set([31, 139, 8, 0, 0, 0, 0, 0, 0, 10, 243, 72, 205, 201, 201, 231, 2, 0, 22, 53, 150, 49, 6, 0, 0, 0]);
+    return buffer;
+  }
 
-    let writeOut:(outDesc: object, buffer: ArrayBuffer, length: number) => number = (outDesc: object, buffer: ArrayBuffer, length: number): number => {
-        console.info("outDesc = ", outDesc);
-        console.info("buffer = ", buffer);
-        console.info("length = ", length);
-        let array = new Uint8Array(buffer);
-        let dataString = "";
-        for (let i = 0; i < length; i++) {
-            dataString += String.fromCharCode(array[i]);
-        }
-        console.info('writeOut ', dataString);
-        return 0;
+  let writeOut: (outDesc: object, buffer: ArrayBuffer, length: number) => number = (outDesc: object, buffer: ArrayBuffer, length: number): number => {
+    console.info("outDesc = ", outDesc);
+    console.info("buffer = ", buffer);
+    console.info("length = ", length);
+    let array = new Uint8Array(buffer);
+    let dataString = "";
+    for (let i = 0; i < length; i++) {
+      dataString += String.fromCharCode(array[i]);
     }
+    console.info('writeOut ', dataString);
+    return 0;
+  }
 
-    let have = 0;
-    let first = 1;
-    let arrayBuffer =  new ArrayBuffer(26);
-    let next = new Uint8Array(arrayBuffer);
-    let last = 0;
-    let index = 0;
-    let flags = 0;
-    let NEXT2:() => number = (): number => {
-        let o6: object = new Object()
-        if (!have) {
-            arrayBuffer = readIn(o6)
-            next = new Uint8Array(arrayBuffer);
-            console.info('readIn next = ', next.length)
-            have = next.length;
-        }
-        if (have) {
-            have--;
-            last = next[index];
-            index++;
-        }
-        else {
-            last = -1;
-        }
-        return last;
+  let have = 0;
+  let first = 1;
+  let arrayBuffer = new ArrayBuffer(26);
+  let next = new Uint8Array(arrayBuffer);
+  let last = 0;
+  let index = 0;
+  let flags = 0;
+  let NEXT2: () => number = (): number => {
+    let o6: object = new Object()
+    if (!have) {
+      arrayBuffer = readIn(o6)
+      next = new Uint8Array(arrayBuffer);
+      console.info('readIn next = ', next.length)
+      have = next.length;
     }
+    if (have) {
+      have--;
+      last = next[index];
+      index++;
+    }
+    else {
+      last = -1;
+    }
+    return last;
+  }
 
-    let inflateBackTest:() => void = ( async() => {
-        try {
-            have = 0;
-            first = 1;
-            arrayBuffer =  new ArrayBuffer(26);
-            next = new Uint8Array(arrayBuffer);
-            last = 0;
-            index = 0;
-            flags = 0;
-            let sr = zlib.createZipSync();
-            let buffer = new ArrayBuffer(1024)
-            await sr.inflateBackInit({}, 15, buffer).then((result) => {
-                console.info('inflateBackInit Call result res', result)
-            })
-            let ret = 0;
-            for (;;) {
-                if (NEXT2() == -1) {
-                    ret = 0;
-                    console.info('inflateBackTest Call result NEXT2() == -1')
-                    break;
-                }
-                console.info('have =  last = ', have, last)
-                if (last != 31 || (NEXT2() != 139 && last >= 157 && last <= 157)) {
-                    ret = first ? -3 : -1;
-                    console.info('inflateBackTest Call result last != 31 || (NEXT2() != 139 && last != 157)')
-                    break;
-                }
-                first = 0;
-                ret = -5;
-                if (NEXT2() != 8) {
-                    if (last < 0) {
-                        console.info('inflateBackTest Call result 1 last == -1')
-                        break;
-                    }
-                }
-                flags = NEXT2();
-                NEXT2();
-                NEXT2();
-                NEXT2();
-                NEXT2();
-                NEXT2();
-                NEXT2();
-                if (last < 0) {
-                    console.info('inflateBackTest Call result 2 last == -1')
-                    break;
-                }
-                console.info('index =  have = ', next[index], have)
-                let newArrayBuffer = new ArrayBuffer(have);
-                let newNext = new Uint8Array(newArrayBuffer);
-                for (let i = 0 ; i < have; i++) {
-                    newNext[i] = next[26-have+i];
-                }
-                console.info('newArrayBuffer.length = ', newArrayBuffer.byteLength)
-                console.info('newNext.length = ', newNext.length)
-                let zStream: zlib.ZStream = {
-                    nextIn: newArrayBuffer,
-                    availableIn: have,
-                };
-                await sr.inflateBack(
-                    zStream,
-                    readIn,
-                    {fileName:'test.gz'},
-                    writeOut,
-                    {fileName:'test.gz'}).then((result) => {
-                    ret = result;
-                    console.info('inflateBack Call result res', result)
-                })
-                if (ret == 1) {
-                    console.info('inflateBackTest Call result success')
-                    break;
-                }
-            }
-            await sr.inflateBackEnd({}).then((result) => {
-                console.info('inflateBackEnd Call result res', result)
-            })
+  let inflateBackTest: () => void = (async () => {
+    try {
+      have = 0;
+      first = 1;
+      arrayBuffer = new ArrayBuffer(26);
+      next = new Uint8Array(arrayBuffer);
+      last = 0;
+      index = 0;
+      flags = 0;
+      let sr = zlib.createZipSync();
+      let buffer = new ArrayBuffer(1024)
+      await sr.inflateBackInit({}, 15, buffer).then((result) => {
+        console.info('inflateBackInit Call result res', result)
+      })
+      let ret = 0;
+      for (; ;) {
+        if (NEXT2() == -1) {
+          ret = 0;
+          console.info('inflateBackTest Call result NEXT2() == -1')
+          break;
         }
-        catch(errData) {
-            console.error(`errData is message:${errData}`);
+        console.info('have =  last = ', have, last)
+        if (last != 31 || (NEXT2() != 139 && last >= 157 && last <= 157)) {
+          ret = first ? -3 : -1;
+          console.info('inflateBackTest Call result last != 31 || (NEXT2() != 139 && last != 157)')
+          break;
         }
-    })
-    inflateBackTest();
+        first = 0;
+        ret = -5;
+        if (NEXT2() != 8) {
+          if (last < 0) {
+            console.info('inflateBackTest Call result 1 last == -1')
+            break;
+          }
+        }
+        flags = NEXT2();
+        NEXT2();
+        NEXT2();
+        NEXT2();
+        NEXT2();
+        NEXT2();
+        NEXT2();
+        if (last < 0) {
+          console.info('inflateBackTest Call result 2 last == -1')
+          break;
+        }
+        console.info('index =  have = ', next[index], have)
+        let newArrayBuffer = new ArrayBuffer(have);
+        let newNext = new Uint8Array(newArrayBuffer);
+        for (let i = 0; i < have; i++) {
+          newNext[i] = next[26 - have + i];
+        }
+        console.info('newArrayBuffer.length = ', newArrayBuffer.byteLength)
+        console.info('newNext.length = ', newNext.length)
+        let zStream: zlib.ZStream = {
+          nextIn: newArrayBuffer,
+          availableIn: have,
+        };
+        await sr.inflateBack(
+          zStream,
+          readIn,
+          { fileName: 'test.gz' },
+          writeOut,
+          { fileName: 'test.gz' }).then((result) => {
+            ret = result;
+            console.info('inflateBack Call result res', result)
+          })
+        if (ret == 1) {
+          console.info('inflateBackTest Call result success')
+          break;
+        }
+      }
+      await sr.inflateBackEnd({}).then((result) => {
+        console.info('inflateBackEnd Call result res', result)
+      })
+    }
+    catch (errData) {
+      console.error(`errData is message:${errData}`);
+    }
+  })
+  inflateBackTest();
 }
 ```
 
@@ -2647,51 +2679,51 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflate({availableOut: 8}, zlib.CompressFlushMode.FINISH).then((data) => {
-        console.info('deflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflateEnd({ nextOut: arrayBufferOut }).then(data => {
-        console.info('deflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflate({availableIn: 8, availableOut: 8}, 0).then((data) => {
-        console.info('inflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateEnd({nextOut: arrayBufferOut}).then((data) => {
-        console.info('inflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflate({ availableOut: 8 }, zlib.CompressFlushMode.FINISH).then((data) => {
+    console.info('deflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflateEnd({ nextOut: arrayBufferOut }).then(data => {
+    console.info('deflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflate({ availableIn: 8, availableOut: 8 }, 0).then((data) => {
+    console.info('inflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateEnd({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('inflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -2734,25 +2766,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
 }
 ```
 
@@ -2799,25 +2831,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync()
-    await zip.deflateInit2(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED, zlib.CompressMethod.DEFLATED, 28,
-      zlib.MemLevel.MEM_LEVEL_DEFAULT, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
-        console.info('deflateInit2 success');
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync()
+  await zip.deflateInit2(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED, zlib.CompressMethod.DEFLATED, 28,
+    zlib.MemLevel.MEM_LEVEL_DEFAULT, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
+      console.info('deflateInit2 success');
     }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+      console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
     })
 }
 ```
@@ -2862,30 +2894,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflate({availableOut: 8}, zlib.CompressFlushMode.FINISH).then((data) => {
-        console.info('deflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflate({ availableOut: 8 }, zlib.CompressFlushMode.FINISH).then((data) => {
+    console.info('deflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
 }
 ```
 
@@ -2927,35 +2959,35 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflate({availableOut: 8}, zlib.CompressFlushMode.FINISH).then((data) => {
-        console.info('deflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflateEnd({ nextOut: arrayBufferOut }).then(data => {
-        console.info('deflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflate({ availableOut: 8 }, zlib.CompressFlushMode.FINISH).then((data) => {
+    console.info('deflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflateEnd({ nextOut: arrayBufferOut }).then(data => {
+    console.info('deflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -2997,30 +3029,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateBound({nextOut: arrayBufferOut}, 12).then((data) => {
-        console.info('deflateBound success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateBound({ nextOut: arrayBufferOut }, 12).then((data) => {
+    console.info('deflateBound success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3063,31 +3095,31 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync()
-    await zip.deflateInit2(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED, zlib.CompressMethod.DEFLATED, 28,
-      zlib.MemLevel.MEM_LEVEL_DEFAULT, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
-        console.info('deflateInit2 success');
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync()
+  await zip.deflateInit2(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED, zlib.CompressMethod.DEFLATED, 28,
+    zlib.MemLevel.MEM_LEVEL_DEFAULT, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
+      console.info('deflateInit2 success');
     }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+      console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
     })
-    await zip.deflateSetHeader({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut,availableOut: 1},{isText: true, os: 1, time: 1, xflags: 1, extra: arrayBufferIn, extraLen: 12, name: arrayBufferIn, comment: arrayBufferOut, hcrc: true, done: true}).then((data)=>{
-        console.info('deflateSetHeader success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
+  await zip.deflateSetHeader({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, { isText: true, os: 1, time: 1, xflags: 1, extra: arrayBufferIn, extraLen: 12, name: arrayBufferIn, comment: arrayBufferOut, hcrc: true, done: true }).then((data) => {
+    console.info('deflateSetHeader success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
 }
 ```
 
@@ -3129,30 +3161,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateCopy(zip).then((data) => {
-        console.info('deflateCopy success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateCopy(zip).then((data) => {
+    console.info('deflateCopy success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3195,30 +3227,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateSetDictionary({nextOut:arrayBufferOut}, arrayBufferOut).then((data) => {
-        console.info('deflateSetDictionary success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateSetDictionary({ nextOut: arrayBufferOut }, arrayBufferOut).then((data) => {
+    console.info('deflateSetDictionary success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3261,35 +3293,35 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateSetDictionary({nextOut:arrayBufferOut}, arrayBufferOut).then((data) => {
-        console.info('deflateSetDictionary success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateGetDictionary({nextOut:arrayBufferOut}, arrayBufferOut).then((data) => {
-        console.info('deflateGetDictionary success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateSetDictionary({ nextOut: arrayBufferOut }, arrayBufferOut).then((data) => {
+    console.info('deflateSetDictionary success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateGetDictionary({ nextOut: arrayBufferOut }, arrayBufferOut).then((data) => {
+    console.info('deflateGetDictionary success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3335,30 +3367,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateTune({nextOut:arrayBufferOut}, 2, 2, 2, 2).then((data) => {
-        console.info('deflateTune success:')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateTune({ nextOut: arrayBufferOut }, 2, 2, 2, 2).then((data) => {
+    console.info('deflateTune success:')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3400,30 +3432,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateReset({nextOut:arrayBufferOut}).then((data) => {
-        console.info('deflateReset success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateReset({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('deflateReset success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3465,30 +3497,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateResetKeep({nextOut: arrayBufferOut}).then((data) => {
-        console.info('deflateResetKeep success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateResetKeep({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('deflateResetKeep success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3530,30 +3562,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflatePending({nextOut: arrayBufferOut}).then((data) => {
-        console.info('deflatePending success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflatePending({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('deflatePending success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3597,30 +3629,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync()
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateParams(zStream, zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
-        console.info('deflateParams success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync()
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateParams(zStream, zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
+    console.info('deflateParams success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3664,30 +3696,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflatePrime({nextOut: arrayBufferOut}, 5, 2).then((data) => {
-        console.info('deflatePrime success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflatePrime({ nextOut: arrayBufferOut }, 5, 2).then((data) => {
+    console.info('deflatePrime success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3893,7 +3925,7 @@ createGZip(): Promise&lt;GZip&gt;
 import zlib from '@ohos.zlib';
 
 zlib.createGZip().then((data) => {
-   console.info('createGZip success');
+  console.info('createGZip success');
 })
 ```
 
@@ -3963,13 +3995,13 @@ gzdopen(fd: number, mode: string): Promise&lt;void&gt;
 import zlib from '@ohos.zlib';
 import fileio from '@ohos.fileio';
 
-async function gzdopenDemo(pathDir:string) {
- fileio.mkdirSync(pathDir + "/gzdopen");
- let path = pathDir + "/gzdopen/test.gz";
- let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
- let gzip = zlib.createGZipSync();
- await gzip.gzdopen(fd, "wb");
- await gzip.gzclose();
+async function gzdopenDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzdopen");
+  let path = pathDir + "/gzdopen/test.gz";
+  let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
+  let gzip = zlib.createGZipSync();
+  await gzip.gzdopen(fd, "wb");
+  await gzip.gzclose();
 }
 
 @Entry
@@ -4031,15 +4063,15 @@ gzbuffer(size: number):Promise&lt;number&gt;
 import fileio from '@ohos.fileio';
 import zlib from '@ohos.zlib'
 
-async function gzbufferDemo(pathDir:string) {
- fileio.mkdirSync(pathDir + "/gzbuffer");
- let path = pathDir + "/gzbuffer/test.gz";
- let gzip = zlib.createGZipSync();
- await gzip.gzopen(path, "wb");
- await gzip.gzclose();
- await gzip.gzopen(path, "rb");
- let result = await gzip.gzbuffer(648);
- await gzip.gzclose();
+async function gzbufferDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzbuffer");
+  let path = pathDir + "/gzbuffer/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  await gzip.gzclose();
+  await gzip.gzopen(path, "rb");
+  let result = await gzip.gzbuffer(648);
+  await gzip.gzclose();
 }
 
 @Entry
