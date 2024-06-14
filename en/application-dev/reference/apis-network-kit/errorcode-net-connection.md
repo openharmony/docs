@@ -26,7 +26,7 @@ Check whether the input parameter value is within the valid value range.
 
 **Error Message**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **Description**
 
@@ -62,11 +62,29 @@ This error code is reported if a system internal error occurs.
 
 2. Check whether the system is normal. If not, try again later or restart the device.
 
-## 2101007 Callback Already Exists
+## 2101007 Callback Not Exist
 
 **Error Message**
 
-The same callback exists.
+The callback does not exist.
+
+**Description**
+
+This error code is reported if a **callback** object to be unregistered does not exist.
+
+**Cause**
+
+The **callback** object has not been registered for activating a network or listening to network status changes.
+
+**Procedure**
+
+Before unregistering a **callback** object, make sure that it has been registered for activating a network or listening to network status changes.
+
+## 2101008 Callback Already Exists
+
+**Error Message**
+
+The callback already exists.
 
 **Description**
 
@@ -81,29 +99,12 @@ The **callback** object has been registered for activating a network or listenin
 1. Check whether the **callback** object has been registered.
 2. If the **callback** object has been registered, use the registered **callback** object.
 
-## 2101008 Callback Not Exist
-
-**Error Message**
-
-The callback is not exists.
-
-**Description**
-
-This error code is reported if a **callback** object to be unregistered does not exist.
-
-**Cause**
-
-The **callback** object has not been registered for activating a network or listening to network status changes.
-
-**Procedure**
-
-Before unregistering a **callback** object, make sure that it has been registered for activating a network or listening to network status changes.
 
 ## 2101022 Number of Requests Exceeding the Maximum
 
 **Error Message**
 
-The number of requests exceeded the maximum.
+The number of requests exceeded the maximum allowed.
 
 **Description**
 

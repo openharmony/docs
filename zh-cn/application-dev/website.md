@@ -2068,7 +2068,7 @@
           - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
           - [@ohos.arkui.advanced.ExceptionPrompt (异常提示)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
           - [@ohos.arkui.advanced.Filter (多条件筛选)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Filter.md)
-          - [@ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动元服务组件)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
+          - [@ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动原子化服务组件)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
           - [@ohos.arkui.advanced.GridObjectSortComponent (网格对象的编辑排序)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
           - [@ohos.arkui.advanced.ProgressButton (下载按钮)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md)
           - [@ohos.arkui.advanced.Popup (气泡组件)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md)

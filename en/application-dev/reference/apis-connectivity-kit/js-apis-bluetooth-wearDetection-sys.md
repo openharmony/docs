@@ -33,7 +33,7 @@ Enables wear detection for a device. This API uses an asynchronous callback to r
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the remote device.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -122,7 +122,7 @@ Disables wear detection for a device. This API uses an asynchronous callback to 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the remote device.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -211,7 +211,7 @@ Checks whether a device supports wear detection. This API uses an asynchronous c
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the remote device.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result. If the device supports wear detection, **supported** is returned.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the device supports wear detection, **supported** is returned.|
 
 **Error codes**
 
@@ -298,7 +298,7 @@ Checks whether wear detection is enabled for a device. This API uses an asynchro
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the remote device.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result. If wear detection is enabled, **enabled** is returned.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If wear detection is enabled, **enabled** is returned.|
 
 **Error codes**
 

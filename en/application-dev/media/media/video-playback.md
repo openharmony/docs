@@ -67,10 +67,10 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 
 
 ```ts
-import media from '@ohos.multimedia.media';
-import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { media } from '@kit.MediaKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerDemo {
   private count: number = 0;
@@ -158,7 +158,7 @@ export class AVPlayerDemo {
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
     // Open the corresponding file address to obtain the file descriptor and assign a value to the URL to trigger the reporting of the initialized state.
-    let file = await fs.open(path);
+    let file = await fileIo.open(path);
     fdPath = fdPath + '' + file.fd;
     this.isSeek = true; // The seek operation is supported.
     avPlayer.url = fdPath;
@@ -195,7 +195,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined || pos == undefined) {
           return -1;
         }
-        num = fs.readSync(this.fd, buf, { offset: pos, length: length });
+        num = fileIo.readSync(this.fd, buf, { offset: pos, length: length });
         if (num > 0 && (this.fileSize >= pos)) {
           return num;
         }
@@ -206,11 +206,11 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fs.open(path).then((file: fs.File) => {
+    await fileIo.open(path).then((file: fileIo.File) => {
       this.fd = file.fd;
     })
     // Obtain the size of the file to be played.
-    this.fileSize = fs.statSync(path).size;
+    this.fileSize = fileIo.statSync(path).size;
     src.fileSize = this.fileSize;
     this.isSeek = true; // The seek operation is supported.
     avPlayer.dataSrc = src;
@@ -230,7 +230,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined) {
           return -1;
         }
-        num = fs.readSync(this.fd, buf);
+        num = fileIo.readSync(this.fd, buf);
         if (num > 0) {
           return num;
         }
@@ -240,7 +240,7 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fs.open(path).then((file: fs.File) => {
+    await fileIo.open(path).then((file: fileIo.File) => {
       this.fd = file.fd;
     })
     this.isSeek = false; // The seek operation is not supported.
@@ -257,7 +257,7 @@ export class AVPlayerDemo {
     avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8'; // Play live webcasting streams using HLS.
   }
 
-  // The following demo uses setMediaSource to set the network address to implement video pre-download.
+  // The following demo uses setMediaSource to set custom header fields and preferred media playback parameters to implement initial playback parameter settings.
   async preDownloadDemo() {
     // Create an AVPlayer instance.
     let avPlayer: media.AVPlayer = await media.createAVPlayer();

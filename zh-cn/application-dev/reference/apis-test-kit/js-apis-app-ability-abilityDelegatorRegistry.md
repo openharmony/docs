@@ -18,7 +18,7 @@ import { abilityDelegatorRegistry } from '@kit.TestKit';
 
 Ability生命周期状态，该类型为枚举，可配合[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)的[getAbilityState(ability)](js-apis-inner-application-abilityDelegator.md#getabilitystate9)方法返回不同ability生命周期。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力** ：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -36,7 +36,7 @@ getAbilityDelegator(): AbilityDelegator
 
 获取应用程序的[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)对象，该对象能够使用调度测试框架的相关功能。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
@@ -73,7 +73,7 @@ getArguments(): AbilityDelegatorArgs
 
 获取单元测试参数[AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 

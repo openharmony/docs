@@ -12,7 +12,7 @@ hiTraceChain is a lightweight implementation of the cloud-based distributed call
 
 ## Available APIs
 
-The APIs for distributed call chain tracing are provided by the **hiTraceChain** module. For details, see [API Reference](../reference/apis/js-apis-hitracechain.md).
+The APIs for distributed call chain tracing are provided by the **hiTraceChain** module. For details, see [API Reference](../reference/apis-performance-analysis-kit/js-apis-hitracechain.md).
 
 **APIs for distributed call chain tracing**
 
@@ -23,7 +23,7 @@ The APIs for distributed call chain tracing are provided by the **hiTraceChain**
 
 ## How to Develop
 
-The following example illustrates how to simulate one-time [system event logging](../reference/apis/js-apis-hiviewdfx-hiappevent.md) to implement distributed call chain tracing.
+The following example illustrates how to simulate one-time [system event logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md) to implement distributed call chain tracing.
 
 1. Create an eTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **pages** > **index.ets**, and double-click **index.ets**. Then, add a button to trigger system event logging.
 

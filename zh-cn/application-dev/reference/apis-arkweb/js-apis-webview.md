@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-@ohos.web.webview提供web控制能力，[web](ts-basic-components-web.md)组件提供网页显示的能力。
+@ohos.web.webview提供web控制能力，[Web](ts-basic-components-web.md)组件提供网页显示的能力。
 
 > **说明：**
 >
@@ -8292,8 +8292,9 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 > **说明：**
 >
->configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
->同步cookie的时机建议在webview组件加载之前完成。
+>- configCookieSync中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
+>
+>- 同步cookie的时机建议在Web组件加载之前完成。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8331,8 +8332,8 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            // 设置多个cookie值时用','隔开，设置单个cookie值时不需要。
-            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b,c=d,e=f');
+            // 仅支持设置单个cookie值。
+            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10299,6 +10300,8 @@ Web组件发送的资源请求信息。
 | extra | string        | 是 | 是 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebMessage
+
+type WebMessage = ArrayBuffer | string
 
 用于描述[WebMessagePort](#webmessageport)所支持的数据类型。
 

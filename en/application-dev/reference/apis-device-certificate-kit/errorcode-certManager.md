@@ -46,6 +46,20 @@ The input certificate or credential is invalid.
 
 Check that the certificate or credential is valid.
 
+## 17500004 The Number of Certificates or Credentials Reaches the Limit
+
+**Error Message**
+
+The count of certificates or credentials reach the max.
+
+**Possible Causes**
+
+The number of installed certificates or credentials has reached the maximum.
+
+**Solution**
+
+Clear expired certificates or credentials.
+
 ## 17500005 Application Not Authorized
 
 **Error Message**

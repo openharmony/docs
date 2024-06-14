@@ -82,8 +82,8 @@ The ES6 syntax is supported.
   | $refs | Object | DOM elements or child component instances that have registered the ref attribute. For example code, see [Obtaining a DOM element](#obtaining-a-dom-element). |
   | private | Object | Data model of the page. Private data attribute can be modified only on the current page. |
   | public | Object | Data model of the page. Behaviors of public data attributes are the same as those of the data attribute. |
-  | props | Array/Object | Used for communication between components. This attribute can be transferred to components via &lt;tag xxxx='value'&gt;. A props name must be in lowercase and cannot start with a dollar sign ($) or underscore (_). Do not use reserved words (for, if, show, and tid). Currently, props does not support functions. For details, see [props](../reference/arkui-js/js-components-custom-props.md). |
-  | computed | Object | Used for pre-processing an object for reading and setting. The result is cached. The name cannot start with a dollar sign ($) or underscore (_). Do not use reserved words. For details, see [props](../reference/arkui-js/js-components-custom-props.md). |
+  | props | Array/Object | Used for communication between components. This attribute can be transferred to components via &lt;tag xxxx='value'&gt;. A props name must be in lowercase and cannot start with a dollar sign ($) or underscore (_). Do not use reserved words (for, if, show, and tid). Currently, props does not support functions. For details, see [props](../reference/apis-arkui/arkui-js/js-components-custom-props.md). |
+  | computed | Object | Used for pre-processing an object for reading and setting. The result is cached. The name cannot start with a dollar sign ($) or underscore (_). Do not use reserved words. For details, see [props](../reference/apis-arkui/arkui-js/js-components-custom-props.md). |
 
 ## Methods
 
@@ -127,7 +127,7 @@ The ES6 syntax is supported.
 - Event methods
   | Name | Parameter | Description |
   | -------- | -------- | -------- |
-  | $watch | data: string, callback: string \| Function | Listens for attribute changes. If the value of the data attribute changes, the bound event is triggered. For details, see [props](../reference/arkui-js/js-components-custom-props.md)<br/>Usage:<br/>this.$watch('key', callback) |
+  | $watch | data: string, callback: string \| Function | Listens for attribute changes. If the value of the data attribute changes, the bound event is triggered. For details, see [props](../reference/apis-arkui/arkui-js/js-components-custom-props.md)<br/>Usage:<br/>this.$watch('key', callback) |
 
 - Page methods
   | Name | Parameter | Description |
@@ -141,7 +141,7 @@ The ES6 syntax is supported.
   | position | number | - | Position to scroll to. |
   | id | string | - | ID of the element to be scrolled to. |
   | duration | number | 300 | Scrolling duration, in milliseconds. |
-  | timingFunction | string | ease | Animation curve for scrolling. Available options:<br/>[Animation Styles](../reference/arkui-js/js-components-common-animation.md) |
+  | timingFunction | string | ease | Animation curve for scrolling. Available options:<br/>[Animation Styles](../reference/apis-arkui/arkui-js/js-components-common-animation.md) |
   | complete | () => void | - | Callback to be invoked when the scrolling is complete. |
 
   Example

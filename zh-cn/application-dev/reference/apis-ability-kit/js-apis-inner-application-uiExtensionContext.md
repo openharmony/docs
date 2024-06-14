@@ -6,6 +6,7 @@ UIExtensionContext是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility
 >
 >  - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
+>  - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
 
 ## 导入模块
 
@@ -65,6 +66,7 @@ import { UIExtensionAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
+
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -1011,7 +1013,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
- 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -1019,7 +1021,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | appId | string | 是 | 应用的唯一标识，由云端统一分配。 |
-| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | 否 | 跳出式启动元服务所携带的参数。 |
+| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | 否 | 跳出式启动原子化服务所携带的参数。 |
 
 
 **返回值：**
@@ -1093,7 +1095,7 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
- 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**

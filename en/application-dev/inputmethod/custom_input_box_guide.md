@@ -1,6 +1,6 @@
 # Implementing a Custom Text Input Box
 
-You can implement a custom text input box with the use of **InputMethodController** in the input method framework, by binding an **InputMethodController** instance to an input method and listen for text input operations, such as text insertion, deletion, selection, and cursor movement.
+You can use [getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodgetcontroller9) to obtain an [InputMethodController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodcontroller) instance, and implement a custom text input box by binding the **InputMethodController** instance to an input method and listen for text input operations, such as text insertion, deletion, selection, and cursor movement.
 
 ## How to Develop
 

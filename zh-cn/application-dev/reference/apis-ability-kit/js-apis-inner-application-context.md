@@ -15,7 +15,7 @@ import { common } from '@kit.AbilityKit';
 
 ## 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -41,7 +41,7 @@ createModuleContext(moduleName: string): Context
 
 根据模块名创建上下文。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -92,7 +92,7 @@ getApplicationContext(): ApplicationContext
 
 获取本应用的应用上下文。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -133,9 +133,9 @@ export default class EntryAbility extends UIAbility {
 
 getGroupDir(dataGroupID: string): Promise\<string>
 
-通过使用元服务应用中的Group ID获取对应的共享目录，使用Promise异步回调。
+通过使用原子化服务应用中的Group ID获取对应的共享目录，使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -143,7 +143,7 @@ getGroupDir(dataGroupID: string): Promise\<string>
 
 | 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
-| dataGroupID | string | 是    | 元服务应用项目创建时，系统会指定分配唯一Group ID。 |
+| dataGroupID | string | 是    | 原子化服务应用项目创建时，系统会指定分配唯一Group ID。 |
 
 **返回值：**
 
@@ -186,9 +186,9 @@ export default class EntryAbility extends UIAbility {
 
 getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
-通过使用元服务应用中的Group ID获取对应的共享目录，使用callback异步回调。
+通过使用原子化服务应用中的Group ID获取对应的共享目录，使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -196,7 +196,7 @@ getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
 | 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
-| dataGroupID | string | 是    | 元服务应用项目创建时，系统会指定分配唯一Group ID。 |
+| dataGroupID | string | 是    | 原子化服务应用项目创建时，系统会指定分配唯一Group ID。 |
 | callback | AsyncCallback\<string> | 是    | 以callback方式返回对应的共享目录。如果不存在则返回为空，仅支持应用el2加密级别。|
 
 **错误码**：

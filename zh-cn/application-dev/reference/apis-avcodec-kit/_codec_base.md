@@ -74,7 +74,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_QUALITY](#oh_md_key_quality)                      | 所需编码质量的键。值类型为uint32_t，此键仅适用于配置在恒定质量模式下的编码器。该键是可选的。 |
 | [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | 视频表面尺度类型, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的。 |
 | [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability)          | 使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。该键是可选的且只用于视频编码，在configure阶段使用。 |
-| [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size)       | 传递图片组大小的键，值类型为int32_t，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size)       | 描述图片组大小的键，值类型为int32_t，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode)         | 描述图片组内参考模式的键，值类型为int32_t，请参见[OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1)，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top)       | 描述裁剪矩形顶部坐标(y)值的键，值类型为int32_t。该键是可选的。 |
 | [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom)        | 描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。该键是可选的。 |
@@ -237,7 +237,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | 音频原始格式的键，值类型为uint32_t。 |
 | const char \* [OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate) | 视频帧率的键，值类型为double。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode)。 |
-| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | 编码档次，值类型为int32_t请参见[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。 |
+| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | 编码档次，值类型为int32_t请参见[OH_AVCProfile](#oh_avcprofile), [OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。 |
 | const char \* [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count) | 音频通道计数键，值类型为uint32_t。 |
 | const char \* [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | 音频采样率键，值类型为uint32_t。 |
 | const char \* [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval) | 关键帧间隔的键，值类型为int32_t，单位为毫秒。 |
@@ -277,7 +277,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | audio vivid元数据的键，值类型为uint8_t\*。 |
 | const char \* [OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT](#oh_feature_property_key_video_encoder_max_ltr_frame_count) | 在视频编码中获取长期参考帧的最大个数的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability) | 使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。  | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size) | 传递图片组大小的键, 值类型为int32_t，只在使能分层编码时生效。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size) | 描述图片组大小的键, 值类型为int32_t，只在使能分层编码时生效。  |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode) | 描述图片组内参考模式的键，值类型为int32_t，请参见[OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode)，只在使能分层编码时生效。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count) | 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR](#oh_md_key_video_encoder_per_frame_mark_ltr) | 标记当前帧为长期参考帧的键，值类型为int32_t，1表示被标记，0表示其它情况。  | 
@@ -1545,7 +1545,7 @@ const char* OH_MD_KEY_AUDIO_OBJECT_NUMBER
 const char* OH_MD_KEY_AUDIO_SAMPLE_FORMAT
 ```
 **描述**
-音频原始格式的键，值类型为uint32_t。
+音频原始格式的键，值类型为uint32_t。请参见[AudioSampleFormat](../../reference/apis-audio-kit/js-apis-audio.md#audiosampleformat8)。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2098,9 +2098,10 @@ const char* OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE
 const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY
 ```
 **描述**
-使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。 
+使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。
 
-使用前可以通过[OH_AVCapability_IsFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported)接口查询当前视频编码器是否支持分层编码。 
+使用前可以通过[OH_AVCapability_IsFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported)接口和枚举值
+[VIDEO_ENCODER_TEMPORAL_SCALABILITY](_a_v_capability.md#oh_avcapabilityfeature)来查询当前视频编码器是否支持分层编码。
 
 该键是可选的且只用于视频编码，在configure阶段使用。
 
@@ -2209,7 +2210,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE
 const char* OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE
 ```
 **描述**
-传递图片组大小的键, 值类型为int32_t，只在使能分层编码时生效。
+描述图片组大小的键, 值类型为int32_t，只在使能分层编码时生效。
 
 该键是可选的且只用于视频编码，在configure阶段使用。
 

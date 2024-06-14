@@ -50,6 +50,14 @@ Checks whether this application is the default application of a system-defined a
 | ------------------------- | ------------------ |
 | Promise\<boolean> | Promise used to return the result. If the application is the default application, `true` is returned; otherwise, `false` is returned.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                   |
+| -------- | ---------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
 
 **Example**
 
@@ -79,6 +87,15 @@ Checks whether this application is the default application of a system-defined a
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
 | type  | string                          | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](#defaultappmgrapplicationtype).                           |
 | callback    | AsyncCallback\<boolean> | Yes   | Callback used to return the result. If the application is the default application, `true` is returned; otherwise, `false` is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                   |
+| -------- | ---------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
 
 **Example**
 
@@ -115,6 +132,14 @@ Checks whether this application is the default application of a system-defined a
 | ------- | -------------------- |
 | boolean | Returns **true** if the application is the default application; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                   |
+| -------- | ---------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
 
 **Example**
 

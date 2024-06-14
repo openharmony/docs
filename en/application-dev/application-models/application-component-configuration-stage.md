@@ -71,7 +71,7 @@ The entry icon is configured by specifying **icon** under **abilities** in the [
 #### Control Rules
 The system strictly controls applications without icons to prevent malicious applications from deliberately configuring no icon to block uninstall attempts.
 
-To hide an entry icon on the home screen, you must configure the **AllowAppDesktopIconHide** privilege. For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md). The rules for displaying the entry icon and entry label are as follows:
+To hide an entry icon on the home screen, you must configure the **AllowAppDesktopIconHide** privilege.<!--Del--> For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).<!--DelEnd--> The rules for displaying the entry icon and entry label are as follows:
 
 * The HAP file contains UIAbility configuration.
   * An entry icon is set in the **abilities** field of the **module.json5** file.

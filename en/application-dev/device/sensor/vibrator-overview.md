@@ -1,7 +1,7 @@
 # Vibrator Overview
 
 
-The vibrator service is built on the native vibrator service, bolstered by the capabilities of the vibrator hardware. By innovatively integrating vibration and interaction, the service takes user interaction efficiency and usability to the next level.
+The **vibrator** module extends the native vibrator service via maximizing utilization of vibrator hardware capabilities. By innovatively integrating vibration and interaction, the module takes user interaction efficiency and usability to the next level.
 
 
 ## Working Principles

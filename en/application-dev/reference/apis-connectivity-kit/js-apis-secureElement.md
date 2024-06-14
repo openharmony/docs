@@ -46,7 +46,7 @@ The returned **SEService** instance is available only when **true** is returned 
 | **Name**| **Type**                                            | **Mandatory**| **Description**            |
 | ---------- | ---------------------------------------------------- | ------ | -------------------- |
 | type       | string                                               | Yes     | Type of the SE service to create. It has a fixed value of **'serviceState'**.     |
-| callback   | Callback<[ServiceState](#secureelementservicestate)> | Yes     | Callback invoked to return the SE service state.|
+| callback   | Callback<[ServiceState](#secureelementservicestate)> | Yes     | Callback used to return the SE service state.|
 
 **Return value**
 
@@ -62,17 +62,19 @@ import { BusinessError } from '@ohos.base';
 
 let seService : secureElement.SEService;
 
-// Obtain the service.
-try {
-    seService = secureElement.newSEService("serviceState", (state) => {
-    hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
-    });
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'newSEService error %{public}s', JSON.stringify(error));
-}
-if (seService == undefined || !seService.isConnected()) {
-    hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
-    return;
+function secureElementDemo() {
+    // Obtain the service.
+    try {
+        seService = secureElement.newSEService("serviceState", (state) => {
+        hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
+        });
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'newSEService error %{public}s', JSON.stringify(error));
+    }
+    if (seService == undefined || !seService.isConnected()) {
+        hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
+        return;
+    }
 }
 ```
 
@@ -97,19 +99,20 @@ import secureElement from '@ohos.secureElement';
 import { BusinessError } from '@ohos.base';
 
 let seService : secureElement.SEService;
-let seReaders : omasecureElementpi.Reader[];
+let seReaders : secureElement.Reader[];
 
 // Initialize seService before using it.
-
-// Obtain readers.
-try {
-    seReaders = seService.getReaders();
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'getReaders error %{public}s', JSON.stringify(error));
-}
-if (seReaders == undefined || seReaders.length == 0) {
-    hilog.error(0x0000, 'testTag', 'no valid reader found.');
-    return;
+function secureElementDemo() {
+    // Obtain readers.
+    try {
+        seReaders = seService.getReaders();
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'getReaders error %{public}s', JSON.stringify(error));
+    }
+    if (seReaders == undefined || seReaders.length == 0) {
+        hilog.error(0x0000, 'testTag', 'no valid reader found.');
+        return;
+    }
 }
 ```
 
@@ -135,17 +138,19 @@ import { BusinessError } from '@ohos.base';
 
 let seService : secureElement.SEService;
 
-// Obtain the service.
-try {
-    seService = secureElement.newSEService("serviceState", (state) => {
-    hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
-    });
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'newSEService error %{public}s', JSON.stringify(error));
-}
-if (seService == undefined || !seService.isConnected()) {
-    hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
-    return;
+function secureElementDemo() {
+    // Obtain the service.
+    try {
+        seService = secureElement.newSEService("serviceState", (state) => {
+        hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
+        });
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'newSEService error %{public}s', JSON.stringify(error));
+    }
+    if (seService == undefined || !seService.isConnected()) {
+        hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
+        return;
+    }
 }
 ```
 
@@ -223,7 +228,7 @@ Obtains the name of this reader. The name is **SIM[*Slot*]** for a SIM reader an
 **Example**
 
 ```js
-let seReaders : omasecureElementpi.Reader[];
+let seReaders : secureElement.Reader[];
 
 // Initialize seReaders before using it.
 
@@ -261,7 +266,7 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seReaders : omasecureElementpi.Reader[];
+let seReaders : secureElement.Reader[];
 
 // Initialize seReaders before using it.
 
@@ -300,20 +305,21 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seReaders : omasecureElementpi.Reader[];
+let seReaders : secureElement.Reader[];
 let seSession : secureElement.Session;
 
 // Initialize seReaders before using it.
-
-try {
-    let reader = seReaders[0]; // change it to the selected reader, ese or sim.
-    seSession = reader.openSession();
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
-}
-if (seSession == undefined) {
-    hilog.error(0x0000, 'testTag', 'seSession invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        seSession = reader.openSession();
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
+    }
+    if (seSession == undefined) {
+        hilog.error(0x0000, 'testTag', 'seSession invalid.');
+        return;
+    }
 }
 ```
 
@@ -336,26 +342,27 @@ For details about error codes, see [SE Error Codes](errorcode-se.md).
 **Example**
 
 ```js
-let seReaders : omasecureElementpi.Reader[];
+let seReaders : secureElement.Reader[];
 let seSession : secureElement.Session;
-let reader : omasecureElementpi.Reader;
+let reader : secureElement.Reader;
 
 // Initialize seReaders before using it.
-
-try {
-    reader = seReaders[0]; // change it to the selected reader, ese or sim.
-    seSession = reader.openSession();
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
-}
-if (seSession == undefined) {
-    hilog.error(0x0000, 'testTag', 'seSession invalid.');
-    return;
-}
-try {
-    reader.closeSessions();
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'closeSessions error %{public}s', JSON.stringify(error));
+function secureElementDemo() {
+    try {
+        reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        seSession = reader.openSession();
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
+    }
+    if (seSession == undefined) {
+        hilog.error(0x0000, 'testTag', 'seSession invalid.');
+        return;
+    }
+    try {
+        reader.closeSessions();
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'closeSessions error %{public}s', JSON.stringify(error));
+    }
 }
 ```
 
@@ -376,26 +383,27 @@ Obtains the reader that provides this session.
 **Example**
 
 ```js
-let seReaders : omasecureElementpi.Reader[];
+let seReaders : secureElement.Reader[];
 let seSession : secureElement.Session;
-let reader : omasecureElementpi.Reader;
+let reader : secureElement.Reader;
 
 // Initialize seReaders before using it.
-
-try {
-    reader = seReaders[0]; // change it to the selected reader, ese or sim.
-    seSession = reader.openSession();
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
-}
-if (seSession == undefined) {
-    hilog.error(0x0000, 'testTag', 'seSession invalid.');
-    return;
-}
-try {
-    let sessionReader = seSession.getReader();
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'getReader error %{public}s', JSON.stringify(error));
+function secureElementDemo() {
+    try {
+        reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        seSession = reader.openSession();
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
+    }
+    if (seSession == undefined) {
+        hilog.error(0x0000, 'testTag', 'seSession invalid.');
+        return;
+    }
+    try {
+        let sessionReader = seSession.getReader();
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'getReader error %{public}s', JSON.stringify(error));
+    }
 }
 ```
 
@@ -568,20 +576,21 @@ let seChannel : secureElement.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
 // Initialize seSession before using it.
-
-try {
-    // Change the AID value for the channel to open.
-    seSession.openBasicChannel(aidArray).then((data) => {
-        seChannel = data;
-    }).catch((error : BusinessError)=> {
-        hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // Change the AID value for the channel to open.
+        seSession.openBasicChannel(aidArray).then((data) => {
+            seChannel = data;
+        }).catch((error : BusinessError)=> {
+            hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -598,7 +607,7 @@ Opens a basic channel, as defined in ISO/IEC 7816-4. This API uses an asynchrono
 | **Name**| **Type**              | **Mandatory**| **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
-| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the basic channel instance obtained.                           |
+| callback   | AsyncCallback\<Channel> | Yes     | Callback used to return the basic channel instance obtained.                           |
 
 **Error codes**
 
@@ -619,22 +628,23 @@ let seChannel : secureElement.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
 // Initialize seSession before using it.
-
-try {
-    // Change the AID value for the channel to open.
-    seSession.openBasicChannel(aidArray, (error, data) => {
-        if (error) {
-            hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
-        } else {
-            seChannel = data;
-        }
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // Change the AID value for the channel to open.
+        seSession.openBasicChannel(aidArray, (error, data) => {
+            if (error) {
+                hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
+            } else {
+                seChannel = data;
+            }
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -679,20 +689,21 @@ let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
 // Initialize seSession before using it.
-
-try {
-    // Change the AID value for the channel to open.
-    seSession.openBasicChannel(aidArray, p2).then((data) => {
-        seChannel = data;
-    }).catch((error : BusinessError)=> {
-        hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // Change the AID value for the channel to open.
+        seSession.openBasicChannel(aidArray, p2).then((data) => {
+            seChannel = data;
+        }).catch((error : BusinessError)=> {
+            hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -710,7 +721,7 @@ Opens a basic channel, as defined in ISO/IEC 7816-4. This API uses an asynchrono
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
 | p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel.                    |
-| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the basic channel instance obtained.                           |
+| callback   | AsyncCallback\<Channel> | Yes     | Callback used to return the basic channel instance obtained.                           |
 
 **Error codes**
 
@@ -732,22 +743,23 @@ let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
 // Initialize seSession before using it.
-
-try {
-    // Change the AID value for the channel to open.
-    seSession.openBasicChannel(aidArray, p2, (error, data) => {
-        if (error) {
-            hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
-        } else {
-            seChannel = data;
-        }
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // Change the AID value for the channel to open.
+        seSession.openBasicChannel(aidArray, p2, (error, data) => {
+            if (error) {
+                hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
+            } else {
+                seChannel = data;
+            }
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -790,20 +802,21 @@ let seChannel : secureElement.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
 // Initialize seSession before using it.
-
-try {
-    // Change the AID value for the channel to open.
-    seSession.openLogicalChannel(aidArray).then((data) => {
-        seChannel = data;
-    }).catch((error : BusinessError)=> {
-        hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // Change the AID value for the channel to open.
+        seSession.openLogicalChannel(aidArray).then((data) => {
+            seChannel = data;
+        }).catch((error : BusinessError)=> {
+            hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -820,7 +833,7 @@ Opens a logical channel, as defined in ISO/IEC 7816-4. This API uses an asynchro
 | **Name**| **Type**              | **Mandatory**| **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
-| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the logical channel instance obtained.|
+| callback   | AsyncCallback\<Channel> | Yes     | Callback used to return the logical channel instance obtained.|
 
 **Error codes**
 
@@ -841,22 +854,23 @@ let seChannel : secureElement.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
 // Initialize seSession before using it.
-
-try {
-    // Change the AID value for the channel to open.
-    seSession.openLogicalChannel(aidArray, (error, data) => {
-        if (error) {
-            hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
-        } else {
-            seChannel = data;
-        }
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // Change the AID value for the channel to open.
+        seSession.openLogicalChannel(aidArray, (error, data) => {
+            if (error) {
+                hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
+            } else {
+                seChannel = data;
+            }
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -901,20 +915,21 @@ let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
 // Initialize seSession before using it.
-
-try {
-    // Change the AID value for the channel to open.
-    seSession.openLogicalChannel(aidArray, p2).then((data) => {
-        seChannel = data;
-    }).catch((error : BusinessError)=> {
-        hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // Change the AID value for the channel to open.
+        seSession.openLogicalChannel(aidArray, p2).then((data) => {
+            seChannel = data;
+        }).catch((error : BusinessError)=> {
+            hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -932,7 +947,7 @@ Opens a logical channel, as defined in ISO/IEC 7816-4. This API uses an asynchro
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
 | p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel.|
-| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the logical channel instance obtained.|
+| callback   | AsyncCallback\<Channel> | Yes     | Callback used to return the logical channel instance obtained.|
 
 **Error codes**
 
@@ -954,22 +969,23 @@ let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
 // Initialize seSession before using it.
-
-try {
+function secureElementDemo() {
+    try {
     // Change the AID value for the channel to open.
-    seSession.openLogicalChannel(aidArray, p2, (error, data) => {
-        if (error) {
-            hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
-        } else {
-            seChannel = data;
-        }
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+        seSession.openLogicalChannel(aidArray, p2, (error, data) => {
+            if (error) {
+                hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
+            } else {
+                seChannel = data;
+            }
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -1152,7 +1168,7 @@ let seChannel : secureElement.Channel;
 
 // Initialize seChannel before using it.
 
-var cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change the raw data as required.
 try {
     seChannel.transmit(cmdData).then((response) => {
         hilog.info(0x0000, 'testTag', 'transmit response = %{public}s.', JSON.stringify(response));
@@ -1177,7 +1193,7 @@ Transmits APDU data (as per ISO/IEC 7816) to the SE.
 | **Name**| **Type**               | **Mandatory**| **Description**                             |
 | ---------- | ----------------------- | ------ | ------------------------------------- |
 | command    | number[]                | Yes     | APDU data to send.|
-| callback   | AsyncCallback\<number[]> | Yes     | Callback invoked to return the response received, in a number array. |
+| callback   | AsyncCallback\<number[]> | Yes     | Callback used to return the response received, in a number array. |
 
 **Error codes**
 
@@ -1196,7 +1212,7 @@ let seChannel : secureElement.Channel;
 
 // Initialize seChannel before using it.
 
-var cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change the raw data as required.
 try {
     seChannel.transmit(cmdData, (error, response) => {
     if (error) {

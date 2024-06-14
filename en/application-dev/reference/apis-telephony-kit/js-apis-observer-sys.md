@@ -1,16 +1,17 @@
 # @ohos.telephony.observer (Observer) (System API)
 
-The **observer** module provides event subscription management functions. You can register or unregister an observer that listens for the following events: network status change, signal status change, call status change, cellular data connection status, uplink and downlink data flow status of cellular data services, and SIM status change.
+The **observer** module provides event subscription management functions. With the APIs provided by this module, you can register or unregister an observer that listens cell information events (for the SIM card in the specified slot).
 
 >**NOTE**
 >
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.telephony.observer (Observer)](js-apis-observer.md).
+>
+>This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.telephony.observer (Observer)](js-apis-observer.md).
 
 ## Modules to Import
 
 ```ts
-import observer from '@ohos.telephony.observer';
+import { observer } from '@kit.TelephonyKit';
 ```
 
 
@@ -41,16 +42,16 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 observer.on('cellInfoChange', (data: Array<radio.CellInformation>) => {
     console.log("on cellInfoChange, data:" + JSON.stringify(data));
@@ -86,16 +87,16 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 let options: observer.ObserverOptions = {
     slotId: 0
@@ -134,16 +135,16 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **Example**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 let callback: (data: Array<radio.CellInformation>) => void = (data: Array<radio.CellInformation>) => {
     console.log("on cellInfoChange, data:" + JSON.stringify(data));

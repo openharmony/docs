@@ -163,11 +163,12 @@ Enumerates the error codes used in the certificate management APIs.
 | CM_ERROR_GENERIC  | 17500001      | An internal error occurs when the interface is called.|
 | CM_ERROR_NO_FOUND  | 17500002      | The certificate or credential does not exist.|
 | CM_ERROR_INCORRECT_FORMAT  | 17500003      | The certificate or credential is in invalid format.|
+| CM_ERROR_MAX_CERT_COUNT_REACHED<sup>12+</sup>  | 17500004      | The number of certificates or credentials has reached the limit.|
 | CM_ERROR_NO_AUTHORIZATION<sup>12+</sup>  | 17500005      | The application has not obtained user authorization.|
 
 ## certManager.installPrivateCertificate
 
-installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string, callback: AsyncCallback\<CMResult>) : void
+installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string, callback: AsyncCallback\<CMResult>): void
 
 Installs a private credential. This API uses an asynchronous callback to return the result.
 
@@ -188,10 +189,13 @@ Installs a private credential. This API uses an asynchronous callback to return 
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 | 17500003 | The keystore is not valid format or keystorePwd is not correct. |
+| 17500004<sup>12+</sup> | The count of credentials reach the max. |
 
 **Example**
 ```ts
@@ -205,20 +209,20 @@ let keystorePwd: string = "123456";
 try {
   certManager.installPrivateCertificate(keystore, keystorePwd, "test", (err, cmResult) => {
     if (err != null) {
-      console.error("[Callback]installPrivateCertificate err: " + err.code);
+      console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
       let uri: string = (cmResult.uri == undefined) ? '' : cmResult.uri;
-      console.log("[Callback]installPrivateCertificate success");
+      console.info('Succeeded in installing private certificate.');
     }
   });
 } catch (error) {
-  console.error("[Callback]installPrivateCertificate failed");
+  console.error(`Failed to install private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.installPrivateCertificate
 
-installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string) : Promise\<CMResult>
+installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string): Promise\<CMResult>
 
 Installs a private credential. This API uses a promise to return the result.
 
@@ -244,10 +248,13 @@ Installs a private credential. This API uses a promise to return the result.
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 | 17500003 | The keystore is not valid format or keystorePwd is not correct. |
+| 17500004<sup>12+</sup> | The count of credentials reach the max. |
 
 **Example**
 
@@ -263,18 +270,18 @@ let keystorePwd: string = "123456";
 try {
   certManager.installPrivateCertificate(keystore, keystorePwd, 'test').then((cmResult) => {
     let uri: string = (cmResult.uri == undefined) ? '' : cmResult.uri;
-    console.log("[Promise]installPrivateCertificate success");
+    console.info('Succeeded in installing private certificate.');
   }).catch((err: BusinessError) => {
-    console.error('[Promise]installPrivateCertificate failed');
+    console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]installPrivateCertificate failed");
+} catch (error) {
+  console.error(`Failed to install private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.getPrivateCertificate
 
-getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>) : void
+getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>): void
 
 Obtains detailed information about a private credential. This API uses an asynchronous callback to return the result.
 
@@ -295,6 +302,8 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 
@@ -306,24 +315,24 @@ let uri: string = 'test'; /* URI of the credential installed. The process for in
 try {
   certManager.getPrivateCertificate(uri, (err, cmResult) => {
     if (err != null) {
-      console.error("getPrivateCertificate error");
+      console.error(`Failed to get private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
       if (cmResult.credential == undefined) {
-        console.log("[Callback]getPrivateCertificate result is undefined");
+        console.info('The result of getting private certificate is undefined.');
       } else {
         let list = cmResult.credential;
-        console.log("[Callback]getPrivateCertificate success");
+        console.info('Succeeded in getting private certificate.');
       }
     }
   });
 } catch (error) {
-  console.error("[Callback]installPrivateCertificate failed");
+  console.error(`Failed to get private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.getPrivateCertificate
 
-getPrivateCertificate(keyUri: string) : Promise\<CMResult>
+getPrivateCertificate(keyUri: string): Promise\<CMResult>
 
 Obtains detailed information about a private credential. This API uses a promise to return the result.
 
@@ -349,6 +358,8 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 
@@ -361,22 +372,22 @@ let uri: string = 'test'; /* URI of the credential installed. The process for in
 try {
   certManager.getPrivateCertificate(uri).then((cmResult) => {
     if (cmResult.credential == undefined) {
-      console.log("[Promise]getPrivateCertificate result is undefined");
+      console.info('The result of getting private certificate is undefined.');
     } else {
       let list = cmResult.credential;
-      console.log("[Promise]getPrivateCertificate success");
+      console.info('Succeeded in getting private certificate.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]getPrivateCertificate failed');
+    console.error(`Failed to get private certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]getPrivateCertificate failed");
+} catch (error) {
+  console.error(`Failed to get private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.uninstallPrivateCertificate
 
-uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>) : void
+uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>): void
 
 Uninstalls a private credential. This API uses an asynchronous callback to return the result.
 
@@ -397,6 +408,8 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 
@@ -404,23 +417,23 @@ For details about the following error codes, see [Certificate Management Error C
 ```ts
 import certManager from '@ohos.security.certManager';
 
-let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
+let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
 try {
   certManager.uninstallPrivateCertificate(uri, (err, result) => {
     if (err != null) {
-      console.error("[Callback]uninstallPrivateCertificate error");
+      console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]uninstallPrivateCertificate success");
+      console.info('Succeeded in uninstalling private certificate.');
     }
   });
-} catch (err) {
-  console.error("[Callback]uninstallPrivateCertificate failed");
+} catch (error) {
+  console.error(`Failed to uninstall private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.uninstallPrivateCertificate
 
-uninstallPrivateCertificate(keyUri: string) : Promise\<void>
+uninstallPrivateCertificate(keyUri: string): Promise\<void>
 
 Uninstalls a private credential. This API uses a promise to return the result.
 
@@ -446,6 +459,8 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 
@@ -454,21 +469,21 @@ For details about the following error codes, see [Certificate Management Error C
 import certManager from '@ohos.security.certManager';
 import { BusinessError } from '@ohos.base';
 
-let uri: string = 'test'; /* URI of the credential. The process for installing the credential is omitted here. */
+let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
 try {
   certManager.uninstallPrivateCertificate(uri).then((cmResult) => {
-    console.log("[Promise]uninstallPrivateCertificate success");
+    console.info('Succeeded in uninstalling private certificate.');
   }).catch((err: BusinessError) => {
-    console.error('[Promise]uninstallPrivateCertificate failed, code =', err.code);
+    console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]uninstallPrivateCertificate failed");
+} catch (error) {
+  console.error(`Failed to uninstall private certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.init
 
-init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>) : void
+init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>): void
 
 Initializes the signing or signature verification operation using the specified credential. This API uses an asynchronous callback to return the result.
 
@@ -490,6 +505,8 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 | 17500005<sup>12+</sup> | The application is not authorized by user. |
@@ -507,19 +524,19 @@ const req: certManager.CMSignatureSpec = {
 try {
   certManager.init(uri, req, (err, cmHandle) => {
     if (err != null) {
-      console.error("[Callback]init err");
+      console.error(`Failed to init. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]init success");
+      console.info('Succeeded in initiating.');
     }
   })
-} catch (err) {
-  console.error("[Callback]init failed");
+} catch (error) {
+  console.error(`Failed to init. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.init
 
-init(authUri: string, spec: CMSignatureSpec) : Promise\<CMHandle>
+init(authUri: string, spec: CMSignatureSpec): Promise\<CMHandle>
 
 Initializes the signing or signature verification operation using the specified credential. This API uses a promise to return the result.
 
@@ -546,6 +563,8 @@ For details about the following error codes, see [Certificate Management Error C
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 | 17500005<sup>12+</sup> | The application is not authorized by user. |
@@ -563,12 +582,12 @@ const req: certManager.CMSignatureSpec = {
 }
 try {
   certManager.init(uri, req).then((handle) => {
-    console.log('[Promise]init success');
-  }).catch((error: BusinessError) => {
-    console.error('[Promise]init failed');
+    console.info('Succeeded in initiating.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to init. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]init failed");
+} catch (error) {
+  console.error(`Failed to init. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -594,9 +613,11 @@ Updates the data for the signing or signature verification operation. This API u
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **Example**
 ```ts
@@ -612,13 +633,13 @@ let srcData: Uint8Array = new Uint8Array([
 try {
   certManager.update(cmHandle, srcData, (err, result) => {
     if (err != null) {
-      console.error("[Callback]certManager update error");
+      console.error(`Failed to update. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]certManager update success");
+      console.info('Succeeded in updating.');
     }
   });
-} catch (err) {
-  console.error("[Callback]update failed");
+} catch (error) {
+  console.error(`Failed to update. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -649,9 +670,11 @@ Updates the data for the signing or signature verification operation. This API u
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **Example**
 ```ts
@@ -667,18 +690,18 @@ let srcData: Uint8Array = new Uint8Array([
 ]);
 try {
   certManager.update(cmHandle, srcData).then((result) => {
-    console.log('[Promise]update success');
-  }).catch((error: BusinessError) => {
-    console.error('[Promise]update failed');
+    console.info('Succeeded in updating.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to update. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]certManager update error");
+} catch (error) {
+  console.error(`Failed to update. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.finish
 
-finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>) : void
+finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>): void
 
 Finishes the signing operation. This API uses an asynchronous callback to return the result.
 
@@ -697,9 +720,11 @@ Finishes the signing operation. This API uses an asynchronous callback to return
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **Example**
 ```ts
@@ -712,24 +737,24 @@ let cmHandle: Uint8Array = new Uint8Array([
 try {
   certManager.finish(cmHandle, (err, cmResult) => {
     if (err != null) {
-      console.error("[Callback]certManager sign failed");
+      console.error(`Failed to finish. Code: ${err.code}, message: ${err.message}`);
     } else {
       if (cmResult.outData != undefined) {
         let signRes: Uint8Array = cmResult.outData;
-        console.log("[Callback]certManager sign success");
+        console.info('Succeeded in finishing.');
       } else {
-        console.error("[Callback]certManager sign failed");
+        console.info('The result of finishing is undefined.');
       }
     }
   });
 } catch(error) {
-  console.error("[Callback]certManager finish error");
+  console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.finish
 
-finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMResult>) : void
+finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMResult>): void
 
 Finishes the signature verification operation. This API uses an asynchronous callback to return the result.
 
@@ -749,9 +774,11 @@ Finishes the signature verification operation. This API uses an asynchronous cal
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **Example**
 ```ts
@@ -767,19 +794,19 @@ let signRes: Uint8Array = new Uint8Array([
 try {
   certManager.finish(cmHandle, signRes, (err, cmResult) => {
     if (err != null) {
-      console.error("[Callback]certManager verify failed");
+      console.error(`Failed to finish. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]certManager verify success");
+      console.info('Succeeded in finishing.');
     }
   });
 } catch(error) {
-  console.error("[Callback]certManager finish error");
+  console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.finish
 
-finish(handle: Uint8Array, signature?: Uint8Array) : Promise\<CMResult>
+finish(handle: Uint8Array, signature?: Uint8Array): Promise\<CMResult>
 
 Finishes the signing or signature verification operation. This API uses a promise to return the result.
 
@@ -804,9 +831,11 @@ Finishes the signing or signature verification operation. This API uses a promis
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **Example**
 ```ts
@@ -822,12 +851,12 @@ try {
   certManager.finish(cmHandle).then((cmResult) => {
     if (cmResult.outData != undefined) {
       let signRes1: Uint8Array = cmResult.outData;
-      console.log("[Promise]finish sign success");
+      console.info('Succeeded in finishing signature.');
     } else {
-      console.error("[Promise]finish sign failed");
+      console.info('The result of signature is undefined.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]finish sign failed');
+    console.error(`Failed to finish signature. Code: ${err.code}, message: ${err.message}`);
   })
 
   /* Signature generated. */
@@ -836,18 +865,18 @@ try {
   ]);
   /* Finish the signature verification operation. */
   certManager.finish(cmHandle, signRes).then((cmResult) => {
-    console.log("[Promise]finish verify success");
+    console.info('Succeeded in finishing verification.');
   }).catch((err: BusinessError) => {
-    console.error('[Promise]finish verify failed');
+    console.error(`Failed to finish verification. Code: ${err.code}, message: ${err.message}`);
   })
 } catch(error) {
-  console.error("[Promise]certManager finish error");
+  console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.abort
 
-abort(handle: Uint8Array, callback: AsyncCallback\<void>) : void
+abort(handle: Uint8Array, callback: AsyncCallback\<void>): void
 
 Aborts the signing or signature verification operation. This API uses an asynchronous callback to return the result.
 
@@ -866,9 +895,11 @@ Aborts the signing or signature verification operation. This API uses an asynchr
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **Example**
 ```ts
@@ -881,19 +912,19 @@ let cmHandle: Uint8Array = new Uint8Array([
 try {
   certManager.abort(cmHandle, (err, cmResult) => {
     if (err != null) {
-      console.error("[Callback]certManager abort failed");
+      console.error(`Failed to abort. Code: ${err.code}, message: ${err.message}`);
     } else {
-      console.log("[Callback]certManager abort success");
+      console.info('Succeeded in aborting.');
     }
   });
 } catch(error) {
-  console.error("[Callback]certManager abort error");
+  console.error(`Failed to abort. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.abort
 
-abort(handle: Uint8Array) : Promise\<void>
+abort(handle: Uint8Array): Promise\<void>
 
 Aborts the signing or signature verification operation. This API uses a promise to return the result.
 
@@ -917,9 +948,11 @@ Aborts the signing or signature verification operation. This API uses a promise 
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID| Error Message     |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **Example**
 ```ts
@@ -932,18 +965,18 @@ let cmHandle: Uint8Array = new Uint8Array([
 ]);
 try {
   certManager.abort(cmHandle).then((result) => {
-    console.log('[Promise]abort success');
-  }).catch((error: BusinessError) => {
-    console.error('[Promise]abort failed');
+    console.info('Succeeded in aborting.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to abort. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]certManager abort error");
+} catch (error) {
+  console.error(`Failed to abort. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.getPublicCertificate<sup>12+</sup>
 
-getPublicCertificate(keyUri: string) : Promise\<CMResult>
+getPublicCertificate(keyUri: string): Promise\<CMResult>
 
 Obtains detailed information about a public credential. This API uses a promise to return the result.
 
@@ -970,7 +1003,7 @@ For details about the following error codes, see [Certificate Management Error C
 | ID| Error Message     |
 | -------- | ------------- |
 | 201 | The application has no permission to call the API. |
-| 401 | The parameter check failed. |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 | 17500005 | The application is not authorized by user. |
@@ -984,22 +1017,22 @@ let uri: string = 'test'; /* Unique identifier of the public credential. The pro
 try {
   certManager.getPublicCertificate(uri).then((cmResult) => {
     if (cmResult.credential == undefined) {
-      console.log("[Promise]getPublicCertificate result is undefined");
+      console.info('The result of getting public certificate is undefined.');
     } else {
       let cred = cmResult.credential;
-      console.log("[Promise]getPublicCertificate success");
+      console.info('Succeeded in getting Public certificate.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]getPublicCertificate failed, code =', err.code);
+    console.error(`Failed to get Public certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]getPublicCertificate failed");
+} catch (error) {
+  console.error(`Failed to get Public certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
 ## certManager.isAuthorizedApp<sup>12+</sup>
 
-isAuthorizedApp(keyUri: string) : Promise\<boolean>
+isAuthorizedApp(keyUri: string): Promise\<boolean>
 
 Checks whether this application is authorized by the specified user credential. This API uses a promise to return the result.
 
@@ -1026,7 +1059,7 @@ For details about the following error codes, see [Certificate Management Error C
 | ID| Error Message     |
 | -------- | ------------- |
 | 201 | The application has no permission to call the API. |
-| 401 | The parameter check failed. |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 
 **Example**
@@ -1038,14 +1071,115 @@ let uri: string = 'test'; /* Unique identifier of the credential. The process fo
 try {
   certManager.isAuthorizedApp(uri).then((res) => {
     if (res) {
-      console.log("[Promise]isAuthorizedApp return true");
+      console.info('The application is authorized by the user.');
     } else {
-      console.log("[Promise]isAuthorizedApp return false");
+      console.info('The application is not authorized by the user.');
     }
   }).catch((err: BusinessError) => {
-    console.error('[Promise]isAuthorizedApp failed, code =', err.code);
+    console.error(`Failed to get Public certificate. Code: ${err.code}, message: ${err.message}`);
   })
-} catch (err) {
-  console.error("[Promise]isAuthorizedApp failed");
+} catch (error) {
+  console.error(`Failed to get Public certificate. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certManager.getAllUserTrustedCertificates<sup>12+</sup>
+
+getAllUserTrustedCertificates(): Promise\<CMResult>
+
+Obtains all the user root CA certificates. The API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+**Return value**
+
+| Type                                       | Description                |
+| ------------------------------------------- | -------------------- |
+| Promise\<[CMResult](#cmresult)> | Promise used to return the user root CA certificates (that is, **certList** in [CMResult](#cmresult)) obtained.|
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 201 | The application has no permission to call the API. |
+| 17500001 | There is an generic error occurred when calling the API. |
+
+**Example**
+```ts
+import certManager from '@ohos.security.certManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+  certManager.getAllUserTrustedCertificates().then((cmResult) => {
+    if (cmResult.certList == undefined) {
+      console.info('The result of getting all user trusted certificates is undefined.');
+    } else {
+      let list = cmResult.certList;
+      console.info('Succeeded in getting all user trusted certificates.');
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get all user trusted certificates. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to get all user trusted certificates. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certManager.getUserTrustedCertificate<sup>12+</sup>
+
+getUserTrustedCertificate(certUri: string): Promise\<CMResult>
+
+Obtains the detailed information about a user root CA certificate. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                      |
+| -------- | ------------------------------------------------- | ---- | -------------------------- |
+| certUri | string                   | Yes  | Unique identifier of the user root CA certificate.|
+
+**Return value**
+
+| Type                                       | Description                |
+| ------------------------------------------- | -------------------- |
+| Promise\<[CMResult](#cmresult)> | Promise used to return the detailed certificate information (that is, **certInfo** in [CMResult](#cmresult)) obtained.|
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 201 | The application has no permission to call the API. |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API. |
+| 17500002 | The certificate do not exist. |
+
+**Example**
+```ts
+import certManager from '@ohos.security.certManager';
+import { BusinessError } from '@ohos.base';
+
+let certUri: string = 'testUserCert'; /* Unique identifer of the user root CA certificate. The process of installing the user root CA certificate is omitted here. */
+try {
+  certManager.getUserTrustedCertificate(certUri).then((cmResult) => {
+    if (cmResult.certInfo == undefined) {
+      console.info('The result of getting user trusted certificate is undefined.');
+    } else {
+      let cert = cmResult.certInfo;
+      console.info('Succeeded in getting user trusted certificate.');
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get user trusted certificate. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to get user trusted certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```

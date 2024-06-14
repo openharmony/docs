@@ -19,7 +19,7 @@ getCalendarManager(context : Context): CalendarManager
 
 根据上下文获取CalendarManager对象，用于管理日历。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -296,7 +296,7 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 
 **需要权限**：ohos.permission.READ_CALENDAR
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -331,7 +331,7 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 **需要权限**： ohos.permission.READ_CALENDAR
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -376,7 +376,7 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 **需要权限**： ohos.permission.READ_CALENDAR
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -481,7 +481,7 @@ calendarMgr?.getAllCalendars().then((data: calendarManager.Calendar[]) => {
 
 ### 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -495,7 +495,7 @@ addEvent(event: Event, callback: AsyncCallback\<number>): void
 
 创建日程，入参Event不填日程id，使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -540,7 +540,7 @@ addEvent(event: Event): Promise\<number>
 
 创建日程，入参Event不填日程id，使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1357,7 +1357,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 日历帐户信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1382,7 +1382,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 日程对象，包含日程标题、开始时间、结束时间等信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1406,7 +1406,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 帐户类型枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1422,7 +1422,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 日程地点。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1628,7 +1628,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 日程类型枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1641,7 +1641,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 日程重复规则。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1654,7 +1654,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 日程重复规则类型枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1669,7 +1669,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 日程参与者。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1682,7 +1682,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 日程服务。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1696,7 +1696,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 日程服务类型枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 

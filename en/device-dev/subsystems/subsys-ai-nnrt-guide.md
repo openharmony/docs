@@ -358,7 +358,7 @@ The SELinux feature has been enabled for the OpenHarmony. You need to configure 
     ```
 
 10. Configure access permissions because SELinux uses the trustlist access permission mechanism. Upon service startup, run the `dmesg` command to view the AVC alarm,
-which provides a list of missing permissions. For details about the SELinux configuration, see [security_selinux] (https://gitee.com/openharmony/security_selinux/blob/master/README-en.md).
+which provides a list of missing permissions. For details about the SELinux configuration, see [security_selinux](https://gitee.com/openharmony/security_selinux/blob/master/README-en.md).
     ```shell
     hdc_std shell
     dmesg | grep nnrt
@@ -438,14 +438,18 @@ For the complete demo code, see [NNRt Service Implementation Example](https://gi
 2. Add the `bundle.json` file to the `drivers/peripheral/nnrt` directory. For details about how to write the `bundle.json` file, see [Implementing the HDI Service](#implementing-the-hdi-service).
 
 3. Add the dependency files of MindSpore Lite because the demo depends on the CPU operator of MindSpore Lite.
-    - Download the header file of [MindSpore Lite 1.8.1](https://ms-release.obs.cn-north-4.myhuaweicloud.com/1.8.1/MindSpore/lite/release/android/gpu/mindspore-lite-1.8.1-android-aarch64.tar.gz).
+    - Run the following command in the root directory of the OpenHarmony source code to build the MindSpore Lite dynamic library: The MindSpore source code is stored in `third_party/mindspore` in the root directory of the OpenHarmony source code.
+      ```shell
+      # Build the MindSpore Lite dynamic libraries.
+      ./build.sh --product-name rk3568 -ccaache --jobs 4 --build-target mindspore_lib
+      ```
     - Create the `mindspore` folder in the `drivers/peripheral/nnrt/v2_0` directory to store the dynamic libraries and header files of MindSpore Lite.
       ```shell
       mkdir drivers/peripheral/nnrt/v2_0/mindspore
       ```
-    - Decompress the `mindspore-lite-1.8.1-android-aarch64.tar.gz` file, and copy the `runtime/include` folder to the `drivers/peripheral/nnrt/v2_0/mindspore` directory.
+    - Copy the `mindspore-src/source/include` directory in the MindSpore source code to the `drivers/peripheral/nnrt/v2_0/mindspore` directory.
       ```shell
-      cp mindspore-lite-1.8.1-android-aarch64/runtime/include drivers/peripheral/nnrt/v2_0/mindspore
+      cp third_party/mindspore/mindspore-src/source/include drivers/peripheral/nnrt/v2_0/mindspore
       ```
     - Create and copy the `schema` file of MindSpore Lite.
       ```shell
@@ -453,17 +457,14 @@ For the complete demo code, see [NNRt Service Implementation Example](https://gi
       mkdir drivers/peripheral/nnrt/v2_0/hdi_cpu_service/include/mindspore_schema
 
       # Copy the MindSpore schema file from the third_party directory.
-      cp third_party/mindspore/mindspore/lite/schema/* drivers/peripheral/nnrt/v2_0/hdi_cpu_service/include/mindspore_schema/
+      cp third_party/mindspore/mindspore-src/source/mindspore/lite/schema/* drivers/peripheral/nnrt/v2_0/hdi_cpu_service/include/mindspore_schema/
       ```
-    - Build the MindSpore Lite dynamic libraries of OpenHarmony, and copy them to the `mindspore` folder.
+    - Copy the MindSpore Lite dynamic library to the `mindspore` directory.
       ```shell
-      # Build the MindSpore Lite dynamic libraries.
-      ./build.sh --product-name rk3568 -ccaache --jobs 4 --build-target mindspore_lib
-
       # Create the `mindspore` folder in the `drivers/peripheral/nnrt/v2_0/mindspore` directory.
       mkdir drivers/peripheral/nnrt/v2_0/mindspore/mindspore
 
       # Copy the MindSpore dynamic libraries from the `out` folder to the `drivers/peripheral/nnrt/v2_0/mindspore/mindspore` directory.
-      cp out/rk3568/package/phone/system/lib/libmindspore-lite.huawei.so drivers/peripheral/nnrt/v2_0/mindspore/mindspore/
+      cp out/rk3568/package/phone/system/lib/libmindspore-lite.so drivers/peripheral/nnrt/v2_0/mindspore/mindspore/
       ```
 4. Follow the [development procedure](#development-procedure) to complete other configurations.
