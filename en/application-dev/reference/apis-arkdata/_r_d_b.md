@@ -29,22 +29,22 @@ The relational database (RDB) store manages data based on relational models. The
 
 | Name| Description|
 | -------- | -------- |
-| [OH_Cursor](_o_h___cursor.md) | Defines a result set.| 
-| [OH_Predicates](_o_h___predicates.md) | Defines a **predicates** object.| 
-| [OH_VObject](_o_h___v_object.md) | Defines the allowed data field types.| 
-| [OH_VBucket](_o_h___v_bucket.md) | Defines the types of the key and value in a KV pair.| 
-| [OH_Rdb_Config](_o_h___rdb___config.md) | Defines the RDB store configuration.| 
-| [OH_Rdb_Store](_o_h___rdb___store.md) | Defines the RDB store type.| 
-| [Rdb_DistributedConfig](_rdb___distributed_config.md) | Defines the distributed configuration of a table.| 
-| [Rdb_KeyInfo](_rdb___key_info.md) | Defines the primary key or row number of the row that changes.| 
-| [Rdb_KeyInfo::Rdb_KeyData](union_rdb___key_info_1_1_rdb___key_data.md) | Defines the changed data.| 
-| [Rdb_ChangeInfo](_rdb___change_info.md) | Defines the details about the device-cloud sync process.| 
-| [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md) | Defines a callback used to return the subscribed event.| 
-| [Rdb_DataObserver](_rdb___data_observer.md) | Defines the data observer.| 
-| [Rdb_Statistic](_rdb___statistic.md) | Defines the device-cloud sync statistics of a database table.| 
-| [Rdb_TableDetails](_rdb___table_details.md) | Defines the statistics of device-cloud upload and download tasks of a database table.| 
-| [Rdb_ProgressDetails](_rdb___progress_details.md) | Defines the statistics of the overall device-cloud sync (upload and download) tasks of an RDB store.| 
-| [Rdb_ProgressObserver](_rdb___progress_observer.md) | Defines the observer of the device-cloud sync progress.| 
+| [OH_Cursor](_o_h___cursor.md) | Defines a result set.|
+| [OH_Predicates](_o_h___predicates.md) | Defines a **predicates** object.|
+| [OH_VObject](_o_h___v_object.md) | Defines the allowed data field types.|
+| [OH_VBucket](_o_h___v_bucket.md) | Defines the types of the key and value in a KV pair.|
+| [OH_Rdb_Config](_o_h___rdb___config.md) | Defines the RDB store configuration.|
+| [OH_Rdb_Store](_o_h___rdb___store.md) | Defines the RDB store type.|
+| [Rdb_DistributedConfig](_rdb___distributed_config.md) | Defines the distributed configuration of a table.|
+| [Rdb_KeyInfo](_rdb___key_info.md) | Defines the primary key or row number of the row that changes.|
+| [Rdb_KeyInfo::Rdb_KeyData](union_rdb___key_info_1_1_rdb___key_data.md) | Defines the changed data.|
+| [Rdb_ChangeInfo](_rdb___change_info.md) | Defines the details about the device-cloud sync process.|
+| [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md) | Defines a callback used to return the subscribed event.|
+| [Rdb_DataObserver](_rdb___data_observer.md) | Defines the data observer.|
+| [Rdb_Statistic](_rdb___statistic.md) | Defines the device-cloud sync statistics of a database table.|
+| [Rdb_TableDetails](_rdb___table_details.md) | Defines the statistics of device-cloud upload and download tasks of a database table.|
+| [Rdb_ProgressDetails](_rdb___progress_details.md) | Defines the statistics of the overall device-cloud sync (upload and download) tasks of an RDB store.|
+| [Rdb_ProgressObserver](_rdb___progress_observer.md) | Defines the observer of the device-cloud sync progress.|
 
 
 ### Macros
@@ -60,34 +60,34 @@ The relational database (RDB) store manages data based on relational models. The
 
 | Name| Description|
 | -------- | -------- |
-| [OH_ColumnType](#oh_columntype) | Defines an enum for the field types in an RDB store.| 
-| [OH_Cursor](#oh_cursor) | Defines a struct for a result set.| 
-| [OH_OrderType](#oh_ordertype) | Defines an enum for sorting types.| 
-| [OH_Predicates](#oh_predicates) | Defines a **predicates** object.| 
-| [OH_VObject](#oh_vobject) | Defines a struct for allowed data field types.| 
-| [OH_VBucket](#oh_vbucket) | Defines a struct for the types of the key and value in a KV pair.| 
-| [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel) | Defines an enum for RDB store security levels.| 
-| [Rdb_SecurityArea](#rdb_securityarea) | Defines an enum for security area levels of an RDB store.| 
-| [Rdb_DistributedType](#rdb_distributedtype) | Defines an enum for distributed types.| 
-| [Rdb_DistributedConfig](#rdb_distributedconfig) | Defines a struct for distributed configuration of a table.| 
-| [Rdb_ChangeType](#rdb_changetype) | Defines an enum for data change types.| 
-| [Rdb_KeyInfo](#rdb_keyinfo) | Defines a struct for the primary key or row number of the row that changes.| 
-| [Rdb_ChangeInfo](#rdb_changeinfo) | Defines a struct for the details about the device-cloud sync process.| 
-| [Rdb_SubscribeType](#rdb_subscribetype) | Defines an enum for subscription types.| 
-| [Rdb_BriefObserver](#rdb_briefobserver) | Defines a callback used to return the device-cloud data change event.| 
-| [Rdb_DetailsObserver](#rdb_detailsobserver) | Defines a callback used to return the details about the device-cloud data change.| 
-| [Rdb_SubscribeCallback](#rdb_subscribecallback) | Defines a callback used to return the subscribed event.| 
-| [Rdb_DataObserver](#rdb_dataobserver) | Defines a struct for the data observer.| 
-| [Rdb_SyncMode](#rdb_syncmode) | Defines an enum for RDB store sync modes.| 
-| [Rdb_Statistic](#rdb_statistic) | Defines a struct for the device-cloud sync statistics of a database table.| 
-| [Rdb_TableDetails](#rdb_tabledetails) | Defines a struct for statistics of device-cloud upload and download tasks of a database table.| 
-| [Rdb_Progress](#rdb_progress) | Defines an enum for device-cloud sync progresses.| 
-| [Rdb_ProgressCode](#rdb_progresscode) | Defines an enum for device-cloud sync states.| 
-| [Rdb_ProgressDetails](#rdb_progressdetails) | Defines a struct for statistics of the overall device-cloud sync (upload and download) tasks of an RDB store.| 
-| [Rdb_ProgressCallback](#rdb_progresscallback) | Defines a callback used to return the device-cloud sync progress.| 
-| [Rdb_SyncCallback](#rdb_synccallback) | Defines a callback for device-cloud sync.| 
-| [Rdb_ProgressObserver](#rdb_progressobserver) | Defines the observer of the device-cloud sync progress.| 
-| [OH_Rdb_ErrCode](#oh_rdb_errcode) | Defines an enum for error codes.| 
+| [OH_ColumnType](#oh_columntype) | Defines an enum for the field types in an RDB store.|
+| [OH_Cursor](#oh_cursor) | Defines a struct for a result set.|
+| [OH_OrderType](#oh_ordertype) | Defines an enum for sorting types.|
+| [OH_Predicates](#oh_predicates) | Defines a **predicates** object.|
+| [OH_VObject](#oh_vobject) | Defines a struct for allowed data field types.|
+| [OH_VBucket](#oh_vbucket) | Defines a struct for the types of the key and value in a KV pair.|
+| [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel) | Defines an enum for RDB store security levels.|
+| [Rdb_SecurityArea](#rdb_securityarea) | Defines an enum for security area levels of an RDB store.|
+| [Rdb_DistributedType](#rdb_distributedtype) | Defines an enum for distributed types.|
+| [Rdb_DistributedConfig](#rdb_distributedconfig) | Defines a struct for distributed configuration of a table.|
+| [Rdb_ChangeType](#rdb_changetype) | Defines an enum for data change types.|
+| [Rdb_KeyInfo](#rdb_keyinfo) | Defines a struct for the primary key or row number of the row that changes.|
+| [Rdb_ChangeInfo](#rdb_changeinfo) | Defines a struct for the details about the device-cloud sync process.|
+| [Rdb_SubscribeType](#rdb_subscribetype) | Defines an enum for subscription types.|
+| [Rdb_BriefObserver](#rdb_briefobserver) | Defines a callback used to return the device-cloud data change event.|
+| [Rdb_DetailsObserver](#rdb_detailsobserver) | Defines a callback used to return the details about the device-cloud data change.|
+| [Rdb_SubscribeCallback](#rdb_subscribecallback) | Defines a callback used to return the subscribed event.|
+| [Rdb_DataObserver](#rdb_dataobserver) | Defines a struct for the data observer.|
+| [Rdb_SyncMode](#rdb_syncmode) | Defines an enum for RDB store sync modes.|
+| [Rdb_Statistic](#rdb_statistic) | Defines a struct for the device-cloud sync statistics of a database table.|
+| [Rdb_TableDetails](#rdb_tabledetails) | Defines a struct for statistics of device-cloud upload and download tasks of a database table.|
+| [Rdb_Progress](#rdb_progress) | Defines an enum for device-cloud sync progresses.|
+| [Rdb_ProgressCode](#rdb_progresscode) | Defines an enum for device-cloud sync states.|
+| [Rdb_ProgressDetails](#rdb_progressdetails) | Defines a struct for statistics of the overall device-cloud sync (upload and download) tasks of an RDB store.|
+| [Rdb_ProgressCallback](#rdb_progresscallback) | Defines a callback used to return the device-cloud sync progress.|
+| [Rdb_SyncCallback](#rdb_synccallback) | Defines a callback for device-cloud sync.|
+| [Rdb_ProgressObserver](#rdb_progressobserver) | Defines the observer of the device-cloud sync progress.|
+| [OH_Rdb_ErrCode](#oh_rdb_errcode) | Defines an enum for error codes.|
 
 
 ### Enums
@@ -100,7 +100,7 @@ The relational database (RDB) store manages data based on relational models. The
 | [Rdb_SecurityArea](#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | Enumerates the security area levels of an RDB store.|
 | [Rdb_DistributedType](#rdb_distributedtype-1) { RDB_DISTRIBUTED_CLOUD } | Enumerates the distributed types.|
 | [Rdb_ChangeType](#rdb_changetype-1) { RDB_DATA_CHANGE, RDB_ASSET_CHANGE } | Enumerates the data change types.|
-| [Rdb_SubscribeType](#rdb_subscribetype-1) { RDB_SUBSCRIBE_TYPE_CLOUD, RDB_SUBSCRIBE_TYPE_CLOUD_DETAILS } | Enumerates the subscription types.|
+| [Rdb_SubscribeType](#rdb_subscribetype-1) { RDB_SUBSCRIBE_TYPE_CLOUD, RDB_SUBSCRIBE_TYPE_CLOUD_DETAILS, RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS } | Enumerates the subscription types.|
 | [Rdb_SyncMode](#rdb_syncmode-1) { RDB_SYNC_MODE_TIME_FIRST, RDB_SYNC_MODE_NATIVE_FIRST, RDB_SYNC_MODE_CLOUD_FIRST } | Enumerates the RDB sync modes.|
 | [Rdb_Progress](#rdb_progress-1) { RDB_SYNC_BEGIN, RDB_SYNC_IN_PROGRESS, RDB_SYNC_FINISH } | Enumerates the device-cloud sync progresses.|
 | [Rdb_ProgressCode](#rdb_progresscode-1) {<br>RDB_SUCCESS, RDB_UNKNOWN_ERROR, RDB_NETWORK_ERROR, RDB_CLOUD_DISABLED,<br>RDB_LOCKED_BY_OTHERS, RDB_RECORD_LIMIT_EXCEEDED, RDB_NO_SPACE_FOR_ASSET<br>} | Enumerates the device-cloud sync states.|
@@ -111,137 +111,139 @@ The relational database (RDB) store manages data based on relational models. The
 
 | Name| Description|
 | -------- | -------- |
-| [OH_VBucket_PutAsset](#oh_vbucket_putasset) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*value) | Puts an **OH_Asset** object into the [OH_VBucket](_o_h___v_bucket.md) object with the given column name.| 
-| [OH_VBucket_PutAssets](#oh_vbucket_putassets) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*\*value, int count) | Puts an array of **OH_Asset** objects into the [OH_VBucket](_o_h___v_bucket.md) object with the given column name.| 
-| [OH_Rdb_CreateValueObject](#oh_rdb_createvalueobject) () | Creates an [OH_VObject](_o_h___v_object.md) instance.| 
-| [OH_Rdb_CreateValuesBucket](#oh_rdb_createvaluesbucket) () | Creates an [OH_VBucket](_o_h___v_bucket.md) instance.| 
-| [OH_Rdb_CreatePredicates](#oh_rdb_createpredicates) (const char \*table) | Creates an [OH_Predicates](_o_h___predicates.md) instance.| 
-| [OH_Rdb_GetOrOpen](#oh_rdb_getoropen) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config, int \*errCode) | Obtains an [OH_Rdb_Store](_o_h___rdb___store.md) instance for RDB store operations.| 
-| [OH_Rdb_CloseStore](#oh_rdb_closestore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Closes an [OH_Rdb_Store](_o_h___rdb___store.md) object to reclaim the memory occupied.| 
-| [OH_Rdb_DeleteStore](#oh_rdb_deletestore) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config) | Deletes an RDB store with the specified database file configuration.| 
-| [OH_Rdb_Insert](#oh_rdb_insert) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*table, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket) | Inserts a row of data into a table.| 
-| [OH_Rdb_Update](#oh_rdb_update) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket, [OH_Predicates](_o_h___predicates.md) \*predicates) | Updates data in an RDB store based on specified conditions.| 
-| [OH_Rdb_Delete](#oh_rdb_delete) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | Deletes data from an RDB store based on specified conditions.| 
-| [OH_Rdb_Query](#oh_rdb_query) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*const \*columnNames, int length) | Queries data in an RDB store based on specified conditions.| 
-| [OH_Rdb_Execute](#oh_rdb_execute) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql) | Executes an SQL statement but returns no value.| 
-| [OH_Rdb_ExecuteQuery](#oh_rdb_executequery) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql) | Executes the SQL statement to query data in an RDB store.| 
-| [OH_Rdb_BeginTransaction](#oh_rdb_begintransaction) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Starts the transaction before executing the SQL statement.| 
-| [OH_Rdb_RollBack](#oh_rdb_rollback) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Rolls back the SQL statements executed.| 
-| [OH_Rdb_Commit](#oh_rdb_commit) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Commits the executed SQL statements.| 
-| [OH_Rdb_Backup](#oh_rdb_backup) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | Backs up an RDB store in the specified directory.| 
-| [OH_Rdb_Restore](#oh_rdb_restore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | Restores an RDB store from the specified database backup file.| 
-| [OH_Rdb_GetVersion](#oh_rdb_getversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int \*version) | Obtains the RDB store version.| 
-| [OH_Rdb_SetVersion](#oh_rdb_setversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int version) | Sets the RDB store version.| 
-| [OH_Rdb_SetDistributedTables](#oh_rdb_setdistributedtables) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tables[], uint32_t count, [Rdb_DistributedType](#rdb_distributedtype) type, const [Rdb_DistributedConfig](_rdb___distributed_config.md) \*config) | Sets distributed database tables.| 
-| [OH_Rdb_FindModifyTime](#oh_rdb_findmodifytime) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tableName, const char \*columnName, [OH_VObject](_o_h___v_object.md) \*values) | Obtains the last modification time of a table in an RDB store.| 
-| [OH_Rdb_Subscribe](#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | Register an observer for an RDB store. When data in the RDB store changes, a callback will be invoked to return the data changes.| 
-| [OH_Rdb_Unsubscribe](#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | Unregisters the observer of the specified type.| 
-| [OH_Rdb_GetTableDetails](#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | Obtains the device-cloud sync statistics of a table.| 
-| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | Performs device-cloud sync.| 
-| [OH_Rdb_SubscribeAutoSyncProgress](#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | Subscribes to the automatic sync progress of an RDB store. The registered callback will be invoked to return the automatic sync progress.| 
-| [OH_Rdb_UnsubscribeAutoSyncProgress](#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | Unsubscribes from the automatic sync process of an RDB store.| 
-
+| [OH_VBucket_PutAsset](#oh_vbucket_putasset) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*value) | Puts an **OH_Asset** object into the [OH_VBucket](_o_h___v_bucket.md) object with the given column name.|
+| [OH_VBucket_PutAssets](#oh_vbucket_putassets) ([OH_VBucket](_o_h___v_bucket.md) \*bucket, const char \*field, OH_Asset \*\*value, int count) | Puts an array of **OH_Asset** objects into the [OH_VBucket](_o_h___v_bucket.md) object with the given column name.|
+| [OH_Rdb_CreateValueObject](#oh_rdb_createvalueobject) () | Creates an [OH_VObject](_o_h___v_object.md) instance.|
+| [OH_Rdb_CreateValuesBucket](#oh_rdb_createvaluesbucket) () | Creates an [OH_VBucket](_o_h___v_bucket.md) instance.|
+| [OH_Rdb_CreatePredicates](#oh_rdb_createpredicates) (const char \*table) | Creates an [OH_Predicates](_o_h___predicates.md) instance.|
+| [OH_Rdb_GetOrOpen](#oh_rdb_getoropen) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config, int \*errCode) | Obtains an [OH_Rdb_Store](_o_h___rdb___store.md) instance for RDB store operations.|
+| [OH_Rdb_CloseStore](#oh_rdb_closestore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Closes an [OH_Rdb_Store](_o_h___rdb___store.md) object to reclaim the memory occupied.|
+| [OH_Rdb_DeleteStore](#oh_rdb_deletestore) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config) | Deletes an RDB store with the specified database file configuration.|
+| [OH_Rdb_Insert](#oh_rdb_insert) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*table, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket) | Inserts a row of data into a table.|
+| [OH_Rdb_Update](#oh_rdb_update) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket, [OH_Predicates](_o_h___predicates.md) \*predicates) | Updates data in an RDB store based on specified conditions.|
+| [OH_Rdb_Delete](#oh_rdb_delete) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | Deletes data from an RDB store based on specified conditions.|
+| [OH_Rdb_Query](#oh_rdb_query) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*const \*columnNames, int length) | Queries data in an RDB store based on specified conditions.|
+| [OH_Rdb_Execute](#oh_rdb_execute) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql) | Executes an SQL statement but returns no value.|
+| [OH_Rdb_ExecuteQuery](#oh_rdb_executequery) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql) | Executes the SQL statement to query data in an RDB store.|
+| [OH_Rdb_BeginTransaction](#oh_rdb_begintransaction) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Starts the transaction before executing the SQL statement.|
+| [OH_Rdb_RollBack](#oh_rdb_rollback) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Rolls back the SQL statements executed.|
+| [OH_Rdb_Commit](#oh_rdb_commit) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Commits the executed SQL statements.|
+| [OH_Rdb_Backup](#oh_rdb_backup) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | Backs up an RDB store in the specified directory.|
+| [OH_Rdb_Restore](#oh_rdb_restore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | Restores an RDB store from the specified database backup file.|
+| [OH_Rdb_GetVersion](#oh_rdb_getversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int \*version) | Obtains the RDB store version.|
+| [OH_Rdb_SetVersion](#oh_rdb_setversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int version) | Sets the RDB store version.|
+| [OH_Rdb_SetDistributedTables](#oh_rdb_setdistributedtables) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tables[], uint32_t count, [Rdb_DistributedType](#rdb_distributedtype) type, const [Rdb_DistributedConfig](_rdb___distributed_config.md) \*config) | Sets distributed database tables.|
+| [OH_Rdb_FindModifyTime](#oh_rdb_findmodifytime) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tableName, const char \*columnName, [OH_VObject](_o_h___v_object.md) \*values) | Obtains the last modification time of a table in an RDB store.|
+| [OH_Rdb_Subscribe](#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | Registers an observer for an RDB store. When data in the RDB store changes, a callback will be invoked to return the data changes. |
+| [OH_Rdb_Unsubscribe](#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | Unregisters the observer of the specified type.|
+| [OH_Rdb_GetTableDetails](#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | Obtains the device-cloud sync statistics of a table.|
+| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | Performs device-cloud sync.|
+| [OH_Rdb_SubscribeAutoSyncProgress](#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | Subscribes to the automatic sync progress of an RDB store. The registered callback will be invoked to return the automatic sync progress.|
+| [OH_Rdb_UnsubscribeAutoSyncProgress](#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | Unsubscribes from the automatic sync process of an RDB store.|
+| int [OH_Rdb_LockRow](#oh_rdb_lockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | Locks data in an RDB store based on specified conditions. The locked data will be blocked from the device-cloud sync.|
+| int [OH_Rdb_UnlockRow](#oh_rdb_unlockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | Unlocks data in an RDB store based on the specified conditions.|
+| [OH_Cursor](_o_h___cursor.md) \* [OH_Rdb_QueryLockedRow](#oh_rdb_querylockedrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*const \*columnNames, int length) | Queries the locked data in an RDB store.|
 
 ### Variables
 
 | Name| Description|
 | -------- | -------- |
-| [OH_Cursor::id](#id-15) | Unique identifier of the **OH_Cursor** struct.| 
-| [OH_Cursor::getColumnCount](#getcolumncount) | Pointer to the function used to obtain the number of columns in the result set.| 
-| [OH_Cursor::getColumnType](#getcolumntype) | Pointer to the function used to obtain the column type based on the specified column index.| 
-| [OH_Cursor::getColumnIndex](#getcolumnindex) | Pointer to the function used to obtain the column index based on the specified column name.| 
-| [OH_Cursor::getColumnName](#getcolumnname) | Pointer to the function used to obtain the column name based on the specified column index.| 
-| [OH_Cursor::getRowCount](#getrowcount) | Pointer to the function used to obtain the number of rows in the result set.| 
-| [OH_Cursor::goToNextRow](#gotonextrow) | Pointer to the function used to go to the next row of the result set.| 
-| [OH_Cursor::getSize](#getsize) | Pointer to the function used to obtain information about the memory required when the column data type in the result set is **BLOB** or **TEXT**.| 
-| [OH_Cursor::getText](#gettext) | Pointer to the function used to obtain the value of the string type based on the specified column and the current row.| 
-| [OH_Cursor::getInt64](#getint64) | Pointer to the function used to obtain the value of the int64_t type based on the specified column and the current row.| 
-| [OH_Cursor::getReal](#getreal) | Pointer to the function used to obtain the value of the double type based on the specified column and the current row.| 
-| [OH_Cursor::getBlob](#getblob) | Pointer to the function used to obtain the values in the form of a byte array based on the specified column and the current row.| 
-| [OH_Cursor::isNull](#isnull-12) | Pointer to the function used to check whether the value in the specified column is null.| 
-| [OH_Cursor::destroy](#destroy-14) | Pointer to the function used to destroy a result set.| 
-| [OH_Cursor::getAsset](#getasset) | Pointer to the function used to obtain the value of the asset type based on the specified column and the current row.| 
-| [OH_Cursor::getAssets](#getassets) | Pointer to the function used to obtain the values in the form of an asset array based on the specified column and the current row.| 
-| [OH_Predicates::id](#id-25) | Unique identifier of the **OH_Predicates** struct.| 
-| [OH_Predicates::equalTo](#equalto) | Pointer to the function used to set a predicates object to match the field whose value is equal to the specified value.| 
-| [OH_Predicates::notEqualTo](#notequalto) | Pointer to the function used to set a predicates object to match the field whose value is not equal to the specified value.| 
-| [OH_Predicates::beginWrap](#beginwrap) | Pointer to the function used to add a left parenthesis to the predicates.| 
-| [OH_Predicates::endWrap](#endwrap) | Pointer to the function used to add a right parenthesis to the predicates.| 
-| [OH_Predicates::orOperate](#oroperate) | Pointer to the function used to add the OR operator to the predicates.| 
-| [OH_Predicates::andOperate](#andoperate) | Pointer to the function used to add the AND operator to the predicates.| 
-| [OH_Predicates::isNull](#isnull-22) | Pointer to the function used to set a predicates object to match the field whose value is null.| 
-| [OH_Predicates::isNotNull](#isnotnull) | Pointer to the function used to set a predicates object to match the field whose value is not null.| 
-| [OH_Predicates::like](#like) | Pointer to the function used to set a predicates object to match a string that is similar to the specified value.| 
-| [OH_Predicates::between](#between) | Pointer to the function used to set a predicates object to match the field whose value is within the specified range.| 
-| [OH_Predicates::notBetween](#notbetween) | Pointer to the function used to set a predicates object to match the field whose value is out of the specified range.| 
-| [OH_Predicates::greaterThan](#greaterthan) | Pointer to the function used to set a predicates object to match the field with value greater than the specified value.| 
-| [OH_Predicates::lessThan](#lessthan) | Pointer to the function used to set a predicates object to match the field with value less than the specified value.| 
-| [OH_Predicates::greaterThanOrEqualTo](#greaterthanorequalto) | Pointer to the function used to set a predicates object to match the field with value greater than or equal to the specified value.| 
-| [OH_Predicates::lessThanOrEqualTo](#lessthanorequalto) | Pointer to the function used to set a predicates object to match the field with value less than or equal to the specified value.| 
-| [OH_Predicates::orderBy](#orderby) | Pointer to the function used to set a predicates object to sort the values in a column in ascending or descending order.| 
-| [OH_Predicates::distinct](#distinct) | Pointer to the function used to set a predicates object to filter out duplicate records.| 
-| [OH_Predicates::limit](#limit) | Pointer to the function used to set a predicates object to specify the maximum number of records.| 
-| [OH_Predicates::offset](#offset) | Pointer to the function used to set a predicates object to specify the start position of the returned result.| 
-| [OH_Predicates::groupBy](#groupby) | Pointer to the function used to set a predicates object to group rows that have the same value into summary rows.| 
-| [OH_Predicates::in](#in) | Pointer to the function used to set a predicates object to match the field with the value within the specified range.| 
-| [OH_Predicates::notIn](#notin) | Pointer to the function used to set a predicates object to match the field with the value out of the specified range.| 
-| [OH_Predicates::clear](#clear-12) | Pointer to the function used to clear a predicates instance.| 
-| [OH_Predicates::destroy](#destroy-24) | Pointer to the function used to destroy an [OH_Predicates](_o_h___predicates.md) object to reclaim the memory occupied.| 
-| [OH_VObject::id](#id-35) | Unique identifier of the **OH_VObject** struct.| 
-| [OH_VObject::putInt64](#putint64-22) | Pointer to the function used to convert a single parameter or an array of the int64 type into a value of the [OH_VObject](_o_h___v_object.md) type.| 
-| [OH_VObject::putDouble](#putdouble) | Pointer to the function used to convert a single parameter or an array of the double type into a value of the [OH_VObject](_o_h___v_object.md) type.| 
-| [OH_VObject::putText](#puttext-22) | Pointer to the function used to convert a character array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.| 
-| [OH_VObject::putTexts](#puttexts) | Pointer to the function used to convert a string array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.| 
-| [OH_VObject::destroy](#destroy-44) | Pointer to the function used to destroy an [OH_VObject](_o_h___v_object.md) object to reclaim the memory occupied.| 
-| [OH_VBucket::id](#id-45) | Unique identifier of the **OH_VBucket** struct.| 
-| [OH_VBucket::capability](#capability) | Number of the KV pairs in the struct.| 
-| [OH_VBucket::putText](#puttext-12) | Pointer to the function used to put a char value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.| 
-| [OH_VBucket::putInt64](#putint64-12) | Pointer to the function used to put an int64_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.| 
-| [OH_VBucket::putReal](#putreal) | Pointer to the function used to put a double value into the {OH_VBucket} object in the given column.| 
-| [OH_VBucket::putBlob](#putblob) | Pointer to the function used to put a const uint8_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.| 
-| [OH_VBucket::putNull](#putnull) | Pointer to the function used to put a null value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.| 
-| [OH_VBucket::clear](#clear-22) | Pointer to the function used to clear an [OH_VBucket](_o_h___v_bucket.md) object.| 
-| [OH_VBucket::destroy](#destroy-34) | Pointer to the function used to destroy an [OH_VBucket](_o_h___v_bucket.md) object to reclaim the memory occupied.| 
-| [OH_Rdb_Config::selfSize](#selfsize) | Size of the struct.| 
-| [OH_Rdb_Config::dataBaseDir](#databasedir) | Path of the database file.| 
-| [OH_Rdb_Config::storeName](#storename) | Name of the RDB store.| 
-| [OH_Rdb_Config::bundleName](#bundlename) | Bundle name.| 
-| [OH_Rdb_Config::moduleName](#modulename) | Module name. | 
-| [OH_Rdb_Config::isEncrypt](#isencrypt) | Whether to encrypt the RDB store.| 
-| [OH_Rdb_Config::securityLevel](#securitylevel) | RDB store security level. For details, see [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel).| 
-| [OH_Rdb_Config::area](#area) | Security area level. For details, see [Rdb_SecurityArea](#rdb_securityarea).| 
-| [OH_Rdb_Store::id](#id-55) | Unique identifier of the **OH_Rdb_Store** struct.| 
-| [Rdb_DistributedConfig::version](#version-13) | Version of the **Rdb_DistributedConfig** struct.| 
-| [Rdb_DistributedConfig::isAutoSync](#isautosync) | Whether the table supports automatic sync.| 
-| [Rdb_KeyInfo::count](#count) | Number of the changed primary keys or row numbers.| 
-| [Rdb_KeyInfo::type](#type) | Type ([OH_ColumnType](#oh_columntype)) of the primary key.| 
-| [Rdb_KeyInfo::Rdb_KeyData::integer](#integer) | Data of the uint64_t type.| 
-| [Rdb_KeyInfo::Rdb_KeyData::real](#real) | Data of the double type.| 
-| [Rdb_KeyInfo::Rdb_KeyData::text](#text) | Data of the char \* type.| 
-| [Rdb_KeyInfo::data](_rdb___key_info.md#member-variables)| Changed data.| 
-| [Rdb_ChangeInfo::version](#version-23) | Version of the **Rdb_DistributedConfig** struct.| 
-| [Rdb_ChangeInfo::tableName](#tablename) | Name of the table with data changes.| 
-| [Rdb_ChangeInfo::ChangeType](#changetype) | Type of the data changed, which can be data or asset.| 
-| [Rdb_ChangeInfo::inserted](#inserted) | Location where data is inserted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the inserted data.| 
-| [Rdb_ChangeInfo::updated](#updated) | Location where data is updated. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the updated data.| 
-| [Rdb_ChangeInfo::deleted](#deleted) | Location where data is deleted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the deleted data.| 
-| [Rdb_SubscribeCallback::detailsObserver](#detailsobserver) | Callback used to return the details about the device-cloud data change.| 
-| [Rdb_SubscribeCallback::briefObserver](#briefobserver) | Callback used to return the device-cloud data change event.| 
-| [Rdb_DataObserver::context](#context-12) | Context of the data observer.| 
-| [Rdb_DataObserver::callback](#callback-12) | Callback invoked to return the result.| 
-| [Rdb_Statistic::total](#total) | Total number of rows to be synchronized between the device and cloud in the database table.| 
-| [Rdb_Statistic::successful](#successful) | Number of rows that are successfully synchronized between the device and cloud in the database table.| 
-| [Rdb_Statistic::failed](#failed) | Number of rows that failed to be synchronized between the device and cloud in the database table.| 
-| [Rdb_Statistic::remained](#remained) | Number of rows that are not executed for device-cloud sync in the database table.| 
-| [Rdb_TableDetails::table](#table) | Database table name.| 
-| [Rdb_TableDetails::upload](#upload) | Statistics of the device-cloud upload tasks.| 
-| [Rdb_TableDetails::download](#download) | Statistics of the device-cloud download tasks.| 
-| [Rdb_ProgressDetails::version](#version-33) | Version of the **OH_TableDetails** struct.| 
-| [Rdb_ProgressDetails::schedule](#schedule) | Device-cloud sync process.| 
-| [Rdb_ProgressDetails::code](#code) | Device-cloud sync state.| 
-| [Rdb_ProgressDetails::tableLength](#tablelength) | Number of the tables synchronized between the device and cloud.| 
-| [Rdb_ProgressObserver::context](#context-22) | Context of the device-cloud sync progress observer.| 
-| [Rdb_ProgressObserver::callback](#callback-22) | Callback invoked to return the device-cloud sync progress.| 
+| [OH_Cursor::id](#id-15) | Unique identifier of the **OH_Cursor** struct.|
+| [OH_Cursor::getColumnCount](#getcolumncount) | Pointer to the function used to obtain the number of columns in the result set.|
+| [OH_Cursor::getColumnType](#getcolumntype) | Pointer to the function used to obtain the column type based on the specified column index.|
+| [OH_Cursor::getColumnIndex](#getcolumnindex) | Pointer to the function used to obtain the column index based on the specified column name.|
+| [OH_Cursor::getColumnName](#getcolumnname) | Pointer to the function used to obtain the column name based on the specified column index.|
+| [OH_Cursor::getRowCount](#getrowcount) | Pointer to the function used to obtain the number of rows in the result set.|
+| [OH_Cursor::goToNextRow](#gotonextrow) | Pointer to the function used to go to the next row of the result set.|
+| [OH_Cursor::getSize](#getsize) | Pointer to the function used to obtain information about the memory required when the column data type in the result set is **BLOB** or **TEXT**.|
+| [OH_Cursor::getText](#gettext) | Pointer to the function used to obtain the value of the string type based on the specified column and the current row.|
+| [OH_Cursor::getInt64](#getint64) | Pointer to the function used to obtain the value of the int64_t type based on the specified column and the current row.|
+| [OH_Cursor::getReal](#getreal) | Pointer to the function used to obtain the value of the double type based on the specified column and the current row.|
+| [OH_Cursor::getBlob](#getblob) | Pointer to the function used to obtain the values in the form of a byte array based on the specified column and the current row.|
+| [OH_Cursor::isNull](#isnull-12) | Pointer to the function used to check whether the value in the specified column is null.|
+| [OH_Cursor::destroy](#destroy-14) | Pointer to the function used to destroy a result set.|
+| [OH_Cursor::getAsset](#getasset) | Pointer to the function used to obtain the value of the asset type based on the specified column and the current row.|
+| [OH_Cursor::getAssets](#getassets) | Pointer to the function used to obtain the values in the form of an asset array based on the specified column and the current row.|
+| [OH_Predicates::id](#id-25) | Unique identifier of the **OH_Predicates** struct.|
+| [OH_Predicates::equalTo](#equalto) | Pointer to the function used to set a predicates object to match the field whose value is equal to the specified value.|
+| [OH_Predicates::notEqualTo](#notequalto) | Pointer to the function used to set a predicates object to match the field whose value is not equal to the specified value.|
+| [OH_Predicates::beginWrap](#beginwrap) | Pointer to the function used to add a left parenthesis to the predicates.|
+| [OH_Predicates::endWrap](#endwrap) | Pointer to the function used to add a right parenthesis to the predicates.|
+| [OH_Predicates::orOperate](#oroperate) | Pointer to the function used to add the OR operator to the predicates.|
+| [OH_Predicates::andOperate](#andoperate) | Pointer to the function used to add the AND operator to the predicates.|
+| [OH_Predicates::isNull](#isnull-22) | Pointer to the function used to set a predicates object to match the field whose value is null.|
+| [OH_Predicates::isNotNull](#isnotnull) | Pointer to the function used to set a predicates object to match the field whose value is not null.|
+| [OH_Predicates::like](#like) | Pointer to the function used to set a predicates object to match a string that is similar to the specified value.|
+| [OH_Predicates::between](#between) | Pointer to the function used to set a predicates object to match the field whose value is within the specified range.|
+| [OH_Predicates::notBetween](#notbetween) | Pointer to the function used to set a predicates object to match the field whose value is out of the specified range.|
+| [OH_Predicates::greaterThan](#greaterthan) | Pointer to the function used to set a predicates object to match the field with value greater than the specified value.|
+| [OH_Predicates::lessThan](#lessthan) | Pointer to the function used to set a predicates object to match the field with value less than the specified value.|
+| [OH_Predicates::greaterThanOrEqualTo](#greaterthanorequalto) | Pointer to the function used to set a predicates object to match the field with value greater than or equal to the specified value.|
+| [OH_Predicates::lessThanOrEqualTo](#lessthanorequalto) | Pointer to the function used to set a predicates object to match the field with value less than or equal to the specified value.|
+| [OH_Predicates::orderBy](#orderby) | Pointer to the function used to set a predicates object to sort the values in a column in ascending or descending order.|
+| [OH_Predicates::distinct](#distinct) | Pointer to the function used to set a predicates object to filter out duplicate records.|
+| [OH_Predicates::limit](#limit) | Pointer to the function used to set a predicates object to specify the maximum number of records.|
+| [OH_Predicates::offset](#offset) | Pointer to the function used to set a predicates object to specify the start position of the returned result.|
+| [OH_Predicates::groupBy](#groupby) | Pointer to the function used to set a predicates object to group rows that have the same value into summary rows.|
+| [OH_Predicates::in](#in) | Pointer to the function used to set a predicates object to match the field with the value within the specified range.|
+| [OH_Predicates::notIn](#notin) | Pointer to the function used to set a predicates object to match the field with the value out of the specified range.|
+| [OH_Predicates::clear](#clear-12) | Pointer to the function used to clear a predicates instance.|
+| [OH_Predicates::destroy](#destroy-24) | Pointer to the function used to destroy an [OH_Predicates](_o_h___predicates.md) object to reclaim the memory occupied.|
+| [OH_VObject::id](#id-35) | Unique identifier of the **OH_VObject** struct.|
+| [OH_VObject::putInt64](#putint64-22) | Pointer to the function used to convert a single parameter or an array of the int64 type into a value of the [OH_VObject](_o_h___v_object.md) type.|
+| [OH_VObject::putDouble](#putdouble) | Pointer to the function used to convert a single parameter or an array of the double type into a value of the [OH_VObject](_o_h___v_object.md) type.|
+| [OH_VObject::putText](#puttext-22) | Pointer to the function used to convert a character array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.|
+| [OH_VObject::putTexts](#puttexts) | Pointer to the function used to convert a string array of the char type to a value of the [OH_VObject](_o_h___v_object.md) type.|
+| [OH_VObject::destroy](#destroy-44) | Pointer to the function used to destroy an [OH_VObject](_o_h___v_object.md) object to reclaim the memory occupied.|
+| [OH_VBucket::id](#id-45) | Unique identifier of the **OH_VBucket** struct.|
+| [OH_VBucket::capability](#capability) | Number of the KV pairs in the struct.|
+| [OH_VBucket::putText](#puttext-12) | Pointer to the function used to put a char value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.|
+| [OH_VBucket::putInt64](#putint64-12) | Pointer to the function used to put an int64_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.|
+| [OH_VBucket::putReal](#putreal) | Pointer to the function used to put a double value into the {OH_VBucket} object in the given column.|
+| [OH_VBucket::putBlob](#putblob) | Pointer to the function used to put a const uint8_t value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.|
+| [OH_VBucket::putNull](#putnull) | Pointer to the function used to put a null value into the [OH_VBucket](_o_h___v_bucket.md) object in the given column.|
+| [OH_VBucket::clear](#clear-22) | Pointer to the function used to clear an [OH_VBucket](_o_h___v_bucket.md) object.|
+| [OH_VBucket::destroy](#destroy-34) | Pointer to the function used to destroy an [OH_VBucket](_o_h___v_bucket.md) object to reclaim the memory occupied.|
+| [OH_Rdb_Config::selfSize](#selfsize) | Size of the struct.|
+| [OH_Rdb_Config::dataBaseDir](#databasedir) | Path of the database file.|
+| [OH_Rdb_Config::storeName](#storename) | Name of the RDB store.|
+| [OH_Rdb_Config::bundleName](#bundlename) | Bundle name.|
+| [OH_Rdb_Config::moduleName](#modulename) | Module name. |
+| [OH_Rdb_Config::isEncrypt](#isencrypt) | Whether to encrypt the RDB store.|
+| [OH_Rdb_Config::securityLevel](#securitylevel) | RDB store security level. For details, see [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel).|
+| [OH_Rdb_Config::area](#area) | Security area level. For details, see [Rdb_SecurityArea](#rdb_securityarea).|
+| [OH_Rdb_Store::id](#id-55) | Unique identifier of the **OH_Rdb_Store** struct.|
+| [Rdb_DistributedConfig::version](#version-13) | Version of the **Rdb_DistributedConfig** struct.|
+| [Rdb_DistributedConfig::isAutoSync](#isautosync) | Whether the table supports automatic sync.|
+| [Rdb_KeyInfo::count](#count) | Number of the changed primary keys or row numbers.|
+| [Rdb_KeyInfo::type](#type) | Type ([OH_ColumnType](#oh_columntype)) of the primary key.|
+| [Rdb_KeyInfo::Rdb_KeyData::integer](#integer) | Data of the uint64_t type.|
+| [Rdb_KeyInfo::Rdb_KeyData::real](#real) | Data of the double type.|
+| [Rdb_KeyInfo::Rdb_KeyData::text](#text) | Data of the char \* type.|
+| [Rdb_KeyInfo::data](_rdb___key_info.md#member-variables)| Changed data.|
+| [Rdb_ChangeInfo::version](#version-23) | Version of the **Rdb_DistributedConfig** struct.|
+| [Rdb_ChangeInfo::tableName](#tablename) | Name of the table with data changes.|
+| [Rdb_ChangeInfo::ChangeType](#changetype) | Type of the data changed, which can be data or asset.|
+| [Rdb_ChangeInfo::inserted](#inserted) | Location where data is inserted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the inserted data.|
+| [Rdb_ChangeInfo::updated](#updated) | Location where data is updated. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the updated data.|
+| [Rdb_ChangeInfo::deleted](#deleted) | Location where data is deleted. If the primary key of the table is of the string type, the value is the value of the primary key. Otherwise, the value is the row number of the deleted data.|
+| [Rdb_SubscribeCallback::detailsObserver](#detailsobserver) | Callback used to return the details about the device-cloud data change.|
+| [Rdb_SubscribeCallback::briefObserver](#briefobserver) | Callback used to return the device-cloud data change event.|
+| [Rdb_DataObserver::context](#context-12) | Context of the data observer.|
+| [Rdb_DataObserver::callback](#callback-12) | Callback used to return the result.|
+| [Rdb_Statistic::total](#total) | Total number of rows to be synchronized between the device and cloud in the database table.|
+| [Rdb_Statistic::successful](#successful) | Number of rows that are successfully synchronized between the device and cloud in the database table.|
+| [Rdb_Statistic::failed](#failed) | Number of rows that failed to be synchronized between the device and cloud in the database table.|
+| [Rdb_Statistic::remained](#remained) | Number of rows that are not executed for device-cloud sync in the database table.|
+| [Rdb_TableDetails::table](#table) | Database table name.|
+| [Rdb_TableDetails::upload](#upload) | Statistics of the device-cloud upload tasks.|
+| [Rdb_TableDetails::download](#download) | Statistics of the device-cloud download tasks.|
+| [Rdb_ProgressDetails::version](#version-33) | Version of the **OH_TableDetails** struct.|
+| [Rdb_ProgressDetails::schedule](#schedule) | Device-cloud sync process.|
+| [Rdb_ProgressDetails::code](#code) | Device-cloud sync state.|
+| [Rdb_ProgressDetails::tableLength](#tablelength) | Number of the tables synchronized between the device and cloud.|
+| [Rdb_ProgressObserver::context](#context-22) | Context of the device-cloud sync progress observer.|
+| [Rdb_ProgressObserver::callback](#callback-22) | Callback used to return the device-cloud sync progress.|
 
 
 ## Macro Description
@@ -409,11 +411,11 @@ Defines a callback used to return the device-cloud data change event.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| context | Pointer to the context of the data observer.| 
-| values | Pointer to the accounts whose device-cloud data is changed.| 
-| count | Number of accounts whose device-cloud data is changed.| 
+| context | Pointer to the context of the data observer.|
+| values | Pointer to the accounts whose device-cloud data is changed.|
+| count | Number of accounts whose device-cloud data is changed.|
 
 
 ### Rdb_ChangeInfo
@@ -469,11 +471,11 @@ Defines a callback used to return the details about the device-cloud data change
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| context | Pointer to the context of the data observer.| 
-| changeInfo | Pointer to [Rdb_ChangeInfo](_rdb___change_info.md).| 
-| count | Number of changed tables.| 
+| context | Pointer to the context of the data observer.|
+| changeInfo | Pointer to [Rdb_ChangeInfo](_rdb___change_info.md).|
+| count | Number of changed tables.|
 
 **See**
 
@@ -546,9 +548,9 @@ Defines a callback used to return the device-cloud sync progress.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| progressDetails | Details about the device-cloud sync progress.| 
+| progressDetails | Details about the device-cloud sync progress.|
 
 **See**
 
@@ -939,6 +941,7 @@ Enumerates the subscription types.
 | -------- | -------- |
 | RDB_SUBSCRIBE_TYPE_CLOUD | Subscription of cloud data changes.|
 | RDB_SUBSCRIBE_TYPE_CLOUD_DETAILS | Subscription of cloud data change details.|
+| RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS<sup>12+</sup>  | Subscribe to details of the local data change. This value is available since API version 12.|
 
 
 ### Rdb_SyncMode
@@ -1061,11 +1064,11 @@ Performs device-cloud sync.
 
 | Name| Description|
 | -------- | -------- |
-| store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.| 
-| mode | Sync mode [Rdb_SyncMode](#rdb_syncmode).| 
-| tables | Pointer to the names of the tables to be synchronized.| 
-| count | Number of tables to synchronize. If the value is **0**, all tables in the database are synchronized.| 
-| observer | Observer [Rdb_ProgressObserver](_rdb___progress_observer.md) of the device-cloud sync progress.| 
+| store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
+| mode | Sync mode [Rdb_SyncMode](#rdb_syncmode).|
+| tables | Pointer to the names of the tables to be synchronized.|
+| count | Number of tables to synchronize. If the value is **0**, all tables in the database are synchronized.|
+| observer | Observer [Rdb_ProgressObserver](_rdb___progress_observer.md) of the device-cloud sync progress.|
 
 **Returns**
 
@@ -1423,6 +1426,32 @@ Returns the row ID if the operation is successful; returns an error code otherwi
 
 [OH_Rdb_Store](_o_h___rdb___store.md), [OH_VBucket](_o_h___v_bucket.md).
 
+### OH_Rdb_LockRow()
+
+```
+int OH_Rdb_LockRow (OH_Rdb_Store *store, OH_Predicates *predicates )
+```
+
+**Description**
+
+Locks data in an RDB store based on specified conditions. The locked data will be blocked from the device-cloud sync.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
+| predicates | Pointer to the [OH_Predicates](_o_h___predicates.md) instance, which specifies the lock conditions.|
+
+**Returns**
+
+Result of the lock operation.
+
+**See**
+
+[OH_Rdb_Store](_o_h___rdb___store.md), [OH_Predicates](_o_h___predicates.md).
 
 ### OH_Rdb_Query()
 
@@ -1453,6 +1482,34 @@ Returns the pointer to the [OH_Cursor](_o_h___cursor.md) instance if the operati
 
 [OH_Rdb_Store](_o_h___rdb___store.md), [OH_Predicates](_o_h___predicates.md), [OH_Cursor](_o_h___cursor.md).
 
+### OH_Rdb_QueryLockedRow()
+
+```
+OH_Cursor *OH_Rdb_QueryLockedRow (OH_Rdb_Store *store, OH_Predicates *predicates, const char *const *columnNames, int length )
+```
+
+**Description**
+
+Queries the locked data in an RDB store.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
+| predicates | Pointer to the [OH_Predicates](_o_h___predicates.md) instance, which specifies the query conditions.|
+| columnNames | Pointer to the columns to query. If this parameter is not specified, data of columns will be queried.|
+| length | Length of the **columnNames** array. If <b>length</b> is greater than the length of <b>columnNames</b> array, out-of-bounds access occurs.|
+
+**Returns**
+
+Returns the pointer to the [OH_Cursor](_o_h___cursor.md) instance if the operation is successful; returns null otherwise.
+
+**See**
+
+[OH_Rdb_Store](_o_h___rdb___store.md), [OH_Predicates](_o_h___predicates.md), [OH_Cursor](_o_h___cursor.md).
 
 ### OH_Rdb_Restore()
 
@@ -1576,17 +1633,17 @@ int OH_Rdb_Subscribe (OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_Dat
 
 **Description**
 
-Register an observer for an RDB store. When data in the RDB store changes, a callback will be invoked to return the data changes.
+Registers an observer for an RDB store. When data in the RDB store changes, a callback will be invoked to return the data changes.
 
 **Since**: 11
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.| 
-| type | Subscription type defined in [Rdb_SubscribeType](#rdb_subscribetype).| 
-| observer | Pointer to the [Rdb_DataObserver](_rdb___data_observer.md) instance.| 
+| store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
+| type | Subscription type defined in [Rdb_SubscribeType](#rdb_subscribetype).|
+| observer | Pointer to the [Rdb_DataObserver](_rdb___data_observer.md) instance.|
 
 **Returns**
 
@@ -1613,10 +1670,10 @@ Subscribes to the automatic sync progress of an RDB store. The registered callba
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| store | Pointer to the target [OH_Rdb_Store](_o_h___rdb___store.md) instance.| 
-| observer | Pointer to the [Rdb_ProgressObserver](_rdb___progress_observer.md) instance, which invokes the callback to return the automatic sync progress.| 
+| store | Pointer to the target [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
+| observer | Pointer to the [Rdb_ProgressObserver](_rdb___progress_observer.md) instance, which invokes the callback to return the automatic sync progress.|
 
 **Returns**
 
@@ -1628,6 +1685,32 @@ Returns **RDB_OK** if the operation is successful; returns an error code otherwi
 
 [Rdb_ProgressObserver](_rdb___progress_observer.md).
 
+### OH_Rdb_UnlockRow()
+
+```
+int OH_Rdb_UnlockRow (OH_Rdb_Store *store, OH_Predicates *predicates )
+```
+
+**Description**
+
+Unlocks data in an RDB store based on the specified conditions.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
+| predicates | Pointer to the [OH_Predicates](_o_h___predicates.md) instance, which specifies the unlock conditions.|
+
+**Returns**
+
+Result of the unlock operation.
+
+**See**
+
+[OH_Rdb_Store](_o_h___rdb___store.md), [OH_Predicates](_o_h___predicates.md).
 
 ### OH_Rdb_Unsubscribe()
 
@@ -1643,11 +1726,11 @@ Unregisters the observer of the specified type.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.| 
-| type | Subscription type defined in [Rdb_SubscribeType](#rdb_subscribetype).| 
-| observer | Pointer to the [Rdb_DataObserver](_rdb___data_observer.md) instance. If this parameter is **nullptr**, all observers of this type will be unregistered.| 
+| store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
+| type | Subscription type defined in [Rdb_SubscribeType](#rdb_subscribetype).|
+| observer | Pointer to the [Rdb_DataObserver](_rdb___data_observer.md) instance. If this parameter is **nullptr**, all observers of this type will be unregistered.|
 
 **Returns**
 
@@ -1674,10 +1757,10 @@ Unsubscribes from the automatic sync process of an RDB store.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| store | Pointer to the target [OH_Rdb_Store](_o_h___rdb___store.md) instance.| 
-| observer | Pointer to [Rdb_ProgressObserver](_rdb___progress_observer.md). If the pointer is null, all callbacks for the automatic sync process will be unregistered.| 
+| store | Pointer to the target [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
+| observer | Pointer to [Rdb_ProgressObserver](_rdb___progress_observer.md). If the pointer is null, all callbacks for the automatic sync process will be unregistered.|
 
 **Returns**
 

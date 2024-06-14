@@ -15,7 +15,7 @@ border(value: BorderOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -33,7 +33,7 @@ borderStyle(value: BorderStyle | EdgeStyles)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -51,7 +51,7 @@ borderWidth(value: Length | EdgeWidths | LocalizedEdgeWidths)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -69,7 +69,7 @@ borderColor(value: ResourceColor | EdgeColors | LocalizedEdgeColors)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -87,7 +87,7 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,7 +99,9 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 ## BorderOptions对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称   | 参数类型                                                     | 必填 | 描述               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
@@ -112,7 +114,9 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 引入该对象时，至少传入一个参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 参数类型                         | 必填   | 描述      |
 | ------ | ---------------------------- | ---- | ------- |
@@ -126,18 +130,22 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 边框宽度类型，用于描述组件边框不同方向的宽度。
 引入该对象时，至少传入一个参数。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 | 名称     | 参数类型                         | 必填   | 描述      |
 | ------ | ---------------------------- | ---- | ------- |
-| start   | [LocalizedEdgeWidths](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 左侧边框宽度。<br />从右至左显示语言模式下为右侧边框宽度。 |
-| end     | [LocalizedEdgeWidths](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 右侧边框宽度。<br />从右至左显示语言模式下为左侧边框宽度。 |
-| top     | [LocalizedEdgeWidths](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 上侧边框宽度。 |
-| bottom  | [LocalizedEdgeWidths](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 下侧边框宽度。 |
+| start   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 左侧边框宽度。<br />从右至左显示语言模式下为右侧边框宽度。 |
+| end     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 右侧边框宽度。<br />从右至左显示语言模式下为左侧边框宽度。 |
+| top     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 上侧边框宽度。 |
+| bottom  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 下侧边框宽度。 |
 
 ## EdgeColors<sup>9+</sup>对象说明
 
 引入该对象时，至少传入一个参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |
@@ -152,6 +160,10 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 引入该对象时，至少传入一个参数。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |
 | start   | [ResourceColor](ts-types.md#resourcecolor) | 否    | 左侧边框颜色。<br />从右至左显示语言模式下为右侧边框颜色。 |
@@ -163,7 +175,9 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 引用该对象时，至少传入一个参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称          | 参数类型                         | 必填   | 描述       |
 | ----------- | ---------------------------- | ---- | -------- |
@@ -178,6 +192,10 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 引用该对象时，至少传入一个参数。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称          | 参数类型                         | 必填   | 描述       |
 | ----------- | ---------------------------- | ---- | -------- |
 | topStart     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 左上角圆角半径。<br />从右至左显示语言模式下为右上角圆角半径。 |
@@ -189,7 +207,9 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 引入该对象时，至少传入一个参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |

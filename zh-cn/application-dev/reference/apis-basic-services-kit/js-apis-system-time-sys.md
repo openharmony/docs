@@ -14,7 +14,7 @@
 import systemTime from '@ohos.systemTime';
 ```
 
-## systemTime.setTime
+## systemTime.setTime<sup>(deprecated)</sup>
 
 setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
@@ -60,7 +60,7 @@ try {
 }
 ```
 
-## systemTime.setTime
+## systemTime.setTime<sup>(deprecated)</sup>
 
 setTime(time : number) : Promise&lt;void&gt;
 
@@ -109,7 +109,7 @@ try {
 }
 ```
 
-## systemTime.setDate
+## systemTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
@@ -154,7 +154,7 @@ try {
 }
 ```
 
-## systemTime.setDate
+## systemTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date): Promise&lt;void&gt;
 
@@ -202,7 +202,7 @@ try {
 }
 ```
 
-## systemTime.setTimezone
+## systemTime.setTimezone<sup>(deprecated)</sup>
 
 setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -246,7 +246,7 @@ try {
 }
 ```
 
-## systemTime.setTimezon
+## systemTime.setTimezone<sup>(deprecated)</sup>
 
 setTimezone(timezone: string): Promise&lt;void&gt;
 

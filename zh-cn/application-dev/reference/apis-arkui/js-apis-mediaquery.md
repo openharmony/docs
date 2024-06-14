@@ -28,7 +28,7 @@ matchMediaSync(condition: string): MediaQueryListener
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -56,21 +56,16 @@ let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orienta
 
 媒体查询的句柄，并包含了申请句柄时的首次查询结果。媒体查询根据设置的条件语句，比如'(width <= 600vp)'，比较系统信息，若首次查询时相关信息未初始化，matches返回false。
 
+继承自[MediaQueryResult](#mediaqueryresult)。
+
 **卡片能力：** 从API version 12开始，该类型支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### 属性
 
-| 名称    | 类型    | 可读 | 可写 | 说明                 |
-| ------- | ------- | ---- | ---- | -------------------- |
-| matches | boolean | 是   | 否   | 是否符合匹配条件。   |
-| media   | string  | 是   | 否   | 媒体事件的匹配条件。 |
-
-
-### on
+### on('change')
 
 on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
@@ -78,23 +73,23 @@ on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名   | 类型                             | 必填 | 说明                     |
-| -------- | -------------------------------- | ---- | ------------------------ |
-| type     | string                           | 是   | 必须填写字符串'change'。 |
-| callback | Callback&lt;MediaQueryResult&gt; | 是   | 向媒体查询注册的回调     |
+| 参数名   | 类型                                                  | 必填 | 说明                     |
+| -------- | ----------------------------------------------------- | ---- | ------------------------ |
+| type     | string                                                | 是   | 必须填写字符串'change'。 |
+| callback | Callback&lt;[MediaQueryResult](#mediaqueryresult)&gt; | 是   | 向媒体查询注册的回调     |
 
 **示例：** 
 
-  详见[off示例](#off)。
+  详见[off示例](#offchange)。
 
 
-### off
+### off('change')
 
 off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
@@ -102,7 +97,7 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -116,18 +111,18 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 **示例：** 
 
   ```ts
-    import mediaquery from '@ohos.mediaquery'
-    
-    let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
-    function onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
-        if (mediaQueryResult.matches) {
-            // do something here
-        } else {
-            // do something here
-        }
-    }
-    listener.on('change', onPortrait) // 注册回调
-    listener.off('change', onPortrait) // 去取消注册回调
+import mediaquery from '@ohos.mediaquery'
+
+let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
+function onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
+  if (mediaQueryResult.matches) {
+    // do something here
+  } else {
+    // do something here
+  }
+}
+listener.on('change', onPortrait) // 注册回调
+listener.off('change', onPortrait) // 去取消注册回调
   ```
 
 ## MediaQueryResult
@@ -136,7 +131,7 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
 **卡片能力：** 从API version 12开始，该类型支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -153,7 +148,6 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
 ```ts
 import mediaquery from '@ohos.mediaquery'
-
 
 @Entry
 @Component
