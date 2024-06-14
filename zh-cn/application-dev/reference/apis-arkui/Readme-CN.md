@@ -335,7 +335,7 @@
     - 类型定义
       - [基础类型定义](arkui-ts/ts-types.md)
       - [文本类型定义](arkui-ts/ts-text-common.md)
-      - [图像类型定义（系统接口）](arkui-ts/ts-image-common-sys.md)
+      - [图像类型定义](arkui-ts/ts-image-common.md)
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
     - [枚举说明](arkui-ts/ts-appendix-enums.md)
