@@ -4,10 +4,14 @@
 
 同层标签对应的元素区域的背景为白色，对于Web嵌套Web组件的形式只提供一层嵌套的支持。
 
-- 使用前请在module.json5添加如下权限。
+- 使用前请在module.json5中添加网络权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
   
-  ```ts
-  "ohos.permission.INTERNET"
+  ```
+  "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
   ```
 
 ## 绘制XComponent+AVPlayer和Button组件

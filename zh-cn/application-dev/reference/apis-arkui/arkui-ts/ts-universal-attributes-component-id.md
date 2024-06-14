@@ -16,7 +16,7 @@ id(value: string): T
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -54,6 +54,8 @@ getInspectorByKey(id: string): string
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数:**
 
 | 参数名   | 类型      | 必填     | 说明        |
@@ -74,6 +76,8 @@ getInspectorTree(): Object
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值:**
 
 | 类型     | 说明                            |
@@ -87,6 +91,8 @@ sendEventByKey(id: string, action: number, params: string): boolean
 给指定id的组件发送事件。
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数:**
 
@@ -110,6 +116,8 @@ sendTouchEvent(event: TouchObject): boolean
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数:**
 
 | 参数名      | 类型            | 必填  | 说明                                                         |
@@ -130,6 +138,8 @@ sendKeyEvent(event: KeyEvent): boolean
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数:**
 
 | 参数名    | 类型     | 必填      | 说明                                                         |
@@ -149,6 +159,8 @@ sendMouseEvent(event: MouseEvent): boolean
 发送鼠标事件。
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 

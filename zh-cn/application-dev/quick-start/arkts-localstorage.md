@@ -51,7 +51,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 >
 > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
 >
-> 从API version 11开始，该装饰器支持在元服务中使用。
+> 从API version 11开始，该装饰器支持在原子化服务中使用。
 
 \@LocalStorageProp(key)是和LocalStorage中key对应的属性建立单向数据同步，ArkUI框架支持修改@LocalStorageProp(key)在本地的值，但是对本地值的修改不会同步回LocalStorage中。相反，如果LocalStorage中key对应的属性值发生改变，例如通过set接口对LocalStorage中的值进行修改，改变会同步给\@LocalStorageProp(key)，并覆盖掉本地的值。
 
@@ -113,7 +113,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 > **说明：**
 >
-> 从API version 11开始，该装饰器支持在元服务中使用。
+> 从API version 11开始，该装饰器支持在原子化服务中使用。
 
 如果我们需要将自定义组件的状态变量的更新同步回LocalStorage，就需要用到\@LocalStorageLink。
 

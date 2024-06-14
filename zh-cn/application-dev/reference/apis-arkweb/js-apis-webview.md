@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-@ohos.web.webview提供web控制能力，[web](ts-basic-components-web.md)组件提供网页显示的能力。
+@ohos.web.webview提供web控制能力，[Web](ts-basic-components-web.md)组件提供网页显示的能力。
 
 > **说明：**
 >
@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```ts
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 ```
 
 ## once
@@ -39,17 +39,17 @@ once(type: string, callback: Callback\<void\>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
-web_webview.once("webInited", () => {
-  console.log("configCookieSync")
-  web_webview.WebCookieManager.configCookieSync("https://www.example.com", "a=b")
+webview.once("webInited", () => {
+  console.log("configCookieSync");
+  webview.WebCookieManager.configCookieSync("https://www.example.com", "a=b");
 })
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -89,14 +89,14 @@ postMessageEvent(message: WebMessage): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[] = [];
+  controller: webview.WebviewController = new webview.WebviewController();
+  ports: webview.WebMessagePort[] = [];
 
   build() {
     Column() {
@@ -107,8 +107,7 @@ struct WebComponent {
             this.controller.postMessage('__init_port__', [this.ports[0]], '*');
             this.ports[1].postMessageEvent("post message from ets to html5");
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -143,14 +142,14 @@ onMessageEvent(callback: (result: WebMessage) => void): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[] = [];
+  controller: webview.WebviewController = new webview.WebviewController();
+  ports: webview.WebMessagePort[] = [];
 
   build() {
     Column() {
@@ -159,9 +158,9 @@ struct WebComponent {
           try {
             this.ports = this.controller.createWebMessagePorts();
             this.ports[1].onMessageEvent((msg) => {
-              if (typeof(msg) == "string") {
+              if (typeof (msg) == "string") {
                 console.log("received string message from html5, string is:" + msg);
-              } else if (typeof(msg) == "object") {
+              } else if (typeof (msg) == "object") {
                 if (msg instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + msg.byteLength);
                 } else {
@@ -172,8 +171,7 @@ struct WebComponent {
               }
             })
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -238,8 +236,8 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class TestObj {
   test(str: string): ArrayBuffer {
@@ -257,12 +255,12 @@ class TestObj {
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[] = [];
-  nativePort: web_webview.WebMessagePort | null = null;
+  controller: webview.WebviewController = new webview.WebviewController();
+  ports: webview.WebMessagePort[] = [];
+  nativePort: webview.WebMessagePort | null = null;
   @State msg1: string = "";
   @State msg2: string = "";
-  message: web_webview.WebMessageExt = new web_webview.WebMessageExt();
+  message: webview.WebMessageExt = new webview.WebMessageExt();
   @State testObjtest: TestObj = new TestObj();
 
   build() {
@@ -283,8 +281,7 @@ struct WebComponent {
             }
           }
           catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
         Button('SendToH5 setNumber').margin({
@@ -302,11 +299,10 @@ struct WebComponent {
             }
           }
           catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-        Button('SendToH5 setBoolean').margin({
+      Button('SendToH5 setBoolean').margin({
         top: -90,
       })
         .onClick(() => {
@@ -320,11 +316,10 @@ struct WebComponent {
             }
           }
           catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-        Button('SendToH5 setArrayBuffer').margin({
+      Button('SendToH5 setArrayBuffer').margin({
         top: 10,
       })
         .onClick(() => {
@@ -338,11 +333,10 @@ struct WebComponent {
             }
           }
           catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-        Button('SendToH5 setArray').margin({
+      Button('SendToH5 setArray').margin({
         top: -90,
         left: 800,
       })
@@ -352,16 +346,15 @@ struct WebComponent {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
               this.message.setType(5);
-              this.message.setArray([1,2,3]);
+              this.message.setArray([1, 2, 3]);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-        Button('SendToH5 setError').margin({
+      Button('SendToH5 setError').margin({
         top: 10,
         left: 800,
       })
@@ -377,8 +370,7 @@ struct WebComponent {
               this.message.setError(error);
               this.nativePort.postMessageEventExt(this.message);
             }
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`In ArkTS side send message catch error, ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`In ArkTS side send message catch error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
 
@@ -398,32 +390,32 @@ struct WebComponent {
               let type = result.getType();
               console.log("In ArkTS side getType:" + type);
               switch (type) {
-                case web_webview.WebMessageType.STRING: {
+                case webview.WebMessageType.STRING: {
                   this.msg1 = "result type:" + typeof (result.getString());
                   this.msg2 = "result getString:" + ((result.getString()));
                   break;
                 }
-                case web_webview.WebMessageType.NUMBER: {
+                case webview.WebMessageType.NUMBER: {
                   this.msg1 = "result type:" + typeof (result.getNumber());
                   this.msg2 = "result getNumber:" + ((result.getNumber()));
                   break;
                 }
-                case web_webview.WebMessageType.BOOLEAN: {
+                case webview.WebMessageType.BOOLEAN: {
                   this.msg1 = "result type:" + typeof (result.getBoolean());
                   this.msg2 = "result getBoolean:" + ((result.getBoolean()));
                   break;
                 }
-                case web_webview.WebMessageType.ARRAY_BUFFER: {
+                case webview.WebMessageType.ARRAY_BUFFER: {
                   this.msg1 = "result type:" + typeof (result.getArrayBuffer());
                   this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
                   break;
                 }
-                case web_webview.WebMessageType.ARRAY: {
+                case webview.WebMessageType.ARRAY: {
                   this.msg1 = "result type:" + typeof (result.getArray());
                   this.msg2 = "result getArray:" + result.getArray();
                   break;
                 }
-                case web_webview.WebMessageType.ERROR: {
+                case webview.WebMessageType.ERROR: {
                   this.msg1 = "result type:" + typeof (result.getError());
                   this.msg2 = "result getError:" + result.getError();
                   break;
@@ -435,8 +427,7 @@ struct WebComponent {
               }
             }
             catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           });
         })
@@ -542,14 +533,14 @@ close(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  msgPort: web_webview.WebMessagePort[] = [];
+  controller: webview.WebviewController = new webview.WebviewController();
+  msgPort: webview.WebMessagePort[] = [];
 
   build() {
     Column() {
@@ -560,8 +551,7 @@ struct WebComponent {
             this.msgPort = this.controller.createWebMessagePorts();
             console.log("createWebMessagePorts size:" + this.msgPort.length)
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('close')
@@ -573,8 +563,7 @@ struct WebComponent {
               console.error("msgPort is null, Please initialize first");
             }
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -609,8 +598,8 @@ constructor(webTag?: string)
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class WebObj {
   constructor() {
@@ -629,8 +618,9 @@ class WebObj {
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController()
   @State webTestObj: WebObj = new WebObj();
+
   build() {
     Column() {
       Button('refresh')
@@ -638,8 +628,7 @@ struct WebComponent {
           try {
             this.controller.refresh();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: '', controller: this.controller })
@@ -689,15 +678,13 @@ static initializeWebEngine(): void
 
 ```ts
 // xxx.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { webview } from '@kit.ArkWeb';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log("EntryAbility onCreate")
-    web_webview.WebviewController.initializeWebEngine()
+    webview.WebviewController.initializeWebEngine()
     console.log("EntryAbility onCreate done")
   }
 }
@@ -730,20 +717,17 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 
 ```ts
 // xxx.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
-import business_error from '@ohos.base';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log("EntryAbility onCreate")
     try {
-      web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.AUTO, "https://example1.test")
+      webview.WebviewController.setHttpDns(webview.SecureDnsMode.AUTO, "https://example1.test")
     } catch (error) {
-      let e: business_error.BusinessError = error as business_error.BusinessError;
-      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
     }
 
     AppStorage.setOrCreate("abilityWant", want);
@@ -770,20 +754,19 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   aboutToAppear(): void {
     try {
-      web_webview.WebviewController.setWebDebuggingAccess(true);
+      webview.WebviewController.setWebDebuggingAccess(true);
     } catch (error) {
-      let e: business_error.BusinessError = error as business_error.BusinessError;
-      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
     }
   }
 
@@ -824,13 +807,13 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -840,8 +823,7 @@ struct WebComponent {
             // 需要加载的URL是string类型。
             this.controller.loadUrl('www.example.com');
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -852,13 +834,13 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -868,8 +850,7 @@ struct WebComponent {
             // 带参数headers。
             this.controller.loadUrl('www.example.com', [{ headerKey: "headerKey", headerValue: "headerValue" }]);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -883,13 +864,13 @@ struct WebComponent {
 1.$rawfile方式。
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -899,8 +880,7 @@ struct WebComponent {
             // 通过$rawfile加载本地资源文件。
             this.controller.loadUrl($rawfile('index.html'));
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -912,13 +892,13 @@ struct WebComponent {
 2.resources协议。
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -928,8 +908,7 @@ struct WebComponent {
             // 通过resource协议加载本地资源文件。
             this.controller.loadUrl("resource://rawfile/index.html");
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -987,13 +966,13 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -1006,8 +985,7 @@ struct WebComponent {
               "UTF-8"
             );
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1019,13 +997,13 @@ struct WebComponent {
 加载本地资源
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   updataContent: string = '<body><div><image src=resource://rawfile/xxx.png alt="image -- end" width="500" height="250"></image></div></body>'
 
   build() {
@@ -1035,8 +1013,7 @@ struct WebComponent {
           try {
             this.controller.loadData(this.updataContent, "text/html", "UTF-8", " ", " ");
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1071,13 +1048,13 @@ accessForward(): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -1087,8 +1064,7 @@ struct WebComponent {
             let result = this.controller.accessForward();
             console.log('result:' + result);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1117,13 +1093,13 @@ forward(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -1132,8 +1108,7 @@ struct WebComponent {
           try {
             this.controller.forward();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1168,13 +1143,13 @@ accessBackward(): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -1184,8 +1159,7 @@ struct WebComponent {
             let result = this.controller.accessBackward();
             console.log('result:' + result);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1214,13 +1188,13 @@ backward(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -1229,8 +1203,7 @@ struct WebComponent {
           try {
             this.controller.backward();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1260,13 +1233,13 @@ onActive(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -1275,8 +1248,7 @@ struct WebComponent {
           try {
             this.controller.onActive();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1305,13 +1277,13 @@ onInactive(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -1320,8 +1292,7 @@ struct WebComponent {
           try {
             this.controller.onInactive();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1349,13 +1320,13 @@ refresh(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -1364,8 +1335,7 @@ struct WebComponent {
           try {
             this.controller.refresh();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1406,13 +1376,13 @@ accessStep(step: number): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   @State steps: number = 2;
 
   build() {
@@ -1423,8 +1393,7 @@ struct WebComponent {
             let result = this.controller.accessStep(this.steps);
             console.log('result:' + result);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1453,13 +1422,13 @@ clearHistory(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -1468,8 +1437,7 @@ struct WebComponent {
           try {
             this.controller.clearHistory();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1504,13 +1472,13 @@ getHitTest(): WebHitTestType
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -1520,8 +1488,7 @@ struct WebComponent {
             let hitTestType = this.controller.getHitTest();
             console.log("hitTestType: " + hitTestType);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -1566,8 +1533,8 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class TestObj {
   constructor() {
@@ -1622,10 +1589,11 @@ class AsyncObj {
 @Entry
 @Component
 struct Index {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   @State testObjtest: TestObj = new TestObj();
   @State webTestObj: WebObj = new WebObj();
   @State asyncTestObj: AsyncObj = new AsyncObj();
+
   build() {
     Column() {
       Button('refresh')
@@ -1633,8 +1601,7 @@ struct Index {
           try {
             this.controller.refresh();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('Register JavaScript To Window')
@@ -1644,8 +1611,7 @@ struct Index {
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
             this.controller.registerJavaScriptProxy(this.asyncTestObj, "objAsyncName", [], ["asyncTest", "asyncString"]);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -1715,14 +1681,14 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 **示例：**
 
 ```ts
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State webResult: string = ''
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State webResult: string = '';
 
   build() {
     Column() {
@@ -1735,21 +1701,19 @@ struct WebComponent {
               'test()',
               (error, result) => {
                 if (error) {
-                  let e: business_error.BusinessError = error as business_error.BusinessError;
-                  console.error(`run JavaScript error, ErrorCode: ${e.code},  Message: ${e.message}`);
+                  console.error(`run JavaScript error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                   return;
                 }
                 if (result) {
-                  this.webResult = result
-                  console.info(`The test() return value is: ${result}`)
+                  this.webResult = result;
+                  console.info(`The test() return value is: ${result}`);
                 }
               });
             if (e) {
               console.info('url: ', e.url);
             }
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
     }
@@ -1807,13 +1771,13 @@ runJavaScript(script: string): Promise\<string>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -1825,15 +1789,14 @@ struct WebComponent {
               .then((result) => {
                 console.log('result: ' + result);
               })
-              .catch((error: business_error.BusinessError) => {
+              .catch((error: BusinessError) => {
                 console.error("error: " + error);
               })
             if (e) {
               console.info('url: ', e.url);
             }
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
     }
@@ -1885,15 +1848,15 @@ runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessa
 **示例：**
 
 ```ts
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State msg1: string = ''
-  @State msg2: string = ''
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State msg1: string = '';
+  @State msg2: string = '';
 
   build() {
     Column() {
@@ -1907,35 +1870,34 @@ struct WebComponent {
               'test()',
               (error, result) => {
                 if (error) {
-                  let e: business_error.BusinessError = error as business_error.BusinessError;
-                  console.error(`run JavaScript error, ErrorCode: ${e.code},  Message: ${e.message}`)
+                  console.error(`run JavaScript error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`)
                   return;
                 }
                 if (result) {
                   try {
                     let type = result.getType();
                     switch (type) {
-                      case web_webview.JsMessageType.STRING: {
+                      case webview.JsMessageType.STRING: {
                         this.msg1 = "result type:" + typeof (result.getString());
                         this.msg2 = "result getString:" + ((result.getString()));
                         break;
                       }
-                      case web_webview.JsMessageType.NUMBER: {
+                      case webview.JsMessageType.NUMBER: {
                         this.msg1 = "result type:" + typeof (result.getNumber());
                         this.msg2 = "result getNumber:" + ((result.getNumber()));
                         break;
                       }
-                      case web_webview.JsMessageType.BOOLEAN: {
+                      case webview.JsMessageType.BOOLEAN: {
                         this.msg1 = "result type:" + typeof (result.getBoolean());
                         this.msg2 = "result getBoolean:" + ((result.getBoolean()));
                         break;
                       }
-                      case web_webview.JsMessageType.ARRAY_BUFFER: {
+                      case webview.JsMessageType.ARRAY_BUFFER: {
                         this.msg1 = "result type:" + typeof (result.getArrayBuffer());
                         this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
                         break;
                       }
-                      case web_webview.JsMessageType.ARRAY: {
+                      case webview.JsMessageType.ARRAY: {
                         this.msg1 = "result type:" + typeof (result.getArray());
                         this.msg2 = "result getArray:" + result.getArray();
                         break;
@@ -1947,8 +1909,7 @@ struct WebComponent {
                     }
                   }
                   catch (resError) {
-                    let e: business_error.BusinessError = resError as business_error.BusinessError;
-                    console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                    console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                   }
                 }
               });
@@ -1956,8 +1917,7 @@ struct WebComponent {
               console.info('url: ', e.url);
             }
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
     }
@@ -1967,15 +1927,15 @@ struct WebComponent {
 
 ```ts
 // 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
-import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   @State msg1: string = ''
   @State msg2: string = ''
 
@@ -1989,47 +1949,46 @@ struct WebComponent {
             let context = getContext(this) as common.UIAbilityContext;
             let filePath = context.filesDir + 'test.txt';
             // 新建并打开文件
-            let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
             // 写入一段内容至文件
-            fs.writeSync(file.fd, "test()");
+            fileIo.writeSync(file.fd, "test()");
             // 从文件中读取内容
             let arrayBuffer: ArrayBuffer = new ArrayBuffer(6);
-            fs.readSync(file.fd, arrayBuffer, { offset: 0, length: arrayBuffer.byteLength });
+            fileIo.readSync(file.fd, arrayBuffer, { offset: 0, length: arrayBuffer.byteLength });
             // 关闭文件
-            fs.closeSync(file);
+            fileIo.closeSync(file);
             this.controller.runJavaScriptExt(
               arrayBuffer,
               (error, result) => {
                 if (error) {
-                  let e: business_error.BusinessError = error as business_error.BusinessError;
-                  console.error(`run JavaScript error, ErrorCode: ${e.code},  Message: ${e.message}`)
+                  console.error(`run JavaScript error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`)
                   return;
                 }
                 if (result) {
                   try {
                     let type = result.getType();
                     switch (type) {
-                      case web_webview.JsMessageType.STRING: {
+                      case webview.JsMessageType.STRING: {
                         this.msg1 = "result type:" + typeof (result.getString());
                         this.msg2 = "result getString:" + ((result.getString()));
                         break;
                       }
-                      case web_webview.JsMessageType.NUMBER: {
+                      case webview.JsMessageType.NUMBER: {
                         this.msg1 = "result type:" + typeof (result.getNumber());
                         this.msg2 = "result getNumber:" + ((result.getNumber()));
                         break;
                       }
-                      case web_webview.JsMessageType.BOOLEAN: {
+                      case webview.JsMessageType.BOOLEAN: {
                         this.msg1 = "result type:" + typeof (result.getBoolean());
                         this.msg2 = "result getBoolean:" + ((result.getBoolean()));
                         break;
                       }
-                      case web_webview.JsMessageType.ARRAY_BUFFER: {
+                      case webview.JsMessageType.ARRAY_BUFFER: {
                         this.msg1 = "result type:" + typeof (result.getArrayBuffer());
                         this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
                         break;
                       }
-                      case web_webview.JsMessageType.ARRAY: {
+                      case webview.JsMessageType.ARRAY: {
                         this.msg1 = "result type:" + typeof (result.getArray());
                         this.msg2 = "result getArray:" + result.getArray();
                         break;
@@ -2041,14 +2000,12 @@ struct WebComponent {
                     }
                   }
                   catch (resError) {
-                    let e: business_error.BusinessError = resError as business_error.BusinessError;
-                    console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                    console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                   }
                 }
               });
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -2106,16 +2063,16 @@ runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   @State webResult: string = '';
-  @State msg1: string = ''
-  @State msg2: string = ''
+  @State msg1: string = '';
+  @State msg2: string = '';
 
   build() {
     Column() {
@@ -2130,27 +2087,27 @@ struct WebComponent {
               try {
                 let type = result.getType();
                 switch (type) {
-                  case web_webview.JsMessageType.STRING: {
+                  case webview.JsMessageType.STRING: {
                     this.msg1 = "result type:" + typeof (result.getString());
                     this.msg2 = "result getString:" + ((result.getString()));
                     break;
                   }
-                  case web_webview.JsMessageType.NUMBER: {
+                  case webview.JsMessageType.NUMBER: {
                     this.msg1 = "result type:" + typeof (result.getNumber());
                     this.msg2 = "result getNumber:" + ((result.getNumber()));
                     break;
                   }
-                  case web_webview.JsMessageType.BOOLEAN: {
+                  case webview.JsMessageType.BOOLEAN: {
                     this.msg1 = "result type:" + typeof (result.getBoolean());
                     this.msg2 = "result getBoolean:" + ((result.getBoolean()));
                     break;
                   }
-                  case web_webview.JsMessageType.ARRAY_BUFFER: {
+                  case webview.JsMessageType.ARRAY_BUFFER: {
                     this.msg1 = "result type:" + typeof (result.getArrayBuffer());
                     this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
                     break;
                   }
-                  case web_webview.JsMessageType.ARRAY: {
+                  case webview.JsMessageType.ARRAY: {
                     this.msg1 = "result type:" + typeof (result.getArray());
                     this.msg2 = "result getArray:" + result.getArray();
                     break;
@@ -2162,13 +2119,11 @@ struct WebComponent {
                 }
               }
               catch (resError) {
-                let e: business_error.BusinessError = resError as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
               }
-            })
-            .catch((error: business_error.BusinessError) => {
-              console.error("error: " + error);
-            })
+            }).catch((error: BusinessError) => {
+            console.error("error: " + error);
+          })
         })
     }
   }
@@ -2177,17 +2132,17 @@ struct WebComponent {
 
 ```ts
 // 使用ArrayBuffer入参，从文件中获取JavaScript脚本数据
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
-import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State msg1: string = ''
-  @State msg2: string = ''
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State msg1: string = '';
+  @State msg2: string = '';
 
   build() {
     Column() {
@@ -2199,40 +2154,40 @@ struct WebComponent {
             let context = getContext(this) as common.UIAbilityContext;
             let filePath = context.filesDir + 'test.txt';
             // 新建并打开文件
-            let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
             // 写入一段内容至文件
-            fs.writeSync(file.fd, "test()");
+            fileIo.writeSync(file.fd, "test()");
             // 从文件中读取内容
             let arrayBuffer: ArrayBuffer = new ArrayBuffer(6);
-            fs.readSync(file.fd, arrayBuffer, { offset: 0, length: arrayBuffer.byteLength });
+            fileIo.readSync(file.fd, arrayBuffer, { offset: 0, length: arrayBuffer.byteLength });
             // 关闭文件
-            fs.closeSync(file);
+            fileIo.closeSync(file);
             this.controller.runJavaScriptExt(arrayBuffer)
               .then((result) => {
                 try {
                   let type = result.getType();
                   switch (type) {
-                    case web_webview.JsMessageType.STRING: {
+                    case webview.JsMessageType.STRING: {
                       this.msg1 = "result type:" + typeof (result.getString());
                       this.msg2 = "result getString:" + ((result.getString()));
                       break;
                     }
-                    case web_webview.JsMessageType.NUMBER: {
+                    case webview.JsMessageType.NUMBER: {
                       this.msg1 = "result type:" + typeof (result.getNumber());
                       this.msg2 = "result getNumber:" + ((result.getNumber()));
                       break;
                     }
-                    case web_webview.JsMessageType.BOOLEAN: {
+                    case webview.JsMessageType.BOOLEAN: {
                       this.msg1 = "result type:" + typeof (result.getBoolean());
                       this.msg2 = "result getBoolean:" + ((result.getBoolean()));
                       break;
                     }
-                    case web_webview.JsMessageType.ARRAY_BUFFER: {
+                    case webview.JsMessageType.ARRAY_BUFFER: {
                       this.msg1 = "result type:" + typeof (result.getArrayBuffer());
                       this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
                       break;
                     }
-                    case web_webview.JsMessageType.ARRAY: {
+                    case webview.JsMessageType.ARRAY: {
                       this.msg1 = "result type:" + typeof (result.getArray());
                       this.msg2 = "result getArray:" + result.getArray();
                       break;
@@ -2244,16 +2199,14 @@ struct WebComponent {
                   }
                 }
                 catch (resError) {
-                  let e: business_error.BusinessError = resError as business_error.BusinessError;
-                  console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                  console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
                 }
               })
-              .catch((error: business_error.BusinessError) => {
+              .catch((error: BusinessError) => {
                 console.error("error: " + error);
               })
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -2306,8 +2259,8 @@ deleteJavaScriptRegister(name: string): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class TestObj {
   constructor() {
@@ -2325,7 +2278,7 @@ class TestObj {
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   @State testObjtest: TestObj = new TestObj();
   @State name: string = 'objName';
   build() {
@@ -2335,8 +2288,7 @@ struct WebComponent {
           try {
             this.controller.refresh();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('Register JavaScript To Window')
@@ -2344,8 +2296,7 @@ struct WebComponent {
           try {
             this.controller.registerJavaScriptProxy(this.testObjtest, this.name, ["test", "toString"]);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('deleteJavaScriptRegister')
@@ -2353,8 +2304,7 @@ struct WebComponent {
           try {
             this.controller.deleteJavaScriptRegister(this.name);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -2411,13 +2361,13 @@ zoom(factor: number): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   @State factor: number = 1;
 
   build() {
@@ -2427,8 +2377,7 @@ struct WebComponent {
           try {
             this.controller.zoom(this.factor);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2464,13 +2413,13 @@ searchAllAsync(searchString: string): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   @State searchString: string = "Hello World";
 
   build() {
@@ -2480,8 +2429,7 @@ struct WebComponent {
           try {
             this.controller.searchAllAsync(this.searchString);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -2527,13 +2475,13 @@ clearMatches(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -2542,8 +2490,7 @@ struct WebComponent {
           try {
             this.controller.clearMatches();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -2580,13 +2527,13 @@ searchNext(forward: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -2595,8 +2542,7 @@ struct WebComponent {
           try {
             this.controller.searchNext(true);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -2627,13 +2573,13 @@ clearSslCache(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -2642,8 +2588,7 @@ struct WebComponent {
           try {
             this.controller.clearSslCache();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2672,13 +2617,13 @@ clearClientAuthenticationCache(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -2687,8 +2632,7 @@ struct WebComponent {
           try {
             this.controller.clearClientAuthenticationCache();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2727,16 +2671,16 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 **示例：**
 
-  ```ts
+```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[] = [];
+  controller: webview.WebviewController = new webview.WebviewController();
+  ports: webview.WebMessagePort[] = [];
 
   build() {
     Column() {
@@ -2744,17 +2688,16 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.ports = this.controller.createWebMessagePorts();
-            console.log("createWebMessagePorts size:" + this.ports.length)
+            console.log("createWebMessagePorts size:" + this.ports.length);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
 }
-  ```
+```
 
 ### postMessage
 
@@ -2784,14 +2727,14 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  ports: web_webview.WebMessagePort[] = [];
+  controller: webview.WebviewController = new webview.WebviewController();
+  ports: webview.WebMessagePort[] = [];
   @State sendFromEts: string = 'Send this message from ets to HTML';
   @State receivedFromHtml: string = 'Display received message send from HTML';
 
@@ -2811,12 +2754,12 @@ struct WebComponent {
             // 1、创建两个消息端口。
             this.ports = this.controller.createWebMessagePorts();
             // 2、在应用侧的消息端口(如端口1)上注册回调事件。
-            this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
+            this.ports[1].onMessageEvent((result: webview.WebMessage) => {
               let msg = 'Got msg from HTML:';
-              if (typeof(result) == "string") {
+              if (typeof (result) == "string") {
                 console.log("received string message from html5, string is:" + result);
                 msg = msg + result;
-              } else if (typeof(result) == "object") {
+              } else if (typeof (result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
                   msg = msg + "length is " + result.byteLength;
@@ -2831,8 +2774,7 @@ struct WebComponent {
             // 3、将另一个消息端口(如端口0)发送到HTML侧，由HTML侧保存并使用。
             this.controller.postMessage('__init_port__', [this.ports[0]], '*');
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
 
@@ -2846,8 +2788,7 @@ struct WebComponent {
               console.error(`ports is null, Please initialize first`);
             }
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -2939,13 +2880,13 @@ requestFocus(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -2954,8 +2895,7 @@ struct WebComponent {
           try {
             this.controller.requestFocus();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         });
       Web({ src: 'www.example.com', controller: this.controller })
@@ -2985,13 +2925,13 @@ zoomIn(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3000,8 +2940,7 @@ struct WebComponent {
           try {
             this.controller.zoomIn();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3031,13 +2970,13 @@ zoomOut(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3046,8 +2985,7 @@ struct WebComponent {
           try {
             this.controller.zoomOut();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3082,13 +3020,13 @@ getHitTestValue(): HitTestValue
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3099,8 +3037,7 @@ struct WebComponent {
             console.log("hitType: " + hitValue.type);
             console.log("extra: " + hitValue.extra);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3135,13 +3072,13 @@ getWebId(): number
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3151,8 +3088,7 @@ struct WebComponent {
             let id = this.controller.getWebId();
             console.log("id: " + id);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3187,13 +3123,13 @@ getUserAgent(): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3203,8 +3139,7 @@ struct WebComponent {
             let userAgent = this.controller.getUserAgent();
             console.log("userAgent: " + userAgent);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3216,23 +3151,23 @@ struct WebComponent {
 支持开发者基于默认的UserAgent去定制UserAgent。
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State ua: string = ""
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State ua: string = "";
 
-  aboutToAppear():void {
-    web_webview.once('webInited', () => {
+  aboutToAppear(): void {
+    webview.once('webInited', () => {
       try {
         // 应用侧用法示例，定制UserAgent。
         this.ua = this.controller.getUserAgent() + 'xxx';
-      } catch(error) {
-        let e:business_error.BusinessError = error as business_error.BusinessError;
-        console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+        this.controller.setCustomUserAgent(this.us);
+      } catch (error) {
+        console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
       }
     })
   }
@@ -3240,7 +3175,6 @@ struct WebComponent {
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
-        .userAgent(this.ua)
     }
   }
 }
@@ -3272,13 +3206,13 @@ getTitle(): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3288,8 +3222,7 @@ struct WebComponent {
             let title = this.controller.getTitle();
             console.log("title: " + title);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3324,13 +3257,13 @@ getPageHeight(): number
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3340,8 +3273,7 @@ struct WebComponent {
             let pageHeight = this.controller.getPageHeight();
             console.log("pageHeight : " + pageHeight);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3380,13 +3312,13 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3395,17 +3327,15 @@ struct WebComponent {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true, (error, filename) => {
               if (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`save web archive error, ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`save web archive error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                 return;
               }
               if (filename != null) {
-                console.info(`save web archive success: ${filename}`)
+                console.info(`save web archive success: ${filename}`);
               }
             });
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3449,13 +3379,13 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3468,12 +3398,11 @@ struct WebComponent {
                   console.info(`save web archive success: ${filename}`)
                 }
               })
-              .catch((error:business_error.BusinessError) => {
+              .catch((error: BusinessError) => {
                 console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
               })
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3508,13 +3437,13 @@ getUrl(): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3524,8 +3453,7 @@ struct WebComponent {
             let url = this.controller.getUrl();
             console.log("url: " + url);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3554,13 +3482,13 @@ stop(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3569,8 +3497,7 @@ struct WebComponent {
           try {
             this.controller.stop();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         });
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3607,13 +3534,13 @@ backOrForward(step: number): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   @State step: number = -2;
 
   build() {
@@ -3623,8 +3550,7 @@ struct WebComponent {
           try {
             this.controller.backOrForward(this.step);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3660,13 +3586,13 @@ scrollTo(x:number, y:number): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3675,8 +3601,7 @@ struct WebComponent {
           try {
             this.controller.scrollTo(50, 50);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3735,13 +3660,13 @@ scrollBy(deltaX:number, deltaY:number): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3750,8 +3675,7 @@ struct WebComponent {
           try {
             this.controller.scrollBy(50, 50);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3810,13 +3734,13 @@ slideScroll(vx:number, vy:number): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3825,8 +3749,7 @@ struct WebComponent {
           try {
             this.controller.slideScroll(500, 500);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3885,13 +3808,13 @@ getOriginalUrl(): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -3901,8 +3824,7 @@ struct WebComponent {
             let url = this.controller.getOriginalUrl();
             console.log("original url: " + url);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3937,14 +3859,14 @@ getFavicon(): image.PixelMap
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import image from "@ohos.multimedia.image";
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   @State pixelmap: image.PixelMap | undefined = undefined;
 
   build() {
@@ -3954,8 +3876,7 @@ struct WebComponent {
           try {
             this.pixelmap = this.controller.getFavicon();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -3990,13 +3911,13 @@ setNetworkAvailable(enable: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -4005,8 +3926,7 @@ struct WebComponent {
           try {
             this.controller.setNetworkAvailable(true);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -4063,13 +3983,13 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -4078,15 +3998,13 @@ struct WebComponent {
           try {
             this.controller.hasImage((error, data) => {
               if (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`hasImage error, ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`hasImage error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                 return;
               }
               console.info("hasImage: " + data);
             });
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4121,13 +4039,13 @@ hasImage(): Promise\<boolean>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -4136,13 +4054,11 @@ struct WebComponent {
           try {
             this.controller.hasImage().then((data) => {
               console.info('hasImage: ' + data);
-            })
-            .catch((error:business_error.BusinessError) => {
+            }).catch((error: BusinessError) => {
               console.error("error: " + error);
             })
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4177,13 +4093,13 @@ removeCache(clearRom: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -4192,8 +4108,7 @@ struct WebComponent {
           try {
             this.controller.removeCache(false);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4228,13 +4143,13 @@ pageUp(top: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -4243,8 +4158,7 @@ struct WebComponent {
           try {
             this.controller.pageUp(false);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4279,13 +4193,13 @@ pageDown(bottom: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -4294,8 +4208,7 @@ struct WebComponent {
           try {
             this.controller.pageDown(false);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4330,13 +4243,13 @@ getBackForwardEntries(): BackForwardList
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -4345,8 +4258,7 @@ struct WebComponent {
           try {
             let list = this.controller.getBackForwardEntries()
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4382,14 +4294,14 @@ serializeWebState(): Uint8Array
 1.对文件的操作需要导入文件管理模块，详情请参考[文件管理](../apis-core-file-kit/js-apis-file-fs.md)。
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import fs from '@ohos.file.fs';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -4401,13 +4313,12 @@ struct WebComponent {
             if (path) {
               path += '/WebState';
               // 以同步方法打开文件。
-              let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-              fs.writeSync(file.fd, state.buffer);
-              fs.closeSync(file.fd);
+              let file = fileIo.openSync(path, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+              fileIo.writeSync(file.fd, state.buffer);
+              fileIo.closeSync(file.fd);
             }
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4420,9 +4331,7 @@ struct WebComponent {
 获取应用缓存文件路径。
 ```ts
 // xxx.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -4459,41 +4368,40 @@ restoreWebState(state: Uint8Array): void
 1.对文件的操作需要导入文件管理模块，详情请参考[文件管理](../apis-core-file-kit/js-apis-file-fs.md)。
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import fs from '@ohos.file.fs';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('RestoreWebState')
         .onClick(() => {
           try {
-            let path:string | undefined = AppStorage.get("cacheDir");
+            let path: string | undefined = AppStorage.get("cacheDir");
             if (path) {
               path += '/WebState';
               // 以同步方法打开文件。
-              let file = fs.openSync(path, fs.OpenMode.READ_WRITE);
-              let stat = fs.statSync(path);
+              let file = fileIo.openSync(path, fileIo.OpenMode.READ_WRITE);
+              let stat = fileIo.statSync(path);
               let size = stat.size;
               let buf = new ArrayBuffer(size);
-              fs.read(file.fd, buf, (err, readLen) => {
+              fileIo.read(file.fd, buf, (err, readLen) => {
                 if (err) {
                   console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
                 } else {
                   console.info("read file data succeed");
                   this.controller.restoreWebState(new Uint8Array(buf.slice(0, readLen)));
-                  fs.closeSync(file);
+                  fileIo.closeSync(file);
                 }
               });
             }
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -4506,15 +4414,13 @@ struct WebComponent {
 获取应用缓存文件路径。
 ```ts
 // xxx.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        // 通过在AppStorage对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
-        AppStorage.setOrCreate("cacheDir", this.context.cacheDir);
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // 通过在AppStorage对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
+    AppStorage.setOrCreate("cacheDir", this.context.cacheDir);
+  }
 }
 ```
 
@@ -4545,24 +4451,23 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  responseweb: WebResourceResponse = new WebResourceResponse()
-  scheme1: web_webview.WebCustomScheme = {schemeName: "name1", isSupportCORS: true, isSupportFetch: true}
-  scheme2: web_webview.WebCustomScheme = {schemeName: "name2", isSupportCORS: true, isSupportFetch: true}
-  scheme3: web_webview.WebCustomScheme = {schemeName: "name3", isSupportCORS: true, isSupportFetch: true}
+  controller: webview.WebviewController = new webview.WebviewController();
+  responseWeb: WebResourceResponse = new WebResourceResponse();
+  scheme1: webview.WebCustomScheme = { schemeName: "name1", isSupportCORS: true, isSupportFetch: true };
+  scheme2: webview.WebCustomScheme = { schemeName: "name2", isSupportCORS: true, isSupportFetch: true };
+  scheme3: webview.WebCustomScheme = { schemeName: "name3", isSupportCORS: true, isSupportFetch: true };
 
-  aboutToAppear():void {
+  aboutToAppear(): void {
     try {
-      web_webview.WebviewController.customizeSchemes([this.scheme1, this.scheme2, this.scheme3])
-    } catch(error) {
-      let e:business_error.BusinessError = error as business_error.BusinessError;
-      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+      webview.WebviewController.customizeSchemes([this.scheme1, this.scheme2, this.scheme3]);
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
     }
   }
 
@@ -4571,9 +4476,9 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
         .onInterceptRequest((event) => {
           if (event) {
-            console.log('url:' + event.request.getRequestUrl())
+            console.log('url:' + event.request.getRequestUrl());
           }
-          return this.responseweb
+          return this.responseWeb;
         })
     }
   }
@@ -4606,41 +4511,41 @@ getCertificate(): Promise<Array<cert.X509Cert>>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
-import cert from '@ohos.security.cert';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cert } from '@kit.DeviceCertificateKit';
 
-function Uint8ArrayToString(dataArray:Uint8Array) {
-  let dataString = ''
+function Uint8ArrayToString(dataArray: Uint8Array) {
+  let dataString = '';
   for (let i = 0; i < dataArray.length; i++) {
-    dataString += String.fromCharCode(dataArray[i])
+    dataString += String.fromCharCode(dataArray[i]);
   }
-  return dataString
+  return dataString;
 }
 
-function ParseX509CertInfo(x509CertArray:Array<cert.X509Cert>) {
+function ParseX509CertInfo(x509CertArray: Array<cert.X509Cert>) {
   let res: string = 'getCertificate success: len = ' + x509CertArray.length;
   for (let i = 0; i < x509CertArray.length; i++) {
     res += ', index = ' + i + ', issuer name = '
-    + Uint8ArrayToString(x509CertArray[i].getIssuerName().data) + ', subject name = '
-    + Uint8ArrayToString(x509CertArray[i].getSubjectName().data) + ', valid start = '
-    + x509CertArray[i].getNotBeforeTime()
-    + ', valid end = ' + x509CertArray[i].getNotAfterTime()
+      + Uint8ArrayToString(x509CertArray[i].getIssuerName().data) + ', subject name = '
+      + Uint8ArrayToString(x509CertArray[i].getSubjectName().data) + ', valid start = '
+      + x509CertArray[i].getNotBeforeTime()
+      + ', valid end = ' + x509CertArray[i].getNotAfterTime();
   }
-  return res
+  return res;
 }
 
 @Entry
 @Component
 struct Index {
   // outputStr在UI界面显示调试信息
-  @State outputStr: string = ''
-  webviewCtl: web_webview.WebviewController = new web_webview.WebviewController();
+  @State outputStr: string = '';
+  webviewCtl: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Row() {
       Column() {
-        List({space: 20, initialIndex: 0}) {
+        List({ space: 20, initialIndex: 0 }) {
           ListItem() {
             Button() {
               Text('load bad ssl')
@@ -4650,7 +4555,7 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               // 加载一个过期的证书网站，查看获取到的证书信息
-              this.webviewCtl.loadUrl('https://expired.badssl.com')
+              this.webviewCtl.loadUrl('https://expired.badssl.com');
             })
             .height(50)
           }
@@ -4664,7 +4569,7 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               // 加载一个https网站，查看网站的证书信息
-              this.webviewCtl.loadUrl('https://www.example.com')
+              this.webviewCtl.loadUrl('https://www.example.com');
             })
             .height(50)
           }
@@ -4678,12 +4583,11 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               try {
-                this.webviewCtl.getCertificate().then((x509CertArray:Array<cert.X509Cert>) => {
+                this.webviewCtl.getCertificate().then((x509CertArray: Array<cert.X509Cert>) => {
                   this.outputStr = ParseX509CertInfo(x509CertArray);
                 })
               } catch (error) {
-                let e:business_error.BusinessError = error as business_error.BusinessError;
-                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
+                this.outputStr = 'getCertificate failed: ' + (error as BusinessError).code + ", errMsg: " + (error as BusinessError).message;
               }
             })
             .height(50)
@@ -4698,7 +4602,7 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               try {
-                this.webviewCtl.getCertificate((error:business_error.BusinessError, x509CertArray:Array<cert.X509Cert>) => {
+                this.webviewCtl.getCertificate((error: BusinessError, x509CertArray: Array<cert.X509Cert>) => {
                   if (error) {
                     this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
                   } else {
@@ -4706,8 +4610,7 @@ struct Index {
                   }
                 })
               } catch (error) {
-                let e:business_error.BusinessError = error as business_error.BusinessError;
-                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
+                this.outputStr = 'getCertificate failed: ' + (error as BusinessError).code + ", errMsg: " + (error as BusinessError).message;
               }
             })
             .height(50)
@@ -4726,13 +4629,13 @@ struct Index {
           .domStorageAccess(true)
           .onlineImageAccess(true)
           .onPageEnd((e) => {
-            if(e) {
-              this.outputStr = 'onPageEnd : url = ' + e.url
+            if (e) {
+              this.outputStr = 'onPageEnd : url = ' + e.url;
             }
           })
           .onSslErrorEventReceive((e) => {
             // 忽略ssl证书错误，便于测试一些证书过期的网站，如：https://expired.badssl.com
-            e.handler.handleConfirm()
+            e.handler.handleConfirm();
           })
           .width('100%')
           .height('70%')
@@ -4769,41 +4672,41 @@ getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
-import cert from '@ohos.security.cert';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cert } from '@kit.DeviceCertificateKit';
 
-function Uint8ArrayToString(dataArray:Uint8Array) {
-  let dataString = ''
+function Uint8ArrayToString(dataArray: Uint8Array) {
+  let dataString = '';
   for (let i = 0; i < dataArray.length; i++) {
-    dataString += String.fromCharCode(dataArray[i])
+    dataString += String.fromCharCode(dataArray[i]);
   }
-  return dataString
+  return dataString;
 }
 
-function ParseX509CertInfo(x509CertArray:Array<cert.X509Cert>) {
+function ParseX509CertInfo(x509CertArray: Array<cert.X509Cert>) {
   let res: string = 'getCertificate success: len = ' + x509CertArray.length;
   for (let i = 0; i < x509CertArray.length; i++) {
     res += ', index = ' + i + ', issuer name = '
-    + Uint8ArrayToString(x509CertArray[i].getIssuerName().data) + ', subject name = '
-    + Uint8ArrayToString(x509CertArray[i].getSubjectName().data) + ', valid start = '
-    + x509CertArray[i].getNotBeforeTime()
-    + ', valid end = ' + x509CertArray[i].getNotAfterTime()
+      + Uint8ArrayToString(x509CertArray[i].getIssuerName().data) + ', subject name = '
+      + Uint8ArrayToString(x509CertArray[i].getSubjectName().data) + ', valid start = '
+      + x509CertArray[i].getNotBeforeTime()
+      + ', valid end = ' + x509CertArray[i].getNotAfterTime();
   }
-  return res
+  return res;
 }
 
 @Entry
 @Component
 struct Index {
   // outputStr在UI界面显示调试信息
-  @State outputStr: string = ''
-  webviewCtl: web_webview.WebviewController = new web_webview.WebviewController();
+  @State outputStr: string = '';
+  webviewCtl: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Row() {
       Column() {
-        List({space: 20, initialIndex: 0}) {
+        List({ space: 20, initialIndex: 0 }) {
           ListItem() {
             Button() {
               Text('load bad ssl')
@@ -4813,7 +4716,7 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               // 加载一个过期的证书网站，查看获取到的证书信息
-              this.webviewCtl.loadUrl('https://expired.badssl.com')
+              this.webviewCtl.loadUrl('https://expired.badssl.com');
             })
             .height(50)
           }
@@ -4827,7 +4730,7 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               // 加载一个https网站，查看网站的证书信息
-              this.webviewCtl.loadUrl('https://www.example.com')
+              this.webviewCtl.loadUrl('https://www.example.com');
             })
             .height(50)
           }
@@ -4841,12 +4744,11 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               try {
-                this.webviewCtl.getCertificate().then((x509CertArray:Array<cert.X509Cert>) => {
+                this.webviewCtl.getCertificate().then((x509CertArray: Array<cert.X509Cert>) => {
                   this.outputStr = ParseX509CertInfo(x509CertArray);
                 })
               } catch (error) {
-                let e:business_error.BusinessError = error as business_error.BusinessError;
-                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
+                this.outputStr = 'getCertificate failed: ' + (error as BusinessError).code + ", errMsg: " + (error as BusinessError).message;
               }
             })
             .height(50)
@@ -4861,7 +4763,7 @@ struct Index {
             .type(ButtonType.Capsule)
             .onClick(() => {
               try {
-                this.webviewCtl.getCertificate((error:business_error.BusinessError, x509CertArray:Array<cert.X509Cert>) => {
+                this.webviewCtl.getCertificate((error: BusinessError, x509CertArray: Array<cert.X509Cert>) => {
                   if (error) {
                     this.outputStr = 'getCertificate failed: ' + error.code + ", errMsg: " + error.message;
                   } else {
@@ -4869,8 +4771,7 @@ struct Index {
                   }
                 })
               } catch (error) {
-                let e:business_error.BusinessError = error as business_error.BusinessError;
-                this.outputStr = 'getCertificate failed: ' + e.code + ", errMsg: " + e.message;
+                this.outputStr = 'getCertificate failed: ' + (error as BusinessError).code + ", errMsg: " + (error as BusinessError).message;
               }
             })
             .height(50)
@@ -4890,12 +4791,12 @@ struct Index {
           .onlineImageAccess(true)
           .onPageEnd((e) => {
             if (e) {
-              this.outputStr = 'onPageEnd : url = ' + e.url
+              this.outputStr = 'onPageEnd : url = ' + e.url;
             }
           })
           .onSslErrorEventReceive((e) => {
             // 忽略ssl证书错误，便于测试一些证书过期的网站，如：https://expired.badssl.com
-            e.handler.handleConfirm()
+            e.handler.handleConfirm();
           })
           .width('100%')
           .height('70%')
@@ -4933,19 +4834,22 @@ setAudioMuted(mute: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  @State muted: boolean = false
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State muted: boolean = false;
+
   build() {
     Column() {
       Button("Toggle Mute")
         .onClick(event => {
-          this.muted = !this.muted
-          this.controller.setAudioMuted(this.muted)
+          if (event) {
+            this.muted = !this.muted;
+            this.controller.setAudioMuted(this.muted);
+          }
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -4981,13 +4885,13 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -4997,8 +4901,7 @@ struct WebComponent {
             // 预加载时，需要将'https://www.example.com'替换成一个真实的网站地址。
             this.controller.prefetchPage('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       // 需要将'www.example1.com'替换成一个真实的网站地址。
@@ -5038,26 +4941,24 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 
 ```ts
 // xxx.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { webview } from '@kit.ArkWeb';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("EntryAbility onCreate");
-        web_webview.WebviewController.initializeWebEngine();
-        // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
-        web_webview.WebviewController.prefetchResource(
-          {url:"https://www.example1.com/post?e=f&g=h",
-          method:"POST",
-          formData:"a=x&b=y",},
-          [{headerKey:"c",
-            headerValue:"z",},],
-          "KeyX", 500);
-        AppStorage.setOrCreate("abilityWant", want);
-        console.log("EntryAbility onCreate done");
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate");
+    webview.WebviewController.initializeWebEngine();
+    // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
+    webview.WebviewController.prefetchResource(
+      {url:"https://www.example1.com/post?e=f&g=h",
+        method:"POST",
+        formData:"a=x&b=y",},
+      [{headerKey:"c",
+        headerValue:"z",},],
+      "KeyX", 500);
+    AppStorage.setOrCreate("abilityWant", want);
+    console.log("EntryAbility onCreate done");
+  }
 }
 ```
 
@@ -5079,28 +4980,28 @@ static clearPrefetchedResource(cacheKeyList: Array\<string>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   build() {
     Column() {
       Web({ src: "https://www.example.com/", controller: this.controller})
         .onAppear(() => {
-            // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
-            web_webview.WebviewController.prefetchResource(
-              {url:"https://www.example1.com/post?e=f&g=h",
+          // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
+          webview.WebviewController.prefetchResource(
+            {url:"https://www.example1.com/post?e=f&g=h",
               method:"POST",
               formData:"a=x&b=y",},
-              [{headerKey:"c",
-                headerValue:"z",},],
-              "KeyX", 500);
+            [{headerKey:"c",
+              headerValue:"z",},],
+            "KeyX", 500);
         })
         .onPageEnd(() => {
-            // 清除后续不再使用的预获取缓存。
-            web_webview.WebviewController.clearPrefetchedResource(["KeyX",]);
+          // 清除后续不再使用的预获取缓存。
+          webview.WebviewController.clearPrefetchedResource(["KeyX",]);
         })
     }
   }
@@ -5136,20 +5037,18 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 
 ```ts
 // xxx.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { webview } from '@kit.ArkWeb';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("EntryAbility onCreate");
-        web_webview.WebviewController.initializeWebEngine();
-        // 预连接时，需要將'https://www.example.com'替换成一个真实的网站地址。
-        web_webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
-        AppStorage.setOrCreate("abilityWant", want);
-        console.log("EntryAbility onCreate done");
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate");
+    webview.WebviewController.initializeWebEngine();
+    // 预连接时，需要將'https://www.example.com'替换成一个真实的网站地址。
+    webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
+    AppStorage.setOrCreate("abilityWant", want);
+    console.log("EntryAbility onCreate done");
+  }
 }
 ```
 
@@ -5184,14 +5083,14 @@ setCustomUserAgent(userAgent: string): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State customUserAgent: string = 'test'
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State customUserAgent: string = 'test';
 
   build() {
     Column() {
@@ -5201,8 +5100,7 @@ struct WebComponent {
             let userAgent = this.controller.getUserAgent() + this.customUserAgent;
             this.controller.setCustomUserAgent(userAgent);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5237,14 +5135,14 @@ setDownloadDelegate(delegate: WebDownloadDelegate): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
@@ -5253,8 +5151,7 @@ struct WebComponent {
           try {
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5290,14 +5187,14 @@ startDownload(url: string): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
@@ -5306,8 +5203,7 @@ struct WebComponent {
           try {
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -5315,8 +5211,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5351,14 +5246,14 @@ getCustomUserAgent(): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State userAgent: string = ''
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State userAgent: string = '';
 
   build() {
     Column() {
@@ -5368,8 +5263,7 @@ struct WebComponent {
             this.userAgent = this.controller.getCustomUserAgent();
             console.log("userAgent: " + this.userAgent);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5404,31 +5298,30 @@ static setConnectionTimeout(timeout: number): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('setConnectionTimeout')
         .onClick(() => {
           try {
-            web_webview.WebviewController.setConnectionTimeout(5);
+            webview.WebviewController.setConnectionTimeout(5);
             console.log("setConnectionTimeout: 5s");
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
         .onErrorReceive((event) => {
           if (event) {
-            console.log('getErrorInfo:' + event.error.getErrorInfo())
-            console.log('getErrorCode:' + event.error.getErrorCode())
+            console.log('getErrorInfo:' + event.error.getErrorInfo());
+            console.log('getErrorCode:' + event.error.getErrorCode());
           }
         })
     }
@@ -5502,13 +5395,13 @@ enableSafeBrowsing(enable: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -5518,8 +5411,7 @@ struct WebComponent {
             this.controller.enableSafeBrowsing(true);
             console.log("enableSafeBrowsing: true");
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5546,12 +5438,12 @@ isSafeBrowsingEnabled(): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -5593,13 +5485,13 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -5609,8 +5501,7 @@ struct WebComponent {
             this.controller.enableIntelligentTrackingPrevention(true);
             console.log("enableIntelligentTrackingPrevention: true");
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5645,13 +5536,13 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -5660,11 +5551,10 @@ struct WebComponent {
           try {
             let result = this.controller.isIntelligentTrackingPreventionEnabled();
             console.log("result: " + result);
-        } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-        }
-      })
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
@@ -5697,26 +5587,25 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('addIntelligentTrackingPreventionBypassingList')
         .onClick(() => {
           try {
-            let hostList = [ "www.test1.com", "www.test2.com", "www.test3.com" ];
-            web_webview.WebviewController.addIntelligentTrackingPreventionBypassingList(hostList);
-        } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-        }
-      })
+            let hostList = ["www.test1.com", "www.test2.com", "www.test3.com"];
+            webview.WebviewController.addIntelligentTrackingPreventionBypassingList(hostList);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
@@ -5749,26 +5638,25 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('removeIntelligentTrackingPreventionBypassingList')
         .onClick(() => {
           try {
-            let hostList = [ "www.test1.com", "www.test2.com" ];
-            web_webview.WebviewController.removeIntelligentTrackingPreventionBypassingList(hostList);
-        } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-        }
-      })
+            let hostList = ["www.test1.com", "www.test2.com"];
+            webview.WebviewController.removeIntelligentTrackingPreventionBypassingList(hostList);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
@@ -5787,18 +5675,18 @@ static clearIntelligentTrackingPreventionBypassingList(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('clearIntelligentTrackingPreventionBypassingList')
         .onClick(() => {
-          web_webview.WebviewController.clearIntelligentTrackingPreventionBypassingList();
+          webview.WebviewController.clearIntelligentTrackingPreventionBypassingList();
       })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -5833,24 +5721,23 @@ enableAdsBlock(enable: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('enableAdsBlock')
         .onClick(() => {
           try {
-            this.controller.enableAdsBlock(true)
+            this.controller.enableAdsBlock(true);
             console.log("enableAdsBlock: true")
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`)
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5877,24 +5764,23 @@ isAdsBlockEnabled() : boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('isAdsBlockEnabled')
         .onClick(() => {
           try {
-            let isAdsBlockEnabled: boolean = this.controller.isAdsBlockEnabled()
-            console.log("isAdsBlockEnabled:", isAdsBlockEnabled)
+            let isAdsBlockEnabled: boolean = this.controller.isAdsBlockEnabled();
+            console.log("isAdsBlockEnabled:", isAdsBlockEnabled);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`)
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5922,24 +5808,23 @@ isAdsBlockEnabledForCurPage() : boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('isAdsBlockEnabledForCurPage')
         .onClick(() => {
           try {
-            let isAdsBlockEnabledForCurPage: boolean = this.controller.isAdsBlockEnabledForCurPage()
-            console.log("isAdsBlockEnabledForCurPage:", isAdsBlockEnabledForCurPage)
+            let isAdsBlockEnabledForCurPage: boolean = this.controller.isAdsBlockEnabledForCurPage();
+            console.log("isAdsBlockEnabledForCurPage:", isAdsBlockEnabledForCurPage);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`)
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -5974,25 +5859,22 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('setRenderProcessMode')
         .onClick(() => {
           try {
-            web_webview
-              .WebviewController
-              .setRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE);
+            webview.WebviewController.setRenderProcessMode(webview.RenderProcessMode.MULTIPLE);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6019,20 +5901,20 @@ static getRenderProcessMode(): RenderProcessMode
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('getRenderProcessMode')
         .onClick(() => {
-          let mode = web_webview.WebviewController.getRenderProcessMode();
+          let mode = webview.WebviewController.getRenderProcessMode();
           console.log("getRenderProcessMode: " + mode);
-      })
+        })
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
@@ -6060,12 +5942,12 @@ terminateRenderProcess(): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -6073,7 +5955,7 @@ struct WebComponent {
         .onClick(() => {
           let result = this.controller.terminateRenderProcess();
           console.log("terminateRenderProcess result: " + result);
-      })
+        })
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
@@ -6108,8 +5990,8 @@ postUrl(url: string, postData: ArrayBuffer): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class TestObj {
   constructor() {
@@ -6129,7 +6011,7 @@ class TestObj {
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   @State testObjtest: TestObj = new TestObj();
 
   build() {
@@ -6141,8 +6023,7 @@ struct WebComponent {
             let postData = this.testObjtest.test("Name=test&Password=test");
             this.controller.postUrl('www.example.com', postData);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: '', controller: this.controller })
@@ -6184,14 +6065,13 @@ createWebPrintDocumentAdapter(jobName: string): print.PrintDocumentAdapter
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
-import print from '@ohos.print'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError, print } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -6201,8 +6081,7 @@ struct WebComponent {
             let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
             print.print('example_jobid', webPrintDocadapter, null, getContext());
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6236,24 +6115,23 @@ isIncognitoMode(): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('isIncognitoMode')
         .onClick(() => {
           try {
-             let result = this.controller.isIncognitoMode();
-             console.log('isIncognitoMode' + result);
-            } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            let result = this.controller.isIncognitoMode();
+            console.log('isIncognitoMode' + result);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6287,21 +6165,20 @@ getSecurityLevel(): SecurityLevel
 **示例：**
 
 ```ts
-import webview from '@ohos.web.webview'
-
-
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
         .onPageEnd((event) => {
           if (event) {
-            let securityLevel = this.controller.getSecurityLevel()
-            console.info('securityLevel: ', securityLevel)
+            let securityLevel = this.controller.getSecurityLevel();
+            console.info('securityLevel: ', securityLevel);
           }
         })
     }
@@ -6336,13 +6213,13 @@ setScrollable(enable: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -6351,8 +6228,7 @@ struct WebComponent {
           try {
             this.controller.setScrollable(true);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6387,24 +6263,23 @@ getScrollable(): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('getScrollable')
         .onClick(() => {
           try {
-            let scrollEnabled= this.controller.getScrollable();
+            let scrollEnabled = this.controller.getScrollable();
             console.log("scrollEnabled: " + scrollEnabled);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6439,8 +6314,8 @@ setPrintBackground(enable: boolean): void
 **示例：**
 
 ```ts
-import webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -6454,8 +6329,7 @@ struct WebComponent {
           try {
             this.controller.setPrintBackground(false);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode:${e.code}, Message: ${e.message}`);
+            console.error(`ErrorCode:${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6489,8 +6363,8 @@ getPrintBackground(): boolean
 **示例：**
 
 ```ts
-import webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -6505,8 +6379,7 @@ struct WebComponent {
             let enable = this.controller.getPrintBackground();
             console.log("getPrintBackground: " + enable);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode:${e.code}, Message: ${e.message}`);
+            console.error(`ErrorCode:${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6533,25 +6406,24 @@ pauseAllTimers(): void
 **示例：**
 
 ```ts
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Row() {
-	Button('PauseAllTimers')
+        Button('PauseAllTimers')
           .onClick(() => {
-              try {
-                web_webview.WebviewController.pauseAllTimers()
-              } catch (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-              }
+            try {
+              webview.WebviewController.pauseAllTimers();
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
           })
       }
       Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -6601,34 +6473,32 @@ ResumeAllTimers(): void
 **示例：**
 
 ```ts
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Row() {
         Button('ResumeAllTimers')
           .onClick(() => {
-              try {
-                web_webview.WebviewController.resumeAllTimers()
-              } catch (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-              }
+            try {
+              webview.WebviewController.resumeAllTimers();
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
           })
-	Button('PauseAllTimers')
+        Button('PauseAllTimers')
           .onClick(() => {
-              try {
-                web_webview.WebviewController.pauseAllTimers()
-              } catch (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-              }
+            try {
+              webview.WebviewController.pauseAllTimers();
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
           })
       }
       Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -6685,13 +6555,13 @@ stopAllMedia(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -6700,8 +6570,7 @@ struct WebComponent {
           try {
             this.controller.stopAllMedia();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6730,13 +6599,13 @@ pauseAllMedia(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -6745,8 +6614,7 @@ struct WebComponent {
           try {
             this.controller.pauseAllMedia();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6775,13 +6643,13 @@ resumeAllMedia(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -6790,8 +6658,7 @@ struct WebComponent {
           try {
             this.controller.resumeAllMedia();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6820,13 +6687,13 @@ closeAllMediaPresentations(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -6835,8 +6702,7 @@ struct WebComponent {
           try {
             this.controller.closeAllMediaPresentations();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6871,13 +6737,13 @@ getMediaPlaybackState(): MediaPlaybackState
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -6886,8 +6752,7 @@ struct WebComponent {
           try {
             console.log("MediaPlaybackState : " + this.controller.getMediaPlaybackState());
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6924,14 +6789,14 @@ setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  schemeHandler: web_webview.WebSchemeHandler = new web_webview.WebSchemeHandler()
+  controller: webview.WebviewController = new webview.WebviewController();
+  schemeHandler: webview.WebSchemeHandler = new webview.WebSchemeHandler();
 
   build() {
     Column() {
@@ -6940,8 +6805,7 @@ struct WebComponent {
           try {
             this.controller.setWebSchemeHandler('http', this.schemeHandler);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -6970,13 +6834,13 @@ clearWebSchemeHandler(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -6985,8 +6849,7 @@ struct WebComponent {
           try {
             this.controller.clearWebSchemeHandler();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -7022,24 +6885,23 @@ setServiceWorkerWebSchemeHandler(scheme: string, handler: WebSchemeHandler): voi
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  schemeHandler: web_webview.WebSchemeHandler = new web_webview.WebSchemeHandler()
+  controller: webview.WebviewController = new webview.WebviewController();
+  schemeHandler: webview.WebSchemeHandler = new webview.WebSchemeHandler();
 
   build() {
     Column() {
       Button('setWebSchemeHandler')
         .onClick(() => {
           try {
-            web_webview.WebviewController.setServiceWorkerWebSchemeHandler('http', this.schemeHandler);
+            webview.WebviewController.setServiceWorkerWebSchemeHandler('http', this.schemeHandler);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -7060,19 +6922,18 @@ clearServiceWorkerWebSchemeHandler(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('clearServiceWorkerWebSchemeHandler')
         .onClick(() => {
-            web_webview.WebviewController.clearServiceWorkerWebSchemeHandler();
+          webview.WebviewController.clearServiceWorkerWebSchemeHandler();
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -7101,10 +6962,9 @@ startCamera(): void
 **示例：**
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import common from '@ohos.app.ability.common';
-import abilityAccessCtrl, { PermissionRequestResult } from '@ohos.abilityAccessCtrl';
-import business_error, { BusinessError } from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { abilityAccessCtrl, PermissionRequestResult, common } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
@@ -7115,14 +6975,13 @@ try {
     console.info('data authResults:' + data.authResults);
   })
 } catch (error) {
-  let e: business_error.BusinessError = error as business_error.BusinessError;
-  console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
 }
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -7130,24 +6989,21 @@ struct WebComponent {
         try {
           this.controller.startCamera();
         } catch (error) {
-          let e: business_error.BusinessError = error as business_error.BusinessError;
-          console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
         }
       })
       Button("stopCamera").onClick(() => {
         try {
           this.controller.stopCamera();
         } catch (error) {
-          let e: business_error.BusinessError = error as business_error.BusinessError;
-          console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
         }
       })
       Button("closeCamera").onClick(() => {
         try {
           this.controller.closeCamera();
         } catch (error) {
-          let e: business_error.BusinessError = error as business_error.BusinessError;
-          console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
         }
       })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -7296,13 +7152,13 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
    ```ts
    // EntryAbility.ets
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
 
    const localStorage: LocalStorage = new LocalStorage('uiContext');
 
    export default class EntryAbility extends UIAbility {
-     storage: LocalStorage = localStorage
+     storage: LocalStorage = localStorage;
 
      onWindowStageCreate(windowStage: window.WindowStage) {
        windowStage.loadContent('pages/Index', this.storage, (err, data) => {
@@ -7320,8 +7176,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
    ```ts
    // DynamicComponent.ets
-   import { NodeController, BuilderNode, FrameNode }  from '@ohos.arkui.node';
-   import { UIContext } from '@ohos.arkui.UIContext';
+   import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
    export interface BuilderData {
      url: string;
@@ -7461,21 +7316,21 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
 
    ```ts
    // Index.ets
-   import web_webview from '@ohos.web.webview';
+   import { webview } from '@kit.ArkWeb';
    import { NodeController } from '@kit.ArkUI';
    import { createNode } from "./DynamicComponent"
    import { precompileWebview } from "./PrecompileWebview"
    import { businessWebview } from "./BusinessWebview"
-
+   
    @Entry
    @Component
    struct Index {
      @State precompileNode: NodeController | undefined = undefined;
-     precompileController: web_webview.WebviewController = new web_webview.WebviewController();
-
+     precompileController: webview.WebviewController = new webview.WebviewController();
+   
      @State businessNode: NodeController | undefined = undefined;
-     businessController: web_webview.WebviewController = new web_webview.WebviewController();
-
+     businessController: webview.WebviewController = new webview.WebviewController();
+   
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件
        this.precompileNode = createNode(precompileWebview,
@@ -7520,7 +7375,7 @@ onCreateNativeMediaPlayer(callback: CreateNativeMediaPlayerCallback): void
 
 ```ts
 // xxx.ets
-import webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 class ActualNativeMediaPlayerListener {
   handler: webview.NativeMediaPlayerHandler;
@@ -7730,13 +7585,13 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 
    ```ts
    // EntryAbility.ets
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
 
    const localStorage: LocalStorage = new LocalStorage('uiContext');
 
    export default class EntryAbility extends UIAbility {
-     storage: LocalStorage = localStorage
+     storage: LocalStorage = localStorage;
 
      onWindowStageCreate(windowStage: window.WindowStage) {
        windowStage.loadContent('pages/Index', this.storage, (err, data) => {
@@ -7754,8 +7609,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 
    ```ts
    // DynamicComponent.ets
-   import { NodeController, BuilderNode, FrameNode }  from '@ohos.arkui.node';
-   import { UIContext } from '@ohos.arkui.UIContext';
+   import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
    export interface BuilderData {
      url: string;
@@ -7766,7 +7620,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 
    export class NodeControllerImpl extends NodeController {
      private rootNode: BuilderNode<BuilderData[]> | null = null;
-     private wrappedBuilder: WrappedBuilder<BuilderData[] > | null = null;
+     private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
 
      constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
        super();
@@ -7806,8 +7660,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
    <!--code_no_check-->
    ```ts
    // InjectWebview.ets
-   import web_webview from '@ohos.web.webview';
-
+   import { webview } from '@kit.ArkWeb';
    import { resourceConfigs } from "./Resource";
    import { BuilderData } from "./DynamicComponent";
 
@@ -7827,7 +7680,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
    export const injectWebview = wrapBuilder<BuilderData[]>(WebBuilder);
 
    export async function getData() {
-     const resourceMapArr: Array<web_webview.OfflineResourceMap> = [];
+     const resourceMapArr: Array<webview.OfflineResourceMap> = [];
 
      // 读取配置，从rawfile目录中读取文件内容
      for (let config of resourceConfigs) {
@@ -7877,11 +7730,11 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 
    ```ts
    // Resource.ets
-   import web_webview from '@ohos.web.webview';
+   import { webview } from '@kit.ArkWeb';
 
    export interface ResourceConfig {
      urlList: Array<string>,
-     type: web_webview.OfflineResourceType,
+     type: webview.OfflineResourceType,
      responseHeaders: Array<Header>,
      localPath: string, // 本地资源存放在rawfile目录下的路径
    }
@@ -7894,7 +7747,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
          "https://www.example.com/path1/example.png",
          "https://www.example.com/path2/example.png",
        ],
-       type: web_webview.OfflineResourceType.IMAGE,
+       type: webview.OfflineResourceType.IMAGE,
        responseHeaders: [
          { headerKey: "Cache-Control", headerValue: "max-age=1000" },
          { headerKey: "Content-Type", headerValue: "image/png" },
@@ -7905,7 +7758,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
        urlList: [ // 仅提供一个url，这个url既作为资源的源，也作为资源的网络请求地址
          "https://www.example.com/example.js",
        ],
-       type: web_webview.OfflineResourceType.CLASSIC_JS,
+       type: webview.OfflineResourceType.CLASSIC_JS,
        responseHeaders: [
          // 以<script crossorigin="anoymous" />方式使用，提供额外的响应头
          { headerKey: "Cross-Origin", headerValue:"anonymous" }
@@ -7917,7 +7770,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 6. 在页面中使用。
    ```ts
    // Index.ets
-   import web_webview from '@ohos.web.webview';
+   import { webview } from '@kit.ArkWeb';
    import { NodeController } from '@kit.ArkUI';
    import { createNode } from "./DynamicComponent"
    import { injectWebview } from "./InjectWebview"
@@ -7927,10 +7780,10 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
    @Component
    struct Index {
      @State injectNode: NodeController | undefined = undefined;
-     injectController: web_webview.WebviewController = new web_webview.WebviewController();
+     injectController: webview.WebviewController = new webview.WebviewController();
 
      @State businessNode: NodeController | undefined = undefined;
-     businessController: web_webview.WebviewController = new web_webview.WebviewController();
+     businessController: webview.WebviewController = new webview.WebviewController();
 
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件, 提供一个空的html页面作为url即可
@@ -8023,13 +7876,13 @@ static clearHostIP(hostName: string): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -8037,19 +7890,17 @@ struct WebComponent {
       Button('setHostIP')
         .onClick(() => {
           try {
-            web_webview.WebviewController.setHostIP('www.example.com', '127.0.0.1', 30);
+            webview.WebviewController.setHostIP('www.example.com', '127.0.0.1', 30);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-       Button('clearHostIP')
+      Button('clearHostIP')
         .onClick(() => {
           try {
-            web_webview.WebviewController.clearHostIP('www.example.com');
+            webview.WebviewController.clearHostIP('www.example.com');
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8130,7 +7981,7 @@ setUrlTrustList(urlTrustList: string): void
 
 | 参数名  | 类型    | 必填 | 说明                  |
 | ------- | ------ | ---- | :-------------------- |
-| urlTrustList | string | 是   | url白名单列表，使用json格式配置，最大支持10MB。<br/>白名单设置接口为覆盖方式，多次调用接口时，以最后一次设置为准。<br/>当本参数为空字符串时，表示取消白名单，放行所有url的访问。<br/>json格式示例： &nbsp;<br/>{<br>&emsp;"UrlPermissionList":[{<br/>&emsp;&emsp;"scheme":"https",<br/>&emsp;&emsp;"host":"www.example1.com",<br/>&emsp;&emsp;"port":443,<br/>&emsp;&emsp;"path":"pathA/pathB"<br/>&emsp;},<br/>&emsp;{<br/>&emsp;&emsp;"scheme":"http",<br/>&emsp;&emsp;"host":"www.example2.com"<br/>&emsp;&emsp;"port":80,<br/>&emsp;&emsp;"path":"test1/test2/test3"<br/>&emsp;}]<br/>}      |
+| urlTrustList | string | 是   | url白名单列表，使用json格式配置，最大支持10MB。<br/>白名单设置接口为覆盖方式，多次调用接口时，以最后一次设置为准。<br/>当本参数为空字符串时，表示取消白名单，放行所有url的访问。<br/>json格式示例： &nbsp;<br/>{<br>&emsp;"UrlPermissionList":[{<br/>&emsp;&emsp;"scheme":"https",<br/>&emsp;&emsp;"host":"www\.example1.com",<br/>&emsp;&emsp;"port":443,<br/>&emsp;&emsp;"path":"pathA/pathB"<br/>&emsp;},<br/>&emsp;{<br/>&emsp;&emsp;"scheme":"http",<br/>&emsp;&emsp;"host":"www\.example2.com"<br/>&emsp;&emsp;"port":80,<br/>&emsp;&emsp;"path":"test1/test2/test3"<br/>&emsp;}]<br/>}      |
 
 **白名单json格式参数**
 | 字段   | 参数类型 | 必填 | 参数描述                  |
@@ -8152,13 +8003,13 @@ setUrlTrustList(urlTrustList: string): void
 **示例：**
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
     urltrustList: string = "{\"UrlPermissionList\":[{\"scheme\":\"http\", \"host\":\"trust.example.com\", \"port\":80, \"path\":\"test\"}]}"
 
     build() {
@@ -8169,8 +8020,7 @@ setUrlTrustList(urlTrustList: string): void
               // 设置白名单，只允许访问trust网页
               this.controller.setUrlTrustList(this.urltrustList);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Cancel the trustlist.')
@@ -8179,8 +8029,7 @@ setUrlTrustList(urlTrustList: string): void
               // 白名单传入空字符串表示关闭白名单机制，所有url都可以允许访问
               this.controller.setUrlTrustList("");
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Access the trust web')
@@ -8189,8 +8038,7 @@ setUrlTrustList(urlTrustList: string): void
               // 白名单生效，可以访问untrust网页
               this.controller.loadUrl('http://trust.example.com/test');
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Access the untrust web')
@@ -8199,18 +8047,16 @@ setUrlTrustList(urlTrustList: string): void
               // 白名单生效，此时不可以访问untrust网页，并弹出错误页
               this.controller.loadUrl('http://untrust.example.com/test');
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'http://untrust.example.com/test', controller: this.controller }).onControllerAttached(() => {
-            try {
-              // onControllerAttached回调中设置白名单，可以保证在加载url之前生效，此时不可以访问untrust网页，并弹出错误页
-              this.controller.setUrlTrustList(this.urltrustList);
-            } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-            }
+          try {
+            // onControllerAttached回调中设置白名单，可以保证在加载url之前生效，此时不可以访问untrust网页，并弹出错误页
+            this.controller.setUrlTrustList(this.urltrustList);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
         })
       }
     }
@@ -8257,24 +8103,23 @@ static getCookie(url: string): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('getCookie')
         .onClick(() => {
           try {
-            let value = web_webview.WebCookieManager.getCookie('https://www.example.com');
+            let value = webview.WebCookieManager.getCookie('https://www.example.com');
             console.log("value: " + value);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8316,24 +8161,23 @@ static fetchCookieSync(url: string, incognito?: boolean): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('fetchCookieSync')
         .onClick(() => {
           try {
-            let value = web_webview.WebCookieManager.fetchCookieSync('https://www.example.com');
+            let value = webview.WebCookieManager.fetchCookieSync('https://www.example.com');
             console.log("fetchCookieSync cookie = " + value);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8370,23 +8214,22 @@ static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('fetchCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.fetchCookie('https://www.example.com', (error, cookie) => {
+            webview.WebCookieManager.fetchCookie('https://www.example.com', (error, cookie) => {
               if (error) {
-                let e:business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                 return;
               }
               if (cookie) {
@@ -8394,8 +8237,7 @@ struct WebComponent {
               }
             })
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8437,29 +8279,28 @@ static fetchCookie(url: string): Promise\<string>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('fetchCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.fetchCookie('https://www.example.com')
+            webview.WebCookieManager.fetchCookie('https://www.example.com')
               .then(cookie => {
                 console.log("fetchCookie cookie = " + cookie);
               })
-              .catch((error:business_error.BusinessError) => {
+              .catch((error: BusinessError) => {
                 console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
               })
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8501,23 +8342,22 @@ static setCookie(url: string, value: string): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('setCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
+            webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8535,7 +8375,8 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 > **说明：**
 >
 >configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
->同步cookie的时机建议在webview组件加载之前完成。
+
+>同步cookie的时机建议在Web组件加载之前完成。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8560,24 +8401,23 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            // 设置多个cookie值时用','隔开，设置单个cookie值时不需要。
-            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b,c=d,e=f');
+            // 仅支持设置单个cookie值。
+            webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8616,28 +8456,26 @@ static configCookie(url: string, value: string, callback: AsyncCallback\<void>):
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('configCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.configCookie('https://www.example.com', "a=b", (error) => {
+            webview.WebCookieManager.configCookie('https://www.example.com', "a=b", (error) => {
               if (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
             })
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8681,29 +8519,28 @@ static configCookie(url: string, value: string): Promise\<void>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('configCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.configCookie('https://www.example.com', 'a=b')
+            webview.WebCookieManager.configCookie('https://www.example.com', 'a=b')
               .then(() => {
                 console.log('configCookie success!');
               })
-              .catch((error:business_error.BusinessError) => {
+              .catch((error: BusinessError) => {
                 console.log('error: ' + JSON.stringify(error));
               })
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8730,28 +8567,26 @@ static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('saveCookieAsync')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.saveCookieAsync((error) => {
+            webview.WebCookieManager.saveCookieAsync((error) => {
               if (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
             })
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8778,29 +8613,28 @@ static saveCookieAsync(): Promise\<void>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('saveCookieAsync')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.saveCookieAsync()
+            webview.WebCookieManager.saveCookieAsync()
               .then(() => {
                 console.log("saveCookieAsyncCallback success!");
               })
-              .catch((error:business_error.BusinessError) => {
+              .catch((error: BusinessError) => {
                 console.error("error: " + error);
               });
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8827,23 +8661,22 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('putAcceptCookieEnabled')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.putAcceptCookieEnabled(false);
+            webview.WebCookieManager.putAcceptCookieEnabled(false);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8870,18 +8703,18 @@ static isCookieAllowed(): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('isCookieAllowed')
         .onClick(() => {
-          let result = web_webview.WebCookieManager.isCookieAllowed();
+          let result = webview.WebCookieManager.isCookieAllowed();
           console.log("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8908,23 +8741,22 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('putAcceptThirdPartyCookieEnabled')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.putAcceptThirdPartyCookieEnabled(false);
+            webview.WebCookieManager.putAcceptThirdPartyCookieEnabled(false);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8951,18 +8783,18 @@ static isThirdPartyCookieAllowed(): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('isThirdPartyCookieAllowed')
         .onClick(() => {
-          let result = web_webview.WebCookieManager.isThirdPartyCookieAllowed();
+          let result = webview.WebCookieManager.isThirdPartyCookieAllowed();
           console.log("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -8995,18 +8827,18 @@ static existCookie(incognito?: boolean): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('existCookie')
         .onClick(() => {
-          let result = web_webview.WebCookieManager.existCookie();
+          let result = webview.WebCookieManager.existCookie();
           console.log("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -9031,18 +8863,18 @@ static deleteEntireCookie(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('deleteEntireCookie')
         .onClick(() => {
-          web_webview.WebCookieManager.deleteEntireCookie();
+          webview.WebCookieManager.deleteEntireCookie();
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -9068,18 +8900,18 @@ static clearAllCookiesSync(incognito?: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('clearAllCookiesSync')
         .onClick(() => {
-          web_webview.WebCookieManager.clearAllCookiesSync();
+          webview.WebCookieManager.clearAllCookiesSync();
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -9105,28 +8937,26 @@ static clearAllCookies(callback: AsyncCallback\<void>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('clearAllCookies')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.clearAllCookies((error) => {
+            webview.WebCookieManager.clearAllCookies((error) => {
               if (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
             })
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -9153,29 +8983,28 @@ static clearAllCookies(): Promise\<void>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('clearAllCookies')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.clearAllCookies()
+            webview.WebCookieManager.clearAllCookies()
               .then(() => {
                 console.log("clearAllCookies success!");
               })
-              .catch((error:business_error.BusinessError) => {
+              .catch((error: BusinessError) => {
                 console.error("error: " + error);
               });
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -9200,18 +9029,18 @@ static deleteSessionCookie(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('deleteSessionCookie')
         .onClick(() => {
-          web_webview.WebCookieManager.deleteSessionCookie();
+          webview.WebCookieManager.deleteSessionCookie();
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -9231,18 +9060,18 @@ static clearSessionCookieSync(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('clearSessionCookieSync')
         .onClick(() => {
-          web_webview.WebCookieManager.clearSessionCookieSync();
+          webview.WebCookieManager.clearSessionCookieSync();
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -9268,28 +9097,26 @@ static clearSessionCookie(callback: AsyncCallback\<void>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('clearSessionCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.clearSessionCookie((error) => {
+            webview.WebCookieManager.clearSessionCookie((error) => {
               if (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
             })
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -9316,29 +9143,28 @@ static clearSessionCookie(): Promise\<void>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('clearSessionCookie')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.clearSessionCookie()
+            webview.WebCookieManager.clearSessionCookie()
               .then(() => {
                 console.log("clearSessionCookie success!");
               })
-              .catch((error:business_error.BusinessError) => {
+              .catch((error: BusinessError) => {
                 console.error("error: " + error);
               });
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -9381,13 +9207,13 @@ static deleteOrigin(origin: string): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   origin: string = "resource://rawfile/";
 
   build() {
@@ -9395,10 +9221,9 @@ struct WebComponent {
       Button('deleteOrigin')
         .onClick(() => {
           try {
-            web_webview.WebStorage.deleteOrigin(this.origin);
+            webview.WebStorage.deleteOrigin(this.origin);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
 
         })
@@ -9479,23 +9304,22 @@ static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('getOrigins')
         .onClick(() => {
           try {
-            web_webview.WebStorage.getOrigins((error, origins) => {
+            webview.WebStorage.getOrigins((error, origins) => {
               if (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                 return;
               }
               for (let i = 0; i < origins.length; i++) {
@@ -9505,8 +9329,7 @@ struct WebComponent {
               }
             })
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
 
         })
@@ -9545,20 +9368,20 @@ static getOrigins(): Promise\<Array\<WebStorageOrigin>>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('getOrigins')
         .onClick(() => {
           try {
-            web_webview.WebStorage.getOrigins()
+            webview.WebStorage.getOrigins()
               .then(origins => {
                 for (let i = 0; i < origins.length; i++) {
                   console.log('origin: ' + origins[i].origin);
@@ -9566,12 +9389,11 @@ struct WebComponent {
                   console.log('quota: ' + origins[i].quota);
                 }
               })
-              .catch((e : business_error.BusinessError) => {
+              .catch((e: BusinessError) => {
                 console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
 
         })
@@ -9611,13 +9433,13 @@ static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   origin: string = "resource://rawfile/";
 
   build() {
@@ -9625,17 +9447,15 @@ struct WebComponent {
       Button('getOriginQuota')
         .onClick(() => {
           try {
-            web_webview.WebStorage.getOriginQuota(this.origin, (error, quota) => {
+            webview.WebStorage.getOriginQuota(this.origin, (error, quota) => {
               if (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                 return;
               }
               console.log('quota: ' + quota);
             })
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
 
         })
@@ -9680,13 +9500,13 @@ static getOriginQuota(origin: string): Promise\<number>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   origin: string = "resource://rawfile/";
 
   build() {
@@ -9694,16 +9514,15 @@ struct WebComponent {
       Button('getOriginQuota')
         .onClick(() => {
           try {
-            web_webview.WebStorage.getOriginQuota(this.origin)
+            webview.WebStorage.getOriginQuota(this.origin)
               .then(quota => {
                 console.log('quota: ' + quota);
               })
-              .catch((e : business_error.BusinessError) => {
+              .catch((e: BusinessError) => {
                 console.log('error: ' + JSON.stringify(e));
               })
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
 
         })
@@ -9743,13 +9562,13 @@ static getOriginUsage(origin: string, callback: AsyncCallback\<number>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   origin: string = "resource://rawfile/";
 
   build() {
@@ -9757,17 +9576,15 @@ struct WebComponent {
       Button('getOriginUsage')
         .onClick(() => {
           try {
-            web_webview.WebStorage.getOriginUsage(this.origin, (error, usage) => {
+            webview.WebStorage.getOriginUsage(this.origin, (error, usage) => {
               if (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                 return;
               }
               console.log('usage: ' + usage);
             })
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
 
         })
@@ -9812,13 +9629,13 @@ static getOriginUsage(origin: string): Promise\<number>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   origin: string = "resource://rawfile/";
 
   build() {
@@ -9826,18 +9643,15 @@ struct WebComponent {
       Button('getOriginUsage')
         .onClick(() => {
           try {
-            web_webview.WebStorage.getOriginUsage(this.origin)
+            webview.WebStorage.getOriginUsage(this.origin)
               .then(usage => {
                 console.log('usage: ' + usage);
-              })
-              .catch((e : business_error.BusinessError) => {
-                console.log('error: ' + JSON.stringify(e));
-              })
+              }).catch((e: BusinessError) => {
+              console.error('error: ' + JSON.stringify(e));
+            })
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
-
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
@@ -9866,23 +9680,22 @@ static deleteAllData(incognito?: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('deleteAllData')
         .onClick(() => {
           try {
-            web_webview.WebStorage.deleteAllData();
+            webview.WebStorage.deleteAllData();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -9927,13 +9740,13 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   host: string = "www.spincast.org";
   realm: string = "protected example";
   username_password: string[] = [];
@@ -9943,11 +9756,10 @@ struct WebComponent {
       Button('getHttpAuthCredentials')
         .onClick(() => {
           try {
-            this.username_password = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
+            this.username_password = webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
             console.log('num: ' + this.username_password.length);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -9977,13 +9789,13 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   host: string = "www.spincast.org";
   realm: string = "protected example";
 
@@ -9992,10 +9804,9 @@ struct WebComponent {
       Button('saveHttpAuthCredentials')
         .onClick(() => {
           try {
-            web_webview.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
+            webview.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -10022,23 +9833,22 @@ static existHttpAuthCredentials(): boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('existHttpAuthCredentials')
         .onClick(() => {
           try {
-            let result = web_webview.WebDataBase.existHttpAuthCredentials();
+            let result = webview.WebDataBase.existHttpAuthCredentials();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -10059,23 +9869,22 @@ static deleteHttpAuthCredentials(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('deleteHttpAuthCredentials')
         .onClick(() => {
           try {
-            web_webview.WebDataBase.deleteHttpAuthCredentials();
+            webview.WebDataBase.deleteHttpAuthCredentials();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -10123,13 +9932,13 @@ static allowGeolocation(origin: string, incognito?: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   origin: string = "file:///";
 
   build() {
@@ -10137,10 +9946,9 @@ struct WebComponent {
       Button('allowGeolocation')
         .onClick(() => {
           try {
-            web_webview.GeolocationPermissions.allowGeolocation(this.origin);
+            webview.GeolocationPermissions.allowGeolocation(this.origin);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -10176,13 +9984,13 @@ static deleteGeolocation(origin: string, incognito?: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   origin: string = "file:///";
 
   build() {
@@ -10190,10 +9998,9 @@ struct WebComponent {
       Button('deleteGeolocation')
         .onClick(() => {
           try {
-            web_webview.GeolocationPermissions.deleteGeolocation(this.origin);
+            webview.GeolocationPermissions.deleteGeolocation(this.origin);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -10230,13 +10037,13 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   origin: string = "file:///";
 
   build() {
@@ -10244,17 +10051,15 @@ struct WebComponent {
       Button('getAccessibleGeolocation')
         .onClick(() => {
           try {
-            web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
+            webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
               if (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`getAccessibleGeolocationAsync error, ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`getAccessibleGeolocationAsync error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                 return;
               }
               console.log('getAccessibleGeolocationAsync result: ' + result);
             });
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -10296,13 +10101,13 @@ static getAccessibleGeolocation(origin: string, incognito?: boolean): Promise\<b
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   origin: string = "file:///";
 
   build() {
@@ -10310,15 +10115,14 @@ struct WebComponent {
       Button('getAccessibleGeolocation')
         .onClick(() => {
           try {
-            web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin)
+            webview.GeolocationPermissions.getAccessibleGeolocation(this.origin)
               .then(result => {
                 console.log('getAccessibleGeolocationPromise result: ' + result);
-              }).catch((error : business_error.BusinessError) => {
+              }).catch((error: BusinessError) => {
               console.error(`getAccessibleGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -10346,31 +10150,29 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string>>, incognito?
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('getStoredGeolocation')
         .onClick(() => {
           try {
-            web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
+            webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`getStoredGeolocationAsync error, ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`getStoredGeolocationAsync error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                 return;
               }
               let origins_str: string = origins.join();
               console.log('getStoredGeolocationAsync origins: ' + origins_str);
             });
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -10403,29 +10205,28 @@ static getStoredGeolocation(incognito?: boolean): Promise\<Array\<string>>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('getStoredGeolocation')
         .onClick(() => {
           try {
-            web_webview.GeolocationPermissions.getStoredGeolocation()
+            webview.GeolocationPermissions.getStoredGeolocation()
               .then(origins => {
                 let origins_str: string = origins.join();
                 console.log('getStoredGeolocationPromise origins: ' + origins_str);
-              }).catch((error : business_error.BusinessError) => {
+              }).catch((error: BusinessError) => {
               console.error(`getStoredGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -10452,23 +10253,22 @@ static deleteAllGeolocation(incognito?: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('deleteAllGeolocation')
         .onClick(() => {
           try {
-            web_webview.GeolocationPermissions.deleteAllGeolocation();
+            webview.GeolocationPermissions.deleteAllGeolocation();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -10541,6 +10341,8 @@ Web组件发送的资源请求信息。
 | extra | string        | 是 | 是 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebMessage
+
+type WebMessage = ArrayBuffer | string
 
 用于描述[WebMessagePort](#webmessageport)所支持的数据类型。
 
@@ -11078,14 +10880,14 @@ getItemAtIndex(index: number): HistoryItem
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import image from "@ohos.multimedia.image";
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   @State icon: image.PixelMap | undefined = undefined;
 
   build() {
@@ -11098,8 +10900,7 @@ struct WebComponent {
             console.log("HistoryItem: " + JSON.stringify(historyItem));
             this.icon = historyItem.icon;
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -11230,38 +11031,37 @@ getGuid(): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -11269,8 +11069,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -11297,38 +11096,37 @@ getCurrentSpeed(): number
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update current speed: " + webDownloadItem.getCurrentSpeed());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -11336,8 +11134,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -11364,38 +11161,37 @@ getPercentComplete(): number
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -11403,8 +11199,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -11431,38 +11226,37 @@ getTotalBytes(): number
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update total bytes: " + webDownloadItem.getTotalBytes());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -11470,8 +11264,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -11498,38 +11291,37 @@ getState(): WebDownloadState
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update download state: " + webDownloadItem.getState());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -11537,8 +11329,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -11565,39 +11356,38 @@ getLastErrorCode(): WebDownloadErrorCode
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               console.log("download error code: " + webDownloadItem.getLastErrorCode());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -11605,8 +11395,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -11633,38 +11422,37 @@ getMethod(): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download， method:" + webDownloadItem.getMethod());
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -11672,8 +11460,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -11700,38 +11487,37 @@ getMimeType(): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download， mime type:" + webDownloadItem.getMimeType());
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -11739,8 +11525,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -11767,38 +11552,37 @@ getUrl(): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download, url:" + webDownloadItem.getUrl());
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -11806,8 +11590,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -11834,38 +11617,37 @@ getSuggestedFileName(): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download, suggest name:" + webDownloadItem.getSuggestedFileName());
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -11873,8 +11655,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -11901,39 +11682,38 @@ getReceivedBytes(): number
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               console.log("download update received bytes: " + webDownloadItem.getReceivedBytes());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -11941,8 +11721,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -11969,39 +11748,38 @@ getFullPath(): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
               console.log("download finish full path: " + webDownloadItem.getFullPath());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -12009,8 +11787,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -12037,14 +11814,14 @@ serialize(): Uint8Array
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
   failedData: Uint8Array = new Uint8Array();
 
   build() {
@@ -12052,26 +11829,25 @@ struct WebComponent {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -12079,8 +11855,7 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -12121,14 +11896,14 @@ static deserialize(serializedData: Uint8Array): WebDownloadItem
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
   failedData: Uint8Array = new Uint8Array();
 
   build() {
@@ -12136,26 +11911,25 @@ struct WebComponent {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -12163,17 +11937,15 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
+            webview.WebDownloadManager.resumeDownload(webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -12208,14 +11980,14 @@ start(downloadPath: string): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
   failedData: Uint8Array = new Uint8Array();
 
   build() {
@@ -12223,26 +11995,25 @@ struct WebComponent {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -12250,17 +12021,15 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
+            webview.WebDownloadManager.resumeDownload(webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -12281,15 +12050,15 @@ cancel(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
+  download: webview.WebDownloadItem = new webview.WebDownloadItem();
   failedData: Uint8Array = new Uint8Array();
 
   build() {
@@ -12297,27 +12066,26 @@ struct WebComponent {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -12325,17 +12093,15 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
+            webview.WebDownloadManager.resumeDownload(webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('cancel')
@@ -12343,8 +12109,7 @@ struct WebComponent {
           try {
             this.download.cancel();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -12373,15 +12138,15 @@ pause(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
+  download: webview.WebDownloadItem = new webview.WebDownloadItem();
   failedData: Uint8Array = new Uint8Array();
 
   build() {
@@ -12389,27 +12154,26 @@ struct WebComponent {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -12417,17 +12181,15 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
+            webview.WebDownloadManager.resumeDownload(webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('cancel')
@@ -12435,17 +12197,15 @@ struct WebComponent {
           try {
             this.download.cancel();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-        Button('pause')
+      Button('pause')
         .onClick(() => {
           try {
             this.download.pause();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -12474,15 +12234,15 @@ resume(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
+  download: webview.WebDownloadItem = new webview.WebDownloadItem();
   failedData: Uint8Array = new Uint8Array();
 
   build() {
@@ -12490,27 +12250,26 @@ struct WebComponent {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -12518,17 +12277,15 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
+            webview.WebDownloadManager.resumeDownload(webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('cancel')
@@ -12536,8 +12293,7 @@ struct WebComponent {
           try {
             this.download.cancel();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('pause')
@@ -12545,8 +12301,7 @@ struct WebComponent {
           try {
             this.download.pause();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resume')
@@ -12554,8 +12309,7 @@ struct WebComponent {
           try {
             this.download.resume();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -12586,15 +12340,15 @@ onBeforeDownload(callback: Callback\<WebDownloadItem>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
+  download: webview.WebDownloadItem = new webview.WebDownloadItem();
   failedData: Uint8Array = new Uint8Array();
 
   build() {
@@ -12602,27 +12356,26 @@ struct WebComponent {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -12630,17 +12383,15 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
+            webview.WebDownloadManager.resumeDownload(webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('cancel')
@@ -12648,8 +12399,7 @@ struct WebComponent {
           try {
             this.download.cancel();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('pause')
@@ -12657,8 +12407,7 @@ struct WebComponent {
           try {
             this.download.pause();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resume')
@@ -12666,8 +12415,7 @@ struct WebComponent {
           try {
             this.download.resume();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -12694,15 +12442,15 @@ onDownloadUpdated(callback: Callback\<WebDownloadItem>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
+  download: webview.WebDownloadItem = new webview.WebDownloadItem();
   failedData: Uint8Array = new Uint8Array();
 
   build() {
@@ -12710,27 +12458,26 @@ struct WebComponent {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -12738,17 +12485,15 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
+            webview.WebDownloadManager.resumeDownload(webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('cancel')
@@ -12756,8 +12501,7 @@ struct WebComponent {
           try {
             this.download.cancel();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('pause')
@@ -12765,8 +12509,7 @@ struct WebComponent {
           try {
             this.download.pause();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resume')
@@ -12774,8 +12517,7 @@ struct WebComponent {
           try {
             this.download.resume();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -12802,15 +12544,15 @@ onDownloadFinish(callback: Callback\<WebDownloadItem>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
+  download: webview.WebDownloadItem = new webview.WebDownloadItem();
   failedData: Uint8Array = new Uint8Array();
 
   build() {
@@ -12818,27 +12560,26 @@ struct WebComponent {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -12846,17 +12587,15 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
+            webview.WebDownloadManager.resumeDownload(webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('cancel')
@@ -12864,8 +12603,7 @@ struct WebComponent {
           try {
             this.download.cancel();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('pause')
@@ -12873,8 +12611,7 @@ struct WebComponent {
           try {
             this.download.pause();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resume')
@@ -12882,8 +12619,7 @@ struct WebComponent {
           try {
             this.download.resume();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -12910,15 +12646,15 @@ onDownloadFailed(callback: Callback\<WebDownloadItem>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
+  download: webview.WebDownloadItem = new webview.WebDownloadItem();
   failedData: Uint8Array = new Uint8Array();
 
   build() {
@@ -12926,27 +12662,26 @@ struct WebComponent {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -12954,17 +12689,15 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
+            webview.WebDownloadManager.resumeDownload(webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('cancel')
@@ -12972,8 +12705,7 @@ struct WebComponent {
           try {
             this.download.cancel();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('pause')
@@ -12981,8 +12713,7 @@ struct WebComponent {
           try {
             this.download.pause();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resume')
@@ -12990,8 +12721,7 @@ struct WebComponent {
           try {
             this.download.resume();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -13022,15 +12752,15 @@ static setDownloadDelegate(delegate: WebDownloadDelegate): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  controller: _webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
+  download: webview.WebDownloadItem = new webview.WebDownloadItem();
   failedData: Uint8Array = new Uint8Array();
 
   build() {
@@ -13038,28 +12768,27 @@ struct WebComponent {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
-            web_webview.WebDownloadManager.setDownloadDelegate(this.delegate);
+            webview.WebDownloadManager.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -13067,17 +12796,15 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
+            webview.WebDownloadManager.resumeDownload(webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('cancel')
@@ -13085,8 +12812,7 @@ struct WebComponent {
           try {
             this.download.cancel();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('pause')
@@ -13094,8 +12820,7 @@ struct WebComponent {
           try {
             this.download.pause();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resume')
@@ -13103,8 +12828,7 @@ struct WebComponent {
           try {
             this.download.resume();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -13139,15 +12863,15 @@ static resumeDownload(webDownloadItem: WebDownloadItem): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
+  download: webview.WebDownloadItem = new webview.WebDownloadItem();
   failedData: Uint8Array = new Uint8Array();
 
   build() {
@@ -13155,28 +12879,27 @@ struct WebComponent {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
-            web_webview.WebDownloadManager.setDownloadDelegate(this.delegate);
+            webview.WebDownloadManager.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -13184,17 +12907,15 @@ struct WebComponent {
           try {
             this.controller.startDownload('https://www.example.com');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
+            webview.WebDownloadManager.resumeDownload(webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('cancel')
@@ -13202,8 +12923,7 @@ struct WebComponent {
           try {
             this.download.cancel();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('pause')
@@ -13211,8 +12931,7 @@ struct WebComponent {
           try {
             this.download.pause();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('resume')
@@ -13220,8 +12939,7 @@ struct WebComponent {
           try {
             this.download.resume();
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -13250,16 +12968,17 @@ getLastJavascriptProxyCallingFrameUrl(): string
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class TestObj {
-  mycontroller: web_webview.WebviewController;
-  constructor(controller: web_webview.WebviewController) {
+  mycontroller: webview.WebviewController;
+
+  constructor(controller: webview.WebviewController) {
     this.mycontroller = controller;
   }
 
-  test(testStr:string): string {
+  test(testStr: string): string {
     console.log('Web Component str' + testStr + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
     return testStr;
   }
@@ -13268,20 +12987,21 @@ class TestObj {
     console.log('Web Component toString ' + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
   }
 
-  testNumber(testNum:number): number {
+  testNumber(testNum: number): number {
     console.log('Web Component number' + testNum + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
     return testNum;
   }
 
-  testBool(testBol:boolean): boolean {
+  testBool(testBol: boolean): boolean {
     console.log('Web Component boolean' + testBol + " url " + this.mycontroller.getLastJavascriptProxyCallingFrameUrl());
     return testBol;
   }
 }
 
 class WebObj {
-  mycontroller: web_webview.WebviewController;
-  constructor(controller: web_webview.WebviewController) {
+  mycontroller: webview.WebviewController;
+
+  constructor(controller: webview.WebviewController) {
     this.mycontroller = controller;
   }
 
@@ -13298,9 +13018,10 @@ class WebObj {
 @Entry
 @Component
 struct Index {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   @State testObjtest: TestObj = new TestObj(this.controller);
   @State webTestObj: WebObj = new WebObj(this.controller);
+
   build() {
     Column() {
       Button('refresh')
@@ -13308,8 +13029,7 @@ struct Index {
           try {
             this.controller.refresh();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('Register JavaScript To Window')
@@ -13318,8 +13038,7 @@ struct Index {
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -13387,16 +13106,16 @@ initialize(): Promise\<void\>
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
-import buffer from '@ohos.buffer'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { buffer } from '@kit.ArkTS';
 import { WebNetErrorList } from '@ohos.web.netErrorList'
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  schemeHandler: web_webview.WebSchemeHandler = new web_webview.WebSchemeHandler()
+  controller: webview.WebviewController = new webview.WebviewController();
+  schemeHandler: webview.WebSchemeHandler = new webview.WebSchemeHandler();
   htmlData: string = "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>";
 
   build() {
@@ -13404,18 +13123,17 @@ struct WebComponent {
       Button('postUrl')
         .onClick(() => {
           try {
-            let postData = buffer.from(this.htmlData)
+            let postData = buffer.from(this.htmlData);
             this.controller.postUrl('https://www.example.com', postData.buffer);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'https://www.example.com', controller: this.controller })
         .onControllerAttached(() => {
           try {
-            this.schemeHandler.onRequestStart((request: web_webview.WebSchemeHandlerRequest, resourceHandler: web_webview.WebResourceHandler) => {
-              console.log("[schemeHandler] onRequestStart")
+            this.schemeHandler.onRequestStart((request: webview.WebSchemeHandlerRequest, resourceHandler: webview.WebResourceHandler) => {
+              console.log("[schemeHandler] onRequestStart");
               try {
                 let stream = request.getHttpBodyStream();
                 if (stream) {
@@ -13435,33 +13153,29 @@ struct WebComponent {
                       console.log("[schemeHandler] onRequestStart postDataStream readlength:" + buffer.byteLength);
                       console.log("[schemeHandler] onRequestStart postDataStream isEof:" + stream.isEof());
                       console.log("[schemeHandler] onRequestStart postDataStream position:" + stream.getPosition());
-                    }).catch((error: business_error.BusinessError) => {
-                      let e: business_error.BusinessError = error as business_error.BusinessError;
-                      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                    }).catch((error: BusinessError) => {
+                      console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
                     })
-                  }).catch((error: business_error.BusinessError) => {
-                    let e: business_error.BusinessError = error as business_error.BusinessError;
-                    console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                  }).catch((error: BusinessError) => {
+                    console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
                   })
                 } else {
-                  console.log("[schemeHandler] onRequestStart has no http body stream")
+                  console.log("[schemeHandler] onRequestStart has no http body stream");
                 }
               } catch (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
 
               return false;
             })
 
-            this.schemeHandler.onRequestStop((request: web_webview.WebSchemeHandlerRequest) => {
-              console.log("[schemeHandler] onRequestStop")
+            this.schemeHandler.onRequestStop((request: webview.WebSchemeHandlerRequest) => {
+              console.log("[schemeHandler] onRequestStop");
             });
 
             this.controller.setWebSchemeHandler('https', this.schemeHandler);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
         .javaScriptAccess(true)
@@ -13776,20 +13490,20 @@ Response的构造函数。
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
-import { WebNetErrorList } from '@ohos.web.netErrorList'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { WebNetErrorList } from '@ohos.web.netErrorList';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  schemeHandler: web_webview.WebSchemeHandler = new web_webview.WebSchemeHandler()
+  controller: webview.WebviewController = new webview.WebviewController();
+  schemeHandler: webview.WebSchemeHandler = new webview.WebSchemeHandler();
 
   build() {
     Column() {
       Button('response').onClick(() => {
-        let response = new web_webview.WebSchemeHandlerResponse();
+        let response = new webview.WebSchemeHandlerResponse();
         try {
           response.setUrl("http://www.example.com")
           response.setStatus(200)
@@ -13807,8 +13521,7 @@ struct WebComponent {
           console.log("[schemeHandler] getNetErrorCode:" + response.getNetErrorCode())
 
         } catch (error) {
-          let e: business_error.BusinessError = error as business_error.BusinessError;
-          console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
         }
       })
       Web({ src: 'https://www.example.com', controller: this.controller })
@@ -14264,16 +13977,16 @@ onRequestStart(callback: (request: WebSchemeHandlerRequest, handler: WebResource
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base';
-import buffer from '@ohos.buffer'
-import { WebNetErrorList } from '@ohos.web.netErrorList'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { buffer } from '@kit.ArkTS';
+import { WebNetErrorList } from '@ohos.web.netErrorList';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  schemeHandler: web_webview.WebSchemeHandler = new web_webview.WebSchemeHandler()
+  controller: webview.WebviewController = new webview.WebviewController();
+  schemeHandler: webview.WebSchemeHandler = new webview.WebSchemeHandler();
   htmlData: string = "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>";
 
   build() {
@@ -14281,30 +13994,29 @@ struct WebComponent {
       Web({ src: 'https://www.example.com', controller: this.controller })
         .onControllerAttached(() => {
           try {
-            this.schemeHandler.onRequestStart((request: web_webview.WebSchemeHandlerRequest, resourceHandler: web_webview.WebResourceHandler) => {
-              console.log("[schemeHandler] onRequestStart")
+            this.schemeHandler.onRequestStart((request: webview.WebSchemeHandlerRequest, resourceHandler: webview.WebResourceHandler) => {
+              console.log("[schemeHandler] onRequestStart");
               try {
-                console.log("[schemeHandler] onRequestStart url:" + request.getRequestUrl())
-                console.log("[schemeHandler] onRequestStart method:" + request.getRequestMethod())
-                console.log("[schemeHandler] onRequestStart referrer:" + request.getReferrer())
-                console.log("[schemeHandler] onRequestStart isMainFrame:" + request.isMainFrame())
-                console.log("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture())
-                console.log("[schemeHandler] onRequestStart header size:" + request.getHeader().length)
-                console.log("[schemeHandler] onRequestStart resource type:" + request.getRequestResourceType())
-                console.log("[schemeHandler] onRequestStart frame url:" + request.getFrameUrl())
+                console.log("[schemeHandler] onRequestStart url:" + request.getRequestUrl());
+                console.log("[schemeHandler] onRequestStart method:" + request.getRequestMethod());
+                console.log("[schemeHandler] onRequestStart referrer:" + request.getReferrer());
+                console.log("[schemeHandler] onRequestStart isMainFrame:" + request.isMainFrame());
+                console.log("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture());
+                console.log("[schemeHandler] onRequestStart header size:" + request.getHeader().length);
+                console.log("[schemeHandler] onRequestStart resource type:" + request.getRequestResourceType());
+                console.log("[schemeHandler] onRequestStart frame url:" + request.getFrameUrl());
                 let header = request.getHeader();
                 for (let i = 0; i < header.length; i++) {
                   console.log("[schemeHandler] onRequestStart header:" + header[i].headerKey + " " + header[i].headerValue);
                 }
                 let stream = request.getHttpBodyStream();
                 if (stream) {
-                  console.log("[schemeHandler] onRequestStart has http body stream")
+                  console.log("[schemeHandler] onRequestStart has http body stream");
                 } else {
-                  console.log("[schemeHandler] onRequestStart has no http body stream")
+                  console.log("[schemeHandler] onRequestStart has no http body stream");
                 }
               } catch (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
 
               if (request.getRequestUrl().endsWith("example.com")) {
@@ -14313,43 +14025,40 @@ struct WebComponent {
 
               let response = new web_webview.WebSchemeHandlerResponse();
               try {
-                response.setNetErrorCode(WebNetErrorList.NET_OK)
-                response.setStatus(200)
-                response.setStatusText("OK")
-                response.setMimeType("text/html")
-                response.setEncoding("utf-8")
-                response.setHeaderByName("header1", "value1", false)
+                response.setNetErrorCode(WebNetErrorList.NET_OK);
+                response.setStatus(200);
+                response.setStatusText("OK");
+                response.setMimeType("text/html");
+                response.setEncoding("utf-8");
+                response.setHeaderByName("header1", "value1", false);
               } catch (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`[schemeHandler] ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`[schemeHandler] ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
 
               let buf = buffer.from(this.htmlData)
               try {
                 if (buf.length == 0) {
-                  console.log("[schemeHandler] length 0")
-                  resourceHandler.didFail(WebNetErrorList.ERR_FAILED)
+                  console.log("[schemeHandler] length 0");
+                  resourceHandler.didFail(WebNetErrorList.ERR_FAILED);
                 } else {
-                  console.log("[schemeHandler] length 1")
+                  console.log("[schemeHandler] length 1");
                   resourceHandler.didReceiveResponse(response);
                   resourceHandler.didReceiveResponseBody(buf.buffer);
                   resourceHandler.didFinish();
                 }
               } catch (error) {
-                let e: business_error.BusinessError = error as business_error.BusinessError;
-                console.error(`[schemeHandler] ErrorCode: ${e.code},  Message: ${e.message}`);
+                console.error(`[schemeHandler] ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
               return true;
             })
 
-            this.schemeHandler.onRequestStop((request: web_webview.WebSchemeHandlerRequest) => {
-              console.log("[schemeHandler] onRequestStop")
+            this.schemeHandler.onRequestStop((request: webview.WebSchemeHandlerRequest) => {
+              console.log("[schemeHandler] onRequestStop");
             });
 
             this.controller.setWebSchemeHandler('https', this.schemeHandler);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
         .javaScriptAccess(true)
@@ -15061,35 +14770,34 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import picker from '@ohos.file.picker';
-import fileuri from '@ohos.file.fileuri';
+import { webview } from '@kit.ArkWeb';
+import { picker, fileUri } from '@kit.CoreFileKit';
 
 // 演示点击按钮，通过filepicker打开一个easylist规则文件并设置到Web组件中
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Row() {
       Flex() {
-        Button({type: ButtonType.Capsule}) {
+        Button({ type: ButtonType.Capsule }) {
           Text("setAdsBlockRules")
         }
         .onClick(() => {
           try {
-            let documentSelectionOptions: ESObject = new picker.DocumentSelectOptions()
-            let documentPicker: ESObject = new picker.DocumentViewPicker()
+            let documentSelectionOptions: ESObject = new picker.DocumentSelectOptions();
+            let documentPicker: ESObject = new picker.DocumentViewPicker();
             documentPicker.select(documentSelectionOptions).then((documentSelectResult: ESObject) => {
               if (documentSelectResult && documentSelectResult.length > 0) {
-                let fileRealPath = new fileuri.FileUri(documentSelectResult[0])
-                console.info('DocumentViewPicker.select successfully, uri: ' + fileRealPath)
-
-                web_webview.AdsBlockManager.setAdsBlockRules(fileRealPath.path, true)
+                let fileRealPath = new fileUri.FileUri(documentSelectResult[0]);
+                console.info('DocumentViewPicker.select successfully, uri: ' + fileRealPath);
+                webview.AdsBlockManager.setAdsBlockRules(fileRealPath.path, true);
               }
             })
           } catch (err) {
-            console.error('DocumentViewPicker.select failed with err:' + err)
+            console.error('DocumentViewPicker.select failed with err:' + err);
           }
         })
       }
@@ -15122,17 +14830,16 @@ static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 // 演示通过一个按钮的点击向Web组件设置广告过滤的域名策略
 @Entry
 @Component
 struct WebComponent {
-  main_url: string = 'https://www.example.com'
-  text_input_controller: TextInputController = new TextInputController()
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-  @State input_text: string = 'https://www.example.com'
+  main_url: string = 'https://www.example.com';
+  text_input_controller: TextInputController = new TextInputController();
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State input_text: string = 'https://www.example.com';
 
   build() {
     Column() {
@@ -15144,27 +14851,27 @@ struct WebComponent {
             .margin(5)
             .borderColor(Color.Blue)
             .onChange((value: string) => {
-              this.input_text = value
+              this.input_text = value;
             })
 
           Button({type: ButtonType.Capsule}) { Text("Go") }
-            .onClick(() => {
-              this.controller.loadUrl(this.input_text)
-            })
+          .onClick(() => {
+            this.controller.loadUrl(this.input_text);
+          })
 
           Button({type: ButtonType.Capsule}) { Text("addAdsBlockDisallowedList") }
-            .onClick(() => {
-              let arrDomainSuffixes = new Array<string>()
-              arrDomainSuffixes.push('example.com')
-              arrDomainSuffixes.push('abcdefg.cn')
-              web_webview.AdsBlockManager.addAdsBlockDisallowedList(arrDomainSuffixes)
-            })
+          .onClick(() => {
+            let arrDomainSuffixes = new Array<string>();
+            arrDomainSuffixes.push('example.com');
+            arrDomainSuffixes.push('abcdefg.cn');
+            webview.AdsBlockManager.addAdsBlockDisallowedList(arrDomainSuffixes);
+          })
         }
       }
       Web({ src: this.main_url, controller: this.controller })
-      .onControllerAttached(()=>{
-        this.controller.enableAdsBlock(true)
-      })
+        .onControllerAttached(()=>{
+          this.controller.enableAdsBlock(true);
+        })
     }
   }
 }
@@ -15192,17 +14899,16 @@ static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 // 演示通过一个按钮的点击从AdsBlockManager的DisallowedList中删除域名元素
 @Entry
 @Component
 struct WebComponent {
-  main_url: string = 'https://www.example.com'
-  text_input_controller: TextInputController = new TextInputController()
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-  @State input_text: string = 'https://www.example.com'
+  main_url: string = 'https://www.example.com';
+  text_input_controller: TextInputController = new TextInputController();
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State input_text: string = 'https://www.example.com';
 
   build() {
     Column() {
@@ -15214,27 +14920,27 @@ struct WebComponent {
             .margin(5)
             .borderColor(Color.Blue)
             .onChange((value: string) => {
-              this.input_text = value
+              this.input_text = value;
             })
 
           Button({type: ButtonType.Capsule}) { Text("Go") }
-            .onClick(() => {
-              this.controller.loadUrl(this.input_text)
-            })
+          .onClick(() => {
+            this.controller.loadUrl(this.input_text);
+          })
 
           Button({type: ButtonType.Capsule}) { Text("removeAdsBlockDisallowedList") }
-            .onClick(() => {
-              let arrDomainSuffixes = new Array<string>()
-              arrDomainSuffixes.push('example.com')
-              arrDomainSuffixes.push('abcdefg.cn')
-              web_webview.AdsBlockManager.removeAdsBlockDisallowedList(arrDomainSuffixes)
-            })
+          .onClick(() => {
+            let arrDomainSuffixes = new Array<string>();
+            arrDomainSuffixes.push('example.com');
+            arrDomainSuffixes.push('abcdefg.cn');
+            webview.AdsBlockManager.removeAdsBlockDisallowedList(arrDomainSuffixes);
+          })
         }
       }
       Web({ src: this.main_url, controller: this.controller })
-      .onControllerAttached(()=>{
-        this.controller.enableAdsBlock(true)
-      })
+        .onControllerAttached(()=>{
+          this.controller.enableAdsBlock(true);
+        })
     }
   }
 }
@@ -15252,16 +14958,15 @@ static clearAdsBlockDisallowedList(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  main_url: string = 'https://www.example.com'
-  text_input_controller: TextInputController = new TextInputController()
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-  @State input_text: string = 'https://www.example.com'
+  main_url: string = 'https://www.example.com';
+  text_input_controller: TextInputController = new TextInputController();
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State input_text: string = 'https://www.example.com';
 
   build() {
     Column() {
@@ -15273,24 +14978,24 @@ struct WebComponent {
             .margin(5)
             .borderColor(Color.Blue)
             .onChange((value: string) => {
-              this.input_text = value
+              this.input_text = value;
             })
 
           Button({type: ButtonType.Capsule}) { Text("Go") }
-            .onClick(() => {
-              this.controller.loadUrl(this.input_text)
-            })
+          .onClick(() => {
+            this.controller.loadUrl(this.input_text);
+          })
 
           Button({type: ButtonType.Capsule}) { Text("clearAdsBlockDisallowedList") }
-            .onClick(() => {
-              web_webview.AdsBlockManager.clearAdsBlockDisallowedList()
-            })
+          .onClick(() => {
+            webview.AdsBlockManager.clearAdsBlockDisallowedList();
+          })
         }
       }
       Web({ src: this.main_url, controller: this.controller })
-      .onControllerAttached(()=>{
-        this.controller.enableAdsBlock(true)
-      })
+        .onControllerAttached(()=>{
+          this.controller.enableAdsBlock(true);
+        })
     }
   }
 }
@@ -15320,17 +15025,16 @@ static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 // 演示通过一个按钮的点击向Web组件设置广告过滤的域名策略
 @Entry
 @Component
 struct WebComponent {
-  main_url: string = 'https://www.example.com'
-  text_input_controller: TextInputController = new TextInputController()
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-  @State input_text: string = 'https://www.example.com'
+  main_url: string = 'https://www.example.com';
+  text_input_controller: TextInputController = new TextInputController();
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State input_text: string = 'https://www.example.com';
 
   build() {
     Column() {
@@ -15342,30 +15046,30 @@ struct WebComponent {
             .margin(5)
             .borderColor(Color.Blue)
             .onChange((value: string) => {
-              this.input_text = value
+              this.input_text = value;
             })
 
           Button({type: ButtonType.Capsule}) { Text("Go") }
-            .onClick(() => {
-              this.controller.loadUrl(this.input_text)
-            })
+          .onClick(() => {
+            this.controller.loadUrl(this.input_text);
+          })
 
           Button({type: ButtonType.Capsule}) { Text("addAdsBlockAllowedList") }
-            .onClick(() => {
-              let arrDisallowDomainSuffixes = new Array<string>()
-              arrDisallowDomainSuffixes.push('example.com')
-              web_webview.AdsBlockManager.addAdsBlockDisallowedList(arrDisallowDomainSuffixes)
+          .onClick(() => {
+            let arrDisallowDomainSuffixes = new Array<string>();
+            arrDisallowDomainSuffixes.push('example.com');
+            webview.AdsBlockManager.addAdsBlockDisallowedList(arrDisallowDomainSuffixes);
 
-              let arrAllowedDomainSuffixes = new Array<string>()
-              arrAllowedDomainSuffixes.push('news.example.com')
-              web_webview.AdsBlockManager.addAdsBlockAllowedList(arrAllowedDomainSuffixes)
-            })
+            let arrAllowedDomainSuffixes = new Array<string>();
+            arrAllowedDomainSuffixes.push('news.example.com');
+            webview.AdsBlockManager.addAdsBlockAllowedList(arrAllowedDomainSuffixes);
+          })
         }
       }
       Web({ src: this.main_url, controller: this.controller })
-      .onControllerAttached(()=>{
-        this.controller.enableAdsBlock(true)
-      })
+        .onControllerAttached(()=>{
+          this.controller.enableAdsBlock(true)
+        })
     }
   }
 }
@@ -15393,17 +15097,16 @@ static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 // 演示通过一个按钮的点击从AdsBlockManager的DisallowedList中删除域名元素
 @Entry
 @Component
 struct WebComponent {
-  main_url: string = 'https://www.example.com'
-  text_input_controller: TextInputController = new TextInputController()
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-  @State input_text: string = 'https://www.example.com'
+  main_url: string = 'https://www.example.com';
+  text_input_controller: TextInputController = new TextInputController();
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State input_text: string = 'https://www.example.com';
 
   build() {
     Column() {
@@ -15415,27 +15118,27 @@ struct WebComponent {
             .margin(5)
             .borderColor(Color.Blue)
             .onChange((value: string) => {
-              this.input_text = value
+              this.input_text = value;
             })
 
           Button({type: ButtonType.Capsule}) { Text("Go") }
-            .onClick(() => {
-              this.controller.loadUrl(this.input_text)
-            })
+          .onClick(() => {
+            this.controller.loadUrl(this.input_text);
+          })
 
           Button({type: ButtonType.Capsule}) { Text("removeAdsBlockAllowedList") }
-            .onClick(() => {
-              let arrDomainSuffixes = new Array<string>()
-              arrDomainSuffixes.push('example.com')
-              arrDomainSuffixes.push('abcdefg.cn')
-              web_webview.AdsBlockManager.removeAdsBlockAllowedList(arrDomainSuffixes)
-            })
+          .onClick(() => {
+            let arrDomainSuffixes = new Array<string>();
+            arrDomainSuffixes.push('example.com');
+            arrDomainSuffixes.push('abcdefg.cn');
+            webview.AdsBlockManager.removeAdsBlockAllowedList(arrDomainSuffixes);
+          })
         }
       }
       Web({ src: this.main_url, controller: this.controller })
-      .onControllerAttached(()=>{
-        this.controller.enableAdsBlock(true)
-      })
+        .onControllerAttached(()=>{
+          this.controller.enableAdsBlock(true);
+        })
     }
   }
 }
@@ -15453,16 +15156,15 @@ static clearAdsBlockAllowedList(): void
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  main_url: string = 'https://www.example.com'
-  text_input_controller: TextInputController = new TextInputController()
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-  @State input_text: string = 'https://www.example.com'
+  main_url: string = 'https://www.example.com';
+  text_input_controller: TextInputController = new TextInputController();
+  controller: webview.WebviewController = new webview.WebviewController();
+  @State input_text: string = 'https://www.example.com';
 
 
   build() {
@@ -15475,25 +15177,135 @@ struct WebComponent {
             .margin(5)
             .borderColor(Color.Blue)
             .onChange((value: string) => {
-              this.input_text = value
+              this.input_text = value;
             })
 
           Button({type: ButtonType.Capsule}) { Text("Go") }
-            .onClick(() => {
-              this.controller.loadUrl(this.input_text)
-            })
+          .onClick(() => {
+            this.controller.loadUrl(this.input_text);
+          })
 
           Button({type: ButtonType.Capsule}) { Text("clearAdsBlockAllowedList") }
-            .onClick(() => {
-              web_webview.AdsBlockManager.clearAdsBlockAllowedList()
-            })
+          .onClick(() => {
+            webview.AdsBlockManager.clearAdsBlockAllowedList();
+          })
         }
       }
       Web({ src: this.main_url, controller: this.controller })
       .onControllerAttached(()=>{
-        this.controller.enableAdsBlock(true)
+        this.controller.enableAdsBlock(true);
       })
     }
   }
 }
 ```
+### enableWholeWebPageDrawing<sup>12+</sup>
+
+static enableWholeWebPageDrawing(): void
+
+设置开启网页全量绘制能力。仅在web初始化时设置。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.enableWholeWebPageDrawing();
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### webPageSnapshot<sup>12+</sup>
+
+webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
+
+获取网页全量绘制结果。（本地资源网页暂不支持）
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型           | 必填  | 说明                      |
+| ----------- | ------------- | ---- | ------------------------ |
+| info        | [SnapshotInfo](#snapshotinfo12)| 是   | 全量绘制结果入参。 |
+| callback        | [SnapshotResult](#snapshotresult12)| 是   | 全量绘制回调结果。 
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('webPageSnapshot')
+        .onClick(() => {
+          try {
+            this.controller.webPageSnapshot({ id: "1234", size: { width: 100, height: 100 } }, (error, result) => {
+              if (error) {
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+                return;
+              }
+              if (result) {
+                console.info(`return value is:${result}`);
+                //开发者可以根据需要处理返回结果
+              }
+            });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+## SnapshotInfo<sup>12+</sup>
+
+获取全量绘制结果入参。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 |  必填 | 说明 |
+|------|------|------|------|
+| id | string | 是 | snapshot的id。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 是 | web绘制的尺寸，最多支持16000px * 16000px, 长度单位支持px、vp、%，需保持不同参数传入长度单位一致, 默认单位vp，超过规格时返回最大规格。（示例：width:'100px', height:'200px'。或者 width:'20%', height'30%'。只写数字时单位为vp。）|
+
+## SnapshotResult<sup>12+</sup>
+
+全量绘制回调结果。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 |  说明 |
+|------|------|---------|
+| id | string | snapshot的id。|
+| status | boolean |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | web绘制的真实尺寸，number类型，单位vp。|
+| imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 全量绘制结果image.pixelMap格式。|

@@ -57,7 +57,7 @@
    }
    let audioRendererInfo: audio.AudioRendererInfo = {
      // 需使用通话场景相应的参数
-     usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // 音频流使用类型：语音通信
+     usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // 音频流使用类型：VOIP通话
      rendererFlags: 0 // 音频渲染器标志：默认为0即可
    }
    let audioRendererOptions: audio.AudioRendererOptions = {

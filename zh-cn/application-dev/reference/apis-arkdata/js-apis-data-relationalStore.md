@@ -726,7 +726,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | ------- | ---- | ---------------------------------------- |
 | NONE    | 0    | 表示数据库未进行重建。                   |
 | REBUILT | 1    | 表示数据库进行了重建并且生成了空数据库。 |
-| REPAIRED | 2    | 表示数据库进行了修复，恢复了未损坏的数据，当前只有[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)具备该能力。|
+| REPAIRED | 2    | 表示数据库进行了修复，恢复了未损坏的数据，<!--RP1-->当前只有[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)具备该能力。<!--RP1End-->|
 
 ## ChangeType<sup>10+</sup>
 
