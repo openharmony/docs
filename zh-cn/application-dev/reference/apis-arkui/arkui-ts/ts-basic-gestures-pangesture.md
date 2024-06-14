@@ -25,6 +25,8 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 
 ## PanDirection枚举说明
 
+与SwipeDirection不同，PanDirection没有角度限制。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 描述 |
