@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.arkui.theme'；
+import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.arkui.theme';
 ```
 
 ## Theme

@@ -106,17 +106,15 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 ## AlertDialogButtonOptions<sup>10+</sup>对象说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 | 参数名             | 参数类型                | 必填     | 参数描述                     |
 | ------------------| ---------------------- | ------------ | --------------------- |
-| enabled           | boolean | 否     | 点击Button是否响应，默认值true。        |
-| defaultFocus           | boolean | 否     | 设置Button是否是默认焦点，默认值false。        |
-| style           | [DialogButtonStyle](#dialogbuttonstyle10枚举说明) | 否     | 设置Button的风格样式，默认值DialogButtonStyle.DEFAULT。        |
-| value           | [ResourceStr](ts-types.md#resourcestr) | 是     | Button的文本内容，若值为null，则该按钮不显示。        |
-| fontColor           | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button的文本颜色。        |
-| backgroundColor           | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button背景颜色。        |
-| action           | 	() => void | 是     | Button选中时的回调。        |
+| enabled           | boolean | 否     | 点击Button是否响应，默认值true。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| defaultFocus           | boolean | 否     | 设置Button是否是默认焦点，默认值false。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| style           | [DialogButtonStyle](#dialogbuttonstyle10枚举说明) | 否     | 设置Button的风格样式，默认值DialogButtonStyle.DEFAULT。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| value           | [ResourceStr](ts-types.md#resourcestr) | 是     | Button的文本内容，若值为null，则该按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| fontColor           | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button的文本颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| backgroundColor           | [ResourceColor](ts-types.md#resourcecolor) | 否     | Button背景颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| action           | 	() => void | 是     | Button选中时的回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | primary<sup>12+</sup> |	boolean | 否    | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。在defaultFocus为true时不生效。 |
 
 ## DialogButtonDirection<sup>10+</sup>枚举说明
@@ -150,6 +148,8 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 Rectangle是各种Dialog中maskRect参数的类型。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                           | 必填 | 描述                                |
@@ -181,15 +181,7 @@ Rectangle是各种Dialog中maskRect参数的类型。
 | 名称     | 类型                                 | 必填 | 描述                                                           |
 |----------|-------------------------------------|------|----------------------------------------------------------------|
 | dismiss  | Callback&lt;void&gt;                            |  是  | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。    |
-| reason   | [DismissReason](#dismissreason12枚举说明) |  是  | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
-
-## DismissReason<sup>12+</sup>枚举说明
-
-| 名称             | 描述                             |
-| --------------- | -------------------------------- |
-| PRESS_BACK      | 点击三键back、左滑/右滑、键盘ESC。  |
-| TOUCH_OUTSIDE   | 点击遮障层时。                     |
-| CLOSE_BUTTON    | 点击关闭按钮。                     |
+| reason   | [DismissReason](ts-appendix-enums.md#dismissreason12) |  是  | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
 
 ## TextStyle<sup>12+</sup>类型说明
 

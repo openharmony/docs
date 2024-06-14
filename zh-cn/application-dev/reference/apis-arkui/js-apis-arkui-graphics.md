@@ -27,27 +27,29 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 ## Position
 
+type Position = Vector2
+
 用于设置或返回组件的位置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型   | 可读 | 可写 | 说明                     |
-| ---- | ------ | ---- | ---- | ------------------------ |
-| x    | number | 是   | 是   | 水平方向位置。 |
-| y    | number | 是   | 是   | 垂直方向位置。 |
+| 类型                | 说明                   |
+| ------------------- | ---------------------- |
+| [Vector2](#vector2) | 包含x和y两个值的向量。 |
 
 ## PositionT<sup>12+</sup>
+
+type PositionT\<T> = Vector2T\<T>
 
 用于设置或返回组件的位置。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型   | 可读 | 可写 | 说明                     |
-| ---- | ------ | ---- | ---- | ------------------------ |
-| x    | number | 是   | 是   | 水平方向位置，单位为vp。 |
-| y    | number | 是   | 是   | 垂直方向位置，单位为vp。 |
+| 类型                         | 说明                   |
+| ---------------------------- | ---------------------- |
+| [Vector2T\<T>](#vector2tt12) | 包含x和y两个值的向量。 |
 
 ## Frame
 
@@ -66,18 +68,21 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 ## Pivot
 
+type Pivot = Vector2
+
 用于设置组件的轴心坐标，轴心会作为组件的旋转/缩放中心点，影响旋转和缩放效果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型   | 可读 | 可写 | 说明                                                                |
-| ---- | ------ | ---- | ---- | ------------------------------------------------------------------- |
-| x    | number | 是   | 是   | 轴心的X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
-| y    | number | 是   | 是   | 轴心的Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
+| 类型                | 说明                   |
+| ------------------- | ---------------------- |
+| [Vector2](#vector2) | 包含x和y两个值的向量。 |
 
 ## Scale
+
+type Scale = Vector2
 
 用于设置组件的缩放比例。
 
@@ -85,12 +90,13 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型   | 可读 | 可写 | 说明                                         |
-| ---- | ------ | ---- | ---- | -------------------------------------------- |
-| x    | number | 是   | 是   | X轴的缩放参数。该参数为浮点数，默认值为1.0。 |
-| y    | number | 是   | 是   | Y轴的缩放参数。该参数为浮点数，默认值为1.0。 |
+| 类型                | 说明                   |
+| ------------------- | ---------------------- |
+| [Vector2](#vector2) | 包含x和y两个值的向量。 |
 
 ## Translation
+
+type Translation = Vector2
 
 用于设置组件的平移量。
 
@@ -98,12 +104,13 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型   | 可读 | 可写 | 说明                         |
-| ---- | ------ | ---- | ---- | ---------------------------- |
-| x    | number | 是   | 是   | 水平方向的平移量，单位为px。 |
-| y    | number | 是   | 是   | 垂直方向的平移量，单位为px。 |
+| 类型                | 说明                   |
+| ------------------- | ---------------------- |
+| [Vector2](#vector2) | 包含x和y两个值的向量。 |
 
 ## Rotation
+
+type Rotation = Vector3
 
 用于设置组件的旋转角度。
 
@@ -111,13 +118,13 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型   | 可读 | 可写 | 说明                          |
-| ---- | ------ | ---- | ---- | ----------------------------- |
-| x    | number | 是   | 是   | x轴方向的旋转角度，单位为vp。 |
-| y    | number | 是   | 是   | y轴方向的旋转角度，单位为vp。 |
-| z    | number | 是   | 是   | z轴方向的旋转角度，单位为vp。 |
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [Vector3](#vector3) | 包含x、y、z三个值的向量。 |
 
 ## Offset
+
+type Offset = Vector2
 
 用于设置组件或效果的偏移。
 
@@ -125,10 +132,9 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型   | 可读 | 可写 | 说明                        |
-| ---- | ------ | ---- | ---- | --------------------------- |
-| x    | number | 是   | 是   | x轴方向的偏移量，单位为vp。 |
-| y    | number | 是   | 是   | y轴方向的偏移量，单位为vp。 |
+| 类型                | 说明                   |
+| ------------------- | ---------------------- |
+| [Vector2](#vector2) | 包含x和y两个值的向量。 |
 
 ## Matrix4
 
@@ -154,10 +160,33 @@ const transform: Matrix4 = [
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+| 名称 | 类型   | 只读 | 可选 | 说明              |
+| ---- | ------ | ---- | ---- | ----------------- |
+| x    | number | 否   | 否   | 向量x轴方向的值。 |
+| y    | number | 否   | 否   | 向量y轴方向的值。 |
+
+## Vector3
+
+用于表示包含x、y、z三个值的向量。
+
+| 名称 | 类型   | 可读 | 可写 | 说明                          |
+| ---- | ------ | ---- | ---- | ----------------------------- |
+| x    | number | 是   | 是   | x轴方向的旋转角度，单位为vp。 |
+| y    | number | 是   | 是   | y轴方向的旋转角度，单位为vp。 |
+| z    | number | 是   | 是   | z轴方向的旋转角度，单位为vp。 |
+
+## Vector2T\<T><sup>12+</sup>
+
+用于表示T类型的包含x和y两个值的向量。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型   | 可读 | 可写 | 说明              |
 | ---- | ------ | ---- | ---- | ----------------- |
-| x    | number | 是   | 是   | 向量x轴方向的值。 |
-| y    | number | 是   | 是   | 向量y轴方向的值。 |
+| x    | T | 是   | 是   | 向量x轴方向的值。 |
+| y    | T | 是   | 是   | 向量y轴方向的值。 |
 
 ## DrawContext
 
@@ -256,6 +285,13 @@ struct Index {
 | right  | T    | 是   | 是   | 右侧边框的属性。 |
 | bottom | T    | 是   | 是   | 底部边框的属性。 |
 
+## Vector2T\<T><sup>12+</sup>
+
+| 名称 | 类型 | 可读 | 可写 | 说明              |
+| ---- | ---- | ---- | ---- | ----------------- |
+| x    | T    | 是   | 是   | 向量x轴方向的值。 |
+| y    | T    | 是   | 是   | 向量y轴方向的值。 |
+
 ## LengthUnit<sup>12+</sup>
 
 长度属性单位枚举。
@@ -330,7 +366,7 @@ LengthMetrics的构造函数。
 
 ### px<sup>12+</sup>
 
-px(value: number): LengthMetrics
+static px(value: number): LengthMetrics
 
 用于生成单位为PX的长度属性。
 
@@ -352,7 +388,7 @@ px(value: number): LengthMetrics
 
 ### vp<sup>12+</sup>
 
-vp(value: number): LengthMetrics
+static vp(value: number): LengthMetrics
 
 用于生成单位为VP的长度属性。
 
@@ -374,7 +410,7 @@ vp(value: number): LengthMetrics
 
 ### fp<sup>12+</sup>
 
-fp(value: number): LengthMetrics
+static fp(value: number): LengthMetrics
 
 用于生成单位为FP的长度属性。
 
@@ -396,7 +432,7 @@ fp(value: number): LengthMetrics
 
 ### percent<sup>12+</sup>
 
-percent(value: number): LengthMetrics
+static percent(value: number): LengthMetrics
 
 用于生成单位为PERCENT的长度属性。
 
@@ -418,7 +454,7 @@ percent(value: number): LengthMetrics
 
 ### lpx<sup>12+</sup>
 
-lpx(value: number): LengthMetrics
+static lpx(value: number): LengthMetrics
 
 用于生成单位为LPX的长度属性。
 
@@ -440,7 +476,7 @@ lpx(value: number): LengthMetrics
 
 ### resource<sup>12+</sup>
 
-resource(value: Resource): LengthMetrics
+static resource(value: Resource): LengthMetrics
 
 用于生成Resource类型资源的长度属性。
 
@@ -686,42 +722,39 @@ struct ColorMetricsSample {
 
 ## CornerRadius<sup>12+</sup>
 
-类型定义为[Corners](#cornerst12)[\<Vector2>](#vector2)，用于设置四个角的圆角度数。
+type CornerRadius = Corners\<Vector2>
+
+设置四个角的圆角度数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型                | 可读 | 可写 | 说明                             |
-| ----------- | ------------------- | ---- | ---- | -------------------------------- |
-| topLeft     | [Vector2](#vector2) | 是   | 是   | 左上边框的圆角度数，单位为px。   |
-| topRight    | [Vector2](#vector2) | 是   | 是   | 右上上边框的圆角度数，单位为px。 |
-| bottomLeft  | [Vector2](#vector2) | 是   | 是   | 左下边框的圆角度数，单位为px。   |
-| bottomRight | [Vector2](#vector2) | 是   | 是   | 右下边框的圆角度数，单位为px。   |
+| 类型                                         | 说明               |
+| -------------------------------------------- | ------------------ |
+| [Corners](#cornerst12)[\<Vector2>](#vector2) | 四个角的圆角度数。 |
 
 ## BorderRadiuses<sup>12+</sup>
 
-类型定义为[Corners\<number>](#cornerst12)，用于设置四个角的圆角度数。
+type BorderRadiuses = Corners\<number>
+
+设置四个角的圆角度数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型   | 可读 | 可写 | 说明                           |
-| ----------- | ------ | ---- | ---- | ------------------------------ |
-| topLeft     | number | 是   | 是   | 左上边框的圆角度数，单位为vp。 |
-| topRight    | number | 是   | 是   | 右上边框的圆角度数，单位为vp。 |
-| bottomLeft  | number | 是   | 是   | 左下边框的圆角度数，单位为vp。 |
-| bottomRight | number | 是   | 是   | 右下边框的圆角度数，单位为vp。 |
+| 类型                            | 说明               |
+| ------------------------------- | ------------------ |
+| [Corners\<number>](#cornerst12) | 四个角的圆角度数。 |
 
 ## Rect<sup>12+</sup>
+
+type Rect = common2D.Rect
 
 用于设置矩形的形状。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 可读 | 可写 | 说明                     |
-| ------ | ------ | ---- | ---- | ------------------------ |
-| left   | number | 是   | 是   | 左部边的位置，单位为px。 |
-| top    | number | 是   | 是   | 顶部边的位置，单位为px。 |
-| right  | number | 是   | 是   | 右部边的位置，单位为px。 |
-| bottom | number | 是   | 是   | 底部边的位置，单位为px。 |
+| 类型                                                         | 说明       |
+| ------------------------------------------------------------ | ---------- |
+| [common2D.Rect](../apis-arkgraphics2d/js-apis-graphics-common2D.md#rect) | 矩形区域。 |
 
 ## RoundRect<sup>12+</sup>
 
