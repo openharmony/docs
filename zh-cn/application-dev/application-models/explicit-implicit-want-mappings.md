@@ -47,7 +47,9 @@
 
 系统将调用方传入的want参数（包含action、entities、uri、type和parameters属性）与已安装待匹配应用组件的skills配置（包含actions、entities、uris和type属性）进行匹配。当want参数五个属性匹配均未配置，隐式匹配失败。
 - 当parameters中的linkFeature未配置或其对应的字符串为空时，只有当action、entities、uri和type四个属性均匹配通过时，此应用才会被应用选择器展示给用户进行选择。
-- 当配置了parameters中的linkFeature且其对应的字符串不为空时，系统将优先进行linkFeature匹配。如果linkFeature匹配成功，还需要匹配uri和type属性，均匹配成功则隐式匹配成功；否则，不进行后续属性匹配，匹配失败。
+- 当配置了parameters中的linkFeature且其对应的字符串不为空时，系统将优先进行linkFeature匹配。
+  1. 如果linkFeature匹配成功，并且want中配置了uri或type，则继续匹配uri和type属性，均匹配成功则隐式匹配成功；否则，匹配失败。如果want中未配置uri和type, 则隐式匹配成功。
+  2. 如果linkFeature匹配失败，则不进行后续属性匹配，匹配失败。
 
 
 ### want参数的action匹配规则
@@ -179,7 +181,8 @@
 > 本章节所述的parameters匹配规则适用于want参数中的parameters包含linkFeature键且其对应的值为非空字符串的基础上。
 
 将调用方传入的want参数的parameters与待匹配应用组件的skills配置中的uris进行匹配。具体的匹配规则如下：
+- 如果skills配置中的uris中存在一条uri数据，其linkFeature字段与parameters中linkFeature字段相同，并且want中未配置uri或type，则匹配成功。
 
-- 如果skills配置中的uris中存在一条uri数据，其linkFeature字段对应的字符串与parameters中linkFeature对应的字符串相同，且uri和type属性均匹配（参见[want参数的uri和type匹配规则](#want参数的uri和type匹配规则)），则匹配成功。
+- 如果skills配置中的uris中存在一条uri数据，其linkFeature字段与parameters中linkFeature字段相同，且want中配置了uri或type， 并且uri和type属性均匹配（参见[want参数的uri和type匹配规则](#want参数的uri和type匹配规则)），则匹配成功。
 
-- 如果skills配置中的uris中不存在任何一条uri数据，其linkFeature字段对应的字符串与parameters中linkFeature对应的字符串相同，或者uri和type属性均不匹配（参见[want参数的uri和type匹配规则](#want参数的uri和type匹配规则)），则匹配失败。
+- 如果skills配置中的uris中不存在任何一条uri数据，其linkFeature字段与parameters中linkFeature字段相同，或者uri和type属性均不匹配（参见[want参数的uri和type匹配规则](#want参数的uri和type匹配规则)），则匹配失败。
