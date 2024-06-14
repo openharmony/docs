@@ -20,9 +20,9 @@
 2. 通过调用OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数，重置最大，最小量化参数。
 
    具体可参考下文中：Surface模式的步骤9-OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数。
-3. 通过调用OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调，随帧设置最大，最小量化参数。
+3. 通过调用OH_VideoEncoder_RegisterParameterCallback()在配置之前注册随帧通路回调，随帧设置最大，最小量化参数。
 
-   具体可参考下文中：Surface模式的步骤4-OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调。
+   具体可参考下文中：Surface模式的步骤4-OH_VideoEncoder_RegisterParameterCallback()在配置之前注册随帧通路回调。
 4. 分层编码，LTR设置。具体可参考：[时域可分层视频编码](video-encoding-temporal-scalability.md)
 5. 通过调用OH_VideoEncoder_RegisterCallback()设置回调函数，获取编码每帧平均量化参数，平方误差。
 
@@ -160,7 +160,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
-4. （可选）调用OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调
+4. （可选）调用OH_VideoEncoder_RegisterParameterCallback()在配置之前注册随帧通路回调
 
     ```c++
     // 4.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现
