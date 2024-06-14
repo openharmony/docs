@@ -142,9 +142,8 @@ Label定义图标的共通属性。
 ### 示例1-无suffix
 
 ```typescript
-
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip'
-import { ChipGroup,IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
+import { ChipSize } from '@ohos.arkui.advanced.Chip'
+import { ChipGroup } from '@ohos.arkui.advanced.ChipGroup';
 
 @Entry
 @Preview
@@ -197,7 +196,6 @@ struct Index {
         selectedIndexes: this.selected_index,
         multiple: false,
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
-        chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex:Array<number>) => {
           console.log('chips on clicked, activated index ' + activatedChipsIndex)
         },
@@ -205,7 +203,6 @@ struct Index {
     }
   }
 }
-
 ```
 
 ![](figures/chipGroupDemo1.jpeg)
@@ -213,7 +210,7 @@ struct Index {
 ### 示例2-有suffix
 
 ```typescript
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip'
+import { ChipSize } from '@ohos.arkui.advanced.Chip'
 import { ChipGroup,IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
 
 @Entry
@@ -288,7 +285,6 @@ struct Index {
         selectedIndexes: this.selected_index,
         multiple: true,
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
-        chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex: Array<number>) => {
           console.log('chips on clicked, activated index ' + activatedChipsIndex)
         },
@@ -297,7 +293,6 @@ struct Index {
     }
   }
 }
-
 ```
 
 ![](figures/chipGroupDemo2.jpeg)

@@ -169,7 +169,7 @@ getFontByName(fontName: string): FontInfo
 
 | 类型             | 说明                          |
 | ---------------- | ---------------------------- |
-| FontInfo         | 字体的详细信息                 |
+| FontInfo         | 字体的详细信息。     |
 
 ## FontInfo<sup>10+</sup>
 
