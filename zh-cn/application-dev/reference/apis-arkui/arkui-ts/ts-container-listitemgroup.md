@@ -45,14 +45,7 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 ### divider
 
-divider(<br/>
-    value: {<br/>
-      strokeWidth: Length;<br/>
-      color?: ResourceColor;<br/>
-      startMargin?: Length;<br/>
-      endMargin?: Length;<br/>
-    } | null,<br/>
-  )
+divider(value: {strokeWidth: Length; color?: ResourceColor; startMargin?: Length; endMargin?: Length;} | null,)
 
 设置ListItem分割线样式，默认无分割线。
 
