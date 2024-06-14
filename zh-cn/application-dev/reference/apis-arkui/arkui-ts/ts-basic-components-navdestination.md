@@ -144,7 +144,7 @@ onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ### onWillAppear<sup>12+</sup>
 
-onWillAppear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onWillAppear(callback: Callback\<void>)
 
 当该Destination挂载之前触发此回调。在该回调中允许修改页面栈，当前帧生效。
 
@@ -152,7 +152,7 @@ onWillAppear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ### onWillShow<sup>12+</sup>
 
-onWillShow(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onWillShow(callback: Callback\<void>)
 
 当该Destination显示之前触发此回调。
 
@@ -160,7 +160,7 @@ onWillShow(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ### onWillHide<sup>12+</sup>
 
-onWillHide(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onWillHide(callback: Callback\<void>)
 
 当该Destination隐藏之前触发此回调。
 
@@ -168,13 +168,15 @@ onWillHide(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ### onWillDisappear<sup>12+</sup>
 
-onWillDisappear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onWillDisappear(callback: Callback\<void>)
 
 当该Destination卸载之前触发的生命周期(有转场动画时，在转场动画开始之前触发)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onBackPressed<sup>10+</sup>
+
+onBackPressed(callback:&nbsp;()&nbsp;=&gt;&nbsp;boolean)
 
 当与Navigation绑定的页面栈中存在内容时，此回调生效。当点击返回键时，触发该回调。
 
@@ -205,6 +207,8 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 ### getConfigInRouteMap<sup>12+</sup>
 
 getConfigInRouteMap(): RouteMapConfig |undefined
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值**
 
