@@ -288,6 +288,8 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -319,6 +321,8 @@ enableAutoFill(value: boolean)
 
 设置是否启用自动填充。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -332,6 +336,8 @@ enableAutoFill(value: boolean)
 contentType(contentType: ContentType)
 
 设置自动填充类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -571,8 +577,6 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 lineSpacing(value: LengthMetrics)
 
 设置文本的行间距，设置值不大于0时，取默认值0。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
