@@ -23,6 +23,8 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 
 ## PanDirection枚举说明
 
+与SwipeDirection不同，PanDirection没有角度限制。
+
 | 名称 | 描述 |
 | -------- | -------- |
 | All | 所有方向。 |
