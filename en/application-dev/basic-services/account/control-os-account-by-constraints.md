@@ -13,13 +13,13 @@ For details about the predefined account constraints, see [Constraints](../../re
 2. Import the **osAccount** module.
 
    ```ts
-   import account_osAccount from '@ohos.account.osAccount';
+   import { osAccount } from '@kit.BasicServicesKit';
    ```
 
 3. Obtain an **AccountManager** instance.
 
    ```ts
-   let accountManager = account_osAccount.getAccountManager();
+   let accountManager = osAccount.getAccountManager();
    ```
 
 ## Setting Constraints for a System Account
@@ -39,7 +39,7 @@ The user can set constraints to restrict the system account behaviors. For examp
 
    ```ts
    try {
-     let accountManager.setOsAccountConstraints(localId, [constraint], true);
+     accountManager.setOsAccountConstraints(localId, constraint, true);
      console.log('setOsAccountConstraints successfully');
    } catch (err) {
      console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));

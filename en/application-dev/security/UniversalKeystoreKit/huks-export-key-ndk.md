@@ -3,6 +3,10 @@
 
 This topic walks you through on how to export the public key of a persistently stored asymmetric key. Currently, HUKS supports export of the ECC, RSA, Ed25519, and X25519 public keys.
 
+## Add the dynamic library in the CMake script.
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## How to Develop
 

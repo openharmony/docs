@@ -36,7 +36,7 @@ stat(file: string | number): Promise&lt;Stat&gt;
 
 获取文件详细属性信息，使用Promise异步返回。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -74,7 +74,7 @@ stat(file: string | number, callback: AsyncCallback&lt;Stat&gt;): void
 
 获取文件详细属性信息，使用callback异步回调。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -108,7 +108,7 @@ statSync(file: string | number): Stat
 
 以同步方法获取文件详细属性信息。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -141,7 +141,7 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 
 检查文件是否存在，使用Promise异步返回。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -184,7 +184,7 @@ access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 检查文件是否存在，使用callback异步回调。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -223,7 +223,7 @@ accessSync(path: string, mode?: AccessModeType): boolean
 
 以同步方法检查文件是否存在。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -269,7 +269,7 @@ close(file: number | File): Promise&lt;void&gt;
 
 关闭文件，使用Promise异步返回。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -308,7 +308,7 @@ close(file: number | File, callback: AsyncCallback&lt;void&gt;): void
 
 关闭文件，使用callback异步回调。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -344,7 +344,7 @@ closeSync(file: number | File): void
 
 以同步方法关闭文件。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -535,7 +535,7 @@ copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt
 
 复制文件，使用Promise异步返回。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -576,7 +576,7 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 
 复制文件，可设置覆盖文件的方式，使用callback异步回调。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -614,7 +614,7 @@ copyFile(src: string | number, dest: string | number, callback: AsyncCallback&lt
 
 复制文件，覆盖方式为完全覆盖目标文件，未覆盖部分将被裁切。使用callback异步回调。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -652,7 +652,7 @@ copyFileSync(src: string | number, dest: string | number, mode?: number): void
 
 以同步方法复制文件。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -963,7 +963,7 @@ mkdir(path: string): Promise&lt;void&gt;
 
 创建目录，使用Promise异步返回。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1001,7 +1001,7 @@ mkdir(path: string, recursion: boolean): Promise\<void>
 
 创建目录，使用Promise异步返回。当recursion指定为true，可多层级创建目录。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1041,7 +1041,7 @@ mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 创建目录，使用callback异步回调。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1076,7 +1076,7 @@ mkdir(path: string, recursion: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 创建目录，使用callback异步回调。当recursion指定为true，可多层级创建目录。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1112,7 +1112,7 @@ mkdirSync(path: string): void
 
 以同步方法创建目录。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1139,7 +1139,7 @@ mkdirSync(path: string, recursion: boolean): void
 
 以同步方法创建目录。当recursion指定为true，可多层级创建目录。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1167,7 +1167,7 @@ open(path: string, mode?: number): Promise&lt;File&gt;
 
 打开文件，使用Promise异步返回。支持使用URI打开文件。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1210,7 +1210,7 @@ open(path: string, mode: number, callback: AsyncCallback&lt;File&gt;): void
 
 支持使用URI打开文件。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1247,7 +1247,7 @@ open(path: string, callback: AsyncCallback&lt;File&gt;): void
 
 打开文件，使用callback异步回调。支持使用URI打开文件。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1283,7 +1283,7 @@ openSync(path: string, mode?: number): File
 
 以同步方法打开文件。支持使用URI打开文件。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1319,7 +1319,7 @@ read(fd: number, buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&
 
 从文件读取数据，使用Promise异步返回。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1366,7 +1366,7 @@ read(fd: number, buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCall
 
 从文件读取数据，使用callback异步回调。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1409,7 +1409,7 @@ readSync(fd: number, buffer: ArrayBuffer, options?: ReadOptions): number
 
 以同步方法从文件读取数据。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1447,7 +1447,7 @@ rmdir(path: string): Promise&lt;void&gt;
 
 删除整个目录，使用Promise异步返回。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1485,7 +1485,7 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除整个目录，使用callback异步回调。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1520,7 +1520,7 @@ rmdirSync(path: string): void
 
 以同步方法删除目录。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1547,7 +1547,7 @@ unlink(path: string): Promise&lt;void&gt;
 
 删除单个文件，使用Promise异步返回。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1585,7 +1585,7 @@ unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除文件，使用callback异步回调。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1620,7 +1620,7 @@ unlinkSync(path: string): void
 
 以同步方法删除文件。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1648,7 +1648,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions): Promise
 
 将数据写入文件，使用Promise异步返回。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1692,7 +1692,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions, callback
 
 将数据写入文件，使用callback异步回调。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1732,7 +1732,7 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions): num
 
 以同步方法将数据写入文件。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1771,7 +1771,7 @@ truncate(file: string | number, len?: number): Promise&lt;void&gt;
 
 截断文件内容，使用Promise异步返回。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1811,7 +1811,7 @@ truncate(file: string | number, len?: number, callback: AsyncCallback&lt;void&gt
 
 截断文件内容，使用callback异步回调。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1848,7 +1848,7 @@ truncateSync(file: string | number, len?: number): void
 
 以同步方法截断文件内容。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2050,7 +2050,7 @@ readText(filePath: string, options?: ReadTextOptions): Promise&lt;string&gt;
 
 基于文本方式读取文件（即直接读取文件的文本内容），使用Promise异步返回。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2089,7 +2089,7 @@ readText(filePath: string, options?: ReadTextOptions, callback: AsyncCallback&lt
 
 基于文本方式读取文件（即直接读取文件的文本内容），使用callback异步回调。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2133,7 +2133,7 @@ readTextSync(filePath: string, options?: ReadTextOptions): string
 
 以同步方法基于文本方式读取文件（即直接读取文件的文本内容）。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2280,7 +2280,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 > **说明：**
 > 该接口不支持在分布式文件路径下操作。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2323,7 +2323,7 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 > **说明：**
 > 该接口不支持在分布式文件路径下操作。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2363,7 +2363,7 @@ renameSync(oldPath: string, newPath: string): void
 > **说明：**
 > 该接口不支持在分布式文件路径下操作。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2390,7 +2390,7 @@ renameSync(oldPath: string, newPath: string): void
 
 fsync(fd: number): Promise&lt;void&gt;
 
-同步文件数据，使用Promise异步返回。
+将文件系统缓存数据写入磁盘，使用Promise异步返回。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2429,7 +2429,7 @@ fsync(fd: number): Promise&lt;void&gt;
 
 fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
-同步文件数据，使用callback异步回调。
+将文件系统缓存数据写入磁盘，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2465,7 +2465,7 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 fsyncSync(fd: number): void
 
-以同步方法同步文件数据。
+以同步方法将文件系统缓存数据写入磁盘。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2694,7 +2694,7 @@ listFile(path: string, options?: ListFileOptions): Promise<string[]>
 
 列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤，使用Promise异步返回。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2745,7 +2745,7 @@ listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string
 
 列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤，使用Callback异步回调。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2794,7 +2794,7 @@ listFileSync(path: string, options?: ListFileOptions): string[]
 
 以同步方式列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3822,12 +3822,12 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 | 名称     | 类型   | 只读   | 可写   | 说明                                       |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |                        
 | ino    | bigint | 是    | 否    | 标识该文件。通常同设备上的不同文件的INO不同。|                 |
-| mode   | number | 是    | 否    | 表示文件权限，各特征位的含义如下：<br/>**说明：** 以下值为八进制，取得的返回值为十进制，请换算后查看。<br/>-&nbsp;0o400：用户读，对于普通文件，所有者可读取文件；对于目录，所有者可读取目录项。<br/>-&nbsp;0o200：用户写，对于普通文件，所有者可写入文件；对于目录，所有者可创建/删除目录项。<br/>-&nbsp;0o100：用户执行，对于普通文件，所有者可执行文件；对于目录，所有者可在目录中搜索给定路径名。<br/>-&nbsp;0o040：用户组读，对于普通文件，所有用户组可读取文件；对于目录，所有用户组可读取目录项。<br/>-&nbsp;0o020：用户组写，对于普通文件，所有用户组可写入文件；对于目录，所有用户组可创建/删除目录项。<br/>-&nbsp;0o010：用户组执行，对于普通文件，所有用户组可执行文件；对于目录，所有用户组是否可在目录中搜索给定路径名。<br/>-&nbsp;0o004：其他读，对于普通文件，其余用户可读取文件；对于目录，其他用户组可读取目录项。<br/>-&nbsp;0o002：其他写，对于普通文件，其余用户可写入文件；对于目录，其他用户组可创建/删除目录项。<br/>-&nbsp;0o001：其他执行，对于普通文件，其余用户可执行文件；对于目录，其他用户组可在目录中搜索给定路径名。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| mode   | number | 是    | 否    | 表示文件权限，各特征位的含义如下：<br/>**说明：** 以下值为八进制，取得的返回值为十进制，请换算后查看。<br/>-&nbsp;0o400：用户读，对于普通文件，所有者可读取文件；对于目录，所有者可读取目录项。<br/>-&nbsp;0o200：用户写，对于普通文件，所有者可写入文件；对于目录，所有者可创建/删除目录项。<br/>-&nbsp;0o100：用户执行，对于普通文件，所有者可执行文件；对于目录，所有者可在目录中搜索给定路径名。<br/>-&nbsp;0o040：用户组读，对于普通文件，所有用户组可读取文件；对于目录，所有用户组可读取目录项。<br/>-&nbsp;0o020：用户组写，对于普通文件，所有用户组可写入文件；对于目录，所有用户组可创建/删除目录项。<br/>-&nbsp;0o010：用户组执行，对于普通文件，所有用户组可执行文件；对于目录，所有用户组是否可在目录中搜索给定路径名。<br/>-&nbsp;0o004：其他读，对于普通文件，其余用户可读取文件；对于目录，其他用户组可读取目录项。<br/>-&nbsp;0o002：其他写，对于普通文件，其余用户可写入文件；对于目录，其他用户组可创建/删除目录项。<br/>-&nbsp;0o001：其他执行，对于普通文件，其余用户可执行文件；对于目录，其他用户组可在目录中搜索给定路径名。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | uid    | number | 是    | 否    | 文件所有者的ID。|
 | gid    | number | 是    | 否    | 文件所有组的ID。|
-| size   | number | 是    | 否    | 文件的大小，以字节为单位。仅对普通文件有效。 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| atime  | number | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。      |
-| mtime  | number | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。      |
+| size   | number | 是    | 否    | 文件的大小，以字节为单位。仅对普通文件有效。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| atime  | number | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| mtime  | number | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | ctime  | number | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的秒数。      |
 | location<sup>11+</sup> | [LocaltionType](#locationtype11)| 是 |否| 文件的位置，表示该文件是本地文件或者云端文件。
 
@@ -3887,7 +3887,7 @@ isDirectory(): boolean
 
 用于判断文件是否是目录。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3939,7 +3939,7 @@ isFile(): boolean
 
 用于判断文件是否是普通文件。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4457,7 +4457,7 @@ readSync(buffer: ArrayBuffer, options?: ReadOptions): number
 
 | 名称   | 类型   | 只读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
-| fd | number | 是    | 否    | 打开的文件描述符。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| fd | number | 是    | 否    | 打开的文件描述符。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | path<sup>10+</sup> | string | 是    | 否    | 文件路径。 |
 | name<sup>10+</sup> | string | 是    | 否    | 文件名。 |
 
@@ -5022,12 +5022,12 @@ open接口flags参数常量。文件打开标签。
 
 | 名称   | 类型   | 值  | 说明      |
 | ---- | ------ |---- | ------- |
-| READ_ONLY | number |  0o0   | 只读打开。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| WRITE_ONLY | number | 0o1    | 只写打开。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| READ_WRITE | number | 0o2    | 读写打开。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| CREATE | number | 0o100    | 若文件不存在，则创建文件。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| TRUNC | number | 0o1000    | 如果文件存在且以只写或读写的方式打开文件，则将其长度裁剪为零。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| APPEND | number | 0o2000   | 以追加方式打开，后续写将追加到文件末尾。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| READ_ONLY | number |  0o0   | 只读打开。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| WRITE_ONLY | number | 0o1    | 只写打开。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| READ_WRITE | number | 0o2    | 读写打开。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| CREATE | number | 0o100    | 若文件不存在，则创建文件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| TRUNC | number | 0o1000    | 如果文件存在且以只写或读写的方式打开文件，则将其长度裁剪为零。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| APPEND | number | 0o2000   | 以追加方式打开，后续写将追加到文件末尾。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NONBLOCK | number | 0o4000    | 如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续 IO 进行非阻塞操作。 |
 | DIR | number | 0o200000    | 如果path不指向目录，则出错。 |
 | NOFOLLOW | number | 0o400000    | 如果path指向符号链接，则出错。 |
@@ -5037,7 +5037,7 @@ open接口flags参数常量。文件打开标签。
 
 文件过滤配置项类型，支持listFile接口使用。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5098,7 +5098,7 @@ open接口flags参数常量。文件打开标签。
 
 枚举，表示需要校验的具体权限，若不填，默认校验文件是否存在。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5113,7 +5113,7 @@ open接口flags参数常量。文件打开标签。
 
 可选项类型，支持read接口使用。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -5132,7 +5132,7 @@ open接口flags参数常量。文件打开标签。
 | ----------- | --------------- | ------------------ | ------------------ |
 | length | number     | 否 | 期望读取数据的长度。可选，默认文件长度。           |
 |  offset    | number     | 否 | 期望读取文件的位置。可选，默认从当前位置开始读取。 |
-| encoding    | string | 否 | 当数据是 string 类型时有效，表示数据的编码方式，默认 'utf-8'，仅支持 'utf-8'。   <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。    |
+| encoding    | string | 否 | 当数据是 string 类型时有效，表示数据的编码方式，默认 'utf-8'，仅支持 'utf-8'。   <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
 
 ## WriteOptions<sup>11+</sup>
 
@@ -5142,15 +5142,15 @@ open接口flags参数常量。文件打开标签。
 
 | 名称        | 类型       | 必选       | 说明                |
 | ----------- | --------------- | ------------------ | ------------------ |
-| length | number     | 否 | 期望写入数据的长度。可选，默认缓冲区长度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。           |
-|  offset    | number     | 否 | 期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| length | number     | 否 | 期望写入数据的长度。可选，默认缓冲区长度。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
+|  offset    | number     | 否 | 期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | encoding    | string | 否 | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |
 
 ## ListFileOptions<sup>11+</sup>
 
 可选项类型，支持listFile接口使用。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

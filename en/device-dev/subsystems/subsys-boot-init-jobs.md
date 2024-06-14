@@ -25,13 +25,13 @@ A job can be configured in the **init.cfg** file or the custom **.cfg** file of 
   Generally, you can configure a condition in the format shown below:
 
   ```
-  "condition": "sys.usb.config = none && sys.usb.configfs = 0"
+  "condition" : "sys.usb.config = none && sys.usb.configfs = 0",
   ```
 
   If you need to enable parameter checking in the boot phase, configure the condition as follows:
 
   ```
-  "condition": "boot && const.debuggable=1"
+  "condition" : "boot && const.debuggable=1",
   ```
 
   When defining commands for a job, you can add attributes in the format of **param:xxx** to form different commands.

@@ -18,7 +18,7 @@
 
 Scroll(scroller?: Scroller)
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -36,7 +36,7 @@ scrollable(value: ScrollDirection)
 
 设置滚动方向。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,7 +52,7 @@ scrollBar(barState: BarState)
 
 设置滚动条状态。如果容器组件无法滚动，则滚动条不显示。如果容器组件的子组件大小为无穷大，则滚动条不支持拖动和伴随滚动。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -68,7 +68,7 @@ scrollBarColor(color: Color | number | string)
 
 设置滚动条的颜色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,7 +84,7 @@ scrollBarWidth(value: number | string)
 
 设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过Scroll组件主轴方向的高度，则滚动条的宽度会变为默认值。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -100,7 +100,7 @@ scrollSnap(value: ScrollSnapOptions)
 
 设置Scroll组件的限位滚动模式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -116,7 +116,7 @@ edgeEffect(edgeEffect: EdgeEffect, options?: EdgeEffectOptions)
 
 设置边缘滑动效果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -133,7 +133,7 @@ enableScrollInteraction(value: boolean)
 
 设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -149,7 +149,7 @@ nestedScroll(value: NestedScrollOptions)
 
 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -165,7 +165,7 @@ friction(value: number | Resource)
 
 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -181,7 +181,7 @@ enablePaging(value: boolean)
 
 设置是否支持划动翻页。如果同时设置了划动翻页enablePaging和限位滚动scrollSnap，则scrollSnap优先生效，enablePaging不生效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -197,7 +197,7 @@ flingSpeedLimit(speedLimit: number)
 
 限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -223,7 +223,7 @@ initialOffset(value: OffsetOptions)
 
 ## ScrollDirection枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称       | 描述                     |
 | ---------- | ------------------------ |
@@ -234,7 +234,7 @@ initialOffset(value: OffsetOptions)
 
 ## ScrollSnapOptions<sup>10+</sup>
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称       | 参数类型    | 必填   | 描述       |
 | ---------- | --------------------|-------------------- | -------- |
@@ -259,7 +259,7 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 
 1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。<br/>2、调用控制器接口时不触发。<br/>3、越界回弹不触发。<br/>4、拖动滚动条不触发。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -390,7 +390,7 @@ onScrollEdge(event: (side: Edge) => void)
 
 1、滚动组件滚动到边缘时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用。<br/>3、越界回弹。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -424,7 +424,7 @@ onScrollStart(event: () => void)
 
 1、滚动组件开始滚动时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -438,7 +438,7 @@ onScrollStop(event: () => void)
 
 1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -450,7 +450,7 @@ Scroll到达起始位置时触发。
 
 Scroll初始化时会触发一次，滚动到起始位置时触发一次。Scroll边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -462,7 +462,7 @@ Scroll到达末尾位置时触发。
 
 Scroll边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -485,7 +485,7 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 滑动到指定位置。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：** 
 
@@ -507,8 +507,8 @@ scrollEdge(value: Edge, options?: ScrollEdgeOptions): void
 
 | 参数名   | 参数类型 | 必填   | 参数描述      |
 | ----- | ---- | ---- | --------- |
-| value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| options<sup>12+</sup>&nbsp; | [ScrollEdgeOptions](#scrolledgeoptions12对象说明) | 否    | 设置滚动到边缘位置的模式。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| options<sup>12+</sup>&nbsp; | [ScrollEdgeOptions](#scrolledgeoptions12对象说明) | 否    | 设置滚动到边缘位置的模式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ### fling<sup>12+</sup>
 
@@ -517,7 +517,7 @@ fling(velocity: number): void
 
 滚动类组件开启按传入的初始速度进行惯性滚动。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -535,17 +535,17 @@ fling(velocity: number): void
 
 ### scrollPage<sup>9+</sup>
 
-scrollPage(value:   ScrollPageOptions)
+scrollPage(value: { next: boolean }): void
 
 滚动到下一页或者上一页。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
-| 参数名 | 参数类型                                           | 必填 | 参数描述       |
-| ------ | -------------------------------------------------- | ---- | -------------- |
-| value  | [ScrollPageOptions](#scrollpageoptions12+对象说明) | 是   | 设置翻页模式。 |
+| 参数名                            | 参数类型                          | 必填 | 参数描述                                                    |
+| --------------------------------- | --------------------------------- | ---- | ----------------------------------------------------------- |
+| next                              | boolean                           | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。         |
 
 ### scrollPage<sup>(deprecated)</sup>
 
@@ -564,7 +564,7 @@ scrollPage(value: { next: boolean, direction?: Axis }): void
 
 currentOffset(): OffsetResult
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 类型  | 描述 |
 | -------- | -------- |
@@ -583,7 +583,7 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign): void
 >
 >  仅支持Grid、List、WaterFlow组件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -605,7 +605,7 @@ scrollBy(dx: Length, dy: Length): void
 >
 >  支持Scroll、List、Grid、WaterFlow组件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -624,7 +624,7 @@ isAtEnd(): boolean
 >
 >  支持Scroll、List、Grid、WaterFlow组件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值**
 
@@ -642,7 +642,7 @@ getItemRect(index: number): RectResult
 >
 >  支持Scroll、List、Grid、WaterFlow组件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -671,7 +671,7 @@ getItemRect(index: number): RectResult
 
 ## OffsetResult<sup>11+</sup>
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型                                                       | 描述                                                         |
 | --------------|-------------------------------------------- | ------------------------------------------------------------ |
@@ -680,7 +680,7 @@ getItemRect(index: number): RectResult
 
 ## ScrollAnimationOptions<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名   | 参数类型   | 必填   | 参数描述              |
 | ----- | ------ | ------ | ----------------- |
@@ -690,7 +690,7 @@ getItemRect(index: number): RectResult
 
 ## ScrollAlign<sup>10+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 描述                             |
 | ------ | ------------------------------ |
@@ -701,7 +701,7 @@ getItemRect(index: number): RectResult
 
 ## NestedScrollOptions<sup>10+</sup>对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称   | 类型  | 必填 | 描述              |
 | ----- | ------ | ------ | ----------------- |
@@ -710,7 +710,7 @@ getItemRect(index: number): RectResult
 
 ## NestedScrollMode<sup>10+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 描述                             |
 | ------ | ------------------------------ |
@@ -721,20 +721,12 @@ getItemRect(index: number): RectResult
 
 ## EdgeEffectOptions<sup>11+</sup>对象说明
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名   | 类型  | 必填 | 描述              |
 | ----- | ------| ------- | ----------------- |
 | alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果|
 
-## ScrollPageOptions<sup>12+</sup>对象说明
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-| 参数名    | 参数类型 | 必填 | 参数描述                                                     |
-| --------- | -------- | ---- | ------------------------------------------------------------ |
-| next      | boolean  | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。          |
-| animation | boolean  | 否   | 是否开启翻页动画效果。true有动画，false无动画。<br />默认值：false。 |
 
 ## OffsetOptions<sup>12+</sup>对象说明
 | 参数名   | 类型  | 必填 | 描述              |
@@ -822,7 +814,7 @@ struct ScrollExample {
       Button('next page')
         .height('5%')
         .onClick(() => { // 点击后滑到下一页
-          this.scroller.scrollPage({ next: true ,animation: true })
+          this.scroller.scrollPage({ next: true })
         })
         .margin({ top: 210, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)

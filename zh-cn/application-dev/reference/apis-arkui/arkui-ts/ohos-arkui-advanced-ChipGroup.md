@@ -54,10 +54,8 @@ ChipGroupItemOptions定义每个chip的非共通属性。
 | 名称         | 类型                           | 必填 | 描述                                |
 | ----------   | ----------------------------- | ---- | ----------------------------------- |
 | prefixIcon   | [IconOptions](#iconoptions)   | 否   | 前缀Image图标属性。                   |
-| prefixSymbol | [SymbolOptions](ohos-arkui-advanced-Chip.md#symboloptions) | 否   | 前缀SymbolGlyph图标属性。             |
 | label        | [LabelOptions](#labeloptions) | 是   | 文本属性。                            |
 | suffixIcon   | [IconOptions](#iconoptions) | 否   | 后缀Image图标属性。                   |
-| suffixSymbol | [SymbolOptions](ohos-arkui-advanced-Chip.md#symboloptions) | 否   | 后缀SymbolGlyph图标属性。             |
 | allowClose   | boolean                       | 否   | 删除图标是否显示。<br/>默认值：false。  |
 
 >**说明：**
@@ -144,9 +142,8 @@ Label定义图标的共通属性。
 ### 示例1-无suffix
 
 ```typescript
-
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip'
-import { ChipGroup,IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
+import { ChipSize } from '@ohos.arkui.advanced.Chip'
+import { ChipGroup } from '@ohos.arkui.advanced.ChipGroup';
 
 @Entry
 @Preview
@@ -199,7 +196,6 @@ struct Index {
         selectedIndexes: this.selected_index,
         multiple: false,
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
-        chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex:Array<number>) => {
           console.log('chips on clicked, activated index ' + activatedChipsIndex)
         },
@@ -207,7 +203,6 @@ struct Index {
     }
   }
 }
-
 ```
 
 ![](figures/chipGroupDemo1.jpeg)
@@ -215,7 +210,7 @@ struct Index {
 ### 示例2-有suffix
 
 ```typescript
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip'
+import { ChipSize } from '@ohos.arkui.advanced.Chip'
 import { ChipGroup,IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
 
 @Entry
@@ -290,7 +285,6 @@ struct Index {
         selectedIndexes: this.selected_index,
         multiple: true,
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
-        chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex: Array<number>) => {
           console.log('chips on clicked, activated index ' + activatedChipsIndex)
         },
@@ -299,7 +293,6 @@ struct Index {
     }
   }
 }
-
 ```
 
 ![](figures/chipGroupDemo2.jpeg)

@@ -61,6 +61,15 @@ OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 
 Configures a video decoder. Typically, you need to configure the video track description information that can be extracted from **OH_AVSource**. This function must be called prior to **Prepare**.
 
+Parameter verification rules are as follows:
+| Key                    | Value Within the Range| Value Out of Range| No Value Configured|
+| ---------------------- | -------- | -------- | ------ |
+| OH_MD_KEY_WIDTH        | Passed       | Failed       | Failed     |
+| OH_MD_KEY_HEIGHT       | Passed       | Failed       | Failed     |
+| OH_MD_KEY_PIXEL_FORMAT | Passed       | Failed       | Passed     |
+| OH_MD_KEY_FRAME_RATE   | Passed       | Failed       | Passed     |
+| OH_MD_KEY_ROTATION     | Passed       | Failed       | Passed     |
+
 **System capability**: SystemCapability.Multimedia.Media.VideoDecoder
 
 **Since**: 9

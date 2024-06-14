@@ -119,16 +119,7 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 | 名称              | 类型                                       | 必填   | 描述            |
 | --------------- | ---------------------------------------- | ---- | ------------- |
 | dismiss | function | 是    | 半模态页面关闭回调函数。开发者需要退出页面时调用。 |
-| reason | [DismissReason](#dismissreason12) | 是    | 返回本次半模态页面退出的操作类型。  |
-
-## DismissReason<sup>12+</sup>
-
-| 名称             | 描述                             |
-| --------------- | -------------------------------- |
-| PRESS_BACK      | 点击三键back、左滑/右滑、键盘ESC。  |
-| TOUCH_OUTSIDE   | 点击遮障层时。                     |
-| CLOSE_BUTTON    | 点击关闭按钮。                     |
-| SLIDE_DOWN    | 下拉关闭。                     |
+| reason | [DismissReason](ts-appendix-enums.md#dismissreason12) | 是    | 返回本次半模态页面退出的操作类型。  |
 
 ## SpringBackAction<sup>12+</sup>
 

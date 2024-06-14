@@ -81,7 +81,7 @@ After creating a thread using **pthread_create**, you can use **napi_create_ark_
    
        // 2. Load custom modules.
        napi_value objUtils;
-       ret = napi_load_module_with_info(env, "ets/pages/ObjectUtils", "com.exmaple.myapplication/entry", &objUtils);
+       ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.exmaple.myapplication/entry", &objUtils);
        if (ret != napi_ok) {
            return nullptr;
        }

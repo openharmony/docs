@@ -16,6 +16,8 @@ Currently, the following Picker components are available:
 
 - [Camera Picker](#camera-picker): allows the camera to be used to take photos and record videos.
 
+<!--RP1--><!--RP1End-->
+
 ## AudioViewPicker
 
 You can use **AudioViewPicker** if your application needs to access or save audio files in a user directory.
@@ -32,24 +34,28 @@ You can use **DocumentViewPicker** if your application needs to access or save n
 
 - To enable an application to modify non-media files in a user directory without requesting the ohos.permission.WRITE_DOCUMENT permission, use **DocumentViewPicker** in FilePicker. For details, see [Saving Documents](../../file-management/save-user-file.md#saving-documents).
 
-
 ## PhotoViewPicker
 
 You can use **PhotoViewPicker** if your application needs to access or save images or videos in a user directory.
 
-- To enable an application to access images or videos in a user directory without requesting the ohos.permission.READ_IMAGEVIDEO permission, use **PhotoViewPicker** in FilePicker. For details, see [Selecting Images or Videos](../../file-management/select-user-file.md#selecting-images-or-videos).
+- To enable an application to access images or videos in a user directory without requesting the ohos.permission.READ_IMAGEVIDEO permission, use **PhotoViewPicker**. For details, see [Selecting Media Assets Using PhotoViewPicker](../../media/medialibrary/photoAccessHelper-resource-guidelines.md#selecting-media-assets-using-photoviewpicker).
 
 - To enable an application to modify images or videos in a user directory without requesting the ohos.permission.WRITE_IMAGEVIDEO permission, use **PhotoViewPicker** in FilePicker. For details, see [Saving Images or Videos](../../file-management/save-user-file.md#saving-images-or-videos).
 
-
 ## Contacts Picker
 
-You can use **Contacts Picker** if your application needs to read or write Contacts data.
+You can use **Contacts Picker** if your application needs to read Contacts data.
 
-To enable an application to read Contacts data without requesting the ohos.permission.READ_CONTACTS permission, use **Contacts Picker**. For details, see [contact.selectContacts](../../reference/apis-contacts-kit/js-apis-contact.md#contactselectcontacts10).
+To enable an application to read Contacts data without requesting the ohos.permission.READ_CONTACTS permission, use **Contacts Picker**. For details, see [Selecting Contacts](../../contacts/contacts-intro.md#selecting-contacts).
 
 ## Camera Picker
 
-You can use **Camera Picker** if the camera needs to take photos and record videos.
+You can use **Camera Picker** to take photos and record videos.
 
 To enable an application to use the camera without requesting the ohos.permission.CAMERA permission, use **Camera Picker**. For details, see [cameraPicker.pick](../../reference/apis-camera-kit/js-apis-cameraPicker.md#pick).
+
+<!--RP2-->
+<!--RP2End-->
+
+
+<!--no_check-->

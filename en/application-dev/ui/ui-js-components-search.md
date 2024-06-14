@@ -1,7 +1,7 @@
 # &lt;search&gt; Development
 
 
-The **&lt;search&gt;** component provides an input area for users to search. For details, see [search](../reference/arkui-js/js-components-basic-search.md).
+The **&lt;search&gt;** component provides an input area for users to search. For details, see [search](../reference/apis-arkui/arkui-js/js-components-basic-search.md).
 
 
 ## Creating a &lt;search&gt; Component

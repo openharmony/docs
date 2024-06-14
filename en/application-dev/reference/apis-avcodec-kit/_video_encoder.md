@@ -25,7 +25,7 @@ The VideoEncoder module provides the functions for video encoding.
 | Name| Description| 
 | -------- | -------- |
 | typedef void(\* [OH_VideoEncoder_OnNeedInputParameter](#oh_videoencoder_onneedinputparameter)) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, OH_AVFormat \*parameter, void \*userData) | Defines the pointer to the function that is called when new input parameters are required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in the new input parameters. The parameters take effect immediately with the frame. | 
-| typedef enum [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode-1) [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) | Defines an enum that enumerates the bit rate modes of a video encoder.| 
+| typedef enum [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode-1) [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) | Defines an enum for the bit rate modes of a video encoder.| 
 
 
 ### Enums
@@ -75,7 +75,7 @@ typedef enum OH_VideoEncodeBitrateMode OH_VideoEncodeBitrateMode
 
 **Description**
 
-Defines an enum that enumerates the bit rate modes of a video encoder.
+Defines an enum for the bit rate modes of a video encoder.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -142,6 +142,30 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 **Description**
 
 Configures a video encoder. Typically, you need to configure the description information about the video track to be encoded. This function must be called prior to **Prepare**.
+
+Parameter verification rules are as follows:
+| Key                        | Value Within the Range| Value Out of Range| No Value Configured|
+| -------------------------- | -------- | -------- | ------ |
+| OH_MD_KEY_WIDTH            | Passed       | Failed       | Failed     |
+| OH_MD_KEY_HEIGHT           | Passed       | Failed       | Failed     |
+| OH_MD_KEY_PIXEL_FORMAT     | Passed       | Failed       | Failed     |
+| OH_MD_KEY_FRAME_RATE       | Passed       | Failed       | Passed     |
+| OH_MD_KEY_PROFILE          | Passed       | Failed       | Passed     |
+| OH_MD_KEY_I_FRAME_INTERVAL | Passed       | \\       | Passed     |
+
+| OH_MD_KEY_<br>BITRATE | OH_MD_KEY_<br>QUALITY | OH_MD_KEY_<br>VIDEO_ENCODER_BITRATE_MODE | Verification Result| Description                    |
+| :-------------------- | :-------------------- | :--------------------------------------- | ---- | ---------------------- |
+| \\                    | \\                    | \\                                       | Passed   | The default value of the encoder is used.              |
+| Out of range                 | Out of range                 | Unsupported mode                                  | Failed   | An error is reported for all abnormal values.                |
+| Normal value                  | Normal value                  | \\                                       | Failed   | The bit rate conflicts with the quality.  |
+| Normal value                  | \\                    | \\                                       | Passed   | The default bit rate control mode is enabled.              |
+| Normal value                  | \\                    | VBR and CBR                                 | Passed   |                        |
+| Normal value                  | \\                    | CQ                                       | Failed   | The bit rate conflicts with the CQ mode.     |
+| \\                    | Normal value                  | \\                                       | Passed   | The CQ mode is enabled.              |
+| \\                    | Normal value                  | CQ                                       | Passed   |                        |
+| \\                    | Normal value                  | VBR and CBR                                 | Failed   | The quality conflicts with the VBR or CBR mode.|
+| \\                    | \\                    | VBR and CBR                                 | Passed   | The default bit rate of the encoder is used.             |
+| \\                    | \\                    | CQ                                       | Failed   | Invalid value. The quality must be configured for the CQ mode. |
 
 **System capability**: SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -414,7 +438,7 @@ Checks whether a video encoder instance is valid.
 | Name| Description| 
 | -------- | -------- |
 | codec | Pointer to a video encoder instance.| 
-| isValid | Pointer to an instance of the Boolean type. The value **true** means that the encoder instance is valid and **false** means the opposite.| 
+| isValid |  Pointer to an instance of the Boolean type. The value **true** means that the encoder instance is valid and **false** means the opposite.| 
 
 **Returns**
 

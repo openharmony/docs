@@ -11,7 +11,7 @@ The **pointer** module provides APIs related to pointer attribute management.
 ## Modules to Import
 
 ```js
-import { pointer } from '@kit.InputKit';
+import pointer from '@ohos.multimodalInput.pointer';
 ```
 
 ## pointer.setPointerSpeed
@@ -28,8 +28,17 @@ Sets the moving speed of the mouse pointer. This API uses an asynchronous callba
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed    | number                    | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **5**.  |
+| speed    | number                    | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **7**.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 
 **Example**
 
@@ -61,13 +70,22 @@ Sets the moving speed of the mouse pointer. This API uses a promise to return th
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **5**.|
+| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **7**.|
 
 **Return value**
 
 | Name                 | Description              |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Screen Hopping Error Codes](../apis-distributedservice-kit/errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 
 **Example**
 
@@ -95,7 +113,7 @@ Sets the moving speed of the mouse pointer. This API returns the result synchron
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **5**.|
+| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **7**.|
 
 **Error codes**
 
@@ -132,6 +150,15 @@ Obtains the moving speed of the mouse pointer. This API uses an asynchronous cal
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 **Example**
 
@@ -1181,7 +1208,7 @@ Sets the mouse pointer moving speed of the touchpad. This API uses an asynchrono
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed | number                    | Yes   |Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **5**. |
+| speed | number                    | Yes   |Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **6**. |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Error codes**
@@ -1223,7 +1250,7 @@ Sets the mouse pointer moving speed of the touchpad. This API uses a promise to 
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed| number | Yes   | Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **5**.   |
+| speed| number | Yes   | Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **6**.   |
 
 **Return value**
 
@@ -1984,7 +2011,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 202  | SystemAPI permission error.  |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 
 **Example**
 
@@ -2021,7 +2048,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 202  | SystemAPI permission error.  |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 
 **Example**
 
@@ -2227,7 +2254,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 202  | SystemAPI permission error.  |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 
 **Example**
 
@@ -2264,7 +2291,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 202  | SystemAPI permission error.  |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 
 **Example**
 

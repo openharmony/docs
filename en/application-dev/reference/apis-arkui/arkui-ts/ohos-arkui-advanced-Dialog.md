@@ -12,7 +12,7 @@ The dialog box is a modal window that commands attention while retaining the cur
 ## Modules to Import
 
 ```
-import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog } from '@ohos.arkui.advanced.Dialog'
+import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, CustomContentDialog } from '@ohos.arkui.advanced.Dialog'
 ```
 
 
@@ -26,7 +26,7 @@ The [universal attributes](ts-universal-attributes-size.md) are not supported.
 ## TipsDialog
 
 
-TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize: SizeOptions, title: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
+TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: SizeOptions, title?: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, ischecked?: boolean, checkAction?: (isChecked: boolean) => void, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
 
 
 Displays an image-attached confirmation dialog box. If necessary, the confirmation dialog box can be displayed in a graphical manner.
@@ -41,17 +41,18 @@ Displays an image-attached confirmation dialog box. If necessary, the confirmati
 **Parameters**
 
 
-| Name| Type| Mandatory| Decorator| Description| 
+| Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| - | Dialog box controller.| 
-| imageRes | [Resource](ts-types.md#resource) | Yes| - | Image to be displayed.| 
-| imageSize | [SizeOptions](ts-types.md#sizeoptions) | Yes| - | Image size.| 
-| title | [ResourceStr](ts-types.md#resourcestr) | Yes| - | Title of the dialog box.| 
-| content | [ResourceStr](ts-types.md#resourcestr) | No| - | Content of the dialog box.| 
-| checkTips | [ResourceStr](ts-types.md#resourcestr) | No| - | Content of the check box.| 
-| isChecked | boolean | No| \@Prop | Whether to select the check box. The value **true** means to select the checkbox , and **false** means the opposite.<br>Default value: **false**| 
-| primaryButton | [ButtonOptions](#buttonoptions) | No| - | Left button of the dialog box.| 
-| secondaryButton | [ButtonOptions](#buttonoptions) | No| - | Right button of the dialog box.| 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| - | Dialog box controller.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| imageRes | [Resource](ts-types.md#resource) | Yes| - | Image to be displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| imageSize | [SizeOptions](ts-types.md#sizeoptions) | No| - | Image size.<br>Default value: **64*64vp**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| title | [ResourceStr](ts-types.md#resourcestr) | No| - | Title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| content | [ResourceStr](ts-types.md#resourcestr) | No| - | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| checkTips | [ResourceStr](ts-types.md#resourcestr) | No| - | Content of the check box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| isChecked | boolean | No| \@Prop | Whether to select the check box. The value **true** means to select the checkbox , and **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| checkAction<sup>12+</sup> | (isChecked: boolean) => void | No| - | Event indicating that the selected status of the check box changes.|
+| primaryButton | [ButtonOptions](#buttonoptions) | No| - | Left button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| secondaryButton | [ButtonOptions](#buttonoptions) | No| - | Right button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 
 ## SelectDialog
@@ -62,18 +63,20 @@ Displays a dialog box from which the user can select options presented in a list
 
 **Decorator type**: @CustomDialog
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Dialog box controller.| 
-| title | [ResourceStr](ts-types.md#resourcestr) | Yes| Title of the dialog box.| 
-| content | [ResourceStr](ts-types.md#resourcestr) | No| Content of the dialog box.| 
-| selectedIndex | number | No| Index of the selected option in the dialog box.<br>Default value: **-1**| 
-| confirm | [ButtonOptions](#buttonoptions) | No| Button at the bottom of the dialog box.| 
-| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo)&gt; | Yes| List of subitems in the dialog box. You can set text and a select callback for each subitem.| 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Dialog box controller.|
+| title | [ResourceStr](ts-types.md#resourcestr) | Yes| Title of the dialog box.|
+| content | [ResourceStr](ts-types.md#resourcestr) | No| Content of the dialog box.|
+| selectedIndex | number | No| Index of the selected option in the dialog box.<br>Default value: **-1**|
+| confirm | [ButtonOptions](#buttonoptions) | No| Button at the bottom of the dialog box.|
+| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo)&gt; | Yes| List of subitems in the dialog box. You can set text and a select callback for each subitem.|
 
 
 ## ConfirmDialog
@@ -84,24 +87,26 @@ Displays an error dialog box that informs the user of an operational error (for 
 
 **Decorator type**: @CustomDialog
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type| Mandatory| Decorator| Description| 
+| Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| - | Controller of the dialog box.| 
-| title | [ResourceStr](ts-types.md#resourcestr) | Yes| - | Title of the dialog box.| 
-| content | [ResourceStr](ts-types.md#resourcestr) | No| - | Content of the dialog box.| 
-| checkTips | [ResourceStr](ts-types.md#resourcestr) | No| - | Content of the check box.| 
-| isChecked | boolean | No| \@Prop | Whether to select the check box. The value **true** means to select the checkbox , and **false** means the opposite.<br>Default value: **false**| 
-| primaryButton | [ButtonOptions](#buttonoptions) | No| - | Left button of the dialog box.| 
-| secondaryButton | [ButtonOptions](#buttonoptions) | No| - | Right button of the dialog box.| 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| - | Controller of the dialog box.|
+| title | [ResourceStr](ts-types.md#resourcestr) | Yes| - | Title of the dialog box.|
+| content | [ResourceStr](ts-types.md#resourcestr) | No| - | Content of the dialog box.|
+| checkTips | [ResourceStr](ts-types.md#resourcestr) | No| - | Content of the check box.|
+| isChecked | boolean | No| \@Prop | Whether to select the check box. The value **true** means to select the checkbox , and **false** means the opposite.<br>Default value: **false**|
+| primaryButton | [ButtonOptions](#buttonoptions) | No| - | Left button of the dialog box.|
+| secondaryButton | [ButtonOptions](#buttonoptions) | No| - | Right button of the dialog box.|
 
 
 ## AlertDialog
 
-AlertDialog({controller: CustomDialogController, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
+AlertDialog({controller: CustomDialogController, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
 
 Displays an alert dialog box to prompt the user to confirm an action that is irreversible and may cause serious consequences, such as deletion, reset, editing cancellation, and stop.
 
@@ -111,12 +116,14 @@ Displays an alert dialog box to prompt the user to confirm an action that is irr
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Controller of the dialog box.| 
-| content | [ResourceStr](ts-types.md#resourcestr) | Yes| Content of the dialog box.| 
-| primaryButton | [ButtonOptions](#buttonoptions) | No| Left button of the dialog box.| 
-| secondaryButton | [ButtonOptions](#buttonoptions) | No| Right button of the dialog box.| 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Controller of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| primaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Primary title of the dialog box.|
+| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Secondary title of the dialog box.|
+| content | [ResourceStr](ts-types.md#resourcestr) | Yes| Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| primaryButton | [ButtonOptions](#buttonoptions) | No| Left button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| secondaryButton | [ButtonOptions](#buttonoptions) | No| Right button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 
 ## LoadingDialog
@@ -127,27 +134,56 @@ Displays a loading dialog box to inform the user of the operation progress.
 
 **Decorator type**: @CustomDialog
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Controller of the dialog box.| 
-| content | [ResourceStr](ts-types.md#resourcestr) | No| Content of the dialog box.| 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Controller of the dialog box.|
+| content | [ResourceStr](ts-types.md#resourcestr) | No| Content of the dialog box.|
+
+
+## CustomContentDialog<sup>12+</sup>
+
+CustomContentDialog({controller: CustomDialogController, contentBuilder: () => void, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, contentAreaPadding?: Padding, buttons?: ButtonOptions[]})
+
+Displays a dialog box that contains custom content and operation area.
+
+**Decorator type**: @CustomDialog
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Controller of the dialog box.|
+| contentBuilder | () => void | Yes| Content of the dialog box.|
+| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | No| Primary title of the dialog box.|
+| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | No| Secondary title of the dialog box.|
+| contentAreaPadding | [Padding](ts-types.md#padding) | No| Padding of the content area of the dialog box.|
+| buttons | Array<[ButtonOptions](#buttonoptions)> | No| Buttons in the operation area of the dialog box. A maximum of four buttons are allowed.|
 
 
 ## ButtonOptions
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type| Mandatory| Description| 
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Content of the button.| 
-| action | () =&gt; void | No| Click event of the button.| 
-| background | [ResourceColor](ts-types.md#resourcecolor) | No| Background of the button.| 
-| fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color of the button.| 
+| value | [ResourceStr](ts-types.md#resourcestr) | Yes| Content of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| action | () =&gt; void | No| Click event of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| background | [ResourceColor](ts-types.md#resourcecolor) | No| Background of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11) | No| Style of the button.<br>Default value: **ButtonStyleMode.NORMAL** for 2-in-1 devices and **ButtonStyleMode.TEXTUAL** for other devices|
+| role<sup>12+</sup> | [ButtonRole](ts-basic-components-button.md#buttonrole12) | No| Role of the button.<br>Default value: **ButtonRole.NORMAL**|
 
+>  **NOTE**
+>
+>  The priority of **buttonStyle** and **role** is higher than that of **fontColor** and **background**. If **buttonStyle** and **role** are at the default values, the settings of **fontColor** and **background** take effect.
 
 ## Events
 The [universal events](ts-universal-events-click.md) are not supported.
@@ -164,28 +200,22 @@ struct Index {
   isChecked = false;
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
-      imageRes: $r('app.media.icon'),
-      imageSize: { width: 100, height: 100 },
-      title:'Title',
-      content: 'This is where content is displayed.',
-      isChecked: this.isChecked,
-      checkTips:'Don't remind me again',
+      imageRes: $r('sys.media.ohos_ic_public_voice'),
+      content:'Delete this app?',
       primaryButton: {
         value: 'Cancel',
         action: () => {
-          console.info('Callback when the CheckBox is clicked')
+          console.info('Callback when the first button is clicked')
         },
       },
       secondaryButton: {
-        value: 'OK',
+        value: 'Delete',
+        role: ButtonRole.ERROR,
         action: () => {
           console.info('Callback when the second button is clicked')
         }
       },
     }),
-    autoCancel: true,
-    customStyle: true,
-    alignment: DialogAlignment.Bottom
   })
 
   build() {
@@ -198,17 +228,17 @@ struct Index {
             .onClick(() => {
               this.dialogControllerImage.open()
             })
-          }.margin({bottom: 300})
-        }.align(Alignment.Bottom)
-        .width('100%').height('100%')
-      }
-     .backgroundImageSize({ width: '100%', height: '100%' })
-     .height('100%')
-   }
+        }.margin({bottom: 300})
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
 }
 ```
 
-![20230728-111325](figures/20230728-111325.png)
+![TipsDialog](figures/TipsDialog.png)
 
 
 ### Example 2
@@ -248,9 +278,6 @@ struct Index {
         },
       ]
     }),
-    customStyle: true,
-    alignment: DialogAlignment.Bottom,
-    autoCancel: false
   })
 
   build() {
@@ -273,7 +300,7 @@ struct Index {
 }
 ```
 
-![20230728-101201](figures/20230728-101201.png)
+![SelectDialog](figures/SelectDialog.png)
 
 
 ### Example 3
@@ -287,7 +314,7 @@ struct Index {
   dialogControllerCheckBox: CustomDialogController = new CustomDialogController({
     builder: ConfirmDialog({
       title:'Title',
-      content: 'This is where content is displayed. This is where content is displayed. ',
+      content: 'This is where content is displayed. This is where content is displayed.',
       isChecked: this.isChecked,
       checkTips:'Don't ask again after denying',
       primaryButton: {
@@ -334,40 +361,41 @@ struct Index {
 
 ```ts
 import { AlertDialog } from '@ohos.arkui.advanced.Dialog'
+
 @Entry
 @Component
 struct Index {
   dialogControllerConfirm: CustomDialogController = new CustomDialogController({
     builder: AlertDialog({
+      primaryTitle: 'Primary title',
+      secondaryTitle: 'Secondary title',
       content: 'This is where content is displayed.',
       primaryButton: {
         value: 'Cancel',
-        action: () => {},
+        action: () => {
+        },
       },
       secondaryButton: {
         value: 'OK',
-        fontColor: $r('sys.color.ohos_id_color_warning'),
+        role: ButtonRole.ERROR,
         action: () => {
           console.info('Callback when the second button is clicked')
         }
       },
     }),
-    autoCancel: true,
-    customStyle: true,
-    alignment: DialogAlignment.Bottom
   })
 
   build() {
     Row() {
       Stack() {
-        Column(){
+        Column() {
           Button("Text Dialog Box")
             .width(96)
             .height(40)
             .onClick(() => {
               this.dialogControllerConfirm.open()
             })
-        }.margin({bottom: 300})
+        }.margin({ bottom: 300 })
       }.align(Alignment.Bottom)
       .width('100%').height('100%')
     }
@@ -377,7 +405,7 @@ struct Index {
 }
 ```
 
-![20230728-101355](figures/20230728-101355.png)
+![AlertDialog](figures/AlertDialog.png)
 
 
 ### Example 5
@@ -389,11 +417,8 @@ import { LoadingDialog } from '@ohos.arkui.advanced.Dialog'
 struct Index {
   dialogControllerProgress: CustomDialogController = new CustomDialogController({
     builder: LoadingDialog({
-      content: 'This is where content is displayed...',
+      content: 'This is where content is displayed.',
     }),
-    autoCancel: true,
-    customStyle: true,
-    alignment: DialogAlignment.Bottom
   })
 
   build() {
@@ -416,4 +441,50 @@ struct Index {
 }
 ```
 
-![20230728-101306](figures/20230728-101306.png)
+![LoadingDialog](figures/LoadingDialog.png)
+
+
+### Example 6
+
+```ts
+import { CustomContentDialog } from '@ohos.arkui.advanced.Dialog'
+
+@Entry
+@Component
+struct Index {
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: CustomContentDialog({
+      primaryTitle: 'Title',
+      secondaryTitle: 'Secondary text',
+      contentBuilder: () => {
+        this.buildContent();
+      },
+      buttons: [{ value: 'Button 1', buttonStyle: ButtonStyleMode.TEXTUAL, action: () => {
+        console.info('Callback when the button is clicked')
+      } }, { value: 'Button 2', buttonStyle: ButtonStyleMode.TEXTUAL, role: ButtonRole.ERROR }],
+    }),
+  });
+
+  build() {
+    Column() {
+      Button ("Dialog Box with Custom Content")
+        .onClick(() => {
+          this.dialogController.open()
+        })
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+
+  @Builder
+  buildContent(): void {
+    Column() {
+      Text('Content area')
+    }
+  }
+}
+```
+
+![custom_content_dialog](figures/advanced_dialog_custom_content_dialog.png)
+<!--no_check-->

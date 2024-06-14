@@ -13,7 +13,7 @@ onKeyEvent(event: (event: KeyEvent) => void): T
 
 绑定该方法的组件获焦后，按键动作触发该回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -53,7 +53,9 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 
 ## KeyEvent对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                                    | 类型                                       | 描述                         |
 | ------------------------------------- | ---------------------------------------- | -------------------------- |
@@ -65,7 +67,7 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 | metaKey                               | number                                   | 按键发生时元键（即Windows键盘的WIN键、Mac键盘的Command键）的状态，1表示按压态，0表示未按压态。 |
 | timestamp                             | number                                   | 事件时间戳。触发事件时距离系统启动的时间间隔，单位：ns。 |
 | stopPropagation                       | () => void                               | 阻塞事件冒泡传递。                  |
-| intentionCode<sup>10+</sup>           | [IntentionCode](../../apis-input-kit/js-apis-intentioncode.md) | 按键对应的意图。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。        |
+| intentionCode<sup>10+</sup>           | [IntentionCode](../../apis-input-kit/js-apis-intentioncode.md) | 按键对应的意图。       |
 
 
 ## 示例

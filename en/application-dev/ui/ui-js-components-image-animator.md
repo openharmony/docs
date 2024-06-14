@@ -1,7 +1,7 @@
 # &lt;image-animator&gt; Development
 
 
-The **&lt;image-animator&gt;** component applies an animation to images. For details, see [image-animator](../reference/arkui-js/js-components-basic-image-animator.md).
+The **&lt;image-animator&gt;** component applies an animation to images. For details, see [image-animator](../reference/apis-arkui/arkui-js/js-components-basic-image-animator.md).
 
 
 ## Creating an &lt;image-animator&gt; Component
