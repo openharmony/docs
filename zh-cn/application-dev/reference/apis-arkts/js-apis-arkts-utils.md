@@ -494,7 +494,7 @@ console.info((obj as object)?.["city"]);
 
 ### stringify
 
-stringify(value: ISendable): string
+stringify(value: ISendable | null | undefined): string
 
 该方法将ISendable数据转换为JSON字符串。
 
@@ -506,7 +506,7 @@ stringify(value: ISendable): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [ISendable](#isendable)  | 是 | ISendable数据。|
+| value | [ISendable](#isendable) \| null \| undefined  | 是 | ISendable数据。|
 
 **返回值：**
 
