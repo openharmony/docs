@@ -21,7 +21,7 @@ Since API version 10:
  - Relationship between **size** and **min** of the **\<Blank>** component on the main axis: max(min, size).
  - On the cross axis of the parent container, if the size of the **\<Blank>** component is set, the component will not fill up the parent container; if the size is not set, the component will fill up the parent container, following the default **alignSelf** settings **ItemAlign.Stretch**.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -35,7 +35,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | Color to fill the empty spaces.<br>Default value: **Color.Transparent**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| color | [ResourceColor](ts-types.md#resourcecolor) | Color to fill the empty spaces.<br>Default value: **Color.Transparent**<br>This API can be used in ArkTS widgets since API version 9.|
 
 ## Events
 

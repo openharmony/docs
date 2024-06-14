@@ -5,6 +5,8 @@ The **enabled** attribute sets whether a component responds to user interactions
 >  **NOTE**
 >
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  The **enabled** attribute takes effect only when the component is pressed. It does not work when the component is interacting with the user.
 
 ## enabled
 
@@ -13,6 +15,8 @@ enabled(value: boolean)
 Sets whether the component responds to user interactions.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

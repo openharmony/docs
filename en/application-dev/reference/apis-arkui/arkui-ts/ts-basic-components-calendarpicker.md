@@ -50,7 +50,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ## CalendarAlign
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name  | Description                    |
 | ------ | ------------------------ |
