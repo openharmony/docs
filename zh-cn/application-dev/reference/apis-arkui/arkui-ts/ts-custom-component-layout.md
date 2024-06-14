@@ -12,6 +12,8 @@ onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;
 
 ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
@@ -27,6 +29,8 @@ ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自
 onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt;, constraint: ConstraintSizeOptions): SizeResult
 
 ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点信息和尺寸范围通过onMeasureSize传递给该开发者。不允许在onMeasureSize函数中改变状态变量。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -46,7 +50,9 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 ## GeometryInfo<sup>10+</sup>
 
-父组件布局信息。
+父组件布局信息，继承自[SizeResult](#sizeresult10)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -61,21 +67,63 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 ## Layoutable<sup>10+</sup>
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 子组件布局信息。
 
-| 属性         | 属性类型                                                    | 描述                  |
-|------------|---------------------------------------------------------|---------------------|
-| measureResult| [MeasureResult](#measureresult10)      | 子组件测量后的尺寸信息。   <br>单位：vp     |
-| layout     | (position: [Position](ts-types.md#position))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
-| getMargin<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的margin信息。<br/>单位：vp |
-| getPadding<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的padding信息。<br/>单位：vp |
-| getBorderWidth<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的boderWidth信息。<br/>单位：vp |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+| 属性         | 类型       | 必填      |  说明                                                      |
+|--------------|---------------------------------- | -----------------------------------------------|---------------------|
+| measureResult| [MeasureResult](#measureresult10)      |   是| 子组件测量后的尺寸信息,继承自[SizeResult](#sizeresult10)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>单位：vp     |
+
+### 方法
+
+#### layout
+
+layout(position: Position)
+
+调用此方法对子组件的位置信息进行限制。
+
+| 参数名称         | 类型                                                    | 必填                 |说明         |
+|-----------------|---------------------------------------------------------|---------------------|-------------|
+|   position      | [Position](ts-types.md#position)                        | 是                  |   位置。   |
+
+#### getMargin<sup>12+</sup>
+
+getMargin() : DirectionalEdgesT<number>
+
+调用此方法获得子组件的margin信息。
+
+ | 返回值类型                          | 说明                                        |
+ |------------------------------------|---------------------------------------------|
+ | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的margin信息。   |
+
+ #### getPadding<sup>12+</sup>
+
+getPadding() : DirectionalEdgesT<number>
+
+ 调用此方法获得子组件的padding信息。
+
+ | 返回值类型                          | 说明                                        |
+ |------------------------------------|---------------------------------------------|
+ | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的padding信息。  |
+
+#### getBorderWidth<sup>12+</sup>
+
+getBorderWidth() : DirectionalEdgesT<number>
+
+调用此方法获得子组件的boderWidth信息。
+
+ | 返回值类型                          | 说明                                        |
+ |------------------------------------|---------------------------------------------|
+ | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的boderWidth信息。  |
 
 ## Measurable<sup>10+</sup>
 
 子组件位置信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -90,6 +138,8 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 测量后的组件布局信息。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 属性     | 属性类型   | 描述    |
@@ -101,6 +151,8 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 ## SizeResult<sup>10+</sup>
 
 组件尺寸信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -114,6 +166,8 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 全球化的边缘属性。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 | 属性   | 属性类型 | 描述             |
 | ------ | ---- | ---------------- |
