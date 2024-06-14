@@ -1,6 +1,6 @@
 # @ohos.data.dataAbility (DataAbility谓词)
 
-DataAbility 谓词用于构造关系型数据库的谓词，提供用于实现不同查询方法的谓词。
+DataAbility谓词用于构造关系型数据库的谓词，提供用于实现不同查询方法的谓词。
 
 > **说明：**
 >
@@ -837,6 +837,8 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
   ```
 
 ## ValueType
+
+type ValueType = number | string | boolean
 
 用于表示允许的数据字段类型。
 

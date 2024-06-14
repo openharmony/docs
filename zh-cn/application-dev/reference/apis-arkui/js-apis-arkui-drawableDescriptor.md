@@ -22,7 +22,7 @@ getPixelMap(): image.PixelMap
 
 获取pixelMap。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -59,7 +59,7 @@ PixelMapDrawableDescriptor的构造函数。
 
 | 参数名     | 类型              | 必填  | 说明                                       |
 | --------- | ---------------- | ---- | ------------------------------------------ |
-| src | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是   | PxielMap类型参数，存储 PxielMap 图片数据。 |
+| src | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 否 | PxielMap类型参数，存储 PxielMap 图片数据。 |
 
 
 ## LayeredDrawableDescriptor
@@ -184,7 +184,7 @@ getForeground(): DrawableDescriptor;
 
 获取前景的DrawableDescriptor对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -209,7 +209,7 @@ getBackground(): DrawableDescriptor;
 
 获取背景的DrawableDescriptor对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -234,7 +234,7 @@ getMask(): DrawableDescriptor
 
 获取蒙版的DrawableDescriptor对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -258,7 +258,7 @@ static getMaskClipPath(): string
 
 LayeredDrawableDescriptor的静态方法，获取系统内置的裁切路径参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -323,7 +323,7 @@ Image组件播放PixelMap数组时传入AnimatedDrawableDescriptor对象。继�
 
 ### constructor<sup>12+</sup>
 
-constructor(pixelMaps: Array\<PixelMap>, options?: AnimationOptions)
+constructor(pixelMaps: Array\<image.PixelMap>, options?: AnimationOptions)
 
 AnimatedDrawableDescriptor的构造函数。
 

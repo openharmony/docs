@@ -132,7 +132,7 @@ To understand the value initialization and update mechanism of the \@Link decora
    2. The \@Link in the child component and \@State in the parent component traverse the dependent system components and update the corresponding UI. In this way, the \@Link decorated variable in the child component is synchronized back to the \@State decorated variable in the parent component.
 
 
-## Usage Scenarios
+## Use Scenarios
 
 
 ### Example for @Link with Simple and Class Types

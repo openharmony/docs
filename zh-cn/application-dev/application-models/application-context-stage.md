@@ -95,7 +95,7 @@
   | tempDir | <路径前缀>/<加密等级>/base/temp |
   | databaseDir | <路径前缀>/<加密等级>/database |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles |
-  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/hmdfs/cloud/data |
+  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/cloud |
 
   示例代码如下所示。
 
@@ -158,7 +158,7 @@
   | tempDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/temp |
   | databaseDir | <路径前缀>/<加密等级>/database/**\<module-name>** |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles/**\<module-name>** |
-  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/hmdfs/cloud/data/**\<module-name>** |
+  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/cloud/**\<module-name>** |
 
   示例代码如下所示。
 
@@ -359,6 +359,7 @@ struct Page_Context {
 ```ts
 import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import type AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import type Want from '@ohos.app.ability.Want';
@@ -417,18 +418,30 @@ export default class LifecycleAbility extends UIAbility {
     };
     // 获取应用上下文
     let applicationContext = this.context.getApplicationContext();
+    try {
     // 注册应用内生命周期回调
-    this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+      this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
+    };
     hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
-
   //...
 
   onDestroy() : void {
     // 获取应用上下文
     let applicationContext = this.context.getApplicationContext();
-    // 取消应用内生命周期回调
-    applicationContext.off('abilityLifecycle', this.lifecycleId);
+    try {
+      // 取消应用内生命周期回调
+      applicationContext.off('abilityLifecycle', this.lifecycleId);
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
+    };
+
   }
 };
 ```

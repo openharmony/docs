@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
+| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
@@ -872,7 +872,7 @@ copyOptions(value: CopyOptions)
 
 | 参数名       | 参数类型                        | 必填   | 默认值               | 参数描述      |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | CopyOptions.Cross_Device | 要设置的剪贴板复制范围选项。 |
+| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | CopyOptions.LocalDevice | 要设置的剪贴板复制范围选项。 |
 
 **示例：**
 
@@ -1967,6 +1967,9 @@ struct WebComponent {
 </html>
 ```
 ### textAutosizing<sup>12+</sup>
+
+textAutosizing(textAutosizing: boolean)
+
 设置使能文本自动调整大小。
 
 **参数：**
@@ -2933,7 +2936,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    @Component
    struct WebComponent {
      controller: webview.WebviewController = new webview.WebviewController()
- 
+
      build() {
        Column() {
          Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -5387,7 +5390,7 @@ type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => We
 | 名称             | 类型      | 可读   | 可写   | 必填   | 说明                                       |
 | -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
 | useSystemKeyboard | boolean  | 是    | 是    | 是    | 是否使用系统默认软键盘。 |
-| enterKeyType | [enterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10) | 是    | 是    | 否    | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[enterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
+| enterKeyType | number | 是    | 是    | 否    | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
 | customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 是    | 是    | 否    | 指定自定义键盘组件builder，可选参数，当useSystemKeyboard为false时，需要设置该参数，然后web组件会拉起该自定义键盘。
 
 ## WebKeyboardController<sup>12+</sup>
@@ -5434,7 +5437,7 @@ deleteBackward(length: number): void
 
 sendFunctionKey(key: number): void
 
-插入功能按键，目前仅支持enter键类型，取值见[enterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)。
+插入功能按键，目前仅支持enter键类型，取值见[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)。
 
 **参数：**
 
@@ -5447,6 +5450,46 @@ sendFunctionKey(key: number): void
 close(): void
 
 关闭自定义键盘。
+
+### onAdsBlocked<sup>12+</sup>
+
+onAdsBlocked(callback: OnAdsBlockedCallback)
+
+一个页面发生广告过滤后，通过此回调接口通知过滤的详细信息。由于页面可能随时发生变化并不断产生网络请求，为了减少通知频次、降低对页面加载过程的影响，仅在页面加载完成时进行首次通知，此后发生的过滤将间隔1秒钟上报，无广告过滤则无通知。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | onAdsBlocked的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State totalAdsBlockCounts: number = 0;
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'https://www.example.com', controller: this.controller })
+        .onAdsBlocked((details: AdsBlockedDetails) => {
+          if (details) {
+            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url)
+            let adList: Array<string> = Array.from(new Set(details.adsBlocked))
+            this.totalAdsBlockCounts += adList.length;
+            console.log('Total blocked counts :' + this.totalAdsBlockCounts)
+          }
+        })
+      }
+    }
+  }
+  ```
 
 ## ConsoleMessage
 
@@ -6071,7 +6114,7 @@ getOrigin(): string
 
 grant(config: ScreenCaptureConfig): void
 
-**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAPTURE_SCREEN（仅系统应用可申请此权限）
+**需要权限：** ohos.permission.MICROPHONE
 
 对网页访问的屏幕捕获操作进行授权。
 
@@ -7613,7 +7656,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | ---------- | -----------------------------------------------------| ------ | ---------------- |
 | content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 是     | 显示内容。     |
 | startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 显示图标。     |
-| action    | string                                                         | 是     | 选中的文本信息。|
+| action    | (selectedText: {plainText: string}) => void                                                         | 是     | 选中的文本信息。|
 
 ## OnPageEndEvent<sup>12+</sup>
 
@@ -7949,3 +7992,23 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | methodList | Array\<string\>                          | 是    | 参与注册的应用侧JavaScript对象的同步方法。                 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
+
+## AdsBlockedDetails<sup>12+</sup>
+
+发生广告拦截时，广告资源信息。
+
+| 名称 | 类型                                                                          | 描述                    |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| url | string  | 发生广告过滤的页面url。 |
+| adsBlocked | Array\<string\>  | 被过滤的资源的url或dompath标识，被过滤的多个对象url相同则可能出现重复元素。 |
+
+## OnAdsBlockedCallback<sup>12+</sup>
+
+type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
+
+当页面发生广告过滤时触发此回调。
+**参数：**
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| details | [AdsBlockedDetails](#adsblockeddetails12) | 发生广告拦截时，广告资源信息。 |

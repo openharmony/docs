@@ -20,7 +20,7 @@
 
 - \@Local支持null、undefined以及联合类型。
 
-## 状态管理V1版本的局限性
+## 状态管理V1版本\@State装饰器的局限性
 
 状态管理V1使用[\@State装饰器](arkts-state.md)定义类中的状态变量。但由于\@State装饰器能够从外部初始化，因此\@State无法准确表达组件内部状态不能被外面修改的语义。
 
@@ -56,7 +56,7 @@ struct Index {
 }
 ```
 
-上述代码中，可以通过在初始化Child组件时，传入新的值来覆盖Child组件想要作为内部状态变量使用的componentInfo。但Child组件并不能感知到componentInfo从外部进行了初始化，这不利于组件内部状态的管理。
+上述代码中，可以通过在初始化Child组件时，传入新的值来覆盖Child组件想要作为内部状态变量使用的componentInfo。但Child组件并不能感知到componentInfo从外部进行了初始化，这不利于组件内部状态的管理。因此推出\@Local装饰器表示组件的内部状态。
 
 ## 装饰器说明
 

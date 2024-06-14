@@ -20,7 +20,7 @@ initCurve(curve?: Curve): ICurve
 
 插值曲线的初始化函数，可以根据入参创建一个插值曲线对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -34,7 +34,7 @@ initCurve(curve?: Curve): ICurve
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve) | 曲线的插值对象。 |
+| [ICurve](#icurve9) | 曲线的插值对象。 |
 
 ## Curve
 
@@ -42,7 +42,7 @@ initCurve(curve?: Curve): ICurve
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,7 +76,7 @@ stepsCurve(count: number, end: boolean): ICurve
 
 构造阶梯曲线对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -91,7 +91,7 @@ stepsCurve(count: number, end: boolean): ICurve
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve) | 曲线的插值对象。 |
+| [ICurve](#icurve9) | 曲线的插值对象。 |
 
 **示例：**
 
@@ -107,7 +107,7 @@ cubicBezierCurve(x1: number, y1: number, x2: number, y2: number): ICurve
 
 构造三阶贝塞尔曲线对象，曲线的值必须处于0-1之间。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -124,7 +124,7 @@ cubicBezierCurve(x1: number, y1: number, x2: number, y2: number): ICurve
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve) | 曲线的插值对象。 |
+| [ICurve](#icurve9) | 曲线的插值对象。 |
 
 
 **示例：**
@@ -141,7 +141,7 @@ springCurve(velocity: number, mass: number, stiffness: number, damping: number):
 
 构造弹簧曲线对象，曲线形状由弹簧参数决定，动画时长受animation、animateTo中的duration参数控制。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -158,7 +158,7 @@ springCurve(velocity: number, mass: number, stiffness: number, damping: number):
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| 曲线的插值对象。 |
+| [ICurve](#icurve9) | 曲线的插值对象。 |
 
 
 **示例：**
@@ -175,7 +175,7 @@ springMotion(response?: number, dampingFraction?: number, overlapDuration?: numb
 
 构造弹性动画曲线对象。如果对同一对象的同一属性进行多个弹性动画，每个动画会替换掉前一个动画，并继承之前的速度。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -192,7 +192,7 @@ springMotion(response?: number, dampingFraction?: number, overlapDuration?: numb
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| 曲线对象。<br>**说明:**  <br>弹性动画曲线为物理曲线，[animation](arkui-ts/ts-animatorproperty.md)、[animateTo](arkui-ts/ts-explicit-animation.md)、[pageTransition](arkui-ts/ts-page-transition-animation.md)中的duration参数不生效，动画持续时间取决于springMotion动画曲线参数和之前的速度。时间不能归一，故不能通过该曲线的[interpolate](#interpolate9)函数获得插值。 |
+| [ICurve](#icurve9) | 曲线对象。<br>**说明:**  <br>弹性动画曲线为物理曲线，[animation](arkui-ts/ts-animatorproperty.md)、[animateTo](arkui-ts/ts-explicit-animation.md)、[pageTransition](arkui-ts/ts-page-transition-animation.md)中的duration参数不生效，动画持续时间取决于springMotion动画曲线参数和之前的速度。时间不能归一，故不能通过该曲线的[interpolate](#interpolate9)函数获得插值。 |
 
 **示例：**
 
@@ -211,7 +211,7 @@ responsiveSpringMotion(response?: number, dampingFraction?: number, overlapDurat
 
 构造弹性跟手动画曲线对象，是[springMotion](#curvesspringmotion9)的一种特例，仅默认参数不同，可与springMotion混合使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -227,7 +227,7 @@ responsiveSpringMotion(response?: number, dampingFraction?: number, overlapDurat
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| 曲线对象。<br>**说明:** <br>1、弹性跟手动画曲线为springMotion的一种特例，仅默认值不同。如果使用自定义参数的弹性曲线，推荐使用springMotion构造曲线；如果使用跟手动画，推荐使用默认参数的弹性跟手动画曲线。<br>2、[animation](arkui-ts/ts-animatorproperty.md)、[animateTo](arkui-ts/ts-explicit-animation.md)、[pageTransition](arkui-ts/ts-page-transition-animation.md)中的duration参数不生效，动画持续时间取决于responsiveSpringMotion动画曲线参数和之前的速度，也不能通过该曲线的[interpolate](#interpolate9)函数获得插值。 |
+| [ICurve](#icurve9) | 曲线对象。<br>**说明:** <br>1、弹性跟手动画曲线为springMotion的一种特例，仅默认值不同。如果使用自定义参数的弹性曲线，推荐使用springMotion构造曲线；如果使用跟手动画，推荐使用默认参数的弹性跟手动画曲线。<br>2、[animation](arkui-ts/ts-animatorproperty.md)、[animateTo](arkui-ts/ts-explicit-animation.md)、[pageTransition](arkui-ts/ts-page-transition-animation.md)中的duration参数不生效，动画持续时间取决于responsiveSpringMotion动画曲线参数和之前的速度，也不能通过该曲线的[interpolate](#interpolate9)函数获得插值。 |
 
 **示例：**
 
@@ -243,7 +243,7 @@ interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: 
 
 构造插值器弹簧曲线对象，生成一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受animation、animateTo中的duration参数控制。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -259,7 +259,7 @@ interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: 
 
 | 类型                           | 说明             |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| 曲线对象。<br>**说明:** 弹性动画曲线为物理曲线，[animation](arkui-ts/ts-animatorproperty.md)、[animateTo](arkui-ts/ts-explicit-animation.md)、[pageTransition](arkui-ts/ts-page-transition-animation.md)中的duration参数不生效，动画持续时间取决于interpolatingSpring动画曲线参数。时间不能归一，故不能通过该曲线的[interpolate](#interpolate9)函数获得插值。 |
+| [ICurve](#icurve9) | 曲线对象。<br>**说明:** 弹性动画曲线为物理曲线，[animation](arkui-ts/ts-animatorproperty.md)、[animateTo](arkui-ts/ts-explicit-animation.md)、[pageTransition](arkui-ts/ts-page-transition-animation.md)中的duration参数不生效，动画持续时间取决于interpolatingSpring动画曲线参数。时间不能归一，故不能通过该曲线的[interpolate](#interpolate9)函数获得插值。 |
 
 **示例：**
 
@@ -274,7 +274,7 @@ customCurve(interpolate: (fraction: number) => number): ICurve
 
 构造自定义曲线对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -286,9 +286,9 @@ customCurve(interpolate: (fraction: number) => number): ICurve
 
 **返回值：**
 
-| 类型              | 说明             |
-| ----------------- | ---------------- |
-| [ICurve](#icurve) | 曲线的插值对象。 |
+| 类型               | 说明             |
+| ------------------ | ---------------- |
+| [ICurve](#icurve9) | 曲线的插值对象。 |
 
 **示例：**
 
@@ -300,7 +300,9 @@ let interpolate = (fraction:number):number => {
 let curve = Curves.customCurve(interpolate) // 创建一个用户自定义插值曲线
 ```
 
-## ICurve
+## ICurve<sup>9+</sup>
+
+曲线对象。
 
 
 ### interpolate<sup>9+</sup>
@@ -309,9 +311,7 @@ interpolate(fraction:&nbsp;number): number
 
 插值曲线的插值计算函数，可以通过传入的归一化时间参数返回当前的插值
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 

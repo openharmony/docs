@@ -27,7 +27,7 @@
       - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
       - [视频播放 (Video)](arkts-common-components-video-player.md)
       - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
-      - [自定义绘制 (XComponent)](arkts-common-components-xcomponent.md)
+      - [自定义渲染 (XComponent)](arkts-common-components-xcomponent.md)
       - [Native XComponent](napi-xcomponent-guidelines.md)
     - 添加气泡和菜单
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
@@ -52,8 +52,8 @@
       - [导航转场](arkts-navigation-transition.md)
       - [模态转场](arkts-modal-transition.md)
       - [共享元素转场](arkts-shared-element-transition.md)
+      - [旋转屏动画增强](arkts-rotation-transition-animation.md)    
       - [页面转场动画 (不推荐)](arkts-page-transition-animation.md)
-      - [旋转屏动画增强](arkts-rotation-transition-animation.md)
     - [粒子动画](arkts-particle-animation.md)
     - [组件动画](arkts-component-animation.md)
     - 动画曲线

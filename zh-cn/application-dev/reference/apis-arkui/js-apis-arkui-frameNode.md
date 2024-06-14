@@ -24,7 +24,7 @@ constructor(uiContext: UIContext)
 
 FrameNode的构造函数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,7 +40,7 @@ getRenderNode(): RenderNode | null
 
 获取FrameNode中持有的RenderNode。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -89,6 +89,8 @@ isModifiable(): boolean
 
 判断当前节点是否可修改。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -106,6 +108,8 @@ isModifiable(): boolean
 appendChild(node: FrameNode): void
 
 在FrameNode最后一个子节点后添加新的子节点。当前FrameNode如果不可修改，抛出异常信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -130,6 +134,8 @@ appendChild(node: FrameNode): void
 insertChildAfter(child: FrameNode, sibling: FrameNode | null): void
 
 在FrameNode指定子节点之后添加新的子节点。当前FrameNode如果不可修改，抛出异常信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -156,6 +162,8 @@ removeChild(node: FrameNode): void
 
 从FrameNode中删除指定的子节点。当前FrameNode如果不可修改，抛出异常信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -180,6 +188,8 @@ clearChildren(): void
 
 清除当前FrameNode的所有子节点。当前FrameNode如果不可修改，抛出异常信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **错误码：**
@@ -197,6 +207,8 @@ clearChildren(): void
 getChild(index: number): FrameNode | null
 
 获取当前节点指定位置的子节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -221,6 +233,8 @@ getFirstChild(): FrameNode | null
 
 获取当前FrameNode的第一个子节点
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -238,6 +252,8 @@ getFirstChild(): FrameNode | null
 getNextSibling(): FrameNode | null
 
 获取当前FrameNode的下一个同级节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -257,6 +273,8 @@ getPreviousSibling(): FrameNode | null
 
 获取当前FrameNode的上一个同级节点。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -274,6 +292,8 @@ getPreviousSibling(): FrameNode | null
 getParent(): FrameNode | null;
 
 获取当前FrameNode的父节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -294,6 +314,8 @@ getParent(): FrameNode | null;
 
 获取当前FrameNode的子节点数量。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -311,6 +333,8 @@ getParent(): FrameNode | null;
   getPositionToWindow(): Position
 
 获取FrameNode相对于窗口的位置偏移。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -331,6 +355,8 @@ getPositionToParent(): Position
 
 获取FrameNode相对于父组件的位置偏移。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -348,6 +374,8 @@ getPositionToParent(): Position
   getPositionToScreen(): Position
 
 获取FrameNode相对于屏幕的位置偏移。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -368,6 +396,8 @@ getPositionToParentWithTransform(): Position
 
 获取FrameNode相对于父组件带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -386,6 +416,8 @@ getPositionToWindowWithTransform(): Position
 
 获取FrameNode相对于窗口带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -403,6 +435,8 @@ getPositionToWindowWithTransform(): Position
 getPositionToScreenWithTransform(): Position
 
 获取FrameNode相对于屏幕带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -423,6 +457,8 @@ getMeasuredSize(): Size
 
 获取FrameNode测量后的大小。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -442,6 +478,8 @@ getLayoutPosition(): Position
 
 获取FrameNode布局后相对于父组件的位置偏移。该偏移是父容器对该节点进行布局之后的结果，因此布局之后生效的offset属性和不参与布局的position属性不影响该偏移值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -459,6 +497,8 @@ getLayoutPosition(): Position
 getUserConfigBorderWidth(): Edges\<LengthMetrics\>
 
 获取用户设置的边框宽度。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -478,6 +518,8 @@ getUserConfigPadding(): Edges\<LengthMetrics\>
 
 获取用户设置的内边距。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -495,6 +537,8 @@ getUserConfigPadding(): Edges\<LengthMetrics\>
 getUserConfigMargin(): Edges\<LengthMetrics\>
 
 获取用户设置的外边距。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -514,13 +558,15 @@ getUserConfigSize(): SizeT\<LengthMetrics\>
 
 获取用户设置的宽高。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
-| 类型                                                           | 说明                                                                  |
-| -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [SizeT](./js-apis-arkui-graphics.md#sizet12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的宽高。 |
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| [SizeT](./js-apis-arkui-graphics.md#sizett12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的宽高。 |
 
 **示例：**
 
@@ -531,6 +577,8 @@ getUserConfigSize(): SizeT\<LengthMetrics\>
 getId(): string
 
 获取用户设置的节点ID（通用属性设置的[ID](./arkui-ts/ts-universal-attributes-component-id.md)）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -550,6 +598,8 @@ getUniqueId(): number
 
 获取系统分配的唯一标识的节点UniqueID。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -567,6 +617,8 @@ getUniqueId(): number
 getNodeType(): string
 
 获取节点的类型。内置组件类型为组件名称，例如，按钮组件Button的类型为Button。而对于自定义组件，若其有渲染内容，则其类型为__Common__。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -586,6 +638,8 @@ getOpacity(): number
 
 获取节点的不透明度，最小值为0，最大值为1。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -603,6 +657,8 @@ getOpacity(): number
 isVisible(): boolean
 
 获取节点是否可见。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -622,6 +678,8 @@ isClipToFrame(): boolean
 
 获取节点是否是剪裁到组件区域。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -639,6 +697,8 @@ isClipToFrame(): boolean
 isAttached(): boolean
 
 获取节点是否被挂载到主节点树上。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -658,6 +718,8 @@ getInspectorInfo(): Object
 
 获取节点的结构信息，该信息和DevEco Studio内置ArkUI Inspector工具里面的一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -675,6 +737,8 @@ getInspectorInfo(): Object
 getCustomProperty(name: string): Object | undefined
 
 通过名称获取组件的自定义属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -699,6 +763,8 @@ getCustomProperty(name: string): Object | undefined
 dispose(): void
 
 立即释放当前FrameNode。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -797,6 +863,8 @@ get commonAttribute(): CommonAttribute
 
 不支持入参为[CustomBuilder](./arkui-ts/ts-types.md#custombuilder8)或lambda表达式的属性，且不支持事件和手势。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -821,6 +889,8 @@ get commonEvent(): UICommonEvent
 
 LazyForEach场景下，由于存在节点的销毁重建，对于重建的节点需要重新设置事件回调才能保证监听事件正常响应。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -838,6 +908,8 @@ LazyForEach场景下，由于存在节点的销毁重建，对于重建的节点
 onDraw?(context: DrawContext): void
 
 FrameNode的自绘制方法，该方法会在FrameNode进行内容绘制时被调用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -857,6 +929,8 @@ onMeasure(constraint: LayoutConstraint): void
 
 FrameNode的自定义测量方法，该方法会重写默认测量方法，在FrameNode进行测量时被调用，测量FrameNode及其内容的大小。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -871,9 +945,11 @@ FrameNode的自定义测量方法，该方法会重写默认测量方法，在Fr
 
 ### LayoutConstraint<sup>12+</sup>
 
-LayoutConstraint
-
 描述组件的布局约束。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称            |  类型  | 必填  | 说明                                       |
 | -------------- | ------ | ----- | ------------------------------------------ |
@@ -881,13 +957,13 @@ LayoutConstraint
 | minSize            | [Size](./js-apis-arkui-graphics.md#size) | 是    | 最小尺寸。                  |
 | percentReference      | [Size](./js-apis-arkui-graphics.md#size) | 是    | 子节点计算百分比时的尺寸基准。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 ### onLayout<sup>12+</sup>
 
 onLayout(position: Position): void
 
 FrameNode的自定义布局方法，该方法会重写默认布局方法，在FrameNode进行布局时被调用，为FrameNode及其子节点指定位置。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -907,6 +983,8 @@ setMeasuredSize(size: Size): void
 
 设置FrameNode的测量后的尺寸，默认单位PX。若设置的宽高为负数，自动取零。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -924,6 +1002,8 @@ setMeasuredSize(size: Size): void
 setLayoutPosition(position: Position): void
 
 设置FrameNode的布局后的位置，默认单位PX。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -943,6 +1023,8 @@ measure(constraint: LayoutConstraint): void
 
 调用FrameNode的测量方法，根据父容器的布局约束，对FrameNode进行测量，计算出尺寸，如果测量方法被重写，则调用重写的方法。建议在[onMeasure](#onmeasure12)方法中调用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -960,6 +1042,8 @@ measure(constraint: LayoutConstraint): void
 layout(position: Position): void
 
 调用FrameNode的布局方法，为FrameNode及其子节点指定布局位置，如果布局方法被重写，则调用重写的方法。建议在[onLayout](#onlayout12)方法中调用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -979,6 +1063,8 @@ setNeedsLayout(): void
 
 该方法会将FrameNode标记为需要布局的状态，下一帧将会进行重新布局。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -991,6 +1077,8 @@ invalidate(): void
 
 该方法会触发FrameNode自绘制内容的重新渲染。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### addComponentContent<sup>12+</sup>
@@ -999,7 +1087,15 @@ addComponentContent\<T>(content: ComponentContent\<T>): void
 
 支持添加ComponentContent类型的组件内容。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| content | [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent)\<T> | 是   | FrameNode节点中显示的组件内容。 |
 
 ```ts
 import { typeNode, NodeController, FrameNode, ComponentContent } from '@ohos.arkui.node';
@@ -1052,6 +1148,8 @@ struct FrameNodeTypeTest {
 disposeTree(): void
 
 下树并递归释放当前节点为根的子树。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1402,7 +1500,7 @@ GridRow类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt; | 提供GridRow类型FrameNode节点。<br/>**说明：**<br/> GridRowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> GridRowAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridRow组件的属性设置对象。 |
+| TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt; | 提供GridRow类型FrameNode节点。<br/>**说明：**<br/> GridRowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为GridRow组件的构造函数类型。 <br/> GridRowAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridRow组件的属性设置对象。 |
 
 ### createNode('GridRow')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'GridRow'): GridRow
@@ -1436,7 +1534,7 @@ GridCol类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;GridColInterface, GridColAttribute&gt; | 提供GridCol类型FrameNode节点。<br/>**说明：**<br/> GridColInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> GridColAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridCol组件的属性设置对象。 |
+| TypedFrameNode&lt;GridColInterface, GridColAttribute&gt; | 提供GridCol类型FrameNode节点。<br/>**说明：**<br/> GridColInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为GridCol组件的构造函数类型。 <br/> GridColAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridCol组件的属性设置对象。 |
 
 ### createNode('GridCol')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'GridCol'): GridCol
@@ -1470,7 +1568,7 @@ Flex类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;FlexInterface, FlexAttribute&gt; | 提供Flex类型FrameNode节点。<br/>**说明：**<br/> FlexInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> FlexAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Flex组件的属性设置对象。 |
+| TypedFrameNode&lt;FlexInterface, FlexAttribute&gt; | 提供Flex类型FrameNode节点。<br/>**说明：**<br/> FlexInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Flex组件的构造函数类型。 <br/> FlexAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Flex组件的属性设置对象。 |
 
 ### createNode('Flex')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Flex'): Flex
@@ -1504,7 +1602,7 @@ Swiper类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt; | 提供Swiper类型FrameNode节点。<br/>**说明：**<br/> SwiperInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> SwiperAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Swiper组件的属性设置对象。 |
+| TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt; | 提供Swiper类型FrameNode节点。<br/>**说明：**<br/> SwiperInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Swiper组件的构造函数类型。 <br/> SwiperAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Swiper组件的属性设置对象。 |
 
 ### createNode('Swiper')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Swiper'): Swiper
@@ -1538,7 +1636,7 @@ Progress类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt; | 提供Progress类型FrameNode节点。<br/>**说明：**<br/> ProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> ProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Progress组件的属性设置对象。 |
+| TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt; | 提供Progress类型FrameNode节点。<br/>**说明：**<br/> ProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Progress组件的构造函数类型。 <br/> ProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Progress组件的属性设置对象。 |
 
 ### createNode('Progress')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Progress'): Progress
@@ -1572,7 +1670,7 @@ Scroll类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt; | 提供Scroll类型FrameNode节点。<br/>**说明：**<br/> ScrollInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> ScrollAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Scroll组件的属性设置对象。 |
+| TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt; | 提供Scroll类型FrameNode节点。<br/>**说明：**<br/> ScrollInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Scroll组件的构造函数类型。 <br/> ScrollAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Scroll组件的属性设置对象。 |
 
 ### createNode('Scroll')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Scroll'): Scroll
@@ -1606,10 +1704,10 @@ RelativeContainer类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt; | 提供RelativeContainer类型FrameNode节点。<br/>**说明：**<br/> RelativeContainerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> RelativeContainerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回RelativeContainer组件的属性设置对象。 |
+| TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt; | 提供RelativeContainer类型FrameNode节点。<br/>**说明：**<br/> RelativeContainerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> RelativeContainerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回RelativeContainer组件的属性设置对象。 |
 
 ### createNode('RelativeContainer')<sup>12+</sup>
-createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContaine
+createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
 
 创建RelativeContainer类型的FrameNode节点。
 
@@ -1640,7 +1738,7 @@ Divider类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;DividerInterface, DividerAttribute&gt; | 提供Divider类型FrameNode节点。<br/>**说明：**<br/> DividerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> DividerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Divider组件的属性设置对象。 |
+| TypedFrameNode&lt;DividerInterface, DividerAttribute&gt; | 提供Divider类型FrameNode节点。<br/>**说明：**<br/> DividerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> DividerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Divider组件的属性设置对象。 |
 
 ### createNode('Divider')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Divider'): Divider
@@ -1674,7 +1772,7 @@ LoadingProgress类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt; | 提供LoadingProgress类型FrameNode节点。<br/>**说明：**<br/> LoadingProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> LoadingProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回LoadingProgress组件的属性设置对象。 |
+| TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt; | 提供LoadingProgress类型FrameNode节点。<br/>**说明：**<br/> LoadingProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为LoadingProgress组件的构造函数类型。 <br/> LoadingProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回LoadingProgress组件的属性设置对象。 |
 
 ### createNode('LoadingProgress')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
@@ -1708,7 +1806,7 @@ Search类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;SearchInterface, SearchAttribute&gt; | 提供Search类型FrameNode节点。<br/>**说明：**<br/> SearchInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> SearchAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Search组件的属性设置对象。 |
+| TypedFrameNode&lt;SearchInterface, SearchAttribute&gt; | 提供Search类型FrameNode节点。<br/>**说明：**<br/> SearchInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Search组件的构造函数类型。 <br/> SearchAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Search组件的属性设置对象。 |
 
 ### createNode('Search')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Search'): Search
@@ -1742,7 +1840,7 @@ Blank类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;BlankInterface, BlankAttribute&gt; | 提供Blank类型FrameNode节点。<br/>**说明：**<br/> BlankInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> BlankAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Blank组件的属性设置对象。 |
+| TypedFrameNode&lt;BlankInterface, BlankAttribute&gt; | 提供Blank类型FrameNode节点。<br/>**说明：**<br/> BlankInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Blank组件的构造函数类型。 <br/> BlankAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Blank组件的属性设置对象。 |
 
 ### createNode('Blank')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Blank'): Blank;
@@ -1776,7 +1874,7 @@ Image类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ImageInterface, ImageAttribute&gt; | 提供Image类型FrameNode节点。<br/>**说明：**<br/> ImageInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> ImageAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Image组件的属性设置对象。 |
+| TypedFrameNode&lt;ImageInterface, ImageAttribute&gt; | 提供Image类型FrameNode节点。<br/>**说明：**<br/> ImageInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Image组件的构造函数类型。 <br/> ImageAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Image组件的属性设置对象。 |
 
 ### createNode('Image')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Image'): Image
@@ -1802,6 +1900,74 @@ createNode(context: UIContext, nodeType: 'Image'): Image
 
 ```ts
 typeNode.createNode(uiContext, 'Image');
+```
+### List<sup>12+</sup>
+type List = TypedFrameNode&lt;ListInterface, ListAttribute&gt;
+
+List类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ListInterface, ListAttribute&gt; | 提供List类型FrameNode节点。<br/>**说明：**<br/> ListInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为List组件的构造函数类型。 <br/> ListAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回List组件的属性设置对象。 |
+
+### createNode('List')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'List'): List
+
+创建List类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| nodeType | 'List' | 是 | 创建List类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [List](#list12) | List类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'List');
+```
+### ListItem<sup>12+</sup>
+type ListItem = TypedFrameNode&lt;ListItemInterface, ListItemAttribute&gt;
+
+ListItem类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ListItemInterface, ListItemAttribute&gt; | 提供ListItem类型FrameNode节点。<br/>**说明：**<br/> ListItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为ListItem组件的构造函数类型。 <br/> ListItemAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回ListItem组件的属性设置对象。 |
+
+### createNode('ListItem')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'ListItem'): ListItem
+
+创建ListItem类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| nodeType | 'ListItem' | 是 | 创建ListItem类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [ListItem](#listitem12) | ListItem类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'ListItem');
 ```
 
 ## 自定义具体类型节点示例
