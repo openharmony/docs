@@ -535,22 +535,36 @@ export class Test {
 
 ### 跨并发实例传递带方法的class实例对象
 
-由于序列化传输实例对象时会丢失方法，在必须调用实例方法的场景中，需使用引用传递方式进行开发。
+由于序列化传输实例对象时会丢失方法，在必须调用实例方法的场景中，需使用引用传递方式进行开发。在数据处理过程中有需要解析的数据，可使用[ASON工具](../reference/apis-arkts/js-apis-arkts-utils.md#arktsutilsason)进行数据解析。
 
 **示例：**
 ```ts
-// index.ets
-import taskpool from '@ohos.taskpool';
-import { Test } from './sendable'
+// Index.ets
+import { taskpool, ArkTSUtils } from '@kit.ArkTS'
+import { SendableTestClass, ISendable } from './sendable'
 
 // 在并发函数中模拟数据处理
 @Concurrent
-async function taskFunc(obj: Test) {
-  console.info("test task data1 is: " + obj.add(5) + " data2 is: " + obj.printStr("taskFunc"));
+async function taskFunc(sendableObj: SendableTestClass) {
+  console.info("SendableTestClass: name is: " + sendableObj.printName() + ", age is: " + sendableObj.printAge() + ", sex is: " + sendableObj.printSex());
+  sendableObj.setAge(28);
+  console.info("SendableTestClass: age is: " + sendableObj.printAge());
+
+  // 解析sendableObj.arr数据生成JSON字符串
+  let str = ArkTSUtils.ASON.stringify(sendableObj.arr);
+  console.info("SendableTestClass: str is: " + str);
+
+  // 解析该数据并生成ISendable数据
+  let jsonStr = '{"name": "Alexa", "age": 23, "sex": "female"}';
+  let obj = ArkTSUtils.ASON.parse(jsonStr) as ISendable;
+  console.info("SendableTestClass: type is: " + typeof obj);
+  console.info("SendableTestClass: name is: " + (obj as object)?.["name"]); // 输出: 'Alexa'
+  console.info("SendableTestClass: age is: " + (obj as object)?.["age"]); // 输出: 23
+  console.info("SendableTestClass: sex is: " + (obj as object)?.["sex"]); // 输出: 'female'
 }
 async function test() {
   // 使用taskpool传递数据
-  let obj: Test = new Test();
+  let obj: SendableTestClass = new SendableTestClass();
   let task: taskpool.Task = new taskpool.Task(taskFunc, obj);
   await taskpool.execute(task);
 }
@@ -561,17 +575,32 @@ test();
 ```ts
 // sendable.ets
 // 定义模拟类Test，模仿开发过程中需传递带方法的class
+import { lang, collections  } from '@kit.ArkTS'
+
+export type ISendable = lang.ISendable;
+
 @Sendable
-export class Test {
-  data1: number = 10;
-  data2: string = "Test";
+export class SendableTestClass {
+  name: string = 'John';
+  age: number = 20;
+  sex: string = "man";
+  arr: collections.Array<number> = new collections.Array<number>(1, 2, 3);
   constructor() {
   }
-  add(arg: number): number {
-    return this.data1 + arg;
+  setAge(age: number) : void {
+    this.age = age;
   }
-  printStr(str: string): string {
-    return this.data2 + str;
+
+  printName(): string {
+    return this.name;
+  }
+
+  printAge(): number {
+    return this.age;
+  }
+
+  printSex(): string {
+    return this.sex;
   }
 }
 ```
