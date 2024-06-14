@@ -20,6 +20,10 @@ createBundleContext(bundleName: string): Context
 
 根据Bundle名称创建安装包的上下文。
 
+**说明：**
+>
+> 建议使用[Context.createModuleContext](#contextcreatemodulecontext)替代。
+
 **系统接口**：此接口为系统接口。
 
 **需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
