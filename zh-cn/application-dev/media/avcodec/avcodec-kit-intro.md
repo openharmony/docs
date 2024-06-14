@@ -3,9 +3,7 @@ AVCodec kit（Audio & Video Codec Kit，音视频编解码，封装解封装原�
 
 ## 能力范围
 - 媒体数据输入：媒体应用可以传入文件fd、或者流媒体url，进行后续的媒体信息解析等处理。
-- 媒体基础能力（Media Foundation）：提供媒体数据处理的公共基础类型，包括
-[AVBuffer](../../reference/apis-avcodec-kit/native__avbuffer_8h.md#avBuffer)、
-[AVFormat](../../reference/apis-avcodec-kit/native__avformat_8h.md#avFormat)等。
+- 媒体基础能力（Media Foundation）：提供媒体数据处理的公共基础类型，包括[AVBuffer](../../reference/apis-avcodec-kit/native__avbuffer_8h.md)、[AVFormat](../../reference/apis-avcodec-kit/native__avformat_8h.md)等。
 - 音频编码：音频类应用（比如音频通话、音频录制等）可以将未压缩的音频数据送到音频编码器进行编码，应用可以设置编码要用到的编码格式、码率、采样率等参数，控制编码的输出，达到压缩音频文件的目的。
 - 视频编码：视频类应用（比如视频通话、视频录制等）可以将未压缩的视频数据送到视频编码器进行编码，应用可以设置编码要用到的编码格式、码率、帧率等参数，控制编码的输出，达到压缩视频文件的目的。
 - 音频解码：音频类应用（比如音频通话、音频播放器等）将音频码流通过音频解码器解码，解码后的数据可以送到音频设备播放。
