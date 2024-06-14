@@ -74,7 +74,6 @@ tabBar(value: SubTabBarStyle | BottomTabBarStyle)
 
 子页签样式。打开后在切换页签时会播放跳转动画。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### constructor
 

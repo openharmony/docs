@@ -36,6 +36,8 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 
 ## BarPosition枚举说明
 
+Tabs页签位置枚举。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -260,6 +262,8 @@ barGridAlign(value: BarGridColumnOptions)
 | value  | [BarGridColumnOptions](#bargridcolumnoptions10对象说明) | 是   | 以栅格化方式设置TabBar的可见区域。 |
 
 ## DividerStyle<sup>10+</sup>对象说明
+
+分割线样式对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -499,9 +503,19 @@ Tabs组件的控制器，用于控制Tabs组件进行页签切换。不支持一
 let controller: TabsController = new TabsController()
 ```
 
+### constructor
+
+constructor()
+
+TabsController的构造函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### changeIndex
 
-changeIndex(value: number): void
+changeIndex(value: number)
 
 控制Tabs切换到指定页签。
 
