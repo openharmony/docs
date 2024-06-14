@@ -5,7 +5,7 @@ You can call the native APIs provided by the **AVDemuxer** module to demux audio
 Currently, two data input types are supported: remote connection (over HTTP) and File Descriptor (FD).
 
 The following demuxing formats are supported:
-
+<!--RP1-->
 | Media Format | Muxing Format                     | Stream Format                     |
 | -------- | :----------------------------| :----------------------------|
 | Audio/Video    | mp4                        |Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)|
@@ -18,6 +18,7 @@ The following demuxing formats are supported:
 | Audio      | flac                        |Audio stream: FLAC|
 | Audio      | wav                        |Audio stream: PCM|
 | Audio      | amr                        |Audio stream: AMR (AMR-NB and AMR-WB)|
+<!--RP1End-->
 
 **Usage Scenario**
 

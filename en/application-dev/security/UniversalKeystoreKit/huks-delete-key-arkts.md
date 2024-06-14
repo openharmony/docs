@@ -16,8 +16,7 @@ For example, delete a 256-bit HKDF key.
 /*
  * Delete a 256-bit HKDF key. This example uses promise-based APIs.
  */
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from "@kit.UniversalKeystoreKit";
 /* 1. Set the key alias. */
 let keyAlias = "test_Key";
 /* 2. Construct an empty object. */
@@ -52,7 +51,7 @@ async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions
       .then ((data) => {
         console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
       })
-      .catch((error: BusinessError) => {
+      .catch((error) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {
@@ -60,7 +59,7 @@ async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions
         }
       });
   } catch (error) {
-    console.error(`promise: deletKeyItem input arg invalid` + error);
+    console.error(`promise: deleteKeyItem input arg invalid` + error);
   }
 }
 async function testDerive() {
