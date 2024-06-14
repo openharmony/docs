@@ -73,7 +73,10 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 
 菜单弹出不跟随点击位置，只与placement设置有关。
 
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
