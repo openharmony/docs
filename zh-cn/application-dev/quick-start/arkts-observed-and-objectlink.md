@@ -619,7 +619,7 @@ struct MapSampleNestedChild {
         ForEach(Array.from(this.myMap.entries()), (item: [number, string]) => {
           Text(`${item[0]}`).fontSize(30)
           Text(`${item[1]}`).fontSize(30)
-          Divider()
+          Divider().strokeWidth(5)
         })
 
         Button('set new one')
