@@ -48,6 +48,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -92,6 +93,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -135,11 +137,12 @@ Enumerates the session types supported by the session.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name | Type  | Description|
-| ----- | ------ | ---- |
-| audio | string | Audio session.|
-| video | string | Video session.|
-| voice_call<sup>11+<sup> | string | Voice call.|
+| Value | Description|
+| -----  | ---- |
+| audio | Audio session.|
+| video | Video session.|
+| voice_call<sup>11+<sup> | Audio call.|
+| video_call<sup>12+<sup> | Video call.|
 
 ## AVSession<sup>10+</sup>
 
@@ -191,6 +194,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -243,6 +247,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -302,6 +307,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -343,6 +349,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -398,6 +405,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -438,6 +446,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -487,6 +496,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -531,6 +541,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -582,6 +593,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -649,6 +661,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -727,6 +740,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -782,6 +796,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -837,6 +852,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -905,6 +921,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -980,6 +997,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1017,6 +1035,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1065,6 +1084,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1118,6 +1138,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1621,6 +1642,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1655,6 +1677,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1689,6 +1712,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1723,6 +1747,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1757,6 +1782,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1791,6 +1817,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1823,6 +1850,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1855,6 +1883,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1887,6 +1916,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1917,6 +1947,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1949,6 +1980,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1981,6 +2013,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2013,6 +2046,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2045,6 +2079,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2077,6 +2112,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2114,6 +2150,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2146,6 +2183,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2195,6 +2233,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2227,6 +2266,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2259,6 +2299,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2291,6 +2332,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2323,6 +2365,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2355,6 +2398,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2385,6 +2429,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2415,6 +2460,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2445,6 +2491,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2475,6 +2522,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2505,6 +2553,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2535,6 +2584,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2565,6 +2615,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2597,6 +2648,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2628,6 +2680,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2658,6 +2711,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2690,6 +2744,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2720,6 +2775,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2752,6 +2808,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2782,6 +2839,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2814,6 +2872,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2844,6 +2903,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2881,6 +2941,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -3034,7 +3095,7 @@ currentAVSession.getAllCastDisplays()
        console.info('There is not a cast display');
      }
    })
-   .catch((error: BusinessError) => {
+   .catch((err: BusinessError) => {
      console.info(`getAllCastDisplays BusinessError: code: ${err.code}, message: ${err.message}`);
    });
 ```
@@ -3180,6 +3241,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 | 6600109  | The remote connection is not established. |
@@ -3219,6 +3281,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 | 6600109  | The remote connection is not established. |
@@ -3259,6 +3322,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
@@ -3324,6 +3388,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
@@ -3379,6 +3444,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
@@ -3444,6 +3510,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
@@ -3578,6 +3645,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3589,7 +3657,7 @@ import http from '@ohos.net.http'
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
    let licenseRequestStr: string = TypeConversion.byteToString(requestData);
    //get media key from DRM server
-   let licenseResponeStr: string = 'defaultStr';
+   let licenseResponseStr: string = 'defaultStr';
    let httpRequest = http.createHttp();
    let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
    try {
@@ -3604,7 +3672,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
       });
       if (response?.responseCode == http.ResponseCode.OK) {
         if (typeof response.result == 'string') {
-          licenseResponeStr = response.result;
+          licenseResponseStr = response.result;
         }
       }
       httpRequest.destroy();
@@ -3613,9 +3681,9 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
      return;
    }
 
-   let licenseResponeData: Unit8Array = TypeConversion.stringToByte(licenseResponeStr);
+   let licenseResponseData: Uint8Array = TypeConversion.stringToByte(licenseResponseStr);
    try {
-    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponeData);
+    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponseData);
    } catch (err) {
     let error = err as BusinessError;
     console.error(`processMediaKeyResponse error, error code: ${error.code}, error message: ${error.message}`);
@@ -3721,6 +3789,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3759,6 +3828,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3790,6 +3860,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3822,6 +3893,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3853,6 +3925,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3885,6 +3958,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3916,6 +3990,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3948,6 +4023,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3977,6 +4053,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -4008,6 +4085,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -4037,6 +4115,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -4068,6 +4147,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -4099,6 +4179,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -4131,6 +4212,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -4160,6 +4242,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -4193,6 +4276,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message          |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -4225,6 +4309,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message             |
 | -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 5400101  | No memory.            |
 | 5400102  | Operation not allowed.   |
 | 5400103  | I/O error.             |
@@ -4266,6 +4351,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message             |
 | -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 5400101  | No memory.            |
 | 5400102  | Operation not allowed.   |
 | 5400103  | I/O error.             |
@@ -4288,6 +4374,8 @@ Subscribes to media key requests during the cast of online DRM resources.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type  | Mandatory| Description                                     |
@@ -4302,6 +4390,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message          |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -4321,6 +4410,8 @@ Unsubscribes from media key requests during the cast of online DRM resources.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type  | Mandatory| Description                                     |
@@ -4334,6 +4425,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message          |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -4347,6 +4439,8 @@ type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 Describes the callback invoked for the media key request event.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -4382,13 +4476,13 @@ Describes the information about the cast display in the case of extended screens
 
 **System capability**: SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
-| Name           | Type                     | Readable| Writable| Description                                                                 |
+| Name           | Type                     | Read Only| Optional| Description                                                                 |
 | --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
-| id            | number                  | Yes   | No   | ID of the cast display. The value must be an integer. |
-| name     | string                  | Yes   | No   | Name of the cast display.          |
-| state          | [CastDisplayState](#castdisplaystate12)          | Yes   | No   |State of the cast display.           |
-| width          | number          | Yes   | No   | Screen width of the cast display, in px. The value must be an integer.         |  
-| height          | number          | Yes   | No   | Screen height of the cast display, in px. The value must be an integer.           |  
+| id            | number                  | No   | No   | ID of the cast display. The value must be an integer. |
+| name     | string                  | No   | No   | Name of the cast display.          |
+| state          | [CastDisplayState](#castdisplaystate12)          | No   | No   |State of the cast display.           |
+| width          | number          | No   | No   | Screen width of the cast display, in px. The value must be an integer.         |  
+| height          | number          | No   | No   | Screen height of the cast display, in px. The value must be an integer.           |  
 
 ## ConnectionState<sup>10+</sup>
 
@@ -4418,13 +4512,14 @@ Describes the media metadata.
 | title           | string                  | No  | Title.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                |
 | artist          | string                  | No  | Artist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
 | author          | string                  | No  | Author.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
+| avQueueName<sup>12+</sup>       | string                  | No  | Playlist name.                                                              |
 | avQueueId<sup>11+</sup>       | string                  | No  | Unique ID of the playlist.                                                              |
-| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Cover image of the playlist, which can be pixel data of an image or an image path (local path or Internet path). |                       
+| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Cover image of the playlist, which can be pixel data of an image or an image path (local path or Internet path).<br>When the data type configured by running **setAVMetadata** is **PixelMap**, the data obtained by calling **getAVMetadata** is a pixel map. When the configured data type is **string**, the data obtained is a URL. |                       
 | album           | string                  | No  | Album name.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
 | writer          | string                  | No  | Writer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
 | composer        | string                  | No  | composer.                                                               |
 | duration        | number                  | No  | Media duration, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                 |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Pixel map or image path (local path or network path) of the image.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                            |
+| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Pixel map or image path (local path or network path) of the image.<br>When the data type configured by running **setAVMetadata** is **PixelMap**, the data obtained by calling **getAVMetadata** is a pixel map. When the configured data type is **string**, the data obtained is a URL.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                            |
 | publishDate     | Date                    | No  | Release date.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
 | subtitle        | string                  | No  | Subtitle.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
 | description     | string                  | No  | Media description.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
@@ -4432,7 +4527,7 @@ Describes the media metadata.
 | previousAssetId | string                  | No  | ID of the previous media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
 | nextAssetId     | string                  | No  | ID of the next media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
 | filter<sup>11+</sup>        | number         | No  | Protocol supported by the media session. The default value is **TYPE_CAST_PLUS_STREAM**. For details, see [ProtocolType](#protocoltype10).<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
-| drmSchemes<sup>12+</sup>        | Array\<string>         | No  | DRM scheme supported by the media session. The value is the UUID of the DRM scheme.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| drmSchemes<sup>12+</sup>        | Array\<string>         | No  | DRM scheme supported by the media session. The value is the UUID of the DRM scheme.<br> **System capability**: SystemCapability.Multimedia.AVSession.Core|
 | skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | No  | Fast-forward or rewind interval supported by the media session. The default value is **SECONDS_15**, that is, 15 seconds.                           |
 |displayTags<sup>11+</sup>     | [DisplayTag](#displaytag11)                           | No  | Display tags of the media asset.                                                         |
 
@@ -4461,8 +4556,8 @@ Describes the attributes related to the media metadata in the playlist.
 | lyricUri     | string                  | No  | Lyric URI of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
 | artist     | string                  | No  | Author of the lyric of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
 | fdSrc     | media.AVFileDescriptor        | No  | Handle to the local media file in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | No  | Descriptor of the data source in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
-| drmScheme<sup>12+</sup>     | string        | No  | DRM scheme supported by the playlist. The value is the UUID of the DRM scheme.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | No  | Descriptor of the data source in the playlist.        |
+| drmScheme<sup>12+</sup>     | string        | No  | DRM scheme supported by the playlist. The value is the UUID of the DRM scheme.<br> **System capability**: SystemCapability.Multimedia.AVSession.Core        |
 | duration     | number                  | No  | Playback duration of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
 | startPosition     | number                  | No  | Start position for playing the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
 | creditsPosition     | number                  | No  | Position for playing the closing credits of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
@@ -4655,8 +4750,8 @@ Enumerates the media playback states.
 | PLAYBACK_STATE_PREPARE      | 1    | Preparing. |
 | PLAYBACK_STATE_PLAY         | 2    | Playing.    |
 | PLAYBACK_STATE_PAUSE        | 3    | Paused.        |
-| PLAYBACK_STATE_FAST_FORWARD | 4    | Fast-forwarding.        |
-| PLAYBACK_STATE_REWIND       | 5    | Rewinding.        |
+| PLAYBACK_STATE_FAST_FORWARD | 4    | Fast-forward.        |
+| PLAYBACK_STATE_REWIND       | 5    | Rewind.        |
 | PLAYBACK_STATE_STOP         | 6    | Stop the playback.        |
 | PLAYBACK_STATE_COMPLETED    | 7    | Playback complete.    |
 | PLAYBACK_STATE_RELEASED     | 8    | Released.        |
@@ -5012,6 +5107,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5050,6 +5146,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5161,6 +5258,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 600101  | Session service exception. |
 | 600102  | The session does not exist. |
 | 600103  | The session controller does not exist. |
@@ -5210,6 +5308,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 600101  | Session service exception. |
 | 600102  | The session does not exist. |
 | 600103  | The session controller does not exist. |
@@ -5587,6 +5686,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5632,6 +5732,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.                |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
@@ -5684,6 +5785,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5752,6 +5854,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.                |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
@@ -5813,6 +5916,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5873,6 +5977,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5937,6 +6042,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5974,6 +6080,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6005,6 +6112,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6041,6 +6149,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6072,6 +6181,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6083,7 +6193,7 @@ avsessionController.on('callMetadataChange', 'all', (callmetadata: avSession.Cal
 });
 
 avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.CallMetadata) => {
-  console.info(`on callMetadataChange state : ${callmetadata.state}`);
+  console.info(`on callMetadataChange state : ${callmetadata.name}`);
 });
 ```
 
@@ -6108,6 +6218,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6139,6 +6250,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6175,6 +6287,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6205,6 +6318,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6237,6 +6351,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6267,6 +6382,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ----------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  |The session controller does not exist. |
 
@@ -6299,6 +6415,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6329,6 +6446,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6362,6 +6480,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message          |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6392,6 +6511,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ----------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6424,6 +6544,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID | Error Message         |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6454,6 +6575,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6510,6 +6632,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6540,6 +6663,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6572,6 +6696,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6602,6 +6727,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6634,6 +6760,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6664,6 +6791,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6720,6 +6848,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ----------------                       |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception.             |
 | 6600103  | The session controller does not exist. |
 
@@ -7182,7 +7311,7 @@ Enumerates the error codes used in the media session.
 | ERR_CODE_COMMAND_INVALID               | 6600105 | Invalid session command.           |
 | ERR_CODE_SESSION_INACTIVE              | 6600106 | The session is not activated.                |
 | ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or events.       |
-| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connecting failed.       |
+| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connection failed.       |
 | ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote connection is not established.       |
 
 ## SkipIntervals<sup>11+</sup>

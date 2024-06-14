@@ -27,7 +27,7 @@ Check whether the start time and end time are properly set.
 
 **Error Message**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **Description**
 

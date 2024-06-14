@@ -12,7 +12,7 @@
 ## Modules to Import
 
 ```ts
-import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType }from '@ohos.arkui.advanced.GridObjectSortComponent'
+import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@ohos.arkui.advanced.GridObjectSortComponent'
 ```
 
 ##  Child Components
@@ -29,6 +29,8 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **Decorator**: @Component
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -42,28 +44,31 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | onCancel | () => void | - | Yes| Callback invoked when changes are canceled.|
 | build() | void | - | Yes| Build function.|
 
-
 ##  GridObjectSortComponentOptions
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name          | Type                     | Mandatory| Description                                                  |
 | -------------- | ------------------------- | ---- | ------------------------------------------------------ |
-| type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | No  | Component display form: text only or\|text and imagery.<br>Default value: **GridObjectSortComponentType.text**|
+| type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | No  | Component display form: text only or text and imagery.<br>Default value: **GridObjectSortComponentType.text** |
 | imageSize      | number \| [Resource](ts-types.md#resource) | No  | Image size.<br>Default value: **56**                         |
 | normalTitle | [ResourceStr](ts-types.md#resourcestr)     | No  | Title displayed in the non-editing state.<br>Default value: **Channel**           |
 | showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | No  | First subtitle of the display area.<br>Default value: **Drag to sort**|
 | addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | No  | Second subtitle of the display area.<br>Default value: **Touch to add**           |
 | editTitle      | [ResourceStr](ts-types.md#resourcestr)     | No  | Title displayed in the editing state.<br>Default value: **Edit**            |
 
-
 ## GridObjectSortComponentType 
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name    | Type  | Value          | Description          |
 | -------- | ------ | ------------ | -------------- |
-| IMAGE_TE | string | 'image_text' | Text and imagery.|
+| IMAGE_TEXT | string | 'image_text' | Text and imagery.|
 | TEXT     | string | 'text'       | Text only.    |
 
-
 ## GridObjectSortComponentItem
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name    | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |

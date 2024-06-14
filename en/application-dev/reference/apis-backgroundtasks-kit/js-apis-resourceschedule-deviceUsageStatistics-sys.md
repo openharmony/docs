@@ -33,10 +33,13 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                    |
-| ---------- | ----------------------------     |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
 | 10000002   | Parcel operation failed.         |
 | 10000003   | System service operation failed. |
@@ -80,10 +83,13 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                    |
-| ---------- | ----------------------------     |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
 | 10000002   | Parcel operation failed.         |
 | 10000003   | System service operation failed. |
@@ -125,10 +131,13 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                    |
-| ---------- | ----------------------------     |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
 | 10000002   | Parcel operation failed.         |
 | 10000003   | System service operation failed. |
@@ -156,10 +165,14 @@ Queries the priority group of this application. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -196,10 +209,14 @@ Queries the priority group of this application. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -238,10 +255,14 @@ Queries the priority group of this application. This API returns the result sync
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -280,10 +301,14 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -325,10 +350,14 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -376,10 +405,14 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -419,10 +452,14 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -465,10 +502,14 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -513,10 +554,14 @@ Queries the application usage duration statistics based on the specified start t
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -564,10 +609,14 @@ Queries the application usage duration statistics based on the specified start t
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -609,10 +658,14 @@ Queries the application usage duration statistics in the specified time frame at
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -664,10 +717,14 @@ Queries the application usage duration statistics in the specified time frame at
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -711,10 +768,14 @@ Queries events of all applications based on the specified start time and end tim
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -765,10 +826,14 @@ Queries events of all applications based on the specified start time and end tim
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -810,10 +875,14 @@ Queries events of this application based on the specified start time and end tim
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -862,10 +931,14 @@ Queries events of this application based on the specified start time and end tim
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -914,10 +987,14 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and lock
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -958,10 +1035,14 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and lock
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1009,10 +1090,14 @@ Queries the number of notifications from all applications based on the specified
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1053,10 +1138,14 @@ Queries the number of notifications from all applications based on the specified
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1099,10 +1188,14 @@ Queries FA usage records. This API uses a promise to return a maximum of 1000 FA
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -1198,10 +1291,14 @@ Queries a given number of usage records of unused HAP files for each application
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -1244,10 +1341,14 @@ Queries a given number of usage records of unused HAP files for each application
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -1297,10 +1398,14 @@ Registers a callback for application group changes. When an application group of
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1347,10 +1452,14 @@ Registers a callback for application group changes. When an application group of
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1398,10 +1507,14 @@ Unregisters the callback for application group changes. This API uses a promise 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1438,10 +1551,14 @@ Unregisters the callback for application group changes. This API uses an asynchr
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md) and [Common Error Codes](../errorcode-universal.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |

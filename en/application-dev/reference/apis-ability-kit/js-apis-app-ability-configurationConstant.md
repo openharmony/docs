@@ -9,7 +9,7 @@ The **ConfigurationConstant** module provides the enumerated values of the envir
 ## Modules to Import
 
 ```ts
-import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+import { ConfigurationConstant } from '@kit.AbilityKit';
 ```
 
 ## ConfigurationConstant.ColorMode

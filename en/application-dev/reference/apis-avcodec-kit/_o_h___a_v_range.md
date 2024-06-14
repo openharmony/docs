@@ -9,9 +9,7 @@ The OH_AVRange struct describes the value range, which contains the minimum valu
 
 **Since**: 10
 
-**Related Modules**
-
-[AVCapability](_a_v_capability.md)
+**Related module**: [AVCapability](_a_v_capability.md)
 
 
 ## Summary
