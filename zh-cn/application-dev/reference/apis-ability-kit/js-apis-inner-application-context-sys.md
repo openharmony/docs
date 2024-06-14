@@ -22,7 +22,7 @@ createBundleContext(bundleName: string): Context
 
 **说明：**
 >
-> 建议使用[Context.createModuleContext](#contextcreatemodulecontext)替代。
+> stage模型多module的情况下可能发生资源冲突的情况，建议使用[Context.createModuleContext](#contextcreatemodulecontext)替代。
 
 **系统接口**：此接口为系统接口。
 
