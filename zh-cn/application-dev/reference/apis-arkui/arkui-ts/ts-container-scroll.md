@@ -301,7 +301,7 @@ onScroll(event: (xOffset: number, yOffset: number) => void)
 
 ### onWillScroll<sup>12+</sup>
 
-onWillScroll(handler: ScrollOnWillScrollCallback )
+onWillScroll(handler: ScrollOnWillScrollCallback)
 
 滚动事件回调，Scroll滚动前触发。
 
@@ -325,7 +325,7 @@ onWillScroll(handler: ScrollOnWillScrollCallback )
 
 ### onDidScroll<sup>12+</sup>
 
-onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说明) )
+onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说明))
 
 滚动事件回调，Scroll滚动时触发。
 
@@ -480,7 +480,7 @@ scroller: Scroller = new Scroller()
 
 ### scrollTo
 
-scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: { duration?: number, curve?: Curve | ICurve } | boolean }): void
+scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: { duration?: number, curve?: Curve | ICurve } | boolean })
 
 
 滑动到指定位置。
@@ -498,7 +498,7 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 ### scrollEdge
 
-scrollEdge(value: Edge, options?: ScrollEdgeOptions): void
+scrollEdge(value: Edge, options?: ScrollEdgeOptions)
 
 
 滚动到容器边缘，不区分滚动轴方向，Edge.Top和Edge.Start表现相同，Edge.Bottom和Edge.End表现相同。
@@ -512,7 +512,7 @@ scrollEdge(value: Edge, options?: ScrollEdgeOptions): void
 
 ### fling<sup>12+</sup>
 
-fling(velocity: number): void
+fling(velocity: number)
 
 
 滚动类组件开启按传入的初始速度进行惯性滚动。
@@ -532,6 +532,7 @@ fling(velocity: number): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
 
 ### scrollPage<sup>9+</sup>
 
@@ -549,7 +550,7 @@ scrollPage(value:   ScrollPageOptions)
 
 ### scrollPage<sup>(deprecated)</sup>
 
-scrollPage(value: { next: boolean, direction?: Axis }): void
+scrollPage(value: { next: boolean, direction?: Axis })
 
 滚动到下一页或者上一页。从API version 9开始, 该接口不再维护，推荐使用 [scrollPage<sup>9+</sup>](#scrollpage9)   。
 
@@ -572,7 +573,7 @@ currentOffset(): OffsetResult
 
 ### scrollToIndex
 
-scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign): void
+scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign)
 
 滑动到指定Index。
 
@@ -595,7 +596,7 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign): void
 
 ### scrollBy<sup>9+</sup>
 
-scrollBy(dx: Length, dy: Length): void
+scrollBy(dx: Length, dy: Length)
 
 
 滑动指定距离。
@@ -668,6 +669,7 @@ getItemRect(index: number): RectResult
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
 
 ## OffsetResult<sup>11+</sup>
 
