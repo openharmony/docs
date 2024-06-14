@@ -944,6 +944,8 @@ Nullable\<T> {
 
 定义屏障线的方向。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | LEFT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最左侧。    |
