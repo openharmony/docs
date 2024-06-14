@@ -729,7 +729,6 @@ Publishes data to the database.
 | bundleName | string                                          | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data.      |
 | callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback used to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback is not triggered or **err** is an error object.|
 
-**Example**
 
 **Error codes**
 
@@ -738,6 +737,8 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 | ID| Error Message                   |
 | -------- | -------------------------- |
 | 15700012 | The data area is not exist.|
+
+**Example**
 
 ```ts
 import { BusinessError } from '@ohos.base'
