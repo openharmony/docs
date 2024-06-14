@@ -170,7 +170,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig12) | 是 | 设置AI分析识别类型 |
+| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是 | 设置AI分析识别类型 |
 
 ## 事件
 
