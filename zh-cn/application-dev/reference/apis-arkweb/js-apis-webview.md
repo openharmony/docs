@@ -5827,7 +5827,7 @@ enableAdsBlock(enable: boolean): void
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -15057,6 +15057,14 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 | rulesFile | string | 是   | 指定了符合 easylist 通用语法的规则文件路径，应用需要有此文件的读权限。 |
 | replace   | boolean | 是   | true表示强制替换掉内置的默认规则，false表示设置的自定义规则将与内置规则共同工作。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -15117,6 +15125,14 @@ static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
 | domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -15187,6 +15203,14 @@ static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
 | domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -15316,6 +15340,14 @@ static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 | ---------- | ------ | ---- | -------------------------------- |
 | domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -15388,6 +15420,14 @@ static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
 | domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -15545,7 +15585,7 @@ webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): v
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
 | info        | [SnapshotInfo](#snapshotinfo12)| 是   | 全量绘制结果入参。 |
-| callback        | [SnapshotResult](#snapshotresult12)| 是   | 全量绘制回调结果。 
+| callback        | [SnapshotResult](#snapshotresult12)| 是   | 全量绘制回调结果。 |
 
 **示例：**
 
