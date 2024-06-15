@@ -32,7 +32,7 @@ Badge(value: BadgeParamWithNumber)
 
 **参数：**
 
-| 参数名 | 参数 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value |  [BadgeParamWithNumber](#badgeparamwithnumber对象说明)| 是 | 数字标记组件参数。|
 
@@ -50,7 +50,7 @@ Badge(value: BadgeParamWithString)
 
 **参数：**
 
-| 参数名 | 参类型                                              | 必填 | 说明             |
+| 参数名 | 类型                                              | 必填 | 说明             |
 | ------ | ----------------------------------------------------- | ---- | -------------------- |
 | value  | [BadgeParamWithString](#badgeparamwithstring对象说明) | 是   | 字符串标记组件参数。 |
 
@@ -64,10 +64,10 @@ Badge(value: BadgeParamWithString)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| position | [BadgePosition](#badgeposition枚举说明)\|[Position<sup>10+</sup>](ts-types.md#position) | 否 | 是 | 设置提示点显示位置。<br/>默认值：BadgePosition.RightTop <br/>**说明：** <br/> Position作为入参，不支持设置百分比；设置为非法值时，默认（0,0）处理。|
-| style | [BadgeStyle](#badgestyle对象说明) | 否 | 否 | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
+| position | [BadgePosition](#badgeposition枚举说明)\|[Position<sup>10+</sup>](ts-types.md#position) | 否 | 设置提示点显示位置。<br/>默认值：BadgePosition.RightTop <br/>**说明：** <br/> Position作为入参，不支持设置百分比；设置为非法值时，默认（0,0）处理。|
+| style | [BadgeStyle](#badgestyle对象说明) | 是 | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
 
 
 ## BadgeParamWithNumber对象说明
