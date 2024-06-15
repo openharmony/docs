@@ -3616,6 +3616,7 @@ aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
   console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
+
 ### getValidCommands<sup>11+</sup>
 
 getValidCommands(callback: AsyncCallback<Array<AVCastControlCommandType>>): void;
