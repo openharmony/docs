@@ -90,11 +90,10 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 
 | 名称                  | 类型                                   | 必填 | 描述                                                         |
 | --------------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                 | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单项文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                 |
-| icon<sup>10+</sup>    | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单项图标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                 |
+| value                 | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单项文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| icon<sup>10+</sup>    | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单项图标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | enabled<sup>11+</sup> | boolean                                | 否   | 菜单条目是否可进行交互。<br/>默认值：true, 菜单条目可以进行交互。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| action                | ()&nbsp;=&gt;&nbsp;void                | 是   | 点击菜单项的事件回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                       |
-| symbolIcon<sup>12+</sup>                | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)                | 是   | 点击菜单项的事件回调。                                       |
+| action                | ()&nbsp;=&gt;&nbsp;void                | 是   | 点击菜单项的事件回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## MenuOptions<sup>10+</sup>
 

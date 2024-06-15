@@ -128,6 +128,12 @@ struct Tests {
 
 ## Matrix4Transit
 
+矩阵对象。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
 ### copy
 
 copy(): Matrix4Transit
