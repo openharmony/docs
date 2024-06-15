@@ -500,9 +500,10 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    
                let want: Want = {
                  deviceId: '', // deviceId为空表示本设备
-                 bundleName: 'com.samples.stagemodelabilitydevelop',
-                 moduleName: 'entry', // moduleName非必选
-                 abilityName: 'FuncAbilityA',
+                 bundleName: '',
+                 moduleName: '', // moduleName非必选
+                 abilityName: '',
+                 action: 'ohos.want.action.editData',
                  parameters: { // 自定义信息
                    info: '来自EntryAbility UIAbilityComponentsInteractive页面'
                  }
@@ -840,7 +841,7 @@ export default class EntryAbility extends UIAbility {
      uiContext: UIContext | undefined = undefined;
      // ...
      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-       if (want?.parameters?.router && want.parameters.router === 'funcB') {
+       if (want?.parameters?.router && want.parameters.router === 'funcA') {
          let funcAUrl = 'pages/Page_HotStartUp';
          if (this.uiContext) {
            let router: Router = this.uiContext.getRouter();
