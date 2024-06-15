@@ -500,9 +500,9 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    
                let want: Want = {
                  deviceId: '', // deviceId为空表示本设备
-                 bundleName: '',
+                 bundleName: '', // 隐式匹配时bundleName非必选
                  moduleName: '', // moduleName非必选
-                 abilityName: '',
+                 abilityName: '', // abilityName留空表示隐式匹配
                  action: 'ohos.want.action.editData',
                  parameters: { // 自定义信息
                    info: '来自EntryAbility UIAbilityComponentsInteractive页面'
@@ -613,9 +613,10 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
                const RESULT_CODE: number = 1001;
                let want: Want = {
                  deviceId: '', // deviceId为空表示本设备
-                 bundleName: 'com.samples.stagemodelabilitydevelop',
-                 moduleName: 'entry', // moduleName非必选
-                 abilityName: 'FuncAbilityA',
+                 bundleName: '', // 隐式匹配时bundleName非必选
+                 moduleName: '', // moduleName非必选
+                 abilityName: '', // abilityName留空表示隐式匹配
+                 action: 'ohos.want.action.editData',
                  parameters: { // 自定义信息
                    info: '来自EntryAbility UIAbilityComponentsInteractive页面'
                  }
@@ -694,7 +695,7 @@ struct Page_UIAbilityComponentsInteractive {
               moduleName: 'entry', // moduleName非必选
               abilityName: 'FuncAbility',
               parameters: { // 自定义参数传递页面信息
-                router: 'FuncA'
+                router: 'funcA'
               }
             };
             // context为调用方UIAbility的UIAbilityContext
