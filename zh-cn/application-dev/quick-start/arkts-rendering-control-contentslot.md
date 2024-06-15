@@ -12,7 +12,7 @@
 ContentSlot(content: Content); // 当前开发者需要使用ArkUI提供的NodeContent作为管理器
 ```
 
-| 参数名  | 参数类型 | 必填 | 参数描述                                                     |
+| 参数名  | 类型 | 必填 | 参数描述                                                     |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | content | Content  | 是   | Content作为ContentSlot的管理器，通过Native侧提供的接口，可以注册并触发ContentSlot的上下树事件回调以及管理ContentSlot的子组件。 |
 
@@ -31,7 +31,7 @@ abstract class Content {
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填 | 参数描述                                                     |
+| 参数名  | 类型 | 必填 | 参数描述                                                     |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | content | Content  | 是   | Content作为ContentSlot的管理器，通过Native侧提供的接口，可以注册并触发ContentSlot的上下树事件回调以及管理ContentSlot的子组件。 |
 
