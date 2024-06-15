@@ -3665,7 +3665,7 @@ getValidCommands(): Promise<Array\<AVCastControlCommandType>>
 
 | 类型 | 说明 |
 | -------------- | ----------------------------- |
-| Promise\<Array\<[AVCastControlCommandType](#avcastcontrolcommandtype10)>> | Promise对象，返回当前支持的命令。 |
+| Promise<Array\<[AVCastControlCommandType](#avcastcontrolcommandtype10)>> | Promise对象，返回当前支持的命令。 |
 
 **错误码：**
 
