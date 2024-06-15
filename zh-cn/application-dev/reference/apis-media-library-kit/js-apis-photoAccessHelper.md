@@ -1510,6 +1510,8 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **示例：**
 
 ```ts
@@ -1526,11 +1528,13 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| option | [PhotoSelectOptions](#photoselectoptions) | 否   | photoPicker选择选项，若无此参数，则默认选择媒体文件类型为图片和视频类型，选择媒体文件数量的最大值为50 |
+| option | [PhotoSelectOptions](#photoselectoptions) | 否   | photoPicker选择选项，若无此参数，则默认选择媒体文件类型为图片和视频类型，默认选择媒体文件数量的最大值为50 |
 
 **返回值：**
 
@@ -1578,6 +1582,8 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 **注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1628,6 +1634,8 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 **注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -4535,6 +4543,8 @@ title参数规格为：
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称                      | 值                   | 说明       |
 |-------------------------|---------------------|----------|
 | IMAGE_TYPE              | 'image/*'           | 图片类型。    |
@@ -4547,6 +4557,8 @@ title参数规格为：
 枚举，推荐的图片类型。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
@@ -4633,6 +4645,8 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 如果需要根据枚举值推荐相应的图片，则配置此参数。 |
@@ -4644,13 +4658,15 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型。 |
-| maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)。      |
-| isPhotoTakingSupported<sup>11+</sup> | boolean  | 否   | 支持拍照。 |
-| isSearchSupported<sup>11+</sup> | boolean  | 否   | 支持搜索。 |
-| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 支持图片推荐。      |
+| maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(最大可设置的值为500，若不设置则默认为50)。      |
+| isPhotoTakingSupported<sup>11+</sup> | boolean  | 否   | 是否支持拍照，true表示支持，false表示不支持，默认为true。 |
+| isSearchSupported<sup>11+</sup> | boolean  | 否   | 是否支持搜索，true表示支持，false表示不支持，默认为true。 |
+| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 图片推荐相关配置参数。      |
 | preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | 否   | 预选择图片的uri数据。 |
 
 ## PhotoSelectOptions
@@ -4659,15 +4675,19 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
+| isEditSupported<sup>11+</sup>       | boolean | 否   | 是否支持编辑照片，true表示支持，false表示不支持，默认为true。      |
 
 ## PhotoSelectResult
 
 返回图库选择后的结果集。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                    | 类型                | 可读 | 可写 | 说明                           |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
