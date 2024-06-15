@@ -39,8 +39,6 @@ SelectionMenu(options: SelectionMenuOptions)
 
 ## SelectionMenuOptions
 
-SelectionMenuOptions({editorMenuOptions?: Array&lt;EditorMenuOptions&gt;, expandedMenuOptions?: Array&lt;ExpandedMenuOptions&gt;, controller?: RichEditorController, onCopy?: (event?: EditorEventInfo) =&gt; void, onPaste?: (event?: EditorEventInfo) =&gt; void, onCut?: (event?: EditorEventInfo) =&gt; void, onSelectAll?: (event?: EditorEventInfo) =&gt; void})
-
 SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配置参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
