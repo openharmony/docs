@@ -76,7 +76,7 @@ ChipItemStyle定义了chip的共通属性。
 
 > **说明：**
 >
-> 1.操作块的大小可以是两种类型，一种是ChipSize，为方便使用，有两种尺寸可选分别是NORMAL和SMALL；另一种是SizeOptions，操作块有最小宽度限制，当用户设置宽度小于最小宽度时，按最小宽度显示。
+> 1.操作块的大小可以是两种类型，一种是ChipSize，为方便使用，有两种尺寸可选分别是NORMAL和SMALL；另一种是SizeOptions。
 >
 > 2.backgroundColor、selectedBackgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
 
