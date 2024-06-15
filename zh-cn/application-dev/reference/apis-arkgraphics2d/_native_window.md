@@ -88,7 +88,7 @@
 ### NativeWindowOperation
 
 ```
-typedef enum NativeWindowOperationNativeWindowOperation
+typedef enum NativeWindowOperation NativeWindowOperation
 ```
 
 **描述**
