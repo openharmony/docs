@@ -702,3 +702,73 @@ type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => v
 | [FP](#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
 | [PERCENT](#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
 | [LPX](#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
+
+## TextContentControllerBase<sup>10+</sup>
+
+TextInput、TextArea、Search的基础控制器。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### getTextContentRect<sup>10+</sup>
+
+getTextContentRect(): RectResult
+
+获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型       | 说明       |
+| -------------------  | -------- |
+| [RectResult](#rectresult10) | 获取已编辑文本内容区域相对组件的位置和大小。 |
+
+> **说明：**
+>
+> - 初始不输入文本时，返回值中有相对组件的位置信息，大小为0。
+> - 返回值中的位置信息是第一个字符相对于可编辑组件的位置。
+> - 在Search组件中，返回的位置信息是相对Search组件中搜索图标的偏移值。
+> - 有输入时返回信息中的宽度是组件编辑的固定宽度。
+
+### getTextContentLineCount<sup>10+</sup>
+
+getTextContentLineCount(): number
+
+获取已编辑文本内容的行数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型  | 说明       |
+| ----- | -------- |
+| number| 已编辑文本内容行数。 |
+
+### getCaretOffset<sup>11+</sup>
+
+getCaretOffset(): CaretOffset
+
+返回当前光标所在位置信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
+| [CaretOffset](ts-basic-components-textinput.md#caretoffset11对象说明) | 光标相对输入框的位置。 |
+
+> **说明：**
+>
+> - 在当前帧更新光标位置同时调用该接口，该接口不生效。
+> - 在Search组件中，返回的位置信息是相对Search组件中搜索图标的偏移值。
+> - 在Search组件中，不输入文本时，返回值中有相对Search组件的位置信息。
+> - 返回值中的位置信息是光标相对于可编辑组件的位置。

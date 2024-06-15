@@ -388,22 +388,6 @@ privacySensitive(supported: boolean)
 | --------- | ------- | ---- | ------------------------ |
 | supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值：false |
 
-### enhancedImageQuality<sup>12+</sup>
-
-enhancedImageQuality(imageQuality: ResolutionQuality)
-
-设置图像解码时图像解码分辨率选项。
-
-该属性不支持 svg，[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)，[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) 等非解码图片类型。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                    | 必填 | 说明                             |
-| ------ | --------------------------------------- | ---- | -------------------------------- |
-| imageQuality | [ResolutionQuality](#resolutionquality12) | 是   | 图像解码分辨率质量。 |
-
 ### dynamicRangeMode<sup>12+</sup>
 
 dynamicRangeMode(value: DynamicRangeMode)
@@ -466,16 +450,6 @@ dynamicRangeMode(value: DynamicRangeMode)
 |  left   |  [Length](ts-types.md#length)  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
 
 ![edgewidths](figures/edgewidths.png)
-
-## ResolutionQuality<sup>12+</sup>
-
-图像解码时图像解码分辨率选项。
-
-| 名称     | 描述                      |
-| ------ | --------------------------  |
-| Low   | 低图像分辨率，解码时间适中。   |
-| Medium | 中等图像分辨率，解码时间适中。  |
-| High   | 高图像分辨率，解码时间长。    |
 
 ## DynamicRangeMode<sup>12+</sup>
 
