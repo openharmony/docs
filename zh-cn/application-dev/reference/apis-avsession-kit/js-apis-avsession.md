@@ -3629,7 +3629,7 @@ getValidCommands(callback: AsyncCallback<Array\<AVCastControlCommandType>>): voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| callback | Array\<[AVCastControlCommandType](#avcastcontrolcommandtype10)> | 是 | 回调函数。返回当前支持的命令。 |
+| callback | Array<[AVCastControlCommandType](#avcastcontrolcommandtype10)> | 是 | 回调函数。返回当前支持的命令。 |
 
 **错误码：**
 
