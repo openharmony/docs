@@ -24,10 +24,9 @@
 
   ```ts
   // 创建NodeController
-  import webview from '@ohos.web.webview';
-  import {UIContext} from '@ohos.arkui.UIContext';
-  import {NodeController, BuilderNode, NodeRenderType, FrameNode} from "@ohos.arkui.node";
-  import {AVPlayerDemo} from './PlayerDemo';
+  import { webview } from '@kit.ArkWeb';
+  import { UIContext, NodeController, BuilderNode, NodeRenderType, FrameNode } from "@kit.ArkUI";
+  import { AVPlayerDemo } from './PlayerDemo';
 
   @Observed
   declare class Params {
@@ -254,8 +253,8 @@
 - 应用侧代码，视频播放示例, ./PlayerDemo.ets。
 
   ```ts
-  import media from '@ohos.multimedia.media';
-  import {BusinessError} from '@ohos.base';
+  import { media } from '@kit.MediaKit';
+  mport { BusinessError } from '@kit.BasicServicesKit';
 
   export class AVPlayerDemo {
     private count: number = 0;
