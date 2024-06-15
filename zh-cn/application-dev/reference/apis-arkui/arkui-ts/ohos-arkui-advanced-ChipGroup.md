@@ -86,9 +86,9 @@ ChipGroupSpaceOptions 定义了chipGroup左右内边距，以及chip与chip直�
 
 | 名称       | 类型            | 必填 | 描述                                               |
 | ---------- | -------------- | ---- | ------------------------------------------------ |
-| itemSpace | string\|number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>默认值：8<br/>为undefined时，itemSpace走默认值。                |
-| startSpace | Length         | 否   | 左侧内边距（不支持百分比）。<br/>默认值：16<br/>为undefined时，startSpace走默认值。                          |
-| endSpace   | Length         | 否   | 右侧内边距（不支持百分比）。<br/>默认值：16<br/>为undefined时，endSpace走默认值。   |
+| itemSpace | string\|number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>默认值：8<br/>单位：vp<br/>为undefined时，itemSpace走默认值。      |
+| startSpace | Length         | 否   | 左侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，startSpace走默认值。                |
+| endSpace   | Length         | 否   | 右侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，endSpace走默认值。 |
 
 ## ChipGroupPaddingOptions
 

@@ -20,7 +20,7 @@ getFont(): Font
 
 获取Font对象。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1514,7 +1514,7 @@ registerFont(options: font.FontOptions): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { Font } from '@ohos.arkui.UIContext';
 let font:Font = uiContext.getFont();
 font.registerFont({
   familyName: 'medium',
@@ -1540,7 +1540,7 @@ getSystemFontList(): Array\<string>
 **示例：** 
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { Font } from '@ohos.arkui.UIContext';
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getSystemFontList()
@@ -1572,7 +1572,7 @@ getFontByName(fontName: string): font.FontInfo
 **示例：** 
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { Font } from '@ohos.arkui.UIContext';
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getFontByName('Sans Italic')
