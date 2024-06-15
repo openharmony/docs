@@ -4146,7 +4146,7 @@ selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本
 // xxx.ets
 @Entry
 @Component
-struct TextInputExample {
+struct RichEditorExample {
   richEditorController: RichEditorController = new RichEditorController()
   @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
     {
