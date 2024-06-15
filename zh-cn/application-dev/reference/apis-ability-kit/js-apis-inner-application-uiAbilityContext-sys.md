@@ -27,11 +27,8 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
-> **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -119,11 +116,8 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
-> **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -215,11 +209,8 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
-> **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -459,7 +450,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -540,7 +532,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -758,7 +751,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -835,7 +828,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -907,11 +900,12 @@ export default class EntryAbility extends UIAbility {
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number
 
-将当前Ability连接到一个使用AbilityInfo.AbilityType.SERVICE模板的指定account的Ability。
+将当前Ability连接到一个指定account的ServiceExtensionAbility。
 
 > **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1003,11 +997,8 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
-> **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1093,11 +1084,8 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
-> **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1188,11 +1176,8 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-
-> **说明：**
-> 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
