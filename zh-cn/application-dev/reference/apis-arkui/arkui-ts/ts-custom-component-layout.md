@@ -77,9 +77,8 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 |--------------|---------------------------------- | -----------------------------------------------|---------------------|
 | measureResult| [MeasureResult](#measureresult10)      |   是| 子组件测量后的尺寸信息,继承自[SizeResult](#sizeresult10)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>单位：vp     |
 
-### 方法
 
-#### layout
+### layout
 
 layout(position: Position)
 
@@ -91,9 +90,9 @@ layout(position: Position)
 |-----------------|---------------------------------------------------------|---------------------|-------------|
 |   position      | [Position](ts-types.md#position)                        | 是                  |   位置。   |
 
-#### getMargin<sup>12+</sup>
+### getMargin<sup>12+</sup>
 
-getMargin() : DirectionalEdgesT<number>
+getMargin() : DirectionalEdgesT\<number>
 
 调用此方法获得子组件的margin信息。
 
@@ -103,9 +102,9 @@ getMargin() : DirectionalEdgesT<number>
  |------------------------------------|---------------------------------------------|
  | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的margin信息。   |
 
- #### getPadding<sup>12+</sup>
+ ### getPadding<sup>12+</sup>
 
-getPadding() : DirectionalEdgesT<number>
+getPadding() : DirectionalEdgesT\<number>
 
  调用此方法获得子组件的padding信息。
 
@@ -115,9 +114,9 @@ getPadding() : DirectionalEdgesT<number>
  |------------------------------------|---------------------------------------------|
  | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的padding信息。  |
 
-#### getBorderWidth<sup>12+</sup>
+### getBorderWidth<sup>12+</sup>
 
-getBorderWidth() : DirectionalEdgesT<number>
+getBorderWidth() : DirectionalEdgesT\<number>
 
 调用此方法获得子组件的boderWidth信息。
 
