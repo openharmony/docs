@@ -1123,7 +1123,7 @@ onDidDelete(callback: Callback\<DeleteValue>)
 
 ## TextInputController<sup>8+</sup>
 
-TextInput组件的控制器。
+TextInput组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1180,78 +1180,6 @@ stopEditing(): void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### getTextContentRect<sup>10+</sup>
-
-getTextContentRect(): [RectResult](#rectresult10)
-
-获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型                          | 说明                  |
-| --------------------------- | ------------------- |
-| [RectResult](#rectresult10) | 已编辑文本内容的相对组件的位置和大小。 |
-
-> **说明：**
->
-> - 初始不输入文本时，返回值中有相对组件的位置信息，大小为0。
-> - 返回值中的位置信息是第一个字符相对于可编辑组件的位置。
-
-### RectResult<sup>10+</sup>
-
-位置和大小，单位均为像素。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数     | 类型     | 描述       |
-| ------ | ------ | -------- |
-| x      | number | 水平方向横坐标。 |
-| y      | number | 竖直方向纵坐标。 |
-| width  | number | 内容宽度大小。  |
-| height | number | 内容高度大小。  |
-
-
-### getTextContentLineCount<sup>10+</sup>
-
-getTextContentLineCount(): number
-
-获取已编辑文本内容的行数。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型     | 说明         |
-| ------ | ---------- |
-| number | 已编辑文本内容行数。 |
-### getCaretOffset<sup>11+</sup>
-
-getCaretOffset(): CaretOffset
-
-返回当前光标所在位置信息。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型                                | 说明          |
-| --------------------------------- | ----------- |
-| [CaretOffset](#caretoffset11对象说明) | 光标相对输入框的位置。 |
-
-> **说明：**
->
-> - 在当前帧更新光标位置同时调用该接口，该接口不生效。
 
 ## CaretOffset<sup>11+</sup>对象说明
 
