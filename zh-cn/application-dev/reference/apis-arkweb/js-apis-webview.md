@@ -8063,6 +8063,131 @@ setUrlTrustList(urlTrustList: string): void
   }
   ```
 
+### setPathAllowingUniversalAccess<sup>12+</sup>
+
+setPathAllowingUniversalAccess(pathList: Array\<string\>): void
+
+设置一个路径列表，当file协议访问该路径列表中的资源时，允许跨域访问本地文件。此外，当设置了路径列表时，file协议仅允许访问路径列表中的资源（[fileAccess](ts-basic-components-web.md#fileAccess)的行为将会被此接口行为覆盖）。路径列表中的路径必须满足以下路径格式之一：
+
+1.应用文件目录的子目录（应用文件目录通过Ability Kit中的[Context.filesDir](../apis-ability-kit/js-apis-inner-application-context.md#context)获取），例如：
+
+* /data/storage/el2/base/files/example
+* /data/storage/el2/base/haps/entry/files/example
+
+2.应用资源目录及其子目录（应用资源目录通过Ability Kit中的[Context.resourceDir](../apis-ability-kit/js-apis-inner-application-context.md#context)获取），例如：
+
+* /data/storage/el1/bundle/entry/resource/resfile
+* /data/storage/el1/bundle/entry/resource/resfile/example
+
+当路径列表中有其中一个路径不满足以上条件之一，则会抛出异常码401，并且设置路径列表失败。当设置的路径列表为空，则file协议可访问范围以[fileAccess](ts-basic-components-web.md#fileAccess)的行为为准。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 参数类型 | 必填 | 参数描述                  |
+| -------- | -------- | ---- | ------------------------- |
+| pathList | Array\<string\>   | 是   | 路径列表 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: WebviewController = new webview.WebviewController();
+
+  build() {
+    Row() {
+      Web({ src: "", controller: this.controller })
+        .onControllerAttached(() => {
+          try {
+            // 设置允许可以跨域访问的路径列表
+            this.controller.setPathAllowingUniversalAccess([
+              getContext().resourceDir,
+              getContext().filesDir + "/example"
+            ])
+            this.controller.loadUrl("file://" + getContext().resourceDir + "/index.html")
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        .javaScriptAccess(true)
+        .fileAccess(true)
+        .domStorageAccess(true)
+    }
+  }
+}
+
+```
+
+加载的html文件，位于应用资源目录resource/resfile/index.html。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
+    <script>
+		function getFile() {
+			var file = "file:///data/storage/el1/bundle/entry/resources/resfile/js/script.js";
+			var xmlHttpReq = new XMLHttpRequest();
+			xmlHttpReq.onreadystatechange = function(){
+			    console.log("readyState:" + xmlHttpReq.readyState);
+			    console.log("status:" + xmlHttpReq.status);
+				if(xmlHttpReq.readyState == 4){
+				    if (xmlHttpReq.status == 200) {
+                // 如果ets侧正确设置路径列表，则此处能正常获取资源
+				        const element = document.getElementById('text');
+                        element.textContent = "load " + file + " success";
+				    } else {
+                // 如果ets侧不设置路径列表，则此处会触发CORS跨域检查错误
+				        const element = document.getElementById('text');
+                        element.textContent = "load " + file + " failed";
+				    }
+				}
+			}
+			xmlHttpReq.open("GET", file);
+			xmlHttpReq.send(null);
+		}
+
+    </script>
+</head>
+
+<body>
+<div class="page">
+    <button id="example" onclick="getFile()">stealFile</button>
+</div>
+<div id="text"></div>
+</body>
+
+</html>
+```
+
+html中使用file协议通过XMLHttpRequest跨域访问本地js文件，js文件位于resource/resfile/js/script.js。
+```javascript
+const body = document.body;
+const element = document.createElement('div');
+element.textContent = 'success';
+body.appendChild(element);
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookieManager实例。
