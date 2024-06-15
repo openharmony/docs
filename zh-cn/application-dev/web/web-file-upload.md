@@ -11,20 +11,20 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import picker from '@ohos.file.picker';
-  import { BusinessError } from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { picker } from '@kit.CoreFileKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: $rawfile('local.html'), controller: this.controller })
           .onShowFileSelector((event) => {
-            console.log('MyFileUploader onShowFileSelector invoked')
+            console.log('MyFileUploader onShowFileSelector invoked');
             const documentSelectOptions = new picker.DocumentSelectOptions();
             let uri: string | null = null;
             const documentViewPicker = new picker.DocumentViewPicker();
@@ -37,7 +37,7 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
             }).catch((err: BusinessError) => {
               console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
             })
-            return true
+            return true;
           })
       }
     }
