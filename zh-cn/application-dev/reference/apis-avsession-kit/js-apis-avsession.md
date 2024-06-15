@@ -24,9 +24,9 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 创建会话对象，一个Ability只能存在一个会话，重复创建会失败，结果通过Promise异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
 
@@ -186,7 +186,7 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 
 | 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise对象。当元数据设置成功，无返回结果，否则返回错误对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise。 |
 
 **错误码：**
 
@@ -217,7 +217,7 @@ let metadata: avSession.AVMetadata = {
   description: "Rap",
   lyric: "https://www.example.com/example.lrc",
   previousAssetId: "121277",
-  nextAssetId: "121279",
+  nextAssetId: "121279"
 };
 currentAVSession.setAVMetadata(metadata).then(() => {
   console.info(`SetAVMetadata successfully`);
@@ -3593,9 +3593,9 @@ getCurrentItem(): Promise\<AVQueueItem>
 
 **返回值：**
 
-| 类型           | 说明                          |
-| -------------- | ----------------------------- |
-| Promise\<[AVQueueItem](#avqueueitem10)> | Promise对象，返回当前的播放资源，否则返回错误对象。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| callback | Array<[AVCastCommandType](#avcastcontrolcommandtype10)> | 是   | 回调函数。返回当前支持的命令。 |
 
 **错误码：**
 
@@ -3615,7 +3615,76 @@ aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
 }).catch((err: BusinessError) => {
   console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
+```
 
+### getValidCommands<sup>11+</sup>
+
+getValidCommands(callback: AsyncCallback<Array<AVCastControlCommandType>>): void;
+
+获取当前支持的命令用于组件。结果通过callback异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| callback | Array<[AVCastCommandType](#avcastcontrolcommandtype10)> | 是   | 回调函数。返回当前支持的命令。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+aVCastController.getValidCommands().then((err: BusinessError, state: avSession.AVCastControlCommandType) => {
+  if (err) {
+    console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`getValidCommands successfully`);
+  }
+});
+```
+
+### getValidCommands<sup>10+</sup>
+
+getValidCommands(): Promise\<Array\<AVCastControlCommandType>>
+
+获取当前支持的命令用于组件。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------------- | ----------------------------- |
+| Promise\<Array\<[AVCastControlCommandType](#avcastcontrolcommandtype10)>> | Promise对象,返回当前支持的命令。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+aVCastController.getValidCommands().then((state: avSession.AVCastControlCommandType) => {
+  console.info(`getValidCommands successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### processMediaKeyResponse<sup>12+</sup>
