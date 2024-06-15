@@ -14,7 +14,7 @@
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import { webview } from '@kit.ArkWeb';
 
   class testClass {
     constructor() {
@@ -28,7 +28,7 @@
   @Entry
   @Component
   struct WebComponent {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     // 声明需要注册的对象
     @State testObj: testClass = new testClass();
 
@@ -53,17 +53,17 @@
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class testClass {
     constructor() {
     }
-  
+
     test(): string {
       return "ArkUI Web Component";
     }
-  
+
     toString(): void {
       console.log('Web Component toString');
     }
@@ -72,7 +72,7 @@
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -82,8 +82,7 @@
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -91,8 +90,7 @@
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -129,18 +127,18 @@
 - 应用侧和前端页面之间传递Array。
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class testClass {
     constructor() {
     }
 
-    test(): Array<Number>{
+    test(): Array<Number> {
       return [1, 2, 3, 4]
     }
 
-    toString(param:String): void {
+    toString(param: String): void {
       console.log('Web Component toString' + param);
     }
   }
@@ -148,7 +146,7 @@
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -158,8 +156,7 @@
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -167,8 +164,7 @@
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -195,21 +191,22 @@
 - 应用侧和前端页面之间传递基础类型，非Function等复杂类型。
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class student {
-    name: string = ''
-    age: string = ''
+    name: string = '';
+    age: string = '';
   }
 
   class testClass {
     constructor() {
     }
+
     // 传递的基础类型name:"jeck", age:"12"。
     test(): student {
-      let st: student = {name:"jeck", age:"12"}
-      return st
+      let st: student = { name: "jeck", age: "12" };
+      return st;
     }
 
     toString(param: ESObject): void {
@@ -220,7 +217,7 @@
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -230,8 +227,7 @@
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -239,8 +235,7 @@
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -268,8 +263,8 @@
 - 应用侧调用前端页面的Callback。
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class testClass {
     constructor() {
@@ -279,7 +274,7 @@
       param("call callback");
     }
 
-    toString(param:String): void {
+    toString(param: String): void {
       console.log('Web Component toString' + param);
     }
   }
@@ -287,7 +282,7 @@
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -297,8 +292,7 @@
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -306,8 +300,7 @@
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -335,8 +328,8 @@
 - 应用侧调用前端页面Object里的Function。
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class testClass {
     constructor() {
@@ -346,7 +339,7 @@
       param.hello("call obj func");
     }
 
-    toString(param:String): void {
+    toString(param: String): void {
       console.log('Web Component toString' + param);
     }
   }
@@ -354,7 +347,7 @@
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -364,8 +357,7 @@
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -373,8 +365,7 @@
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -426,25 +417,26 @@
 - 前端页面调用应用侧Object里的Function。
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class ObjOther {
-      methodNameListForJsProxy: string[]
+    methodNameListForJsProxy: string[]
 
-      constructor(list: string[]) {
-          this.methodNameListForJsProxy = list
-      }
+    constructor(list: string[]) {
+      this.methodNameListForJsProxy = list
+    }
 
-      testOther(json:string): void {
-          console.info(json)
-      }
+    testOther(json: string): void {
+      console.info(json)
+    }
   }
 
   class testClass {
-    ObjReturn:ObjOther
+    ObjReturn: ObjOther
+
     constructor() {
-      this.ObjReturn =  new ObjOther(["testOther"]);
+      this.ObjReturn = new ObjOther(["testOther"]);
     }
 
     test(): ESObject {
@@ -459,7 +451,7 @@
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -469,8 +461,7 @@
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -478,8 +469,7 @@
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -508,27 +498,27 @@
   第一种使用方法，在应用侧new Promise。
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class testClass {
     constructor() {
     }
 
     test(): Promise<string> {
-        let p: Promise<string> = new Promise((resolve, reject) => {  setTimeout(() => {console.log('执行完成'); reject('fail');}, 10000);});
-        return p;
+      let p: Promise<string> = new Promise((resolve, reject) => {  setTimeout(() => {console.log('执行完成'); reject('fail');}, 10000);});
+      return p;
     }
 
     toString(param:String): void {
-        console.log(" " + param)
+      console.log(" " + param);
     }
   }
 
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -538,8 +528,7 @@
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -547,8 +536,7 @@
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
@@ -575,26 +563,26 @@
   第二种使用方法，在前端页面new Promise。
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class testClass {
     constructor() {
     }
 
     test(param:Function): void {
-        setTimeout( () => { param("suc") }, 10000)
+      setTimeout( () => { param("suc") }, 10000)
     }
 
     toString(param:String): void {
-        console.log(" " + param)
+      console.log(" " + param);
     }
   }
 
   @Entry
   @Component
   struct Index {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    webviewController: webview.WebviewController = new webview.WebviewController();
     @State testObj: testClass = new testClass();
 
     build() {
@@ -604,8 +592,7 @@
             try {
               this.webviewController.refresh();
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Button('Register JavaScript To Window')
@@ -613,8 +600,7 @@
             try {
               this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: $rawfile('index.html'), controller: this.webviewController })
