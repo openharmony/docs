@@ -3619,7 +3619,7 @@ aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
 
 ### getValidCommands<sup>11+</sup>
 
-getValidCommands(callback: AsyncCallback<Array<AVCastControlCommandType>>): void
+getValidCommands(callback: AsyncCallback\<Array\<AVCastControlCommandType>>): void
 
 获取当前支持的命令用于组件。结果通过callback异步回调方式返回。
 
