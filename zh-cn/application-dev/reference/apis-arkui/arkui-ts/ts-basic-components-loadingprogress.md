@@ -78,9 +78,9 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+支持[通用事件](ts-universal-events-click.md)。
 
-### LoadingProgressConfiguration<sup>12+</sup>对象说明
+## LoadingProgressConfiguration<sup>12+</sup>对象说明
 
 开发者需要自定义class实现ContentModifier接口。
 
