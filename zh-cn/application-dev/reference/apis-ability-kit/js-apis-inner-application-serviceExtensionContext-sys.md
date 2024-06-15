@@ -685,7 +685,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -764,7 +765,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1214,7 +1216,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1289,7 +1291,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1458,7 +1460,11 @@ class EntryAbility extends ServiceExtensionAbility {
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
-将一个Ability与服务类型的Ability绑定。
+将当前Ability连接到一个ServiceExtensionAbility。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1539,7 +1545,12 @@ class EntryAbility extends ServiceExtensionAbility {
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
 
-使用AbilityInfo.AbilityType.SERVICE模板和account将当前能力连接到一个能力。
+将当前Ability连接到一个指定account的ServiceExtensionAbility。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 

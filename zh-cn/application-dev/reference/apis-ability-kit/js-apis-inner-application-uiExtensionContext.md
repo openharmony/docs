@@ -522,7 +522,11 @@ export default class EntryAbility extends UIExtensionAbility {
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
-将当前Ability连接到一个使用AbilityInfo.AbilityType.SERVICE模板的Ability。
+将当前Ability连接到一个ServiceExtensionAbility。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
