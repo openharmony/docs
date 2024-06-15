@@ -3619,7 +3619,7 @@ aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
 
 ### getValidCommands<sup>11+</sup>
 
-getValidCommands(callback: AsyncCallback<Array<AVCastControlCommandType>>): void;
+getValidCommands(callback: AsyncCallback<Array<AVCastControlCommandType>>): void
 
 获取当前支持的命令用于组件。结果通过callback异步回调方式返回。
 
@@ -3629,7 +3629,7 @@ getValidCommands(callback: AsyncCallback<Array<AVCastControlCommandType>>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| callback | Array<[AVCastCommandType](#avcastcontrolcommandtype10)> | 是   | 回调函数。返回当前支持的命令。 |
+| callback | Array<[AVCastControlCommandType](#avcastcontrolcommandtype10)> | 是   | 回调函数。返回当前支持的命令。 |
 
 **错误码：**
 
@@ -3644,7 +3644,7 @@ getValidCommands(callback: AsyncCallback<Array<AVCastControlCommandType>>): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-aVCastController.getValidCommands().then((err: BusinessError, state: avSession.AVCastControlCommandType) => {
+aVCastController.getValidCommands((err: BusinessError, state: avSession.AVCastControlCommandType) => {
   if (err) {
     console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
@@ -3653,7 +3653,7 @@ aVCastController.getValidCommands().then((err: BusinessError, state: avSession.A
 });
 ```
 
-### getValidCommands<sup>10+</sup>
+### getValidCommands<sup>11+</sup>
 
 getValidCommands(): Promise\<Array\<AVCastControlCommandType>>
 
@@ -3665,7 +3665,7 @@ getValidCommands(): Promise\<Array\<AVCastControlCommandType>>
 
 | 类型 | 说明 |
 | -------------- | ----------------------------- |
-| Promise\<Array\<[AVCastControlCommandType](#avcastcontrolcommandtype10)>> | Promise对象,返回当前支持的命令。 |
+| Promise\<Array\<[AVCastControlCommandType](#avcastcontrolcommandtype10)>> | Promise对象，返回当前支持的命令。 |
 
 **错误码：**
 
