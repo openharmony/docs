@@ -4147,7 +4147,7 @@ selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = 'This is ss01 on : 0123456789'
+  richEditorController: RichEditorController = new RichEditorController()
   @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
     {
       content: 'RichEditor扩展1', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
@@ -4173,7 +4173,7 @@ struct TextInputExample {
 
    build(){
     Column(){
-      RichEditor()
+      RichEditor({ controller: this.richEditorController })
         .height(200)
         .borderWidth(1)
         .borderColor(Color.Red)
