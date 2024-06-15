@@ -1088,8 +1088,7 @@ getStateByIndex(index: number): RouterState | undefined
 
 | 类型                          | 说明      |
 | --------------------------- | ------- |
-| [RouterState](#routerstate) | 页面状态信息。 |
-| undefined   | 索引不存在时返回undefined。|
+| [RouterState](#routerstate) \| undefined | 返回页面状态信息。索引不存在时返回undefined。 |
 
 **示例：** 
 
