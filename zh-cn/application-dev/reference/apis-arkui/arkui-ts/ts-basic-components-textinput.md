@@ -1090,6 +1090,18 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+## CaretOffset<sup>11+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 类型     | 描述             |
+| ----- | ------ | -------------- |
+| index | number | 光标所在位置的索引值。    |
+| x     | number | 光标相对输入框的x坐标位值，单位px。 |
+| y     | number | 光标相对输入框的y坐标位值，单位px。 |
+
 ## InputCounterOptions<sup>11+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
