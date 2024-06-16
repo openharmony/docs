@@ -40,7 +40,7 @@ bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCover
 | 名称              | 类型                                       | 必填   | 描述            |
 | --------------- | ---------------------------------------- | ---- | ------------- |
 | dismiss | function | 是    | 全屏模态页面关闭回调函数。开发者需要退出页面时调用。 |
-| reason | [DismissReason](ts-methods-alert-dialog-box.md#dismissreason12枚举说明) | 是    | 返回本次拦截全屏模态页面退出的事件原因。  |
+| reason | [DismissReason](ts-appendix-enums.md#dismissreason12) | 是    | 返回本次拦截全屏模态页面退出的事件原因。  |
 
 ## 示例
 
