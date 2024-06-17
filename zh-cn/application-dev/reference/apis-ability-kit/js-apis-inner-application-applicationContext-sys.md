@@ -57,7 +57,6 @@ import { UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onCreate() {
     let want: Want = {
       bundleName: 'com.ohos.uiextensionprovider',
@@ -69,8 +68,8 @@ export default class EntryAbility extends UIAbility {
       }
     };
     try {
-        let applicationContext = this.context.getApplicationContext();
-        applicationContext.preloadUIExtensionAbility(want)
+      let applicationContext = this.context.getApplicationContext();
+      applicationContext.preloadUIExtensionAbility(want)
         .then(() => {
           // 执行正常业务
           console.info('preloadUIExtensionAbility succeed');
@@ -83,7 +82,64 @@ export default class EntryAbility extends UIAbility {
       // 处理入参错误异常
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
-      console.error('preloadUIExtensionAbility failed');
+      console.error(`preloadUIExtensionAbility failed. code: ${code}, msg: ${message}`);
+    }
+  }
+}
+```
+
+## ApplicationContext.setSupportedProcessCache<sup>12+</sup>
+
+setSupportedProcessCache(isSupported : boolean): void
+
+应用设置自身是否支持缓存后快速启动。
+
+> **说明：**
+>
+> 该接口设置的缓存支持状态对单个应用进程实例生效，不同进程实例互不影响，且一个进程实例只允许设置一次。应用进程实例销毁后，设置过的状态不保留，可以重新设置。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_PROCESS_CACHE_STATE
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+| 参数名        | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| isSupported | boolean | 是 | 表示应用是否支持缓存后快速启动。true表示支持，false表示不支持。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)、[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | The input parameter is not a valid parameter. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000200 | The supported process cache state cannot be set more than once. |
+
+**示例：**
+
+```ts
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      applicationContext.setSupportedProcessCache(false);
+    } catch (error) {
+      // 处理入参错误异常
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`setSupportedProcessCache fail, code: ${code}, msg: ${message}`);
     }
   }
 }

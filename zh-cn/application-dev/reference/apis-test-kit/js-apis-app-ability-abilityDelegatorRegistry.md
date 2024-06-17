@@ -11,7 +11,7 @@ AbilityDelegatorRegistry是[自动化测试框架使用指南](../../application
 ## 导入模块
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 ```
 
 ## AbilityLifecycleState
@@ -49,21 +49,21 @@ getAbilityDelegator(): AbilityDelegator
 **示例：**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import Want from '@ohos.app.ability.Want';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { Want } from '@kit.AbilityKit';
 
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-
+let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 let want: Want = {
-    bundleName: 'com.example.myapplication',
-    abilityName: 'EntryAbility'
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
 };
+
 abilityDelegator.startAbility(want, (err) => {
-    if (err) {
-        console.error(`Failed start ability, error: ${JSON.stringify(err)}`);
-    } else {
-        console.log('Success start ability.');
-    }
+  if (err) {
+    console.error(`Failed start ability, error: ${JSON.stringify(err)}`);
+  } else {
+    console.log('Success start ability.');
+  }
 });
 ```
 
@@ -86,9 +86,9 @@ getArguments(): AbilityDelegatorArgs
 **示例：**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let args = AbilityDelegatorRegistry.getArguments();
+let args = abilityDelegatorRegistry.getArguments();
 console.info(`getArguments bundleName: ${args.bundleName}`);
 console.info(`getArguments parameters: ${JSON.stringify(args.parameters)}`);
 console.info(`getArguments testCaseNames: ${args.testCaseNames}`);
