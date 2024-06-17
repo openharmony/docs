@@ -51,6 +51,9 @@ abstract class Content {
 |OH_ArkUI_NodeContent_InsertNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node, int32_t position)|在Content上插入子组件。|
 |OH_ArkUI_NodeContent_RemoveNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node)|在Content上移除子组件。|
 |OH_ArkUI_GetNodeContentFromNapiValue(napi_env env, napi_value value, ArkUI_NodeContentHandle* content)|在Native侧获取ArkTS侧Content指针。|
+|OH_ArkUI_NodeContentEvent_GetNodeContentHandle(ArkUI_NodeContentEvent* event)|获取触发上下树事件的Content对象。|
+|OH_ArkUI_NodeContent_SetUserData(ArkUI_NodeContentHandle content, void* userData)|在Content上设置用户自定义属性。|
+|OH_ArkUI_NodeContent_GetUserData(ArkUI_NodeContentHandle content)|在Content上获取用户自定义属性。|
 |typedef enum {<br>   NOTE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW = 0,<br>   NOTE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW = 1,<br>} ArkUI_NodeContentEventType|Content上会触发的上树和下树两种事件类型。|
 
 ## 开发实现
@@ -121,16 +124,18 @@ napi_value Manager::CreateNativeNode(napi_env, napi_callback_info info) {
 }
 ```
 
-#### 注册上下树事件
+#### 注册上下树事件，并通过事件获取对应的Content对象
 
 ```c++
 auto nodeContentEvent = [](ArkUI_NodeContentEvent *event) {
+    ArkUI_NodeContentHandle content = OH_ArkUI_NodeContentEvent_GetNodeContentHandle(event);
+    // 针对不同content需要额外做的逻辑
     if (OH_ArkUINodeContentEvent_GetEventType(event) = NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW) {
         // ContentSlot上树时需要触发的逻辑
     } else if (OH_ArkUINodeContentEvent_GetEventType(event) = NODE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW) {
         // ContentSlot下树时需要触发的逻辑
     };
-}
+};
 // 将该事件注册到nodeContent上
 OH_ArkUI_NodeContent_RegisterCallback(nodeContentHandle_, nodeContentEvent);
 ```
@@ -158,4 +163,18 @@ OH_ArkUI_NodeContent_InsertNode(nodeContentHandle_, component, position);
 ```c++
 // 在nodeContent中移除对应组件
 OH_ArkUI_NodeContent_RemoveNode(nodeContentHandle_, component);
+```
+
+#### 设置自定义属性
+
+```c++
+// 创建需要定义的自定义数据
+void *userData = CreateUserData();
+OH_ArkUI_NodeContent_SetUserData(nodeContentHandle_, userData);
+```
+
+#### 获取自定义属性
+
+```
+void *userData = OH_ArkUI_NodeContent_GetUserData(nodeContentHandle_);
 ```
