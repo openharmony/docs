@@ -21,7 +21,7 @@ type Value = string | number | Decimal
 
 取值类型为下列类型中的并集。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -39,7 +39,7 @@ type Rounding = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 
 取值类型为下列类型中的并集。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -63,7 +63,7 @@ type Modulo = Rounding | 9
 
 取值类型为下列类型中的并集。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -78,7 +78,7 @@ type Modulo = Rounding | 9
 
 ### 属性
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -100,7 +100,7 @@ type Modulo = Rounding | 9
 
 ### 属性
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -112,7 +112,7 @@ type Modulo = Rounding | 9
 
 ### 常量
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -135,7 +135,7 @@ constructor(n: Value)
 
 Decimal的构造函数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -166,7 +166,7 @@ abs(): Decimal
 
 返回一个新的Decimal对象，其值为该Decimal的绝对值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -189,7 +189,7 @@ floor(): Decimal
 
 返回一个新的Decimal对象，其值为该Decimal向负无穷方向舍入得到的结果。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -212,7 +212,7 @@ ceil(): Decimal
 
 返回一个新的Decimal对象，其值为该Decimal向正无穷方向舍入得到的结果。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -235,7 +235,7 @@ trunc(): Decimal
 
 返回一个新的Decimal，其值是将此Decimal截断为整数部分。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -258,7 +258,7 @@ clamp(n: Value, min: Value, max: Value): Decimal
 
 返回一个值为将该Decimal的值限制在min到max范围内的Decimal对象。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -302,7 +302,7 @@ add(n: Value): Decimal;
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -341,7 +341,7 @@ sub(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -380,7 +380,7 @@ mul(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -419,7 +419,7 @@ div(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -458,7 +458,7 @@ mod(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -497,7 +497,7 @@ sqrt(): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -522,7 +522,7 @@ cbrt(): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -547,7 +547,7 @@ pow(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -587,7 +587,7 @@ exp(): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -620,7 +620,7 @@ log(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -660,7 +660,7 @@ ln(): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -691,7 +691,7 @@ cos(): Decimal
 
 返回一个新的Decimal，其值是此Decimal的余弦值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -714,7 +714,7 @@ sin(): Decimal
 
 返回一个新的Decimal，其值是此Decimal的正弦值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -737,7 +737,7 @@ tan(): Decimal
 
 返回一个新的Decimal，其值是此Decimal的正切值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -760,7 +760,7 @@ cosh(): Decimal
 
 返回一个新的Decimal，其值是此Decimal的双曲余弦值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -783,7 +783,7 @@ sinh(): Decimal
 
 返回一个新的Decimal，其值是此Decimal的双曲正弦值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -806,7 +806,7 @@ tanh(): Decimal
 
 返回一个新的Decimal，其值是此Decimal的双曲正切值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -829,7 +829,7 @@ acos(): Decimal
 
 返回一个新的Decimal，其值是此Decimal的反余弦值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -860,7 +860,7 @@ asin(): Decimal
 
 返回一个新的Decimal，其值为此Decimal的反正弦值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -891,7 +891,7 @@ atan(): Decimal
 
 返回一个新的Decimal，其值是此Decimal的反正切值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -922,7 +922,7 @@ acosh(): Decimal
 
 返回一个新的Decimal，其值是此Decimal值的双曲余弦的倒数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -953,7 +953,7 @@ asinh(): Decimal
 
 返回一个新的Decimal，其值是此Decimal值的双曲正弦的倒数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -984,7 +984,7 @@ atanh(): Decimal
 
 返回一个新的Decimal，其值是此Decimal值的双曲正切的倒数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1015,7 +1015,7 @@ comparedTo(n: Value): number
 
 Decimal的比较方法。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1057,7 +1057,7 @@ equals(n: Value): boolean
 
 返回该Decimal是否等于比较值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1095,7 +1095,7 @@ greaterThan(n: Value): boolean
 
 返回该Decimal是否大于比较值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1133,7 +1133,7 @@ greaterThanOrEqualTo(n: Value): boolean
 
 返回该Decimal是否大于等于比较值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1171,7 +1171,7 @@ lessThan(n: Value): boolean
 
 返回该Decimal是否小于比较值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1209,7 +1209,7 @@ lessThanOrEqualTo(n: Value): boolean
 
 返回该Decimal是否小于等于比较值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1247,7 +1247,7 @@ isFinite(): boolean
 
 返回该Decimal是否为有限值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1271,7 +1271,7 @@ isInteger(): boolean
 
 返回该Decimal是否为整数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1295,7 +1295,7 @@ isNaN(): boolean
 
 返回该Decimal是否为无效值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1319,7 +1319,7 @@ isNegative(): boolean
 
 返回该Decimal是否为负数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1347,7 +1347,7 @@ isPositive(): boolean
 
 返回该Decimal是否为正数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1375,7 +1375,7 @@ isZero(): boolean
 
 返回该Decimal是否为0或是-0。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1401,7 +1401,7 @@ dividedToIntegerBy(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1440,7 +1440,7 @@ negate(): Decimal
 
 Decimal取反。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1466,7 +1466,7 @@ toBinary(): string
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1500,7 +1500,7 @@ toBinary(significantDigits: number): string
 
 使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1538,7 +1538,7 @@ toBinary(significantDigits: number, rounding: Rounding): string
 
 转换为二进制表示的字符串，可按照significantDigits设置有效数字，可按照rounding设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1579,7 +1579,7 @@ toOctal(): string
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1605,7 +1605,7 @@ toOctal(significantDigits: number): string
 
 使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1643,7 +1643,7 @@ toOctal(significantDigits: number, rounding: Rounding): string
 
 转换为八进制表示的字符串，可按照significantDigits设置有效数字，可按照rounding设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1684,7 +1684,7 @@ toHexadecimal(): string
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1710,7 +1710,7 @@ toHexadecimal(significantDigits: number): string
 
 使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1748,7 +1748,7 @@ toHexadecimal(significantDigits: number, rounding: Rounding): string
 
 转换为十六进制表示的字符串，可按照significantDigits设置有效数字，可按照rounding设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1787,7 +1787,7 @@ toDecimalPlaces(): Decimal
 
 返回一个保留小数点后指定位数的Decimal对象，不进行小数的取舍。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1813,7 +1813,7 @@ toDecimalPlaces(decimalPlaces: number): Decimal
 
 使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1851,7 +1851,7 @@ toDecimalPlaces(decimalPlaces: number, rounding: Rounding): Decimal
 
 返回一个保留小数点后指定位数的Decimal对象，可按照decimalPlaces设置小数位数，可按照rounding设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1891,7 +1891,7 @@ toExponential(): string
 
 转换为按照指数表示法显示的字符串，不进行小数的取舍。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1917,7 +1917,7 @@ toExponential(decimalPlaces: number): string
 
 使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1957,7 +1957,7 @@ toExponential(decimalPlaces: number, rounding: Rounding): string
 
 转换为按照指数表示法显示的字符串，可按照decimalPlaces设置小数位数，可按照rounding设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -1996,7 +1996,7 @@ toFixed(): string
 
 转换为十进制定点模式表示的字符串，不进行小数的取舍。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2022,7 +2022,7 @@ toFixed(decimalPlaces: number): string
 
 使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2062,7 +2062,7 @@ toFixed(decimalPlaces: number, rounding: Rounding): string
 
 转换为十进制定点模式表示的字符串，可按照decimalPlaces设置小数位数，可按照rounding设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2101,7 +2101,7 @@ toFraction(): Decimal[]
 
 转换为分数表示的数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2125,7 +2125,7 @@ toFraction(max_denominator: Value): Decimal[]
 
 转换为分数表示的数，可以通过max_denominator设置最大分母值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2167,7 +2167,7 @@ toNearest(n: Value): Decimal
 
 返回一个新的Decimal，该Decimal为指定值乘以一个倍数后与原Decimal最接近的值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2205,7 +2205,7 @@ toNearest(n: Value, rounding: Rounding): Decimal
 
 返回一个新的Decimal，该Decimal为指定值乘以一个倍数后与原Decimal最接近的值，可按照rounding设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2246,7 +2246,7 @@ toPrecision(): string
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2272,7 +2272,7 @@ toPrecision(significantDigits: number): string
 
 使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2311,7 +2311,7 @@ toPrecision(significantDigits: number, rounding: Rounding): string
 
 转换为字符串，可按照significantDigits设置有效数字，可按照rounding设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2352,7 +2352,7 @@ toSignificantDigits(): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2378,7 +2378,7 @@ toSignificantDigits(significantDigits: number): Decimal
 
 使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2416,7 +2416,7 @@ toSignificantDigits(significantDigits: number, rounding: Rounding): Decimal
 
 返回一个按照保留有效数字的转换的Decimal对象，可按照significantDigits设置有效数字，可按照rounding设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2455,7 +2455,7 @@ toNumber(): number
 
 转换为number类型的值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2479,7 +2479,7 @@ toString(): string
 
 返回一个字符串，表示此 Decimal 的值，如果此 Decimal 的正指数等于或大于[toExpPos](#decimalconfig)，或负指数等于或小于[toExpNeg](#decimalconfig)，则将返回指数表示法。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2512,7 +2512,7 @@ valueOf(): string
 
 返回一个字符串，表示此 Decimal 的值，负零包含减号。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2536,7 +2536,7 @@ decimalPlaces(): number
 
 返回Decimal对象的小数位数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2560,7 +2560,7 @@ precision(): number
 
 返回Decimal对象的有效数字位数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2584,7 +2584,7 @@ precision(includeZeros: boolean | number): number
 
 返回Decimal对象的有效数字位数，通过includeZeros判断是否计算整数部分的尾随零。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2623,7 +2623,7 @@ static abs(n: Value): Decimal
 
 返回一个新的Decimal对象，Decimal的值为参数n的绝对值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2660,7 +2660,7 @@ static floor(n: Value): Decimal
 
 返回一个新的Decimal对象，其值为该Decimal向负无穷方向舍入得到的结果。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2697,7 +2697,7 @@ static ceil(n: Value): Decimal
 
 返回一个新的Decimal对象，其值为该Decimal向正无穷方向舍入得到的结果。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2734,7 +2734,7 @@ static trunc(n: Value): Decimal
 
 返回一个新的Decimal，其值是将此Decimal截断为整数部分。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2771,7 +2771,7 @@ static clamp(n: Value, min: Value, max: Value): Decimal
 
 返回一个值为将该Decimal的值限制在min到max范围内的Decimal对象。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2813,7 +2813,7 @@ static add(x: Value, y: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2853,7 +2853,7 @@ static sum(...n: Value[]): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2892,7 +2892,7 @@ static sub(x: Value, y: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2932,7 +2932,7 @@ static mul(x: Value, y: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -2972,7 +2972,7 @@ static div(x: Value, y: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3013,7 +3013,7 @@ static mod(x: Value, y: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3053,7 +3053,7 @@ static sqrt(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3092,7 +3092,7 @@ static cbrt(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3129,7 +3129,7 @@ static pow(base: Value, exponent: Value): Decimal
 
 返回一个值为base的exponent次幂的Decimal对象，按照[DecimalConfig.precision](#decimalconfig)设置有效位数，按照[DecimalConfig.rounding](#decimalconfig)设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3170,7 +3170,7 @@ static exp(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3210,7 +3210,7 @@ static log(n: Value, base: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3251,7 +3251,7 @@ static ln(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3291,7 +3291,7 @@ static log2(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3331,7 +3331,7 @@ static log10(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3371,7 +3371,7 @@ static cos(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3410,7 +3410,7 @@ static sin(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3449,7 +3449,7 @@ static tan(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3488,7 +3488,7 @@ static cosh(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3527,7 +3527,7 @@ static sinh(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3566,7 +3566,7 @@ static tanh(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3605,7 +3605,7 @@ static acos(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3645,7 +3645,7 @@ static asin(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3685,7 +3685,7 @@ static atan(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3725,7 +3725,7 @@ static acosh(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3765,7 +3765,7 @@ static asinh(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3805,7 +3805,7 @@ static atanh(n: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3845,7 +3845,7 @@ static atan2(y: Value, x: Value): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3886,7 +3886,7 @@ static hypot(...n: Value[]): Decimal
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3923,7 +3923,7 @@ static max(...n: Value[]): Decimal
 
 返回一个值为所有参数中最大值的Decimal对象。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3960,7 +3960,7 @@ static min(...n: Value[]): Decimal
 
 返回一个值为所有参数中最小值的Decimal对象。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -3997,7 +3997,7 @@ static random(): Decimal
 
 返回一个值为大于等于0小于1的随机值的Decimal对象。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -4027,7 +4027,7 @@ static random(significantDigits: number): Decimal
 
 返回一个值为大于等于0小于1的随机值的Decimal对象，随机值保留significantDigits位小数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -4064,7 +4064,7 @@ static sign(n: Value): number
 
 根据参数的值进行判断返回对应的值：当n>0返回1，当n<0返回-1，当n==0返回0，当n==-0返回-0，否则返回NaN。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -4101,7 +4101,7 @@ static round(n: Value): Decimal
 
 返回一个新的Decimal，其值是使用[DecimalConfig.rounding](#decimalconfig)模式舍入为整数的n。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 
@@ -4139,7 +4139,7 @@ static set(object: DecimalConfig):void
 
 用于设置Decimal的配置属性。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Utils.Lang
 

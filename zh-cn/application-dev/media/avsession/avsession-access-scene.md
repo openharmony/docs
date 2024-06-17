@@ -189,6 +189,7 @@ async function setSessionInfo() {
 
 ```ts
 import AVSessionManager from '@ohos.multimedia.avsession';
+import { BusinessError } from '@ohos.base';
 
 let context: Context = getContext(this);
 async function setListener() {

@@ -138,6 +138,8 @@ promise.then((data : pipWindow.PiPController) => {
 
 ## PiPControlGroup<sup>12+</sup>
 
+type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeetingControlGroup
+
 画中画控制面板的可选控件组列表，应用可以配置是否显示可选控件。默认情况下控制面板只显示基础控件（如视频播放控件组的播放/暂停控件）。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -151,7 +153,7 @@ promise.then((data : pipWindow.PiPController) => {
 
 ## VideoPlayControlGroup<sup>12+</sup>
 
-视频播放控件组。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_PLAY时使用。
+视频播放控件组枚举。仅当[PiPTemplateType](#piptemplatetype)为VIDEO_PLAY时使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -162,7 +164,7 @@ promise.then((data : pipWindow.PiPController) => {
 
 ## VideoCallControlGroup<sup>12+</sup>
 
-视频通话控件组。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_CALL时使用。
+视频通话控件组枚举。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_CALL时使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -174,7 +176,7 @@ promise.then((data : pipWindow.PiPController) => {
 
 ## VideoMeetingControlGroup<sup>12+</sup>
 
-视频会议控件组。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_MEETING时使用。
+视频会议控件组枚举。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_MEETING时使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -184,8 +186,9 @@ promise.then((data : pipWindow.PiPController) => {
 | CAMERA_SWITCH    | 302   | 打开/关闭摄像头控件组。           |
 | MUTE_SWITCH    | 303   | 静音控件组。            |
 
-
 ## PiPActionEventType
+
+type PiPActionEventType = PiPVideoActionEvent | PiPCallActionEvent | PiPMeetingActionEvent | PiPLiveActionEvent
 
 画中画控制事件类型，支持以下四种。
 
@@ -200,53 +203,80 @@ promise.then((data : pipWindow.PiPController) => {
 
 ## PiPVideoActionEvent
 
+type PiPVideoActionEvent = 'playbackStateChanged' | 'nextVideo' | 'previousVideo' | 'fastForward' | 'fastBackward'
+
 视频播放控制事件类型。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                     | 类型       | 说明                                                                                                  |
-|------------------------|----------|-----------------------------------------------------------------------------------------------------|
-| PiPVideoActionEvent    | string   | 有以下取值：<br/>-'playbackStateChanged'：播放状态发生了变化。<br/>-'nextVideo'：播放下一个视频。<br/>-'previousVideo'：播放上一个视频。<br/>-'fastForward'：视频进度快进。从API version 12 开始支持。<br/>-'fastBackward'：视频进度后退。从API version 12 开始支持。  |
+| 类型                         | 说明                                      |
+| ---------------------------- | ----------------------------------------- |
+| 'playbackStateChanged'       | 播放状态发生了变化。                      |
+| 'nextVideo'                  | 播放下一个视频。                          |
+| 'previousVideo'              | 播放上一个视频。                          |
+| 'fastForward'<sup>12+</sup>  | 视频进度快进。从API version 12 开始支持。 |
+| 'fastBackward'<sup>12+</sup> | 视频进度后退。从API version 12 开始支持。 |
 
 ## PiPCallActionEvent
+
+type PiPCallActionEvent = 'hangUp' | 'micStateChanged' | 'videoStateChanged'
 
 视频通话控制事件类型。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                     | 类型     | 说明                                                                                             |
-|------------------------|--------|------------------------------------------------------------------------------------------------|
-| PiPCallActionEvent     | string | 有以下取值：<br/>-'hangUp'：挂断视频通话。<br/>-'micStateChanged'：打开或关闭麦克风。<br/>-'videoStateChanged'：打开或关闭摄像头。 |
+| 类型                | 说明               |
+| ------------------- | ------------------ |
+| 'hangUp             | 挂断视频通话。     |
+| 'micStateChanged'   | 打开或关闭麦克风。 |
+| 'videoStateChanged' | 打开或关闭摄像头。 |
+
+
 
 ## PiPMeetingActionEvent
+
+type PiPMeetingActionEvent = 'hangUp' | 'voiceStateChanged' | 'videoStateChanged'
 
 视频会议控制事件类型。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                         | 类型         | 说明                                                                                              |
-|----------------------------|------------|-------------------------------------------------------------------------------------------------|
-| PiPMeetingActionEvent      | string     | 有以下取值：<br/>-'hangUp'：挂断视频会议。<br/>-'voiceStateChanged'：静音或解除静音。<br/>-'videoStateChanged'：打开或关闭摄像头。 |
+| 类型                | 说明               |
+| ------------------- | ------------------ |
+| 'hangUp'            | 挂断视频会议。     |
+| 'voiceStateChanged' | 静音或解除静音。   |
+| 'videoStateChanged' | 打开或关闭摄像头。 |
+
+
 
 ## PiPLiveActionEvent
+
+type PiPLiveActionEvent = 'playbackStateChanged'
 
 直播控制事件类型。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                       | 类型           | 说明                                |
-|--------------------------|--------------|-----------------------------------|
-| PiPLiveActionEvent       | string       | 值为'playbackStateChanged'：播放或暂停直播。 |
+| 类型                   | 说明             |
+| ---------------------- | ---------------- |
+| 'playbackStateChanged' | 播放或暂停直播。 |
+
+
 
 ## ControlPanelActionEventCallback<sup>12+</sup>
+
+type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: number) => void
 
 描述画中画控制面板动作事件回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                       | 类型           | 说明                                |
-|--------------------------|--------------|-----------------------------------|
-| ControlPanelActionEventCallback       | (event: [PiPActionEventType](#pipactioneventtype), status?: number) => void       | 回调画中画控制事件。<br/>event表示控制事件类型。应用依据控制事件做相应处理，如触发'playbackStateChanged'事件时，需要开始或停止视频；<br/>status表示可切换状态的控件当前的状态，如具备打开和关闭两种状态的麦克风控件组、摄像头控件组和静音控件组，打开为1，关闭为0。其余控件该参数返回默认值-1。 |
+**参数：**
+
+| 名称                       | 类型           | 必填    | 说明                                |
+|--------------------------|--------------|--------------|-----------------------------------|
+| event       |  [PiPActionEventType](#pipactioneventtype)       | 是 | 回调画中画控制事件类型。<br/>应用依据控制事件做相应处理，如触发'playbackStateChanged'事件时，需要开始或停止视频。 |
+| status | number | 否 | 表示可切换状态的控件当前的状态，如具备打开和关闭两种状态的麦克风控件组、摄像头控件组和静音控件组，打开为1，关闭为0。其余控件该参数返回默认值-1。 |
 
 ## PiPController
 

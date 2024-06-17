@@ -194,8 +194,8 @@
    ```ts
    // Index.ets
    // 导入页面路由模块
-   import router from '@ohos.router';
-   import { BusinessError } from '@ohos.base';
+   import { router } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
    @Component
@@ -246,8 +246,8 @@
    ```ts
    // Second.ets
    // 导入页面路由模块
-   import router from '@ohos.router';
-   import { BusinessError } from '@ohos.base';
+   import { router } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
    @Component

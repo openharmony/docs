@@ -811,7 +811,7 @@ enum OH_AudioStream_Usage
 | -------- | -------- |
 | AUDIOSTREAM_USAGE_UNKNOWN  | 未定义。   | 
 | AUDIOSTREAM_USAGE_MUSIC  | 音乐。   | 
-| AUDIOSTREAM_USAGE_COMMUNICATION  | 通话。   | 
+| AUDIOSTREAM_USAGE_COMMUNICATION  | VOIP通话。   | 
 | AUDIOSTREAM_USAGE_VOICE_ASSISTANT  | 语音助手。   | 
 | AUDIOSTREAM_USAGE_ALARM  | 闹钟。   | 
 | AUDIOSTREAM_USAGE_VOICE_MESSAGE  | 语音消息。   | 
@@ -822,6 +822,7 @@ enum OH_AudioStream_Usage
 | AUDIOSTREAM_USAGE_GAME  | 游戏。   | 
 | AUDIOSTREAM_USAGE_AUDIOBOOK  | 有声读物。   | 
 | AUDIOSTREAM_USAGE_NAVIGATION  | 导航。   | 
+| AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION | 视频通话。<br>**起始版本：** 12 | 
 
 
 ## 函数说明

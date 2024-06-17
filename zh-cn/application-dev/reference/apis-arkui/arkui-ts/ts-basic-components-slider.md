@@ -18,7 +18,7 @@ Slider(options?: SliderOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -32,7 +32,7 @@ Slider(options?: SliderOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -50,8 +50,8 @@ Slider(options?: SliderOptions)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OutSet | 滑块在滑轨上。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| InSet | 滑块在滑轨内。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| OutSet | 滑块在滑轨上。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| InSet | 滑块在滑轨内。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NONE<sup>12+</sup> | 无滑块 |
 
 ## 属性
@@ -72,7 +72,7 @@ blockColor(value: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -92,7 +92,7 @@ trackColor(value: ResourceColor | LinearGradient)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -100,7 +100,7 @@ trackColor(value: ResourceColor | LinearGradient)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明) | 是   | 滑轨的背景颜色。<br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。<br/>默认值：'#19182431'<br/>该接口中的LinearGradient类型不支持在元服务中使用。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明) | 是   | 滑轨的背景颜色。<br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。<br/>默认值：'#19182431'<br/>该接口中的LinearGradient类型不支持在原子化服务中使用。 |
 
 ### selectedColor
 
@@ -110,7 +110,7 @@ selectedColor(value: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -128,7 +128,7 @@ showSteps(value: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -150,7 +150,7 @@ tip的绘制区域为Slider自身节点的overlay。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -175,7 +175,7 @@ trackThickness(value: Length)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -197,7 +197,7 @@ blockBorderColor(value: ResourceColor)
 
 当滑块形状设置为SliderBlockType.SHAPE时，blockBorderColor可设置自定义形状中线的颜色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -219,7 +219,7 @@ blockBorderWidth(value: Length)
 
 当滑块形状设置为SliderBlockType.SHAPE时，blockBorderWidth可设置自定义形状中线的粗细。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -235,7 +235,7 @@ stepColor(value: ResourceColor)
 
 设置刻度颜色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -251,7 +251,7 @@ trackBorderRadius(value: Length)
 
 设置底板圆角半径。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -281,7 +281,7 @@ blockSize(value: SizeOptions)
 
 设置滑块大小。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -297,7 +297,7 @@ blockStyle(value: SliderBlockStyle)
 
 设置滑块形状参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -313,7 +313,7 @@ stepSize(value: Length)
 
 设置刻度大小（直径）。当值为0时，刻度点不显示，当值小于0时，取默认值。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -421,7 +421,7 @@ slideRange(value: SlideRange)
 
 Slider组件滑块形状参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称  | 类型                                                         | 必填 | 说明                                                         |
 | ----- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -433,7 +433,7 @@ Slider组件滑块形状参数。
 
 Slider组件滑块形状枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称    | 描述                   |
 | ------- | ---------------------- |
@@ -484,7 +484,7 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -499,7 +499,7 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 值 | 描述 |
 | -------- | -------- | -------- |

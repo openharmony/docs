@@ -21,7 +21,7 @@ addProcessor(processor: Processor): number
 
 Processor的配置信息需要由数据处理者提供，目前设备内暂未预置可供交互的数据处理者，因此当前事件上云功能不可用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -67,25 +67,25 @@ try {
 
 | 名称                | 类型                     | 必填 | 说明                                                                                                        |
 | ------------------- | ----------------------- | ---- | ---------------------------------------------------------------------------------------------------------- |
-| name                | string                  | 是   | 数据处理者的名称。名称只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度非空且不超过256个字符。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                           |
-| debugMode           | boolean                 | 否   | 是否开启debug模式，默认值为false。配置值为true表示开启debug模式，false表示不开启debug模式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                    |
-| routeInfo           | string                  | 否   | 服务器位置信息，默认为空字符串。传入字符串长度不能超过8KB，超过时会被置为默认值。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                   |
-| appId               | string                  | 否   | 应用id，默认为空字符串。传入字符串长度不能超过8KB，超过时会被置为默认值。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| onStartReport       | boolean                 | 否   | 数据处理者在启动时是否上报事件，默认值为false。配置值为true表示上报事件，false表示不上报事件。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                   |
-| onBackgroundReport  | boolean                 | 否   | 当应用程序进入后台时是否上报事件，默认值为false。配置值为true表示上报事件，false表示不上报事件。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                 |
-| periodReport        | number                  | 否   | 事件定时上报时间周期，单位为秒。传入数值必须大于或等于0，小于0时会被置为默认值0，不进行定时上报。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                |
-| batchReport         | number                  | 否   | 事件上报阈值，当事件条数达到阈值时上报事件。传入数值必须大于0且小于1000，不在数值范围内会被置为默认值0，不进行上报。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                         |
-| userIds             | string[]                | 否   | 数据处理者可以上报的用户ID的name数组。name对应[setUserId](#hiappeventsetuserid11)接口的name参数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。    |
-| userProperties      | string[]                | 否   | 数据处理者可以上报的用户属性的name数组。name对应[setUserProperty](#hiappeventsetuserproperty11)接口的name参数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
-| eventConfigs        | [AppEventReportConfig](#appeventreportconfig11)[]  | 否   | 数据处理者可以上报的事件数组。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                 |
-| configId<sup>12+</sup> | number | 否 | 数据处理者配置id。传入数值必须大于或等于0，小于0时会被置为默认值0。传入的值大于0时，与数据处理者的名称name共同唯一标识数据处理者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| customConfigs<sup>12+</sup> | Record\<string, string> | 否 | 自定义扩展参数。传入参数名和参数值不符合规格会默认不配置扩展参数，其规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br>- 参数值为string类型，参数值长度需在1024个字符以内。<br>- 参数个数需在32个以内。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| name                | string                  | 是   | 数据处理者的名称。名称只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度非空且不超过256个字符。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                           |
+| debugMode           | boolean                 | 否   | 是否开启debug模式，默认值为false。配置值为true表示开启debug模式，false表示不开启debug模式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                    |
+| routeInfo           | string                  | 否   | 服务器位置信息，默认为空字符串。传入字符串长度不能超过8KB，超过时会被置为默认值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                   |
+| appId               | string                  | 否   | 应用id，默认为空字符串。传入字符串长度不能超过8KB，超过时会被置为默认值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| onStartReport       | boolean                 | 否   | 数据处理者在启动时是否上报事件，默认值为false。配置值为true表示上报事件，false表示不上报事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                   |
+| onBackgroundReport  | boolean                 | 否   | 当应用程序进入后台时是否上报事件，默认值为false。配置值为true表示上报事件，false表示不上报事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                 |
+| periodReport        | number                  | 否   | 事件定时上报时间周期，单位为秒。传入数值必须大于或等于0，小于0时会被置为默认值0，不进行定时上报。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                |
+| batchReport         | number                  | 否   | 事件上报阈值，当事件条数达到阈值时上报事件。传入数值必须大于0且小于1000，不在数值范围内会被置为默认值0，不进行上报。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
+| userIds             | string[]                | 否   | 数据处理者可以上报的用户ID的name数组。name对应[setUserId](#hiappeventsetuserid11)接口的name参数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
+| userProperties      | string[]                | 否   | 数据处理者可以上报的用户属性的name数组。name对应[setUserProperty](#hiappeventsetuserproperty11)接口的name参数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| eventConfigs        | [AppEventReportConfig](#appeventreportconfig11)[]  | 否   | 数据处理者可以上报的事件数组。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                 |
+| configId<sup>12+</sup> | number | 否 | 数据处理者配置id。传入数值必须大于或等于0，小于0时会被置为默认值0。传入的值大于0时，与数据处理者的名称name共同唯一标识数据处理者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| customConfigs<sup>12+</sup> | Record\<string, string> | 否 | 自定义扩展参数。传入参数名和参数值不符合规格会默认不配置扩展参数，其规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br>- 参数值为string类型，参数值长度需在1024个字符以内。<br>- 参数个数需在32个以内。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## AppEventReportConfig<sup>11+</sup>
 
 数据处理者可以上报事件的描述配置。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -101,7 +101,7 @@ removeProcessor(id: number): void
 
 删除上报事件的数据处理者。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -139,7 +139,7 @@ write(info: AppEventInfo, callback: AsyncCallback&lt;void&gt;): void
 
 应用事件打点方法，将事件写入到当天的事件文件中，可接收AppEventInfo类型的事件对象，使用callback方式作为异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -195,7 +195,7 @@ write(info: AppEventInfo): Promise&lt;void&gt;
 
 应用事件打点方法，将事件写入到当天的事件文件中，可接收AppEventInfo类型的事件对象，使用Promise方式作为异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -252,7 +252,7 @@ hiAppEvent.write({
 
 提供了应用事件信息的参数选项。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -269,7 +269,7 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 
 事件自定义参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件领域和事件名称关联系统事件和应用事件，系统事件仅支持崩溃和卡死事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -318,7 +318,7 @@ hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
 
 事件自定义参数值的类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -335,7 +335,7 @@ configure(config: ConfigOption): void
 
 应用事件打点配置方法，可用于配置打点开关、目录存储配额大小等功能。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -374,7 +374,7 @@ hiAppEvent.configure(config2);
 
 提供了对应用事件打点功能的配置选项。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -389,7 +389,7 @@ setUserId(name: string, value: string): void
 
 设置用户ID。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -424,7 +424,7 @@ getUserId(name: string): string
 
 获取之前通过setUserId接口设置的value值。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -466,7 +466,7 @@ setUserProperty(name: string, value: string): void
 
 设置用户属性。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -501,7 +501,7 @@ getUserProperty(name: string): string
 
 获取之前通过setUserProperty接口设置的value值。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -543,7 +543,7 @@ addWatcher(watcher: Watcher): AppEventPackageHolder
 
 添加应用事件观察者方法，可用于订阅应用事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -652,7 +652,7 @@ removeWatcher(watcher: Watcher): void
 
 移除应用事件观察者方法，可用于取消订阅应用事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -690,7 +690,7 @@ hiAppEvent.removeWatcher(watcher);
 
 提供了应用事件观察者的参数选项。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -706,7 +706,7 @@ hiAppEvent.removeWatcher(watcher);
 
 提供了回调触发条件的参数选项，只要满足任一条件就会触发订阅回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -720,7 +720,7 @@ hiAppEvent.removeWatcher(watcher);
 
 提供了过滤应用事件的参数选项。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -740,7 +740,7 @@ constructor(watcherName: string)
 
 类构造函数，创建订阅数据持有者实例，通过观察者名称关联到应用内已添加的观察者对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -762,7 +762,7 @@ setSize(size: number): void
 
 设置每次取出的应用事件包的数据大小阈值。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -794,7 +794,7 @@ setRow(size: number): void
 
 设置每次取出的应用事件包的数据条数，优先级高于setSize，和setSize同时调用时仅setRow生效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -829,7 +829,7 @@ takeNext(): AppEventPackage
 2、应用调用setRow，无论是否调用setSize，都根据setRow设置的条数取订阅事件。
 3、setSize和setRow都没被调用时，默认取1条订阅事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -854,17 +854,17 @@ let eventPkg = holder4.takeNext();
 
 | 名称      | 类型     | 必填 | 说明                           |
 | --------- | -------- | ---- | ------------------------------ |
-| packageId | number   | 是   | 事件包ID，从0开始自动递增。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。    |
-| row       | number   | 是   | 事件包的事件数量。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
-| size      | number   | 是   | 事件包的事件大小，单位为byte。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| data      | string[] | 是   | 事件包的事件信息。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
-| appEventInfos<sup>12+</sup> | Array<[AppEventInfo](#appeventinfo)> | 是   | 事件对象集合。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| packageId | number   | 是   | 事件包ID，从0开始自动递增。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
+| row       | number   | 是   | 事件包的事件数量。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
+| size      | number   | 是   | 事件包的事件大小，单位为byte。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| data      | string[] | 是   | 事件包的事件信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
+| appEventInfos<sup>12+</sup> | Array<[AppEventInfo](#appeventinfo)> | 是   | 事件对象集合。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## AppEventGroup<sup>11+</sup>
 
 提供了订阅返回的事件组的参数定义。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -879,7 +879,7 @@ clearData(): void
 
 应用事件打点数据清理方法，将应用存储在本地的打点数据进行清除。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -894,7 +894,7 @@ hiAppEvent.clearData();
 
 事件类型枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -910,7 +910,7 @@ hiAppEvent.clearData();
 
 提供了所有预定义事件的领域名称常量。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -927,25 +927,25 @@ hiAppEvent.clearData();
 
 | 名称                      | 类型   | 说明                 |
 | ------------------------- | ------ | -------------------- |
-| USER_LOGIN                | string | 用户登录事件。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
-| USER_LOGOUT               | string | 用户登出事件。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
-| DISTRIBUTED_SERVICE_START | string | 分布式服务启动事件。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| APP_CRASH<sup>11+</sup>   | string | 应用崩溃事件。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
-| APP_FREEZE<sup>11+</sup>  | string | 应用卡死事件。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
-| APP_LAUNCH<sup>12+</sup>  | string | 应用启动耗时事件。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。   |
-| SCROLL_JANK<sup>12+</sup> | string | 应用滑动丢帧事件。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。   |
-| CPU_USAGE_HIGH<sup>12+</sup> | string | 应用CPU高负载事件。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| BATTERY_USAGE<sup>12+</sup> | string | 应用24h功耗器件分解统计事件。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| RESOURCE_OVERLIMIT<sup>12+</sup> | string | 应用资源泄露事件。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| ADDRESS_SANITIZER<sup>12+</sup> | string | 应用踩内存事件。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| MAIN_THREAD_JANK<sup>12+</sup> | string | 应用主线程超时事件。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| USER_LOGIN                | string | 用户登录事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| USER_LOGOUT               | string | 用户登出事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| DISTRIBUTED_SERVICE_START | string | 分布式服务启动事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| APP_CRASH<sup>11+</sup>   | string | 应用崩溃事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| APP_FREEZE<sup>11+</sup>  | string | 应用卡死事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| APP_LAUNCH<sup>12+</sup>  | string | 应用启动耗时事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| SCROLL_JANK<sup>12+</sup> | string | 应用滑动丢帧事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| CPU_USAGE_HIGH<sup>12+</sup> | string | 应用CPU高负载事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BATTERY_USAGE<sup>12+</sup> | string | 应用24h功耗器件分解统计事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| RESOURCE_OVERLIMIT<sup>12+</sup> | string | 应用资源泄露事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| ADDRESS_SANITIZER<sup>12+</sup> | string | 应用踩内存事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| MAIN_THREAD_JANK<sup>12+</sup> | string | 应用主线程超时事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
 ## param
 
 提供了所有预定义参数的参数名称常量。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 

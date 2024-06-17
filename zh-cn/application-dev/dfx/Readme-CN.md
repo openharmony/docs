@@ -27,6 +27,10 @@
         - [踩内存事件介绍](hiappevent-watcher-address-sanitizer-events.md)
         - [订阅踩内存事件（ArkTS）](hiappevent-watcher-address-sanitizer-events-arkts.md)
         - [订阅踩内存事件（C/C++）](hiappevent-watcher-address-sanitizer-events-ndk.md)
+      - 主线程超时事件
+        - [主线程超时事件介绍](hiappevent-watcher-mainthreadjank-events.md)
+        - [订阅主线程超时事件（ArkTS）](hiappevent-watcher-mainthreadjank-events-arkts.md)
+        - [订阅主线程超时事件（C/C++）](hiappevent-watcher-mainthreadjank-events-ndk.md)
   <!--Del-->
   - [事件上报](hiappevent-event-reporting.md)
   <!--DelEnd-->

@@ -27,7 +27,7 @@
       - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
       - [视频播放 (Video)](arkts-common-components-video-player.md)
       - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
-      - [自定义绘制 (XComponent)](arkts-common-components-xcomponent.md)
+      - [自定义渲染 (XComponent)](arkts-common-components-xcomponent.md)
       - [Native XComponent](napi-xcomponent-guidelines.md)
     - 添加气泡和菜单
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
@@ -86,6 +86,7 @@
       - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
       - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
       - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+  - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
   - 主题设置
     - [设置主题换肤](theme_skinning.md)
 - UI开发 (兼容JS的类Web开发范式)

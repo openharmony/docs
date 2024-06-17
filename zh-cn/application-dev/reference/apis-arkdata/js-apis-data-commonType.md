@@ -45,6 +45,8 @@ import commonType from '@ohos.data.commonType';
 
 ## Assets
 
+type Assets = Array<Asset>
+
 表示[Asset](#asset)类型的数组。
 
 **系统能力：** SystemCapability.DistributedDataManager.CommonType
@@ -54,6 +56,8 @@ import commonType from '@ohos.data.commonType';
 | Array&lt;[Asset](#asset)&gt; | 表示Asset类型的数组。 |
 
 ## ValueType
+
+type ValueType = null | number | string | boolean | Uint8Array | Asset | Assets
 
 用于表示允许的数据字段类型，接口参数具体类型根据其功能而定。
 
@@ -71,10 +75,13 @@ import commonType from '@ohos.data.commonType';
 
 ## ValuesBucket
 
+type ValuesBucket = Record<string, ValueType>
+
 用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：** SystemCapability.DistributedDataManager.CommonType
 
-| 键类型 | 值类型                  |
+| 类型 | 说明                  |
 | ------ | ----------------------- |
-| string | [ValueType](#valuetype) |
+| string | 表示键类型为string。 |
+| [ValueType](#valuetype)| 表示值类型为[ValueType](#valuetype)。 |

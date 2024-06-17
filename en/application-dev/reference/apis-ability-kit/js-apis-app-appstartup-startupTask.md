@@ -11,12 +11,12 @@ The @ohos.app.appstartup.StartupTask module provides the APIs related to compone
 ## Modules to Import
 
 ```js
-import StartupTask from '@ohos.app.appstartup.StartupTask';
+import { StartupTask } from '@kit.AbilityKit';
 ```
 
 ## StartupTask.onDependencyCompleted
 
-onDependencyCompleted(dependency: string, result: ESObject): void
+onDependencyCompleted?(dependency: string, result: ESObject): void
 
 Called when the dependency component finishes initialization.
 
@@ -32,12 +32,17 @@ Called when the dependency component finishes initialization.
 **Example**
 
 ```ts
-import StartupTask from '@ohos.app.appstartup.StartupTask';
+import { StartupTask } from '@kit.AbilityKit';
 
+@Sendable
 export default class Sample_001 extends StartupTask {
-  onDependencyCompleted(dependence: string, result) {
+  constructor() {
+    super();
+  }
+
+  onDependencyCompleted(dependence: string, result: ESObject) {
     console.info("StartupTest Sample_001 onDependencyCompleted dependence=" + dependence);
-    ...
+    // ...
   }
 }
 ```
@@ -66,12 +71,17 @@ Initializes components.
 **Example**
 
 ```ts
-import StartupTask from '@ohos.app.appstartup.StartupTask';
+import { StartupTask, common } from '@kit.AbilityKit';
 
+@Sendable
 export default class Sample_001 extends StartupTask {
-  async init(context) {
+  constructor() {
+    super();
+  }
+
+  async init(context: common.AbilityStageContext) {
     console.info("StartupTest Sample_001 init");
-    ...
+    // ...
   }
 }
 ```

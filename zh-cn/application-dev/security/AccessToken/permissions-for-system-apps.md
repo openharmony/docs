@@ -2645,6 +2645,42 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_FINDNETWORK
+
+允许应用管理“查找”网络开关，并可以对物品进行配对、解配对。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.OPERATE_FINDNETWORK
+
+允许应用调用“查找”网络操作类接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.QUERY_FINDNETWORK_LOCATION
+
+允许应用使用“查找”网络查询设备离线位置的功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_RGM
 
 允许系统服务或系统应用管理RGM。
@@ -3068,6 +3104,30 @@
 ### ohos.permission.UNINSTALL_CLONE_BUNDLE
 
 允许应用卸载应用分身。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SCREEN_LOCK_MEDIA_DATA
+
+允许应用在锁屏后继续访问媒体图片和视频数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SCREEN_LOCK_ALL_DATA
+
+允许应用在锁屏后继续访问媒体图片和视频、通话记录、通话录音、短信内容、邮箱等敏感数据。
 
 **权限级别**：system_core
 

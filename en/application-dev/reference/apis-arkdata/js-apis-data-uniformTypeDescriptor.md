@@ -1,6 +1,6 @@
 # @ohos.data.uniformTypeDescriptor (Uniform Data Definition and Description)
 
-The **uniformTypeDescriptor** module abstracts and defines OpenHarmony uniform data types.
+The **uniformTypeDescriptor** module abstracts and defines uniform data types.
 
 > **NOTE**
 >
@@ -9,12 +9,12 @@ The **uniformTypeDescriptor** module abstracts and defines OpenHarmony uniform d
 ## Modules to Import
 
 ```js
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 ```
 
 ## UniformDataType
 
-Enumerates OpenHarmony uniform data types. Some data types are related. For example, the JPEG type belongs to the IMAGE type.
+Enumerates the uniform data types. Some data types are related. For example, the JPEG type belongs to the IMAGE type.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -23,10 +23,10 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | ENTITY<sup>11+</sup>                       | 'general.entity'                   | Base physical storage type.<br>This type is uncategorized.                         |
 | OBJECT<sup>11+</sup>                       | 'general.object'                   | Base logical content type.<br>This type is uncategorized.                         |
 | COMPOSITE_OBJECT<sup>11+</sup>                       | 'general.composite-object'                   | Base composite content type. For example, a PDF file that contains text and image.<br>This type belongs to **OBJECT**.                         |
-| TEXT                       | 'general.text'                   | Base text type.<br>This type belongs to **OBJECT**.                         |
-| PLAIN_TEXT                | 'general.plain-text'             | Text without specific encoding or identifier.<br>This type belongs to **TEXT**.       |
-| HTML                  | 'general.html'                   | HTML.<br>This type belongs to **TEXT**.              |
-| HYPERLINK         | 'general.hyperlink'              | Hyperlink.<br>This type belongs to **TEXT**.                 |
+| TEXT                       | 'general.text'                   | Base text type.<br>This type belongs to **OBJECT**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                         |
+| PLAIN_TEXT                | 'general.plain-text'             | Text without specific encoding or identifier.<br>This type belongs to **TEXT**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.       |
+| HTML                  | 'general.html'                   | HTML.<br>This type belongs to **TEXT**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.              |
+| HYPERLINK         | 'general.hyperlink'              | Hyperlink.<br>This type belongs to **TEXT**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                 |
 | XML<sup>11+</sup>    | 'general.xml'                   | XML.<br>This type belongs to **TEXT**.               |
 | SMIL<sup>12+</sup>                         | 'com.real.smil'                    |  Synchronized Multimedia Integration Language (SMIL).<br>This type belongs to **XML**.      |
 | SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | Base source code type.<br>This type belongs to **PLAIN_TEXT**.       |
@@ -52,7 +52,7 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | KFX<sup>11+</sup>                       | 'com.amazon.kfx'                 | KFX.<br>This type belongs to **EBOOK**.         |
 | MOBI<sup>11+</sup>             | 'com.amazon.mobi'               | MOBI.<br>This type belongs to **EBOOK**.        |
 | MEDIA<sup>11+</sup>         | 'general.media'           | Base media type.<br>This type belongs to **OBJECT**.                         |
-| IMAGE        | 'general.image'          | Image.<br>This type belongs to **MEDIA**.             |
+| IMAGE        | 'general.image'          | Image.<br>This type belongs to **MEDIA**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | JPEG<sup>11+</sup>                         | 'general.jpeg'                   | JPEG.<br>This type belongs to **IMAGE**.             |
 | PNG<sup>11+</sup>                        | 'general.png'                  | PNG.<br>This type belongs to **IMAGE**.              |
 | RAW_IMAGE<sup>11+</sup>                        | 'general.raw-image'                  | Raw image.<br>This type belongs to **IMAGE**.         |
@@ -75,7 +75,7 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | PDF<sup>11+</sup>                        | 'com.adobe.pdf'                  | PDF.<br>This type belongs to **COMPOSITE_OBJECT**.                          |
 | POSTSCRIPT<sup>11+</sup>                       | 'com.adobe.postscript'                 | PostScript.<br>This type belongs to **COMPOSITE_OBJECT**.                   |
 | ENCAPSULATED_POSTSCRIPT<sup>11+</sup>             | 'com.adobe.encapsulated-postscript'               | Encapsulated PostScript.<br>This type belongs to **POSTSCRIPT**.        |
-| VIDEO       | 'general.video'           | Base video type.<br>This type belongs to **MEDIA**.             |
+| VIDEO       | 'general.video'           | Base video type.<br>This type belongs to **MEDIA**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | AVI<sup>11+</sup>        | 'general.avi'          | AVI.<br>This type belongs to **VIDEO**.              |
 | MPEG<sup>11+</sup>                         | 'general.mpeg'                   | MPGE-1 or MPGE-2.<br>This type belongs to **VIDEO**.    |
 | MPEG4<sup>11+</sup>                        | 'general.mpeg-4'                  | MPGE-4.<br>This type belongs to **VIDEO**.           |
@@ -87,7 +87,7 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | WINDOWS_MEDIA_WVX<sup>11+</sup>                        | 'com.microsoft.windows-media-wvx'                  | Windows WVX format.<br>This type belongs to **VIDEO**.      |
 | WINDOWS_MEDIA_WMX<sup>11+</sup>                        | 'com.microsoft.windows-media-wmx'                  | Windows WMX format.<br>This type belongs to **VIDEO**.      |
 | REALMEDIA<sup>12+</sup>                         | 'com.real.realmedia'                    | RealMedia format.<br>This type belongs to **VIDEO**.      |
-| AUDIO       | 'general.audio'          | Base audio type.<br>This type belongs to **MEDIA**.             |
+| AUDIO       | 'general.audio'          | Base audio type.<br>This type belongs to **MEDIA**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
 | AAC<sup>11+</sup>                         | 'general.aac'                   | AAC.<br>This type belongs to **AUDIO**.              |
 | AIFF<sup>11+</sup>                        | 'general.aiff'                  | AIFF.<br>This type belongs to **AUDIO**.             |
 | ALAC<sup>11+</sup>                        | 'general.alac'                  | ALAC.<br>This type belongs to **AUDIO**.             |
@@ -102,33 +102,33 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | AIFC_AUDIO<sup>12+</sup>                         | 'general.aifc-audio'                    | AIFC.<br>This type belongs to **AUDIO**.      |
 | SD2_AUDIO<sup>12+</sup>                         | 'com.digidesign.sd2-audio'                    | Digidesign Sound Designer II (SDII).<br>This type belongs to **AUDIO**.      |
 | REALAUDIO<sup>12+</sup>                         | 'com.real.realaudio'                    | RealAudio.<br>This type belongs to **AUDIO**.      |
-| FILE                       | 'general.file'                 | Base file type.<br>This type belongs to **ENTITY**.                         |
+| FILE                       | 'general.file'                 | Base file type.<br>This type belongs to **ENTITY**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                         |
 | DIRECTORY<sup>11+</sup>             | 'general.directory'               | Base directory type.<br>This type belongs to **ENTITY**.                         |
-| FOLDER        | 'general.folder'           | Base folder type.<br>This type belongs to **DIRECTORY**.                        |
+| FOLDER        | 'general.folder'           | Base folder type.<br>This type belongs to **DIRECTORY**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                        |
 | SYMLINK<sup>11+</sup>        | 'general.symlink'          | Base symbolic type.<br>This type belongs to **ENTITY**.                       |
 | ARCHIVE<sup>11+</sup>                         | 'general.archive'                   | Base archive file type. <br>This type belongs to **OBJECT**.                  |
 | BZ2_ARCHIVE<sup>11+</sup>                        | 'general.bz2-archive'                  | BZ2.<br>This type belongs to **ARCHIVE**.          |
 | DISK_IMAGE<sup>11+</sup>                        | 'general.disk-image'                  | Base type of any file that can be mounted as a volume.<br>This type belongs to **ARCHIVE**. |
 | TAR_ARCHIVE<sup>11+</sup>                        | 'general.tar-archive'                  | TAR.<br>This type belongs to ARCHIVE.          |
 | ZIP_ARCHIVE<sup>11+</sup>                       | 'general.zip-archive'                 | ZIP.<br>This type belongs to **ARCHIVE**.          |
-| JAVA_ARCHIVE<sup>11+</sup>             | 'com.sun.java-archive'               | JAR (Java archive).<br>This type belongs to **ARCHIVE**.         |
+| JAVA_ARCHIVE<sup>11+</sup>             | 'com.sun.java-archive'               | JAR (Java archive).<br>This type belongs to **ARCHIVE** and **EXECUTABLE**.  |
 | GNU_TAR_ARCHIVE<sup>11+</sup>         | 'org.gnu.gnu-tar-archive'           | GUN archive.<br>This type belongs to **ARCHIVE**.          |
 | GNU_ZIP_ARCHIVE<sup>11+</sup>        | 'org.gnu.gnu-zip-archive'          | GZIP archive.<br>This type belongs to **ARCHIVE**.         |
 | GNU_ZIP_TAR_ARCHIVE<sup>11+</sup>                         | 'org.gnu.gnu-zip-tar-archive'                   | GZIP TAR.<br>This type belongs to **ARCHIVE**.      |
 | OPENXML<sup>12+</sup>                         | 'org.openxmlformats.openxml'                    |   OpenXML base type.<br>This type belongs to **ARCHIVE**.      |
-| WORDPROCESSINGML_DOCUMENT<sup>12+</sup>                         | 'org.openxmlformats.wordprocessingml.document'                    | WordProcessingML format.<br>This type belongs to **OPENXML**.      |
-| SPREADSHEETML_SHEET<sup>12+</sup>                         | 'org.openxmlformats.spreadsheetml.sheet'                    | SpreadsheetML format.<br>This type belongs to **OPENXML**.      |
-| PRESENTATIONML_PRESENTATION<sup>12+</sup>                         | 'org.openxmlformats.presentationml.presentation'                    | PresentationML format. <br>This type belongs to **OPENXML**.      |
+| WORDPROCESSINGML_DOCUMENT<sup>12+</sup>                         | 'org.openxmlformats.wordprocessingml.document'                    | WordProcessingML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
+| SPREADSHEETML_SHEET<sup>12+</sup>                         | 'org.openxmlformats.spreadsheetml.sheet'                    | SpreadsheetML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
+| PRESENTATIONML_PRESENTATION<sup>12+</sup>                         | 'org.openxmlformats.presentationml.presentation'                    | PresentationML format. <br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.      |
 | OPENDOCUMENT<sup>12+</sup>                         | 'org.oasis.opendocument'                    | OpenDocument format for Office applications.<br>This type belongs to **ARCHIVE**.      |
-| OPENDOCUMENT_TEXT<sup>12+</sup>                         | 'org.oasis.opendocument.text'                    | OpenDocument format for word processing (text) documents.<br>This type belongs to **OPENDOCUMENT**.      |
-| OPENDOCUMENT_SPREADSHEET<sup>12+</sup>                         | 'org.oasis.opendocument.spreadsheet'                    | OpenDocument format for spreadsheets. <br>This type belongs to **OPENDOCUMENT**.      |
-| OPENDOCUMENT_PRESENTATION<sup>12+</sup>                         | 'org.oasis.opendocument.presentation'                    | OpenDocument format for presentations.<br>This type belongs to **OPENDOCUMENT**.      |
-| OPENDOCUMENT_GRAPHICS<sup>12+</sup>                         | 'org.oasis.opendocument.graphics'                    | OpenDocument format for graphics.<br>This type belongs to **OPENDOCUMENT**.      |
+| OPENDOCUMENT_TEXT<sup>12+</sup>                         | 'org.oasis.opendocument.text'                    | OpenDocument format for word processing (text) documents.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**.      |
+| OPENDOCUMENT_SPREADSHEET<sup>12+</sup>                         | 'org.oasis.opendocument.spreadsheet'                    | OpenDocument format for spreadsheets. <br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**.      |
+| OPENDOCUMENT_PRESENTATION<sup>12+</sup>                         | 'org.oasis.opendocument.presentation'                    | OpenDocument format for presentations.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**.      |
+| OPENDOCUMENT_GRAPHICS<sup>12+</sup>                         | 'org.oasis.opendocument.graphics'                    | OpenDocument format for graphics.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**.      |
 | OPENDOCUMENT_FORMULA<sup>12+</sup>                         | 'org.oasis.opendocument.formula'                    | OpenDocument format for formula.<br>This type belongs to **OPENDOCUMENT**.      |
 | STUFFIT_ARCHIVE<sup>12+</sup>                         | 'com.allume.stuffit-archive'                    | Stuffit compression format (stuffit archive).<br>This type belongs to **ARCHIVE**.      |
 | CALENDAR<sup>11+</sup>                        | 'general.calendar'                  | Base calendar type.<br>This type belongs to **OBJECT**.                      |
-| VCS<sup>12+</sup>                         | 'general.vcs'                    | VCalendar (VCS) format.<br>This type belongs to **CALENDAR**.      |
-| ICS<sup>12+</sup>                         | 'general.ics'                    | Internet Calendaring and Scheduling (ICS) format.<br>This type belongs to **CALENDAR**.      |
+| VCS<sup>12+</sup>                         | 'general.vcs'                    | VCalendar (VCS) format.<br>This type belongs to **CALENDAR** and **TEXT**.      |
+| ICS<sup>12+</sup>                         | 'general.ics'                    | Internet Calendaring and Scheduling (ICS) format.<br>This type belongs to **CALENDAR** and **TEXT**.      |
 | CONTACT<sup>11+</sup>                        | 'general.contact'                  | Base contact type.<br>This type belongs to **OBJECT**.                     |
 | DATABASE<sup>11+</sup>                        | 'general.database'                  | Base database file type.<br>This type belongs to **OBJECT**.                      |
 | MESSAGE<sup>11+</sup>                       | 'general.message'                 | Base message type.<br>This type belongs to **OBJECT**.                      |
@@ -138,30 +138,30 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | VCARD<sup>11+</sup>             | 'general.vcard'               | Base electronic business card type.<br>This type belongs to **OBJECT**.                    |
 | NAVIGATION<sup>11+</sup>         | 'general.navigation'           | Base navigation data type.<br>This type belongs to **OBJECT**.                      |
 | LOCATION<sup>11+</sup>        | 'general.location'          | Location data.<br>This type belongs to **NAVIGATION**.           |
-| FONT<sup>12+</sup>                         | 'general.font'                    | Basic type of fonts. <br>This type belongs to **ENTITY**.      |
+| FONT<sup>12+</sup>                         | 'general.font'                    | Basic type of fonts. <br>This type belongs to **OBJECT**.      |
 | TRUETYPE_FONT<sup>12+</sup>                         | 'general.truetype-font'                    | TrueType font format.<br>This type belongs to **FONT**.      |
 | TRUETYPE_COLLECTION_FONT<sup>12+</sup>                         | 'general.truetype-collection-font'                    | TrueType Collection font format.<br>This type belongs to **FONT**.      |
 | OPENTYPE_FONT<sup>12+</sup>                         | 'general.opentype-font'                    | OpenType font format.<br>This type belongs to **FONT**.      |
 | POSTSCRIPT_FONT<sup>12+</sup>                         | 'com.adobe.postscript-font'                    | PostScript font format.<br>This type belongs to **FONT**.      |
 | POSTSCRIPT_PFB_FONT<sup>12+</sup>                         | 'com.adobe.postscript-pfb-font'                    | PostScript Font Binary font format.<br>This type belongs to **FONT**.      |
 | POSTSCRIPT_PFA_FONT<sup>12+</sup>                         | 'com.adobe.postscript-pfa-font'                    | Adobe Type 1 font format.<br>This type belongs to **FONT**.      |
-| OPENHARMONY_FORM                         | 'openharmony.form'                   | Widget defined for OpenHarmony.<br>This type belongs to **OBJECT**.             |
-| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | Home screen icon defined for OpenHarmony.<br>This type belongs to **OBJECT**.           |
-| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | Pixel map defined by OpenHarmony.<br>This type belongs to **IMAGE**.            |
-| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | Atomic service defined for OpenHarmony.<br>This type belongs to **OBJECT**.            |
-| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | Package defined for OpenHarmony (compressed folder).<br>This type belongs to **DIRECTORY**.            |
-| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | Ability package defined for OpenHarmony.<br>This type belongs to **OPENHARMONY_PACKAGE**.            |
-| OPENHARMONY_HDOC<sup>12+</sup>                         | 'openharmony.hdoc'                    | Memo format defined for OpenHarmony.<br>This type belongs to **COMPOSITE_OBJECT**.      |
-| OPENHARMONY_HINOTE<sup>12+</sup>                         | 'openharmony.hinote'                    | Note format defined for OpenHarmony.<br>This type belongs to **COMPOSITE_OBJECT**.      |
-| OPENHARMONY_STYLED_STRING<sup>12+</sup>                         | 'openharmony.styled-string'                    | Style string type defined for OpenHarmony.<br>This type belongs to **COMPOSITE_OBJECT**.      |
-| OPENHARMONY_WANT<sup>12+</sup>                         | 'openharmony.want'                    | Want type defined for OpenHarmony.<br>This type belongs to **COMPOSITE_OBJECT**.      |
+| OPENHARMONY_FORM                         | 'openharmony.form'                   | Widget defined for the system.<br>This type belongs to **OBJECT**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
+| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | Home screen icon defined for the system.<br>This type belongs to **OBJECT**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.           |
+| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | Pixel map defined for the system.<br>This type belongs to **IMAGE**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.            |
+| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | Atomic service defined for the system.<br>This type belongs to **OBJECT**.            |
+| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | Package (compressed folder) defined for the system.<br>This type belongs to **DIRECTORY**.            |
+| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | Ability package defined for the system.<br>This type belongs to **OPENHARMONY_PACKAGE**.            |
+| OPENHARMONY_HDOC<sup>12+</sup>                         | 'openharmony.hdoc'                    | Memo format defined for the system.<br>This type belongs to **COMPOSITE_OBJECT**.      |
+| OPENHARMONY_HINOTE<sup>12+</sup>                         | 'openharmony.hinote'                    | Note format defined for the system.<br>This type belongs to **COMPOSITE_OBJECT**.      |
+| OPENHARMONY_STYLED_STRING<sup>12+</sup>                         | 'openharmony.styled-string'                    | Style string type defined for the system.<br>This type belongs to **COMPOSITE_OBJECT**.      |
+| OPENHARMONY_WANT<sup>12+</sup>                         | 'openharmony.want'                    | Want defined for the system.<br>This type belongs to **OBJECT**.      |
 
 
 ## TypeDescriptor<sup>11+</sup> 
 
 Provides attributes and APIs for describing a uniform data type and its relationship with other uniform data types.
 
-## Attributes
+### Attributes
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -195,11 +195,19 @@ Checks whether this data type belongs to the specified uniform data type.
 | ------- | ------------------------------------------------------------ |
 | boolean | Returns **true** if this data type belongs to or is the same as the specified uniform data type; returns **false** if they are not related.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
 **Example**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
@@ -233,11 +241,19 @@ Checks whether this data type is a lower-level type of the specified uniform dat
 | ------- | ------------------------------------------------------------ |
 | boolean | Returns **true** if this data type is a lower-level type of the specified uniform data type; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
 **Example**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
@@ -271,11 +287,19 @@ Checks whether this data type is a higher-level type of the specified uniform da
 | ------- | ------------------------------------------------------------ |
 | boolean | Returns **true** if this data type is a higher-level type of the specified uniform data type; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
 **Example**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.plain-text');
@@ -309,11 +333,19 @@ Checks whether this data type is the same as the specified uniform data type. Th
 | ------- | ------------------------------------------------------------ |
 | boolean | Returns **true** if the type IDs are the same; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
 **Example**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeA : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
@@ -347,11 +379,19 @@ Obtains the **TypeDescriptor** object based on the uniform data type ID.
 | ------- | ------------------------------------------------------------ |
 | [TypeDescriptor](#typedescriptor11) | Returns the **TypeDescriptor** object obtained. If the uniform data type does not exist, **null** is returned.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
 **Example**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('com.adobe.photoshop-image');
@@ -361,7 +401,9 @@ try {
         let description = typeObj.description;
         let referenceURL = typeObj.referenceURL;
         let iconFile = typeObj.iconFile;
-        console.info(`typeId: ${typeId}, belongingToTypes: ${belongingToTypes}, description: ${description}, referenceURL: ${referenceURL}, iconFile: ${iconFile}`);
+        let filenameExtensions = typeObj.filenameExtensions;
+        let mimeTypes = typeObj.mimeTypes;
+        console.info(`typeId: ${typeId}, belongingToTypes: ${belongingToTypes}, description: ${description}, referenceURL: ${referenceURL}, iconFile: ${iconFile}, filenameExtensions: ${filenameExtensions}, mimeTypes: ${mimeTypes}`);
     } else {
         console.info('type com.adobe.photoshop-image does not exist');
     }
@@ -392,11 +434,19 @@ Obtains the uniform data type ID based on the given file name extension and data
 | ------- | ------------------------------------------------------------ |
 | string | ID of the uniform data type that matches the specified file name extension and **belongsTo** (if specified). If no match is found, the data type dynamically generated based on the rules specified by the input parameters is returned.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
 **Example**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
@@ -441,11 +491,19 @@ Obtains the uniform data type ID based on the given MIME type and data type.
 | ------- | ------------------------------------------------------------ |
 | string | ID of the uniform data type that matches the specified MIME type and **belongsTo** (if specified). If no match is found, the data type dynamically generated based on the rules specified by the input parameters is returned.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                               |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
 **Example**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('image/jpeg', 'general.image');

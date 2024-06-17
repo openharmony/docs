@@ -1,4 +1,4 @@
-# 颜色渐变
+F# 颜色渐变
 
 设置组件的颜色渐变效果。
 
@@ -14,7 +14,7 @@ linearGradient(value: {angle?: number | string; direction?: GradientDirection; c
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -30,11 +30,12 @@ sweepGradient(value: {center: [Length, Length]; start?: number | string; end?: n
 
 角度渐变。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -48,11 +49,11 @@ radialGradient(value: { center: [Length, Length]; radius: number | string; color
 
 径向渐变。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：** 
 

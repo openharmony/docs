@@ -713,7 +713,7 @@ In the future, detailed adaptation verification needs to be performed on the ent
 
 ### Basic Kernel Function Adaptation
 
-The adaptation items of basic kernel functions include [interrupt management](../kernel/kernel-mini-basic-interrupt.md), [task management](../kernel/kernel-mini-basic-task.md), [memory management](../kernel/kernel-mini-basic-memory.md), [kernel communication mechanism] (../kernel/kernel-mini-basic-ipc-event.md), [time management](../kernel/kernel-mini-basic-time.md), and [software timer](../kernel/kernel-mini-basic-soft.md). You can verify basic kernel functions by referring to the programming samples in the links. If any problem is found during the verification, perform specific adaptation.
+The adaptation items of basic kernel functions include [interrupt management](../kernel/kernel-mini-basic-interrupt.md), [task management](../kernel/kernel-mini-basic-task.md), [memory management](../kernel/kernel-mini-basic-memory.md), [kernel communication mechanism](../kernel/kernel-mini-basic-ipc-event.md), [time management](../kernel/kernel-mini-basic-time.md), and [software timer](../kernel/kernel-mini-basic-soft.md). You can verify basic kernel functions by referring to the programming samples in the links. If any problem is found during the verification, perform specific adaptation.
 
 According to the information generation interval in the previous section, the delay time of the `LOS_TaskDelay` function is inaccurate. You can define the following macros in `target_config.h` to adapt the kernel clock:
 

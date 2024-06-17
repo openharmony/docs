@@ -31,7 +31,7 @@
 | ---------------- | ------------------------|
 | onDragStart | 支持拖出的组件产生拖出动作时触发。<br>该回调可以感知拖拽行为的发起，开发者可通过在 onDragStart 方法中设置拖拽所传递的数据以及自定义拖拽背板图。推荐开发者使用pixelmap的方式返回背板图，不推荐使用customBuilder的方式，会有额外的性能开销。|
 | onDragEnter | 当拖拽活动的拖拽点进入组件范围内时触发，只有该组件监听了[onDrop](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)事件时，此回调才会被触发。|
-| onDragMove| 拖拽点在组件范围内移动时触发；只有该组件监听了onDrop事件时，此回调才会被触发。<br>在此过程中可通过[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent说明)中的setResult方法影响系统部分场景下的外观<br>1. 设置DragResult.DROP\_ENABLED；<br>2. 设置DragResult.DROP\_DISABLED。|
+| onDragMove| 拖拽点在组件范围内移动时触发；只有该组件监听了onDrop事件时，此回调才会被触发。<br>在此过程中可通过[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent)中的setResult方法影响系统部分场景下的外观<br>1. 设置DragResult.DROP\_ENABLED；<br>2. 设置DragResult.DROP\_DISABLED。|
 | onDragLeave | 拖拽点离开组件范围时触发；只有该组件监听了onDrop事件时，此回调才会被触发。<br>针对以下两种情况默认不会发送onDragLeave事件：<br>1. 父组件移动到子组件；<br>2. 目标组件与当前组件布局有重叠；<br>API version 12开始可通过[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)中的[setDragEventStrictReportingEnabled](../reference/apis-arkui/js-apis-arkui-UIContext.md#setdrageventstrictreportingenabled12)方法严格触发onDragLeave事件。|
 | onDrop | 当用户在组件范围内释放时触发，需在此回调中通过DragEvent中的setResult方法设置拖拽结果，否则在拖出方组件的onDragEnd方法中通过getRresult方法只能拿到默认的处理结果DragResult.DRAG\_FAILED。<br>该回调也是开发者干预系统默认拖入处理行为的地方，系统会优先执行开发者的onDrop回调，通过在回调中执行setResult方法来告知系统该如何处理所拖拽的数据；<br>1. 设置 DragResult.DRAG\_SUCCESSFUL，数据完全由开发者自己处理，系统不进行处理；<br>2. 设置DragResult.DRAG\_FAILED，数据不再由系统继续处理；<br>3. 设置DragResult.DRAG\_CANCELED，系统也不需要进行数据处理；<br>4. 设置DragResult.DROP\_ENABLED或DragResult.DROP\_DISABLED会被忽略，同设置DragResult.DRAG\_FAILED；|
 | onDragEnd | 当用户释放拖拽时，拖拽活动结束，发起拖出动作的组件会触发该回调。|

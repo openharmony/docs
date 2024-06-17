@@ -16,7 +16,7 @@ import { formInfo } from '@kit.FormKit';
 
 卡片配置信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -25,7 +25,7 @@ import { formInfo } from '@kit.FormKit';
 | bundleName  | string               | 是    | 否     | 卡片所属包的Bundle名称。                   |
 | moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
-| name        | string               | 是    | 否     | 应用/元服务名称。                                 |
+| name        | string               | 是    | 否     | 应用/原子化服务名称。                                 |
 | displayName<sup>11+</sup> | string               | 是    | 否     | 卡片名称。                                 |
 | displayNameId<sup>11+</sup> | number               | 是    | 否     | 卡片预览时标识卡片名称的ID。                |
 | description | string               | 是    | 否     | 卡片描述。   |
@@ -50,7 +50,7 @@ import { formInfo } from '@kit.FormKit';
 
 支持的卡片类型枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -63,7 +63,7 @@ import { formInfo } from '@kit.FormKit';
 
 卡片支持的颜色模式枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -77,7 +77,7 @@ import { formInfo } from '@kit.FormKit';
 
 卡片状态信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -90,7 +90,7 @@ import { formInfo } from '@kit.FormKit';
 
 卡片状态枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -104,28 +104,28 @@ import { formInfo } from '@kit.FormKit';
 
 卡片参数枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
-| IDENTITY_KEY     | 'ohos.extra.param.key.form_identity'    | 卡片标识。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | 卡片规格样式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| NAME_KEY       | 'ohos.extra.param.key.form_name'   | 卡片名称。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| MODULE_NAME_KEY        | 'ohos.extra.param.key.module_name'   | 卡片所属模块名称。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | 卡片宽度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | 临时卡片。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | ability名称。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | Bundle名称。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | 卡片创建原因。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| HOST_BG_INVERSE_COLOR_KEY<sup>12+</sup>    | 'ohos.extra.param.key.host_bg_inverse_color'   | 卡片使用方的背景反色颜色值。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| IDENTITY_KEY     | 'ohos.extra.param.key.form_identity'    | 卡片标识。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | 卡片规格样式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| NAME_KEY       | 'ohos.extra.param.key.form_name'   | 卡片名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| MODULE_NAME_KEY        | 'ohos.extra.param.key.module_name'   | 卡片所属模块名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | 卡片宽度。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | 临时卡片。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | ability名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | Bundle名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | 卡片创建原因。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| HOST_BG_INVERSE_COLOR_KEY<sup>12+</sup>    | 'ohos.extra.param.key.host_bg_inverse_color'   | 卡片使用方的背景反色颜色值。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | FORM_LOCATION_KEY<sup>12+</sup>    | 'ohos.extra.param.key.form_location'   | 卡片位置。|
-| FORM_PERMISSION_NAME_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_name' | 用户授权权限名称。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| FORM_PERMISSION_GRANTED_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_granted' | 用户是否授权。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| FORM_PERMISSION_NAME_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_name' | 用户授权权限名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| FORM_PERMISSION_GRANTED_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_granted' | 用户是否授权。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ##  FormDimension
 
@@ -135,13 +135,13 @@ import { formInfo } from '@kit.FormKit';
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
-| Dimension_1_2      | 1   | 1 x 2 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| Dimension_2_2      | 2   | 2 x 2 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| Dimension_2_4      | 3   | 2 x 4 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| Dimension_4_4      | 4   | 4 x 4 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| Dimension_2_1      | 5   | 2 x 1 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| DIMENSION_6_4<sup>12+<sup>      | 7   | 6 x 4 form。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| Dimension_1_2      | 1   | 1 x 2 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| Dimension_2_2      | 2   | 2 x 2 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| Dimension_2_4      | 3   | 2 x 4 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| Dimension_4_4      | 4   | 4 x 4 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| Dimension_2_1      | 5   | 2 x 1 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1 form。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| DIMENSION_6_4<sup>12+<sup>      | 7   | 6 x 4 form。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ##  FormShape<sup>12+</sup> 
 
@@ -151,14 +151,14 @@ import { formInfo } from '@kit.FormKit';
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
-| RECT        | 1   | 方形 form。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
-| CIRCLE      | 2   | 圆形 form。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| RECT        | 1   | 方形 form。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| CIRCLE      | 2   | 圆形 form。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## FormInfoFilter
 
 卡片信息过滤器，仅将符合过滤器内要求的卡片信息返回。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -173,7 +173,7 @@ import { formInfo } from '@kit.FormKit';
 
 卡片当前可见类型枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -188,7 +188,7 @@ import { formInfo } from '@kit.FormKit';
 
 卡片创建原因枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
