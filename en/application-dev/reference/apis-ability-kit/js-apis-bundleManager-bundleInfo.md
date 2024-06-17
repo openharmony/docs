@@ -72,7 +72,7 @@ Describes the signature information of the bundle.
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | appId     | string         | Yes  | No  | Application ID.                |
 |fingerprint| string         | Yes  | No  | Fingerprint information of the bundle. This field changes when the used signing certificate changes.           |
-|appIdentifier<sup>11</sup>| string         | Yes  | No  | Unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.           |
+|appIdentifier<sup>11+</sup>| string         | Yes  | No  | Unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.           |
 
 ## AppCloneIdentity
 

@@ -145,7 +145,7 @@ Obtains the shared directory based on a group ID. This API uses a promise to ret
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service application project is created.|
+| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service project is created.|
 
 **Return value**
 
@@ -198,7 +198,7 @@ Obtains the shared directory based on a group ID. This API uses an asynchronous 
 
 | Name      | Type                    | Mandatory  | Description           |
 | -------- | ---------------------- | ---- | ------------- |
-| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service application project is created.|
+| dataGroupID | string | Yes   | Group ID, which is assigned by the system when an atomic service project is created.|
 | callback | AsyncCallback\<string> | Yes   | Callback used to return the result. If no shared directory exists, null is returned. Only the encryption level EL2 is supported.|
 
 **Error codes**

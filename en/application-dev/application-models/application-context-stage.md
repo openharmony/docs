@@ -361,6 +361,7 @@ In the DFX statistics scenario of an application, if you need to collect statist
 ```ts
 import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import type AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import type Want from '@ohos.app.ability.Want';
@@ -419,18 +420,30 @@ export default class LifecycleAbility extends UIAbility {
     };
     // Obtain the application context.
     let applicationContext = this.context.getApplicationContext();
+    try {
     // Register the application lifecycle callback.
-    this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+      this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
+    };
     hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
-
   //...
 
   onDestroy() : void {
     // Obtain the application context.
     let applicationContext = this.context.getApplicationContext();
-    // Deregister the application lifecycle callback.
-    applicationContext.off('abilityLifecycle', this.lifecycleId);
+    try {
+      // Deregister the application lifecycle callback.
+      applicationContext.off('abilityLifecycle', this.lifecycleId);
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
+    };
+
   }
 };
 ```

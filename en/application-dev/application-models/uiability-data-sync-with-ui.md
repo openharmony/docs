@@ -80,19 +80,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
              .onClick(() => {
                this.eventHubFunc();
                promptAction.showToast({
-                 message: $r('app.string.EventHubFuncA')
-               });
-             })
-           }
-           // ...
-           ListItem() {
-             Row() {
-               // ...
-             }
-             .onClick(() => {
-               this.context.eventHub.off('event1');
-               promptAction.showToast({
-                 message: $r('app.string.EventHubFuncB')
+                 message: 'emit'
                });
              })
            }
@@ -116,8 +104,14 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 4. When **event1** is not needed, call [eventHub.off()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
 
    ```ts
-   // context is the AbilityContext of the UIAbility instance.
-   this.context.eventHub.off('event1');
+   import UIAbility from '@ohos.app.ability.UIAbility';
+
+   export default class EntryAbility extends UIAbility {
+     // ... 
+     onDestroy(): void {
+       this.context.eventHub.off('event1');
+     }
+   }
    ```
 
 ## Using AppStorage or LocalStorage for Data Synchronization
