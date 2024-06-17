@@ -111,15 +111,15 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
 
 1. 在form.ts中，导入相关模块
    
-  ```ts
-  import type featureAbility from '@ohos.ability.featureAbility';
-  import type Want from '@ohos.app.ability.Want';
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import formInfo from '@ohos.app.form.formInfo';
-  import formProvider from '@ohos.app.form.formProvider';
-  import dataPreferences from '@ohos.data.preferences';
-  import hilog from '@ohos.hilog';
-  ```
+      ```ts
+      import type featureAbility from '@ohos.ability.featureAbility';
+      import type Want from '@ohos.app.ability.Want';
+      import formBindingData from '@ohos.app.form.formBindingData';
+      import formInfo from '@ohos.app.form.formInfo';
+      import formProvider from '@ohos.app.form.formProvider';
+      import dataPreferences from '@ohos.data.preferences';
+      import hilog from '@ohos.hilog';
+      ```
 
 2. 在form.ts中，实现卡片生命周期接口
    
