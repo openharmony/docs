@@ -783,7 +783,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 否   | 扩展菜单选项。 |
+| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 是   | 扩展菜单选项。 |
 
 >  **说明：**    
 >  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> } 
@@ -1165,11 +1165,14 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 | selectionStart | number | 是    | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
 | selectionEnd   | number | 是    | 文本选择区域结束位置。 |
 | options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>从API version 12开始，该接口中的options参数支持在原子化服务中使用。 |
+
 >  **说明：**
 >
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.SHOW，调用setTextSelection也不弹出菜单。
+>
+>  如果选中的文本含有emoji表情时，表情的起始位置包含在设置的文本选中区域内就会被选中。
 
 ### stopEditing<sup>10+</sup>
 
@@ -1885,7 +1888,6 @@ struct TextExample1 {
 
 ```ts
 // xxx.ets
-// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
@@ -1900,11 +1902,11 @@ struct TextInputExample {
       Column() {
         TextInput({ text: "TextInput支持插入回调文本" })
           .height(60)
-          .onWillInsert((info) => {
+          .onWillInsert((info: InsertValue) => {
             this.insertValue = info.insertValue
             return true;
           })
-          .onDidInsert((info) => {
+          .onDidInsert((info: InsertValue) => {
             this.insertOffset = info.insertOffset
           })
 
@@ -1912,12 +1914,12 @@ struct TextInputExample {
 
         TextInput({ text: "TextInput支持删除回调文本b" })
           .height(60)
-          .onWillDelete((info) => {
+          .onWillDelete((info: DeleteValue) => {
             this.deleteValue = info.deleteValue
             info.direction
             return true;
           })
-          .onDidDelete((info) => {
+          .onDidDelete((info: DeleteValue) => {
             this.deleteOffset = info.deleteOffset
             this.deleteDirection = info.direction
           })

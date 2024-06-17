@@ -469,7 +469,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 否   | 扩展菜单选项。 |
+| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 是   | 扩展菜单选项。 |
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -780,6 +780,8 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.SHOW，调用setTextSelection也不弹出菜单。
+>
+>  如果选中的文本含有emoji表情时，表情的起始位置包含在设置的文本选中区域内就会被选中。
 
 ## KeyboardOptions<sup>12+</sup>
 
@@ -1147,11 +1149,11 @@ struct SearchExample {
       Column() {
         Search({ value: "Search支持插入回调文本" })
           .height(60)
-          .onWillInsert((info) => {
+          .onWillInsert((info: InsertValue) => {
             this.insertValue = info.insertValue
             return true;
           })
-          .onDidInsert((info) => {
+          .onDidInsert((info: InsertValue) => {
             this.insertOffset = info.insertOffset
           })
 
@@ -1159,12 +1161,12 @@ struct SearchExample {
 
         Search({ value: "Search支持删除回调文本b" })
           .height(60)
-          .onWillDelete((info) => {
+          .onWillDelete((info: DeleteValue) => {
             this.deleteValue = info.deleteValue
             info.direction
             return true;
           })
-          .onDidDelete((info) => {
+          .onDidDelete((info: DeleteValue) => {
             this.deleteOffset = info.deleteOffset
             this.deleteDirection = info.direction
           })

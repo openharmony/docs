@@ -601,7 +601,21 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 否   | 扩展菜单选项。 |
+| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 是   | 扩展菜单选项。 |
+
+### marqueeOptions<sup>12+</sup>
+
+marqueeOptions(value: Optional<MarqueeOptions\>)
+
+当overflow设置为TextOverflow.MARQUEE时，可以进行初始化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 名称             | 类型     | 必填 | 说明            |
+|----------------|-------------------------------| -------- |---------------|
+| value | Optional<[MarqueeOptions](#marqueeoptions12对象说明)\> | 是 | marquee自定义选项。 |
 
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 
@@ -667,7 +681,7 @@ onMarqueeStateChange(callback: Callback<MarqueeState>)
 
 | 参数名    | 类型                                  | 必填  | 说明                       |
 |--------|-------------------------------------|-----|--------------------------|
-| state  | [MarqueeState](#marqueestate12枚举说明) | 是   | 开始滚动时、每一次滚动时以及在滚动结束时触发。 |
+| callback  | Callback<[MarqueeState](#marqueestate12枚举说明)> | 是   | 开始滚动时、每一次滚动时以及在滚动结束时触发。 |
 
 ## TextOptions<sup>11+</sup>
 
@@ -723,30 +737,20 @@ getLayoutManager(): LayoutManager
 | ---------------------------------------- | ------- |
 | [LayoutManager](ts-text-common.md#LayoutManager) | 布局管理器对象。 |
 
-## marqueeOptions<sup>12+</sup>
-
-当overflow设置为TextOverflow.MARQUEE时，可以进行初始化。
-
-| 名称             | 类型                                             | 必填 | 说明            |
-|----------------|------------------------------------------------| -------- |---------------|
-| marqueeOptions | [MarqueeOptions](#marqueeoptions12) | 是 | marquee自定义选项。 |
-
-## MarqueeOptions<sup>12+</sup>
+## MarqueeOptions<sup>12+</sup>对象说明
 
 marquee初始化参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 参数名                | 类型                                              | 必填 | 说明                                                                                  |
-|--------------------|-------------------------------------------------|----|-------------------------------------------------------------------------------------|
-| start              | boolean                                         | 是  | 控制跑马灯进入播放状态。                                                                        |
-| step               | number                                          | 否  | 滚动动画文本滚动步长。<br/>默认值：4.0vp                                                           |
-| loop               | number                                          | 否  | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
-| fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>默认值：true                                                       |
-| delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0                                                              |
-| fadeout            | boolean                                         | 否  | 设置文字超长渐隐。开启默认渐隐后，在非输入态默认使能；输入态超长时，有未展示的文字的一侧生效渐隐，两侧都有未展示的文字时，两侧同时渐隐。<br/>默认值：false  |
+| 参数名              | 类型        | 必填 | 说明     |
+|--------------------| ------------------------- | ---- |--------------|
+| start              | boolean       | 是  | 控制跑马灯进入播放状态。     |
+| step               | number        | 否  | 滚动动画文本滚动步长。<br/>默认值：4.0vp      |
+| loop               | number        | 否  | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1    |
+| fromStart          | boolean       | 否  | 设置文本从头开始滚动或反向滚动。<br/>默认值：true       |
+| delay              | number        | 否  | 设置每次滚动的时间间隔。<br/>默认值：0    |
+| fadeout            | boolean       | 否  | 设置文字超长渐隐。开启默认渐隐后，在非输入态默认使能；输入态超长时，有未展示的文字的一侧生效渐隐，两侧都有未展示的文字时，两侧同时渐隐。<br/>默认值：false  |
 | marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy12枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
 
 ## MarqueeStartPolicy<sup>12+</sup>枚举说明
