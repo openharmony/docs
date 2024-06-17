@@ -339,7 +339,7 @@ function createEnvironmentPromise() : Promise<Environment> {
 | ---- | ---- | ---- | ---- | ---- |
 | environment | [Environment](js-apis-inner-scene-resources.md#environment) | 否 | 是 | 环境对象。 |
 | animations | [Animation](js-apis-inner-scene-resources.md#animation)[] | 是 | 是 | 动画数组。 用于保存3D场景中的动画对象。|
-| root | [Node](js-apis-inner-scene-nodes.md#node) | 是 | 是 | 3D场景树根结点。 |
+| root | [Node](js-apis-inner-scene-nodes.md#node) \| null | 是 | 是 | 3D场景树根结点。 |
 
 ### load
 static load(uri?: Resource): Promise\<Scene>
