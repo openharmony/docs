@@ -68,7 +68,7 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { BuilderNode, FrameNode, NodeController, Size } from '@kit.ArkUI';
+import { BuilderNode, FrameNode, NodeController, Size, UIContext } from '@kit.ArkUI';
 
 class Params {
   text: string = '';
