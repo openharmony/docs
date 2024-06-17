@@ -18,13 +18,13 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   // 在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
-    controller?: CustomDialogController
-    webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
+    controller?: CustomDialogController;
+    webviewController1: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -32,9 +32,9 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
           .javaScriptAccess(true)
           .multiWindowAccess(false)
           .onWindowExit(() => {
-            console.info("NewWebViewComp onWindowExit")
+            console.info("NewWebViewComp onWindowExit");
             if (this.controller) {
-              this.controller.close()
+              this.controller.close();
             }
           })
       }
@@ -44,8 +44,8 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    dialogController: CustomDialogController | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    dialogController: CustomDialogController | null = null;
 
     build() {
       Column() {
@@ -58,15 +58,15 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
             if (this.dialogController) {
               this.dialogController.close()
             }
-            let popController: web_webview.WebviewController = new web_webview.WebviewController()
+            let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
               builder: NewWebViewComp({ webviewController1: popController })
             })
-            this.dialogController.open()
+            this.dialogController.open();
             // 将新窗口对应WebviewController返回给Web内核。
             // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
             // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
-            event.handler.setWebController(popController)
+            event.handler.setWebController(popController);
           })
       }
     }

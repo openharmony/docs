@@ -7,18 +7,17 @@ Web组件提供了网页广告过滤特性，包括最常见的url拦截与元�
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import picker from '@ohos.file.picker';
-import fileuri from '@ohos.file.fileuri';
+import { webview } from '@kit.ArkWeb';
+import { picker, fileUri } from '@kit.CoreFileKit';
 
 // 演示点击按钮，通过filepicker打开一个easylist规则文件并设置到Web组件中
 @Entry
 @Component
 struct WebComponent {
-  main_url: string = 'https://www.example.com'
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  main_url: string = 'https://www.example.com';
+  controller: webview.WebviewController = new webview.WebviewController();
 
-  @State input_text: string = 'https://www.example.com'
+  @State input_text: string = 'https://www.example.com';
 
   build() {
     Column() {
@@ -29,26 +28,25 @@ struct WebComponent {
           }
           .onClick(() => {
             try {
-              let documentSelectionOptions: ESObject = new picker.DocumentSelectOptions()
-              let documentPicker: ESObject = new picker.DocumentViewPicker()
+              let documentSelectionOptions: ESObject = new picker.DocumentSelectOptions();
+              let documentPicker: ESObject = new picker.DocumentViewPicker();
               documentPicker.select(documentSelectionOptions).then((documentSelectResult: ESObject) => {
                 if (documentSelectResult && documentSelectResult.length > 0) {
-                  let fileRealPath = new fileuri.FileUri(documentSelectResult[0])
-                  console.info('DocumentViewPicker.select successfully, uri: ' + fileRealPath)
-
-                  web_webview.AdsBlockManager.setAdsBlockRules(fileRealPath.path, true)
+                  let fileRealPath = new fileUri.FileUri(documentSelectResult[0]);
+                  console.info('DocumentViewPicker.select successfully, uri: ' + fileRealPath);
+                  webview.AdsBlockManager.setAdsBlockRules(fileRealPath.path, true);
                 }
               })
             } catch (err) {
-              console.error('DocumentViewPicker.select failed with err:' + err)
+              console.error('DocumentViewPicker.select failed with err:' + err);
             }
           })
         }
       }
       Web({ src: this.main_url, controller: this.controller })
-      .onControllerAttached(()=>{
-        this.controller.enableAdsBlock(true)
-      })
+        .onControllerAttached(()=>{
+          this.controller.enableAdsBlock(true);
+        })
     }
   }
 }
@@ -63,17 +61,17 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 // 演示通过一个按钮的点击向Web组件设置广告过滤的域名策略
 @Entry
 @Component
 struct WebComponent {
-  main_url: string = 'https://www.example.com'
-  text_input_controller: TextInputController = new TextInputController()
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  main_url: string = 'https://www.example.com';
+  text_input_controller: TextInputController = new TextInputController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
-  @State input_text: string = 'https://www.example.com'
+  @State input_text: string = 'https://www.example.com';
 
   build() {
     Column() {
@@ -85,27 +83,27 @@ struct WebComponent {
             .margin(5)
             .borderColor(Color.Blue)
             .onChange((value: string) => {
-              this.input_text = value
+              this.input_text = value;
             })
 
           Button({type: ButtonType.Capsule}) { Text("Go") }
-            .onClick(() => {
-              this.controller.loadUrl(this.input_text)
-            })
+          .onClick(() => {
+            this.controller.loadUrl(this.input_text);
+          })
 
           Button({type: ButtonType.Capsule}) { Text("addAdsBlockDisallowedList") }
-            .onClick(() => {
-              let arrDomainSuffixes = new Array<string>()
-              arrDomainSuffixes.push('example.com')
-              arrDomainSuffixes.push('abcdefg.cn')
-              web_webview.AdsBlockManager.addAdsBlockDisallowedList(arrDomainSuffixes)
-            })
+          .onClick(() => {
+            let arrDomainSuffixes = new Array<string>();
+            arrDomainSuffixes.push('example.com');
+            arrDomainSuffixes.push('abcdefg.cn');
+            webview.AdsBlockManager.addAdsBlockDisallowedList(arrDomainSuffixes);
+          })
         }
       }
       Web({ src: this.main_url, controller: this.controller })
-      .onControllerAttached(()=>{
-        this.controller.enableAdsBlock(true)
-      })
+        .onControllerAttached(()=>{
+          this.controller.enableAdsBlock(true);
+        })
     }
   }
 }
@@ -119,17 +117,17 @@ AdsBlockManager中缓存有2组域名列表，分别为DisallowedList和AllowLis
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 // 演示addAdsBlockAllowedList和addAdsBlockAllowedList配套使用，设置网页级的广告过滤开关。
 @Entry
 @Component
 struct WebComponent {
-  main_url: string = 'https://www.example.com'
-  text_input_controller: TextInputController = new TextInputController()
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  main_url: string = 'https://www.example.com';
+  text_input_controller: TextInputController = new TextInputController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
-  @State input_text: string = 'https://www.example.com'
+  @State input_text: string = 'https://www.example.com';
 
   build() {
     Column() {
@@ -141,31 +139,31 @@ struct WebComponent {
             .margin(5)
             .borderColor(Color.Blue)
             .onChange((value: string) => {
-              this.input_text = value
+              this.input_text = value;
             })
 
           Button({type: ButtonType.Capsule}) { Text("Go") }
-            .onClick(() => {
-              this.controller.loadUrl(this.input_text)
-            })
+          .onClick(() => {
+            this.controller.loadUrl(this.input_text);
+          })
 
           Button({type: ButtonType.Capsule}) { Text("addAdsBlockAllowedList") }
-            .onClick(() => {
-              let arrDisallowDomainSuffixes = new Array<string>()
-              arrDisallowDomainSuffixes.push('example.com')
-              web_webview.AdsBlockManager.addAdsBlockDisallowedList(arrDisallowDomainSuffixes)
+          .onClick(() => {
+            let arrDisallowDomainSuffixes = new Array<string>();
+            arrDisallowDomainSuffixes.push('example.com');
+            webview.AdsBlockManager.addAdsBlockDisallowedList(arrDisallowDomainSuffixes);
 
-              let arrAllowedDomainSuffixes = new Array<string>()
-              arrAllowedDomainSuffixes.push('news.example.com')
-              arrAllowedDomainSuffixes.push('sport.example.com')
-              web_webview.AdsBlockManager.addAdsBlockAllowedList(arrAllowedDomainSuffixes)
-            })
+            let arrAllowedDomainSuffixes = new Array<string>();
+            arrAllowedDomainSuffixes.push('news.example.com');
+            arrAllowedDomainSuffixes.push('sport.example.com');
+            webview.AdsBlockManager.addAdsBlockAllowedList(arrAllowedDomainSuffixes);
+          })
         }
       }
       Web({ src: this.main_url, controller: this.controller })
-      .onControllerAttached(()=>{
-        this.controller.enableAdsBlock(true)
-      })
+        .onControllerAttached(()=>{
+          this.controller.enableAdsBlock(true);
+        })
     }
   }
 }
@@ -179,26 +177,26 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 
 @Entry
 @Component
 struct WebComponent {
   @State totalAdsBlockCounts: number = 0;
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Web({ src: 'https://www.example.com', controller: this.controller })
-      .onAdsBlocked((details: AdsBlockedDetails) => {
-        if (details) {
-          console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url)
-          let adList: Array<string> = Array.from(new Set(details.adsBlocked))
-          this.totalAdsBlockCounts += adList.length;
-          console.log('Total blocked counts :' + this.totalAdsBlockCounts)
-        }
-      })
+        .onAdsBlocked((details: AdsBlockedDetails) => {
+          if (details) {
+            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
+            let adList: Array<string> = Array.from(new Set(details.adsBlocked));
+            this.totalAdsBlockCounts += adList.length;
+            console.log('Total blocked counts :' + this.totalAdsBlockCounts);
+          }
+        })
     }
   }
 }
