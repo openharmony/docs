@@ -11,7 +11,7 @@ The ApplicationContext module, inherited from [Context](js-apis-inner-applicatio
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## Instructions
@@ -44,11 +44,10 @@ A **UIExtensionAbility** instance can be preloaded for multiple times. Each time
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -58,9 +57,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
 
@@ -75,7 +73,7 @@ export default class EntryAbility extends UIAbility {
       }
     };
     try {
-        let applicationContext = this.context.getApplicationConext();
+        let applicationContext = this.context.getApplicationContext();
         applicationContext.preloadUIExtensionAbility(want)
         .then(() => {
           // Carry out normal service processing.

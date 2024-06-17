@@ -76,8 +76,12 @@ Called when an auto-fill request is successfully processed.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | The parameter check failed. |
 | 16000050 | Internal error. |
 
 **Example**
@@ -168,8 +172,11 @@ Called when an auto-fill request fails to be processed.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 202      | Permission denied, non-system app called system api. |
 | 16000050 | Internal error. |
 
 **Example**
@@ -251,16 +258,14 @@ Called when an auto-fill request is canceled.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**Parameters**
-
-| Name                   | Type  | Mandatory| Description                |
-| ------------------------- | ------ | ---- | -------------------- |
-| fillContent<sup>12+</sup> | string | No  | Content returned to the input method framework when the auto-fill request is canceled.|
-
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | The parameter check failed. |
 | 16000050 | Internal error. |
 
 **Example**
@@ -352,6 +357,7 @@ Sets the size and position of an auto-fill pop-up.
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 202  | Permission verification failed. Possible causes: non-system app called system api. |
@@ -470,8 +476,11 @@ Called when a saving request is successfully processed.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 202      | Permission denied, non-system app called system api. |
 | 16000050 | Internal error. |
 
 **Example**
@@ -556,8 +565,11 @@ Called when a saving request fails to be processed.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 202      | Permission denied, non-system app called system api. |
 | 16000050 | Internal error. |
 
 **Example**

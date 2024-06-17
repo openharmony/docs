@@ -26,8 +26,6 @@ import { Configuration } from '@kit.AbilityKit';
 | hasPointerDevice  | boolean | No| No| Whether a pointer device, such as a keyboard, mouse, or touchpad, is connected.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | fontSizeScale<sup>12+<sup> | number | No| No| Scale factor for the font size. The value ranges from 0 to 3.2.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | fontWeightScale<sup>12+<sup> | number | No| No| Scale factor for the font weight. The value ranges from 0 to 1.25.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| mcc<sup>12+<sup> | string | No | No| Mobile country code (MCC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| mnc<sup>12+<sup> | string | No | No| Mobile network code (MNC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 For details about the fields, see the **ohos.app.ability.Configuration.d.ts** file.
 
@@ -50,8 +48,6 @@ export default class EntryAbility extends UIAbility {
         let hasPointerDevice = config.hasPointerDevice;
         let fontSizeScale = config.fontSizeScale;
         let fontWeightScale = config.fontWeightScale;
-        let mcc = config.mcc;
-        let mnc = config.mnc;
       },
       onMemoryLevel(level) {
         console.log('onMemoryLevel level: ${level}');

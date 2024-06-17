@@ -39,6 +39,7 @@ Starts a ParticleAbility. This API uses an asynchronous callback to return the r
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -92,6 +93,7 @@ Starts a ParticleAbility. This API uses a promise to return the result.
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -130,6 +132,7 @@ Terminates this ParticleAbility. This API uses an asynchronous callback to retur
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 
@@ -158,6 +161,7 @@ Terminates this ParticleAbility. This API uses a promise to return the result.
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 
@@ -195,6 +199,7 @@ Obtains a **dataAbilityHelper** object.
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 
@@ -227,6 +232,7 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 
  **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility, wantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -298,6 +304,7 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility, wantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -356,6 +363,7 @@ Requests to cancel a continuous task from the system. This API uses an asynchron
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -391,6 +399,7 @@ Requests to cancel a continuous task from the system. This API uses a promise to
 
  **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -431,6 +440,7 @@ Connects this ability to a ServiceAbility.
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -478,6 +488,7 @@ Disconnects this ability from a specific ServiceAbility. This API uses an asynch
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -528,6 +539,7 @@ Disconnects this ability from a specific ServiceAbility. This API uses a promise
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { particleAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';

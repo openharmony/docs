@@ -29,7 +29,6 @@ import { StartOptions } from '@kit.AbilityKit';
 | windowHeight<sup>11+</sup> | number | No| No| Height of the window.|
 | processMode<sup>12+</sup> | [contextConstant.ProcessMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) | No| No| Process mode.<br>**Constraints**:<br>This property takes effect only on tablets.<br>This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>**processMode** and **startupVisibility** must be set in pair.|
 | startupVisibility<sup>12+</sup> | [contextConstant.StartupVisibility](js-apis-app-ability-contextConstant.md#contextconstantstartupvisibility12) | No| No| Visibility of the ability after it is started in a new process.<br>**Constraints**:<br>This property takes effect only on tablets.<br>This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>**processMode** and **startupVisibility** must be set in pair.|
-| windowFocused<sup>12+</sup> | boolean | No| No| Whether the window has focus. The default value is **true**, indicating that the window has focus.<br>**Constraints**:<br>This property takes effect only on tablets.<br>This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).|
 
 **Example**
 

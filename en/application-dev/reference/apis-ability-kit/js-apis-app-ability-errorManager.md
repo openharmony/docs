@@ -221,7 +221,7 @@ errorManager.on("loopObserver", 1, observer);
 
 on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
-Registers an observer for the promise rejection. After the registration, rejected promise that is not captured in the current thread of the application can be captured.
+Registers an observer for the promise rejection of the main thread. After the registration, rejected promise that is not captured in the main thread of the application can be captured.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -303,7 +303,7 @@ errorManager.off("loopObserver");
 
 off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 
-Unregisters an observer for the promise rejection.
+Unregisters an observer for the promise rejection of the main thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -380,7 +380,7 @@ errorManager.off("unhandledRejection", observer);
 
 type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) => void
 
-Defines the observer for the promise rejection that is not captured at the JS runtime.
+Defines the observer for the promise rejection that is not captured in the main thread at the JS runtime.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

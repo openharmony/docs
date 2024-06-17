@@ -620,7 +620,7 @@ The shared library to uninstall does not exist.
 
 **Error Message**
 
-Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
+Failed to install the HSP because disallow install a shared bundle by hapFilePaths.
 
 **Description**
 
@@ -656,7 +656,7 @@ During application uninstall, the bundle name of an inter-application shared lib
 
 **Error Message**
 
-Failed to install the HAP because the installation is forbidden by enterprise device management.
+Failed to install the HAP because enterprise device management disallow install.
 
 **Description**
 
@@ -732,7 +732,7 @@ Set the **isolationMode** field in the HAP based on the isolation mode of the de
 
 **Error Message**
 
-Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
+Failed to uninstall the HAP because enterprise device management disallow uninstall.
 
 **Description**
 
@@ -809,7 +809,7 @@ Ensure that the HAP or HSP to be installed belongs to the current application.
 
 **Error Message**
 
-Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices.
+Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device.
 
 **Description**
 
@@ -1026,43 +1026,6 @@ The ability specified by **want** in the **ShortcutInfo** struct does not exist,
 **Solution**
 
 Check the validity of **want** in the **ShortcutInfo** struct.
-
-## 17700068 Maximum Number of Application Clones Is Reduced During an Update
-
-**Error Message**
-
-Failed to install the HAP because the maximum count of clone app cannot be reduced.
-
-**Description**
-
-If the multi-app mode is **appClone**, the value of **maxCount** cannot be decreased during an update.
-
-**Possible Causes**
-
-The maximum number of application clones is reduced during the update of an application.
-
-**Solution**
-1. Check whether the application to update supports clones.
-2. Check whether the maximum number of clones supported by the application is reduced before and after the update.
-
-
-## 17700069 AppClone Instance Cannot Be Created For an Application in Multi-app Mode Not Set To appClone
-
-**Error Message**
-
-The app does not support the creation of an appClone instance.
-
-**Description**
-
-An **AppClone** instance cannot be created for an application that is not in **appClone** mode.
-
-**Possible Causes**
-
-The multi-app mode is set to another mode other than **appClone**.
-
-**Solution**
-
-Check whether the application to update supports clones.
 
 ## 17700201 .abc File Verification Failure
 

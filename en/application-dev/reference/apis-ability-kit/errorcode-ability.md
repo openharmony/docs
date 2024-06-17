@@ -238,7 +238,7 @@ The application is controlled by EDM.
 
 **Description**
 
-This error code is reported when an application is controlled by [Enterprise Device Manager (EDM)](../../enterprise-device-management/enterpriseDeviceManagement-overview.md).
+This error code is reported when an application is controlled by Enterprise Device Manager.
 
 **Possible Causes**
 
@@ -656,65 +656,6 @@ This error code is reported when the target ability is already running.
 **Solution**
 
 When **launchType** of the target ability is singleton or specified, do not specify **processMode** and **startupVisibility** in **startAbility()**.
-
-## 16000071 Application Clone Is Not Supported
-
-**Error Message**
-
-App clone is not supported.
-
-**Description**
-
-This error code is reported when the application does not support clones.
-
-**Possible Causes**
-
-An application that does not support clones calls **getCurrentAppCloneIndex()**.
-
-**Solution**
-
-Avoid calling **getCurrentAppCloneIndex()** in applications that do not support clones.
-
-<!--Del-->
-## 16000072 Multi-app Mode Is Not Supported
-
-**Error Message**
-
-App clone or multi-instance is not supported.
-
-**Description**
-
-This error code is reported when the application does not support the multi-app mode.
-
-**Possible Causes**
-
-The **getRunningMultiAppInfo()** API is called to query the information about an application that does not support the multi-app mode.
-
-**Solution**
-
-When calling **getCurrentAppCloneIndex()**, ensure that the application supports the multi-app mode.
-<!--DelEnd-->
-
-## 16000073 appCloneIndex Is Invalid
-
-**Error Message**
-
-The app clone index is invalid.
-
-**Description**
-
-This error code is reported when an invalid value of **appCloneIndex** is passed in.
-
-**Possible Causes**
-
-1. **startAbility()** is called, with **appCloneIndex** carried in **ohos.extra.param.key.appCloneIndex** set to an invalid value.
-<!--Del-->
-2. **isAppRunning()** is called, with **appCloneIndex** set to an invalid value.
-<!--DelEnd-->
-
-**Solution**
-
-Check whether the constraints of **appCloneIndex** are met.
 
 ## 16000100 Failed to Call AbilityMonitor APIs to Listen for Ability Lifecycle Changes
 
@@ -1255,5 +1196,3 @@ The value of **bundleName**, **userId**, or **appIndex** is incorrect, leading t
 **Solution**
 
 Pass in correct values for **bundleName**, **userId**, and **appIndex**.
-
- <!--no_check--> 
