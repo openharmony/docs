@@ -675,6 +675,60 @@ doTransform接口未实现。
 
 在继承类中实现doTransform接口函数。
 
+## 10200050 并发任务已执行，无法周期执行
+
+**错误信息**
+
+The concurrent task has been executed and cannot be executed periodically.
+
+**错误描述**
+
+并发任务已执行，无法周期执行。
+
+**可能原因**
+
+在调用[executePeriodically](../apis-arkts/js-apis-taskpool.md#taskpoolexecuteperiodically12)执行周期任务前，该任务已经执行。
+
+**处理步骤**
+
+调用上述接口时，确保需要执行的任务未被执行。无法保证时，需要捕获异常。
+
+## 10200051 无法再次执行周期任务
+
+**错误信息**
+
+The periodic task cannot be executed again.
+
+**错误描述**
+
+无法再次执行周期任务。
+
+**可能原因**
+
+周期任务再次调用[execute](../apis-arkts/js-apis-taskpool.md#execute11)、[executeDelayed](../apis-arkts/js-apis-taskpool.md#taskpoolexecutedelayed11)、[addTask](../apis-arkts/js-apis-taskpool.md#addtask10-1)和[execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute-1)执行。
+
+**处理步骤**
+
+调用上述接口时，确保任务不是周期任务。无法保证时，需要捕获异常。
+
+## 10200052 周期性任务不能具有依赖项
+
+**错误信息**
+
+The periodic task cannot have a dependency.
+
+**错误描述**
+
+周期性任务不能具有依赖项。
+
+**可能原因**
+
+调用了[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11)和[addDependency](../../reference/apis-arkts/js-apis-taskpool.md#adddependency11)接口给周期任务增加或移除依赖关系。
+
+**处理步骤**
+
+调用上述接口时，确保任务不是周期任务。无法保证时，需要捕获异常。
+
 ## 10200060 超出精度限制
 
 **错误信息**
