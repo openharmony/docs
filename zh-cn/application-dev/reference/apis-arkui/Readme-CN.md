@@ -119,6 +119,7 @@
         - [动态属性设置](arkui-ts/ts-universal-attributes-attribute-modifier.md)
         - [动态手势设置](arkui-ts/ts-universal-attributes-gesture-modifier.md)
         - [外描边设置](arkui-ts/ts-universal-attributes-outline.md)
+        - [视效设置](arkui-ts/ts-universal-attributes-filter-effect.md)
         - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
         - [自定义内容](arkui-ts/ts-universal-attributes-content-modifier.md)
         - [自定义属性设置](arkui-ts/ts-universal-attributes-custom-property.md)
@@ -330,13 +331,15 @@
     - 类型定义
       - [基础类型定义](arkui-ts/ts-types.md)
       - [文本类型定义](arkui-ts/ts-text-common.md)
-      - [图像类型定义（系统接口）](arkui-ts/ts-image-common-sys.md)
+      - [图像类型定义](arkui-ts/ts-image-common.md)
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
     - [枚举说明](arkui-ts/ts-appendix-enums.md)
     - [设置事件回调](arkui-ts/ts-uicommonevent.md)
     - [属性字符串](arkui-ts/ts-universal-styled-string.md)
+    <!--Del-->
     - [枚举说明 (系统接口)](arkui-ts/ts-appendix-enums-sys.md)
+    <!--DelEnd-->
     - 已停止维护的组件
       <!--Del-->
       - [AbilityComponent (系统接口)](arkui-ts/ts-container-ability-component-sys.md)

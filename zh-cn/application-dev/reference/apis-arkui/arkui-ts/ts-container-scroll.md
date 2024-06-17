@@ -301,7 +301,7 @@ onScroll(event: (xOffset: number, yOffset: number) => void)
 
 ### onWillScroll<sup>12+</sup>
 
-onWillScroll(handler: ScrollOnWillScrollCallback )
+onWillScroll(handler: ScrollOnWillScrollCallback)
 
 滚动事件回调，Scroll滚动前触发。
 
@@ -325,7 +325,7 @@ onWillScroll(handler: ScrollOnWillScrollCallback )
 
 ### onDidScroll<sup>12+</sup>
 
-onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说明) )
+onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说明))
 
 滚动事件回调，Scroll滚动时触发。
 
@@ -480,7 +480,7 @@ scroller: Scroller = new Scroller()
 
 ### scrollTo
 
-scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: { duration?: number, curve?: Curve | ICurve } | boolean }): void
+scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: { duration?: number, curve?: Curve | ICurve } | boolean })
 
 
 滑动到指定位置。
@@ -498,7 +498,7 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 ### scrollEdge
 
-scrollEdge(value: Edge, options?: ScrollEdgeOptions): void
+scrollEdge(value: Edge, options?: ScrollEdgeOptions)
 
 
 滚动到容器边缘，不区分滚动轴方向，Edge.Top和Edge.Start表现相同，Edge.Bottom和Edge.End表现相同。
@@ -512,7 +512,7 @@ scrollEdge(value: Edge, options?: ScrollEdgeOptions): void
 
 ### fling<sup>12+</sup>
 
-fling(velocity: number): void
+fling(velocity: number)
 
 
 滚动类组件开启按传入的初始速度进行惯性滚动。
@@ -532,10 +532,11 @@ fling(velocity: number): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
 
 ### scrollPage<sup>9+</sup>
 
-scrollPage(value:   ScrollPageOptions)
+scrollPage(value: { next: boolean }): void
 
 滚动到下一页或者上一页。
 
@@ -543,13 +544,13 @@ scrollPage(value:   ScrollPageOptions)
 
 **参数：**
 
-| 参数名 | 参数类型                                           | 必填 | 参数描述       |
-| ------ | -------------------------------------------------- | ---- | -------------- |
-| value  | [ScrollPageOptions](#scrollpageoptions12+对象说明) | 是   | 设置翻页模式。 |
+| 参数名                            | 参数类型                          | 必填 | 参数描述                                                    |
+| --------------------------------- | --------------------------------- | ---- | ----------------------------------------------------------- |
+| next                              | boolean                           | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。         |
 
 ### scrollPage<sup>(deprecated)</sup>
 
-scrollPage(value: { next: boolean, direction?: Axis }): void
+scrollPage(value: { next: boolean, direction?: Axis })
 
 滚动到下一页或者上一页。从API version 9开始, 该接口不再维护，推荐使用 [scrollPage<sup>9+</sup>](#scrollpage9)   。
 
@@ -572,7 +573,7 @@ currentOffset(): OffsetResult
 
 ### scrollToIndex
 
-scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign): void
+scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign)
 
 滑动到指定Index。
 
@@ -595,7 +596,7 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign): void
 
 ### scrollBy<sup>9+</sup>
 
-scrollBy(dx: Length, dy: Length): void
+scrollBy(dx: Length, dy: Length)
 
 
 滑动指定距离。
@@ -668,6 +669,7 @@ getItemRect(index: number): RectResult
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
 
 ## OffsetResult<sup>11+</sup>
 
@@ -727,14 +729,6 @@ getItemRect(index: number): RectResult
 | ----- | ------| ------- | ----------------- |
 | alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果|
 
-## ScrollPageOptions<sup>12+</sup>对象说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 参数名    | 参数类型 | 必填 | 参数描述                                                     |
-| --------- | -------- | ---- | ------------------------------------------------------------ |
-| next      | boolean  | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。          |
-| animation | boolean  | 否   | 是否开启翻页动画效果。true有动画，false无动画。<br />默认值：false。 |
 
 ## OffsetOptions<sup>12+</sup>对象说明
 | 参数名   | 类型  | 必填 | 描述              |
@@ -822,7 +816,7 @@ struct ScrollExample {
       Button('next page')
         .height('5%')
         .onClick(() => { // 点击后滑到下一页
-          this.scroller.scrollPage({ next: true ,animation: true })
+          this.scroller.scrollPage({ next: true })
         })
         .margin({ top: 210, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)

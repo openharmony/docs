@@ -493,14 +493,13 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
               .onClick(() => {
                 let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
                 const RESULT_CODE: number = 1001;
-
                 let want: Want = {
                   deviceId: '', // deviceId为空表示本设备
-                  bundleName: 'com.samples.stagemodelabilitydevelop',
-                  moduleName: 'entry', // moduleName非必选
-                  abilityName: 'FuncAbilityA',
-                  parameters: {
-                    // 自定义信息
+                  bundleName: '', // 隐式匹配时bundleName非必选
+                  moduleName: '', // moduleName非必选
+                  abilityName: '', // abilityName留空表示隐式匹配
+                  action: 'ohos.want.action.editData',
+                  parameters: { // 自定义信息
                     info: '来自EntryAbility UIAbilityComponentsInteractive页面'
                   }
                 };
@@ -589,55 +588,44 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
     import { promptAction } from '@kit.ArkUI';
     import { BusinessError } from '@kit.BasicServicesKit';
 
-    const TAG: string = '[Page_UIAbilityComponentsInteractive]';
+    const TAG: string = '[EntryAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
 
     @Entry
     @Component
     struct Page_UIAbilityComponentsInteractive {
       build() {
-        Column() {
-          //...
-          List({ initialIndex: 0 }) {
-            ListItem() {
-              Row() {
-                //...
+        Button()
+          .onClick(() => {
+            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+            const RESULT_CODE: number = 1001;
+
+            let want: Want = {
+              deviceId: '', // deviceId为空表示本设备
+              bundleName: '', // 隐式匹配时bundleName非必选
+              moduleName: '', // moduleName非必选
+              abilityName: '', // abilityName留空表示隐式匹配
+              action: 'ohos.want.action.editData',
+              parameters: { // 自定义信息
+                info: '来自EntryAbility UIAbilityComponentsInteractive页面'
               }
-              .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-                const RESULT_CODE: number = 1001;
-                let want: Want = {
-                  deviceId: '', // deviceId为空表示本设备
-                  bundleName: 'com.samples.stagemodelabilitydevelop',
-                  moduleName: 'entry', // moduleName非必选
-                  abilityName: 'FuncAbilityA',
-                  parameters: {
-                    // 自定义信息
-                    info: '来自EntryAbility UIAbilityComponentsInteractive页面'
-                  }
-                };
-                context.startAbilityForResult(want).then((data) => {
-                  if (data?.resultCode === RESULT_CODE) {
-                    // 解析被调用方UIAbility返回的信息
-                    let info = data.want?.parameters?.info;
-                    hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
-                    if (info !== null) {
-                      promptAction.showToast({
-                        message: JSON.stringify(info)
-                      });
-                    }
-                  }
-                  hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(data.resultCode) ?? '');
-                }).catch((err: BusinessError) => {
-                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
-                });
-              })
-            }
-            //...
-          }
-          //...
-        }
-        //...
+            };
+            context.startAbilityForResult(want).then((data) => {
+              if (data?.resultCode === RESULT_CODE) {
+                // 解析被调用方UIAbility返回的信息
+                let info = data.want?.parameters?.info;
+                hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
+                if (info !== null) {
+                  promptAction.showToast({
+                    message: JSON.stringify(info)
+                  });
+                }
+              }
+              hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(data.resultCode) ?? '');
+            }).catch((err: BusinessError) => {
+              hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
+            });
+          })
       }
     }
     ```
@@ -674,12 +662,16 @@ const DOMAIN_NUMBER: number = 0xFF00;
 @Component
 struct Page_UIAbilityComponentsInteractive {
   build() {
-    Column() {
-      //...
-      List({ initialIndex: 0 }) {
-        ListItem() {
-          Row() {
-            //...
+    Button()
+      .onClick(() => {
+        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+        let want: Want = {
+          deviceId: '', // deviceId为空表示本设备
+          bundleName: 'com.samples.stagemodelabilityinteraction',
+          moduleName: 'entry', // moduleName非必选
+          abilityName: 'FuncAbility',
+          parameters: { // 自定义参数传递页面信息
+            router: 'funcA'
           }
           .onClick(() => {
             let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
@@ -818,9 +810,8 @@ export default class FuncAbility extends UIAbility {
       funcAbilityWant: Want | undefined = undefined;
       uiContext: UIContext | undefined = undefined;
 
-      // ...
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        if (want?.parameters?.router && want.parameters.router === 'funcB') {
+        if (want?.parameters?.router && want.parameters.router === 'funcA') {
           let funcAUrl = 'pages/Page_HotStartUp';
           if (this.uiContext) {
             let router: Router = this.uiContext.getRouter();
@@ -831,7 +822,8 @@ export default class FuncAbility extends UIAbility {
             });
           }
         }
-      };
+      }
+      // ...
     }
     ```
 

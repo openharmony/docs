@@ -8,7 +8,7 @@
 
 @ohos.graphics.text常用接口如下表所示，详细的接口说明请参考[@ohos.graphics.text](../reference/apis-arkgraphics2d/js-apis-graphics-text.md)。
 
-| 接口名 | 描述 | 
+| 接口名 | 描述 |
 | -------- | -------- |
 | pushStyle(textStyle: TextStyle): void | 设置成最新的文本样式。 |
 | addText(text: string): void | 用于向正在构建的文本段落中插入具体的文本字符串。 |
@@ -25,19 +25,11 @@
 
 **添加动态链接库**
 
-CMakeLists.txt中添加以下lib。
-
-```txt
-librosen_text.z.so
-libtext_napi.z.so
-libtext_napi_impl.z.so
-```
-
 **依赖文件**
 ```js
 import { NodeController, FrameNode, RenderNode, DrawContext } from "@ohos.arkui.node"
 import { UIContext } from '@ohos.arkui.UIContext'
-import drawing from "ohos.graphics.drawing"
+import drawing from "@ohos.graphics.drawing"
 import text from "@ohos.graphics.text"
 import image from '@ohos.multimedia.image'
 import common2D from '@ohos.graphics.common2D'
@@ -68,7 +60,7 @@ import common2D from '@ohos.graphics.common2D'
     let pen = new drawing.Pen()
     let pen_color : common2D.Color = { alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 }
     pen.setColor(pen_color)
-  
+
     // 将Pen画笔设置到canvas中
     canvas.attachPen(pen)
 
@@ -102,6 +94,8 @@ import common2D from '@ohos.graphics.common2D'
     ParagraphGraphBuilder.addText("0123456789");
     //生成段落
     let paragraph = ParagraphGraphBuilder.build();
+    // 布局
+    paragraph.layoutSync(600);
     //绘制文本
     paragraph.paint(canvas, 0, 0);
     ```

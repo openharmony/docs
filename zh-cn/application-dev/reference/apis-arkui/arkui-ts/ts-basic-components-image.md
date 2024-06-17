@@ -30,6 +30,8 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 Image组件默认按照居中裁剪，例如组件宽高设置相同，原图长宽不等，此时按照中间区域进行裁剪。
 
+Image加载成功且组件不设置宽高时，其显示大小自适应父组件。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -386,22 +388,6 @@ privacySensitive(supported: boolean)
 | --------- | ------- | ---- | ------------------------ |
 | supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值：false |
 
-### enhancedImageQuality<sup>12+</sup>
-
-enhancedImageQuality(imageQuality: ResolutionQuality)
-
-设置图像解码时图像解码分辨率选项。
-
-该属性不支持 svg，[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)，[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) 等非解码图片类型。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                    | 必填 | 说明                             |
-| ------ | --------------------------------------- | ---- | -------------------------------- |
-| imageQuality | [ResolutionQuality](#resolutionquality12) | 是   | 图像解码分辨率质量。 |
-
 ### dynamicRangeMode<sup>12+</sup>
 
 dynamicRangeMode(value: DynamicRangeMode)
@@ -464,16 +450,6 @@ dynamicRangeMode(value: DynamicRangeMode)
 |  left   |  [Length](ts-types.md#length)  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
 
 ![edgewidths](figures/edgewidths.png)
-
-## ResolutionQuality<sup>12+</sup>
-
-图像解码时图像解码分辨率选项。
-
-| 名称     | 描述                      |
-| ------ | --------------------------  |
-| Low   | 低图像分辨率，解码时间适中。   |
-| Medium | 中等图像分辨率，解码时间适中。  |
-| High   | 高图像分辨率，解码时间长。    |
 
 ## DynamicRangeMode<sup>12+</sup>
 

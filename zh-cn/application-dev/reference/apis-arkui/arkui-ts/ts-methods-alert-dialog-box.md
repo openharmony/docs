@@ -186,6 +186,8 @@ Rectangle是各种Dialog中maskRect参数的类型。
 
 ### 示例1
 
+分别弹出一、二、三个按钮的弹窗。
+
 ```ts
 // xxx.ets
 @Entry
@@ -327,6 +329,8 @@ struct AlertDialogExample {
 ![zh-cn_image_alert](figures/zh-cn_image_alert.gif)
 
 ### 示例2
+
+弹出可展示在主窗外的弹窗。
 
 ```ts
 // xxx.ets
