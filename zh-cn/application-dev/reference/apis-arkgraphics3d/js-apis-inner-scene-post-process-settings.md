@@ -26,16 +26,16 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| type | [TonemappingType](#tonemappingtype) | 否 | 否 | 色调映射类型，默认值为undefined。 |
-| exposure | number | 否 | 否 | 曝光度，取值大于0，默认值为undefined。 |
+| type | [TonemappingType](#tonemappingtype) | 否 | 是 | 色调映射类型，默认值为undefined。 |
+| exposure | number | 否 | 是 | 曝光度，取值大于0，默认值为undefined。 |
 
 ## PostProcessSettings
 后处理设置。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| toneMapping | [ToneMappingSettings](#tonemappingsettings) | 是 | 否 | 色调映射设置，默认值为undefined。 |
+| toneMapping | [ToneMappingSettings](#tonemappingsettings) | 否 | 是 | 色调映射设置，默认值为undefined。 |
