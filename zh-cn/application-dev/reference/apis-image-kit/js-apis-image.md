@@ -3614,7 +3614,7 @@ if (pixelmap != undefined) {
 
 createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
-通过图片解码参数创建PixelMap数组。
+通过图片解码参数创建PixelMap数组。针对动图如Gif、Webp，此接口返回每帧图片数据；针对静态图，此接口返回唯一的一帧图片数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3679,7 +3679,7 @@ imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.Pi
 
 createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
-通过默认参数创建PixelMap数组，使用callback形式返回结果。
+通过默认参数创建PixelMap数组，使用callback形式返回结果。针对动图如Gif、Webp，此接口返回每帧图片数据；针对静态图，此接口返回唯一的一帧图片数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3732,7 +3732,7 @@ imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image
 
 createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<PixelMap>>): void
 
-通过图片解码参数创建PixelMap数组，使用callback形式返回结果。
+通过图片解码参数创建PixelMap数组，使用callback形式返回结果。针对动图如Gif、Webp，此接口返回每帧图片数据；针对静态图，此接口返回唯一的一帧图片数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
