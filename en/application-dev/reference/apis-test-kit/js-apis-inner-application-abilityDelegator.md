@@ -38,7 +38,7 @@ Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to r
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes      | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
+| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result. If the **AbilityMonitor** instance is added, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -91,7 +91,7 @@ Adds an **AbilityMonitor** instance. This API uses a promise to return the resul
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |Promise that returns no value.|
 
 **Error codes**
 
@@ -182,7 +182,7 @@ Removes an **AbilityMonitor** instance. This API uses an asynchronous callback t
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| callback | AsyncCallback\<void>                                         | Yes  | Callback used to return the result.                                          |
+| callback | AsyncCallback\<void>                                         | Yes  | Callback used to return the result. If the **AbilityMonitor** instance is removed, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -236,7 +236,7 @@ Removes an **AbilityMonitor** instance. This API uses a promise to return the re
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -246,7 +246,7 @@ Removes an **AbilityMonitor** instance. This API uses a promise to return the re
 
 For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
-- Example
+**Example**
 
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
@@ -329,7 +329,7 @@ Waits for the **Ability** instance that matches the **AbilityMonitor** instance 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.                                          |
+| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **Ability** instance obtained. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -382,7 +382,7 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| timeout  | number                                                       | Yes  | Maximum waiting time, in milliseconds.                                |
+| timeout  | number                                                       | Yes  | Maximum waiting time, in ms.                                |
 | callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.                                          |
 
 **Error codes**
@@ -439,13 +439,13 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| timeout | number                                                       | No  | Maximum waiting time, in milliseconds.                                |
+| timeout | number                                                       | No  | Maximum waiting time, in ms.                                |
 
 **Return value**
 
 | Type                                                       | Description                      |
 | ----------------------------------------------------------- | -------------------------- |
-| Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Promise used to return the **Ability** instance.|
+| Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Promise used to return the **Ability** instance obtained.|
 
 **Error codes**
 
@@ -550,7 +550,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 
-Obtains the top ability of this application. This API uses an asynchronous callback to return the result.
+Obtains the top ability of this application. This API uses an asynchronous callback to return the result. It cannot be called in the worker thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -560,7 +560,7 @@ Obtains the top ability of this application. This API uses an asynchronous callb
 
 | Name  | Type                                                        | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result. If the top ability is obtained, **err** is **undefined** and **data** is the **Ability** instance obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -591,7 +591,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 getCurrentTopAbility(): Promise\<UIAbility>
 
-Obtains the top ability of this application. This API uses a promise to return the result.
+Obtains the top ability of this application. This API uses a promise to return the result. It cannot be called in the worker thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -642,7 +642,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | Name  | Type                                  | Mandatory| Description              |
 | -------- | -------------------------------------- | ---- | ------------------ |
 | want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | **Want** parameter for starting the ability.   |
-| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -705,7 +705,7 @@ Starts an ability. This API uses a promise to return the result.
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -763,7 +763,7 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses an 
 | Name  | Type                   | Mandatory| Description                                                   |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
 | ability  | UIAbility               | Yes  | Target ability.                                        |
-| callback | AsyncCallback\<void>    | Yes  | Callback used to return the result.                                      |
+| callback | AsyncCallback\<void>    | Yes  | Callback used to return the result. If the ability lifecycle state is changed to **Foreground**, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -813,7 +813,7 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses a p
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<void> | Promise used to return the result.                                   |
+| Promise\<void> | Promise that returns no value.        |
 
 **Error codes**
 
@@ -858,7 +858,7 @@ Schedules the lifecycle state of an ability to **Background**. This API uses an 
 | Name  | Type                   | Mandatory| Description                                                   |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
 | ability  | UIAbility                 | Yes  | Target ability.                                        |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the ability lifecycle state is changed to **Background**, **err** is undefined; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the ability lifecycle state is changed to **Background**, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -981,7 +981,7 @@ Prints log information to the unit test console. This API uses an asynchronous c
 | Name  | Type                | Mandatory| Description              |
 | -------- | -------------------- | ---- | ------------------ |
 | msg      | string               | Yes  | Log string.        |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the log information is printed to the unit test console, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1018,7 +1018,7 @@ Prints log information to the unit test console. This API uses a promise to retu
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |Promise that returns no value.|
 
 **Example**
 
@@ -1051,7 +1051,7 @@ Only the following shell commands are supported: aa, bm, cp, mkdir, rm, uinput, 
 | Name  | Type                                                        | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | cmd      | string                                                       | Yes  | Shell command string.   |
-| callback | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Yes  | Callback used to return the result. If the shell command is executed, **err** is **undefined** and **data** is the execution result obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1086,7 +1086,7 @@ Only the following shell commands are supported: aa, bm, cp, mkdir, rm, uinput, 
 | ----------- | ------------------------------------------------------------ | ---- | ----------------------------- |
 | cmd         | string                                                       | Yes  | Shell command string.              |
 | timeoutSecs | number                                                       | Yes  | Command timeout period, in seconds.|
-| callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Yes  | Callback used to return the result.           |
+| callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Yes  | Callback used to return the result. If the shell command is executed, **err** is **undefined** and **data** is the execution result obtained. Otherwise, **err** is an error object.  |
 
 **Example**
 
@@ -1160,7 +1160,7 @@ Finishes the test and prints log information to the unit test console. This API 
 | -------- | -------------------- | ---- | ------------------ |
 | msg      | string               | Yes  | Log string.        |
 | code     | number               | Yes  | Log code.            |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the test finishes and the log information is printed to the unit test console, **err** is undefined. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1206,7 +1206,7 @@ Finishes the test and prints log information to the unit test console. This API 
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1245,7 +1245,7 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
-| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
+| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result. If the **AbilityStageMonitor** instance is added, **err** is undefined. Otherwise, **err** is an error object.    |
 
 **Error codes**
 
@@ -1292,7 +1292,7 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1371,7 +1371,7 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
-| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
+| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result. If the **AbilityStageMonitor** instance is removed, **err** is undefined. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1418,7 +1418,7 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1497,7 +1497,7 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
-| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.            |
+| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, **err** is undefined and data is the [AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md) instance obtained. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
@@ -1546,7 +1546,7 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<AbilityStage> | Promise used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.|
+| Promise\<AbilityStage> | Promise used to return the [AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md) instance.|
 
 **Error codes**
 
@@ -1577,7 +1577,7 @@ abilityDelegator.waitAbilityStageMonitor({
 
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback: AsyncCallback\<AbilityStage>): void
 
-Waits for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
+Waits a period of time for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1589,7 +1589,7 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
 | timeout | number | Yes  | Maximum waiting time, in milliseconds.|
-| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.                    |
+| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, **err** is undefined and data is the [AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md) instance obtained. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -1655,3 +1655,4 @@ let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.setMockList(mockList);
 ```
+

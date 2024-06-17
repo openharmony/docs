@@ -24,6 +24,8 @@ Prepares the unit test environment to run test cases.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Example**
 
 ```ts
@@ -37,8 +39,6 @@ export default class UserTestRunner implements TestRunner {
 };
 ```
 
-
-
 ## TestRunner.onRun
 
 onRun(): void
@@ -46,6 +46,8 @@ onRun(): void
 Runs test cases.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Example**
 
