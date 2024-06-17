@@ -1157,6 +1157,93 @@ let array2 = new collections.Array(7, 8, 9);
 let concatArray = array.concat(array1, array2); // concatArray的内容为：[1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
+### splice
+
+splice(start: number): Array\<T>
+
+删除Array中指定位置的元素。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型  | 必填 | 说明                                                                |
+| ----- | ------ | -- | ------------------------------------------------------------------- |
+| start | number | 是 | 开始索引。如果`-array.length =< start < 0`，从`start + array.length`开始，如果`start < -array.length`，则从0开始。 |
+
+**返回值：**
+
+| 类型      | 说明                   |
+| --------- | --------------------- |
+| Array\<T> | 返回一个新的包含被删除元素的Array对象。如果没有元素被删除，返回一个空的Array对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ---------------------------------- |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 10200011 | The splice method cannot be bound. |
+| 10200201 | Concurrent modification error.     |
+
+**示例：**
+
+```ts
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let removeArray = array.splice(2); // array内容变为[1, 2]，返回[3, 4, 5]
+```
+
+### splice
+
+splice(start: number, deleteCount: number, ...items: T[]): Array\<T>
+
+删除Array中指定位置的元素，需要时在Array的指定位置插入新元素。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名       | 类型   | 必填 | 说明                                                                |
+| ----------- | ------ | --  | ------------------------------------------------------------------- |
+| start       | number | 是  | 开始索引。如果`-array.length =< start < 0`，从`start + array.length`开始，如果`start < -array.length`，则从0开始。 |
+| deleteCount | number | 是  | 删除元素的个数。                                                      |
+| items       | T[]    | 否  | 从`start`位置开始插入的新元素。如果省略，仅删除Array内的指定元素。        |
+
+**返回值：**
+
+| 类型      | 说明                                  |
+| --------- | ------------------------------------ |
+| Array\<T> | 返回一个新的包含被删除元素的Array对象。如果没有元素被删除，返回一个空的Array对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ---------------------------------- |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 10200011 | The splice method cannot be bound. |
+| 10200201 | Concurrent modification error.     |
+
+**示例：**
+
+```ts
+// 例1：
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let removeArray = array.splice(2, 2); // array内容变为[1, 2, 5]，返回[3, 4]
+```
+
+```ts
+// 例2：
+let array = new collections.Array<number>(1, 2, 3, 4, 5);
+let removeArray = array.splice(2, 2, 6, 7, 8); // array内容变为[1, 2, 6, 7, 8, 5]，返回[3, 4]
+```
+
 ## collections.Map
 
 一种非线性数据结构。
