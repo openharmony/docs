@@ -100,5 +100,5 @@ getLineMetrics(lineNumber: number): LineMetrics
 | 参数名 | 参数类型                                   | 必填 | 参数描述 |
 | ------ | ------------------------------------------ | ---- | -------- |
 | content   | [ResourceStr](ts-types.md#resourcestr)  | 是     | 显示内容。     |
-| startIcon | [ResourceStr](ts-types.md#resourcestr)  | 否     | 显示图标，不支持引用SymbolSpan和网络图片     |
+| startIcon | [ResourceStr](ts-types.md#resourcestr)  | 否     | 显示图标，不支持引用SymbolSpan和网络图片。     |
 | action    | Callback\<[TextRange](ts-universal-attributes-text-style.md#textrange12)>  | 是     | 选中的文本信息。|    
