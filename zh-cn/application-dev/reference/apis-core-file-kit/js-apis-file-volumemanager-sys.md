@@ -745,3 +745,4 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 | removable   | boolean | 是 | 否 | 表示卷设备是否可移除，当前仅支持可移除存储设备。true为可移除，false为不可移除 |
 | state       | number  | 是 | 否 | 卷设备状态标识：<br>0：卸载状态 UNMOUNTED<br> 1：检查状态 CHECKING<br> 2：挂载状态 MOUNTED<br> 3：正在弹出状态 EJECTING          |
 | path        | string  | 是 | 否 | 卷设备的挂载地址，一般为/mnt/data/external/{uuid}         |
+| fsType<sup>12+</sup>        | string  | 是 | 否 | 文件系统的类型，常见有ext2、vfat、NTFS等。       |

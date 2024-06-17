@@ -51,6 +51,15 @@ pick(): Promise&lt;PickInfo&gt;
 | ----------------------------- | ----------------------------------------------- |
 | Promise&lt;[PickInfo](#pickinfo)&gt; | Promise对象。返回一个PickInfo对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
 **示例：**
 
 ```ts

@@ -47,7 +47,7 @@ TreeView({ treeController: TreeController })
 
 树视图组件的控制器，可以将此对象绑定至树视图组件，然后通过它控制树的节点信息，同一个控制器不可以控制多个树视图组件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 
 ### addNode
@@ -57,7 +57,7 @@ addNode(nodeParam?: NodeParam): void
 
 点击某个节点后，调用该方法可以触发新增孩子节点。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 
 **参数：**
@@ -74,7 +74,7 @@ removeNode(): void
 
 点击某个节点后，调用该方法可以触发删除该节点。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 
 ### modifyNode
@@ -84,7 +84,7 @@ modifyNode(): void
 
 点击某个节点后，调用该方法可以触发修改该节点。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 
 ### buildDone
@@ -93,7 +93,7 @@ buildDone(): void
 
 建立树视图。节点增加完毕后，必须调用该方法，触发树信息的保存。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 
 ### refreshNode
@@ -102,7 +102,7 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 更新树视图。调用该方法，更新当前节点的信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -114,7 +114,7 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 ## NodeParam
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -140,7 +140,7 @@ getInstance(): [TreeListenerManager](#treelistenermanager)
 
 获取监听管理器单例对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 
 ### getTreeListener
@@ -149,7 +149,7 @@ getTreeListener(): [TreeListener](#treelistener)
 
 获取监听器。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 
 ## TreeListener
@@ -163,7 +163,7 @@ on(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): v
 
 注册监听。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -179,7 +179,7 @@ once(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void):
 
 注册一次监听。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 
 **参数：**
@@ -197,7 +197,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 取消监听。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -209,7 +209,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 ## TreeListenType
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 说明 |
 | -------- | -------- |
@@ -221,7 +221,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 ## CallbackParam
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

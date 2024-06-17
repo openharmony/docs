@@ -27,7 +27,7 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -75,7 +75,7 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -132,7 +132,7 @@ execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -193,7 +193,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -248,7 +248,7 @@ cancel(task: Task): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -327,7 +327,7 @@ cancel(group: TaskGroup): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -388,7 +388,7 @@ terminateTask(longTask: LongTask): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -436,7 +436,7 @@ isConcurrent(func: Function): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -476,7 +476,7 @@ getTaskPoolInfo(): TaskPoolInfo
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -496,13 +496,14 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 **系统能力：**  SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | HIGH   | 0    | 任务为高优先级。 |
 | MEDIUM | 1 | 任务为中优先级。 |
 | LOW | 2 | 任务为低优先级。 |
+| IDLE<sup>12+</sup> | 3 | 任务为后台任务。 |
 
 **示例：**
 
@@ -519,21 +520,24 @@ function printArgs(args: number): number {
 
 let allCount = 100; // 100: test number
 let taskArray: Array<taskpool.Task> = [];
-// 创建300个任务并添加至taskArray
-for (let i: number = 1; i < allCount; i++) {
+// 创建400个任务并添加至taskArray
+for (let i: number = 0; i < allCount; i++) {
   let task1: taskpool.Task = new taskpool.Task(printArgs, i);
   taskArray.push(task1);
   let task2: taskpool.Task = new taskpool.Task(printArgs, i * 10); // 10: test number
   taskArray.push(task2);
   let task3: taskpool.Task = new taskpool.Task(printArgs, i * 100); // 100: test number
   taskArray.push(task3);
+  let task4: taskpool.Task = new taskpool.Task(printArgs, i * 1000); // 1000: test number
+  taskArray.push(task4);
 }
 
 // 从taskArray中获取不同的任务并给定不同优先级执行
-for (let i: number = 0; i < allCount; i+=3) { // 3: 每次执行3个任务，循环取任务时需后移3项，确保执行的是不同的任务
+for (let i: number = 0; i < taskArray.length; i+=4) { // 4: 每次执行4个任务，循环取任务时需后移4项，确保执行的是不同的任务
   taskpool.execute(taskArray[i], taskpool.Priority.HIGH);
   taskpool.execute(taskArray[i + 1], taskpool.Priority.LOW);
   taskpool.execute(taskArray[i + 2], taskpool.Priority.MEDIUM);
+  taskpool.execute(taskArray[i + 3], taskpool.Priority.IDLE);
 }
 ```
 
@@ -545,7 +549,7 @@ for (let i: number = 0; i < allCount; i+=3) { // 3: 每次执行3个任务，循
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 | 名称                 | 类型       | 可读 | 可写 | 说明                                                         |
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
@@ -564,7 +568,7 @@ Task的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -602,7 +606,7 @@ Task的构造函数，可以指定任务名称。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -643,7 +647,7 @@ static isCanceled(): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -715,7 +719,7 @@ setTransferList(transfer?: ArrayBuffer[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -780,7 +784,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -936,7 +940,7 @@ static sendData(...args: Object[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -979,7 +983,7 @@ onReceiveData(callback?: Function): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1030,7 +1034,7 @@ addDependency(...tasks: Task[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1088,7 +1092,7 @@ removeDependency(...tasks: Task[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1151,7 +1155,7 @@ onEnqueued(callback: CallbackFunction): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1200,7 +1204,7 @@ onStartExecution(callback: CallbackFunction): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1248,7 +1252,7 @@ onExecutionFailed(callback: CallbackFunctionWithError): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1302,7 +1306,7 @@ onExecutionSucceeded(callback: CallbackFunction): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1342,6 +1346,53 @@ taskpool.execute(task).then(()=> {
 });
 ```
 
+### isDone<sup>12+</sup>
+
+isDone(): boolean
+
+检查任务是否已完成。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型    | 说明                                 |
+| ------- | ------------------------------------ |
+| boolean | 任务执行完成返回true，任务未执行完成返回false。 |
+
+**示例：**
+
+```ts
+@Concurrent
+function inspectStatus(arg: number): number {
+  // 2s sleep
+  let t: number = Date.now();
+  while (Date.now() - t < 1000) {
+    continue;
+  }
+  return arg + 1;
+}
+
+async function taskpoolCancel(): Promise<void> {
+  let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
+  taskpool.execute(task).then((res: Object)=>{
+    console.info("taskpool test result: " + res);
+  }).catch((err: string) => {
+    console.error("taskpool test occur error: " + err);
+  });
+
+  setTimeout(()=>{
+    if (!task.isDone()) {
+      taskpool.cancel(task);
+    }
+  }, 3000); // 延时3s，确保任务已执行
+}
+
+taskpoolCancel();
+```
+
 ## CallbackFunction<sup>12+</sup>
 
 type CallbackFunction = () => void
@@ -1350,7 +1401,7 @@ type CallbackFunction = () => void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 
 ## CallbackFunctionWithError<sup>12+</sup>
@@ -1361,7 +1412,7 @@ type CallbackFunctionWithError = (e: Error) => void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |
@@ -1401,7 +1452,7 @@ TaskGroup的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **示例：**
 
@@ -1417,7 +1468,7 @@ TaskGroup的构造函数，可以指定任务组名称。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1449,7 +1500,7 @@ addTask(func: Function, ...args: Object[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1488,7 +1539,7 @@ addTask(task: Task): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1523,7 +1574,7 @@ taskGroup.addTask(task);
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型   | 可读 | 可写 | 说明                         |
 | ---- | ------ | ---- | ---- | ---------------------------- |
@@ -1541,7 +1592,7 @@ SequenceRunner的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1563,6 +1614,42 @@ SequenceRunner的构造函数。
 let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner();
 ```
 
+### constructor<sup>12+</sup>
+
+constructor(name: string, priority?: Priority)
+
+SequenceRunner的构造函数。如果名字相同，将返回相同的SequenceRunner。
+
+> **说明：**
+>
+> - 不支持在同一线程重复构造相同的串行队列。
+> - 不支持修改串行队列的优先级。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                       |
+| -------- | --------------------- | ---- | ---------------------------------------------------------- |
+| name     | string                | 是   | 串行队列的名字。 |
+| priority | [Priority](#priority) | 否   | 指定任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+let runner:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner1", taskpool.Priority.LOW);
+```
+
 ### execute<sup>11+</sup>
 
 execute(task: Task): Promise\<Object>
@@ -1576,7 +1663,7 @@ execute(task: Task): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1647,7 +1734,7 @@ async function seqRunner()
 
 **系统能力：**  SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 | 名称      | 值        | 说明          |
 | --------- | -------- | ------------- |
@@ -1668,10 +1755,10 @@ async function seqRunner()
 
 | 名称     | 类型                | 可读 | 可写 | 说明                                                           |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
-| name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。<br/> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                    |
-| taskId   | number             | 是   | 否   | 任务的ID。<br/> **元服务API**：从API version 11 开始，该接口支持在元服务中使用。                                                     |
-| state    | [State](#state10)  | 是   | 否   | 任务的状态。<br/> **元服务API**：从API version 11 开始，该接口支持在元服务中使用。                                                    |
-| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。<br/> **元服务API**：从API version 11 开始，该接口支持在元服务中使用。  |
+| name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                    |
+| taskId   | number             | 是   | 否   | 任务的ID。<br/> **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。                                                     |
+| state    | [State](#state10)  | 是   | 否   | 任务的状态。<br/> **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。                                                    |
+| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。<br/> **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。  |
 
 ## ThreadInfo<sup>10+</sup>
 
@@ -1683,7 +1770,7 @@ async function seqRunner()
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                    | 可读 | 可写 | 说明                                                      |
 | -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
@@ -1701,7 +1788,7 @@ async function seqRunner()
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 | 名称          | 类型                              | 可读 | 可写 | 说明                  |
 | ------------- | -------------------------------- | ---- | ---- | -------------------- |

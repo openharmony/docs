@@ -122,7 +122,7 @@
   import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
 
-  audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
+  audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MUSIC, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
     if (err) {
       console.error('Failed to get effect info array');
       return;    

@@ -3363,7 +3363,7 @@ int32_t OH_PixelMap_SetDensity (const NativePixelMap * native, int32_t density )
 
 **参见：**
 
-[GetDensity](oh_pixelmap_getdensity)
+[GetDensity](#oh_pixelmap_getdensity)
 
 
 ### OH_PixelMap_SetOpacity()

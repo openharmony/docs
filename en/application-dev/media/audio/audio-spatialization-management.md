@@ -234,7 +234,7 @@ Call [updateSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys
 
 To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
-For details about the state information, see [AudioSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatialdevicestate).
+For details about the state information, see [AudioSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatialdevicestate11).
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -285,12 +285,10 @@ For details about the spatial audio rendering scene type, see [AudioSpatializati
   import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
   try {
-    let spatializationSceneType: AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
+    let spatializationSceneType: audio.AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
     console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);
   } catch (err) {
     let error = err as BusinessError;
     console.error(`ERROR: ${error}`);
   }
   ```
-
- <!--no_check--> 

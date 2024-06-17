@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import InsightIntentContext from '@ohos.app.ability.InsightIntentContext';
+import { InsightIntentContext } from '@kit.AbilityKit';
 ```
 
 ## InsightIntentContext.startAbility
@@ -22,7 +22,7 @@ startAbility(want: Want, callback: AsyncCallback\<void\>): void
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -60,13 +60,11 @@ startAbility(want: Want, callback: AsyncCallback\<void\>): void
 **示例：**
 
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import window from '@ohos.window';
-  import Want from '@ohos.app.ability.Want';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent, Want } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, pageLoader: window.WindowStage): insightIntent.ExecuteResult {
       let want: Want = {
         bundleName: 'com.ohos.intentexecutedemo',
@@ -105,7 +103,7 @@ startAbility(want: Want): Promise\<void\>
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -148,13 +146,11 @@ startAbility(want: Want): Promise\<void\>
 **示例：**
 
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import window from '@ohos.window';
-  import Want from '@ohos.app.ability.Want';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent, Want } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     async onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, pageLoader: window.WindowStage): Promise<insightIntent.ExecuteResult> {
       let want: Want = {
         bundleName: 'com.ohos.intentexecutedemo',
@@ -164,9 +160,9 @@ startAbility(want: Want): Promise\<void\>
 
       try {
         await this.context.startAbility(want);
-          hilog.info(0x0000, 'testTag', '%{public}s', 'Start ability finished');
-        } catch (error) {
-          hilog.error(0x0000, 'testTag', 'Start ability error caught %{public}s', JSON.stringify(error));
+        hilog.info(0x0000, 'testTag', '%{public}s', 'Start ability finished');
+      } catch (error) {
+        hilog.error(0x0000, 'testTag', 'Start ability error caught %{public}s', JSON.stringify(error));
       }
 
       let result: insightIntent.ExecuteResult = {

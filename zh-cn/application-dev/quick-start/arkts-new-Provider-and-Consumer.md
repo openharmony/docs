@@ -1,7 +1,7 @@
 # \@Provider装饰器和\@Consumer装饰器：跨组件层级双向同步
 
 \@Provider和\@Consumer用于跨组件层级数据双向同步，可以使得开发者不拘泥于组件层级。
-\@Provider和\@Consumer属于新一代状态管理装饰器，所以只能在\@ComponentV2中才能使用，在\@Component中使用会编译报错。
+\@Provider和\@Consumer属于状态管理V2装饰器，所以只能在\@ComponentV2中才能使用，在\@Component中使用会编译报错。
 
 >**说明：**
 >
@@ -20,10 +20,10 @@
 
 
 ## \@Provider和\@Consumer vs \@Provide和\@Consume能力对比
-在老状态管理框架中，提供跨组件层级双向的装饰器为[\@Provide和\@Consume](./arkts-provide-and-consume.md)，当前文档介绍的是新状态管理装饰器\@Provider和\@Consumer。虽然两者名字和功能类似，但在特性上还存在一些差异。
-如果开发者对老状态管理中\@Provide和\@Consume完全不曾了解过，可以直接跳过本节。
+在状态管理V1版本中，提供跨组件层级双向的装饰器为[\@Provide和\@Consume](./arkts-provide-and-consume.md)，当前文档介绍的是状态管理V2装饰器\@Provider和\@Consumer。虽然两者名字和功能类似，但在特性上还存在一些差异。
+如果开发者对状态管理V1中\@Provide和\@Consume完全不曾了解过，可以直接跳过本节。
 
-| 能力 | \@Provider和\@Consumer（新）                                                  |\@Provide和\@Consume（老）|
+| 能力 | V2装饰器\@Provider和\@Consumer                                             |V1装饰器\@Provide和\@Consume|
 | ------------------ | ----------------------------------------------------- |----------------------------------------------------- |
 | \@Consume(r)         |允许本地初始化，当找不到\@Provider的时候使用本地默认值。| 禁止本地初始化，当找不到对应的的\@Provide时候，会抛出异常。 |
 | 支持类型           | 支持function。 | 不支持function。 |
@@ -64,7 +64,7 @@
 \@Provider和\@Consumer可接受可选参数aliasName，如果开发者没有配置参数，则使用属性名作为默认值。注意：aliasName是\@Provider和\@Consumer匹配唯一指定key。
 
 以下三个例子可清楚介绍\@Provider和\@Consumer在使用aliasName查找关系。
-```
+```ts
 @ComponentV2 struct Parent {
     @Provider() str: string = 'hello';   // no aliasName, use propertyName "str" as aliasName
 }
@@ -75,7 +75,7 @@
 }
 ```
 
-```
+```ts
 @ComponentV2 struct Parent {
     @Provider('alias') str: string = 'hello';   // has alias
 }
@@ -85,7 +85,7 @@
 }
 ```
 
-```
+```ts
 @ComponentV2 struct Parent {
     @Provider('alias') str: string = 'hello';   // has alias
 }
@@ -110,7 +110,7 @@
 2. 点击Parent中的Button，改变@Provider装饰的str，通知其对应的@Consumer。对应UI刷新。
 3. 点击Child中Button，改变@Consumer装饰的str，通知其对应的@Provider。对应UI刷新。
 
-```
+```ts
 @Entry
 @ComponentV2
 struct Parent {
@@ -152,7 +152,7 @@ struct Child {
 2. 点击Parent中的Button，改变@Provider装饰的str1，刷新@Provider关联的Button组件。
 3. 点击Child中Button，改变@Consumer装饰的str，刷新@Consumer关联的Button组件。
 
-```
+```ts
 @Entry
 @ComponentV2
 struct Parent {
@@ -190,7 +190,7 @@ struct Child {
 当需要在父组件中需要给子组件注册回调函数，可以通过\@Provider和\@Consumer修饰回调方法来解决。
 比如拖拽场景，当发生拖拽事件时，如果希望将子组件的拖拽的起始位置信息同步给父组件。如下面的例子。
 
-```
+```ts
 @Entry
 @ComponentV2
 struct Parent {
@@ -230,7 +230,7 @@ struct Child {
 1. \@Provider和\@Consumer只能观察到数据本身的变化。如果当其修饰复杂数据类型，需要观察属性的变化，需要配合\@Trace一起使用。
 2. 修饰buildin type：Array、Map、Set、Data时，可以观察到某些API的变化，观察能力同[\@Trace](./arkts-new-observedV2-and-trace.md#观察变化)。
 
-```
+```ts
 @ObservedV2
 class User {
   @Trace name: string;
@@ -292,7 +292,7 @@ struct Child {
 - AComp中\@Consumer向上查找，查找到Parent中定义的` @Provider() val: number = 10`，所以初始化为10。
 - A1Comp中\@Consumer向上查找，查找到AComp中定义的`@Provider() val: number = 20`，即停止，不会继续向上查找，所以初始化为20。
 
-```
+```ts
 @Entry
 @ComponentV2
 struct Parent {
@@ -334,7 +334,7 @@ struct A1Comp {
 - 点击Text(`@Consumer val: ${this.val}`),触发`@Consumer() val`的变化，变化同步给Parent中`@Provider() val`,从而触发子组件`Text(`@Param val2: ${this.val2}`)`的变化。
 - `@Consumer() val`的变化也会同步给A1Comp，触发`Text(`A1Comp @Param val ${this.val}`)`的改变。
 
-```
+```ts
 @Entry
 @ComponentV2
 struct Parent {

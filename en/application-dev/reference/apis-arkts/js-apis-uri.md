@@ -10,7 +10,7 @@ The **uri** module provides APIs related to URI string parsing.
 ## Modules to Import
 
 ```ts
-import uri from '@ohos.uri'
+import { uri } from '@kit.ArkTS';
 ```
 
 ## URI
@@ -21,6 +21,8 @@ Implements a URI, which provides APIs for determining whether objects are equal 
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | scheme | string | Yes| No| Scheme in the URI.|
@@ -28,10 +30,16 @@ Implements a URI, which provides APIs for determining whether objects are equal 
 | host | string | Yes| No| Host name (without the port number) in the URI.|
 | port | string | Yes| No| Port number in the URI.|
 | path | string | Yes| No| Path in the URI.|
-| query | string | Yes| No| Query part in the URI.|
-| fragment | string | Yes| No| Fragment part in the URI.|
+| query | string | Yes| No| Query parameters in the URI.|
+| fragment | string | Yes| No| Fragments in the URI.|
 | authority | string | Yes| No| Authority part in the URI.|
-| ssp | string | Yes| No| Scheme-specific part in the URI.|
+| ssp | string | Yes| No| Scheme-specific part in the URI. It contains protocol-or scheme-specific information.|
+| encodedUserInfo<sup>12+</sup>  | string | Yes  | No  | Encoded user information in the URI.  |
+| encodedPath<sup>12+</sup>      | string | Yes  | No  | Encoded path in the URI.        |
+| encodedQuery<sup>12+</sup>     | string | Yes  | No  | Encoded query parameters in the URI.      |
+| encodedFragment<sup>12+</sup>  | string | Yes  | No  | Encoded fragments in the URI.      |
+| encodedAuthority<sup>12+</sup> | string | Yes  | No  | Encoded authority part in the URI.  |
+| encodedSSP<sup>12+</sup>       | string | Yes  | No  | Encoded scheme-specific part in the URI.  |
 
 ### Naming Rules
 
@@ -96,6 +104,14 @@ console.log(result5.scheme) // dataability
 console.log(result5.userInfo) // null
 console.log(result5.port) // -1
 console.log(result5.query) // null
+
+const result6 = new uri.URI("https://username:my+name@host:8080/directory/my+file?foo=1&bar=2#fragment");
+console.log(result6.encodedUserInfo) // username:my+name
+console.log(result6.encodedPath) // /directory/my+file
+console.log(result6.encodedQuery) // foo=1&bar=2
+console.log(result6.encodedFragment) // fragment
+console.log(result6.encodedAuthority) // username:my+name@host:8080
+console.log(result6.encodedSSP) // //username:my+name@host:8080/directory/my+file?foo=1&bar=2
 ```
 
 ### constructor
@@ -103,6 +119,8 @@ console.log(result5.query) // null
 constructor(uri: string)
 
 A constructor used to create a URI instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -114,10 +132,11 @@ A constructor used to create a URI instance.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200002 | Invalid uri string. |
 
 **Example**
@@ -139,6 +158,8 @@ toString(): string
 
 Obtains the query string applicable to this URI.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Return value**
 
 | Type| Description|
@@ -152,6 +173,506 @@ const result = new uri.URI('https://username:password@host:8080/directory/file?q
 let result1 = result.toString();
 ```
 
+### equalsTo<sup>9+</sup>
+
+equalsTo(other: URI): boolean
+
+Checks whether this URI is the same as another URI object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| other | [URI](#uri) | Yes| URI object to compare.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the two URIs are the same; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+let result = uriInstance.equalsTo(uriInstance1);
+```
+
+### checkIsAbsolute
+
+checkIsAbsolute(): boolean
+
+Checks whether this URI is an absolute URI (whether the scheme component is defined).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | **true**: The URI is an absolute URI.<br>**false**: The URI is not an absolute URI.|
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080?query=pppppp');
+console.log(`${uriInstance.checkIsAbsolute()}`); // true
+const uriInstance1 = new uri.URI('xxx.com/suppliers.htm');
+console.log(`${uriInstance1.checkIsAbsolute()}`); // false
+```
+
+
+### normalize
+
+normalize(): URI
+
+Normalizes the path of this URI.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| [URI](#uri) | URI with the normalized path.|
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
+console.log(uriInstance.path); // /path/path1/../path2/./path3
+let uriInstance1 = uriInstance.normalize();
+console.log(uriInstance1.path); // /path/path2/path3
+```
+
+### checkRelative<sup>12+</sup>
+
+checkRelative(): boolean
+
+Checks whether this URI is a relative URI. A relative URI does not contain the scheme part.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type   | Description                                      |
+| ------- | ------------------------------------------ |
+| boolean | **true**: The URI is a relative URI.<br>**false**: The URI is not a relative URI.|
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI("https://username:password@www.qwer.com:8080?query=p");
+console.log(`${uriInstance.checkRelative()}`); // false
+const uriInstance1 = new uri.URI("/images/pic.jpg");
+console.log(`${uriInstance1.checkRelative()}`); // true
+```
+
+### checkOpaque<sup>12+</sup>
+
+checkOpaque(): boolean
+
+Checks whether this URI is an opaque URI. In an opaque URI, the scheme-specific part does not start with a slash (/).
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type   | Description                                          |
+| ------- | ---------------------------------------------- |
+| boolean | **true**: The URI is an opaque URI.<br>**false**: The URI is not an opaque URI.|
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI("http://www.test.com/images/pic.jpg");
+console.log(`${uriInstance.checkOpaque()}`); // false
+const uriInstance1 = new uri.URI("mailto:user@example.com");
+console.log(`${uriInstance1.checkOpaque()}`); // true
+```
+
+### checkHierarchical<sup>12+</sup>
+
+checkHierarchical(): boolean
+
+Checks whether this URI is a hierarchical URI. In a hierarchical URI, the scheme-specific part starts with a slash (/). Relative URIs are also hierarchical.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type   | Description                                        |
+| ------- | -------------------------------------------- |
+| boolean | **true**: The URI is a hierarchical URI.<br>**false**: The URI is not a hierarchical URI.|
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI("http://www.test.com/images/pic.jpg");
+console.log(`${uriInstance.checkHierarchical()}`); // true
+const uriInstance1 = new uri.URI("mailto:user@example.com");
+console.log(`${uriInstance1.checkHierarchical()}`); // false
+```
+
+### getQueryValue<sup>12+</sup>
+
+getQueryValue(key:string): string
+
+Obtains the first value of a query parameter in this URI.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                   |
+| ------ | ------ | ---- | ----------------------- |
+| key    | string | Yes  | Key of the URI query parameter.|
+
+**Return value**
+
+| Type  | Description                         |
+| ------ | ----------------------------- |
+| string | First value of the URI query parameter.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI("https://www.com?param1=value1&param2=value2");
+console.log(uriInstance.getQueryValue("param1")); // value1
+```
+
+### addQueryValue<sup>12+</sup>
+
+addQueryValue(key:string, value:string): URI
+
+Adds a query parameter to this URI to create a new URI, while keeping the existing URI unchanged.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| key    | string | Yes  | Key of the query parameter.|
+| value  | string | Yes  | Value of the query parameter.  |
+
+**Return value**
+
+| Type| Description                            |
+| ---- | -------------------------------- |
+| [URI](#uri)  | URI object with the query parameter.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI("https://www.test.com");
+const newRoute = uriInstance.addQueryValue("param1", "hello world");
+console.log(newRoute.toString()); // https://www.test.com?param1=hello%20world
+```
+
+### addSegment<sup>12+</sup>
+
+addSegment(pathSegment:string): URI
+
+Encodes a given field and appends it to this URI to create a new URI, while keeping the existing URI unchanged.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name     | Type  | Mandatory| Description              |
+| ----------- | ------ | ---- | ------------------ |
+| pathSegment | string | Yes  | Field to be appended to the path part.|
+
+**Return value**
+
+| Type| Description                            |
+| ---- | -------------------------------- |
+| [URI](#uri)  | URI object with the appended field.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI("http://www.test.com");
+const newRoute = uriInstance.addSegment("my image.jpg");
+console.log(newRoute.toString()); // http://www.test.com/my%20image.jpg
+```
+
+### addEncodedSegment<sup>12+</sup>
+
+addEncodedSegment(pathSegment:string): URI
+
+Appends an encoded field to this URI to create a new URI, while keeping the existing URI unchanged.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name     | Type  | Mandatory| Description              |
+| ----------- | ------ | ---- | ------------------ |
+| pathSegment | string | Yes  | Encoded field to be appended to the path part.|
+
+**Return value**
+
+| Type| Description                            |
+| ---- | -------------------------------- |
+| [URI](#uri)  | URI object with the appended field.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI("http://www.test.com");
+const newRoute = uriInstance.addEncodedSegment("my%20image.jpg");
+console.log(newRoute.toString()); // http://www.test.com/my%20image.jpg
+```
+
+### getQueryNames<sup>12+</sup>
+
+getQueryNames(): string[]
+
+Obtains all non-repeated keys in the URI query part. The URI query part follows the question mark (?) and consists of key-value pairs, separated by ampersand (&). In each key-value pair, the equal sign (=) is used to connect a key and value.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type       | Description                               |
+| ----------- | ----------------------------------- |
+| string[] | Non-repeated keys in the URI query part.|
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI("https://www.test.com?param1=value1&param2=value2");
+const paramNames = uriInstance.getQueryNames();
+console.log(Array.from(paramNames).toString()); // param1,param2
+```
+
+### getQueryValues<sup>12+</sup>
+
+getQueryValues(key:string): string[]
+
+Obtains all the values of a query parameter in this URI.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                   |
+| ------ | ------ | ---- | ----------------------- |
+| key    | string | Yes  | Name of the query parameter.|
+
+**Return value**
+
+| Type    | Description                               |
+| -------- | ----------------------------------- |
+| string[] | All values of the query parameter.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI("https://www.test.com/search?query=name&query=my");
+console.log(uriInstance.getQueryValues("query").toString()); // name,my
+```
+
+### getBooleanQueryValue<sup>12+</sup>
+
+getBooleanQueryValue(key:string,defaultValue:boolean): boolean
+
+Obtains the value of the Boolean type of a query parameter in this URI.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name      | Type   | Mandatory| Description                                 |
+| ------------ | ------- | ---- | ------------------------------------- |
+| key          | string  | Yes  | Name of the query parameter.              |
+| defaultValue | boolean | Yes  | Default value.|
+
+**Return value**
+
+| Type   | Description                                                                  |
+| ------- | ---------------------------------------------------------------------- |
+| boolean | If the specified query parameter does not exist, the default value is returned. If the first value of the query parameter is **false** or **0**, **false** is returned. Otherwise, **true** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI("https://www.test.com/search?active=true");
+console.log(`${uriInstance.getBooleanQueryValue("active", false)}`); // true
+const uriInstance1 = new uri.URI("https://www.test.com/search");
+console.log(`${uriInstance1.getBooleanQueryValue("active", false)}`); // false
+const uriInstance2 = new uri.URI("https://www.test.com/search?active=aa&active=false");
+console.log(`${uriInstance2.getBooleanQueryValue("active", false)}`); // true
+const uriInstance3 = new uri.URI("https://www.test.com/search?active=0");
+console.log(`${uriInstance3.getBooleanQueryValue("active", true)}`); // false
+```
+
+### clearQuery<sup>12+</sup>
+
+clearQuery(): URI
+
+Clears the query part of this URI to create a new URI, while keeping the existing URI object unchanged.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type| Description                                 |
+| ---- | ------------------------------------- |
+| [URI](#uri)  | URI object whose query part has been cleared.|
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI("https://www.test.com?param1=value1");
+console.log(uriInstance.clearQuery().toString()); // https://www.test.com
+```
+
+### getLastSegment<sup>12+</sup>
+
+getLastSegment(): string
+
+Obtains the last segment of this URI. A path includes multiple segments, separated by slashes (/). The part that ends with a slash is not a segment.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type| Description                         |
+| ---- | ----------------------------- |
+| string  | Last segment of the URI.|
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI("content://com.test.provider/files/image.jpg");
+console.log(uriInstance.getLastSegment()); // image.jpg
+```
+
+### getSegment<sup>12+</sup>
+
+getSegment(): string[]
+
+Obtains all segments of this URI.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type    | Description                       |
+| -------- | --------------------------- |
+| string[] | All segments of this URI.|
+
+**Example**
+
+```ts
+const uriInstance = new uri.URI("http://www.test.com/path/to/image.jpg");
+console.log(uriInstance.getSegment().toString()); // path,to,image.jpg
+```
+
+### createFromParts<sup>12+</sup>
+
+createFromParts(scheme: string, ssp: string, fragment: string): URI
+
+Creates a URI based on the provided scheme, scheme-specific part, and fragment part.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                           |
+| -------- | ------ | ---- | ------------------------------- |
+| scheme   | string | Yes  | Scheme part of the URI.              |
+| ssp      | string | Yes  | Scheme-specific part of the URI.|
+| fragment | string | Yes  | Fragment part of this URI. The fragment part is a specific part in the URI, that is, the part after the number sign (#).            |
+
+**Return value**
+
+| Type| Description                                             |
+| ---- | ------------------------------------------------- |
+| [URI](#uri)  | URI object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
+
+**Example**
+
+```ts
+const uriInstance = uri.URI.createFromParts("mailto", "no body", "top");
+console.log(uriInstance.toString()); // mailto:no%20body#top
+```
 
 ### equals<sup>(deprecated)</sup>
 
@@ -183,78 +704,4 @@ Checks whether this URI is the same as another URI object.
 const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 uriInstance.equals(uriInstance1);
-```
-### equalsTo<sup>9+</sup>
-
-equalsTo(other: URI): boolean
-
-Checks whether this URI is the same as another URI object.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| other | [URI](#uri) | Yes| URI object to compare.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the two URIs are the same; returns **false** otherwise.|
-
-**Example**
-
-```ts
-const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result = uriInstance.equalsTo(uriInstance1);
-```
-
-### checkIsAbsolute
-
-checkIsAbsolute(): boolean
-
-Checks whether this URI is an absolute URI (whether the scheme component is defined).
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| boolean | If the URI is an absolute URI, **true** is returned. Otherwise, **false** is returned.|
-
-**Example**
-
-```ts
-const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080?query=pppppp');
-console.log(`${uriInstance.checkIsAbsolute()}`); // true
-const uriInstance1 = new uri.URI('xxx.com/suppliers.htm');
-console.log(`${uriInstance1.checkIsAbsolute()}`); // false
-```
-
-
-### normalize
-
-normalize(): URI
-
-Normalizes the path of this URI.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| URI | URI with the normalized path.|
-
-**Example**
-
-```ts
-const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
-console.log(uriInstance.path); // /path/path1/../path2/./path3
-let uriInstance1 = uriInstance.normalize();
-console.log(uriInstance1.path); // /path/path2/path3
 ```

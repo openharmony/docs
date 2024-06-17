@@ -72,9 +72,10 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
 ```
 
 ```ts
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager'
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let hceElementName: bundleManager.ElementName;
 let hceService: cardEmulation.HceService;
@@ -206,9 +207,10 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ```ts
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager'
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let hceElementName : bundleManager.ElementName;
 let hceService: cardEmulation.HceService;

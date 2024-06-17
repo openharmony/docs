@@ -78,7 +78,7 @@ function createFile(): void {
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions } from '@ohos.file.fs';
+import fs, { ReadOptions, WriteOptions } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
 // 获取应用文件路径
@@ -100,7 +100,7 @@ function readWriteFile(): void {
   let readLen = fs.readSync(srcFile.fd, buf, readOptions);
   while (readLen > 0) {
     readSize += readLen;
-    let writeOptions = {
+    let writeOptions: WriteOptions = {
       length: readLen
     };
     fs.writeSync(destFile.fd, buf, writeOptions);
@@ -190,4 +190,80 @@ function getListFile(): void {
     console.info(`The name of file: ${files[i]}`);
   }
 }
+```
+
+### 使用文件流
+
+以下实例代码演示了如何使用文件可读流，文件可写流
+
+```ts
+// pages/xxx.ets
+import fs from '@ohos.file.fs';
+import common from '@ohos.app.ability.common';
+
+// 获取应用文件路径
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
+
+function copyFileWithReadable(): void {
+  // 创建文件可读流
+  const rs = fs.createReadStream(`${filesDir}/read.txt`);
+  // 创建文件可写流
+  const ws = fs.createWriteStream(`${filesDir}/write.txt`);
+  // 暂停模式拷贝文件
+  rs.on('readable', () => {
+    const data = rs.read();
+    if (!data) {
+      return;
+    }
+    ws.write(data);
+  });
+}
+
+function copyFileWithData(): void {
+  // 创建文件可读流
+  const rs = fs.createReadStream(`${filesDir}/read.txt`);
+  // 创建文件可写流
+  const ws = fs.createWriteStream(`${filesDir}/write.txt`);
+  // 流动模式拷贝文件
+  rs.on('data', (emitData) => {
+    const data = emitData?.data;
+    if (!data) {
+      return;
+    }
+    ws.write(data as Uint8Array);
+  });
+}
+
+```
+
+以下代码演示了如何使用文件哈希流
+
+```ts
+// pages/xxx.ets
+import fs from '@ohos.file.fs';
+import hash from '@ohos.file.hash';
+import common from '@ohos.app.ability.common';
+
+// 获取应用文件路径
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
+
+function hashFileWithStream() {
+  const filePath = `${filesDir}/test.txt`;
+  // 创建文件可读流
+  const rs = fs.createReadStream(filePath);
+  // 创建哈希流
+  const hs = hash.createHash('sha256');
+  rs.on('data', (emitData) => {
+    const data = emitData?.data;
+    hs.update(new Uint8Array(data?.split('').map((x: string) => x.charCodeAt(0))).buffer);
+  });
+  rs.on('close', async () => {
+    const hashResult = hs.digest();
+    const fileHash = await hash.hash(filePath, 'sha256');
+    console.info(`hashResult: ${hashResult}, fileHash: ${fileHash}`);
+  });
+}
+
 ```

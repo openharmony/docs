@@ -4,7 +4,16 @@
 
 > **说明：**
 >
-> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br />
+> 默认摄像头挖孔区域不为非安全区域，页面不避让挖孔。<br />
+> 从API Version 12开始，可在module.json5中添加配置项, 摄像头挖孔区域视为非安全区，实现页面默认避让挖孔：<br />
+  "metadata": [<br />
+    &nbsp;&nbsp;{<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;"name": "avoid_cutout",<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;"value": "true",<br />
+    &nbsp;&nbsp;}<br />
+  ],<br />
+  
 
 ## expandSafeArea
 
@@ -12,7 +21,7 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 
 控制组件扩展其安全区域。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -20,7 +29,7 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 
 | 参数名 | 类型                                               | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| types  | Array <[SafeAreaType](ts-types.md#safeareatype10)> | 否   | 非必填，配置扩展安全区域的类型。<br />默认值: <br />[SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD] |
+| types  | Array <[SafeAreaType](ts-types.md#safeareatype10)> | 否   | 非必填，配置扩展安全区域的类型。未添加metadata配置项时，页面不避让挖孔, CUTOUT类型不生效。<br />默认值: <br />[SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD] |
 | edges  | Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | 否   | 非必填，配置扩展安全区域的方向。<br /> [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM, SafeAreaEdge.START, SafeAreaEdge.END]<br />扩展至所有非安全区域。 |
 
 >  **说明：**
@@ -45,6 +54,8 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 控制虚拟键盘抬起时页面的避让模式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -63,6 +74,8 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 getKeyboardAvoidMode(): KeyboardAvoidMode
 
 返回虚拟键盘抬起时的页面避让模式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

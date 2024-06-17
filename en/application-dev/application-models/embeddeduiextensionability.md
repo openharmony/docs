@@ -11,6 +11,8 @@ The EmbeddedUIExtensionAbility must be used together with the [EmbeddedComponent
 > Currently, the EmbeddedUIExtensionAbility and **\<EmbeddedComponent>** are supported only on devices configured with multiple processes.
 >
 > The **\<EmbeddedComponent>** can be used only in the UIAbility, and the EmbeddedUIExtensionAbility to start must belong to the same application as the UIAbility.
+>
+> Multiton is supported. For details, see [UIExtensionAbility](uiextensionability.md).
 
 The EmbeddedUIExtensionAbility provides related capabilities through the [UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md) and [UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md). In this document, the started EmbeddedUIExtensionAbility is called the provider, and the EmbeddedComponent that starts the EmbeddedUIExtensionAbility is called the client.
 
@@ -20,12 +22,12 @@ The EmbeddedUIExtensionAbility provides related capabilities through the [UIExte
 
 The [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) class provides the **onCreate**, **onSessionCreate**, **onSessionDestroy**, **onForeground**, **onBackground**, and **onDestroy** lifecycle callbacks. You must override them as required.
 
-- **onCreate**: called to initialize the service logic when an EmbeddedUIExtensionAbility is created.
-- **onSessionCreate**: called when a **UIExtensionContentSession** instance is created for the EmbeddedUIExtensionAbility.
-- **onSessionDestroy**: called when a **UIExtensionContentSession** instance is destroyed for the EmbeddedUIExtensionAbility.
-- **onForeground**: called when the EmbeddedUIExtensionAbility is switched from the background to the foreground.
-- **onBackground**: called when the EmbeddedUIExtensionAbility is switched from the foreground to the background.
-- **onDestroy**: called to clear resources when the EmbeddedUIExtensionAbility is destroyed.
+- [onCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityoncreate): called to initialize the service logic when an EmbeddedUIExtensionAbility is created.
+- [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessioncreate): called when a **UIExtensionContentSession** instance is created for the EmbeddedUIExtensionAbility.
+- [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessiondestroy): called when a **UIExtensionContentSession** instance is destroyed for the EmbeddedUIExtensionAbility.
+- [onForeground](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonforeground): called when the EmbeddedUIExtensionAbility is switched from the background to the foreground.
+- [onBackground](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonbackground): called when the EmbeddedUIExtensionAbility is switched from the foreground to the background.
+- [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityondestroy): called to clear resources when the EmbeddedUIExtensionAbility is destroyed.
 
 ### How to Develop
 
@@ -140,7 +142,7 @@ struct Index {
   @State message: string = 'Message: '
   private want: Want = {
     bundleName: "com.example.embeddeddemo",
-    abilityName: "ExampleEmbeddedAbility",
+    abilityName: "EmbeddedUIExtAbility",
   }
 
   build() {

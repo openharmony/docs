@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 ```
 
 ## UniformDataType
@@ -23,10 +23,10 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 | ENTITY<sup>11+</sup>                       | 'general.entity'                   | 所有表示物理存储类型的基类型，无归属类型。                          |
 | OBJECT<sup>11+</sup>                       | 'general.object'                   | 所有表示逻辑内容类型的基类型，无归属类型。                          |
 | COMPOSITE_OBJECT<sup>11+</sup>                       | 'general.composite-object'                   | 所有组合内容类型（例如PDF文件类型混合了文本和图片类数据）的基类型，归属类型为OBJECT。                          |
-| TEXT                       | 'general.text'                   | 所有文本的基类型，归属类型为OBJECT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                          |
-| PLAIN_TEXT                | 'general.plain-text'             | 未指定编码的文本类型，没有标识符，归属类型为TEXT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。        |
-| HTML                  | 'general.html'                   | HTML文本类型，归属类型为TEXT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。               |
-| HYPERLINK         | 'general.hyperlink'              | 超链接类型，归属类型为TEXT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                  |
+| TEXT                       | 'general.text'                   | 所有文本的基类型，归属类型为OBJECT。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
+| PLAIN_TEXT                | 'general.plain-text'             | 未指定编码的文本类型，没有标识符，归属类型为TEXT。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| HTML                  | 'general.html'                   | HTML文本类型，归属类型为TEXT。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
+| HYPERLINK         | 'general.hyperlink'              | 超链接类型，归属类型为TEXT。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                  |
 | XML<sup>11+</sup>    | 'general.xml'                   | XML文本类型，归属类型为TEXT。                |
 | SMIL<sup>12+</sup>                         | 'com.real.smil'                    |  同步多媒体集成语言类型，归属类型为XML文本类型。       |
 | SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | 所有源代码的基类型，归属类型为PLAIN_TEXT。        |
@@ -52,7 +52,7 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 | KFX<sup>11+</sup>                       | 'com.amazon.kfx'                 | KFX电子书文件格式类型，归属类型为EBOOK。          |
 | MOBI<sup>11+</sup>             | 'com.amazon.mobi'               | MOBI电子书文件格式类型，归属类型为EBOOK。         |
 | MEDIA<sup>11+</sup>         | 'general.media'           | 所有媒体的基类型，归属类型为OBJECT。                          |
-| IMAGE        | 'general.image'          | 所有图片的基类型，归属类型为MEDIA。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。              |
+| IMAGE        | 'general.image'          | 所有图片的基类型，归属类型为MEDIA。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
 | JPEG<sup>11+</sup>                         | 'general.jpeg'                   | JPEG图片类型，归属类型为IMAGE。              |
 | PNG<sup>11+</sup>                        | 'general.png'                  | PNG图片类型，归属类型为IMAGE。               |
 | RAW_IMAGE<sup>11+</sup>                        | 'general.raw-image'                  | 所有原始图像格式的基类型，归属类型为IMAGE。          |
@@ -75,7 +75,7 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 | PDF<sup>11+</sup>                        | 'com.adobe.pdf'                  | PDF数据类型，归属类型为COMPOSITE_OBJECT。                           |
 | POSTSCRIPT<sup>11+</sup>                       | 'com.adobe.postscript'                 | PostScript数据类型，归属类型为COMPOSITE_OBJECT。                    |
 | ENCAPSULATED_POSTSCRIPT<sup>11+</sup>             | 'com.adobe.encapsulated-postscript'               | Encapsulated PostScript类型，归属类型为POSTSCRIPT。         |
-| VIDEO       | 'general.video'           | 所有视频的基类型，归属类型为MEDIA。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。              |
+| VIDEO       | 'general.video'           | 所有视频的基类型，归属类型为MEDIA。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
 | AVI<sup>11+</sup>        | 'general.avi'          | AVI视频类型，归属类型为VIDEO。               |
 | MPEG<sup>11+</sup>                         | 'general.mpeg'                   | MPGE-1或MPGE-2视频类型，归属类型为VIDEO。     |
 | MPEG4<sup>11+</sup>                        | 'general.mpeg-4'                  | MPGE-4视频类型，归属类型为VIDEO。            |
@@ -87,7 +87,7 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 | WINDOWS_MEDIA_WVX<sup>11+</sup>                        | 'com.microsoft.windows-media-wvx'                  | WINDOWS WVX视频类型，归属类型为VIDEO。       |
 | WINDOWS_MEDIA_WMX<sup>11+</sup>                        | 'com.microsoft.windows-media-wmx'                  | WINDOWS WMX视频类型，归属类型为VIDEO。       |
 | REALMEDIA<sup>12+</sup>                         | 'com.real.realmedia'                    | 流媒体视频类型，归属类型为VIDEO。       |
-| AUDIO       | 'general.audio'          | 所有音频的基类型，归属类型为MEDIA。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。              |
+| AUDIO       | 'general.audio'          | 所有音频的基类型，归属类型为MEDIA。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
 | AAC<sup>11+</sup>                         | 'general.aac'                   | AAC音频类型，归属类型为AUDIO。               |
 | AIFF<sup>11+</sup>                        | 'general.aiff'                  | AIFF音频类型，归属类型为AUDIO。              |
 | ALAC<sup>11+</sup>                        | 'general.alac'                  | ALAC音频类型，归属类型为AUDIO。              |
@@ -102,9 +102,9 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 | AIFC_AUDIO<sup>12+</sup>                         | 'general.aifc-audio'                    | 音频交换数据类型，归属类型为AUDIO。       |
 | SD2_AUDIO<sup>12+</sup>                         | 'com.digidesign.sd2-audio'                    | 单声道/立体声音频类型（Digidesign Sound Designer II），归属类型为AUDIO。       |
 | REALAUDIO<sup>12+</sup>                         | 'com.real.realaudio'                    | RealMedia音频类型，归属类型为AUDIO。       |
-| FILE                       | 'general.file'                 | 所有文件的基类型，归属类型为ENTITY。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                          |
+| FILE                       | 'general.file'                 | 所有文件的基类型，归属类型为ENTITY。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
 | DIRECTORY<sup>11+</sup>             | 'general.directory'               | 所有目录的基类型，归属类型为ENTITY。                          |
-| FOLDER        | 'general.folder'           | 所有文件夹的基类型，归属类型为DIRECTORY。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                         |
+| FOLDER        | 'general.folder'           | 所有文件夹的基类型，归属类型为DIRECTORY。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
 | SYMLINK<sup>11+</sup>        | 'general.symlink'          | 所有符号链接的基类型，归属类型为ENTITY。                        |
 | ARCHIVE<sup>11+</sup>                         | 'general.archive'                   | 所有文件和目录存档文件的基类型，归属类型为OBJECT。                   |
 | BZ2_ARCHIVE<sup>11+</sup>                        | 'general.bz2-archive'                  | BZ2存档文件类型，归属类型为ARCHIVE。           |
@@ -145,10 +145,10 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 | POSTSCRIPT_FONT<sup>12+</sup>                         | 'com.adobe.postscript-font'                    | PostScript 字体类型，归属类型为FONT。       |
 | POSTSCRIPT_PFB_FONT<sup>12+</sup>                         | 'com.adobe.postscript-pfb-font'                    | PostScript Font Binary字体类型，归属类型为FONT。       |
 | POSTSCRIPT_PFA_FONT<sup>12+</sup>                         | 'com.adobe.postscript-pfa-font'                    | Adobe Type 1 字体类型，归属类型为FONT。       |
-| OPENHARMONY_FORM                         | 'openharmony.form'                   | 系统定义的卡片类型，归属类型为OBJECT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。              |
-| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | 系统定义的桌面图标类型，归属类型为OBJECT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。            |
-| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | 系统定义的像素图类型，归属类型为IMAGE。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
-| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | 系统定义的元服务类型，归属类型为OBJECT。             |
+| OPENHARMONY_FORM                         | 'openharmony.form'                   | 系统定义的卡片类型，归属类型为OBJECT。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
+| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | 系统定义的桌面图标类型，归属类型为OBJECT。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。            |
+| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | 系统定义的像素图类型，归属类型为IMAGE。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
+| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | 系统定义的原子化服务类型，归属类型为OBJECT。             |
 | OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | 系统定义的包（即目录的打包文件），归属类型为DIRECTORY。             |
 | OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | 系统定义的能力包，归属类型为OPENHARMONY_PACKAGE。             |
 | OPENHARMONY_HDOC<sup>12+</sup>                         | 'openharmony.hdoc'                    | 系统定义的备忘录数据类型，归属类型为COMPOSITE_OBJECT。       |
@@ -206,8 +206,8 @@ belongsTo(type: string): boolean
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
@@ -252,8 +252,8 @@ isLowerLevelType(type: string): boolean
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
@@ -298,8 +298,8 @@ isHigherLevelType(type: string): boolean
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.plain-text');
@@ -344,8 +344,8 @@ equals(typeDescriptor: TypeDescriptor): boolean
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeA : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
@@ -390,8 +390,8 @@ getTypeDescriptor(typeId: string): TypeDescriptor
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('com.adobe.photoshop-image');
@@ -445,8 +445,8 @@ getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: str
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
@@ -502,8 +502,8 @@ getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('image/jpeg', 'general.image');

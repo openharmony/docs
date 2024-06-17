@@ -11,7 +11,7 @@ connection模块提供了对蓝牙操作和管理的方法。
 ## 导入模块
 
 ```js
-import connection from '@ohos.bluetooth.connection';
+import { connection } from '@kit.ConnectivityKit';
 ```
 
 
@@ -19,7 +19,7 @@ import connection from '@ohos.bluetooth.connection';
 
 pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: AsyncCallback&lt;void&gt;): void
 
-向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。
+向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -43,7 +43,7 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: As
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -52,7 +52,7 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: As
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.pairCredibleDevice('68:13:24:79:4C:8C', connection.BluetoothTransport
         .TRANSPORT_BR_EDR, (err: BusinessError) => {
@@ -72,7 +72,7 @@ try {
 
 pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;void&gt;
 
-向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。
+向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -101,7 +101,7 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -110,7 +110,7 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.pairCredibleDevice('68:13:24:79:4C:8C', 0).then(() => {
         console.info('PairCredibleDevice');
@@ -127,7 +127,7 @@ try {
 
 cancelPairedDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-删除配对的远程设备。
+删除配对的远程设备。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -150,7 +150,7 @@ cancelPairedDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -159,7 +159,7 @@ cancelPairedDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.cancelPairedDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -172,7 +172,7 @@ try {
 
 cancelPairedDevice(deviceId: string): Promise&lt;void&gt;
 
-删除配对的远程设备。
+删除配对的远程设备。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -200,7 +200,7 @@ cancelPairedDevice(deviceId: string): Promise&lt;void&gt;
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -209,7 +209,7 @@ cancelPairedDevice(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.cancelPairedDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -222,7 +222,7 @@ try {
 
 cancelPairingDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-删除正在配对中的远程设备。
+删除正在配对中的远程设备。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -245,7 +245,7 @@ cancelPairingDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -254,7 +254,7 @@ cancelPairingDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.cancelPairingDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -267,7 +267,7 @@ try {
 
 cancelPairingDevice(deviceId: string): Promise&lt;void&gt;
 
-删除正在配对中的远程设备。
+删除正在配对中的远程设备。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -295,7 +295,7 @@ cancelPairingDevice(deviceId: string): Promise&lt;void&gt;
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -304,7 +304,7 @@ cancelPairingDevice(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.cancelPairingDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -317,7 +317,7 @@ try {
 
 getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
 
-获取本地设备的profile UUID。
+获取本地设备的profile UUID。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -339,7 +339,7 @@ getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): 
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.             |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -348,7 +348,7 @@ getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: Array<connection.ProfileUuids>) => {
         console.info('getLocalProfileUuids, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
@@ -363,7 +363,7 @@ try {
 
 getLocalProfileUuids(): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
-获取本地设备的profile UUID。
+获取本地设备的profile UUID。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -385,7 +385,7 @@ getLocalProfileUuids(): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.           |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -394,7 +394,7 @@ getLocalProfileUuids(): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX').then(() => {
         console.info('getLocalProfileUuids');
@@ -411,7 +411,7 @@ try {
 
 getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
 
-获取对端蓝牙设备支持的Profile UUID。
+获取对端蓝牙设备支持的Profile UUID。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -434,7 +434,7 @@ getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;Prof
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -443,7 +443,7 @@ getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;Prof
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: Array<connection.ProfileUuids>) => {
         console.info('getRemoteProfileUuids, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
@@ -459,7 +459,7 @@ try {
 
 getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
-获取对端蓝牙设备支持的Profile UUID。
+获取对端蓝牙设备支持的Profile UUID。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -487,7 +487,7 @@ getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -496,7 +496,7 @@ getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX').then(() => {
         console.info('getRemoteProfileUuids');
@@ -513,7 +513,7 @@ try {
 
 connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-连接远端设备所有允许连接的profiles。
+连接远端设备所有允许连接的profiles。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -536,7 +536,7 @@ connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): v
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
 |202     | Non-system applications are not allowed to use system APIs.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -545,7 +545,7 @@ connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.connectAllowedProfiles('68:13:24:79:4C:8C', (err: BusinessError) => {
         if (err) {
@@ -564,7 +564,7 @@ try {
 
 connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
-连接远端设备所有允许连接的profiles。
+连接远端设备所有允许连接的profiles。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -592,7 +592,7 @@ connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
 |202     | Non-system applications are not allowed to use system APIs.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -601,7 +601,7 @@ connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.connectAllowedProfiles('68:13:24:79:4C:8C').then(() => {
         console.info('connectAllowedProfiles');
@@ -618,7 +618,7 @@ try {
 
 disconnectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-断开远端设备所有连接的profiles。
+断开远端设备所有连接的profiles。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -641,7 +641,7 @@ disconnectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;)
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
 |202     | Non-system applications are not allowed to use system APIs.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -650,7 +650,7 @@ disconnectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.disconnectAllowedProfiles('68:13:24:79:4C:8C', (err: BusinessError) => {
         if (err) {
@@ -669,7 +669,7 @@ try {
 
 disconnectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
-断开远端设备所有连接的profiles。
+断开远端设备所有连接的profiles。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -697,7 +697,7 @@ disconnectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
 |202     | Non-system applications are not allowed to use system APIs.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -706,7 +706,7 @@ disconnectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.disconnectAllowedProfiles('68:13:24:79:4C:8C').then(() => {
         console.info('disconnectAllowedProfiles');
@@ -751,7 +751,7 @@ getRemoteProductId(deviceId: string): string
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -760,7 +760,6 @@ getRemoteProductId(deviceId: string): string
 **示例：**
 
 ```js
-import connection from '@ohos.bluetooth.connection';
 try {
   let remoteDeviceProductId = connection.getRemoteProductId('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -772,7 +771,7 @@ try {
 
 on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
 
-订阅蓝牙设备发现上报事件。
+订阅蓝牙设备发现上报事件。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -794,14 +793,14 @@ on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&g
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -845,7 +844,7 @@ off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -862,7 +861,7 @@ try {
 
 setRemoteDeviceType(deviceId: string, type: DeviceType): Promise&lt;void&gt;
 
-设置蓝牙远端设备自定义类型。
+设置蓝牙远端设备自定义类型。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -890,14 +889,14 @@ setRemoteDeviceType(deviceId: string, type: DeviceType): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 //promise
 try {
     connection.setRemoteDeviceType('11:22:33:44:55:66', connection.DeviceType.DEVICE_TYPE_HEADSET).then(() => {
@@ -913,7 +912,7 @@ try {
 
 getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 
-获取蓝牙远端设备自定义类型。
+获取蓝牙远端设备自定义类型。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -940,14 +939,14 @@ getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 //promise
 try {
     connection.getRemoteDeviceType('11:22:33:44:55:66').then((data: connection.DeviceType) => {

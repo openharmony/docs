@@ -13,7 +13,7 @@ TestRunner模块提供了框架测试的能力。包括准备单元测试环境�
 ## 导入模块
 
 ```ts
-import TestRunner from '@ohos.application.testRunner';
+import { TestRunner } from '@kit.TestKit';
 ```
 
 ## TestRunner.onPrepare
@@ -24,18 +24,19 @@ onPrepare(): void
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **示例：**
 
 ```ts
-import TestRunner from '@ohos.application.testRunner';
+import { TestRunner } from '@kit.TestKit';
 
 export default class UserTestRunner implements TestRunner {
-    onPrepare() {
-        console.log('Trigger onPrepare');
-    }
-    onRun() {}
+  onPrepare() {
+    console.log('Trigger onPrepare');
+  }
+  onRun() {
+  }
 };
 ```
 
@@ -49,17 +50,18 @@ onRun(): void
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **示例：**
 
 ```ts
-import TestRunner from '@ohos.application.testRunner';
+import { TestRunner } from '@kit.TestKit';
 
 export default class UserTestRunner implements TestRunner {
-    onPrepare() {}
-    onRun() {
-        console.log('Trigger onRun');
-    }
+  onPrepare() {
+  }
+  onRun() {
+    console.log('Trigger onRun');
+  }
 };
 ```

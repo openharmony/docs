@@ -11,7 +11,7 @@ hfp模块提供了访问蓝牙呼叫接口的方法。
 ## 导入模块
 
 ```js
-import hfp from '@ohos.bluetooth.hfp';
+import { hfp } from '@kit.ConnectivityKit';
 ```
 
 
@@ -41,7 +41,7 @@ connect(deviceId: string): void
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -51,7 +51,7 @@ connect(deviceId: string): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let hfpAg = hfp.createHfpAgProfile();
     hfpAg.connect('XX:XX:XX:XX:XX:XX');
@@ -87,7 +87,7 @@ disconnect(deviceId: string): void
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -97,7 +97,7 @@ disconnect(deviceId: string): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let hfpAg = hfp.createHfpAgProfile();
     hfpAg.disconnect('XX:XX:XX:XX:XX:XX');

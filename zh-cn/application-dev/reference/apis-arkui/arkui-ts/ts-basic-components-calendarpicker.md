@@ -17,7 +17,7 @@ CalendarPicker(options?: CalendarOptions)
 
 日历选择器。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -37,7 +37,7 @@ edgeAlign(alignType: CalendarAlign, offset?: Offset)
 
 设置选择器与入口组件的对齐方式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -54,7 +54,7 @@ textStyle(value: PickerTextStyle)
 
 入口区的文本颜色、字号、字体粗细。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,7 +74,7 @@ onChange(callback: (value: Date) => void)
 
 选择日期时触发该事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,7 +86,7 @@ onChange(callback: (value: Date) => void)
 
 ##  CalendarOptions对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称      | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
@@ -95,7 +95,7 @@ onChange(callback: (value: Date) => void)
 
 ## CalendarAlign枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称   | 描述                     |
 | ------ | ------------------------ |

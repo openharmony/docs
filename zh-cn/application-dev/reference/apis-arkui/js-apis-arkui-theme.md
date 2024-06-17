@@ -9,14 +9,14 @@
 ## 导入模块
 
 ```ts
-import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.arkui.theme'；
+import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.arkui.theme';
 ```
 
 ## Theme
 
 当前生效的主题风格对象，可从[onWillApplyTheme](arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)中获取。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -28,7 +28,7 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 
 主题颜色资源。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -90,7 +90,7 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 
 自定义主题风格对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -100,7 +100,13 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 
 ## CustomColors
 
+type CustomColors = Partial\<Colors>
+
 自定义主题颜色资源类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型  | 说明           |
 |-----|--------------|
@@ -110,7 +116,7 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 
 ThemeControl将自定义Theme应用于App组件内，实现App组件风格跟随Theme切换。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -120,7 +126,7 @@ setDefaultTheme(theme: [CustomTheme](#customtheme)): void
 
 将用户自定义Theme设置应用级默认主题，实现应用风格跟随Theme切换。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -136,6 +142,7 @@ import { CustomTheme, CustomColors, ThemeControl } from '@ohos.arkui.theme';
 class BlueColors implements CustomColors {
   fontPrimary = Color.White;
   backgroundPrimary = Color.Blue;
+  brand = Color.Blue; //品牌色
 }
 
 class PageCustomTheme implements CustomTheme {

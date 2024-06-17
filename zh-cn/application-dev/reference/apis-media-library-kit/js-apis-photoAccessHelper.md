@@ -62,6 +62,8 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
+对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来查询指定uri对应的图片或视频资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+
 **参数：**
 
 | 参数名   | 类型                     | 必填 | 说明                      |
@@ -116,6 +118,8 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来查询指定uri对应的图片或视频资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
 
 **参数：**
 
@@ -173,7 +177,7 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 
 指定待创建的文件类型、后缀和创建选项，创建图片或视频资源，使用callback方式返回结果。
 
-此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-resource-guidelines.md#使用安全控件创建媒体资源)。
+此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -226,7 +230,7 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 
 指定待创建的文件类型和后缀，创建图片或视频资源，使用callback方式返回结果。
 
-此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-resource-guidelines.md#使用安全控件创建媒体资源)。
+此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -275,7 +279,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 
 指定待创建的文件类型、后缀和创建选项，创建图片或视频资源，使用Promise方式返回结果。
 
-此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-resource-guidelines.md#使用安全控件创建媒体资源)。
+此接口在未申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'时，可以使用安全控件创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -761,6 +765,8 @@ applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
+在提交创建资产的变更请求时，对于未申请'ohos.permission.WRITE_IMAGEVIDEO'权限的应用，可以用安全控件的方式调用该接口来创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -894,7 +900,7 @@ get(member: string): MemberType
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称，在get时，除了uri、photoType、photoSubtype和displayName四个属性之外，其他的属性都需要在fetchColumns中填入需要get的[PhotoKeys](#photokeys)，例如：get title属性fetchColumns: ['title']。 |
+| member | string | 是    | 成员参数名称，在get时，除了'uri'、'media_type'、'subtype'和'display_name'四个属性之外，其他的属性都需要在fetchColumns中填入需要get的[PhotoKeys](#photokeys)，例如：get title属性fetchColumns: ['title']。 |
 
 **返回值：**
 
@@ -1504,6 +1510,8 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **示例：**
 
 ```ts
@@ -1520,11 +1528,13 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| option | [PhotoSelectOptions](#photoselectoptions) | 否   | photoPicker选择选项，若无此参数，则默认选择媒体文件类型为图片和视频类型，选择媒体文件数量的最大值为50 |
+| option | [PhotoSelectOptions](#photoselectoptions) | 否   | photoPicker选择选项，若无此参数，则默认选择媒体文件类型为图片和视频类型，默认选择媒体文件数量的最大值为50 |
 
 **返回值：**
 
@@ -1572,6 +1582,8 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 **注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1622,6 +1634,8 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 **注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2262,8 +2276,8 @@ async function example() {
 
 | 名称           | 类型    | 可读   | 可写  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumType | [AlbumType]( #albumtype) | 是    | 否    | 相册类型。    |
-| albumSubtype | [AlbumSubtype]( #albumsubtype) | 是    | 否   | 相册子类型。    |
+| albumType | [AlbumType](#albumtype) | 是    | 否    | 相册类型。    |
+| albumSubtype | [AlbumSubtype](#albumsubtype) | 是    | 否   | 相册子类型。    |
 | albumName | string | 是    | 用户相册可写，预置相册不可写   | 相册名称。    |
 | albumUri | string | 是    | 否    | 相册Uri。   |
 | count | number | 是    | 否    |  相册中文件数量。 |
@@ -3590,6 +3604,8 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
+对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求图片资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+
 **参数：**
 
 | 参数名            | 类型                                                                                                        | 必填 | 说明                      |
@@ -3662,6 +3678,8 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
+对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求图片资源数据，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+
 **参数：**
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
@@ -3731,6 +3749,8 @@ static requestMovingPhoto(context: Context, asset: PhotoAsset, requestOptions: R
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求动态照片对象，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
 
 **参数：**
 
@@ -3805,6 +3825,8 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求视频资源数据到应用沙箱，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
 
 **参数：**
 
@@ -4325,15 +4347,19 @@ async function example() {
 
 ## MemberType
 
-成员类型。
+type MemberType = number | string | boolean
+
+PhotoAsset的成员类型。
+
+成员类型为下表类型中的并集。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  类型 |  可读  |  可写  |  说明  |
-| ----- |  ---- |  ---- |  ---- |  ---- |
-| number |  number | 是 | 是 | number类型。 |
-| string |  string | 是 | 是 | string类型。|
-| boolean |  boolean | 是 | 是 | boolean类型。 |
+| 类型 | 说明 |
+| ---- | ---- |
+| number | 表示值类型为数字，可取任意值。 |
+| string | 表示值类型为字符，可取任意值。|
+| boolean | 表示值类型为布尔类型。 |
 
 ## PhotoType
 
@@ -4442,7 +4468,7 @@ title参数规格为：
 
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType、photoSubtype（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
+| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询。<br>对于照片，如果该参数为空，默认查询'uri'、'media_type'、'subtype'和'display_name'，使用[get](#get)接口获取当前对象的其他属性时将会报错。示例：fetchColumns: ['uri', 'title']。<br>对于相册，如果该参数为空，默认查询'uri'和'album_name'。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
 ## RequestOptions<sup>11+</sup>
@@ -4517,17 +4543,22 @@ title参数规格为：
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
-| ----- |  ---- | ---- |
-| IMAGE_TYPE  |  'image/*' | 图片类型。 |
-| VIDEO_TYPE |  'video/*' | 视频类型。 |
-| IMAGE_VIDEO_TYPE |  '\*/*' | 图片和视频类型。 |
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+| 名称                                    |  值 | 说明       |
+|---------------------------------------|  ---- |----------|
+| IMAGE_TYPE                            |  'image/*' | 图片类型。    |
+| VIDEO_TYPE                            |  'video/*' | 视频类型。    |
+| IMAGE_VIDEO_TYPE                      |  '\*/*' | 图片和视频类型。 |
+| MOVING_PHOTO_IMAGE_TYPE<sup>12+</sup> |  'image/movingPhoto' | 动态照片类型。  |
 
 ## RecommendationType<sup>11+</sup>
 
 枚举，推荐的图片类型。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
@@ -4615,32 +4646,49 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 如果需要根据枚举值推荐相应的图片，则配置此参数。 |
 | textContextInfo<sup>12+</sup> | [TextContextInfo](#textcontextinfo12)   | 否   | 如果需要根据文本信息推荐相应的图片，则配置此参数(如果同时配置了recommendationType，则仅textContextInfo生效)。 |
 
-## PhotoSelectOptions
+## BaseSelectOptions<sup>12+</sup>
 
-图库选择选项。
+图库选择选项基类。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型。 |
-| maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)。      |
-| isPhotoTakingSupported<sup>11+</sup> | boolean  | 否   | 支持拍照。 |
-| isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
-| isSearchSupported<sup>11+</sup> | boolean  | 否   | 支持搜索。 |
-| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 支持图片推荐。      |
+| maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(最大可设置的值为500，若不设置则默认为50)。      |
+| isPhotoTakingSupported<sup>11+</sup> | boolean  | 否   | 是否支持拍照，true表示支持，false表示不支持，默认为true。 |
+| isSearchSupported<sup>11+</sup> | boolean  | 否   | 是否支持搜索，true表示支持，false表示不支持，默认为true。 |
+| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 图片推荐相关配置参数。      |
 | preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | 否   | 预选择图片的uri数据。 |
+
+## PhotoSelectOptions
+
+图库选择选项子类，继承于BaseSelectOptions。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+| 名称                    | 类型                | 必填 | 说明                          |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| isEditSupported<sup>11+</sup>       | boolean | 否   | 是否支持编辑照片，true表示支持，false表示不支持，默认为true。     |
 
 ## PhotoSelectResult
 
 返回图库选择后的结果集。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                    | 类型                | 可读 | 可写 | 说明                           |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |

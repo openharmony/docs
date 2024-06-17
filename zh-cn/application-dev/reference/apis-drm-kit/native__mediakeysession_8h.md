@@ -21,7 +21,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[MediaKeySession_Callback](_media_key_session___callback.md) | MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件。  | 
+| struct  [MediaKeySession_Callback](_media_key_session___callback.md) | MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，不返回媒体密钥会话实例，适用于单媒体密钥会话解密场景。  | 
+| struct  [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) | OH_MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，返回媒体密钥会话实例，适用多个媒体密钥会话解密场景。  | 
 
 
 ### 类型定义
@@ -30,7 +31,10 @@
 | -------- | -------- |
 | typedef [Drm_ErrCode](_drm.md#drm_errcode)(\* [MediaKeySession_EventCallback](_drm.md#mediakeysession_eventcallback)) ([DRM_EventType](_drm.md#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | 事件触发时将调用的回调。  | 
 | typedef [Drm_ErrCode](_drm.md#drm_errcode)(\* [MediaKeySession_KeyChangeCallback](_drm.md#mediakeysession_keychangecallback)) ([DRM_KeysInfo](_d_r_m___keys_info.md) \*keysInfo, bool newKeysAvailable) | 密钥更改时将调用回调。  | 
-| typedef struct [MediaKeySession_Callback](_media_key_session___callback.md) [MediaKeySession_Callback](_drm.md#mediakeysession_callback) | MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件。  | 
+| typedef struct [MediaKeySession_Callback](_media_key_session___callback.md) [MediaKeySession_Callback](_drm.md#mediakeysession_callback) | MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，不返回媒体密钥会话实例，适用于单媒体密钥会话解密场景。  | 
+| typedef [Drm_ErrCode](_drm.md#drm_errcode)(\* [OH_MediaKeySession_EventCallback](_drm.md#oh_mediakeysession_eventcallback)) ([MediaKeySession](_drm.md#mediakeysession) \*mediaKeySessoin, [DRM_EventType](_drm.md#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | 事件触发时将调用的回调。  | 
+| typedef [Drm_ErrCode](_drm.md#drm_errcode)(\* [OH_MediaKeySession_KeyChangeCallback](_drm.md#oh_mediakeysession_keychangecallback)) ([MediaKeySession](_drm.md#mediakeysession) \*mediaKeySessoin, [DRM_KeysInfo](_d_r_m___keys_info.md) \*keysInfo, bool newKeysAvailable) | 密钥更改时将调用的回调。  | 
+| typedef struct [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) [OH_MediaKeySession_Callback](_drm.md#oh_mediakeysession_callback) | OH_MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，返回媒体密钥会话实例，适用多个媒体密钥会话解密场景。  | 
 
 
 ### 函数
@@ -47,4 +51,5 @@
 | [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySession_GetContentProtectionLevel](_drm.md#oh_mediakeysession_getcontentprotectionlevel) ([MediaKeySession](_drm.md#mediakeysession) \*mediaKeySessoin, [DRM_ContentProtectionLevel](_drm.md#drm_contentprotectionlevel) \*contentProtectionLevel) | 获取会话的内容保护级别。  | 
 | [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySession_RequireSecureDecoderModule](_drm.md#oh_mediakeysession_requiresecuredecodermodule) ([MediaKeySession](_drm.md#mediakeysession) \*mediaKeySessoin, const char \*mimeType, bool \*status) | 加密内容是否需要安全解码。  | 
 | [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySession_SetMediaKeySessionCallback](_drm.md#oh_mediakeysession_setmediakeysessioncallback) ([MediaKeySession](_drm.md#mediakeysession) \*mediaKeySessoin, [MediaKeySession_Callback](_media_key_session___callback.md) \*callback) | 设置媒体密钥会话事件回调。  | 
+| [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySession_SetCallback](_drm.md#oh_mediakeysession_setcallback) ([MediaKeySession](_drm.md#mediakeysession) \*mediaKeySessoin, [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) \*callback) | 设置媒体密钥会话事件回调。  | 
 | [Drm_ErrCode](_drm.md#drm_errcode) [OH_MediaKeySession_Destroy](_drm.md#oh_mediakeysession_destroy) ([MediaKeySession](_drm.md#mediakeysession) \*mediaKeySessoin) | 释放会话资源。  | 

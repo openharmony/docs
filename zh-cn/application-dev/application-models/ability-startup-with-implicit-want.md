@@ -7,7 +7,7 @@
   "module": {
     "abilities": [
       {
-        //入口配置
+        // 入口配置
         "skills": [
           {
             "actions": [
@@ -17,7 +17,7 @@
               "entity.system.home"
             ]
           },
-        //浏览器配置
+        // 浏览器配置
           {
             "actions": [
               "ohos.want.action.viewData"
@@ -46,9 +46,8 @@
 在调用方UIAbility中，使用隐式Want方式启动浏览器应用。
 
 ```ts
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = getContext(this) as common.UIAbilityContext;
 let wantInfo: Want = {
@@ -58,12 +57,13 @@ let wantInfo: Want = {
   // entities can be omitted.
   entities: ['entity.system.browsable'],
   uri: 'https://www.test.com:8080/query/student'
-}
+};
+
 context.startAbility(wantInfo).then(() => {
   // ...
 }).catch((err: BusinessError) => {
   // ...
-})
+});
 ```
 
 匹配过程分析：

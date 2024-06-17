@@ -10,7 +10,7 @@ The **FormExtensionAbility** module provides lifecycle callbacks invoked when a 
 ## Modules to Import
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 ```
 
 ## Attributes
@@ -46,9 +46,8 @@ Called to notify the widget provider that a **Form** instance (widget) is being 
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-import Want from '@ohos.app.ability.Want';
+import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want: Want) {
@@ -83,7 +82,7 @@ Called to notify the widget provider that a temporary widget is being converted 
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onCastToNormalForm(formId: string) {
@@ -112,10 +111,8 @@ Called to notify the widget provider that a widget is being updated, with update
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
-import Base from '@ohos.base';
+import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onUpdateForm(formId: string, wantParams?: Record<string, Object>) {
@@ -128,7 +125,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     let obj2: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
     formProvider.updateForm(formId, obj2).then(() => {
       console.log(`FormExtensionAbility context updateForm`);
-    }).catch((error: Base.BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`FormExtensionAbility context updateForm failed, data: ${error}`);
     });
   }
@@ -140,7 +137,6 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 onChangeFormVisibility(newStatus: Record\<string, number>): void
 
 Called to notify the widget provider that the widget visibility status is being changed.
-
 This API is valid only for system applications when **formVisibleNotify** is set to **true**.
 
 **System capability**: SystemCapability.Ability.Form
@@ -154,10 +150,8 @@ This API is valid only for system applications when **formVisibleNotify** is set
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
-import Base from '@ohos.base';
+import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // According to the ArkTS specification, **Object.keys** and **for..in...** cannot be used in .ets files to obtain the key value of an object. Use the user-defined function **getObjKeys** instead.
 // Extract this function to a .ts file and export it. Import this function to the required e.ts file before using it.
@@ -181,7 +175,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
       console.log(`FormExtensionAbility onChangeFormVisibility, key: ${keys[i]}, value= ${newStatus[keys[i]]}`);
       formProvider.updateForm(keys[i], obj2).then(() => {
         console.log(`FormExtensionAbility context updateForm`);
-      }).catch((error: Base.BusinessError) => {
+      }).catch((error: BusinessError) => {
         console.error(`Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
       });
     }
@@ -209,7 +203,7 @@ Called to instruct the widget provider to process the widget event.
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId: string, message: string) {
@@ -237,7 +231,7 @@ Called to notify the widget provider that a **Form** instance (widget) is being 
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onRemoveForm(formId: string) {
@@ -266,8 +260,8 @@ This lifecycle callback is triggered only when the configuration is updated whil
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import { Configuration } from '@ohos.app.ability.Configuration';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { Configuration } from '@kit.AbilityKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onConfigurationUpdate(newConfig: Configuration) {
@@ -297,9 +291,8 @@ Called to notify the widget provider that the widget host is requesting the widg
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formInfo from '@ohos.app.form.formInfo';
-import Want from '@ohos.app.ability.Want';
+import { FormExtensionAbility, formInfo } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAcquireFormState(want: Want) {
@@ -322,7 +315,7 @@ Called when the widget process of the widget provider exits.
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onStop() {

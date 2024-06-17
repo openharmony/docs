@@ -5,7 +5,7 @@
 
 声明访问和管理系统帐号信息的API。
 
-**库：** libos_account.so
+**库：** libos_account_ndk.so
 
 **系统能力：** SystemCapability.Account.OsAccount
 

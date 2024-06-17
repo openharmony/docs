@@ -11,7 +11,7 @@ baseProfile模块提供了基础的profile方法。
 ## 导入模块
 
 ```js
-import baseProfile from '@ohos.bluetooth.baseProfile';
+import { baseProfile } from '@kit.ConnectivityKit';
 ```
 
 
@@ -76,8 +76,8 @@ getConnectedDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let retArray = a2dpSrc.getConnectedDevices();
@@ -116,7 +116,7 @@ getConnectionState(deviceId: string): ProfileConnectionState
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -126,8 +126,8 @@ getConnectionState(deviceId: string): ProfileConnectionState
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let ret = a2dpSrc.getConnectionState('XX:XX:XX:XX:XX:XX');
@@ -141,7 +141,7 @@ try {
 
 on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): void
 
-订阅连接状态变化事件。
+订阅连接状态变化事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -161,14 +161,14 @@ on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): v
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 function onReceiveEvent(data: baseProfile.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
@@ -205,14 +205,14 @@ off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#st
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 function onReceiveEvent(data: baseProfile.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }

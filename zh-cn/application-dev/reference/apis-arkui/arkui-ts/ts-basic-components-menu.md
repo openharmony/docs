@@ -27,7 +27,17 @@ Menu()
 >
 > 设置宽度的情况：菜单组件会对子组件MenuItem、MenuItemGroup设置减去padding后的固定宽度。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+## subMenuExpandingMode<sup>12+</sup>枚举说明
+
+Menu子菜单展开样式枚举。
+
+| 名称           | 描述                                |
+|--------------|-----------------------------------|
+| SIDE_EXPAND  | 默认展开样式, 子菜单位于同一平面侧边展开。            |
+| EMBEDDED_EXPAND | 直接展开样式, 子菜单嵌于主菜单内展开。              |
+| STACK_EXPAND | 堆叠样式, 子菜单浮于主菜单上方展开。 |
 
 ## 属性
 
@@ -55,7 +65,7 @@ font(value: Font)
 
 统一设置Menu中所有文本的尺寸。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -71,7 +81,7 @@ fontColor(value: ResourceColor)
 
 统一设置Menu中所有文本的颜色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -87,7 +97,7 @@ radius(value: Dimension | BorderRadiuses)
 
 设置Menu边框圆角半径。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -95,7 +105,7 @@ radius(value: Dimension | BorderRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/> 默认值跟随主题。数值高于menu宽度的一半时，走默认值。 |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/> 默认值跟随主题。<br/> 从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。 |
 
 ### width<sup>10+</sup>
 
@@ -112,6 +122,50 @@ width(value: Length)
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
 | value  | [Length](ts-types.md#length) | 是   | Menu边框宽度。 |
+
+### menuItemDivider<sup>12+</sup>
+
+menuItemDivider(options: DividerStyleOptions | undefined)
+
+设置menuItem分割线样式, 不设置该属性则不展示分割线。
+
+startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                                     | 必填         | 说明           |
+|---------|--------------------------------------------------------|------------| -------------- |
+| options | [DividerStyleOptions](ts-types.md#DividerStyleOptions)&nbsp;\| &nbsp;undefined | 是   | 设置menuItem分割线样式。<br />-strokeWidth:分割线的线宽。<br />-color：分割线的颜色。<br />-startMargin：分割线与menuItem侧边起端的距离。<br />-endMargin：分割线与menuItem侧边结束端的距离。 |
+
+### menuItemGroupDivider<sup>12+</sup>
+
+menuItemGroupDivider(options: DividerStyleOptions | undefined)
+
+设置menuItemGroup上下分割线的样式, 不设置该属性则默认展示分割线。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                                     | 必填         | 说明           |
+|---------|--------------------------------------------------------|------------| -------------- |
+| options | [DividerStyleOptions](ts-types.md#DividerStyleOptions)&nbsp;\| &nbsp;undefined | 是   | 设置menuItemGroup顶部和底部分割线样式。<br />-strokeWidth:分割线的线宽, 默认值是1px。<br />-color：分割线的颜色, 默认值是 #33000000。<br />-startMargin：分割线与menuItemGroup侧边起端的距离, 默认值是16。<br />-endMargin：分割线与menuItemGroup侧边结束端的距离, 默认值是16。 |
+
+### subMenuExpandingMode<sup>12+</sup>
+
+subMenuExpandingMode(mode: SubMenuExpandingMode)
+
+设置Menu子菜单展开样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                         | 必填 | 说明           |
+| ------ | ---------------------------- | ---- |--------------|
+| mode  | SubMenuExpandingMode | 是   | Menu子菜单展开样式。 |
 
 ## 示例
 
@@ -190,31 +244,69 @@ struct Index {
 ```ts
 // xxx.ets
 import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+
 @Entry
 @Component
-struct MenuExample {
+struct Index {
   @State startIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_mic')).fontSize('24vp');
   @State endIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontSize('24vp');
-  @State selectIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontSize('24vp');
+  @State selectIconModifier: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.checkmark')).fontSize('24vp');
   @State select: boolean = true;
-  build() {
-    Column() {
-      Menu(){
-        MenuItem({symbolStartIcon: this.startIconModifier, content: "菜单选项", symbolEndIcon: this.endIconModifier })
-        MenuItem({content: "菜单选项" })
-          .selected(this.select).selectIcon(this.selectIconModifier)
-        MenuItemGroup({header: '小标题' }){
-          MenuItem({
-            symbolStartIcon: this.startIconModifier,
-            content: "菜单选项",
-            symbolEndIcon: this.endIconModifier
-          })
-        }
-      }
+
+  @Builder
+  SubMenu() {
+    Menu() {
+      MenuItem({ content: "复制", labelInfo: "Ctrl+C" })
+      MenuItem({ content: "粘贴", labelInfo: "Ctrl+V" })
     }
-    .width('100%')
+  }
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ symbolStartIcon: this.startIconModifier, content: "菜单选项" })
+      MenuItem({ symbolStartIcon: this.startIconModifier, content: "菜单选项" })
+        .enabled(false)
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        content: "菜单选项",
+        symbolEndIcon: this.endIconModifier,
+        builder: (): void => this.SubMenu()
+      })
+      MenuItemGroup({ header: '小标题' }) {
+        MenuItem({
+          symbolStartIcon: this.startIconModifier,
+          content: "菜单选项",
+          symbolEndIcon: this.endIconModifier,
+          builder: (): void => this.SubMenu()
+        })
+        MenuItem({
+          symbolStartIcon: this.startIconModifier,
+          content: "菜单选项",
+          symbolEndIcon: this.endIconModifier,
+          builder: (): void => this.SubMenu()
+        })
+      }
+      MenuItem({
+        content: "菜单选项",
+      }).selected(this.select).selectIcon(this.selectIconModifier)
+    }
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text('click to show menu')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .bindMenu(this.MyMenu)
+      .width('100%')
+    }
+    .height('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001174582862](figures/normal-symbol.jpeg)
+![zh-cn_image_0000001174582862](figures/normal-symbol.jpg)

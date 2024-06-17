@@ -36,8 +36,8 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
 - Example (using asynchronous APIs):
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
   // Encrypt the message.
   async function encryptMessagePromise(publicKey: cryptoFramework.PubKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('RSA1024|PKCS1');
@@ -86,8 +86,8 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
 - Example (using synchronous APIs):
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
   // Encrypt the message.
   function encryptMessage(publicKey: cryptoFramework.PubKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('RSA1024|PKCS1');
