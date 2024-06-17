@@ -3657,7 +3657,7 @@ aVCastController.getValidCommands((err: BusinessError, state: avSession.AVCastCo
 
 getValidCommands(): Promise<Array\<AVCastControlCommandType>>
 
-获取当前支持的命令用于组件。结果通过Promise异步回调方式返回。
+获取当前支持的命令。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
