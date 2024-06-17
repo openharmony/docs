@@ -22,6 +22,7 @@
     - [Sendable开发指导](arkts-sendable.md)
     - [已接入Sendable的系统对象](arkts-sendable-system-object-list.md)
     - [共享模块开发指导](arkts-sendable-module.md)
+    - [ArkTS Collections与原生API方法的行为差异对比](arkts-collections-vs-native-api-comparison.md)
 - 容器类库
   - [容器类库概述](container-overview.md)
   - [线性容器](linear-container.md)
