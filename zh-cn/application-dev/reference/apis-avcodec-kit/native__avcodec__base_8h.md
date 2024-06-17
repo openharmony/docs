@@ -97,8 +97,8 @@
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](_codec_base.md#oh_avcodec_mimetype_audio_lbvc) |音频低码率音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd--> |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](_codec_base.md#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](_codec_base.md#oh_avcodec_mimetype_subtitle_srt) |SRT字幕解封装器的MIME类型。                         |
-| const char \* [OH_ED_KEY_TIME_STAMP](_codec_base.md#oh_ed_key_time_stamp) | 表示surfacebuffer中时间戳的键，值类型为int64。<!--Del-->（此规格暂未开放）<!--DelEnd--> |
-| const char \* [OH_ED_KEY_EOS](_codec_base.md#oh_ed_key_eos) | 表示surfacebuffer中流结束符的键，值类型为bool。 <!--Del-->（此规格暂未开放）<!--DelEnd-->|
+| const char \* [OH_ED_KEY_TIME_STAMP](_codec_base.md#oh_ed_key_time_stamp) | 表示surfacebuffer中时间戳的键，值类型为int64。<!--Del-->（此功能暂未支持）<!--DelEnd--> |
+| const char \* [OH_ED_KEY_EOS](_codec_base.md#oh_ed_key_eos) | 表示surfacebuffer中流结束符的键，值类型为bool。 <!--Del-->（此功能暂未支持）<!--DelEnd-->|
 | const char \* [OH_MD_KEY_TRACK_TYPE](_codec_base.md#oh_md_key_track_type) | 曲目类型的键，值类型为uint8_t，请参见[OH_MediaType](_codec_base.md#oh_mediatype)。 | 
 | const char \* [OH_MD_KEY_CODEC_MIME](_codec_base.md#oh_md_key_codec_mime) | 编解码器mime类型的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_DURATION](_codec_base.md#oh_md_key_duration) | 持续时间键，值类型为int64_t。 | 
@@ -141,7 +141,7 @@
 | const char \* [OH_MD_KEY_COMPLIANCE_LEVEL](_codec_base.md#oh_md_key_compliance_level) | flac合规性级别的键，值类型为int32_t。 | 
 | const char \* [OH_MD_KEY_IDENTIFICATION_HEADER](_codec_base.md#oh_md_key_identification_header) | vorbis标识头的键，值类型为uint8_t\*，仅vorbis解码器支持。 | 
 | const char \* [OH_MD_KEY_SETUP_HEADER](_codec_base.md#oh_md_key_setup_header) | vorbis设置头的键，值类型为uint8_t\*，仅vorbis解码器支持。 | 
-| const char \* [OH_MD_KEY_SCALING_MODE](_codec_base.md#oh_md_key_scaling_mode) | 视频尺度类型, 值类型为int32_t, 请参见[OH_ScalingMode](_codec_base.md#oh_scalingmode)。 |
+| const char \* [OH_MD_KEY_SCALING_MODE](_codec_base.md#oh_md_key_scaling_mode) | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](_codec_base.md#oh_scalingmode)。 |
 | const char \* [OH_MD_MAX_INPUT_BUFFER_COUNT](_codec_base.md#oh_md_max_input_buffer_count) | 最大输入缓冲区个数的键, 值类型为int32_t。 | 
 | const char \* [OH_MD_MAX_OUTPUT_BUFFER_COUNT](_codec_base.md#oh_md_max_output_buffer_count) | 最大输出缓冲区个数的键, 值类型int32_t。 | 
 | const char \* [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](_codec_base.md#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，值类型为uint32_t。 | 
