@@ -35,7 +35,7 @@
 | action      | string                         | 是     | 否   | 参见[want参数的action匹配规则](#want参数的action匹配规则)。                                                             |
 | entities    | Array&lt;string&gt;            | 是     | 否   | 参见[want参数的entities匹配规则](#want参数的entities匹配规则)。                                                             |
 | flags       | number                         | 否     | 否   | 不参与匹配，直接传递给系统处理，一般用来设置运行态信息，例如URI数据授权等。 |
-| parameters  | {[key:&nbsp;string]:&nbsp;Object} | 是     | 否   | 应用自定义数据将直接传递给目标应用组件。当前支持使用key为linkFeature的参数进行匹配，当linkFeature配置且对应字符串不为空时，优先进行parameters匹配。|
+| parameters  | {[key:&nbsp;string]:&nbsp;Object} | 是     | 否   | 应用自定义数据将直接传递给目标应用组件。当前支持使用key为linkFeature的参数进行匹配，当linkFeature配置且对应字符串不为空时，优先进行linkFeature匹配。|
 
 从隐式Want的定义，可得知：
 
@@ -119,7 +119,7 @@
 
 为了简化描述：
 
-- 称调用方传入的want参数中的uri参数为w_uri；待匹配应用组件的skills配置中uri为s_uri，其中每个元素为s_uri。
+- 称调用方传入的want参数中的uri参数为w_uri；待匹配应用组件的skills配置中uri为s_uris，其中每个元素为s_uri。
 - 称调用方传入的want参数的type参数为w_type，待匹配应用组件的skills数组中uris的type数据为s_type。
 
 **图4** want参数中uri和type的具体匹配规则
@@ -174,15 +174,22 @@
 
 - 如果w_type最后一个字符为通配符`*`，如`prefixType/*`，则当s_type包含`prefixType/`时匹配成功，否则匹配失败。
 
-### parameters匹配规则
+### linkFeature匹配规则
 
 > **说明：**
 >
-> 本章节所述的parameters匹配规则适用于want参数中的parameters包含linkFeature键且其对应的值为非空字符串的基础上。
+> 本章节所述的linkFeature匹配规则适用于want参数中的parameters包含linkFeature键且其对应的值为非空字符串的基础上。
 
 将调用方传入的want参数的parameters与待匹配应用组件的skills配置中的uris进行匹配。具体的匹配规则如下：
-- 如果skills配置中的uris中存在一条uri数据，其linkFeature字段与parameters中linkFeature字段相同，并且want中未配置uri或type，则匹配成功。
+- want参数的uri和type均为空
+  1. 只匹配linkFeature，不相等则匹配失败，相等则匹配成功
+- want参数的uri或type不为空
+  1. 首先匹配linkFeature，不相等匹配失败
+  2. 匹配uri，不匹配则匹配失败
+  3. 匹配type，不匹配则匹配失败
+  4. linkFeature，uri和type都匹配成功则匹配成功
 
-- 如果skills配置中的uris中存在一条uri数据，其linkFeature字段与parameters中linkFeature字段相同，且want中配置了uri或type， 并且uri和type属性均匹配（参见[want参数的uri和type匹配规则](#want参数的uri和type匹配规则)），则匹配成功。
+- 为了简化描述：称调用方传入的want参数中的linkFeature参数为w_linkFeature。
 
-- 如果skills配置中的uris中不存在任何一条uri数据，其linkFeature字段与parameters中linkFeature字段相同，或者uri和type属性均不匹配（参见[want参数的uri和type匹配规则](#want参数的uri和type匹配规则)），则匹配失败。
+**图5** want参数中linkFeature具体匹配规则
+![want-linkFeature](figures/linkFeature.png)
