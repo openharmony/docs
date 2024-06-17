@@ -67,7 +67,7 @@ checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -105,8 +105,7 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -149,8 +148,9 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
@@ -203,8 +203,9 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
@@ -250,7 +251,7 @@ isOsAccountConstraintEnabled(constraint: string): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
@@ -295,8 +296,9 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or constraint.    |
 | 12300003 | Account not found. |
 
@@ -351,8 +353,9 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or constraint.    |
 | 12300003 | Account not found. |
 
@@ -393,7 +396,7 @@ checkOsAccountTestable(callback: AsyncCallback&lt;boolean&gt;): void
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -431,8 +434,7 @@ checkOsAccountTestable(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -468,8 +470,7 @@ isOsAccountUnlocked(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -509,8 +510,7 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -552,8 +552,7 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -596,8 +595,9 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
@@ -650,8 +650,9 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
@@ -690,8 +691,9 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -729,8 +731,9 @@ getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -770,8 +773,8 @@ getOsAccountCount(): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -808,7 +811,7 @@ getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -846,8 +849,7 @@ getOsAccountLocalId(): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -885,7 +887,7 @@ getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): v
 | 错误码ID | 错误信息         |
 | -------- | --------------- |
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid uid.    |
 
 **示例：** 查询值为12345678的uid所属的系统帐号的帐号ID
@@ -931,7 +933,7 @@ getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid uid. |
 
 **示例：** 查询值为12345678的uid所属的系统帐号ID
@@ -1012,8 +1014,9 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 201 | Permission denied.|
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainInfo. |
 
 **示例：**
@@ -1061,8 +1064,9 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 201 | Permission denied.|
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainInfo. |
 
 **示例：**
@@ -1107,8 +1111,9 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
@@ -1161,8 +1166,9 @@ getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
@@ -1202,7 +1208,7 @@ getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
 | 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -1240,8 +1246,7 @@ getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -1283,8 +1288,9 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -1325,8 +1331,8 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -1363,7 +1369,7 @@ getOsAccountType(callback: AsyncCallback&lt;OsAccountType&gt;): void
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -1398,8 +1404,7 @@ getOsAccountType(): Promise&lt;OsAccountType&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -1437,8 +1442,9 @@ queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -1475,8 +1481,8 @@ queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -1514,7 +1520,7 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid serialNumber. |
 | 12300003 | The account indicated by serialNumber dose not exist. |
 
@@ -1559,7 +1565,7 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid serialNumber. |
 | 12300003 | The account indicated by serialNumber dose not exist. |
 
@@ -1600,7 +1606,7 @@ getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;n
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
@@ -1645,7 +1651,7 @@ getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
@@ -2799,7 +2805,7 @@ getOsAccountName(): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
   ```ts
@@ -2896,7 +2902,7 @@ getOsAccountName(): Promise&lt;string&gt;
 | constraint.beam.outgoing | 禁止使用NFC从应用程序传送数据 |
 | constraint.wallpaper | 禁止管理壁纸 |
 | constraint.safe.boot | 禁止进入安全引导模式 |
-| constraint.parent.profile.app.linking | 允许父配置文件中的应用程序处理来自托管配置文件的Web链接 |
+| constraint.parent.profile.app.linking | 禁止父配置文件中的应用程序处理来自托管配置文件的Web链接 |
 | constraint.audio.record | 禁止录制音频 |
 | constraint.camera.use | 禁止使用摄像机 |
 | constraint.os.account.background.run | 禁止在后台运行 |

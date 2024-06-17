@@ -11,3 +11,6 @@
   - [NFC Tag Read/Write Development](nfc/nfc-tag-access-guide.md)
   - [HCE Development](nfc/nfc-hce-guide.md)
   - [SE Access Development](nfc/nfc-se-access-guide.md)
+- WLAN
+  - [WLAN Service Development Overview](wlan/wlan-overview.md)
+  - [P2P Mode Development](wlan/p2p-development-guide.md)

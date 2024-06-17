@@ -100,6 +100,67 @@ async function createTonePlayerBefore(){
 }
 ```
 
+## audio.createAsrProcessingController<sup>12+</sup>
+
+createAsrProcessingController(audioCapturer: AudioCapturer): AsrProcessingController;
+
+获取ASR处理控制器
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                                                    | 说明         |
+|-------------------------------------------------------| ------------ |
+| [AsrProcessingController](#asrprocessingcontroller12) | ASR处理控制器对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed. |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+
+let audioStreamInfo: audio.AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  channels: audio.AudioChannel.CHANNEL_2,
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+let audioCapturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+}
+
+let audioCapturerOptions: audio.AudioCapturerOptions = {
+  streamInfo: audioStreamInfo,
+  capturerInfo: audioCapturerInfo
+}
+
+audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
+  if (err) {
+    console.error(`AudioCapturer Created : Error: ${err}`);
+  } else {
+    console.info('AudioCapturer Created : Success : SUCCESS');
+    let audioCapturer = data;
+    let asrProcessingController = audio.createAsrProcessingController(audioCapturer);
+    console.info('AsrProcessingController Created : Success : SUCCESS');
+  }
+});
+```
+
 ## AudioVolumeType
 
 枚举，音频流类型。
@@ -178,6 +239,46 @@ async function createTonePlayerBefore(){
 | 名称                               |  值     | 说明                       |
 | ---------------------------------- | ------ | ------------------------- |
 | INTERRUPT_REQUEST_TYPE_DEFAULT     | 0      |  默认类型，可中断音频请求。  |
+
+## VolumeFlag<sup>12+</sup>
+
+枚举，音量相关操作。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+| 名称                               | 值 | 说明       |
+| ---------------------------------- |---|----------|
+| FLAG_SHOW_SYSTEM_UI | 1 | 拉起系统音量条。 |
+
+## AsrNoiseSuppressionMode<sup>12+</sup>
+
+枚举，ASR 噪音抑制模式
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称|  值 | 说明 |
+|-------|-------|-------|
+| BYPASS | 0 |旁路噪音抑制|
+| STANDARD | 1 |标准噪音抑制|
+| NEAR_FIELD | 2 |近场噪音抑制|
+| FAR_FIELD | 3 |远场噪音抑制|
+
+## AsrAecMode<sup>12+</sup>
+
+枚举，ASR AEC 模式
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称|  值 | 说明 |
+|-------|-------|-------|
+| BYPASS | 0 |BYPASS AEC|
+| STANDARD | 1 |STANDARD AEC|
 
 ## InterruptResult<sup>9+</sup>
 
@@ -308,6 +409,8 @@ setExtraParameters(mainKey: string, kvpairs: Record<string, string\>): Promise&l
 
 | 错误码ID | 错误信息                                                                                                       |
 |-----|------------------------------------------------------------------------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
@@ -356,6 +459,7 @@ getExtraParameters(mainKey: string, subKeys?: Array\<string>): Promise\<Record\<
 
 | 错误码ID | 错误信息 |
 | ------ | -------------------------|
+| 202 | Not system App. |
 |  401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
@@ -500,21 +604,13 @@ disableSafeMediaVolume(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-"reqPermissions": [
-    {
-        "name": "ohos.permission.MODIFY_AUDIO_SETTINGS",
-        "reason": "use ohos.permission.MODIFY_AUDIO_SETTINGS"
-    }
-]
-let audioManager = audio.getAudioManager();
-try {
-    await audioManager.disableSafeMediaVolume().then(() => {
-      console.info('disableSafeMediaVolume success.');
-    })
-} catch (err) {
-  console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
-}
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioManager.disableSafeMediaVolume().then(() => {
+    console.info('disableSafeMediaVolume success.');
+}).catch ((err: BusinessError) => {
+    console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
+});
 ```
 
 ### on('volumeChange')<sup>(deprecated)</sup>
@@ -762,6 +858,51 @@ audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
 });
 ```
 
+### setVolumeWithFlag<sup>12+</sup>
+
+setVolumeWithFlag(volumeType: AudioVolumeType, volume: number, flags: number): Promise&lt;void&gt;
+
+通过系统音量条设置指定流的音量，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                   |
+| ---------- | ----------------------------------- | ---- |--------------------------------------|
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                               |
+| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| flags | number | 是 | 拉起系统音量条 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+
+**示例：**
+
+```ts
+audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
+  console.info('Promise returned to indicate a successful volume setting.');
+});
+```
+
 ### mute<sup>9+</sup>
 
 mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -972,6 +1113,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Return by callback.                     |
 | 6800301 | System error. Return by callback.                                |
@@ -1022,6 +1164,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Return by promise.                     |
 | 6800301 | System error. Return by promise.                                |
@@ -1066,6 +1209,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Return by callback.                     |
 | 6800301 | System error. Return by callback.                                |
@@ -1116,6 +1260,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Return by promise.                     |
 | 6800301 | System error. Return by promise.                                |
@@ -1164,6 +1309,7 @@ getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 202 | Not system App. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
@@ -1205,6 +1351,7 @@ on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<D
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 202 | Not system App. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
@@ -1242,6 +1389,7 @@ off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): vo
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 202 | Not system App. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
@@ -2701,4 +2849,184 @@ tonePlayer.release().then(() => {
 }).catch(() => {
   console.error('promise call release fail');
 });
+```
+
+## AsrProcessingController<sup>12+</sup>
+
+ASR处理控制器
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+### setAsrAecMode<sup>12+</sup>
+
+setAsrAecMode(mode: AsrAecMode): boolean;
+
+设置ASR AEC模式，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名| 类型                         | 必填 | 说明 |
+|-------|----------------------------|-------|-------|
+| mode | [AsrAecMode](#asraecmode12) | 是 |ASR AEC 模式 |
+
+**返回值：**
+
+| 类型 | 说明                                    |
+|-------|---------------------------------------|
+| boolean | 返回设置ASR AEC模式结果，true为设置成功，false为设置失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed. |
+
+**示例：**
+
+```ts
+let flag = asrProcessingController.setAsrAecMode(audio.AsrAecMode.BYPASS);
+```
+
+### getAsrAecMode<sup>12+</sup>
+
+getAsrAecMode(): AsrAecMode;
+
+获取ASR AEC模式，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型 | 说明 |
+|-------|-------|
+| [AsrAecMode](#asraecmode12) |ASR AEC 模式 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800104 | Operation not allowed. |
+
+
+**示例：**
+
+```ts
+let mode = asrProcessingController.getAsrAecMode();
+```
+
+### setAsrNoiseSuppressionMode<sup>12+</sup>
+
+setAsrNoiseSuppressionMode(mode: AsrNoiseSuppressionMode): boolean;
+
+设置ASR 噪音抑制模式，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名| 类型                                                    | 必填 | 说明 |
+|-------|-------------------------------------------------------|-------|-------|
+| mode | [AsrNoiseSuppressionMode](#asrnoisesuppressionmode12) | 是 |ASR 噪音抑制模式 |
+
+**返回值：**
+
+| 类型 | 说明                                     |
+|-------|----------------------------------------|
+| boolean | 返回设置ASR 噪音抑制模式结果，true为设置成功，false为设置失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed. |
+
+**示例：**
+
+```ts
+let flag = asrProcessingController.setAsrNoiseSuppressionMode(audio.AsrNoiseSuppressionMode.BYPASS);
+```
+
+### getAsrNoiseSuppressionMode<sup>12+</sup>
+
+getAsrNoiseSuppressionMode(): AsrNoiseSuppressionMode;
+
+获取ASR 噪音抑制模式，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型                      |说明 |
+|-------------------------|-------|
+| [AsrNoiseSuppressionMode](#asrnoisesuppressionmode12) |ASR 噪音抑制模式 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800104 | Operation not allowed. |
+
+**示例：**
+
+```ts
+let mode = asrProcessingController.getAsrNoiseSuppressionMode();
+```
+
+### isWhispering<sup>12+</sup>
+
+isWhispering(): boolean;
+
+查询耳语状态。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**返回值：**
+
+| 类型 | 说明                       |
+|-------|--------------------------|
+| boolean | 返回耳语状态，true为开启，false为关闭。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息                                     |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800104 | Operation not allowed. |
+
+**示例：**
+
+```ts
+let flag = asrProcessingController.isWhispering();
 ```

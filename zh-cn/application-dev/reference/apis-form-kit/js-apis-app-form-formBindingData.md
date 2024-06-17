@@ -19,7 +19,7 @@ import { formBindingData } from '@kit.FormKit';
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -33,7 +33,7 @@ import { formBindingData } from '@kit.FormKit';
 
 FormBindingData相关描述。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -48,7 +48,7 @@ createFormBindingData(obj?: Object | string): FormBindingData
 
 创建一个FormBindingData对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -64,6 +64,14 @@ createFormBindingData(obj?: Object | string): FormBindingData
 | 类型                                | 说明                                    |
 | ----------------------------------- | --------------------------------------- |
 | [FormBindingData](#formbindingdata) | 根据传入数据创建的FormBindingData对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed |
+
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 
 **示例：**

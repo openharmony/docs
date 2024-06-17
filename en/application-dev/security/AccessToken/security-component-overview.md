@@ -81,7 +81,7 @@ Due to the automatic authorization feature, many restrictions are imposed on sec
 
 If the authorization fails due to invalid component style, check the device error logs with the keyword "SecurityComponentCheckFail".
 
-Possible causes include the following:
+Possible causes include but are not limited to the following:
 
 - The font or icon size is too small.
 

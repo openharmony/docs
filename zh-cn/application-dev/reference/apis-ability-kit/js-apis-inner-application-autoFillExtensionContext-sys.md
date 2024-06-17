@@ -13,11 +13,11 @@ AutoFillExtensionContext模块是AutoFillExtensionAbility的上下文环境，�
 在使用AutoFillExtensionContext的功能前，需要通过AutoFillExtensionAbility子类实例获取。
 
 ```ts
-import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
+import { AutoFillExtensionAbility } from '@kit.AbilityKit';
 
 class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
-    onCreate() {
-        let AutoFillExtensionContext = this.context;
-    }
+  onCreate() {
+    let AutoFillExtensionContext = this.context;
+  }
 }
 ```

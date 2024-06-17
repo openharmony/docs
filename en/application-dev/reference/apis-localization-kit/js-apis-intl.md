@@ -9,12 +9,14 @@ The [i18n](js-apis-i18n.md) module provides enhanced i18n capabilities through s
 >  - This module provides basic i18n capabilities, such as time and date formatting, number formatting, and string sorting, through the standard i18n interfaces defined in ECMA 402. For details about the enhanced i18n capabilities, see [i18n](js-apis-i18n.md).
 >
 >  - Since API version 11, some APIs of this module are supported in ArkTS widgets.
+>
+>  - Since API version 12, the APIs of this module are supported in ArkTS widgets.
 
 
 ## Modules to Import
 
 ```ts
-import Intl from '@ohos.intl';
+import { intl } from '@kit.LocalizationKit';
 ```
 
 ## Locale
@@ -23,6 +25,8 @@ import Intl from '@ohos.intl';
 ### Attributes
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -45,14 +49,16 @@ constructor()
 
 Creates a **Locale** object.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
   ```ts
   // The default constructor uses the current system locale to create a Locale object.
-  let locale = new Intl.Locale();
+  let locale = new intl.Locale();
   // Return the current system locale.
   let localeID = locale.toString();
   ```
@@ -64,7 +70,9 @@ constructor(locale: string, options?: LocaleOptions)
 
 Creates a **Locale** object.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -78,7 +86,7 @@ Since API version 11, this API is supported in ArkTS widgets.
 **Example**
   ```ts
   // Create a Locale object named zh-CN.
-  let locale = new Intl.Locale("zh-CN");
+  let locale = new intl.Locale("zh-CN");
   let localeID = locale.toString(); // localeID = "zh-CN"
   ```
 
@@ -89,7 +97,9 @@ toString(): string
 
 Obtains the string representation of a **Locale** object.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -102,7 +112,7 @@ Since API version 11, this API is supported in ArkTS widgets.
 **Example**
   ```ts
   // Create a Locale object named en-GB.
-  let locale = new Intl.Locale("en-GB");
+  let locale = new intl.Locale("en-GB");
   let localeID = locale.toString(); // localeID = "en-GB"
   ```
 
@@ -113,7 +123,9 @@ maximize(): Locale
 
 Maximizes information of the **Locale** object. If the script and locale information is missing, add the information.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -126,13 +138,13 @@ Since API version 11, this API is supported in ArkTS widgets.
 **Example**
   ```ts
   // Create a Locale object named zh.
-  let locale = new Intl.Locale("zh");
+  let locale = new intl.Locale("zh");
   // Complete the script and region of the Locale object.
   let maximizedLocale = locale.maximize();
   let localeID = maximizedLocale.toString(); // localeID = "zh-Hans-CN"
 
   // Create a Locale object named en-US.
-  locale = new Intl.Locale("en-US");
+  locale = new intl.Locale("en-US");
   // Complete the script of the Locale object.
   maximizedLocale = locale.maximize();
   localeID = maximizedLocale.toString(); // localeID = "en-Latn-US"
@@ -145,7 +157,9 @@ minimize(): Locale
 
 Minimizes information of the **Locale** object. If the script and locale information is present, delete the information.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -158,13 +172,13 @@ Since API version 11, this API is supported in ArkTS widgets.
 **Example**
   ```ts
   // Create a Locale object named zh-Hans-CN.
-  let locale = new Intl.Locale("zh-Hans-CN");
+  let locale = new intl.Locale("zh-Hans-CN");
   // Remove the script and region of the Locale object.
   let minimizedLocale = locale.minimize();
   let localeID = minimizedLocale.toString(); // localeID = "zh"
 
   // Create a Locale object named en-US.
-  locale = new Intl.Locale("en-US");
+  locale = new intl.Locale("en-US");
   // Remove the region of the Locale object.
   minimizedLocale = locale.minimize();
   localeID = minimizedLocale.toString(); // localeID = "en"
@@ -178,6 +192,8 @@ Represents the locale options.
 Since API version 9, the attributes in **LocaleOptions** are optional.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -200,12 +216,14 @@ Creates a **DateTimeOptions** object for the specified locale.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
   ```ts
   // Use the current system locale to create a DateTimeFormat object.
-  let datefmt= new Intl.DateTimeFormat();
+  let datefmt= new intl.DateTimeFormat();
   ```
 
 
@@ -215,7 +233,9 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 
 Creates a **DateTimeOptions** object for the specified locale.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -229,14 +249,14 @@ Since API version 11, this API is supported in ArkTS widgets.
 **Example**
   ```ts
   // Use locale zh-CN to create a DateTimeFormat object. Set dateStyle to full and timeStyle to medium.
-  let datefmt= new Intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
+  let datefmt= new intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
 
 **Example**
   ```ts
   // Use the locale list ["ban", "zh"] to create a DateTimeFormat object. Because ban is an invalid locale ID, locale zh is used to create the DateTimeFormat object.
-  let datefmt= new Intl.DateTimeFormat(["ban", "zh"], { dateStyle: 'full', timeStyle: 'medium' });
+  let datefmt= new intl.DateTimeFormat(["ban", "zh"], { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
 
@@ -246,7 +266,9 @@ format(date: Date): string
 
 Formats the specified date and time.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -266,11 +288,11 @@ Since API version 11, this API is supported in ArkTS widgets.
   ```ts
   let date = new Date(2021, 11, 17, 3, 24, 0);
   // Use locale en-GB to create a DateTimeFormat object.
-  let datefmt = new Intl.DateTimeFormat("en-GB");
+  let datefmt = new intl.DateTimeFormat("en-GB");
   let formattedDate = datefmt.format(date); // formattedDate "17/12/2021"
 
   // Use locale en-GB to create a DateTimeFormat object. Set dateStyle to full and timeStyle to medium.
-  datefmt = new Intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
+  datefmt = new intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
   formattedDate = datefmt.format(date); // formattedDate "Friday, 17 December 2021 at 03:24:00"
   ```
 
@@ -281,7 +303,9 @@ formatRange(startDate: Date, endDate: Date): string
 
 Formats the specified date range.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -303,8 +327,8 @@ Since API version 11, this API is supported in ArkTS widgets.
   let startDate = new Date(2021, 11, 17, 3, 24, 0);
   let endDate = new Date(2021, 11, 18, 3, 24, 0);
   // Use locale en-GB to create a DateTimeFormat object.
-  let datefmt = new Intl.DateTimeFormat("en-GB");
-  let formattedDateRange = datefmt.formatRange(startDate, endDate); // formattedDateRange = "17/12/2021-18/12/2021"
+  let datefmt = new intl.DateTimeFormat("en-GB");
+  let formattedDateRange = datefmt.formatRange(startDate, endDate); // formattedDateRange = "17/12/2021 - 18/12/2021"
   ```
 
 
@@ -314,7 +338,9 @@ resolvedOptions(): DateTimeOptions
 
 Obtains the formatting options for **DateTimeFormat** object.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -326,7 +352,7 @@ Since API version 11, this API is supported in ArkTS widgets.
 
 **Example**
   ```ts
-  let datefmt = new Intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
+  let datefmt = new intl.DateTimeFormat("en-GB", { dateStyle: 'full', timeStyle: 'medium' });
   // Obtain the options of the DateTimeFormat object.
   let options = datefmt.resolvedOptions();
   let dateStyle = options.dateStyle; // dateStyle = "full"
@@ -341,6 +367,8 @@ Provides the options for the **DateTimeFormat** object. For details about the pa
 Since API version 9, the attributes in **DateTimeOptions** are optional.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -375,12 +403,14 @@ constructor()
 
 Creates a **NumberFormat** object for the specified locale.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
   ```ts
   // Use the current system locale to create a NumberFormat object.
-  let numfmt = new Intl.NumberFormat();
+  let numfmt = new intl.NumberFormat();
   ```
 
 
@@ -389,6 +419,8 @@ Creates a **NumberFormat** object for the specified locale.
 constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
 Creates a **NumberFormat** object for the specified locale.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -402,7 +434,7 @@ Creates a **NumberFormat** object for the specified locale.
 **Example**
   ```ts
   // Use locale en-GB to create a NumberFormat object. Set style to decimal and notation to scientific.
-  let numfmt = new Intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
+  let numfmt = new intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
   ```
 
 
@@ -411,6 +443,8 @@ Creates a **NumberFormat** object for the specified locale.
 format(number: number): string
 
 Formats a number.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -430,7 +464,7 @@ Formats a number.
 **Example**
   ```ts
   // Use locale list ["en-GB", "zh"] to create a NumberFormat object. Because en-GB is a valid locale ID, it is used to create the NumberFormat object.
-  let numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
+  let numfmt = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   let formattedNumber = numfmt.format(1223); // formattedNumber = 1.223E3
   ```
 
@@ -440,6 +474,8 @@ Formats a number.
 resolvedOptions(): NumberOptions
 
 Obtains the options of the **NumberFormat** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -452,7 +488,7 @@ Obtains the options of the **NumberFormat** object.
 
 **Example**
   ```ts
-  let numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
+  let numfmt = new intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   // Obtain the options of the NumberFormat object.
   let options = numfmt.resolvedOptions();
   let style = options.style; // style = decimal
@@ -465,6 +501,8 @@ Obtains the options of the **NumberFormat** object.
 Defines the device capability.
 
 Since API version 9, the attributes in **NumberOptions** are optional.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -498,12 +536,14 @@ constructor()
 
 Creates a **Collator** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
   ```ts
   // Use the system locale to create a Collator object.
-  let collator = new Intl.Collator();
+  let collator = new intl.Collator();
   ```
 
 
@@ -512,6 +552,8 @@ Creates a **Collator** object.
 constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 
 Creates a **Collator** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -525,7 +567,7 @@ Creates a **Collator** object.
 **Example**
   ```ts
   // Use locale zh-CN to create a Collator object. Set localeMatcher to lookup and usage to sort.
-  let collator = new Intl.Collator("zh-CN", {localeMatcher: "lookup", usage: "sort"});
+  let collator = new intl.Collator("zh-CN", {localeMatcher: "lookup", usage: "sort"});
   ```
 
 
@@ -534,6 +576,8 @@ Creates a **Collator** object.
 compare(first: string, second: string): number
 
 Compares two strings based on the sorting policy of the **Collator** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -553,7 +597,7 @@ Compares two strings based on the sorting policy of the **Collator** object.
 **Example**
   ```ts
   // Use locale en-GB to create a Collator object.
-  let collator = new Intl.Collator("en-GB");
+  let collator = new intl.Collator("en-GB");
   // Compare the sequence of the first and second strings.
   let compareResult = collator.compare("first", "second"); // compareResult = -1
   ```
@@ -565,6 +609,8 @@ resolvedOptions(): CollatorOptions
 
 Returns properties reflecting the locale and collation options of a **Collator** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -575,7 +621,7 @@ Returns properties reflecting the locale and collation options of a **Collator**
 
 **Example**
   ```ts
-  let collator = new Intl.Collator("zh-Hans", { usage: 'sort', ignorePunctuation: true });
+  let collator = new intl.Collator("zh-Hans", { usage: 'sort', ignorePunctuation: true });
   // Obtain the options of the Collator object.
   let options = collator.resolvedOptions();
   let usage = options.usage; // usage = "sort"
@@ -588,6 +634,8 @@ Returns properties reflecting the locale and collation options of a **Collator**
 Represents the properties of a **Collator** object.
 
 Since API version 9, the attributes in **CollatorOptions** are optional.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -610,12 +658,14 @@ constructor()
 
 Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
   ```ts
   // Use the system locale to create a PluralRules object.
-  let pluralRules = new Intl.PluralRules();
+  let pluralRules = new intl.PluralRules();
   ```
 
 
@@ -624,6 +674,8 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 
 Creates a **PluralRules** object to obtain the singular-plural type of numbers.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -637,7 +689,7 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 **Example**
   ```ts
   // Use locale zh-CN to create a PluralRules object. Set localeMatcher to lookup and type to cardinal.
-  let pluralRules= new Intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
+  let pluralRules= new intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
   ```
 
 
@@ -646,6 +698,8 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 select(n: number): string
 
 Obtains a string that represents the singular-plural type of the specified number.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -664,12 +718,12 @@ Obtains a string that represents the singular-plural type of the specified numbe
 **Example**
   ```ts
   // Use locale zh-Hans to create a PluralRules object.
-  let zhPluralRules = new Intl.PluralRules("zh-Hans");
+  let zhPluralRules = new intl.PluralRules("zh-Hans");
   // Determine the singular-plural type corresponding to number 1 in locale zh-Hans.
   let plural = zhPluralRules.select(1); // plural = other
 
   // Use locale en-US to create a PluralRules object.
-  let enPluralRules = new Intl.PluralRules("en-US");
+  let enPluralRules = new intl.PluralRules("en-US");
   // Determine the singular-plural type corresponding to number 1 in locale en-US.
   plural = enPluralRules.select(1); // plural = one
   ```
@@ -679,6 +733,8 @@ Obtains a string that represents the singular-plural type of the specified numbe
 
 Represents the properties of a **PluralRules** object.
 Since API version 9, the attributes in **PluralRulesOptions** are optional.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -702,12 +758,14 @@ constructor()
 
 Creates a **RelativeTimeFormat** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
   ```ts
   // Use the system locale to create a RelativeTimeFormat object.
-  let relativetimefmt = new Intl.RelativeTimeFormat();
+  let relativetimefmt = new intl.RelativeTimeFormat();
   ```
 
 
@@ -716,6 +774,8 @@ Creates a **RelativeTimeFormat** object.
 constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatInputOptions)
 
 Creates a **RelativeTimeFormat** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -729,7 +789,7 @@ Creates a **RelativeTimeFormat** object.
 **Example**
   ```ts
   // Use locale zh-CN to create a RelativeTimeFormat object. Set localeMatcher to lookup, numeric to always, and style to long.
-  let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {"localeMatcher": "lookup", "numeric": "always", "style": "long"});
+  let relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {"localeMatcher": "lookup", "numeric": "always", "style": "long"});
   ```
 
 
@@ -738,6 +798,8 @@ Creates a **RelativeTimeFormat** object.
 format(value: number, unit: string): string
 
 Formats the value and unit based on the specified locale and formatting options.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -757,7 +819,7 @@ Formats the value and unit based on the specified locale and formatting options.
 **Example**
   ```ts
   // Use locale zh-CN to create a RelativeTimeFormat object.
-  let relativetimefmt = new Intl.RelativeTimeFormat("zh-CN");
+  let relativetimefmt = new intl.RelativeTimeFormat("zh-CN");
   // Obtain the localized representation (in unit of quarter) of number 3 in locale zh-CN.
   let formatResult = relativetimefmt.format(3, "quarter"); // formatResult = "3 quarters later"
   ```
@@ -768,6 +830,8 @@ Formats the value and unit based on the specified locale and formatting options.
 formatToParts(value: number, unit: string): Array&lt;object&gt;
 
 Obtains an array of RelativeTimeFormat objects in parts for locale-aware formatting.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -787,7 +851,7 @@ Obtains an array of RelativeTimeFormat objects in parts for locale-aware formatt
 **Example**
   ```ts
   // Use locale en to create a RelativeTimeFormat object. Set numeric to auto.
-  let relativetimefmt = new Intl.RelativeTimeFormat("en", {"numeric": "auto"});
+  let relativetimefmt = new intl.RelativeTimeFormat("en", {"numeric": "auto"});
   let parts = relativetimefmt.formatToParts(10, "seconds"); // parts = [ {type: "literal", value: "in"}, {type: "integer", value: 10, unit: "second"}, {type: "literal", value: "seconds"} ]
   ```
 
@@ -797,6 +861,8 @@ Obtains an array of RelativeTimeFormat objects in parts for locale-aware formatt
 resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 Obtains the formatting options for **RelativeTimeFormat** objects.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -809,7 +875,7 @@ Obtains the formatting options for **RelativeTimeFormat** objects.
 **Example**
   ```ts
   // Use locale en-GB to create a RelativeTimeFormat object.
-  let relativetimefmt= new Intl.RelativeTimeFormat("en-GB", { style: "short" });
+  let relativetimefmt= new intl.RelativeTimeFormat("en-GB", { style: "short" });
   // Obtain the options of the RelativeTimeFormat object.
   let options = relativetimefmt.resolvedOptions();
   let style = options.style; // style = "short"
@@ -822,6 +888,8 @@ Represents the properties of a **RelativeTimeFormat** object.
 
 Since API version 9, the attributes in **RelativeTimeFormatInputOptions** are optional.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 | Name           | Type    | Mandatory  |Description                                      |
@@ -833,6 +901,8 @@ Since API version 9, the attributes in **RelativeTimeFormatInputOptions** are op
 ## RelativeTimeFormatResolvedOptions<sup>8+</sup>
 
 Represents the properties of a **RelativeTimeFormat** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 

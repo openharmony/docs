@@ -558,6 +558,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 | bundle      | string | 是   | 否   | 应用的包名。 |
 | uid         | number | 是   | 否   | 应用的uid。  |
 | badgeNumber | number | 是   | 否   | 角标个数。   |
+| instanceKey  | number | 是   | 否   | 应用实例键值。   |
 
 
 ## BadgeEnabledChangedCallback<sup>12+</sup>

@@ -10,14 +10,14 @@
 ## 导入模块
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
 ```
 
 ## 属性
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | 是 | 否 | InputMethodExtension的上下文环境，继承于ExtensionContext。 |
 
@@ -35,19 +35,11 @@ Extension生命周期回调，在拉起Extension输入法应用时调用，执�
 | ------ | ----------- | ---- | ------------------------------- |
 | want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
-
-| 错误码ID | 错误信息                                                |
-| -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
-
 **示例：**
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
 class InputMethodExt extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
     console.log('onCreate, want:' + want.abilityName);
@@ -63,18 +55,10 @@ Extension生命周期回调，在销毁输入法应用时回调，执行资源�
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-**错误码：**
-
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
-
-| 错误码ID | 错误信息                                                |
-| -------- | ------------------------------------------------------- |
-| 401          | Parameter verification failed.  |
-
 **示例：**
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
 class InputMethodExt extends InputMethodExtensionAbility {
   onDestroy(): void {
     console.log('onDestroy');

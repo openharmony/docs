@@ -37,6 +37,7 @@ getBatteryStats(): Promise<Array&lt;BatteryStatsInfo&gt;>
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -74,6 +75,7 @@ getBatteryStats(callback: AsyncCallback<Array&lt;BatteryStatsInfo&gt;>): void
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -116,6 +118,7 @@ getAppPowerValue(uid: number): number
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -157,6 +160,7 @@ getAppPowerPercent(uid: number): number
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -199,6 +203,7 @@ getHardwareUnitPowerValue(type: ConsumptionType): number
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -241,6 +246,7 @@ getHardwareUnitPowerPercent(type: ConsumptionType): number
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 202     | If the system permission is denied. |
 
 **示例：**
 

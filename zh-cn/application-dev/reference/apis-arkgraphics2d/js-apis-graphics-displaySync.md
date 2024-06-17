@@ -61,6 +61,13 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange) : void
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | rateRange       | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| 是   | 设置DisplaySync期望的帧率。|
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 **示例：**
 
@@ -168,14 +175,29 @@ backDisplaySync?.start()
 **示例：**
 
 ```ts
+import { displaySync } from '@kit.ArkGraphics2D';
 import { UIContext } from '@kit.ArkUI';
 
-let uiContext: UIContext = this.getUIContext()
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  // 创建DisplaySync实例
+  backDisplaySync: displaySync.DisplaySync = displaySync.create();
 
-// 在当前UI上下文中执行DisplaySync的start接口
-uiContext?.runScopedTask(() => {
-  backDisplaySync?.start()
-})
+  aboutToAppear() {
+    // 获取UIContext实例
+    let uiContext: UIContext = this.getUIContext();
+    // 在当前UI上下文中执行DisplaySync的start接口
+    uiContext?.runScopedTask(() => {
+      this.backDisplaySync?.start();
+    })
+  }
+
+  build() {
+    // ...
+  }
+}
 
 ```
 

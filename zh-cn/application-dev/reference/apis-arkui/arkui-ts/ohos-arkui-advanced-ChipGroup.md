@@ -32,13 +32,13 @@ ChipGroup({
 
 | 名称            | 类型                                            | 必填 | 描述                                                                                       |
 | --------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------                             |
-| items           | [ChipGroupItemOptions[]](#chipgroupitemoptions) | 是   | 每个chip特定的属性，参考[ChipGroupItemOptions[]](#chipgroupitemoptions)类型。               |
-| itemStyle       | [ChipItemStyle](#chipitemstyle)                 | 否   | chip的style属性，比如颜色，大小等，参考[ChipItemStyle](#chipitemstyle)类型。                 |
-| selectedIndexes | Array&lt;number&gt;                             | 否   | 被选中chip的索引。<br/>默认值：第一个chip被选中。                                            |
-| multiple        | boolean                                         | 否   | true：支持多个chip被选中；false：只能是单个chip被选中。<br/>默认值：false                     |
-| chipGroupSpace  | [ChipGroupSpaceOptions](#chipgroupspaceoptions) | 否   | 左右内边距,和chip与chip之间的间距。参考[ChipGroupSpaceOptions](#chipgroupspaceoptions)类型。 |
-| chipGroupPadding  | [ChipGroupPaddingOptions](#chipgrouppaddingoptions) | 否   | chipGroup的上下内边距，以便控制整体高度。参考[ChipGroupPaddingOptions](#chipgrouppaddingoptions)类型。 |
-| onChange        | (selectedIndexes: Array&lt;number&gt;) => void  | 否   | chip状态改变时候的回调方法。                                                                |
+| items           | [ChipGroupItemOptions[]](#chipgroupitemoptions) | 是   | 每个chip特定的属性，参考[ChipGroupItemOptions[]](#chipgroupitemoptions)类型。<br/>为undefined时，ChipGroup默认为空。               |
+| itemStyle       | [ChipItemStyle](#chipitemstyle)                 | 否   | chip的style属性，比如颜色，大小等，参考[ChipItemStyle](#chipitemstyle)类型。<br/>为undefined时，ChipGroup中的Chip式样为默认值。                 |
+| selectedIndexes | Array&lt;number&gt;                             | 否   | 被选中chip的索引。<br/>为undefined时，默认第一个Chip被选中。                                            |
+| multiple        | boolean                                         | 否   | true：支持多个chip被选中；false：只能是单个chip被选中。<br/>默认值：false<br/>为undefined时，multiple走默认值。                     |
+| chipGroupSpace  | [ChipGroupSpaceOptions](#chipgroupspaceoptions) | 否   | 左右内边距，和chip与chip之间的间距。参考[ChipGroupSpaceOptions](#chipgroupspaceoptions)类型。<br/>为undefined时，chipGroupSpace走默认值。 |
+| chipGroupPadding  | [ChipGroupPaddingOptions](#chipgrouppaddingoptions) | 否   | chipGroup的上下内边距，以便控制整体高度。参考[ChipGroupPaddingOptions](#chipgrouppaddingoptions)类型。<br/>为undefined时，chipGroupPadding走默认值。 |
+| onChange        | (selectedIndexes: Array&lt;number&gt;) => void  | 否   | chip状态改变时候的回调方法。<br/>为undefined时，表示解绑事件。                                                                |
 | suffix          | ()=>void                                        | 否   | 最右侧的builder，由使用者自定义，使用时候需引入[IconGroupSuffix](#icongroupsuffix)接口。<br/>默认值：不传入的情况，没有suffix。 |
 
 > **说明：**
@@ -54,11 +54,11 @@ ChipGroupItemOptions定义每个chip的非共通属性。
 | 名称         | 类型                           | 必填 | 描述                                |
 | ----------   | ----------------------------- | ---- | ----------------------------------- |
 | prefixIcon   | [IconOptions](#iconoptions)   | 否   | 前缀Image图标属性。                   |
-| prefixSymbol | [SymbolOptions](ohos-arkui-advanced-Chip.md#symboloptions) | 否   | 前缀SymbolGlyph图标属性。             |
+| prefixSymbol | [SymbolOptions](ohos-arkui-advanced-Chip.md#symboloptions12) | 否   | 前缀SymbolGlyph图标属性。             |
 | label        | [LabelOptions](#labeloptions) | 是   | 文本属性。                            |
 | suffixIcon   | [IconOptions](#iconoptions) | 否   | 后缀Image图标属性。                   |
-| suffixSymbol | [SymbolOptions](ohos-arkui-advanced-Chip.md#symboloptions) | 否   | 后缀SymbolGlyph图标属性。             |
-| allowClose   | boolean                       | 否   | 删除图标是否显示。<br/>默认值：true。  |
+| suffixSymbol | [SymbolOptions](ohos-arkui-advanced-Chip.md#symboloptions12) | 否   | 后缀SymbolGlyph图标属性。             |
+| allowClose   | boolean                       | 否   | 删除图标是否显示。<br/>默认值：false。  |
 
 >**说明：**
 >
@@ -70,15 +70,15 @@ ChipItemStyle定义了chip的共通属性。
 
 | 名称                    | 类型                                                              | 必填 | 描述                                                  |
 | ----------------------- | ----------------------                                           | ---- | -------------------------------                       |
-| size                    | [ChipSize](ohos-arkui-advanced-Chip.md#chipsize) \| [SizeOptions](ts-types.md#sizeoptions)  | 否   | chip尺寸，使用时需要从chip组件引入ChipSize类型。<br/>默认值：ChipSize：ChipSize.NORMAL。<br/>  |
-| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | chip背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')。                   |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | chip文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary')。                    |
-| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | chip激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary')。    |
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | chip激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')。                |
+| size                    | [ChipSize](ohos-arkui-advanced-Chip.md#chipsize) \| [SizeOptions](ts-types.md#sizeoptions)  | 否   | chip尺寸，使用时需要从chip组件引入ChipSize类型。<br/>默认值：ChipSize：ChipSize.NORMAL。<br/> 为undefined时，ChipSize走默认值。  |
+| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | chip背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')。<br/>为undefined时，backgroundColor走默认值。                  |
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | chip文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary')。<br/>为undefined时，fontColor走默认值。                    |
+| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | chip激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary')。<br/>为undefined时，selectedFontColor走默认值。    |
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | chip激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')。<br/>为undefined时，selectedBackgroundColor走默认值。                |
 
 > **说明：**
 >
-> 1.操作块的大小可以是两种类型，一种是ChipSize，为方便使用，有两种尺寸可选分别是NORMAL和SMALL；另一种是SizeOptions，操作块有最小宽度限制，当用户设置宽度小于最小宽度时，按最小宽度显示。
+> 1.操作块的大小可以是两种类型，一种是ChipSize，为方便使用，有两种尺寸可选分别是NORMAL和SMALL；另一种是SizeOptions。
 >
 > 2.backgroundColor、selectedBackgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
 
@@ -88,9 +88,9 @@ ChipGroupSpaceOptions 定义了chipGroup左右内边距，以及chip与chip直�
 
 | 名称       | 类型            | 必填 | 描述                                               |
 | ---------- | -------------- | ---- | ------------------------------------------------ |
-| itemSpace | string\|number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>默认值：8                 |
-| startSpace | Length         | 否   | 左侧内边距（不支持百分比）。<br/>默认值：16                          |
-| endSpace   | Length         | 否   | 右侧内边距（不支持百分比）。<br/>默认值：16    |
+| itemSpace | string\|number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>默认值：8<br/>单位：vp<br/>为undefined时，itemSpace走默认值。      |
+| startSpace | Length         | 否   | 左侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，startSpace走默认值。                |
+| endSpace   | Length         | 否   | 右侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，endSpace走默认值。 |
 
 ## ChipGroupPaddingOptions
 
@@ -98,8 +98,8 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 
 | 名称   | 类型            | 必填 | 描述                                                        |
 | ------ | -------------- | ---- | ------------------------------------------------            |
-| top    | Length         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14         |
-| bottom | Length         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14         |
+| top    | Length         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，top走默认值。        |
+| bottom | Length         | 是   | chipGroup的上方内边距（不支持百分比）。<br/>默认值：14<br/>为undefined时，bottom走默认值。         |
 
 ## IconGroupSuffix
 
@@ -113,6 +113,11 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 | -------- | ---------------------- | ---- | ----------------------------------------------|
 | items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 自定义builder items。|
 
+> **说明：**
+>
+> 传参SymbolGlyphModifier时，不支持通过symbolEffect修改动效类型和effectStrategy设置动效。
+>
+
 ## IconItemOptions
 
 尾部builder接口定义，针对背板大小及颜色设置限制。
@@ -120,7 +125,7 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 | 名称     | 类型                            | 必填 | 描述                                      |
 | -------- | --------------                 | ---- | ------------------------------           |
 | icon     | [IconOptions](#iconoptions)    | 是   | 自定义Builder icon                        |
-| action   | ()=>void                       | 是   | 自定义Builder items 的Callback            |
+| action   | ()=>void                       | 是   | 自定义Builder items 的Callback<br/>为undefined时，表示解绑事件。            |
 
 ## IconOptions
 
@@ -144,9 +149,8 @@ Label定义图标的共通属性。
 ### 示例1-无suffix
 
 ```typescript
-
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip'
-import { ChipGroup,IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
+import { ChipSize } from '@ohos.arkui.advanced.Chip'
+import { ChipGroup } from '@ohos.arkui.advanced.ChipGroup';
 
 @Entry
 @Preview
@@ -207,7 +211,6 @@ struct Index {
     }
   }
 }
-
 ```
 
 ![](figures/chipGroupDemo1.jpeg)
@@ -215,7 +218,7 @@ struct Index {
 ### 示例2-有suffix
 
 ```typescript
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip'
+import { ChipSize } from '@ohos.arkui.advanced.Chip'
 import { ChipGroup,IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
 
 @Entry
@@ -299,7 +302,6 @@ struct Index {
     }
   }
 }
-
 ```
 
 ![](figures/chipGroupDemo2.jpeg)

@@ -10,9 +10,9 @@
 
 推荐尽量按照章节顺序阅读本文。如果时间有限，按照角色区分，建议至少阅读如下章节：
 
-- UX设计师：第2章、第3章、第4章。
+- UX设计师：[简介](introduction.md)、[从一个例子开始](start-with-a-example.md)、[应用UX设计](design-principles.md)。
 
-- 开发人员：第2章、第3章、第5章、第6章、第7章。
+- 开发人员：[简介](introduction.md)、[从一个例子开始](start-with-a-example.md)、[工程管理](ide-using.md)、[页面开发的一多能力介绍](page-development-intro.md)、[功能开发的一多能力介绍](development-intro.md)。
 
 
 ## 章节概要

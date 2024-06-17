@@ -21,7 +21,7 @@ constructor(init?: string[][] | Record&lt;string, string&gt; | string | URLParam
 
 URLParams的构造函数。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -30,6 +30,14 @@ URLParams的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLParams：对象<br/>- 默认值：null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -55,7 +63,7 @@ append(name: string, value: string): void
 
 将新的键值对插入到查询字符串。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -65,6 +73,14 @@ append(name: string, value: string): void
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 需要插入搜索参数的键名。 |
 | value | string | 是 | 需要插入搜索参数的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -81,7 +97,7 @@ delete(name: string): void
 
 删除指定名称的键值对。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -90,6 +106,14 @@ delete(name: string): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 需要删除的键值名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -106,7 +130,7 @@ getAll(name: string): string[]
 
 获取指定名称的所有键对应值的集合。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -121,6 +145,14 @@ getAll(name: string): string[]
 | 类型 | 说明 |
 | -------- | -------- |
 | string[] | 返回指定名称的所有键对应值的集合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -138,7 +170,7 @@ entries(): IterableIterator<[string, string]>
 
 返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -166,7 +198,7 @@ forEach(callbackFn: (value: string, key: string, searchParams: URLParams) => voi
 
 通过回调函数来遍历URLSearchParams实例对象上的键值对。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -185,11 +217,19 @@ forEach(callbackFn: (value: string, key: string, searchParams: URLParams) => voi
 | key | string | 是 | 当前遍历到的键名。 |
 | searchParams | [URLParams](#urlparams9) | 是 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-const myURLObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2'); 
-myURLObject.params.forEach((value, name, searchParams) => {  
+const myURLObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
+myURLObject.params.forEach((value, name, searchParams) => {
     console.log(name, value, myURLObject.params === searchParams);
 });
 ```
@@ -201,7 +241,7 @@ get(name: string): string | null
 
 获取指定名称对应的第一个值。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -218,11 +258,19 @@ get(name: string): string | null
 | string | 返回第一个值。 |
 | null | 如果没找到，返回 null。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-let paramsObject = new url.URLParams('name=Jonathan&age=18'); 
-let name = paramsObject.get("name"); // is the string "Jonathan" 
+let paramsObject = new url.URLParams('name=Jonathan&age=18');
+let name = paramsObject.get("name"); // is the string "Jonathan"
 let age = paramsObject.get("age"); // is the string "18"
 ```
 
@@ -233,7 +281,7 @@ has(name: string): boolean
 
 判断一个指定的键名对应的值是否存在。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -249,11 +297,19 @@ has(name: string): boolean
 | -------- | -------- |
 | boolean | 是否存在相对应的key值，存在返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
 let urlObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsObject = new url.URLParams(urlObject.search.slice(1)); 
+let paramsObject = new url.URLParams(urlObject.search.slice(1));
 let result = paramsObject.has('bard');
 ```
 
@@ -264,7 +320,7 @@ set(name: string, value: string): void
 
 将与name关联的URLSearchParams对象中的值设置为value。如果存在名称为name的键值对，请将第一个键值对的值设置为value并删除所有其他值。如果不是，则将键值对附加到查询字符串。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -274,6 +330,14 @@ set(name: string, value: string): void
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 将要设置的参数的键值名。 |
 | value | string | 是 | 所要设置的参数值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -290,7 +354,7 @@ sort(): void
 
 对包含在此对象中的所有键值对进行排序，并返回undefined。排序顺序是根据键的Unicode代码点。该方法使用稳定的排序算法 （即，将保留具有相等键的键值对之间的相对顺序）。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -309,7 +373,7 @@ keys(): IterableIterator&lt;string&gt;
 
 返回一个所有键值对的name的ES6迭代器。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -336,7 +400,7 @@ values(): IterableIterator&lt;string&gt;
 
 返回一个所有键值对的value的ES6迭代器。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -363,7 +427,7 @@ for (let value of values) {
 
 返回一个ES6的迭代器，迭代器的每一项都是一个 JavaScript Array。Array的第一项是name，Array的第二项是value。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -391,7 +455,7 @@ toString(): string
 
 返回序列化为字符串的搜索参数，必要时对字符进行百分比编码。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -404,8 +468,8 @@ toString(): string
 **示例：**
 
 ```ts
-let url = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
-let params = new url.URLParams(url.search.slice(1)); 
+let urlObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
+let params = new url.URLParams(urlObject.search.slice(1));
 params.append('fod', '3');
 console.log(params.toString());
 ```
@@ -420,19 +484,19 @@ console.log(params.toString());
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| hash | string | 是 | 是 | 获取和设置URL的片段部分。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
-| host | string | 是 | 是 | 获取和设置URL的主机部分。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
-| hostname | string | 是 | 是 | 获取和设置URL的主机名部分，不带端口。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
-| href | string | 是 | 是 | 获取和设置序列化的URL。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
-| origin | string | 是 | 否 | 获取URL源的只读序列化。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
-| password | string | 是 | 是 | 获取和设置URL的密码部分。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
-| pathname | string | 是 | 是 | 获取和设置URL的路径部分。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
-| port | string | 是 | 是 | 获取和设置URL的端口部分。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
-| protocol | string | 是 | 是 | 获取和设置URL的协议部分。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
-| search | string | 是 | 是 | 获取和设置URL的序列化查询部分。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
+| hash | string | 是 | 是 | 获取和设置URL的片段部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| host | string | 是 | 是 | 获取和设置URL的主机部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| hostname | string | 是 | 是 | 获取和设置URL的主机名部分，不带端口。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| href | string | 是 | 是 | 获取和设置序列化的URL。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| origin | string | 是 | 否 | 获取URL源的只读序列化。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| password | string | 是 | 是 | 获取和设置URL的密码部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| pathname | string | 是 | 是 | 获取和设置URL的路径部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| port | string | 是 | 是 | 获取和设置URL的端口部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| protocol | string | 是 | 是 | 获取和设置URL的协议部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| search | string | 是 | 是 | 获取和设置URL的序列化查询部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
 | searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。<br/>- **说明：** 此属性从API version 7开始支持，从API version 9开始被废弃。建议使用params<sup>9+</sup>替代。 |
-| params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
-| username | string | 是 | 是 | 获取和设置URL的用户名部分。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
+| params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| username | string | 是 | 是 | 获取和设置URL的用户名部分。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -463,7 +527,7 @@ constructor(url: string, base?: string | URL)
 
 URL的构造函数。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -497,7 +561,7 @@ constructor()
 
 URL的无参构造函数。parseURL调用后返回一个URL对象，不单独使用。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -507,7 +571,7 @@ static parseURL(url: string, base?: string | URL): URL
 
 URL静态成员函数。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -520,19 +584,19 @@ URL静态成员函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200002 | Invalid url string. |
-
 
 **示例：**
 
 ```ts
 let mm = 'https://username:password@host:8080';
-let url = url.URL.parseURL(mm); 
-let result = url.toString(); // Output 'https://username:password@host:8080/'
+let urlObject = url.URL.parseURL(mm);
+let result = urlObject.toString(); // Output 'https://username:password@host:8080/'
 ```
 
 ### toString
@@ -541,7 +605,7 @@ toString(): string
 
 将解析过后的URL转化为字符串。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -554,8 +618,8 @@ toString(): string
 **示例：**
 
 ```ts
-const url = url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result = url.toString();
+const urlObject = url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+let result = urlObject.toString();
 ```
 
 ### toJSON
@@ -564,7 +628,7 @@ toJSON(): string
 
 将解析过后的URL转化为JSON字符串。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -576,8 +640,8 @@ toJSON(): string
 
 **示例：**
 ```ts
-const url = url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result = url.toJSON();
+const urlObject = url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+let result = urlObject.toJSON();
 ```
 
 ## URLSearchParams<sup>(deprecated)</sup>
@@ -601,6 +665,14 @@ URLSearchParams的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLSearchParams：对象<br/>- 默认值：null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -758,8 +830,8 @@ forEach(callbackFn: (value: string, key: string, searchParams: URLSearchParams) 
 **示例：**
 
 ```ts
-const myURLObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
-myURLObject.searchParams.forEach((value, name, searchParams) => {  
+const myURLObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+myURLObject.searchParams.forEach((value, name, searchParams) => {
     console.log(name, value, myURLObject.searchParams === searchParams);
 });
 ```
@@ -827,7 +899,7 @@ has(name: string): boolean
 
 ```ts
 let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsObject = new url.URLSearchParams(urlObject.search.slice(1)); 
+let paramsObject = new url.URLSearchParams(urlObject.search.slice(1));
 paramsObject.has('bard') === true;
 ```
 
@@ -989,8 +1061,8 @@ toString(): string
 **示例：**
 
 ```ts
-let url = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
-let params = new url.URLSearchParams(url.search.slice(1)); 
+let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let params = new url.URLSearchParams(urlObject.search.slice(1));
 params.append('fod', '3');
 console.log(params.toString());
 ```

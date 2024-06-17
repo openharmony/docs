@@ -131,7 +131,7 @@ registerContinuation(callback: AsyncCallback\<number>): void
 
 注册流转管理服务，并获取对应的注册token，无过滤条件，使用AsyncCallback方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -145,10 +145,12 @@ registerContinuation(callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
@@ -178,7 +180,7 @@ registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<
 
 连接流转管理服务，并获取对应的注册token，使用AsyncCallback方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -193,10 +195,12 @@ registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
@@ -230,7 +234,7 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>
 
 连接流转管理服务，并获取对应的注册token，使用Promise方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -250,10 +254,12 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
@@ -406,7 +412,7 @@ on(type: 'deviceSelected', token: number, callback: Callback\<Array\<Continuatio
 
 异步方法，监听设备连接状态，使用Callback形式返回连接的设备信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -422,10 +428,12 @@ on(type: 'deviceSelected', token: number, callback: Callback\<Array\<Continuatio
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -456,7 +464,7 @@ on(type: 'deviceUnselected', token: number, callback: Callback\<Array\<Continuat
 
 异步方法，监听设备断开状态，使用Callback形式返回断开的设备信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -472,10 +480,12 @@ on(type: 'deviceUnselected', token: number, callback: Callback\<Array\<Continuat
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -507,7 +517,7 @@ off(type: 'deviceSelected', token: number): void
 
 取消监听设备连接状态。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -522,10 +532,12 @@ off(type: 'deviceSelected', token: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -549,7 +561,7 @@ off(type: 'deviceUnselected', token: number): void
 
 取消监听设备断开状态。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -564,10 +576,12 @@ off(type: 'deviceUnselected', token: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -708,7 +722,7 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，无过滤条件，使用AsyncCallback方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -723,10 +737,12 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -755,7 +771,7 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用AsyncCallback方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -771,10 +787,12 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -808,7 +826,7 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用Promise方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -829,10 +847,12 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -944,7 +964,7 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 通知设备选择模块，更新当前的连接状态，使用AsyncCallback方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -961,10 +981,12 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -994,7 +1016,7 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 通知设备选择模块，更新当前的连接状态，使用Promise方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1016,10 +1038,12 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -1124,7 +1148,7 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用AsyncCallback方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1139,10 +1163,12 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -1171,7 +1197,7 @@ unregisterContinuation(token: number): Promise\<void>
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用Promise方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1191,10 +1217,12 @@ unregisterContinuation(token: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -1221,7 +1249,7 @@ unregisterContinuation(token: number): Promise\<void>
 
 设备连接状态。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -1236,7 +1264,7 @@ unregisterContinuation(token: number): Promise\<void>
 
 设备选择模块连接模式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 

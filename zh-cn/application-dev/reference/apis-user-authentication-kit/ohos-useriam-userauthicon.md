@@ -72,10 +72,10 @@ struct Index {
   authParam: userAuth.AuthParam = {
     challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
     authType: [userAuth.UserAuthType.FACE, userAuth.UserAuthType.PIN],
-    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3
   };
   widgetParam: userAuth.WidgetParam = {
-    title: '请进行身份认证',
+    title: '请进行身份认证'
   };
 
   build() {
@@ -91,7 +91,7 @@ struct Index {
           },
           onAuthResult: (result: userAuth.UserAuthResult) => {
             console.info('Get user auth result, result = ' + JSON.stringify(result));
-          },
+          }
         })
       }
     }

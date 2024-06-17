@@ -12,34 +12,45 @@ Due to the differences in the thread model and process model, certain APIs can b
   ```ts
   import featureAbility from '@ohos.ability.featureAbility';
   import Want from '@ohos.app.ability.Want';
-  import Logger from '../../utils/Logger';
+  import hilog from '@ohos.hilog';
   
   const TAG: string = 'PagePageAbilityFirst';
+  const domain: number = 0xFF00;
   
   @Entry
   @Component
-  struct Index {
+  struct PagePageAbilityFirst {
     
     build() {
-      // ...
-      Button() {
-        // ...
+      Column() {
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Flex({ justifyContent: FlexAlign.SpaceBetween, alignContent: FlexAlign.Center }) {
+              //...
+            }
+            .onClick(() => {
+              (async (): Promise<void> => {
+                try {
+                  hilog.info(domain, TAG, 'Begin to start ability');
+                  let want: Want = {
+                    bundleName: 'com.samples.famodelabilitydevelop',
+                    moduleName: 'entry',
+                    abilityName: 'com.samples.famodelabilitydevelop.PageAbilitySingleton'
+                  };
+                  await featureAbility.startAbility({ want: want });
+                  hilog.info(domain, TAG, `Start ability succeed`);
+                }
+                catch (error) {
+                  hilog.error(domain, TAG, 'Start ability failed with ' + error);
+                }
+              })()
+            })
+          }
+          //...
+        }
+        //...
       }
-      .onClick(async () => {
-        try {
-          Logger.info(TAG, 'Begin to start ability');
-          let want: Want = {
-            bundleName: 'com.samples.famodelabilitydevelop',
-            moduleName: 'entry',
-            abilityName: 'com.samples.famodelabilitydevelop.PageAbilitySingleton'
-          };
-          await featureAbility.startAbility({ want: want });
-          Logger.info(TAG, `Start ability succeed`);
-        }
-        catch (error) {
-          Logger.error(TAG, 'Start ability failed with ' + error);
-        }
-      })
+      //...
     }
   }
 
@@ -48,33 +59,53 @@ Due to the differences in the thread model and process model, certain APIs can b
 - Sample code of **startAbility()** in the stage model:
 
   ```ts
+  import hilog from '@ohos.hilog';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
+  import { Caller } from '@ohos.app.ability.UIAbility';
+
+  const TAG: string = '[Page_UIAbilityComponentsInteractive]';
+  const DOMAIN_NUMBER: number = 0xFF00;
   
   @Entry
   @Component
-  struct Index {
+  struct Page_UIAbilityComponentsInteractive {
     private context = getContext(this) as common.UIAbilityContext;
-  
+    caller: Caller | undefined = undefined;
     build() {
-      // ...
-      Button() {
-        // ...
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              // Context is a member of the ability object and is required for invoking inside a non-ability object.
+              // Pass in the Context object.
+              let wantInfo: Want = {
+                deviceId: '', // An empty deviceId indicates the local device.
+                bundleName: 'com.samples.stagemodelabilitydevelop',
+                moduleName: 'entry', // moduleName is optional.
+                abilityName: 'FuncAbilityA',
+                parameters: { // Custom information.
+                  info: 'From the UIAbilityComponentsInteractive page of EntryAbility',
+                },
+              };
+              // context is the UIAbilityContext of the initiator UIAbility.
+              this.context.startAbility(wantInfo).then(() => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'startAbility success.');
+              }).catch((error: BusinessError) => {
+                hilog.error(DOMAIN_NUMBER, TAG, 'startAbility failed.');
+              });
+            })
+          }
+          //...
+        }
+        //...
       }
-      .onClick(() => {
-        // Context is a member of the ability object and is required for invoking inside a non-ability object.
-        // Pass in the Context object.
-        let wantInfo: Want = {
-          bundleName: "com.example.myapplication",
-          abilityName: "EntryAbility"
-        };
-        this.context.startAbility(wantInfo).then(() => {
-          console.info('startAbility success.');
-        }).catch((error: BusinessError) => {
-          console.error('startAbility failed.');
-        })
-      })
+      //...
     }
   }
   ```

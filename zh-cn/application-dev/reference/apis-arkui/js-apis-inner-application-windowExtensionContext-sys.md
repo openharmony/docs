@@ -17,8 +17,7 @@ WindowExtensionContext模块提供[WindowExtensionAbility](js-apis-application-w
 在使用WindowExtensionContext的功能前，需要通过WindowExtensionAbility子类实例获取。
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
-import WindowExtensionContext from 'application/WindowExtensionContext';
+import WindowExtensionAbility, { WindowExtensionContext } from '@ohos.application.WindowExtensionAbility';
 
 let context: WindowExtensionContext | null = null;
 

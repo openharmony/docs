@@ -10,15 +10,15 @@ The **http** module provides the HTTP data request capability. An application ca
 ## Modules to Import
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 ```
 
 ## Example
 
 ```ts
 // Import the http namespace.
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
@@ -57,6 +57,10 @@ httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up
       keyPath: '/path/to/client.key', // If the certificate contains key information, an empty string is passed. This field is supported since API version 11.
       certType: http.CertType.PEM, // Certificate type, optional. A certificate in the PEM format is used by default. This field is supported since API version 11.
       keyPassword: "passwordToKey" // Password of the key file, optional. It is supported since API version 11.
+    },
+    certificatePinning:{ // Optional. It determines whether to enable dynamic configuration of certificate pinning. This attribute is supported since API version 12.
+      publicKeyHash: '', // Certificate PIN passed by the application. This attribute is supported since API version 12.
+      hashAlgorithm: 'SHA-256', // Encryption algorithm. Currently, it can only be set to SHA-256. This attribute is supported since API version 12.
     },
     multiFormDataList: [ // Optional. This field is valid only when content-Type in the header is multipart/form-data. It is supported since API version 11.
       {
@@ -121,7 +125,7 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 ```
@@ -195,7 +199,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL", (err: Error, data: http.HttpResponse) => {
@@ -277,7 +281,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 class Header {
   public contentType: string;
@@ -387,7 +391,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 class Header {
   public contentType: string;
@@ -430,7 +434,7 @@ Destroys an HTTP request.
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 let httpRequest = http.createHttp();
 
 httpRequest.destroy();
@@ -496,8 +500,8 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError, data: number) => {
@@ -570,8 +574,8 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class Header {
   public contentType: string;
@@ -671,7 +675,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 class Header {
   public contentType: string;
@@ -716,8 +720,8 @@ Registers an observer for HTTP Response Header events.
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headerReceive", (data: BusinessError) => {
@@ -749,7 +753,7 @@ Unregisters the observer for HTTP Response Header events.
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.off("headerReceive");
@@ -775,7 +779,7 @@ Registers an observer for HTTP Response Header events.
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headersReceive", (header: Object) => {
@@ -807,7 +811,7 @@ Unregisters the observer for HTTP Response Header events.
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headersReceive", (header: Object) => {
@@ -834,7 +838,7 @@ Registers a one-time observer for HTTP Response Header events. Once triggered, t
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.once("headersReceive", (header: Object) => {
@@ -863,7 +867,7 @@ Registers an observer for events indicating receiving of HTTP streaming response
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceive", (data: ArrayBuffer) => {
@@ -893,7 +897,7 @@ Unregisters the observer for events indicating receiving of HTTP streaming respo
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceive", (data: ArrayBuffer) => {
@@ -923,7 +927,7 @@ Registers an observer for events indicating completion of receiving HTTP streami
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataEnd", () => {
@@ -953,7 +957,7 @@ Unregisters the observer for events indicating completion of receiving HTTP stre
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataEnd", () => {
@@ -983,7 +987,7 @@ Registers an observer for events indicating progress of receiving HTTP streaming
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
@@ -1013,7 +1017,7 @@ Unregisters the observer for events indicating progress of receiving HTTP stream
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
@@ -1040,7 +1044,7 @@ Registers an observer for events indicating progress of sending HTTP requests.
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
@@ -1070,7 +1074,7 @@ Unregisters the observer for events indicating progress of sending HTTP requests
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
@@ -1105,6 +1109,7 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | dnsServers<sup>11+</sup> | Array<string> | No| Array of DNS servers used for DNS resolution.<br>- You can set a maximum of three DNS servers. If there are more than three DNS servers, only the first three DNS servers are used.<br>- The DNS servers must be expressed as IPv4 or IPv6 addresses.|
 | maxLimit<sup>11+</sup>   | number   | No| Maximum number of bytes in a response. The default value is **5\*1024\*1024**. The maximum value is **100\*1024\*1024**. |
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | No| Form data list. This field is valid when **content-Type** is set to **multipart/form-data**.|
+| certificatePinning<sup>12+</sup> | [CertificatePinning](#certificatepinning12) \| CertificatePinning[] | No| Dynamic configuration of certificate pinning. One or more certificate PINs can be specified.|
 
 ## RequestMethod
 
@@ -1280,7 +1285,7 @@ Creates an **HttpResponseCache** object that stores the response data of HTTP re
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpResponseCache = http.createHttpResponseCache();
 ```
@@ -1344,8 +1349,8 @@ Flushes data in the cache to the file system so that the cached data can be acce
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpResponseCache = http.createHttpResponseCache();
 let httpRequest = http.createHttp();
@@ -1385,8 +1390,8 @@ Flushes data in the cache to the file system so that the cached data can be acce
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 let httpResponseCache = http.createHttpResponseCache();
@@ -1422,8 +1427,8 @@ Disables the cache and deletes the data in it. This API uses an asynchronous cal
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL").then(data => {
@@ -1464,8 +1469,8 @@ Disables the cache and deletes the data in it. This API uses a promise to return
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL").then(data => {
@@ -1518,3 +1523,14 @@ Enumerates certificate types.
 | PEM | PEM certificate.|
 | DER | DER certificate.|
 | P12 | P12 certificate.|
+
+## CertificatePinning<sup>12+</sup>
+
+Defines the dynamic configuration of certificate pinning.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|  Name |  Type |   Description    |
+| ------------------  | -- | ----------- |
+| publicKeyHash       | string | Certificate PIN of the string type.|
+| hashAlgorithm        | 'SHA-256' | Encryption algorithm. Currently, only SHA-256 is supported.|

@@ -9,7 +9,7 @@ The network connection management module provides basic network management capab
 ## Modules to Import
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 ```
 
 
@@ -41,8 +41,8 @@ Obtains the global HTTP proxy configuration of the network. This API uses an asy
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getGlobalHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
   console.info(JSON.stringify(error));
@@ -77,8 +77,8 @@ Obtains the global HTTP proxy configuration of the network. This API uses a prom
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getGlobalHttpProxy().then((data: connection.HttpProxy) => {
   console.info(JSON.stringify(data));
@@ -120,8 +120,8 @@ Sets the global HTTP proxy configuration of the network. This API uses an asynch
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let exclusionStr = "192.168,baidu.com";
 let exclusionArray = exclusionStr.split(',');
@@ -177,8 +177,8 @@ Sets the global HTTP proxy configuration of the network. This API uses a promise
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let exclusionStr = "192.168,baidu.com";
 let exclusionArray = exclusionStr.split(',');
@@ -225,8 +225,8 @@ Enables the airplane mode. This API uses an asynchronous callback to return the 
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.enableAirplaneMode((error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -263,7 +263,7 @@ Enables the airplane mode. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.enableAirplaneMode().then((error: void) => {
   console.log(JSON.stringify(error));
@@ -301,8 +301,8 @@ Disables the airplane mode. This API uses an asynchronous callback to return the
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.disableAirplaneMode((error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -339,7 +339,7 @@ Disables the airplane mode. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.disableAirplaneMode().then((error: void) => {
   console.log(JSON.stringify(error));
@@ -377,8 +377,9 @@ Resets the network settings to factory defaults. This API uses a promise to retu
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.factoryReset().then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {

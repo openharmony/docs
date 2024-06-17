@@ -23,6 +23,8 @@ libdl: provides dynamic linker interfaces such as dlopen. Currently, OpenHarmony
 
 OpenHarmony 4.0 supports musl 1.2.3.
 
+OpenHarmony 5.0 supports musl 1.2.5.
+
 ## Supported Capabilities
 OpenHarmony provides header files and library interfaces that are compatible (not fully compatible) with C99, C11, and POSIX, and supports Armv7-A, Arm64, and x86_64 architectures.
 

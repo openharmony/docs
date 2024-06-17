@@ -18,7 +18,7 @@ import { process } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 | 名称             | 类型   | 可读 | 可写 | 说明             |
 | ---------------- | ------ | ---- | ---- | ---------------- |
@@ -29,14 +29,19 @@ import { process } from '@kit.ArkTS';
 
 ## EventListener
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+type EventListener = (evt: Object) => void
+
+用户存储的事件
+
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称                                                         | 说明             |
-| ------------------------------------------------------------ | ---------------- |
-| EventListener&nbsp;=&nbsp;(evt: &nbsp;Object)&nbsp;=&gt;&nbsp;void | 用户存储的事件。 |
+**参数：**
 
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| evt   | Object | 是 | 用户事件。|
 
 ## process.isIsolatedProcess<sup>8+</sup>
 
@@ -44,7 +49,7 @@ isIsolatedProcess(): boolean
 
 判断进程是否被隔离。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -67,7 +72,7 @@ is64Bit(): boolean
 
 判断运行环境是否64位。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -90,7 +95,7 @@ getStartRealtime(): number
 
 获取从系统启动到进程启动所经过的实时时间（以毫秒为单位）。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -112,7 +117,7 @@ getPastCpuTime(): number
 
 获取进程启动到当前时间的CPU时间（以毫秒为单位）。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -135,7 +140,7 @@ abort(): void
 
 该方法会导致进程立即退出并生成一个核心文件，谨慎使用。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -152,7 +157,7 @@ uptime(): number
 
 获取当前系统已运行的秒数。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -398,7 +403,7 @@ isAppUid(v: number): boolean
 
 判断uid是否属于当前应用程序。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -414,6 +419,14 @@ isAppUid(v: number): boolean
 | ------- | ------------------------------------------------------------ |
 | boolean | 返回判断结果，如果是应用程序的uid则返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```js
@@ -428,7 +441,7 @@ getUidForName(v: string): number
 
 根据指定的用户名，从系统的用户数据库中获取该用户uid。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -444,6 +457,14 @@ getUidForName(v: string): number
 | ------ | ------------- |
 | number | 返回用户uid。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```js
@@ -458,7 +479,7 @@ getThreadPriority(v: number): number
 
 根据指定的tid获取线程优先级。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -473,6 +494,14 @@ getThreadPriority(v: number): number
 | 类型   | 说明                                             |
 | ------ | ------------------------------------------------ |
 | number | 返回线程的优先级。优先级顺序取决于当前操作系统。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -489,7 +518,7 @@ getSystemConfig(name: number): number
 
 获取系统配置信息。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -504,6 +533,14 @@ getSystemConfig(name: number): number
 | 类型   | 说明               |
 | ------ | ------------------ |
 | number | 返回系统配置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -520,7 +557,7 @@ getEnvironmentVar(name: string): string
 
 获取环境变量对应的值。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -535,6 +572,14 @@ getEnvironmentVar(name: string): string
 | 类型   | 说明                     |
 | ------ | ------------------------ |
 | string | 返回环境变量名对应的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -552,7 +597,7 @@ exit(code: number): void
 
 请谨慎使用此接口，此接口调用后应用会退出，如果入参非0会产生数据丢失或者异常情况。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -561,6 +606,14 @@ exit(code: number): void
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | code   | number | 是   | 进程的退出码。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -576,7 +629,7 @@ kill(signal: number, pid: number): boolean
 
 发送signal到指定的进程，结束指定进程。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -592,6 +645,14 @@ kill(signal: number, pid: number): boolean
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 信号是否发送成功。如果信号发送成功则返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 

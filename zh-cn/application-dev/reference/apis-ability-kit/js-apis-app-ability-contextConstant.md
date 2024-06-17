@@ -11,14 +11,14 @@ ContextConstant提供Context相关的枚举，当前仅包含数据加密等级�
 ## 导入模块
 
 ```ts
-import contextConstant from '@ohos.app.ability.contextConstant';
+import { contextConstant } from '@kit.AbilityKit';
 ```
 
 ## ContextConstant.AreaMode
 
 数据加密等级。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -41,19 +41,16 @@ ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属
 | 名称  | 值 | 说明                                                                                                                   |
 |-----| -------- |----------------------------------------------------------------------------------------------------------------------|
 | NEW_PROCESS_ATTACH_TO_PARENT | 1 | 创建一个新进程，并在该进程上启动Ability。该进程会跟随父进程退出。<br>**约束：**<br>使用此模式时，要求目标Ability跟调用方是在同一个应用。                     |
-| NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM | 2 | 创建一个新进程，并在该进程上启动Ability。<br>**约束：**<br>使用此模式时，要求目标Ability跟调用方是在同一个应用，并且应用要在状态栏中有图标。                  |
+| NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM | 2 | 创建一个新进程，在该进程上启动Ability，并绑定该进程到状态栏图标上。<br>**约束：**<br>使用此模式时，要求目标Ability跟调用方是在同一个应用，并且应用要在状态栏中有图标。                  |
+| ATTACH_TO_STATUS_BAR_ITEM | 3 | 启动Ability，并绑定该Ability所在进程到状态栏图标上。<br>**约束：**<br>使用此模式时，要求目标Ability跟调用方是在同一个应用，并且应用要在状态栏中有图标。                  |
 
 **示例：**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import StartOptions from '@ohos.app.ability.StartOptions';
-  import contextConstant from '@ohos.app.ability.contextConstant';
-  import { BusinessError } from '@ohos.base';
+  import { UIAbility, Want, StartOptions, contextConstant } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   export default class EntryAbility extends UIAbility {
-
     onForeground() {
       let want: Want = {
         deviceId: '',

@@ -679,7 +679,7 @@ void OH_HiDebug_FreeThreadCpuUsage (HiDebug_ThreadCpuUsagePtr * threadCpuUsage)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| threadCpuUsage | 应用的所有线程可用CPU使用缓冲区指针，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。 |
+| threadCpuUsage | 应用的所有线程可用CPU使用缓冲区指针，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。 传入的参数是要由OH_HiDebug_GetAppThreadCpuUsage()得到的。 |
 
 
 ### OH_HiDebug_GetAppCpuUsage()
@@ -696,7 +696,7 @@ double OH_HiDebug_GetAppCpuUsage ()
 
 **返回：**
 
-返回进程的CPU使用率百分比。
+返回进程的CPU使用率百分比。如果返回结果为0，可能的原因是获取失败。
 
 
 ### OH_HiDebug_GetAppMemoryLimit()
@@ -715,7 +715,7 @@ void OH_HiDebug_GetAppMemoryLimit (HiDebug_MemoryLimit * memoryLimit)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| memoryLimit | 表示指向[HiDebug_MemoryLimit](_hi_debug___memory_limit.md)。 |
+| memoryLimit | 表示指向[HiDebug_MemoryLimit](_hi_debug___memory_limit.md)。经过该函数调用，如果结构体里的数据为空，说明调用失败。 |
 
 
 ### OH_HiDebug_GetAppNativeMemInfo()
@@ -734,7 +734,7 @@ void OH_HiDebug_GetAppNativeMemInfo (HiDebug_NativeMemInfo * nativeMemInfo)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| nativeMemInfo | 表示指向[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)。 |
+| nativeMemInfo | 表示指向[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)。经过该函数调用，如果结构体里的数据为空，说明调用失败。 |
 
 
 ### OH_HiDebug_GetAppThreadCpuUsage()
@@ -751,7 +751,7 @@ HiDebug_ThreadCpuUsagePtr OH_HiDebug_GetAppThreadCpuUsage ()
 
 **返回：**
 
-返回所有线程CPU使用情况，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。
+返回所有线程CPU使用情况，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。如果返回的结果是null，说明调用失败。
 
 
 ### OH_HiDebug_GetSystemCpuUsage()
@@ -768,8 +768,7 @@ double OH_HiDebug_GetSystemCpuUsage ()
 
 **返回：**
 
-返回系统CPU资源占用情况百分比。
-
+返回系统CPU资源占用情况百分比。如果返回结果为0，可能的原因是获取失败。
 
 ### OH_HiDebug_GetSystemMemInfo()
 
@@ -787,7 +786,7 @@ void OH_HiDebug_GetSystemMemInfo (HiDebug_SystemMemInfo * systemMemInfo)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| systemMemInfo | 表示指向[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)。 |
+| systemMemInfo | 表示指向[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)。经过该函数调用，如果结构体里的数据为空，说明调用失败。|
 
 
 ### OH_HiDebug_StartAppTraceCapture()
@@ -814,7 +813,7 @@ HiDebug_ErrorCode OH_HiDebug_StartAppTraceCapture (HiDebug_TraceFlag flag, uint6
 
 **返回：**
 
-如果成功返回HIDEBUG_SUCCESS，见[HiDebug_ErrorCode](#hidebug_errorcode)。
+0 - 成功。 401 - fileName参数为空指针或者传入的length参数过小或者limitSize参数小于等于0。 11400102 - 已经开启了一个trace。 11400103 - 没有权限去开启trace。 11400104 - 系统内部错误。
 
 
 ### OH_HiDebug_StopAppTraceCapture()
@@ -831,4 +830,4 @@ HiDebug_ErrorCode OH_HiDebug_StopAppTraceCapture ()
 
 **返回：**
 
-如果成功返回HIDEBUG_SUCCESS，见[HiDebug_ErrorCode](#hidebug_errorcode)。
+0 - 成功 11400104 - 没有trace正在采集或者系统内部的原因。

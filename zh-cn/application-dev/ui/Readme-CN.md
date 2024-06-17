@@ -27,7 +27,7 @@
       - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
       - [视频播放 (Video)](arkts-common-components-video-player.md)
       - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
-      - [自定义绘制 (XComponent)](arkts-common-components-xcomponent.md)
+      - [自定义渲染 (XComponent)](arkts-common-components-xcomponent.md)
       - [Native XComponent](napi-xcomponent-guidelines.md)
     - 添加气泡和菜单
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
@@ -52,7 +52,9 @@
       - [导航转场](arkts-navigation-transition.md)
       - [模态转场](arkts-modal-transition.md)
       - [共享元素转场](arkts-shared-element-transition.md)
+      - [旋转屏动画增强](arkts-rotation-transition-animation.md)    
       - [页面转场动画 (不推荐)](arkts-page-transition-animation.md)
+    - [粒子动画](arkts-particle-animation.md)
     - [组件动画](arkts-component-animation.md)
     - 动画曲线
       - [动画曲线概述](arkts-curve-overview.md)
@@ -66,6 +68,7 @@
   - 支持交互事件
     - [交互事件概述](arkts-event-overview.md)
     - 使用通用事件
+      - [事件分发](arkts-common-events-distribute.md)
       - [触屏事件](arkts-common-events-touch-screen-event.md)
       - [键鼠事件](arkts-common-events-device-input-event.md)
       - [焦点事件](arkts-common-events-focus-event.md)
@@ -75,6 +78,15 @@
       - [单一手势](arkts-gesture-events-single-gesture.md)
       - [组合手势](arkts-gesture-events-combined-gestures.md)
       - [多层级手势事件](arkts-gesture-events-multi-level-gesture.md)
+  - 使用自定义能力
+    - [自定义能力概述](arkts-user-defined.md)
+    - 自定义节点
+      - [自定义节点概述](arkts-user-defined-node.md)
+      - [自定义占位节点](arkts-user-defined-place-hoder.md)
+      - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
+      - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
+      - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+  - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
   - 主题设置
     - [设置主题换肤](theme_skinning.md)
 - UI开发 (兼容JS的类Web开发范式)

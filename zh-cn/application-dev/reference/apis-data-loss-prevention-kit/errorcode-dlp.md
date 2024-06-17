@@ -105,7 +105,7 @@ Credential service error.
 
 **错误信息**
 
-Credential server error.
+Credential authentication server error.
 
 **错误描述**
 
@@ -126,7 +126,7 @@ Credential server error.
 
 **错误信息**
 
-No permission to invoke this api, it is for DLP sandbox app.
+No permission to call this API, which is available only for DLP sandbox applications.
 
 **错误描述**
 
@@ -145,7 +145,7 @@ No permission to invoke this api, it is for DLP sandbox app.
 
 **错误信息**
 
-No permission to invoke this api, it is not for DLP sandbox app.
+No permission to call this API, which is available only for non-DLP sandbox applications.
 
 **错误描述**
 
@@ -164,7 +164,7 @@ No permission to invoke this api, it is not for DLP sandbox app.
 
 **错误信息**
 
-File is not DLP file.
+The file is not a DLP file.
 
 **错误描述**
 
@@ -183,7 +183,7 @@ File is not DLP file.
 
 **错误信息**
 
-Operate DLP file fail.
+Failed to operate the DLP file.
 
 **错误描述**
 
@@ -210,7 +210,7 @@ step2：请等待一段时间或重启后重试
 
 **错误信息**
 
-DLP file is read only.
+The DLP file is read only.
 
 **错误描述**
 
@@ -231,7 +231,7 @@ DLP文件只读。
 
 **错误信息**
 
-The system ability work abnormally.
+The system ability works abnormally.
 
 **错误描述**
 
@@ -277,7 +277,7 @@ Out of memory.
 
 **错误信息**
 
-User has no permission.
+The user does not have the permission.
 
 **错误描述**
 
@@ -292,7 +292,7 @@ User has no permission.
 
 **错误信息**
 
-Account not login.
+Account not logged in.
 
 **错误描述**
 
@@ -307,7 +307,7 @@ Account not login.
 
 **错误信息**
 
-System need to be upgraded.
+Upgrade required.
 
 **错误描述**
 
@@ -322,7 +322,7 @@ System need to be upgraded.
 
 **错误信息**
 
-Uri does not exist in want.
+uri missing in want.
 
 **错误描述**
 
@@ -337,7 +337,7 @@ want参数中没有uri。
 
 **错误信息**
 
-DisplayName does not exist in want (under parameters).
+displayName missing in want.
 
 **错误描述**
 

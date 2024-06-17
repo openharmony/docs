@@ -59,8 +59,8 @@
 
   
 ```ts
-import distributedKVStore from '@ohos.data.distributedKVStore';
-import { BusinessError } from '@ohos.base';
+import { distributedKVStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
 let kvStore: distributedKVStore.SingleKVStore;
@@ -109,15 +109,16 @@ try {
 
   
 ```ts
-import { BusinessError } from '@ohos.base';
-import relationalStore from '@ohos.data.relationalStore';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { relationalStore } from '@kit.ArkData';
 
 let store: relationalStore.RdbStore;
+let context = getContext(this);
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: 'RdbTest.db',
   securityLevel: relationalStore.SecurityLevel.S1
 };
-let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
+let promise = relationalStore.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
   store = rdbStore;
   console.info('Succeeded in getting RdbStore.')

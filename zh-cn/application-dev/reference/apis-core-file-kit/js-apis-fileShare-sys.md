@@ -42,7 +42,7 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, ca
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed |
 | 202 | The caller is not a system application |
-| 401 | The input parameter is invalid |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types |
 | 143000001 | IPC error |
 
 **示例：**
@@ -101,7 +101,7 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed |
 | 202 | The caller is not a system application |
-| 401 | The input parameter is invalid |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types |
 | 143000001 | IPC error |
 
 **示例：**
@@ -153,7 +153,7 @@ deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 | 错误码ID    | 错误信息       |
 |----------| --------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
-| 401      | Parameter error. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported. |
 | 13900001 | Operation not permitted.            |
 | 13900042 | Unknown error                          |

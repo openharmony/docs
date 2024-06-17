@@ -101,7 +101,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
    Call **processOfflineReleaseResponse** in the **MediaKeySession** class to process the response. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
 
    ```ts
-   async function processOfflineReleaseResponse(response: Uint8Array): void {
+   async function processOfflineReleaseResponse(response: Uint8Array): Promise<void> {
      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      let offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
@@ -120,7 +120,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
    Call **restoreOfflineMediaKeys** in the **MediaKeySession** class to restore the offline media keys. If the call fails, an error code is returned. For details about the error code types, see [DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode).
 
    ```ts
-   function restoreOfflineMediaKeys(mediakeyId: Uint8Array): Promise<void> {
+   function restoreOfflineMediaKeys(mediakeyId: Uint8Array): void {
      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      let response = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
@@ -256,7 +256,7 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
        ```
 
        ```ts
-       function unRegisterExpirationUpdated(mediaKeySession: drm.MediaKeysession): void {
+       function unRegisterExpirationUpdated(mediaKeySession: drm.MediaKeySession): void {
          mediaKeySession.off('expirationUpdate');
          return;
        }
@@ -266,8 +266,10 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
 
        ```ts
        function onRegisterKeyChanged(mediaKeySession: drm.MediaKeySession): void {
-         mediaKeySession.on('keysChange', (eventInfo: drm.EventInfo) => {
-           console.log('keysChange' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+         mediaKeySession.on('keysChange', (keyInfo : drm.KeysInfo[], newKeyAvailable:boolean) => {
+           for(let i = 0; i<keyInfo.length; i++){
+             console.log('keysChange' + 'info:' + keyInfo[i].keyId + ' extraInfo:' + keyInfo[i].value);
+           }
          });
          return;
        }

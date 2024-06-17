@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```js
-import {AVVolumePanel} from '@ohos.multimedia.avVolumePanel';
+import {AVVolumePanel} from '@kit.AudioKit';
 ```
 ## 属性
 
@@ -35,10 +35,10 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 装饰器类型 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-|volumeLevel | number | 否 | @Prop |  通过音量面板设置设备音量。该值应介于当前设备音量的最小值和最大值之间。如果该值大于当前设备音量的最大值，则视为设置设备最大音量值；如果该值小于当前设备音量的最小值，则视为设置设备最小音量值。|
-|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | 否 |  @Prop | 设置音量面板的自定义参数。 如果不传入该参数，则调用系统音量条。|
+| 名称 | 类型 | 必填 | 装饰器类型 | 描述                                                                                                                                                                                                    |
+| -------- | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|volumeLevel | number | 否 | @Prop | 通过音量面板设置设备音量。该值应介于当前设备音量的最小值和最大值之间。如果该值大于当前设备音量的最大值，则视为设置设备最大音量值；如果该值小于当前设备音量的最小值，则视为设置设备最小音量值。获取音量的最大值与最小值可参考[AudioVolumeGroupManager](../apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9)。 |
+|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | 否 |  @Prop | 设置音量面板的自定义参数。 如果不传入该参数，则调用系统音量条。                                                                                                                                                                      |
 
 ## AVVolumePanelParameter
 
@@ -55,7 +55,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 音量面板功能的示例说明参考如下。
 
 ```ts
-import {AVVolumePanel} from '@ohos.multimedia.avVolumePanel'
+import {AVVolumePanel} from '@kit.AudioKit';
 
 @Entry
 @Component

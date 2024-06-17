@@ -331,6 +331,18 @@
 
 **起始版本**：12
 
+### ohos.permission.PROTECT_SCREEN_LOCK_DATA
+
+允许应用在锁屏后保护本应用敏感数据不被访问。
+
+应用获取此权限后，系统将给用户新建一个高安全级别el5的目录。应用可以在此目录下存放数据，这部分数据在锁屏后无法被访问。没有调用接口。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：12
+
 ## user_grant（用户授权）权限列表
 
 以下权限的授权方式均为[user_grant（用户授权）](app-permission-mgmt-overview.md#user_grant用户授权)，申请方式请参考[声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) 。
@@ -425,7 +437,7 @@
 
 允许应用获取设备位置信息。
 
-**申请条件**：需要先申请模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)，才可申请此权限。
+**申请条件**：需要与模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)一起，才可申请此权限。
 
 **权限级别**：normal
 

@@ -1,6 +1,6 @@
 # AbilityStateData (系统接口)
 
-定义Ability状态信息，可以通过[registerApplicationStateObserver](js-apis-application-appManager-sys.md#appmanagerregisterapplicationstateobserver)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md)的onAbilityStateChanged生命周期回调获取。
+定义Ability状态信息，可以通过[on](js-apis-app-ability-appManager-sys.md#appmanageron11)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md)的onAbilityStateChanged生命周期回调获取。
 
 > **说明：**
 > 
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import appManager from '@ohos.application.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -25,10 +25,11 @@ import appManager from '@ohos.application.appManager';
 | bundleName              | string   | 是   | 否  | 应用Bundle名称。          |
 | abilityName            | string   | 是   | 否   | Ability名称。               |
 | uid                    | number   | 是   | 否   | 用户ID。                  |
-| state                   | number   | 是   | 否   | [Ability状态](../apis/#ability状态)。                |
+| state                   | number   | 是   | 否   | [Ability状态](#ability状态)。                |
 | moduleName<sup>9+</sup> | string   | 是   | 否   | Ability所属的HAP的名称。    |
-| abilityType | number | 是   | 否   | [Ability类型](../apis/#ability类型)：页面或服务等。 |
+| abilityType | number | 是   | 否   | [Ability类型](#ability类型)：页面或服务等。 |
 | isAtomicService<sup>12+</sup>| boolean   | 是  | 否  | 判断Ability所属的应用是否是原子化服务。<br>true:Ability所属的应用是原子化服务。<br>false:Ability所属的应用不是原子化服务。     |
+| appCloneIndex          | number   | 是   | 否   | 分身应用索引。                  |
 
 #### Ability状态
 

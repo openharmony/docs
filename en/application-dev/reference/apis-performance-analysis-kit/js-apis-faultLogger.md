@@ -61,6 +61,8 @@ For details about the error codes, see [FaultLogger Error Codes](errorcode-fault
 
 | ID| Error Message|
 | --- | --- |
+| 401 | The parameter check failed, Parameter type error |
+| 801 | The specified SystemCapability name was not found |
 | 10600001 | The service is not started or is faulty |
 
 **Example**
@@ -121,6 +123,8 @@ For details about the error codes, see [FaultLogger Error Codes](errorcode-fault
 
 | ID| Error Message|
 | --- | --- |
+| 401 | The parameter check failed, Parameter type error |
+| 801 | The specified SystemCapability name was not found |
 | 10600001 | The service is not started or is faulty |
 
 **Example**

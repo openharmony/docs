@@ -10,12 +10,12 @@
 
 1. 导入模块。
    ```ts
-   import I18n from '@ohos.i18n';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. 创建对象。
    ```ts
-   let indexUtil = I18n.getInstance(locale?:string);  // locale 表示本地化标识符，默认值是系统当前locale
+   let indexUtil = i18n.getInstance(locale?:string);  // locale 表示本地化标识符，默认值是系统当前locale
    ```
 
 3. 以获取索引列表为例。
@@ -27,10 +27,9 @@
 
 ```ts
 // 导入模块
-import I18n from '@ohos.i18n';
-import Intl from '@ohos.intl';
+import { i18n } from '@kit.LocalizationKit';
 // 创建索引
-let indexUtil = I18n.getInstance("zh-CN");
+let indexUtil = i18n.getInstance("zh-CN");
 let indexList = indexUtil.getIndexList(); // ["...", "A", "B", "C", "D", "E" ... "X", "Y", "Z", "..."]
 // 多语言index混排
 indexUtil.addLocale("ru-RU");

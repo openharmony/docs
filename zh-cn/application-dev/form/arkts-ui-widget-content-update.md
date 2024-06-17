@@ -6,28 +6,38 @@
 ```ts
 import { formHost } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-@Entry()
+let storage = new LocalStorage();
+const TAG: string = 'Index';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+@Entry(storage)
 @Component
-struct WidgetCard {
-  formId: string = 'formId'; // 卡片ID
+struct Index {
+  @StorageLink('formId') formId: number = 0;
 
   build() {
-    Button(`刷新卡片`)
-      .type(ButtonType.Capsule)
-      .width('50%')
-      .height(50)
-      .onClick(() => {
-        console.info('FormAbility update form click');
-        // formId需要为实际需要刷新的卡片ID
-        formHost.requestForm(this.formId.toString()).then(() => {
-          console.info('Succeeded in requestForming.');
-        }).catch((error: BusinessError) => {
-          console.error('requestForm fail, error: ' + JSON.stringify(error));
+    Column() {
+      Column() {
+        //...
+        Button() {
+          //...
+        }
+        .onClick(() => {
+          hilog.info(DOMAIN_NUMBER, TAG, `FormAbility update form click, formId: ${this.formId}`);
+          // formId需要为实际需要刷新的卡片ID
+          formHost.requestForm(this.formId.toString()).then(() => {
+            hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in requestForming.');
+          }).catch((error: BusinessError) => {
+            hilog.error(DOMAIN_NUMBER, TAG, `requestForm fail, error: ${JSON.stringify(error)}`);
+          })
         })
-      })
-
-    ...
+        .margin(5)
+      }
+      //...
+    }
+    //...
   }
 }
 ```

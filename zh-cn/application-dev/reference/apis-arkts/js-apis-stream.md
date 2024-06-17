@@ -22,15 +22,15 @@ import { stream  } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称    | 类型      | 只读 | 必填  | 说明        |
+| 名称    | 类型      | 只读 | 可选  | 说明        |
 | ------- | -------- | ------ | ------ | ----------- |
-| writableObjectMode  | boolean   | 是   | 是 | 指定可写流是否以对象模式工作。true表示流被配置为对象模式，false表示流处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。 |
-| writableHighWatermark | number | 是 | 是  | 定义缓冲区可以存放的最大数据量。默认为16 * 1024，单位为字节。|
-| writable | boolean | 是 | 是  | 表示可写流是否处于可写状态。true表示流当前是可写的，false表示流当前不再接受写入操作。|
-| writableLength | number | 是 | 是  | 表示可读流缓冲区中待写入的字节数。|
-| writableCorked | number | 是  | 是 | 表示需要调用uncork()方法的次数，以完全解除可写流的封住状态。|
-| writableEnded | boolean | 是  | 是 | 表示当前可写流的[end()](#end)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end)已被调用，false表示[end()](#end)未被调用。 |
-| writableFinished | boolean | 是  | 是 | 表示当前可写流是否处于写入完成状态。true表示当前流处于写入完成状态，false表示当前流写入操作可能还在进行中。 |
+| writableObjectMode  | boolean   | 是   | 否 | 指定可写流是否以对象模式工作。true表示流被配置为对象模式，false表示流处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。 |
+| writableHighWatermark | number | 是 | 否  | 定义缓冲区可以存放的最大数据量。默认为16 * 1024，单位为字节。|
+| writable | boolean | 是 | 否  | 表示可写流是否处于可写状态。true表示流当前是可写的，false表示流当前不再接受写入操作。|
+| writableLength | number | 是 | 否  | 表示可读流缓冲区中待写入的字节数。|
+| writableCorked | number | 是  | 否 | 表示需要调用uncork()方法的次数，以完全解除可写流的封住状态。|
+| writableEnded | boolean | 是  | 否 | 表示当前可写流的[end()](#end)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end)已被调用，false表示[end()](#end)未被调用。 |
+| writableFinished | boolean | 是  | 否 | 表示当前可写流是否处于写入完成状态。true表示当前流处于写入完成状态，false表示当前流写入操作可能还在进行中。 |
 
 ### constructor
 
@@ -493,6 +493,16 @@ writableStream.uncork();
 writableStream.end();
 ```
 
+## ReadableOptions
+
+Readable构造函数的选项信息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 类型 | 必填 | 说明 |
+| ---- | -------- | ---- | -------------- |
+| encoding | string  | 否 | 指定数据的编码格式，如果传入非法字符串，将会在Readable构造函数中抛出异常。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。|
+
 ## Readable
 
 表示可读取数据的流。可读流用于从数据源（如文件、网络套接字等）读取数据。
@@ -501,15 +511,15 @@ writableStream.end();
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称    | 类型      | 只读| 必填  | 说明        |
+| 名称    | 类型      | 只读| 可选  | 说明        |
 | ------- | -------- | ------ | ------ | ----------- |
-| readableObjectMode  | boolean   | 是   | 是 | 用于指定可读流是否以对象模式工作。true表示流被配置为对象模式，false表示流处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。|
-| readable | boolean | 是 | 是  | 表示可读流是否处于可读状态。true表示流处于可读状态，false表示流中没有更多数据可供读取。 |
-| readableHighWatermark | number | 是 | 是  | 定义缓冲区可以存放的最大数据量。默认值为16 * 1024，单位为字节。|
-| readableFlowing | boolean | 是 | 是  | 表示当前可读流的状态。true表示流处于流动模式，false表示流处于非流动模式。|
-| readableLength | number | 是 | 是  | 表示缓冲区的当前字节数。|
-| readableEncoding | string \| null | 是 | 是  | 被解码成字符串时所使用的字符编码。当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
-| readableEnded | boolean | 是  | 是 | 表示当前可读流是否已经结束。true表示流已经没有更多数据可读，并且已经结束，false表示流尚未结束，依然有数据可读或等待读取。 |
+| readableObjectMode  | boolean   | 是   | 否 | 用于指定可读流是否以对象模式工作。true表示流被配置为对象模式，false表示流处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。|
+| readable | boolean | 是 | 否  | 表示可读流是否处于可读状态。true表示流处于可读状态，false表示流中没有更多数据可供读取。 |
+| readableHighWatermark | number | 是 | 否  | 定义缓冲区可以存放的最大数据量。默认值为16 * 1024，单位为字节。|
+| readableFlowing | boolean \| null | 是 | 否  | 表示当前可读流的状态。true表示流处于流动模式，false表示流处于非流动模式。|
+| readableLength | number | 是 | 否  | 表示缓冲区的当前字节数。|
+| readableEncoding | string \| null | 是 | 否  | 被解码成字符串时所使用的字符编码。当前版本支持'utf8'、'gb18030'、'gbk'以及'gb2312'。|
+| readableEnded | boolean | 是  | 否 | 表示当前可读流是否已经结束。true表示流已经没有更多数据可读，并且已经结束，false表示流尚未结束，依然有数据可读或等待读取。 |
 
 ### constructor
 
@@ -523,6 +533,29 @@ Readable的构造函数。
 
 ```ts
 let readableStream = new stream.Readable();
+```
+
+### constructor
+
+constructor(options: ReadableOptions)
+
+Readable的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明 |
+| ------ | -------- | -------- | -------- |
+| options   | [ReadableOptions](#readableoptions)   | 是 | Readable构造函数的选项信息。|
+
+**示例：**
+
+```ts
+let option : stream.ReadableOptions = {
+  encoding : 'utf-8'
+};
+let readableStream = new stream.Readable(option);
 ```
 
 ### read
@@ -1058,15 +1091,15 @@ Duplex类继承[Readable](#readable)，支持Readable中所有的方法。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称    | 类型      | 只读 | 必填  | 说明        |
+| 名称    | 类型      | 只读 | 可选  | 说明        |
 | ------- | -------- | ------ | ------ | ----------- |
-| writableObjectMode  | boolean   | 是   | 是 | 用于指定双工流的写模式是否以对象模式工作。true表示流的写模式被配置为对象模式，false表示流的写模式处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。 |
-| writableHighWatermark | number | 是 | 是  | 定义双工流的写模式下缓冲区可以存放的最大数据量。默认值为16 * 1024，单位为字节。|
-| writable | boolean | 是 | 是  | 表示双工流是否处于可写状态。true表示当前流是可写的，false表示流当前不再接受写入操作。|
-| writableLength | number | 是 | 是  | 表示双工流缓冲区中待写入的字节数。|
-| writableCorked | number | 是  | 是 | 表示需要调用uncork()方法的次数，以完全解除双工流的封住状态。|
-| writableEnded | boolean | 是  | 是 | 表示当前双工流的[end()](#end)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end)已被调用，false表示[end()](#end)未被调用。|
-| writableFinished | boolean | 是  | 是 | 表示当前双工流是否处于写入完成状态。true表示当前流处于写入完成状态，false表示当前流写入操作可能还在进行中。|
+| writableObjectMode  | boolean   | 是   | 否 | 用于指定双工流的写模式是否以对象模式工作。true表示流的写模式被配置为对象模式，false表示流的写模式处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。 |
+| writableHighWatermark | number | 是 | 否  | 定义双工流的写模式下缓冲区可以存放的最大数据量。默认值为16 * 1024，单位为字节。|
+| writable | boolean | 是 | 否  | 表示双工流是否处于可写状态。true表示当前流是可写的，false表示流当前不再接受写入操作。|
+| writableLength | number | 是 | 否  | 表示双工流缓冲区中待写入的字节数。|
+| writableCorked | number | 是  | 否 | 表示需要调用uncork()方法的次数，以完全解除双工流的封住状态。|
+| writableEnded | boolean | 是  | 否 | 表示当前双工流的[end()](#end)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end)已被调用，false表示[end()](#end)未被调用。|
+| writableFinished | boolean | 是  | 否 | 表示当前双工流是否处于写入完成状态。true表示当前流处于写入完成状态，false表示当前流写入操作可能还在进行中。|
 
 ### constructor
 
