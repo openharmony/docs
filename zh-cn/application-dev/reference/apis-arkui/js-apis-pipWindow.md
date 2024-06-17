@@ -11,10 +11,10 @@
 ## 导入模块
 
 ```ts
-import pipWindow from '@ohos.PiPWindow';
+import { PiPWindow } from '@kit.ArkUI';
 ```
 
-## pipWindow.isPiPEnabled
+## PiPWindow.isPiPEnabled
 
 isPiPEnabled(): boolean
 
@@ -31,11 +31,11 @@ isPiPEnabled(): boolean
 **示例：**
 
 ```ts
-let enable: boolean = pipWindow.isPiPEnabled();
+let enable: boolean = PiPWindow.isPiPEnabled();
 console.info('isPipEnabled:' + enable);
 ```
 
-## pipWindow.create
+## PiPWindow.create
 
 create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 
@@ -67,24 +67,24 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-let pipController: pipWindow.PiPController | undefined = undefined;
+import { BusinessError } from '@kit.BasicServicesKit';
+let pipController: PiPWindow.PiPController | undefined = undefined;
 let mXComponentController: XComponentController = new XComponentController(); // 开发者应使用该mXComponentController初始化XComponent: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} )，保证XComponent的内容可以被迁移到画中画窗口。
 let navId: string = "page_1"; // 假设当前页面的导航id为page_1，详见PiPConfiguration定义，具体导航名称由开发者自行定义。
 let contentWidth: number = 800; // 假设当前内容宽度800px。
 let contentHeight: number = 600; // 假设当前内容高度600px。
-let config: pipWindow.PiPConfiguration = {
+let config: PiPWindow.PiPConfiguration = {
   context: getContext(this),
   componentController: mXComponentController,
   navigationId: navId,
-  templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
+  templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: contentWidth,
   contentHeight: contentHeight,
-  controlGroups: [pipWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
+  controlGroups: [PiPWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
 };
 
-let promise : Promise<pipWindow.PiPController> = pipWindow.create(config);
-promise.then((data : pipWindow.PiPController) => {
+let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(config);
+promise.then((data : PiPWindow.PiPController) => {
   pipController = data;
   console.info(`Succeeded in creating pip controller. Data:${data}`);
 }).catch((err: BusinessError) => {
@@ -282,7 +282,7 @@ type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: numb
 
 画中画控制器实例。用于启动、停止画中画以及更新回调注册等。
 
-下列API示例中都需先使用[pipWindow.create()](#pipwindowcreate)方法获取到PiPController实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[PiPWindow.create()](#pipwindowcreate)方法获取到PiPController实例，再通过此实例调用对应方法。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -421,25 +421,25 @@ on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): vo
 | callback   | function  | 是    | 回调生命周期状态变化事件以及原因：<br/>state：[PiPState](#pipstate)，表示当前画中画生命周期状态；<br/>reason：string，表示当前生命周期的切换原因。 |
 
 ```ts
-pipController.on('stateChange', (state: pipWindow.PiPState, reason: string) => {
+pipController.on('stateChange', (state: PiPWindow.PiPState, reason: string) => {
   let curState: string = '';
   switch (state) {
-    case pipWindow.PiPState.ABOUT_TO_START:
+    case PiPWindow.PiPState.ABOUT_TO_START:
       curState = 'ABOUT_TO_START';
       break;
-    case pipWindow.PiPState.STARTED:
+    case PiPWindow.PiPState.STARTED:
       curState = 'STARTED';
       break;
-    case pipWindow.PiPState.ABOUT_TO_STOP:
+    case PiPWindow.PiPState.ABOUT_TO_STOP:
       curState = 'ABOUT_TO_STOP';
       break;
-    case pipWindow.PiPState.STOPPED:
+    case PiPWindow.PiPState.STOPPED:
       curState = 'STOPPED';
       break;
-    case pipWindow.PiPState.ABOUT_TO_RESTORE:
+    case PiPWindow.PiPState.ABOUT_TO_RESTORE:
       curState = 'ABOUT_TO_RESTORE';
       break;
-    case pipWindow.PiPState.ERROR:
+    case PiPWindow.PiPState.ERROR:
       curState = 'ERROR';
       break;
     default:
@@ -485,7 +485,7 @@ on(type: 'controlPanelActionEvent', callback: ControlPanelActionEventCallback): 
 | callback | [ControlPanelActionEventCallback](#controlpanelactioneventcallback12)  | 是     | 描述画中画控制面板动作事件回调。 |
 
 ```ts
-pipController.on('controlPanelActionEvent', (event: pipWindow.PiPActionEventType, status?: number) => {
+pipController.on('controlPanelActionEvent', (event: PiPWindow.PiPActionEventType, status?: number) => {
   switch (event) {
     case 'playbackStateChanged':
       if (status === 0) {
