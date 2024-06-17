@@ -36,93 +36,98 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 加载在线网页。
 
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
     }
   }
-}
-```
+  ```
 
 隐私模式Webview加载在线网页。
 
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+   ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
+      }
     }
   }
-}
-```
+  ```
 
 Web组件统一渲染模式。
 
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+   ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
+      }
     }
   }
-}
-```
+  ```
 
 加载本地网页。
 
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      // 通过$rawfile加载本地资源文件。
-      Web({ src: $rawfile("index.html"), controller: this.controller })
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        // 通过$rawfile加载本地资源文件。
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+      }
     }
   }
-}
-```
+  ```
 
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      // 通过resource协议加载本地资源文件。
-      Web({ src: "resource://rawfile/index.html", controller: this.controller })
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        // 通过resource协议加载本地资源文件。
+        Web({ src: "resource://rawfile/index.html", controller: this.controller })
+      }
     }
   }
-}
-```
+  ```
 
 加载沙箱路径下的本地资源文件。
 
@@ -154,15 +159,16 @@ struct WebComponent {
 
    ```ts
    // xxx.ets
-   import web_webview from '@ohos.web.webview'
-   import { GlobalContext } from '../GlobalContext'
+   import { webview } from '@kit.ArkWeb';
+   import { GlobalContext } from '../GlobalContext';
 
-   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
+   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html';
 
    @Entry
    @Component
    struct WebComponent {
-     controller: web_webview.WebviewController = new web_webview.WebviewController()
+     controller: webview.WebviewController = new webview.WebviewController();
+
      build() {
        Column() {
          // 加载沙箱路径文件。
@@ -178,18 +184,16 @@ struct WebComponent {
 
    ```ts
    // xxx.ets
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import Want from '@ohos.app.ability.Want';
-   import web_webview from '@ohos.web.webview';
-   import { GlobalContext } from '../GlobalContext'
+   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+   import { webview } from '@kit.ArkWeb';
+   import { GlobalContext } from '../GlobalContext';
 
    export default class EntryAbility extends UIAbility {
-       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-           // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
-           GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
-           console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
-       }
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+       // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
+       GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+       console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"));
+     }
    }
    ```
 
@@ -227,12 +231,13 @@ domStorageAccess(domStorageAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -258,12 +263,13 @@ fileAccess(fileAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -288,12 +294,13 @@ imageAccess(imageAccess: boolean)
 **示例：**
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -319,32 +326,32 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   class TestObj {
     constructor() {
     }
 
     test(data1: string, data2: string, data3: string): string {
-      console.log("data1:" + data1)
-      console.log("data2:" + data2)
-      console.log("data3:" + data3)
-      return "AceString"
+      console.log("data1:" + data1);
+      console.log("data2:" + data2);
+      console.log("data3:" + data3);
+      return "AceString";
     }
 
     asyncTest(data: string): void {
-      console.log("async data:" + data)
+      console.log("async data:" + data);
     }
 
     toString(): void {
-      console.log('toString' + "interface instead.")
+      console.log('toString' + "interface instead.");
     }
   }
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     testObj = new TestObj();
     build() {
       Column() {
@@ -378,12 +385,12 @@ javaScriptAccess(javaScriptAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -413,12 +420,13 @@ overScrollMode(mode: OverScrollMode)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: OverScrollMode = OverScrollMode.ALWAYS
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: OverScrollMode = OverScrollMode.ALWAYS;
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -444,13 +452,13 @@ mixedMode(mixedMode: MixedMode)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: MixedMode = MixedMode.All
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: MixedMode = MixedMode.All;
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -476,12 +484,13 @@ onlineImageAccess(onlineImageAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -507,12 +516,13 @@ zoomAccess(zoomAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -538,12 +548,13 @@ overviewModeAccess(overviewModeAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -569,12 +580,13 @@ databaseAccess(databaseAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -600,12 +612,13 @@ geolocationAccess(geolocationAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -631,13 +644,14 @@ mediaPlayGestureAccess(access: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State access: boolean = true
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State access: boolean = true;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -664,12 +678,13 @@ multiWindowAccess(multiWindow: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -699,28 +714,29 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State isShow: boolean = false
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State isShow: boolean = false;
+
     build() {
       Column() {
         //通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
         Button('refresh')
-        .onClick(() => {
-          this.isShow = true;
-          try {
-            this.controller.refresh();
-          } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
+          .onClick(() => {
+            this.isShow = true;
+            try {
+              this.controller.refresh();
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .horizontalScrollBarAccess(this.isShow)
+          .horizontalScrollBarAccess(this.isShow)
       }
     }
   }
@@ -770,13 +786,15 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State isShow: boolean = false
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State isShow: boolean = false;
+
     build() {
       Column() {
         //通过@State变量改变纵向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
@@ -786,8 +804,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
           try {
             this.controller.refresh();
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
         Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -846,13 +863,14 @@ cacheMode(cacheMode: CacheMode)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: CacheMode = CacheMode.None
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: CacheMode = CacheMode.None;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -877,12 +895,13 @@ copyOptions(value: CopyOptions)
 **示例：**
 
   ```ts
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
@@ -940,13 +959,14 @@ textZoomRatio(textZoomRatio: number)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State atio: number = 150
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State atio: number = 150;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -972,13 +992,14 @@ initialScale(percent: number)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State percent: number = 100
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State percent: number = 100;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1008,13 +1029,14 @@ userAgent(userAgent: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36'
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1040,12 +1062,14 @@ blockNetwork(block: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State block: boolean = true
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State block: boolean = true;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1071,12 +1095,14 @@ defaultFixedFontSize(size: number)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State fontSize: number = 16
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State fontSize: number = 16;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1102,12 +1128,14 @@ defaultFontSize(size: number)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State fontSize: number = 13
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State fontSize: number = 13;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1133,12 +1161,14 @@ minFontSize(size: number)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State fontSize: number = 13
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State fontSize: number = 13;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1164,12 +1194,14 @@ minLogicalFontSize(size: number)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State fontSize: number = 13
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State fontSize: number = 13;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1195,12 +1227,14 @@ webFixedFont(family: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "monospace"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "monospace";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1226,12 +1260,14 @@ webSansSerifFont(family: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "sans-serif"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "sans-serif";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1257,12 +1293,14 @@ webSerifFont(family: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "serif"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "serif";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1288,12 +1326,14 @@ webStandardFont(family: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "sans-serif"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "sans-serif";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1319,12 +1359,13 @@ webFantasyFont(family: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "fantasy"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "fantasy";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1350,12 +1391,14 @@ webCursiveFont(family: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "cursive"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "cursive";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1381,12 +1424,14 @@ darkMode(mode: WebDarkMode)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: WebDarkMode = WebDarkMode.On
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: WebDarkMode = WebDarkMode.On;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1412,13 +1457,15 @@ forceDarkAccess(access: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: WebDarkMode = WebDarkMode.On
-    @State access: boolean = true
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: WebDarkMode = WebDarkMode.On;
+    @State access: boolean = true;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1465,11 +1512,13 @@ pinchSmooth(isEnabled: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+    
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1508,32 +1557,35 @@ allowWindowOpenMethod(flag: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
-  controller?: CustomDialogController
-  webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
+    controller?: CustomDialogController;
+    webviewController1: webview.WebviewController = new webview.WebviewController();
+
+    build() {
       Column() {
         Web({ src: "", controller: this.webviewController1 })
           .javaScriptAccess(true)
           .multiWindowAccess(false)
-          .onWindowExit(()=> {
-            console.info("NewWebViewComp onWindowExit")
+          .onWindowExit(() => {
+            console.info("NewWebViewComp onWindowExit");
             if (this.controller) {
-              this.controller.close()
+              this.controller.close();
             }
           })
-        }
+      }
     }
   }
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    dialogController: CustomDialogController | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    dialogController: CustomDialogController | null = null;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1543,17 +1595,17 @@ allowWindowOpenMethod(flag: boolean)
           .allowWindowOpenMethod(true)
           .onWindowNew((event) => {
             if (this.dialogController) {
-              this.dialogController.close()
+              this.dialogController.close();
             }
-            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({webviewController1: popController})
+              builder: NewWebViewComp({ webviewController1: popController });
             })
-            this.dialogController.open()
+            this.dialogController.open();
             //将新窗口对应WebviewController返回给Web内核。
             //如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
             //若不调用event.handler.setWebController接口，会造成render进程阻塞。
-            event.handler.setWebController(popController)
+            event.handler.setWebController(popController);
           })
       }
     }
@@ -1583,12 +1635,14 @@ mediaOptions(options: WebMediaOptions)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State options: WebMediaOptions = {resumeInterval: 10, audioExclusive: true}
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State options: WebMediaOptions = {resumeInterval: 10, audioExclusive: true};
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1617,32 +1671,33 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 **ets示例：**
 
   ```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct Index {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    private localStorage: string =
-        "if (typeof(Storage) !== 'undefined') {" +
-        "   localStorage.setItem('color', 'Red');" +
-        "}";
-    @State scripts: Array<ScriptItem> = [
-        { script: this.localStorage, scriptRules: ["*"] }
-    ];
-    build() {
-        Column({ space: 20 }) {
-            Web({ src: $rawfile('index.html'), controller: this.controller })
-                .javaScriptAccess(true)
-                .domStorageAccess(true)
-                .backgroundColor(Color.Grey)
-                .javaScriptOnDocumentStart(this.scripts)
-                .width('100%')
-                .height('100%')
-        }
-    }
-}
+  @Entry
+  @Component
+  struct Index {
+      controller: webview.WebviewController = new webview.WebviewController();
+      private localStorage: string =
+          "if (typeof(Storage) !== 'undefined') {" +
+          "   localStorage.setItem('color', 'Red');" +
+          "}";
+      @State scripts: Array<ScriptItem> = [
+          { script: this.localStorage, scriptRules: ["*"] }
+      ];
+
+      build() {
+          Column({ space: 20 }) {
+              Web({ src: $rawfile('index.html'), controller: this.controller })
+                  .javaScriptAccess(true)
+                  .domStorageAccess(true)
+                  .backgroundColor(Color.Grey)
+                  .javaScriptOnDocumentStart(this.scripts)
+                  .width('100%')
+                  .height('100%')
+          }
+      }
+  }
   ```
 **HTML示例：**
 
@@ -1689,12 +1744,12 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
   ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct Index {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
   private jsStr: string =
     "window.document.getElementById(\"result\").innerHTML = 'this is msg from javaScriptOnDocumentEnd'";
   @State scripts: Array<ScriptItem> = [
@@ -1736,11 +1791,13 @@ layoutMode(mode: WebLayoutMode)
 
 > **说明：**
 >
-> - 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
-> - 选择WebLayoutMode.FIT_CONTENT时，如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
-> - Web组件创建后不支持动态切换layoutMode模式，且WebLayoutMode.FIT_CONTENT支持规格不超过50万px(屏幕像素点) 物理像素。
-> - 全量展开模式下，频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
-> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。全量展开场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
+> 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web基于页面大小的自适应网页布局（WebLayoutMode.FIT_CONTENT），默认为Web基于页面大小的自适应网页布局模式。
+>
+> Web基于页面大小的自适应网页布局有如下限制：
+> - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
+> - Web组件创建后不支持动态切换layoutMode模式，且支持规格不超过50万px(屏幕像素点) 物理像素。
+> - 频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
+> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
@@ -1752,12 +1809,14 @@ layoutMode(mode: WebLayoutMode)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1792,11 +1851,12 @@ nestedScroll(value: NestedScrollOptions)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1824,11 +1884,12 @@ enableNativeEmbedMode(mode: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1853,11 +1914,13 @@ registerNativeEmbedRule(tag: string, type: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1882,26 +1945,25 @@ defaultTextEncodingFormat(textEncodingFormat: string)
   **示例：**
 
   ```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
 
-  build() {
-    Column() {
-      Web({ src: $rawfile('index.html'), controller: this.controller })
-        // 设置高和内边距
-        .height(500)
-        .padding(20)
-        .defaultTextEncodingFormat("UTF-8")
-        .javaScriptAccess(true)
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          // 设置高和内边距
+          .height(500)
+          .padding(20)
+          .defaultTextEncodingFormat("UTF-8")
+          .javaScriptAccess(true)
+      }
     }
   }
-}
   ```
 
 ```html
@@ -1940,12 +2002,13 @@ metaViewport(enable: boolean)
 
   ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -1982,11 +2045,13 @@ textAutosizing(textAutosizing: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2013,11 +2078,13 @@ enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2045,12 +2112,12 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
       {content: 'Apple', startIcon: $r('app.media.icon'), action: (selectedText) => {
         console.info('select info ' + selectedText.toString());
@@ -2059,6 +2126,7 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
         console.info('select info ' + selectedText.toString());
       }}
     ];
+    
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -2102,40 +2170,41 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onAlert((event) => {
             if (event) {
-              console.log("event.url:" + event.url)
-              console.log("event.message:" + event.message)
+              console.log("event.url:" + event.url);
+              console.log("event.message:" + event.message);
               AlertDialog.show({
                 title: 'onAlert',
                 message: 'text',
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.result.handleCancel()
+                    event.result.handleCancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    event.result.handleConfirm()
+                    event.result.handleConfirm();
                   }
                 },
                 cancel: () => {
-                  event.result.handleCancel()
+                  event.result.handleCancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -2178,41 +2247,41 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onBeforeUnload((event) => {
             if (event) {
-              console.log("event.url:" + event.url)
-              console.log("event.message:" + event.message)
+              console.log("event.url:" + event.url);
+              console.log("event.message:" + event.message);
               AlertDialog.show({
                 title: 'onBeforeUnload',
                 message: 'text',
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.result.handleCancel()
+                    event.result.handleCancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    event.result.handleConfirm()
+                    event.result.handleConfirm();
                   }
                 },
                 cancel: () => {
-                  event.result.handleCancel()
+                  event.result.handleCancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -2255,41 +2324,41 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onConfirm((event) => {
             if (event) {
-              console.log("event.url:" + event.url)
-              console.log("event.message:" + event.message)
+              console.log("event.url:" + event.url);
+              console.log("event.message:" + event.message);
               AlertDialog.show({
                 title: 'onConfirm',
                 message: 'text',
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.result.handleCancel()
+                    event.result.handleCancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    event.result.handleConfirm()
+                    event.result.handleConfirm();
                   }
                 },
                 cancel: () => {
-                  event.result.handleCancel()
+                  event.result.handleCancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -2341,42 +2410,42 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onPrompt((event) => {
             if (event) {
-              console.log("url:" + event.url)
-              console.log("message:" + event.message)
-              console.log("value:" + event.value)
+              console.log("url:" + event.url);
+              console.log("message:" + event.message);
+              console.log("value:" + event.value);
               AlertDialog.show({
                 title: 'onPrompt',
                 message: 'text',
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.result.handleCancel()
+                    event.result.handleCancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    event.result.handlePromptConfirm(event.value)
+                    event.result.handlePromptConfirm(event.value);
                   }
                 },
                 cancel: () => {
-                  event.result.handleCancel()
+                  event.result.handleCancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -2424,12 +2493,12 @@ onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -2483,12 +2552,12 @@ onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -2523,29 +2592,29 @@ onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onErrorReceive((event) => {
             if (event) {
-              console.log('getErrorInfo:' + event.error.getErrorInfo())
-              console.log('getErrorCode:' + event.error.getErrorCode())
-              console.log('url:' + event.request.getRequestUrl())
-              console.log('isMainFrame:' + event.request.isMainFrame())
-              console.log('isRedirect:' + event.request.isRedirect())
-              console.log('isRequestGesture:' + event.request.isRequestGesture())
-              console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString())
-              let result = event.request.getRequestHeader()
-              console.log('The request header result size is ' + result.length)
+              console.log('getErrorInfo:' + event.error.getErrorInfo());
+              console.log('getErrorCode:' + event.error.getErrorCode());
+              console.log('url:' + event.request.getRequestUrl());
+              console.log('isMainFrame:' + event.request.isMainFrame());
+              console.log('isRedirect:' + event.request.isRedirect());
+              console.log('isRequestGesture:' + event.request.isRequestGesture());
+              console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString());
+              let result = event.request.getRequestHeader();
+              console.log('The request header result size is ' + result.length);
               for (let i of result) {
-                console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue)
+                console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue);
               }
             }
           })
@@ -2570,36 +2639,36 @@ onHttpErrorReceive(callback: Callback\<OnHttpErrorReceiveEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onHttpErrorReceive((event) => {
             if (event) {
-              console.log('url:' + event.request.getRequestUrl())
-              console.log('isMainFrame:' + event.request.isMainFrame())
-              console.log('isRedirect:' + event.request.isRedirect())
-              console.log('isRequestGesture:' + event.request.isRequestGesture())
-              console.log('getResponseData:' + event.response.getResponseData())
-              console.log('getResponseEncoding:' + event.response.getResponseEncoding())
-              console.log('getResponseMimeType:' + event.response.getResponseMimeType())
-              console.log('getResponseCode:' + event.response.getResponseCode())
-              console.log('getReasonMessage:' + event.response.getReasonMessage())
-              let result = event.request.getRequestHeader()
-              console.log('The request header result size is ' + result.length)
+              console.log('url:' + event.request.getRequestUrl());
+              console.log('isMainFrame:' + event.request.isMainFrame());
+              console.log('isRedirect:' + event.request.isRedirect());
+              console.log('isRequestGesture:' + event.request.isRequestGesture());
+              console.log('getResponseData:' + event.response.getResponseData());
+              console.log('getResponseEncoding:' + event.response.getResponseEncoding());
+              console.log('getResponseMimeType:' + event.response.getResponseMimeType());
+              console.log('getResponseCode:' + event.response.getResponseCode());
+              console.log('getReasonMessage:' + event.response.getReasonMessage());
+              let result = event.request.getRequestHeader();
+              console.log('The request header result size is ' + result.length);
               for (let i of result) {
-                console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
+                console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
               }
-              let resph = event.response.getResponseHeader()
-              console.log('The response header result size is ' + resph.length)
+              let resph = event.response.getResponseHeader();
+              console.log('The response header result size is ' + resph.length);
               for (let i of resph) {
-                console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
+                console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
               }
             }
           })
@@ -2624,19 +2693,19 @@ onPageBegin(callback: Callback\<OnPageBeginEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageBegin((event) => {
             if (event) {
-              console.log('url:' + event.url)
+              console.log('url:' + event.url);
             }
           })
       }
@@ -2660,19 +2729,19 @@ onPageEnd(callback: Callback\<OnPageEndEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageEnd((event) => {
             if (event) {
-              console.log('url:' + event.url)
+              console.log('url:' + event.url);
             }
           })
       }
@@ -2696,19 +2765,18 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-
+  import { webview } from '@kit.ArkWeb';
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onProgressChange((event) => {
             if (event) {
-              console.log('newProgress:' + event.newProgress)
+              console.log('newProgress:' + event.newProgress);
             }
           })
       }
@@ -2732,19 +2800,19 @@ onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onTitleReceive((event) => {
             if (event) {
-              console.log('title:' + event.title)
+              console.log('title:' + event.title);
             }
           })
       }
@@ -2768,19 +2836,19 @@ onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRefreshAccessedHistory((event) => {
             if (event) {
-              console.log('url:' + event.url + ' isReload:' + event.isRefreshed)
+              console.log('url:' + event.url + ' isReload:' + event.isRefreshed);
             }
           })
       }
@@ -2824,19 +2892,19 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'chrome://crash/', controller: this.controller })
           .onRenderExited((event) => {
             if (event) {
-              console.log('reason:' + event.renderExitReason)
+              console.log('reason:' + event.renderExitReason);
             }
           })
       }
@@ -2859,19 +2927,20 @@ onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onRenderProcessNotResponding((data) => {
+          .onRenderProcessNotResponding((data) => {
             console.log("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
               ", [process]=" + data.pid + ", [reason]=" + data.reason);
-        })
+          })
       }
     }
   }
@@ -2893,18 +2962,19 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onRenderProcessResponding(() => {
+          .onRenderProcessResponding(() => {
             console.log("onRenderProcessResponding again");
-        })
+          })
       }
     }
   }
@@ -3031,18 +3101,18 @@ onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onResourceLoad((event) => {
-            console.log('onResourceLoad: ' + event.url)
+            console.log('onResourceLoad: ' + event.url);
           })
       }
     }
@@ -3065,18 +3135,18 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onScaleChange((event) => {
-            console.log('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale)
+            console.log('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
           })
       }
     }
@@ -3106,19 +3176,19 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onUrlLoadIntercept((event) => {
             if (event) {
-              console.log('onUrlLoadIntercept ' + event.data.toString())
+              console.log('onUrlLoadIntercept ' + event.data.toString());
             }
             return true
           })
@@ -3143,55 +3213,56 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    responseweb: WebResourceResponse = new WebResourceResponse()
-    heads:Header[] = new Array()
-    @State webdata: string = "<!DOCTYPE html>\n" +
-    "<html>\n"+
-    "<head>\n"+
-    "<title>intercept test</title>\n"+
-    "</head>\n"+
-    "<body>\n"+
-    "<h1>intercept test</h1>\n"+
-    "</body>\n"+
-    "</html>"
+    controller: webview.WebviewController = new webview.WebviewController();
+    responseWeb: WebResourceResponse = new WebResourceResponse();
+    heads: Header[] = new Array();
+    @State webData: string = "<!DOCTYPE html>\n" +
+      "<html>\n" +
+      "<head>\n" +
+      "<title>intercept test</title>\n" +
+      "</head>\n" +
+      "<body>\n" +
+      "<h1>intercept test</h1>\n" +
+      "</body>\n" +
+      "</html>";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onInterceptRequest((event) => {
             if (event) {
-              console.log('url:' + event.request.getRequestUrl())
+              console.log('url:' + event.request.getRequestUrl());
             }
-            let head1:Header = {
-              headerKey:"Connection",
-              headerValue:"keep-alive"
+            let head1: Header = {
+              headerKey: "Connection",
+              headerValue: "keep-alive"
             }
-            let head2:Header = {
-              headerKey:"Cache-Control",
-              headerValue:"no-cache"
+            let head2: Header = {
+              headerKey: "Cache-Control",
+              headerValue: "no-cache"
             }
-            let length = this.heads.push(head1)
-            length = this.heads.push(head2)
+            let length = this.heads.push(head1);
+            length = this.heads.push(head2);
             const promise: Promise<String> = new Promise((resolve: Function, reject: Function) => {
-              this.responseweb.setResponseHeader(this.heads)
-              this.responseweb.setResponseData(this.webdata)
-              this.responseweb.setResponseEncoding('utf-8')
-              this.responseweb.setResponseMimeType('text/html')
-              this.responseweb.setResponseCode(200)
-              this.responseweb.setReasonMessage('OK')
+              this.responseWeb.setResponseHeader(this.heads);
+              this.responseWeb.setResponseData(this.webData);
+              this.responseWeb.setResponseEncoding('utf-8');
+              this.responseWeb.setResponseMimeType('text/html');
+              this.responseWeb.setResponseCode(200);
+              this.responseWeb.setReasonMessage('OK');
               resolve("success");
             })
             promise.then(() => {
-              console.log("prepare response ready")
-              this.responseweb.setResponseIsReady(true)
+              console.log("prepare response ready");
+              this.responseWeb.setResponseIsReady(true);
             })
-            this.responseweb.setResponseIsReady(false)
-            return this.responseweb
+            this.responseWeb.setResponseIsReady(false);
+            return this.responseWeb;
           })
       }
     }
@@ -3214,12 +3285,13 @@ onHttpAuthRequest(callback: Callback\<OnHttpAuthRequestEvent, boolean\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    httpAuth: boolean = false
+    controller: webview.WebviewController = new webview.WebviewController();
+    httpAuth: boolean = false;
 
     build() {
       Column() {
@@ -3232,30 +3304,30 @@ onHttpAuthRequest(callback: Callback\<OnHttpAuthRequestEvent, boolean\>)
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.handler.cancel()
+                    event.handler.cancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    this.httpAuth = event.handler.isHttpAuthInfoSaved()
+                    this.httpAuth = event.handler.isHttpAuthInfoSaved();
                     if (this.httpAuth == false) {
-                      web_webview.WebDataBase.saveHttpAuthCredentials(
+                      webview.WebDataBase.saveHttpAuthCredentials(
                         event.host,
                         event.realm,
                         "2222",
                         "2222"
                       )
-                      event.handler.cancel()
+                      event.handler.cancel();
                     }
                   }
                 },
                 cancel: () => {
-                  event.handler.cancel()
+                  event.handler.cancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -3278,11 +3350,12 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -3294,17 +3367,17 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
               primaryButton: {
                 value: 'confirm',
                 action: () => {
-                  event.handler.handleConfirm()
+                  event.handler.handleConfirm();
                 }
               },
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handler.handleCancel()
+                  event.handler.handleCancel();
                 }
               },
               cancel: () => {
-                event.handler.handleCancel()
+                event.handler.handleCancel();
               }
             })
           })
@@ -3329,39 +3402,40 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onSslErrorEvent((event: SslErrorEvent) => {
-            console.log("onSslErrorEvent url: " + event.url)
-            console.log("onSslErrorEvent error: " + event.error)
-            console.log("onSslErrorEvent originalUrl: " + event.originalUrl)
-            console.log("onSslErrorEvent referrer: " + event.referrer)
-            console.log("onSslErrorEvent isFatalError: " + event.isFatalError)
-            console.log("onSslErrorEvent isMainFrame: " + event.isMainFrame)
+            console.log("onSslErrorEvent url: " + event.url);
+            console.log("onSslErrorEvent error: " + event.error);
+            console.log("onSslErrorEvent originalUrl: " + event.originalUrl);
+            console.log("onSslErrorEvent referrer: " + event.referrer);
+            console.log("onSslErrorEvent isFatalError: " + event.isFatalError);
+            console.log("onSslErrorEvent isMainFrame: " + event.isMainFrame);
             AlertDialog.show({
               title: 'onSslErrorEvent',
               message: 'text',
               primaryButton: {
                 value: 'confirm',
                 action: () => {
-                  event.handler.handleConfirm()
+                  event.handler.handleConfirm();
                 }
               },
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handler.handleCancel()
+                  event.handler.handleCancel();
                 }
               },
               cancel: () => {
-                event.handler.handleCancel()
+                event.handler.handleCancel();
               }
             })
           })
@@ -3388,11 +3462,12 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
   ```ts
   // xxx.ets API9
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -3404,17 +3479,17 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
               primaryButton: {
                 value: 'confirm',
                 action: () => {
-                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem")
+                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem");
                 }
               },
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handler.cancel()
+                  event.handler.cancel();
                 }
               },
               cancel: () => {
-                event.handler.ignore()
+                event.handler.ignore();
               }
             })
           })
@@ -3456,119 +3531,117 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
      ```ts
      // xxx.ets API10
-     import common from '@ohos.app.ability.common';
-     import Want from '@ohos.app.ability.Want';
-     import web_webview from '@ohos.web.webview'
-     import { BusinessError } from '@ohos.base';
-     import bundleManager from '@ohos.bundle.bundleManager'
-     import { GlobalContext } from '../GlobalContext'
+     import { webview } from '@kit.ArkWeb';
+     import { common, Want, bundleManager } from '@kit.AbilityKit';
+     import { BusinessError } from '@kit.BasicServicesKit';
+     import { GlobalContext } from '../GlobalContext';
 
-      let uri = "";
+     let uri = "";
 
-      export default class CertManagerService {
-        private static sInstance: CertManagerService;
-        private authUri = "";
-        private appUid = "";
+     export default class CertManagerService {
+       private static sInstance: CertManagerService;
+       private authUri = "";
+       private appUid = "";
 
-        public static getInstance(): CertManagerService {
-          if (CertManagerService.sInstance == null) {
-            CertManagerService.sInstance = new CertManagerService();
-          }
-          return CertManagerService.sInstance;
-        }
+       public static getInstance(): CertManagerService {
+         if (CertManagerService.sInstance == null) {
+           CertManagerService.sInstance = new CertManagerService();
+         }
+         return CertManagerService.sInstance;
+       }
 
-        async grantAppPm(callback: (message: string) => void) {
-          let message = '';
-          let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-          //注：com.example.myapplication需要写实际应用名称
-          try {
-            bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-              console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-              this.appUid = data.appInfo.uid.toString();
-            }).catch((err: BusinessError) => {
-              console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-            });
-          } catch (err) {
-            let message = (err as BusinessError).message;
-            console.error('getBundleInfoForSelf failed: %{public}s', message);
-          }
+       async grantAppPm(callback: (message: string) => void) {
+         let message = '';
+         let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+         //注：com.example.myapplication需要写实际应用名称
+         try {
+           bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+             console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+            this.appUid = data.appInfo.uid.toString();
+           }).catch((err: BusinessError) => {
+             console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+           });
+         } catch (err) {
+           let message = (err as BusinessError).message;
+           console.error('getBundleInfoForSelf failed: %{public}s', message);
+         }
 
-          //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
-          let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
-          await abilityContext.startAbilityForResult(
-            {
-              bundleName: "com.ohos.certmanager",
-              abilityName: "MainAbility",
-              uri: "requestAuthorize",
-              parameters: {
-                appUid: this.appUid, //传入申请应用的appUid
-              }
-            } as Want)
-            .then((data: common.AbilityResult) => {
-              if (!data.resultCode && data.want) {
-                if (data.want.parameters) {
-                  this.authUri = data.want.parameters.authUri as string; //授权成功后获取返回的authUri
-                }
-              }
-            })
-          message += "after grantAppPm authUri: " + this.authUri;
-          uri = this.authUri;
-          callback(message)
-        }
-      }
+         //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
+         let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
+         await abilityContext.startAbilityForResult(
+           {
+             bundleName: "com.ohos.certmanager",
+             abilityName: "MainAbility",
+             uri: "requestAuthorize",
+             parameters: {
+               appUid: this.appUid, //传入申请应用的appUid
+             }
+           } as Want)
+           .then((data: common.AbilityResult) => {
+             if (!data.resultCode && data.want) {
+               if (data.want.parameters) {
+                 this.authUri = data.want.parameters.authUri as string; //授权成功后获取返回的authUri
+               }
+             }
+           })
+         message += "after grantAppPm authUri: " + this.authUri;
+         uri = this.authUri;
+         callback(message)
+       }
+     }
 
-      @Entry
-      @Component
-      struct WebComponent {
-        controller: web_webview.WebviewController = new web_webview.WebviewController();
-        @State message: string = 'Hello World' //message主要是调试观察使用
-        certManager = CertManagerService.getInstance();
+     @Entry
+     @Component
+     struct WebComponent {
+       controller: webview.WebviewController = new webview.WebviewController();
+       @State message: string = 'Hello World' //message主要是调试观察使用
+       certManager = CertManagerService.getInstance();
 
-        build() {
-          Row() {
-            Column() {
-              Row() {
-                //第一步：需要先进行授权，获取到uri
-                Button('GrantApp')
-                  .onClick(() => {
-                    this.certManager.grantAppPm((data) => {
-                      this.message = data;
-                    });
-                  })
-                //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
-                Button("ClientCertAuth")
-                  .onClick(() => {
-                    this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
-                  })
-              }
+       build() {
+         Row() {
+           Column() {
+             Row() {
+               //第一步：需要先进行授权，获取到uri
+               Button('GrantApp')
+                 .onClick(() => {
+                   this.certManager.grantAppPm((data) => {
+                     this.message = data;
+                   });
+                 })
+               //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
+               Button("ClientCertAuth")
+                 .onClick(() => {
+                   this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
+                 })
+             }
 
-              Web({ src: 'https://www.example1.com', controller: this.controller })
-                .fileAccess(true)
-                .javaScriptAccess(true)
-                .domStorageAccess(true)
-                .onlineImageAccess(true)
+             Web({ src: 'https://www.example1.com', controller: this.controller })
+               .fileAccess(true)
+               .javaScriptAccess(true)
+               .domStorageAccess(true)
+               .onlineImageAccess(true)
 
-              .onClientAuthenticationRequest((event) => {
-                AlertDialog.show({
-                  title: 'ClientAuth',
-                  message: 'Text',
-                  confirm: {
-                    value: 'Confirm',
-                    action: () => {
-                      event.handler.confirm(uri);
-                    }
-                  },
-                  cancel: () => {
-                    event.handler.cancel();
-                  }
-                })
-              })
-            }
-          }
-          .width('100%')
-          .height('100%')
-        }
-      }
+               .onClientAuthenticationRequest((event) => {
+                 AlertDialog.show({
+                   title: 'ClientAuth',
+                   message: 'Text',
+                   confirm: {
+                     value: 'Confirm',
+                     action: () => {
+                       event.handler.confirm(uri);
+                     }
+                   },
+                   cancel: () => {
+                     event.handler.cancel();
+                   }
+                 })
+               })
+           }
+         }
+         .width('100%')
+         .height('100%')
+       }
+     }
      ```
 
 ### onPermissionRequest<sup>9+</sup>
@@ -3587,12 +3660,13 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3604,17 +3678,17 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
                 primaryButton: {
                   value: 'deny',
                   action: () => {
-                    event.request.deny()
+                    event.request.deny();
                   }
                 },
                 secondaryButton: {
                   value: 'onConfirm',
                   action: () => {
-                    event.request.grant(event.request.getAccessibleResource())
+                    event.request.grant(event.request.getAccessibleResource());
                   }
                 },
                 cancel: () => {
-                  event.request.deny()
+                  event.request.deny();
                 }
               })
             }
@@ -3675,84 +3749,86 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import pasteboard from '@ohos.pasteboard'
+  import { webview } from '@kit.ArkWeb';
+  import { pasteboard } from '@kit.BasicServicesKit';
+
   const TAG = 'ContextMenu';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     private result: WebContextMenuResult | undefined = undefined;
     @State linkUrl: string = '';
     @State offsetX: number = 0;
     @State offsetY: number = 0;
     @State showMenu: boolean = false;
+
     @Builder
     //构建自定义菜单及触发功能接口
-    MenuBuilder(){
+    MenuBuilder() {
       //以垂直列表形式显示的菜单。
-      Menu(){
+      Menu() {
         //展示菜单Menu中具体的item菜单项。
         MenuItem({
           content: '复制图片',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.copyImage();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.copyImage();
+            this.showMenu = false;
+          })
         MenuItem({
           content: '剪切',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.cut();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.cut();
+            this.showMenu = false;
+          })
         MenuItem({
           content: '复制',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.copy();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.copy();
+            this.showMenu = false;
+          })
         MenuItem({
           content: '粘贴',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.paste();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.paste();
+            this.showMenu = false;
+          })
         MenuItem({
           content: '复制链接',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          let pasteData = pasteboard.createData('text/plain', this.linkUrl);
-          pasteboard.getSystemPasteboard().setData(pasteData, (error)=>{
-            if(error){
-              return;
-            }
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            let pasteData = pasteboard.createData('text/plain', this.linkUrl);
+            pasteboard.getSystemPasteboard().setData(pasteData, (error) => {
+              if (error) {
+                return;
+              }
+            })
+            this.showMenu = false;
           })
-          this.showMenu = false;
-        })
         MenuItem({
           content: '全选',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.selectAll();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.selectAll();
+            this.showMenu = false;
+          })
       }
       .width(150)
       .height(300)
@@ -3765,30 +3841,30 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
           .onContextMenuShow((event) => {
             if (event) {
               this.result = event.result
-              console.info("x coord = " + event.param.x())
-              console.info("link url = " + event.param.getLinkUrl())
-              this.linkUrl = event.param.getLinkUrl()
+              console.info("x coord = " + event.param.x());
+              console.info("link url = " + event.param.getLinkUrl());
+              this.linkUrl = event.param.getLinkUrl();
             }
             console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
             this.showMenu = true;
             this.offsetX = 250;
             this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
-            return true
-        })
-        .bindPopup(this.showMenu,
-        {
-          builder: this.MenuBuilder(),
-          enableArrow: false,
-          placement: Placement.LeftTop,
-          offset: { x: this.offsetX, y: this.offsetY},
-          mask: false,
-          onStateChange: (e) => {
-            if(!e.isVisible){
-              this.showMenu = false;
-              this.result!.closeContextMenu();
-            }
-          }
-        })
+            return true;
+          })
+          .bindPopup(this.showMenu,
+            {
+              builder: this.MenuBuilder(),
+              enableArrow: false,
+              placement: Placement.LeftTop,
+              offset: { x: this.offsetX, y: this.offsetY },
+              mask: false,
+              onStateChange: (e) => {
+                if (!e.isVisible) {
+                  this.showMenu = false;
+                  this.result!.closeContextMenu();
+                }
+              }
+            })
       }
     }
   }
@@ -3825,18 +3901,19 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuHide(() => {
-            console.log("onContextMenuHide callback")
-        })
+            console.log("onContextMenuHide callback");
+          })
       }
     }
   }
@@ -3858,19 +3935,20 @@ onScroll(callback: Callback\<OnScrollEvent\>): WebAttribute;
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onScroll((event) => {
-            console.info("x = " + event.xOffset)
-            console.info("y = " + event.yOffset)
-        })
+          .onScroll((event) => {
+            console.info("x = " + event.xOffset);
+            console.info("y = " + event.yOffset);
+          })
       }
     }
   }
@@ -3892,33 +3970,34 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:$rawfile('index.html'), controller:this.controller })
-        .geolocationAccess(true)
-        .onGeolocationShow((event) => {
-          if (event) {
-            AlertDialog.show({
-              title: 'title',
-              message: 'text',
-              confirm: {
-                value: 'onConfirm',
-                action: () => {
-                  event.geolocation.invoke(event.origin, true, true)
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .geolocationAccess(true)
+          .onGeolocationShow((event) => {
+            if (event) {
+              AlertDialog.show({
+                title: 'title',
+                message: 'text',
+                confirm: {
+                  value: 'onConfirm',
+                  action: () => {
+                    event.geolocation.invoke(event.origin, true, true);
+                  }
+                },
+                cancel: () => {
+                  event.geolocation.invoke(event.origin, false, true);
                 }
-              },
-              cancel: () => {
-                event.geolocation.invoke(event.origin, false, true)
-              }
-            })
-          }
-        })
+              })
+            }
+          })
       }
     }
   }
@@ -3963,19 +4042,20 @@ onGeolocationHide(callback: () => void)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .geolocationAccess(true)
-        .onGeolocationHide(() => {
-          console.log("onGeolocationHide...")
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .geolocationAccess(true)
+          .onGeolocationHide(() => {
+            console.log("onGeolocationHide...");
+          })
       }
     }
   }
@@ -3997,22 +4077,23 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    handler: FullScreenExitHandler | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    handler: FullScreenExitHandler | null = null;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onFullScreenEnter((event) => {
-          console.log("onFullScreenEnter videoWidth: " + event.videoWidth +
-            ", videoHeight: " + event.videoHeight)
-          // 应用可以通过 this.handler.exitFullScreen() 主动退出全屏。
-          this.handler = event.handler
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onFullScreenEnter((event) => {
+            console.log("onFullScreenEnter videoWidth: " + event.videoWidth +
+              ", videoHeight: " + event.videoHeight);
+            // 应用可以通过 this.handler.exitFullScreen() 主动退出全屏。
+            this.handler = event.handler;
+          })
       }
     }
   }
@@ -4034,25 +4115,26 @@ onFullScreenExit(callback: () => void)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    handler: FullScreenExitHandler | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    handler: FullScreenExitHandler | null = null;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onFullScreenExit(() => {
-          console.log("onFullScreenExit...")
-          if (this.handler) {
-            this.handler.exitFullScreen()
-          }
-        })
-        .onFullScreenEnter((event) => {
-          this.handler = event.handler
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onFullScreenExit(() => {
+            console.log("onFullScreenExit...")
+            if (this.handler) {
+              this.handler.exitFullScreen();
+            }
+          })
+          .onFullScreenEnter((event) => {
+            this.handler = event.handler;
+          })
       }
     }
   }
@@ -4076,33 +4158,35 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
-  controller?: CustomDialogController
-  webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
+    controller?: CustomDialogController;
+    webviewController1: webview.WebviewController = new webview.WebviewController();
+
+    build() {
       Column() {
         Web({ src: "", controller: this.webviewController1 })
           .javaScriptAccess(true)
           .multiWindowAccess(false)
-          .onWindowExit(()=> {
-            console.info("NewWebViewComp onWindowExit")
+          .onWindowExit(() => {
+            console.info("NewWebViewComp onWindowExit");
             if (this.controller) {
-              this.controller.close()
+              this.controller.close();
             }
           })
-        }
+      }
     }
   }
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    dialogController: CustomDialogController | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    dialogController: CustomDialogController | null = null;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4112,17 +4196,17 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
           .allowWindowOpenMethod(true)
           .onWindowNew((event) => {
             if (this.dialogController) {
-              this.dialogController.close()
+              this.dialogController.close();
             }
-            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({webviewController1: popController})
+              builder: NewWebViewComp({ webviewController1: popController })
             })
-            this.dialogController.open()
+            this.dialogController.open();
             //将新窗口对应WebviewController返回给Web内核。
             //如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
             //若不调用event.handler.setWebController接口，会造成render进程阻塞。
-            event.handler.setWebController(popController)
+            event.handler.setWebController(popController);
           })
       }
     }
@@ -4145,18 +4229,19 @@ onWindowExit(callback: () => void)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-        .onWindowExit(() => {
-          console.log("onWindowExit...")
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onWindowExit(() => {
+            console.log("onWindowExit...");
+          })
       }
     }
   }
@@ -4178,22 +4263,22 @@ onSearchResultReceive(callback: Callback\<OnSearchResultReceiveEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-     	  .onSearchResultReceive(ret => {
-     	    if (ret) {
-            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
-              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
-     	    }
-     	  })
+          .onSearchResultReceive(ret => {
+            if (ret) {
+              console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+                "[total]" + ret.numberOfMatches + "[isDone]" + ret.isDoneCounting);
+            }
+          })
       }
     }
   }
@@ -4215,29 +4300,30 @@ onDataResubmitted(callback: Callback\<OnDataResubmittedEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         //在网页中点击提交之后，点击refresh按钮可以重新提交时的触发函数。
         Button('refresh')
-        .onClick(() => {
-          try {
-            this.controller.refresh();
-          } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
-        Web({ src:$rawfile('index.html'), controller: this.controller })
-         .onDataResubmitted((event) => {
-          console.log('onDataResubmitted')
-          event.handler.resend();
-        })
+          .onClick(() => {
+            try {
+              this.controller.refresh();
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .onDataResubmitted((event) => {
+            console.log('onDataResubmitted');
+            event.handler.resend();
+          })
       }
     }
   }
@@ -4276,17 +4362,19 @@ onPageVisible(callback: Callback\<OnPageVisibleEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onPageVisible((event) => {
-          console.log('onPageVisible url:' + event.url)
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onPageVisible((event) => {
+            console.log('onPageVisible url:' + event.url);
+          })
       }
     }
   }
@@ -4314,21 +4402,23 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onInterceptKeyEvent((event) => {
-          if (event.keyCode == 2017 || event.keyCode == 2018) {
-            console.info(`onInterceptKeyEvent get event.keyCode ${event.keyCode}`)
-            return true;
-          }
-          return false;
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onInterceptKeyEvent((event) => {
+            if (event.keyCode == 2017 || event.keyCode == 2018) {
+              console.info(`onInterceptKeyEvent get event.keyCode ${event.keyCode}`);
+              return true;
+            }
+            return false;
+          })
       }
     }
   }
@@ -4350,17 +4440,19 @@ onTouchIconUrlReceived(callback: Callback\<OnTouchIconUrlReceivedEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.baidu.com', controller: this.controller })
-         .onTouchIconUrlReceived((event) => {
-          console.log('onTouchIconUrlReceived:' + JSON.stringify(event))
-        })
+        Web({ src: 'www.baidu.com', controller: this.controller })
+          .onTouchIconUrlReceived((event) => {
+            console.log('onTouchIconUrlReceived:' + JSON.stringify(event));
+          })
       }
     }
   }
@@ -4382,20 +4474,22 @@ onFaviconReceived(callback: Callback\<OnFaviconReceivedEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import image from "@ohos.multimedia.image"
+  import { webview } from '@kit.ArkWeb';
+  import { image } from '@kit.ImageKit';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     @State icon: image.PixelMap | undefined = undefined;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onFaviconReceived((event) => {
-          console.log('onFaviconReceived');
-          this.icon = event.favicon;
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onFaviconReceived((event) => {
+            console.log('onFaviconReceived');
+            this.icon = event.favicon;
+          })
       }
     }
   }
@@ -4417,18 +4511,20 @@ onAudioStateChanged(callback: Callback\<OnAudioStateChangedEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State playing: boolean = false
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State playing: boolean = false;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onAudioStateChanged(event => {
-            this.playing = event.playing
-            console.debug('onAudioStateChanged playing: ' + this.playing)
+            this.playing = event.playing;
+            console.debug('onAudioStateChanged playing: ' + this.playing);
           })
       }
     }
@@ -4451,20 +4547,21 @@ onAudioStateChanged(callback: Callback\<OnAudioStateChangedEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onFirstContentfulPaint(event => {
             if (event) {
               console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" +
               event.navigationStartTick + ", [firstContentfulPaintMs]:" +
-              event.firstContentfulPaintMs)
+              event.firstContentfulPaintMs);
             }
           })
       }
@@ -4488,19 +4585,20 @@ onFirstMeaningfulPaint(callback: [OnFirstMeaningfulPaintCallback](#onfirstmeanin
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onFirstMeaningfulPaint((details) => {
+          .onFirstMeaningfulPaint((details) => {
             console.log("onFirstMeaningfulPaint: [navigationStartTime]= " + details.navigationStartTime +
               ", [firstMeaningfulPaintTime]=" + details.firstMeaningfulPaintTime);
-        })
+          })
       }
     }
   }
@@ -4522,23 +4620,24 @@ onLargestContentfulPaint(callback: [OnLargestContentfulPaintCallback](#onlargest
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onLargestContentfulPaint((details) => {
+          .onLargestContentfulPaint((details) => {
             console.log("onLargestContentfulPaint: [navigationStartTime]= " + details.navigationStartTime +
               ", [largestImagePaintTime]=" + details.largestImagePaintTime +
               ", [largestTextPaintTime]=" + details.largestTextPaintTime +
               ", [largestImageLoadStartTime]=" + details.largestImageLoadStartTime +
               ", [largestImageLoadEndTime]=" + details.largestImageLoadEndTime +
               ", [imageBPP]=" + details.imageBPP);
-        })
+          })
       }
     }
   }
@@ -4560,22 +4659,22 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onLoadIntercept((event) => {
-            console.log('url:' + event.data.getRequestUrl())
-            console.log('isMainFrame:' + event.data.isMainFrame())
-            console.log('isRedirect:' + event.data.isRedirect())
-            console.log('isRequestGesture:' + event.data.isRequestGesture())
-            return true
+            console.log('url:' + event.data.getRequestUrl());
+            console.log('isMainFrame:' + event.data.isMainFrame());
+            console.log('isRedirect:' + event.data.isRedirect());
+            console.log('isRequestGesture:' + event.data.isRequestGesture());
+            return true;
           })
       }
     }
@@ -4592,18 +4691,18 @@ onRequestSelected(callback: () => void)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRequestSelected(() => {
-            console.log('onRequestSelected')
+            console.log('onRequestSelected');
           })
       }
     }
@@ -4625,12 +4724,13 @@ onScreenCaptureRequest(callback: Callback\<OnScreenCaptureRequestEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4642,17 +4742,17 @@ onScreenCaptureRequest(callback: Callback\<OnScreenCaptureRequestEvent\>)
                 primaryButton: {
                   value: 'deny',
                   action: () => {
-                    event.handler.deny()
+                    event.handler.deny();
                   }
                 },
                 secondaryButton: {
                   value: 'onConfirm',
                   action: () => {
-                    event.handler.grant({ captureMode: WebCaptureMode.HOME_SCREEN })
+                    event.handler.grant({ captureMode: WebCaptureMode.HOME_SCREEN });
                   }
                 },
                 cancel: () => {
-                  event.handler.deny()
+                  event.handler.deny();
                 }
               })
             }
@@ -4678,19 +4778,20 @@ onOverScroll(callback: Callback\<OnOverScrollEvent\>)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onOverScroll((event) => {
-            console.info("x = " + event.xOffset)
-            console.info("y = " + event.yOffset)
-        })
+          .onOverScroll((event) => {
+            console.info("x = " + event.xOffset);
+            console.info("y = " + event.yOffset);
+          })
       }
     }
   }
@@ -4708,12 +4809,12 @@ onControllerAttached(callback: () => void)
 在该回调中使用loadUrl加载网页
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -4725,16 +4826,17 @@ onControllerAttached(callback: () => void)
     }
   }
   ```
+
 在该回调中使用getWebId
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import { BusinessError } from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -4780,22 +4882,23 @@ onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](#onnav
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onNavigationEntryCommitted((details) => {
+          .onNavigationEntryCommitted((details) => {
             console.log("onNavigationEntryCommitted: [isMainFrame]= " + details.isMainFrame +
               ", [isSameDocument]=" + details.isSameDocument +
               ", [didReplaceEntry]=" + details.didReplaceEntry +
               ", [navigationType]=" + details.navigationType +
               ", [url]=" + details.url);
-        })
+          })
       }
     }
   }
@@ -4817,7 +4920,7 @@ onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   export enum ThreatType {
     UNKNOWN = -1,
@@ -4834,15 +4937,16 @@ onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onSafeBrowsingCheckResult((callback) => {
-            let jsonData = JSON.stringify(callback)
-            let json:OnSafeBrowsingCheckResultCallback = JSON.parse(jsonData)
+          .onSafeBrowsingCheckResult((callback) => {
+            let jsonData = JSON.stringify(callback);
+            let json: OnSafeBrowsingCheckResultCallback = JSON.parse(jsonData);
             console.log("onSafeBrowsingCheckResult: [threatType]= " + json.threatType);
-        })
+          })
       }
     }
   }
@@ -4864,30 +4968,31 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    @State embedStatus: string = ''
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State embedStatus: string = '';
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onNativeEmbedLifecycleChange((event) => {
+          .onNativeEmbedLifecycleChange((event) => {
             if (event.status == NativeEmbedStatus.CREATE) {
-              this.embedStatus = 'Create'
+              this.embedStatus = 'Create';
             }
             if (event.status == NativeEmbedStatus.UPDATE) {
-              this.embedStatus = 'Update'
+              this.embedStatus = 'Update';
             }
             if (event.status == NativeEmbedStatus.DESTROY) {
-              this.embedStatus = 'Destroy'
+              this.embedStatus = 'Destroy';
             }
             console.log("status = " + this.embedStatus);
             console.log("surfaceId = " + event.surfaceId);
             console.log("embedId = " + event.embedId);
-            if(event.info){
+            if (event.info) {
               console.log("id = " + event.info.id);
               console.log("type = " + event.info.type);
               console.log("src = " + event.info.src);
@@ -4895,7 +5000,7 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
               console.log("height = " + event.info.height);
               console.log("url = " + event.info.url);
             }
-        })
+          })
       }
     }
   }
@@ -4917,116 +5022,123 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import {UIContext} from '@ohos.arkui.UIContext';
-  import {NodeController, BuilderNode, NodeRenderType, FrameNode} from "@ohos.arkui.node";
+  import { webview } from '@kit.ArkWeb';
+  import { NodeController, BuilderNode, NodeRenderType, FrameNode, UIContext } from "@kit.ArkUI";
 
   declare class Params {
-    text : string
-    width : number
-    height : number
+    text: string;
+    width: number;
+    height: number;
   }
+
   declare class nodeControllerParams {
-    surfaceId : string
-    renderType : NodeRenderType
-    width : number
-    height : number
+    surfaceId: string;
+    renderType: NodeRenderType;
+    width: number;
+    height: number;
   }
 
   class MyNodeController extends NodeController {
     private rootNode: BuilderNode<[Params]> | undefined | null;
-    private surfaceId_ : string = "";
-    private renderType_ :NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY;
-    private width_ : number = 0;
-    private height_ : number = 0;
+    private surfaceId_: string = "";
+    private renderType_: NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY;
+    private width_: number = 0;
+    private height_: number = 0;
 
-    setRenderOption(params : nodeControllerParams) {
+    setRenderOption(params: nodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.width_ = params.width;
       this.height_ = params.height;
     }
 
-    makeNode(uiContext: UIContext): FrameNode | null{
-      this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_});
-      this.rootNode.build(wrapBuilder(ButtonBuilder), {text: "myButton", width : this.width_, height : this.height_});
+    makeNode(uiContext: UIContext): FrameNode | null {
+      this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_ });
+      this.rootNode.build(wrapBuilder(ButtonBuilder), { text: "myButton", width: this.width_, height: this.height_ });
       return this.rootNode.getFrameNode();
     }
 
-    postEvent(event: TouchEvent | undefined) : boolean {
-      return this.rootNode?.postTouchEvent(event) as boolean
+    postEvent(event: TouchEvent | undefined): boolean {
+      return this.rootNode?.postTouchEvent(event) as boolean;
     }
   }
 
-@Component
-struct ButtonComponent {
-  @Prop params: Params
-  @State bkColor: Color = Color.Red
+  @Component
+  struct ButtonComponent {
+    @Prop params: Params;
+    @State bkColor: Color = Color.Red;
 
-  build() {
-    Column() {
-      Button(this.params.text)
-        .height(50)
-        .width(200)
-        .border({ width: 2, color: Color.Red})
-        .backgroundColor(this.bkColor)
+    build() {
+      Column() {
+        Button(this.params.text)
+          .height(50)
+          .width(200)
+          .border({ width: 2, color: Color.Red })
+          .backgroundColor(this.bkColor)
 
+      }
+      .width(this.params.width)
+      .height(this.params.height)
     }
-    .width(this.params.width)
-    .height(this.params.height)
   }
-}
 
-@Builder
-function ButtonBuilder(params: Params) {
-  ButtonComponent({ params: params })
-    .backgroundColor(Color.Green)
-}
+  @Builder
+  function ButtonBuilder(params: Params) {
+    ButtonComponent({ params: params })
+      .backgroundColor(Color.Green)
+  }
+
   @Entry
   @Component
   struct WebComponent {
-    @State eventType: string = ''
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    private nodeController: MyNodeController = new MyNodeController()
+    @State eventType: string = '';
+    controller: webview.WebviewController = new webview.WebviewController();
+    private nodeController: MyNodeController = new MyNodeController();
+
     build() {
       Column() {
-        Stack(){
+        Stack() {
           NodeContainer(this.nodeController)
           Web({ src: $rawfile("test.html"), controller: this.controller })
-          .enableNativeEmbedMode(true)
-          .onNativeEmbedLifecycleChange((embed) => {
-            if (embed.status == NativeEmbedStatus.CREATE) {
-              this.nodeController.setRenderOption({surfaceId : embed.surfaceId as string, renderType : NodeRenderType.RENDER_TYPE_TEXTURE, width : px2vp(embed.info?.width), height : px2vp(embed.info?.height)})
-              this.nodeController.rebuild()
-            }
-          })
-          .onNativeEmbedGestureEvent((event) => {
-            if (event && event.touchEvent){
-              if (event.touchEvent.type == TouchType.Down) {
-                this.eventType = 'Down'
+            .enableNativeEmbedMode(true)
+            .onNativeEmbedLifecycleChange((embed) => {
+              if (embed.status == NativeEmbedStatus.CREATE) {
+                this.nodeController.setRenderOption({
+                  surfaceId: embed.surfaceId as string,
+                  renderType: NodeRenderType.RENDER_TYPE_TEXTURE,
+                  width: px2vp(embed.info?.width),
+                  height: px2vp(embed.info?.height)
+                });
+                this.nodeController.rebuild();
               }
-              if (event.touchEvent.type == TouchType.Up) {
-                this.eventType = 'Up'
+            })
+            .onNativeEmbedGestureEvent((event) => {
+              if (event && event.touchEvent) {
+                if (event.touchEvent.type == TouchType.Down) {
+                  this.eventType = 'Down'
+                }
+                if (event.touchEvent.type == TouchType.Up) {
+                  this.eventType = 'Up'
+                }
+                if (event.touchEvent.type == TouchType.Move) {
+                  this.eventType = 'Move'
+                }
+                if (event.touchEvent.type == TouchType.Cancel) {
+                  this.eventType = 'Cancel'
+                }
+                let ret = this.nodeController.postEvent(event.touchEvent)
+                if (event.result) {
+                  event.result.setGestureEventResult(ret);
+                }
+                console.log("embedId = " + event.embedId);
+                console.log("touchType = " + this.eventType);
+                console.log("x = " + event.touchEvent.touches[0].x);
+                console.log("y = " + event.touchEvent.touches[0].y);
+                console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
+                console.log("width = " + event.touchEvent.target.area.width);
+                console.log("height = " + event.touchEvent.target.area.height);
               }
-              if (event.touchEvent.type == TouchType.Move) {
-                this.eventType = 'Move'
-              }
-              if (event.touchEvent.type == TouchType.Cancel) {
-                this.eventType = 'Cancel'
-              }
-              let ret = this.nodeController.postEvent(event.touchEvent)
-              if (event.result) {
-                event.result.setGestureEventResult(ret);
-              }
-              console.log("embedId = " + event.embedId);
-              console.log("touchType = " + this.eventType);
-              console.log("x = " + event.touchEvent.touches[0].x);
-              console.log("y = " + event.touchEvent.touches[0].y);
-              console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
-              console.log("width = " + event.touchEvent.target.area.width);
-              console.log("height = " + event.touchEvent.target.area.height);
-            }
-          })
+            })
         }
       }
     }
@@ -5066,13 +5178,14 @@ onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionC
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         // 需要打开智能防跟踪功能，才会触发onIntelligentTrackingPreventionResult回调
@@ -5081,15 +5194,14 @@ onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionC
             try {
               this.controller.enableIntelligentTrackingPrevention(true);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error('ErrorCode: ${e.code}, Message: ${e.message}');
+              console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller })
-        .onIntelligentTrackingPreventionResult((details) => {
+          .onIntelligentTrackingPreventionResult((details) => {
             console.log("onIntelligentTrackingPreventionResult: [websiteHost]= " + details.host +
               ", [trackerHost]=" + details.trackerHost);
-        })
+          })
       }
     }
   }
@@ -5117,21 +5229,22 @@ POST请求不会触发该回调。
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
-        .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
+          .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
             if (webResourceRequest && webResourceRequest.getRequestUrl() == "about:blank") {
               return true;
             }
             return false;
-        })
+          })
       }
     }
   }
@@ -5168,26 +5281,27 @@ onViewportFitChanged(callback: OnViewportFitChangedCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .onViewportFitChanged((data) => {
-          let jsonData = JSON.stringify(data)
-          let viewportFit: ViewportFit = JSON.parse(jsonData).viewportFit
-          if (viewportFit === ViewportFit.COVER) {
-            // index.html网页支持沉浸式布局，可调用expandSafeArea调整web控件布局视口覆盖避让区域(状态栏或导航条)。
-          } else if (viewportFit === ViewportFit.CONTAINS) {
-            // index.html网页不支持沉浸式布局，可调用expandSafeArea调整web控件布局视口为安全区域。
-          } else {
-            // 默认值，可不作处理
-          }
-        })
+          .onViewportFitChanged((data) => {
+            let jsonData = JSON.stringify(data);
+            let viewportFit: ViewportFit = JSON.parse(jsonData).viewportFit;
+            if (viewportFit === ViewportFit.COVER) {
+              // index.html网页支持沉浸式布局，可调用expandSafeArea调整web控件布局视口覆盖避让区域(状态栏或导航条)。
+            } else if (viewportFit === ViewportFit.CONTAINS) {
+              // index.html网页不支持沉浸式布局，可调用expandSafeArea调整web控件布局视口为安全区域。
+            } else {
+              // 默认值，可不作处理
+            }
+          })
       }
     }
   }
@@ -5223,13 +5337,13 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import inputMethodEngine from '@ohos.inputMethodEngine'
+  import { webview } from '@kit.ArkWeb';
+  import { inputMethodEngine } from '@kit.IMEKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     webKeyboardController: WebKeyboardController = new WebKeyboardController()
     inputAttributeMap: Map<string, number> = new Map([
         ['UNSPECIFIED', inputMethodEngine.ENTER_KEY_TYPE_UNSPECIFIED],
@@ -5467,23 +5581,23 @@ onAdsBlocked(callback: OnAdsBlockedCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
     @State totalAdsBlockCounts: number = 0;
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'https://www.example.com', controller: this.controller })
         .onAdsBlocked((details: AdsBlockedDetails) => {
           if (details) {
-            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url)
-            let adList: Array<string> = Array.from(new Set(details.adsBlocked))
+            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
+            let adList: Array<string> = Array.from(new Set(details.adsBlocked));
             this.totalAdsBlockCounts += adList.length;
-            console.log('Total blocked counts :' + this.totalAdsBlockCounts)
+            console.log('Total blocked counts :' + this.totalAdsBlockCounts);
           }
         })
       }
@@ -6547,18 +6661,20 @@ resend(): void
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onDataResubmitted((event) => {
-          console.log('onDataResubmitted')
-          event.handler.resend();
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onDataResubmitted((event) => {
+            console.log('onDataResubmitted');
+            event.handler.resend();
+          })
       }
     }
   }
@@ -6574,18 +6690,20 @@ cancel(): void
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onDataResubmitted((event) => {
-          console.log('onDataResubmitted')
-          event.handler.cancel();
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onDataResubmitted((event) => {
+            console.log('onDataResubmitted');
+            event.handler.cancel();
+          })
       }
     }
   }

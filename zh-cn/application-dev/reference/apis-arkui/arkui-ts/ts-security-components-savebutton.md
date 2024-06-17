@@ -23,12 +23,16 @@ SaveButton()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### SaveButton
 SaveButton(option:SaveButtonOptions)
 
 创建包含指定元素的保存按钮。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -39,6 +43,8 @@ SaveButton(option:SaveButtonOptions)
 ## SaveButtonOptions
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -51,6 +57,8 @@ SaveButton(option:SaveButtonOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
 | FULL_FILLED | 0 | 保存按钮展示填充样式图标。 |
@@ -58,6 +66,8 @@ SaveButton(option:SaveButtonOptions)
 
 
 ## SaveDescription枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
@@ -75,6 +85,8 @@ SaveButton(option:SaveButtonOptions)
 ## SaveButtonOnClickResult枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |

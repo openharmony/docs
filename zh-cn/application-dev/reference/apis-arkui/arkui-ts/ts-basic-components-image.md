@@ -32,6 +32,8 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 Image组件默认按照居中裁剪，例如组件宽高设置相同，原图长宽不等，此时按照中间区域进行裁剪。
 
+Image加载成功且组件不设置宽高时，其显示大小自适应父组件。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -54,6 +56,8 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 Image组件默认按照居中裁剪，例如组件宽高设置相同，原图长宽不等，此时按照中间区域进行裁剪。
 
+Image加载成功且组件不设置宽高时，其显示大小自适应父组件。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -61,7 +65,7 @@ Image组件默认按照居中裁剪，例如组件宽高设置相同，原图长
 | 参数名  | 参数类型                                     | 必填   | 参数描述                                     |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 是    | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br>1. PixelMap格式为像素图，常用于图片编辑的场景。<br>2. ResourceStr包含Resource和string格式。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，不支持跨包/跨模块调用该Image组件，建议使用Resource格式来管理需全局使用的图片资源。<br>- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br>- 支持file://路径前缀的字符串，[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。<br>Resource格式可以跨包/跨模块访问资源文件，是访问本地图片的推荐方式。<br/>3. 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。传入[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)类型可播放PixelMap数组动画。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http:/\/等网络相关路径前缀和file:/\/路径前缀的字符串。<br/>- ArkTS卡片上不支持&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。 <br/>- 加载本地图片过程中，如果对图片进行修改或者替换，可能会引起应用崩溃。因此需要覆盖图片文件时，应该先删除该文件再重新创建一个同名文件。<br/>- 网络图片必须支持RFC 9113标准，否则会导致加载失败。<br/>- 如果下载的网络图片大于10MB或一次下载的网络图片数量较多，建议使用[HTTP](../../../network/http-request.md)工具提前预下载，提高图片加载性能，方便应用侧管理数据。<br/>- 如果SVG图片没有原生大小，需要给Image组件设置宽高，否则不显示。<br/>- 如果SVG图片通过image标签引用本地其他图片，被引用的图片不支持svg格式和gif格式。 |
-| imageAIOptions  | [ImageAIOptions](ts-image-common-sys.md#imageaioptions12) | 是   | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
+| imageAIOptions  | [ImageAIOptions](ts-image-common.md#imageaioptions) | 是   | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
 
 ## 属性
 
@@ -407,22 +411,6 @@ privacySensitive(supported: boolean)
 | --------- | ------- | ---- | ------------------------ |
 | supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值：false |
 
-### enhancedImageQuality<sup>12+</sup>
-
-enhancedImageQuality(imageQuality: ResolutionQuality)
-
-设置图像解码时图像解码分辨率选项。
-
-该属性不支持 svg，[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)，[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) 等非解码图片类型。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                    | 必填 | 说明                             |
-| ------ | --------------------------------------- | ---- | -------------------------------- |
-| imageQuality | [ResolutionQuality](#resolutionquality12) | 是   | 图像解码分辨率质量。 |
-
 ### dynamicRangeMode<sup>12+</sup>
 
 dynamicRangeMode(value: DynamicRangeMode)
@@ -475,24 +463,16 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 ## EdgeWidths参数说明
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 名称 | 类型 | 必填 | 说明 |
 | --------- |-----------|-----------|-----------|
-|  top    |  number  |  否  | 图片顶部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
-|  right  |  number  |  否  | 图片右部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
-|  bottom |  number  |  否  | 图片底部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
-|  left   |  number  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  top    |  [Length](ts-types.md#length)  |  否  | 图片顶部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  right  |  [Length](ts-types.md#length)  |  否  | 图片右部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  bottom |  [Length](ts-types.md#length)  |  否  | 图片底部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  left   |  [Length](ts-types.md#length)  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
 
 ![edgewidths](figures/edgewidths.png)
-
-## ResolutionQuality<sup>12+</sup>
-
-图像解码时图像解码分辨率选项。
-
-| 名称     | 描述                      |
-| ------ | --------------------------  |
-| Low   | 低图像分辨率，解码时间适中。   |
-| Medium | 中等图像分辨率，解码时间适中。  |
-| High   | 高图像分辨率，解码时间长。    |
 
 ## DynamicRangeMode<sup>12+</sup>
 
@@ -510,7 +490,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 ### onComplete
 
-onComplete(callback: (event?: { width: number, height: number, componentWidth: number, componentHeight: number, loadingStatus: number,contentWidth: number, contentHeight: number, contentOffsetX: number, contentOffsetY: number}) =&gt; void) }) =&gt; void)
+onComplete(callback: (event?: { width: number, height: number, componentWidth: number, componentHeight: number, loadingStatus: number,contentWidth: number, contentHeight: number, contentOffsetX: number, contentOffsetY: number }) =&gt; void)  
 
 图片数据加载成功和解码成功时均触发该回调，返回成功加载的图片尺寸。
 
@@ -535,7 +515,6 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 | contentHeight<sup>10+</sup>  | number | 是   | 图片实际绘制的高度。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
 | contentOffsetX<sup>10+</sup> | number | 是   | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
 | contentOffsetY<sup>10+</sup> | number | 是   | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
-
 
 ### onError<sup>9+</sup>
 

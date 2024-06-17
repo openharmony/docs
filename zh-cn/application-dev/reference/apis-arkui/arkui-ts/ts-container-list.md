@@ -72,14 +72,7 @@ listDirection(value: Axis)
 
 ### divider
 
-divider(<br/>
-    value: {<br/>
-      strokeWidth: Length;<br/>
-      color?: ResourceColor;<br/>
-      startMargin?: Length;<br/>
-      endMargin?: Length;<br/>
-    } | null,<br/>
-  )
+divider(value: {strokeWidth: Length; color?: ResourceColor; startMargin?: Length; endMargin?: Length;} | null,)
 
 设置ListItem分割线样式，默认无分割线。
 
@@ -499,8 +492,6 @@ childrenMainSize(value: ChildrenMainSize)
 
 设置列表项滚动结束对齐效果。
 
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 左右和上下这种两端对齐的样式：当列表位移至末端，则需要将末端的item完整显示，同时不能露出边界空白区域，此时另一端可以出现不限位对齐的现象。
@@ -513,7 +504,7 @@ childrenMainSize(value: ChildrenMainSize)
 | START  | 1 | 视图中的第一项将在列表的开头对齐。<br/>**说明：**<br/>当列表位移至末端，需要将末端的item完整显示，可能出现开头不对齐的情况。 |
 | CENTER | 2 | 视图中的中间项将在列表中心对齐。<br/>**说明：**<br/>顶端和末尾的item都可以在列表中心对齐，列表显示可能露出空白，<br/>第一个或最后一个item会对齐到中间位置。 |
 | END    | 3 | 视图中的最后一项将在列表末尾对齐。<br/>**说明：**<br/>当列表位移至顶端，需要将顶端的item完整显示，可能出现末尾不对齐的情况。 |
-## CloseAllSwipeActions<sup>11+</sup>对象说明
+## CloseSwipeActionOptions<sup>11+</sup>对象说明
 
 收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态[ListItem](ts-container-listitem.md)回调事件集合，用于设置收起动画完成后回调事件。
 
@@ -973,10 +964,11 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
 
 ### scrollToItemInGroup<sup>11+</sup>
 
-scrollToItemInGroup(index: number, indexInGroup:number, smooth?: boolean, align?: ScrollAlign): void
+scrollToItemInGroup(index: number, indexInGroup: number, smooth?: boolean, align?: ScrollAlign): void
 
 滑动到指定的ListItemGroup中指定的ListItem。
 
@@ -1000,10 +992,11 @@ scrollToItemInGroup(index: number, indexInGroup:number, smooth?: boolean, align?
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
 
 ### closeAllSwipeActions<sup>11+</sup>
 
-closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11对象说明)): void
+closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoptions11对象说明)): void
 
 将[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)收起，并设置回调事件。
 
@@ -1013,7 +1006,7 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 
 | 参数名  | 参数类型                                                   | 必填 | 参数描述                                                     |
 | ------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [CloseSwipeActionOptions](#closeallswipeactions11对象说明) | 否   | 收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)的回调事件集合。 |
+| options | [CloseSwipeActionOptions](#closeswipeactionoptions11对象说明) | 否   | 收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)的回调事件集合。 |
 
 
 **错误码**：
@@ -1023,6 +1016,7 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
 
 > **说明：**
 >

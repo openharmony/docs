@@ -13,7 +13,7 @@ DRM（Digital Rights Management）框架组件支持音视频媒体业务数字�
 ## 导入模块
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 ```
 
 ## DrmErrorCode
@@ -261,10 +261,10 @@ createMediaKeySystem(name: string): MediaKeySystem
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
-  let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+  let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`createMediaKeySystem ERROR: ${error}`);  
@@ -304,16 +304,16 @@ isMediaKeySystemSupported(name: string): boolean
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm");
+  let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm");
+  console.log("isMediaKeySystemSupported: ", supported);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`isMediaKeySystemSupported ERROR: ${error}`);  
+  console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
-
 ```
 
 ## drm.isMediaKeySystemSupported
@@ -350,11 +350,12 @@ isMediaKeySystemSupported(name: string, mimeType: string): boolean
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4");
+  let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4");
+  console.log("isMediaKeySystemSupported: ", supported);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`isMediaKeySystemSupported ERROR: ${error}`);
@@ -396,16 +397,16 @@ isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtecti
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+  let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+  console.log("isMediaKeySystemSupported: ", supported);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
-
 ```
 
 ## drm.getMediaKeySystemUuid<sup>12+</sup>
@@ -441,8 +442,8 @@ getMediaKeySystemUuid(name: string): string;
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let uuid: String = drm.getMediaKeySystemUuid("com.clearplay.drm");
   console.log("getMediaKeySystemUuid: ", uuid);
@@ -485,8 +486,8 @@ getMediaKeySystems(): MediaKeySystemDescription[]
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let description: drm.MediaKeySystemDescription[] = drm.getMediaKeySystems();
 } catch (err) {
@@ -526,17 +527,16 @@ setConfigurationString(configName: string, value: string): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  mediaKeysystem.setConfigurationString("configName", "configValue");
+  mediaKeySystem.setConfigurationString("configName", "configValue");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`setConfigurationString ERROR: ${error}`);
 }
-
 ```
 
 ### getConfigurationString
@@ -572,17 +572,16 @@ getConfigurationString(configName: string): string
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let configValue: string = mediaKeysystem.getConfigurationString("configName");
+  let configValue: string = mediaKeySystem.getConfigurationString("configName");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationString ERROR: ${error}`);  
 }
-
 ```
 
 ### setConfigurationByteArray
@@ -613,18 +612,17 @@ setConfigurationByteArray(configName: string, value: Uint8Array): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let configValue = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 try {
-  mediaKeysystem.setConfigurationByteArray("configName", configValue);
+  mediaKeySystem.setConfigurationByteArray("configName", configValue);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`setConfigurationByteArray ERROR: ${error}`);  
 }
-
 ```
 
 ### getConfigurationByteArray
@@ -660,17 +658,16 @@ getConfigurationByteArray(configName: string): Uint8Array
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let configValue: Uint8Array = mediaKeysystem.getConfigurationByteArray("configName");
+  let configValue: Uint8Array = mediaKeySystem.getConfigurationByteArray("configName");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationByteArray ERROR: ${error}`);  
 }
-
 ```
 
 ### getStatistics
@@ -699,17 +696,16 @@ getStatistics(): StatisticKeyValue[]
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let statisticKeyValue: drm.StatisticKeyValue[] = mediaKeysystem.getStatistics();
+  let statisticKeyValue: drm.StatisticKeyValue[] = mediaKeySystem.getStatistics();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationByteArray ERROR: ${error}`);
 }
-
 ```
 
 ### getMaxContentProtectionLevel
@@ -738,17 +734,16 @@ getMaxContentProtectionLevel(): ContentProtectionLevel
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let maxLevel: drm.ContentProtectionLevel = mediaKeysystem.getMaxContentProtectionLevel();
+  let maxLevel: drm.ContentProtectionLevel = mediaKeySystem.getMaxContentProtectionLevel();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationByteArray ERROR: ${error}`);
 }
-
 ```
 
 ### generateKeySystemRequest
@@ -777,11 +772,11 @@ generateKeySystemRequest(): Promise<ProvisionRequest\>
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-mediaKeysystem.generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionRequest) => {
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+mediaKeySystem.generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionRequest) => {
   console.log("generateKeySystemRequest");
 }).catch((err: BusinessError) => {
   console.error(`generateKeySystemRequest: ERROR: ${err}`);
@@ -821,12 +816,12 @@ processKeySystemResponse(response: Uint8Array): Promise<void\>
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let keySystemResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-mediaKeysystem.processKeySystemResponse(keySystemResponse).then(() => {
+mediaKeySystem.processKeySystemResponse(keySystemResponse).then(() => {
   console.log("processKeySystemResponse");
 }).catch((err: BusinessError) => {
   console.error(`processKeySystemResponse: ERROR: ${err}`);
@@ -859,17 +854,16 @@ getCertificateStatus():CertificateStatus
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let certificateStatus: drm.CertificateStatus = mediaKeysystem.getCertificateStatus();
+  let certificateStatus: drm.CertificateStatus = mediaKeySystem.getCertificateStatus();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getCertificateStatus ERROR: ${error}`);
 }
-
 ```
 
 ### on('keySystemRequired')
@@ -899,13 +893,12 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
-    console.log('keySystemRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-  });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+mediaKeySystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
+  console.log('keySystemRequired ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('keySystemRequired')
@@ -935,9 +928,8 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-function unregisterkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.off('keySystemRequired');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+mediaKeySystem.off('keySystemRequired');
 ```
 
 ### createMediaKeySession
@@ -974,17 +966,16 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+  let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`createMediaKeySession ERROR: ${error}`);
 }
-
 ```
 
 ### createMediaKeySession
@@ -1014,17 +1005,16 @@ createMediaKeySession(): MediaKeySession
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+  let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`createMediaKeySession ERROR: ${error}`);
 }
-
 ```
 
 ### getOfflineMediaKeyIds
@@ -1054,17 +1044,16 @@ getOfflineMediaKeyIds(): Uint8Array[]
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let offlineMediaKeyIds: Uint8Array[] = mediaKeysystem.getOfflineMediaKeyIds();
+  let offlineMediaKeyIds: Uint8Array[] = mediaKeySystem.getOfflineMediaKeyIds();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getOfflineMediaKeyIds ERROR: ${error}`);
 }
-
 ```
 
 ### getOfflineMediaKeyStatus
@@ -1100,18 +1089,17 @@ getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
-  let configValue: drm.OfflineMediaKeyStatus = mediaKeysystem.getOfflineMediaKeyStatus(mediaKeyIdString);
+  let configValue: drm.OfflineMediaKeyStatus = mediaKeySystem.getOfflineMediaKeyStatus(mediaKeyIdString);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getOfflineMediaKeyStatus ERROR: ${error}`);
 }
-
 ```
 
 ### clearOfflineMediaKeys
@@ -1141,18 +1129,17 @@ clearOfflineMediaKeys(mediaKeyId: Uint8Array): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
-  mediaKeysystem.clearOfflineMediaKeys(mediaKeyIdString);
+  mediaKeySystem.clearOfflineMediaKeys(mediaKeyIdString);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`clearOfflineMediaKeys ERROR: ${error}`);
 }
-
 ```
 
 ### destroy
@@ -1175,17 +1162,16 @@ destroy(): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  mediaKeysystem.destroy();
+  mediaKeySystem.destroy();
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`mediaKeysystem destroy ERROR: ${error}`);
+  console.error(`mediaKeySystem destroy ERROR: ${error}`);
 }
-
 ```
 
 ## MediaKeySession
@@ -1229,11 +1215,11 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let optionsData: drm.OptionsData[]  = [
     {name : "optionsDataNameA", value : "optionsDataValueA"},
     {name : "optionsDataNameB", value : "optionsDataValueB"}
@@ -1281,11 +1267,11 @@ processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let mediaKeyResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
@@ -1322,18 +1308,17 @@ mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   let keyStatus: drm.MediaKeyStatus[] =  mediaKeySession.checkMediaKeyStatus();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`checkMediaKeyStatus ERROR: ${error}`);
 }
-
 ```
 
 ### clearMediaKeys
@@ -1358,18 +1343,17 @@ clearMediaKeys(): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   mediaKeySession.clearMediaKeys();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`clearMediaKeys ERROR: ${error}`);
 }
- 
 ```
 
 ### generateOfflineReleaseRequest
@@ -1407,11 +1391,11 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let Request = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(Request).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
@@ -1462,11 +1446,11 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(offlineReleaseRequest).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
@@ -1517,11 +1501,11 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void\>
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let response = new Uint8Array ([0x00,0x00]);
 let mediaKeyId = new Uint8Array ([0x00,0x00]);
 mediaKeySession.processOfflineReleaseResponse(mediaKeyId, response).then(() => {
@@ -1564,18 +1548,17 @@ getContentProtectionLevel(): ContentProtectionLevel
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   let contentProtectionLevel: drm.ContentProtectionLevel = mediaKeySession.getContentProtectionLevel();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getContentProtectionLevel ERROR: ${error}`);
 }
-
 ```
 
 ### requireSecureDecoderModule
@@ -1613,18 +1596,17 @@ requireSecureDecoderModule(mimeType: string): boolean
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   let status: boolean = mediaKeySession.requireSecureDecoderModule("mimeType");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`requireSecureDecoderModule ERROR: ${error}`);
 }
-
 ```
 
 ### on('keyRequired')
@@ -1656,13 +1638,13 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerKeyRequired(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('keyRequired', (eventInfo: drm.EventInfo) => {
-        console.log('keyRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('keyRequired', (eventInfo: drm.EventInfo) => {
+  console.log('keyRequired ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('keyRequired')
@@ -1694,11 +1676,11 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterKeyRequired(mediaKeysession: drm.MediaKeySession): void {
-  mediaKeysession.off('keyRequired');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('keyRequired');
 ```
 
 ### on('keyExpired')
@@ -1730,13 +1712,13 @@ on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerKeyExpired(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('keyExpired', (eventInfo: drm.EventInfo) => {
-        console.log('keyExpired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('keyExpired', (eventInfo: drm.EventInfo) => {
+  console.log('keyExpired ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('keyExpired')
@@ -1768,11 +1750,11 @@ off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterKeyExpired(mediaKeysession: drm.MediaKeySession): void {
-  mediaKeysession.off('keyExpired');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('keyExpired');
 ```
 
 ### on('vendorDefined')
@@ -1804,13 +1786,13 @@ on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerVendorDefinedt(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
-        console.log('vendorDefined' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
+  console.log('vendorDefined ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('vendorDefined')
@@ -1842,11 +1824,11 @@ off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterVendorDefined(mediaKeysession: drm.MediaKeySession): void {
-  mediaKeysession.off('vendorDefined');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('vendorDefined');
 ```
 
 ### on('expirationUpdate')
@@ -1878,13 +1860,13 @@ on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerExpirationUpdate(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
-        console.log('expirationUpdate' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
+  console.log('expirationUpdate ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('expirationUpdate')
@@ -1916,11 +1898,11 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterExpirationUpdate(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.off('expirationUpdate');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('expirationUpdate');
 ```
 
 ### on('keysChange')
@@ -1952,15 +1934,15 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerkeysChange(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('keysChange', (keyInfo: drm.KeysInfo[], newKeyAvailable: boolean) => {
-        for (let i = 0; i < keyInfo.length; i++) {
-            console.log('keysChange' + 'keyId:' + keyInfo[i].keyId + ' data:' + keyInfo[i].value);
-        }
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('keysChange', (keyInfo: drm.KeysInfo[], newKeyAvailable: boolean) => {
+  for (let i = 0; i < keyInfo.length; i++) {
+    console.log('keysChange' + 'keyId:' + keyInfo[i].keyId + ' data:' + keyInfo[i].value);
+  }
+});
 ```
 
 ### off('keysChange')
@@ -1992,11 +1974,11 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterkeyChange(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.off('keysChange');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('keysChange');
 ```
 
 ### destroy
@@ -2021,10 +2003,11 @@ destroy(): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   mediaKeySession.destroy();
 } catch (err) {

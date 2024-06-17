@@ -61,10 +61,10 @@ createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                        |
-|-------|-------------------------------------------------------------------------------------------------------------|
-| 202   | Permission verification failed. A non-system application calls a system API.                                |
-| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 错误码ID | 错误信息                                                                                                                                         |
+|-------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                                                 |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 

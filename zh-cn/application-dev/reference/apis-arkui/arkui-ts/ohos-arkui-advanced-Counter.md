@@ -155,7 +155,38 @@ DateData定义Date通用属性和方法，如年、月、日。
 | year       | number | 设置日期内联型初始年份。     |
 | month      | number | 设置日期内联型初始月份。     |
 | day        | number | 设置日期内联型初始日。       |
-| toString() | string | 以字符串格式返回当前日期值。 |
+
+### constructor
+
+constructor(year: number, month: number, day: number)
+
+DateData的构造函数。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型 | 说明 |
+| ---------- | ------ | ---------------------------- |
+| year       | number | 设置日期内联型初始年份。     |
+| month      | number | 设置日期内联型初始月份。     |
+| day        | number | 设置日期内联型初始日。       |
+
+### toString
+
+toString(): string
+
+以字符串格式返回当前日期值。
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 当前日期值。 |
 
 ## 示例   
 

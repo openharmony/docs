@@ -24,6 +24,8 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名         | 参数类型                              | 必填   | 参数描述                                     |
@@ -34,7 +36,11 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 
 ## BarPosition枚举说明
 
+Tabs页签位置枚举。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 描述                                       |
 | ----- | ---------------------------------------- |
@@ -257,7 +263,11 @@ barGridAlign(value: BarGridColumnOptions)
 
 ## DividerStyle<sup>10+</sup>对象说明
 
+分割线样式对象。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 参数类型                                     | 必填   | 描述                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -291,30 +301,30 @@ barGridAlign(value: BarGridColumnOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称         | 描述                                       |
-| ---------- | ---------------------------------------- |
-| Scrollable | 每一个TabBar均使用实际布局宽度，超过总长度（横向Tabs的barWidth，纵向Tabs的barHeight）后可滑动。 |
-| Fixed      | 所有TabBar平均分配barWidth宽度（纵向时平均分配barHeight高度）。 |
+| 名称        | 值 | 描述                                       |
+| ---------- | -- | ---------------------------------------- |
+| Scrollable | 0  | 每一个TabBar均使用实际布局宽度，超过总长度（横向Tabs的barWidth，纵向Tabs的barHeight）后可滑动。 |
+| Fixed      | 1  | 所有TabBar平均分配barWidth宽度（纵向时平均分配barHeight高度）。 |
 
 ## AnimationMode<sup>12+</sup>枚举说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称         | 描述                                       |
-| ---------- | ---------------------------------------- |
-| CONTENT_FIRST | 先加载目标页内容，再开始切换动画 |
-| ACTION_FIRST | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto |
-| NO_ANIMATION | 关闭默认动画 |
+| 名称          | 值  | 描述                                       |
+| ------------- | -- | ---------------------------------------- |
+| CONTENT_FIRST | 0  | 先加载目标页内容，再开始切换动画 |
+| ACTION_FIRST  | 1  | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto |
+| NO_ANIMATION  | 2  | 关闭默认动画 |
 
 ## LayoutStyle<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称         | 描述                                       |
-| ---------- | ---------------------------------------- |
-| ALWAYS_CENTER | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，页签紧凑居中。|
-| ALWAYS_AVERAGE_SPLIT | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，且所有页签平均分配TabBar宽度。<br/>仅水平模式下有效，否则视为LayoutStyle.ALWAYS_CENTER。|
-| SPACE_BETWEEN_OR_CENTER      | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度但超过TabBar宽度一半时，TabBar不可滚动，页签紧凑居中。<br/>当页签内容不超过TabBar宽度一半时，TabBar不可滚动，保证页签居中排列在TabBar宽度一半，且间距相同。|
+| 名称         | 值 | 描述                                       |
+| ---------- | -- | ---------------------------------------- |
+| ALWAYS_CENTER | 0 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，页签紧凑居中。|
+| ALWAYS_AVERAGE_SPLIT | 1 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，且所有页签平均分配TabBar宽度。<br/>仅水平模式下有效，否则视为LayoutStyle.ALWAYS_CENTER。|
+| SPACE_BETWEEN_OR_CENTER      | 2 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度但超过TabBar宽度一半时，TabBar不可滚动，页签紧凑居中。<br/>当页签内容不超过TabBar宽度一半时，TabBar不可滚动，保证页签居中排列在TabBar宽度一半，且间距相同。|
 
 ## 事件
 
@@ -424,6 +434,8 @@ customContentTransition(delegate: (from: number, to: number) => TabContentAnimat
 
 1、当使用自定义切换动画时，Tabs组件自带的默认切换动画会被禁用，同时，页面也无法跟手滑动。<br>2、当设置为undefined时，表示不使用自定义切换动画，仍然使用组件自带的默认切换动画。<br>3、当前自定义切换动画不支持打断。<br>4、目前自定义切换动画只支持两种场景触发：点击页签和调用TabsController.changeIndex()接口。<br>5、当使用自定义切换动画时，Tabs组件支持的事件中，除了onGestureSwipe，其他事件均支持。<br>6、onChange和onAnimationEnd事件的触发时机需要特殊说明：如果在第一次自定义动画执行过程中，触发了第二次自定义动画，那么在开始第二次自定义动画时，就会触发第一次自定义动画的onChange和onAnimationEnd事件。<br>7、当使用自定义动画时，参与动画的页面布局方式会改为Stack布局。如果开发者未主动设置相关页面的zIndex属性，那么所有页面的zIndex值是一样的，页面的渲染层级会按照在组件树上的顺序（即页面的index值顺序）确定。因此，开发者需要主动修改页面的zIndex属性，来控制页面的渲染层级。
 
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -483,19 +495,33 @@ Tabs组件的控制器，用于控制Tabs组件进行页签切换。不支持一
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### 导入对象
 
 ```ts
 let controller: TabsController = new TabsController()
 ```
 
+### constructor
+
+constructor()
+
+TabsController的构造函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### changeIndex
 
-changeIndex(value: number): void
+changeIndex(value: number)
 
 控制Tabs切换到指定页签。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 

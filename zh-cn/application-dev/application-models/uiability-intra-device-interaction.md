@@ -470,65 +470,66 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 2. 调用方使用[`startAbilityForResult()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法启动支付应用的UIAbility，在调用方want参数中的entities和action需要被包含在待匹配UIAbility的skills标签配置的entities和actions中。异步回调中的data用于后续接收支付UIAbility停止自身后返回给调用方的信息。系统匹配到符合entities和actions参数条件的UIAbility后，会弹出选择框展示匹配到的UIAbility实例列表供用户选择使用。
 
-    ```ts
-    import { common, Want } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
-    import { BusinessError } from '@kit.BasicServicesKit';
+  ```ts
+  import { common, Want } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { promptAction } from '@kit.ArkUI';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-    const TAG: string = '[Page_UIAbilityComponentsInteractive]';
-    const DOMAIN_NUMBER: number = 0xFF00;
+  const TAG: string = '[Page_UIAbilityComponentsInteractive]';
+  const DOMAIN_NUMBER: number = 0xFF00;
 
-    @Entry
-    @Component
-    struct Page_UIAbilityComponentsInteractive {
-      build() {
-        Column() {
-          //...
-          List({ initialIndex: 0 }) {
-            ListItem() {
-              Row() {
-                //...
-              }
-              .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-                const RESULT_CODE: number = 1001;
-
-                let want: Want = {
-                  deviceId: '', // deviceId为空表示本设备
-                  bundleName: 'com.samples.stagemodelabilitydevelop',
-                  moduleName: 'entry', // moduleName非必选
-                  abilityName: 'FuncAbilityA',
-                  parameters: {
-                    // 自定义信息
-                    info: '来自EntryAbility UIAbilityComponentsInteractive页面'
-                  }
-                };
-                context.startAbilityForResult(want).then((data) => {
-                  if (data?.resultCode === RESULT_CODE) {
-                    // 解析被调用方UIAbility返回的信息
-                    let info = data.want?.parameters?.info;
-                    hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
-                    if (info !== null) {
-                      promptAction.showToast({
-                        message: JSON.stringify(info)
-                      });
-                    }
-                  }
-                  hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(data.resultCode) ?? '');
-                }).catch((err: BusinessError) => {
-                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
-                });
-              })
+  @Entry
+  @Component
+  struct Page_UIAbilityComponentsInteractive {
+    build() {
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
             }
-            //...
+            .onClick(() => {
+              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+              const RESULT_CODE: number = 1001;
+
+              let want: Want = {
+                deviceId: '', // deviceId为空表示本设备
+                bundleName: '', // 隐式匹配时bundleName非必选
+                moduleName: '', // moduleName非必选
+                abilityName: '', // abilityName留空表示隐式匹配
+                action: 'ohos.want.action.editData',
+                parameters: {
+                  // 自定义信息
+                  info: '来自EntryAbility UIAbilityComponentsInteractive页面'
+                }
+              };
+              context.startAbilityForResult(want).then((data) => {
+                if (data?.resultCode === RESULT_CODE) {
+                  // 解析被调用方UIAbility返回的信息
+                  let info = data.want?.parameters?.info;
+                  hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
+                  if (info !== null) {
+                    promptAction.showToast({
+                      message: JSON.stringify(info)
+                    });
+                  }
+                }
+                hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(data.resultCode) ?? '');
+              }).catch((err: BusinessError) => {
+                hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
+              });
+            })
           }
           //...
         }
         //...
       }
+      //...
     }
-    ```
+  }
+  ```
 
 3. 在支付UIAbility完成支付之后，需要调用[`terminateSelfWithResult()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法实现停止自身，并将abilityResult参数信息返回给调用方。
 
@@ -608,11 +609,11 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
                 const RESULT_CODE: number = 1001;
                 let want: Want = {
                   deviceId: '', // deviceId为空表示本设备
-                  bundleName: 'com.samples.stagemodelabilitydevelop',
-                  moduleName: 'entry', // moduleName非必选
-                  abilityName: 'FuncAbilityA',
-                  parameters: {
-                    // 自定义信息
+                  bundleName: '', // 隐式匹配时bundleName非必选
+                  moduleName: '', // moduleName非必选
+                  abilityName: '', // abilityName留空表示隐式匹配
+                  action: 'ohos.want.action.editData',
+                  parameters: { // 自定义信息
                     info: '来自EntryAbility UIAbilityComponentsInteractive页面'
                   }
                 };
@@ -688,9 +689,8 @@ struct Page_UIAbilityComponentsInteractive {
               bundleName: 'com.samples.stagemodelabilityinteraction',
               moduleName: 'entry', // moduleName非必选
               abilityName: 'FuncAbility',
-              parameters: {
-                // 自定义参数传递页面信息
-                router: 'FuncA'
+              parameters: { // 自定义参数传递页面信息
+                router: 'funcA'
               }
             };
             // context为调用方UIAbility的UIAbilityContext
@@ -816,17 +816,16 @@ export default class EntryAbility extends UIAbility {
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import type { Router, UIContext } from '@kit.ArkUI';
     import type { BusinessError } from '@kit.BasicServicesKit';
-
+   
     const DOMAIN_NUMBER: number = 0xFF00;
     const TAG: string = '[EntryAbility]';
 
     export default class EntryAbility extends UIAbility {
       funcAbilityWant: Want | undefined = undefined;
       uiContext: UIContext | undefined = undefined;
-
       // ...
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        if (want?.parameters?.router && want.parameters.router === 'funcB') {
+        if (want?.parameters?.router && want.parameters.router === 'funcA') {
           let funcAUrl = 'pages/Page_HotStartUp';
           if (this.uiContext) {
             let router: Router = this.uiContext.getRouter();
@@ -837,7 +836,7 @@ export default class EntryAbility extends UIAbility {
             });
           }
         }
-      };
+      }
     }
     ```
 

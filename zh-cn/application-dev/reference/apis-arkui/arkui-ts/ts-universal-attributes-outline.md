@@ -100,6 +100,8 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 | 名称   | 类型                   |必填                                      | 说明                                                         |
 | ------ | ----------------------|-------------------------------------- | ------------------------------------------------------------ |
 | width  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明)| 否| 设置外描边宽度，不支持百分比。<br/>默认值：0，外描边效果width为必设项，否则不显示外描边。 |
@@ -112,6 +114,8 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 引入该对象时，至少传入一个参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 参数类型                         | 必填   | 描述      |
 | ------ | ---------------------------- | ---- | ------- |
@@ -137,6 +141,10 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 
 引入该对象时，至少传入一个参数。
 
+**原子化服务API** 从API version 12开始，该接口支持在元服务中使用。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |
 | left   | [ResourceColor](ts-types.md#resourcecolor) | 否    | 左侧外描边颜色。<br />从右至左显示语言模式下为右侧外描边颜色。 |
@@ -150,6 +158,8 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 | 名称          | 参数类型                         | 必填   | 描述       |
 | ----------- | ---------------------------- | ---- | -------- |
 | topLeft     | [Dimension](ts-types.md#dimension10) | 否    | 左上角圆角半径。 |
@@ -162,6 +172,8 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 引入该对象时，至少传入一个参数。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。git 
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |
