@@ -198,6 +198,152 @@ onAbilityContinue(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
+## AbilityLifecycleCallback.onAbilityWillCreate
+
+onAbilityWillCreate?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的onCreate触发前回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onWindowStageWillCreate
+
+onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): void
+
+注册监听应用上下文的生命周期后，在UIAbility的onWindowStageCreate触发前回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onWindowStageWillDestroy
+
+onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): void
+
+注册监听应用上下文的生命周期后，在UIAbility的onWindowStageCreate触发后回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onAbilityWillForeground
+
+onAbilityWillForeground?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的onForeground触发前回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onAbilityWillBackground
+
+onAbilityWillBackground?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的onBackground触发前回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onAbilityWillBackground
+
+onAbilityWillBackground?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的onBackground触发前回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onWillNewWant
+
+onWillNewWant?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的onNewWant触发前回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onNewWant
+
+onNewWant?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的onNewWant触发后回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
 ## AbilityLifecycleCallback使用
 
 **示例：**
@@ -263,6 +409,30 @@ let abilityLifecycleCallback: AbilityLifecycleCallback = {
   },
   onAbilityContinue(ability){
     console.log('AbilityLifecycleCallback onAbilityContinue.');
+  },
+  onNewWant(ability) {
+    console.log('onNewWant');
+  },
+  onWillNewWant(ability) {
+    console.log('onWillNewWant');
+  },
+  onAbilityWillCreate(ability) {
+    console.log('onAbilityWillCreate');
+  },
+  onWindowStageWillCreate(ability, windowStage) {
+    console.log('onWindowStageWillCreate');
+  },
+  onWindowStageWillDestroy(ability, windowStage) {
+    console.log('onWindowStageWillDestroy');
+  },
+  onAbilityWillDestroy(ability) {
+    console.log('onAbilityWillDestroy');
+  },
+  onAbilityWillForeground(ability) {
+    console.log('onAbilityWillForeground');
+  },
+  onAbilityWillBackground(ability) {
+    console.log('onAbilityWillBackground');
   }
 };
 
