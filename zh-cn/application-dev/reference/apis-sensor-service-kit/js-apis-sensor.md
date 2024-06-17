@@ -4631,6 +4631,8 @@ try {
 
 ## SensorFrequency<sup>11+</sup>
 
+type SensorFrequency = 'game'|'ui'|'nornal'
+
 传感器上报频率模式。
 
 **原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。
