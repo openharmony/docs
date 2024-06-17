@@ -317,7 +317,88 @@
    >
    > 当应用完成查询数据操作，不再使用结果集（ResultSet）时，请及时调用close方法关闭结果集，释放系统为其分配的内存。
 
-5. 删除数据库。
+5. 备份数据库
+
+   ```ts
+   if (store !== undefined) {
+    (store as relationalStore.RdbStore).backup("Backup.db", (err: BusinessError) => { // "Backup.db"为备份数据库文件名
+        if (err) {
+            console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
+            return;
+        }
+        console.info(`Succeeded in backup RdbStore.`);
+    })
+   }
+   ```
+
+6. 恢复数据库
+
+   ```ts
+   if (store !== undefined) {
+    (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
+        if (err) {
+            console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
+            return;
+        }
+        console.info(`Succeeded in restore RdbStore.`);
+    })
+   }
+   ```
+
+7. 识别数据库已损坏
+
+   ```ts
+   relationalStore.getRdbStore(context, STORE_CONFIG, (err, store) => {
+    if (err) {
+        // err为14800011表示数据库已损坏
+        console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+        return;
+    }
+    console.info('Succeeded in getting RdbStore.');
+   })
+   ```
+
+   > **说明：**
+   >
+   > 更多错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+8. 重建数据库,并查看重建的结果
+
+   ```ts
+   await store.close();
+   store = undefined;
+   const STORE_CONFIG1 :relationalStore.StoreConfig = {
+    name: 'RdbTest.db',
+    securityLevel: relationalStore.SecurityLevel.S1,
+    allowRebuild: true
+   };
+   relationalStore.getRdbStore(context, STORE_CONFIG, (err, store) => {
+    if (err) {
+        console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+        return;
+    }
+    console.info('Succeeded in getting RdbStore.');
+   })
+   if (store.rebuilt === relationalStore.RebuildType.REBUILT) {
+    console.info('Succeeded in rebuilt RdbStore.');
+   }
+   ```
+
+9.把损坏前备份的数据恢复到新数据库中
+
+  ```ts
+  if (store !== undefined) {
+    (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
+        if (err) {
+            console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
+            return;
+        }
+        console.info(`Succeeded in restore RdbStore.`);
+    })
+  }
+  ```
+
+10. 删除数据库。
 
    调用deleteRdbStore()方法，删除数据库及数据库相关文件。示例代码如下：
    
