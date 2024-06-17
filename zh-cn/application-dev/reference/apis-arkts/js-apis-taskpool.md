@@ -23,7 +23,7 @@ import { taskpool } from '@kit.ArkTS';
 
 execute(func: Function, ...args: Object[]): Promise\<Object>
 
-将待执行的函数放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式不可取消任务。
+将待执行的函数放入taskpool内部任务队列, 函数不会立即执行，而是等待分发到工作线程执行。当前执行模式不可取消任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -71,7 +71,7 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。若该任务非长时任务，可以多次调用执行，长时任务仅支持执行一次。
+将创建好的任务放入taskpool内部任务队列，任务不会立即执行，而是等待分发到工作线程执行。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。若该任务非长时任务，可以多次调用执行，长时任务仅支持执行一次。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -128,7 +128,7 @@ taskpool.execute(task3, taskpool.Priority.HIGH).then((value: Object) => {
 
 execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
-将创建好的任务组放入taskpool内部任务队列等待，等待分发到工作线程执行。任务组中任务全部执行完成后，结果数组统一返回。当前执行模式适用于执行一组有关联的任务。
+将创建好的任务组放入taskpool内部任务队列，任务组中的任务不会立即执行，而是等待分发到工作线程执行。任务组中任务全部执行完成后，结果数组统一返回。当前执行模式适用于执行一组有关联的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
