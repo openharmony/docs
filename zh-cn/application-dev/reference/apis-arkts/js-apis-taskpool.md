@@ -71,7 +71,7 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。若该任务非长时任务，可以多次调用执行，长时任务仅支持执行一次。
+将创建好的任务放入taskpool内部任务队列，任务不会立即执行，而是等待分发到工作线程执行。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。若该任务非长时任务，可以多次调用执行，长时任务仅支持执行一次。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -100,6 +100,7 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 | 10200003 | Worker initialization failure.              |
 | 10200006 | An exception occurred during serialization. |
 | 10200014 | The function is not mark as concurrent.     |
+| 10200051 | The periodic task cannot be executed again. |
 
 **示例：**
 
@@ -189,7 +190,7 @@ taskpool.execute(taskGroup2).then((res: Array<Object>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-延时执行任务。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。若该任务非长时任务，可以多次调用executeDelayed执行，长时任务仅支持执行一次。
+延时执行任务。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务、串行队列任务和周期任务。若该任务非长时任务，可以多次调用executeDelayed执行，长时任务仅支持执行一次。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -217,6 +218,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 | --------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200028 | The delayTime is less than zero. |
+| 10200051 | The periodic task cannot be executed again. |
 
 **示例：**
 
@@ -237,6 +239,81 @@ taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
 }).catch((e: BusinessError) => {
   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
 })
+```
+
+## taskpool.executePeriodically<sup>12+</sup>
+
+executePeriodically(period: number, task: Task, priority?: Priority): void
+
+周期执行任务，每隔period时长执行一次任务。当前执行模式支持设置任务优先级和调用cancel取消任务周期执行。周期任务不可以是任务组任务和串行队列任务，不可以再次调用执行接口，不可以拥有依赖关系。
+
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名       | 类型          | 必填  | 说明                 |
+| -----------  | ------------- | ----- | -------------------- |
+| period       | number        | 是    | 周期时长。单位为ms。  |
+| task         | [Task](#task) | 是    | 需要周期执行的任务。 |
+| priority     | [Priority](#priority) | 否   | 周期执行的任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID   | 错误信息                         |
+| ---------- | -------------------------------- |
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200003   | Worker initialization failed. |
+| 10200006   | An exception occurred during serialization. |
+| 10200014   | The function is not marked as concurrent. |
+| 10200028   | The period is less than zero. |
+| 10200050   | The concurrent task has been executed and cannot be executed periodically. |
+
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args: number): void {
+  console.info("printArgs: " + args);
+}
+
+@Concurrent
+function testExecutePeriodically(args: number): void {
+  let t = Date.now();
+  while ((Date.now() - t) < args) {
+    continue;
+  }
+  taskpool.Task.sendData(args); // 向主线程发送消息
+}
+
+function pringResult(data: number): void {
+  console.info("taskpool: data is: " + data);
+}
+
+function taskpoolTest() {
+  try {
+    let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
+    taskpool.executePeriodically(1000, task); // 1000: period is 1000ms
+  } catch (e) {
+    console.error(`taskpool execute-1: Code: ${e.code}, message: ${e.message}`);
+  }
+
+  try {
+    let periodicTask: taskpool.Task = new taskpool.Task(testExecutePeriodically, 200); // 200: test number
+    periodicTask.onReceiveData(pringResult);
+    taskpool.executePeriodically(1000, periodicTask); // 1000: period is 1000ms
+  } catch (e) {
+    console.error(`taskpool execute-2: Code: ${e.code}, message: ${e.message}`);
+  }
+}
+
+taskpoolTest();
 ```
 
 
@@ -1030,7 +1107,7 @@ testFunc();
 
 addDependency(...tasks: Task[]): void
 
-为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。该任务和被依赖的任务不可以是任务组任务、串行队列任务和已执行的任务。存在依赖关系的任务（依赖其他任务的任务或被依赖的任务）执行后不可以再次执行。
+为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。该任务和被依赖的任务不可以是任务组任务、串行队列任务、已执行的任务和周期任务。存在依赖关系的任务（依赖其他任务的任务或被依赖的任务）执行后不可以再次执行。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1050,6 +1127,7 @@ addDependency(...tasks: Task[]): void
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200026 | There is a circular dependency. |
+| 10200052 | The periodic task cannot have a dependency. |
 
 **示例：**
 
@@ -1108,6 +1186,7 @@ removeDependency(...tasks: Task[]): void
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200027 | The dependency does not exist. |
+| 10200052 | The periodic task cannot have a dependency. |
 
 **示例：**
 
@@ -1535,7 +1614,7 @@ taskGroup.addTask(printArgs, 100); // 100: test number
 
 addTask(task: Task): void
 
-将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。任务组不可以添加其他任务组任务、串行队列任务、有依赖关系的任务、长时任务和已执行的任务。
+将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。任务组不可以添加其他任务组任务、串行队列任务、有依赖关系的任务、长时任务、周期任务和已执行的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1555,6 +1634,7 @@ addTask(task: Task): void
 | -------- | --------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200014 | The function is not mark as concurrent. |
+| 10200051 | The periodic task cannot be executed again.  |
 
 **示例：**
 
@@ -1687,6 +1767,7 @@ execute(task: Task): Promise\<Object>
 | 10200003 | Worker initialization failure.              |
 | 10200006 | An exception occurred during serialization. |
 | 10200025 | Add dependent task to SequenceRunner.       |
+| 10200051 | The periodic task cannot be executed again.  |
 
 **示例：**
 
