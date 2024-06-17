@@ -2082,7 +2082,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_TensorCreate (const char * name, OH_AI_DataTy
 ### OH_AI_TensorGetAllocator()
 
 ```
-OH_AI_API OH_AI_AllocatorHandle OH_AI_TensorGetAllocator(OH_AI_TensorHandle tensor);
+OH_AI_API OH_AI_AllocatorHandle OH_AI_TensorGetAllocator(OH_AI_TensorHandle tensor)
 ```
 
 **描述**
@@ -2308,7 +2308,7 @@ OH_AI_API const int64_t* OH_AI_TensorGetShape (const OH_AI_TensorHandle tensor, 
 ### OH_AI_TensorSetAllocator()
 
 ```
-OH_AI_API OH_AI_Status OH_AI_TensorSetAllocator(OH_AI_TensorHandle tensor, OH_AI_AllocatorHandle allocator);
+OH_AI_API OH_AI_Status OH_AI_TensorSetAllocator(OH_AI_TensorHandle tensor, OH_AI_AllocatorHandle allocator)
 ```
 
 **描述**
