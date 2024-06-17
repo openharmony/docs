@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import common2D from '@ohos.graphics.common2D';
+import { common2D } from '@kit.ArkGraphics2D';
 ```
 
 ## Color
