@@ -411,28 +411,28 @@ let abilityLifecycleCallback: AbilityLifecycleCallback = {
     console.log('AbilityLifecycleCallback onAbilityContinue.');
   },
   onNewWant(ability) {
-    console.log('onNewWant');
+    console.log('AbilityLifecycleCallback onNewWant');
   },
   onWillNewWant(ability) {
-    console.log('onWillNewWant');
+    console.log('AbilityLifecycleCallback onWillNewWant');
   },
   onAbilityWillCreate(ability) {
-    console.log('onAbilityWillCreate');
+    console.log('AbilityLifecycleCallback onAbilityWillCreate');
   },
   onWindowStageWillCreate(ability, windowStage) {
-    console.log('onWindowStageWillCreate');
+    console.log('AbilityLifecycleCallback onWindowStageWillCreate');
   },
   onWindowStageWillDestroy(ability, windowStage) {
-    console.log('onWindowStageWillDestroy');
+    console.log('AbilityLifecycleCallback onWindowStageWillDestroy');
   },
   onAbilityWillDestroy(ability) {
-    console.log('onAbilityWillDestroy');
+    console.log('AbilityLifecycleCallback onAbilityWillDestroy');
   },
   onAbilityWillForeground(ability) {
-    console.log('onAbilityWillForeground');
+    console.log('AbilityLifecycleCallback onAbilityWillForeground');
   },
   onAbilityWillBackground(ability) {
-    console.log('onAbilityWillBackground');
+    console.log('AbilityLifecycleCallback onAbilityWillBackground');
   }
 };
 
