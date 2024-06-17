@@ -10,7 +10,7 @@ ExtensionRunningInfo模块封装了Extension运行的相关信息，可以通过
 ## 导入模块
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
+import { abilityManager } from '@kit.AbilityKit';
 ```
 
 ## 使用说明
@@ -35,26 +35,27 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 **示例：**
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
+import { abilityManager } from '@kit.AbilityKit';
 
 let upperLimit = 1;
-function getExtensionInfos() {
-    abilityManager.getExtensionRunningInfos(upperLimit, (error, data) => {
-        if (error) {
-            console.error(`getForegroundApplications failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
-            return;
-        }
 
-        for (let i = 0; i < data.length; i++) {
-            let extensionRunningInfo = data[i];
-            console.log(`extensionRunningInfo.extension: ${JSON.stringify(extensionRunningInfo.extension)}`);
-            console.log(`extensionRunningInfo.pid: ${JSON.stringify(extensionRunningInfo.pid)}`);
-            console.log(`extensionRunningInfo.uid: ${JSON.stringify(extensionRunningInfo.uid)}`);
-            console.log(`extensionRunningInfo.processName: ${JSON.stringify(extensionRunningInfo.processName)}`);
-            console.log(`extensionRunningInfo.startTime: ${JSON.stringify(extensionRunningInfo.startTime)}`);
-            console.log(`extensionRunningInfo.clientPackage: ${JSON.stringify(extensionRunningInfo.clientPackage)}`);
-            console.log(`extensionRunningInfo.type: ${JSON.stringify(extensionRunningInfo.type)}`);
-        }
-    });
+function getExtensionInfos() {
+  abilityManager.getExtensionRunningInfos(upperLimit, (error, data) => {
+    if (error) {
+      console.error(`getForegroundApplications failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+      return;
+    }
+
+    for (let i = 0; i < data.length; i++) {
+      let extensionRunningInfo = data[i];
+      console.log(`extensionRunningInfo.extension: ${JSON.stringify(extensionRunningInfo.extension)}`);
+      console.log(`extensionRunningInfo.pid: ${JSON.stringify(extensionRunningInfo.pid)}`);
+      console.log(`extensionRunningInfo.uid: ${JSON.stringify(extensionRunningInfo.uid)}`);
+      console.log(`extensionRunningInfo.processName: ${JSON.stringify(extensionRunningInfo.processName)}`);
+      console.log(`extensionRunningInfo.startTime: ${JSON.stringify(extensionRunningInfo.startTime)}`);
+      console.log(`extensionRunningInfo.clientPackage: ${JSON.stringify(extensionRunningInfo.clientPackage)}`);
+      console.log(`extensionRunningInfo.type: ${JSON.stringify(extensionRunningInfo.type)}`);
+    }
+  });
 }
 ```

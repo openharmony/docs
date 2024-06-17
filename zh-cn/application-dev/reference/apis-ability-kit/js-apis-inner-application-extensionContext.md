@@ -12,7 +12,7 @@ ExtensionContext模块提供访问特定Extension的资源的能力，对于拓�
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -59,9 +59,8 @@ export class GlobalContext {
 ```
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import formBindingData from '@ohos.app.form.formBindingData';
+import { FormExtensionAbility, formBindingData } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
 import { GlobalContext } from '../GlobalContext';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {

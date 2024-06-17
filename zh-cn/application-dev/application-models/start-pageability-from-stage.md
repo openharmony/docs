@@ -12,10 +12,9 @@
 > 需注意FA模型中abilityName由bundleName + AbilityName组成，具体见示例。
 
 ```ts
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[Page_StartFAModel]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -63,13 +62,12 @@ UIAbility通过startAbilityForResult启动PageABility和UIAbility通过startAbil
 
 
 ```ts
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import promptAction from '@ohos.promptAction'
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { promptAction } from '@kit.ArkUI';
 
-const TAG: string = '[Page_StartFAModel]'
+const TAG: string = '[Page_StartFAModel]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
@@ -94,7 +92,7 @@ struct Page_StartFAModel {
               hilog.info(DOMAIN_NUMBER, TAG, 'Ability verify result: ' + JSON.stringify(result));
               if (result !== null) {
                 promptAction.showToast({
-                  message : JSON.stringify(result)
+                  message: JSON.stringify(result)
                 });
               }
             }).catch((error: BusinessError) => {
@@ -118,12 +116,10 @@ struct Page_StartFAModel {
 
 
 ```ts
-import type { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
-import type Want from '@ohos.app.ability.Want';
-import type rpc from '@ohos.rpc';
+import { Want, ServiceExtensionAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { rpc } from '@kit.IPCKit';
 
 const TAG: string = '[ServiceExtAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -138,7 +134,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
 
   onRequest(want: Want, startId: number): void {
     hilog.info(DOMAIN_NUMBER, TAG, `onRequest, want: ${want.abilityName}`);
-    if (want.parameters.key === 'ConnectFaPageAbility') {
+    if (want.parameters?.key === 'ConnectFaPageAbility') {
       let wantFA: Want = {
         bundleName: 'com.samples.famodelabilitydevelop',
         abilityName: 'com.samples.famodelabilitydevelop.MainAbility',
@@ -164,5 +160,5 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
   onDestroy(): void {
     hilog.info(DOMAIN_NUMBER, TAG, 'onDestroy');
   };
-};
+}
 ```

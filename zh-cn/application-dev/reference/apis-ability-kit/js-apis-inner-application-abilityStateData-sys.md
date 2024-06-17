@@ -1,6 +1,6 @@
 # AbilityStateData (系统接口)
 
-定义Ability状态信息，可以通过[registerApplicationStateObserver](js-apis-application-appManager-sys.md#appmanagerregisterapplicationstateobserver)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md)的onAbilityStateChanged生命周期回调获取。
+定义Ability状态信息，可以通过[on](js-apis-app-ability-appManager-sys.md#appmanageron11)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md)的onAbilityStateChanged生命周期回调获取。
 
 > **说明：**
 > 
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import appManager from '@ohos.application.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## 属性

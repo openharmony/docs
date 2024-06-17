@@ -11,7 +11,7 @@ Context模块提供了ability或application的上下文的能力，包括访问�
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## Context.createBundleContext
@@ -53,8 +53,8 @@ createBundleContext(bundleName: string): Context
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import { common, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
@@ -63,7 +63,7 @@ export default class EntryAbility extends UIAbility {
     try {
       bundleContext = this.context.createBundleContext('com.example.test');
     } catch (error) {
-      console.error(`createBundleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`createBundleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
     }
   }
 }
@@ -103,8 +103,8 @@ createModuleContext(bundleName: string, moduleName: string): Context
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import { common, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
@@ -113,7 +113,7 @@ export default class EntryAbility extends UIAbility {
     try {
       moduleContext = this.context.createModuleContext('com.example.test', 'entry');
     } catch (error) {
-      console.error(`createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
     }
   }
 }
@@ -155,9 +155,10 @@ createModuleResourceManager(bundleName: string, moduleName: string): resmgr.Reso
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import resourceManager from '@ohos.resourceManager';
+import { UIAbility } from '@kit.AbilityKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 export default class EntryAbility extends UIAbility {
   onCreate() {
     console.log('MyAbility onCreate');
@@ -165,7 +166,7 @@ export default class EntryAbility extends UIAbility {
     try {
       ModuleResourceManager = this.context.createModuleResourceManager('com.example.test', 'entry');
     } catch (error) {
-      console.error(`createModuleResourceManager failed, error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`createModuleResourceManager failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
     }
   }
 }
@@ -196,20 +197,15 @@ createSystemHspModuleResourceManager(bundleName: string, moduleName: string): re
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16400001 | The specified ability does not exist. |
 
-
-
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
     console.log('MyAbility onCreate');
-    let hspContext: common.Context = this.context;
-    let resourceManager = hspContext.createSystemHspModuleResourceManager("com.example.myapplication", "library");
+    this.context.createSystemHspModuleResourceManager("com.example.myapplication", "library");
   }
 }
 ```
-
