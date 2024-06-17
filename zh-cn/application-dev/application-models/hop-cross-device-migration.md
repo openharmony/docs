@@ -72,45 +72,36 @@
 
    - 迁移决策：开发者可以通过[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调的返回值决定是否支持此次迁移，接口返回值详见[`AbilityConstant.OnContinueResult`](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)。
 
-    &nbsp;
-    `onContinue()`接口传入的`wantParam`参数中，有部分字段由系统预置，开发者可以使用这些字段用于业务处理。同时，应用在保存自己的`wantParam`参数时，也应注意不要使用同样的key值，避免被系统覆盖导致数据获取异常。详见下表：
-    | 字段|含义|
-    | ---- | ---- |
-    | version | 对端应用的版本号 |
-    | targetDevice | 对端设备的networkId |
+  ```ts
+  import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-   ```ts
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import hilog from '@ohos.hilog';
-   import UIAbility from '@ohos.app.ability.UIAbility';
+  const TAG: string = '[MigrationAbility]';
+  const DOMAIN_NUMBER: number = 0xFF00;
 
-   const TAG: string = '[MigrationAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
+  export default class MigrationAbility extends UIAbility {
+    onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
+      let version = wantParam.version;
+      let targetDevice = wantParam.targetDevice;
+      hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${version}, targetDevice: ${targetDevice}`); // 准备迁移数据
 
-   export default class MigrationAbility extends UIAbility {
-     // 在onContinue中准备迁移数据
-     onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
-       let targetVersion = wantParam.version;
-       let targetDevice = wantParam.targetDevice;
-       hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${version}, targetDevice: ${targetDevice}`);
+      // 获取源端版本号
+      let versionSrc: number = -1; // 请填充具体获取版本号的代码
 
-       // 获取本端应用的版本号
-       let versionSrc: number = -1; // 请填充具体获取版本号的代码
+      // 兼容性校验
+      if (version !== versionSrc) {
+        // 在兼容性校验不通过时返回MISMATCH
+        return AbilityConstant.OnContinueResult.MISMATCH;
+      }
 
-       // 兼容性校验
-       if (version !== versionSrc) {
-         // 在兼容性校验不通过时返回MISMATCH
-         return AbilityConstant.OnContinueResult.MISMATCH;
-       }
+      // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
+      const continueInput = '迁移的数据';
+      wantParam['data'] = continueInput;
 
-       // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
-       const continueInput = '迁移的数据';
-       wantParam['data'] = continueInput;
-
-       return AbilityConstant.OnContinueResult.AGREE;
-     }
-   }
-   ```
+      return AbilityConstant.OnContinueResult.AGREE;
+    }
+  }
+  ```
 
 3. 对端设备的UIAbility通过实现[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)接口，来恢复迁移数据和加载UI。
   不同的启动方式下会调用不同的接口，详见下图。
@@ -125,47 +116,45 @@
    - 开发者可以从`want`中获取之前保存的迁移数据。
    - 若开发者使用系统页面栈恢复功能，则需要在`onCreate()`/`onNewWant()`执行完成前，同步调用`restoreWindowStage()`，来触发带有页面栈的页面恢复，详见[按需迁移页面栈](./hop-cross-device-migration.md#按需迁移页面栈)。
 
-   ```ts
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import hilog from '@ohos.hilog';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import type Want from '@ohos.app.ability.Want';
+  ```ts
+  import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-   const TAG: string = '[MigrationAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
+  const TAG: string = '[MigrationAbility]';
+  const DOMAIN_NUMBER: number = 0xFF00;
 
-   export default class MigrationAbility extends UIAbility {
-     storage : LocalStorage = new LocalStorage();
+  export default class MigrationAbility extends UIAbility {
+    storage: LocalStorage = new LocalStorage();
 
-     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
-       if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-         // 将上述保存的数据从want.parameters中取出恢复
-         let continueInput = '';
-         if (want.parameters !== undefined) {
-           continueInput = JSON.stringify(want.parameters.data);
-           hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
-         }
-         // 触发页面恢复
-         this.context.restoreWindowStage(this.storage);
-       }
-     }
-
-     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
-        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-          // 将上述保存的数据从want.parameters中取出恢复
-          let continueInput = '';
-          if (want.parameters !== undefined) {
-            continueInput = JSON.stringify(want.parameters.data);
-            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
-          }
-          // 触发页面恢复
-          this.context.restoreWindowStage(this.storage);
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+      hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+      if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+        // 将上述保存的数据从want.parameters中取出恢复
+        let continueInput = '';
+        if (want.parameters !== undefined) {
+          continueInput = JSON.stringify(want.parameters.data);
+          hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
         }
+        // 触发页面恢复
+        this.context.restoreWindowStage(this.storage);
       }
-   }
-   ```
+    }
+
+    onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+      hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
+      if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+        // 将上述保存的数据从want.parameters中取出恢复
+        let continueInput = '';
+        if (want.parameters !== undefined) {
+          continueInput = JSON.stringify(want.parameters.data);
+          hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
+        }
+        // 触发页面恢复
+        this.context.restoreWindowStage(this.storage);
+      }
+    }
+  }
+  ```
 
 ## 可选配置迁移能力
 
@@ -177,93 +166,79 @@
 
 **设置迁移能力的时机**
 
-如果需要实现某些特殊场景，比如只在具体某个页面下支持迁移，或只在某个事件发生时才支持迁移，可以按照如下步骤进行配置
+迁移能力的改变可以根据实际业务需求和代码实现，发生在应用生命周期的绝大多数时机。本文介绍常用的几种配置方式。
+
+在`UIAbility`的[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)回调中调用接口，可以在应用创建时设置应用的迁移状态。
+
+```ts
+// MigrationAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = '[MigrationAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+export default class MigrationAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // ...
+    this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
+      hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState INACTIVE result: ${JSON.stringify(result)}`);
+    });
+    // ...
+  }
+}
+```
 
 1. 在`UIAbility`的[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)生命周期回调中，关闭迁移能力。
 
-    ```ts
-    // MigrationAbility.ets
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import hilog from '@ohos.hilog';
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import type Want from '@ohos.app.ability.Want';
+```ts
+// Page_MigrationAbilityFirst.ets
+import { AbilityConstant, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
 
-    export default class MigrationAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        // ...
-        this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
-          hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState INACTIVE result: ${JSON.stringify(result)}`);
-        });
-        // ...
-      }
-    }
-    ```
+@Entry
+@Component
+struct Page_MigrationAbilityFirst {
+  private context = getContext(this) as common.UIAbilityContext;
+
+  build() {
+    // ...
+  }
+  // ...
+  onPageShow() {
+    // 进入该页面时，将应用设置为可迁移状态
+    this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
+      hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
+    });
+  }
+}
+```
 
  2. 如果需要在具体某个页面中打开迁移能力，可以在页面的`onPageShow()`函数中调用接口。
 
-    ```ts
-    // Page_MigrationAbilityFirst.ets
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import common from '@ohos.app.ability.common';
-    import hilog from '@ohos.hilog';
+```ts
+// Page_MigrationAbilityFirst.ets
+import { AbilityConstant, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { promptAction } from '@kit.ArkUI';
 
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
 
-    @Entry
-    @Component
-    struct Page_MigrationAbilityFirst {
-      private context = getContext(this) as common.UIAbilityContext;
-      build() {
-        // ...
-      }
-      // ...
-      onPageShow(){
-        // 进入该页面时，将应用设置为可迁移状态
-        this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-          hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
-        });
-      }
-    }
-    ```
+@Entry
+@Component
+struct Page_MigrationAbilityFirst {
+  private context = getContext(this) as common.UIAbilityContext;
 
-3. 如果想要在某个组件的触发事件打开迁移能力，可以在该事件中调用。以Button组件的`onClick()`事件为例：
-
-    ```ts
-    // Page_MigrationAbilityFirst.ets
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import common from '@ohos.app.ability.common';
-    import hilog from '@ohos.hilog';
-    import promptAction from '@ohos.promptAction'
-
-    const TAG: string = '[MigrationAbility]';
-    const DOMAIN_NUMBER: number = 0xFF00;
-
-    @Entry
-    @Component
-    struct Page_MigrationAbilityFirst {
-      private context = getContext(this) as common.UIAbilityContext;
-      build() {
-        Column() {
-          //...
-          List({ initialIndex: 0 }) {
-            ListItem() {
-              Row() {
-                //...
-              }
-              .onClick(() => {
-                // 点击该按钮时，将应用设置为可迁移状态
-                this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-                  hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
-                  promptAction.showToast({
-                    message: $r('app.string.Success')
-                  });
-                });
-              })
-            }
+  build() {
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        ListItem() {
+          Row() {
             //...
           }
           //...
@@ -277,9 +252,10 @@
 
 `UIAbility`的迁移默认恢复页面栈。开发者需要在`onCreate()`/`onNewWant()`执行完成前，调用`restoreWindowStage()`，向系统传入当前的窗口上下文，用于页面栈的加载恢复。
 
-> **说明：**
->
-> 接口`restoreWindowStage()`必须在同步方法中执行。如果在异步回调中执行该接口，会导致在应用拉起时页面有概率加载失败。
+```ts
+// MigrationAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 以`onCreate()`为例：
 
@@ -307,25 +283,23 @@
 
 ```ts
 // MigrationAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
-import hilog from '@ohos.hilog';
-import type window from '@ohos.window';
+import { AbilityConstant, UIAbility, wantConstant } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class MigrationAbility extends UIAbility {
-  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
-    // ...
-    // 配置不使用系统页面栈恢复
+  // ...
+  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
+    hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`);
     wantParam[wantConstant.Params.SUPPORT_CONTINUE_PAGE_STACK_KEY] = false;
     return AbilityConstant.OnContinueResult.AGREE;
   }
 
-  onWindowStageRestore(windowStage: window.WindowStage) : void {
-    // 不使用系统页面栈恢复时，需要在此处指定应用迁移后进入的页面
+  onWindowStageRestore(windowStage: window.WindowStage): void {
+    // 若不需要自动迁移页面栈信息，则需要在此处设置应用迁移后进入的页面
     windowStage.loadContent('pages/page_migrationability/Page_MigrationAbilityThird', (err, data) => {
       if (err.code) {
         hilog.error(DOMAIN_NUMBER, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -343,17 +317,16 @@ export default class MigrationAbility extends UIAbility {
 示例：`UIAbility`设置迁移成功后，源端不需要退出迁移应用。
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
-import hilog from '@ohos.hilog';
+// MigrationAbility.ets
+import { AbilityConstant, UIAbility, wantConstant } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class MigrationAbility extends UIAbility {
   // ...
-  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
     hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`);
     wantParam[wantConstant.Params.SUPPORT_CONTINUE_SOURCE_EXIT_KEY] = false;
     return AbilityConstant.OnContinueResult.AGREE;
@@ -379,15 +352,16 @@ export default class MigrationAbility extends UIAbility {
 在需要迁移的数据较少（100KB以下）时，开发者可以选择在`wantParam`中增加字段进行数据迁移。示例如下：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
+// MigrationAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class MigrationAbility extends UIAbility {
   // 源端保存
-  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
     // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
     const continueInput = '迁移的数据';
     wantParam['data'] = continueInput;

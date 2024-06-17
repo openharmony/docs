@@ -9,7 +9,7 @@ AbilityMonitor模块提供匹配满足指定条件的受监视能力对象的方
 ## 导入模块
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 ```
 
 ## 使用说明
@@ -39,25 +39,24 @@ Ability监听器
 **示例：**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function onAbilityCreateCallback(data: UIAbility) {
-    console.info(`onAbilityCreateCallback, data: ${JSON.stringify(data)}`);
+  console.info(`onAbilityCreateCallback, data: ${JSON.stringify(data)}`);
 }
 
-let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
-    abilityName: 'abilityname',
-    moduleName: "moduleName",
-    onAbilityCreate: onAbilityCreateCallback
+let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+  abilityName: 'abilityname',
+  moduleName: "moduleName",
+  onAbilityCreate: onAbilityCreateCallback
 }
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (error : BusinessError) => {
-    if (error) {
-        console.error(`addAbilityMonitor fail, error: ${JSON.stringify(error)}`);
-    }
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
+  if (error) {
+    console.error(`addAbilityMonitor fail, error: ${JSON.stringify(error)}`);
+  }
 });
 ```
-

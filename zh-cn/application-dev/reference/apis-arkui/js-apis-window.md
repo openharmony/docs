@@ -7884,7 +7884,7 @@ windowClass.setOutsideTouchable(true, (err: BusinessError) => {
 
 setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
-设置是否允许可点击子窗口之外的区域，使用Promise异步回调。。
+设置是否允许可点击子窗口之外的区域，使用Promise异步回调。
 
 > **说明：**
 >

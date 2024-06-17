@@ -160,8 +160,8 @@ Navigation组件页面切换的信息。
 | 名称         | 类型                                               | 必填 | 说明                                          |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | context      | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发页面切换的Navigation对应的上下文信息。 |
-| from         | [NavDestinationInfo](#navdestinationinfo) \| "navBar" | 是   | 页面切换的源页面。         |
-| to           | [NavDestinationInfo](#navdestinationinfo) \| "navBar" | 是   | 页面切换的目的页面。         |
+| from         | [NavDestinationInfo](#navdestinationinfo) \| [NavBar](./arkui-ts/ts-basic-components-navigation.md#navbar12) | 是   | 页面切换的源页面。         |
+| to           | [NavDestinationInfo](#navdestinationinfo) \| [NavBar](./arkui-ts/ts-basic-components-navigation.md#navbar12) | 是   | 页面切换的目的页面。         |
 | operation    | [NavigationOperation](./arkui-ts/ts-basic-components-navigation.md#navigationoperation11枚举说明) | 是   | 页面切换操作类型。         |
 
 ## NavDestinationSwitchObserverOptions<sup>12+</sup>
@@ -454,7 +454,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 注册监听，范围是abilityContext内的page
     observer.on('routerPageUpdate', this.context, (info: observer.RouterPageInfo) => {
-      console.log('[observer][abilityContext] got info: ' + JSON.stringify(info))
+      console.info('[observer][abilityContext] got info: ' + JSON.stringify(info))
     })
   }
 
@@ -466,7 +466,7 @@ export default class EntryAbility extends UIAbility {
         this.uiContext = windowInfo.getUIContext();
         // 注册监听，范围是uiContext内的page
         observer.on('routerPageUpdate', this.uiContext, (info: observer.RouterPageInfo)=>{
-          console.log('[observer][uiContext] got info: ' + JSON.stringify(info))
+          console.info('[observer][uiContext] got info: ' + JSON.stringify(info))
         })
       })
     });
@@ -651,7 +651,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   willDrawCallback = () => {
-    console.log("willDraw指令下发");
+    console.info("willDraw指令下发");
   }
   build() {
     Column() {
@@ -689,7 +689,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   willDrawCallback = () => {
-    console.log("willDraw指令下发")
+    console.info("willDraw指令下发")
   }
 
   build() {
@@ -734,7 +734,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   didLayoutCallback = () => {
-    console.log("Layout布局完成");
+    console.info("Layout布局完成");
   }
   build() {
     Column() {
@@ -772,7 +772,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   didLayoutCallback = () => {
-    console.log("Layout布局完成")
+    console.info("Layout布局完成")
   }
 
   build() {
@@ -822,7 +822,7 @@ import window from '@ohos.window';
 import observer from '@ohos.arkui.observer';
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 export default class EntryAbility extends UIAbility {
@@ -882,7 +882,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 @Entry
@@ -974,7 +974,7 @@ import window from '@ohos.window';
 import observer from '@ohos.arkui.observer';
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 export default class EntryAbility extends UIAbility {
@@ -1034,7 +1034,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 @Entry

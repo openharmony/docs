@@ -14,9 +14,9 @@ geometryTransition(id: string)
 
 组件内隐式共享元素转场。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -30,6 +30,8 @@ geometryTransition(id: string, options?: GeometryTransitionOptions)
 
 组件内隐式共享元素转场。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -42,6 +44,8 @@ geometryTransition(id: string, options?: GeometryTransitionOptions)
 ## GeometryTransitionOptions<sup>11+<sup>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 

@@ -346,7 +346,7 @@ cachedCount(value: number)
 
 设置预加载的FlowItem的数量，只在LazyForEach中生效。设置该属性后会缓存cachedCount个FlowItem。[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的FlowItem会被释放。设置为小于0的值时，按默认值显示。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -410,8 +410,6 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 
 设置边缘滑动效果。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -428,6 +426,8 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 flingSpeedLimit(speedLimit: number)
 
 限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -511,6 +511,8 @@ onScrollStart(event: () => void)
 
 瀑布流滑动开始时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onScrollStop<sup>11+</sup>
@@ -518,6 +520,8 @@ onScrollStart(event: () => void)
 onScrollStop(event: () => void)
 
 瀑布流滑动停止时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

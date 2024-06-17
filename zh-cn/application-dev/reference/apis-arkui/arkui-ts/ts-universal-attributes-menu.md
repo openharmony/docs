@@ -81,9 +81,10 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 
 菜单弹出不跟随点击位置，只与placement设置有关。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -99,7 +100,7 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | --------------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | value                 | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单项文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                 |
 | icon<sup>10+</sup>    | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单项图标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                 |
-| enabled<sup>11+</sup> | boolean                                | 否   | 菜单条目是否可进行交互。<br/>默认值：true, 菜单条目可以进行交互。 |
+| enabled<sup>11+</sup> | boolean                                | 否   | 菜单条目是否可进行交互。<br/>默认值：true, 菜单条目可以进行交互。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | action                | ()&nbsp;=&gt;&nbsp;void                | 是   | 点击菜单项的事件回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                       |
 | symbolIcon<sup>12+</sup>                | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)                | 否   | 设置菜单项图标。通过Modifier配置菜单项图标，配置该项时，原icon图标不显示。                                       |
 
@@ -133,11 +134,9 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 
 ## ContextMenuAnimationOptions<sup>11+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 | 名称  | 类型                                       | 必填 | 描述                                 |
 | ----- | ------------------------------------------ | ---- | ------------------------------------ |
-| scale | [AnimationRange](#animationrange11)\<number> | 否   | 动画开始和结束时相对预览原图缩放比例。 |
+| scale | [AnimationRange](#animationrange11)\<number> | 否   | 动画开始和结束时相对预览原图缩放比例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 设置菜单显示和退出的过渡效果。<br/>**说明：**<br />菜单退出动效过程中，进行横竖屏切换，菜单会避让。二级菜单不继承自定义动效。弹出过程可以点击二级菜单，退出动效执行过程不允许点击二级菜单。<br />详细描述见[TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明)对象说明。 |
 | hoverScale<sup>12+</sup> | [AnimationRange](#animationrange11)\<number> | 否   | 设置预览自定义长按场景下，浮起原组件截图的缩放动画开始和结束时相对预览原图缩放比例。 <br/>**说明：**<br /> 倍率设置参数小于等于0时，不生效。<br />[bindContextMenu<sup>12+</sup>](#bindcontextmenu12)场景下，不生效。|
 

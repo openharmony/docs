@@ -62,7 +62,7 @@ enableLoading(value: boolean)
 | ------ | ------- | ---- | ---------------------------------------------- |
 | value  | boolean | 是   | LoadingProgress动画是否显示。<br/>默认值：true |
 
-## contentModifier<sup>12+</sup>
+### contentModifier<sup>12+</sup>
 
 contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
@@ -78,7 +78,7 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+支持[通用事件](ts-universal-events-click.md)。
 
 ## LoadingProgressConfiguration<sup>12+</sup>对象说明
 
@@ -113,7 +113,7 @@ struct LoadingProgressExample {
 ### 示例2
 
 ```ts
-//该示例实现了自定义LoadingProgress的功能，实现了通过按钮切换是否显示LoadingProgress。点击按钮，config.enableLoading切换为false, 不显示LoadingProgress。。
+//该示例实现了自定义LoadingProgress的功能，实现了通过按钮切换是否显示LoadingProgress。点击按钮，config.enableLoading切换为false, 不显示LoadingProgress。
 // xxx.ets
 import hilog from '@ohos.hilog'
 

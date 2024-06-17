@@ -120,8 +120,6 @@ loop(value: boolean)
 
 设置是否启用循环模式。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -135,8 +133,6 @@ loop(value: boolean)
 dateTimeOptions(value: DateTimeOptions)
 
 设置时分秒是否显示前置0。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

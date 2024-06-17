@@ -443,6 +443,8 @@ indicatorInteractive(value: boolean)
 
 ## SwiperDisplayMode枚举说明
 
+Swiper在主轴上的尺寸大小模式枚举。
+
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -457,6 +459,8 @@ indicatorInteractive(value: boolean)
 | AUTO_LINEAR<sup>(deprecated)</sup>         | Swiper滑动一页的宽度为视窗内最左侧子组件的宽度。<br/>从API version 10开始支持，从API version 12开始不再维护，建议使用[Scroller.scrollTo](ts-container-scroll.md#scrollto)代替。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## SwiperNestedScrollMode<sup>11+</sup>枚举说明
+
+Swiper组件和父组件的嵌套滚动模式枚举。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -483,9 +487,21 @@ Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，可�
 let controller: SwiperController = new SwiperController()
 ```
 
+### constructor
+
+constructor()
+
+SwiperController的构造函数。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### showNext
 
-showNext(): void
+showNext()
 
 翻至下一页。翻页带动效切换过程，时长通过duration指定。
 
@@ -497,7 +513,7 @@ showNext(): void
 
 ### showPrevious
 
-showPrevious(): void
+showPrevious()
 
 翻至上一页。翻页带动效切换过程，时长通过duration指定。
 
@@ -509,7 +525,7 @@ showPrevious(): void
 
 ### changeIndex<sup>12+</sup>
 
-changeIndex(index: number, useAnimation?: boolean): void
+changeIndex(index: number, useAnimation?: boolean)
 
 翻至指定页面。
 
@@ -526,7 +542,7 @@ changeIndex(index: number, useAnimation?: boolean): void
 
 ### finishAnimation
 
-finishAnimation(callback?: () => void): void
+finishAnimation(callback?: () => void)
 
 停止播放动画。
 
@@ -583,6 +599,18 @@ finishAnimation(callback?: () => void): void
 | color              | [ResourceColor](ts-types.md#resourcecolor) | 是    | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
 | selectedColor      | [ResourceColor](ts-types.md#resourcecolor) | 是    | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
 
+### constructor
+
+constructor()
+
+DotIndicator的构造函数。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 >**说明：** 
 >
 >按压导航点时，导航点会放大至1.33倍显示，因此非按压态时导航点的可见范围边界至实际范围边界存在一定距离，该距离会随着itemWidth、itemHeight、selectedItemWidth、selectedItemHeight等参数变大而变大。
@@ -603,6 +631,18 @@ finishAnimation(callback?: () => void): void
 | selectedFontColor | [ResourceColor](ts-types.md#resourcecolor) | 是    | 设置选中Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
 | digitFont         | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 是    | 设置Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点指示器的字体大小，不支持设置百分比。<br/>默认值：14vp<br/>\- weight：数字导航点指示器的字重。<br/>默认值：FontWeight.Normal |
 | selectedDigitFont | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 是    | 设置选中Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点选中指示器的字体大小，不支持设置百分比。<br/>默认值：14vp<br/>\- weight：数字导航点选中指示器的字重。<br/>默认值：FontWeight.Normal |
+
+### constructor
+
+constructor()
+
+DigitIndicator的构造函数。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ArrowStyle<sup>10+</sup>
 左右箭头属性。

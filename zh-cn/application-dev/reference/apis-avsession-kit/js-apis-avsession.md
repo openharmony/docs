@@ -3628,6 +3628,8 @@ processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
 
 在线DRM资源投播时，处理许可证响应。结果通过Promise异步回调方式返回。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
