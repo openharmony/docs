@@ -25,12 +25,12 @@
 
 **依赖文件**
 ```js
-import { NodeController, FrameNode, RenderNode, DrawContext } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext'
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import image from '@ohos.multimedia.image'
-import common2D from '@ohos.graphics.common2D'
+import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
+import { UIContext } from '@kit.ArkUI'
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
+import { common2D } from '@kit.ArkGraphics2D'
 ```
 
 接下来介绍如何使用text接口进行文本绘制。
