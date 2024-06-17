@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
+import { hiAppEvent } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## hiAppEvent.addProcessor<sup>11+</sup>
@@ -46,7 +46,7 @@ Processor的配置信息需要由数据处理者提供，目前设备内暂未�
 **示例：**
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 try {
     let processor: hiAppEvent.Processor = {
@@ -120,7 +120,7 @@ removeProcessor(id: number): void
 **示例：**
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 try {
     let processor: hiAppEvent.Processor = {
@@ -168,8 +168,8 @@ write(info: AppEventInfo, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let eventParams: Record<string, number | string> = {
   "int_data": 100,
@@ -229,8 +229,8 @@ write(info: AppEventInfo): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let eventParams: Record<string, number | string> = {
   "int_data": 100,
@@ -299,8 +299,8 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let params: Record<string, hiAppEvent.ParamType> = {
   "int_data": 100,
@@ -409,7 +409,7 @@ setUserId(name: string, value: string): void
 **示例：**
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 try {
   hiAppEvent.setUserId('key', 'value');
@@ -449,7 +449,7 @@ getUserId(name: string): string
 **示例：**
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 hiAppEvent.setUserId('key', 'value');
 try {
@@ -486,7 +486,7 @@ setUserProperty(name: string, value: string): void
 **示例：**
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 try {
   hiAppEvent.setUserProperty('key', 'value');
@@ -526,7 +526,7 @@ getUserProperty(name: string): string
 **示例：**
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 hiAppEvent.setUserProperty('key', 'value');
 try {
@@ -575,7 +575,7 @@ addWatcher(watcher: Watcher): AppEventPackageHolder
 **示例：**
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 // 1. 如果观察者传入了回调的相关参数，则可以选择在自动触发的回调函数中对订阅事件进行处理
 hiAppEvent.addWatcher({
