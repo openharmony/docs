@@ -9,7 +9,7 @@
 
 ## 申请权限
 
-请参考[申请位置权限开发指导](../../device/location/location-guidelines.md#申请位置权限开发指导)。
+请参考[申请位置权限开发指导](../../device/location/location-permission-guidelines.md#开发步骤)。
 
 
 ## 导入模块
@@ -46,7 +46,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | country<sup>12+</sup> | string | 是 | 是 | 限制查询结果在指定的国家内，采用ISO 3166-1 alpha-2 。“CN”代表中国。默认值从设置中的“语言和地区”获取。 |
 | description | string | 是 | 是 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
 | maxItems | number | 是 | 是 | 表示返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。默认值是1。 |
-| minLatitude | number | 是 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。取值范围为-90到90。仅支持WGS84坐标系。 |
+| minLatitude | number | 是 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。取值范围为-90到90。仅支持WGS84坐标系。如果该参数有值时，下面三个参数必填。 |
 | minLongitude | number | 是 | 是 | 表示最小经度信息。取值范围为-180到180。仅支持WGS84坐标系。 |
 | maxLatitude | number | 是 | 是 | 表示最大纬度信息。取值范围为-90到90。仅支持WGS84坐标系。 |
 | maxLongitude | number | 是 | 是 | 表示最大经度信息。取值范围为-180到180。仅支持WGS84坐标系。 |
@@ -447,7 +447,7 @@ GNSS地理围栏请求参数。
 | -------- | -------- | -------- |
 | LOCATING_FAILED_DEFAULT   | -1 |  默认值。 |
 | LOCATING_FAILED_LOCATION_PERMISSION_DENIED   | -2 | 表示ohos.permission.APPROXIMATELY_LOCATION权限或ohos.permission.LOCATION权限校验失败导致持续定位失败。 |
-| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | 表示应用在后台时位置权限校验失败导致持续定位失败。APP在后台定位时的位置权限申请方式参见[申请位置权限开发指导](../../device/location/location-guidelines.md#申请位置权限开发指导)。 |
+| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | 表示应用在后台时位置权限校验失败导致持续定位失败。APP在后台定位时的位置权限申请方式参见[申请位置权限开发指导](../../device/location/location-permission-guidelines.md#开发步骤)。 |
 | LOCATING_FAILED_LOCATION_SWITCH_OFF    | -4 | 表示位置信息开关关闭导致持续定位失败。 |
 | LOCATING_FAILED_INTERNET_ACCESS_FAILURE    | -5 | 表示无法访问网络，导致网络定位失败。 |
 
