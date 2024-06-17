@@ -1,7 +1,7 @@
 # 拉起系统应用
 
 
-本章节介绍拉起系统应用的方式，并对当前已支持的能力进行了汇总。
+本章节介绍拉起系统应用的方式，以及当前已支持的系统应用跳转能力清单。
 
 ## 使用系统Picker实现资源访问
 
@@ -26,14 +26,14 @@
 
 | Picker类型 | 适用场景 | 使用指导 |
 | -------- | -------- |-------- |
-| 文件Picker（DocumentViewPicker） | 用于访问、保存公共目录中文档类文件。 |- [选择文档类文件](../file-management/select-user-file.md#选择文档类文件) <br/> - [保存文档类文件](../file-management/save-user-file.md#保存文档类文件)|
-| 音频Picker（AudioViewPicker） | 用于访问、保存用户公共目录的音频文件。 |- [选择音频类文件](../file-management/select-user-file.md#选择音频类文件) <br/> - [保存音频类文件](../file-management/save-user-file.md#保存音频类文件) |
-| 照片Picker（PhotoViewPicker）| 用于访问、保存公共目录的图片或视频文件。 | - [选择媒体库资源](../media/medialibrary/photoAccessHelper-resource-guidelines.md#使用picker选择媒体库资源)<br/> - [保存图片或视频类文件](../file-management/save-user-file.md#保存图片或视频类文件)|
+| [文件Picker（DocumentViewPicker）](../reference\apis-core-file-kit\js-apis-file-picker.md#documentviewpicker) | 用于访问、保存公共目录中文档类文件。 |- [选择文档类文件](../file-management/select-user-file.md#选择文档类文件) <br/> - [保存文档类文件](../file-management/save-user-file.md#保存文档类文件)|
+| [音频Picker（AudioViewPicker）](../reference\apis-core-file-kit\js-apis-file-picker.md#audioviewpicker) | 用于访问、保存用户公共目录的音频文件。 |- [选择音频类文件](../file-management/select-user-file.md#选择音频类文件) <br/> - [保存音频类文件](../file-management/save-user-file.md#保存音频类文件) |
+| [照片Picker（PhotoViewPicker）](../reference\apis-core-file-kit\js-apis-file-picker.md#photoviewpicker)| 用于访问、保存公共目录的图片或视频文件。 | - [选择媒体库资源](../media/medialibrary/photoAccessHelper-resource-guidelines.md#使用picker选择媒体库资源)<br/> - [保存图片或视频类文件](../file-management/save-user-file.md#保存图片或视频类文件)|
 | 相机Picker （Camera Picker）| 用于拉起系统相机，进行拍照、录制。 |[cameraPicker.pick](../../reference/apis-camera-kit/js-apis-cameraPicker.md#pick) |
 | 联系人Picker（Contacts Picker） | 用于拉起联系人应用，读取联系人数据人。 |[选择联系人](../contacts/contacts-intro.md#选择联系人) |
-| 扫码Picker | 调用相机，实现默认界面扫描。 |  |
-| 卡证识别Picker | 调用相机，识别各类证件并提取卡证信息。 |  |
-| 文档扫描Picker | 调用相机，拍摄文档并转化为高清扫描件。 |  |
+| 扫码Picker | 调用相机，实现默认界面扫描。 | [默认界面扫码](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/scan-scanbarcode-V5) |
+| 卡证识别Picker | 调用相机，识别各类证件并提取卡证信息。 | [卡证识别](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/vision-cardrecognition-V5) |
+| 文档扫描Picker | 调用相机，拍摄文档并转化为高清扫描件。 | [文档扫描](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/vision-documentscanner-V5) |
 
 
 
@@ -42,11 +42,11 @@
 
 | 系统应用 | 主要功能 | 使用指导 |
 | -------- | -------- |-------- |
-| 电话 | 拨打电话 | 使用指导 |
-| 短信 | 发送短信 | 使用指导 |
-| 日历 | 创建日程 | 使用指导 |
-| 钱包 | 单次支付、支付并签约 | 使用指导 |
-| 应用市场 | 拉起应用详情页面安装应用 | 使用指导 |
+| 电话 | 跳转到拨号界面，并显示待拨出的号码。 | [mackeCall()](../reference/apis-telephony-kit/js-apis-call.md#callmakecall7) |
+
+| 日历 | 创建日程 | [addEvent](../reference/apis-calendar-kit/js-apis-calendarManager.md#addevent) |
+| 钱包 | 单次支付、支付并签约 | [requestPayment](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/payment-paymentservice-V5#section192192415554) |
+| 应用市场 | 展示应用详情页 | [loadProduct](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/store-productviewmanager-V5#section144826162913) |
 
 
 > **说明：**

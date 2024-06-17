@@ -41,7 +41,7 @@
     - 指向性跳转
       - [使用Deep Linking实现应用间跳转](deep-link-startup.md)
       - [使用App Linking实现应用间跳转](app-link-startup.md)
-      - [使用canOpenLink判断应用是否可访问]
+      - 使用canOpenLink判断应用是否可访问
     - 通用意图跳转
       - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
     - [拉起系统应用](system-app-startup.md)
