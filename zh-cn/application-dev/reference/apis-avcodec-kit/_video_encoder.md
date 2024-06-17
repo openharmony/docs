@@ -25,8 +25,6 @@ VideoEncoder模块提供用于视频编码的函数。
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef void(\* [OH_VideoEncoder_OnNeedInputParameter](#oh_videoencoder_onneedinputparameter)) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index, OH_AVFormat \*parameter, void \*userData) | 当OH_AVCodec在运行过程中需要新的输入参数时，将调用此函数指针，并携带可用的缓冲区来填充新的输入参数。设置的参数随帧立即生效。  | 
-| typedef enum [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode-1) [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) | 视频编码器的比特率模式。  | 
-
 
 ### 枚举
 
@@ -64,21 +62,14 @@ VideoEncoder模块提供用于视频编码的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_IsValid](#oh_videoencoder_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前编码实例是否有效。  | 
 
 
+## 函数版本说明
+
+![meaning](../../media/avcodec/figures/meaning.PNG)
+
+![desciption of encode api history](../../media/avcodec/figures/video-encode-api.PNG)
+
+
 ## 类型定义说明
-
-
-### OH_VideoEncodeBitrateMode
-
-```
-typedef enum OH_VideoEncodeBitrateMode OH_VideoEncodeBitrateMode
-```
-**描述**
-视频编码器的比特率模式。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
-
-**起始版本：** 9
-
 
 ### OH_VideoEncoder_OnNeedInputParameter
 
@@ -136,14 +127,14 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 配置视频编码器，通常需要配置要编码的视频轨的描述信息。必须在调用Prepare之前，调用此接口。
 
 参数校验：
-| Key                        | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
-| -------------------------- | -------- | -------- | ------ |
-| OH_MD_KEY_WIDTH            | √        | ×        | ×      |
-| OH_MD_KEY_HEIGHT           | √        | ×        | ×      |
-| OH_MD_KEY_PIXEL_FORMAT     | √        | ×        | ×      |
-| OH_MD_KEY_FRAME_RATE       | √        | ×        | √      |
-| OH_MD_KEY_PROFILE          | √        | ×        | √      |
-| OH_MD_KEY_I_FRAME_INTERVAL | √        | \\       | √      |
+| Key                                                                       | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
+| ------------------------------------------------------------------------- | -------- | -------- | ------ |
+| OH_MD_KEY_WIDTH                                                           | √        | ×        | ×      |
+| OH_MD_KEY_HEIGHT                                                          | √        | ×        | ×      |
+| OH_MD_KEY_PIXEL_FORMAT 请参见[OH_AVPixelFormat](_core.md#oh_avpixelformat) | √        | ×        | ×      |
+| OH_MD_KEY_FRAME_RATE                                                       | √        | ×        | √      |
+| OH_MD_KEY_PROFILE [OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile)    | √        | ×        | √      |
+| OH_MD_KEY_I_FRAME_INTERVAL                                                 | √        | \\       | √      |
 
 | OH_MD_KEY_<br>BITRATE | OH_MD_KEY_<br>QUALITY | OH_MD_KEY_<br>VIDEO_ENCODER_BITRATE_MODE | 校验结果 | 说明                     |
 | :-------------------- | :-------------------- | :--------------------------------------- | ---- | ---------------------- |
@@ -158,6 +149,7 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 | \\                    | 正常值                   | VBR、CBR                                  | ×    | Quality 与 VBR、CBR 模式冲突 |
 | \\                    | \\                    | VBR、CBR                                  | √    | 使用编码器默认码率              |
 | \\                    | \\                    | CQ                                       | ×    | 无效值，CQ 模式必须配置 Quality  |
+
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -299,36 +291,6 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
 当输入的编码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非编码器实例，或者为空指针，或输入format参数不支持，返回AV_ERR_INVALID_VAL。 index该由[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当编码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
-
-
-### OH_VideoEncoder_FreeOutputData()
-
-```
-OH_AVErrCode OH_VideoEncoder_FreeOutputData (OH_AVCodec *codec, uint32_t index )
-```
-**描述**
-将处理后的输出缓冲区返回给编码器。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
-
-**起始版本：** 9
-
-**废弃版本：** 11
-
-**替代接口：**[OH_VideoEncoder_FreeOutputBuffer](#oh_videoencoder_freeoutputbuffer)
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| codec | 指向视频编码实例的指针。  | 
-| index | 输出缓冲区对应的索引值。  | 
-
-**返回：**
-
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
-
-当输入的编码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非编码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 index由[OH_AVCodecOnNewOutputData](_codec_base.md#oh_avcodeconnewoutputdata)给出。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当编码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
 ### OH_VideoEncoder_GetInputDescription()
@@ -507,37 +469,6 @@ OH_AVErrCode OH_VideoEncoder_PushInputBuffer (OH_AVCodec *codec, uint32_t index 
 当输入的编码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非编码器实例，或者为空指针，或输入format参数不支持，返回AV_ERR_INVALID_VAL。 index由[OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)给出。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当编码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
-### OH_VideoEncoder_PushInputData()
-
-```
-OH_AVErrCode OH_VideoEncoder_PushInputData (OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr )
-```
-**描述**
-将填入数据的输入缓冲区提交给视频编码器。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
-
-**起始版本：** 10
-
-**废弃版本：** 11
-
-**替代接口：**[OH_VideoEncoder_PushInputBuffer](#oh_videoencoder_pushinputbuffer)
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| codec | 指向视频编码实例的指针。  | 
-| index | 输入缓冲区对应的索引值。  | 
-| attr | 缓冲区中包含数据的描述信息。  | 
-
-**返回：**
-
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
-
-当输入的编码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非编码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 index由[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)给出。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当编码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
-
-
 ### OH_VideoEncoder_PushInputParameter()
 
 ```
@@ -645,37 +576,6 @@ OH_AVErrCode OH_VideoEncoder_Reset (OH_AVCodec *codec)
 当输入的编码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非编码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当编码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
 
 
-### OH_VideoEncoder_SetCallback()
-
-```
-OH_AVErrCode OH_VideoEncoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData )
-```
-**描述**
-设置异步回调函数，让应用可以响应视频编码器生成的事件。在调用Prepare之前，必须调用此接口。
-
-**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
-
-**起始版本：** 9
-
-**废弃版本：** 11
-
-**替代接口：**[OH_VideoEncoder_RegisterCallback](#oh_videoencoder_registercallback)
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| codec | 指向视频编码实例的指针。  | 
-| callback | 所有回调函数的集合，请参阅[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)。  | 
-| userData | 用户特定数据。  | 
-
-**返回：**
-
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
-
-当输入的编码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非编码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 本接口必须在Prepare接口前调用，如果在其他状态时调用，返回AV_ERR_INVALID_STATE。
-
-
 ### OH_VideoEncoder_SetParameter()
 
 ```
@@ -750,3 +650,97 @@ OH_AVErrCode OH_VideoEncoder_Stop (OH_AVCodec *codec)
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
 当输入的编码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非编码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当编码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+
+## 废弃函数说明
+
+
+### OH_VideoEncoder_SetCallback()
+
+```
+OH_AVErrCode OH_VideoEncoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCallback callback, void *userData )
+```
+**描述**
+设置异步回调函数，让应用可以响应视频编码器生成的事件。在调用Prepare之前，必须调用此接口。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
+
+**起始版本：** 9
+
+**废弃版本：** 11
+
+**替代接口：**[OH_VideoEncoder_RegisterCallback](#oh_videoencoder_registercallback)
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频编码实例的指针。  | 
+| callback | 所有回调函数的集合，请参阅[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)。  | 
+| userData | 用户特定数据。  | 
+
+**返回：**
+
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+当输入的编码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非编码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 本接口必须在Prepare接口前调用，如果在其他状态时调用，返回AV_ERR_INVALID_STATE。
+
+
+### OH_VideoEncoder_PushInputData()
+
+```
+OH_AVErrCode OH_VideoEncoder_PushInputData (OH_AVCodec *codec, uint32_t index, OH_AVCodecBufferAttr attr )
+```
+**描述**
+将填入数据的输入缓冲区提交给视频编码器。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
+
+**起始版本：** 10
+
+**废弃版本：** 11
+
+**替代接口：**[OH_VideoEncoder_PushInputBuffer](#oh_videoencoder_pushinputbuffer)
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频编码实例的指针。  | 
+| index | 输入缓冲区对应的索引值。  | 
+| attr | 缓冲区中包含数据的描述信息。  | 
+
+**返回：**
+
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+当输入的编码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非编码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 index由[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)给出。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当编码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
+
+
+### OH_VideoEncoder_FreeOutputData()
+
+```
+OH_AVErrCode OH_VideoEncoder_FreeOutputData (OH_AVCodec *codec, uint32_t index )
+```
+**描述**
+将处理后的输出缓冲区返回给编码器。
+
+**系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
+
+**起始版本：** 9
+
+**废弃版本：** 11
+
+**替代接口：**[OH_VideoEncoder_FreeOutputBuffer](#oh_videoencoder_freeoutputbuffer)
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| codec | 指向视频编码实例的指针。  | 
+| index | 输出缓冲区对应的索引值。  | 
+
+**返回：**
+
+如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+当输入的编码器实例已经销毁，调用本接口会返回AV_ERR_NO_MEMORY。 当输入的codec指针非编码器实例，或者为空指针，返回AV_ERR_INVALID_VAL。 index由[OH_AVCodecOnNewOutputData](_codec_base.md#oh_avcodeconnewoutputdata)给出。 未知错误会返回AV_ERR_UNKNOWN。 当服务状态已经消亡，返回AV_ERR_SERVICE_DIED。 当编码器状态不支持调用本接口时调用，返回AV_ERR_INVALID_STATE。
