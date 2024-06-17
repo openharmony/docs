@@ -124,7 +124,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
       ```shell
       source ~/.zshrc
       ```
-
+<!--Del-->
 **（Linux可选）开启非root用户USB设备操作权限**
 
 - （临时权限）设置USB设备操作权限最大化
@@ -167,6 +167,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 >
 > - 命令行中被[]修饰的参数表示可选参数。
 > - 命令行中的参数若是斜体，表示在使用时该参数需替换为具体的信息，例如：file send _local remote_命令中的local和remote，使用时需替换为本地待发送和远端待接收的文件路径。
+<!--DelEnd-->
 
 ## 开发指导
 
@@ -217,7 +218,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 3. 连接设备时，若仅有一台，无需指定设备标识；若有多台，一次仅能连接一台，每次连接时需要指定连接设备的标识，命令格式如下：
 
    ```shell
-   hdc-t [key] [command]
+   hdc -t [key] [command]
    ```
 
    **参数：**
@@ -638,13 +639,13 @@ hdc list targets -v
 
 | 命令 | 说明 |
 | -------- | -------- |
-| install [-r/-d/-g] _packageFile_ | 安装指定的应用package文件。 |
+| install [-r/-g] _packageFile_ | 安装指定的应用package文件。 |
 | uninstall_ packageName_ | 卸载指定的应用包package包名。 |
 
 1. 安装APP package，命令格式如下：
 
    ```shell
-   hdc install [-r/-d/-g] packageFile
+   hdc install [-r/-g] packageFile
    ```
 
    **参数：**
@@ -652,7 +653,6 @@ hdc list targets -v
    | -------- | -------- |
    | packageFile | 应用安装包文件名。 |
    | -r | 替换已存在应用。 |
-   | -d | 允许降级安装。 |
    | -g | 应用动态授权。 |
 
    **返回值：**

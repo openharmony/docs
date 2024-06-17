@@ -497,7 +497,7 @@ class BasicDataSource implements IDataSource {
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-      // 写法2：listener.onDatasetChange({type: DataOperationType.ADD, index: index});
+      // 写法2：listener.onDatasetChange([{type: DataOperationType.ADD, index: index}]);
     })
   }
 
@@ -632,7 +632,7 @@ class BasicDataSource implements IDataSource {
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-      // 写法2：listener.onDatasetChange({type: DataOperationType.DELETE, index: index});
+      // 写法2：listener.onDatasetChange([{type: DataOperationType.DELETE, index: index}]);
     })
   }
 
@@ -766,7 +766,7 @@ class BasicDataSource implements IDataSource {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
       // 写法2：listener.onDatasetChange(
-      //         {type: DataOperationType.EXCHANGE, index: {from: from, to: to}});
+      //         [{type: DataOperationType.EXCHANGE, index: {start: from, end: to}}]);
     })
   }
 }
@@ -893,7 +893,7 @@ class BasicDataSource implements IDataSource {
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
-      // 写法2：listener.onDatasetChange({type: DataOperationType.CHANGE, index: index});
+      // 写法2：listener.onDatasetChange([{type: DataOperationType.CHANGE, index: index}]);
     })
   }
 
@@ -1014,7 +1014,7 @@ class BasicDataSource implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
-      // 写法2：listener.onDatasetChange({type: DataOperationType.RELOAD});
+      // 写法2：listener.onDatasetChange([{type: DataOperationType.RELOAD}]);
     })
   }
 

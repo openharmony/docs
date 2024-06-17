@@ -1,12 +1,13 @@
-# ImageEffect开发指导 (C/C++)
+# 使用ImageEffect编辑图片
 
 ## 场景介绍
+
 ImageEffect提供了一系列接口用于图像的编辑。开发者可以通过`ImageEffect`接口处理不同图像输入类型`Pixelmap`、`NativeWindow`、`NativeBuffer`或`Uri`，获得滤镜处理效果。
 针对ImageEffect，常见的开发场景如下：
 
-* 通过`ImageEffect`提供的Native API接口添加滤镜或滤镜链，设置输入图像，最终生效滤镜效果。
-* 通过注册自定义滤镜，实现开发者的定制化滤镜效果。
-* 通过`EffectFilter`提供的Native API接口快速实现单个滤镜的处理效果。
+- 通过`ImageEffect`提供的Native API接口添加滤镜或滤镜链，设置输入图像，最终生效滤镜效果。
+- 通过注册自定义滤镜，实现开发者的定制化滤镜效果。
+- 通过`EffectFilter`提供的Native API接口快速实现单个滤镜的处理效果。
 
 ## 接口说明
 
@@ -17,6 +18,7 @@ ImageEffect提供了一系列接口用于图像的编辑。开发者可以通过
 **添加动态链接库**
 
 CMakeLists.txt中添加以下lib。
+
 ```txt
 target_link_libraries(entry PUBLIC
     libace_ndk.z.so
@@ -45,7 +47,7 @@ target_link_libraries(entry PUBLIC
     // 创建imageEffect实例，“ImageEdit”是imageEffect实例别名。
     OH_ImageEffect *imageEffect = OH_ImageEffect_Create("ImageEdit");
     ```
-    
+
 2. 添加EffectFilter滤镜。
 
     ```c++
@@ -57,7 +59,7 @@ target_link_libraries(entry PUBLIC
     ImageEffect_Any value = { .dataType = ImageEffect_DataType::EFFECT_DATA_TYPE_FLOAT, .dataValue.floatValue = 50.f };
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_SetValue(filter, OH_EFFECT_FILTER_INTENSITY_KEY, &value);
     ```
-    
+
 3. 设置处理数据。
 
     **场景一：设置 OH_PixelmapNative 输入类型。**
@@ -77,7 +79,7 @@ target_link_libraries(entry PUBLIC
     **场景二：设置 OH_NativeBuffer 输入类型。**
 
     OH_NativeBuffer的具体使用方法请参考[NativeBuffer开发指导](../../graphics/native-buffer-guidelines.md)。
-    
+
     ```c++
     // 设置输入的NativeBuffer。
     errorCode = OH_ImageEffect_SetInputNativeBuffer(imageEffect, inputNativeBuffer);
@@ -89,7 +91,7 @@ target_link_libraries(entry PUBLIC
     ```
 
     **场景三：设置 URI 输入类型。**
-    
+
     ```c++
     // 设置输入的URI。
     errorCode = OH_ImageEffect_SetInputUri(imageEffect, inputUri);
@@ -106,58 +108,58 @@ target_link_libraries(entry PUBLIC
     XComponent模块的具体使用方法请参考[XComponent组件参考](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
     NativeWindow模块的具体使用方法请参考[OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md)。
     Camera的具体使用方法请参考[Camera预览参考](../camera/native-camera-preview.md)。
-    
+
     (1) 在xxx.ets中添加一个XComponent组件。
-    
-        ```ts
-        XComponent({ 
-            id: 'xcomponentId', 
-            type: 'surface',
-            controller: this.mXComponentController, 
-            libraryname: 'entry'
-        })
-        .onLoad(() => {
-            // 获取XComponent的SurfaceId。
-            this.mSurfaceId = this.mXComponentController.getXComponentSurfaceId()
-    
-            // 调用native接口获取输入SurfaceId。
-            this.mSurfaceId = imageEffect.getSurfaceId(this.mSurfaceId)
-    
-            // 调用相机接口启动预览，将获取到的输入SurfaceId传递给相机框架
-            // ...
-        })
-        .width('100%')
-        .height('100%')
-        ```
+
+     ```ts
+     XComponent({ 
+         id: 'xcomponentId', 
+         type: 'surface',
+         controller: this.mXComponentController, 
+         libraryname: 'entry'
+     })
+     .onLoad(() => {
+         // 获取XComponent的SurfaceId。
+         this.mSurfaceId = this.mXComponentController.getXComponentSurfaceId()
+ 
+         // 调用native接口获取输入SurfaceId。
+         this.mSurfaceId = imageEffect.getSurfaceId(this.mSurfaceId)
+ 
+         // 调用相机接口启动预览，将获取到的输入SurfaceId传递给相机框架
+         // ...
+     })
+     .width('100%')
+     .height('100%')
+     ```
 
     (2) imageEffect.getSurfaceId的native c++层具体实现。
-      
-        ```c++
-        // 根据SurfaceId创建NativeWindow，注意创建出来的NativeWindow在使用结束后需要主动调用OH_NativeWindow_DestoryNativeWindow进行释放。
-        uint64_t outputSurfaceId;
-        std::istrstream iss(outputSurfaceIdStr);
-        issue >> outputSurfaceId;
-        OHNativeWindow *outputNativeWindow = nullptr;
-        int32_t res = OH_NativeWindow_CreateNativeWindowFromSurfaceId(outputSurfaceId, &outputNativeWindow);
-        CHECK_AND_RETURN_LOG(res == 0, "OH_NativeWindow_CreateNativeWindowFromSurfaceId fail!");
-        
-        // 设置输出显示的Surface。
-        ImageEffect_ErrorCode errorCode = OH_ImageEffect_SetOutputSurface(imageEffect, outputNativeWindow);
-        CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputSurface fail!");
-        
-        // 获取输入的Surface。注意获取的inputNativeWindow在使用结束后需要主动调用OH_NativeWindow_DestoryNativeWindow进行释放。
-        OHNativeWindow *inputNativeWindow = nullptr;
-        errorCode = OH_ImageEffect_GetInputSurface(imageEffect, &inputNativeWindow);
-        CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_GetInputSurface fail!");
-        
-        // 从获取到输入的NativeWindow中获取SurfaceId。
-        uint64_t inputSurfaceId = 0;
-        res = OH_NativeWindow_GetSurfaceId(inputNativeWindow, &inputSurfaceId);
-        CHECK_AND_RETURN_LOG(res == 0, "OH_NativeWindow_GetSurfaceId fail!");
-        
-        // 将SurfaceId转成字符串进行返回。
-        std::string inputSurfaceIdStr = std::to_string(inputSurfaceId);
-        ```
+
+     ```c++
+     // 根据SurfaceId创建NativeWindow，注意创建出来的NativeWindow在使用结束后需要主动调用OH_NativeWindow_DestoryNativeWindow进行释放。
+     uint64_t outputSurfaceId;
+     std::istrstream iss(outputSurfaceIdStr);
+     issue >> outputSurfaceId;
+     OHNativeWindow *outputNativeWindow = nullptr;
+     int32_t res = OH_NativeWindow_CreateNativeWindowFromSurfaceId(outputSurfaceId, &outputNativeWindow);
+     CHECK_AND_RETURN_LOG(res == 0, "OH_NativeWindow_CreateNativeWindowFromSurfaceId fail!");
+     
+     // 设置输出显示的Surface。
+     ImageEffect_ErrorCode errorCode = OH_ImageEffect_SetOutputSurface(imageEffect, outputNativeWindow);
+     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputSurface fail!");
+     
+     // 获取输入的Surface。注意获取的inputNativeWindow在使用结束后需要主动调用OH_NativeWindow_DestoryNativeWindow进行释放。
+     OHNativeWindow *inputNativeWindow = nullptr;
+     errorCode = OH_ImageEffect_GetInputSurface(imageEffect, &inputNativeWindow);
+     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_GetInputSurface fail!");
+     
+     // 从获取到输入的NativeWindow中获取SurfaceId。
+     uint64_t inputSurfaceId = 0;
+     res = OH_NativeWindow_GetSurfaceId(inputNativeWindow, &inputSurfaceId);
+     CHECK_AND_RETURN_LOG(res == 0, "OH_NativeWindow_GetSurfaceId fail!");
+     
+     // 将SurfaceId转成字符串进行返回。
+     std::string inputSurfaceIdStr = std::to_string(inputSurfaceId);
+     ```
 
 4. 启动效果器。
 
@@ -184,7 +186,7 @@ target_link_libraries(entry PUBLIC
     ```
 
 7. 销毁效果器实例。
-   
+
     ```c++
     // 释放imageEffect实例资源。
     errorCode = OH_ImageEffect_Release(imageEffect);
@@ -251,7 +253,8 @@ target_link_libraries(entry PUBLIC
         }
     };
     ```
-其中Render接口的实现分两种场景。
+
+    其中Render接口的实现分两种场景。
 
     **场景一：自定义算法可以直接修改info中的像素数据（比如：亮度调节滤镜）。**
 

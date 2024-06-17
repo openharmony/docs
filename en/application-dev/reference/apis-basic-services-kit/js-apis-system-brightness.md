@@ -4,7 +4,7 @@ The **brightness** module provides APIs for querying and adjusting the screen br
 
 > **NOTE**
 >
-> - The APIs of this module are no longer maintained since API version 7. You are advised to use APIs of [@ohos.brightness](js-apis-brightness-sys.md). The substitute APIs are available only for system applications.
+> - The APIs of this module are no longer maintained since API version 7.<!--Del--> You are advised to use APIs of [@ohos.brightness](js-apis-brightness-sys.md). <!--DelEnd-->The substitute APIs are available only for system applications.
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -133,7 +133,7 @@ Sets the screen brightness adjustment mode.
 
 setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
->**NOTE**<br>This API is no longer maintained since API version 7. It is recommended that you use [window.setKeepScreenOn](../apis-arkui/js-apis-window.md#setwindowkeepscreenon9) instead.
+>This API is no longer maintained since API version 7. You are advised to use [window.setWindowKeepScreenOn()](../apis-arkui/js-apis-window.md#setwindowkeepscreenon9).
 
 Sets whether to always keep the screen on. Call this API in **onShow()**.
 

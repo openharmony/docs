@@ -17,17 +17,8 @@
     import { CustomColors, CustomTheme } from '@ohos.arkui.theme'
 
     export class AppColors implements CustomColors {
-      //$r('app.color.xxx')引用color.json文件资源，也可以直接赋字符串值
-      brand: ResourceColor = $r('app.color.brand')
-      fontEmphasize: ResourceColor = $r('app.color.font_emphasize')
-      iconEmphasize: ResourceColor = $r('app.color.icon_emphasize')
-      iconSubEmphasize: ResourceColor = $r('app.color.icon_sub_emphasize')
-      interactiveFocus: ResourceColor = $r('app.color.interactive_focus')
-      interactiveHover: ResourceColor = $r('app.color.interactive_hover')
-      compBackgroundEmphasize: ResourceColor = $r('app.color.comp_background_emphasize')
-      compEmphasizeSecondary: ResourceColor = $r('app.color.comp_emphasize_secondary')
-      compEmphasizeTertiary: ResourceColor = $r('app.color.comp_emphasize_tertiary')
-      backgroundEmphasize: ResourceColor = $r('app.color.background_emphasize')
+      //自定义品牌色
+      brand: ResourceColor = '#FF75D9';
     }
 
     export class AppTheme implements CustomTheme {

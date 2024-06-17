@@ -10,6 +10,7 @@
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
     - [组件复用使用指导](component-recycle.md)
     - [组件复用性能优化指导](component_recycle_case.md)
+    - [组件复用总览](component-reuse-overview.md)
     - [WaterFlow高性能开发指导](waterflow_optimization.md)
     - [Swiper高性能开发指导](swiper_optimization.md)
     - [合理进行状态管理](proper_state_management.md)
@@ -35,6 +36,7 @@
     - [运行时动态加载页面提升性能](performance-dynamic-import.md)
     - [合理运行后台任务](reasonable-running-backgroundTask.md)
     - [Web组件开发性能提升指导](performance-web-import.md)
+    - [使用同层渲染在Webview上渲染原生组件](webview-render-app-components.md)
   - [减小应用包大小](reduce-package-size.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)

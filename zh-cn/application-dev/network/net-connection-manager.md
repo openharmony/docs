@@ -71,7 +71,7 @@
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
-1. 从@ohos.net.connection.d.ts中导入connection命名空间。
+1. 从@kit.NetworkKit中导入connection命名空间。
 
 2. 调用createNetConnection方法，指定网络能力、网络类型和超时时间（可选，如不传入代表默认网络；创建不同于默认网络时可通过指定这些参数完成），创建一个NetConnection对象。
 
@@ -85,8 +85,8 @@
 
 ```ts
 // 引入包名
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let netSpecifier: connection.NetSpecifier = {
   netCapabilities: {
@@ -130,14 +130,14 @@ conn.unregister((err: BusinessError, data: void) => {
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
-2. 从@ohos.net.connection.d.ts中导入connection命名空间。
+2. 从@kit.NetworkKit中导入connection命名空间。
 
 3. 调用getAllNets方法，获取所有处于连接状态的网络列表。
 
 ```ts
 // 引入包名
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 构造单例对象
 export class GlobalContext {
@@ -179,7 +179,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
-2. 从@ohos.net.connection.d.ts中导入connection命名空间。
+2. 从@kit.NetworkKit中导入connection命名空间。
 
 3. 通过调用getDefaultNet方法，获取默认的数据网络(NetHandle)；或者通过调用getAllNets方法，获取所有处于连接状态的网络列表(Array\<NetHandle>)。
 
@@ -188,8 +188,8 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 5. 调用getConnectionProperties方法，获取NetHandle对应网络的连接信息。
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 构造单例对象
 export class GlobalContext {
@@ -306,14 +306,14 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 1. 声明接口调用所需要的权限：ohos.permission.INTERNET
 此权限级别为normal，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
-2. 从@ohos.net.connection.d.ts中导入connection命名空间。
+2. 从@kit.NetworkKit中导入connection命名空间。
 
 3. 调用getAddressesByName方法，使用默认网络解析主机名以获取所有IP地址。
 
 ```ts
 // 引入包名
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 使用默认网络解析主机名以获取所有IP地址
 connection.getAddressesByName(this.host, (err: BusinessError, data: connection.NetAddress[]) => {

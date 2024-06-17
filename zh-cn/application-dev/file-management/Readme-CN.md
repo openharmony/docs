@@ -7,7 +7,6 @@
   - 应用文件访问与管理
     - [应用文件访问(ArkTS)](app-file-access.md)
     - [应用文件访问(C/C++)](native-fileio-guidelines.md)
-    - [应用文件上传下载](app-file-upload-download.md)
     - [应用及文件系统空间统计](app-fs-space-statistics.md)
   <!--Del-->
   - [向应用沙箱推送文件](send-file-to-app-sandbox.md)

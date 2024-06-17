@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
+| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
@@ -36,93 +36,98 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 加载在线网页。
 
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
     }
   }
-}
-```
+  ```
 
 隐私模式Webview加载在线网页。
 
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+   ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
+      }
     }
   }
-}
-```
+  ```
 
 Web组件统一渲染模式。
 
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+   ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
+      }
     }
   }
-}
-```
+  ```
 
 加载本地网页。
 
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      // 通过$rawfile加载本地资源文件。
-      Web({ src: $rawfile("index.html"), controller: this.controller })
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        // 通过$rawfile加载本地资源文件。
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+      }
     }
   }
-}
-```
+  ```
 
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      // 通过resource协议加载本地资源文件。
-      Web({ src: "resource://rawfile/index.html", controller: this.controller })
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        // 通过resource协议加载本地资源文件。
+        Web({ src: "resource://rawfile/index.html", controller: this.controller })
+      }
     }
   }
-}
-```
+  ```
 
 加载沙箱路径下的本地资源文件。
 
@@ -154,15 +159,16 @@ struct WebComponent {
 
    ```ts
    // xxx.ets
-   import web_webview from '@ohos.web.webview'
-   import { GlobalContext } from '../GlobalContext'
+   import { webview } from '@kit.ArkWeb';
+   import { GlobalContext } from '../GlobalContext';
 
-   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
+   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html';
 
    @Entry
    @Component
    struct WebComponent {
-     controller: web_webview.WebviewController = new web_webview.WebviewController()
+     controller: webview.WebviewController = new webview.WebviewController();
+
      build() {
        Column() {
          // 加载沙箱路径文件。
@@ -178,18 +184,16 @@ struct WebComponent {
 
    ```ts
    // xxx.ets
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import Want from '@ohos.app.ability.Want';
-   import web_webview from '@ohos.web.webview';
-   import { GlobalContext } from '../GlobalContext'
+   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+   import { webview } from '@kit.ArkWeb';
+   import { GlobalContext } from '../GlobalContext';
 
    export default class EntryAbility extends UIAbility {
-       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-           // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
-           GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
-           console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
-       }
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+       // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
+       GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+       console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"));
+     }
    }
    ```
 
@@ -227,12 +231,13 @@ domStorageAccess(domStorageAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -258,12 +263,13 @@ fileAccess(fileAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -288,12 +294,13 @@ imageAccess(imageAccess: boolean)
 **示例：**
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -305,51 +312,46 @@ imageAccess(imageAccess: boolean)
 
 ### javaScriptProxy
 
-javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
-    controller: WebviewController | WebController, asyncMethodList?: Array\<string\>})
+javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。注册对象时，同步与异步方法列表请至少选择一项不为空，可同时注册两类方法。同一方法在同步与异步列表中重复注册，将默认异步调用。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
 
 **参数：**
 
-| 参数名        | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
-| ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。                   |
-| name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。                |
-| methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的同步方法。                 |
-| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
-| asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | []   | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
+| 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
+| ---------- | ---------------------------------------- | ---- |---------------------------------------- |
+| javaScriptProxy     | [JavaScriptProxy](#javascriptproxy12)                                   | 是    |  参与注册的对象。只能声明方法，不能声明属性。                   |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   class TestObj {
     constructor() {
     }
 
     test(data1: string, data2: string, data3: string): string {
-      console.log("data1:" + data1)
-      console.log("data2:" + data2)
-      console.log("data3:" + data3)
-      return "AceString"
+      console.log("data1:" + data1);
+      console.log("data2:" + data2);
+      console.log("data3:" + data3);
+      return "AceString";
     }
 
     asyncTest(data: string): void {
-      console.log("async data:" + data)
+      console.log("async data:" + data);
     }
 
     toString(): void {
-      console.log('toString' + "interface instead.")
+      console.log('toString' + "interface instead.");
     }
   }
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     testObj = new TestObj();
     build() {
       Column() {
@@ -383,12 +385,12 @@ javaScriptAccess(javaScriptAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -418,12 +420,13 @@ overScrollMode(mode: OverScrollMode)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: OverScrollMode = OverScrollMode.ALWAYS
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: OverScrollMode = OverScrollMode.ALWAYS;
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -449,13 +452,13 @@ mixedMode(mixedMode: MixedMode)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: MixedMode = MixedMode.All
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: MixedMode = MixedMode.All;
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -481,12 +484,13 @@ onlineImageAccess(onlineImageAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -512,12 +516,13 @@ zoomAccess(zoomAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -543,12 +548,13 @@ overviewModeAccess(overviewModeAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -574,12 +580,13 @@ databaseAccess(databaseAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -605,12 +612,13 @@ geolocationAccess(geolocationAccess: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -636,13 +644,14 @@ mediaPlayGestureAccess(access: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State access: boolean = true
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State access: boolean = true;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -669,12 +678,13 @@ multiWindowAccess(multiWindow: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -689,6 +699,10 @@ multiWindowAccess(multiWindow: boolean)
 horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
+> **说明：**
+>
+> - 通过@State变量控制横向滚动条的隐藏/显示后，需要调用controller.refresh()生效。
+> - 通过@State变量频繁动态改变时，建议切换开关变量和Web组件一一对应。
 
 **参数：**
 
@@ -700,16 +714,29 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State isShow: boolean = false;
+
     build() {
       Column() {
+        //通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        Button('refresh')
+          .onClick(() => {
+            this.isShow = true;
+            try {
+              this.controller.refresh();
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .horizontalScrollBarAccess(true)
+          .horizontalScrollBarAccess(this.isShow)
       }
     }
   }
@@ -744,6 +771,11 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
 
+> **说明：**
+>
+> - 通过@State变量控制纵向滚动条的隐藏/显示后，需要调用controller.refresh()生效。
+> - 通过@State变量频繁动态改变时，建议切换开关变量和Web组件一一对应。
+
 **参数：**
 
 | 参数名               | 参数类型    | 必填   | 默认值  | 参数描述         |
@@ -754,16 +786,29 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State isShow: boolean = false;
+
     build() {
       Column() {
+        //通过@State变量改变纵向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        Button('refresh')
+        .onClick(() => {
+          this.isShow = true;
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .verticalScrollBarAccess(true)
+        .verticalScrollBarAccess(this.isShow)
       }
     }
   }
@@ -818,13 +863,14 @@ cacheMode(cacheMode: CacheMode)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: CacheMode = CacheMode.None
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: CacheMode = CacheMode.None;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -844,17 +890,18 @@ copyOptions(value: CopyOptions)
 
 | 参数名       | 参数类型                        | 必填   | 默认值               | 参数描述      |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | CopyOptions.Cross_Device | 要设置的剪贴板复制范围选项。 |
+| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | CopyOptions.LocalDevice | 要设置的剪贴板复制范围选项。 |
 
 **示例：**
 
   ```ts
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
@@ -912,13 +959,14 @@ textZoomRatio(textZoomRatio: number)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State atio: number = 150
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State atio: number = 150;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -944,13 +992,14 @@ initialScale(percent: number)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State percent: number = 100
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State percent: number = 100;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -980,13 +1029,14 @@ userAgent(userAgent: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36'
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1012,12 +1062,14 @@ blockNetwork(block: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State block: boolean = true
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State block: boolean = true;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1043,12 +1095,14 @@ defaultFixedFontSize(size: number)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State fontSize: number = 16
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State fontSize: number = 16;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1074,12 +1128,14 @@ defaultFontSize(size: number)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State fontSize: number = 13
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State fontSize: number = 13;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1105,12 +1161,14 @@ minFontSize(size: number)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State fontSize: number = 13
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State fontSize: number = 13;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1136,12 +1194,14 @@ minLogicalFontSize(size: number)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State fontSize: number = 13
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State fontSize: number = 13;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1167,12 +1227,14 @@ webFixedFont(family: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "monospace"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "monospace";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1198,12 +1260,14 @@ webSansSerifFont(family: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "sans-serif"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "sans-serif";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1229,12 +1293,14 @@ webSerifFont(family: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "serif"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "serif";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1260,12 +1326,14 @@ webStandardFont(family: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "sans-serif"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "sans-serif";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1291,12 +1359,13 @@ webFantasyFont(family: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "fantasy"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "fantasy";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1322,12 +1391,14 @@ webCursiveFont(family: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State family: string = "cursive"
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State family: string = "cursive";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1353,12 +1424,14 @@ darkMode(mode: WebDarkMode)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: WebDarkMode = WebDarkMode.On
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: WebDarkMode = WebDarkMode.On;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1384,13 +1457,15 @@ forceDarkAccess(access: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: WebDarkMode = WebDarkMode.On
-    @State access: boolean = true
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: WebDarkMode = WebDarkMode.On;
+    @State access: boolean = true;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1437,11 +1512,13 @@ pinchSmooth(isEnabled: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+    
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1480,32 +1557,35 @@ allowWindowOpenMethod(flag: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
-  controller?: CustomDialogController
-  webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
+    controller?: CustomDialogController;
+    webviewController1: webview.WebviewController = new webview.WebviewController();
+
+    build() {
       Column() {
         Web({ src: "", controller: this.webviewController1 })
           .javaScriptAccess(true)
           .multiWindowAccess(false)
-          .onWindowExit(()=> {
-            console.info("NewWebViewComp onWindowExit")
+          .onWindowExit(() => {
+            console.info("NewWebViewComp onWindowExit");
             if (this.controller) {
-              this.controller.close()
+              this.controller.close();
             }
           })
-        }
+      }
     }
   }
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    dialogController: CustomDialogController | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    dialogController: CustomDialogController | null = null;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1515,17 +1595,17 @@ allowWindowOpenMethod(flag: boolean)
           .allowWindowOpenMethod(true)
           .onWindowNew((event) => {
             if (this.dialogController) {
-              this.dialogController.close()
+              this.dialogController.close();
             }
-            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({webviewController1: popController})
+              builder: NewWebViewComp({ webviewController1: popController });
             })
-            this.dialogController.open()
+            this.dialogController.open();
             //将新窗口对应WebviewController返回给Web内核。
             //如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
             //若不调用event.handler.setWebController接口，会造成render进程阻塞。
-            event.handler.setWebController(popController)
+            event.handler.setWebController(popController);
           })
       }
     }
@@ -1555,12 +1635,14 @@ mediaOptions(options: WebMediaOptions)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State options: WebMediaOptions = {resumeInterval: 10, audioExclusive: true}
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State options: WebMediaOptions = {resumeInterval: 10, audioExclusive: true};
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1584,37 +1666,38 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 | 参数名     | 参数类型                                | 必填   | 默认值  | 参数描述               |
 | ------- | ----------------------------------- | ---- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的ScriptItem数组 |
 
 **ets示例：**
 
   ```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct Index {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    private localStorage: string =
-        "if (typeof(Storage) !== 'undefined') {" +
-        "   localStorage.setItem('color', 'Red');" +
-        "}";
-    @State scripts: Array<ScriptItem> = [
-        { script: this.localStorage, scriptRules: ["*"] }
-    ];
-    build() {
-        Column({ space: 20 }) {
-            Web({ src: $rawfile('index.html'), controller: this.controller })
-                .javaScriptAccess(true)
-                .domStorageAccess(true)
-                .backgroundColor(Color.Grey)
-                .javaScriptOnDocumentStart(this.scripts)
-                .width('100%')
-                .height('100%')
-        }
-    }
-}
+  @Entry
+  @Component
+  struct Index {
+      controller: webview.WebviewController = new webview.WebviewController();
+      private localStorage: string =
+          "if (typeof(Storage) !== 'undefined') {" +
+          "   localStorage.setItem('color', 'Red');" +
+          "}";
+      @State scripts: Array<ScriptItem> = [
+          { script: this.localStorage, scriptRules: ["*"] }
+      ];
+
+      build() {
+          Column({ space: 20 }) {
+              Web({ src: $rawfile('index.html'), controller: this.controller })
+                  .javaScriptAccess(true)
+                  .domStorageAccess(true)
+                  .backgroundColor(Color.Grey)
+                  .javaScriptOnDocumentStart(this.scripts)
+                  .width('100%')
+                  .height('100%')
+          }
+      }
+  }
   ```
 **HTML示例：**
 
@@ -1655,18 +1738,18 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
 | 参数名     | 参数类型                                | 必填   | 默认值  | 参数描述               |
 | ------- | ----------------------------------- | ---- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的ScriptItem数组 |
 
 **示例：**
 
   ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct Index {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
   private jsStr: string =
     "window.document.getElementById(\"result\").innerHTML = 'this is msg from javaScriptOnDocumentEnd'";
   @State scripts: Array<ScriptItem> = [
@@ -1708,10 +1791,13 @@ layoutMode(mode: WebLayoutMode)
 
 > **说明：**
 >
-> 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
-> 选择WebLayoutMode.FIT_CONTENT时，如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
-> Web组件创建后不支持动态切换layoutMode模式，且WebLayoutMode.FIT_CONTENT支持规格不超过50万px(屏幕像素点) 物理像素。
-> 全量展开模式下，频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
+> 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web基于页面大小的自适应网页布局（WebLayoutMode.FIT_CONTENT），默认为Web基于页面大小的自适应网页布局模式。
+>
+> Web基于页面大小的自适应网页布局有如下限制：
+> - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
+> - Web组件创建后不支持动态切换layoutMode模式，且支持规格不超过50万px(屏幕像素点) 物理像素。
+> - 频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
+> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
@@ -1723,12 +1809,14 @@ layoutMode(mode: WebLayoutMode)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1751,6 +1839,7 @@ nestedScroll(value: NestedScrollOptions)
 > - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
 > - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
+> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
@@ -1762,11 +1851,12 @@ nestedScroll(value: NestedScrollOptions)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1794,11 +1884,12 @@ enableNativeEmbedMode(mode: boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1823,11 +1914,13 @@ registerNativeEmbedRule(tag: string, type: string)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1852,26 +1945,25 @@ defaultTextEncodingFormat(textEncodingFormat: string)
   **示例：**
 
   ```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
 
-  build() {
-    Column() {
-      Web({ src: $rawfile('index.html'), controller: this.controller })
-        // 设置高和内边距
-        .height(500)
-        .padding(20)
-        .defaultTextEncodingFormat("UTF-8")
-        .javaScriptAccess(true)
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          // 设置高和内边距
+          .height(500)
+          .padding(20)
+          .defaultTextEncodingFormat("UTF-8")
+          .javaScriptAccess(true)
+      }
     }
   }
-}
   ```
 
 ```html
@@ -1910,12 +2002,13 @@ metaViewport(enable: boolean)
 
   ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -1937,6 +2030,9 @@ struct WebComponent {
 </html>
 ```
 ### textAutosizing<sup>12+</sup>
+
+textAutosizing(textAutosizing: boolean)
+
 设置使能文本自动调整大小。
 
 **参数：**
@@ -1949,11 +2045,13 @@ struct WebComponent {
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -1980,11 +2078,13 @@ enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2012,12 +2112,12 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
       {content: 'Apple', startIcon: $r('app.media.icon'), action: (selectedText) => {
         console.info('select info ' + selectedText.toString());
@@ -2026,6 +2126,7 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
         console.info('select info ' + selectedText.toString());
       }}
     ];
+    
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -2055,7 +2156,7 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
 
 ### onAlert
 
-onAlert(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
+onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 网页触发alert()告警弹窗时触发回调。
 
@@ -2063,54 +2164,47 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| url     | string                | 当前显示弹窗所在网页的URL。 |
-| message | string                | 弹窗中显示的信息。       |
-| result  | [JsResult](#jsresult) | 通知Web组件用户操作行为。  |
-
-**返回值：**
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | 网页触发alert()告警弹窗时触发<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onAlert((event) => {
             if (event) {
-              console.log("event.url:" + event.url)
-              console.log("event.message:" + event.message)
+              console.log("event.url:" + event.url);
+              console.log("event.message:" + event.message);
               AlertDialog.show({
                 title: 'onAlert',
                 message: 'text',
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.result.handleCancel()
+                    event.result.handleCancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    event.result.handleConfirm()
+                    event.result.handleConfirm();
                   }
                 },
                 cancel: () => {
-                  event.result.handleCancel()
+                  event.result.handleCancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -2139,7 +2233,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
 ### onBeforeUnload
 
-onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
+onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
 刷新或关闭场景下，在即将离开当前页面时触发此回调。刷新或关闭当前页面应先通过点击等方式获取焦点，才会触发此回调。
 
@@ -2147,55 +2241,47 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| url     | string                | 当前显示弹窗所在网页的URL。 |
-| message | string                | 弹窗中显示的信息。       |
-| result  | [JsResult](#jsresult) | 通知Web组件用户操作行为。  |
-
-**返回值：**
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | 刷新或关闭场景下，在即将离开当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onBeforeUnload((event) => {
             if (event) {
-              console.log("event.url:" + event.url)
-              console.log("event.message:" + event.message)
+              console.log("event.url:" + event.url);
+              console.log("event.message:" + event.message);
               AlertDialog.show({
                 title: 'onBeforeUnload',
                 message: 'text',
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.result.handleCancel()
+                    event.result.handleCancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    event.result.handleConfirm()
+                    event.result.handleConfirm();
                   }
                 },
                 cancel: () => {
-                  event.result.handleCancel()
+                  event.result.handleCancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -2224,7 +2310,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
 ### onConfirm
 
-onConfirm(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
+onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
 
 网页调用confirm()告警时触发此回调。
 
@@ -2232,55 +2318,47 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| url     | string                | 当前显示弹窗所在网页的URL。 |
-| message | string                | 弹窗中显示的信息。       |
-| result  | [JsResult](#jsresult) | 通知Web组件用户操作行为。  |
-
-**返回值：**
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | 网页调用confirm()告警时触发<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onConfirm((event) => {
             if (event) {
-              console.log("event.url:" + event.url)
-              console.log("event.message:" + event.message)
+              console.log("event.url:" + event.url);
+              console.log("event.message:" + event.message);
               AlertDialog.show({
                 title: 'onConfirm',
                 message: 'text',
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.result.handleCancel()
+                    event.result.handleCancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    event.result.handleConfirm()
+                    event.result.handleConfirm();
                   }
                 },
                 cancel: () => {
-                  event.result.handleCancel()
+                  event.result.handleCancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -2318,7 +2396,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 ### onPrompt<sup>9+</sup>
 
-onPrompt(callback: (event?: { url: string; message: string; value: string; result: JsResult }) => boolean)
+onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
 
 网页调用prompt()告警时触发此回调。
 
@@ -2326,56 +2404,48 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| url     | string                | 当前显示弹窗所在网页的URL。 |
-| message | string                | 弹窗中显示的信息。       |
-| result  | [JsResult](#jsresult) | 通知Web组件用户操作行为。  |
-
-**返回值：**
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | 网页调用prompt()告警时触发。<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onPrompt((event) => {
             if (event) {
-              console.log("url:" + event.url)
-              console.log("message:" + event.message)
-              console.log("value:" + event.value)
+              console.log("url:" + event.url);
+              console.log("message:" + event.message);
+              console.log("value:" + event.value);
               AlertDialog.show({
                 title: 'onPrompt',
                 message: 'text',
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.result.handleCancel()
+                    event.result.handleCancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    event.result.handlePromptConfirm(event.value)
+                    event.result.handlePromptConfirm(event.value);
                   }
                 },
                 cancel: () => {
-                  event.result.handleCancel()
+                  event.result.handleCancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -2409,7 +2479,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 ### onConsole
 
-onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
+onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
 
 通知宿主应用JavaScript console消息。
 
@@ -2417,24 +2487,18 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
 | 参数名     | 参数类型                              | 参数描述      |
 | ------- | --------------------------------- | --------- |
-| message | [ConsoleMessage](#consolemessage) | 触发的控制台信息。 |
-
-**返回值：**
-
-| 类型      | 说明                                  |
-| ------- | ----------------------------------- |
-| boolean | 当返回true时，该条消息将不会再打印至控制台，反之仍会打印至控制台。 |
+| callback | Callback\<[OnConsoleEvent](#onconsoleevent12), boolean\> | 网页收到JavaScript控制台消息时触发。<br>返回值boolean。当返回true时，该条消息将不会再打印至控制台，反之仍会打印至控制台。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -2474,7 +2538,7 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
 ### onDownloadStart
 
-onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void)
+onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
 
 通知主应用开始下载一个文件。
 
@@ -2482,22 +2546,18 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 
 | 参数名                | 参数类型   | 参数描述                                |
 | ------------------ | ------ | ----------------------------------- |
-| url                | string | 文件下载的URL。                           |
-| userAgent          | string | 用于下载的用户代理。                          |
-| contentDisposition | string | 服务器返回的 Content-Disposition响应头，可能为空。 |
-| mimetype           | string | 服务器返回内容媒体类型（MIME）信息。                |
-| contentLength      | number | 服务器返回文件的长度。                         |
+| callback                | Callback\<[OnDownloadStartEvent](#ondownloadstartevent12)\> | 开始下载时触发。                           |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -2518,7 +2578,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 
 ### onErrorReceive
 
-onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResourceError }) => void)
+onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
 
 网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。
 
@@ -2526,36 +2586,35 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
 
 | 参数名     | 参数类型                                     | 参数描述            |
 | ------- | ---------------------------------------- | --------------- |
-| request | [WebResourceRequest](#webresourcerequest) | 网页请求的封装信息。      |
-| error   | [WebResourceError](#webresourceerror)    | 网页加载资源错误的封装信息 。 |
+| callback | Callback\<[OnErrorReceiveEvent](#onerrorreceiveevent12)\> | 网页收到 Web 资源加载错误时触发。      |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onErrorReceive((event) => {
             if (event) {
-              console.log('getErrorInfo:' + event.error.getErrorInfo())
-              console.log('getErrorCode:' + event.error.getErrorCode())
-              console.log('url:' + event.request.getRequestUrl())
-              console.log('isMainFrame:' + event.request.isMainFrame())
-              console.log('isRedirect:' + event.request.isRedirect())
-              console.log('isRequestGesture:' + event.request.isRequestGesture())
-              console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString())
-              let result = event.request.getRequestHeader()
-              console.log('The request header result size is ' + result.length)
+              console.log('getErrorInfo:' + event.error.getErrorInfo());
+              console.log('getErrorCode:' + event.error.getErrorCode());
+              console.log('url:' + event.request.getRequestUrl());
+              console.log('isMainFrame:' + event.request.isMainFrame());
+              console.log('isRedirect:' + event.request.isRedirect());
+              console.log('isRequestGesture:' + event.request.isRequestGesture());
+              console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString());
+              let result = event.request.getRequestHeader();
+              console.log('The request header result size is ' + result.length);
               for (let i of result) {
-                console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue)
+                console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue);
               }
             }
           })
@@ -2566,7 +2625,7 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
 
 ### onHttpErrorReceive
 
-onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: WebResourceResponse }) => void)
+onHttpErrorReceive(callback: Callback\<OnHttpErrorReceiveEvent\>)
 
 网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。
 
@@ -2574,43 +2633,42 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
 
 | 参数名      | 参数类型                                     | 参数描述       |
 | -------- | ---------------------------------------- | ---------- |
-| request  | [WebResourceRequest](#webresourcerequest) | 网页请求的封装信息。 |
-| response | [WebResourceResponse](#webresourceresponse) | 资源响应的封装信息。 |
+| callback  | Callback\<[OnHttpErrorReceiveEvent](#onhttperrorreceiveevent12)\> | 网页收到加载资源加载HTTP错误时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onHttpErrorReceive((event) => {
             if (event) {
-              console.log('url:' + event.request.getRequestUrl())
-              console.log('isMainFrame:' + event.request.isMainFrame())
-              console.log('isRedirect:' + event.request.isRedirect())
-              console.log('isRequestGesture:' + event.request.isRequestGesture())
-              console.log('getResponseData:' + event.response.getResponseData())
-              console.log('getResponseEncoding:' + event.response.getResponseEncoding())
-              console.log('getResponseMimeType:' + event.response.getResponseMimeType())
-              console.log('getResponseCode:' + event.response.getResponseCode())
-              console.log('getReasonMessage:' + event.response.getReasonMessage())
-              let result = event.request.getRequestHeader()
-              console.log('The request header result size is ' + result.length)
+              console.log('url:' + event.request.getRequestUrl());
+              console.log('isMainFrame:' + event.request.isMainFrame());
+              console.log('isRedirect:' + event.request.isRedirect());
+              console.log('isRequestGesture:' + event.request.isRequestGesture());
+              console.log('getResponseData:' + event.response.getResponseData());
+              console.log('getResponseEncoding:' + event.response.getResponseEncoding());
+              console.log('getResponseMimeType:' + event.response.getResponseMimeType());
+              console.log('getResponseCode:' + event.response.getResponseCode());
+              console.log('getReasonMessage:' + event.response.getReasonMessage());
+              let result = event.request.getRequestHeader();
+              console.log('The request header result size is ' + result.length);
               for (let i of result) {
-                console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
+                console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
               }
-              let resph = event.response.getResponseHeader()
-              console.log('The response header result size is ' + resph.length)
+              let resph = event.response.getResponseHeader();
+              console.log('The response header result size is ' + resph.length);
               for (let i of resph) {
-                console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue)
+                console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
               }
             }
           })
@@ -2621,7 +2679,7 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
 
 ### onPageBegin
 
-onPageBegin(callback: (event?: { url: string }) => void)
+onPageBegin(callback: Callback\<OnPageBeginEvent\>)
 
 网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
 
@@ -2629,25 +2687,25 @@ onPageBegin(callback: (event?: { url: string }) => void)
 
 | 参数名  | 参数类型   | 参数描述      |
 | ---- | ------ | --------- |
-| url  | string | 页面的URL地址。 |
+| callback  | Callback\<[OnPageBeginEvent](#onpagebeginevent12)\> | 网页加载开始时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageBegin((event) => {
             if (event) {
-              console.log('url:' + event.url)
+              console.log('url:' + event.url);
             }
           })
       }
@@ -2657,7 +2715,7 @@ onPageBegin(callback: (event?: { url: string }) => void)
 
 ### onPageEnd
 
-onPageEnd(callback: (event?: { url: string }) => void)
+onPageEnd(callback: Callback\<OnPageEndEvent\>)
 
 网页加载完成时触发该回调，且只在主frame触发。
 
@@ -2665,25 +2723,25 @@ onPageEnd(callback: (event?: { url: string }) => void)
 
 | 参数名  | 参数类型   | 参数描述      |
 | ---- | ------ | --------- |
-| url  | string | 页面的URL地址。 |
+| callback  | Callback\<[OnPageEndEvent](#onpageendevent12)\> | 网页加载结束时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageEnd((event) => {
             if (event) {
-              console.log('url:' + event.url)
+              console.log('url:' + event.url);
             }
           })
       }
@@ -2693,7 +2751,7 @@ onPageEnd(callback: (event?: { url: string }) => void)
 
 ### onProgressChange
 
-onProgressChange(callback: (event?: { newProgress: number }) => void)
+onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 网页加载进度变化时触发该回调。
 
@@ -2701,25 +2759,24 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
 
 | 参数名         | 参数类型   | 参数描述                  |
 | ----------- | ------ | --------------------- |
-| newProgress | number | 新的加载进度，取值范围为0到100的整数。 |
+| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | 页面加载进度时触发的功能。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-
+  import { webview } from '@kit.ArkWeb';
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onProgressChange((event) => {
             if (event) {
-              console.log('newProgress:' + event.newProgress)
+              console.log('newProgress:' + event.newProgress);
             }
           })
       }
@@ -2729,7 +2786,7 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
 
 ### onTitleReceive
 
-onTitleReceive(callback: (event?: { title: string }) => void)
+onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
 网页document标题更改时触发该回调。
 
@@ -2737,25 +2794,25 @@ onTitleReceive(callback: (event?: { title: string }) => void)
 
 | 参数名   | 参数类型   | 参数描述          |
 | ----- | ------ | ------------- |
-| title | string | document标题内容。 |
+| callback | Callback\<[OnTitleReceiveEvent](#ontitlereceiveevent12)\> | 定义主应用程序文档标题更改时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onTitleReceive((event) => {
             if (event) {
-              console.log('title:' + event.title)
+              console.log('title:' + event.title);
             }
           })
       }
@@ -2765,7 +2822,7 @@ onTitleReceive(callback: (event?: { title: string }) => void)
 
 ### onRefreshAccessedHistory
 
-onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean }) => void)
+onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
 
 加载网页页面完成时触发该回调，用于应用更新其访问的历史链接。
 
@@ -2773,26 +2830,25 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
 
 | 参数名         | 参数类型    | 参数描述                                     |
 | ----------- | ------- | ---------------------------------------- |
-| url         | string  | 访问的url。                                  |
-| isRefreshed | boolean | true表示该页面是被重新加载的（调用[refresh<sup>9+</sup>](js-apis-webview.md#refresh)接口），false表示该页面是新加载的。 |
+| callback         | Callback\<[OnRefreshAccessedHistoryEvent](#onrefreshaccessedhistoryevent12)\>  | 在网页刷新访问历史记录时触发。                |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRefreshAccessedHistory((event) => {
             if (event) {
-              console.log('url:' + event.url + ' isReload:' + event.isRefreshed)
+              console.log('url:' + event.url + ' isReload:' + event.isRefreshed);
             }
           })
       }
@@ -2822,7 +2878,7 @@ onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object
 
 ### onRenderExited<sup>9+</sup>
 
-onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => void)
+onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 应用渲染进程异常退出时触发该回调。
 
@@ -2830,25 +2886,25 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
 
 | 参数名              | 参数类型                                     | 参数描述             |
 | ---------------- | ---------------------------------------- | ---------------- |
-| renderExitReason | [RenderExitReason](#renderexitreason9枚举说明) | 渲染进程异常退出的具体原因。 |
+| callback | Callback\<[OnRenderExitedEvent](#onrenderexitedevent12)\> | 渲染过程退出时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'chrome://crash/', controller: this.controller })
           .onRenderExited((event) => {
             if (event) {
-              console.log('reason:' + event.renderExitReason)
+              console.log('reason:' + event.renderExitReason);
             }
           })
       }
@@ -2871,19 +2927,20 @@ onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onRenderProcessNotResponding((data) => {
+          .onRenderProcessNotResponding((data) => {
             console.log("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
               ", [process]=" + data.pid + ", [reason]=" + data.reason);
-        })
+          })
       }
     }
   }
@@ -2905,18 +2962,19 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onRenderProcessResponding(() => {
+          .onRenderProcessResponding(() => {
             console.log("onRenderProcessResponding again");
-        })
+          })
       }
     }
   }
@@ -2924,7 +2982,7 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
 ### onShowFileSelector<sup>9+</sup>
 
-onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean)
+onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
 调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
 
@@ -2932,70 +2990,104 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
 | 参数名          | 参数类型                                     | 参数描述              |
 | ------------ | ---------------------------------------- | ----------------- |
-| result       | [FileSelectorResult](#fileselectorresult9) | 用于通知Web组件文件选择的结果。 |
-| fileSelector | [FileSelectorParam](#fileselectorparam9) | 文件选择器的相关信息。       |
-
-**返回值：**
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback       | Callback\<[OnShowFileSelectorEvent](#onshowfileselectorevent12), boolean\> | 用于通知Web组件文件选择的结果。<br>返回值boolean。当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import picker from '@ohos.file.picker';
-  import { BusinessError } from '@ohos.base';
+1. 拉起文件选择器。
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { picker } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-    build() {
-      Column() {
-        Web({ src: $rawfile('index.html'), controller: this.controller })
-          .onShowFileSelector((event) => {
-            console.log('MyFileUploader onShowFileSelector invoked')
-            const documentSelectOptions = new picker.DocumentSelectOptions();
-            let uri: string | null = null;
-            const documentViewPicker = new picker.DocumentViewPicker();
-            documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
-              uri = documentSelectResult[0];
-              console.info('documentViewPicker.select to file succeed and uri is:' + uri);
-              if (event) {
-                event.result.handleFileList([uri]);
-              }
-            }).catch((err: BusinessError) => {
-              console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
-            })
-            return true
-          })
-      }
-    }
-  }
-  ```
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController()
 
-  加载的html文件。
-  ```html
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-  </head>
-  <body>
-    <form id="upload-form" enctype="multipart/form-data">
-      <input type="file" id="upload" name="upload"/>
-      </form>
-  </body>
-  </html>
-  ```
+     build() {
+       Column() {
+         Web({ src: $rawfile('index.html'), controller: this.controller })
+           .onShowFileSelector((event) => {
+             console.log('MyFileUploader onShowFileSelector invoked')
+             const documentSelectOptions = new picker.DocumentSelectOptions();
+             let uri: string | null = null;
+             const documentViewPicker = new picker.DocumentViewPicker();
+             documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
+               uri = documentSelectResult[0];
+               console.info('documentViewPicker.select to file succeed and uri is:' + uri);
+               if (event) {
+                 event.result.handleFileList([uri]);
+               }
+             }).catch((err: BusinessError) => {
+               console.error(`Invoke documentViewPicker.select failed, code is ${err.code},  message is ${err.message}`);
+             })
+             return true;
+           })
+       }
+     }
+   }
+   ```
+
+2. 拉起图库选择器。
+
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { picker } from '@kit.CoreFileKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+   @Entry
+   @Component
+   export struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController()
+
+     async selectFile(result: FileSelectorResult): Promise<void> {
+       let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+       let photoPicker = new photoAccessHelper.PhotoViewPicker();
+       // 过滤选择媒体文件类型为IMAGE
+       photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+       // 设置最大选择数量
+       photoSelectOptions.maxSelectNumber = 5;
+       let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+       // 获取选择的文件列表
+       result.handleFileList(chooseFile.photoUris);
+     }
+
+     build() {
+       Column() {
+         Web({ src: $rawfile('index.html'), controller: this.controller })
+           .onShowFileSelector((event) => {
+             if (event) {
+               this.selectFile(event.result);
+             }
+             return true;
+           })
+       }
+     }
+   }
+   ```
+
+   加载的html文件。
+   ```html
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+   </head>
+   <body>
+     <form id="upload-form" enctype="multipart/form-data">
+       <input type="file" id="upload" name="upload"/>
+       </form>
+   </body>
+   </html>
+   ```
 
 ### onResourceLoad<sup>9+</sup>
 
-onResourceLoad(callback: (event: {url: string}) => void)
+onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
 
 通知Web组件所加载的资源文件url信息。
 
@@ -3003,24 +3095,24 @@ onResourceLoad(callback: (event: {url: string}) => void)
 
 | 参数名  | 参数类型   | 参数描述           |
 | ---- | ------ | -------------- |
-| url  | string | 所加载的资源文件url信息。 |
+| callback  | Callback\<[OnResourceLoadEvent](#onresourceloadevent12)\> | 加载url时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onResourceLoad((event) => {
-            console.log('onResourceLoad: ' + event.url)
+            console.log('onResourceLoad: ' + event.url);
           })
       }
     }
@@ -3029,7 +3121,7 @@ onResourceLoad(callback: (event: {url: string}) => void)
 
 ### onScaleChange<sup>9+</sup>
 
-onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
+onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
 当前页面显示比例的变化时触发该回调。
 
@@ -3037,25 +3129,24 @@ onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
 
 | 参数名      | 参数类型   | 参数描述         |
 | -------- | ------ | ------------ |
-| oldScale | number | 变化前的显示比例百分比。 |
-| newScale | number | 变化后的显示比例百分比。 |
+| callback | Callback\<[OnScaleChangeEvent](#onscalechangeevent12)\> | 当前页面显示比例的变化时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onScaleChange((event) => {
-            console.log('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale)
+            console.log('onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale);
           })
       }
     }
@@ -3085,19 +3176,19 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onUrlLoadIntercept((event) => {
             if (event) {
-              console.log('onUrlLoadIntercept ' + event.data.toString())
+              console.log('onUrlLoadIntercept ' + event.data.toString());
             }
             return true
           })
@@ -3108,7 +3199,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
 ### onInterceptRequest<sup>9+</sup>
 
-onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebResourceResponse)
+onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceResponse>)
 
 当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。
 
@@ -3116,67 +3207,62 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
 
 | 参数名     | 参数类型                                     | 参数描述        |
 | ------- | ---------------------------------------- | ----------- |
-| request | [WebResourceRequest](#webresourcerequest) | url请求的相关信息。 |
-
-**返回值：**
-
-| 类型                                       | 说明                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| [WebResourceResponse](#webresourceresponse) | 返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
+| callback | Callback\<[OnInterceptRequestEvent](#oninterceptrequestevent12)\> | 当Web组件加载url之前触发。<br>返回值[WebResourceResponse](#webresourceresponse)。返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    responseweb: WebResourceResponse = new WebResourceResponse()
-    heads:Header[] = new Array()
-    @State webdata: string = "<!DOCTYPE html>\n" +
-    "<html>\n"+
-    "<head>\n"+
-    "<title>intercept test</title>\n"+
-    "</head>\n"+
-    "<body>\n"+
-    "<h1>intercept test</h1>\n"+
-    "</body>\n"+
-    "</html>"
+    controller: webview.WebviewController = new webview.WebviewController();
+    responseWeb: WebResourceResponse = new WebResourceResponse();
+    heads: Header[] = new Array();
+    @State webData: string = "<!DOCTYPE html>\n" +
+      "<html>\n" +
+      "<head>\n" +
+      "<title>intercept test</title>\n" +
+      "</head>\n" +
+      "<body>\n" +
+      "<h1>intercept test</h1>\n" +
+      "</body>\n" +
+      "</html>";
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onInterceptRequest((event) => {
             if (event) {
-              console.log('url:' + event.request.getRequestUrl())
+              console.log('url:' + event.request.getRequestUrl());
             }
-            let head1:Header = {
-              headerKey:"Connection",
-              headerValue:"keep-alive"
+            let head1: Header = {
+              headerKey: "Connection",
+              headerValue: "keep-alive"
             }
-            let head2:Header = {
-              headerKey:"Cache-Control",
-              headerValue:"no-cache"
+            let head2: Header = {
+              headerKey: "Cache-Control",
+              headerValue: "no-cache"
             }
-            let length = this.heads.push(head1)
-            length = this.heads.push(head2)
+            let length = this.heads.push(head1);
+            length = this.heads.push(head2);
             const promise: Promise<String> = new Promise((resolve: Function, reject: Function) => {
-              this.responseweb.setResponseHeader(this.heads)
-              this.responseweb.setResponseData(this.webdata)
-              this.responseweb.setResponseEncoding('utf-8')
-              this.responseweb.setResponseMimeType('text/html')
-              this.responseweb.setResponseCode(200)
-              this.responseweb.setReasonMessage('OK')
+              this.responseWeb.setResponseHeader(this.heads);
+              this.responseWeb.setResponseData(this.webData);
+              this.responseWeb.setResponseEncoding('utf-8');
+              this.responseWeb.setResponseMimeType('text/html');
+              this.responseWeb.setResponseCode(200);
+              this.responseWeb.setReasonMessage('OK');
               resolve("success");
             })
             promise.then(() => {
-              console.log("prepare response ready")
-              this.responseweb.setResponseIsReady(true)
+              console.log("prepare response ready");
+              this.responseWeb.setResponseIsReady(true);
             })
-            this.responseweb.setResponseIsReady(false)
-            return this.responseweb
+            this.responseWeb.setResponseIsReady(false);
+            return this.responseWeb;
           })
       }
     }
@@ -3185,7 +3271,7 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
 
 ### onHttpAuthRequest<sup>9+</sup>
 
-onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, realm: string}) => boolean)
+onHttpAuthRequest(callback: Callback\<OnHttpAuthRequestEvent, boolean\>)
 
 通知收到http auth认证请求。
 
@@ -3193,26 +3279,19 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
 
 | 参数名     | 参数类型                                 | 参数描述             |
 | ------- | ------------------------------------ | ---------------- |
-| handler | [HttpAuthHandler](#httpauthhandler9) | 通知Web组件用户操作行为。   |
-| host    | string                               | HTTP身份验证凭据应用的主机。 |
-| realm   | string                               | HTTP身份验证凭据应用的域。  |
-
-**返回值：**
-
-| 类型      | 说明                    |
-| ------- | --------------------- |
-| boolean | 返回false表示此次认证失败，否则成功。 |
+| callback | Callback\<[OnHttpAuthRequestEvent](#onhttpauthrequestevent12), boolean\> | 当浏览器需要用户的凭据时触发。<br>返回值boolean。返回false表示此次认证失败，否则成功。   |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    httpAuth: boolean = false
+    controller: webview.WebviewController = new webview.WebviewController();
+    httpAuth: boolean = false;
 
     build() {
       Column() {
@@ -3225,30 +3304,30 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
-                    event.handler.cancel()
+                    event.handler.cancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
-                    this.httpAuth = event.handler.isHttpAuthInfoSaved()
+                    this.httpAuth = event.handler.isHttpAuthInfoSaved();
                     if (this.httpAuth == false) {
-                      web_webview.WebDataBase.saveHttpAuthCredentials(
+                      webview.WebDataBase.saveHttpAuthCredentials(
                         event.host,
                         event.realm,
                         "2222",
                         "2222"
                       )
-                      event.handler.cancel()
+                      event.handler.cancel();
                     }
                   }
                 },
                 cancel: () => {
-                  event.handler.cancel()
+                  event.handler.cancel();
                 }
               })
             }
-            return true
+            return true;
           })
       }
     }
@@ -3256,7 +3335,7 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
   ```
 ### onSslErrorEventReceive<sup>9+</sup>
 
-onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslError }) => void)
+onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
 
 通知用户加载资源时发生SSL错误，只支持主资源。
 如果需要支持子资源，请使用[OnSslErrorEvent](#onsslerrorevent12)接口。
@@ -3265,18 +3344,18 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
 
 | 参数名     | 参数类型                                 | 参数描述           |
 | ------- | ------------------------------------ | -------------- |
-| handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。 |
-| error   | [SslError](#sslerror9枚举说明)           | 错误码。           |
+| callback | Callback\<[OnSslErrorEventReceiveEvent](#onsslerroreventreceiveevent12)\> | 当网页收到SSL错误时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -3288,17 +3367,17 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
               primaryButton: {
                 value: 'confirm',
                 action: () => {
-                  event.handler.handleConfirm()
+                  event.handler.handleConfirm();
                 }
               },
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handler.handleCancel()
+                  event.handler.handleCancel();
                 }
               },
               cancel: () => {
-                event.handler.handleCancel()
+                event.handler.handleCancel();
               }
             })
           })
@@ -3318,45 +3397,45 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
 | 参数名     | 参数类型                                 | 参数描述           |
 | ------- | ------------------------------------ | -------------- |
 | callback | [OnSslErrorEventCallback](#onsslerroreventcallback12) | 通知用户加载资源时发生SSL错误。 |
-|
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onSslErrorEvent((event: SslErrorEvent) => {
-            console.log("onSslErrorEvent url: " + event.url)
-            console.log("onSslErrorEvent error: " + event.error)
-            console.log("onSslErrorEvent originalUrl: " + event.originalUrl)
-            console.log("onSslErrorEvent referrer: " + event.referrer)
-            console.log("onSslErrorEvent isFatalError: " + event.isFatalError)
-            console.log("onSslErrorEvent isMainFrame: " + event.isMainFrame)
+            console.log("onSslErrorEvent url: " + event.url);
+            console.log("onSslErrorEvent error: " + event.error);
+            console.log("onSslErrorEvent originalUrl: " + event.originalUrl);
+            console.log("onSslErrorEvent referrer: " + event.referrer);
+            console.log("onSslErrorEvent isFatalError: " + event.isFatalError);
+            console.log("onSslErrorEvent isMainFrame: " + event.isMainFrame);
             AlertDialog.show({
               title: 'onSslErrorEvent',
               message: 'text',
               primaryButton: {
                 value: 'confirm',
                 action: () => {
-                  event.handler.handleConfirm()
+                  event.handler.handleConfirm();
                 }
               },
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handler.handleCancel()
+                  event.handler.handleCancel();
                 }
               },
               cancel: () => {
-                event.handler.handleCancel()
+                event.handler.handleCancel();
               }
             })
           })
@@ -3367,7 +3446,7 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
 
 ### onClientAuthenticationRequest<sup>9+</sup>
 
-onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string\>, issuers : Array<string\>}) => void)
+onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
 通知用户收到SSL客户端证书请求事件。
 
@@ -3375,11 +3454,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 
 | 参数名      | 参数类型                                     | 参数描述            |
 | -------- | ---------------------------------------- | --------------- |
-| handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | 通知Web组件用户操作行为。  |
-| host     | string                                   | 请求证书服务器的主机名。    |
-| port     | number                                   | 请求证书服务器的端口号。    |
-| keyTypes | Array<string\>                           | 可接受的非对称秘钥类型。    |
-| issuers  | Array<string\>                           | 与私钥匹配的证书可接受颁发者。 |
+| callback  | Callback\<[OnClientAuthenticationEvent](#onclientauthenticationrequestevent12)\> | 当需要用户提供的SSL客户端证书时触发的回调。  |
 
   **示例：**
 
@@ -3387,11 +3462,12 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 
   ```ts
   // xxx.ets API9
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -3403,17 +3479,17 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
               primaryButton: {
                 value: 'confirm',
                 action: () => {
-                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem")
+                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem");
                 }
               },
               secondaryButton: {
                 value: 'cancel',
                 action: () => {
-                  event.handler.cancel()
+                  event.handler.cancel();
                 }
               },
               cancel: () => {
-                event.handler.ignore()
+                event.handler.ignore();
               }
             })
           })
@@ -3455,124 +3531,122 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 
      ```ts
      // xxx.ets API10
-     import common from '@ohos.app.ability.common';
-     import Want from '@ohos.app.ability.Want';
-     import web_webview from '@ohos.web.webview'
-     import { BusinessError } from '@ohos.base';
-     import bundleManager from '@ohos.bundle.bundleManager'
-     import { GlobalContext } from '../GlobalContext'
+     import { webview } from '@kit.ArkWeb';
+     import { common, Want, bundleManager } from '@kit.AbilityKit';
+     import { BusinessError } from '@kit.BasicServicesKit';
+     import { GlobalContext } from '../GlobalContext';
 
-      let uri = "";
+     let uri = "";
 
-      export default class CertManagerService {
-        private static sInstance: CertManagerService;
-        private authUri = "";
-        private appUid = "";
+     export default class CertManagerService {
+       private static sInstance: CertManagerService;
+       private authUri = "";
+       private appUid = "";
 
-        public static getInstance(): CertManagerService {
-          if (CertManagerService.sInstance == null) {
-            CertManagerService.sInstance = new CertManagerService();
-          }
-          return CertManagerService.sInstance;
-        }
+       public static getInstance(): CertManagerService {
+         if (CertManagerService.sInstance == null) {
+           CertManagerService.sInstance = new CertManagerService();
+         }
+         return CertManagerService.sInstance;
+       }
 
-        async grantAppPm(callback: (message: string) => void) {
-          let message = '';
-          let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-          //注：com.example.myapplication需要写实际应用名称
-          try {
-            bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-              console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-              this.appUid = data.appInfo.uid.toString();
-            }).catch((err: BusinessError) => {
-              console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-            });
-          } catch (err) {
-            let message = (err as BusinessError).message;
-            console.error('getBundleInfoForSelf failed: %{public}s', message);
-          }
+       async grantAppPm(callback: (message: string) => void) {
+         let message = '';
+         let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+         //注：com.example.myapplication需要写实际应用名称
+         try {
+           bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+             console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+            this.appUid = data.appInfo.uid.toString();
+           }).catch((err: BusinessError) => {
+             console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+           });
+         } catch (err) {
+           let message = (err as BusinessError).message;
+           console.error('getBundleInfoForSelf failed: %{public}s', message);
+         }
 
-          //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
-          let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
-          await abilityContext.startAbilityForResult(
-            {
-              bundleName: "com.ohos.certmanager",
-              abilityName: "MainAbility",
-              uri: "requestAuthorize",
-              parameters: {
-                appUid: this.appUid, //传入申请应用的appUid
-              }
-            } as Want)
-            .then((data: common.AbilityResult) => {
-              if (!data.resultCode && data.want) {
-                if (data.want.parameters) {
-                  this.authUri = data.want.parameters.authUri as string; //授权成功后获取返回的authUri
-                }
-              }
-            })
-          message += "after grantAppPm authUri: " + this.authUri;
-          uri = this.authUri;
-          callback(message)
-        }
-      }
+         //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
+         let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
+         await abilityContext.startAbilityForResult(
+           {
+             bundleName: "com.ohos.certmanager",
+             abilityName: "MainAbility",
+             uri: "requestAuthorize",
+             parameters: {
+               appUid: this.appUid, //传入申请应用的appUid
+             }
+           } as Want)
+           .then((data: common.AbilityResult) => {
+             if (!data.resultCode && data.want) {
+               if (data.want.parameters) {
+                 this.authUri = data.want.parameters.authUri as string; //授权成功后获取返回的authUri
+               }
+             }
+           })
+         message += "after grantAppPm authUri: " + this.authUri;
+         uri = this.authUri;
+         callback(message)
+       }
+     }
 
-      @Entry
-      @Component
-      struct WebComponent {
-        controller: web_webview.WebviewController = new web_webview.WebviewController();
-        @State message: string = 'Hello World' //message主要是调试观察使用
-        certManager = CertManagerService.getInstance();
+     @Entry
+     @Component
+     struct WebComponent {
+       controller: webview.WebviewController = new webview.WebviewController();
+       @State message: string = 'Hello World' //message主要是调试观察使用
+       certManager = CertManagerService.getInstance();
 
-        build() {
-          Row() {
-            Column() {
-              Row() {
-                //第一步：需要先进行授权，获取到uri
-                Button('GrantApp')
-                  .onClick(() => {
-                    this.certManager.grantAppPm((data) => {
-                      this.message = data;
-                    });
-                  })
-                //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
-                Button("ClientCertAuth")
-                  .onClick(() => {
-                    this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
-                  })
-              }
+       build() {
+         Row() {
+           Column() {
+             Row() {
+               //第一步：需要先进行授权，获取到uri
+               Button('GrantApp')
+                 .onClick(() => {
+                   this.certManager.grantAppPm((data) => {
+                     this.message = data;
+                   });
+                 })
+               //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
+               Button("ClientCertAuth")
+                 .onClick(() => {
+                   this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
+                 })
+             }
 
-              Web({ src: 'https://www.example1.com', controller: this.controller })
-                .fileAccess(true)
-                .javaScriptAccess(true)
-                .domStorageAccess(true)
-                .onlineImageAccess(true)
+             Web({ src: 'https://www.example1.com', controller: this.controller })
+               .fileAccess(true)
+               .javaScriptAccess(true)
+               .domStorageAccess(true)
+               .onlineImageAccess(true)
 
-              .onClientAuthenticationRequest((event) => {
-                AlertDialog.show({
-                  title: 'ClientAuth',
-                  message: 'Text',
-                  confirm: {
-                    value: 'Confirm',
-                    action: () => {
-                      event.handler.confirm(uri);
-                    }
-                  },
-                  cancel: () => {
-                    event.handler.cancel();
-                  }
-                })
-              })
-            }
-          }
-          .width('100%')
-          .height('100%')
-        }
-      }
+               .onClientAuthenticationRequest((event) => {
+                 AlertDialog.show({
+                   title: 'ClientAuth',
+                   message: 'Text',
+                   confirm: {
+                     value: 'Confirm',
+                     action: () => {
+                       event.handler.confirm(uri);
+                     }
+                   },
+                   cancel: () => {
+                     event.handler.cancel();
+                   }
+                 })
+               })
+           }
+         }
+         .width('100%')
+         .height('100%')
+       }
+     }
      ```
 
 ### onPermissionRequest<sup>9+</sup>
 
-onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
+onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
 
 通知收到获取权限请求。
 
@@ -3580,18 +3654,19 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
 
 | 参数名     | 参数类型                                     | 参数描述           |
 | ------- | ---------------------------------------- | -------------- |
-| request | [PermissionRequest](#permissionrequest9) | 通知Web组件用户操作行为。 |
+| callback | Callback\<[OnPermissionRequestEvent](#onpermissionrequestevent12)\> | 通知收到获取权限请求触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -3603,17 +3678,17 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
                 primaryButton: {
                   value: 'deny',
                   action: () => {
-                    event.request.deny()
+                    event.request.deny();
                   }
                 },
                 secondaryButton: {
                   value: 'onConfirm',
                   action: () => {
-                    event.request.grant(event.request.getAccessibleResource())
+                    event.request.grant(event.request.getAccessibleResource());
                   }
                 },
                 cancel: () => {
-                  event.request.deny()
+                  event.request.deny();
                 }
               })
             }
@@ -3660,7 +3735,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
 
 ### onContextMenuShow<sup>9+</sup>
 
-onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebContextMenuResult }) => boolean)
+onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
 
 长按特定元素（例如图片，链接）或鼠标右键，跳出菜单。
 
@@ -3668,97 +3743,92 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
 
 | 参数名    | 参数类型                                     | 参数描述        |
 | ------ | ---------------------------------------- | ----------- |
-| param  | [WebContextMenuParam](#webcontextmenuparam9) | 菜单相关参数。     |
-| result | [WebContextMenuResult](#webcontextmenuresult9) | 菜单相应事件传入内核。 |
-
-**返回值：**
-
-| 类型      | 说明                       |
-| ------- | ------------------------ |
-| boolean | 自定义菜单返回true，触发的自定义菜单无效返回false。 |
+| callback  | Callback\<[OnContextMenuShowEvent](#oncontextmenushowevent12), boolean\> | 调用时触发的回调，以允许自定义显示上下文菜单。<br>返回值boolean。自定义菜单返回true，触发的自定义菜单无效返回false。     |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import pasteboard from '@ohos.pasteboard'
+  import { webview } from '@kit.ArkWeb';
+  import { pasteboard } from '@kit.BasicServicesKit';
+
   const TAG = 'ContextMenu';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     private result: WebContextMenuResult | undefined = undefined;
     @State linkUrl: string = '';
     @State offsetX: number = 0;
     @State offsetY: number = 0;
     @State showMenu: boolean = false;
+
     @Builder
     //构建自定义菜单及触发功能接口
-    MenuBuilder(){
+    MenuBuilder() {
       //以垂直列表形式显示的菜单。
-      Menu(){
+      Menu() {
         //展示菜单Menu中具体的item菜单项。
         MenuItem({
           content: '复制图片',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.copyImage();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.copyImage();
+            this.showMenu = false;
+          })
         MenuItem({
           content: '剪切',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.cut();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.cut();
+            this.showMenu = false;
+          })
         MenuItem({
           content: '复制',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.copy();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.copy();
+            this.showMenu = false;
+          })
         MenuItem({
           content: '粘贴',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.paste();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.paste();
+            this.showMenu = false;
+          })
         MenuItem({
           content: '复制链接',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          let pasteData = pasteboard.createData('text/plain', this.linkUrl);
-          pasteboard.getSystemPasteboard().setData(pasteData, (error)=>{
-            if(error){
-              return;
-            }
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            let pasteData = pasteboard.createData('text/plain', this.linkUrl);
+            pasteboard.getSystemPasteboard().setData(pasteData, (error) => {
+              if (error) {
+                return;
+              }
+            })
+            this.showMenu = false;
           })
-          this.showMenu = false;
-        })
         MenuItem({
           content: '全选',
         })
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          this.result?.selectAll();
-          this.showMenu = false;
-        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.selectAll();
+            this.showMenu = false;
+          })
       }
       .width(150)
       .height(300)
@@ -3771,30 +3841,30 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
           .onContextMenuShow((event) => {
             if (event) {
               this.result = event.result
-              console.info("x coord = " + event.param.x())
-              console.info("link url = " + event.param.getLinkUrl())
-              this.linkUrl = event.param.getLinkUrl()
+              console.info("x coord = " + event.param.x());
+              console.info("link url = " + event.param.getLinkUrl());
+              this.linkUrl = event.param.getLinkUrl();
             }
             console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
             this.showMenu = true;
             this.offsetX = 250;
             this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
-            return true
-        })
-        .bindPopup(this.showMenu,
-        {
-          builder: this.MenuBuilder(),
-          enableArrow: false,
-          placement: Placement.LeftTop,
-          offset: { x: this.offsetX, y: this.offsetY},
-          mask: false,
-          onStateChange: (e) => {
-            if(!e.isVisible){
-              this.showMenu = false;
-              this.result!.closeContextMenu();
-            }
-          }
-        })
+            return true;
+          })
+          .bindPopup(this.showMenu,
+            {
+              builder: this.MenuBuilder(),
+              enableArrow: false,
+              placement: Placement.LeftTop,
+              offset: { x: this.offsetX, y: this.offsetY },
+              mask: false,
+              onStateChange: (e) => {
+                if (!e.isVisible) {
+                  this.showMenu = false;
+                  this.result!.closeContextMenu();
+                }
+              }
+            })
       }
     }
   }
@@ -3831,18 +3901,19 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuHide(() => {
-            console.log("onContextMenuHide callback")
-        })
+            console.log("onContextMenuHide callback");
+          })
       }
     }
   }
@@ -3850,7 +3921,7 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
 ### onScroll<sup>9+</sup>
 
-onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
+onScroll(callback: Callback\<OnScrollEvent\>): WebAttribute;
 
 通知网页滚动条滚动位置。
 
@@ -3858,26 +3929,26 @@ onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 | 参数名     | 参数类型   | 参数描述                   |
 | ------- | ------ | ---------------------- |
-| xOffset | number | 以网页最左端为基准，水平滚动条滚动所在位置。 |
-| yOffset | number | 以网页最上端为基准，竖直滚动条滚动所在位置。 |
+| callback | Callback\<[OnScrollEvent](#onscrollevent12)\> | 当滚动条滑动到指定位置时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onScroll((event) => {
-            console.info("x = " + event.xOffset)
-            console.info("y = " + event.yOffset)
-        })
+          .onScroll((event) => {
+            console.info("x = " + event.xOffset);
+            console.info("y = " + event.yOffset);
+          })
       }
     }
   }
@@ -3885,7 +3956,7 @@ onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 ### onGeolocationShow
 
-onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocation }) => void)
+onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
 
 通知用户收到地理位置信息获取请求。
 
@@ -3893,40 +3964,40 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
 
 | 参数名         | 参数类型                            | 参数描述           |
 | ----------- | ------------------------------- | -------------- |
-| origin      | string                          | 指定源的字符串索引。     |
-| geolocation | [JsGeolocation](#jsgeolocation) | 通知Web组件用户操作行为。 |
+| callback      | Callback\<[OnGeolocationShowEvent](#ongeolocationshowevent12)\>  | 请求显示地理位置权限时触发。     |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:$rawfile('index.html'), controller:this.controller })
-        .geolocationAccess(true)
-        .onGeolocationShow((event) => {
-          if (event) {
-            AlertDialog.show({
-              title: 'title',
-              message: 'text',
-              confirm: {
-                value: 'onConfirm',
-                action: () => {
-                  event.geolocation.invoke(event.origin, true, true)
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .geolocationAccess(true)
+          .onGeolocationShow((event) => {
+            if (event) {
+              AlertDialog.show({
+                title: 'title',
+                message: 'text',
+                confirm: {
+                  value: 'onConfirm',
+                  action: () => {
+                    event.geolocation.invoke(event.origin, true, true);
+                  }
+                },
+                cancel: () => {
+                  event.geolocation.invoke(event.origin, false, true);
                 }
-              },
-              cancel: () => {
-                event.geolocation.invoke(event.origin, false, true)
-              }
-            })
-          }
-        })
+              })
+            }
+          })
       }
     }
   }
@@ -3971,19 +4042,20 @@ onGeolocationHide(callback: () => void)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .geolocationAccess(true)
-        .onGeolocationHide(() => {
-          console.log("onGeolocationHide...")
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .geolocationAccess(true)
+          .onGeolocationHide(() => {
+            console.log("onGeolocationHide...");
+          })
       }
     }
   }
@@ -4005,22 +4077,23 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    handler: FullScreenExitHandler | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    handler: FullScreenExitHandler | null = null;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onFullScreenEnter((event) => {
-          console.log("onFullScreenEnter videoWidth: " + event.videoWidth +
-            ", videoHeight: " + event.videoHeight)
-          // 应用可以通过 this.handler.exitFullScreen() 主动退出全屏。
-          this.handler = event.handler
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onFullScreenEnter((event) => {
+            console.log("onFullScreenEnter videoWidth: " + event.videoWidth +
+              ", videoHeight: " + event.videoHeight);
+            // 应用可以通过 this.handler.exitFullScreen() 主动退出全屏。
+            this.handler = event.handler;
+          })
       }
     }
   }
@@ -4042,25 +4115,26 @@ onFullScreenExit(callback: () => void)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    handler: FullScreenExitHandler | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    handler: FullScreenExitHandler | null = null;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onFullScreenExit(() => {
-          console.log("onFullScreenExit...")
-          if (this.handler) {
-            this.handler.exitFullScreen()
-          }
-        })
-        .onFullScreenEnter((event) => {
-          this.handler = event.handler
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onFullScreenExit(() => {
+            console.log("onFullScreenExit...")
+            if (this.handler) {
+              this.handler.exitFullScreen();
+            }
+          })
+          .onFullScreenEnter((event) => {
+            this.handler = event.handler;
+          })
       }
     }
   }
@@ -4068,7 +4142,7 @@ onFullScreenExit(callback: () => void)
 
 ### onWindowNew<sup>9+</sup>
 
-onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetUrl: string, handler: ControllerHandler}) => void)
+onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
 使能multiWindowAccess情况下，通知用户新建窗口请求。
 若不调用event.handler.setWebController接口，会造成render进程阻塞。
@@ -4078,42 +4152,41 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
 
 | 参数名           | 参数类型                                     | 参数描述                          |
 | ------------- | ---------------------------------------- | ----------------------------- |
-| isAlert       | boolean                                  | true代表请求创建对话框，false代表新标签页。    |
-| isUserTrigger | boolean                                  | true代表用户触发，false代表非用户触发。      |
-| targetUrl     | string                                   | 目标url。                        |
-| handler       | [ControllerHandler](#controllerhandler9) | 用于设置新建窗口的WebviewController实例。 |
+| callback       | Callback\<[OnWindowNewEvent](#onwindownewevent12)\>                                  | 网页要求用户创建窗口时触发的回调。    |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   //在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
-  controller?: CustomDialogController
-  webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
+    controller?: CustomDialogController;
+    webviewController1: webview.WebviewController = new webview.WebviewController();
+
+    build() {
       Column() {
         Web({ src: "", controller: this.webviewController1 })
           .javaScriptAccess(true)
           .multiWindowAccess(false)
-          .onWindowExit(()=> {
-            console.info("NewWebViewComp onWindowExit")
+          .onWindowExit(() => {
+            console.info("NewWebViewComp onWindowExit");
             if (this.controller) {
-              this.controller.close()
+              this.controller.close();
             }
           })
-        }
+      }
     }
   }
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    dialogController: CustomDialogController | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    dialogController: CustomDialogController | null = null;
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4123,17 +4196,17 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
           .allowWindowOpenMethod(true)
           .onWindowNew((event) => {
             if (this.dialogController) {
-              this.dialogController.close()
+              this.dialogController.close();
             }
-            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({webviewController1: popController})
+              builder: NewWebViewComp({ webviewController1: popController })
             })
-            this.dialogController.open()
+            this.dialogController.open();
             //将新窗口对应WebviewController返回给Web内核。
             //如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
             //若不调用event.handler.setWebController接口，会造成render进程阻塞。
-            event.handler.setWebController(popController)
+            event.handler.setWebController(popController);
           })
       }
     }
@@ -4156,18 +4229,19 @@ onWindowExit(callback: () => void)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-        .onWindowExit(() => {
-          console.log("onWindowExit...")
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onWindowExit(() => {
+            console.log("onWindowExit...");
+          })
       }
     }
   }
@@ -4175,7 +4249,7 @@ onWindowExit(callback: () => void)
 
 ### onSearchResultReceive<sup>9+</sup>
 
-onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMatches: number, isDoneCounting: boolean}) => void): WebAttribute
+onSearchResultReceive(callback: Callback\<OnSearchResultReceiveEvent\>)
 
 回调通知调用方网页页内查找的结果。
 
@@ -4183,30 +4257,28 @@ onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMa
 
 | 参数名                | 参数类型    | 参数描述                                     |
 | ------------------ | ------- | ---------------------------------------- |
-| activeMatchOrdinal | number  | 当前匹配的查找项的序号（从0开始）。                       |
-| numberOfMatches    | number  | 所有匹配到的关键词的个数。                            |
-| isDoneCounting     | boolean | 当次页内查找操作是否结束。该方法可能会回调多次，直到isDoneCounting为true为止。 |
+| callback | Callback\<[OnSearchResultReceiveEvent](#onsearchresultreceiveevent12)\>  | 通知调用方网页页内查找的结果。         |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-     	  .onSearchResultReceive(ret => {
-     	    if (ret) {
-            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
-              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting)
-     	    }
-     	  })
+          .onSearchResultReceive(ret => {
+            if (ret) {
+              console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+                "[total]" + ret.numberOfMatches + "[isDone]" + ret.isDoneCounting);
+            }
+          })
       }
     }
   }
@@ -4214,7 +4286,7 @@ onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMa
 
 ### onDataResubmitted<sup>9+</sup>
 
-onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
+onDataResubmitted(callback: Callback\<OnDataResubmittedEvent\>)
 
 设置网页表单可以重新提交时触发的回调函数。
 
@@ -4222,35 +4294,36 @@ onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
 
 | 参数名     | 参数类型                                     | 参数描述        |
 | ------- | ---------------------------------------- | ----------- |
-| handler | [DataResubmissionHandler](#dataresubmissionhandler9) | 表单数据重新提交句柄。 |
+| callback | Callback\<[OnDataResubmittedEvent](#ondataresubmittedevent12)\> | 网页表单可以重新提交时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         //在网页中点击提交之后，点击refresh按钮可以重新提交时的触发函数。
         Button('refresh')
-        .onClick(() => {
-          try {
-            this.controller.refresh();
-          } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
-          }
-        })
-        Web({ src:$rawfile('index.html'), controller: this.controller })
-         .onDataResubmitted((event) => {
-          console.log('onDataResubmitted')
-          event.handler.resend();
-        })
+          .onClick(() => {
+            try {
+              this.controller.refresh();
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .onDataResubmitted((event) => {
+            console.log('onDataResubmitted');
+            event.handler.resend();
+          })
       }
     }
   }
@@ -4275,7 +4348,7 @@ onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
 
 ### onPageVisible<sup>9+</sup>
 
-onPageVisible(callback: (event: {url: string}) => void)
+onPageVisible(callback: Callback\<OnPageVisibleEvent\>)
 
 设置旧页面不再呈现，新页面即将可见时触发的回调函数。
 
@@ -4283,23 +4356,25 @@ onPageVisible(callback: (event: {url: string}) => void)
 
 | 参数名  | 参数类型   | 参数描述                       |
 | ---- | ------ | -------------------------- |
-| url  | string | 旧页面不再呈现，新页面即将可见时新页面的url地址。 |
+| callback  | Callback\<[OnPageVisibleEvent](#onpagevisibleevent12)\> | 旧页面不再呈现，新页面即将可见时触发的回调函数。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onPageVisible((event) => {
-          console.log('onPageVisible url:' + event.url)
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onPageVisible((event) => {
+            console.log('onPageVisible url:' + event.url);
+          })
       }
     }
   }
@@ -4327,21 +4402,23 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+  
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onInterceptKeyEvent((event) => {
-          if (event.keyCode == 2017 || event.keyCode == 2018) {
-            console.info(`onInterceptKeyEvent get event.keyCode ${event.keyCode}`)
-            return true;
-          }
-          return false;
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onInterceptKeyEvent((event) => {
+            if (event.keyCode == 2017 || event.keyCode == 2018) {
+              console.info(`onInterceptKeyEvent get event.keyCode ${event.keyCode}`);
+              return true;
+            }
+            return false;
+          })
       }
     }
   }
@@ -4349,7 +4426,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
 ### onTouchIconUrlReceived<sup>9+</sup>
 
-onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) => void)
+onTouchIconUrlReceived(callback: Callback\<OnTouchIconUrlReceivedEvent\>)
 
 设置接收到apple-touch-icon url地址时的回调函数。
 
@@ -4357,24 +4434,25 @@ onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) =>
 
 | 参数名         | 参数类型    | 参数描述                        |
 | ----------- | ------- | --------------------------- |
-| url         | string  | 接收到的apple-touch-icon url地址。 |
-| precomposed | boolean | 对应apple-touch-icon是否为预合成。   |
+| callback         | Callback\<[OnTouchIconUrlReceivedEvent](#ontouchiconurlreceivedevent12)\>  | 接收到的apple-touch-icon url地址时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.baidu.com', controller: this.controller })
-         .onTouchIconUrlReceived((event) => {
-          console.log('onTouchIconUrlReceived:' + JSON.stringify(event))
-        })
+        Web({ src: 'www.baidu.com', controller: this.controller })
+          .onTouchIconUrlReceived((event) => {
+            console.log('onTouchIconUrlReceived:' + JSON.stringify(event));
+          })
       }
     }
   }
@@ -4382,7 +4460,7 @@ onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) =>
 
 ### onFaviconReceived<sup>9+</sup>
 
-onFaviconReceived(callback: (event: { favicon: PixelMap }) => void)
+onFaviconReceived(callback: Callback\<OnFaviconReceivedEvent\>)
 
 设置应用为当前页面接收到新的favicon时的回调函数。
 
@@ -4390,26 +4468,28 @@ onFaviconReceived(callback: (event: { favicon: PixelMap }) => void)
 
 | 参数名     | 参数类型                                     | 参数描述                      |
 | ------- | ---------------------------------------- | ------------------------- |
-| favicon | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 接收到的favicon图标的PixelMap对象。 |
+| callback | Callback\<[OnFaviconReceivedEvent](#onfaviconreceivedevent12)\> | 当前页面接收到新的favicon时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import image from "@ohos.multimedia.image"
+  import { webview } from '@kit.ArkWeb';
+  import { image } from '@kit.ImageKit';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
     @State icon: image.PixelMap | undefined = undefined;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onFaviconReceived((event) => {
-          console.log('onFaviconReceived');
-          this.icon = event.favicon;
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onFaviconReceived((event) => {
+            console.log('onFaviconReceived');
+            this.icon = event.favicon;
+          })
       }
     }
   }
@@ -4417,7 +4497,7 @@ onFaviconReceived(callback: (event: { favicon: PixelMap }) => void)
 
 ### onAudioStateChanged<sup>10+</sup>
 
-onAudioStateChanged(callback: (event: { playing: boolean }) => void)
+onAudioStateChanged(callback: Callback\<OnAudioStateChangedEvent\>)
 
 设置网页上的音频播放状态发生改变时的回调函数。
 
@@ -4425,24 +4505,26 @@ onAudioStateChanged(callback: (event: { playing: boolean }) => void)
 
 | 参数名     | 参数类型    | 参数描述                               |
 | ------- | ------- | ---------------------------------- |
-| playing | boolean | 当前页面的音频播放状态，true表示正在播放，false表示未播放。 |
+| callback | Callback\<[OnAudioStateChangedEvent](#onaudiostatechangedevent12)\> | 网页上的音频播放状态发生改变时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    @State playing: boolean = false
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State playing: boolean = false;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onAudioStateChanged(event => {
-            this.playing = event.playing
-            console.debug('onAudioStateChanged playing: ' + this.playing)
+            this.playing = event.playing;
+            console.debug('onAudioStateChanged playing: ' + this.playing);
           })
       }
     }
@@ -4451,7 +4533,7 @@ onAudioStateChanged(callback: (event: { playing: boolean }) => void)
 
 ### onFirstContentfulPaint<sup>10+</sup>
 
-onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstContentfulPaintMs: number }) => void)
+ onFirstContentfulPaint(callback: Callback\<OnFirstContentfulPaintEvent\>)
 
 设置网页首次内容绘制回调函数。
 
@@ -4459,27 +4541,27 @@ onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstCo
 
 | 参数名                    | 参数类型   | 参数描述                              |
 | ---------------------- | ------ | --------------------------------- |
-| navigationStartTick    | number | navigation开始的时间，单位以微秒表示。          |
-| firstContentfulPaintMs | number | 从navigation开始第一次绘制内容的时间，单位是以毫秒表示。 |
+| callback    | Callback\<[OnFirstContentfulPaintEvent](#onfirstcontentfulpaintevent12)\> | 网页首次内容绘制回调函数。          |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onFirstContentfulPaint(event => {
             if (event) {
               console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" +
               event.navigationStartTick + ", [firstContentfulPaintMs]:" +
-              event.firstContentfulPaintMs)
+              event.firstContentfulPaintMs);
             }
           })
       }
@@ -4503,19 +4585,20 @@ onFirstMeaningfulPaint(callback: [OnFirstMeaningfulPaintCallback](#onfirstmeanin
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onFirstMeaningfulPaint((details) => {
+          .onFirstMeaningfulPaint((details) => {
             console.log("onFirstMeaningfulPaint: [navigationStartTime]= " + details.navigationStartTime +
               ", [firstMeaningfulPaintTime]=" + details.firstMeaningfulPaintTime);
-        })
+          })
       }
     }
   }
@@ -4537,23 +4620,24 @@ onLargestContentfulPaint(callback: [OnLargestContentfulPaintCallback](#onlargest
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onLargestContentfulPaint((details) => {
+          .onLargestContentfulPaint((details) => {
             console.log("onLargestContentfulPaint: [navigationStartTime]= " + details.navigationStartTime +
               ", [largestImagePaintTime]=" + details.largestImagePaintTime +
               ", [largestTextPaintTime]=" + details.largestTextPaintTime +
               ", [largestImageLoadStartTime]=" + details.largestImageLoadStartTime +
               ", [largestImageLoadEndTime]=" + details.largestImageLoadEndTime +
               ", [imageBPP]=" + details.imageBPP);
-        })
+          })
       }
     }
   }
@@ -4561,7 +4645,7 @@ onLargestContentfulPaint(callback: [OnLargestContentfulPaintCallback](#onlargest
 
 ### onLoadIntercept<sup>10+</sup>
 
-onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
+onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
 
@@ -4569,34 +4653,28 @@ onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
 
 | 参数名     | 参数类型                                     | 参数描述        |
 | ------- | ---------------------------------------- | ----------- |
-| data | [WebResourceRequest](#webresourcerequest) | url请求的相关信息。 |
-
-**返回值：**
-
-| 类型      | 说明                       |
-| ------- | ------------------------ |
-| boolean | 返回true表示阻止此次加载，否则允许此次加载。 |
+| callback | Callback\<[OnLoadInterceptEvent](#onloadinterceptevent12), boolean\> | 截获资源加载时触发的回调。<br>返回值boolean。返回true表示阻止此次加载，否则允许此次加载。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onLoadIntercept((event) => {
-            console.log('url:' + event.data.getRequestUrl())
-            console.log('isMainFrame:' + event.data.isMainFrame())
-            console.log('isRedirect:' + event.data.isRedirect())
-            console.log('isRequestGesture:' + event.data.isRequestGesture())
-            return true
+            console.log('url:' + event.data.getRequestUrl());
+            console.log('isMainFrame:' + event.data.isMainFrame());
+            console.log('isRedirect:' + event.data.isRedirect());
+            console.log('isRequestGesture:' + event.data.isRequestGesture());
+            return true;
           })
       }
     }
@@ -4613,18 +4691,18 @@ onRequestSelected(callback: () => void)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRequestSelected(() => {
-            console.log('onRequestSelected')
+            console.log('onRequestSelected');
           })
       }
     }
@@ -4632,7 +4710,7 @@ onRequestSelected(callback: () => void)
   ```
 ### onScreenCaptureRequest<sup>10+</sup>
 
-onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => void)
+onScreenCaptureRequest(callback: Callback\<OnScreenCaptureRequestEvent\>)
 
 通知收到屏幕捕获请求。
 
@@ -4640,18 +4718,19 @@ onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => 
 
 | 参数名     | 参数类型                                     | 参数描述           |
 | ------- | ---------------------------------------- | -------------- |
-| handler | [ScreenCaptureHandler](#screencapturehandler10) | 通知Web组件用户操作行为。 |
+| callback | Callback\<[OnScreenCaptureRequestEvent](#onscreencapturerequestevent12)\> | 通知收到屏幕捕获请求。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4663,17 +4742,17 @@ onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => 
                 primaryButton: {
                   value: 'deny',
                   action: () => {
-                    event.handler.deny()
+                    event.handler.deny();
                   }
                 },
                 secondaryButton: {
                   value: 'onConfirm',
                   action: () => {
-                    event.handler.grant({ captureMode: WebCaptureMode.HOME_SCREEN })
+                    event.handler.grant({ captureMode: WebCaptureMode.HOME_SCREEN });
                   }
                 },
                 cancel: () => {
-                  event.handler.deny()
+                  event.handler.deny();
                 }
               })
             }
@@ -4685,7 +4764,7 @@ onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => 
 
 ### onOverScroll<sup>10+</sup>
 
-onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
+onOverScroll(callback: Callback\<OnOverScrollEvent\>)
 
 该接口在网页过度滚动时触发，用于通知网页过度滚动的偏移量。
 
@@ -4693,26 +4772,26 @@ onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 | 参数名     | 参数类型   | 参数描述                |
 | ------- | ------ | ------------------- |
-| xOffset | number | 以网页最左端为基准，水平过度滚动的偏移量。 |
-| yOffset | number | 以网页最上端为基准，竖直过度滚动的偏移量。 |
+| callback | Callback\<[OnOverScrollEvent](#onoverscrollevent12)\> | 网页过度滚动时触发。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onOverScroll((event) => {
-            console.info("x = " + event.xOffset)
-            console.info("y = " + event.yOffset)
-        })
+          .onOverScroll((event) => {
+            console.info("x = " + event.xOffset);
+            console.info("y = " + event.yOffset);
+          })
       }
     }
   }
@@ -4730,12 +4809,12 @@ onControllerAttached(callback: () => void)
 在该回调中使用loadUrl加载网页
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -4747,16 +4826,17 @@ onControllerAttached(callback: () => void)
     }
   }
   ```
+
 在该回调中使用getWebId
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import { BusinessError } from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -4802,22 +4882,23 @@ onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](#onnav
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onNavigationEntryCommitted((details) => {
+          .onNavigationEntryCommitted((details) => {
             console.log("onNavigationEntryCommitted: [isMainFrame]= " + details.isMainFrame +
               ", [isSameDocument]=" + details.isSameDocument +
               ", [didReplaceEntry]=" + details.didReplaceEntry +
               ", [navigationType]=" + details.navigationType +
               ", [url]=" + details.url);
-        })
+          })
       }
     }
   }
@@ -4839,7 +4920,7 @@ onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   export enum ThreatType {
     UNKNOWN = -1,
@@ -4856,15 +4937,16 @@ onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onSafeBrowsingCheckResult((callback) => {
-            let jsonData = JSON.stringify(callback)
-            let json:OnSafeBrowsingCheckResultCallback = JSON.parse(jsonData)
+          .onSafeBrowsingCheckResult((callback) => {
+            let jsonData = JSON.stringify(callback);
+            let json: OnSafeBrowsingCheckResultCallback = JSON.parse(jsonData);
             console.log("onSafeBrowsingCheckResult: [threatType]= " + json.threatType);
-        })
+          })
       }
     }
   }
@@ -4886,30 +4968,31 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    @State embedStatus: string = ''
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State embedStatus: string = '';
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onNativeEmbedLifecycleChange((event) => {
+          .onNativeEmbedLifecycleChange((event) => {
             if (event.status == NativeEmbedStatus.CREATE) {
-              this.embedStatus = 'Create'
+              this.embedStatus = 'Create';
             }
             if (event.status == NativeEmbedStatus.UPDATE) {
-              this.embedStatus = 'Update'
+              this.embedStatus = 'Update';
             }
             if (event.status == NativeEmbedStatus.DESTROY) {
-              this.embedStatus = 'Destroy'
+              this.embedStatus = 'Destroy';
             }
             console.log("status = " + this.embedStatus);
             console.log("surfaceId = " + event.surfaceId);
             console.log("embedId = " + event.embedId);
-            if(event.info){
+            if (event.info) {
               console.log("id = " + event.info.id);
               console.log("type = " + event.info.type);
               console.log("src = " + event.info.src);
@@ -4917,7 +5000,7 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
               console.log("height = " + event.info.height);
               console.log("url = " + event.info.url);
             }
-        })
+          })
       }
     }
   }
@@ -4939,116 +5022,123 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import {UIContext} from '@ohos.arkui.UIContext';
-  import {NodeController, BuilderNode, NodeRenderType, FrameNode} from "@ohos.arkui.node";
+  import { webview } from '@kit.ArkWeb';
+  import { NodeController, BuilderNode, NodeRenderType, FrameNode, UIContext } from "@kit.ArkUI";
 
   declare class Params {
-    text : string
-    width : number
-    height : number
+    text: string;
+    width: number;
+    height: number;
   }
+
   declare class nodeControllerParams {
-    surfaceId : string
-    renderType : NodeRenderType
-    width : number
-    height : number
+    surfaceId: string;
+    renderType: NodeRenderType;
+    width: number;
+    height: number;
   }
 
   class MyNodeController extends NodeController {
     private rootNode: BuilderNode<[Params]> | undefined | null;
-    private surfaceId_ : string = "";
-    private renderType_ :NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY;
-    private width_ : number = 0;
-    private height_ : number = 0;
+    private surfaceId_: string = "";
+    private renderType_: NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY;
+    private width_: number = 0;
+    private height_: number = 0;
 
-    setRenderOption(params : nodeControllerParams) {
+    setRenderOption(params: nodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.width_ = params.width;
       this.height_ = params.height;
     }
 
-    makeNode(uiContext: UIContext): FrameNode | null{
-      this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_});
-      this.rootNode.build(wrapBuilder(ButtonBuilder), {text: "myButton", width : this.width_, height : this.height_});
+    makeNode(uiContext: UIContext): FrameNode | null {
+      this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_ });
+      this.rootNode.build(wrapBuilder(ButtonBuilder), { text: "myButton", width: this.width_, height: this.height_ });
       return this.rootNode.getFrameNode();
     }
 
-    postEvent(event: TouchEvent | undefined) : boolean {
-      return this.rootNode?.postTouchEvent(event) as boolean
+    postEvent(event: TouchEvent | undefined): boolean {
+      return this.rootNode?.postTouchEvent(event) as boolean;
     }
   }
 
-@Component
-struct ButtonComponent {
-  @Prop params: Params
-  @State bkColor: Color = Color.Red
+  @Component
+  struct ButtonComponent {
+    @Prop params: Params;
+    @State bkColor: Color = Color.Red;
 
-  build() {
-    Column() {
-      Button(this.params.text)
-        .height(50)
-        .width(200)
-        .border({ width: 2, color: Color.Red})
-        .backgroundColor(this.bkColor)
+    build() {
+      Column() {
+        Button(this.params.text)
+          .height(50)
+          .width(200)
+          .border({ width: 2, color: Color.Red })
+          .backgroundColor(this.bkColor)
 
+      }
+      .width(this.params.width)
+      .height(this.params.height)
     }
-    .width(this.params.width)
-    .height(this.params.height)
   }
-}
 
-@Builder
-function ButtonBuilder(params: Params) {
-  ButtonComponent({ params: params })
-    .backgroundColor(Color.Green)
-}
+  @Builder
+  function ButtonBuilder(params: Params) {
+    ButtonComponent({ params: params })
+      .backgroundColor(Color.Green)
+  }
+
   @Entry
   @Component
   struct WebComponent {
-    @State eventType: string = ''
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    private nodeController: MyNodeController = new MyNodeController()
+    @State eventType: string = '';
+    controller: webview.WebviewController = new webview.WebviewController();
+    private nodeController: MyNodeController = new MyNodeController();
+
     build() {
       Column() {
-        Stack(){
+        Stack() {
           NodeContainer(this.nodeController)
           Web({ src: $rawfile("test.html"), controller: this.controller })
-          .enableNativeEmbedMode(true)
-          .onNativeEmbedLifecycleChange((embed) => {
-            if (embed.status == NativeEmbedStatus.CREATE) {
-              this.nodeController.setRenderOption({surfaceId : embed.surfaceId as string, renderType : NodeRenderType.RENDER_TYPE_TEXTURE, width : px2vp(embed.info?.width), height : px2vp(embed.info?.height)})
-              this.nodeController.rebuild()
-            }
-          })
-          .onNativeEmbedGestureEvent((event) => {
-            if (event && event.touchEvent){
-              if (event.touchEvent.type == TouchType.Down) {
-                this.eventType = 'Down'
+            .enableNativeEmbedMode(true)
+            .onNativeEmbedLifecycleChange((embed) => {
+              if (embed.status == NativeEmbedStatus.CREATE) {
+                this.nodeController.setRenderOption({
+                  surfaceId: embed.surfaceId as string,
+                  renderType: NodeRenderType.RENDER_TYPE_TEXTURE,
+                  width: px2vp(embed.info?.width),
+                  height: px2vp(embed.info?.height)
+                });
+                this.nodeController.rebuild();
               }
-              if (event.touchEvent.type == TouchType.Up) {
-                this.eventType = 'Up'
+            })
+            .onNativeEmbedGestureEvent((event) => {
+              if (event && event.touchEvent) {
+                if (event.touchEvent.type == TouchType.Down) {
+                  this.eventType = 'Down'
+                }
+                if (event.touchEvent.type == TouchType.Up) {
+                  this.eventType = 'Up'
+                }
+                if (event.touchEvent.type == TouchType.Move) {
+                  this.eventType = 'Move'
+                }
+                if (event.touchEvent.type == TouchType.Cancel) {
+                  this.eventType = 'Cancel'
+                }
+                let ret = this.nodeController.postEvent(event.touchEvent)
+                if (event.result) {
+                  event.result.setGestureEventResult(ret);
+                }
+                console.log("embedId = " + event.embedId);
+                console.log("touchType = " + this.eventType);
+                console.log("x = " + event.touchEvent.touches[0].x);
+                console.log("y = " + event.touchEvent.touches[0].y);
+                console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
+                console.log("width = " + event.touchEvent.target.area.width);
+                console.log("height = " + event.touchEvent.target.area.height);
               }
-              if (event.touchEvent.type == TouchType.Move) {
-                this.eventType = 'Move'
-              }
-              if (event.touchEvent.type == TouchType.Cancel) {
-                this.eventType = 'Cancel'
-              }
-              let ret = this.nodeController.postEvent(event.touchEvent)
-              if (event.result) {
-                event.result.setGestureEventResult(ret);
-              }
-              console.log("embedId = " + event.embedId);
-              console.log("touchType = " + this.eventType);
-              console.log("x = " + event.touchEvent.touches[0].x);
-              console.log("y = " + event.touchEvent.touches[0].y);
-              console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
-              console.log("width = " + event.touchEvent.target.area.width);
-              console.log("height = " + event.touchEvent.target.area.height);
-            }
-          })
+            })
         }
       }
     }
@@ -5088,13 +5178,14 @@ onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionC
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import business_error from '@ohos.base'
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         // 需要打开智能防跟踪功能，才会触发onIntelligentTrackingPreventionResult回调
@@ -5103,15 +5194,14 @@ onIntelligentTrackingPreventionResult(callback: OnIntelligentTrackingPreventionC
             try {
               this.controller.enableIntelligentTrackingPrevention(true);
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error('ErrorCode: ${e.code}, Message: ${e.message}');
+              console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
             }
           })
         Web({ src: 'www.example.com', controller: this.controller })
-        .onIntelligentTrackingPreventionResult((details) => {
+          .onIntelligentTrackingPreventionResult((details) => {
             console.log("onIntelligentTrackingPreventionResult: [websiteHost]= " + details.host +
               ", [trackerHost]=" + details.trackerHost);
-        })
+          })
       }
     }
   }
@@ -5139,21 +5229,22 @@ POST请求不会触发该回调。
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
-        .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
+          .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
             if (webResourceRequest && webResourceRequest.getRequestUrl() == "about:blank") {
               return true;
             }
             return false;
-        })
+          })
       }
     }
   }
@@ -5190,26 +5281,27 @@ onViewportFitChanged(callback: OnViewportFitChangedCallback)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .onViewportFitChanged((data) => {
-          let jsonData = JSON.stringify(data)
-          let viewportFit: ViewportFit = JSON.parse(jsonData).viewportFit
-          if (viewportFit === ViewportFit.COVER) {
-            // index.html网页支持沉浸式布局，可调用expandSafeArea调整web控件布局视口覆盖避让区域(状态栏或导航条)。
-          } else if (viewportFit === ViewportFit.CONTAINS) {
-            // index.html网页不支持沉浸式布局，可调用expandSafeArea调整web控件布局视口为安全区域。
-          } else {
-            // 默认值，可不作处理
-          }
-        })
+          .onViewportFitChanged((data) => {
+            let jsonData = JSON.stringify(data);
+            let viewportFit: ViewportFit = JSON.parse(jsonData).viewportFit;
+            if (viewportFit === ViewportFit.COVER) {
+              // index.html网页支持沉浸式布局，可调用expandSafeArea调整web控件布局视口覆盖避让区域(状态栏或导航条)。
+            } else if (viewportFit === ViewportFit.CONTAINS) {
+              // index.html网页不支持沉浸式布局，可调用expandSafeArea调整web控件布局视口为安全区域。
+            } else {
+              // 默认值，可不作处理
+            }
+          })
       }
     }
   }
@@ -5228,6 +5320,291 @@ onViewportFitChanged(callback: OnViewportFitChangedCallback)
     </body>
   </html>
   ```
+
+### onInterceptKeyboardAttach<sup>12+</sup>
+
+onInterceptKeyboardAttach(callback: WebKeyboardCallback)
+
+网页中可编辑元素（如input标签）拉起软键盘之前会回调该接口，应用可以使用该接口拦截系统软键盘的弹出，配置应用定制的软键盘（应用根据该接口可以决定使用系统默认软键盘/定制enter键的系统软键盘/全部由应用自定义的软键盘）。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [WebKeyboardCallback](#webkeyboardcallback12) | 拦截网页拉起软键盘回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+  import { inputMethodEngine } from '@kit.IMEKit';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    webKeyboardController: WebKeyboardController = new WebKeyboardController()
+    inputAttributeMap: Map<string, number> = new Map([
+        ['UNSPECIFIED', inputMethodEngine.ENTER_KEY_TYPE_UNSPECIFIED],
+        ['GO', inputMethodEngine.ENTER_KEY_TYPE_GO],
+        ['SEARCH', inputMethodEngine.ENTER_KEY_TYPE_SEARCH],
+        ['SEND', inputMethodEngine.ENTER_KEY_TYPE_SEND],
+        ['NEXT', inputMethodEngine.ENTER_KEY_TYPE_NEXT],
+        ['DONE', inputMethodEngine.ENTER_KEY_TYPE_DONE],
+        ['PREVIOUS', inputMethodEngine.ENTER_KEY_TYPE_PREVIOUS]
+      ])
+
+      /**
+       * 自定义键盘组件Builder
+       */
+      @Builder
+      customKeyboardBuilder() {
+		// 这里实现自定义键盘组件，对接WebKeyboardController实现输入、删除、关闭等操作。
+      }
+
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+        .onInterceptKeyboardAttach((KeyboardCallbackInfo) => {
+          // option初始化，默认使用系统默认键盘
+          let option: WebKeyboardOptions = {
+            useSystemKeyboard: true,
+          };
+          if (!KeyboardCallbackInfo) {
+            return option;
+          }
+
+          // 保存WebKeyboardController，使用自定义键盘时候，需要使用该handelr控制输入、删除、软键盘关闭等行为
+          this.webKeyboardController = KeyboardCallbackInfo.controller
+          let attributes: Record<string, string> = KeyboardCallbackInfo.attributes
+          // 遍历attributes
+          let attributeKeys = Object.keys(attributes)
+          for (let i = 0; i < attributeKeys.length; i++) {
+            console.log('WebCustomKeyboard key = ' + attributeKeys[i] + ', value = ' + attributes[attributeKeys[i]])
+          }
+
+          if (attributes) {
+            if (attributes['data-keyboard'] == 'customKeyboard') {
+              // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有data-keyboard，且值为customKeyboard，则使用自定义键盘
+              console.log('WebCustomKeyboard use custom keyboard')
+              option.useSystemKeyboard = false;
+              // 设置自定义键盘builder
+              option.customKeyboard = () => {
+                this.customKeyboardBuilder()
+              }
+              return option;
+            }
+
+            if (attributes['keyboard-return'] != undefined) {
+              // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有keyboard-return，使用系统键盘，并且指定系统软键盘enterKey类型
+              option.useSystemKeyboard = true;
+              let enterKeyType: number | undefined = this.inputAttributeMap.get(attributes['keyboard-return'])
+              if (enterKeyType != undefined) {
+                option.enterKeyType = enterKeyType
+              }
+              return option;
+            }
+          }
+
+          return option;
+        })
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
+    </head>
+
+    <body>
+
+    <p style="font-size:12px">input标签，原有默认行为：</p>
+    <input type="text" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key UNSPECIFIED：</p>
+    <input type="text" keyboard-return="UNSPECIFIED" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key GO：</p>
+    <input type="text" keyboard-return="GO" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key SEARCH：</p>
+    <input type="text" keyboard-return="SEARCH" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key SEND：</p>
+    <input type="text" keyboard-return="SEND" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key NEXT：</p>
+    <input type="text" keyboard-return="NEXT" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key DONE：</p>
+    <input type="text" keyboard-return="DONE" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key PREVIOUS：</p>
+    <input type="text" keyboard-return="PREVIOUS" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，应用自定义键盘：</p>
+    <input type="text" data-keyboard="customKeyboard" style="width: 300px; height: 20px"><br>
+
+    </body>
+
+    </html>
+  ```
+
+## WebKeyboardCallback<sup>12+</sup>
+
+type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => WebKeyboardOptions
+
+拦截网页可编辑元素拉起软键盘的回调，一般在点击网页input标签时触发。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名           | 类型   | 必填   | 说明               |
+| ------------- | ------ | ---- | ------------------ |
+| keyboardCallbackInfo    | [WebKeyboardCallbackInfo](#webkeyboardcallbackinfo12) | 是    | 拦截网页拉起软键盘回调通知的入参，其中包括[WebKeyboardController](#webkeyboardcontroller12)、可编辑元素的属性。  |
+
+
+**返回值：**
+
+| 类型               | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| [WebKeyboardOptions](#webkeyboardoptions12) | 回调函数通过返回[WebKeyboardOptions](#webkeyboardoptions12)来决定ArkWeb内核拉起不同类型的软键盘。 |
+
+## WebKeyboardCallbackInfo<sup>12+</sup>
+
+拦截网页可编辑元素拉起软键盘的回调入参，其中包括[WebKeyboardController](#webkeyboardcontroller12)、可编辑元素的属性。
+
+| 名称             | 类型      | 可读   | 可写   | 必填   | 说明                                       |
+| -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
+| controller | [WebKeyboardController](#webkeyboardcontroller12)  | 是    | 否    | 是    | 提供控制自定义键盘的输入、删除、关闭等操作。 |
+| attributes | Record<string, string> | 是    | 否    | 是    | 触发本次软键盘弹出的网页元素属性。
+
+## WebKeyboardOptions<sup>12+</sup>
+
+拦截网页可编辑元素拉起软键盘的回调返回值，可以指定使用的键盘类型，并返回给web内核，以控制拉起不同类型的软键盘；
+
+| 名称             | 类型      | 可读   | 可写   | 必填   | 说明                                       |
+| -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
+| useSystemKeyboard | boolean  | 是    | 是    | 是    | 是否使用系统默认软键盘。 |
+| enterKeyType | number | 是    | 是    | 否    | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
+| customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 是    | 是    | 否    | 指定自定义键盘组件builder，可选参数，当useSystemKeyboard为false时，需要设置该参数，然后web组件会拉起该自定义键盘。
+
+## WebKeyboardController<sup>12+</sup>
+
+控制自定义键盘的输入、删除、关闭等操作。示例代码参考[onInterceptKeyboardAttach](#oninterceptkeyboardattach12)。
+
+### insertText<sup>12+</sup>
+
+insertText(text: string): void
+
+插入字符。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述              |
+| ------ | -------- | ---- | ------ | --------------------- |
+| text   | string   | 是   | -      | 向Web输入框插入字符。 |
+
+### deleteForward<sup>12+</sup>
+
+deleteForward(length: number): void
+
+从后往前删除length参数指定长度的字符。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| length | number   | 是   | -      | 从后往前删除字符的长度。 |
+
+### deleteBackward12+</sup>
+
+deleteBackward(length: number): void
+
+从前往后删除length参数指定长度的字符。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| length | number   | 是   | -      | 从前往后删除字符的长度。 |
+
+### sendFunctionKey<sup>12+</sup>
+
+sendFunctionKey(key: number): void
+
+插入功能按键，目前仅支持enter键类型，取值见[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                                   |
+| ------ | -------- | ---- | ------ | ------------------------------------------ |
+| key    | number   | 是   | -      | 向Web输入框传递功能键，目前仅支持enter键。 |
+
+### close<sup>12+</sup>
+
+close(): void
+
+关闭自定义键盘。
+
+### onAdsBlocked<sup>12+</sup>
+
+onAdsBlocked(callback: OnAdsBlockedCallback)
+
+一个页面发生广告过滤后，通过此回调接口通知过滤的详细信息。由于页面可能随时发生变化并不断产生网络请求，为了减少通知频次、降低对页面加载过程的影响，仅在页面加载完成时进行首次通知，此后发生的过滤将间隔1秒钟上报，无广告过滤则无通知。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | onAdsBlocked的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State totalAdsBlockCounts: number = 0;
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'https://www.example.com', controller: this.controller })
+        .onAdsBlocked((details: AdsBlockedDetails) => {
+          if (details) {
+            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
+            let adList: Array<string> = Array.from(new Set(details.adsBlocked));
+            this.totalAdsBlockCounts += adList.length;
+            console.log('Total blocked counts :' + this.totalAdsBlockCounts);
+          }
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -5324,7 +5701,7 @@ exitFullScreen(): void
 
 ## ControllerHandler<sup>9+</sup>
 
-设置用户新建Web组件的的WebviewController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
+设置用户新建Web组件的WebviewController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
 
 ### setWebController<sup>9+</sup>
 
@@ -5529,7 +5906,7 @@ getResponseMimeType(): string
 
 ### setResponseData<sup>9+</sup>
 
-setResponseData(data: string | number \| Resource | ArrayBuffer)
+setResponseData(data: string \| number \| Resource \| ArrayBuffer): void
 
 设置资源响应数据。
 
@@ -5541,7 +5918,7 @@ setResponseData(data: string | number \| Resource | ArrayBuffer)
 
 ### setResponseEncoding<sup>9+</sup>
 
-setResponseEncoding(encoding: string)
+setResponseEncoding(encoding: string): void
 
 设置资源响应的编码。
 
@@ -5553,7 +5930,7 @@ setResponseEncoding(encoding: string)
 
 ### setResponseMimeType<sup>9+</sup>
 
-setResponseMimeType(mimeType: string)
+setResponseMimeType(mimeType: string): void
 
 设置资源响应的媒体（MIME）类型。
 
@@ -5565,7 +5942,7 @@ setResponseMimeType(mimeType: string)
 
 ### setReasonMessage<sup>9+</sup>
 
-setReasonMessage(reason: string)
+setReasonMessage(reason: string): void
 
 设置资源响应的状态码描述。
 
@@ -5577,7 +5954,7 @@ setReasonMessage(reason: string)
 
 ### setResponseHeader<sup>9+</sup>
 
-setResponseHeader(header: Array\<Header\>)
+setResponseHeader(header: Array\<Header\>): void
 
 设置资源响应头。
 
@@ -5589,7 +5966,7 @@ setResponseHeader(header: Array\<Header\>)
 
 ### setResponseCode<sup>9+</sup>
 
-setResponseCode(code: number)
+setResponseCode(code: number): void
 
 设置资源响应的状态码。
 
@@ -5601,7 +5978,7 @@ setResponseCode(code: number)
 
 ### setResponseIsReady<sup>9+</sup>
 
-setResponseIsReady(IsReady: boolean)
+setResponseIsReady(IsReady: boolean): void
 
 设置资源响应数据是否已经就绪。
 
@@ -5851,7 +6228,7 @@ getOrigin(): string
 
 grant(config: ScreenCaptureConfig): void
 
-**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAPTURE_SCREEN（仅系统应用可申请此权限）
+**需要权限：** ohos.permission.MICROPHONE
 
 对网页访问的屏幕捕获操作进行授权。
 
@@ -6258,8 +6635,8 @@ Web屏幕捕获的配置。
 
 | 名称             | 类型               | 描述                   |
 | -------------- | ---------------- | -------------------- |
-| scrollForward  | NestedScrollMode | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
-| scrollBackward | NestedScrollMode | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
+| scrollForward  | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
+| scrollBackward | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
 
 ## NestedScrollMode<sup>11+</sup>枚举说明
 
@@ -6284,18 +6661,20 @@ resend(): void
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onDataResubmitted((event) => {
-          console.log('onDataResubmitted')
-          event.handler.resend();
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onDataResubmitted((event) => {
+            console.log('onDataResubmitted');
+            event.handler.resend();
+          })
       }
     }
   }
@@ -6311,18 +6690,20 @@ cancel(): void
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-         .onDataResubmitted((event) => {
-          console.log('onDataResubmitted')
-          event.handler.cancel();
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onDataResubmitted((event) => {
+            console.log('onDataResubmitted');
+            event.handler.cancel();
+          })
       }
     }
   }
@@ -7205,7 +7586,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 | height            | number                              | 否    | Embed标签的高，单位为px。          |
 | url               | string                              | 否    | Embed标签的url信息。            |
 | tag<sup>12+</sup> | string              | 否    | 标签名，统一为大写字符。              |
-| params<sup>12+</sup>            | map<string, string> | 否    | object标签包含的param标签键值对列表。  |
+| params<sup>12+</sup>            | map<string, string> | 否    | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象。  |
 | position<sup>12+</sup>          | Position            | 否    | 同层标签在屏幕坐标系中相对于web组件的位置信息，此处区别于标准Position，单位为px。 |
 
 ## NativeEmbedDataInfo<sup>11+</sup>
@@ -7393,4 +7774,359 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | ---------- | -----------------------------------------------------| ------ | ---------------- |
 | content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 是     | 显示内容。     |
 | startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 显示图标。     |
-| action    | string                                                         | 是     | 选中的文本信息。|
+| action    | (selectedText: {plainText: string}) => void                                                         | 是     | 选中的文本信息。|
+
+## OnPageEndEvent<sup>12+</sup>
+
+定义网页加载结束时触发的函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 页面的URL地址。                       |
+
+## OnPageBeginEvent<sup>12+</sup>
+
+定义网页加载开始时触发的函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 页面的URL地址。                       |
+
+## OnProgressChangeEvent<sup>12+</sup>
+
+定义网页加载进度变化时触发该回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| newProgress | number | 是 | 新的加载进度，取值范围为0到100的整数。                       |
+
+## OnTitleReceiveEvent<sup>12+</sup>
+
+定义网页document标题更改时触发该回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| title | string | 是 | document标题内容。                       |
+
+## OnGeolocationShowEvent<sup>12+</sup>
+
+定义通知用户收到地理位置信息获取请求。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| origin | string | 是 | 指定源的字符串索引。                       |
+| geolocation | JsGeolocation | 是 | 通知Web组件用户操作行为。                       |
+
+## OnAlertEvent<sup>12+</sup>
+
+定义网页触发alert()告警弹窗时触发回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
+| message | string | 是 | 弹窗中显示的信息。                       |
+| result | [JsResult](#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+
+## OnBeforeUnloadEvent<sup>12+</sup>
+
+定义刷新或关闭场景下，在即将离开当前页面时触发此回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
+| message | string | 是 | 弹窗中显示的信息。                       |
+| result | [JsResult](#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+
+## OnConfirmEvent<sup>12+</sup>
+
+定义网页调用confirm()告警时触发此回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
+| message | string | 是 | 弹窗中显示的信息。                       |
+| result | [JsResult](#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+
+## OnPromptEvent<sup>12+</sup>
+
+定义网页调用prompt()告警时触发此回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
+| message | string | 是 | 弹窗中显示的信息。                       |
+| result | [JsResult](#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+
+## onConsoleEvent<sup>12+</sup>
+
+定义通知宿主应用JavaScript console消息。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| message | [ConsoleMessage](#consolemessage) | 是 | 触发的控制台信息。                       |
+
+## OnErrorReceiveEvent<sup>12+</sup>
+
+定义网页加载遇到错误时触发该回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| request | [WebResourceRequest](#webresourcerequest) | 是 | 网页请求的封装信息。      |
+| error   | [WebResourceError](#webresourceerror)    | 是 | 网页加载资源错误的封装信息 。 |
+
+## OnHttpErrorReceiveEvent<sup>12+</sup>
+
+定义网页收到加载资源加载HTTP错误时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| request | [WebResourceRequest](#webresourcerequest) | 是 | 网页请求的封装信息。      |
+| response   | [WebResourceResponse](#webresourceresponse)    | 是 | 资源响应的封装信息。 |
+
+## OnDownloadStartEvent<sup>12+</sup>
+
+定义通知主应用开始下载一个文件。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url                | string | 是 | 文件下载的URL。                           |
+| userAgent          | string | 是 | 用于下载的用户代理。                          |
+| contentDisposition | string | 是 | 服务器返回的 Content-Disposition响应头，可能为空。 |
+| mimetype           | string | 是 | 服务器返回内容媒体类型（MIME）信息。                |
+| contentLength      | number | 是 | 服务器返回文件的长度。                         |
+
+## OnRefreshAccessedHistoryEvent<sup>12+</sup>
+
+定义网页刷新访问历史记录时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url         | string  | 是 | 访问的url。                                  |
+| isRefreshed | boolean | 是 | true表示该页面是被重新加载的（调用[refresh<sup>9+</sup>](js-apis-webview.md#refresh)接口），false表示该页面是新加载的。 |
+
+## OnRenderExitedEvent<sup>12+</sup>
+
+定义渲染过程退出时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| renderExitReason | [RenderExitReason](#renderexitreason9枚举说明) | 是 | 渲染进程异常退出的具体原因。 |
+
+## OnShowFileSelectorEvent<sup>12+</sup>
+
+定义文件选择器结果。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| result       | [FileSelectorResult](#fileselectorresult9) | 是 | 用于通知Web组件文件选择的结果。 |
+| fileSelector | [FileSelectorParam](#fileselectorparam9) | 是 | 文件选择器的相关信息。       |
+
+## onResourceLoadEvent<sup>12+</sup>
+
+定义加载url时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url  | string | 是 | 所加载的资源文件url信息。 |
+
+## onScaleChangeEvent<sup>12+</sup>
+
+定义当前页面显示比例的变化时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| oldScale | number | 是 | 变化前的显示比例百分比。 |
+| newScale | number | 是 | 变化后的显示比例百分比。 |
+
+## OnHttpAuthRequestEvent<sup>12+</sup>
+
+定义通知收到http auth认证请求。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| handler | [HttpAuthHandler](#httpauthhandler9) | 是 | 通知Web组件用户操作行为。   |
+| host    | string                               | 是 | HTTP身份验证凭据应用的主机。 |
+| realm   | string                               | 是 | HTTP身份验证凭据应用的域。  |
+
+## OnInterceptRequestEvent<sup>12+</sup>
+
+定义当Web组件加载url之前触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| request | [WebResourceRequest](#webresourcerequest) | 是 | url请求的相关信息。 |
+
+## onPermissionRequestEvent<sup>12+</sup>
+
+定义通知收到获取权限请求。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| request | [PermissionRequest](#permissionrequest9) | 是 | 通知Web组件用户操作行为。 |
+
+## onScreenCaptureRequestEvent<sup>12+</sup>
+
+定义通知收到屏幕捕获请求。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| handler | [ScreenCaptureHandler](#screencapturehandler10) | 是 | 通知Web组件用户操作行为。 |
+
+## onContextMenuShowEvent<sup>12+</sup>
+
+定义调用时触发的回调，以允许自定义显示上下文菜单。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| param  | [WebContextMenuParam](#webcontextmenuparam9) | 是 | 菜单相关参数。     |
+| result | [WebContextMenuResult](#webcontextmenuresult9) | 是 | 菜单相应事件传入内核。 |
+
+## onSearchResultReceiveEvent<sup>12+</sup>
+
+定义通知调用方网页页内查找的结果。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| activeMatchOrdinal | number  | 是 | 当前匹配的查找项的序号（从0开始）。                       |
+| numberOfMatches    | number  | 是 | 所有匹配到的关键词的个数。                            |
+| isDoneCounting     | boolean | 是 | 当次页内查找操作是否结束。该方法可能会回调多次，直到isDoneCounting为true为止。 |
+
+## onScrollEvent<sup>12+</sup>
+
+定义滚动条滑动到指定位置时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| xOffset | number | 是 | 以网页最左端为基准，水平滚动条滚动所在位置。 |
+| yOffset | number | 是 | 以网页最上端为基准，竖直滚动条滚动所在位置。 |
+
+## OnSslErrorEventReceiveEvent<sup>12+</sup>
+
+定义网页收到SSL错误时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| handler | [SslErrorHandler](#sslerrorhandler9) | 是 | 通知Web组件用户操作行为。 |
+| error   | [SslError](#sslerror9枚举说明)           | 是 | 错误码。           |
+
+## onClientAuthenticationRequestEvent<sup>12+</sup>
+
+定义当需要用户提供SSL客户端证书时触发回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | 是 | 通知Web组件用户操作行为。  |
+| host     | string                                   | 是 | 请求证书服务器的主机名。    |
+| port     | number                                   | 是 | 请求证书服务器的端口号。    |
+| keyTypes | Array<string\>                           | 是 | 可接受的非对称秘钥类型。    |
+| issuers  | Array<string\>                           | 是 | 与私钥匹配的证书可接受颁发者。 |
+
+## OnWindowNewEvent<sup>12+</sup>
+
+定义网页要求用户创建窗口时触发的回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| isAlert       | boolean                                  | 是 | true代表请求创建对话框，false代表新标签页。    |
+| isUserTrigger | boolean                                  | 是 | true代表用户触发，false代表非用户触发。      |
+| targetUrl     | string                                   | 是 | 目标url。                        |
+| handler       | [ControllerHandler](#controllerhandler9) | 是 | 用于设置新建窗口的WebviewController实例。 |
+
+## onTouchIconUrlReceivedEvent<sup>12+</sup>
+
+定义设置接收到apple-touch-icon url地址时的回调函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url         | string  | 是 | 接收到的apple-touch-icon url地址。 |
+| precomposed | boolean | 是 | 对应apple-touch-icon是否为预合成。   |
+
+## onFaviconReceivedEvent<sup>12+</sup>
+
+定义应用为当前页面接收到新的favicon时的回调函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| favicon | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 接收到的favicon图标的PixelMap对象。 |
+
+## onPageVisibleEvent<sup>12+</sup>
+
+定义旧页面不再呈现，新页面即将可见时触发的回调函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url  | string | 是 | 旧页面不再呈现，新页面即将可见时新页面的url地址。 |
+
+## onDataResubmittedEvent<sup>12+</sup>
+
+定义网页表单可以重新提交时触发的回调函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| handler | [DataResubmissionHandler](#dataresubmissionhandler9) | 是 | 表单数据重新提交句柄。 |
+
+## onAudioStateChangedEvent<sup>12+</sup>
+
+定义网页上的音频播放状态发生改变时的回调函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| playing | boolean | 是 | 当前页面的音频播放状态，true表示正在播放，false表示未播放。 |
+
+## onFirstContentfulPaintEvent<sup>12+</sup>
+
+定义网页首次内容绘制回调函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| navigationStartTick    | number | 是 | navigation开始的时间，单位以微秒表示。          |
+| firstContentfulPaintMs | number | 是 | 从navigation开始第一次绘制内容的时间，单位是以毫秒表示。 |
+
+## onLoadInterceptEvent<sup>12+</sup>
+
+定义截获资源加载时触发的回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| data | [WebResourceRequest](#webresourcerequest) | 是 | url请求的相关信息。 |
+
+## onOverScrollEvent<sup>12+</sup>
+
+定义网页过度滚动时触发的回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| xOffset | number | 是 | 以网页最左端为基准，水平过度滚动的偏移量。 |
+| yOffset | number | 是 | 以网页最上端为基准，竖直过度滚动的偏移量。 |
+
+## JavaScriptProxy<sup>12+</sup>
+
+定义要注入的JavaScript对象。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| object     | object                                   | 是    | 参与注册的对象。只能声明方法，不能声明属性。                   |
+| name       | string                                   | 是    | 注册对象的名称，与window中调用的对象名一致。                |
+| methodList | Array\<string\>                          | 是    | 参与注册的应用侧JavaScript对象的同步方法。                 |
+| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
+
+## AdsBlockedDetails<sup>12+</sup>
+
+发生广告拦截时，广告资源信息。
+
+| 名称 | 类型                                                                          | 描述                    |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| url | string  | 发生广告过滤的页面url。 |
+| adsBlocked | Array\<string\>  | 被过滤的资源的url或dompath标识，被过滤的多个对象url相同则可能出现重复元素。 |
+
+## OnAdsBlockedCallback<sup>12+</sup>
+
+type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
+
+当页面发生广告过滤时触发此回调。
+**参数：**
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| details | [AdsBlockedDetails](#adsblockeddetails12) | 发生广告拦截时，广告资源信息。 |

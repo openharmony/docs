@@ -10,10 +10,10 @@ The **Ability** module provides all level-2 module APIs for developers to export
 ## Modules to Import
 
 ```ts
-import ability from '@ohos.ability.ability';
+import { ability } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -29,7 +29,7 @@ import ability from '@ohos.ability.ability';
 
 **Example**
 ```ts
-import ability from '@ohos.ability.ability';
+import { ability } from '@kit.AbilityKit';
 
 let dataAbilityHelper: ability.DataAbilityHelper;
 let pacMap: ability.PacMap;

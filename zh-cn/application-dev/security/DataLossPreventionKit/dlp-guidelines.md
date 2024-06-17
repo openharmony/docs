@@ -267,11 +267,9 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     import { dlpPermission } from '@kit.DataLossPreventionKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
-    async checkIsDLPFeatureProvided() {
-      dlpPermission.isDLPFeatureProvided().then((res) => {
-        console.info('res', JSON.stringify(res));
-      }).catch((err: BusinessError) => {
-        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-      });
-    }
+    dlpPermission.isDLPFeatureProvided().then((res) => {
+      console.info('res', JSON.stringify(res));
+    }).catch((err: BusinessError) => {
+      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+    });
     ```

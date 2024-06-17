@@ -108,8 +108,8 @@ UDP 与 TCP 流程大体类似，下面以 TCP 为例：
 7. Socket 连接使用完毕后，主动关闭。
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class SocketInfo {
   message: ArrayBuffer = new ArrayBuffer(1);
@@ -199,8 +199,9 @@ setTimeout(() => {
 8. 取消 TCPSocketConnection 和 TCPSocketServer 相关事件的订阅。
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 // 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
 let tcpServer = socket.constructTCPSocketServerInstance();
 // 绑定本地IP地址和端口，进行监听
@@ -292,7 +293,8 @@ setTimeout(() => {
 7. 退出多播组。
 
 ```ts
-import socket from '@ohos.net.socket'
+import { socket } from '@kit.NetworkKit';
+
 // 创建Multicast对象
 let multicast = socket.constructMulticastSocketInstance();
 
@@ -365,7 +367,7 @@ multicast.dropMembership(addr, (err: Object) => {
 6. Socket 连接使用完毕后，取消事件的注册，并关闭套接字。
 
 ```ts
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
 
 // 创建一个LocalSocket连接，返回一个LocalSocket对象。
 let client = socket.constructLocalSocketInstance();
@@ -443,7 +445,8 @@ client.close().then(() => {
 9. 取消 LocalSocketConnection 和 LocalSocketServer 相关事件的订阅。
 
 ```ts
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
+
 // 创建一个LocalSocketServer连接，返回一个LocalSocketServer对象。
 let server = socket.constructLocalSocketServerInstance();
 // 创建并绑定本地套接字文件testSocket，进行监听
@@ -525,8 +528,8 @@ server.off('error');
 7. TLSSocket 连接使用完毕后，主动关闭。
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class SocketInfo {
   message: ArrayBuffer = new ArrayBuffer(1);
@@ -683,8 +686,9 @@ tlsTwoWay.close((err: BusinessError) => {
 8. 取消订阅 TLSSocketConnection 以及 TLSSocketServer 的相关事件。
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {

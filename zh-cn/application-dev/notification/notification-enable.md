@@ -21,6 +21,10 @@
     ```ts
     import notificationManager from '@ohos.notificationManager';
     import Base from '@ohos.base';
+    import hilog from '@ohos.hilog';
+
+    const TAG: string = '[PublishOperation]';
+    const DOMAIN_NUMBER: number = 0xFF00;
     ```
 
 2. 请求通知授权。
@@ -32,17 +36,17 @@
       console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
       if(!data){
         notificationManager.requestEnableNotification().then(() => {
-          console.info(`[ANS] requestEnableNotification success`);
+          hilog.info(DOMAIN_NUMBER, TAG, `[ANS] requestEnableNotification success`);
         }).catch((err : Base.BusinessError) => {
           if(1600004 == err.code){
-            console.info(`[ANS] requestEnableNotification refused`);
+            hilog.error(DOMAIN_NUMBER, TAG, `[ANS] requestEnableNotification refused, code is ${err.code}, message is ${err.message}`);
           } else {
-            console.error(`[ANS] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+            hilog.error(DOMAIN_NUMBER, TAG, `[ANS] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
           }
         });
       }
     }).catch((err : Base.BusinessError) => {
-        console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `isNotificationEnabled fail: ${JSON.stringify(err)}`);
     });
     ```
 

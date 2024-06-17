@@ -15,10 +15,10 @@ The Digital Rights Management (DRM) module provides APIs to implement digital ri
 
 | Name| Description| 
 | -------- | -------- |
-| [native_drm_common.h](native__drm__common_8h.md) | Declares the DRM data types.<br>**File to include**: &lt;multimedia/drm_framework/native_drm_common.h&gt;<br>**Library**: libnative_drm.z.so| 
-| [native_drm_err.h](native__drm__err_8h.md) | Declares the DRM error codes.<br>**File to include**: &lt;multimedia/drm_framework/native_drm_err.h&gt;<br>**Library**: libnative_drm.z.so| 
-| [native_mediakeysession.h](native__mediakeysession_8h.md) | Declares the **MediaKeySession** API.<br>**File to include**: &lt;multimedia/drm_framework/native_mediakeysession.h&gt;<br>**Library**: libnative_drm.z.so| 
-| [native_mediakeysystem.h](native__mediakeysystem_8h.md) | Declares the **MediaKeySystem** API.<br>**File to include**: &lt;multimedia/drm_framework/native_mediakeysystem.h&gt;<br>**Library**: libnative_drm.z.so| 
+| [native_drm_common.h](native__drm__common_8h.md) | Declares the DRM data types.<br>**File to include**: &lt;multimedia/drm_framework/native_drm_common.h&gt;<br>**Library**: libnative_drm.so| 
+| [native_drm_err.h](native__drm__err_8h.md) | Declares the DRM error codes.<br>**File to include**: &lt;multimedia/drm_framework/native_drm_err.h&gt;<br>**Library**: libnative_drm.so| 
+| [native_mediakeysession.h](native__mediakeysession_8h.md) | Declares the **MediaKeySession** API.<br>**File to include**: &lt;multimedia/drm_framework/native_mediakeysession.h&gt;<br>**Library**: libnative_drm.so| 
+| [native_mediakeysystem.h](native__mediakeysystem_8h.md) | Declares the **MediaKeySystem** API.<br>**File to include**: &lt;multimedia/drm_framework/native_mediakeysystem.h&gt;<br>**Library**: libnative_drm.so| 
 
 
 ### Structs

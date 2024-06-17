@@ -39,7 +39,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -53,9 +53,9 @@ let options: zlib.Options = {
 };
 
 zlib.zipFile(inFile, outFile, options).then((data: void) => {
-    console.info('zipFile result is ' + JSON.stringify(data));
+  console.info('zipFile result is ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error('error is ' + JSON.stringify(err));
+  console.error('error is ' + JSON.stringify(err));
 });
 ```
 
@@ -87,23 +87,23 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
 
 let inFile = '/xx/xxx.zip';
 let outFile = '/xxx';
-
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
+
 zlib.unzipFile(inFile, outFile, options).then((data: void) => {
-    console.info('unzipFile result is ' + JSON.stringify(data));
-}).catch((err: BusinessError)=>{
-    console.error('error is ' + JSON.stringify(err));
+  console.info('unzipFile result is ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('error is ' + JSON.stringify(err));
 })
 ```
 
@@ -113,7 +113,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 压缩文件，压缩的结果，使用callback异步回调返回。成功返回null，失败返回错误码。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -138,7 +138,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -152,15 +152,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
-        if (errData !== null) {
-            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-        }
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
+    if (errData !== null) {
+      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    }
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -170,7 +170,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 压缩文件，压缩的结果，使用Promise异步返回。成功时返回null，失败时返回错误码。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -200,7 +200,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -214,15 +214,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.compressFile(inFile, outFile, options).then((data: void) => {
-        console.info('compressFile success. data: ' + JSON.stringify(data));
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.compressFile(inFile, outFile, options).then((data: void) => {
+    console.info('compressFile success. data: ' + JSON.stringify(data));
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -232,7 +232,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -254,11 +254,11 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -270,15 +270,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
-        if (errData !== null) {
-            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-        }
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
+    if (errData !== null) {
+      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    }
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -288,7 +288,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 
 解压文件，解压的结果，使用Promise异步返回，成功时返回null，失败时返回错误码。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -315,11 +315,11 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001 | The input source file is invalid.      |
 | 900002 | The input destination file is invalid. |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -331,15 +331,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.decompressFile(inFile, outFileDir, options).then((data: void) => {
-        console.info('decompressFile success. data: ' + JSON.stringify(data));
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.decompressFile(inFile, outFileDir, options).then((data: void) => {
+    console.info('decompressFile success. data: ' + JSON.stringify(data));
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -349,7 +349,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -370,27 +370,28 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
+
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
 
 try {
-    zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
-        if (errData !== null) {
-            console.error(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
-        }
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`decompressFile failed. code is ${code}, message is ${message}`);
+  zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
+    if (errData !== null) {
+      console.error(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
+    }
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`decompressFile failed. code is ${code}, message is ${message}`);
 }
 ```
 
@@ -422,11 +423,11 @@ getOriginalSize(compressedFile: string): Promise\<number>
 | ------ | ------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001 | The input source file is invalid.      |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp，也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -434,15 +435,15 @@ import { BusinessError } from '@ohos.base';
 let compressedFile = '/data/storage/el2/base/temp/test.zip';
 
 try {
-    zlib.getOriginalSize(compressedFile).then((data: number) => {
-        console.info(`getOriginalSize success. getOriginalSize: ${data}`);
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.getOriginalSize(compressedFile).then((data: number) => {
+    console.info(`getOriginalSize success. getOriginalSize: ${data}`);
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -476,7 +477,7 @@ compressFiles(inFiles: Array&lt;string&gt;, outFile: string, options: Options): 
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 900001   | The input source file is invalid.                            |
-| 900003   | The input destination file is invalid.                       |
+| 900002   | The input destination file is invalid.                       |
 
 **示例：**
 
@@ -493,16 +494,17 @@ let options: zlib.Options = {
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
+
 try {
-    zlib.compressFiles([inFile, pathDir, pathDir], outFile, options).then((data: void) => {
-        console.info('compressFiles success. data: ' + JSON.stringify(data));
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.compressFiles([inFile, pathDir, pathDir], outFile, options).then((data: void) => {
+    console.info('compressFiles success. data: ' + JSON.stringify(data));
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -512,7 +514,7 @@ createChecksum(): Promise&lt;Checksum&gt;
 
 创建校验对象，使用Promise异步返回。成功时返回Checksum对象实例。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -528,7 +530,7 @@ createChecksum(): Promise&lt;Checksum&gt;
 import zlib from '@ohos.zlib';
 
 zlib.createChecksum().then((data) => {
-   console.info('createChecksum success');
+  console.info('createChecksum success');
 })
 ```
 
@@ -538,7 +540,7 @@ createChecksumSync():  Checksum
 
 创建校验对象。成功时返回Checksum对象实例。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -565,6 +567,8 @@ let checksum = zlib.createChecksumSync()
 adler32(adler: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 计算Adler-32校验和，使用Promise异步返回。成功时返回计算后的Adler-32校验和，失败时返回错误码。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -597,12 +601,15 @@ import zlib from '@ohos.zlib';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
 let data = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    data[i] = str.charCodeAt(i);
+  data[i] = str.charCodeAt(i);
 }
+
 let checksum = zlib.createChecksumSync()
+
 checksum.adler32(0, arrayBufferIn).then(data => {
-    console.info('adler32 success', data);
+  console.info('adler32 success', data);
 })
 ```
 
@@ -612,7 +619,7 @@ adler32Combine(adler1: number, adler2: number, len2: number): Promise&lt;number&
 
 将两个Adler-32校验和合并，使用Promise异步返回。成功时返回合并后的Adler-32校验和，失败时返回错误码。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -645,28 +652,28 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(12);
-    let data = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        data[i] = str.charCodeAt(i);
-    }
-    let checksum = zlib.createChecksumSync()
-    let adler1 = 0;
-    let adler2 = 1;
-    await checksum.adler32(0, arrayBufferIn).then(data => {
-        console.info('adler32 success', data);
-        adler1 = data;
-    })
-    await checksum.adler32(1, arrayBufferIn).then(data => {
-        console.info('adler32 success', data);
-        adler2 = data;
-    })
-    await checksum.adler32Combine(adler1, adler2, 12).then((data) => {
-        console.info('adler32Combine success', data);
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(12);
+  let data = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    data[i] = str.charCodeAt(i);
+  }
+  let checksum = zlib.createChecksumSync()
+  let adler1 = 0;
+  let adler2 = 1;
+  await checksum.adler32(0, arrayBufferIn).then(data => {
+    console.info('adler32 success', data);
+    adler1 = data;
+  })
+  await checksum.adler32(1, arrayBufferIn).then(data => {
+    console.info('adler32 success', data);
+    adler2 = data;
+  })
+  await checksum.adler32Combine(adler1, adler2, 12).then((data) => {
+    console.info('adler32Combine success', data);
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -676,7 +683,7 @@ crc32(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 更新CRC-32校验，使用Promise异步返回。成功时返回更新后的CRC-32校验，失败时返回错误码。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -710,14 +717,17 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
 let data = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    data[i] = str.charCodeAt(i);
+  data[i] = str.charCodeAt(i);
 }
+
 let checksum = zlib.createChecksumSync()
+
 checksum.crc32(0, arrayBufferIn).then((data) => {
-    console.info('crc32 success', data);
+  console.info('crc32 success', data);
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -727,7 +737,7 @@ crc32Combine(crc1: number, crc2: number, len2: number): Promise&lt;number&gt;
 
 将两个CRC-32校验合并，使用Promise异步返回。成功时返回合并后的CRC-32校验，失败时返回错误码。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -760,28 +770,28 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(12);
-    let data = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        data[i] = str.charCodeAt(i);
-    }
-    let checksum = zlib.createChecksumSync()
-    let crc1 = 0;
-    let crc2 = 1;
-    await checksum.crc32(0, arrayBufferIn).then(data => {
-        console.info('crc32 success', data);
-        crc1 = data;
-    })
-    await checksum.crc32(1, arrayBufferIn).then(data => {
-        console.info('crc32 success', data);
-        crc2 = data;
-    })
-    await checksum.crc32Combine(crc1, crc2, 12).then((data) => {
-        console.info('crc32Combine success', data);
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(12);
+  let data = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    data[i] = str.charCodeAt(i);
+  }
+  let checksum = zlib.createChecksumSync()
+  let crc1 = 0;
+  let crc2 = 1;
+  await checksum.crc32(0, arrayBufferIn).then(data => {
+    console.info('crc32 success', data);
+    crc1 = data;
+  })
+  await checksum.crc32(1, arrayBufferIn).then(data => {
+    console.info('crc32 success', data);
+    crc2 = data;
+  })
+  await checksum.crc32Combine(crc1, crc2, 12).then((data) => {
+    console.info('crc32Combine success', data);
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -791,7 +801,7 @@ crc64(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 更新CRC-64校验，使用Promise异步返回。成功时返回更新后的CRC-64校验，失败时返回错误码。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -825,14 +835,17 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
 let data = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    data[i] = str.charCodeAt(i);
+  data[i] = str.charCodeAt(i);
 }
+
 let checksum = zlib.createChecksumSync()
+
 checksum.crc64(0, arrayBufferIn).then((data) => {
-    console.info('crc64 success', data);
+  console.info('crc64 success', data);
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -842,7 +855,7 @@ getCrcTable(): Promise&lt;Array&lt;number&gt;&gt;
 
 输出CRC-32校验表，使用Promise异步返回。成功时返回CRC-32校验表。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -859,10 +872,11 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 let checksum = zlib.createChecksumSync()
+
 checksum.getCrcTable().then((data) => {
-    console.info('getCrcTable success');
+  console.info('getCrcTable success');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -872,7 +886,7 @@ getCrc64Table(): Promise&lt;Array&lt;number&gt;&gt;
 
 输出CRC-64校验表，使用Promise异步返回。成功时返回CRC-64校验表。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -889,20 +903,21 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 let checksum = zlib.createChecksumSync()
+
 checksum.getCrc64Table().then((data) => {
-    console.info('getCrc64Table success');
+  console.info('getCrc64Table success');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
-## zlib.createZip12+
+## zlib.createZip<sup>12+</sup>
 
 createZip(): Promise&lt;Zip&gt;
 
 创建压缩解压缩对象实例，使用Promise异步返回，成功时返回压缩解压缩对象实例。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -919,20 +934,21 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 let zip = zlib.createZipSync();
+
 zlib.createZip().then(data => {
-    console.info('createZip success');
+  console.info('createZip success');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
-## zlib.createZipSync12+
+## zlib.createZipSync<sup>12+</sup>
 
 createZipSync(): Zip
 
 创建压缩解压缩对象实例，成功时返回压缩解压缩对象实例。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -960,7 +976,7 @@ getZStream(): Promise&lt;ZStream&gt;
 
 输出流，使用Promise异步返回。成功时返回zlib流。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -976,8 +992,9 @@ getZStream(): Promise&lt;ZStream&gt;
 import zlib from '@ohos.zlib';
 
 let zip = zlib.createZipSync();
+
 zip.getZStream().then(data => {
-    console.info('getZStream success');
+  console.info('getZStream success');
 })
 ```
 
@@ -987,7 +1004,7 @@ zlibVersion(): Promise&lt;string&gt;
 
 获取当前链接的zlib库的版本信息，使用Promise异步返回。成功时返回当前zlib库的版本信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1003,8 +1020,9 @@ zlibVersion(): Promise&lt;string&gt;
 import zlib from '@ohos.zlib';
 
 let zip = zlib.createZipSync();
+
 zip.zlibVersion().then((data) => {
-    console.info('zlibVersion success')
+  console.info('zlibVersion success')
 })
 ```
 
@@ -1014,7 +1032,7 @@ zlibCompileFlags(): Promise&lt;number&gt;
 
 返回指示编译时选项的标志，使用Promise异步返回。成功时返回指示编译时选项的标志。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1030,8 +1048,9 @@ zlibCompileFlags(): Promise&lt;number&gt;
 import zlib from '@ohos.zlib';
 
 let zip = zlib.createZipSync();
+
 zip.zlibCompileFlags().then((data) => {
-    console.info('zlibCompileFlags success')
+  console.info('zlibCompileFlags success')
 })
 ```
 
@@ -1041,7 +1060,7 @@ compress(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt
 
 将源缓冲区压缩到目标缓冲区，使用Promise异步返回。成功时返回结果状态和目标缓冲区的总大小。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1077,25 +1096,28 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    byteArray[i] = str.charCodeAt(i)
+  byteArray[i] = str.charCodeAt(i)
 }
+
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
+
 zip.compress(arrayBufferOut, arrayBufferOut, 20).then((data) => {
-    console.info('compress success:');
+  console.info('compress success:');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
 ### compress2<sup>12+</sup>
 
-compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLen?: number,): Promise&lt;ZipOutputInfo&gt;
+compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLen?: number): Promise&lt;ZipOutputInfo&gt;
 
 将源缓冲区压缩到目标缓冲区，使用Promise异步返回。成功时返回结果状态和目标缓冲区的总大小。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1121,6 +1143,7 @@ compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLe
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
 | 17800007 | Buffer error.                                                |
 
 **示例：**
@@ -1132,15 +1155,18 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    byteArray[i] = str.charCodeAt(i)
+  byteArray[i] = str.charCodeAt(i)
 }
+
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
+
 zip.compress2(arrayBufferOut, arrayBufferIn, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-    console.info('compress2 success');
+  console.info('compress2 success');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -1150,7 +1176,7 @@ uncompress(dest:ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&l
 
 将压缩后的数据解压缩为原始的未压缩形式，使用Promise异步返回。成功时返回结果状态和目标缓冲区的总大小。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1185,24 +1211,24 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.compress(arrayBufferOut, arrayBufferIn, 12).then((data) => {
-        console.info('compress success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.uncompress(arrayBufferIn, arrayBufferOut, 20).then((data) => {
-        console.info('uncompress success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.compress(arrayBufferOut, arrayBufferIn, 12).then((data) => {
+    console.info('compress success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.uncompress(arrayBufferIn, arrayBufferOut, 20).then((data) => {
+    console.info('uncompress success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1212,7 +1238,7 @@ uncompress2(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise
 
 将压缩后的数据解压缩为原始的未压缩形式，使用Promise异步返回。成功时返回结果状态、目标缓冲区的总大小和源数据长度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1247,24 +1273,24 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.compress2(arrayBufferOut, arrayBufferIn, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('compress2 success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.uncompress2(arrayBufferIn, arrayBufferOut, 20).then((data) => {
-        console.info('uncompress2 success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.compress2(arrayBufferOut, arrayBufferIn, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('compress2 success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.uncompress2(arrayBufferIn, arrayBufferOut, 20).then((data) => {
+    console.info('uncompress2 success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1274,7 +1300,7 @@ compressBound(sourceLen: number): Promise&lt;number&gt;
 
 计算返回压缩大小的上限，使用Promise异步返回。成功时返回压缩大小的上限。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1307,14 +1333,17 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    byteArray[i] = str.charCodeAt(i)
+  byteArray[i] = str.charCodeAt(i)
 }
+
 let zip = zlib.createZipSync();
+
 zip.compressBound(str.length).then((data) => {
-    console.info('compressBound success')
+  console.info('compressBound success')
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -1324,7 +1353,7 @@ inflateValidate(strm: ZStream, check: number): Promise&lt;ReturnStatus&gt;
 
 验证压缩流结构内部的校验和，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1357,87 +1386,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateValidate({availableIn: 1}, 1).then(data => {
-        console.info('inflateValidate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-}
-```
-
-### inflateUndermine<sup>12+</sup>
-
-inflateUndermine(strm: ZStream, subvert: number): Promise&lt;ReturnStatus&gt;
-
-验证压缩流结构内部的校验和，使用Promise异步返回。成功时返回结果状态。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.BundleManager.Zlib
-
-**参数：**
-
-| 参数名  | 类型    | 必填 | 说明                            |
-| ------- | ------- | ---- | ------------------------------- |
-| strm    | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
-| subvert | number  | 是   | 是否破坏内部的标志。            |
-
-**返回值：**
-
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800005 | Data error                                                   |
-
-**示例：**
-
-```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
-
-async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateUndermine({availableOut: 1}, 5).then(data => {
-        console.info('inflateUndermine success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateValidate({ availableIn: 1 }, 1).then(data => {
+    console.info('inflateValidate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1447,7 +1414,7 @@ inflateSyncPoint(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 查找当前解压缩流的同步点，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1479,25 +1446,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateSyncPoint({availableIn: 1}).then(data => {
-        console.info('inflateSyncPoint success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateSyncPoint({ availableIn: 1 }).then(data => {
+    console.info('inflateSyncPoint success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1507,7 +1474,7 @@ inflateSync(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 跳过无效的压缩数据，直到找到一个可能的完整刷新点为止，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1532,6 +1499,7 @@ inflateSync(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
 | 17800005 | Data error.                                                  |
+| 17800007 | Buffer error.                                                |
 
 **示例：**
 
@@ -1540,56 +1508,56 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello, hello!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.deflateInit({}, zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  let str = 'hello, hello!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.deflateInit({}, zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflate({ nextIn: arrayBufferIn, availableIn: 3, nextOut: arrayBufferOut, availableOut: 100 }, zlib.CompressFlushMode.FULL_FLUSH).then((data) => {
+    console.info('deflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflate({ availableIn: 11 }, zlib.CompressFlushMode.FINISH).then((data) => {
+    console.info('deflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateEnd({}).then(data => {
+    console.info('deflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  try {
+    await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 2 }).then(data => {
+      console.info('inflateInit2 success')
     })
-    await zip.deflate({nextIn: arrayBufferIn, availableIn: 3, nextOut: arrayBufferOut, availableOut: 100}, zlib.CompressFlushMode.FULL_FLUSH).then((data) => {
-        console.info('deflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflate({ availableIn: 11}, zlib.CompressFlushMode.FINISH).then((data) => {
-        console.info('deflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateEnd({}).then(data => {
-        console.info('deflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    try {
-        await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 2}).then(data => {
-            console.info('inflateInit2 success')
-        })
-    } catch (errData) {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    }
-    await zip.inflate({nextOut: arrayBufferIn, availableOut: 28}, zlib.CompressFlushMode.NO_FLUSH).then((data) => {
-        console.info('inflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateSync({availableIn: 26}).then(data => {
-        console.info('inflateSync success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateEnd({nextOut: arrayBufferOut}).then((data) => {
-        console.info('inflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  } catch (errData) {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  }
+  await zip.inflate({ nextOut: arrayBufferIn, availableOut: 28 }, zlib.CompressFlushMode.NO_FLUSH).then((data) => {
+    console.info('inflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateSync({ availableIn: 26 }).then(data => {
+    console.info('inflateSync success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateEnd({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('inflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1599,7 +1567,7 @@ inflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 重置解压缩流的状态，以保留分配的霍夫曼解码树和预设字典，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1631,25 +1599,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateResetKeep({availableIn: 1}).then(data => {
-        console.info('inflateResetKeep success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateResetKeep({ availableIn: 1 }).then(data => {
+    console.info('inflateResetKeep success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1659,7 +1627,7 @@ inflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 
 从给定的未压缩字节序列初始化解压缩字典，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1684,6 +1652,7 @@ inflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
+| 17800005 | Data error.                                                  |
 
 **示例：**
 
@@ -1692,62 +1661,62 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello, hello!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    let dictionary = 'hello'
-    let dictionarybuf = new ArrayBuffer(dictionary.length);
-    let dictionarybufdata = new Uint8Array(dictionarybuf);
-    for (let i = 0, j = dictionary.length; i < j; i++) {
-        dictionarybufdata[i] = str.charCodeAt(i);
-    }
-    await zip.deflateInit({}, zlib.CompressLevel.COMPRESS_LEVEL_BEST_COMPRESSION).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  let str = 'hello, hello!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  let dictionary = 'hello'
+  let dictionarybuf = new ArrayBuffer(dictionary.length);
+  let dictionarybufdata = new Uint8Array(dictionarybuf);
+  for (let i = 0, j = dictionary.length; i < j; i++) {
+    dictionarybufdata[i] = str.charCodeAt(i);
+  }
+  await zip.deflateInit({}, zlib.CompressLevel.COMPRESS_LEVEL_BEST_COMPRESSION).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflateSetDictionary({}, dictionarybuf).then((data) => {
+    console.info('deflateSetDictionary success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflate({ nextIn: arrayBufferIn, availableIn: 14, nextOut: arrayBufferOut, availableOut: 100 }, zlib.CompressFlushMode.FINISH).then((data) => {
+    console.info('deflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflateEnd({}).then(data => {
+    console.info('deflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  try {
+    await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 100 }).then(data => {
+      console.info('inflateInit success')
     })
-    await zip.deflateSetDictionary({}, dictionarybuf).then((data) => {
-        console.info('deflateSetDictionary success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflate({nextIn: arrayBufferIn, availableIn: 14, nextOut: arrayBufferOut, availableOut: 100}, zlib.CompressFlushMode.FINISH).then((data) => {
-        console.info('deflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflateEnd({}).then(data => {
-        console.info('deflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    try {
-        await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 100}).then(data => {
-            console.info('inflateInit success')
-        })
-    } catch (errData) {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    }
-    await zip.inflate({nextOut: arrayBufferIn, availableOut: 28}, zlib.CompressFlushMode.NO_FLUSH).then((data) => {
-        console.info('inflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.inflateSetDictionary({}, dictionarybuf).then((data) => {
-        console.info('inflateSetDictionary success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.inflateEnd({nextOut: arrayBufferOut}).then((data) => {
-        console.info('inflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
+  } catch (errData) {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  }
+  await zip.inflate({ nextOut: arrayBufferIn, availableOut: 28 }, zlib.CompressFlushMode.NO_FLUSH).then((data) => {
+    console.info('inflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.inflateSetDictionary({}, dictionarybuf).then((data) => {
+    console.info('inflateSetDictionary success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.inflateEnd({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('inflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
 }
 ```
 
@@ -1757,7 +1726,7 @@ inflateReset2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 
 从给定的未压缩字节序列初始化解压缩字典，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1790,25 +1759,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateReset2({availableOut: 8}, 15).then(data => {
-        console.info('inflateReset2 success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateReset2({ availableOut: 8 }, 15).then(data => {
+    console.info('inflateReset2 success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1818,7 +1787,7 @@ inflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 这个函数相当于先调用inflateEnd再调用inflateInit，但是并不会释放和重新分配内部解压缩状态，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1850,25 +1819,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateReset({availableIn: 1, availableOut: 8}).then(data => {
-        console.info('inflateReset success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateReset({ availableIn: 1, availableOut: 8 }).then(data => {
+    console.info('inflateReset success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1878,7 +1847,7 @@ inflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 
 从给定的未压缩字节序列初始化解压缩字典，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1912,25 +1881,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflatePrime({nextOut: arrayBufferOut}, 5, 2).then(data => {
-        console.info('inflatePrime success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflatePrime({ nextOut: arrayBufferOut }, 5, 2).then(data => {
+    console.info('inflatePrime success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1940,7 +1909,7 @@ inflateMark(strm: ZStream): Promise&lt;number&gt;
 
 用于标记输入数据中的位置以供随机访问，使用Promise异步返回。成功时返回位置信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1971,25 +1940,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateMark({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}).then(data => {
-        console.info('inflateMark success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateMark({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }).then(data => {
+    console.info('inflateMark success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -1999,7 +1968,7 @@ inflateInit2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 
 初始化内部流状态以进行解压缩，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2034,16 +2003,19 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    byteArray[i] = str.charCodeAt(i)
+  byteArray[i] = str.charCodeAt(i)
 }
+
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
-zip.inflateInit2({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}, 28
+
+zip.inflateInit2({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
 ).then(data => {
-    console.info('inflateInit2 success');
+  console.info('inflateInit2 success');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -2053,7 +2025,7 @@ inflateInit(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 初始化内部流状态以进行解压缩，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2086,16 +2058,19 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
-    byteArray[i] = str.charCodeAt(i)
+  byteArray[i] = str.charCodeAt(i)
 }
+
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
-zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
+
+zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
 ).then(data => {
-    console.info('inflateInit success');
+  console.info('inflateInit success');
 }).catch((errData: base.BusinessError) => {
-    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
 })
 ```
 
@@ -2105,7 +2080,7 @@ inflateGetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
 
 用于在解压缩数据前设置gzip文件头部信息，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2138,25 +2113,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit2({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}, 28
-    ).then(data => {
-        console.info('inflateInit2 success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateGetHeader({availableIn: 1, availableOut: 1},{isText: true, os: 1, time: 1, xflags: 1, extra: arrayBufferIn, extraLen: 12, name: arrayBufferIn, comment: arrayBufferOut, hcrc: true, done: true}).then(data => {
-        console.info('inflateGetHeader success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit2({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
+  ).then(data => {
+    console.info('inflateInit2 success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateGetHeader({ availableIn: 1, availableOut: 1 }, { isText: true, os: 1, time: 1, xflags: 1, extra: arrayBufferIn, extraLen: 12, name: arrayBufferIn, comment: arrayBufferOut, hcrc: true, done: true }).then(data => {
+    console.info('inflateGetHeader success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -2166,7 +2141,7 @@ inflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;Diction
 
 获取当前解压缩流中使用的解压缩字典内容及其长度，使用Promise异步返回。成功时返回结果状态和字典的长度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2199,25 +2174,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit2({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}, 28
-    ).then(data => {
-        console.info('inflateInit2 success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateGetDictionary({nextOut: arrayBufferOut}, arrayBufferOut).then((data) => {
-        console.info('inflateGetDictionary success:')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit2({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
+  ).then(data => {
+    console.info('inflateInit2 success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateGetDictionary({ nextOut: arrayBufferOut }, arrayBufferOut).then((data) => {
+    console.info('inflateGetDictionary success:')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -2227,7 +2202,7 @@ inflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 解压流的所有动态分配的数据结构都被释放，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2259,30 +2234,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflate({availableIn: 8, availableOut: 8}, 0).then((data) => {
-        console.info('inflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateEnd({nextOut: arrayBufferOut}).then((data) => {
-        console.info('inflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflate({ availableIn: 8, availableOut: 8 }, 0).then((data) => {
+    console.info('inflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateEnd({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('inflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -2292,7 +2267,7 @@ inflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 
 复制解压流，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2324,25 +2299,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateCopy(zip).then((data) => {
-        console.info('inflateCopy success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateCopy(zip).then((data) => {
+    console.info('inflateCopy success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -2352,7 +2327,7 @@ inflateCodesUsed(strm: ZStream): Promise&lt;number&gt;
 
 当前解压缩流中使用的霍夫曼编码树的数量，使用Promise异步返回。成功时返回已使用的霍夫曼编码树的数量。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2383,25 +2358,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateCodesUsed({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 8}).then(data => {
-        console.info('inflateCodesUsed success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zip = zlib.createZipSync();
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateCodesUsed({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 8 }).then(data => {
+    console.info('inflateCodesUsed success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -2411,7 +2386,7 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 
 使用inflateBack()函数前初始化内部流状态以进行解压缩，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2431,11 +2406,12 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
 
 **示例：**参考[inflateBack](#inflateback12)
 
@@ -2445,7 +2421,7 @@ inflateBackEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 inflateBackInit()函数分配的所有内存都被释放，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2478,7 +2454,7 @@ inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, bac
 
 实现原始解压缩，采用回调接口来处理输入和输出，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2532,134 +2508,134 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let readIn:(inDesc:object) => ArrayBuffer = (inDesc:object): ArrayBuffer => {
-        console.info("inDesc = ", JSON.stringify(inDesc));
-        let buffer = new ArrayBuffer(26)
-        let array = new Uint8Array(buffer);
-        array.set([31,139,8,0,0,0,0,0,0,10,243,72,205,201,201,231,2,0,22,53,150,49,6,0,0,0]);
-        return buffer;
-    }
+  let readIn: (inDesc: object) => ArrayBuffer = (inDesc: object): ArrayBuffer => {
+    console.info("inDesc = ", JSON.stringify(inDesc));
+    let buffer = new ArrayBuffer(26)
+    let array = new Uint8Array(buffer);
+    array.set([31, 139, 8, 0, 0, 0, 0, 0, 0, 10, 243, 72, 205, 201, 201, 231, 2, 0, 22, 53, 150, 49, 6, 0, 0, 0]);
+    return buffer;
+  }
 
-    let writeOut:(outDesc: object, buffer: ArrayBuffer, length: number) => number = (outDesc: object, buffer: ArrayBuffer, length: number): number => {
-        console.info("outDesc = ", outDesc);
-        console.info("buffer = ", buffer);
-        console.info("length = ", length);
-        let array = new Uint8Array(buffer);
-        let dataString = "";
-        for (let i = 0; i < length; i++) {
-            dataString += String.fromCharCode(array[i]);
-        }
-        console.info('writeOut ', dataString);
-        return 0;
+  let writeOut: (outDesc: object, buffer: ArrayBuffer, length: number) => number = (outDesc: object, buffer: ArrayBuffer, length: number): number => {
+    console.info("outDesc = ", outDesc);
+    console.info("buffer = ", buffer);
+    console.info("length = ", length);
+    let array = new Uint8Array(buffer);
+    let dataString = "";
+    for (let i = 0; i < length; i++) {
+      dataString += String.fromCharCode(array[i]);
     }
+    console.info('writeOut ', dataString);
+    return 0;
+  }
 
-    let have = 0;
-    let first = 1;
-    let arrayBuffer =  new ArrayBuffer(26);
-    let next = new Uint8Array(arrayBuffer);
-    let last = 0;
-    let index = 0;
-    let flags = 0;
-    let NEXT2:() => number = (): number => {
-        let o6: object = new Object()
-        if (!have) {
-            arrayBuffer = readIn(o6)
-            next = new Uint8Array(arrayBuffer);
-            console.info('readIn next = ', next.length)
-            have = next.length;
-        }
-        if (have) {
-            have--;
-            last = next[index];
-            index++;
-        }
-        else {
-            last = -1;
-        }
-        return last;
+  let have = 0;
+  let first = 1;
+  let arrayBuffer = new ArrayBuffer(26);
+  let next = new Uint8Array(arrayBuffer);
+  let last = 0;
+  let index = 0;
+  let flags = 0;
+  let NEXT2: () => number = (): number => {
+    let o6: object = new Object()
+    if (!have) {
+      arrayBuffer = readIn(o6)
+      next = new Uint8Array(arrayBuffer);
+      console.info('readIn next = ', next.length)
+      have = next.length;
     }
+    if (have) {
+      have--;
+      last = next[index];
+      index++;
+    }
+    else {
+      last = -1;
+    }
+    return last;
+  }
 
-    let inflateBackTest:() => void = ( async() => {
-        try {
-            have = 0;
-            first = 1;
-            arrayBuffer =  new ArrayBuffer(26);
-            next = new Uint8Array(arrayBuffer);
-            last = 0;
-            index = 0;
-            flags = 0;
-            let sr = zlib.createZipSync();
-            let buffer = new ArrayBuffer(1024)
-            await sr.inflateBackInit({}, 15, buffer).then((result) => {
-                console.info('inflateBackInit Call result res', result)
-            })
-            let ret = 0;
-            for (;;) {
-                if (NEXT2() == -1) {
-                    ret = 0;
-                    console.info('inflateBackTest Call result NEXT2() == -1')
-                    break;
-                }
-                console.info('have =  last = ', have, last)
-                if (last != 31 || (NEXT2() != 139 && last >= 157 && last <= 157)) {
-                    ret = first ? -3 : -1;
-                    console.info('inflateBackTest Call result last != 31 || (NEXT2() != 139 && last != 157)')
-                    break;
-                }
-                first = 0;
-                ret = -5;
-                if (NEXT2() != 8) {
-                    if (last < 0) {
-                        console.info('inflateBackTest Call result 1 last == -1')
-                        break;
-                    }
-                }
-                flags = NEXT2();
-                NEXT2();
-                NEXT2();
-                NEXT2();
-                NEXT2();
-                NEXT2();
-                NEXT2();
-                if (last < 0) {
-                    console.info('inflateBackTest Call result 2 last == -1')
-                    break;
-                }
-                console.info('index =  have = ', next[index], have)
-                let newArrayBuffer = new ArrayBuffer(have);
-                let newNext = new Uint8Array(newArrayBuffer);
-                for (let i = 0 ; i < have; i++) {
-                    newNext[i] = next[26-have+i];
-                }
-                console.info('newArrayBuffer.length = ', newArrayBuffer.byteLength)
-                console.info('newNext.length = ', newNext.length)
-                let zStream: zlib.ZStream = {
-                    nextIn: newArrayBuffer,
-                    availableIn: have,
-                };
-                await sr.inflateBack(
-                    zStream,
-                    readIn,
-                    {fileName:'test.gz'},
-                    writeOut,
-                    {fileName:'test.gz'}).then((result) => {
-                    ret = result;
-                    console.info('inflateBack Call result res', result)
-                })
-                if (ret == 1) {
-                    console.info('inflateBackTest Call result success')
-                    break;
-                }
-            }
-            await sr.inflateBackEnd({}).then((result) => {
-                console.info('inflateBackEnd Call result res', result)
-            })
+  let inflateBackTest: () => void = (async () => {
+    try {
+      have = 0;
+      first = 1;
+      arrayBuffer = new ArrayBuffer(26);
+      next = new Uint8Array(arrayBuffer);
+      last = 0;
+      index = 0;
+      flags = 0;
+      let sr = zlib.createZipSync();
+      let buffer = new ArrayBuffer(1024)
+      await sr.inflateBackInit({}, 15, buffer).then((result) => {
+        console.info('inflateBackInit Call result res', result)
+      })
+      let ret = 0;
+      for (; ;) {
+        if (NEXT2() == -1) {
+          ret = 0;
+          console.info('inflateBackTest Call result NEXT2() == -1')
+          break;
         }
-        catch(errData) {
-            console.error(`errData is message:${errData}`);
+        console.info('have =  last = ', have, last)
+        if (last != 31 || (NEXT2() != 139 && last >= 157 && last <= 157)) {
+          ret = first ? -3 : -1;
+          console.info('inflateBackTest Call result last != 31 || (NEXT2() != 139 && last != 157)')
+          break;
         }
-    })
-    inflateBackTest();
+        first = 0;
+        ret = -5;
+        if (NEXT2() != 8) {
+          if (last < 0) {
+            console.info('inflateBackTest Call result 1 last == -1')
+            break;
+          }
+        }
+        flags = NEXT2();
+        NEXT2();
+        NEXT2();
+        NEXT2();
+        NEXT2();
+        NEXT2();
+        NEXT2();
+        if (last < 0) {
+          console.info('inflateBackTest Call result 2 last == -1')
+          break;
+        }
+        console.info('index =  have = ', next[index], have)
+        let newArrayBuffer = new ArrayBuffer(have);
+        let newNext = new Uint8Array(newArrayBuffer);
+        for (let i = 0; i < have; i++) {
+          newNext[i] = next[26 - have + i];
+        }
+        console.info('newArrayBuffer.length = ', newArrayBuffer.byteLength)
+        console.info('newNext.length = ', newNext.length)
+        let zStream: zlib.ZStream = {
+          nextIn: newArrayBuffer,
+          availableIn: have,
+        };
+        await sr.inflateBack(
+          zStream,
+          readIn,
+          { fileName: 'test.gz' },
+          writeOut,
+          { fileName: 'test.gz' }).then((result) => {
+            ret = result;
+            console.info('inflateBack Call result res', result)
+          })
+        if (ret == 1) {
+          console.info('inflateBackTest Call result success')
+          break;
+        }
+      }
+      await sr.inflateBackEnd({}).then((result) => {
+        console.info('inflateBackEnd Call result res', result)
+      })
+    }
+    catch (errData) {
+      console.error(`errData is message:${errData}`);
+    }
+  })
+  inflateBackTest();
 }
 ```
 
@@ -2669,7 +2645,7 @@ inflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 解压数据，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2703,51 +2679,51 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflate({availableOut: 8}, zlib.CompressFlushMode.FINISH).then((data) => {
-        console.info('deflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflateEnd({ nextOut: arrayBufferOut }).then(data => {
-        console.info('deflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflate({availableIn: 8, availableOut: 8}, 0).then((data) => {
-        console.info('inflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateEnd({nextOut: arrayBufferOut}).then((data) => {
-        console.info('inflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflate({ availableOut: 8 }, zlib.CompressFlushMode.FINISH).then((data) => {
+    console.info('deflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflateEnd({ nextOut: arrayBufferOut }).then(data => {
+    console.info('deflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  ).then(data => {
+    console.info('inflateInit success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflate({ availableIn: 8, availableOut: 8 }, 0).then((data) => {
+    console.info('inflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.inflateEnd({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('inflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -2757,7 +2733,7 @@ deflateInit(strm: ZStream, level: CompressLevel): Promise&lt;ReturnStatus&gt;
 
 初始化内部流状态以进行压缩，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2790,25 +2766,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
 }
 ```
 
@@ -2818,7 +2794,7 @@ deflateInit2(strm: ZStream, level: CompressLevel, method: CompressMethod, window
 
 初始化内部流状态以进行压缩，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2855,25 +2831,25 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync()
-    await zip.deflateInit2(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED, zlib.CompressMethod.DEFLATED, 28,
-      zlib.MemLevel.MEM_LEVEL_DEFAULT, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
-        console.info('deflateInit2 success');
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync()
+  await zip.deflateInit2(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED, zlib.CompressMethod.DEFLATED, 28,
+    zlib.MemLevel.MEM_LEVEL_DEFAULT, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
+      console.info('deflateInit2 success');
     }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+      console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
     })
 }
 ```
@@ -2884,7 +2860,7 @@ deflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 压缩数据，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2909,6 +2885,7 @@ deflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
+| 17800007 | Buffer error.                                                |
 
 **示例：**
 
@@ -2917,30 +2894,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflate({availableOut: 8}, zlib.CompressFlushMode.FINISH).then((data) => {
-        console.info('deflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflate({ availableOut: 8 }, zlib.CompressFlushMode.FINISH).then((data) => {
+    console.info('deflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
 }
 ```
 
@@ -2950,7 +2927,7 @@ deflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 压缩流的所有动态分配的数据结构都被释放，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2982,35 +2959,35 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflate({availableOut: 8}, zlib.CompressFlushMode.FINISH).then((data) => {
-        console.info('deflate success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
-    await zip.deflateEnd({ nextOut: arrayBufferOut }).then(data => {
-        console.info('deflateEnd success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflate({ availableOut: 8 }, zlib.CompressFlushMode.FINISH).then((data) => {
+    console.info('deflate success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
+  await zip.deflateEnd({ nextOut: arrayBufferOut }).then(data => {
+    console.info('deflateEnd success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3020,7 +2997,7 @@ deflateBound(strm: ZStream, sourceLength: number): Promise&lt;number&gt;
 
 计算压缩大小的上限，使用Promise异步返回。成功时返回压缩大小的上限。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3052,40 +3029,40 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateBound({nextOut: arrayBufferOut}, 12).then((data) => {
-        console.info('deflateBound success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateBound({ nextOut: arrayBufferOut }, 12).then((data) => {
+    console.info('deflateBound success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
 ### deflateSetHeader<sup>12+</sup>
 
-deflateSetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
+deflateSetHeader(strm: ZStream, head: GzHeader): Promise&lt;ReturnStatus&gt;
 
 当deflateInit2()请求gzip流时，提供gzip标头信息，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3094,7 +3071,7 @@ deflateSetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
 | 参数名 | 类型                    | 必填 | 说明                             |
 | ------ | ----------------------- | ---- | -------------------------------- |
 | strm   | ZStream                 | 是   | 参考[ZStream定义](#zstream12)。  |
-| header | [GzHeader](#gzheader12) | 是   | 从压缩数据流中提取的gzip头信息。 |
+| head   | [GzHeader](#gzheader12) | 是   | 从压缩数据流中提取的gzip头信息。 |
 
 **返回值：**
 
@@ -3118,41 +3095,41 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync()
-    await zip.deflateInit2(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED, zlib.CompressMethod.DEFLATED, 28,
-      zlib.MemLevel.MEM_LEVEL_DEFAULT, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
-        console.info('deflateInit2 success');
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync()
+  await zip.deflateInit2(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED, zlib.CompressMethod.DEFLATED, 28,
+    zlib.MemLevel.MEM_LEVEL_DEFAULT, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
+      console.info('deflateInit2 success');
     }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+      console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
     })
-    await zip.deflateSetHeader({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut,availableOut: 1},{isText: true, os: 1, time: 1, xflags: 1, extra: arrayBufferIn, extraLen: 12, name: arrayBufferIn, comment: arrayBufferOut, hcrc: true, done: true}).then((data)=>{
-        console.info('deflateSetHeader success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
-    })
+  await zip.deflateSetHeader({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, { isText: true, os: 1, time: 1, xflags: 1, extra: arrayBufferIn, extraLen: 12, name: arrayBufferIn, comment: arrayBufferOut, hcrc: true, done: true }).then((data) => {
+    console.info('deflateSetHeader success');
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+  })
 }
 ```
 
 ### deflateCopy<sup>12+</sup>
 
-eflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
+deflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 
 复制压缩流，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3184,30 +3161,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateCopy(zip).then((data) => {
-        console.info('deflateCopy success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateCopy(zip).then((data) => {
+    console.info('deflateCopy success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3217,7 +3194,7 @@ deflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 
 从给定的字节序列初始化压缩字典，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3250,30 +3227,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateSetDictionary({nextOut:arrayBufferOut}, arrayBufferOut).then((data) => {
-        console.info('deflateSetDictionary success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateSetDictionary({ nextOut: arrayBufferOut }, arrayBufferOut).then((data) => {
+    console.info('deflateSetDictionary success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3283,7 +3260,7 @@ deflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;Diction
 
 获取当前解压缩流中使用的解压缩字典内容及其长度，使用Promise异步返回。成功时返回结果状态和字典的长度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3316,35 +3293,35 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateSetDictionary({nextOut:arrayBufferOut}, arrayBufferOut).then((data) => {
-        console.info('deflateSetDictionary success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateGetDictionary({nextOut:arrayBufferOut}, arrayBufferOut).then((data) => {
-        console.info('deflateGetDictionary success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateSetDictionary({ nextOut: arrayBufferOut }, arrayBufferOut).then((data) => {
+    console.info('deflateSetDictionary success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateGetDictionary({ nextOut: arrayBufferOut }, arrayBufferOut).then((data) => {
+    console.info('deflateGetDictionary success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3354,7 +3331,7 @@ deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: numb
 
 微调deflate的内部压缩参数，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3390,30 +3367,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateTune({nextOut:arrayBufferOut}, 2, 2, 2, 2).then((data) => {
-        console.info('deflateTune success:')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateTune({ nextOut: arrayBufferOut }, 2, 2, 2, 2).then((data) => {
+    console.info('deflateTune success:')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3423,7 +3400,7 @@ deflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 这个函数相当于先调用deflateEnd再调用deflateInit，但是并不会释放和重新分配内部解压缩状态，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3455,30 +3432,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateReset({nextOut:arrayBufferOut}).then((data) => {
-        console.info('deflateReset success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateReset({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('deflateReset success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3488,7 +3465,7 @@ deflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 重置初始化的deflate压缩流，但保留其设置的压缩参数和字典，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3520,30 +3497,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateResetKeep({nextOut: arrayBufferOut}).then((data) => {
-        console.info('deflateResetKeep success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateResetKeep({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('deflateResetKeep success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3553,7 +3530,7 @@ deflatePending(strm: ZStream): Promise&lt;DeflatePendingOutputInfo&gt;
 
 返回已生成但尚未在可用输出中提供的输出的字节数和位数，使用Promise异步返回。成功时返回结果状态、输出位数和输出字节数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3585,30 +3562,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflatePending({nextOut: arrayBufferOut}).then((data) => {
-        console.info('deflatePending success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflatePending({ nextOut: arrayBufferOut }).then((data) => {
+    console.info('deflatePending success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3618,7 +3595,7 @@ deflateParams(strm: ZStream, level: CompressLevel, strategy: CompressStrategy): 
 
 动态更新压缩级别和压缩策略，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3652,30 +3629,30 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync()
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflateParams(zStream, zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
-        console.info('deflateParams success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync()
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflateParams(zStream, zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
+    console.info('deflateParams success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
@@ -3685,7 +3662,7 @@ deflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 
 在压缩流中插入位和值，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3719,36 +3696,36 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zStream: zlib.ZStream = {
-        nextIn: arrayBufferIn,
-        availableIn: 1,
-        nextOut: arrayBufferOut,
-        availableOut: 1
-    };
-    let zip = zlib.createZipSync();
-    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
-        console.info('deflateInit success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.deflatePrime({nextOut: arrayBufferOut}, 5, 2).then((data) => {
-        console.info('deflatePrime success')
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
+  let str = 'hello world!';
+  let arrayBufferIn = new ArrayBuffer(str.length);
+  let byteArray = new Uint8Array(arrayBufferIn);
+  for (let i = 0, j = str.length; i < j; i++) {
+    byteArray[i] = str.charCodeAt(i)
+  }
+  let arrayBufferOut = new ArrayBuffer(100);
+  let zStream: zlib.ZStream = {
+    nextIn: arrayBufferIn,
+    availableIn: 1,
+    nextOut: arrayBufferOut,
+    availableOut: 1
+  };
+  let zip = zlib.createZipSync();
+  await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+    console.info('deflateInit success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+  await zip.deflatePrime({ nextOut: arrayBufferOut }, 5, 2).then((data) => {
+    console.info('deflatePrime success')
+  }).catch((errData: base.BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
 }
 ```
 
 ## Options
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3760,7 +3737,7 @@ async function demo() {
 
 ## zip.CompressLevel
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3773,7 +3750,7 @@ async function demo() {
 
 ## zip.MemLevel
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3785,7 +3762,7 @@ async function demo() {
 
 ## zip.CompressStrategy
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3808,7 +3785,7 @@ async function demo() {
 
 ## zip.CompressFlushMode<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3824,7 +3801,7 @@ async function demo() {
 
 ## zip.CompressMethod<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3834,7 +3811,7 @@ async function demo() {
 
 ## zip.ReturnStatus<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3846,7 +3823,7 @@ async function demo() {
 
 ## ZStream<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3863,7 +3840,7 @@ async function demo() {
 
 ## ZipOutputInfo<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3874,7 +3851,7 @@ async function demo() {
 
 ## DictionaryOutputInfo<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3885,18 +3862,19 @@ async function demo() {
 
 ## DecompressionOutputInfo<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称             | 类型         | 可读 | 可写 | 说明                                                  |
 | ---------------- | ------------ | ---- | ---- | ----------------------------------------------------- |
 | status           | ReturnStatus | 是   | 否   | 参考[zlib.ReturnStatus枚举定义](#zipreturnstatus12)。 |
-| dictionaryLength | number       | 是   | 否   | 字典的长度。                                          |
+| destLength       | number       | 是   | 否   | 目标缓冲区的长度。                                     |
+| sourceLength     | number       | 是   | 否   | 源缓冲区的长度。                                       |
 
 ## DeflatePendingOutputInfo<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3908,13 +3886,13 @@ async function demo() {
 
 ## GzHeader<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称     | 类型        | 可读 | 可写 | 说明                                 |
 | -------- | ----------- | ---- | ---- | ------------------------------------ |
-| text     | boolean     | 是   | 否   | 如果压缩数据被认为是文本，则为True。 |
+| isText   | boolean     | 是   | 否   | 如果压缩数据被认为是文本，则为True。 |
 | os       | number      | 是   | 否   | 操作系统。                           |
 | time     | number      | 是   | 否   | 修改时间。                           |
 | xflags   | number      | 是   | 否   | 额外标志。                           |
@@ -3927,11 +3905,11 @@ async function demo() {
 
 ## zlib.createGZip<sup>12+</sup>
 
-createGZip(): Promise&lt;Gzip&gt;
+createGZip(): Promise&lt;GZip&gt;
 
 创建GZip对象，使用Promise异步返回。成功时返回Gzip对象实例。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3947,7 +3925,7 @@ createGZip(): Promise&lt;Gzip&gt;
 import zlib from '@ohos.zlib';
 
 zlib.createGZip().then((data) => {
-   console.info('createGZip success');
+  console.info('createGZip success');
 })
 ```
 
@@ -3957,7 +3935,7 @@ createGZipSync():  GZip
 
 创建GZip对象。成功时返回GZip对象实例。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3985,7 +3963,7 @@ gzdopen(fd: number, mode: string): Promise&lt;void&gt;
 
 将gzFile与文件描述符fd相关联，打开文件，用于进行读取并解压缩，或者压缩并写入。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4017,13 +3995,13 @@ gzdopen(fd: number, mode: string): Promise&lt;void&gt;
 import zlib from '@ohos.zlib';
 import fileio from '@ohos.fileio';
 
-async function gzdopenDemo(pathDir:string) {
- fileio.mkdirSync(pathDir + "/gzdopen");
- let path = pathDir + "/gzdopen/test.gz";
- let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
- let gzip = zlib.createGZipSync();
- await gzip.gzdopen(fd, "wb");
- await gzip.gzclose();
+async function gzdopenDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzdopen");
+  let path = pathDir + "/gzdopen/test.gz";
+  let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
+  let gzip = zlib.createGZipSync();
+  await gzip.gzdopen(fd, "wb");
+  await gzip.gzclose();
 }
 
 @Entry
@@ -4055,7 +4033,7 @@ gzbuffer(size: number):Promise&lt;number&gt;
 
 为当前库函数设置内部缓冲区尺寸。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4085,15 +4063,15 @@ gzbuffer(size: number):Promise&lt;number&gt;
 import fileio from '@ohos.fileio';
 import zlib from '@ohos.zlib'
 
-async function gzbufferDemo(pathDir:string) {
- fileio.mkdirSync(pathDir + "/gzbuffer");
- let path = pathDir + "/gzbuffer/test.gz";
- let gzip = zlib.createGZipSync();
- await gzip.gzopen(path, "wb");
- await gzip.gzclose();
- await gzip.gzopen(path, "rb");
- let result = await gzip.gzbuffer(648);
- await gzip.gzclose();
+async function gzbufferDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzbuffer");
+  let path = pathDir + "/gzbuffer/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  await gzip.gzclose();
+  await gzip.gzopen(path, "rb");
+  let result = await gzip.gzbuffer(648);
+  await gzip.gzclose();
 }
 
 @Entry
@@ -4125,7 +4103,7 @@ gzopen(path: string, mode: string): Promise&lt;void&gt;
 
 打开位于指定路径的gzip（.gz）文件，用于进行读取并解压缩，或者压缩并写入。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4194,7 +4172,7 @@ gzeof(): Promise&lt;number&gt;
 
 检查gzip压缩文件的读取位置是否已到达文件的末尾。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4258,7 +4236,7 @@ gzdirect(): Promise&lt;number&gt;
 
 检查指定的gzip文件句柄文件是否直接访问原始未压缩数据，重新分配缓冲区。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4289,7 +4267,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button('test gzip interface')ts
+        Button('test gzip interface')
           .type(ButtonType.Capsule)
           .height(60)
           .width(200)
@@ -4312,7 +4290,7 @@ gzclose(): Promise&lt;ReturnStatus&gt;
 
 清除文件的所有挂起输出，如有必要，关闭文件和释放(解)压缩状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4326,9 +4304,10 @@ gzclose(): Promise&lt;ReturnStatus&gt;
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
 
-| 错误码ID | 错误信息       |
-| -------- | -------------- |
-| 17800004 | ZStream error. |
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 17800004 | ZStream error.            |
+| 17800006 | Memory allocation failed. |
 
 **示例：**
 
@@ -4373,7 +4352,7 @@ gzclearerr(): Promise&lt;void&gt;
 
 清除文件的错误和文件结束标志。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4439,7 +4418,7 @@ gzerror(): Promise&lt;GzErrorOutputInfo&gt;
 
 文件上发生的最后一个错误的错误消息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4513,7 +4492,7 @@ gzgetc(): Promise&lt;number&gt;
 
 从文件中读取并解压缩一个字节。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4578,7 +4557,7 @@ gzflush(flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 将所有挂起的输出刷新到文件中。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4647,7 +4626,7 @@ gzfwrite(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 
 将大小为size，数量为nitems的数据块从buf压缩并写入文件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4723,7 +4702,7 @@ gzfread(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 
 从gzip压缩文件中解压缩并读取数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4803,7 +4782,7 @@ gzclosew(): Promise&lt;ReturnStatus&gt;
 
 与gzclose（）功能相同，仅适用于写入或追加时。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4817,9 +4796,10 @@ gzclosew(): Promise&lt;ReturnStatus&gt;
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
 
-| 错误码ID | 错误信息       |
-| -------- | -------------- |
-| 17800004 | ZStream error. |
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 17800004 | ZStream error.            |
+| 17800006 | Memory allocation failed. |
 
 **示例：**
 
@@ -4864,7 +4844,7 @@ gzcloser(): Promise&lt;ReturnStatus&gt;
 
 与gzclose（）功能相同，仅适用于读取时。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4927,7 +4907,7 @@ gzwrite(buf: ArrayBuffer, len: number): Promise&lt;number&gt;
 
 将buf中的len长度的未压缩字节进行压缩并将其写入文件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5000,7 +4980,7 @@ gzungetc(c: number): Promise&lt;number&gt;
 
 将c推回到流中，以便在下次读取文件时将作为第一个字符读取。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5070,7 +5050,7 @@ gztell(): Promise&lt;number&gt;
 
 返回文件中下一个gzread或gzwrite的起始位置。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5132,7 +5112,7 @@ gzsetparams(level: CompressLevel, strategy: CompressStrategy): Promise&lt;Return
 
 动态更新文件的压缩级别和压缩策略。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5203,7 +5183,7 @@ gzseek(offset: number, whence: OffsetReferencePoint): Promise&lt;number&gt;
 
 将起始位置设置为相对于文件中下一个gzread或gzwrite的偏移位置。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5273,7 +5253,7 @@ gzrewind(): Promise&lt;ReturnStatus&gt;
 
 将文件指针重新定位到文件的开头，此功能仅用于读取。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5337,7 +5317,7 @@ gzread(buf: ArrayBuffer): Promise&lt;number&gt;
 
 从文件中读取最多len个未压缩字节并将其解压缩到buf中。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5415,7 +5395,7 @@ gzputs(str: string): Promise&lt;number&gt;
 
 压缩给定的以null结尾的字符串并将其写入文件，不包括终止的null字符。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5484,7 +5464,7 @@ gzputc(char: number): Promise&lt;number&gt;
 
 将转换为无符号字符的c压缩并写入文件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5553,7 +5533,7 @@ gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;numb
 
 在字符串格式的控制下，将参数转换和格式化后，压缩并写入文件，如fprintf中所示。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5624,7 +5604,7 @@ gzoffset(): Promise&lt;number&gt;
 
 返回文件的当前压缩（实际）读或写偏移量。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5686,7 +5666,7 @@ gzgets(buf: ArrayBuffer): Promise&lt;string&gt;
 
 从文件中读取字节并将其解压缩到buf中，直到读取len-1字符，或者直到读取换行符并将其传输到buf，或者遇到文件结束条件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5755,7 +5735,7 @@ struct Index {
 
 ## zip.GzErrorOutputInfo<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5766,7 +5746,7 @@ struct Index {
 
 ## zip.OffsetReferencePoint<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 

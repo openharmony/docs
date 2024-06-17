@@ -8,7 +8,7 @@
 
 **错误信息**
 
-System parameter can not be found.
+System parameter not found.
 
 **错误描述**
 
@@ -26,7 +26,7 @@ workspace中没有相应节点，或者没有设置key值，系统会报此错�
 
 **错误信息**
 
-System parameter value is invalid.
+Invalid system parameter value.
 
 **错误描述**
 
@@ -44,7 +44,7 @@ System parameter value is invalid.
 
 **错误信息**
 
-System permission operation permission denied.
+The operation on the system permission is denied.
 
 **错误描述**
 
@@ -62,7 +62,7 @@ System permission operation permission denied.
 
 **错误信息**
 
-System internal error including out of memory, deadlock etc.
+System internal error such as out memory or deadlock.
 
 **错误描述**
 

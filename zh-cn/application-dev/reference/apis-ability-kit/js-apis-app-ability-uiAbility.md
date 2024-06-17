@@ -14,7 +14,7 @@ UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-abili
 ## 导入模块
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -23,9 +23,9 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 是 | 上下文。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility启动时的参数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility最后请求时的参数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 是 | 上下文。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility启动时的参数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility最后请求时的参数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | callee | [Callee](#callee) | 否 | 是 | 调用Stub（桩）服务对象。|
 
 ## UIAbility.onCreate
@@ -34,7 +34,7 @@ onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 UIAbility实例处于完全关闭状态下被创建完成后进入该生命周期回调，执行初始化业务逻辑操作。即UIAbility实例[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时进入该生命周期回调。同步接口，不支持异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -47,17 +47,15 @@ UIAbility实例处于完全关闭状态下被创建完成后进入该生命周�
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
+```ts
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          console.log(`onCreate, want: ${want.abilityName}`);
-      }
+class MyUIAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log(`onCreate, want: ${want.abilityName}`);
   }
-  ```
+}
+```
 
 
 ## UIAbility.onWindowStageCreate
@@ -66,7 +64,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 当WindowStage创建后调用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -78,16 +76,46 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
-  class MyUIAbility extends UIAbility {
-      onWindowStageCreate(windowStage: window.WindowStage) {
-          console.log('onWindowStageCreate');
-      }
+class MyUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
   }
-  ```
+}
+```
+
+
+## UIAbility.onWindowStageWillDestroy<sup>12+</sup>
+
+onWindowStageWillDestroy(windowStage: window.WindowStage): void
+
+当WindowStage即将销毁时调用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+class MyUIAbility extends UIAbility {
+  onWindowStageWillDestroy(windowStage: window.WindowStage) {
+    console.log('onWindowStageWillDestroy');
+  }
+}
+```
 
 
 ## UIAbility.onWindowStageDestroy
@@ -96,21 +124,21 @@ onWindowStageDestroy(): void
 
 当WindowStage销毁后调用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
-      onWindowStageDestroy() {
-          console.log('onWindowStageDestroy');
-      }
+class MyUIAbility extends UIAbility {
+  onWindowStageDestroy() {
+    console.log('onWindowStageDestroy');
   }
-  ```
+}
+```
 
 
 ## UIAbility.onWindowStageRestore
@@ -119,7 +147,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 当迁移多实例ability时，恢复WindowStage后调用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -131,16 +159,16 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
-  class MyUIAbility extends UIAbility {
-      onWindowStageRestore(windowStage: window.WindowStage) {
-          console.log('onWindowStageRestore');
-      }
+class MyUIAbility extends UIAbility {
+  onWindowStageRestore(windowStage: window.WindowStage) {
+    console.log('onWindowStageRestore');
   }
-  ```
+}
+```
 
 
 ## UIAbility.onDestroy
@@ -149,7 +177,7 @@ onDestroy(): void | Promise&lt;void&gt;
 
 UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。使用同步回调或Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -161,29 +189,28 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
 
 **示例：**
 
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-
-  class MyUIAbility extends UIAbility {
-      onDestroy() {
-          console.log('onDestroy');
-      }
+class MyUIAbility extends UIAbility {
+  onDestroy() {
+    console.log('onDestroy');
   }
-  ```
+}
+```
 
 在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
 
-  ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
-    async onDestroy() {
-        console.log('onDestroy');
-        // 调用异步函数...
-    }
+  async onDestroy() {
+    console.log('onDestroy');
+    // 调用异步函数...
+  }
 }
-  ```
+```
 
 ## UIAbility.onForeground
 
@@ -191,21 +218,21 @@ onForeground(): void
 
 UIAbility生命周期回调，当应用从后台转到前台时触发。同步接口，不支持异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
-      onForeground() {
-          console.log('onForeground');
-      }
+class MyUIAbility extends UIAbility {
+  onForeground() {
+    console.log('onForeground');
   }
-  ```
+}
+```
 
 
 ## UIAbility.onBackground
@@ -214,21 +241,21 @@ onBackground(): void
 
 UIAbility生命周期回调，当应用从前台转到后台时触发。同步接口，不支持异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
-      onBackground() {
-          console.log('onBackground');
-      }
+class MyUIAbility extends UIAbility {
+  onBackground() {
+    console.log('onBackground');
   }
-  ```
+}
+```
 
 
 ## UIAbility.onContinue
@@ -241,7 +268,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 > 
 > 从API version 12 开始，UIAbility.onContinue生命周期新增支持返回值为Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)\>形式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -301,7 +328,7 @@ onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 UIAbility实例已经启动并在前台运行过，由于某些原因切换到后台，再次启动该UIAbility实例时会回调执行该方法。即UIAbility实例[热启动](../../application-models/uiability-intra-device-interaction.md#目标uiability热启动)时进入该生命周期回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -314,18 +341,16 @@ UIAbility实例已经启动并在前台运行过，由于某些原因切换到�
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
+```ts
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
-      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          console.log(`onNewWant, want: ${want.abilityName}`);
-          console.log(`onNewWant, launchParam: ${JSON.stringify(launchParam)}`);
-      }
+class MyUIAbility extends UIAbility {
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log(`onNewWant, want: ${want.abilityName}`);
+    console.log(`onNewWant, launchParam: ${JSON.stringify(launchParam)}`);
   }
-  ```
+}
+```
 
 ## UIAbility.onDump
 
@@ -333,7 +358,7 @@ onDump(params: Array\<string>): Array\<string>
 
 转储客户端信息时调用，可用于转储非敏感信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -351,16 +376,16 @@ onDump(params: Array\<string>): Array\<string>
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
-      onDump(params: Array<string>) {
-          console.log(`dump, params: ${JSON.stringify(params)}`);
-          return ['params'];
-      }
+class MyUIAbility extends UIAbility {
+  onDump(params: Array<string>) {
+    console.log(`dump, params: ${JSON.stringify(params)}`);
+    return ['params'];
   }
-  ```
+}
+```
 
 
 ## UIAbility.onSaveState
@@ -369,7 +394,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Obje
 
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -388,18 +413,17 @@ onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Obje
 
 **示例：**
 
-  ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+```ts
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
-    onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
-        console.log('onSaveState');
-        wantParam['myData'] = 'my1234567';
-        return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
-    }
+  onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
+    console.log('onSaveState');
+    wantParam['myData'] = 'my1234567';
+    return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
+  }
 }
-  ```
+```
 
 ## UIAbility.onShare<sup>10+</sup>
 
@@ -407,7 +431,7 @@ onShare(wantParam: Record&lt;string, Object&gt;): void
 
 在跨端分享场景下，在UIAbility中设置分享方设备要分享的数据。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -419,17 +443,16 @@ onShare(wantParam: Record&lt;string, Object&gt;): void
 
 **示例：**
 
-  ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
-    onShare(wantParams: Record<string, Object>) {
-        console.log('onShare');
-        wantParams['ohos.extra.param.key.shareUrl'] = 'example.com';
-    }
+  onShare(wantParams: Record<string, Object>) {
+    console.log('onShare');
+    wantParams['ohos.extra.param.key.shareUrl'] = 'example.com';
+  }
 }
-  ```
+```
 
 ## UIAbility.onPrepareToTerminate<sup>10+</sup>
 
@@ -439,7 +462,7 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -451,37 +474,36 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  export default class EntryAbility extends UIAbility {
-    onPrepareToTerminate() {
-      // 开发者定义预关闭动作
-      // 例如拉起另一个ability，根据ability处理结果执行异步关闭
-      let want: Want = {
-        bundleName: "com.example.myapplication",
-        moduleName: "entry",
-        abilityName: "SecondAbility"
-      }
-      this.context.startAbilityForResult(want)
-        .then((result)=>{
-          // 获取ability处理结果，当返回结果的resultCode为0关闭当前UIAbility
-          console.log('startAbilityForResult success, resultCode is ' + result.resultCode);
-          if (result.resultCode === 0) {
-            this.context.terminateSelf();
-          }
-        }).catch((err: BusinessError)=>{
-          // 异常处理
-          console.error('startAbilityForResult failed, err:' + JSON.stringify(err));
-          this.context.terminateSelf();
-        })
-
-      return true; // 已定义预关闭操作后，返回true表示UIAbility取消关闭
+export default class EntryAbility extends UIAbility {
+  onPrepareToTerminate() {
+    // 开发者定义预关闭动作
+    // 例如拉起另一个ability，根据ability处理结果执行异步关闭
+    let want: Want = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      abilityName: "SecondAbility"
     }
+    this.context.startAbilityForResult(want)
+      .then((result)=>{
+        // 获取ability处理结果，当返回结果的resultCode为0关闭当前UIAbility
+        console.log('startAbilityForResult success, resultCode is ' + result.resultCode);
+        if (result.resultCode === 0) {
+          this.context.terminateSelf();
+        }
+      }).catch((err: BusinessError)=>{
+      // 异常处理
+      console.error('startAbilityForResult failed, err:' + JSON.stringify(err));
+      this.context.terminateSelf();
+    })
+
+    return true; // 已定义预关闭操作后，返回true表示UIAbility取消关闭
   }
-  ```
+}
+```
 
 ## UIAbility.onBackPressed<sup>10+</sup>
 
@@ -492,7 +514,7 @@ UIAbility生命周期回调，当UIAbility侧滑返回时触发，根据返回�
 - 当targetSdkVersion<12时，默认返回值为false，会销毁UIAbility。
 - 当targetSdkVersion>=12时，默认返回值为true，会将UIAbility移动到后台不销毁。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -504,15 +526,15 @@ UIAbility生命周期回调，当UIAbility侧滑返回时触发，根据返回�
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
-  export default class EntryAbility extends UIAbility {
-    onBackPressed() {
-      return true;
-    }
+export default class EntryAbility extends UIAbility {
+  onBackPressed() {
+    return true;
   }
-  ```
+}
+```
 
 ## Caller
 
@@ -552,58 +574,58 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
-  import rpc from '@ohos.rpc';
+```ts
+import { UIAbility, Caller } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  class MyMessageAble implements rpc.Parcelable { // 自定义的Parcelable数据结构
-    name: string
-    str: string
-    num: number = 1
-    constructor(name: string, str: string) {
-      this.name = name;
-      this.str = str;
-    }
-    marshalling(messageSequence: rpc.MessageSequence) {
-      messageSequence.writeInt(this.num);
-      messageSequence.writeString(this.str);
-      console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
-      return true;
-    }
-    unmarshalling(messageSequence: rpc.MessageSequence) {
-      this.num = messageSequence.readInt();
-      this.str = messageSequence.readString();
-      console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
-      return true;
-    }
-  };
-  let method = 'call_Function'; // 约定的通知消息字符串
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-        caller = obj;
-        let msg = new MyMessageAble('msg', 'world'); // 参考Parcelable数据定义
-        caller.call(method, msg)
-          .then(() => {
-            console.log('Caller call() called');
-          })
-          .catch((callErr: BusinessError) => {
-            console.error(`Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
-          });
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+class MyMessageAble implements rpc.Parcelable { // 自定义的Parcelable数据结构
+  name: string
+  str: string
+  num: number = 1
+  constructor(name: string, str: string) {
+    this.name = name;
+    this.str = str;
   }
-  ```
+  marshalling(messageSequence: rpc.MessageSequence) {
+    messageSequence.writeInt(this.num);
+    messageSequence.writeString(this.str);
+    console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
+    return true;
+  }
+  unmarshalling(messageSequence: rpc.MessageSequence) {
+    this.num = messageSequence.readInt();
+    this.str = messageSequence.readString();
+    console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
+    return true;
+  }
+};
+let method = 'call_Function'; // 约定的通知消息字符串
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      let msg = new MyMessageAble('msg', 'world'); // 参考Parcelable数据定义
+      caller.call(method, msg)
+        .then(() => {
+          console.log('Caller call() called');
+        })
+        .catch((callErr: BusinessError) => {
+          console.error(`Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
+        });
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
+  }
+}
+```
 
 
 ### Caller.callWithResult
@@ -640,60 +662,60 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
-  import rpc from '@ohos.rpc';
+```ts
+import { UIAbility, Caller } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  class MyMessageAble implements rpc.Parcelable {
-    name: string
-    str: string
-    num: number = 1
-    constructor(name: string, str: string) {
-      this.name = name;
-      this.str = str;
-    }
-    marshalling(messageSequence: rpc.MessageSequence) {
-      messageSequence.writeInt(this.num);
-      messageSequence.writeString(this.str);
-      console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
-      return true;
-    }
-    unmarshalling(messageSequence: rpc.MessageSequence) {
-      this.num = messageSequence.readInt();
-      this.str = messageSequence.readString();
-      console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
-      return true;
-    }
-  };
-  let method = 'call_Function';
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-        caller = obj;
-        let msg = new MyMessageAble('msg', 'world');
-        caller.callWithResult(method, msg)
-          .then((data) => {
-            console.log('Caller callWithResult() called');
-            let retmsg = new MyMessageAble('msg', 'world');
-            data.readParcelable(retmsg);
-          })
-          .catch((callErr: BusinessError) => {
-            console.error(`Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
-          });
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+class MyMessageAble implements rpc.Parcelable {
+  name: string
+  str: string
+  num: number = 1
+  constructor(name: string, str: string) {
+    this.name = name;
+    this.str = str;
   }
-  ```
+  marshalling(messageSequence: rpc.MessageSequence) {
+    messageSequence.writeInt(this.num);
+    messageSequence.writeString(this.str);
+    console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
+    return true;
+  }
+  unmarshalling(messageSequence: rpc.MessageSequence) {
+    this.num = messageSequence.readInt();
+    this.str = messageSequence.readString();
+    console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
+    return true;
+  }
+};
+let method = 'call_Function';
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      let msg = new MyMessageAble('msg', 'world');
+      caller.callWithResult(method, msg)
+        .then((data) => {
+          console.log('Caller callWithResult() called');
+          let retmsg = new MyMessageAble('msg', 'world');
+          data.readParcelable(retmsg);
+        })
+        .catch((callErr: BusinessError) => {
+          console.error(`Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
+        });
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
+  }
+}
+```
 
 
 ### Caller.release
@@ -715,32 +737,32 @@ release(): void
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
+```ts
+import { UIAbility, Caller } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-        caller = obj;
-        try {
-          caller.release();
-        } catch (releaseErr) {
-          console.error(`Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}`);
-        }
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      try {
+        caller.release();
+      } catch (releaseErr) {
+        console.error(`Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}`);
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
   }
-  ```
+}
+```
 
 ### Caller.onRelease
 
@@ -767,34 +789,34 @@ release(): void
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
+```ts
+import { UIAbility, Caller } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-          caller = obj;
-          try {
-            caller.onRelease((str) => {
-                console.log(`Caller OnRelease CallBack is called ${str}`);
-            });
-          } catch (error) {
-            console.error(`Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}`);
-          }
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      try {
+        caller.onRelease((str) => {
+          console.log(`Caller OnRelease CallBack is called ${str}`);
+        });
+      } catch (error) {
+        console.error(`Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}`);
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
   }
-  ```
+}
+```
 
 ### Caller.onRemoteStateChange<sup>10+</sup>
 
@@ -821,35 +843,35 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
+```ts
+import { UIAbility, Caller } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let caller: Caller;
-  let dstDeviceId: string;
-  export default class MainAbility extends UIAbility {
-      onWindowStageCreate(windowStage: window.WindowStage) {
-          this.context.startAbilityByCall({
-              bundleName: 'com.example.myservice',
-              abilityName: 'MainUIAbility',
-              deviceId: dstDeviceId
-          }).then((obj) => {
-              caller = obj;
-              try {
-                  caller.onRemoteStateChange((str) => {
-                      console.log('Remote state changed ' + str);
-                  });
-              } catch (error) {
-                  console.error(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
-              }
-          }).catch((err: BusinessError) => {
-              console.error(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
-          })
+let caller: Caller;
+let dstDeviceId: string;
+
+export default class MainAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: dstDeviceId
+    }).then((obj) => {
+      caller = obj;
+      try {
+        caller.onRemoteStateChange((str) => {
+          console.log('Remote state changed ' + str);
+        });
+      } catch (error) {
+        console.error(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
       }
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
+    })
   }
-  ```
+}
+```
 
 ### Caller.on
 
@@ -877,34 +899,34 @@ on(type: 'release', callback: OnReleaseCallback): void
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
+```ts
+import { UIAbility, Caller } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-          caller = obj;
-          try {
-            caller.on('release', (str) => {
-                console.log(`Caller OnRelease CallBack is called ${str}`);
-            });
-          } catch (error) {
-            console.error(`Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
-          }
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      try {
+        caller.on('release', (str) => {
+          console.log(`Caller OnRelease CallBack is called ${str}`);
+        });
+      } catch (error) {
+        console.error(`Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
   }
-  ```
+}
+```
 
 ### Caller.off
 
@@ -931,36 +953,36 @@ off(type: 'release', callback: OnReleaseCallback): void
 
 **示例：**
 
-  ```ts
-  import UIAbility, { OnReleaseCallback } from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
+```ts
+import { UIAbility, Caller, OnReleaseCallback } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-          caller = obj;
-          try {
-            let onReleaseCallBack: OnReleaseCallback = (str) => {
-                console.log(`Caller OnRelease CallBack is called ${str}`);
-            };
-            caller.on('release', onReleaseCallBack);
-            caller.off('release', onReleaseCallBack);
-          } catch (error) {
-            console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
-          }
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      try {
+        let onReleaseCallBack: OnReleaseCallback = (str) => {
+          console.log(`Caller OnRelease CallBack is called ${str}`);
+        };
+        caller.on('release', onReleaseCallBack);
+        caller.off('release', onReleaseCallBack);
+      } catch (error) {
+        console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
   }
-  ```
+}
+```
 
 ### Caller.off
 
@@ -986,36 +1008,36 @@ off(type: 'release'): void
 
 **示例：**
 
-  ```ts
-  import UIAbility, { OnReleaseCallback } from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
+```ts
+import { UIAbility, Caller, OnReleaseCallback } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-          caller = obj;
-          try {
-            let onReleaseCallBack: OnReleaseCallback = (str) => {
-                console.log(`Caller OnRelease CallBack is called ${str}`);
-            };
-            caller.on('release', onReleaseCallBack);
-            caller.off('release');
-          } catch (error) {
-            console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
-          }
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      try {
+        let onReleaseCallBack: OnReleaseCallback = (str) => {
+          console.log(`Caller OnRelease CallBack is called ${str}`);
+        };
+        caller.on('release', onReleaseCallBack);
+        caller.off('release');
+      } catch (error) {
+        console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
   }
-  ```
+}
+```
 
 ## Callee
 
@@ -1048,51 +1070,50 @@ on(method: string, callback: CalleeCallback): void
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  import rpc from '@ohos.rpc';
+```ts
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
-  class MyMessageAble implements rpc.Parcelable {
-      name: string
-      str: string
-      num: number = 1
-      constructor(name: string, str: string) {
-        this.name = name;
-        this.str = str;
-      }
-      marshalling(messageSequence: rpc.MessageSequence) {
-          messageSequence.writeInt(this.num);
-          messageSequence.writeString(this.str);
-          console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
-          return true;
-      }
-      unmarshalling(messageSequence: rpc.MessageSequence) {
-          this.num = messageSequence.readInt();
-          this.str = messageSequence.readString();
-          console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
-          return true;
-      }
-  };
-  let method = 'call_Function';
-  function funcCallBack(pdata: rpc.MessageSequence) {
-      console.log(`Callee funcCallBack is called ${pdata}`);
-      let msg = new MyMessageAble('test', '');
-      pdata.readParcelable(msg);
-      return new MyMessageAble('test1', 'Callee test');
+class MyMessageAble implements rpc.Parcelable {
+  name: string
+  str: string
+  num: number = 1
+  constructor(name: string, str: string) {
+    this.name = name;
+    this.str = str;
   }
-  export default class MainUIAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      console.log('Callee onCreate is called');
-      try {
-        this.callee.on(method, funcCallBack);
-      } catch (error) {
-        console.error(`Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
-      }
+  marshalling(messageSequence: rpc.MessageSequence) {
+    messageSequence.writeInt(this.num);
+    messageSequence.writeString(this.str);
+    console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
+    return true;
+  }
+  unmarshalling(messageSequence: rpc.MessageSequence) {
+    this.num = messageSequence.readInt();
+    this.str = messageSequence.readString();
+    console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
+    return true;
+  }
+};
+let method = 'call_Function';
+
+function funcCallBack(pdata: rpc.MessageSequence) {
+  console.log(`Callee funcCallBack is called ${pdata}`);
+  let msg = new MyMessageAble('test', '');
+  pdata.readParcelable(msg);
+  return new MyMessageAble('test1', 'Callee test');
+}
+export default class MainUIAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log('Callee onCreate is called');
+    try {
+      this.callee.on(method, funcCallBack);
+    } catch (error) {
+      console.error(`Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
-  ```
+}
+```
 
 ### Callee.off
 
@@ -1120,23 +1141,22 @@ off(method: string): void
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
+```ts
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 
-  let method = 'call_Function';
-  export default class MainUIAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      console.log('Callee onCreate is called');
-      try {
-        this.callee.off(method);
-      } catch (error) {
-        console.error(`Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
-      }
+let method = 'call_Function';
+
+export default class MainUIAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log('Callee onCreate is called');
+    try {
+      this.callee.off(method);
+    } catch (error) {
+      console.error(`Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
-  ```
+}
+```
 
 ## OnReleaseCallback
 

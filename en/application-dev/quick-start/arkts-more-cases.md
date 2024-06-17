@@ -987,7 +987,7 @@ let p: Person = {
 };
 
 for (let t in p) {
-  console.log(p[t]);
+  console.log(p[t]);  // log: "tom", "18" 
 }
 ```
 
@@ -1000,7 +1000,7 @@ let p: Record<string, string> = {
 };
 
 for (let ele of Object.entries(p)) {
-  console.log(ele[1]);
+  console.log(ele[1]);  // log: "tom", "18" 
 }
 ```
 

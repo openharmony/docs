@@ -14,7 +14,7 @@ blur(value: number, options?: BlurOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -33,7 +33,7 @@ backdropBlur(value: number, options?: BlurOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,7 +52,7 @@ shadow(value: ShadowOptions | ShadowStyle)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +70,7 @@ grayscale(value: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -78,7 +78,7 @@ grayscale(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参则0.0图像无变化，入参在0.0和1.0之间时，效果呈线性变化。（百分比)<br/>默认值：0.0<br/>取值范围：[0.0, 1.0]<br/>**说明：**<br/>设置小于0.0的值时，按值为0.0处理，设置大于1.0的值时，按值为1.0处理。 |
+| value  | number | 是   | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参0.0则图像无变化，入参在0.0和1.0之间时，效果呈线性变化。（百分比)<br/>默认值：0.0<br/>取值范围：[0.0, 1.0]<br/>**说明：**<br/>设置小于0.0的值时，按值为0.0处理，设置大于1.0的值时，按值为1.0处理。 |
 
 ## brightness
 
@@ -88,7 +88,7 @@ brightness(value: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -106,7 +106,7 @@ saturate(value: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -124,7 +124,7 @@ contrast(value: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -142,7 +142,7 @@ invert(value: number | InvertOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -160,7 +160,7 @@ sepia(value: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -178,7 +178,7 @@ hueRotate(value: number | string)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -194,11 +194,11 @@ colorBlend(value: Color | string | Resource)
 
 为组件添加颜色叠加效果。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：** 
 
@@ -227,9 +227,9 @@ renderGroup(value: boolean)
 
 设置当前控件和子控件是否先整体离屏渲染绘制后再与父控件融合绘制。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：** 
 
@@ -259,8 +259,6 @@ blendMode(value: BlendMode, type?: BlendApplyType)
 useShadowBatching(value: boolean)
 
 控件内部子节点的阴影进行同层绘制，同层元素阴影重叠。
-
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -329,16 +327,16 @@ systemBarEffect()
 
 | 名称      | 类型                                       | 必填   | 说明                                       |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| radius  | number \| [Resource](ts-types.md#resource) | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>单位：px<br/>**说明：**  <br/>设置小于0的值时，按值为0处理。<br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果radius为Resource类型，则传入的值需为number类型。<br/> |
-| type<sup>10+</sup> | [ShadowType<sup>10+</sup>](ts-appendix-enums.md#shadowtype10)  |      否    | 阴影类型。<br/>默认为COLOR。        |
+| radius  | number \| [Resource](ts-types.md#resource) | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>单位：px<br/>**说明：**  <br/>设置小于0的值时，按值为0处理。<br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果radius为Resource类型，则传入的值需为number类型。<br/>从API 11开始该属性支持原子化服务。 |
+| type<sup>10+</sup> | [ShadowType<sup>10+</sup>](ts-appendix-enums.md#shadowtype10)  |      否    | 阴影类型。<br/>从API 11开始该属性支持原子化服务。<br/>默认为COLOR。        |
 | color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | 否    | 阴影的颜色。<br/>默认为黑色。 <br/>**说明：** <br/>从API version 11开始，该接口支持使用ColoringStrategy实现智能取色，智能取色功能不支持在ArkTS卡片、[textShadow](ts-basic-components-text.md#属性)中使用。<br/>当前仅支持平均取色和主色取色，智能取色区域为shadow绘制区域。<br/>支持使用'average'字符串触发智能平均取色模式，支持使用'primary'字符串触发智能主色模式。                       |
 | offsetX | number \| [Resource](ts-types.md#resource) | 否    | 阴影的X轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetX为Resource类型，则传入的值需为number类型。<br/> |
 | offsetY | number \| [Resource](ts-types.md#resource) | 否    | 阴影的Y轴偏移量。<br/>默认值：0<br/>单位：px<br/>**说明：** <br/>如需使用vp单位的数值可用[vp2px](ts-pixel-units.md#像素单位转换)进行转换。<br/>如果offsetY为Resource类型，则传入的值需为number类型。<br/> |
-| fill<sup>11+</sup>     | boolean                                    | 否    | 阴影是否内部填充。<br/>默认为false。<br/>**说明：**<br/>[textShadow](ts-basic-components-text.md#属性)中该字段不生效。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                 |
+| fill<sup>11+</sup>     | boolean                                    | 否    | 阴影是否内部填充。<br/>默认为false。<br/>**说明：**<br/>[textShadow](ts-basic-components-text.md#属性)中该字段不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
 
 ## ShadowStyle<sup>10+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                | 描述     |
 | ----------------- | ------ |
@@ -354,6 +352,8 @@ systemBarEffect()
 >  **说明：**
 >
 >  blendMode枚举中，s表示源像素，d表示目标像素，sa表示原像素透明度，da表示目标像素透明度，r表示混合后像素，ra表示混合后像素透明度。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 | 名称           | 描述                                                             |
 | ---------------| ------                                                        |
@@ -404,15 +404,15 @@ FractionStop = [ number, number ]
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 取值范围       | 说明                                                       |
-| ------------- | ---------------------------------------------------------- | 
+| ------------- | ---------------------------------------------------------- |
 | number        |   分数,值1表示不透明，0表示完全透明。<br/>取值范围：[0,1]      |
-| number        |   停止位置,值1表示区域结束位置，0表示区域开始位置。<br/> 取值范围:[0,1] | 
+| number        |   停止位置,值1表示区域结束位置，0表示区域开始位置。<br/> 取值范围:[0,1] |
 
 ## InvertOptions<sup>11+</sup>对象说明
 
 前景智能取反色。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称            |  类型  | 必填  | 说明                                       |
 | -------------- | ------ | ----- | ------------------------------------------ |
@@ -420,6 +420,20 @@ FractionStop = [ number, number ]
 | high           | number | 是    | 背景颜色灰度值小于阈值区间时的取值。              |
 | threshold      | number | 是    | 灰度阈值。                                  |
 | thresholdRange | number | 是    | 阈值范围。<br/>**说明：**<br/>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
+
+## freeze<sup>12+</sup>
+
+freeze(value: boolean)
+
+设置当前控件和子控件是否整体离屏渲染绘制后重复绘制缓存，不再进行内部属性更新。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 设置当前控件和子控件是否整体离屏渲染绘制后重复绘制缓存，不再进行内部属性更新。当前控件的不透明度不为1时绘制效果可能有差异。<br/>默认值：false |
 
 ## 示例
 

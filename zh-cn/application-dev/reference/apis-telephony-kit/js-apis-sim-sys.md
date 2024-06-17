@@ -43,12 +43,12 @@ isOperatorSimCard\(slotId: number, operator: OperatorSimCard\): boolean
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -92,12 +92,12 @@ setDefaultVoiceSlotId\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 | 8301001  | SIM card is not activated.                   |
 
 **示例：**
@@ -144,12 +144,12 @@ setDefaultVoiceSlotId\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 | 8301001  | SIM card is not activated.                   |
 
 **示例：**
@@ -193,12 +193,12 @@ setShowName\(slotId: number, name: string, callback: AsyncCallback\<void\>\): vo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -245,12 +245,12 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -293,12 +293,12 @@ getShowName\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -344,12 +344,12 @@ getShowName\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -392,12 +392,12 @@ setShowNumber\(slotId: number, number: string, callback: AsyncCallback\<void\>\)
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -445,12 +445,12 @@ setShowNumber\(slotId: number, number: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -493,12 +493,12 @@ getShowNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -544,12 +544,12 @@ getShowNumber\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -591,12 +591,12 @@ activateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -642,12 +642,12 @@ activateSim\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -689,12 +689,12 @@ deactivateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -740,12 +740,12 @@ deactivateSim\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -788,13 +788,13 @@ setLockState\(slotId: number, options: LockInfo, callback: AsyncCallback\<LockSt
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -846,13 +846,13 @@ setLockState\(slotId: number, options: LockInfo\): Promise\<LockStatusResponse\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -900,13 +900,13 @@ getLockState\(slotId: number, lockType: LockType, callback: AsyncCallback\<LockS
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -953,13 +953,13 @@ getLockState\(slotId: number, lockType: LockType\): Promise\<LockState\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1003,13 +1003,13 @@ alterPin\(slotId: number, newPin: string, oldPin: string, callback: AsyncCallbac
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1057,13 +1057,13 @@ alterPin\(slotId: number, newPin: string, oldPin: string\): Promise\<LockStatusR
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1107,13 +1107,13 @@ alterPin2\(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1161,13 +1161,13 @@ alterPin2\(slotId: number, newPin2: string, oldPin2: string\): Promise\<LockStat
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1210,13 +1210,13 @@ unlockPin\(slotId: number, pin: string, callback: AsyncCallback\<LockStatusRespo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1264,13 +1264,13 @@ unlockPin\(slotId: number, pin: string\): Promise\<LockStatusResponse\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1315,13 +1315,13 @@ unlockPuk\(slotId: number, newPin: string, puk: string, callback: AsyncCallback\
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1371,13 +1371,13 @@ unlockPuk\(slotId: number, newPin: string, puk: string\): Promise\<LockStatusRes
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1422,13 +1422,13 @@ unlockPin2\(slotId: number, pin2: string, callback: AsyncCallback\<LockStatusRes
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1476,13 +1476,13 @@ unlockPin2\(slotId: number, pin2: string\): Promise\<LockStatusResponse\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1527,13 +1527,13 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string, callback: AsyncCallba
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1583,13 +1583,13 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string\): Promise\<LockStatus
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1633,12 +1633,12 @@ getSimIccId\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -1684,12 +1684,12 @@ getSimIccId\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -1731,12 +1731,12 @@ getVoiceMailIdentifier\(slotId: number, callback: AsyncCallback\<string\>\): voi
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -1782,12 +1782,12 @@ getVoiceMailIdentifier\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -1829,12 +1829,12 @@ getVoiceMailNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -1880,12 +1880,12 @@ getVoiceMailNumber\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -1930,13 +1930,13 @@ setVoiceMailInfo\(slotId: number, mailName: string, mailNumber: string, callback
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -1984,13 +1984,13 @@ setVoiceMailInfo\(slotId: number, mailName: string, mailNumber: string\): Promis
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -2032,12 +2032,12 @@ getSimTelephoneNumber\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -2083,12 +2083,12 @@ getSimTelephoneNumber\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -2130,12 +2130,12 @@ getSimGid1\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -2181,12 +2181,12 @@ getSimGid1\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -2228,12 +2228,12 @@ getIMSI\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -2279,12 +2279,12 @@ getIMSI\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -2326,11 +2326,11 @@ getOperatorConfigs\(slotId: number, callback: AsyncCallback\<Array\<OperatorConf
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -2376,11 +2376,11 @@ getOperatorConfigs\(slotId: number\): Promise\<Array\<OperatorConfig\>\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -2428,13 +2428,13 @@ queryIccDiallingNumbers\(slotId: number, type: ContactType, callback: AsyncCallb
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -2486,13 +2486,13 @@ queryIccDiallingNumbers\(slotId: number, type: ContactType\): Promise\<Array\<Di
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -2541,13 +2541,13 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -2605,13 +2605,13 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -2664,13 +2664,13 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -2729,13 +2729,13 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -2788,13 +2788,13 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -2853,13 +2853,13 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -2907,12 +2907,12 @@ sendEnvelopeCmd\(slotId: number, cmd: string, callback: AsyncCallback\<void\>\):
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -2959,12 +2959,12 @@ sendEnvelopeCmd\(slotId: number, cmd: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -3007,12 +3007,12 @@ sendTerminalResponseCmd\(slotId: number, cmd: string, callback: AsyncCallback\<v
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -3059,12 +3059,12 @@ sendTerminalResponseCmd\(slotId: number, cmd: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -3108,13 +3108,13 @@ unlockSimLock\(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback\
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -3165,13 +3165,13 @@ unlockSimLock\(slotId: number, lockInfo: PersoLockInfo\): Promise\<LockStatusRes
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300004  | Do not have sim card.                        |
-| 8300999  | Unknown error code.                          |
-| 8301002  | SIM card operation error.                    |
+| 8300004  | No SIM card found.                           |
+| 8300999  | Unknown error.                               |
+| 8301002  | The SIM card failed to read or update data.  |
 
 **示例：**
 
@@ -3216,10 +3216,10 @@ getDsdsMode\(callback: AsyncCallback\<DsdsMode\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -3262,10 +3262,10 @@ getDsdsMode\(\): Promise\<DsdsMode\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 

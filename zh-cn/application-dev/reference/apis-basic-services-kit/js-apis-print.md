@@ -31,6 +31,15 @@ on(type: 'block', callback: Callback&lt;void&gt;): void
 | type | string | 是 | 注册监听，<br/>监听字段：block，<br/>表示打印阻塞 |
 | callback | Callback&lt;void&gt; | 是 | 打印完成后处于响应状态的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -63,6 +72,15 @@ on(type: 'succeed', callback: Callback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 注册监听，<br/>监听字段：succeed，<br/>表示打印成功 |
 | callback | Callback&lt;void&gt; | 是 | 打印完成后处于响应状态的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -97,6 +115,15 @@ on(type: 'fail', callback: Callback&lt;void&gt;): void
 | type | string | 是 | 注册监听，<br/>监听字段：fail，<br/>表示打印失败 |
 | callback | Callback&lt;void&gt; | 是 | 打印完成后处于响应状态的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -129,6 +156,15 @@ on(type: 'cancel', callback: Callback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 注册监听，<br/>监听字段：cancel，<br/>表示打印取消 |
 | callback | Callback&lt;void&gt; | 是 | 打印完成后处于响应状态的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -163,6 +199,15 @@ off(type: 'block', callback?: Callback&lt;void&gt;): void
 | type | string | 是 | 取消监听，<br/>监听字段：block，<br/>表示打印阻塞 |
 | callback | Callback&lt;void&gt; | 否 | 取消相应状态监听成功后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -195,6 +240,15 @@ off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 取消监听，<br/>监听字段：succeed，<br/>表示打印成功 |
 | callback | Callback&lt;void&gt; | 否 | 取消相应状态监听成功后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -229,6 +283,15 @@ off(type: 'fail', callback?: Callback&lt;void&gt;): void
 | type | string | 是 | 取消监听，<br/>监听字段：fail，<br/>表示打印失败 |
 | callback | Callback&lt;void&gt; | 否 | 取消相应状态监听成功后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -261,6 +324,15 @@ off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 取消监听，<br/>监听字段：cancel，<br/>表示打印取消 |
 | callback | Callback&lt;void&gt; | 否 | 取消相应状态监听成功后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -301,6 +373,15 @@ onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttr
 | newAttrs | PrintAttributes | 是 | 表示新打印参数 |
 | fd | number | 是 | 表示文件描述符 |
 | writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | 是 | 表示更新要打印的文件完成后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -345,6 +426,15 @@ onJobStateChanged(jobId: string, state: PrintDocumentAdapterState): void
 | jobId | string | 是 | 表示打印任务ID |
 | state | PrintDocumentAdapterState | 是 | 表示打印任务更改为该状态 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -388,6 +478,15 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 | file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
 | callback | AsyncCallback&lt;PrintTask&gt; | 是 | 异步获取打印完成之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -430,6 +529,15 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 | -------- | -------- |
 | Promise&lt;PrintTask&gt; | 打印完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -466,6 +574,15 @@ print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;P
 | file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
 | context | Context | 是 | 用于启动打印的UIAbilityContext |
 | callback | AsyncCallback&lt;PrintTask&gt; | 是 | 异步获取打印完成之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -511,6 +628,15 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 | -------- | -------- |
 | Promise&lt;PrintTask&gt; | 打印完成结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -554,6 +680,15 @@ print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: Prin
 | **类型** | **说明** |
 | -------- | -------- |
 | Promise&lt;PrintTask&gt; | 打印完成结果 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 

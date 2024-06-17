@@ -25,8 +25,8 @@ For example, to save the image in the dialog box shown above, the application on
 1. Import the dependencies.
    
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import fs from '@ohos.file.fs';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+   import { fileIo } from '@kit.CoreFileKit';
    ```
 
 2. Set the image asset and add the \<**SaveButton**> component.
@@ -36,11 +36,11 @@ For example, to save the image in the dialog box shown above, the application on
    The following example uses the default parameters. For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md).<br>In addition, all security components inherit the [Security Component Universal Attributes](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md), which can be used to customize styles.
    
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import promptAction from '@ohos.promptAction';
-   import { BusinessError } from '@ohos.base';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+   import { fileIo } from '@kit.CoreFileKit';
+   import { common } from '@kit.AbilityKit';
+   import { promptAction } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    async function savePhotoToGallery(context: common.UIAbilityContext) {
      let helper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -48,13 +48,13 @@ For example, to save the image in the dialog box shown above, the application on
        // After onClick is triggered, call createAsset API within 5 seconds to create an image. After 5 seconds have elapsed, the permission to call createAsset is revoked.
        let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg');
        // Open the file based on its URI. The write process is not time bound.
-       let file = await fs.open(uri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+       let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
        context.resourceManager.getMediaContent($r('app.media.icon').id, 0)
          .then(async value => {
            let media = value.buffer;
            // Write data to the file in the media library.
-           await fs.write(file.fd, media);
-           await fs.close(file.fd);
+           await fileIo.write(file.fd, media);
+           await fileIo.close(file.fd);
            promptAction.showToast({message: 'Saved to album.'});
          });
      }

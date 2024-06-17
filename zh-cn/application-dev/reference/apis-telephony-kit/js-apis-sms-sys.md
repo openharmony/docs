@@ -1,11 +1,12 @@
 # @ohos.telephony.sms (短信服务)（系统接口）
 
-短信服务提供了管理短信的一些基础能力，包括创建、发送短信，获取、设置发送短信的默认SIM卡槽ID，获取、设置短信服务中心（SMSC）地址，以及检查当前设备是否具备短信发送和接收能力等。
+短信服务提供了管理短信的一些基础能力，包括发送、下载彩信，设置发送短信的默认SIM卡槽ID，获取、设置短信服务中心（SMSC）地址等。
 
 >**说明：**
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.sms (短信服务)](js-apis-sms.md)
+>
+>当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.sms (短信服务)](js-apis-sms.md)
 
 
 ## 导入模块
@@ -43,7 +44,7 @@ sendMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -52,7 +53,7 @@ sendMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;void
 **示例：**
 
 FA模型示例：
-
+<!--code_no_check_fa-->
 ```ts
 import { sms } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -158,7 +159,7 @@ sendMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -167,7 +168,7 @@ sendMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 **示例：**
 
 FA模型示例：
-
+<!--code_no_check_fa-->
 ```ts
 import { sms } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -266,7 +267,7 @@ downloadMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -275,7 +276,7 @@ downloadMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;
 **示例：**
 
 FA模型示例：
-
+<!--code_no_check_fa-->
 ```ts
 import { sms } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -343,7 +344,7 @@ let mmsPars: sms.MmsParams = {
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-    mms.downloadMms(this.context, mmsPars, async(err: BusinessError) =>{
+    sms.downloadMms(this.context, mmsPars, async(err: BusinessError) =>{
         if (err) {
             console.error(`downloadMms fail, err : ${JSON.stringify(err)}`);
             return;
@@ -387,7 +388,7 @@ downloadMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -396,7 +397,7 @@ downloadMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 **示例：**
 
 FA模型示例：
-
+<!--code_no_check_fa-->
 ```ts
 import { sms } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -501,7 +502,7 @@ setDefaultSmsSlotId\(slotId: number, callback: AsyncCallback&lt;void&gt;\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -552,7 +553,7 @@ setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -600,7 +601,7 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>\)
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -653,7 +654,7 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -702,7 +703,7 @@ getSmscAddr\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -753,7 +754,7 @@ getSmscAddr\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -801,7 +802,7 @@ splitMessage\(content: string, callback: AsyncCallback\<Array\<string\>\>\): voi
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -852,7 +853,7 @@ splitMessage\(content: string\): Promise\<Array\<string\>\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -900,7 +901,7 @@ addSimMessage\(options: SimMessageOptions, callback: AsyncCallback\<void\>\): vo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                           |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -956,7 +957,7 @@ addSimMessage\(options: SimMessageOptions\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1009,7 +1010,7 @@ delSimMessage\(slotId: number, msgIndex: number, callback: AsyncCallback\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1062,7 +1063,7 @@ delSimMessage\(slotId: number, msgIndex: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1111,7 +1112,7 @@ updateSimMessage\(options: UpdateSimMessageOptions, callback: AsyncCallback\<voi
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1168,7 +1169,7 @@ updateSimMessage\(options: UpdateSimMessageOptions\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1222,7 +1223,7 @@ getAllSimMessages\(slotId: number, callback: AsyncCallback\<Array\<SimShortMessa
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                         |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1273,7 +1274,7 @@ getAllSimMessages\(slotId: number\): Promise\<Array\<SimShortMessage\>\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                           |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1321,7 +1322,7 @@ setCBConfig\(options: CBConfigOptions, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                         |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1378,7 +1379,7 @@ setCBConfig\(options: CBConfigOptions\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                         |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1431,7 +1432,7 @@ getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean, callbac
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1481,7 +1482,7 @@ getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean\): Promi
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1526,7 +1527,7 @@ isImsSmsSupported\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                          |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1574,7 +1575,7 @@ isImsSmsSupported\(slotId: number\): Promise\<boolean\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                         |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1618,7 +1619,7 @@ getImsShortMessageFormat\(callback: AsyncCallback\<string\>\): void
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                           |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1700,7 +1701,7 @@ decodeMms\(mmsFilePathName: string | Array\<number\>, callback: AsyncCallback\<M
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1753,7 +1754,7 @@ decodeMms\(mmsFilePathName: string | Array\<number\>\): Promise\<MmsInformation\
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1806,7 +1807,7 @@ encodeMms\(mms: MmsInformation, callback: AsyncCallback\<Array\<number\>\>\): vo
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1862,7 +1863,7 @@ encodeMms\(mms: MmsInformation\): Promise\<Array\<number\>\>
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |

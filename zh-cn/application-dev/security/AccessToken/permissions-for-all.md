@@ -331,6 +331,18 @@
 
 **起始版本**：12
 
+### ohos.permission.PROTECT_SCREEN_LOCK_DATA
+
+允许应用在锁屏后保护本应用敏感数据不被访问。
+
+应用获取此权限后，系统将给用户新建一个高安全级别el5的目录。应用可以在此目录下存放数据，这部分数据在锁屏后无法被访问。没有调用接口。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：12
+
 ## user_grant（用户授权）权限列表
 
 以下权限的授权方式均为[user_grant（用户授权）](app-permission-mgmt-overview.md#user_grant用户授权)，申请方式请参考[声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) 。
@@ -409,6 +421,12 @@
 2. 当用户点击弹窗授予前台位置权限后，应用通过弹窗、提示窗等形式告知用户前往设置界面授予后台位置权限。
 3. 用户在设置界面中的选择“始终允许”应用访问位置信息权限，完成手动授予。
 
+   设置路径：
+   <!--RP1-->
+   - 路径一：设置 > 隐私 > 权限管理 > 位置信息 > *具体应用*
+   - 路径二：设置 > 隐私 > 权限管理 > 应用 > *具体应用* > 位置信息
+   <!--RP1End-->
+
 **权限级别**：normal
 
 **授权方式**：user_grant
@@ -419,7 +437,7 @@
 
 允许应用获取设备位置信息。
 
-**申请条件**：需要先申请模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)，才可申请此权限。
+**申请条件**：需要与模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)一起，才可申请此权限。
 
 **权限级别**：normal
 

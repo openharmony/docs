@@ -34,7 +34,7 @@
 
 - **entry &gt; src &gt; main &gt; ets**：用于存放ArkTS源码。
 
-更多工程介绍，请见[C++工程目录结构](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/project_overview-0000001053822398-V3#section3732132312179)。
+更多工程介绍，请见<!--RP1-->[C++工程目录结构](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/project_overview-0000001053822398-V3#section3732132312179)<!--RP1End-->。
 
 
 ## Native侧方法的实现

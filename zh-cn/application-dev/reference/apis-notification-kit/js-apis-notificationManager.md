@@ -29,10 +29,11 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
 | 1600003  | Failed to connect service.                           |
@@ -41,10 +42,10 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 | 1600007  | The notification is not exist.                       |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -96,10 +97,11 @@ publish(request: NotificationRequest): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
 | 1600003  | Failed to connect service.                           |
@@ -108,10 +110,10 @@ publish(request: NotificationRequest): Promise\<void\>
 | 1600007  | The notification is not exist.                       |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -156,10 +158,11 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -204,10 +207,11 @@ cancel(id: number, label?: string): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -242,10 +246,11 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -277,10 +282,11 @@ cancelAll(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -323,10 +329,11 @@ cancelAll(): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -360,10 +367,11 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -407,10 +415,11 @@ addSlot(type: SlotType): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -445,10 +454,11 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -492,10 +502,11 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -530,11 +541,12 @@ getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -571,10 +583,11 @@ getSlots(): Promise\<Array\<NotificationSlot>>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -608,10 +621,11 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -655,10 +669,11 @@ removeSlot(slotType: SlotType): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -692,10 +707,11 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -705,14 +721,14 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 ```ts
 import Base from '@ohos.base';
 
-let removeAllCallBack = (err: Base.BusinessError): void => {
+let removeAllSlotsCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAllSlots success");
     }
 }
-notificationManager.removeAllSlots(removeAllCallBack);
+notificationManager.removeAllSlots(removeAllSlotsCallback);
 ```
 
 ## notificationManager.removeAllSlots
@@ -731,10 +747,11 @@ removeAllSlots(): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -767,10 +784,13 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -809,10 +829,13 @@ isNotificationEnabled(): Promise\<boolean\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -853,8 +876,11 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
+
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -868,9 +894,9 @@ import Base from '@ohos.base';
 let badgeNumber: number = 10;
 
 notificationManager.setBadgeNumber(badgeNumber).then(() => {
-	console.info("displayBadge success");
+	console.info("setBadgeNumber success");
 }).catch((err: Base.BusinessError) => {
-    console.error(`displayBadge fail: ${JSON.stringify(err)}`);
+    console.error(`setBadgeNumber fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -891,10 +917,11 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -907,12 +934,11 @@ import Base from '@ohos.base';
 
 let setBadgeNumberCallback = (err: Base.BusinessError): void => {
     if (err) {
-        console.info(`displayBadge failed code is ${err.code}, message is ${err.message}`);
+        console.info(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("displayBadge success");
+        console.info("setBadgeNumber success");
     }
 }
-
 let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 ```
@@ -933,10 +959,11 @@ getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -973,10 +1000,11 @@ getActiveNotificationCount(): Promise\<number\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1009,10 +1037,11 @@ getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): v
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1026,10 +1055,9 @@ let getActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notif
     if (err) {
         console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getActiveNotifications success");
+        console.info("getActiveNotifications success" + JSON.stringify(data));
     }
 }
-
 notificationManager.getActiveNotifications(getActiveNotificationsCallback);
 ```
 
@@ -1049,10 +1077,11 @@ getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-no
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1063,9 +1092,9 @@ getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-no
 import Base from '@ohos.base';
 
 notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
-	console.info("getActiveNotifications success, data: " + JSON.stringify(data));
+	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
-    console.error(`getActiveNotifications fail: ${JSON.stringify(err)}`);
+    console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1086,10 +1115,11 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1134,10 +1164,11 @@ cancelGroup(groupName: string): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1167,15 +1198,16 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 
 | 参数名       | 类型                     | 必填 | 说明                       |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| templateName | string                   | 是   | 模板名称。                   |
+| templateName | string                   | 是   | 模板名称。当前仅支持'downloadTemplate'。                   |
 | callback     | AsyncCallback\<boolean\> | 是   | 查询模板是否存在的回调函数（true：存在，false：不存在）。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1190,10 +1222,9 @@ let isSupportTemplateCallback = (err: Base.BusinessError, data: boolean): void =
     if (err) {
         console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isSupportTemplate success");
+        console.info("isSupportTemplate success, data: " + JSON.stringify(data));
     }
 }
-
 notificationManager.isSupportTemplate(templateName, isSupportTemplateCallback);
 ```
 
@@ -1209,7 +1240,7 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 
 | 参数名       | 类型   | 必填 | 说明     |
 | ------------ | ------ | ---- | -------- |
-| templateName | string | 是   | 模板名称。 |
+| templateName | string | 是   | 模板名称。当前仅支持'downloadTemplate'。 |
 
 **返回值：**
 
@@ -1219,10 +1250,11 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1256,15 +1288,16 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
@@ -1297,15 +1330,16 @@ requestEnableNotification(): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
@@ -1338,22 +1372,23 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
 ```ts
 import Base from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.Window';
+import window from '@ohos.window';
 
 class MyAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1393,22 +1428,23 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
 ```ts
 import Base from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.Window';
+import window from '@ohos.window';
 
 class MyAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1437,10 +1473,11 @@ isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1477,10 +1514,11 @@ isDistributedEnabled(): Promise\<boolean>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |

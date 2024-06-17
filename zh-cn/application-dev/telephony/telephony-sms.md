@@ -52,9 +52,8 @@
 
 ```ts
 // 示例代码
-import sms from '@ohos.telephony.sms';
-import { AsyncCallback } from '@ohos.base';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
@@ -81,8 +80,7 @@ sms.sendShortMessage(options, (err: BusinessError) => {
 
 ```ts
 // 示例代码
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
+import { common, Want } from '@kit.AbilityKit';
 
 const MMS_BUNDLE_NAME = "com.ohos.mms";
 const MMS_ABILITY_NAME = "com.ohos.mms.MainAbility";

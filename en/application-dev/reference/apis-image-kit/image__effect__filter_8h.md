@@ -13,7 +13,7 @@ With these APIs, you can quickly implement basic effect processing or connect mu
 
 **Since**: 12
 
-**Related module**: [ImageEffect] (_image_effect.md)
+**Related module**: [ImageEffect](_image_effect.md)
 
 
 ## Summary

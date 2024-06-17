@@ -14,14 +14,14 @@ CanvasRenderingContext2D(settings?: RenderingContextSettings, unit?: LengthMetri
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名      | 参数类型                                     | 必填   | 参数描述                                     |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | settings | [RenderingContextSettings](#renderingcontextsettings) | 否    | 用来配置CanvasRenderingContext2D对象的参数，见[RenderingContextSettings](#renderingcontextsettings)。 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](#lengthmetricsunit12) | 否    | 用来配置CanvasRenderingContext2D对象的单位模式，配置后无法更改，见[LengthMetricsUnit](#lengthmetricsunit12)。 |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置CanvasRenderingContext2D对象的单位模式，配置后无法更改，见[LengthMetricsUnit](#lengthmetricsunit12)。 |
 
 
 ### RenderingContextSettings
@@ -32,7 +32,7 @@ RenderingContextSettings(antialias?: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -40,9 +40,54 @@ RenderingContextSettings(antialias?: boolean)
 | --------- | ------- | ---- | ----------------------------- |
 | antialias | boolean | 否    | 表明canvas是否开启抗锯齿。<br>默认值：false |
 
+### LengthMetricsUnit<sup>12+</sup>
+
+用来配置CanvasRenderingContext2D对象的单位模式，配置后无法动态更改。
+
+**示例：**
+
+```ts
+// xxx.ets
+import { LengthMetricsUnit, LengthMetrics} from '@ohos.arkui.node'
+
+@Entry
+@Component
+struct LengthMetricsUnitDemo {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private contextPX: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings, LengthMetricsUnit.PX);
+  private contextVP: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.contextPX)
+        .width('100%')
+        .height(150)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          this.contextPX.fillRect(10,10,100,100)
+          this.contextPX.clearRect(10,10,50,50)
+        })
+
+      Canvas(this.contextVP)
+        .width('100%')
+        .height(150)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          this.contextVP.fillRect(10,10,100,100)
+          this.contextVP.clearRect(10,10,50,50)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![CanvasContext2DUnitMode](figures/CanvasContext2DUnitMode.png)
+
 ## 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                                       | 类型                                       | 描述                                       |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
@@ -867,7 +912,7 @@ fillRect(x: number, y: number, w: number, h: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -915,7 +960,7 @@ strokeRect(x: number, y: number, w: number, h: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -963,7 +1008,7 @@ clearRect(x: number, y: number, w: number, h: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1013,7 +1058,7 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1062,7 +1107,7 @@ strokeText(text: string, x: number, y: number, maxWidth?:number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1111,7 +1156,7 @@ measureText(text: string): TextMetrics
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1164,7 +1209,7 @@ stroke(path?: Path2D): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1214,7 +1259,7 @@ beginPath(): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **示例：**
 
@@ -1258,7 +1303,7 @@ moveTo(x: number, y: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1307,7 +1352,7 @@ lineTo(x: number, y: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1356,7 +1401,7 @@ closePath(): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **示例：**
 
@@ -1400,7 +1445,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1457,7 +1502,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1510,7 +1555,7 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1561,7 +1606,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1613,7 +1658,7 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1664,7 +1709,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1721,7 +1766,7 @@ rect(x: number, y: number, w: number, h: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1770,7 +1815,7 @@ fill(fillRule?: CanvasFillRule): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数:** 
 
@@ -1870,7 +1915,7 @@ clip(fillRule?: CanvasFillRule): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数:** 
 
@@ -2003,6 +2048,62 @@ reset(): void
   ![zh-cn_image_0000001239032460](figures/zh-cn_image_0000001239032460.png)
 
 
+### saveLayer<sup>12+</sup>
+
+saveLayer(): void
+
+创建一个图层。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct saveLayer {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.context.fillStyle = "#0000ff"
+          this.context.fillRect(50,100,300,100)
+          this.context.fillStyle = "#00ffff"
+          this.context.fillRect(50,150,300,100)
+          this.context.globalCompositeOperation = 'destination-over'
+          this.context.saveLayer()
+          this.context.globalCompositeOperation = 'source-over'
+          this.context.fillStyle = "#ff0000"
+          this.context.fillRect(100,50,100,300)
+          this.context.fillStyle = "#00ff00"
+          this.context.fillRect(150,50,100,300)
+          this.context.restoreLayer()
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+  }
+
+  ```
+   ![zh-cn_image_CanvasSavelayer](figures/zh-cn_image_CanvasSavelayer.png)
+
+### restoreLayer<sup>12+</sup>
+
+restoreLayer(): void
+
+恢复图像变换和裁剪状态至saveLayer前的状态，并将图层绘制在canvas上。restoreLayer示例同saveLayer。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+
 ### resetTransform
 
 resetTransform(): void
@@ -2011,7 +2112,7 @@ resetTransform(): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### rotate
 
@@ -2021,7 +2122,7 @@ rotate(angle: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2067,7 +2168,7 @@ scale(x: number, y: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2116,7 +2217,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 > **说明：**
 > 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
@@ -2180,7 +2281,7 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2290,7 +2391,7 @@ getTransform(): Matrix2D
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -2352,7 +2453,7 @@ translate(x: number, y: number): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2404,7 +2505,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持PixelMap对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2459,7 +2560,7 @@ createImageData(sw: number, sh: number): ImageData
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2494,7 +2595,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 以当前canvas指定区域内的像素创建[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)对象，该接口存在内存拷贝行为，高耗时，应避免频繁使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2550,7 +2651,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2610,7 +2711,7 @@ putImageData(imageData: ImageData, dx: number | string, dy: number | string, dir
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2669,7 +2770,7 @@ setLineDash(segments: number[]): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：** 
 
@@ -2716,7 +2817,7 @@ getLineDash(): number[]
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：** 
 
@@ -2774,7 +2875,7 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：** 
 
@@ -2828,7 +2929,7 @@ toDataURL(type?: string, quality?: number): string
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：** 
 
@@ -2883,7 +2984,7 @@ restore(): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **示例：**
 
@@ -2925,7 +3026,7 @@ save(): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **示例：**
 
@@ -2967,7 +3068,7 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): CanvasGrad
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -3026,7 +3127,7 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -3084,7 +3185,7 @@ createConicGradient(startAngle: number, x: number, y: number): CanvasGradient
 
 创建一个圆锥渐变色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -3151,7 +3252,7 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| config   | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig12) | 是   | 执行AI分析所需要的入参，用于配置AI分析功能。 |
+| config   | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是   | 执行AI分析所需要的入参，用于配置AI分析功能。 |
 
 **返回值：**
 
@@ -3186,6 +3287,8 @@ stopImageAnalyzer(): void
 
 ```ts
 // xxx.ets
+import { BusinessError } from '@ohos.base';
+
 @Entry
 @Component
 struct ImageAnalyzerExample {
@@ -3195,6 +3298,11 @@ struct ImageAnalyzerExample {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
   }
   private img = new ImageBitmap('page/common/test.jpg')
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController()
+  private options: ImageAIOptions = {
+    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
+    aiController: this.aiController
+  }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3216,9 +3324,15 @@ struct ImageAnalyzerExample {
         .onClick(() => {
           this.context.stopImageAnalyzer()
         })
-      Canvas(this.context)
+      Button('getTypes')
         .width(80)
         .height(80)
+        .onClick(() => {
+          this.aiController.getImageAnalyzerSupportTypes()
+        })
+      Canvas(this.context, this.options)
+        .width(200)
+        .height(200)
         .enableAnalyzer(true)
         .onReady(() => {
           this.context.drawImage(this.img, 0, 0, 200, 200)
@@ -3234,7 +3348,7 @@ struct ImageAnalyzerExample {
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称      | 描述                  |
 | ------- | ------------------- |
@@ -3246,7 +3360,7 @@ struct ImageAnalyzerExample {
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称      | 描述    |
 | ------- | ----- |
@@ -3257,7 +3371,7 @@ struct ImageAnalyzerExample {
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -3269,7 +3383,7 @@ struct ImageAnalyzerExample {
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称    | 描述                                       |
 | ----- | ---------------------------------------- |
@@ -3281,7 +3395,7 @@ struct ImageAnalyzerExample {
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 描述           |
 | ------ | ------------ |
@@ -3295,7 +3409,7 @@ struct ImageAnalyzerExample {
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称          | 描述                                       |
 | ----------- | ---------------------------------------- |
@@ -3310,7 +3424,7 @@ struct ImageAnalyzerExample {
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 描述   |
 | ------ | ---- |
@@ -3318,59 +3432,9 @@ struct ImageAnalyzerExample {
 | medium | 中画质  |
 | high   | 高画质  |
 
-## LengthMetricsUnit<sup>12+</sup>
-
-用来配置CanvasRenderingContext2D对象的单位模式，设置后无法动态更改。
-
-| 名称    | 描述   |
-| ------- | -----  |
-| DEFAULT | vp模式 |
-| PX      | px模式 |
-
-**示例：**
-
-```ts
-// xxx.ets
-import { LengthMetricsUnit, LengthMetrics} from '@ohos.arkui.node'
-
-@Entry
-@Component
-struct LengthMetricsUnitDemo {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true);
-  private contextPX: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings, LengthMetricsUnit.PX);
-  private contextVP: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.contextPX)
-        .width('100%')
-        .height(150)
-        .backgroundColor('#ffff00')
-        .onReady(() => {
-          this.contextPX.fillRect(10,10,100,100)
-          this.contextPX.clearRect(10,10,50,50)
-        })
-
-      Canvas(this.contextVP)
-        .width('100%')
-        .height(150)
-        .backgroundColor('#ffff00')
-        .onReady(() => {
-          this.contextVP.fillRect(10,10,100,100)
-          this.contextVP.clearRect(10,10,50,50)
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-
-![CanvasContext2DUnitMode](figures/CanvasContext2DUnitMode.png)
-
 ## TextMetrics
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 属性                       | 类型     | 描述                                       |
 | ------------------------ | ------ | ---------------------------------------- |

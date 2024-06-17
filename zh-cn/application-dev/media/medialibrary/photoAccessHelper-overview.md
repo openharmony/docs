@@ -4,12 +4,21 @@ Media Library Kit（媒体文件管理服务）提供了管理相册和媒体文
 
 ## 能力范围
 
-通过Media Library Kit, 开发者可以管理相册和媒体文件，包括创建相册以及访问、修改相册中的媒体信息等，其中对三方应用开放的能力有：
+通过Media Library Kit, 开发者可以管理相册和媒体文件，包括创建相册以及访问、修改相册中的媒体信息等。
+
+面向**所有应用**开放如下能力：
+
+- [使用Picker选择媒体库资源](photoAccessHelper-photoviewpicker.md)
+- [使用安全控件保存媒体库资源](photoAccessHelper-savebutton.md)
+
+面向**三方应用受限**开放如下能力：
+
+> **注意：**
+> 受限开放的能力需要[申请相册管理模块的读写操作权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)。<!--RP1-->这部分权限受限开放。<!--RP1End-->
 
 - [媒体资源（图片、视频）相关](photoAccessHelper-resource-guidelines.md)，包括：
   - 获取指定媒体资源
   - 获取图片和视频缩略图
-  - 创建媒体资源（安全控件）
   - 重命名媒体资源
 - [用户相册相关](photoAccessHelper-userAlbum-guidelines.md)，包括：
   - 获取用户相册
@@ -25,7 +34,7 @@ Media Library Kit（媒体文件管理服务）提供了管理相册和媒体文
   - 取消指定URI的监听
 
 <!--Del-->
-还为系统应用开放如下能力：
+面向**系统应用**开放如下能力：
 
 - 媒体资源增删操作，包括：
   - 创建媒体资源

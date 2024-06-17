@@ -14,57 +14,56 @@
 - 各类Context的获取方式
   - 获取[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。每个UIAbility中都包含了一个Context属性，提供操作应用组件、获取应用组件的配置信息等能力。
     
-     ```ts
-     import UIAbility from '@ohos.app.ability.UIAbility';
-     import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-     import type Want from '@ohos.app.ability.Want';
-     export default class EntryAbility extends UIAbility {
-       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-         let uiAbilityContext = this.context;
-         //...
-       }
-     }
-     ```
+    ```ts
+    import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+
+    export default class EntryAbility extends UIAbility {
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        let uiAbilityContext = this.context;
+        //...
+      }
+    }
+    ```
      
      > **说明：**
      >
      > 页面中获取UIAbility实例的上下文信息请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
   - 获取特定场景[ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md)。以ServiceExtensionContext为例，表示后台服务的上下文环境，继承自ExtensionContext，提供后台服务相关的接口能力。
     
-     ```ts
-     import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-     import Want from '@ohos.app.ability.Want';
-     export default class MyService extends ServiceExtensionAbility {
-       onCreate(want: Want) {
-         let serviceExtensionContext = this.context;
-         //...
-       }
-     }
-     ```
+    ```ts
+    import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+
+    export default class ServiceExtAbility extends ServiceExtensionAbility {
+      onCreate(want: Want) {
+        let serviceExtensionContext = this.context;
+        //...
+      }
+    }
+    ```
   - 获取[AbilityStageContext](../reference/apis-ability-kit/js-apis-inner-application-abilityStageContext.md)。Module级别的Context，和基类Context相比，额外提供HapModuleInfo、Configuration等信息。
     
-     ```ts
-     import AbilityStage from '@ohos.app.ability.AbilityStage';
-     export default class MyAbilityStage extends AbilityStage {
-       onCreate(): void {
-         let abilityStageContext = this.context;
-         //...
-       }
-     }
-     ```
+    ```ts
+    import { AbilityStage } from '@kit.AbilityKit';
+
+    export default class MyAbilityStage extends AbilityStage {
+      onCreate(): void {
+        let abilityStageContext = this.context;
+        //...
+      }
+    }
+    ```
   - 获取[ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)。应用级别的Context。ApplicationContext在基类Context的基础上提供了订阅应用内应用组件的生命周期的变化、订阅系统内存变化和订阅应用内系统环境的变化的能力，在UIAbility、ExtensionAbility、AbilityStage中均可以获取。
     
-     ```ts
-     import UIAbility from '@ohos.app.ability.UIAbility';
-     import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-     import type Want from '@ohos.app.ability.Want';
-     export default class EntryAbility extends UIAbility {
-       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-         let applicationContext = this.context.getApplicationContext();
-         //...
-       }
-     }
-     ```
+    ```ts
+    import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+
+    export default class EntryAbility extends UIAbility {
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        let applicationContext = this.context.getApplicationContext();
+        //...
+      }
+    }
+    ```
 
 
 ## Context的典型使用场景
@@ -95,45 +94,55 @@
   | tempDir | <路径前缀>/<加密等级>/base/temp |
   | databaseDir | <路径前缀>/<加密等级>/database |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles |
-  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/hmdfs/cloud/data |
+  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/cloud |
 
   示例代码如下所示。
 
   ```ts
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction';
-  
+  import { common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { promptAction } from '@kit.ArkUI';
+
   const TAG: string = '[Page_Context]';
   const DOMAIN_NUMBER: number = 0xFF00;
+
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
-  
+
     build() {
-      //...
-      Button()
-        .onClick(() => {
-          let applicationContext = this.context.getApplicationContext();
-          let cacheDir = applicationContext.cacheDir;
-          let tempDir = applicationContext.tempDir;
-          let filesDir = applicationContext.filesDir;
-          let databaseDir = applicationContext.databaseDir;
-          let bundleCodeDir = applicationContext.bundleCodeDir;
-          let distributedFilesDir = applicationContext.distributedFilesDir;
-          let preferencesDir = applicationContext.preferencesDir;
-          let cloudFileDir = applicationContext.cloudFileDir;
-          // 获取应用文件路径
-          let filePath = tempDir + 'test.txt';
-          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-          if (filePath !== null) {
-            promptAction.showToast({
-            message: filePath
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let applicationContext = this.context.getApplicationContext();
+              let cacheDir = applicationContext.cacheDir;
+              let tempDir = applicationContext.tempDir;
+              let filesDir = applicationContext.filesDir;
+              let databaseDir = applicationContext.databaseDir;
+              let bundleCodeDir = applicationContext.bundleCodeDir;
+              let distributedFilesDir = applicationContext.distributedFilesDir;
+              let preferencesDir = applicationContext.preferencesDir;
+              // 获取应用文件路径
+              let filePath = tempDir + 'test.txt';
+              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+              if (filePath !== null) {
+                promptAction.showToast({
+                  message: filePath
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -149,44 +158,54 @@
   | tempDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/temp |
   | databaseDir | <路径前缀>/<加密等级>/database/**\<module-name>** |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles/**\<module-name>** |
-  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/hmdfs/cloud/data/**\<module-name>** |
+  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/cloud/**\<module-name>** |
 
   示例代码如下所示。
 
   ```ts
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction';
-  
+  import { common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { promptAction } from '@kit.ArkUI';
+
   const TAG: string = '[Page_Context]';
   const DOMAIN_NUMBER: number = 0xFF00;
+
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
-  
+
     build() {
-      //...
-      Button()
-        .onClick(() => {
-          let cacheDir = this.context.cacheDir;
-          let tempDir = this.context.tempDir;
-          let filesDir = this.context.filesDir;
-          let databaseDir = this.context.databaseDir;
-          let bundleCodeDir = this.context.bundleCodeDir;
-          let distributedFilesDir = this.context.distributedFilesDir;
-          let preferencesDir = this.context.preferencesDir;
-          let cloudFileDir = this.context.cloudFileDir;
-          // 获取应用文件路径
-          let filePath = tempDir + 'test.txt';
-          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-          if (filePath !== null) {
-            promptAction.showToast({
-              message: filePath
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let cacheDir = this.context.cacheDir;
+              let tempDir = this.context.tempDir;
+              let filesDir = this.context.filesDir;
+              let databaseDir = this.context.databaseDir;
+              let bundleCodeDir = this.context.bundleCodeDir;
+              let distributedFilesDir = this.context.distributedFilesDir;
+              let preferencesDir = this.context.preferencesDir;
+              // 获取应用文件路径
+              let filePath = tempDir + 'test.txt';
+              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+              if (filePath !== null) {
+                promptAction.showToast({
+                  message: filePath
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -207,10 +226,7 @@
 
 要实现获取和设置当前加密分区，可以通过读写[Context](../reference/apis-ability-kit/js-apis-inner-application-context.md)的`area`属性来实现。
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import contextConstant from '@ohos.app.ability.contextConstant';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { UIAbility, contextConstant, AbilityConstant, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -233,44 +249,54 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 ```ts
-import contextConstant from '@ohos.app.ability.contextConstant';
-import common from '@ohos.app.ability.common';
-import promptAction from '@ohos.promptAction';
+import { contextConstant, common } from '@kit.AbilityKit';
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Page_Context {
-
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
-    //...
-    Button()
-      .onClick(() => {
-        // 存储普通信息前，切换到EL1设备级加密
-        if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
-          this.context.area = contextConstant.AreaMode.EL1; // 修改area
-          promptAction.showToast({
-            message: 'SwitchToEL1'
-          });
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        //...
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            // 存储普通信息前，切换到EL1设备级加密
+            if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
+              this.context.area = contextConstant.AreaMode.EL1; // 修改area
+              promptAction.showToast({
+                message: $r('app.string.SwitchToEL1')
+              });
+            }
+            // 存储普通信息
+          })
         }
-        // 存储普通信息
-      })
-    
-    //...
-
-    Button()
-      .onClick(() => {
-        // 存储敏感信息前，切换到EL2用户级加密
-        if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
-          this.context.area = contextConstant.AreaMode.EL2; // 修改area
-          promptAction.showToast({
-            message: 'SwitchToEL2'
-          });
+        //...
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            // 存储敏感信息前，切换到EL2用户级加密
+            if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
+              this.context.area = contextConstant.AreaMode.EL2; // 修改area
+              promptAction.showToast({
+                message: $r('app.string.SwitchToEL2')
+              });
+            }
+            // 存储敏感信息
+          })
         }
-        // 存储敏感信息
-      })
-    
+        //...
+      }
+      //...
+    }
     //...
   }
 }
@@ -282,26 +308,39 @@ struct Page_Context {
 调用`createModuleContext(moduleName:string)`方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
   
   ```ts
-  import promptAction from '@ohos.promptAction';
-  import common from '@ohos.app.ability.common';
-  
+  import { common } from '@kit.AbilityKit';
+  import { promptAction } from '@kit.ArkUI';
+
   let storageEventCall = new LocalStorage();
-  
+
   @Entry(storageEventCall)
   @Component
-  struct Page_ContextAbility {
+  struct Page_Context {
     private context = getContext(this) as common.UIAbilityContext;
+
     build() {
-      Button()
-        .onClick(() => {
-          let moduleName2: string = 'entry';
-          let moduleContext: Context = this.context.createModuleContext(moduleName2);
-          if (moduleContext !== null) {
-            promptAction.showToast({
-              message: ('成功获取Context')
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let moduleName2: string = 'entry';
+              let moduleContext: Context = this.context.createModuleContext(moduleName2);
+              if (moduleContext !== null) {
+                promptAction.showToast({
+                  message: ('成功获取Context')
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -315,12 +354,10 @@ struct Page_Context {
 
 
 ```ts
-import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import type AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
-import type window from '@ohos.window';
+import { AbilityConstant, AbilityLifecycleCallback, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import  { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[LifecycleAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -375,18 +412,29 @@ export default class LifecycleAbility extends UIAbility {
     };
     // 获取应用上下文
     let applicationContext = this.context.getApplicationContext();
-    // 注册应用内生命周期回调
-    this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+    try {
+      // 注册应用内生命周期回调
+      this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
+    };
     hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
-
   //...
-
-  onDestroy() : void {
+  onDestroy(): void {
     // 获取应用上下文
     let applicationContext = this.context.getApplicationContext();
-    // 取消应用内生命周期回调
-    applicationContext.off('abilityLifecycle', this.lifecycleId);
+    try {
+      // 取消应用内生命周期回调
+      applicationContext.off('abilityLifecycle', this.lifecycleId);
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
+    };
+
   }
-};
+}
 ```

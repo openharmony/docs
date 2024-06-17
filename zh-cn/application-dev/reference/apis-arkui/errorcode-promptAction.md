@@ -44,7 +44,7 @@ NA
 
 **错误信息**
 
-Dialog content already exist.
+Dialog content already exists.
 
 **错误描述**
 

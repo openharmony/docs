@@ -102,7 +102,7 @@ Enable the default system audio effect.
 
 ## Obtaining the Global Audio Effect Mode
 
-Obtain the global audio effect mode corresponding to a specific audio stream usage (specified by [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)).
+Obtain the global audio effect mode corresponding to a specific audio stream usage, which is specified by [StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage).
 
 For an audio playback application, pay attention to the audio effect mode used by the audio stream of the application and perform corresponding operations. For example, for a music application, select the audio effect mode for the music scenario. Before obtaining the global audio effect mode, call **getStreamManager()** to create an **AudioStreamManager** instance.
 

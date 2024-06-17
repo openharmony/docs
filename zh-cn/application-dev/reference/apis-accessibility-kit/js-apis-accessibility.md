@@ -498,14 +498,6 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: Asyn
 | stateType   | [AbilityState](#abilitystate)            | 是    | 辅助应用的状态。         |
 | callback    | AsyncCallback&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | 是    | 回调函数，返回辅助应用信息列表。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-
 **示例：**
 
 ```ts
@@ -631,14 +623,6 @@ getAccessibilityExtensionListSync(abilityType: AbilityType, stateType: AbilitySt
 | 类型                                       | 说明                    |
 | ---------------------------------------- | --------------------- |
 | Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt; | 返回辅助应用信息列表。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -887,7 +871,7 @@ isOpenAccessibilitySync(): boolean
 
 是否启用了辅助功能。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -980,7 +964,7 @@ isOpenTouchGuideSync(): boolean
 
 是否开启了触摸浏览模式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 

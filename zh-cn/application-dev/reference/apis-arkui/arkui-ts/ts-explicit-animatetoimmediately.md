@@ -11,13 +11,13 @@ animateToImmediately接口用来提供[显式动画](ts-explicit-animation.md)�
 
 ## animateToImmediately
 
-animateToImmediately(value: [AnimateParam](ts-explicit-animation.md#animateparam对象说明) , event: () => void): void
+animateToImmediately(value: AnimateParam , event: () => void): void
 
 提供显式动画立即下发功能。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数： **
+**参数：** 
 
 | 参数名 | 类型                                                         | 是否必填 | 描述                                                         |
 | ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |

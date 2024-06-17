@@ -22,7 +22,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
 
-## BundleChangeInfo
+## BundleChangedInfo
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 

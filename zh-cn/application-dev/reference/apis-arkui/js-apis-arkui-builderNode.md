@@ -18,7 +18,7 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 
 节点渲染类型枚举。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -41,7 +41,7 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 
 创建BuilderNode时的可选参数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -57,7 +57,7 @@ class BuilderNode<Args extends Object[]>
 
 BuilderNode支持通过无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)生成组件树，并持有组件树的根节点。不支持定义为状态变量。BuilderNode中持有的FrameNode仅用于将该BuilderNode作为子节点挂载到其他FrameNode上。对BuilderNode持有的FrameNode进行属性设置与子节点操作可能会产生未定义行为，因此不建议通过BuilderNode的[getFrameNode](#getframenode)方法和[FrameNode](js-apis-arkui-frameNode.md#framenode)的[getRenderNode](js-apis-arkui-frameNode.md#getrendernode)方法获取RenderNode，并通过[RenderNode](js-apis-arkui-renderNode.md#rendernode)的接口对其进行属性设置与子节点操作。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -67,7 +67,7 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 
 当将BuilderNode生成的内容嵌入到其它RenderNode中显示时，即将BuilderNode对应的RenderNode挂载到另一个RenderNode中显示，需要显式指定RenderOptions中的selfIdealSize，否则Builder内的节点默认父组件布局约束为[0,0],即不设置selfIdealSize则认为BuilderNode中子树的根节点大小为[0,0]。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,14 +76,17 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 | uiContext | [UIContext](js-apis-arkui-UIContext.md) | 是   | UI上下文，获取方式可参考[UIContext获取方法](./js-apis-arkui-node.md#uicontext获取方法)。 |
 | options   | [RenderOptions](#renderoptions)         | 否   | BuilderNode的构造可选参数。                                       |
 
+> **说明**
+> uiContext的入参需要为一个有效的值，即UI上下文正确，如果传入非法值或者未设置，会导致创建失败。
+
 ### build
 
 build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
-支持自定义组件。不支持使用自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Prop](../../quick-start/arkts-prop.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
+支持自定义组件。不支持使用自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -101,7 +104,7 @@ getFrameNode(): FrameNode | null
 
 获取BuilderNode中的FrameNode。在BuilderNode执行build操作之后，才会生成FrameNode。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -251,7 +254,7 @@ update(arg: Object): void
 
 根据提供的参数更新BuilderNode，该参数为[build](#build)方法调用时传入的参数类型相同。对自定义组件进行update的时候需要在自定义组件中使用的变量定义为@Prop类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -359,7 +362,7 @@ postTouchEvent(event: TouchEvent): boolean
 
 将原始事件派发到某个BuilderNode创建出的FrameNode上。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -452,9 +455,9 @@ struct MyComponent {
 
 dispose(): void
 
-立即释放当前BuilderNode。
+立即释放当前BuilderNode。当BuilderNode对象调用dispose接口之后，不仅BuilderNode对象与后端实体节点解除引用关系，BuilderNode中的FrameNode与RenderNode也会同步和实体节点解除引用关系。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -534,6 +537,162 @@ struct Index {
           this.myNodeController.dispose();
         })
         .width('100%')
+    }
+  }
+}
+```
+
+### reuse<sup>12+</sup>
+
+reuse(param?: Object): void
+
+传递reuse事件到BuiderNode中的自定义组件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                                     |
+| ------ | ------ | ---- | ------------------------------------------------------------------------ |
+| param  | Object | 否   | 用于复用BuilderNode的参数，和[build](#build)调用时传入的参数类型一致。 |
+
+### recycle<sup>12+</sup>
+
+recycle(): void
+
+传递recycle事件到BuiderNode中的自定义组件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+```ts
+import { FrameNode, NodeController, BuilderNode } from "@ohos.arkui.node"
+import { UIContext } from "@ohos.arkui.UIContext"
+
+class MyDataSource {
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | null = null
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: string) {
+    this.dataArray.push(data);
+  }
+
+  public reloadListener(): void {
+    this.listener?.onDataReloaded();
+  }
+
+  public registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener;
+  }
+
+  public unregisterDataChangeListener(): void {
+    this.listener = null;
+  }
+}
+
+class Params {
+  item: string = '';
+
+  constructor(item: string) {
+    this.item = item;
+  }
+}
+
+@Builder
+function buildNode(param: Params = new Params("hello")) {
+  ReusableChildComponent2({ item: param.item });
+}
+
+class MyNodeController extends NodeController {
+  public builderNode: BuilderNode<[Params]> | null = null;
+  public item: string = "";
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    if (this.builderNode == null) {
+      this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 300, height: 200 } });
+      this.builderNode.build(wrapBuilder<[Params]>(buildNode), new Params(this.item));
+    }
+    return this.builderNode.getFrameNode();
+  }
+}
+
+@Reusable
+@Component
+struct ReusableChildComponent {
+  @State item: string = '';
+  private controller: MyNodeController = new MyNodeController();
+
+  aboutToAppear() {
+    this.controller.item = this.item;
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent aboutToRecycle " + this.item);
+    this.controller?.builderNode?.recycle();
+  }
+
+  aboutToReuse(params: object): void {
+    console.log("ReusableChildComponent aboutToReuse " + JSON.stringify(params));
+    this.controller?.builderNode?.reuse(params);
+  }
+
+  build() {
+    NodeContainer(this.controller);
+  }
+}
+
+@Component
+struct ReusableChildComponent2 {
+  @Prop item: string = "false";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log("ReusableChildComponent2 Reusable 2 " + JSON.stringify(params));
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent2 aboutToRecycle 2 " + this.item);
+  }
+
+  build() {
+    Row() {
+      Text(this.item)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
+
+
+@Entry
+@Component
+struct Index {
+  @State data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0;i < 100; i++) {
+      this.data.pushData(i.toString());
+    }
+  }
+
+  build() {
+    Column() {
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            ReusableChildComponent({ item: item })
+          }
+        }, (item: string) => item)
+      }
+      .width('100%')
+      .height('100%')
     }
   }
 }

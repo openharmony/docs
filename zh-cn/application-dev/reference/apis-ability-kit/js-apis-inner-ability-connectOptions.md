@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -24,35 +24,31 @@ import common from '@ohos.app.ability.common';
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import common from '@ohos.app.ability.common';
-  import Want from '@ohos.app.ability.Want';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import bundleManager from '@ohos.bundle.bundleManager';
-  import rpc from '@ohos.rpc';
+```ts
+import { UIAbility, common, Want, AbilityConstant } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
-  let connectWant: Want = {
-    bundleName: 'com.example.myapp',
-    abilityName: 'MyAbility'
-  };
+let connectWant: Want = {
+  bundleName: 'com.example.myapp',
+  abilityName: 'MyAbility'
+};
 
-  let connectOptions: common.ConnectOptions = {
-    onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
-      console.log(`onConnect elementName: ${elementName}`);
-    },
-    onDisconnect(elementName: bundleManager.ElementName) {
-      console.log(`onDisconnect elementName: ${elementName}`);
-    },
-    onFailed(code: number) {
-      console.error(`onFailed code: ${code}`);
-    }
-  };
-
-
-  class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      let connection: number = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
-    }
+let connectOptions: common.ConnectOptions = {
+  onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
+    console.log(`onConnect elementName: ${elementName}`);
+  },
+  onDisconnect(elementName: bundleManager.ElementName) {
+    console.log(`onDisconnect elementName: ${elementName}`);
+  },
+  onFailed(code: number) {
+    console.error(`onFailed code: ${code}`);
   }
-  ```
+};
+
+class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let connection: number = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
+  }
+}
+```

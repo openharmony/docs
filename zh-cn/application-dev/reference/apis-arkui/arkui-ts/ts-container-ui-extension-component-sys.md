@@ -69,13 +69,16 @@ onReceive(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#cal
 | ---------------------------- | ------ | ------------------------------------------------------------ |
 | data                        | { [key: string]: Object } | 收到来自对端Ability的数据。                 |
 
-### onResult
+### onResult<sup>(deprecated)</sup>
 
 onResult(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<{code: number; want?: Want}>)
 
 被拉起的Ability扩展调用terminateSelfWithResult时会先触发本回调函数，再触发OnRelease。
 
 本回调内可处理对端Ability的结果数据，可参考[AbilityResult](../../apis-ability-kit/js-apis-inner-ability-abilityResult.md)。
+
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃，建议使用[onTerminated](#onterminated12)替代。
 
 **参数：**
 
@@ -84,7 +87,7 @@ onResult(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#call
 | code                        | number | 收到来自对端Ability的处理結果code。                          |
 | want                        | Want | 收到来自对端Ability的处理結果[Want](../../apis-ability-kit/js-apis-app-ability-want.md)。 |
 
-### onRelease
+### onRelease<sup>(deprecated)</sup>
 
 onRelease(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number>)
 
@@ -93,6 +96,9 @@ onRelease(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#cal
 被拉起的Ability扩展调用terminateSelfWithResult或者terminateSelf时会触发本回调，此时releaseCode为0，即正常销毁。
 
 被拉起的Ability扩展意外Crash或被kill时，触发本回调，此时releaseCode为1。
+
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃，建议使用[onTerminated](#onterminated12)或者[onError](#onerror)替代。
 
 **参数：**
 
@@ -111,6 +117,32 @@ onError(callback:[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#e
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
 | err                        | [BusinessError](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 报错信息。    |
+
+### onTerminated<sup>12+<sup>
+
+onTerminated(callback: Callback&lt;TerminationInfo&gt;)
+
+被拉起的UIExtensionAbility通过调用`terminateSelfWithResult`或者`terminateSelf`正常退出时，触发本回调函数。
+
+**参数：**
+
+| 参数名   | 类型   | 说明                                                                                     |
+| -------  | ------ | ---------------------------------------------------------------------------------------- |
+| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo12)> | 回调函数，入参用于接收UIExtensionAbility的返回结果，类型为[TerminationInfo](#terminationinfo12)。 |
+
+> **说明：**
+>
+> - 若UIExtensionAbility通过调用`terminateSelfWithResult`退出，其携带的信息会传给回调函数的入参；
+> - 若UIExtensionAbility通过调用`terminateSelf`退出，上述回调函数的入参中，"code"取默认值"0"，"want"为"undefined"。
+
+### TerminationInfo<sup>12+<sup>
+
+用于表示被拉起的UIExtensionAbility通过调用`terminateSelfWithResult`或者`terminateSelf`正常退出时的返回结果。
+
+| 属性名  | 类型   | 说明                                                 |
+| ------- | ------ | ---------------------------------------------------  |
+| code    | number | 被拉起UIExtensionAbility退出时返回的结果码。 |
+| want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 被拉起UIExtensionAbility退出时返回的数据。   |
 
 ## UIExtensionOptions<sup>11+</sup>
 用于在UIExtensionComponent进行构造的时传递可选的构造参数。
@@ -282,15 +314,12 @@ struct Second {
           .width(this.wid)
           .height(this.hei)
           .border({width: 5, color: Color.Blue})
-          .onResult((data)=>{
-            this.message1 = data['want'] ? JSON.stringify(data['want']['bundleName']) : "";
-          })
-          .onRelease((code)=>{
-            this.message2 = "release code : " + code
-          })
           .onReceive((data) => {
             console.info('Lee onReceive, for test')
             this.message3 = JSON.stringify(data['data'])
+          })
+          .onTerminated((info) => {
+            console.info('onTerminated: code =' + info.code + ', want = ' + JSON.stringify(info.want));
           })
           .onRemoteReady((proxy) => {
             console.info('onRemoteReady, for test')

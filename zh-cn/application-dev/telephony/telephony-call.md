@@ -56,9 +56,8 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
 5. （可选）订阅通话业务状态变化。
    ```ts
     // import需要的模块
-    import call from '@ohos.telephony.call';
-    import observer from '@ohos.telephony.observer';
-    import { BusinessError } from '@ohos.base';
+    import { call, observer } from '@kit.TelephonyKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // 调用查询能力接口
     let isSupport = call.hasVoiceCapability();
@@ -90,9 +89,8 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
 
    ```ts
     // import需要的模块
-    import call from '@ohos.telephony.call';
-    import observer from '@ohos.telephony.observer';
-    import { BusinessError } from '@ohos.base';
+    import { call, observer } from '@kit.TelephonyKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
    
     // 调用查询能力接口
     let isSupport = call.hasVoiceCapability();

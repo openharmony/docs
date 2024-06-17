@@ -132,7 +132,8 @@ struct ParentComponent {
   > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
   >
   > 从API version 10开始，\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数或者一个可选的[EntryOptions](#entryOptions)参数。
-  > 从API version 11开始，该接口支持在元服务中使用。
+  >
+  > 从API version 11开始，该装饰器支持在原子化服务中使用。
 
   ```ts
   @Entry
@@ -263,7 +264,7 @@ struct Son {
 
 ## build()函数
 
-所有声明在build()函数的语言，我们统称为UI描述，UI描述需要遵循以下规则：
+所有声明在build()函数的语句，我们统称为UI描述，UI描述需要遵循以下规则：
 
 - \@Entry装饰的自定义组件，其build()函数下的根节点唯一且必要，且必须为容器组件，其中ForEach禁止作为根节点。
   \@Component装饰的自定义组件，其build()函数下的根节点唯一且必要，可以为非容器组件，其中ForEach禁止作为根节点。
@@ -347,7 +348,7 @@ struct Son {
   }
   ```
 
-- 不允许使用switch语法，如果需要使用条件判断，请使用if。反例如下。
+- 不允许使用switch语法，如果需要使用条件判断，请使用if。示例如下。
 
   ```ts
   build() {
@@ -363,6 +364,14 @@ struct Son {
         default:
           Text('...')
           break;
+      }
+      // 正例：使用if
+      if(expression == 1) {
+        Text('...')
+      } else if(expression == 2) {
+        Image('...')
+      } else() {
+        Text('...')
       }
     }
   }

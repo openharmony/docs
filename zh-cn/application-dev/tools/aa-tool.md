@@ -42,6 +42,10 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   | --pb  | 可选参数，布尔类型键值对。     |
   | --ps  | 可选参数，字符串类型键值对。    |
   | --psn | 可选参数，空字符串关键字。     |
+  | --wl | 可选参数，windowLeft，窗口左边距，单位px。<br>**约束：**<br>仅当2in1设备处于开发者模式下，且被启动应用采用调试签名时，该字段生效。|
+  | --wt | 可选参数，windowTop，窗口上边距，单位px。<br>**约束：**<br>仅当2in1设备处于开发者模式下，且被启动应用采用调试签名时，该字段生效。|
+  | --wh | 可选参数，windowHeight，窗口高度，单位px。<br>**约束：**<br>仅当2in1设备处于开发者模式下，且被启动应用采用调试签名时，该字段生效。|
+  | --ww | 可选参数，windowWidth，窗口宽度，单位px。<br>**约束：**<br>仅当2in1设备处于开发者模式下，且被启动应用采用调试签名时，该字段生效。|
   | -D | 可选参数，调试模式。        |
 
   **返回值**：
@@ -53,11 +57,82 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   
   ```bash
   # 显示启动Ability
-  aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>]
+  aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>]
   
   # 隐式启动Ability。如果命令中的参数都不填，会导致启动失败。
-  aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>]
+  aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>]
   ```
+
+  **示例**：
+
+以隐式启动Ability为例。
+  > **说明：**
+  > 
+  > 本例中仅介绍了部分字段的使用。关于Ability匹配的详细规则参考[显式Want与隐式Want匹配规则](../application-models/explicit-implicit-want-mappings.md)**。
+
+
+1. 修改module.json5配置，为目标Ability配置uris。
+      ```json
+      {
+        "name": "TargetAbility",
+        ......
+        "exported": true,
+        "skills": [
+          {
+            "uris":[
+              {
+                "scheme": "https",
+                "host": "www.test.com",
+                "port": "8080",
+                "path": "path",
+                "type": "text/plain"
+              }
+            ]
+          }
+        ]
+      }
+      ```
+2. 隐式启动Ability。
+
+
+    - 直接使用-U命令启动。
+
+        ```bash
+        aa start -U https://www.test.com:8080/path
+        ```
+
+    - 如果需要通过类型进行匹配，则需要使用-t字段。
+  
+        ```bash
+        aa start -U https://www.test.com:8080/path -t text/plain
+        ```
+
+    - 如果启动时需要携带参数，可以使用如下命令。
+
+
+        ```bash
+        aa start -U https://www.test.com:8080/path --pi paramNumber 1 --pb paramBoolean true --ps paramString teststring  --psn paramNullString
+        ```
+
+
+      UIAbility获取传入参数示例如下：
+
+        ```ts
+        import UIAbility from '@ohos.app.ability.UIAbility';
+        import hilog from '@ohos.hilog';
+        import Want from '@ohos.app.ability.Want';
+
+        export default class TargetAbility extends UIAbility {
+          onCreate(want:Want, launchParam) {
+            hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+            let paramNumber = want.parameters.paramNumber
+            let paramBoolean = want.parameters.paramBoolean
+            let paramString = want.parameters.paramString
+            let paramNullString = want.parameters.paramNullString
+          }
+        }
+        ```
+
 
 ## stop-service
   用于停止ServiceAbility。

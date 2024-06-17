@@ -9,7 +9,7 @@ The **AutoStartupInfo** module defines information about the application compone
 > The APIs of this module can be used only in the stage model.
 > The APIs provided by this module are system APIs.
 
-## Attributes
+## Properties
 
 **System API**: This is a system API.
 
@@ -21,6 +21,7 @@ The **AutoStartupInfo** module defines information about the application compone
 | moduleName | string | No  | Module name.|
 | abilityName | string | Yes | Ability name.|
 | abilityTypeName | string | No| Ability type.|
+| appCloneIndex | number   | No  | Index of an application clone. |
 
 **Example**
 

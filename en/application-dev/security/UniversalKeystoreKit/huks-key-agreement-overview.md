@@ -10,13 +10,14 @@ For the key agreement between two devices, each device generates an asymmetric k
 ## Supported Algorithms
 
 The following table lists the supported key agreement specifications.
-
+<!--Del-->
 The key management service specifications include mandatory specifications and optional specifications. Mandatory specifications are algorithm specifications that must be supported. Optional specifications can be used based on actual situation. Before using the optional specifications, refer to the documents provided by the vendor to ensure that the specifications are supported.
 
 **You are advised to use mandatory specifications in your development for compatibility purposes.**
+<!--DelEnd-->
 
-| Algorithm| Description| API Level| Mandatory| 
+| Algorithm| Description| API Level| <!--DelCol4-->Mandatory|
 | -------- | -------- | -------- | -------- |
-| ECDH | The key type must be ECC.| 8+ | Yes| 
-| DH | - | 8+ | Yes| 
-| X25519 | - | 8+ | Yes| 
+| ECDH | The key type must be ECC.| 8+ | Yes|
+| DH | - | 8+ | Yes|
+| X25519 | - | 8+ | Yes|

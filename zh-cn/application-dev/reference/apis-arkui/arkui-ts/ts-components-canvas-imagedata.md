@@ -18,7 +18,7 @@ constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: Leng
 | width | number |是|-| 矩形区域实际像素宽度，默认单位为vp。 |
 | height | number |是|-| 矩形区域实际像素高度，默认单位为vp。|
 | data | Uint8ClampedArray |否|-| 一维数组，保存了相应的颜色数据，数据值范围为0到255。 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](ts-canvasrenderingcontext2d.md#lengthmetricsunit12) | 否   | DEFAULT | 用来配置ImageData对象的单位模式，配置后无法动态更改，配置方法同CanvasRenderingContext2D。<br> DEFAULT: vp模式 <br> PX: px模式|
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   | DEFAULT | 用来配置ImageData对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。|
 
 ## 属性
 

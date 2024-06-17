@@ -14,6 +14,7 @@
    ```ts
    import fs from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
    import fileUri from '@ohos.file.fileuri';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
@@ -42,8 +43,9 @@
     fs.copy(srcUri, destUri).then(()=>{
       console.info("Succeeded in copying---. ");
       console.info("src: " + srcUri + "dest: " + destUri);
-    }).catch((error)=>{
-      console.info(`Failed to copy. Code: ${error.code}, message: ${error.message}`);
+    }).catch((error: BusinessError)=>{
+      let err: BusinessError = error as BusinessError;
+      console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
    } catch (error) {
     console.error(`Failed to getData. Code: ${error.code}, message: ${error.message}`);
@@ -55,6 +57,7 @@
    ```ts
    import fs from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
    import fileUri from '@ohos.file.fileuri';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
@@ -82,8 +85,9 @@
     fs.copy(srcUri, destUri, options).then(()=>{
       console.info("Succeeded in copying of paste. ");
       console.info("src: " + srcUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
-    }).catch((error)=>{
-      console.info(`Failed to copy. Code: ${error.code}, message: ${error.message}`);
+    }).catch((error: BusinessError)=>{
+      let err: BusinessError = error as BusinessError;
+      console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
    } catch (error) {
     console.error(`Failed to copy. Code: ${error.code}, message: ${error.message}`);

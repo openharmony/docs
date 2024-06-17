@@ -4,7 +4,7 @@
 
 - 对于每个应用，系统会在内部存储空间映射出一个专属的“应用沙箱目录”，它是“[应用文件目录](#应用文件目录与应用文件路径)”与一部分系统文件（应用运行必需的少量系统文件）所在的目录组成的集合。
 
-- 应用沙箱限制了应用可见的数据的最小范围。在“应用沙箱目录”中，应用仅能看到自己的应用文件以及少量的系统文件（应用运行必需的少量系统文件）。因此，本应用的文件也不为其他应用可见，从而保护了应用文件的安全。
+- 应用沙箱限制了应用可见的数据范围。在“应用沙箱目录”中，应用仅能看到自己的应用文件以及少量的系统文件（应用运行必需的少量系统文件）。因此，本应用的文件也不为其他应用可见，从而保护了应用文件的安全。
 
 - 应用可以在“应用文件目录”下保存和处理自己的应用文件；系统文件及其目录对于应用是只读的；而应用若需访问[用户文件](user-file-overview.md)，则需要通过特定API同时经过用户的相应授权才能进行。
 
@@ -17,7 +17,7 @@
 
 在应用沙箱保护机制下，应用无法获知除自身应用文件目录之外的其他应用或用户的数据目录位置及存在。同时，所有应用的目录可见范围均经过权限隔离与文件路径挂载隔离，形成了独立的路径视图，屏蔽了实际物理路径：
 
-- 如下图所示，在普通应用（也称三方应用）视角下，不仅可见的目录与文件数量限制到了最小范围，并且可见的目录与文件路径也与系统进程等其他进程看到的不同。我们将普通应用视角下看到的“应用沙箱目录”下某个文件或某个具体目录的路径，称为“应用沙箱路径”。
+- 如下图所示，在普通应用（也称三方应用）视角下，不仅可见的目录与文件数量限制了范围，并且可见的目录与文件路径也与系统进程等其他进程看到的不同。我们将普通应用视角下看到的“应用沙箱目录”下某个文件或某个具体目录的路径，称为“应用沙箱路径”。
 
 <!--RP1-->
 - 一般情况下，开发者的hdc shell环境等效于系统进程视角，因此“应用沙箱路径”与开发者使用hdc工具调试时看到的真实物理路径不同，其对应关系详见[应用沙箱路径和真实物理路径的对应关系](#应用沙箱路径和真实物理路径的对应关系)。
@@ -77,13 +77,13 @@
 
 在应用沙箱路径下读写文件，经过映射转换，实际读写的是真实物理路径中的应用文件，应用沙箱路径与真实物理路径对应关系如下表所示。
 
-其中&lt;USERID&gt;当前固定为100。
+其中&lt;USERID&gt;当前固定为100，&lt;EXTENSIONPATH&gt;为moduleName-extensionName。应用是否以Extension独立沙箱运行可参考[ExtensionAbility组件](../application-models/extensionability-overview.md)。
 
-| 应用沙箱路径 | 物理路径 | 说明 |
-| -------- | -------- | -------- |
-| /data/storage/el1/bundle | /data/app/el1/bundle/public/&lt;PACKAGENAME&gt; | 应用安装包目录 |
-| /data/storage/el1/base | /data/app/el1/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt; | 应用el1级别加密数据目录 |
-| /data/storage/el2/base | /data/app/el2/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt; | 应用el2级别加密数据目录 |
-| /data/storage/el1/database | /data/app/el1/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt; | 应用el1级别加密数据库目录 |
-| /data/storage/el2/database | /data/app/el2/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt; | 应用el2级别加密数据库目录 |
+| 应用沙箱路径 | 物理路径 |
+| -------- | -------- |
+| /data/storage/el1/bundle | 应用安装包目录：<br> /data/app/el1/bundle/public/&lt;PACKAGENAME&gt; |
+| /data/storage/el1/base | 应用el1级别加密数据目录：<br> - 非独立沙箱运行的应用：/data/app/el1/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt;<br> - 以独立沙箱运行的Extension应用： /data/app/el1/&lt;USERID&gt;/base/+extension-&lt;EXTENSIONPATH&gt;+&lt;PACKAGENAME&gt; |
+| /data/storage/el2/base | 应用el2级别加密数据目录：<br> - 非独立沙箱运行的应用：/data/app/el2/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt;<br> - 以独立沙箱运行的Extension应用： /data/app/el2/&lt;USERID&gt;/base/+extension-&lt;EXTENSIONPATH&gt;+&lt;PACKAGENAME&gt; |
+| /data/storage/el1/database | 应用el1级别加密数据库目录：<br> - 非独立沙箱运行的应用：/data/app/el1/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt;<br> - 以独立沙箱运行的Extension应用：/data/app/el1/&lt;USERID&gt;/database/+extension-&lt;EXTENSIONPATH&gt;+&lt;PACKAGENAME&gt; |
+| /data/storage/el2/database | 应用el2级别加密数据库目录：<br> - 非独立沙箱运行的应用：/data/app/el2/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt;<br> - 以独立沙箱运行的Extension应用：/data/app/el2/&lt;USERID&gt;/database/+extension-&lt;EXTENSIONPATH&gt;+&lt;PACKAGENAME&gt; |
 | /data/storage/el2/distributedfiles | /mnt/hmdfs/&lt;USERID&gt;/account/merge_view/data/&lt;PACKAGENAME&gt; | 应用el2加密级别有帐号分布式数据融合目录 |

@@ -49,7 +49,7 @@ export { Calc, addHarlibrary } from './src/main/ets/utils/Calc'
 ```
 
 ```typescript
-// HAP's Index.ets
+// HAP's src/main/ets/pages/Index.ets
 import('harlibrary').then((ns:ESObject) => {
   ns.Calc.staticAdd(8, 9);  // 调用静态成员函数staticAdd()
   let calc:ESObject = new ns.Calc();  // 实例化类Calc
@@ -69,22 +69,22 @@ import('harlibrary').then((ns:ESObject) => {
 ```
 
 ## 动态import实现方案介绍
-动态import根据入参是常量还是变量，分成两个大的特性规格。
+动态import根据入参是常量还是变量，分成动态import常量表达式和动态import变量表达式两大特性规格。
 以下是动态import支持的规格列表：
 
-| 动态import场景 | 动态import详细分类             | 说明                         |
-| :------------- | :----------------------------- | :--------------------------- |
-| 本地工程模块   | 动态import模块内文件路径       | 要求路径以./开头             |
-| 本地工程模块   | 动态import HSP模块名           | -                            |
-| 本地工程模块   | 动态import HSP模块文件路径     | 暂不支持动态import变量表达式 |
-| 本地工程模块   | 动态import HAR模块名           | -                            |
-| 本地工程模块   | 动态import HAR模块文件路径     | 暂不支持动态import变量表达式 |
-| 远程包         | 动态import远程HAR模块名        | -                            |
-| 远程包         | 动态import ohpm包名            | -                            |
-| API        | 动态import @system.*           | -                            |
-| API        | 动态import @ohos.*             | -                            |
-| API        | 动态import @arkui-x.*          | -                            |
-| 模块Native库   | 动态import libNativeLibrary.so | -                            |
+| 动态import场景 | 动态import详细分类             | 说明                                                     |
+| :------------- | :----------------------------- | :------------------------------------------------------- |
+| 本地工程模块   | 动态import模块内文件路径       | 要求路径以./或../开头                                    |
+| 本地工程模块   | 动态import HSP模块名           | -                                                        |
+| 本地工程模块   | 动态import HSP模块文件路径     | 暂仅支持动态import常量表达式，不支持动态import变量表达式 |
+| 本地工程模块   | 动态import HAR模块名           | -                                                        |
+| 本地工程模块   | 动态import HAR模块文件路径     | 暂仅支持动态import常量表达式，不支持动态import变量表达式 |
+| 远程包         | 动态import远程HAR模块名        | -                                                        |
+| 远程包         | 动态import ohpm包名            | -                                                        |
+| API            | 动态import @system.*           | -                                                        |
+| API            | 动态import @ohos.*             | -                                                        |
+| API            | 动态import @arkui-x.*          | -                                                        |
+| 模块Native库   | 动态import libNativeLibrary.so | -                                                        |
 
 注：
 
@@ -94,8 +94,197 @@ import('harlibrary').then((ns:ESObject) => {
 
 ## 动态import实现中的关键点
 
+### 动态import常量表达式
+
+动态import常量表达式是指动态import的入参为常量的场景。下面以HAP引用其他模块或API的示例来说明典型用法。
+
+说明：本文示例代码中Index.ets等路径是按照当前DevEco Studio的模块配置设置，如后续发生变化，请调整位置及其他文件相对路径。
+
+- **HAP常量动态import HAR模块名**
+
+  ```typescript
+  // HAR's Index.ets
+  export function add(a:number, b:number):number {
+    let c = a + b;
+    console.log('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
+    return c;
+  }
+  ```
+
+  ```typescript
+  // HAP's src/main/ets/pages/Index.ets
+  import('myHar').then((ns:ESObject) => {
+    console.log(ns.add(3, 5));
+  });
+  ```
+
+  ```json5
+  // HAP's oh-package.json5
+  "dependencies": {
+    "myHar": "file:../myHar"
+  }
+  ```
+
+- **HAP常量动态import HAR模块文件路径**
+
+  ```typescript
+  // HAR's Index.ets
+  export function add(a:number, b:number):number {
+    let c = a + b;
+    console.log('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
+    return c;
+  }
+  ```
+
+  ```typescript
+  // HAP's src/main/ets/pages/Index.ets
+  import('myHar/Index').then((ns:ESObject) => {
+    console.log(ns.add(3, 5));
+  });
+  ```
+
+  ```json5
+  // HAP's oh-package.json5
+  "dependencies": {
+    "myHar": "file:../myHar"
+  }
+  ```
+
+- **HAP常量动态import HSP模块名**
+
+  ```typescript
+  // HSP's Index.ets
+  export function add(a:number, b:number):number {
+    let c = a + b;
+    console.log('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
+    return c;
+  }
+  ```
+
+  ```typescript
+  // HAP's src/main/ets/pages/Index.ets
+  import('myHsp').then((ns:ESObject) => {
+    console.log(ns.add(3, 5));
+  });
+  ```
+
+  ```json5
+  // HAP's oh-package.json5
+  "dependencies": {
+    "myHsp": "file:../myHsp"
+  }
+  ```
+
+- **HAP常量动态import HSP模块名文件路径**
+
+  ```typescript
+  // HSP's Index.ets
+  export function add(a:number, b:number):number {
+    let c = a + b;
+    console.log('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
+    return c;
+  }
+  ```
+
+  ```typescript
+  // HAP's src/main/ets/pages/Index.ets
+  import('myHsp/Index').then((ns:ESObject) => {
+    console.log(ns.add(3, 5));
+  });
+  ```
+
+  ```json5
+  // HAP's oh-package.json5
+  "dependencies": {
+    "myHsp": "file:../myHsp"
+  }
+  ```
+
+- **HAP常量动态import远程HAR模块名**
+
+  ```typescript
+  // HAP's src/main/ets/pages/Index.ets
+  import('@ohos/crypto-js').then((ns:ESObject) => {
+    console.log('DynamicImport @ohos/crypto-js: ' + ns.CryptoJS.MD5(123456));
+  });
+  ```
+
+  ```json5
+  // HAP's oh-package.json5
+  "dependencies": {
+    "@ohos/crypto-js": "2.0.3-rc.0"
+  }
+  ```
+
+- **HAP常量动态import ohpm包**
+
+  ```typescript
+  // HAP's src/main/ets/pages/Index.ets
+  import('json5').then((ns:ESObject) => {
+    console.log('DynamicImport json5');
+  });
+  ```
+
+  ```json5
+  // HAP's oh-package.json5
+  "dependencies": {
+    "json5": "1.0.2"
+  }
+  ```
+
+- **HAP常量动态import自己的单文件**
+
+  ```typescript
+  // HAP's src/main/ets/Calc.ets
+  export function add(a:number, b:number):number {
+    let c = a + b;
+    console.log('DynamicImport I am a HAP, %d + %d = %d', a, b, c);
+    return c;
+  }
+  ```
+
+  ```typescript
+  // HAP's src/main/ets/pages/Index.ets
+  import('../Calc').then((ns:ESObject) => {
+    console.log(ns.add(3, 5));
+  });
+  ```
+
+- **HAP常量动态import自己的Native库**
+
+  ```typescript
+  // libnativeapi.so's index.d.ts
+  export const add: (a:number, b:number) => number;
+  ```
+
+  ```typescript
+  // HAP's src/main/ets/pages/Index.ets
+  import('libnativeapi.so').then((ns:ESObject) => {
+    console.log('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
+  });
+  ```
+
+  ```json5
+  // HAP's oh-package.json5
+  "dependencies": {
+    "libnativeapi.so": "file:./src/main/cpp/types/libnativeapi"
+  }
+  ```
+
+- **HAP常量动态import加载API**
+
+  ```typescript
+  // HAP's src/main/ets/pages/Index.ets
+  import('@system.app').then((ns:ESObject) => { ns.default.terminate(); });
+  import('@system.router').then((ns:ESObject) => { ns.default.clear(); });
+  import('@ohos.curves').then((ns:ESObject) => { ns.default.springMotion(0.555, 0.75, 0.001); });
+  import('@ohos.matrix4').then((ns:ESObject) => { ns.default.identity(); });
+  import('@ohos.hilog').then((ns:ESObject) => { ns.default.info(0x0000, 'testTag', '%{public}s', 'DynamicImport @ohos.hilog.'); });
+  ```
+
 ### 动态import变量表达式
-DevEco IDE中模块间的依赖关系通过oh-package.json5中的dependencies进行配置。dependencies列表中所有模块默认都会进行安装（本地模块）或下载（远程模块），但是不会默认参与编译。HAP/HSP编译时会以入口文件（一般为Index.ets/ts）开始搜索依赖关系，搜索到的模块或文件才会加入编译。
+
+DevEco Studio中模块间的依赖关系通过oh-package.json5中的dependencies进行配置。dependencies列表中所有模块默认都会进行安装（本地模块）或下载（远程模块），但是不会默认参与编译。HAP/HSP编译时会以入口文件（一般为Index.ets/ts）开始搜索依赖关系，搜索到的模块或文件才会加入编译。
 在编译期，静态import和常量动态import可以被打包工具rollup及其插件识别解析，加入依赖树中，参与到编译流程，最终生成方舟字节码。但是如果是变量动态import，该变量值可能需要进行运算或者外部传入才能得到，在编译态无法解析出其内容，也就无法加入编译。为了将这部分模块/文件加入编译，还需要额外增加一个runtimeOnly的buildOption配置，用于配置动态import的变量实际的模块名或者文件路径。
 
 **1. runtimeOnly字段schema配置格式**
@@ -142,7 +331,7 @@ import(filePath).then(……);
   }
   ```
   ```typescript
-  // HAP's Index.ets
+  // HAP's src/main/ets/pages/Index.ets
   let packageName = 'myHar';
   import(packageName).then((ns:ESObject) => {
     console.log(ns.add(3, 5));
@@ -178,7 +367,7 @@ import(filePath).then(……);
   }
   ```
   ```typescript
-  // HAP's Index.ets
+  // HAP's src/main/ets/pages/Index.ets
   let packageName = 'myHsp';
   import(packageName).then((ns:ESObject) => {
     console.log(ns.add(3, 5));
@@ -206,7 +395,7 @@ import(filePath).then(……);
 - **HAP变量动态import远程HAR模块名**
 
   ```typescript
-  // HAP's Index.ets
+  // HAP's src/main/ets/pages/Index.ets
   let packageName = '@ohos/crypto-js';
   import(packageName).then((ns:ESObject) => {
     console.log('DynamicImport @ohos/crypto-js: ' + ns.CryptoJS.MD5(123456));
@@ -234,7 +423,7 @@ import(filePath).then(……);
 - **HAP变量动态import ohpm包**
 
   ```typescript
-  // HAP's Index.ets
+  // HAP's src/main/ets/pages/Index.ets
   let packageName = 'json5';
   import(packageName).then((ns:ESObject) => {
     console.log('DynamicImport json5');
@@ -270,7 +459,7 @@ import(filePath).then(……);
   }
   ```
   ```typescript
-  // HAP's Index.ets
+  // HAP's src/main/ets/pages/Index.ets
   let filePath = '../Calc';
   import(filePath).then((ns:ESObject) => {
     console.log(ns.add(3, 5));
@@ -296,7 +485,7 @@ import(filePath).then(……);
   export const add: (a:number, b:number) => number;
   ```
   ```typescript
-  // HAP's Index.ets
+  // HAP's src/main/ets/pages/Index.ets
   let soName = 'libnativeapi.so';
   import(soName).then((ns:ESObject) => {
     console.log('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
@@ -324,7 +513,7 @@ import(filePath).then(……);
 - **HAP变量动态import加载API**
 
   ```typescript
-  // HAP's Index.ets
+  // HAP's src/main/ets/pages/Index.ets
   let packageName = '@system.app';
   import(packageName).then((ns:ESObject) => { ns.default.terminate(); });
   packageName = '@system.router';
@@ -381,7 +570,7 @@ HAR之间依赖关系转移到HAP/HSP后：
 }
 ```
 ```typescript
-// HAP's Index.ets
+// HAP's src/main/ets/pages/Index.ets
 let harName = 'har1';
 import(harName).then((ns:ESObject) => {
   console.log('DynamicImport addHar1 4 + 5 = ' + ns.addHar1(4, 5));
@@ -458,7 +647,7 @@ har1对har2的依赖dependencies和runtimeOnly配置转移到HAP中，har1不需
 }
 ```
 ```typescript
-// HAP's Index.ets
+// HAP's src/main/ets/pages/Index.ets
 let harName = 'har1';
 import(harName).then((ns:ESObject) => {
   console.log('DynamicImport addHar1 4 + 5 = ' + ns.addHar1(4, 5));
@@ -493,5 +682,4 @@ export function addHar2(a:number, b:number):number {
   return c;
 }
 ```
-
 

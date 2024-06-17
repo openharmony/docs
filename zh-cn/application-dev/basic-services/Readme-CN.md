@@ -6,3 +6,4 @@
 - [USB服务](usb/Readme-CN.md)
 - [升级服务](update/Readme-CN.md)
 - [剪贴板服务](pasteboard/Readme-CN.md)
+- [上传下载](request/Readme-CN.md)

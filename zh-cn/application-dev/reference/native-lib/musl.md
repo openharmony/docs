@@ -23,6 +23,8 @@ libdl：dlopen等动态链接器接口，当前在OpenHarmony中是一个链接�
 
 从OpenHarmony4.0开始，版本升级到1.2.3
 
+从OpenHarmony5.0开始，版本升级到1.2.5
+
 ## 支持的能力
 提供兼容C99,C11,POSIX标准的头文件，以及库函数接口，但不是完全兼容；支持armv7a，arm64, x86_64三种架构的支持；
 
