@@ -336,6 +336,8 @@
       - [XML解析](arkts-utils/xml-parsing.md)
       - [XML转换](arkts-utils/xml-conversion.md)
     - [代码混淆](arkts-utils/source-obfuscation.md)
+    - 内存管理
+      - [GC介绍](arkts-utils/gc-introduction.md)
   - ArkUI（方舟UI框架）
     - [ArkUI简介](ui/arkui-overview.md)
     - UI开发 (ArkTS声明式开发范式)
@@ -1907,6 +1909,7 @@
             - [动态属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md)
             - [动态手势设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-gesture-modifier.md)
             - [外描边设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-outline.md)
+            - [视效设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-filter-effect.md)
             - [自定义绘制](reference/apis-arkui/arkui-ts/ts-universal-attributes-draw-modifier.md)
             - [自定义内容](reference/apis-arkui/arkui-ts/ts-universal-attributes-content-modifier.md)
             - [自定义属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-custom-property.md)
@@ -2068,6 +2071,7 @@
           - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
           - [@ohos.arkui.advanced.ExceptionPrompt (异常提示)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
           - [@ohos.arkui.advanced.Filter (多条件筛选)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Filter.md)
+          - [@ohos.arkui.advanced.FormMenu (应用内添加卡片到桌面菜单)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md)
           - [@ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动原子化服务组件)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
           - [@ohos.arkui.advanced.GridObjectSortComponent (网格对象的编辑排序)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
           - [@ohos.arkui.advanced.ProgressButton (下载按钮)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md)
