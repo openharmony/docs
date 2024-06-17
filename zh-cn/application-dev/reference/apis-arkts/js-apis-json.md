@@ -9,8 +9,8 @@
 
 ## 导入模块
 
-```
-import JSON from '@ohos.util.json';
+```ts
+import { JSON } from '@kit.ArkTS';
 ```
 
 ## Transformer
@@ -67,8 +67,6 @@ parse(text: string, reviver?: Transformer): Object | null
 **示例：**
 
 ```ts
-import JSON from '@ohos.util.json';
-
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let obj = JSON.parse(jsonText);
 ```
