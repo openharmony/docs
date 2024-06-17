@@ -1,4 +1,4 @@
-# @ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)
+# @ohos.WallpaperExtensionAbility (WallpaperExtensionAbility) (System API)
 
 The **WallpaperExtensionAbility** module provides lifecycle callbacks for wallpaper extension abilities and APIs for listening for wallpaper changes.
 
@@ -20,7 +20,7 @@ import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
 
 onCreate(want: object): void
 
-Called to initialize a wallpaper extension ability when it is launched.
+Called to initialize a wallpaper extension ability when it is launched. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -47,7 +47,7 @@ class WallpaperExt extends WallpaperExtensionAbility {
 
 onWallpaperChange(wallpaperType: number): void
 
-Called when the wallpaper changes.
+Called when the wallpaper changes. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -74,7 +74,7 @@ class WallpaperExt extends WallpaperExtensionAbility {
 
 onDestroy(): void
 
-Called when this wallpaper extension ability is destroyed to clear resources.
+Called when this wallpaper extension ability is destroyed to clear resources. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 

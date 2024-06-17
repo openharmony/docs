@@ -13,7 +13,7 @@ When the state of the device NFC adapter changes, the event notification service
 Indicates that the NFC RF field is on.
 
 - Value: usual.event.nfc.action.RF_FIELD_ON_DETECTED
-- Required subscriber permissions: ohos.permission.MANAGE_SECURE_SETTINGS (for system applications only)
+- Required subscriber permissions: none
 
 When the NFC RF field becomes available, the event notification service is triggered to publish this event.
 
@@ -21,6 +21,6 @@ When the NFC RF field becomes available, the event notification service is trigg
 Indicates that the NFC RF field is off.
 
 - Value: usual.event.nfc.action.RF_FIELD_OFF_DETECTED
-- Required subscriber permissions: ohos.permission.MANAGE_SECURE_SETTINGS (for system applications only)
+- Required subscriber permissions: none
 
 When the NFC RF field becomes unavailable, the event notification service is triggered to publish this event.

@@ -16,7 +16,7 @@ When there is a change in the SIM card status of the device, the event notificat
 Indicates that an SMS message is received.
 
 - Value: usual.event.SMS_RECEIVED_COMPLETED
-- Required subscriber permissions: ohos.permission.RECEIVE_SMS (for system applications only)
+- Required subscriber permissions: ohos.permission.RECEIVE_SMS (for system apps only)
 
 When the device receives an SMS message, the event notification service is triggered to publish this event.
 
@@ -25,7 +25,7 @@ When the device receives an SMS message, the event notification service is trigg
 Indicates that an emergency cell broadcast message is received.
 
 - Value: usual.event.SMS_EMERGENCY_CB_RECEIVE_COMPLETED
-- Required subscriber permissions: ohos.permission.RECEIVE_SMS (for system applications only)
+- Required subscriber permissions: ohos.permission.RECEIVE_SMS (for system apps only)
 
 When the device receives an emergency cell broadcast message, the event notification service is triggered to publish this event.
 
@@ -34,7 +34,7 @@ When the device receives an emergency cell broadcast message, the event notifica
 Indicates that a cell broadcast message is received.
 
 - Value: usual.event.SMS_CB_RECEIVE_COMPLETED
-- Required subscriber permissions: ohos.permission.RECEIVE_SMS (for system applications only)
+- Required subscriber permissions: ohos.permission.RECEIVE_SMS (for system apps only)
 
 When the device receives a cell broadcast message, the event notification service is triggered to publish this event.
 
@@ -79,7 +79,7 @@ When an STK Alpha identifier is sent, the event notification service is triggere
 Indicates that a WAP push message is received.
 
 - Value: usual.event.SMS_WAPPUSH_RECEIVE_COMPLETED
-- Required subscriber permissions: ohos.permission.RECEIVE_SMS (for system applications only)
+- Required subscriber permissions: ohos.permission.RECEIVE_SMS (for system apps only)
 
 When the device receives a WAP push message, the event notification service is triggered to publish this event.
 
@@ -151,7 +151,7 @@ When the default primary SIM card for the voice service is updated, the event no
 Indicates that the call status has been updated.
 
 - Value: usual.event.CALL_STATE_CHANGED
-- Required subscriber permissions: ohos.permission.GET_TELEPHONY_STATE (for system applications only)
+- Required subscriber permissions: ohos.permission.GET_TELEPHONY_STATE (for system apps only)
 
 When the call status of the device is updated, the event notification service is triggered to publish this event.
 
@@ -187,7 +187,7 @@ When the signal information of the device is updated, the event notification ser
 Indicates that an incoming call is missed.
 
 - Value: usual.event.INCOMING_CALL_MISSED
-- Required subscriber permissions: ohos.permission.GET_TELEPHONY_STATE (for system applications only)
+- Required subscriber permissions: ohos.permission.GET_TELEPHONY_STATE (for system apps only)
 
 When an incoming call is missed on the device, the event notification service is triggered to publish this event.
 

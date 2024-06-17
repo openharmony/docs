@@ -18,8 +18,6 @@ Indicates that the USB port state of the device has changed.
 
 When the USB port status changes, the event notification service is triggered to publish this event.
 
-APIs related to this event: **dataRole** parameter in [setPortRoles](../Readme-EN.md).
-
 ## COMMON_EVENT_USB_DEVICE_ATTACHED
 
 Indicates that a USB device has been attached to the device functioning as a USB host.
@@ -29,8 +27,6 @@ Indicates that a USB device has been attached to the device functioning as a USB
 
 When a USB device is attached, the event notification service is triggered to publish this event.
 
-APIs related to this event: [USBDevice](../Readme-EN.md).
-
 ## COMMON_EVENT_USB_DEVICE_DETACHED
 
 Indicates that a USB device has been detached from the device functioning as a USB host.
@@ -39,8 +35,6 @@ Indicates that a USB device has been detached from the device functioning as a U
 - Required subscriber permissions: none
 
 When a USB device is deattached, the event notification service is triggered to publish this event.
-
-APIs related to this event: [USBDevice](../Readme-EN.md).
 
 ## COMMON_EVENT_USB_ACCESSORY_ATTACHED
 

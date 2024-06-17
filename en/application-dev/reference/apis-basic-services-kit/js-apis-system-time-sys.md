@@ -1,4 +1,4 @@
-# @ohos.systemTime (System Time and Time Zone)
+# @ohos.systemTime (System Time and Time Zone) (System API)
 
 The **systemTime** module provides system time and time zone features. You can use the APIs of this module to set and obtain the system time and time zone.
 
@@ -6,6 +6,7 @@ The **systemTime** module provides system time and time zone features. You can u
 >
 > - The APIs of this module are deprecated since API version 9. You are advised to use the APIs of the [@ohos.systemDateTime (System Time and Time Zone)](js-apis-system-date-time-sys.md) module.
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - All APIs described in this document are system APIs.
 
 ## Modules to Import
 
@@ -28,7 +29,7 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 | Name  | Type           | Mandatory| Description                                      |
 | -------- | ----------- | ---- | ---------------- |
 | time     | number                    | Yes  | Timestamp to set, in milliseconds.                        |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked for the replacement.|
 
 **Error codes**
 
@@ -123,7 +124,7 @@ Sets the system date. This API uses an asynchronous callback to return the resul
 | Name  | Type                     | Mandatory| Description            |
 | -------- | ------------- | ---- | --------------------- |
 | date     | Date                      | Yes  | Target date to set.                                |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked for the replacement.|
 
 **Error codes**
 
@@ -216,7 +217,7 @@ Sets the system time zone. This API uses an asynchronous callback to return the 
 | Name  | Type             | Mandatory| Description                 |
 | -------- | ------------- | ---- | -------------------------- |
 | timezone | string                    | Yes  | System time zone to set. For details, see [Supported System Time Zones](#supported-system-time-zones).       |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked for the replacement.|
 
 **Error codes**
 

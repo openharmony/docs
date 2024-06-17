@@ -319,7 +319,7 @@ Removes an app account. This API uses an asynchronous callback to return the res
 
 | Name     | Type                       | Mandatory  | Description              |
 | -------- | ------------------------- | ---- | ---------------- |
-| name     | string                    | Yes   | Name of the app account to remove.     |
+| name     | string                    | Yes   | Name of the app account to create.     |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -672,7 +672,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 | Name     | Type                          | Mandatory  | Description                   |
 | -------- | ---------------------------- | ---- | --------------------- |
-| name     | string                       | Yes   | Name of the app account to check.              |
+| name     | string                       | Yes   | Name of the app account to create.              |
 | callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite.|
 
 **Error codes**
@@ -715,7 +715,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 | Name | Type    | Mandatory  | Description     |
 | ---- | ------ | ---- | ------- |
-| name | string | Yes   | Name of the target app account.|
+| name | string | Yes   | Name of the app account to remove.|
 
 **Return value**
 
@@ -1719,7 +1719,7 @@ Deletes the authorization token of the specified authentication type for an app 
 | name     | string                    | Yes   | Name of the target app account.    |
 | owner    | string                    | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string                    | Yes   | Authentication type.       |
-| token    | string                    | Yes   | Authorization token to delete.|
+| token    | string                    | Yes   | Authorization token to set.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.    |
 
 **Error codes**
@@ -1765,7 +1765,7 @@ Deletes the authorization token of the specified authentication type for an app 
 | name     | string | Yes   | Name of the target app account.    |
 | owner    | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string | Yes   | Authentication type.       |
-| token    | string | Yes   | Authorization token to delete.|
+| token    | string | Yes   | Authorization token to set.|
 
 **Return value**
 
@@ -2487,7 +2487,7 @@ Deletes the credential of the specified type from an app account. This API uses 
 | Name        | Type                      | Mandatory | Description           |
 | -------------- | ------------------------- | ----- | -------------- |
 | name           | string                    | Yes   | Name of the target app account.|
-| credentialType | string                    | Yes   | Type of the credential to delete.     |
+| credentialType | string                    | Yes   | Type of the credential to obtain.     |
 | callback       | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -2530,7 +2530,7 @@ Deletes the credential of the specified type from an app account. This API uses 
 | Name        | Type  | Mandatory  | Description           |
 | -------------- | ------ | ----- | --------------- |
 | name           | string | Yes   | Name of the target app account.|
-| credentialType | string | Yes   | Type of the credential to delete.      |
+| credentialType | string | Yes   | Type of the credential to obtain.      |
 
 **Return value**
 
@@ -2869,7 +2869,7 @@ Adds an app account. This API uses an asynchronous callback to return the result
 
 | Name     | Type                       | Mandatory  | Description                  |
 | -------- | ------------------------- | ---- | -------------------- |
-| name     | string                    | Yes   | Name of the app account to add.         |
+| name     | string                    | Yes   | Name of the app account to create.         |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -3018,7 +3018,7 @@ Deletes an app account. This API uses an asynchronous callback to return the res
 
 | Name     | Type                       | Mandatory  | Description              |
 | -------- | ------------------------- | ---- | ---------------- |
-| name     | string                    | Yes   | Name of the app account to delete.     |
+| name     | string                    | Yes   | Name of the app account to create.     |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -3218,7 +3218,7 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
 | Name     | Type                          | Mandatory  | Description                   |
 | -------- | ---------------------------- | ---- | --------------------- |
-| name     | string                       | Yes   | Name of the target app account.       |
+| name     | string                       | Yes   | Name of the app account to create.              |
 | callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means data synchronization is enabled for the app account; the value **false** means the opposite.|
 
 **Example**
@@ -4172,7 +4172,7 @@ Deletes the authorization token of the specified authentication type for an app 
 | name     | string                    | Yes   | Name of the target app account.    |
 | owner    | string                    | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string                    | Yes   | Authentication type.       |
-| token    | string                    | Yes   | Authorization token to delete.|
+| token    | string                    | Yes   | Authorization token to set.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.    |
 
 **Example**
@@ -4205,7 +4205,7 @@ Deletes the authorization token of the specified authentication type for an app 
 | name     | string | Yes   | Name of the target app account.    |
 | owner    | string | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string | Yes   | Authentication type.       |
-| token    | string | Yes   | Authorization token to delete.|
+| token    | string | Yes   | Authorization token to set.|
 
 **Return value**
 
@@ -4806,7 +4806,7 @@ Enumerates the constants.
 | ACTION_VERIFY_CREDENTIAL<sup>9+</sup>    | 'verifyCredential' | Operation of verifying credentials. |
 | ACTION_SET_AUTHENTICATOR_PROPERTIES<sup>9+</sup> | 'setAuthenticatorProperties' | Operation of setting authenticator properties.     |
 | KEY_NAME                         | 'name'                 | Name of the app account. |
-| KEY_OWNER                        | 'owner'                | Bundle name of the app account owner.|
+| KEY_OWNER                        | 'owner'                | Bundle name of the application account owner.|
 | KEY_TOKEN                        | 'token'                | Token.        |
 | KEY_ACTION                       | 'action'               | Operation.        |
 | KEY_AUTH_TYPE                    | 'authType'             | Authentication type.    |
@@ -5135,7 +5135,7 @@ Verifies the credential of an app account. This API uses an asynchronous callbac
 
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
-| name      | string                   | Yes   | Name of the target app account.             |
+| name      | string                   | Yes   | Name of the app account to create.             |
 | options   | [VerifyCredentialOptions](#verifycredentialoptions9)  | Yes   | Options for credential verification.           |
 | callback  | [AuthCallback](#authcallback9)    | Yes   | Authenticator callback used to return the verification result.|
 
@@ -5182,7 +5182,7 @@ Checks whether an app account can be deleted. This API uses an asynchronous call
 
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
-| name      | string                | Yes   | Name of the target app account.             |
+| name      | string                | Yes   | Name of the app account to create.             |
 | callback  | [AuthCallback](#authcallback9) | Yes   | Authenticator callback used to return the result.|
 
 ### getRemoteObject<sup>9+</sup>
@@ -5233,7 +5233,7 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
   }
 
   export default {
-    onConnect(want: Want): rpc.RemoteObject { // serviceAbility lifecycle function, which needs to be placed in serviceAbility.
+    onConnect(want: Want): rpc.RemoteObject { // serviceAbility lifecycle, which needs to be placed in the serviceAbility function.
       let authenticator = new MyAuthenticator();
       return authenticator.getRemoteObject();
     }

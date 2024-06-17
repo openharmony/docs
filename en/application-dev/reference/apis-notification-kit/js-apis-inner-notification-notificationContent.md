@@ -28,10 +28,9 @@ Describes the normal text notification.
 
 | Name          | Type   | Read-only| Mandatory| Description                              |
 | -------------- | ------ | ---- |-----| ---------------------------------- |
-| title          | string |  No |  Yes | Notification title. It cannot be an empty string.        |
-| text           | string |  No |  Yes | Notification content. It cannot be an empty string.        |
-| additionalText | string |  No |  No | Additional information of the notification.  |
-
+| title          | string |  No |  Yes | Notification title. (The value cannot be an empty string and cannot exceed 200 bytes.)        |
+| text           | string |  No |  Yes | Notification content. (The value cannot be an empty string and cannot exceed 200 bytes.)        |
+| additionalText | string |  No |  No | Additional text of a notification, which is a supplement to the notification content. (The value cannot exceed 200 bytes.)  |
 
 ## NotificationLongTextContent
 
@@ -41,12 +40,12 @@ Describes the long text notification.
 
 | Name          | Type   | Read-only| Mandatory| Description                            |
 | -------------- | ------ | ---- | --- | -------------------------------- |
-| title          | string |  No | Yes | Notification title. It cannot be an empty string.                        |
-| text           | string |  No | Yes | Notification content. It cannot be an empty string.                        |
-| additionalText | string |  No | No | Additional information of the notification.  |
-| longText       | string |  No | Yes | Long text of the notification. It cannot be an empty string.                    |
-| briefText      | string |  No | Yes | Brief text of the notification. It cannot be an empty string.  |
-| expandedTitle  | string |  No | Yes | Title of the notification in the expanded state. It cannot be an empty string.                |
+| title          | string |  No | Yes | Notification title. (The value cannot be an empty string and cannot exceed 200 bytes.)                        |
+| text           | string |  No | Yes | Notification content. (The value cannot be an empty string and cannot exceed 200 bytes.)                        |
+| additionalText | string |  No | No | Additional text of a notification, which is a supplement to the notification content. (The value cannot exceed 200 bytes.)  |
+| longText       | string |  No | Yes | Long text of the notification. (The value cannot be an empty string and cannot exceed 200 bytes.)                    |
+| briefText      | string |  No | Yes | Notification summary. (The value cannot be an empty string and cannot exceed 200 bytes.)  |
+| expandedTitle  | string |  No | Yes | Title of the expanded notification. (The value cannot be an empty string and cannot exceed 200 bytes.)                |
 
 
 ## NotificationMultiLineContent
@@ -57,12 +56,12 @@ Describes the multi-line text notification.
 
 | Name          | Type           | Read-only| Mandatory| Description                            |
 | -------------- | --------------- | --- | --- | -------------------------------- |
-| title          | string          | No | Yes | Notification title. It cannot be an empty string.      |
-| text           | string          | No | Yes | Notification content. It cannot be an empty string.      |
-| additionalText | string          | No | No | Additional information of the notification.|
-| briefText      | string          | No | Yes | Brief text of the notification. It cannot be an empty string.|
-| longTitle      | string          | No | Yes | Title of the notification in the expanded state. It cannot be an empty string.|
-| lines          | Array\<string\> | No | Yes | Multi-line text of the notification.                 |
+| title          | string          | No | Yes | Notification title. (The value cannot be an empty string and cannot exceed 200 bytes.)      |
+| text           | string          | No | Yes | Notification content. (The value cannot be an empty string and cannot exceed 200 bytes.)      |
+| additionalText | string          | No | No | Additional text of a notification, which is a supplement to the notification content. (The value cannot exceed 200 bytes.)|
+| briefText      | string          | No | Yes | Notification summary. (The value cannot be an empty string and cannot exceed 200 bytes.)|
+| longTitle      | string          | No | Yes | Title of the expanded notification. (The value cannot be an empty string and cannot exceed 200 bytes.)|
+| lines          | Array\<string\> | No | Yes | Multi-line text of the notification. (The value cannot exceed 200 bytes.)                 |
 
 
 ## NotificationPictureContent
@@ -73,12 +72,12 @@ Describes the picture-attached notification.
 
 | Name          | Type                                         | Read-only| Mandatory| Description                              |
 | -------------- | -------------------------------------------- | ---- | --- |------------------------------------|
-| title          | string                                       |  No | Yes | Notification title. It cannot be an empty string.         |
-| text           | string                                       |  No | Yes | Notification content. It cannot be an empty string.         |
-| additionalText | string                                       |  No | No | Additional information of the notification.   |
-| briefText      | string                                       |  No | Yes | Brief text of the notification. It cannot be an empty string.|
-| expandedTitle  | string                                       |  No | Yes | Title of the notification in the expanded state. It cannot be an empty string.   |
-| picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  No | Yes | Picture attached to the notification. The maximum size is 2 MB.|
+| title          | string                                       |  No | Yes | Notification title. (The value cannot be an empty string and cannot exceed 200 bytes.)         |
+| text           | string                                       |  No | Yes | Notification content. (The value cannot be an empty string and cannot exceed 200 bytes.)         |
+| additionalText | string                                       |  No | No | Additional text of a notification, which is a supplement to the notification content. (The value cannot exceed 200 bytes.)   |
+| briefText      | string                                       |  No | Yes | Notification summary. (The value cannot be an empty string and cannot exceed 200 bytes.)|
+| expandedTitle  | string                                       |  No | Yes | Title of the expanded notification. (The value cannot be an empty string and cannot exceed 200 bytes.)   |
+| picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  No | Yes | Picture content of the notification. (The total number of bytes of image pixels cannot exceed 2 MB.)|
 
 
 ## NotificationSystemLiveViewContent
@@ -89,9 +88,9 @@ Describes the system live view notification. Not supported currently.
 
 | Name                        | Type                                            | Read-only| Mandatory| Description                              |
 | ---------------------------- | ----------------------------------------------- | --- | --- | -----------------------------------|
-| title                        | string                                          | No | Yes | Notification title. It cannot be an empty string.         |
-| text                         | string                                          | No | Yes | Notification content. It cannot be an empty string.         |
-| additionalText               | string                                          | No | No | Additional information of the notification.    |
+| title                        | string                                          | No | Yes | Notification title. (The value cannot be an empty string and cannot exceed 200 bytes.)         |
+| text                         | string                                          | No | Yes | Notification content. (The value cannot be an empty string and cannot exceed 200 bytes.)         |
+| additionalText               | string                                          | No | No | Additional text of a notification, which is a supplement to the notification content. (The value cannot exceed 200 bytes.)    |
 | typeCode<sup>11+</sup>       | number                                          | No | Yes | Type code, which identifies the type of the service that invokes the API.      |
 | capsule<sup>11+</sup>        | [NotificationCapsule](#notificationcapsule11)   | No | No | Capsule of the notification.                    |
 | button<sup>11+</sup>         | [NotificationButton](#notificationbutton11)     | No | No | Button in the notification.                    |

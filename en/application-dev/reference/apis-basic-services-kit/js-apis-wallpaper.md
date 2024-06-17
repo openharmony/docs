@@ -48,7 +48,7 @@ Defines the RGBA color space for the wallpaper.
 
 on(type: 'colorChange', callback: (colors: Array&lt;RgbaColor&gt;, wallpaperType: WallpaperType) =&gt; void): void
 
-Subscribes to the wallpaper color change event.
+Subscribes to the wallpaper color change event. Multi-thread concurrent calls are not supported.
 
 > **NOTE**
 > 
@@ -80,7 +80,7 @@ try {
 
 off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperType: WallpaperType) =&gt; void): void
 
-Unsubscribes from the wallpaper color change event.
+Unsubscribes from the wallpaper color change event. Multi-thread concurrent calls are not supported.
 
 > **NOTE**
 > 
@@ -126,7 +126,7 @@ try {
 
 getColors(wallpaperType: WallpaperType, callback: AsyncCallback&lt;Array&lt;RgbaColor&gt;&gt;): void
 
-Obtains the main color information of the wallpaper of the specified type. This API uses an asynchronous callback to return the result.
+Obtains the main color information of the wallpaper of the specified type.
 
 > **NOTE**
 > 
@@ -159,7 +159,7 @@ wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessEr
 
 getColors(wallpaperType: WallpaperType): Promise&lt;Array&lt;RgbaColor&gt;&gt;
 
-Obtains the main color information of the wallpaper of the specified type. This API uses a promise to return the result.
+Obtains the main color information of the wallpaper of the specified type.
 
 > **NOTE**
 > 
@@ -195,7 +195,7 @@ wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: Array<
 
 getId(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the ID of the wallpaper of the specified type. This API uses an asynchronous callback to return the result.
+Obtains the ID of the wallpaper of the specified type.
 
 > **NOTE**
 > 
@@ -228,7 +228,7 @@ wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError,
 
 getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
-Obtains the ID of the wallpaper of the specified type. This API uses a promise to return the result.
+Obtains the ID of the wallpaper of the specified type.
 
 > **NOTE**
 > 
@@ -264,7 +264,7 @@ wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: Number) =>
 
 getMinHeight(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the minimum height of this wallpaper. This API uses an asynchronous callback to return the result.
+Obtains the minimum height of this wallpaper.
 
 > **NOTE**
 > 
@@ -296,7 +296,7 @@ wallpaper.getMinHeight((error: BusinessError, data: Number) => {
 
 getMinHeight(): Promise&lt;number&gt;
 
-Obtains the minimum height of this wallpaper. This API uses a promise to return the result.
+Obtains the minimum height of this wallpaper.
 
 > **NOTE**
 > 
@@ -326,7 +326,7 @@ wallpaper.getMinHeight().then((data: Number) => {
 
 getMinWidth(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the minimum width of this wallpaper. This API uses an asynchronous callback to return the result.
+Obtains the minimum width of this wallpaper.
 
 > **NOTE**
 > 
@@ -358,7 +358,7 @@ wallpaper.getMinWidth((error: BusinessError, data: Number) => {
 
 getMinWidth(): Promise&lt;number&gt;
 
-Obtains the minimum width of this wallpaper. This API uses a promise to return the result.
+Obtains the minimum width of this wallpaper.
 
 > **NOTE**
 > 
@@ -388,7 +388,7 @@ wallpaper.getMinWidth().then((data: Number) => {
 
 isChangePermitted(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether to allow the application to change the wallpaper for the current user. This API uses an asynchronous callback to return the result.
+Checks whether to allow the application to change the wallpaper for the current user.
 
 > **NOTE**
 > 
@@ -420,7 +420,7 @@ wallpaper.isChangePermitted((error: BusinessError, data: Boolean) => {
 
 isChangePermitted(): Promise&lt;boolean&gt;
 
-Checks whether to allow the application to change the wallpaper for the current user. This API uses a promise to return the result.
+Checks whether to allow the application to change the wallpaper for the current user.
 
 > **NOTE**
 > 
@@ -450,7 +450,7 @@ wallpaper.isChangePermitted().then((data: Boolean) => {
 
 isOperationAllowed(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether the user is allowed to set wallpapers. This API uses an asynchronous callback to return the result.
+Checks whether the user is allowed to set wallpapers.
 
 > **NOTE**
 > 
@@ -482,7 +482,7 @@ wallpaper.isOperationAllowed((error: BusinessError, data: Boolean) => {
 
 isOperationAllowed(): Promise&lt;boolean&gt;
 
-Checks whether the user is allowed to set wallpapers. This API uses a promise to return the result.
+Checks whether the user is allowed to set wallpapers.
 
 > **NOTE**
 > 
@@ -512,7 +512,7 @@ wallpaper.isOperationAllowed().then((data: Boolean) => {
 
 reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
-Resets the wallpaper of the specified type to the default wallpaper. This API uses an asynchronous callback to return the result.
+Resets the wallpaper of the specified type to the default wallpaper.
 
 > **NOTE**
 > 
@@ -547,7 +547,7 @@ wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError)
 
 reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
-Resets the wallpaper of the specified type to the default wallpaper. This API uses a promise to return the result.
+Resets the wallpaper of the specified type to the default wallpaper.
 
 > **NOTE**
 >
@@ -585,7 +585,7 @@ wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
 
 setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a specified source as the wallpaper of a specified type. This API uses an asynchronous callback to return the result.
+Sets a specified source as the wallpaper of a specified type.
 
 > **NOTE**
 > 
@@ -644,7 +644,7 @@ imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
 
 setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise&lt;void&gt;
 
-Sets a specified source as the wallpaper of a specified type. This API uses a promise to return the result.
+Sets a specified source as the wallpaper of a specified type.
 
 > **NOTE**
 > 
@@ -697,79 +697,5 @@ imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
     });
   }).catch((error: BusinessError) => {
     console.error(`failed to createPixelMap because: ${JSON.stringify(error)}`);
-});
-```
-
-
-## wallpaper.getFile<sup>(deprecated)</sup>
-
-getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
-
-Obtains the wallpaper of the specified type. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> 
-> This API is supported since API version 8 and deprecated since API version 9.
-
-**Required permissions**: ohos.permission.GET_WALLPAPER
-
-**System capability**: SystemCapability.MiscServices.Wallpaper
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned.|
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: number) => {
-    if (error) {
-        console.error(`failed to getFile because: ${JSON.stringify(error)}`);
-        return;
-    }
-    console.log(`success to getFile: ${JSON.stringify(data)}`);
-});
-```
-
-## wallpaper.getFile<sup>(deprecated)</sup>
-
-getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
-
-Obtains the wallpaper of the specified type. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 8 and deprecated since API version 9.
-
-**Required permissions**: ohos.permission.GET_WALLPAPER
-
-**System capability**: SystemCapability.MiscServices.Wallpaper
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned.|
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: number) => {
-    console.log(`success to getFile: ${JSON.stringify(data)}`);
-  }).catch((error: BusinessError) => {
-    console.error(`failed to getFile because: ${JSON.stringify(error)}`);
 });
 ```

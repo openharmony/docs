@@ -291,7 +291,7 @@ Updates the distributed account information. This API uses an asynchronous callb
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| New distributed account information.|
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -326,7 +326,7 @@ Updates the distributed account information. This API uses a promise to return t
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| New distributed account information.|
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
 
 **Return value**
 

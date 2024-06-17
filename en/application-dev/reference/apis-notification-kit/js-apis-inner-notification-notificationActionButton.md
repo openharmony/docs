@@ -1,6 +1,6 @@
 # NotificationActionButton
 
-The **NotificationActionButton** module provides APIs for defining the button displayed in the notification.
+The **NotificationActionButton** module provides APIs for describing the button displayed in the notification.
 
 > **NOTE**
 >
@@ -14,6 +14,5 @@ The **NotificationActionButton** module provides APIs for defining the button di
 | --------- | ----------------------------------------------- | --- | ---- | ------------------------- |
 | title     | string                                          | No | Yes | Button title.                 |
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md)   | No | Yes | **WantAgent** of the button.|
-| extras    | { [key: string]: any }                          | No | No | Extra information of the button.             |
-| userInput<sup>8+</sup> | [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md) | No | No | User input object.         |
- 
+| extras    | { [key: string]: any }                          | No | No | Extra information of the button. (Not supported currently)             |
+| userInput<sup>8+</sup> | [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md) | No | No | User input object. ID entered by a subscriber.         |

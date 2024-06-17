@@ -95,7 +95,7 @@ Uploads files. This API uses a promise to return the result. You can use [on('co
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -106,7 +106,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   ```ts
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://www.example.com', // Replace the example with the actual server address.
+    url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -148,7 +148,7 @@ Uploads files. This API uses an asynchronous callback to return the result. You 
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -159,7 +159,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   ```ts
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://www.example.com', // Replace the example with the actual server address.
+    url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -215,7 +215,7 @@ Uploads files. This API uses a promise to return the result.
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://www.example.com', // Replace the example with the actual server address.
+    url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -257,7 +257,7 @@ Uploads files. This API uses an asynchronous callback to return the result.
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://www.example.com', // Replace the example with the actual server address.
+    url: 'http://www.example.com', // Replace the URL with the HTTP address of the real server.
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
@@ -652,11 +652,11 @@ Describes the configuration of an upload task.
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| Resource URL.|
 | header | Object | Yes| HTTP or HTTPS header added to an upload request.|
-| method | string | Yes| Request method, which can be **'POST'** or **'PUT'**. The default value is **'POST'**.|
+| method | string | Yes|  HTTP request method. The value can be **POST** or **PUT**. The default value is **POST**. Use the **PUT** method to modify resources and the **POST** method to add resources.|
 | index<sup>11+</sup> | number | No| Path index of the task. The default value is **0**.|
 | begins<sup>11+</sup> | number | No| File start point to read when the task begins. The default value is **0**. The value is a closed interval.|
 | ends<sup>11+</sup> | number | No| File start point to read when the task ends. The default value is **-1**. The value is a closed interval.|
-| files | Array&lt;[File](#file)&gt; | Yes| List of files to upload, which is submitted through **multipart/form-data**.|
+| files | Array&lt;[File](#file)&gt; | Yes| List of files to upload, The files are submitted in multipart/form-data format.|
 | data | Array&lt;[RequestData](#requestdata)&gt; | Yes| Form data in the request body.|
 
 ## TaskState<sup>9+</sup>
@@ -666,11 +666,29 @@ Implements a **TaskState** object, which is the callback parameter of the [on('c
 
 **System capability**: SystemCapability.MiscServices.Upload
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| path | string | Yes| File path.|
-| responseCode | number | Yes| Return value of an upload task. The value **0** means that the task is successful, and other values means that the task fails. For details about the task result, see **message**.|
-| message | string | Yes| Description of the upload task result.|
+| Name| Type| Mandatory| Description                                              |
+| -------- | -------- | -------- |--------------------------------------------------|
+| path | string | Yes| File path.                                            |
+| responseCode | number | Yes| Return value of an upload task. The value **0** means that the task is successful, and other values means that the task fails. For details about the task result, see **message**. You are advised to create an upload task by using [request.agent.create<sup>10+</sup>](#requestagentcreate10-1) and handle exceptions based on standard error codes.|
+| message | string | Yes| Description of the upload task result.                                      |
+
+The following table describes the enum values of **responseCode**.
+
+| Result Code| Description                              |
+|-----|------------------------------------|
+| 0   | Upload success.                              |
+| 5   | Task suspended or stopped proactively.                        |
+| 6   | Foreground task stopped. The reason is that the application, to which the task belongs, is switched to the background or terminated. Check the application status. |
+| 7   | No network connection. Check whether the device is connected to the network.                 |
+| 8   | Network mismatch. Check whether the current network type matches the network type required by the task.    |
+| 10  | Failed to create the HTTP request. Verify the parameters or try again.         |
+| 12  | Request timeout. Verify the parameter configuration or the network connection, or try again.         |
+| 13  | Connection failed. Verify the parameter configuration or the network connection, or try again.       |
+| 14  | Request failed. Verify the parameter configuration or the network connection, or try again.       |
+| 15  | Upload failed. Verify the parameter configuration or the network connection, or try again.       |
+| 16  | Redirection failed. Verify the parameter configuration or the network connection, or try again.      |
+| 17  | Protocol error. The server returns a 4XX or 5XX status code. Verify the parameter configuration and try again.|
+| 20  | Other errors. Verify the parameter configuration or the network connection, or try again.       |
 
 ## File
 Defines the file list in [UploadConfig<sup>6+<sup>](#uploadconfig6).
@@ -725,7 +743,7 @@ Downloads files. This API uses a promise to return the result. You can use [on('
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -739,6 +757,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 import { BusinessError } from '@ohos.base';
 
   try {
+    // Replace the URL with the HTTP address of the real server.
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
        let downloadTask: request.DownloadTask = data;
     }).catch((err: BusinessError) => {
@@ -775,7 +794,7 @@ Downloads files. This API uses an asynchronous callback to return the result. Yo
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -789,6 +808,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 import { BusinessError } from '@ohos.base';
 
   try {
+    // Replace the URL with the HTTP address of the real server.
     request.downloadFile(getContext(), {
       url: 'https://xxxx/xxxxx.hap',
       filePath: 'xxx/xxxxx.hap'
@@ -840,6 +860,7 @@ Downloads files. This API uses a promise to return the result.
 
   ```js
   let downloadTask;
+  // Replace the URL with the HTTP address of the real server.
   request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
     downloadTask = data;
   }).catch((err) => {
@@ -875,6 +896,7 @@ Downloads files. This API uses an asynchronous callback to return the result.
 
   ```js
   let downloadTask;
+  // Replace the URL with the HTTP address of the real server.
   request.download({ url: 'https://xxxx/xxxxx.hap', 
   filePath: 'xxx/xxxxx.hap'}, (err, data) => {
     if (err) {
@@ -924,6 +946,7 @@ Subscribes to download progress events. This API uses a callback to return the r
 import { BusinessError } from '@ohos.base';
 
   try {
+    // Replace the URL with the HTTP address of the real server.
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
       let downloadTask: request.DownloadTask = data;
       let progressCallback = (receivedSize: number, totalSize: number) => {
@@ -962,6 +985,7 @@ Unsubscribes from download progress events.
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let progressCallback1 = (receivedSize: number, totalSize: number) => {
@@ -1008,6 +1032,7 @@ Subscribes to download events. This API uses a callback to return the result asy
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback = () => {
@@ -1056,6 +1081,7 @@ Unsubscribes from download events.
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback1 = () => {
@@ -1135,6 +1161,7 @@ Subscribes to download failure events. This API uses a callback to return the re
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback = (err: number) => {
@@ -1173,6 +1200,7 @@ Unsubscribes from download failure events.
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback1 = (err: number) => {
@@ -1217,6 +1245,7 @@ Deletes this download task. This API uses a promise to return the result.
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete().then((result: boolean) => {
@@ -1255,6 +1284,7 @@ Deletes this download task. This API uses an asynchronous callback to return the
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete((err: BusinessError, result: boolean) => {
@@ -1295,6 +1325,7 @@ Obtains the information about this download task. This API uses a promise to ret
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
@@ -1333,6 +1364,7 @@ Obtains the information about this download task. This API uses an asynchronous 
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
@@ -1355,7 +1387,7 @@ try {
 
 getTaskMimeType(): Promise&lt;string&gt;
 
-Obtains the **MimeType** of this download task. This API uses a promise to return the result.
+Queries **MimeType** (that is, media type of resources) of a download task. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1373,6 +1405,7 @@ Obtains the **MimeType** of this download task. This API uses a promise to retur
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType().then((data: string) => {
@@ -1411,6 +1444,7 @@ Obtains the **MimeType** of this download task. This API uses an asynchronous ca
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
@@ -1451,6 +1485,7 @@ Pauses this download task. This API uses a promise to return the result.
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend().then((result: boolean) => {
@@ -1489,6 +1524,7 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend((err: BusinessError, result: boolean) => {
@@ -1529,6 +1565,7 @@ Resumes this download task. This API uses a promise to return the result.
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore().then((result: boolean) => {
@@ -1567,6 +1604,7 @@ Resumes this download task. This API uses an asynchronous callback to return the
 import { BusinessError } from '@ohos.base';
 
 try {
+  // Replace the URL with the HTTP address of the real server.
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore((err: BusinessError, result: boolean) => {
@@ -1989,7 +2027,7 @@ The upload and download SA has the **ohos.permission.SEND_TASK_COMPLETE_EVENT** 
 
 You can use the **CommonEventData** type to transmit data related to common events. The members in **CommonEventData** are different from those described in [CommonEventData](js-apis-inner-commonEvent-commonEventData.md). Specifically, **CommonEventData.code** indicates the task status, which is **0x40 COMPLETE** or **0x41 FAILED**, and **CommonEventData.data** indicates the task ID.
 
-For details about event configuration information, see [Subscribing to Common Events in Static Mode](../../application-models/common-event-static-subscription.md).
+For details about event configuration information, see [Subscribing to Common Events in Static Mode (for System Applications Only)](../../basic-services/common-event/common-event-static-subscription.md).
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2037,12 +2075,12 @@ Provides the configuration information of an upload or download task.
 | method | string | No| Standard HTTP method for the task. The value can be **GET**, **POST**, or **PUT**, which is case-insensitive.<br>- If the task is an upload, use **PUT** or **POST**. The default value is **PUT**.<br>- If the task is a download, use **GET** or **POST**. The default value is **GET**.|
 | headers | object | No| HTTP headers to be included in the task.<br>- If the task is an upload, the default **Content-Type** is **multipart/form-data**.<br>- If the task is a download, the default **Content-Type** is **application/json**.|
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task data.<br>- If the task is a download, the value is a string, typically in JSON format (an object will be converted to a JSON string); the default value is null.<br>- If the task is an upload, the value is Array<[FormItem](#formitem10)>; the default value is null.|
-| saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path in the cache folder of the invoker, for example, **"./xxx/yyy/zzz.html"** and **"xxx/yyy/zzz.html"**.<br>- URI (applicable when the application has the permission to access the URI), for example, **"datashare://bundle/xxx/yyy/zzz.html"**. This option is not supported currently.<br>The default value is a relative path in the cache folder of the application.|
+| saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path in the cache folder of the invoker, for example, **"./xxx/yyy/zzz.html"** and **"xxx/yyy/zzz.html"**.<br>- URI (applicable when the application has the permission to access the URI), for example, **"datashare://bundle/xxx/yyy/zzz.html"**. This function is not supported currently.<br>The default value is a relative path in the cache folder of the application.|
 | network | [Network](#network10) | No| Network used for the task. The default value is **ANY** (Wi-Fi or cellular).|
 | metered | boolean | No| Whether the task is allowed on a metered connection. The default value is **false**.<br>- **true**: task allowed on a metered connection.<br>- **false**: task not allowed on a metered connection.|
 | roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.<br>- **true**: task allowed on a roaming network.<br>- **false**: task not allowed on a roaming network.|
 | retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks. The default value is **true**.<br>- **true**: automatic retry enabled for the task.<br>- **-false**: automatic retry not enabled for the task.|
-| redirect | boolean | No| Whether redirection is allowed. The default value is **true**.<br>- **true**: redirection allowed.<br>- **false**: redirection not allowed.|
+| redirect | boolean | No| Whether redirection is allowed. The default value is **true**.<br>- **true**: redirection allowed.<br>- **false**: task not allowed on a metered connection.|
 | index | number | No| Path index of the task. It is usually used for resumable downloads. The default value is **0**.|
 | begins | number | No| File start point of the task. It is usually used for resumable downloads. The default value is **0**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the start position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the beginning of the upload.|
 | ends | number | No| File end point of the task. It is usually used for resumable downloads. The default value is **-1**. The value is a closed interval.<br>- If the task is a download, the value is obtained by sending an HTTP range request to read the end position when the server starts to download files.<br>- If the task is an upload, the value is obtained at the end of the upload.|
@@ -2120,7 +2158,7 @@ Defines the data structure of the task information for query. The fields availab
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path in the cache folder of the invoker, for example, **"./xxx/yyy/zzz.html"** and **"xxx/yyy/zzz.html"**.<br>- URI (applicable when the application has the permission to access the URI), for example, **"datashare://bundle/xxx/yyy/zzz.html"**. This option is not supported currently.<br>The default value is a relative path in the cache folder of the application.|
+| saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path in the cache folder of the invoker, for example, **"./xxx/yyy/zzz.html"** and **"xxx/yyy/zzz.html"**.<br>- URI (applicable when the application has the permission to access the URI), for example, **"datashare://bundle/xxx/yyy/zzz.html"**. This function is not supported currently.<br>The default value is a relative path in the cache folder of the application.|
 | url | string | No| Task URL.<br>It can be obtained through [request.agent.show<sup>10+</sup>](#requestagentshow10-1) or [request.agent.touch<sup>10+</sup>](#requestagenttouch10-1).|
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | No| Task value.<br>It can be obtained through [request.agent.show<sup>10+</sup>](#requestagentshow10-1) or [request.agent.touch<sup>10+</sup>](#requestagenttouch10-1).|
 | tid | string | Yes| Task ID.|
@@ -2172,7 +2210,7 @@ Subscribes to task progress changes. This API uses a callback to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -2191,7 +2229,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2217,6 +2255,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('progress', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2243,7 +2282,7 @@ Subscribes to task completion events. This API uses a callback to return the res
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -2262,7 +2301,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2288,6 +2327,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('completed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2314,7 +2354,7 @@ Subscribes to task failure events. This API uses a callback to return the result
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -2333,7 +2373,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2359,6 +2399,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('failed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2385,7 +2426,7 @@ Subscribes to task pause events. This API uses a callback to return the result a
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
 **Example**
 
@@ -2400,7 +2441,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2426,6 +2467,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('pause', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2452,7 +2494,7 @@ Subscribes to task resume events. This API uses a callback to return the result 
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
 **Example**
 
@@ -2467,7 +2509,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2493,6 +2535,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('resume', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2519,7 +2562,7 @@ Subscribes to task removal events. This API uses a callback to return the result
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
 **Example**
 
@@ -2534,7 +2577,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2560,6 +2603,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.on('remove', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2586,7 +2630,7 @@ Unsubscribes from task progress events.
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -2605,7 +2649,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2639,6 +2683,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     // Unsubscribe from all callbacks of task progress changes.
     task.off('progress');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2665,7 +2710,7 @@ Unsubscribes from task completion events.
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -2684,7 +2729,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2718,6 +2763,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     // Unsubscribe from all callbacks of the task completion events.
     task.off('completed');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2744,7 +2790,7 @@ Unsubscribes from task failure events.
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -2763,7 +2809,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2797,6 +2843,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     // Unsubscribe from all callbacks of the task failure events.
     task.off('failed');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2823,7 +2870,7 @@ Unsubscribes from the foreground task pause event.
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
 **Example**
 
@@ -2838,7 +2885,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2872,6 +2919,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     // Unsubscribe from all callbacks of the foreground task pause event.
     task.off('pause');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2898,7 +2946,7 @@ Unsubscribes from the foreground task resume event.
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
 **Example**
 
@@ -2913,7 +2961,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2947,6 +2995,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     // Unsubscribe from all callbacks of the foreground task resume event.
     task.off('resume');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -2973,7 +3022,7 @@ Unsubscribes from the task removal event.
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
 **Example**
 
@@ -2988,7 +3037,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3022,6 +3071,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     // Unsubscribe from all callbacks of the task removal event.
     task.off('remove');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3049,7 +3099,7 @@ Starts this task. This API cannot be used to start an initialized task. This API
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3061,7 +3111,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskStartTest',
     description: 'Sample code for start the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3117,7 +3167,7 @@ Starts this task. This API cannot be used to start an initialized task. This API
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3129,7 +3179,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskStartTest',
     description: 'Sample code for start the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3181,7 +3231,7 @@ Pauses this task. This API can be used to pause a background task that is waitin
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3194,7 +3244,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskPauseTest',
     description: 'Sample code for pause the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3215,6 +3265,8 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
     task.pause((err: BusinessError) => {
       if (err) {
         console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3248,7 +3300,7 @@ Pauses this task. This API can be used to pause a background task that is waitin
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3261,7 +3313,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskPauseTest',
     description: 'Sample code for pause the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3282,6 +3334,8 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
     }).catch((err: BusinessError) => {
@@ -3315,7 +3369,7 @@ Resumes this task. This API can be used to resume a paused background task. This
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3328,7 +3382,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskResumeTest',
     description: 'Sample code for resume the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3349,6 +3403,10 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    task.pause();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
     task.resume((err: BusinessError) => {
       if (err) {
         console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3385,7 +3443,7 @@ Resumes this task. This API can be used to resume a paused background task. This
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3398,7 +3456,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskResumeTest',
     description: 'Sample code for resume the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3419,6 +3477,10 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    task.pause();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
     task.resume().then(() => {
       console.info(`Succeeded in resuming a download task. `);
     }).catch((err: BusinessError) => {
@@ -3451,7 +3513,7 @@ Stops this task. This API can be used to stop a running, waiting, or retrying ta
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3463,7 +3525,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskStopTest',
     description: 'Sample code for stop the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3484,6 +3546,8 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
     task.stop((err: BusinessError) => {
       if (err) {
         console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3514,7 +3578,7 @@ Stops this task. This API can be used to stop a running, waiting, or retrying ta
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3526,7 +3590,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   ```ts
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'taskStopTest',
     description: 'Sample code for stop the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3547,6 +3611,8 @@ For details about the error codes, see [Upload and Download Error Codes](./error
     token: "it is a secret"
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    task.start();
+    for(var t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
     task.stop().then(() => {
       console.info(`Succeeded in stopping a download task. `);
     }).catch((err: BusinessError) => {
@@ -3579,7 +3645,7 @@ Creates an upload or download task and adds it to the queue. An application can 
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3601,7 +3667,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'createTest',
     description: 'Sample code for create task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3627,6 +3693,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
       return;
     }
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
+    task.start();
   });
   ```
 
@@ -3660,7 +3727,7 @@ Creates an upload or download task and adds it to the queue. An application can 
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3682,7 +3749,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1',
+    url: 'http://127.0.0.1', // Replace the URL with the HTTP address of the real server.
     title: 'createTest',
     description: 'Sample code for create task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3704,6 +3771,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
+    task.start();
   }).catch((err) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3737,7 +3805,7 @@ Obtains task information based on the task ID. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3771,7 +3839,7 @@ Removes a specified task of the invoker. If the task is being executed, the task
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3813,7 +3881,7 @@ Removes a specified task of the invoker. If the task is being executed, the task
 
 **Error codes**
 
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3847,7 +3915,7 @@ Queries a task details based on the task ID. This API uses an asynchronous callb
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3888,7 +3956,7 @@ Queries a task details based on the task ID. This API uses a promise to return t
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise Promise used to return task details.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3923,7 +3991,7 @@ Queries the task details based on the task ID and token. This API uses an asynch
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | Yes| Callback used to return task details.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3965,7 +4033,7 @@ Queries the task details based on the task ID and token. This API uses a promise
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise Promise used to return task details.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -3997,7 +4065,7 @@ Searches for task IDs based on [Filter](#filter10). This API uses an asynchronou
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return task ID matches.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -4031,7 +4099,7 @@ Searches for task IDs based on [Filter](#filter10). This API uses an asynchronou
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return task ID matches.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |
@@ -4076,7 +4144,7 @@ Searches for task IDs based on [Filter](#filter10). This API uses a promise to r
 | Promise&lt;Array&lt;string&gt;&gt; | Promise Promise used to return task ID matches.|
 
 **Error codes**
-For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
   | ID| Error Message|
   | -------- | -------- |

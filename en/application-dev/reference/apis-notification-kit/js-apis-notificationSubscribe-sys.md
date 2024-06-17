@@ -31,7 +31,7 @@ Subscribes to a notification with the subscription information specified. This A
 | Name      | Type                     | Mandatory| Description            |
 | ---------- | ------------------------- | ---- | ---------------- |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | Yes  | Notification subscriber.    |
-| info       | [NotificationSubscribeInfo](js-apis-notification-sys.md#notificationsubscribeinfo) | Yes  | Notification subscription information.|
+| info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | Yes  | Notification subscription information.|
 | callback   | AsyncCallback\<void\>     | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -141,7 +141,7 @@ Subscribes to a notification with the subscription information specified. This A
 | Name      | Type                     | Mandatory| Description        |
 | ---------- | ------------------------- | ---- | ------------ |
 | subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | Yes  | Notification subscriber.|
-| info       | [NotificationSubscribeInfo](js-apis-notification-sys.md#notificationsubscribeinfo) | No  | Notification subscription information. By default, this parameter is left empty, which means to subscribe to notifications of all applications under this user.  |
+| info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | No  | Notification subscription information. By default, this parameter is left empty, which means to subscribe to notifications of all applications under this user.  |
 
 **Return value**
 
@@ -468,7 +468,7 @@ Removes a notification based on the specified unique notification ID. This API u
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | Yes  | Unique notification ID. It is the **hashCode** in the[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onConsume) callback.|
+| hashCode | string                | Yes  | Unique notification ID. It is the value of **hashCode** in the [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume) callback.|
 | reason   | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.        |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -565,7 +565,7 @@ Removes specified notifications. This API uses an asynchronous callback to retur
 
 | Name      | Type                           | Mandatory| Description                                                                                                                                                                                                                                                                                 |
 |-----------|-------------------------------| ---- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| hashCodes | Array\<String\>               | Yes  | Array of unique notification IDs. It is the **hashCode** in the[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onConsume) callback.|
+| hashCodes | Array\<String\>               | Yes  | Array of unique notification IDs. It is the value of **hashCode** in the [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume) callback.|
 | reason    | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.                                                                                                                                                                                                                                                                            |
 | callback  | AsyncCallback\<void\>         | Yes  | Callback used to return the result.                                                                                                                                                                                                                                                                        |
 
@@ -812,7 +812,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
@@ -857,7 +857,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **Example**
 

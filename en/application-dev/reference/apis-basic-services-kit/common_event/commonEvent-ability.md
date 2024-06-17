@@ -6,7 +6,7 @@ This document lists the common system events provided by the Ability subsystem t
 Indicates that the user has finished the boot process.
 
 - Constant value: "usual.event.BOOT_COMPLETED"
-- Required subscriber permissions: ohos.permission.RECEIVER_STARTUP_COMPLETED
+- Required subscriber permissions: ohos.permission.RECEIVER_STARTUP_COMPLETED (for system apps only)
 
 When the specified user finishes the boot process on the device, the event notification service is triggered to publish this event.
 
@@ -37,7 +37,7 @@ Indicates the result of applying a quick fix to the application.
 
 When the specified user applies a quick fix to the application on the device, the event notification service is triggered to publish this event.
 
-## COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+</sup>
+## COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+<sup>
 
 Indicates the result of revoking a quick fix to the application.
 
