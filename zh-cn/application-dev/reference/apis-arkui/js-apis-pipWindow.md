@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import pipWindow from '@ohos.PiPWindow';
+import pipWindow from '@kit.ArkUI';
 ```
 
 ## pipWindow.isPiPEnabled
@@ -67,7 +67,7 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let pipController: pipWindow.PiPController | undefined = undefined;
 let mXComponentController: XComponentController = new XComponentController(); // 开发者应使用该mXComponentController初始化XComponent: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} )，保证XComponent的内容可以被迁移到画中画窗口。
 let navId: string = "page_1"; // 假设当前页面的导航id为page_1，详见PiPConfiguration定义，具体导航名称由开发者自行定义。
