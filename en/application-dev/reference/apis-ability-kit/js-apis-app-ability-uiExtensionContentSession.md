@@ -161,11 +161,8 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
@@ -196,10 +193,5 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).

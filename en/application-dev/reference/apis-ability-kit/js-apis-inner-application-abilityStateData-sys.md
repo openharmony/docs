@@ -25,9 +25,9 @@ import appManager from '@ohos.application.appManager';
 | bundleName              | string   | Yes  | No | Bundle name.         |
 | abilityName            | string   | Yes  | No  | Ability name.              |
 | uid                    | number   | Yes  | No  | User ID.                 |
-| state                   | number   | Yes  | No  | [Ability state](../apis/#ability-states).               |
+| state                   | number   | Yes  | No  | [Ability state](#ability-states).               |
 | moduleName<sup>9+</sup> | string   | Yes  | No  | Name of the HAP file to which the ability belongs.   |
-| abilityType | number | Yes  | No  | [Ability type](../apis/#ability-types), which can be **page** or **service**.|
+| abilityType | number | Yes  | No  | [Ability type](#ability-types), which can be **page** or **service**.|
 
 #### Ability States
 
