@@ -47,7 +47,7 @@
     import { BusinessError } from '@kit.BasicServiceKit';
     ```
 
-2. 获取[应用文件路径](../../application-dev/application-models/application-context-stage.md#%25E8%258E%25B7%25E5%258F%2596%25E5%25BA%2594%25E7%2594%25A8%25E6%2596%2587%25E4%25BB%25B6%25E8%25B7%25AF%25E5%25BE%2584)。
+2. 获取[应用文件路径](../../application-dev/application-models/application-context-stage.md#%E8%8E%B7%E5%8F%96%E5%BA%94%E7%94%A8%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84)。
     ```TypeScript
     // xxx.ets
     // 假设应用bundleName值为com.example.demo
