@@ -13,7 +13,7 @@
 import { distributedDataObject } from '@kit.ArkData';
 ```
 
-## distributedObject.create<sup>9+</sup>
+## distributedDataObject.create<sup>9+</sup>
 
 create(context: Context, source: object): DataObject
 
@@ -97,7 +97,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## distributedObject.genSessionId
+## distributedDataObject.genSessionId
 
 genSessionId(): string
 
@@ -157,7 +157,7 @@ let sessionId: string = distributedDataObject.genSessionId();
 
 ## DataObject
 
-表示一个分布式数据对象。在使用以下接口前，需调用[create()](#distributedobjectcreate9)获取DataObject对象。
+表示一个分布式数据对象。在使用以下接口前，需调用[create()](#distributeddataobjectcreate9)获取DataObject对象。
 
 ### setSessionId<sup>9+</sup>
 
@@ -799,7 +799,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## distributedObject.createDistributedObject<sup>(deprecated)</sup>
+## distributedDataObject.createDistributedObject<sup>(deprecated)</sup>
 
 createDistributedObject(source: object): DistributedObject
 
@@ -808,7 +808,7 @@ createDistributedObject(source: object): DistributedObject
 
 > **说明：**
 >
-> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用[distributedDataObject.create](#distributedobjectcreate9)替代。
+> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用[distributedDataObject.create](#distributeddataobjectcreate9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -845,7 +845,7 @@ let g_object: distributedDataObject.DistributedObject = distributedDataObject.cr
 
 ## DistributedObject<sup>(deprecated)</sup>
 
-表示一个分布式数据对象。在使用以下接口前，需调用[createDistributedObject()](#distributedobjectcreatedistributedobjectdeprecated)获取DistributedObject对象。
+表示一个分布式数据对象。在使用以下接口前，需调用[createDistributedObject()](#distributeddataobjectcreatedistributeddataobjectdeprecated)获取DistributedObject对象。
 
 ### setSessionId<sup>(deprecated)</sup>
 
