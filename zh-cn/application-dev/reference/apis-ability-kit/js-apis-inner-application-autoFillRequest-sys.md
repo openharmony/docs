@@ -80,8 +80,8 @@ onSuccess(response: FillResponse): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | The parameter check failed. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -259,8 +259,8 @@ onCancel(fillContent?: string): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1. The input parameter is not valid parameter;2. Mandatory parameters are left unspecified. |
 | 202 | Permission denied, non-system app called system api. |
-| 401 | The parameter check failed. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -352,8 +352,8 @@ setAutoFillPopupConfig(autoFillPopupConfig: AutoFillPopupConfig ): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401  | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 | 202  | Permission verification failed. Possible causes: non-system app called system api. |
-| 401  | Parameter error. Possible causes: Incorrect parameter types. |
 | 16000050 | Internal error. |
 
 **示例：**
