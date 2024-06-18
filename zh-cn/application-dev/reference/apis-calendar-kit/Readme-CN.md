@@ -1,4 +1,4 @@
-# Calendar Kit API参考 
+# Calendar Kit（日历服务）
 
 - ArkTS API 
   - [@ohos.calendarManager（日程管理）](js-apis-calendarManager.md)
