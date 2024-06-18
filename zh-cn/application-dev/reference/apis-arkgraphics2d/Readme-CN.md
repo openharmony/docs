@@ -1,4 +1,4 @@
-# ArkGraphics 2D API参考 
+# ArkGraphics 2D（方舟2D图形服务）
 
 - ArkTS API 
   - [@ohos.effectKit (图像效果)](js-apis-effectKit.md)

@@ -1,6 +1,6 @@
-# ArkTS API参考 
+# ArkTS（方舟编程语言）
 
-- ArkTS API 
+- ArkTS API
   - [@arkts.collections (ArkTS容器集)](js-apis-arkts-collections.md)
   - [@arkts.lang (ArkTS语言基础能力)](js-apis-arkts-lang.md)
   - [@arkts.math.Decimal (高精度数学库Decimal)](js-apis-arkts-decimal.md)
