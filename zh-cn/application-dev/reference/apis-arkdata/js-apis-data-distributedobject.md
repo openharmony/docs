@@ -13,7 +13,7 @@
 import { distributedDataObject } from '@kit.ArkData';
 ```
 
-## distributedDataObject.create<sup>9+</sup>
+## distributedObject.create<sup>9+</sup>
 
 create(context: Context, source: object): DataObject
 
@@ -97,7 +97,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## distributedDataObject.genSessionId
+## distributedObject.genSessionId
 
 genSessionId(): string
 
@@ -799,7 +799,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## distributedDataObject.createDistributedObject<sup>(deprecated)</sup>
+## distributedObject.createDistributedObject<sup>(deprecated)</sup>
 
 createDistributedObject(source: object): DistributedObject
 
