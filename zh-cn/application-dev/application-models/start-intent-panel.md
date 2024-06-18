@@ -36,7 +36,7 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 2. 构造接口参数并调用startAbilityByType接口。
 
     ```ts
-    import common from '@ohos.app.ability.common';
+    import { common } from '@kit.AbilityKit';
     let context = getContext(this) as common.UIAbilityContext;
     let wantParam: Record<string, Object> = {
         'sceneType':1,
@@ -70,7 +70,7 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 
 1. 导入ohos.app.ability.UIAbility模块。
     ```ts
-    import UIAbility from '@ohos.app.ability.UIAbility';
+    import { UIAbility } from '@kit.AbilityKit';
     ```
 2. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
 
@@ -130,43 +130,40 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 **示例：**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
-let destinationLatitude:number;
-let destinationLongitude:number;
-let originLatitude:number | undefined;
-let originLongitude:number | undefined;
+let destinationLatitude: number;
+let destinationLongitude: number;
+let originLatitude: number | undefined;
+let originLongitude: number | undefined;
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-        
-        destinationLatitude = want.parameters?.destinationLatitude as number;
-        destinationLongitude = want.parameters?.destinationLongitude as number;
-        originLatitude = want.parameters?.originLatitude as number | undefined;
-        originLongitude = want.parameters?.originLongitude as number | undefined;
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        hilog.info(0x0000, 'testTag', '%{public}s', `Ability onWindowStageCreate: ${JSON.stringify(this.context)}`);
+    destinationLatitude = want.parameters?.destinationLatitude as number;
+    destinationLongitude = want.parameters?.destinationLongitude as number;
+    originLatitude = want.parameters?.originLatitude as number | undefined;
+    originLongitude = want.parameters?.originLongitude as number | undefined;
+  }
 
-        const storage: LocalStorage = new LocalStorage({
-            "destinationLatitude": destinationLatitude,
-            "destinationLongitude": destinationLongitude,
-            "originLatitude": originLatitude,
-            "originLongitude": originLongitude
-        } as Record<string, object>);
-        
-        if(originLatitude !== undefined && originLongitude !== undefined) {
-            windowStage.loadContent('pages/IndexForNavigation', storage);
-        } else {
-            windowStage.loadContent('pages/IndexForRoutePlan', storage);
-        }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    hilog.info(0x0000, 'testTag', '%{public}s', `Ability onWindowStageCreate: ${JSON.stringify(this.context)}`);
+
+    const storage: LocalStorage = new LocalStorage({
+      "destinationLatitude": destinationLatitude,
+      "destinationLongitude": destinationLongitude,
+      "originLatitude": originLatitude,
+      "originLongitude": originLongitude
+    } as Record<string, number>);
+
+    if (originLatitude !== undefined && originLongitude !== undefined) {
+      windowStage.loadContent('pages/IndexForNavigation', storage);
+    } else {
+      windowStage.loadContent('pages/IndexForRoutePlan', storage);
     }
+  }
 }
-
 ```

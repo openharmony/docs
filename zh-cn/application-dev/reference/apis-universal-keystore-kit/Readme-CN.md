@@ -1,4 +1,4 @@
-# Universal Keystore Kit API参考
+# Universal Keystore Kit（密钥管理服务）
 
 - ArkTS API
   - [@ohos.security.huks (通用密钥库系统)](js-apis-huks.md)

@@ -8,7 +8,7 @@
 >
 > 从API version 9开始，这两个装饰器支持在ArkTS卡片中使用。
 >
-> 从API version 11开始，这两个装饰器支持在元服务中使用。
+> 从API version 11开始，这两个装饰器支持在原子化服务中使用。
 
 ## 概述
 
@@ -620,7 +620,7 @@ struct MapSampleNestedChild {
         ForEach(Array.from(this.myMap.entries()), (item: [number, string]) => {
           Text(`${item[0]}`).fontSize(30)
           Text(`${item[1]}`).fontSize(30)
-          Divider()
+          Divider().strokeWidth(5)
         })
 
         Button('set new one')

@@ -11,12 +11,12 @@
 ## 导入模块
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 ```
 
 ## 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -31,18 +31,18 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 **示例：**
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.executeShellCommand(cmd, (error: BusinessError, data) => {
-    if (error) {
-        console.error(`executeShellCommand fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`executeShellCommand success, data: ${JSON.stringify(data)}`);
-    }
+  if (error) {
+    console.error(`executeShellCommand fail, error: ${JSON.stringify(error)}`);
+  } else {
+    console.log(`executeShellCommand success, data: ${JSON.stringify(data)}`);
+  }
 });
 ```

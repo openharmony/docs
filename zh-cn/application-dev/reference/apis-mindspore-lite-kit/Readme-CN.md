@@ -1,4 +1,4 @@
-# MindSpore Lite Kit API参考 
+# MindSpore Lite Kit（昇思推理框架服务）
 
 - ArkTS API
   - [@ohos.ai.mindSporeLite (端侧AI框架)](js-apis-mindSporeLite.md)

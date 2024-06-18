@@ -14,7 +14,7 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 设置组件的自定义组合键。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -34,7 +34,7 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 ## ModifierKey
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -46,30 +46,28 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 ## FunctionKey
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 描述           |
 | ---- | ------------ |
-| ESC  | 表示键盘上ESC功能键。 |
-| F1   | 表示键盘上F1功能键。  |
-| F2   | 表示键盘上F2功能键。  |
-| F3   | 表示键盘上F3功能键。  |
-| F4   | 表示键盘上F4功能键。  |
-| F5   | 表示键盘上F5功能键。  |
-| F6   | 表示键盘上F6功能键。  |
-| F7   | 表示键盘上F7功能键。  |
-| F8   | 表示键盘上F8功能键。  |
-| F9   | 表示键盘上F9功能键。  |
-| F10  | 表示键盘上F10功能键。 |
-| F11  | 表示键盘上F11功能键。 |
-| F12  | 表示键盘上F12功能键。 |
+| ESC  | 表示键盘上ESC功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| F1   | 表示键盘上F1功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F2   | 表示键盘上F2功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F3   | 表示键盘上F3功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F4   | 表示键盘上F4功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F5   | 表示键盘上F5功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F6   | 表示键盘上F6功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F7   | 表示键盘上F7功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F8   | 表示键盘上F8功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F9   | 表示键盘上F9功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| F10  | 表示键盘上F10功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| F11  | 表示键盘上F11功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| F12  | 表示键盘上F12功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | TAB<sup>12+</sup>  | 表示键盘上TAB功能键。 |
-| UP<sup>12+</sup>   | 表示键盘上UP方向键。  |
-| DOWN<sup>12+</sup> | 表示键盘上DOWN方向键。 |
-| LEFT<sup>12+</sup> | 表示键盘上LEFT方向键。 |
-| RIGHT<sup>12+</sup> | 表示键盘上RIGHT方向键。 |
+| OPAD_UP<sup>12+</sup>   | 表示键盘上UP方向键。  |
+| OPAD_DOWN<sup>12+</sup> | 表示键盘上DOWN方向键。 |
+| OPAD_LEFT<sup>12+</sup> | 表示键盘上LEFT方向键。 |
+| OPAD_RIGHT<sup>12+</sup> | 表示键盘上RIGHT方向键。 |
 
 ## 快捷键使用注意事项
 

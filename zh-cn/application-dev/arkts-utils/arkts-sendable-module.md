@@ -55,19 +55,12 @@
     // 声明当前模块为共享模块，只能导出可Sendable数据
     "use shared"
 
-    export { SingletonA }
-    
     // 共享模块，SingletonA全局唯一
     @Sendable
     class SingletonA {
-      private static instance: SingletonA = new SingletonA;
       private count_: number = 0;
       lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock()
-    
-      public static getInstance(): SingletonA {
-        return SingletonA.instance;
-      }
-    
+
       public async getCount(): Promise<number> {
         return this.lock_.lockAsync(() => {
           return this.count_;
@@ -80,24 +73,43 @@
         })
       }
     }
+
+    export let singletonA = new SingletonA();
     ```
 
 2. 在多个线程中操作共享模块导出的对象。
 
     ```ts
-    import taskpool from '@ohos.taskpool';
-    import { SingletonA } from './sharedModule'
+    import { ArkTSUtils, taskpool } from '@kit.ArkTS';
+    import { singletonA } from './sharedModule'
     
-    let sig: SingletonA = SingletonA.getInstance();
-    
-    @Concurrent
-    async function test2(sig: SingletonA) {
-      console.info("sendable: taskpool count is:" + await sig.getCount());
-      let n = Date.now();
-      // 等待1000us,模拟实际业务
-      while (Date.now() - n < 1000) {
-    
+    @Sendable
+    export class A {
+      private count_: number = 0;
+      lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock()
+
+      public async getCount(): Promise<number> {
+        return this.lock_.lockAsync(() => {
+          return this.count_;
+        })
       }
+    
+      public async increaseCount() {
+        await this.lock_.lockAsync(() => {
+          this.count_++;
+        })
+      }
+    }
+
+    @Concurrent
+    async function increaseCount() {
+      await singletonA.increaseCount();
+      console.info("SharedModule: count is:" + await singletonA.getCount());
+    }
+
+    @Concurrent
+    async function printCount() {
+      console.info("SharedModule: count is:" + await singletonA.getCount());
     }
     
     @Entry
@@ -108,16 +120,21 @@
       build() {
         Row() {
           Column() {
-            Button("MainThread")
+            Button("MainThread print count")
               .onClick(async () => {
-                // 主线程调用单例sig.incrementCount()、fetchCount();
-                sig.increaseCount();
-                console.info("sendable: main thread count is:" + await sig.getCount());
+                await printCount()
               })
-            Button("TaskpoolTest")
+            Button("Taskpool print count")
               .onClick(async () => {
-                let task = new taskpool.Task(test2, sig);
-                await taskpool.execute(task);
+                await taskpool.execute(printCount);
+              })
+            Button("MainThread increase count")
+              .onClick(async () => {
+                await increaseCount()
+              })
+            Button("Taskpool increase count")
+              .onClick(async () => {
+                await taskpool.execute(increaseCount);
               })
           }
           .width('100%')
