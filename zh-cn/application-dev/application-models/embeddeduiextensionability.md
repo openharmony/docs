@@ -36,74 +36,74 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 
 3. 打开EmbeddedUIExtAbility.ts文件，导入EmbeddedUIExtensionAbility的依赖包，自定义类继承EmbeddedUIExtensionAbility并实现onCreate、onSessionCreate、onSessionDestroy、onForeground、onBackground和onDestroy生命周期回调。
 
-   ```ts
-   import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
-   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-   import Want from '@ohos.app.ability.Want';
-   
-   const TAG: string = '[ExampleEmbeddedAbility]'
-   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
-     onCreate() {
-       console.log(TAG, `onCreate`);
-     }
-   
-     onForeground() {
-       console.log(TAG, `onForeground`);
-     }
-   
-     onBackground() {
-       console.log(TAG, `onBackground`);
-     }
-   
-     onDestroy() {
-       console.log(TAG, `onDestroy`);
-     }
-   
-     onSessionCreate(want: Want, session: UIExtensionContentSession) {
-       console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
-       let param: Record<string, UIExtensionContentSession> = {
-         'session': session
-       };
-       let storage: LocalStorage = new LocalStorage(param);
-       session.loadContent('pages/extension', storage);
-     }
-   
-     onSessionDestroy(session: UIExtensionContentSession) {
-       console.log(TAG, `onSessionDestroy`);
-     }
-   }
-   ```
+  ```ts
+  import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+
+  const TAG: string = '[ExampleEmbeddedAbility]'
+
+  export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
+    onCreate() {
+      console.log(TAG, `onCreate`);
+    }
+
+    onForeground() {
+      console.log(TAG, `onForeground`);
+    }
+
+    onBackground() {
+      console.log(TAG, `onBackground`);
+    }
+
+    onDestroy() {
+      console.log(TAG, `onDestroy`);
+    }
+
+    onSessionCreate(want: Want, session: UIExtensionContentSession) {
+      console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+      let param: Record<string, UIExtensionContentSession> = {
+        'session': session
+      };
+      let storage: LocalStorage = new LocalStorage(param);
+      session.loadContent('pages/extension', storage);
+    }
+
+    onSessionDestroy(session: UIExtensionContentSession) {
+      console.log(TAG, `onSessionDestroy`);
+    }
+  }
+  ```
 
 4. EmbeddedUIExtensionAbility的onSessionCreate中加载了入口页面文件pages/extension.ets内容如下：
 
-   ```ts
-   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-   
-   let storage = LocalStorage.getShared()
-   
-   @Entry(storage)
-   @Component
-   struct Extension {
-     @State message: string = 'EmbeddedUIExtensionAbility Index';
-     private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-   
-     build() {
-       Column() {
-         Text(this.message)
-           .fontSize(20)
-           .fontWeight(FontWeight.Bold)
-         Button("terminateSelfWithResult").fontSize(20).onClick(() => {
-           this.session?.terminateSelfWithResult({
-             resultCode: 1,
-             want: {
-               bundleName: "com.example.embeddeddemo",
-               abilityName: "ExampleEmbeddedAbility",
-             }});
-         })
-       }.width('100%').height('100%')
-     }
-   }
-   ```
+  ```ts
+  import { UIExtensionContentSession } from '@kit.AbilityKit';
+
+  let storage = LocalStorage.getShared();
+
+  @Entry(storage)
+  @Component
+  struct Extension {
+    @State message: string = 'EmbeddedUIExtensionAbility Index';
+    private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+
+    build() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+        Button("terminateSelfWithResult").fontSize(20).onClick(() => {
+          this.session?.terminateSelfWithResult({
+            resultCode: 1,
+            want: {
+              bundleName: "com.example.embeddeddemo",
+              abilityName: "ExampleEmbeddedAbility",
+            }
+          });
+        })
+      }.width('100%').height('100%')
+    }
+  }
+  ```
 
 5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册EmbeddedUIExtensionAbility，type标签需要设置为“embeddedUI”，srcEntry标签表示当前EmbeddedUIExtensionAbility组件所对应的代码路径。
 
@@ -130,8 +130,8 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 开发者可以在UIAbility的页面中通过EmbeddedComponent容器加载自己应用内的EmbeddedUIExtensionAbility。如在首页文件：pages/Index.ets中添加如下内容：
 
 ```ts
-import Want from '@ohos.app.ability.Want'
-import { BusinessError } from '@ohos.base'
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -139,7 +139,7 @@ struct Index {
   @State message: string = 'Message: '
   private want: Want = {
     bundleName: "com.example.embeddeddemo",
-    abilityName: "ExampleEmbeddedAbility",
+    abilityName: "ExampleEmbeddedAbility"
   }
 
   build() {
@@ -149,10 +149,10 @@ struct Index {
         EmbeddedComponent(this.want, EmbeddedType.EMBEDDED_UI_EXTENSION)
           .width('100%')
           .height('90%')
-          .onTerminated((info: TerminationInfo)=>{
+          .onTerminated((info: TerminationInfo) => {
             this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
           })
-          .onError((error: BusinessError)=>{
+          .onError((error: BusinessError) => {
             this.message = 'Error: code = ' + error.code;
           })
       }
@@ -162,6 +162,3 @@ struct Index {
   }
 }
 ```
-
-
-

@@ -12,7 +12,7 @@ To pass function verification, the concurrent functions executed in a [TaskPool]
 | \@Concurrent Decorator| Description                                                                                      |
 | --------------------- | ------------------------------------------------------------------------------------------ |
 | Decorator parameters            | None.                                                                                      |
-| Application scenarios              | This decorator can be used only in projects of the stage model.                                                             |
+| Application scenarios              | This decorator can be used only in projects of the stage model. It can be used only in .ets files.                                       |
 | Decorated function types        | This decorator can be used for asynchronous functions and common functions. It cannot be used for generators, arrow functions, or methods. It does not support class member functions or anonymous functions. |
 | Variable types in decorated functions | Local variables, input parameters, and variables imported through **import** are supported. Closure variables are not allowed.                              |
 | Return value types in decorated functions | For details about the supported return value types, see [Serialization Types Supported by TaskPool and Worker](serialization-support-types.md).  |

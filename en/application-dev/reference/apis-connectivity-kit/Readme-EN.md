@@ -21,6 +21,7 @@
   - [@ohos.secureElement (SE Management)](js-apis-secureElement.md)
   - [@ohos.wifiManager (WLAN) (Recommended)](js-apis-wifiManager.md)
   - [@ohos.wifiManagerExt (WLAN Extension) (Recommended)](js-apis-wifiManagerExt.md)
+  <!--Del-->
   - [@ohos.bluetooth.a2dp (Bluetooth A2DP Module) (Recommended) (System API)](js-apis-bluetooth-a2dp-sys.md)
   - [@ohos.bluetooth.access (Bluetooth Access Module) (Recommended) (System API)](js-apis-bluetooth-access-sys.md)
   - [@ohos.bluetooth.baseProfile (Bluetooth baseProfile Module) (Recommended) (System API)](js-apis-bluetooth-baseProfile-sys.md)
@@ -36,6 +37,7 @@
   - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation) (System API)](js-apis-cardEmulation-sys.md)
   - [@ohos.nfc.tag (Standard NFC Tags) (System API)](js-apis-nfcTag-sys.md)
   - [@ohos.wifiManager (WLAN) (Recommended) (System API)](js-apis-wifiManager-sys.md)
+  <!--DelEnd-->
   - tag
     - [nfctech (Standard NFC Technologies)](js-apis-nfctech.md)
     - [tagSession (Standard NFC Tag Session)](js-apis-tagSession.md)
@@ -49,6 +51,7 @@
   - [@ohos.wifi (WLAN) (To Be Deprecated)](js-apis-wifi.md)
   - [@ohos.wifiext (WLAN Extension) (To Be Deprecated)](js-apis-wifiext.md)
   - [@system.bluetooth (Bluetooth)](js-apis-system-bluetooth.md)
+  <!--Del-->
   - [@ohos.bluetooth (Bluetooth) (To Be Deprecated) (System API)](js-apis-bluetooth-sys.md)
   - [@ohos.wifi (WLAN) (To Be Deprecated) (System API)](js-apis-wifi-sys.md)
-  
+  <!--DelEnd-->

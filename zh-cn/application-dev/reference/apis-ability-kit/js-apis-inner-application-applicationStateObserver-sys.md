@@ -1,6 +1,6 @@
 # ApplicationStateObserver (系统接口)
 
-定义应用状态监听，可以作为[registerApplicationStateObserver](js-apis-application-appManager-sys.md#appmanagerregisterapplicationstateobserver)的入参监听当前应用的生命周期变化。
+定义应用状态监听，可以作为[on](js-apis-app-ability-appManager-sys.md#appmanageron11)的入参监听当前应用的生命周期变化。
 
 > **说明：**
 > 
@@ -26,8 +26,6 @@ import { appManager } from '@kit.AbilityKit';
 | onProcessCreated                 | AsyncCallback\<void>   | 是   | 否   | 进程创建时执行的回调函数。传入参数类型是[ProcessData](js-apis-inner-application-processData-sys.md)。          |
 | onProcessDied                     | AsyncCallback\<void>   | 是   | 否   | 进程销毁时执行的回调函数。传入参数类型是[ProcessData](js-apis-inner-application-processData-sys.md)。          |
 | onProcessStateChanged<sup>9+</sup> | AsyncCallback\<void>   | 是   | 否   | 进程状态更新时执行的回调函数。传入参数类型是[ProcessData](js-apis-inner-application-processData-sys.md)。        |
-| onAppStarted<sup>12+</sup>       | AsyncCallback\<void>   | 是   | 否   | 应用第一个进程创建时执行的回调函数。传入参数类型是[AppStateData](js-apis-inner-application-appStateData-sys.md)。     |
-| onAppStopped<sup>12+</sup>       | AsyncCallback\<void>   | 是   | 否   | 应用最后一个进程销毁时执行的回调函数。传入参数类型是[AppStateData](js-apis-inner-application-appStateData-sys.md)。     |
 
 **示例：**
 ```ts
@@ -50,10 +48,10 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     console.log(`onProcessStateChanged onProcessStateChanged: ${JSON.stringify(processData)}`);
   },
   onAppStarted(appStateData) {
-    console.log(`onAppStarted onAppStarted: ${JSON.stringify(appStateData)}`);
+    console.log(`onAppStarted appStateData: ${JSON.stringify(appStateData)}`);
   },
   onAppStopped(appStateData) {
-    console.log(`onAppStopped onAppStopped: ${JSON.stringify(appStateData)}`);
+    console.log(`onAppStopped appStateData: ${JSON.stringify(appStateData)}`);
   }
 };
 let observerCode = appManager.on('applicationState', applicationStateObserver);

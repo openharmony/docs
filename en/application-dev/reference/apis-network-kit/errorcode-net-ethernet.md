@@ -26,7 +26,7 @@ Check whether the input parameter value is within the valid value range.
 
 **Error Message**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **Description**
 

@@ -12,6 +12,15 @@
 
 <!--RP1--><!--RP1End-->
 
+通过视频解码，应用可以实现以下重点能力，包括：
+1. 通过调用OH_VideoDecoder_RegisterCallback()设置回调函数，实现改变分辨率。
+
+   具体可参考下文中：Surface模式或Buffer模式的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数。
+2. 在Surface模式下，实现动态切换Surface。
+
+   具体可参考下文中：Surface模式的步骤6-设置Surface。
+
+
 ## 限制约束
 
 av_codec只支持AnnexB，AnnexB不支持多slice。
@@ -218,7 +227,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 6. 设置Surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
-    Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
+   Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
 
     ```c++
     // 配置送显窗口参数
@@ -439,7 +448,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
     > **注意：**
-    > Flush之后，重新Start时，需要重新传XPS。
+    > Reset之后，重新Start时，需要重新传XPS。具体示例请参考OH_VideoDecoder_Flush()步骤12。
     >
 
 15. （可选）调用OH_VideoDecoder_Stop()停止解码器。
@@ -452,7 +461,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
     > **注意：**
-    > Flush之后，重新Start时，需要重新传XPS。
+    > Stop之后，重新Start时，需要重新传XPS。具体示例请参考OH_VideoDecoder_Flush()步骤12。
     >
 
 16. 调用OH_VideoDecoder_Destroy()销毁解码器实例，释放资源。

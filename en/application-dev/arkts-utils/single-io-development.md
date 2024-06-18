@@ -28,10 +28,11 @@ Asynchronous concurrency provided by Promise and async/await is applicable to th
       let file: fs.File = await fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
       write('Hello World!', file).then(() => {
         console.info('Succeeded in writing data.');
+        fs.close(file);
       }).catch((err: BusinessError) => {
         console.error(`Failed to write data. Code is ${err.code}, message is ${err.message}`);
+        fs.close(file);
       })
-      fs.close(file);
     }
     testFunc();
     ```

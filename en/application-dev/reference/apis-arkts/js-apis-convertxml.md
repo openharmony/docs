@@ -10,7 +10,7 @@ The **convertxml** module provides APIs for converting XML text into JavaScript 
 ## Modules to Import
 
 ```ts
-import convertxml from '@ohos.convertxml';
+import { convertxml } from '@kit.ArkTS';
 ```
 
 ## ConvertXML
@@ -20,6 +20,8 @@ import convertxml from '@ohos.convertxml';
 convertToJSObject(xml: string, options?: ConvertOptions) : Object
 
 Converts an XML text into a JavaScript object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -38,10 +40,11 @@ Converts an XML text into a JavaScript object.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200002 | Invalid xml string. |
 
 **Example**
@@ -122,6 +125,8 @@ console.log(result);
 ## ConvertOptions
 
 Options for conversion.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 

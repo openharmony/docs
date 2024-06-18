@@ -30,7 +30,7 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 \@StorageProp(key)是和AppStorage中key对应的属性建立单向数据同步，允许本地改变，但是对于\@StorageProp，本地的修改永远不会同步回AppStorage中，相反，如果AppStorage给定key的属性发生改变，改变会被同步给\@StorageProp，并覆盖掉本地的修改。
 > **说明：**
 >
-> 从API version 11开始，该装饰器支持在元服务中使用。
+> 从API version 11开始，该装饰器支持在原子化服务中使用。
 
 ### 装饰器使用规则说明
 
@@ -91,7 +91,7 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 > **说明：**
 >
-> 从API version 11开始，该装饰器支持在元服务中使用。
+> 从API version 11开始，该装饰器支持在原子化服务中使用。
 
 \@StorageLink(key)是和AppStorage中key对应的属性建立双向数据同步：
 

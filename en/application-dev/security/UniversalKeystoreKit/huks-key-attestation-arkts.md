@@ -18,8 +18,7 @@ The caller must have the ohos.permission.ATTEST_KEY permission. You need to requ
 /*
  * Perform non-anonymous key attestation. This example uses promise-based APIs.
  */
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from "@kit.UniversalKeystoreKit";
 /* 1. Set the key alias. */
 let keyAliasString = "key attest";
 let aliasString = keyAliasString;
@@ -31,13 +30,9 @@ let attestCertChain: Array<string>;
 class throwObject {
   isThrow: boolean = false;
 }
-class genKeyPropertyType {
-  tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
-  value: huks.HuksKeyAlg | huks.HuksKeyStorageType | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest
-    | huks.HuksKeyPadding | huks.HuksKeyGenerateType | huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_RSA
-}
+
 /* Encapsulate the key parameter set. */
-let genKeyProperties: genKeyPropertyType[] = [
+let genKeyProperties: Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_RSA
@@ -70,12 +65,9 @@ let genKeyProperties: genKeyPropertyType[] = [
 let genOptions: huks.HuksOptions = {
   properties: genKeyProperties
 };
-class attestKeypropertyType {
-  tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO;
-  value: Uint8Array = securityLevel;
-}
+
 /* 2. Encapsulate the parameter set for key attestation. */
-let attestKeyproperties: attestKeypropertyType[] = [
+let attestKeyproperties: Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
     value: securityLevel
@@ -128,7 +120,7 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
       .then((data) => {
         console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
       })
-      .catch((error: BusinessError) => {
+      .catch((error) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {
@@ -167,7 +159,7 @@ async function publicAttestKey(keyAlias: string, huksOptions: huks.HuksOptions) 
           attestCertChain = data.certChains as string[];
         }
       })
-      .catch((error: BusinessError) => {
+      .catch((error) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {

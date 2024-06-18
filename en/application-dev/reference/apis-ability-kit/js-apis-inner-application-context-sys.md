@@ -38,6 +38,14 @@ Creates the context based on the bundle name.
 | -------- | -------- |
 | Context | Context created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
@@ -79,6 +87,14 @@ Creates the context based on the bundle name and module name.
 | Type| Description|
 | -------- | -------- |
 | Context | Context created.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
 
@@ -124,6 +140,14 @@ Creates a resource management object for a module.
 | -------- | -------- |
 | resmgr.ResourceManager | Object for resource management.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
@@ -139,6 +163,48 @@ export default class EntryAbility extends UIAbility {
     } catch (error) {
       console.error(`createModuleResourceManager failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
+  }
+}
+```
+## Context.createSystemHspModuleResourceManager<sup>12+</sup>
+
+createSystemHspModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
+
+Creates a resource manager object for a module of the system-level HSP.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name      | Type    | Mandatory  | Description  |
+| -------- |--------| ---- |------|
+| bundleName | string | Yes   | Bundle name. |
+| moduleName | string | Yes   | Module name.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16400001 | The specified ability does not exist. |
+
+
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
+
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let hspContext: common.Context = this.context;
+    let resourceManager = hspContext.createSystemHspModuleResourceManager("com.example.myapplication", "library");
   }
 }
 ```

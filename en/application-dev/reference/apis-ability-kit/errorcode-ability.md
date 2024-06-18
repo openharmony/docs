@@ -47,7 +47,7 @@ The ability with the specified type does not support the API invocation.
 **Solution**
 
 1. Pass in correct values of **bundleName**, **moduleName**, and **abilityName** in **want**.
-2. Call APIs based on the ability type. For example, call [startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) to start the ServiceExtensionAbility, or call [connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) to connect to the ServiceExtensionAbility.
+2. Call APIs based on the ability type. For example, call <!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) to start the ServiceExtensionAbility, or call <!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) to connect to the ServiceExtensionAbility.
 
 ## 16000003 ID Not Exist
 
@@ -238,7 +238,7 @@ The application is controlled by EDM.
 
 **Description**
 
-This error code is reported when an application is controlled by [Enterprise Device Manager (EDM)](../apis-mdm-kit/enterpriseDeviceManagement-overview.md).
+This error code is reported when an application is controlled by [Enterprise Device Manager (EDM)](../../enterprise-device-management/enterpriseDeviceManagement-overview.md).
 
 **Possible Causes**
 
@@ -530,7 +530,7 @@ The operation is not supported.
 
 Perform a supported operation.
 
-## 16000062 Too Many Subprocesses
+## 16000062 Too Many Child Processes
 
 **Error Message**
 
@@ -538,15 +538,15 @@ The number of child process exceeds upper bound.
 
 **Description**
 
-This error code is reported when the number of created subprocesses reaches the upper limit.
+This error code is reported when the number of created child processes reaches the upper limit.
 
 **Possible Causes**
 
-The number of created subprocesses has reached the upper limit.
+The number of created child processes has reached the upper limit.
 
 **Solution**
 
-Limit the number of created subprocesses. The maximum number is 128.
+Limit the number of created child processes. The maximum number is 128.
 
 ## 16000063 Invalid Ability During Application Restart
 
@@ -656,6 +656,65 @@ This error code is reported when the target ability is already running.
 **Solution**
 
 When **launchType** of the target ability is singleton or specified, do not specify **processMode** and **startupVisibility** in **startAbility()**.
+
+## 16000071 Application Clone Is Not Supported
+
+**Error Message**
+
+App clone is not supported.
+
+**Description**
+
+This error code is reported when the application does not support clones.
+
+**Possible Causes**
+
+An application that does not support clones calls **getCurrentAppCloneIndex()**.
+
+**Solution**
+
+Avoid calling **getCurrentAppCloneIndex()** in applications that do not support clones.
+
+<!--Del-->
+## 16000072 Multi-app Mode Is Not Supported
+
+**Error Message**
+
+App clone or multi-instance is not supported.
+
+**Description**
+
+This error code is reported when the application does not support the multi-app mode.
+
+**Possible Causes**
+
+The **getRunningMultiAppInfo()** API is called to query the information about an application that does not support the multi-app mode.
+
+**Solution**
+
+When calling **getCurrentAppCloneIndex()**, ensure that the application supports the multi-app mode.
+<!--DelEnd-->
+
+## 16000073 appCloneIndex Is Invalid
+
+**Error Message**
+
+The app clone index is invalid.
+
+**Description**
+
+This error code is reported when an invalid value of **appCloneIndex** is passed in.
+
+**Possible Causes**
+
+1. **startAbility()** is called, with **appCloneIndex** carried in **ohos.extra.param.key.appCloneIndex** set to an invalid value.
+<!--Del-->
+2. **isAppRunning()** is called, with **appCloneIndex** set to an invalid value.
+<!--DelEnd-->
+
+**Solution**
+
+Check whether the constraints of **appCloneIndex** are met.
 
 ## 16000100 Failed to Call AbilityMonitor APIs to Listen for Ability Lifecycle Changes
 
@@ -772,6 +831,24 @@ The **wantAgent** object has been canceled.
 **Solution**
 
 Pass a valid **wantAgent** object in the API.
+
+## 16000200 Process Cache Support Status Is Set Multiple Times
+
+**Error Message**
+
+The supported process cache state cannot be set more than once.
+
+**Description**
+
+During the lifecycle of a single process instance, this error code is reported if the process cache support status is set again after a successful setting.
+
+**Possible Causes**
+
+The process cache support status is set for more than once for a single process instance.
+
+**Solution**
+
+Check whether the process cache support status is set more than once for a single process instance.
 
 ## 16100001 Ability of the Specified URI Does Not Exist
 
@@ -901,6 +978,24 @@ The method has not been registered by the callee.
 **Solution**
 
 Check whether the method has been registered.
+
+## 16200006 No Permission to Enable or Disable the Resident Process
+
+**Error Message**
+
+The caller application can only set the resident status of the configured process.
+
+**Description**
+
+This error code is reported when the caller does not have the permission to enable or disable the resident process.
+
+**Possible Causes**
+
+The caller does not have the permission to enable or disable the resident process.
+
+**Solution**
+
+Ensure that the caller has the required permission before calling this API.
 
 ## 16300001 Nonexistent Mission
 
@@ -1160,3 +1255,5 @@ The value of **bundleName**, **userId**, or **appIndex** is incorrect, leading t
 **Solution**
 
 Pass in correct values for **bundleName**, **userId**, and **appIndex**.
+
+ <!--no_check--> 

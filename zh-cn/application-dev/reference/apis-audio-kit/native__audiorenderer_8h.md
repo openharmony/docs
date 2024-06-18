@@ -3,7 +3,11 @@
 
 ## 概述
 
-声明输出类型的音频流相关接口,
+声明输出类型的音频流相关接口。
+
+**库**：libohaudio.so
+
+**引用文件**：&lt;ohaudio/native_audiorenderer.h&gt;
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 

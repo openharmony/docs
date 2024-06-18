@@ -13,7 +13,7 @@
 
 PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: number } | [PanGestureOptions](#pangestureoptions))
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -25,7 +25,9 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 
 ## PanDirection枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+与SwipeDirection不同，PanDirection没有角度限制。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -45,7 +47,7 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 
 PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance?: number })
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -59,25 +61,28 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| setDirection(value:&nbsp;[PanDirection](#pandirection枚举说明)) | 设置direction属性。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| setDistance(value:&nbsp;number) | 设置distance属性。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| setFingers(value:&nbsp;number) | 设置fingers属性。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| setDirection(value:&nbsp;[PanDirection](#pandirection枚举说明)) | 设置direction属性。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| setDistance(value:&nbsp;number) | 设置distance属性。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| setFingers(value:&nbsp;number) | 设置fingers属性。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
 
 ## 事件
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onActionStart(event:&nbsp;(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功回调。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| onActionUpdate(event:&nbsp;(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势移动过程中回调。<br/>fingerList为多根手指时，该回调监听每次只会更新一根手指的位置信息。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| onActionEnd(event:&nbsp;(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，接收到触摸取消事件触发回调。<br/>**说明：** <br/>在窗口失焦的时候会触发。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| onActionStart(event:&nbsp;(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| onActionUpdate(event:&nbsp;(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势移动过程中回调。<br/>fingerList为多根手指时，该回调监听每次只会更新一根手指的位置信息。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| onActionEnd(event:&nbsp;(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，接收到触摸取消事件触发回调。<br/>**说明：** <br/>在窗口失焦的时候会触发。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
 ## 属性
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型    |描述                                        |
 | ----  | ------  | ---------------------------------------- |
 | tag<sup>11+</sup>   | string  | 设置Pan手势标志，用于自定义手势判定时区分绑定的手势。|
+
 ## 示例
 
 ```ts

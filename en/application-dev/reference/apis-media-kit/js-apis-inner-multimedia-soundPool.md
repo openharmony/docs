@@ -334,7 +334,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -399,7 +399,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -463,7 +463,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -527,7 +527,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -589,7 +589,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -644,7 +644,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -708,7 +708,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -765,7 +765,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -829,7 +829,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -870,9 +870,10 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback\<void>): void
 
 Sets the playback rate for an audio stream. This API uses an asynchronous callback to return the result.
-
+<!--RP1-->
 > **NOTE**
 > This API is available in OpenHarmony 4.0. The function implementation depends on the device. Currently, only the RK3568 development board supports the playback rate setting.
+<!--RP1End-->
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -890,7 +891,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -933,8 +934,10 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 Sets the playback rate for an audio stream. This API uses a promise to return the result.
 
+<!--RP1-->
 > **NOTE**
 > This API is available in OpenHarmony 4.0. The function implementation depends on the device. Currently, only the RK3568 development board supports the playback rate setting.
+<!--RP1End-->
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -957,7 +960,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -1015,7 +1018,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -1080,7 +1083,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 

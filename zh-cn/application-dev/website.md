@@ -1,4 +1,5 @@
 # OpenHarmony应用开发文档
+
 - 入门
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
@@ -335,6 +336,8 @@
       - [XML解析](arkts-utils/xml-parsing.md)
       - [XML转换](arkts-utils/xml-conversion.md)
     - [代码混淆](arkts-utils/source-obfuscation.md)
+    - 内存管理
+      - [GC介绍](arkts-utils/gc-introduction.md)
   - ArkUI（方舟UI框架）
     - [ArkUI简介](ui/arkui-overview.md)
     - UI开发 (ArkTS声明式开发范式)
@@ -420,6 +423,17 @@
           - [FrameNode](ui/arkts-user-defined-arktsNode-frameNode.md)
           - [RenderNode](ui/arkts-user-defined-arktsNode-renderNode.md)
           - [BuilderNode](ui/arkts-user-defined-arktsNode-builderNode.md)
+      - 使用NDK接口构建UI
+        - [NDK接口概述](ui/ndk-build-ui-overview.md)
+        - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
+        - 添加交互事件
+          - [监听组件事件](ui/ndk-listen-to-component-events.md)
+          - [绑定手势事件](ui/ndk-bind-gesture-events.md)
+        - [使用动画](ui/ndk-use-animation.md)
+        - [使用懒加载开发长列表界面](ui/ndk-loading-long-list.md)
+        - [构建弹窗](ui/ndk-build-pop-up-window.md)
+        - [构建自定义组件](ui/ndk-build-custom-components.md)
+        - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
       - 主题设置
         - [设置主题换肤](ui/theme_skinning.md)
     - UI开发 (兼容JS的类Web开发范式)
@@ -1015,9 +1029,9 @@
     - [MindSpore Lite Kit简介](ai/mindspore/MindSpore-Lite-Kit-Introduction.md)
     - [使用MindSpore Lite开发AI应用](ai/mindspore/mindspore-guidelines-based-js.md)
     - [使用MindSpore Lite开发AI应用 (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
+    - [使用MindSpore Lite进行模型转换](ai/mindspore/mindspore-lite-converter-guidelines.md)
     - [使用MindSpore Lite引擎进行模型推理 (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
     - [使用MindSpore Lite引擎进行端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
-    - [使用MindSpore Lite进行离线模型的转换及推理 (C/C++)](ai/mindspore/mindspore-lite-offline-model-guidelines.md)
   - MultimodalAwareness Kit（多模态融合感知服务）
     - [MultimodalAwareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
     - [Stationary开发指导](device/stationary/stationary-guidelines.md)
@@ -1083,6 +1097,10 @@
             - [踩内存事件介绍](dfx/hiappevent-watcher-address-sanitizer-events.md)
             - [订阅踩内存事件（ArkTS）](dfx/hiappevent-watcher-address-sanitizer-events-arkts.md)
             - [订阅踩内存事件（C/C++）](dfx/hiappevent-watcher-address-sanitizer-events-ndk.md)
+          - 主线程超时事件
+            - [主线程超时事件介绍](dfx/hiappevent-watcher-mainthreadjank-events.md)
+            - [订阅主线程超时事件（ArkTS）](dfx/hiappevent-watcher-mainthreadjank-events-arkts.md)
+            - [订阅主线程超时事件（C/C++）](dfx/hiappevent-watcher-mainthreadjank-events-ndk.md)
       <!--Del-->
       - [事件上报](dfx/hiappevent-event-reporting.md)
       <!--DelEnd-->
@@ -1906,6 +1924,7 @@
             - [动态属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md)
             - [动态手势设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-gesture-modifier.md)
             - [外描边设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-outline.md)
+            - [视效设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-filter-effect.md)
             - [自定义绘制](reference/apis-arkui/arkui-ts/ts-universal-attributes-draw-modifier.md)
             - [自定义内容](reference/apis-arkui/arkui-ts/ts-universal-attributes-content-modifier.md)
             - [自定义属性设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-custom-property.md)
@@ -2067,7 +2086,8 @@
           - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
           - [@ohos.arkui.advanced.ExceptionPrompt (异常提示)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
           - [@ohos.arkui.advanced.Filter (多条件筛选)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Filter.md)
-          - [@ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动元服务组件)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
+          - [@ohos.arkui.advanced.FormMenu (应用内添加卡片到桌面菜单)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md)
+          - [@ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动原子化服务组件)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
           - [@ohos.arkui.advanced.GridObjectSortComponent (网格对象的编辑排序)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
           - [@ohos.arkui.advanced.ProgressButton (下载按钮)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md)
           - [@ohos.arkui.advanced.Popup (气泡组件)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md)
@@ -2361,7 +2381,7 @@
         - [拖拽事件错误码](reference/apis-arkui/errorcode-drag-event.md)
         - [图像AI分析错误码](reference/apis-arkui/errorcode-image-analyzer.md)
         - [焦点错误码](reference/apis-arkui/errorcode-focus.md)
-        - [系统资源错误码](reference/apis-arkui/errorcode-system-resource.md)    
+        - [系统资源错误码](reference/apis-arkui/errorcode-system-resource.md)
       - 图形图像
         - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
         - [窗口错误码](reference/apis-arkui/errorcode-window.md)
@@ -2677,6 +2697,7 @@
         - [OH_Camera](reference/apis-camera-kit/_o_h___camera.md)
       - 头文件<!--camera-headerfile-->
         - [camera.h](reference/apis-camera-kit/camera_8h.md)
+        - [camera_device.h](reference/apis-camera-kit/camera__device_8h.md)
         - [camera_input.h](reference/apis-camera-kit/camera__input_8h.md)
         - [camera_manager.h](reference/apis-camera-kit/camera__manager_8h.md)
         - [capture_session.h](reference/apis-camera-kit/capture__session_8h.md)

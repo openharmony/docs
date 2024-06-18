@@ -4,16 +4,22 @@
 - Audio Playback
   - [Audio Playback Overview](audio-playback-overview.md)
   - [Using AudioRenderer for Audio Playback](using-audiorenderer-for-playback.md)
+  <!--Del-->
   - [Using TonePlayer for Audio Playback (for System Applications Only)](using-toneplayer-for-playback.md)
+  <!--DelEnd-->
   - [Using OHAudio for Audio Playback (C/C++)](using-ohaudio-for-playback.md)
   - [Using AudioHaptic for Audio-Haptic Playback](using-audiohaptic-for-playback.md)
   - [Audio Playback Concurrency Policy](audio-playback-concurrency.md)
   - [Volume Management](volume-management.md)
   - [Audio Effect Management](audio-effect-management.md)
+  <!--Del-->
   - [Spatial Audio Management (for System Applications Only)](audio-spatialization-management.md)
+  <!--DelEnd-->
   - [Audio Playback Stream Management](audio-playback-stream-management.md)
   - [Audio Output Device Management](audio-output-device-management.md)
+  <!--Del-->
   - [Distributed Audio Playback (for System Applications Only)](distributed-audio-playback.md)
+  <!--DelEnd-->
 - Audio Recording
   - [Audio Recording Overview](audio-recording-overview.md)
   - [Using AudioCapturer for Audio Recording](using-audiocapturer-for-recording.md)

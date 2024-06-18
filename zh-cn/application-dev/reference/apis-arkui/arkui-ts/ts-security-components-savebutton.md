@@ -21,14 +21,18 @@ SaveButton()
 
 默认创建带有图标、文本、背景的保存按钮。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### SaveButton
 SaveButton(option:SaveButtonOptions)
 
 创建包含指定元素的保存按钮。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -38,7 +42,9 @@ SaveButton(option:SaveButtonOptions)
 
 ## SaveButtonOptions
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -49,7 +55,9 @@ SaveButton(option:SaveButtonOptions)
 
 ## SaveIconStyle枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
@@ -59,22 +67,26 @@ SaveButton(option:SaveButtonOptions)
 
 ## SaveDescription枚举说明
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
-| DOWNLOAD | 0 | 保存按钮的文字描述为“下载”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| DOWNLOAD_FILE | 1 | 保存按钮的文字描述为“下载文件”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| SAVE | 2 | 保存按钮的文字描述为“保存”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| SAVE_IMAGE | 3 | 保存按钮的文字描述为“保存图片”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| SAVE_FILE | 4 | 保存按钮的文字描述为“保存文件”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| DOWNLOAD_AND_SHARE | 5 | 保存按钮的文字描述为“下载分享”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| RECEIVE | 6 | 保存按钮的文字描述为“接收”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| CONTINUE_TO_RECEIVE | 7 | 保存按钮的文字描述为“继续接收”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| SAVE_TO_GALLERY<sup>12+</sup> | 8 | 保存按钮的文字描述为“保存至图库”。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| DOWNLOAD | 0 | 保存按钮的文字描述为“下载”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| DOWNLOAD_FILE | 1 | 保存按钮的文字描述为“下载文件”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| SAVE | 2 | 保存按钮的文字描述为“保存”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| SAVE_IMAGE | 3 | 保存按钮的文字描述为“保存图片”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| SAVE_FILE | 4 | 保存按钮的文字描述为“保存文件”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| DOWNLOAD_AND_SHARE | 5 | 保存按钮的文字描述为“下载分享”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| RECEIVE | 6 | 保存按钮的文字描述为“接收”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| CONTINUE_TO_RECEIVE | 7 | 保存按钮的文字描述为“继续接收”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| SAVE_TO_GALLERY<sup>12+</sup> | 8 | 保存按钮的文字描述为“保存至图库”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 
 ## SaveButtonOnClickResult枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
@@ -97,7 +109,7 @@ onClick(event: (event: ClickEvent, result: SaveButtonOnClickResult) =&gt; void)
 
 点击动作触发该回调
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

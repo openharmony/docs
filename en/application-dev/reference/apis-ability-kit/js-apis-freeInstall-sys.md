@@ -70,7 +70,7 @@ Sets an upgrade flag for a module. This API uses an asynchronous callback to ret
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                           |
 |----------|---------------------------------------- |
@@ -129,7 +129,7 @@ Sets an upgrade flag for a module. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
@@ -181,7 +181,7 @@ Checks whether a module can be removed. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
@@ -238,7 +238,7 @@ Checks whether a module can be removed. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
@@ -289,7 +289,7 @@ Obtains **bundlePackInfo** based on **bundleName** and **bundlePackFlag**. This 
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
@@ -344,7 +344,7 @@ Obtains **bundlePackInfo** based on **bundleName** and **bundlePackFlag**. This 
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
@@ -392,7 +392,7 @@ Obtains the dispatch information. This API uses an asynchronous callback to retu
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|
@@ -437,7 +437,7 @@ Obtains the dispatch information. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID|    Error Message                           |
 |----------|----------------------------------------|

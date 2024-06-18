@@ -26,7 +26,7 @@ Check whether the input parameter value is within the valid value range.
 
 **Error Message**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **Description**
 
@@ -130,7 +130,7 @@ This error code is reported if Bluetooth sharing fails.
 
 **Error Message**
 
-Network share enable forwarding error.
+Failed to enable forwarding for network sharing.
 
 **Description**
 

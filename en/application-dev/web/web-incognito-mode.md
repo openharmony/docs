@@ -21,7 +21,7 @@ When creating a **\<Web>** component, you can enable incognito mode for it by se
   }
   ```
 
-- Use [isIncogntoMode](../reference/apis-arkweb/js-apis-webview.md#isincognitomode) to check whether the current \**<Web>** component is in incognitomode.
+- Use [isIncogntoMode](../reference/apis-arkweb/js-apis-webview.md#isincognitomode11) to check whether the current **\<Web>** component is in incognito mode.
 
   ```ts
   // xxx.ets
@@ -71,6 +71,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
         Button('allowGeolocation')
           .onClick(() => {
             try {
+              // The second parameter of allowGeolocation specifies whether to allow the specified origin to use the geolocation information in incognito mode (true) or in non-incognito mode (false).
               web_webview.GeolocationPermissions.allowGeolocation(this.origin, true);
             } catch (error) {
               let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -101,6 +102,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
         Button('deleteGeolocation')
           .onClick(() => {
             try {
+              // The second parameter of deleteGeolocation specifies whether to clear the geolocation permission status of a specified origin in incognito mode (true) or in non-incognito mode (false).
               web_webview.GeolocationPermissions.deleteGeolocation(this.origin, true);
             } catch (error) {
               let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -131,6 +133,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
         Button('getAccessibleGeolocation')
           .onClick(() => {
             try {
+              // The third parameter of getAccessibleGeolocation specifies whether to obtain the geolocation permission status of the specified origin in incognito mode (true) or in non-incognito mode (false). This API uses an asynchronous callback to return the result.
               web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
                 if (error) {
                   console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
@@ -166,6 +169,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
         Button('deleteAllData')
           .onClick(() => {
             try {
+              // The parameter of deleteAllData specifies whether to delete all data in the Web SQL Database in incognito mode (true) or in non-incognito mode (false).
               web_webview.WebStorage.deleteAllData(true);
             } catch (error) {
               let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -179,7 +183,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
-- Use [fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync) to obtain the cookie corresponding to the specified URL.
+- Use [fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync11) to obtain the cookie corresponding to the specified URL.
 
   ```ts
   // xxx.ets
@@ -196,6 +200,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
         Button('fetchCookieSync')
           .onClick(() => {
             try {
+              // The second parameter of fetchCookieSync specifies whether to obtain the cookie in incognito mode (true) or in non-incognito mode (false).
               let value = web_webview.WebCookieManager.fetchCookieSync('https://www.example.com', true);
               console.log("fetchCookieSync cookie = " + value);
             } catch (error) {
@@ -209,7 +214,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
-- Use [configCookieSync](../reference/apis-arkweb/js-apis-webview.md#configcookiesync) to set a cookie for the specified URL.
+- Use [configCookieSync](../reference/apis-arkweb/js-apis-webview.md#configcookiesync11) to set a cookie for the specified URL.
 
   ```ts
   // xxx.ets
@@ -226,6 +231,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
         Button('configCookieSync')
           .onClick(() => {
             try {
+              // The third parameter of configCookieSync specifies whether to obtain the cookie for the specified URL in incognito mode (true) or in non-incognito mode (false).
               web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b', true);
             } catch (error) {
               let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -253,6 +259,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
       Column() {
         Button('existCookie')
           .onClick(() => {
+            // The parameter of existCookie specifies whether to check for cookies in incognito mode (true) or in non-incognito mode (false).
             let result = web_webview.WebCookieManager.existCookie(true);
             console.log("result: " + result);
           })
@@ -262,7 +269,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
   }
   ```
 
-- Use [clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview.md#clearallcookiessync) to delete all cookies.
+- Use [clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview.md#clearallcookiessync11) to delete all cookies.
 
   ```ts
   // xxx.ets
@@ -277,6 +284,7 @@ In incognito mode, you can use the following APIs for geolocation information, c
       Column() {
         Button('clearAllCookiesSync')
           .onClick(() => {
+            // The parameter of clearAllCookiesSync specifies whether to delete all cookies in incognito mode (true) or in non-incognito mode (false).
             web_webview.WebCookieManager.clearAllCookiesSync(true);
           })
         Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
