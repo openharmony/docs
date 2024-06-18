@@ -3350,6 +3350,39 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 }
 ```
 
+### discardCameraPhoto<sup>12+</sup>
+
+discardCameraPhoto(): void
+
+丢弃相机拍摄的照片。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.         |
+
+**示例：**
+
+```ts
+async function example(asset: photoAccessHelper.PhotoAsset) {
+  console.info('discardCameraPhotoDemo');
+  try {
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    assetChangeRequest.discardCameraPhoto();
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply discardCameraPhoto successfully');
+  } catch (err) {
+    console.error(`apply discardCameraPhoto failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ## MediaAlbumChangeRequest<sup>11+</sup>
 
 相册变更请求。
