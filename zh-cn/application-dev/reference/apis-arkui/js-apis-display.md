@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 ```
 
 ## DisplayState
@@ -147,7 +147,7 @@ getDefaultDisplaySync(): Display
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
 
@@ -179,8 +179,8 @@ getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import display from '@ohos.display';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let displayClass: Array<display.Display> = [];
 display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
@@ -219,8 +219,8 @@ getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import display from '@ohos.display';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let displayClass: Array<display.Display> =[];
 let promise: Promise<Array<display.Display>> = display.getAllDisplays();
@@ -260,7 +260,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<number> = (data: number) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
@@ -332,7 +332,7 @@ isFoldable(): boolean
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let ret: boolean = false;
 ret = display.isFoldable();
@@ -362,7 +362,7 @@ getFoldStatus(): FoldStatus
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let data: display.FoldStatus = display.getFoldStatus();
 console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data));
@@ -392,7 +392,7 @@ getFoldDisplayMode(): FoldDisplayMode
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let data: display.FoldDisplayMode = display.getFoldDisplayMode();
 console.info('Succeeded in obtaining fold display mode. Data: ' + JSON.stringify(data));
@@ -422,7 +422,7 @@ getCurrentFoldCreaseRegion(): FoldCreaseRegion
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let data: display.FoldCreaseRegion = display.getCurrentFoldCreaseRegion();
 console.info('Succeeded in obtaining current fold crease region. Data: ' + JSON.stringify(data));
@@ -457,7 +457,7 @@ on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
@@ -534,7 +534,7 @@ on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<Array<number>> = (angles: Array<number>) => {
   console.info('Listening fold angles length: ' + angles.length);
@@ -603,7 +603,7 @@ on(type: 'captureStatusChange', callback: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<boolean> = (captureStatus: boolean) => {
   console.info('Listening capture status: ' + captureStatus);
@@ -667,7 +667,7 @@ isCaptured(): boolean
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let ret: boolean = false;
 ret = display.isCaptured();
@@ -702,7 +702,7 @@ on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): vo
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
@@ -772,7 +772,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
 display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
@@ -807,7 +807,7 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
 let promise: Promise<display.Display> = display.getDefaultDisplay();
@@ -840,7 +840,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
   const errCode: number = err.code;
@@ -873,7 +873,7 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise: Promise<Array<display.Display>> = display.getAllDisplay();
 promise.then((data: Array<display.Display>) => {
@@ -935,7 +935,7 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
@@ -973,7 +973,7 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();

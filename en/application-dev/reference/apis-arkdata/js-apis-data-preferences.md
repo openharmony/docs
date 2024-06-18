@@ -25,7 +25,7 @@ import { preferences } from '@kit.ArkData';
 | Name            | Type| Readable| Writable| Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
 | MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 1024 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is is 16 x 1024 x 1024 bytes.|
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 16 x 1024 x 1024 bytes.|
 
 
 ## preferences.getPreferences

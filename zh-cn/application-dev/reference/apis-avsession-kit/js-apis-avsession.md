@@ -3619,7 +3619,76 @@ aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
 }).catch((err: BusinessError) => {
   console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
+```
 
+### getValidCommands<sup>11+</sup>
+
+getValidCommands(callback: AsyncCallback<Array\<AVCastControlCommandType>>): void
+
+获取当前支持的命令。结果通过callback异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| callback | Array<[AVCastControlCommandType](#avcastcontrolcommandtype10)> | 是 | 回调函数。返回当前支持的命令。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+aVCastController.getValidCommands((err: BusinessError, state: avSession.AVCastControlCommandType) => {
+  if (err) {
+    console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`getValidCommands successfully`);
+  }
+});
+```
+
+### getValidCommands<sup>11+</sup>
+
+getValidCommands(): Promise<Array\<AVCastControlCommandType>>
+
+获取当前支持的命令。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------------- | ----------------------------- |
+| Promise<Array\<[AVCastControlCommandType](#avcastcontrolcommandtype10)>> | Promise对象，返回当前支持的命令。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+aVCastController.getValidCommands().then((state: avSession.AVCastControlCommandType) => {
+  console.info(`getValidCommands successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### processMediaKeyResponse<sup>12+</sup>

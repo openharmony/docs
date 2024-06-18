@@ -1,4 +1,4 @@
-# Device Certificate Kit API参考
+# Device Certificate Kit（设备证书服务）
 
 - ArkTS API
   - [@ohos.security.cert (证书模块)](js-apis-cert.md)

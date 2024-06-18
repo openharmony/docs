@@ -109,6 +109,8 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 | color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](#localizededgecolors12对象说明)<sup>12+</sup> | 否   | 设置边框颜色。     |
 | radius | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](#localizedborderradiuses12对象说明)<sup>12+</sup> | 否   | 设置边框圆角半径。 |
 | style  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](#edgestyles9对象说明)<sup>9+</sup> | 否   | 设置边框样式。     |
+| dashGap<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12对象说明) | 否  | 设置虚线的线段间距，仅在边框样式为虚线时生效。     |
+| dashWidth<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12对象说明) | 否   | 设置虚线的线段长度，仅在边框样式为虚线时生效。     |
 
 ## EdgeWidths<sup>9+</sup>对象说明
 

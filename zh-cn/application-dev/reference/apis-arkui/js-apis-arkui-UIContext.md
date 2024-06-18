@@ -467,6 +467,105 @@ struct MyComponent {
 }
 ```
 
+### getPageInfoByUniqueId<sup>12+</sup>
+
+getPageInfoByUniqueId(id: number): PageInfo
+
+提供getPageInfoByUniqueId接口通过组件的uniqueId获取该节点对应的Router和NavDestination页面信息。
+1. 当uniqueId对应的节点在Page节点中，routerPageInfo属性为其对应的Router信息；
+2. 当uniqueId对应的节点在NavDestination节点中，navDestinationInfo属性为其对应的NavDestination信息；
+3. 当uniqueId对应的节点无对应的Router或NavDestination信息时，对应的属性为undefined；
+4. 模态弹窗并不在任何Page节点中。当uniqueId对应的节点在模态弹窗中,例如[CustomDialog](./arkui-ts/ts-methods-custom-dialog-box.md)、[bindSheet](./arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)和[bindContentCover](./arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)构建的模态页面中，routerPageInfo属性为undefined。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | number | 是    | 节点对应的UniqueId                          |
+
+**返回值：**
+
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| [PageInfo](#pageinfo12) | 返回节点对应的Router和NavDestination信息。 |
+
+**示例：**
+
+```ts
+import { UIContext, PageInfo } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct PageInfoExample {
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+
+  build() {
+    Column() {
+      Navigation(this.pageInfos) {
+        NavDestination() {
+          MyComponent()
+        }
+      }.id('navigation')
+    }
+  }
+}
+
+@Component
+struct MyComponent {
+  build() {
+    Column() {
+      Text('PageInfoExample')
+      Button('click').onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        const uniqueId: number = this.getUniqueId();
+        const pageInfo: PageInfo = uiContext.getPageInfoByUniqueId(uniqueId);
+        console.log('pageInfo: ' + JSON.stringify(pageInfo));
+        console.log('navigationInfo: ' + JSON.stringify(uiContext.getNavigationInfoByUniqueId(uniqueId)));
+      })
+      TextArea({
+        text: this.content
+      })
+      .width('100%')
+      .height(100)
+    }
+    .width('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### getNavigationInfoByUniqueId<sup>12+</sup>
+
+getNavigationInfoByUniqueId(id: number): observer.NavigationInfo | undefined
+
+提供getNavigationInfoByUniqueId接口通过组件的uniqueId获取该节点对应的Navigation页面信息。
+1. 当uniqueId对应的节点在Navigation节点中，返回其对应的Navigation信息；
+2. 当uniqueId对应的节点无对应的Navigation信息时，返回undefined。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | number | 是    | 节点对应的UniqueId                          |
+
+**返回值：**
+
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| observer.[NavigationInfo](js-apis-arkui-observer.md#navigationinfo12) \| undefined | 返回节点对应的Navigation信息。 |
+
+**示例：**
+
+请参考[getPageInfoByUniqueId](#getpageinfobyuniqueid12)的示例。
+
 ### showAlertDialog
 
 showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions): void
@@ -1666,6 +1765,18 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 let inspector:UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
 ```
+
+## PageInfo<sup>12+</sup>
+Router和NavDestination等页面信息，若无对应的Router或NavDestination页面信息，则对应属性为undefined。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| routerPageInfo | observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo) | 否 | Router信息。 | 
+| navDestinationInfo | observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo) | 否 | NavDestination信息。 | 
 
 ## UIObserver<sup>11+</sup>
 
