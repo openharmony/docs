@@ -57,7 +57,7 @@ export default class Handle {
 
 ```ts
 // Index.ets代码
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 import Handle from './Handle'; // 返回静态句柄
 
 // 步骤1: 定义并发函数，内部调用同步方法
@@ -113,7 +113,8 @@ struct Index {
 1. 在主线程中创建Worker对象，同时接收Worker线程发送回来的消息。
 
     ```ts
-    import worker from '@ohos.worker';
+    // Index.ets
+    import { worker } from '@kit.ArkTS';
     
     @Entry
     @Component
@@ -168,7 +169,7 @@ struct Index {
     
     ```ts
     // MyWorker.ts代码
-    import worker, { ThreadWorkerGlobalScope, MessageEvents } from '@ohos.worker';
+    import { worker, ThreadWorkerGlobalScope, MessageEvents } from '@kit.ArkTS';
     import Handle from './handle'  // 返回句柄
     
     let workerPort : ThreadWorkerGlobalScope = worker.workerPort;

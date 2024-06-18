@@ -31,7 +31,7 @@ SharedArrayBuffer对象存储的数据在同时被修改时，需要通过原子
 
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function transferAtomics(arg1: Int32Array) {
