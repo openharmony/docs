@@ -5405,7 +5405,7 @@ PixelMap的初始化选项。
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
 | sampleSize         | number                             | 否   | 是   | 缩略图采样大小，默认值为1。当前只能取1。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | rotate             | number                             | 否   | 是   | 旋转角度。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
-| editable           | boolean                            | 否   | 是   | 是否可编辑。默认值为false。当取值为false时，图片不可二次编辑，如crop等操作将失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
+| editable           | boolean                            | 否   | 是   | 是否可编辑。默认值为false。当取值为false时，图片不可二次编辑，如writepixels操作将失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
 | desiredSize        | [Size](#size)                      | 否   | 是   | 期望输出大小。默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredRegion      | [Region](#region7)                 | 否   | 是   | 解码区域。默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 解码的像素格式。默认值为RGBA_8888。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
