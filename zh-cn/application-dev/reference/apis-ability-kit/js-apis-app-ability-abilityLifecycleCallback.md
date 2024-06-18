@@ -272,11 +272,11 @@ onAbilityWillForeground?(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onAbilityWillBackground
+## AbilityLifecycleCallback.onAbilityWillDestroy
 
-onAbilityWillBackground?(ability: UIAbility): void
+onAbilityWillDestroy?(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在UIAbility的onBackground触发前回调。
+注册监听应用上下文的生命周期后，在UIAbility的onDestroy触发前回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
