@@ -239,7 +239,7 @@ onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): v
 
 onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): void
 
-注册监听应用上下文的生命周期后，在UIAbility的onWindowStageCreate触发后回调。
+注册监听应用上下文的生命周期后，在UIAbility的onWindowStageDestroy触发前回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
