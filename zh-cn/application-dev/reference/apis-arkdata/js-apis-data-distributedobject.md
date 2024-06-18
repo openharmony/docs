@@ -48,7 +48,6 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 导入模块
-import { distributedDataObject } from '@kit.ArkData';
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 // 获取context
@@ -73,7 +72,6 @@ Stage模型示例：
 
 ```ts
 // 导入模块
-import { distributedDataObject } from '@kit.ArkData';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
@@ -116,7 +114,6 @@ genSessionId(): string
 **示例：**
 
 ```ts
-import { distributedDataObject } from '@kit.ArkData';
 let sessionId: string = distributedDataObject.genSessionId();
 ```
 
@@ -666,7 +663,7 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
-import { distributedDataObject, commonType } from '@kit.ArkData';
+import { commonType } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Note {
@@ -753,7 +750,7 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo): Promise&lt;void&gt;
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
-import { distributedDataObject, commonType } from '@kit.ArkData';
+import { commonType } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Note {
@@ -830,7 +827,6 @@ createDistributedObject(source: object): DistributedObject
 **示例：**
 
 ```ts
-import { distributedDataObject } from '@kit.ArkData';
 class SourceObject {
     name: string
     age: number
@@ -880,7 +876,6 @@ setSessionId(sessionId?: string): boolean
 **示例：**
 
 ```ts
-import { distributedDataObject } from '@kit.ArkData';
 class SourceObject {
     name: string
     age: number
@@ -923,7 +918,6 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 **示例：**
 
 ```ts
-import { distributedDataObject } from '@kit.ArkData';
 class SourceObject {
     name: string
     age: number
@@ -970,7 +964,6 @@ off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) 
 **示例：**
 
 ```ts
-import { distributedDataObject } from '@kit.ArkData';
 class SourceObject {
     name: string
     age: number
@@ -1020,7 +1013,6 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 **示例：**
 
 ```ts
-import { distributedDataObject } from '@kit.ArkData';
 class SourceObject {
     name: string
     age: number
@@ -1064,7 +1056,6 @@ off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'o
 **示例：**
 
 ```ts
-import { distributedDataObject } from '@kit.ArkData';
 class SourceObject {
     name: string
     age: number
