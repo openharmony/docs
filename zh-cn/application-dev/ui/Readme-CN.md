@@ -86,6 +86,17 @@
       - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
       - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
       - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+  - 使用ArkUI NDK接口构建UI
+    - [ArkUI NDK接口概述](ndk-build-ui-overview.md)
+    - [接入ArkTS页面](ndk-access-the-arkts-page.md)
+    - 添加交互事件
+      - [监听组件事件](ndk-listen-to-component-events.md)
+      - [绑定手势事件](ndk-bind-gesture-events.md)
+    - [使用动画](ndk-use-animation.md)
+    - [使用懒加载开发长列表界面](ndk-loading-long-list.md)
+    - [构建弹窗](ndk-build-pop-up-window.md)
+    - [构建自定义组件](ndk-build-custom-components.md)
+    - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
   - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
   - 主题设置
     - [设置主题换肤](theme_skinning.md)
