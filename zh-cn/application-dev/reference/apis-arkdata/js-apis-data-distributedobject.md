@@ -845,7 +845,7 @@ let g_object: distributedDataObject.DistributedObject = distributedDataObject.cr
 
 ## DistributedObject<sup>(deprecated)</sup>
 
-表示一个分布式数据对象。在使用以下接口前，需调用[createDistributedObject()](#distributeddataobjectcreatedistributeddataobjectdeprecated)获取DistributedObject对象。
+表示一个分布式数据对象。在使用以下接口前，需调用[createDistributedObject()](#distributeddataobjectcreatedistributedobjectdeprecated)获取DistributedObject对象。
 
 ### setSessionId<sup>(deprecated)</sup>
 
