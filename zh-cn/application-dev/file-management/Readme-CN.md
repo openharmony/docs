@@ -29,6 +29,7 @@
     - [保存用户文件](save-user-file.md)
     - [授权持久化](file-persistPermission.md)
     - [授权持久化(C/C++)](native-fileshare-guidelines.md)
+  - [获取并使用公共目录](request-dir-permission.md)
   <!--Del-->
   - [开发用户文件管理器（仅对系统应用开放）](dev-user-file-manager.md)
   - [管理外置存储设备（仅对系统应用开放）](manage-external-storage.md)
