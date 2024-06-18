@@ -19,6 +19,8 @@
 
 **库：** libimage_packer_ndk.z.so
 
+**引用文件**：&lt;multimedia/image_framework/image_packer_mdk.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Image
 
 **起始版本：** 11

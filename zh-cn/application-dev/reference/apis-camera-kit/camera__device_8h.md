@@ -7,6 +7,8 @@
 
 **库：** libohcamera.so
 
+**引用文件：**&lt;ohcamera/camera_device.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **起始版本：** 12
