@@ -5,7 +5,9 @@
 
 定义Drm MediaKeySystem API。提供以下功能： 查询是否支持特定的drm，创建媒体密钥会话，获取和设置配置， 获取统计信息，获取内容保护级别，生成提供请求，处理提供响应， 事件监听，获取内容防护级别，管理离线媒体密钥等。
 
-**库：** libnative_drm.z.so
+**库：** libnative_drm.so
+
+**引用文件：** &lt;multimedia/drm_framework/native_mediakeysystem.h&gt;
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 

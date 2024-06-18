@@ -388,7 +388,7 @@ createAVScreenCaptureRecorder(): Promise\<AVScreenCaptureRecorder>
 
 创建屏幕录制实例，通过Promise获取返回值。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **返回值：**
 
@@ -6268,7 +6268,7 @@ setMimeType(mimeType: AVMimeTypes): void
 
 进行屏幕录制时的编码、封装格式参数的枚举。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 | 名称                              | 值   | 说明                                         |
 | --------------------------------- | ---- | -------------------------------------------- |
@@ -6279,7 +6279,7 @@ setMimeType(mimeType: AVMimeTypes): void
 
 屏幕录制的状态回调。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 | 名称                                     | 值   | 说明                     |
 | ---------------------------------------- | ---- | ------------------------ |
@@ -6298,7 +6298,7 @@ setMimeType(mimeType: AVMimeTypes): void
 
 表示录屏参数配置。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 | 名称              | 类型                                                         | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -6321,7 +6321,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 异步方式进行录屏初始化，设置录屏参数。通过Promise获取返回值。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **参数：**
 
@@ -6368,7 +6368,7 @@ startRecording(): Promise\<void>
 
 异步方式开始录屏。通过Promise获取返回值。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **返回值：**
 
@@ -6401,7 +6401,7 @@ stopRecording(): Promise\<void>
 
 异步方式结束录屏。通过Promise获取返回值。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **返回值：**
 
@@ -6434,7 +6434,7 @@ setMicEnabled(enable: boolean): Promise\<void>
 
 异步方式设置麦克风开关。通过Promise获取返回值。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **参数：**
 
@@ -6473,7 +6473,7 @@ release(): Promise\<void>
 
 异步方式释放录屏。通过Promise获取返回值。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **返回值：**
 
@@ -6506,7 +6506,7 @@ on(type: 'stateChange', callback: Callback\<AVScreenCaptureStateCode>): void
 
 订阅录屏状态切换的事件，当状态发生的时候，会通过订阅的回调通知用户。用户只能订阅一个状态切换的回调方法，重复订阅时，以最后一次订阅的回调接口为准。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **参数：**
 
@@ -6529,7 +6529,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 订阅AVScreenCaptureRecorder的错误事件，用户可以根据应用自身逻辑对错误事件进行处理。用户只能订阅一个错误事件的回调方法，重复订阅时，以最后一次订阅的回调接口为准。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **参数：**
 
@@ -6559,7 +6559,7 @@ avScreenCaptureRecorder.on('error', (err: BusinessError) => {
 
 取消订阅状态切换回调事件。用户可以指定填入状态切换的回调方法来取消订阅。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **参数：**
 
@@ -6580,7 +6580,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅错误回调事件。用户可以指定填入错误回调方法来取消订阅。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **参数：**
 
