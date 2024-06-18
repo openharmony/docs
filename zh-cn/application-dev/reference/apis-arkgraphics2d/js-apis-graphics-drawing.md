@@ -2253,7 +2253,7 @@ setColorFilter(filter: ColorFilter) : void
 
 | 参数名 | 类型                        | 必填 | 说明         |
 | ------ | --------------------------- | ---- | ------------ |
-| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。 |
+| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。为null时表示清空颜色滤波器。 |
 
 **错误码：**
 
@@ -2284,7 +2284,7 @@ setMaskFilter(filter: MaskFilter): void
 
 | 参数名 | 类型                       | 必填 | 说明      |
 | ------ | ------------------------- | ---- | --------- |
-| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。 |
+| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。为null时表示清空蒙版滤镜。 |
 
 **错误码：**
 
@@ -2323,7 +2323,7 @@ setPathEffect(effect: PathEffect): void
 
 | 参数名  | 类型                       | 必填 | 说明         |
 | ------- | ------------------------- | ---- | ------------ |
-| effect  | [PathEffect](#patheffect12) | 是   | 路径效果对象。 |
+| effect  | [PathEffect](#patheffect12) | 是   | 路径效果对象。为null时表示清空路径效果。 |
 
 **错误码：**
 
@@ -2354,7 +2354,7 @@ class DrawingRenderNode extends RenderNode {
 
 setShadowLayer(shadowLayer: ShadowLayer): void
 
-设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效。
+设置画笔阴影层效果。当前仅在绘制文字时生效。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2362,7 +2362,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。 |
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果。 |
 
 **错误码：**
 
@@ -2705,7 +2705,7 @@ setColorFilter(filter: ColorFilter) : void
 
 | 参数名 | 类型                        | 必填 | 说明         |
 | ------ | --------------------------- | ---- | ------------ |
-| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。 |
+| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。为null时表示清空颜色滤波器。 |
 
 **错误码：**
 
@@ -2736,7 +2736,7 @@ setMaskFilter(filter: MaskFilter): void
 
 | 参数名 | 类型                       | 必填 | 说明      |
 | ------ | ------------------------- | ---- | --------- |
-| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。 |
+| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。为null时表示清空蒙版滤镜。 |
 
 **错误码：**
 
@@ -2765,7 +2765,7 @@ class DrawingRenderNode extends RenderNode {
 
 setShadowLayer(shadowLayer: ShadowLayer): void
 
-设置画刷阴影层效果，为空表示清空阴影层效果，当前仅对文字生效。
+设置画刷阴影层效果。当前仅在绘制文字时生效。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2773,7 +2773,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。 |
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果 |
 
 **错误码：**
 
