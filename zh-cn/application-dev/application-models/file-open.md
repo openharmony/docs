@@ -44,7 +44,7 @@
     // xxx.ets
     import fileUri from '@kit.CoreFileKit';
     import {UIAbility, Want, common, wantConstant} from '@kit.AbilityKit';
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServiceKit';
     ```
 
 2. 获取[应用文件路径](../../application-dev/application-models/application-context-stage.md#%25E8%258E%25B7%25E5%258F%2596%25E5%25BA%2594%25E7%2594%25A8%25E6%2596%2587%25E4%25BB%25B6%25E8%25B7%25AF%25E5%25BE%2584)。
