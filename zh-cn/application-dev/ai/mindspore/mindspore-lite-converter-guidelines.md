@@ -14,55 +14,63 @@
 
 MindSpore Lite AI模型部署流程是：
 1. 开发者首先将原始模型（如：ONNX、CAFFE等）用MindSpore Lite模型转换工具，生成后缀为.ms的模型文件；
-2. 然后在代码中调用MindSpore Lite推理引擎接口，执行[模型推理](./mindspore-lite-guidelines.md)。
+2. 然后在代码中调用MindSpore Lite推理引擎接口，执行[模型推理](mindspore-lite-guidelines.md)。
 
 ## 环境准备
+
 ### 获取模型转换工具
+
 对于MindSpore Lite模型转换工具，有以下两种方式可以获取：
 
 #### 通过下载获取
 
-| 组件 | 硬件平台 | 操作系统 | 链接                                                                                                                                                                             | SHA-256                                                          |
-|----|------|------|---------------------------------------------------------------------------------------------------------------|------------------------|
-|  端侧推理和训练benchmark工具、converter工具、cropper工具  |   CPU   |   Linux-x86_64   | [mindspore-lite-2.1.0-linux-x64.tar.gz](https://ms-release.obs.cn-north-4.myhuaweicloud.com/2.1.0/MindSpore/lite/release/linux/x86_64/mindspore-lite-2.1.0-linux-x64.tar.gz)   | b267e5726720329200389e47a178c4f882bf526833b714ba6e630c8e2920fe89 |
+| 组件                                                    | 硬件平台 | 操作系统     | 链接                                                         | SHA-256                                                      |
+| ------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 端侧推理和训练benchmark工具、converter工具、cropper工具 | CPU      | Linux-x86_64 | [mindspore-lite-2.1.0-linux-x64.tar.gz](https://ms-release.obs.cn-north-4.myhuaweicloud.com/2.1.0/MindSpore/lite/release/linux/x86_64/mindspore-lite-2.1.0-linux-x64.tar.gz) | b267e5726720329200389e47a178c4f882bf526833b714ba6e630c8e2920fe89 |
 
 > **说明：**
+>
 > 由于支持转换PyTorch模型的编译选项默认关闭，因此下载的安装包不支持转换PyTorch模型，只能通过源码编译方式获取。
+
 #### 通过源码编译
 
-  1. 编译环境要求如下：
-  - 系统环境：Linux x86_64，推荐使用Ubuntu 18.04.02LTS。
-  - C++编译依赖：
-    -  GCC >= 7.3.0
-    - CMake >= 3.18.3
-    - Git >= 2.28.0
-  2. 取[MindSpore Lite源码](https://gitee.com/openharmony/third_party_mindspore)。此代码仓采用 “压缩包 + 补丁”的方式管理源码。首先执行以下命令解压源码，打入补丁：
-     ```bash
-     cd mindspore
-     python3 build_helper.py --in_zip_path=./mindspore-v1.8.1.zip --patch_dir=./patches/ --out_src_path=./mindspore-src
-     ```
-  
-     执行完毕，MindSpore Lite完整源码位于：`mindspore-src/source/`。
+1. 编译环境要求如下：
 
-  3. 执行编译： 
+   - 系统环境：Linux x86_64，推荐使用Ubuntu 18.04.02LTS。
+   - C++编译依赖：
+     -  GCC >= 7.3.0
+     -  CMake >= 3.18.3
+     -  Git >= 2.28.0
 
-     如要获取支持转换PyTorch模型的转换工具，编译前需要先`export MSLITE_ENABLE_CONVERT_PYTORCH_MODEL = on && export LIB_TORCH_PATH="/home/user/libtorch"`。转换前加入libtorch的环境变量：`export LD_LIBRARY_PATH="/home/user/libtorch/lib:${LD_LIBRARY_PATH}"`。用户可以下载CPU版本libtorch后解压到`/home/user/libtorch`的目录下。
+2. 取[MindSpore Lite源码](https://gitee.com/openharmony/third_party_mindspore)。此代码仓采用 “压缩包 + 补丁”的方式管理源码。首先执行以下命令解压源码，打入补丁。
 
-     ```bash
-     cd mindspore-src/source/
-     bash build.sh -I x86_64 -j 8
-     ```
+   ```bash
+   cd mindspore
+   python3 build_helper.py --in_zip_path=./mindspore-v1.8.1.zip --patch_dir=./patches/ --out_src_path=./mindspore-src
+   ```
 
-     编译完成后，可从源码根目录的`output/`子目录取得MindSpore Lite发布件。解压后，转换工具位于`tools/converter/converter/`。
+   执行完毕，MindSpore Lite完整源码位于：`mindspore-src/source/`。
+
+3. 执行编译。
+
+   如要获取支持转换PyTorch模型的转换工具，编译前需要先`export MSLITE_ENABLE_CONVERT_PYTORCH_MODEL = on && export LIB_TORCH_PATH="/home/user/libtorch"`。转换前加入libtorch的环境变量：`export LD_LIBRARY_PATH="/home/user/libtorch/lib:${LD_LIBRARY_PATH}"`。用户可以下载CPU版本libtorch后解压到`/home/user/libtorch`的目录下。
+
+   ```bash
+   cd mindspore-src/source/
+   bash build.sh -I x86_64 -j 8
+   ```
+
+   编译完成后，可从源码根目录的`output/`子目录取得MindSpore Lite发布件。解压后，转换工具位于`tools/converter/converter/`。
 
 ### 配置环境变量
+
 获取到模型转换工具之后，还需要将转换工具需要的动态链接库加入环境变量LD_LIBRARY_PATH。
 
 ```bash
 export LD_LIBRARY_PATH=${PACKAGE_ROOT_PATH}/tools/converter/lib:${LD_LIBRARY_PATH}
 ```
 
-  其中，${PACKAGE_ROOT_PATH}对应为编译或下载得到的MindSpore Lite发布件解压后的路径。
+其中，${PACKAGE_ROOT_PATH}对应为编译或下载得到的MindSpore Lite发布件解压后的路径。
 
 
 ## 参数说明
@@ -71,20 +79,20 @@ MindSpore Lite模型转换工具提供了多种参数设置，用户可根据需
 下面提供详细的参数说明。
 
 
-|         参数         | 是否必选                   | 参数说明                                                                                                                                                                        | 取值范围                                       |
-|:------------------:|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-|       --help       | 否                      | 打印全部帮助信息。                                                                                                                                                                   | -                                          |
-|       --fmk        | 是                      | 输入模型的原始格式。只有在MS模型转换为Micro代码场景时，才支持设置为MSLITE。                                                                                                                                | MINDIR、CAFFE、TFLITE、TF、ONNX、PYTORCH、MSLITE |
-|    --modelFile     | 是                      | 输入模型的路径。                                                                                                                                                                    | -                                          |
-|    --outputFile    | 是                      | 输出模型的路径，不需加后缀，可自动生成`.ms`后缀。                                                                                                                                                 | -                                          |
-|    --weightFile    | 转换CAFFE模型时必选           | 输入模型权重文件的路径。                                                                                                                                                                | -                                          |
-|    --configFile    | 否                      | 1）可作为训练后量化配置文件路径；2）可作为扩展功能配置文件路径。                                                                                                                                           | -                                          |
-|       --fp16       | 否                      | 设定在模型序列化时是否需要将float32数据格式的权重存储为float16数据格式。<br/>默认值为off。                                                                                                                    | on、off                                     |
-|    --inputShape    | 否                      | 设定模型输入的维度，输入维度的顺序和原始模型保持一致。对某些特定的模型可以进一步优化模型结构，但是转化后的模型将可能失去动态shape的特性。输入名和shape之间用`:`分割，多个输入用`;`分割，同时加上双引号`""`。例如配置为"inTensorName_1: 1,32,32,4;inTensorName_2:1,64,64,4;"。 | -                                          |
-| --inputDataFormat  | 否                      | 设定导出模型的输入format，只对四维输入有效。<br/>默认值为NHWC。                                                                                                                                     | NHWC、NCHW                                  |
-|  --inputDataType   | 否                      | 设定量化模型输入tensor的数据类型。仅当模型输入tensor的量化参数（scale和zero point）配置时有效。默认与原始模型输入tensor的数据类型保持一致。<br/>默认值为DEFAULT。                                                                     | FLOAT32、INT8、UINT8、DEFAULT                 |
-|  --outputDataType  | 否                      | 设定量化模型输出tensor的数据类型。仅当模型输出tensor的量化参数（scale和zero point）配置时有效。默认与原始模型输出tensor的数据类型保持一致。<br/>默认值为DEFAULT。                                                                     | FLOAT32、INT8、UINT8、DEFAULT                 |
-| --outputDataFormat | 否                      | 设定导出模型的输出format，只对四维输出有效。                                                                                                                                                   | NHWC、NCHW                                  |
+|        参数        | 是否必选            | 参数说明                                                     | 取值范围                                         |
+| :----------------: | ------------------- | ------------------------------------------------------------ | ------------------------------------------------ |
+|       --help       | 否                  | 打印全部帮助信息。                                           | -                                                |
+|       --fmk        | 是                  | 输入模型的原始格式。只有在MS模型转换为Micro代码场景时，才支持设置为MSLITE。 | MINDIR、CAFFE、TFLITE、TF、ONNX、PYTORCH、MSLITE |
+|    --modelFile     | 是                  | 输入模型的路径。                                             | -                                                |
+|    --outputFile    | 是                  | 输出模型的路径，不需加后缀，可自动生成`.ms`后缀。            | -                                                |
+|    --weightFile    | 转换CAFFE模型时必选 | 输入模型权重文件的路径。                                     | -                                                |
+|    --configFile    | 否                  | 1）可作为训练后量化配置文件路径；2）可作为扩展功能配置文件路径。 | -                                                |
+|       --fp16       | 否                  | 设定在模型序列化时是否需要将float32数据格式的权重存储为float16数据格式。<br/>默认值为off。 | on、off                                          |
+|    --inputShape    | 否                  | 设定模型输入的维度，输入维度的顺序和原始模型保持一致。对某些特定的模型可以进一步优化模型结构，但是转化后的模型将可能失去动态shape的特性。输入名和shape之间用`:`分割，多个输入用`;`分割，同时加上双引号`""`。例如配置为"inTensorName_1: 1,32,32,4;inTensorName_2:1,64,64,4;"。 | -                                                |
+| --inputDataFormat  | 否                  | 设定导出模型的输入format，只对四维输入有效。<br/>默认值为NHWC。 | NHWC、NCHW                                       |
+|  --inputDataType   | 否                  | 设定量化模型输入tensor的数据类型。仅当模型输入tensor的量化参数（scale和zero point）配置时有效。默认与原始模型输入tensor的数据类型保持一致。<br/>默认值为DEFAULT。 | FLOAT32、INT8、UINT8、DEFAULT                    |
+|  --outputDataType  | 否                  | 设定量化模型输出tensor的数据类型。仅当模型输出tensor的量化参数（scale和zero point）配置时有效。默认与原始模型输出tensor的数据类型保持一致。<br/>默认值为DEFAULT。 | FLOAT32、INT8、UINT8、DEFAULT                    |
+| --outputDataFormat | 否                  | 设定导出模型的输出format，只对四维输出有效。                 | NHWC、NCHW                                       |
 
 > **说明：**
 > - 参数名和参数值之间用等号连接，中间不能有空格。
