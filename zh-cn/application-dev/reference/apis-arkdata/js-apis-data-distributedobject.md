@@ -808,7 +808,7 @@ createDistributedObject(source: object): DistributedObject
 
 > **说明：**
 >
-> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用[distributedDataObject.create](#distributedobjectcreate9)替代。
+> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用[distributedDataObject.create](#distributeddataobjectcreate9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
