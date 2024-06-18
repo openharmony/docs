@@ -32,6 +32,8 @@ resetOAID(): void
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
+| 202      | Not system app error.            |
+| 401      | Not in trust list error.         |
 | 17300001 | System&nbsp;internal&nbsp;error. | 
 
 **示例：**
