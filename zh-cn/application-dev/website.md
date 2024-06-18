@@ -379,8 +379,9 @@
         - 使用文本
           - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
       - 设置组件导航和页面路由
-        - [组件导航（Navigation）](ui/arkts-navigation-navigation.md)
+        - [组件导航 (Navigation) (推荐)](ui/arkts-navigation-navigation.md)
         - [页面路由 (@ohos.router)](ui/arkts-routing.md)
+        - [Router切换Navigation](ui/arkts-router-to-navigation.md)
       - 显示图形
         - [绘制几何图形 (Shape)](ui/arkts-geometric-shape-drawing.md)
         - [使用画布绘制自定义图形 (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
