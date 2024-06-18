@@ -26,7 +26,7 @@
 ## 导入模块
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 ```
 
 ## ClearAction
@@ -136,7 +136,7 @@ static enableCloud(accountId: string, switches: Record<string, boolean>, callbac
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 let switches: Record<string, boolean> = { 'test_bundleName1': true, 'test_bundleName2': false };
@@ -191,7 +191,7 @@ static enableCloud(accountId: string, switches: Record<string, boolean>): Promis
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 let switches: Record<string, boolean> = { 'test_bundleName1': true, 'test_bundleName2': false };
@@ -238,7 +238,7 @@ static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 try {
@@ -291,7 +291,7 @@ static disableCloud(accountId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 try {
@@ -339,7 +339,7 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 let bundleName: string = 'test_bundleName';
@@ -395,7 +395,7 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 let bundleName: string = 'test_bundleName';
@@ -443,7 +443,7 @@ static notifyDataChange(accountId: string, bundleName: string, callback: AsyncCa
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 let bundleName: string = 'test_bundleName';
@@ -498,7 +498,7 @@ static notifyDataChange(accountId: string,bundleName: string): Promise&lt;void&g
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 let bundleName: string = 'test_bundleName';
@@ -545,7 +545,7 @@ try {
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let eventId: string = "cloud_data_change";
 let extraData: string = '{"data":"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias", "databaseScopes": ["private", "shared"],"recordTypes":"["xxx","yyy","zzz"]"}"}';
@@ -597,7 +597,7 @@ static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallba
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let eventId: string = "cloud_data_change";
 let extraData: string = '{"data":"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias", "databaseScopes": ["private", "shared"],"recordTypes":"["xxx","yyy","zzz"]"}"}';
@@ -655,7 +655,7 @@ try {
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let eventId: string = "cloud_data_change";
 let extraData: string = '{"data":"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias", "databaseScopes": ["private", "shared"],"recordTypes":"["xxx","yyy","zzz"]"}"}';
@@ -712,7 +712,7 @@ static queryStatistics(accountId: string, bundleName: string, storeId?: string):
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const accountId:string = "accountId";
 const bundleName:string = "bundleName";
@@ -763,7 +763,7 @@ static queryLastSyncInfo(accountId: string, bundleName: string, storeId?: string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const accountId:string = "accountId";
 const bundleName:string = "bundleName";
@@ -817,7 +817,7 @@ static setGlobalCloudStrategy(strategy: StrategyType, param?: Array&lt;commonTyp
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.Config.setGlobalCloudStrategy(cloudData.StrategyType.NETWORK, [cloudData.NetWorkStrategy.WIFI]).then(() => {
     console.info('Succeeded in setting the global cloud strategy');
@@ -858,7 +858,7 @@ static clear(accountId: string, appActions: Record<string, ClearAction>,  callba
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = "test_id";
 type dataType = Record<string, cloudData.ClearAction>
@@ -917,7 +917,7 @@ static clear(accountId: string, appActions: Record<string, ClearAction>): Promis
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = "test_id";
 type dataType = Record<string, cloudData.ClearAction>;
@@ -1065,8 +1065,8 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
-import relationalStore from '@ohos.data.relationalStore';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { relationalStore } from '@kit.ArkData';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1130,8 +1130,8 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 **示例：**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import { BusinessError } from '@ohos.base';
+import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1196,8 +1196,8 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 **示例：**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import { BusinessError } from '@ohos.base';
+import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1266,7 +1266,7 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;): Promise&
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1319,7 +1319,7 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;, callback:
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1379,7 +1379,7 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;): Promis
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1432,7 +1432,7 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;, callbac
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1491,7 +1491,7 @@ exit(sharingResource: string): Promise&lt;Result&lt;void&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.exit('sharing_resource_test').then((result) => {
   console.info(`exit share success, result: ${result}`);
@@ -1529,7 +1529,7 @@ exit(sharingResource: string, callback: AsyncCallback&lt;Result&lt;void&gt;&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.exit('sharing_resource_test', ((err: BusinessError, result) => {
   if (err) {
@@ -1575,7 +1575,7 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1629,7 +1629,7 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;,
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1689,7 +1689,7 @@ queryParticipants(sharingResource: string): Promise&lt;Result&lt;Array&lt;Partic
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.queryParticipants('sharing_resource_test').then((result) => {
   console.info(`query participants succeeded, result: ${result}`);
@@ -1727,7 +1727,7 @@ queryParticipants(sharingResource: string, callback: AsyncCallback&lt;Result&lt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.queryParticipants('sharing_resource_test', ((err: BusinessError, result) => {
   if (err) {
@@ -1772,7 +1772,7 @@ queryParticipantsByInvitation(invitationCode: string): Promise&lt;Result&lt;Arra
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.queryParticipantsByInvitation('sharing_invitation_code_test').then((result) => {
   console.info(`query participants by invitation succeeded, result: ${result}`);
@@ -1810,7 +1810,7 @@ queryParticipantsByInvitation(invitationCode: string, callback: AsyncCallback&lt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.queryParticipantsByInvitation('sharing_invitation_code_test', ((err: BusinessError, result) => {
   if (err) {
@@ -1856,7 +1856,7 @@ confirmInvitation(invitationCode: string, state: State): Promise&lt;Result&lt;st
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let shareResource: string | undefined;
 cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED).then((result: cloudData.sharing.Result<string>) => {
@@ -1897,7 +1897,7 @@ confirmInvitation(invitationCode: string, state: State, callback: AsyncCallback&
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let shareResource: string;
 cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED, ((err: BusinessError, result) => {
@@ -1945,7 +1945,7 @@ changeConfirmation(sharingResource: string, state: State): Promise&lt;Result&lt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.State.STATE_REJECTED).then((result) => {
   console.info(`change confirmation succeeded, result: ${result}`);
@@ -1984,7 +1984,7 @@ changeConfirmation(sharingResource: string, state: State, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.State.STATE_REJECTED, ((err: BusinessError, result) => {
   if (err) {
