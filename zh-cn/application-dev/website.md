@@ -1032,9 +1032,9 @@
     - [MindSpore Lite Kit简介](ai/mindspore/MindSpore-Lite-Kit-Introduction.md)
     - [使用MindSpore Lite开发AI应用](ai/mindspore/mindspore-guidelines-based-js.md)
     - [使用MindSpore Lite开发AI应用 (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
+    - [使用MindSpore Lite进行模型转换](ai/mindspore/mindspore-lite-converter-guidelines.md)
     - [使用MindSpore Lite引擎进行模型推理 (C/C++)](ai/mindspore/mindspore-lite-guidelines.md)
     - [使用MindSpore Lite引擎进行端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
-    - [使用MindSpore Lite进行离线模型的转换及推理 (C/C++)](ai/mindspore/mindspore-lite-offline-model-guidelines.md)
   - MultimodalAwareness Kit（多模态融合感知服务）
     - [MultimodalAwareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
     - [Stationary开发指导](device/stationary/stationary-guidelines.md)
