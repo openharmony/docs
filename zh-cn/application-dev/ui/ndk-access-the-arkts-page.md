@@ -114,6 +114,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
 下面的示例展示了如何使用ContentSlot挂载Native侧的文本列表。
 
 **图1** Native文本列表  
+
 ![text_list](figures/text_list.gif)
 
 1. 在ArkTS页面上声明用于Native页面挂载的占位组件，并在页面创建时通知Native侧创建文本列表。

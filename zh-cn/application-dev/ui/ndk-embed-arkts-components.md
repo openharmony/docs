@@ -19,7 +19,8 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
 以下示例代码在[接入ArkTS页面](ndk-access-the-arkts-page.md)章节基础上引入ArkTS的Refresh组件。
 
 
-**图1** Refresh组件挂载文本列表  
+**图1** Refresh组件挂载文本列表
+  
 ![refresh_text_list](figures/refresh_text_list.gif)
 
 

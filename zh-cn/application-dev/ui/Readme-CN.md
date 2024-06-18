@@ -86,8 +86,8 @@
       - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
       - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
       - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
-  - 使用ArkUI NDK接口构建UI
-    - [ArkUI NDK接口概述](ndk-build-ui-overview.md)
+  - 使用NDK接口构建UI
+    - [NDK接口概述](ndk-build-ui-overview.md)
     - [接入ArkTS页面](ndk-access-the-arkts-page.md)
     - 添加交互事件
       - [监听组件事件](ndk-listen-to-component-events.md)
