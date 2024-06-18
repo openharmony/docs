@@ -145,7 +145,7 @@
 
 以一次分布式数据对象同步为例，说明开发步骤。
 
-1. 导入`@ohos.data.distributedDataObject`模块。
+1. 导入distributedDataObject模块。
 
    ```ts
    import { distributedDataObject } from '@kit.ArkData';
@@ -363,11 +363,10 @@
 
 分布式对象中加入资产类型属性，可以触发资产同步机制，将资产类型属性所描述的文件同步到其他设备。持有资产文件的设备为发起端，得到资产文件的设备为接收端。
 
-1. 导入`@ohos.data.distributedDataObject`和`@ohos.data.commonType`模块。
+1. 导入distributedDataObject和commonType模块。
 
    ```ts
-   import { distributedDataObject } from '@kit.ArkData';
-   import commonType from '@ohos.data.commonType';
+   import { distributedDataObject, commonType } from '@kit.ArkData';
    ```
 
 2. 请求权限。
@@ -380,8 +379,7 @@
     ```ts
     import { UIAbility } from '@kit.AbilityKit';
     import { window } from '@kit.ArkUI';
-    import { distributedDataObject } from '@kit.ArkData';
-    import commonType from '@ohos.data.commonType';
+    import { distributedDataObject, commonType } from '@kit.ArkData';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     class Note {

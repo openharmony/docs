@@ -666,8 +666,7 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
-import { distributedDataObject } from '@kit.ArkData';
-import commonType from '@ohos.data.commonType';
+import { distributedDataObject, commonType } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Note {
@@ -754,8 +753,7 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo): Promise&lt;void&gt;
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
-import { distributedDataObject } from '@kit.ArkData';
-import commonType from '@ohos.data.commonType';
+import { distributedDataObject, commonType } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Note {
