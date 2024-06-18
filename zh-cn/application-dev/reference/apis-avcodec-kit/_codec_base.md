@@ -140,7 +140,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | 解码缓冲器时间戳的键，以微秒为单位，值类型为int64_t。该键是可选的。            |
 | [OH_MD_KEY_BUFFER_DURATION](#oh_md_key_buffer_duration) | 缓冲器持续时间的键，以微秒为单位，值类型为int64_t。该键是可选的。            |
 | [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | 文件开始时间的键，值类型为int64_t。该键是可选的。            |
-| [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime)                | 解封装器mime类型的键，值类型为string。该键是可选的。         |
+| [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime)                | 编解码器mime类型的键，值类型为string。该键是可选的。         |
 | [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)                  | 样本长宽比的键，值类型为double。 |
 
 
@@ -244,7 +244,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | 表示surfacebuffer时间戳的键，值类型为int64。 <!--Del-->（此功能暂未支持）<!--DelEnd--> |
 | const char \* [OH_ED_KEY_EOS](#oh_ed_key_eos) | 表示surfacebuffer流结束符的键，值类型为bool。 <!--Del-->（此功能暂未支持）<!--DelEnd--> |
 | const char \* [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type) | 曲目类型的键，值类型为uint8_t，请参见[OH_MediaType](#oh_mediatype)。 |
-| const char \* [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | 解封装器mime类型的键，值类型为string。 |
+| const char \* [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | 编解码器mime类型的键，值类型为string。 |
 | const char \* [OH_MD_KEY_DURATION](#oh_md_key_duration) | 持续时间键，值类型为int64_t。 |
 | const char \* [OH_MD_KEY_BITRATE](#oh_md_key_bitrate) | 比特率的键，值类型为int64_t。 |
 | const char \* [OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size) | 设置解码输入码流大小最大值的键，值类型为uint32_t。 |
@@ -1700,7 +1700,7 @@ const char* OH_MD_KEY_CODEC_CONFIG
 const char* OH_MD_KEY_CODEC_MIME
 ```
 **描述**
-解封装器mime类型的键，值类型为string。
+编解码器mime类型的键，值类型为string。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

@@ -100,7 +100,7 @@
 | const char \* [OH_ED_KEY_TIME_STAMP](_codec_base.md#oh_ed_key_time_stamp) | 表示surfacebuffer中时间戳的键，值类型为int64。<!--Del-->（此功能暂未支持）<!--DelEnd--> |
 | const char \* [OH_ED_KEY_EOS](_codec_base.md#oh_ed_key_eos) | 表示surfacebuffer中流结束符的键，值类型为bool。 <!--Del-->（此功能暂未支持）<!--DelEnd-->|
 | const char \* [OH_MD_KEY_TRACK_TYPE](_codec_base.md#oh_md_key_track_type) | 曲目类型的键，值类型为uint8_t，请参见[OH_MediaType](_codec_base.md#oh_mediatype)。 | 
-| const char \* [OH_MD_KEY_CODEC_MIME](_codec_base.md#oh_md_key_codec_mime) | 解封装器mime类型的键，值类型为string。 |
+| const char \* [OH_MD_KEY_CODEC_MIME](_codec_base.md#oh_md_key_codec_mime) | 编解码器mime类型的键，值类型为string。 |
 | const char \* [OH_MD_KEY_DURATION](_codec_base.md#oh_md_key_duration) | 持续时间键，值类型为int64_t。 | 
 | const char \* [OH_MD_KEY_BITRATE](_codec_base.md#oh_md_key_bitrate) | 比特率的键，值类型为int64_t。 | 
 | const char \* [OH_MD_KEY_MAX_INPUT_SIZE](_codec_base.md#oh_md_key_max_input_size) | 设置解码输入码流大小最大值的键，值类型为uint32_t。 |
