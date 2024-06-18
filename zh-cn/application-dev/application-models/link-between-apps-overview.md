@@ -23,10 +23,8 @@
     常见的通用意图跳转包括导航、分享、文件打开等高频场景，不同意图类型的跳转实现也有多种方式。
 
     - [导航](start-intent-panel.md)：支持导航、地点搜索、路线规划
-    - [文件打开](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-ability-kit-V5#section1754281913224)：打开指定文件
-    - [分享](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/share-introduction-V5)：分享文本、图片、视频等内容
-    - [虚拟商品支付](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/iap-introduction-V5)：购买虚拟商品
-    - [实物商品支付](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/payment-introduction-V5)：购买实物商品
+    - 文件打开：打开指定文件
+
 
 
 ## 应用链接
