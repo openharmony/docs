@@ -472,10 +472,10 @@ struct MyComponent {
 getPageInfoByUniqueId(id: number): PageInfo
 
 提供getPageInfoByUniqueId接口通过组件的uniqueId获取该节点对应的Router和NavDestination页面信息。
-1. 当uniqueId对应的节点在模态弹窗中,例如[CustomDialog](./arkui-ts/ts-methods-custom-dialog-box.md)、[bindSheet](./arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)和[bindContentCover](./arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)构建的模态页面中，routerPageInfo和navDestinationInfo属性皆为undefined；
-2. 当uniqueId对应的节点在Page节点中，routerPageInfo属性为其对应的Router信息；
-3. 当uniqueId对应的节点在NavDestination节点中，navDestinationInfo属性为其对应的NavDestination信息；
-4. 当uniqueId对应的节点无对应的Router或NavDestination信息时，对应的属性为undefined。
+1. 当uniqueId对应的节点在Page节点中，routerPageInfo属性为其对应的Router信息；
+2. 当uniqueId对应的节点在NavDestination节点中，navDestinationInfo属性为其对应的NavDestination信息；
+3. 当uniqueId对应的节点无对应的Router或NavDestination信息时，对应的属性为undefined；
+4. 模态弹窗并不在任何Page节点中。当uniqueId对应的节点在模态弹窗中,例如[CustomDialog](./arkui-ts/ts-methods-custom-dialog-box.md)、[bindSheet](./arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)和[bindContentCover](./arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)构建的模态页面中，routerPageInfo属性为undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -543,9 +543,8 @@ struct MyComponent {
 getNavigationInfoByUniqueId(id: number): observer.NavigationInfo | undefined
 
 提供getNavigationInfoByUniqueId接口通过组件的uniqueId获取该节点对应的Navigation页面信息。
-1. 当uniqueId对应的节点在模态弹窗中,例如[CustomDialog](./arkui-ts/ts-methods-custom-dialog-box.md)、[bindSheet](./arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)和[bindContentCover](./arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)构建的模态页面中，返回undefined；
-2. 当uniqueId对应的节点在Navigation节点中，返回其对应的Navigation信息；
-3. 当uniqueId对应的节点无对应的Navigation信息时，返回undefined。
+1. 当uniqueId对应的节点在Navigation节点中，返回其对应的Navigation信息；
+2. 当uniqueId对应的节点无对应的Navigation信息时，返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
