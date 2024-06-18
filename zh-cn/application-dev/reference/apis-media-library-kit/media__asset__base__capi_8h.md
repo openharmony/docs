@@ -15,7 +15,7 @@
 
 [MediaLibrary_RequestOptions](_media_library___request_options.md)结构体：此结构体为媒体资源请求策略模式配置项。
 
-**系统能力：**SystemCapability.FileManagement.PhotoAccessHelper.Core
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **库：** libmedia_asset_manager.so
 
