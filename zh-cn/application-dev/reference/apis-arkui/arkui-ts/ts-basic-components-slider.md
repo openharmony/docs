@@ -403,6 +403,11 @@ contentModifier(modifier: ContentModifier\<SliderConfiguration>)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
 | modifier  | [ContentModifier\<SliderConfiguration>](#sliderconfiguration12对象说明) | 是   | 在Slider组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
+>  **说明：**
+>
+>  - 如果设置了contentModifier，则在自定义区域内点击和手势滑动均不可触发原slider组件的onChange事件。
+>  - 仅当调用triggerChange函数且传递正确的参数值时才可以触发原slider组件的onChange事件。
+
 ### slideRange<sup>12+</sup>
 
 slideRange(value: SlideRange)
