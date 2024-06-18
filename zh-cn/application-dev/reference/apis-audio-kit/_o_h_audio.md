@@ -2114,7 +2114,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetVolume (OH_AudioRenderer *renderer, fl
 | 名称 | 描述 | 
 | -------- | -------- |
 | renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。  | 
-| volume | 指向一个获取当前音频流音量值的指针。  | 
+| volume | 指向一个获取当前音频流音量值的指针。音量值的范围是[0.0, 1.0]。  |
 
 **返回：**
 
@@ -2324,7 +2324,7 @@ OH_AudioStream_Result OH_AudioRenderer_SetVolume (OH_AudioRenderer *renderer, fl
 | 名称 | 描述 | 
 | -------- | -------- |
 | renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。  | 
-| volume | 设置当前音频流音量，音量值范围[0.0, 1.0]。  | 
+| volume | 设置当前音频流音量，音量值的范围是[0.0, 1.0]。  |
 
 **返回：**
 
