@@ -16,14 +16,14 @@ FoldSplitContainer分栏布局，实现折叠屏二分栏、三分栏在展开�
 ## FoldSplitContainer
 
 FoldSplitContainer({
-  primary?: Callback<void>,
-  secondmary?: Callback<void>,
-  extra?: Callback<void>,
+  primary: Callback&lt;void&gt;,
+  secondmary: Callback&lt;void&gt;,
+  extra?: Callback&lt;void&gt;,
   expandedLayoutOptions?: ExpandedRegionLayoutOptions,
   hoverModeLayoutOptions?: HoverModeRegionLayoutOptions,
   foldedLayoutOptions?: FoldedRegionLayoutOptions,
   animationOptions?: AnimateParam,
-  onHoverStatusChange?: onHoverStatusChangeHandler,
+  onHoverStatusChange?: onHoverStatusChangeHandler
 })
 
 **装饰器类型：**\@Component
@@ -57,10 +57,10 @@ FoldSplitContainer({
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| isExtraRegionPerpendicular | boolean | 否 | 扩展区域是否从上到下贯穿整个组件，当且仅当extra有效时此字段才生效。 |
-| verticalSplitRatio | [PresetSplitRatio](#presetsplitratio) | 是 | 主要区域与次要区域之间的高度比例。 |
-| horizontalSplitRatio | [PresetSplitRatio](#presetsplitratio) | 是 | 主要区域与扩展区域之间的宽度比例，当且仅当extra有效时此字段才生效。 |
-| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | 否 | 扩展区域的位置信息，当且仅当isExtraRegionPerpendicular = false有效时此字段才生效。 |
+| isExtraRegionPerpendicular | boolean | 否 | 扩展区域是否从上到下贯穿整个组件，当且仅当extra有效时此字段才生效。默认值：true。 |
+| verticalSplitRatio | [PresetSplitRatio](#presetsplitratio) | 否 | 主要区域与次要区域之间的高度比例。默认值：PresetSplitRatio.LAYOUT_1V1。 |
+| horizontalSplitRatio | [PresetSplitRatio](#presetsplitratio) | 否 | 主要区域与扩展区域之间的宽度比例，当且仅当extra有效时此字段才生效。默认值：PresetSplitRatio.LAYOUT_3V2。 |
+| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | 否 | 扩展区域的位置信息，当且仅当isExtraRegionPerpendicular = false有效时此字段才生效。默认值：ExtraRegionPosition.top。 |
 
 ## HoverModeRegionLayoutOptions
 
@@ -74,9 +74,9 @@ FoldSplitContainer({
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| showExtraRegion | boolean | 否 | 可折叠屏幕在半折叠状态下是否显示扩展区域。 |
-| horizontalSplitRatio | [PresetSplitRatio](#presetsplitratio) | 是 | 主要区域与扩展区域之间的宽度比例，当且仅当extra有效时此字段才生效。 |
-| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | 否 | 扩展区域的位置信息，当且仅当isExtraRegionPerpendicular = false有效时此字段才生效。 |
+| showExtraRegion | boolean | 否 | 可折叠屏幕在半折叠状态下是否显示扩展区域。默认值：false。 |
+| horizontalSplitRatio | [PresetSplitRatio](#presetsplitratio) | 否 | 主要区域与扩展区域之间的宽度比例，当且仅当extra有效时此字段才生效。默认值：PresetSplitRatio.LAYOUT_3V2。 |
+| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | 否 | 扩展区域的位置信息，当且仅当showExtraRegion时此字段才生效。默认值：ExtraRegionPosition.top。 |
 
 > **说明：**
 >
@@ -95,7 +95,7 @@ FoldSplitContainer({
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| verticalSplitRatio | [PresetSplitRatio](#presetsplitratio) | 是 | 主要区域与次要区域之间的高度比例。 |
+| verticalSplitRatio | [PresetSplitRatio](#presetsplitratio) | 是 | 主要区域与次要区域之间的高度比例。默认值：PresetSplitRatio.LAYOUT_1V1。 |
 
 ## onHoverStatusChangeHandler
 
