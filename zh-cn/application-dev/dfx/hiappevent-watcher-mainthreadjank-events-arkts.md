@@ -25,7 +25,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
       name: "watcher",
-      // 开发者可以订阅感兴趣的系统事件，此处是订阅了资源泄漏事件
+      // 开发者可以订阅感兴趣的系统事件，此处是订阅了主线程超时事件
       appEventFilters: [
         {
           domain: hiAppEvent.domain.OS,
@@ -43,19 +43,19 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.domain=${eventInfo.domain}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.name=${eventInfo.name}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.eventType=${eventInfo.eventType}`);
-            // 开发者可以获取到崩溃事件发生的时间戳
+            // 开发者可以获取到主线程超时事件发生的时间戳
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params['time']}`);
-            // 开发者可以获取到崩溃应用的版本信息
+            // 开发者可以获取到主线程超时应用的版本信息
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
-            // 开发者可以获取到崩溃应用的包名
+            // 开发者可以获取到主线程超时应用的包名
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_name=${eventInfo.params['bundle_name']}`);
-            // 开发者可以获取到崩溃应用的pid、uid
+            // 开发者可以获取到主线程超时应用的pid、uid
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params['pid']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uid']}`);
             // 开发者可以主线程处理开始和结束时间
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.crash_type=${eventInfo.params['begin_time']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['end_time']}`);
-            // 开发者可以获取到崩溃事件发生时的故障日志文件
+            // 开发者可以获取到主线程超时事件发生时的故障日志文件
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
           }
