@@ -50,11 +50,10 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 
 | 名称                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime)                | 编解码器mime类型的键，值类型为string。该键是可选的。         |
 | [OH_MD_KEY_BITRATE](#oh_md_key_bitrate)                      | 比特率的键，值类型为int64_t。该键用于音视频编码场景。在视频编码场景下该键是可选的。 |
 | [OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size)        | 设置解码输入码流大小最大值的键，值类型为uint32_t。该键是可选的。           |
-| [OH_MD_KEY_PROFILE](#oh_md_key_profile)                      | 编码档次，值类型为int32_t请参见[OH_AVCProfile](#oh_avcprofile)，[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。该键是可选的。 |
-| [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config)            | 编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData，值类型为uint8_t\*。该键是可选的。 |
+| [OH_MD_KEY_PROFILE](#oh_md_key_profile)                      | 编码档次，值类型为int32_t，请参见[OH_AVCProfile](#oh_avcprofile)，[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。该键是可选的。 |
+| [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config)            | 编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData，值类型为uint8_t\*。该键是可选的。 <!--Del-->（视频编解码此功能暂未支持）<!--DelEnd--> |
 | [OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | 最大输入缓冲区个数的键, 值类型为int32_t。该键是可选的。      |
 | [OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | 最大输出缓冲区个数的键, 值类型int32_t。该键是可选的。        |
 
@@ -99,7 +98,6 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr)    | 	描述当前帧参考的长期参考帧帧号的键，值类型为int32_t。 |
 | [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr)      | 指示当前帧是否为长期参考帧的键，值类型为int32_t，1表示是LTR，0表示其它情况。 |
 | [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc)            | 描述帧的POC的键，值类型为int32_t。 |
-| [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)            | 样本长宽比的键，值类型为double。 |
 
 
 音频专有的键值对：
@@ -142,6 +140,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | 解码缓冲器时间戳的键，以微秒为单位，值类型为int64_t。该键是可选的。            |
 | [OH_MD_KEY_BUFFER_DURATION](#oh_md_key_buffer_duration) | 缓冲器持续时间的键，以微秒为单位，值类型为int64_t。该键是可选的。            |
 | [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | 文件开始时间的键，值类型为int64_t。该键是可选的。            |
+| [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime)                | 编解码器mime类型的键，值类型为string。该键是可选的。         |
+| [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)                  | 样本长宽比的键，值类型为double。 |
 
 
 ## 汇总
@@ -254,7 +254,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | 音频原始格式的键，值类型为uint32_t。 |
 | const char \* [OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate) | 视频帧率的键，值类型为double。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode)。 |
-| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | 编码档次，值类型为int32_t请参见[OH_AVCProfile](#oh_avcprofile), [OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。 |
+| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | 编码档次，值类型为int32_t，请参见[OH_AVCProfile](#oh_avcprofile), [OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。 |
 | const char \* [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count) | 音频通道计数键，值类型为uint32_t。 |
 | const char \* [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | 音频采样率键，值类型为uint32_t。 |
 | const char \* [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval) | 关键帧间隔的键，值类型为int32_t，单位为毫秒。 |
@@ -265,7 +265,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t,请参见[OH_MatrixCoefficient](#oh_matrixcoefficient)，遵循H.273标准Table4。 |
 | const char \* [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame) | 请求立即编码I帧的键。值类型为bool。 |
 | const char \* [OH_MD_KEY_QUALITY](#oh_md_key_quality) | 所需编码质量的键。值类型为uint32_t，此键仅适用于配置在恒定质量模式下的编码器。 |
-| const char \* [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config) | 编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData，值类型为uint8_t\*。 |
+| const char \* [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config) | 编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData，值类型为uint8_t\*。 <!--Del-->（视频编解码此功能暂未支持）<!--DelEnd--> |
 | const char \* [OH_MD_KEY_TITLE](#oh_md_key_title) | 源格式标题的键，值类型为string。 |
 | const char \* [OH_MD_KEY_ARTIST](#oh_md_key_artist) | 艺术家的源格式键，值类型为string。 |
 | const char \* [OH_MD_KEY_ALBUM](#oh_md_key_album) | 相册的源格式键，值类型为string。 |
@@ -1687,7 +1687,7 @@ const char* OH_MD_KEY_CODEC_CONFIG
 ```
 **描述**
 
-编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData，值类型为uint8_t\*。
+编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData，值类型为uint8_t\*。 <!--Del-->（视频编解码此功能暂未支持）<!--DelEnd-->
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1937,7 +1937,7 @@ const char* OH_MD_KEY_PIXEL_FORMAT
 const char* OH_MD_KEY_PROFILE
 ```
 **描述**
-编码档次，值类型为int32_t请参见[OH_AVCProfile](#oh_avcprofile)，[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。
+编码档次，值类型为int32_t，请参见[OH_AVCProfile](#oh_avcprofile)，[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
