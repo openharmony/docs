@@ -1,17 +1,17 @@
 # 保存用户文件
 
-在从网络下载文件到本地、或将已有用户文件另存为新的文件路径等场景下，需要使用FilePicker提供的保存用户文件的能力。picker获取的uri只具有临时权限，获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过Picker获取临时授权并进行授权持久化)方式获取。
+在从网络下载文件到本地、或将已有用户文件另存为新的文件路径等场景下，需要使用FilePicker提供的保存用户文件的能力。picker获取的uri只具有临时权限，获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。
 
 对音频、图片、视频、文档类文件的保存操作类似，均通过调用对应picker的save()接口并传入对应的saveOptions来实现。通过Picker访问相关文件，无需申请权限。
 
 当前所有picker的save接口都是用户可感知的，具体行为是拉起FilePicker, 将文件保存在系统文件管理器管理的特定目录，与图库管理的资源隔离，无法在图库中看到。
 
-如需要在图库中看到所保存的图片、视频资源，请使用用户无感的[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-resource-guidelines.md#使用安全控件创建媒体资源)。
+如需要在图库中看到所保存的图片、视频资源，请使用用户无感的[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md#使用安全控件创建媒体资源)。
 
 
 ## 保存图片或视频类文件
 
-[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#PhotoViewPicker)在后续版本不再演进，请使用[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md)。
+[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpicker)在后续版本不再演进，请使用[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 ## 保存文档类文件
 
@@ -52,8 +52,8 @@
 > **注意**：
 > <br>**1**、不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存URI。
 > <br>**2**、使用picker的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)接口获取到URI的权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
-> <br>**3**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](./file-persistPermission.md#通过FilePicker获取临时授权并进行授权持久化)。
-> <br>**4**、可以通过便捷方式，直接将文件保存到[Download](#DOWNLOAD模式保存文件)目录下。
+> <br>**3**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](./file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
+> <br>**4**、可以通过便捷方式，直接将文件保存到[Download](#download模式保存文件)目录下。
 
 4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到文件描述符(fd)。
 
@@ -109,8 +109,8 @@
 > **注意**：
 > <br>**1**、不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri。
 > <br>**2**、使用picker获取的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)uri权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
-> <br>**3**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](./file-persistPermission.md#通过FilePicker获取临时授权并进行授权持久化)。
-> <br>**4**、可以通过便捷方式，直接将文件保存到[Download](#DOWNLOAD模式保存文件)目录下。
+> <br>**3**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](./file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
+> <br>**4**、可以通过便捷方式，直接将文件保存到[Download](#download模式保存文件)目录下。
 
 4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到文件描述符(fd)。
 
