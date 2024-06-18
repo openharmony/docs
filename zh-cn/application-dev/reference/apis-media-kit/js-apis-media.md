@@ -320,11 +320,11 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 
 media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
   }
 });
 ```
@@ -373,9 +373,9 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
   if (soundpool_ != null) {
     soundPool = soundpool_;
-    console.info('create SoundPool success');
+    console.info('Succceeded in creating SoundPool');
   } else {
-    console.error('create SoundPool fail');
+    console.error('Failed to create SoundPool');
   }
 }, (error: BusinessError) => {
   console.error(`soundpool catchCallback, error message:${error.message}`);
