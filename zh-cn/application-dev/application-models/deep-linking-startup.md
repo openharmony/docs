@@ -1,13 +1,12 @@
 # 使用Deep Linking实现应用间跳转
 
-采用Deep Linking时，系统会根据[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)或[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口中传入的uri信息，按照[uri匹配规则](explicit-implicit-want-mappings.md#uri匹配规则)在本地已安装的应用中，寻找到符合URL skill配置的应用并进行拉起。当匹配到多个应用时，会拉起应用选择框。
+采用Deep Linking进行跳转时，系统会根据接口中传入的uri信息，按照[uri匹配规则](explicit-implicit-want-mappings.md#uri匹配规则)在本地已安装的应用中，寻找到符合URL skill配置的应用并进行拉起。当匹配到多个应用时，会拉起应用选择框。
 
 ## 适用场景
-Deep Linking可以用于应用的社交分享、沉默唤醒、广告引流等场景。
+
+适用于没有域名服务器的场景。
 
 ## 实现原理
-
-系统会根据
 
 Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标应用。隐式Want的uri匹配规则详见[uri匹配规则](explicit-implicit-want-mappings.md#uri匹配规则)。
 
@@ -16,7 +15,7 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
 
 为了能够支持被其他应用访问，目标应用需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中声明URL skill。其中，uri字段的scheme的取值支持自定义，可以定义为任意不包含特殊字符、非`ohos`开头的字符串。
 
-例如，声明应用关联的URL是"example://"，配置示例如下：
+配置示例如下：
 
 ```json
 {
@@ -31,14 +30,24 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
         "startWindowBackground": "$color:start_window_background",
         "skills": [
           {
-            "action": [
-                // 根据uri匹配规则，action为空无法匹配uri，需至少设置任意一个action
-                "ohos.want.action.viewData"
+            "entities": [
+              // entities须包含"entity.system.browsable"
+              "entity.system.browsable"
+            ],
+            "actions": [
+              // actions须包含"ohos.want.action.viewData"
+              "ohos.want.action.viewData"
             ],
             "uris": [
               {
-                // scheme配置
-                "scheme": "example",
+                // scheme可以自定义
+                "scheme": "http",
+                // host须配置关联的域名
+                "host": "www.test.com",
+                // port可选
+                "port": "80",
+                // path可选，为了避免匹配到多个应用，建议配置该字段
+                "path": "path1"
               }
             ]
           }
@@ -80,7 +89,7 @@ struct Index {
       .margin({ bottom: '12vp' })
       .onClick(() => {
         let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-        let link: string = "http://www.test.demo";
+        let link: string = "http://www.test.com";
         let openLinkOptions: OpenLinkOptions = {
           appLinkingOnly: false
         };

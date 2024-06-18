@@ -7,7 +7,7 @@
 
 根据拉起方应用是否向指定跳转的目标应用，可以将应用跳转分为指向性跳转与通用意图跳转。
 
-- 指向性跳转：拉起方明确指定跳转的目标应用，来实现应用跳转。指向性跳转可以分为指定应用链接、指定Ability两种方式。
+- 指向性跳转：拉起方应用明确指定跳转的目标应用，来实现应用跳转。指向性跳转可以分为指定应用链接、指定Ability两种方式。
 
     - 指定应用链接（推荐）：通过[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)或[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口来指定[应用链接](#应用链接)，拉起目标应用页面。
 
@@ -18,7 +18,15 @@
     >
     > API 11及以前版本，可以使用显式want拉起其他应用。从API 12开始，已不再支持三方应用使用该方式拉起其他应用。
 
-- 通用意图跳转：拉起方只设置跳转意图、而不指定具体跳转到哪一个应用，通过调用接口来拉起满足用户意图的垂类应用。常见的通用意图跳转包括导航、分享、文件打开等高频场景，不同意图类型的跳转实现也有多种方式。
+- 通用意图跳转：拉起方应用只申明跳转意图、而不指定具体跳转到哪一个应用，通过调用接口来拉起满足用户意图的垂类应用面板，该面板将展示目标方接入的垂域应用，由用户选择打开指定应用。
+
+    常见的通用意图跳转包括导航、分享、文件打开等高频场景，不同意图类型的跳转实现也有多种方式。
+
+    - [导航](start-intent-panel.md)：支持导航、地点搜索、路线规划
+    - [文件打开](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-ability-kit-V5#section1754281913224)：打开指定文件
+    - [分享](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/share-introduction-V5)：分享文本、图片、视频等内容
+    - [虚拟商品支付](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/iap-introduction-V5)：购买虚拟商品
+    - [实物商品支付](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/payment-introduction-V5)：购买实物商品
 
 
 ## 应用链接
@@ -38,6 +46,7 @@ scheme://host[:port]/path/
 > 说明：
 >
 > 系统应用预留scheme统一以`ohos`开头，例如`ohosclock://`。三方应用组件配置的scheme不能与系统应用重复，否则会导致无法通过该uri拉起三方应用组件。
+> 如果多个应用的URL配置相同，应用跳转时匹配到同多个应用，则会拉起应用选择框。为了更好的用户体验，开发者可以通过链接的path字段去区分同一域名下的不同应用，如链接<https://www.test.com/path1>拉起目标应用1，链接<https://www.test.com/path2>拉起目标应用2。
 
 ### 应用链接跳转的运作机制
 
@@ -56,11 +65,7 @@ scheme://host[:port]/path/
 | -------- | -------- |-------- |
 | 实现效果 | - 如果已安装目标应用，在弹出的拉起应用对话框中确认后，将跳转至目标应用。<br/> - 如果未安装目标应用，将提示16000019错误码。 | - 如果已安装目标应用，将直接拉起目标应用。如果未安装目标应用，会跳转到对应的浏览器来打开网址。应用安装完成后，打开应用即可跳转到链接指定内容。 |
 | 约束限制 | - URL的Shceme可以自定义。<br/> - 无需校验域名。 | - URL的Shceme必须为https。<br/> - 需要云侧服务器进行域名校验。|
-| 跳转接口 | 采用[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)或[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口均可。 | 只能采用[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口。|
-
-> 说明：
->
-> 特殊情况下，如果多个应用关联了同一个域名，且URL配置也相同，即存在多个通过域名校验的合法应用，则会拉起应用选择框。
+| 跳转接口 | 使用[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)或[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口均可。 | 使用[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口。|
 
 
 ## 典型场景：拉起系统应用

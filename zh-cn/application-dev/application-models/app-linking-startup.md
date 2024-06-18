@@ -2,30 +2,29 @@
 
 ## 简介
 
-`App Linking`是通过HTTPS链接将用户无缝带入应用程序中特定内容的一种技术。借助App Linking技术，无论应用是否已安装，用户都可以访问到链接对应的内容，体验更加顺畅。
-App Linking可以增加应用程序的流量，帮助开发者发现最常使用的应用程序内容。
+使用`App Linking`进行跳转时，系统会根据接口传入的uri信息（HTTPS链接）将用户引导至目标应用中的特定内容，无论应用是否已安装，用户都可以访问到链接对应的内容，整个跳转体验相比Deep Linking方式更加顺畅。
+
 
 ## 适用场景
 
-* 适用于应用的社交分享、沉默唤醒、广告引流等场景。
-* 适用于对安全性要求较高的场景，避免出现被其它应用仿冒的问题。
-* 适用于对体验要求较高的应用，不管目标应用是否安装，点击该链接都要求有内容显示的场景。当应用安装时则优先打开应用去呈现内容；当应用未安装时，则打开浏览器呈现Web版的内容。
+* 适用于对安全性要求较高的场景，避免出现目标应用被其它应用仿冒的问题。
+* 适用于对体验要求较高的场景，不管目标应用是否安装，用户点击该链接都可以正常访问。
 
 ## 实现原理
 
 * App Linking在Deep Linking基础上增加了域名校验环节，通过域名校验，可帮助用户消除歧义，识别合法归属于域名的应用，使链接更加安全可靠。
-* App Linking要求对于同一HTTPS网址，有应用和网页两种内容的呈现方式。因此，若目标应用未安装，App Linking会直接跳转到浏览器打开相应的网页，给用户更好的体验。
+* App Linking要求对于同一HTTPS网址，有应用和网页两种内容的呈现方式。当应用安装时则优先打开应用去呈现内容；当应用未安装时，则打开浏览器呈现Web版的内容。
 
-## 开发流程
 
-若要使用App Linking功能，需要做如下操作：
+## 目标应用操作指导
 
-* 声明应用关联的网站域名
-* 添加代码到应用的Ability中以处理传入的链接
-* 在开发者网站上关联应用
-* 验证App Linking是否正常工作
+目标应用如需支持App Linking功能，需要执行如下操作：
 
-## 开发指导
+1. 声明应用关联的网站域名。
+2. 在开发者网站上关联应用。
+3. 添加代码到应用的Ability中，以处理传入的链接。
+
+
 ### 声明应用关联的网站域名
 
 在应用的[module.json5配置文件](../quick-start/module-configuration-file.md)中进行如下配置，以声明应用关联的域名地址，并开启域名校验开关。
@@ -33,7 +32,7 @@ App Linking可以增加应用程序的流量，帮助开发者发现最常使用
 * "actions"列表中包含"ohos.want.action.viewData"。
 * "entities"列表中包含"entity.system.browsable"。
 * "uris"列表中包含"scheme"为"https"且"host"为域名地址的元素。
-* "domainVerify"设置为true，表示开启域名校验开关。
+* "domainVerify"：设置为true，表示开启域名校验开关。
 
 例如，声明应用关联在域名是www.test.com，则需进行如下配置：
 
@@ -64,6 +63,10 @@ App Linking可以增加应用程序的流量，帮助开发者发现最常使用
                 "scheme": "https",
                 // host须配置关联的域名
                 "host": "www.test.com"
+                // port可选
+                "port": "80",
+                // path可选，为了避免匹配到多个应用，建议配置该字段
+                "path": "path1"
               }
             ],
             // domainVerify须设置为true
@@ -76,13 +79,43 @@ App Linking可以增加应用程序的流量，帮助开发者发现最常使用
 }
 ```
 
+### 在开发者网站上关联应用
+
+在开发者的网站上做如下配置，以关联应用。
+
+1. 创建域名配置文件applinking.json。
+
+   内容为如下：
+
+   ```json
+   {
+    "applinking": {
+      "apps": [
+        {
+          "appIdentifier": "1234"
+        }
+      ]
+    },
+   }
+   ```
+
+   `app-identifer`是在[应用签名](https://gitee.com/openharmony/developtools_hapsigner/blob/master/README_ZH.md)阶段为应用分配的唯一标识，即[HarmonyAppProvision配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md)中声明的`app-identifer`字段的值。
+
+1. 将配置文件放在域名服务器的固定目录下。
+   固定目录为：
+   > https://*your.domain.name*/.well-known/applinking.json
+
+   例如开发者的域名为www.test.com，则需将applinking.json文件放在如下位置：
+   `https://www.test.com/.well-known/applinking.json`
+
+
 ### 添加代码到应用的Ability中以处理传入的链接
 
-在应用的Ability(如EntryAbility)的onCreate()或者onNewWant()生命周期回调中添加代码，以处理传入的链接
+在应用的Ability(如EntryAbility)的onCreate()或者onNewWant()生命周期回调中添加代码，以处理传入的链接。
 
-```typescript
+```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import Url from '@ohos.url'
+import Url from '@ohos.url';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -103,50 +136,25 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### 在开发者网站上关联应用
 
-在开发者的网站上做如下配置，以关联应用。
 
-1. 创建域名配置文件applinking.json
-   内容为如下：
+## 实现目标应用的跳转
 
-   ```json
-   {
-    "applinking": {
-      "apps": [
-        {
-          "appIdentifier": "1234"
-        }
-      ]
-    },
-   }
-   ```
+拉起方应用通过UIAbilityContext.openLink接口，传入目标应用的链接，拉起目标应用。
 
-   `app-identifer`是在[应用签名](https://gitee.com/openharmony/developtools_hapsigner/blob/master/README_ZH.md)阶段为应用分配的唯一标识，即[HarmonyAppProvision配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md)中声明的`app-identifer`字段的值。
+openLink接口提供了两种拉起目标应用的方式，开发者可根据业务需求进行选择。
 
-1. 将配置文件放在域名服务器的固定目录下
-   固定目录为：
-   > https://*your.domain.name*/.well-known/applinking.json
-
-   例如开发者的域名为www.test.com，则需将applinking.json文件放在如下位置：
-   `https://www.test.com/.well-known/applinking.json`
-
-### 验证App Linking是否正常工作
-
-编写demo应用，通过UIAbilityContext.openLink接口，传入应用的链接，拉起目标应用。
-
-* 注意：
-  openLink接口提供了两种拉起目标应用的方式，开发者可根据业务需求进行选择。
-  1. 仅以App Linking的方式打开应用
+  - **方式一：** 仅以App Linking的方式打开应用
      将`appLinkingOnly`参数设为true，若有匹配的应用，则直接打开目标应用。若无App Linking匹配的应用，则抛异常给开发者进行处理。
-  1. App Linking优先的方式打开应用
+
+  - **方式二：** 以App Linking优先的方式打开应用
      将`appLinkingOnly`参数设为false或者默认，则为App Linking优先的方式打开应用。若有App Linking匹配的应用，则直接打开目标应用。若无App Linking匹配的应用，则尝试以Deep Linking的方式打开应用。
 
-  为了方便验证App Linking是否配置正确，此处选择方式1进行示例。
+本文为了方便验证App Linking的配置是否正确，选择方式一，示例如下。
 
 ```ts
-import common from '@ohos.app.ability.common'
-import { BusinessError } from '@ohos.base'
+import common from '@ohos.app.ability.common'；
+import { BusinessError } from '@ohos.base'；
 
 @Entry
 @Component
@@ -172,29 +180,27 @@ struct Index {
 }
 ```
 
-在demo应用中执行上述代码，如果demo应用成功拉起目标应用，则成功配置App Linking。
+在拉起方应用中执行上述代码，如果能够成功拉起目标应用，表明目标应的App Linking配置正确。
 
 ## FAQ
 
-1. App Linking支持的系统版本
-   OpenHarmony 5.0及最新版本
 
-1. 应用的Modules.json5文件skills设置不正确
+1. 应用的Modules.json5文件skills设置不正确。
    检查"host"字段中是否是应用所对应的域名。
 
-1. 开发者网站服务器配置不正确
+1. 开发者网站服务器配置不正确。
    * 检查服务器的 JSON 配置，并确保 `appIdentifier` 的值正确无误。
    * 检查`applinking.json`是否放置在正确的目录(`.well-known`)下，通过浏览器等方式访问该json文件的地址：https://*your.domain.name*/.well-known/applinking.json，确保能正常访问。
 
-1. 系统尚未完成域名校验
-   在设备上安装应用，需等待至少 20 秒，确保异步验证流程完成。
+1. 系统尚未完成域名校验。
+   在设备上安装应用，需等待至少20秒，确保异步验证流程完成。
 
 1. 应用和域名的对应关系是怎样的？
    应用和域名的关系是多对多的关系：一个应用可以关联多个不同的域名，同样的，一个域名也可以关联多个不同的应用。
 
 1. 如果同一域名关联了多个应用，那么该域名的链接将拉起哪个应用呢？
    开发者可以通过配置applinking.json以关联多个应用。如果每个应用的module.json5的uris字段配置的都是一样的，那么系统将弹出列表框供用户选择要拉起的目标应用。
-   为了更好的体验，开发者也可以通过链接的path去区分拉起的目标应用，如链接<https://www.test.com/path1>拉起目标应用1，链接<https://www.test.com/path2>拉起目标应用2.
+   为了更好的体验，开发者也可以通过链接的path去区分拉起的目标应用，如链接<https://www.test.com/path1>拉起目标应用1，链接<https://www.test.com/path2>拉起目标应用2。
    若要做到这点，只需在目标应用的module.json5中的uris字段里声明对应的path即可。如：
 
 ```json
