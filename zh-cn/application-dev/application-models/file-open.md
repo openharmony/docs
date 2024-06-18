@@ -1,4 +1,4 @@
-# 通过startAbility接口拉起其他应用打开特定类型文件
+# 通过startAbility接口拉起文件处理类应用
 
 ## 使用场景
 
