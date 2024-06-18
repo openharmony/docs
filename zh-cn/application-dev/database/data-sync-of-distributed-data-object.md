@@ -162,7 +162,6 @@
    
    ```ts
    // 导入模块
-   import { distributedDataObject } from '@kit.ArkData';
    import { UIAbility } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { window } from '@kit.ArkUI';
@@ -203,7 +202,6 @@
 
    ```ts
    // 导入模块
-   import { distributedDataObject } from '@kit.ArkData';
    import { featureAbility } from '@kit.AbilityKit';
    // 获取context
    let context = featureAbility.getContext();
@@ -379,7 +377,6 @@
     ```ts
     import { UIAbility } from '@kit.AbilityKit';
     import { window } from '@kit.ArkUI';
-    import { distributedDataObject, commonType } from '@kit.ArkData';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     class Note {
