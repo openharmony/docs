@@ -1,4 +1,4 @@
-# Camera Kit API参考
+# Camera Kit（相机服务）
 
 - ArkTS API
   - [@ohos.multimedia.camera (相机管理)](js-apis-camera.md)

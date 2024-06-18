@@ -1,4 +1,4 @@
-# ArkData API参考 
+# ArkData（方舟数据管理）
 
 - ArkTS API 
   - [@ohos.data.commonType (数据通用类型)](js-apis-data-commonType.md)
