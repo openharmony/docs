@@ -8,7 +8,7 @@
 
 **错误信息**
 
-ServiceId is invalid, systemAbility is not exist.
+ServiceId invalid. The system ability does not exist.
 
 **错误描述**
 当前serviceId未查询到对应的系统服务。
@@ -25,7 +25,7 @@ ServiceId is invalid, systemAbility is not exist.
 
 **错误信息**
 
-Have already capture trace.
+Capture trace already enabled.
 
 **错误描述**
 当前进程已经开启了capture trace采集，重复采集。
@@ -42,7 +42,7 @@ Have already capture trace.
 
 **错误信息**
 
-Without write permission on the file.
+No write permission on the file.
 
 **错误描述**
 当前目录没有权限写trace文件。
@@ -59,7 +59,7 @@ Without write permission on the file.
 
 **错误信息**
 
-The status of the trace is abnormal
+Abnormal trace status.
 
 **错误描述**
 当前trace采集内部状态异常。
