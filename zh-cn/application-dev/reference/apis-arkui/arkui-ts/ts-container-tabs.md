@@ -153,7 +153,7 @@ animationDuration(value: number)
 
 animationMode(mode: Optional\<AnimationMode\>)
 
-设置点击TabBar页签是切换TabContent的动画形式。
+设置点击TabBar页签时切换TabContent的动画形式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -163,7 +163,7 @@ animationMode(mode: Optional\<AnimationMode\>)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签是切换TabContent的动画形式。<br/>默认值：<br/>默认值是AnimationMode::CONTENT_FIRST，表示在点击TabBar切换TabContent时，先加载目标页内容，再开始切换动画。|
+| mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签时切换TabContent的动画形式。<br/>默认值：<br/>默认值是AnimationMode::CONTENT_FIRST，表示在点击TabBar切换TabContent时，先加载目标页内容，再开始切换动画。|
 
 ### divider<sup>10+</sup>
 
@@ -278,19 +278,27 @@ barGridAlign(value: BarGridColumnOptions)
 
 ## BarGridColumnOptions<sup>10+</sup>对象说明
 
+TabBar栅格化方式设置的对象，包括栅格模式下的column边距和间隔，以及小、中、大屏下，页签占用的columns数量。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 参数类型                                     | 必填   | 描述                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| margin | [Dimension](ts-types.md#dimension10)             | 否    | 网格模式下的column边距（不支持百分比设置）。<br/>默认值:24.0<br/>单位：vp                        |
-| gutter      | [Dimension](ts-types.md#dimension10) | 否    | 网格模式下的column间隔（不支持百分比设置）。<br/>默认值:24.0<br/>单位：vp                     |
+| margin | [Dimension](ts-types.md#dimension10)             | 否    | 栅格模式下的column边距（不支持百分比设置）。<br/>默认值:24.0<br/>单位：vp                        |
+| gutter      | [Dimension](ts-types.md#dimension10) | 否    | 栅格模式下的column间隔（不支持百分比设置）。<br/>默认值:24.0<br/>单位：vp                     |
 | sm | number            | 否    | 小屏下，页签占用的columns数量，必须是非负偶数。小屏为大于等于320vp但小于600vp。<br/>默认值为-1，代表页签占用TabBar全部宽度。 |
 | md   | number          | 否    | 中屏下，页签占用的columns数量，必须是非负偶数。中屏为大于等于600vp但小于800vp。<br/>默认值为-1，代表页签占用TabBar全部宽度。 |
 | lg   | number           | 否    | 大屏下，页签占用的columns数量，必须是非负偶数。大屏为大于等于840vp但小于1024vp。<br/>默认值为-1，代表页签占用TabBar全部宽度。 |
 
 ## ScrollableBarModeOptions<sup>10+</sup>对象说明
 
+Scrollable模式下的TabBar的布局样式对象。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 参数类型                                     | 必填   | 描述                                       |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -299,7 +307,11 @@ barGridAlign(value: BarGridColumnOptions)
 
 ## BarMode枚举说明
 
+TabBar布局模式枚举。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 值 | 描述                                       |
 | ---------- | -- | ---------------------------------------- |
@@ -308,7 +320,11 @@ barGridAlign(value: BarGridColumnOptions)
 
 ## AnimationMode<sup>12+</sup>枚举说明
 
+点击TabBar页签时切换TabContent的动画形式枚举。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 值  | 描述                                       |
 | ------------- | -- | ---------------------------------------- |
@@ -318,7 +334,11 @@ barGridAlign(value: BarGridColumnOptions)
 
 ## LayoutStyle<sup>10+</sup>枚举说明
 
+Scrollable模式下不滚动时的页签排布方式枚举。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 值 | 描述                                       |
 | ---------- | -- | ---------------------------------------- |
