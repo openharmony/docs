@@ -1,6 +1,7 @@
 # Router切换Navigation
 
 ## 架构差异
+
 从ArkUI组件树层级上来看，原先由Router管理的page在页面栈管理节点stage的下面。Navigation作为导航容器组件，可以挂载在单个page节点下，也可以叠加、嵌套。Navigation管理了标题栏、内容区和工具栏，内容区用于显示用户自定义页面的内容，并支持页面的路由能力。Navigation的这种设计上有如下优势：
 
 ![image](figures/Navigation和Router架构图.png)
