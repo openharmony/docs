@@ -42,8 +42,8 @@
 1. 导入相关模块。
     ```TypeScript
     // xxx.ets
-    import fileUri from '@kit.CoreFileKit';
-    import {UIAbility, Want, common, wantConstant} from '@kit.AbilityKit';
+    import { fileUri } from '@kit.CoreFileKit';
+    import { UIAbility, Want, common, wantConstant } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServiceKit';
     ```
 
@@ -155,27 +155,27 @@
 
     ```TypeScript
     // xxx.ets
-    import fs from '@kit.CoreFileKit';
-    import Want from '@kit.AbilityKit';
+    import fs from '@ohos.file.fs';
+    import { Want } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServiceKit';
 
     export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        // 从want信息中获取uri字段
-        let uri = want.uri;
-        if (uri == null || uri == undefined) {
-        console.info('uri is invalid');
-        return;
+        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+            // 从want信息中获取uri字段
+            let uri = want.uri;
+            if (uri == null || uri == undefined) {
+                console.info('uri is invalid');
+                return;
+            }
+            try {
+                // 根据待打开文件的URI进行相应操作。例如同步读写的方式打开URI获取file对象
+                let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+                console.info('Succeed to open file.');
+            } catch (err) {
+                let error: BusinessError = err as BusinessError;
+                console.error(`Failed to open file openSync, code: ${error.code}, message: ${error.message}`);
+            }
         }
-        try {
-        // 根据待打开文件的URI进行相应操作。例如同步读写的方式打开URI获取file对象
-        let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
-        console.info('Succeed to open file.');
-        } catch (err) {
-        let error: BusinessError = err as BusinessError;
-        console.error(`Failed to open file openSync, code: ${error.code}, message: ${error.message}`);
-        }
-    }
     }
     ```
 
