@@ -34,16 +34,16 @@
 
 2. 利用missionManager进行任务管理（监听任务变化、获取任务信息、获取任务快照、清理任务、任务加锁/解锁等）。
 
-   ```ts
-   import missionManager from '@ohos.app.ability.missionManager';
-   import { BusinessError } from '@ohos.base';
-   import image from '@ohos.multimedia.image';
-   import promptAction from '@ohos.promptAction';
-   import hilog from '@ohos.hilog';
+  ```ts
+  import { missionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { image } from '@kit.ImageKit';
+  import { promptAction } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-   const TAG: string = 'TaskManager';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   ```
+  const TAG: string = 'TaskManager';
+  const DOMAIN_NUMBER: number = 0xFF00;
+  ```
    ```ts
    private listenerId: number = 0;
    private missionId: number = 0;

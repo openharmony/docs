@@ -38,8 +38,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| contentItem | [ContentItem](#contentitem) | 否 | \@Prop | 定义左侧以及中间元素。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| operateItem | [OperateItem](#operateitem) | 否 | \@Prop | 定义右侧元素。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| contentItem | [ContentItem](#contentitem) | 否 | \@Prop | 定义左侧以及中间元素。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| operateItem | [OperateItem](#operateitem) | 否 | \@Prop | 定义右侧元素。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | composeItemPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12) | 否 | \@Prop | 两侧边距，作用于该组件最外层元素左右侧边距，取值范围大于等于0vp。<br/>默认值：<br/>{ start: LengthMetrics.vp(12), end: LengthMetrics.vp(12) }。|
 | itemSpace<sup>12+</sup> | number | 否 | \@Prop | 组件内部元素间距，作用于左侧内容区图标与文本间距，以及左侧内容区与右侧操作区间距，取值范围大于等于0。<br/>默认值：12，单位为vp，其表示左侧内容区内图标和文字间距12vp；左侧内容区和右侧操作区间距12vp。|
 
@@ -48,11 +48,11 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| iconStyle | [IconType](#icontype) | 否 | 左侧元素的图标样式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 左侧元素的图标资源。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| primaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的标题内容。<br/>**文字超长默认处理规则：** API version 12 以下，超出以“...”显示，API version 12及以上超出一行后换行显示。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| secondaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的副标题内容。<br/>**文字超长默认处理规则：** API version 12 以下，超出以“...”显示，API version 12及以上超出一行后换行显示。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| description | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的描述内容。<br/>**文字超长默认处理规则：** API version 12 以下，超出以“...”显示，API version 12及以上超出一行后换行显示。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| iconStyle | [IconType](#icontype) | 否 | 左侧元素的图标样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 左侧元素的图标资源。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| primaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的标题内容。<br/>**文字超长默认处理规则：** API version 12 以下，超出以“...”显示，API version 12及以上超出一行后换行显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| secondaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的副标题内容。<br/>**文字超长默认处理规则：** API version 12 以下，超出以“...”显示，API version 12及以上超出一行后换行显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| description | [ResourceStr](ts-types.md#resourcestr) | 否 | 中间元素的描述内容。<br/>**文字超长默认处理规则：** API version 12 以下，超出以“...”显示，API version 12及以上超出一行后换行显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | iconImageModifier<sup>12+</sup> | [ImageModifier](ts-universal-attributes-attribute-modifier.md) | 否 |自定义左侧元素中的图片资源属性，包含尺寸、圆角等。|
 | primaryTextModifier<sup>12+</sup> | [TextModifier](ts-universal-attributes-attribute-modifier.md) | 否 |自定义中间元素的标题内容样式属性，包含文本样式、尺寸、颜色、透明度等。|
 | secondaryTextModifier<sup>12+</sup> | [TextModifier](ts-universal-attributes-attribute-modifier.md) | 否 |自定义中间元素的副标题内容样式属性，包含文本样式、尺寸、颜色、透明度等。|
@@ -60,7 +60,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## IconType
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -75,7 +75,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateItem
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -91,7 +91,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateIcon
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -100,7 +100,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateButton
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -108,7 +108,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## OperateCheck
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

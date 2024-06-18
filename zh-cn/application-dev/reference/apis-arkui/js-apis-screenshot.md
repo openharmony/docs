@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import screenshot from '@ohos.screenshot';
+import { screenshot } from '@kit.ArkUI';
 ```
 
 ## Rect
@@ -63,7 +63,7 @@ pick(): Promise&lt;PickInfo&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = screenshot.pick();

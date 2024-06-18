@@ -12,23 +12,22 @@ Web组件提供了WebCookieManager类，用于管理Web组件的Cookie信息。C
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'value=test');
+            webview.WebCookieManager.configCookieSync('https://www.example.com', 'value=test');
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -62,13 +61,14 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
   @State mode: CacheMode = CacheMode.None;
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
@@ -83,14 +83,15 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
   @State mode: CacheMode = CacheMode.None;
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
       Button('removeCache')
@@ -99,8 +100,7 @@ struct WebComponent {
             // 设置为true时同时清除rom和ram中的缓存，设置为false时只清除ram中的缓存
             this.controller.removeCache(true);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -119,12 +119,13 @@ Dom Storage包含了Session Storage和Local Storage两类。前者为临时数�
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })

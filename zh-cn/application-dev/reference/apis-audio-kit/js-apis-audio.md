@@ -153,58 +153,6 @@ audio.createAudioRenderer(audioRendererOptions).then((data) => {
 });
 ```
 
-### setSilentModeAndMixWithOthers<sup>12+</sup>
-
-setSilentModeAndMixWithOthers(on: bool): void
-
-设置静音并发播放模式。
-
-当设置为true，打开静音并发播放模式，系统将让此音频流静音播放，并且不会打断其它音频流。设置为false，将关闭静音并发播放，音频流可根据系统焦点策略抢占焦点。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
-
-**参数：**
-
-| 参数名 | 类型                                     | 必填 | 说明                   |
-| ------ | ---------------------------------------- | ---- |----------------------|
-| on | bool | 是   | 打开/关闭静音并发播放模式，true打开，false关闭。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 6800101 | Parameter verification failed. |
-| 6800103 | Operation not permit at current state. |
-
-**示例：**
-
-```ts
-audioRenderer.setSilentModeAndMixWithOthers(true);
-```
-
-### getSilentModeAndMixWithOthers<sup>12+</sup>
-
-getSilentModeAndMixWithOthers(): bool
-
-获取静音并发播放模式。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Renderer
-
-**返回值：**
-
-| 类型                                              | 说明        |
-| ------------------------------------------------- |-----------|
-| bool | 返回静音并发播放模式状态，true打开，false关闭。 |
-
-**示例：**
-
-```ts
-let on = audioRenderer.getSilentModeAndMixWithOthers();
-```
-
 ## audio.createAudioCapturer<sup>8+</sup>
 
 createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<AudioCapturer\>): void
@@ -331,7 +279,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，焦点模型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -356,7 +304,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，设备角色。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -369,7 +317,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，设备类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -490,7 +438,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，音频编码类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -583,22 +531,22 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称                                      |  值    | 说明                                                                                                                                          |
 | ------------------------------------------| ------ |---------------------------------------------------------------------------------------------------------------------------------------------|
-| STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。  <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                     |
+| STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
 | STREAM_USAGE_MEDIA<sup>(deprecated)</sup>                        | 1      | 媒体。<br/> 从API version 7开始支持，从API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME或STREAM_USAGE_AUDIOBOOK替代。 |
-| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。   <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                      |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VOIP通话。                                                                                                                                       <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。| 
-| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                      |
-| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。   <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                      |
-| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。  <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                     |
+| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VOIP通话。                                                                                                                                       <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。| 
+| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
+| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
+| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
 | STREAM_USAGE_NOTIFICATION_RINGTONE<sup>(deprecated)</sup>        | 6      | 通知铃声。<br/> 从 API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_RINGTONE替代。                                                                          |
-| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | 铃声。    <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                     |
-| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | 通知。  <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                       |
-| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | 无障碍。    <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                    |
-| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | 电影或视频。   <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                   |
-| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏音效。  <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                     |
-| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物。   <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                    |
-| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。   <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                      |
-| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | 视频通话。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                        |
+| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | 铃声。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
+| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | 通知。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                       |
+| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | 无障碍。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                    |
+| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | 电影或视频。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                   |
+| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏音效。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
+| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物（包括听书、相声、评书）、听新闻、播客等。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                    |
+| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
+| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | 视频通话。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                        |
 
 ## AudioState<sup>8+</sup>
 
@@ -620,7 +568,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，音效模式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -645,7 +593,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，中断类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -662,7 +610,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 此类型表示本次音频打断的操作是否已由系统强制执行，具体操作信息（如音频暂停、停止等）可通过[InterruptHint](#interrupthint)获取。关于音频打断策略的详细说明可参考[多音频播放的并发策略](../../media/audio/audio-playback-concurrency.md)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -681,7 +629,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 可以结合InterruptEvent中的[InterruptForceType](#interruptforcetype9)信息，判断该操作是否已由系统强制执行。关于音频打断策略的详细说明可参考[多音频播放的并发策略](../../media/audio/audio-playback-concurrency.md)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -717,8 +665,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称          | 类型                        | 必填  | 说明             |
 | ------------- | --------------------------- | ---- | ---------------- |
 | content       | [ContentType](#contenttypedeprecated) | 否   | 音频内容类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数，默认值为CONTENT_TYPE_UNKNOWN。同时，[ContentType](#contenttypedeprecated)废弃，建议直接使用[StreamUsage](#streamusage)声明音频流使用类型即可。 |
-| usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
-| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。ArkTS接口暂不支持低时延音频渲染器。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。ArkTS接口暂不支持低时延音频渲染器。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## AudioRendererOptions<sup>8+</sup>
 
@@ -745,7 +693,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 播放中断时，应用接收的中断事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -805,7 +753,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，流设备变更原因。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -820,7 +768,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 流设备变更时，应用接收的事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -2389,7 +2337,7 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 ### off('volumeChange')<sup>12+</sup>
 
-off(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
+off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
 
 取消监听系统音量变化事件，使用callback方式返回结果。
 
@@ -2400,7 +2348,7 @@ off(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'。 |
-| callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
 
 **错误码：**
 
@@ -2408,16 +2356,13 @@ off(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-audioVolumeManager.off('volumeChange', (volumeEvent: audio.VolumeEvent) => {
-  console.info('An event to release the audio volumeChange starts.');
-  console.info(`volumeChange release event: ${volumeEvent} `);
-});
+audioVolumeManager.off('volumeChange');
 ```
 
 ## AudioVolumeGroupManager<sup>9+</sup>
@@ -4889,13 +4834,13 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## AudioDeviceDescriptor
 
 描述音频设备。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                          | 类型                       | 可读 | 可写 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
@@ -6764,6 +6709,58 @@ let duration = 1000;
 
 audioRenderer.setVolumeWithRamp(volume, duration);
 console.info(`setVolumeWithRamp: ${volume}`);
+```
+
+### setSilentModeAndMixWithOthers<sup>12+</sup>
+
+setSilentModeAndMixWithOthers(on: bool): void
+
+设置静音并发播放模式。
+
+当设置为true，打开静音并发播放模式，系统将让此音频流静音播放，并且不会打断其它音频流。设置为false，将关闭静音并发播放，音频流可根据系统焦点策略抢占焦点。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型                                     | 必填 | 说明                   |
+| ------ | ---------------------------------------- | ---- |----------------------|
+| on | bool | 是   | 打开/关闭静音并发播放模式，true打开，false关闭。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800103 | Operation not permit at current state. |
+
+**示例：**
+
+```ts
+audioRenderer.setSilentModeAndMixWithOthers(true);
+```
+
+### getSilentModeAndMixWithOthers<sup>12+</sup>
+
+getSilentModeAndMixWithOthers(): bool
+
+获取静音并发播放模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                              | 说明        |
+| ------------------------------------------------- |-----------|
+| bool | 返回静音并发播放模式状态，true打开，false关闭。 |
+
+**示例：**
+
+```ts
+let on = audioRenderer.getSilentModeAndMixWithOthers();
 ```
 
 ### on('audioInterrupt')<sup>9+</sup>

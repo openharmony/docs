@@ -30,8 +30,8 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 ### 调用方接入步骤
 
 1. 导入ohos.app.ability.common模块。 
-    ```
-    import common from '@ohos.app.ability.common';
+    ```ts
+    import { common } from '@kit.AbilityKit';
     ```
 2. 构造接口参数并调用startAbilityByType接口。
 

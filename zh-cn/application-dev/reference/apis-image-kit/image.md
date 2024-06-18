@@ -17,13 +17,13 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [image_mdk.h](image__mdk_8h.md) | 声明访问图像剪辑矩形、大小、格式和组件数据的方法。<br/>**引用文件**：&lt;multimedia/image_framework/image_mdk.h&gt;<br/>**库**：libimage_ndk.z.so | 
-| [image_mdk_common.h](image__mdk__common_8h.md) | 声明图像常用的枚举值和结构体。<br/>**引用文件**：&lt;multimedia/image_framework/image_mdk_common.h&gt;<br/>**库**：libimage_ndk.z.so |
-| [image_packer_mdk.h](image__packer__mdk_8h.md) | 声明用于将图像编码到缓冲区或文件的方法。 <br/>**引用文件**：&lt;multimedia/image_framework/image_packer_mdk.h&gt;<br/>**库**：| 
-| [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md) | 声明可以锁定并访问PixelMap数据的方法，声明解锁的方法。<br/>**引用文件**：&lt;multimedia/image_framework/image_pixel_map_mdk.h&gt;<br/>**库**：libpixelmap_ndk.z.so | 
-| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | （已废弃）声明可以锁定并访问PixelMap数据的方法，声明解锁的方法。<br/>**引用文件**：&lt;multimedia/image_framework/image_pixel_map_napi.h&gt;<br/>**库**：libpixelmap_ndk.z.so | 
-| [image_receiver_mdk.h](image__receiver__mdk_8h.md) | 声明从native层获取图片数据的方法。<br/>**引用文件**：&lt;multimedia/image_framework/image_receiver_mdk.h&gt;<br/>**库**：libimage_receiver_ndk.z.so | 
-| [image_source_mdk.h](image__source__mdk_8h.md) | 声明将图片源解码成像素位图的方法。<br/>**引用文件**：&lt;multimedia/image_framework/image_source_mdk.h&gt;<br/>**库**：libimage_source_ndk.z.so |
+| [image_mdk.h](image__mdk_8h.md) | 声明访问图像剪辑矩形、大小、格式和组件数据的方法。 | 
+| [image_mdk_common.h](image__mdk__common_8h.md) | 声明图像常用的枚举值和结构体。 |
+| [image_packer_mdk.h](image__packer__mdk_8h.md) | 声明用于将图像编码到缓冲区或文件的方法。 | 
+| [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md) | 声明可以锁定并访问PixelMap数据的方法，声明解锁的方法。 | 
+| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | （已废弃）声明可以锁定并访问PixelMap数据的方法，声明解锁的方法。 | 
+| [image_receiver_mdk.h](image__receiver__mdk_8h.md) | 声明从native层获取图片数据的方法。 | 
+| [image_source_mdk.h](image__source__mdk_8h.md) | 声明将图片源解码成像素位图的方法。 |
 
 
 ### 结构体

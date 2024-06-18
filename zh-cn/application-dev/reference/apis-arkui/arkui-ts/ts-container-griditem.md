@@ -17,7 +17,7 @@
 
 GridItem(value?: GridItemOptions)
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：** 
 
@@ -33,7 +33,7 @@ rowStart(value: number)
 
 设置当前元素起始行号。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -49,7 +49,7 @@ rowEnd(value: number)
 
 设置当前元素终点行号。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -65,7 +65,7 @@ columnStart(value: number)
 
 设置当前元素起始列号。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -81,7 +81,7 @@ columnEnd(value: number)
 
 设置当前元素终点列号。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -137,7 +137,7 @@ selectable(value: boolean)
 
 该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md#statestyles接口说明)前使用才能生效选中态样式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -155,7 +155,7 @@ selected(value: boolean)
 
 该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md#statestyles接口说明)前使用才能生效选中态样式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -167,7 +167,7 @@ selected(value: boolean)
 
 ## GridItemOptions<sup>11+</sup>对象说明
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称  | 参数类型                                  | 必填 | 描述                                                         |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -175,7 +175,7 @@ selected(value: boolean)
 
 ## GridItemStyle<sup>11+</sup>枚举说明
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称  |枚举值| 描述                     |
 | ----- |----| ------------------------ |
@@ -194,7 +194,7 @@ onSelect(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 GridItem元素被鼠标框选的状态改变时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

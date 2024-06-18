@@ -21,17 +21,17 @@
 示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。示例中的`pixelMap`的获取方式请参见[图片解码](../media/image/image-decoding.md)。
 
 ```ts
-import type common from '@ohos.app.ability.common';
-import type { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'EntryAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
 
-...
+// ...
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
 
-... // 获取pixelMap
+// ... // 获取pixelMap
 
 // 设置任务快照的图标
 context.setMissionIcon(pixelMap, (err: BusinessError) => {
@@ -53,14 +53,14 @@ context.setMissionIcon(pixelMap, (err: BusinessError) => {
 通过调用[`UIAbilityContext.setMissionLabel()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel)方法修改任务快照的名称。
 
 ```ts
-import type common from '@ohos.app.ability.common';
-import type { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = 'EntryAbility';
 const DOMAIN_NUMBER: number = 0xFF00;
 
-...
+// ...
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
 // 设置任务快照的名称
 context.setMissionLabel('test').then(() => {
