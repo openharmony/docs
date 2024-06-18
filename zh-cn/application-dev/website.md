@@ -430,6 +430,17 @@
           - [FrameNode](ui/arkts-user-defined-arktsNode-frameNode.md)
           - [RenderNode](ui/arkts-user-defined-arktsNode-renderNode.md)
           - [BuilderNode](ui/arkts-user-defined-arktsNode-builderNode.md)
+      - 使用NDK接口构建UI
+        - [NDK接口概述](ui/ndk-build-ui-overview.md)
+        - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
+        - 添加交互事件
+          - [监听组件事件](ui/ndk-listen-to-component-events.md)
+          - [绑定手势事件](ui/ndk-bind-gesture-events.md)
+        - [使用动画](ui/ndk-use-animation.md)
+        - [使用懒加载开发长列表界面](ui/ndk-loading-long-list.md)
+        - [构建弹窗](ui/ndk-build-pop-up-window.md)
+        - [构建自定义组件](ui/ndk-build-custom-components.md)
+        - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
       - 主题设置
         - [设置主题换肤](ui/theme_skinning.md)
     - UI开发 (兼容JS的类Web开发范式)
