@@ -1,6 +1,6 @@
 # 选择用户文件
 
-用户需要分享文件、保存图片、视频等用户文件时，开发者可以通过系统预置的[文件选择器（FilePicker）](../reference/apis-core-file-kit/js-apis-file-picker.md)，实现该能力。通过Picker访问相关文件，将拉起对应的应用，引导用户完成界面操作，接口本身无需申请权限。picker获取的uri只具有临时权限，获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过Picker获取临时授权并进行授权持久化)方式获取。
+用户需要分享文件、保存图片、视频等用户文件时，开发者可以通过系统预置的[文件选择器（FilePicker）](../reference/apis-core-file-kit/js-apis-file-picker.md)，实现该能力。通过Picker访问相关文件，将拉起对应的应用，引导用户完成界面操作，接口本身无需申请权限。picker获取的uri只具有临时权限，获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。
 
 根据用户文件的常见类型，选择器（FilePicker）分别提供以下选项：
 
@@ -12,7 +12,7 @@
 
 ## 选择图片或视频类文件
 
-[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#PhotoViewPicker)在后续版本不再演进，请使用[PhotoAccessHelper的PhotoViewPicker](../media/medialibrary/photoAccessHelper-photoviewpicker.md)来选择图片文件。
+[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpicker)在后续版本不再演进，请使用[PhotoAccessHelper的PhotoViewPicker](../media/medialibrary/photoAccessHelper-photoviewpicker.md)来选择图片文件。
 
 ## 选择文档类文件
 
@@ -55,7 +55,7 @@
    ```
 > **注意**：
 > <br>**1**、使用picker获取的[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)返回的uri权限是临时只读权限,待退出应用后台后，获取的临时权限就会失效。
-> <br>**2**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](./file-persistPermission.md#通过FilePicker获取临时授权并进行授权持久化)。
+> <br>**2**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](./file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
 > <br>**3**、开发者可以根据结果集中uri做进一步的处理。建议定义一个全局变量保存uri。
 > <br>**4**、如有获取元数据需求，可以通过[基础文件API](../reference/apis-core-file-kit/js-apis-file-fs.md)和[文件URI](../reference/apis-core-file-kit/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
 4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口通过uri打开这个文件得到文件描述符(fd)。
@@ -114,7 +114,7 @@
    ```
 > **注意**：
 > <br>**1**、使用picker获取的[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)返回的uri权限是临时只读权限,待退出应用后台后，获取的临时权限就会失效。
-> <br>**2**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](./file-persistPermission.md#通过FilePicker获取临时授权并进行授权持久化)。
+> <br>**2**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](./file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
 > <br>**3**、开发者可以根据结果集中的uri做读取文件数据操作。建议定义一个全局变量保存uri。例如通过[基础文件API](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件描述符(fd)，再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
 
 4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口通过uri打开这个文件得到文件描述符(fd)。
