@@ -3364,7 +3364,7 @@ discardCameraPhoto(): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 14000011 |  System inner fail.         |
+| 14000011 |  Internal system error.         |
 | 14000016 |  Operation Not Support.         |
 
 **示例：**
