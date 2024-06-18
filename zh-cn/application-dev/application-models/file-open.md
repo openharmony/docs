@@ -42,11 +42,8 @@
 1. 导入相关模块。
     ```TypeScript
     // xxx.ets
-    import common from '@ohos.app.ability.common';
     import fileUri from '@ohos.file.fileuri';
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import Want from '@ohos.app.ability.Want';
-    import wantConstant from '@ohos.app.ability.wantConstant';
+    import {UIAbility, Want, common, wantConstant} from '@kit.AbilityKit';
     import { BusinessError } from '@ohos.base';
     ```
 
@@ -159,7 +156,7 @@
     ```TypeScript
     // xxx.ets
     import fs from '@ohos.file.fs';
-    import Want from '@ohos.app.ability.Want';
+    import Want from '@kit.AbilityKit';
     import { BusinessError } from '@ohos.base';
 
     export default class EntryAbility extends UIAbility {
