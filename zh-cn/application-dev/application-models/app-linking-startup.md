@@ -101,7 +101,7 @@
    }
    ```
 
-   `app-identifer`是在[应用签名](https://gitee.com/openharmony/developtools_hapsigner/blob/master/README_ZH.md)阶段为应用分配的唯一标识，即[HarmonyAppProvision配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/app-provision-structure.md)中声明的`app-identifer`字段的值。
+   `app-identifer`是在[应用签名](https://gitee.com/openharmony/developtools_hapsigner/blob/master/README_ZH.md)阶段为应用分配的唯一标识，即[HarmonyAppProvision配置文件](../security/app-provision-structure.md)中声明的`app-identifer`字段的值。
 
 1. 将配置文件放在域名服务器的固定目录下。
    固定目录为：
@@ -117,7 +117,7 @@
 
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import Url from '@ohos.url';
+import { url } from '@kit.ArkTS';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -126,7 +126,7 @@ export default class EntryAbility extends UIAbility {
     let uri = want?.uri 
     if (uri) {
       // 从链接中解析query参数，拿到参数后，开发者可根据自己的的务需求进行后续的处理。
-      let urlObject = Url.URL.parseURL(want?.uri);
+      let urlObject = url.URL.parseURL(want?.uri);
       let action = urlObject.params.get('action')
       // 例如，当action为showall时，展示所有的节目。
       if (action === "showall"){
