@@ -3209,6 +3209,12 @@
 
 **起始版本**：9
 
+**废弃版本**：12
+
+**替代方案**：
+
+请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
+
 ### ohos.permission.READ_IMAGEVIDEO
 
 允许读取用户公共目录的图片或视频文件。
@@ -3244,6 +3250,12 @@
 **ACL使能**：true
 
 **起始版本**：9
+
+**废弃版本**：12
+
+**替代方案**：
+
+请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
 
 ### ohos.permission.WRITE_IMAGEVIDEO
 
