@@ -202,7 +202,7 @@ onAbilityContinue(ability: UIAbility): void
 
 onAbilityWillCreate?(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在UIAbility的[onCreate](js-apis-app-ability-uiAbility.md#UIAbilityonCreate)触发前回调。
+注册监听应用上下文的生命周期后，在UIAbility的[onCreate](js-apis-app-ability-uiAbility.md#uiabilityoncreate)触发前回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -220,7 +220,7 @@ onAbilityWillCreate?(ability: UIAbility): void
 
 onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): void
 
-注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageCreate](js-apis-app-ability-uiAbility.md#UIAbilityonWindowStageCreate)触发前回调。
+注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageCreate](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)触发前回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -239,7 +239,7 @@ onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): v
 
 onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): void
 
-注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageDestroy](js-apis-app-ability-uiAbility.md#UIAbilityonWindowStageDestroy)触发前回调。
+注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageDestroy](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagedestroy)触发前回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -258,7 +258,7 @@ onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): 
 
 onAbilityWillForeground?(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在UIAbility的[onForeground](js-apis-app-ability-uiAbility.md#UIAbilityonForeground)触发前回调。
+注册监听应用上下文的生命周期后，在UIAbility的[onForeground](js-apis-app-ability-uiAbility.md#uiabilityonforeground)触发前回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -276,7 +276,7 @@ onAbilityWillForeground?(ability: UIAbility): void
 
 onAbilityWillDestroy?(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在UIAbility的[onDestroy](js-apis-app-ability-uiAbility.md#UIAbilityonDestroy)触发前回调。
+注册监听应用上下文的生命周期后，在UIAbility的[onDestroy](js-apis-app-ability-uiAbility.md#uiabilityondestroy)触发前回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -294,7 +294,7 @@ onAbilityWillDestroy?(ability: UIAbility): void
 
 onAbilityWillBackground?(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在UIAbility的[onBackground](js-apis-app-ability-uiAbility.md#UIAbilityonBackground)触发前回调。
+注册监听应用上下文的生命周期后，在UIAbility的[onBackground](js-apis-app-ability-uiAbility.md#uiabilityonbackground)触发前回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -312,7 +312,7 @@ onAbilityWillBackground?(ability: UIAbility): void
 
 onWillNewWant?(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在UIAbility的[onNewWant](js-apis-app-ability-uiAbility.md#UIAbilityonNewWant)触发前回调。
+注册监听应用上下文的生命周期后，在UIAbility的[onNewWant](js-apis-app-ability-uiAbility.md#uiabilityonnewwant)触发前回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -330,7 +330,7 @@ onWillNewWant?(ability: UIAbility): void
 
 onNewWant?(ability: UIAbility): void
 
-注册监听应用上下文的生命周期后，在UIAbility的[onNewWant](js-apis-app-ability-uiAbility.md#UIAbilityonNewWant)触发后回调。
+注册监听应用上下文的生命周期后，在UIAbility的[onNewWant](js-apis-app-ability-uiAbility.md#uiabilityonnewwant)触发后回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
