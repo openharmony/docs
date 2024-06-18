@@ -37,32 +37,33 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 
     ```ts
     import { common } from '@kit.AbilityKit';
+
     let context = getContext(this) as common.UIAbilityContext;
     let wantParam: Record<string, Object> = {
-        'sceneType':1,
-        'destinationLatitude':32.060844,
-        'destinationLongitude':118.78315,
-        'destinationName':'xx市xx路xx号',
-        'originName':'xx市xx公园',
-        'originLatitude':31.060844,
-        'originLongitude':120.78315,
-        'vehicleType':0
+      'sceneType': 1,
+      'destinationLatitude': 32.060844,
+      'destinationLongitude': 118.78315,
+      'destinationName': 'xx市xx路xx号',
+      'originName': 'xx市xx公园',
+      'originLatitude': 31.060844,
+      'originLongitude': 120.78315,
+      'vehicleType': 0
     };
     let abilityStartCallback: common.AbilityStartCallback = {
-        onError: (code: number, name: string, message: string) => {
+      onError: (code: number, name: string, message: string) => {
         console.log(`code:` + code + `name:` + name + `message:` + message);
-        }
+      }
     }
+
     context.startAbilityByType("navigation", wantParam, abilityStartCallback, (err) => {
-        if (err) {
+      if (err) {
         console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-        } else {
+      } else {
         console.log(`success`);
-        }
+      }
     });
-    
     ```
-示例效果图：
+效果示例图：
 
 ![示例效果图](./figures/start-navigation-panel.png)
 
