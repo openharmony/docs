@@ -608,14 +608,14 @@ parseAdResponse(adResponse: string, listener: MultiSlotsAdLoadListener, context:
 
 **示例：**
 
-其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
+其中context的获取方式参见[UIAbilityContext的获取方式](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。
 
 ```ts
 import { common } from '@kit.AbilityKit';
 import { advertising } from '@kit.AdsKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-function parseAdResponse(adResponse: string, context: common.Context): void {
+function parseAdResponse(adResponse: string, context: common.UIAbilityContext): void {
   // 广告解析处理回调监听
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
     // 广告解析处理失败回调
