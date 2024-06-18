@@ -2,9 +2,7 @@
 
 采用Deep Linking进行跳转时，系统会根据接口中传入的uri信息，按照[uri匹配规则](explicit-implicit-want-mappings.md#uri匹配规则)在本地已安装的应用中，寻找到符合URL skill配置的应用并进行拉起。当匹配到多个应用时，会拉起应用选择框。
 
-## 适用场景
 
-适用于没有域名服务器的场景。
 
 ## 实现原理
 

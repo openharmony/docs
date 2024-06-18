@@ -38,14 +38,15 @@
 scheme://host[:port]/path/
 ```
 
-- scheme：协议名称，例如http、https等。
-- host：域名或IP地址，例如域名`developer.huawei.com`或IP地址`127.0.0.1`；
-- port：端口号，可选。例如`developer.huawei.com:80`后面的80即为端口号。
-- path：路径，表示域名服务器上的目录或文件路径，例如`developer.huawei.com/consumer/`中`consumer`。
+- scheme：协议名称。例如http、https等。
+- host：域名或IP地址。例如域名`developer.huawei.com`或IP地址`127.0.0.1`；
+- port：端口号。例如`developer.huawei.com:80`后面的80即为端口号。
+- path：路径，表示域名服务器上的目录或文件路径。例如`developer.huawei.com/consumer/`中`consumer`。
 
-> 说明：
->
-> 系统应用预留scheme统一以`ohos`开头，例如`ohosclock://`。三方应用组件配置的scheme不能与系统应用重复，否则会导致无法通过该uri拉起三方应用组件。
+> **说明：**
+> 
+> 系统应用预留scheme统一以`ohos`开头，例如`ohosclock://`。三方应用组件配置的scheme不能与系统应用重复，否则会导致无法通过该uri拉起三方应用组件。 
+> 
 > 如果多个应用的URL配置相同，应用跳转时匹配到同多个应用，则会拉起应用选择框。为了更好的用户体验，开发者可以通过链接的path字段去区分同一域名下的不同应用，如链接<https://www.test.com/path1>拉起目标应用1，链接<https://www.test.com/path2>拉起目标应用2。
 
 ### 应用链接跳转的运作机制
@@ -57,15 +58,17 @@ scheme://host[:port]/path/
 
 ### App Linking与Deep Linking的对比
 
-如果多个应用配置了相同域名的URL信息，系统无法判别哪个是受信应用。在匹配应用链接的基础上，通过增加域名校验机制，可以从已匹配到的应用中筛选过滤出目标应用，消除应用查询和定位中产生的歧义，直达受信的目标应用。我们将这种采用域名校验机制的应用跳转方式称为“App Linking”，将未采用域名校验的应用跳转方式称为“Deep Linking”。
+[**Deep Linking**](./deep-linking-startup.md)：我们将基于应用链接进行应用匹配和跳转的方式称为“Deep Linking”。
 
-相比Deep Linking，App Linking具有更高的安全性和可靠性，用户体验更佳。无论应用是否已安装，App Linking都可以跳转到链接指定的内容。因此，推荐作开发者的首选App Linking方案。
+[**App Linking**](./app-linking-startup.md)：如果多个应用配置了相同域名的URL信息，系统无法判别哪个是受信应用。在匹配应用链接的基础上，通过增加域名校验机制，可以从已匹配到的应用中筛选过滤出目标应用，消除应用查询和定位中产生的歧义，直达受信的目标应用。我们将这种采用域名校验机制的应用跳转方式称为“App Linking”。
+
+相比Deep Linking，App Linking具有更高的安全性和可靠性，用户体验更佳，推荐作开发者的首选App Linking方案。
 
 | 类型 | Deep Linking | App Linking |
 | -------- | -------- |-------- |
-| 实现效果 | - 如果已安装目标应用，在弹出的拉起应用对话框中确认后，将跳转至目标应用。<br/> - 如果未安装目标应用，将提示16000019错误码。 | - 如果已安装目标应用，将直接拉起目标应用。如果未安装目标应用，会跳转到对应的浏览器来打开网址。应用安装完成后，打开应用即可跳转到链接指定内容。 |
+| 实现效果 | - 如果已安装目标应用，在弹出的拉起应用对话框中确认后，将跳转至目标应用。<br/> - 如果未安装目标应用，将提示16000019错误码。 | - 如果已安装目标应用，将直接拉起目标应用。<br/> - 如果未安装目标应用，会跳转到对应的浏览器来打开网址。应用安装完成后，打开应用即可跳转到链接指定内容。 |
 | 约束限制 | - URL的Shceme可以自定义。<br/> - 无需校验域名。 | - URL的Shceme必须为https。<br/> - 需要云侧服务器进行域名校验。|
-| 跳转接口 | 使用[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)或[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口均可。 | 使用[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口。|
+
 
 
 ## 典型场景：拉起系统应用

@@ -31,9 +31,6 @@
 | 照片Picker（PhotoViewPicker）| 用于访问、保存公共目录的图片或视频文件。 | - [选择媒体库资源](../media/medialibrary/photoAccessHelper-resource-guidelines.md#使用picker选择媒体库资源)<br/> - [保存图片或视频类文件](../file-management/save-user-file.md#保存图片或视频类文件)|
 | 相机Picker （Camera Picker）| 用于拉起系统相机，进行拍照、录制。 |[cameraPicker.pick](../../reference/apis-camera-kit/js-apis-cameraPicker.md#pick) |
 | 联系人Picker（Contacts Picker） | 用于拉起联系人应用，读取联系人数据人。 |[选择联系人](../contacts/contacts-intro.md#选择联系人) |
-| 扫码Picker | 调用相机，实现默认界面扫描。 | [默认界面扫码](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/scan-scanbarcode-V5) |
-| 卡证识别Picker | 调用相机，识别各类证件并提取卡证信息。 | [卡证识别](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/vision-cardrecognition-V5) |
-| 文档扫描Picker | 调用相机，拍摄文档并转化为高清扫描件。 | [文档扫描](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/vision-documentscanner-V5) |
 
 
 
@@ -44,8 +41,6 @@
 | -------- | -------- |-------- |
 | 电话 | 跳转到拨号界面，并显示待拨出的号码。 | [mackeCall()](../reference/apis-telephony-kit/js-apis-call.md#callmakecall7) |
 | 日历 | 创建日程 | [addEvent](../reference/apis-calendar-kit/js-apis-calendarManager.md#addevent) |
-| 钱包 | 单次支付、支付并签约 | [requestPayment](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/payment-paymentservice-V5#section192192415554) |
-| 应用市场 | 展示应用详情页 | [loadProduct](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/store-productviewmanager-V5#section144826162913) |
 
 
 > **说明：**
