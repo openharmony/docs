@@ -45,7 +45,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 
 ### 数据提供方
 
-1. 导入`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
+1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
 
    ```ts
    import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
@@ -133,7 +133,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    
 ### 数据访问方
 
-1. 导入`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
+1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
 
    ```ts
    import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
