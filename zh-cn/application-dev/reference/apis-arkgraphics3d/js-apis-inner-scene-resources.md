@@ -129,7 +129,7 @@ function destroy() : void {
 | ---- | ---- | ---- | ---- | ---- |
 | subMeshes | [SubMesh](#submesh)[] | 是 | 否 | 子网格数组。 |
 | aabb | [Aabb](js-apis-inner-scene-types.md#aabb) | 是 | 否 | 轴对齐包围盒。|
-| materialOverride | [Material](#material) | 是 | 是 | 材质，默认为空。 |
+| materialOverride | [Material](#material) | 否 | 是 | 材质，默认为空。 |
 
 ## Animation
 动画类型，继承自[SceneResource](#sceneresource)。
