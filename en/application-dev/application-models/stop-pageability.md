@@ -15,18 +15,21 @@ The following code snippet shows how to stop an ability.
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-import Logger from '../../utils/Logger';
+import hilog from '@ohos.hilog';
 
 const TAG: string = 'PagePageAbilityFirst';
+const domain: number = 0xFF00;
 ```
 ```ts
+//...
 (async (): Promise<void> => {
   try {
-    Logger.info(TAG, 'Begin to terminateSelf');
+    hilog.info(domain, TAG, 'Begin to terminateSelf');
     await featureAbility.terminateSelf();
-    Logger.info(TAG, 'terminateSelf succeed');
+    hilog.info(domain, TAG, 'terminateSelf succeed');
   } catch (error) {
-    Logger.error(TAG, 'terminateSelf failed with ' + error);
+    hilog.error(domain, TAG, 'terminateSelf failed with ' + error);
   }
 })()
+//...
 ```

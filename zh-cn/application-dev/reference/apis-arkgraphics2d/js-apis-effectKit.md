@@ -25,7 +25,7 @@ createEffect(source: image.PixelMap): Filter
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -69,7 +69,7 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -127,7 +127,7 @@ createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<Colo
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -186,7 +186,7 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -239,7 +239,7 @@ createColorPicker(source: image.PixelMap, region:Array\<number>, callback: Async
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -291,7 +291,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -314,7 +314,7 @@ getMainColor(): Promise\<Color>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -362,7 +362,7 @@ getMainColorSync(): Color
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -409,7 +409,7 @@ getLargestProportionColor(): Color
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -456,7 +456,7 @@ getTopProportionColors(colorCount: number): Array<Color | null>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -512,7 +512,7 @@ getHighestSaturationColor(): Color
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -559,7 +559,7 @@ getAverageColor(): Color
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -606,7 +606,7 @@ isBlackOrWhiteOrGrayColor(color: number): boolean
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -662,7 +662,7 @@ blur(radius: number): Filter
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -806,7 +806,7 @@ brightness(bright: number): Filter
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -855,7 +855,7 @@ grayscale(): Filter
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -897,7 +897,7 @@ getEffectPixelMap(): Promise<image.PixelMap>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 

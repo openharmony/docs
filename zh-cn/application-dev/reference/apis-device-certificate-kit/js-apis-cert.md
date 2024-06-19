@@ -17,7 +17,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
  表示执行结果的枚举。
 
- **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -38,7 +38,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 ## DataBlob
 buffer数组。
 
- **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 | 名称           | 类型           | 可读 | 可写 | 说明              |
@@ -49,7 +49,7 @@ buffer数组。
 
 buffer数组的列表。
 
- **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 | 名称           | 类型           | 可读 | 可写 | 说明               |
@@ -60,7 +60,7 @@ buffer数组的列表。
 
  表示证书编码格式的枚举。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -74,7 +74,7 @@ buffer数组的列表。
 
  表示获取证书字段的枚举。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -90,7 +90,7 @@ buffer数组的列表。
 
  表示获取扩展域中对象标识符类型的枚举。
 
- **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -104,7 +104,7 @@ buffer数组的列表。
 
  表示获取扩展域中对象类型的枚举。
 
- **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -118,7 +118,7 @@ buffer数组的列表。
 
  表示获取X509证书主体名称编码格式的枚举。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -132,7 +132,7 @@ buffer数组的列表。
 
 ### 属性
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -148,7 +148,7 @@ buffer数组的列表。
 
 ### 属性
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -162,7 +162,7 @@ buffer数组的列表。
 
 表示证书主体用途的枚举。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -182,7 +182,7 @@ buffer数组的列表。
 
 用于表示证书主体信息对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -195,7 +195,7 @@ buffer数组的列表。
 
 用于匹配证书的过滤参数。如果参数中任一项都未指定，则匹配所有证书。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -210,7 +210,7 @@ buffer数组的列表。
 | publicKey | [DataBlob](#datablob) | 否  | 指定证书公钥，DER编码格式。 |
 | publicKeyAlgID | string | 否  | 指定证书公钥的算法。 |
 | subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | 否  | 指定证书主体名称。 |
-| matchAllSubjectAltNames<sup>12+</sup> | bool | 否  | 指定是否需要匹配证书主体名称。 |
+| matchAllSubjectAltNames<sup>12+</sup> | boolean | 否  | 指定是否需要匹配证书主体名称。 |
 | authorityKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 指定证书颁发机构秘钥。 |
 | minPathLenConstraint<sup>12+</sup> | number | 否  | 指定证书CA路径长度。 |
 | extendedKeyUsage<sup>12+</sup> | Array\<string> | 否  | 指定证书扩展用途。 |
@@ -223,7 +223,7 @@ buffer数组的列表。
 
 用于匹配证书吊销列表的过滤参数。如果参数中任一项都未指定，则匹配所有证书吊销列表。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -239,7 +239,7 @@ buffer数组的列表。
 
 用于指定证书链创建参数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -247,53 +247,26 @@ buffer数组的列表。
 | -------------- | --------------------------------- | ---- | ------------------ |
 | certMatchParameters | [X509CertMatchParameters](#x509certmatchparameters11) | 是  | 指定过滤条件。 |
 | maxLength | number | 否  | 指定最终证书链中CA证书的最大长度。 |
-| validationParameters | [CertChainValidateParameters](#certchainvalidationparameters11) | 是  | 指定验证条件。 |
-
-## CertChainValidateResult<sup>11+</sup>
-
-用于指定证书链验证结果。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.Security.Cert
-
-| 名称           | 类型                              | 必填 | 说明               |
-| -------------- | --------------------------------- | ---- | ------------------ |
-| trustAnchor | [X509TrustAnchor](#x509trustanchor11) | 是  | 信任锚点。 |
-| entityCert | [X509Cert](#x509cert) | 是  | 实体证书。 |
+| validationParameters | [CertChainValidationParameters](#certchainvalidationparameters11) | 是  | 指定验证条件。 |
 
 ## CertChainBuildResult<sup>12+</sup>
 
 用于指定证书链创建结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | certChain | [X509CertChain](#x509certchain11) | 是  | 生成的证书链对象。 |
-| validationResult | [CertChainValidateResult](#certchainvalidateresult11) | 是  | 指定最终证书链的最大长度。 |
-
-## CertChainValidateParameters<sup>11+</sup>
-
-用于指定证书链验证参数。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.Security.Cert
-
-| 名称           | 类型                              | 必填 | 说明               |
-| -------------- | --------------------------------- | ---- | ------------------ |
-| date | string | 是  | 证书链有效期的日期时间。 |
-| trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)> | 是  | 信任的证书颁发机构CA。 |
-| certCRLs | Array\<[CertCRLCollection](#certcrlcollection11)> | 是  | 用于验证证书链吊销状态的CRL列表。 |
+| validationResult | [CertChainValidationResult](#certchainvalidationresult11) | 是  | 指定最终证书链的最大长度。 |
 
 ## X509TrustAnchor<sup>11+</sup>
 
 表示X509信任锚，用于校验证书链。使用信任锚中的证书或者公钥作为可信根，对证书链进行校验。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -302,12 +275,13 @@ buffer数组的列表。
 | CACert    | [X509Cert](#x509cert) | 是   | 是   | 信任的CA证书。              |
 | CAPubKey  | Uint8Array            | 是   | 是   | 信任的CA证书公钥, DER格式。 |
 | CASubject | Uint8Array            | 是   | 是   | 信任的CA证书主题, DER格式。 |
+| nameConstraints<sup>12+</sup> | Uint8Array      | 是   | 是   | 名称约束, DER格式。 |
 
-## RevocationCheckOption<sup>12+</sup>
+## RevocationCheckOptions<sup>12+</sup>
 
  表示证书链在线校验证书吊销状态选项的枚举。
 
- **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -322,7 +296,7 @@ buffer数组的列表。
 
  表示证书链在线校验策略的枚举。
 
- **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -334,7 +308,7 @@ buffer数组的列表。
 ## KeyUsageType<sup>12+</sup>
 
  表示证书中密钥用途的枚举。
- **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -354,7 +328,7 @@ buffer数组的列表。
 
 表示证书链校验证书吊销状态的参数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -362,17 +336,17 @@ buffer数组的列表。
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | ocspRequestExtension | Array\<Uint8Array> | 否   | 表示发送OCSP请求的扩展字段。|
 | ocspResponderURI | string | 否   | 表示用于OCSP请求的备选服务器URL地址，支持HTTP/HTTPS，具体配置由与服务器协商决定。 |
-| ocspResponderCert | X509Cert | 否   | 表示用于OCSP响应的签名校验的签名证书。 |
+| ocspResponderCert | [X509Cert](#x509cert)  | 否   | 表示用于OCSP响应的签名校验的签名证书。 |
 | ocspResponses | Uint8Array | 否   | 表示用于OCSP服务器响应的备选数据。 |
 | crlDownloadURI | string | 否   | 表示用于CRL请求的备选下载地址。 |
-| options | Array\<[RevocationCheckOption](#revocationcheckoption12)> | 否   | 表示证书吊销状态查询的策略组合。 |
+| options | Array\<[RevocationCheckOptions](#revocationcheckoptions12)> | 否   | 表示证书吊销状态查询的策略组合。 |
 | ocspDigest | string | 否   | 表示OCSP通信时创建证书ID使用的哈希算法。默认为SHA256，支持可配置MD5、SHA1、SHA224、SHA256、SHA384、SHA512算法。 |
 
 ## CertChainValidationParameters<sup>11+</sup>
 
 表示证书链校验的参数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -390,7 +364,7 @@ buffer数组的列表。
 
 表示证书链校验的返回值。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -405,7 +379,7 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 
 表示创建X509证书对象，使用Callback回调异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -458,7 +432,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -472,7 +446,7 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 表示创建X509证书对象，使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -547,7 +521,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 表示对证书验签，使用Callback回调异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -600,7 +574,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -611,10 +585,10 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
 
       // 验证证书签名
       x509Cert.verify(pubKey, (err, data) => {
-        if (err == null) {
-          console.log('verify success');
-        } else {
+        if (err) {
           console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+        } else {
+          console.log('verify success');
         }
       });
     } catch (error) {
@@ -631,7 +605,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 表示对证书验签，使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -713,7 +687,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 表示获取X509证书序列化数据，使用Callback回调异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -766,12 +740,12 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
     x509Cert.getEncoded((error, data) => {
-      if (error != null) {
+      if (error) {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getEncoded success');
@@ -787,7 +761,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 表示获取X509证书序列化数据，使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -858,7 +832,7 @@ getPublicKey() : cryptoFramework.PubKey
 
 表示获取X509证书公钥。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -910,7 +884,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -930,7 +904,7 @@ checkValidityWithDate(date: string) : void
 
 表示检查X509证书有效期。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -985,7 +959,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1008,7 +982,7 @@ getVersion() : number
 
 表示获取X509证书版本。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1049,7 +1023,7 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1108,7 +1082,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1123,7 +1097,7 @@ getCertSerialNumber() : bigint
 
 表示获取X509证书序列号。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1174,7 +1148,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1194,7 +1168,7 @@ getIssuerName() : DataBlob
 
 表示获取X509证书颁发者名称。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1247,7 +1221,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1267,7 +1241,7 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 
 表示获取X509证书主体名称。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1327,7 +1301,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1353,7 +1327,7 @@ getNotBeforeTime() : string
 
 表示获取X509证书有效期起始时间。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1406,7 +1380,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1426,7 +1400,7 @@ getNotAfterTime() : string
 
 表示获取X509证书有效期截止时间。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1480,7 +1454,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1500,7 +1474,7 @@ getSignature() : DataBlob
 
 表示获取X509证书签名数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1554,7 +1528,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1574,7 +1548,7 @@ getSignatureAlgName() : string
 
 表示获取X509证书签名算法名称。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1628,7 +1602,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1648,7 +1622,7 @@ getSignatureAlgOid() : string
 
 表示获取X509证书签名算法的对象标志符OID(Object Identifier)。OID是由国际标准组织(ISO)的名称注册机构分配。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1701,7 +1675,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1721,7 +1695,7 @@ getSignatureAlgParams() : DataBlob
 
 表示获取X509证书签名算法参数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1775,7 +1749,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1795,7 +1769,7 @@ getKeyUsage() : DataBlob
 
 表示获取X509证书秘钥用途。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1847,7 +1821,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1867,7 +1841,7 @@ getExtKeyUsage() : DataArray
 
 表示获取X509证书扩展秘钥用途。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1920,7 +1894,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1940,7 +1914,7 @@ getBasicConstraints() : number
 
 表示获取X509证书基本约束。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1982,7 +1956,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1997,7 +1971,7 @@ getSubjectAltNames() : DataArray
 
 表示获取X509证书主体可选名称。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2050,7 +2024,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -2070,7 +2044,7 @@ getIssuerAltNames() : DataArray
 
 表示获取X509证书颁发者可选名称。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2123,7 +2097,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -2143,7 +2117,7 @@ getItem(itemType: CertItemType) : DataBlob
 
 表示获取X509证书对应的字段。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2197,7 +2171,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -2217,7 +2191,7 @@ match(param: X509CertMatchParameters): boolean
 
 判断证书是否与输入参数匹配。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2315,7 +2289,7 @@ getCRLDistributionPoint(): DataArray
 
 获取X509证书CRL的分发点统一资源标识符。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2365,10 +2339,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
   "-----END CERTIFICATE-----\n";
 
   // 证书二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 async function certGetCRLDistributionPoint() {
@@ -2390,7 +2364,7 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 
 获取颁发者的X509可分辨名称。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2475,7 +2449,7 @@ getSubjectX500DistinguishedName(): X500DistinguishedName
 
 获取证书主题的X509可分辨名称。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2560,7 +2534,7 @@ toString(): string
 
 获取对象的字符串类型数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2645,7 +2619,7 @@ hashCode(): Uint8Array
 
 获取DER格式数据的哈希值。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2730,7 +2704,7 @@ getExtensionsObject(): CertExtension
 
 获取对应实体的扩展域DER格式数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2815,7 +2789,7 @@ createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExten
 
 表示创建证书扩展域段的对象，使用Callback回调异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2861,7 +2835,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
@@ -2875,7 +2849,7 @@ createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 
 表示创建证书扩展域段的对象，使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2943,7 +2917,7 @@ getEncoded() : EncodingBlob
 
 表示获取证书扩展域段序列化数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2989,7 +2963,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
@@ -3009,7 +2983,7 @@ getOidList(valueType : ExtensionOidType) : DataArray
 
 表示获取证书扩展域段对象标识符列表。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3062,7 +3036,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
@@ -3082,7 +3056,7 @@ getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 
 表示获取证书扩展域段对象信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3136,7 +3110,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
@@ -3161,7 +3135,7 @@ checkCA() : number
 
 表示校验证书是否为CA证书。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3206,7 +3180,7 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 cert.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
@@ -3226,7 +3200,7 @@ hasUnsupportedCriticalExtension(): boolean
 
 判断是否存在不支持的关键扩展。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3330,7 +3304,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -3416,7 +3390,7 @@ createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : voi
 
 表示创建X509证书吊销列表的对象，使用Callback回调异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3468,7 +3442,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, X509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -3482,7 +3456,7 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 
 表示创建X509证书吊销列表的对象，使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -3634,13 +3608,15 @@ let certEncodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
     // Create an X509Cert instance.
     cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
-      if (error == null) {
+      if (error) {
+        console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      } else {
         try {
           let revokedFlag = x509Crl.isRevoked(x509Cert);
         } catch (error) {
@@ -3702,7 +3678,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -3771,12 +3747,12 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
     x509Crl.getEncoded((error, data) => {
-      if (error != null) {
+      if (error) {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getEncoded success');
@@ -3976,7 +3952,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -3991,17 +3967,17 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
         data: pubKeyData,
       };
       keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob, (e, keyPair) => {
-        if (e == null) {
+        if (e) {
+          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
+        } else {
           console.log('convert key success');
           x509Crl.verify(keyPair.pubKey, (err, data) => {
-            if (err == null) {
-              console.log('verify success');
-            } else {
+            if (err) {
               console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+            } else  {
+              console.log('verify success');
             }
           });
-        } else {
-          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
         }
       })
     } catch (error) {
@@ -4215,7 +4191,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4284,7 +4260,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4358,7 +4334,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4432,7 +4408,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4512,7 +4488,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4610,7 +4586,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4689,12 +4665,12 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
     x509Crl.getRevokedCerts((error, array) => {
-      if (error != null) {
+      if (error) {
         console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getRevokedCerts success');
@@ -4835,7 +4811,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4909,7 +4885,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4983,7 +4959,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -5057,7 +5033,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -5132,7 +5108,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -5155,7 +5131,7 @@ isRevoked(cert : X509Cert) : boolean
 
 表示检查证书是否吊销。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5227,13 +5203,15 @@ let certEncodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
     // Create an X509Cert instance.
     cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
-      if (error == null) {
+      if (error) {
+        console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      } else {
         try {
           let revokedFlag = x509CRL.isRevoked(x509Cert);
         } catch (error) {
@@ -5252,7 +5230,7 @@ getType() : string
 
 表示获取证书吊销列表类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5293,7 +5271,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5308,7 +5286,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 表示获取X509证书吊销列表的序列化数据，使用Callback回调异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5360,12 +5338,12 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
     x509CRL.getEncoded((error, data) => {
-      if (error != null) {
+      if (error) {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getEncoded success');
@@ -5381,7 +5359,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 表示获取X509证书吊销列表的序列化数据，使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5450,7 +5428,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 表示对X509证书吊销列表进行验签，使用Callback回调异步返回结果。验签支持RSA算法。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5515,7 +5493,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -5530,17 +5508,17 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
         data: pubKeyData,
       };
       keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob, (e, keyPair) => {
-        if (e == null) {
+        if (e) {
+          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
+        } else {
           console.log('convert key success');
           x509CRL.verify(keyPair.pubKey, (err, data) => {
-            if (err == null) {
-              console.log('verify success');
-            } else {
+            if (err) {
               console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+            } else {
+              console.log('verify success');
             }
           });
-        } else {
-          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
         }
       })
     } catch (error) {
@@ -5557,7 +5535,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 表示对X509证书吊销列表进行验签，使用Promise方式异步返回结果。验签支持RSA算法。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5664,7 +5642,7 @@ getVersion() : number
 
 表示获取X509证书吊销列表的版本号。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5705,7 +5683,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5720,7 +5698,7 @@ getIssuerName() : DataBlob
 
 表示获取X509证书吊销列表颁发者名称。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5772,7 +5750,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5792,7 +5770,7 @@ getLastUpdate() : string
 
 表示获取X509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5844,7 +5822,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5864,7 +5842,7 @@ getNextUpdate() : string
 
 表示获取证书吊销列表下一次更新的日期，日期为ASN.1时间格式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5916,7 +5894,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5936,7 +5914,7 @@ getRevokedCert(serialNumber : bigint) : X509CRLEntry
 
 表示通过指定证书序列号获取被吊销X509证书对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5994,7 +5972,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6015,7 +5993,7 @@ getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry
 
 表示通过指定证书对象获取被吊销X509证书对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6090,7 +6068,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6115,7 +6093,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 
 表示获取被吊销X509证书列表，使用Callback回调异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6167,12 +6145,12 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
     x509CRL.getRevokedCerts((error, array) => {
-      if (error != null) {
+      if (error) {
         console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getRevokedCerts success');
@@ -6188,7 +6166,7 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 
 表示获取被吊销X509证书列表，使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6257,7 +6235,7 @@ getSignature() : DataBlob
 
 表示获取X509证书吊销列表的签名数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6309,7 +6287,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6329,7 +6307,7 @@ getSignatureAlgName() : string
 
 表示获取X509证书吊销列表签名的算法名称。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6381,7 +6359,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6401,7 +6379,7 @@ getSignatureAlgOid() : string
 
 表示获取X509证书吊销列表签名算法的对象标志符OID(Object Identifier)。OID是由国际标准组织(ISO)的名称注册机构分配。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6453,7 +6431,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6473,7 +6451,7 @@ getSignatureAlgParams() : DataBlob
 
 表示获取X509证书吊销列表签名的算法参数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6526,7 +6504,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6546,7 +6524,7 @@ getTBSInfo() : DataBlob
 
 表示获取证书吊销列表的tbsCertList信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6598,7 +6576,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6618,7 +6596,7 @@ getExtensions(): DataBlob
 
 表示获取CRL的扩展。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6670,7 +6648,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6690,7 +6668,7 @@ match(param: X509CRLMatchParameters): boolean
 
 判断证书吊销列表是否与输入参数匹配。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6780,7 +6758,7 @@ async function crlMatch() {
   }
 
   cert.createX509CRL(crlEncodingBlob, (error, x509CRL) => {
-    if (error != null) {
+    if (error) {
       console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
     } else {
       console.log('createX509CRL success');
@@ -6805,7 +6783,7 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 
 获取颁发者的X509可分辨名称。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6875,7 +6853,7 @@ toString(): string
 
 获取对象的字符串类型数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6945,7 +6923,7 @@ hashCode(): Uint8Array
 
 获取DER格式数据的哈希值。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7015,7 +6993,7 @@ getExtensionsObject(): CertExtension
 
 获取对应实体的扩展域DER格式数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7090,7 +7068,7 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 
 表示创建证书链校验器对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7139,7 +7117,7 @@ try {
 
 ### 属性
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7155,7 +7133,7 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 表示校验X509证书链，使用Callback回调异步返回结果。
 由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/DeviceCertificateKit/certificate-framework-overview.md#证书规格)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7203,7 +7181,7 @@ let certChainData: cert.CertChainData = {
 try {
   let validator = cert.createCertChainValidator('PKIX');
   validator.validate(certChainData, (error, data) => {
-    if (error != null) {
+    if (error) {
       console.error('validate failed, errCode: ' + error.code + ', errMsg: ' + error.message);
     } else {
       console.log('validate success');
@@ -7222,7 +7200,7 @@ validate(certChain : CertChainData) : Promise\<void>
 表示校验X509证书链，使用Promise方式异步返回结果。
 由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/DeviceCertificateKit/certificate-framework-overview.md#证书规格)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7282,37 +7260,6 @@ try {
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error('getNotBeforeTime failed, errCode: ' + e.code + ', errMsg: ' + e.message);
-}
-```
-
-### algorithm
-
-algorithm : string
-
-表示X509证书链校验器算法名称。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.Security.Cert
-
-**返回值**：
-
-| 类型   | 说明                     |
-| ------ | ------------------------ |
-| string | 表示证书链校验器算法名称 |
-
-**示例：**
-
-```ts
-import { cert } from '@kit.DeviceCertificateKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  let validator = cert.createCertChainValidator('PKIX');
-  let algorithm = validator.algorithm;
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error('createCertChainValidator failed, errCode: ' + e.code + ', errMsg: ' + e.message);
 }
 ```
 
@@ -7384,7 +7331,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -7393,7 +7340,7 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
       let serialNumber = 1000;
       let crlEntry = x509Crl.getRevokedCert(serialNumber);
       crlEntry.getEncoded((error, data) => {
-        if (error != null) {
+        if (error) {
           console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
         } else {
           console.log('getEncoded success');
@@ -7467,7 +7414,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -7537,7 +7484,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -7613,7 +7560,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -7689,7 +7636,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -7716,7 +7663,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 表示获取被吊销证书的序列化数据，使用Callback回调异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7768,7 +7715,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -7777,7 +7724,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
       let serialNumber = BigInt(1000);
       let crlEntry = x509CRL.getRevokedCert(serialNumber);
       crlEntry.getEncoded((error, data) => {
-        if (error != null) {
+        if (error) {
           console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
         } else {
           console.log('getEncoded success');
@@ -7797,7 +7744,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 表示获取被吊销证书的序列化数据，使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7849,7 +7796,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -7876,7 +7823,7 @@ getSerialNumber() : bigint
 
 表示获取被吊销证书的序列号。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7927,7 +7874,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -7950,7 +7897,7 @@ getCertIssuer() : DataBlob
 
 表示获取被吊销证书的颁发者信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8002,7 +7949,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -8025,7 +7972,7 @@ getRevocationDate() : string
 
 表示获取证书被吊销的日期，日期为ASN.1时间格式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8076,7 +8023,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -8099,7 +8046,7 @@ getExtensions(): DataBlob
 
 表示获取CRL的扩展。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8150,7 +8097,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -8173,7 +8120,7 @@ hasExtensions(): boolean
 
 表示判断CRL Entry是否有扩展。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8224,7 +8171,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -8247,7 +8194,7 @@ getCertIssuerX500DistinguishedName(): X500DistinguishedName
 
 获取证书颁发者的X509可分辨名称。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8316,7 +8263,7 @@ toString(): string
 
 获取对象的字符串类型数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8385,7 +8332,7 @@ hashCode(): Uint8Array
 
 获取DER格式数据的哈希值。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8454,7 +8401,7 @@ getExtensionsObject(): CertExtension
 
 获取对应实体的扩展域DER格式数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8590,7 +8537,7 @@ createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCR
 
 表示创建证书和证书吊销列表集合对象，并返回相应的结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8706,7 +8653,7 @@ selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 
 查找证书和证书吊销列表集合中所有与参数匹配的证书对象，使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8805,7 +8752,7 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 
 查找证书和证书吊销列表集合中所有与参数匹配的证书对象, 使用Callback回调异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8885,7 +8832,7 @@ async function selectCerts() {
     publicKeyAlgID: '1.2.840.113549.1.1.1'
   };
   collection.selectCerts(param, (err, certs) => {
-    if (err != null) {
+    if (err) {
       console.error('selectCerts failed, errCode: ' + err.code + ', errMsg: ' + err.message);
     } else {
       console.log('selectCerts success');
@@ -8900,7 +8847,7 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
 查找证书和证书吊销列表集合中所有与参数匹配的证书吊销列表对象, 使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -9025,7 +8972,7 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 
 查找证书和证书吊销列表集合中所有与参数匹配的证书吊销列表对象, 使用Callback回调异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -9131,7 +9078,7 @@ async function selectCRLs() {
     x509Cert: x509Cert
   }
   collection.selectCRLs(param, (err, crls) => {
-    if (err != null) {
+    if (err) {
       console.error('selectCRLs failed, errCode: ' + err.code + ', errMsg: ' + err.message);
     } else {
       console.log('selectCRLs success');
@@ -9146,7 +9093,7 @@ createX509CertChain(inStream: EncodingBlob): Promise\<X509CertChain>
 
 表示创建X509证书链对象，使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -9268,7 +9215,7 @@ createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertCha
 
 表示创建X509证书链对象，使用Callback回调异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -9366,7 +9313,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CertChain(encodingBlob, (err, certChain) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('createX509CertChain success');
@@ -9380,7 +9327,7 @@ createX509CertChain(certs: Array\<X509Cert>): X509CertChain
 
 表示使用X509Cert数组方式创建X509证书链对象，并同步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -9470,7 +9417,7 @@ buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12
 
 表示使用CertChainBuildParameters对象方式创建X509证书链对象，并用Promise方式返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -9574,7 +9521,7 @@ createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array
 
 表示从P12文件中读取ca证书来构造[TrustAnchor](#x509trustanchor11)对象数组，并用Promise方式返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -9637,7 +9584,7 @@ getCertList(): Array\<X509Cert>
 
 获取X509证书列表。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -9735,7 +9682,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CertChain(encodingBlob, (err, certChain) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('createX509CertChain success');
@@ -9755,7 +9702,7 @@ validate(param: CertChainValidationParameters): Promise\<CertChainValidationResu
 
 校验证书链，并使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -9904,7 +9851,7 @@ validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChai
 
 使用校验参数校验证书链并使用callback方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -10018,12 +9965,12 @@ let param: cert.CertChainValidationParameters = {
 };
 
 cert.createX509CertChain(encodingBlob, (err, certChain) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('createX509CertChain success');
     certChain.validate(param, (error, validationRes) => {
-      if (error != null) {
+      if (error) {
         console.error('X509CertChain validate failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('X509CertChain validate success');
@@ -10039,7 +9986,7 @@ toString(): string
 
 获取对象的字符串类型数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -10166,7 +10113,7 @@ hashCode(): Uint8Array
 
 获取DER格式数据的哈希值。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -10293,7 +10240,7 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 
 表示使用字符串格式的名称创建X500DistinguishedName对象，使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -10301,7 +10248,7 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 
 | 参数名   | 类型                          | 必填 | 说明                 |
 | -------- | ----------------------------- | ---- | -------------------- |
-| nameStr | string | X509定义的Name类型的字符串格式数据。|
+| nameStr | string | 是 |X509定义的string类型的Name字符串格式数据。|
 
 **返回值：**
 
@@ -10315,7 +10262,7 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error. |
@@ -10364,7 +10311,7 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 
 表示使用DER格式的名称创建X500DistinguishedName对象，使用Promise方式异步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -10372,7 +10319,7 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 
 | 参数名   | 类型                          | 必填 | 说明                 |
 | -------- | ----------------------------- | ---- | -------------------- |
-| nameDer | Uint8Array | X509定义的Name类型的DER格式数据。|
+| nameDer | Uint8Array | 是 |X509定义的Uint8Array类型的DER格式数据。|
 
 **返回值：**
 
@@ -10386,7 +10333,7 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error. |
@@ -10439,7 +10386,7 @@ getName(): string
 
 获取可分辨名的字符串。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -10499,7 +10446,7 @@ getName(type: string): Array\<string>
 
 按类型获取可分辨名的字符串。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -10521,6 +10468,7 @@ getName(type: string): Array\<string>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error. |
@@ -10565,7 +10513,7 @@ getEncoded(): EncodingBlob
 
 获取X509证书扩展域的数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 

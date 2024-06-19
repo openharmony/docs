@@ -11,7 +11,7 @@ ble模块提供了对蓝牙操作和管理的方法。
 ## 导入模块
 
 ```js
-import ble from '@ohos.bluetooth.ble';
+import { ble } from '@kit.ConnectivityKit';
 ```
 
 
@@ -20,6 +20,8 @@ import ble from '@ohos.bluetooth.ble';
 createGattServer(): GattServer
 
 创建GattServer实例。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -43,6 +45,8 @@ createGattClientDevice(deviceId: string): GattClientDevice
 
 创建一个可使用的GattClientDevice实例。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -63,13 +67,13 @@ createGattClientDevice(deviceId: string): GattClientDevice
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -109,7 +113,7 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let result: Array<string> = ble.getConnectedBLEDevices();
 } catch (err) {
@@ -125,6 +129,8 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 发起BLE扫描流程。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -142,7 +148,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -151,7 +157,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('BLE scan device find result = '+ JSON.stringify(data));
 }
@@ -165,7 +171,7 @@ try {
     let scanOptions: ble.ScanOptions = {
     interval: 500,
     dutyMode: ble.ScanDuty.SCAN_MODE_LOW_POWER,
-    matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE,
+    matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE
     }
     ble.startBLEScan([scanFilter],scanOptions);
 } catch (err) {
@@ -181,6 +187,8 @@ stopBLEScan(): void
 停止BLE扫描流程。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -199,7 +207,7 @@ stopBLEScan(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     ble.stopBLEScan();
 } catch (err) {
@@ -215,6 +223,8 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 开始发送BLE广播。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -233,7 +243,7 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 |2900001 | Service stopped.                         |
@@ -243,7 +253,7 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -261,7 +271,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -274,12 +284,12 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     ble.startAdvertising(setting, advData ,advResponse);
 } catch (err) {
@@ -295,6 +305,8 @@ stopAdvertising(): void
 停止发送BLE广播。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -313,7 +325,7 @@ stopAdvertising(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     ble.stopAdvertising();
 } catch (err) {
@@ -326,7 +338,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
-开始发送BLE广播。
+开始发送BLE广播。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -346,7 +358,7 @@ startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&l
 | 错误码ID | 错误信息 |
 | -------- | -------------------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -355,7 +367,7 @@ startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&l
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -386,18 +398,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 0,
+        duration: 0
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -405,7 +417,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 } catch (err) {
@@ -418,7 +430,7 @@ try {
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
-开始发送BLE广播。
+开始发送BLE广播。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -443,7 +455,7 @@ startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------------------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -452,7 +464,7 @@ startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -470,7 +482,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -483,18 +495,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 0,
+        duration: 0
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams)
@@ -511,7 +523,7 @@ try {
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: AsyncCallback&lt;void&gt;): void
 
-临时启动BLE广播。
+临时启动BLE广播。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -531,7 +543,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: As
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                     |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -540,7 +552,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: As
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -558,7 +570,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -571,18 +583,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 300,
+        duration: 300
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -590,7 +602,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 
@@ -615,7 +627,7 @@ try {
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;void&gt;
 
-临时启动BLE广播。
+临时启动BLE广播。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -640,7 +652,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                   |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -649,7 +661,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -667,7 +679,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -680,18 +692,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 300,
+        duration: 300
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -699,7 +711,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 
@@ -723,7 +735,7 @@ try {
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback&lt;void&gt;): void
 
-临时停止BLE广播。
+临时停止BLE广播。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -743,7 +755,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback:
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                     |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -752,7 +764,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback:
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -770,7 +782,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -783,18 +795,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 0,
+        duration: 0
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -802,7 +814,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 
@@ -824,7 +836,7 @@ try {
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&lt;void&gt;
 
-临时停止BLE广播。
+临时停止BLE广播。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -849,7 +861,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                  |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -858,7 +870,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -876,7 +888,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -889,18 +901,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 0,
+        duration: 0
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -908,7 +920,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 
@@ -928,7 +940,7 @@ try {
 
 stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): void
 
-停止发送BLE广播。
+停止发送BLE广播。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -948,7 +960,7 @@ stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): voi
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                  |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -957,7 +969,7 @@ stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -975,7 +987,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -988,18 +1000,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 0,
+        duration: 0
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -1007,7 +1019,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 
@@ -1026,7 +1038,7 @@ try {
 
 stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 
-停止发送BLE广播。
+停止发送BLE广播。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1051,7 +1063,7 @@ stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                 |
 |801     | Capability not supported.                |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -1060,7 +1072,7 @@ stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -1078,7 +1090,7 @@ try {
     let setting: ble.AdvertiseSetting = {
         interval:150,
         txPower:0,
-        connectable:true,
+        connectable:true
     };
     let manufactureDataUnit: ble.ManufactureData = {
         manufactureId:4567,
@@ -1091,18 +1103,18 @@ try {
     let advData: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advResponse: ble.AdvertiseData = {
         serviceUuids:["00001888-0000-1000-8000-00805f9b34fb"],
         manufactureData:[manufactureDataUnit],
-        serviceData:[serviceDataUnit],
+        serviceData:[serviceDataUnit]
     };
     let advertisingParams: ble.AdvertisingParams = {
         advertisingSettings: setting,
         advertisingData: advData,
         advertisingResponse: advResponse,
-        duration: 0,
+        duration: 0
     }
     let advHandle = 0xFF;
     ble.startAdvertising(advertisingParams, (err, outAdvHandle) => {
@@ -1110,7 +1122,7 @@ try {
             return;
         } else {
             advHandle = outAdvHandle;
-            console.log("advHandle: " + advHandle);
+            console.info("advHandle: " + advHandle);
         }
     });
 
@@ -1128,7 +1140,7 @@ try {
 
 on(type: 'advertisingStateChange', callback: Callback&lt;AdvertisingStateChangeInfo&gt;): void
 
-订阅BLE广播状态。
+订阅BLE广播状态。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1148,14 +1160,14 @@ on(type: 'advertisingStateChange', callback: Callback&lt;AdvertisingStateChangeI
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
 |801     | Capability not supported.                |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: ble.AdvertisingStateChangeInfo) {
     console.info('bluetooth advertising state = ' + JSON.stringify(data));
 }
@@ -1191,14 +1203,14 @@ off(type: 'advertisingStateChange', callback?: Callback&lt;AdvertisingStateChang
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201     | Permission denied.                       |
-|401     | Invalid parameter.                       |
+|401     | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                       |
 |801     | Capability not supported.                |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: ble.AdvertisingStateChangeInfo) {
     console.info('bluetooth advertising state = ' + JSON.stringify(data));
 }
@@ -1215,9 +1227,11 @@ try {
 
 on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
-订阅BLE设备发现上报事件。
+订阅BLE设备发现上报事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1235,14 +1249,14 @@ on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -1262,6 +1276,8 @@ off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -1279,14 +1295,14 @@ off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -1312,6 +1328,8 @@ server端添加服务。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -1327,7 +1345,7 @@ server端添加服务。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -1336,7 +1354,7 @@ server端添加服务。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -1378,6 +1396,8 @@ removeService(serviceUuid: string): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -1393,7 +1413,7 @@ removeService(serviceUuid: string): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -1403,7 +1423,7 @@ removeService(serviceUuid: string): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let server: ble.GattServer = ble.createGattServer();
 try {
     // 调用removeService接口前需要完成server端和client端的配对及连接。
@@ -1422,6 +1442,8 @@ close(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **错误码**：
@@ -1439,7 +1461,7 @@ close(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let server: ble.GattServer = ble.createGattServer();
 try {
     server.close();
@@ -1453,9 +1475,11 @@ try {
 
 notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic, callback: AsyncCallback&lt;void&gt;): void
 
-server端特征值发生变化时，主动通知已连接的client设备。
+server端特征值发生变化时，主动通知已连接的client设备。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1474,7 +1498,7 @@ server端特征值发生变化时，主动通知已连接的client设备。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -1483,13 +1507,13 @@ server端特征值发生变化时，主动通知已连接的client设备。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferC = new ArrayBuffer(8);
 let notifyCharacter: ble.NotifyCharacteristic = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
     characteristicValue: arrayBufferC,
-    confirm: true,
+    confirm: true
 };
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
@@ -1510,9 +1534,11 @@ try {
 
 notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): Promise&lt;void&gt;
 
-server端特征值发生变化时，主动通知已连接的client设备。
+server端特征值发生变化时，主动通知已连接的client设备。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1536,7 +1562,7 @@ server端特征值发生变化时，主动通知已连接的client设备。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -1545,13 +1571,13 @@ server端特征值发生变化时，主动通知已连接的client设备。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferC = new ArrayBuffer(8);
 let notifyCharacter: ble.NotifyCharacteristic = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
     characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
     characteristicValue: arrayBufferC,
-    confirm: true,
+    confirm: true
 };
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
@@ -1572,6 +1598,8 @@ server端回复client端的读写请求。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -1587,7 +1615,7 @@ server端回复client端的读写请求。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -1596,7 +1624,7 @@ server端回复client端的读写请求。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 /* send response */
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
@@ -1606,7 +1634,7 @@ let serverResponse: ble.ServerResponse = {
     transId: 0,
     status: 0,
     offset: 0,
-    value: arrayBufferCCC,
+    value: arrayBufferCCC
 };
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
@@ -1621,9 +1649,11 @@ try {
 
 on(type: 'characteristicRead', callback: Callback&lt;CharacteristicReadRequest&gt;): void
 
-server端订阅特征值读请求事件。
+server端订阅特征值读请求事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1641,13 +1671,13 @@ server端订阅特征值读请求事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
@@ -1678,6 +1708,8 @@ server端取消订阅特征值读请求事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -1694,16 +1726,16 @@ server端取消订阅特征值读请求事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-let gattServer: ble.GattServer = ble.createGattServer();
-gattServer.off('characteristicRead');
+    let gattServer: ble.GattServer = ble.createGattServer();
+    gattServer.off('characteristicRead');
 } catch (err) {
     console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
@@ -1714,9 +1746,11 @@ gattServer.off('characteristicRead');
 
 on(type: 'characteristicWrite', callback: Callback&lt;CharacteristicWriteRequest&gt;): void
 
-server端订阅特征值写请求事件。
+server端订阅特征值写请求事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1734,13 +1768,13 @@ server端订阅特征值写请求事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 let gattServer: ble.GattServer = ble.createGattServer();
@@ -1774,6 +1808,8 @@ server端取消订阅特征值写请求事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -1790,16 +1826,16 @@ server端取消订阅特征值写请求事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-let gattServer: ble.GattServer = ble.createGattServer();
-gattServer.off('characteristicWrite');
+    let gattServer: ble.GattServer = ble.createGattServer();
+    gattServer.off('characteristicWrite');
 } catch (err) {
     console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
@@ -1810,9 +1846,11 @@ gattServer.off('characteristicWrite');
 
 on(type: 'descriptorRead', callback: Callback&lt;DescriptorReadRequest&gt;): void
 
-server端订阅描述符读请求事件。
+server端订阅描述符读请求事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1830,13 +1868,13 @@ server端订阅描述符读请求事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1101;
@@ -1867,6 +1905,8 @@ server端取消订阅描述符读请求事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -1883,16 +1923,16 @@ server端取消订阅描述符读请求事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-let gattServer: ble.GattServer = ble.createGattServer();
-gattServer.off('descriptorRead');
+    let gattServer: ble.GattServer = ble.createGattServer();
+    gattServer.off('descriptorRead');
 } catch (err) {
     console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
@@ -1903,9 +1943,11 @@ gattServer.off('descriptorRead');
 
 on(type: 'descriptorWrite', callback: Callback&lt;DescriptorWriteRequest&gt;): void
 
-server端订阅描述符写请求事件。
+server端订阅描述符写请求事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1923,13 +1965,13 @@ server端订阅描述符写请求事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 let gattServer: ble.GattServer = ble.createGattServer();
@@ -1963,6 +2005,8 @@ server端取消订阅描述符写请求事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -1979,13 +2023,13 @@ server端取消订阅描述符写请求事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('descriptorWrite');
@@ -1999,9 +2043,11 @@ gattServer.off('descriptorWrite');
 
 on(type: 'connectionStateChange', callback: Callback&lt;BLEConnectionChangeState&gt;): void
 
-server端订阅BLE连接状态变化事件。
+server端订阅BLE连接状态变化事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2019,21 +2065,21 @@ server端订阅BLE连接状态变化事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import constant from '@ohos.bluetooth.constant';
-function Connected(bleConnectionChangeState: ble.BLEConnectionChangeState) {
-  let deviceId: string = bleConnectionChangeState.deviceId;
-  let status: constant.ProfileConnectionState = bleConnectionChangeState.state;
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { constant } from '@kit.ConnectivityKit';
+let Connected = (bleConnectionChangeState: ble.BLEConnectionChangeState) => {
+    let deviceId: string = bleConnectionChangeState.deviceId;
+    let status: constant.ProfileConnectionState = bleConnectionChangeState.state;
 }
 try {
-let gattServer: ble.GattServer = ble.createGattServer();
-gattServer.on('connectionStateChange', Connected);
+    let gattServer: ble.GattServer = ble.createGattServer();
+    gattServer.on('connectionStateChange', Connected);
 } catch (err) {
     console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
@@ -2047,6 +2093,8 @@ off(type: 'connectionStateChange', callback?: Callback&lt;BLEConnectionChangeSta
 server端取消订阅BLE连接状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2064,16 +2112,16 @@ server端取消订阅BLE连接状态变化事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-let gattServer: ble.GattServer = ble.createGattServer();
-gattServer.off('connectionStateChange');
+    let gattServer: ble.GattServer = ble.createGattServer();
+    gattServer.off('connectionStateChange');
 } catch (err) {
     console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
 }
@@ -2084,7 +2132,7 @@ gattServer.off('connectionStateChange');
 
 on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void
 
-server端订阅MTU状态变化事件。
+server端订阅MTU状态变化事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -2104,17 +2152,17 @@ server端订阅MTU状态变化事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.on('BLEMtuChange', (mtu: number) => {
-      console.info('BLEMtuChange, mtu: ' + mtu);
+    console.info('BLEMtuChange, mtu: ' + mtu);
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -2146,13 +2194,13 @@ server端取消订阅MTU状态变化事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.off('BLEMtuChange');
@@ -2175,6 +2223,8 @@ client端发起连接远端蓝牙低功耗设备。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **错误码**：
@@ -2192,7 +2242,7 @@ client端发起连接远端蓝牙低功耗设备。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
@@ -2210,6 +2260,8 @@ client端断开与远端蓝牙低功耗设备的连接。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **错误码**：
@@ -2227,7 +2279,7 @@ client端断开与远端蓝牙低功耗设备的连接。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.disconnect();
@@ -2245,6 +2297,8 @@ close(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **错误码**：
@@ -2262,7 +2316,7 @@ close(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.close();
@@ -2276,9 +2330,11 @@ try {
 
 getDeviceName(callback: AsyncCallback&lt;string&gt;): void
 
-client获取远端蓝牙低功耗设备名。
+client获取远端蓝牙低功耗设备名。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2295,7 +2351,7 @@ client获取远端蓝牙低功耗设备名。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.          |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
@@ -2303,7 +2359,7 @@ client获取远端蓝牙低功耗设备名。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -2322,9 +2378,11 @@ try {
 
 getDeviceName(): Promise&lt;string&gt;
 
-client获取远端蓝牙低功耗设备名。
+client获取远端蓝牙低功耗设备名。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2341,7 +2399,7 @@ client获取远端蓝牙低功耗设备名。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.             |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
@@ -2349,7 +2407,7 @@ client获取远端蓝牙低功耗设备名。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // promise
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -2367,9 +2425,11 @@ try {
 
 getServices(callback: AsyncCallback&lt;Array&lt;GattService&gt;&gt;): void
 
-client端获取蓝牙低功耗设备的所有服务，即服务发现 。
+client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2386,7 +2446,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.            |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
@@ -2394,18 +2454,18 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback 模式
-function getServices(code: BusinessError, gattServices: Array<ble.GattService>) {
-  if (code.code == 0) {
-      let services: Array<ble.GattService> = gattServices;
-      console.log('bluetooth code is ' + code.code);
-      console.log('bluetooth services size is ', services.length);
+let getServices = (code: BusinessError, gattServices: Array<ble.GattService>) => {
+    if (code) {
+        let services: Array<ble.GattService> = gattServices;
+        console.info('bluetooth code is ' + code.code);
+        console.info('bluetooth services size is ', services.length);
 
-      for (let i = 0; i < services.length; i++) {
-        console.log('bluetooth serviceUuid is ' + services[i].serviceUuid);
-      }
-  }
+        for (let i = 0; i < services.length; i++) {
+            console.info('bluetooth serviceUuid is ' + services[i].serviceUuid);
+        }
+    }
 }
 
 try {
@@ -2422,9 +2482,11 @@ try {
 
 getServices(): Promise&lt;Array&lt;GattService&gt;&gt;
 
-client端获取蓝牙低功耗设备的所有服务，即服务发现。
+client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2441,7 +2503,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.          |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
@@ -2449,7 +2511,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Promise 模式
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
@@ -2467,9 +2529,11 @@ try {
 
 readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback&lt;BLECharacteristic&gt;): void
 
-client端读取蓝牙低功耗设备特定服务的特征值。
+client端读取蓝牙低功耗设备特定服务的特征值。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2487,7 +2551,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901000 | Read forbidden.                         |
@@ -2496,14 +2560,14 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function readCcc(code: BusinessError, BLECharacteristic: ble.BLECharacteristic) {
   if (code.code != 0) {
       return;
   }
-  console.log('bluetooth characteristic uuid: ' + BLECharacteristic.characteristicUuid);
+  console.info('bluetooth characteristic uuid: ' + BLECharacteristic.characteristicUuid);
   let value = new Uint8Array(BLECharacteristic.characteristicValue);
-  console.log('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
+  console.info('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
 let descriptors: Array<ble.BLEDescriptor> = [];
@@ -2535,9 +2599,11 @@ try {
 
 readCharacteristicValue(characteristic: BLECharacteristic): Promise&lt;BLECharacteristic&gt;
 
-client端读取蓝牙低功耗设备特定服务的特征值。
+client端读取蓝牙低功耗设备特定服务的特征值。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2560,7 +2626,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901000 | Read forbidden.                         |
@@ -2569,7 +2635,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2599,9 +2665,11 @@ try {
 
 readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;BLEDescriptor&gt;): void
 
-client端读取蓝牙低功耗设备特定的特征包含的描述符。
+client端读取蓝牙低功耗设备特定的特征包含的描述符。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2619,7 +2687,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901000 | Read forbidden.                         |
@@ -2628,14 +2696,14 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function readDesc(code: BusinessError, BLEDescriptor: ble.BLEDescriptor) {
     if (code.code != 0) {
         return;
     }
-    console.log('bluetooth descriptor uuid: ' + BLEDescriptor.descriptorUuid);
+    console.info('bluetooth descriptor uuid: ' + BLEDescriptor.descriptorUuid);
     let value = new Uint8Array(BLEDescriptor.descriptorValue);
-    console.log('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
+    console.info('bluetooth descriptor value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
 }
 
 let bufferDesc = new ArrayBuffer(8);
@@ -2660,9 +2728,11 @@ try {
 
 readDescriptorValue(descriptor: BLEDescriptor): Promise&lt;BLEDescriptor&gt;
 
-client端读取蓝牙低功耗设备特定的特征包含的描述符。
+client端读取蓝牙低功耗设备特定的特征包含的描述符。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2685,7 +2755,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2901000 | Read forbidden.                |
@@ -2694,7 +2764,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
@@ -2717,9 +2787,11 @@ try {
 
 writeCharacteristicValue(characteristic: BLECharacteristic, writeType: GattWriteType, callback: AsyncCallback&lt;void&gt;): void
 
-client端向低功耗蓝牙设备写入特定的特征值。
+client端向低功耗蓝牙设备写入特定的特征值。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2738,7 +2810,7 @@ client端向低功耗蓝牙设备写入特定的特征值。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
@@ -2747,7 +2819,7 @@ client端向低功耗蓝牙设备写入特定的特征值。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2767,7 +2839,7 @@ function writeCharacteristicValueCallBack(code: BusinessError) {
     if (code != null) {
         return;
     }
-    console.log('bluetooth writeCharacteristicValue success');
+    console.info('bluetooth writeCharacteristicValue success');
 }
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
@@ -2782,9 +2854,11 @@ try {
 
 writeCharacteristicValue(characteristic: BLECharacteristic, writeType: GattWriteType): Promise&lt;void&gt;
 
-client端向低功耗蓝牙设备写入特定的特征值。
+client端向低功耗蓝牙设备写入特定的特征值。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2808,7 +2882,7 @@ client端向低功耗蓝牙设备写入特定的特征值。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
@@ -2817,7 +2891,7 @@ client端向低功耗蓝牙设备写入特定的特征值。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor>  = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2846,9 +2920,11 @@ try {
 
 writeDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;void&gt;): void
 
-client端向低功耗蓝牙设备特定的描述符写入二进制数据。
+client端向低功耗蓝牙设备特定的描述符写入二进制数据。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2866,7 +2942,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
@@ -2875,7 +2951,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
@@ -2898,9 +2974,11 @@ try {
 
 writeDescriptorValue(descriptor: BLEDescriptor): Promise&lt;void&gt;
 
-client端向低功耗蓝牙设备特定的描述符写入二进制数据。
+client端向低功耗蓝牙设备特定的描述符写入二进制数据。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2923,7 +3001,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
@@ -2932,7 +3010,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
@@ -2957,9 +3035,11 @@ try {
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
-client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。
+client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2976,14 +3056,14 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -3002,9 +3082,11 @@ try {
 
 getRssiValue(): Promise&lt;number&gt;
 
-client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。
+client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength Indication, RSSI)，调用[connect](#connect)接口连接成功后才能使用。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3021,14 +3103,14 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.               |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // promise
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -3049,6 +3131,8 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -3064,7 +3148,7 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
@@ -3072,7 +3156,7 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setBLEMtuSize(128);
@@ -3086,9 +3170,11 @@ try {
 
 setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-向服务端发送设置通知此特征值请求。
+向服务端发送设置通知此特征值请求。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3107,7 +3193,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
@@ -3115,7 +3201,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -3142,9 +3228,11 @@ try {
 
 setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: boolean): Promise&lt;void&gt;
 
-向服务端发送设置通知此特征值请求。
+向服务端发送设置通知此特征值请求。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3168,7 +3256,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
@@ -3176,7 +3264,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -3190,10 +3278,10 @@ let arrayBufferC = new ArrayBuffer(8);
 let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 try {
-    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.setCharacteristicChangeNotification(characteristic, false);
+  let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+  device.setCharacteristicChangeNotification(characteristic, false);
 } catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 
 ```
@@ -3203,9 +3291,11 @@ try {
 
 setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-向服务端发送设置通知此特征值请求。
+向服务端发送设置通知此特征值请求。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3224,7 +3314,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
@@ -3232,7 +3322,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -3246,10 +3336,10 @@ let arrayBufferC = new ArrayBuffer(8);
 let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 try {
-    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.setCharacteristicChangeIndication(characteristic, false);
+  let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+  device.setCharacteristicChangeIndication(characteristic, false);
 } catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 
 ```
@@ -3259,9 +3349,11 @@ try {
 
 setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean): Promise&lt;void&gt;
 
-向服务端发送设置通知此特征值请求。
+向服务端发送设置通知此特征值请求。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3285,7 +3377,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
@@ -3293,7 +3385,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -3307,10 +3399,10 @@ let arrayBufferC = new ArrayBuffer(8);
 let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
 try {
-    let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-    device.setCharacteristicChangeIndication(characteristic, false);
+  let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+  device.setCharacteristicChangeIndication(characteristic, false);
 } catch (err) {
-    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 
 ```
@@ -3320,9 +3412,11 @@ try {
 
 on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;): void
 
-订阅蓝牙低功耗设备的特征值变化事件。需要先调用[setCharacteristicChangeNotification](#setcharacteristicchangenotification)接口才能接收server端的通知。
+订阅蓝牙低功耗设备的特征值变化事件。需要先调用[setCharacteristicChangeNotification](#setcharacteristicchangenotification)接口才能接收server端的通知。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3340,13 +3434,13 @@ on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;)
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function CharacteristicChange(characteristicChangeReq: ble.BLECharacteristic) {
     let serviceUuid: string = characteristicChangeReq.serviceUuid;
     let characteristicUuid: string = characteristicChangeReq.characteristicUuid;
@@ -3369,6 +3463,8 @@ off(type: 'BLECharacteristicChange', callback?: Callback&lt;BLECharacteristic&gt
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -3385,13 +3481,13 @@ off(type: 'BLECharacteristicChange', callback?: Callback&lt;BLECharacteristic&gt
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLECharacteristicChange');
@@ -3405,9 +3501,11 @@ try {
 
 on(type: 'BLEConnectionStateChange', callback: Callback&lt;BLEConnectionChangeState&gt;): void
 
-client端订阅蓝牙低功耗设备的连接状态变化事件。
+client端订阅蓝牙低功耗设备的连接状态变化事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3425,16 +3523,16 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function ConnectStateChanged(state: ble.BLEConnectionChangeState) {
-  console.log('bluetooth connect state changed');
-  let connectState: ble.ProfileConnectionState = state.state;
+    console.info('bluetooth connect state changed');
+    let connectState: ble.ProfileConnectionState = state.state;
 }
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
@@ -3453,6 +3551,8 @@ off(type: 'BLEConnectionStateChange', callback?: Callback&lt;BLEConnectionChange
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -3469,13 +3569,13 @@ off(type: 'BLEConnectionStateChange', callback?: Callback&lt;BLEConnectionChange
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEConnectionStateChange');
@@ -3489,9 +3589,11 @@ try {
 
 on(type: 'BLEMtuChange', callback: Callback&lt;number&gt;): void
 
-client端订阅MTU状态变化事件。
+client端订阅MTU状态变化事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3509,13 +3611,13 @@ client端订阅MTU状态变化事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     gattClient.on('BLEMtuChange', (mtu: number) => {
@@ -3535,6 +3637,8 @@ client端取消订阅MTU状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -3551,13 +3655,13 @@ client端取消订阅MTU状态变化事件。
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEMtuChange');
@@ -3570,6 +3674,8 @@ try {
 ## GattService
 
 描述service的接口参数定义。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3585,6 +3691,8 @@ try {
 
 描述characteristic的接口参数定义 。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称                  | 类型                                     | 可读   | 可写   | 说明                                 |
@@ -3598,7 +3706,9 @@ try {
 
 ## BLEDescriptor
 
-描述descriptor的接口参数定义 。
+描述descriptor的接口参数定义。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3614,6 +3724,8 @@ try {
 
 描述server端特征值变化时发送的特征通知参数定义。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称                  | 类型        | 可读   | 可写   | 说明                                       |
@@ -3627,6 +3739,8 @@ try {
 ## CharacteristicReadRequest
 
 描述server端订阅后收到的特征值读请求事件参数结构。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3642,6 +3756,8 @@ try {
 ## CharacteristicWriteRequest
 
 描述server端订阅后收到的特征值写请求事件参数结构。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3661,6 +3777,8 @@ try {
 
 描述server端订阅后收到的描述符读请求事件参数结构。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称                 | 类型   | 可读   | 可写   | 说明                                       |
@@ -3676,6 +3794,8 @@ try {
 ## DescriptorWriteRequest
 
 描述server端订阅后收到的描述符写请求事件参数结构。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3696,6 +3816,8 @@ try {
 
 描述server端回复client端读/写请求的响应参数结构。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称       | 类型        | 可读   | 可写   | 说明                                     |
@@ -3709,7 +3831,9 @@ try {
 
 ## BLEConnectionChangeState
 
-描述Gatt profile连接状态 。
+描述Gatt profile连接状态。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3722,6 +3846,8 @@ try {
 ## ScanResult
 
 扫描结果上报数据。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3738,6 +3864,8 @@ try {
 
 描述蓝牙低功耗设备发送广播的参数。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称          | 类型    | 可读   | 可写   | 说明                                       |
@@ -3750,6 +3878,8 @@ try {
 ## AdvertiseData
 
 描述BLE广播数据包的内容，广播包数据长度为31个字节。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3809,6 +3939,8 @@ try {
 
 描述BLE广播数据包的内容。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称               | 类型                | 可读   | 可写   | 说明                 |
@@ -3821,6 +3953,8 @@ try {
 
 描述广播包中服务数据内容。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称           | 类型        | 可读   | 可写   | 说明         |
@@ -3832,6 +3966,8 @@ try {
 ## ScanFilter
 
 扫描过滤参数。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3854,6 +3990,8 @@ try {
 
 扫描的配置参数。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称        | 类型                    | 可读   | 可写   | 说明                                     |
@@ -3868,20 +4006,24 @@ try {
 
 描述gatt characteristic的属性。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称       | 类型  | 必填   | 说明          |
 | -------- | ------ |---- | ----------- |
-| write    | boolean | 是  | 表示该特征支持写操作，需要对端设备的回复。 |
-| writeNoResponse | boolean | 是    | 表示该特征支持写操作，无需对端设备回复。 |
-| read | boolean   |  是    | 表示该特征支持读操作。 |
-| notify | boolean   | 是    | 表示该特征可通知对端设备。 |
-| indicate | boolean   | 是    | 表示该特征可通知对端设备，需要对端设备的回复。 |
+| write    | boolean | 否  | 表示该特征支持写操作，需要对端设备的回复。 |
+| writeNoResponse | boolean | 否    | 表示该特征支持写操作，无需对端设备回复。 |
+| read | boolean   |  否    | 表示该特征支持读操作。 |
+| notify | boolean   | 否    | 表示该特征可通知对端设备。 |
+| indicate | boolean   | 否    | 表示该特征可通知对端设备，需要对端设备的回复。 |
 
 
 ## GattWriteType<a name="GattWriteType"></a>
 
 枚举，表示gatt写入类型。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3895,6 +4037,8 @@ try {
 
 枚举，扫描模式。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称                    | 值  | 说明           |
@@ -3907,6 +4051,8 @@ try {
 ## MatchMode
 
 枚举，硬件过滤匹配模式。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3931,6 +4077,8 @@ try {
 ## PhyType<sup>12+</sup>
 
 枚举，扫描中使用的PHY类型。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 

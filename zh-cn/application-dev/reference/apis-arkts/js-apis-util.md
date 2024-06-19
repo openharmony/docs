@@ -463,7 +463,7 @@ getHash(object: object): number
 
 获取对象的Hash值。如果是第一次获取，则计算Hash值并保存到对象的Hash域（返回随机的Hash值）；如果不是第一次获取，则从Hash域中获取并返回Hash值（同一对象多次返回值保持不变）。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -507,7 +507,7 @@ console.info('result2 is ' + result2);
 
 解码相关选项参数，存在两个属性fatal和ignoreBOM。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -521,7 +521,7 @@ console.info('result2 is ' + result2);
 
 解码是否跟随附加数据块相关选项参数。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -801,7 +801,7 @@ static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 替代有参构造功能。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -837,7 +837,7 @@ decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 通过输入参数解码后输出对应文本。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -970,7 +970,7 @@ console.info("retStr = " + retStr);
 
 编码后的文本。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 | 名称      | 类型 | 可读  |可写  | 说明               |
 | --------- | -------- | -------- |-------- |------------------ |
@@ -998,7 +998,7 @@ constructor()
 
 TextEncoder的构造函数。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1014,7 +1014,7 @@ constructor(encoding?: string)
 
 TextEncoder的构造函数。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1044,7 +1044,7 @@ static create(encoding?: string): TextEncoder
 
 创建TextEncoder对象的方法。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1074,7 +1074,7 @@ encodeInto(input?: string): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1113,7 +1113,7 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
 对字符串进行编码，将结果写入dest数组。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2376,6 +2376,8 @@ class Temperature{
 
 ## ScopeType<sup>8+</sup>
 
+type ScopeType = ScopeComparable | number
+
 用于表示范围中的值的类型。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -3006,7 +3008,7 @@ Base64Helper的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **示例：**
 
@@ -3020,7 +3022,7 @@ encodeSync(src: Uint8Array, options?: Type): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3048,9 +3050,9 @@ encodeSync(src: Uint8Array, options?: Type): Uint8Array
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeSync(array);
+  let result = base64Helper.encodeSync(array);
   ```
 
 
@@ -3060,7 +3062,7 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 通过输入参数编码后输出对应文本。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3088,9 +3090,9 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-  let result = that.encodeToStringSync(array, util.Type.MIME);
+  let result = base64Helper.encodeToStringSync(array, util.Type.MIME);
   ```
 
 
@@ -3100,7 +3102,7 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 通过输入参数解码后输出对应Uint8Array对象。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3128,9 +3130,9 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
-  let result = that.decodeSync(buff, util.Type.MIME);
+  let result = base64Helper.decodeSync(buff, util.Type.MIME);
   ```
 
 
@@ -3140,7 +3142,7 @@ encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 
 通过输入参数异步编码后输出对应Uint8Array对象。
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3168,13 +3170,10 @@ encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([115,49,51]);
-  let rarray = new Uint8Array([99,122,69,122]);
-  that.encode(array).then(val=>{
-    for (let i = 0; i < rarray.length; i++) {
-      console.info(val[i].toString());
-    }
+  base64Helper.encode(array).then((val) => {
+    console.info(val.toString());
   })
   ```
 
@@ -3211,10 +3210,10 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-  that.encodeToString(array, util.Type.MIME).then(val=>{
-    // 根据开发者需求进行添加。
+  base64Helper.encodeToString(array, util.Type.MIME).then((val) => {
+    console.info(val);
   })
   ```
 
@@ -3251,10 +3250,10 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
-  that.decode(array, util.Type.MIME).then(val=>{
-    // 根据开发者需求进行添加。
+  base64Helper.decode(array, util.Type.MIME).then((val) => {
+    console.info(val.toString());
   })
   ```
 
@@ -3268,7 +3267,7 @@ constructor(encoding?: string)
 
 StringDecoder的构造函数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3298,7 +3297,7 @@ write(chunk: string | Uint8Array): string
 
 返回一个解码后的字符串，确保Uint8Array末尾的任何不完整的多字节字符从返回的字符串中被过滤，并保存在一个内部的buffer中用于下次调用。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3337,7 +3336,7 @@ end(chunk?: string | Uint8Array): string
 
 结束解码过程，以字符串形式返回存储在内部缓冲区中的任何剩余输入。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3381,10 +3380,10 @@ Base64编码格式枚举。
 
 | 名称   |值| 说明               |
 | ----- |---| ----------------- |
-| BASIC | 0 | 表示BASIC编码格式。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。|
-| MIME  | 1 | 表示MIME编码格式。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。|
-| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**元服务API**：从API version 12 开始，该接口支持在元服务中使用。|
-| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**元服务API**：从API version 12 开始，该接口支持在元服务中使用。 |
+| BASIC | 0 | 表示BASIC编码格式。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| MIME  | 1 | 表示MIME编码格式。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。|
+| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。 |
 
 
 ## types<sup>8+</sup>
@@ -5792,9 +5791,9 @@ encodeSync(src: Uint8Array): Uint8Array
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeSync(array);
+  let result = base64.encodeSync(array);
   ```
 
 ### encodeToStringSync<sup>(deprecated)</sup>
@@ -5824,9 +5823,9 @@ encodeToStringSync(src: Uint8Array): string
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeToStringSync(array);
+  let result = base64.encodeToStringSync(array);
   ```
 
 ### decodeSync<sup>(deprecated)</sup>
@@ -5856,9 +5855,9 @@ decodeSync(src: Uint8Array | string): Uint8Array
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let buff = 'czEz';
-  let result = that.decodeSync(buff);
+  let result = base64.decodeSync(buff);
   ```
 
 ### encode<sup>(deprecated)</sup>
@@ -5888,13 +5887,10 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let rarray = new Uint8Array([99,122,69,122]);
-  that.encode(array).then(val=>{    
-      for (let i = 0; i < rarray.length; i++) {        
-          console.info(val[i].toString())
-      }
+  base64.encode(array).then((val) => {
+    console.info(val.toString());
   })
   ```
 
@@ -5925,10 +5921,10 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  that.encodeToString(array).then(val=>{    
-      console.info(val)
+  base64.encodeToString(array).then((val) => {
+      console.info(val);
   })
   ```
 
@@ -5960,12 +5956,9 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([99,122,69,122]);
-  let rarray = new Uint8Array([115,49,51]);
-  that.decode(array).then(val=>{    
-      for (let i = 0; i < rarray.length; i++) {        
-          console.info(val[i].toString());
-      }
+  base64.decode(array).then((val) => {
+    console.info(val.toString());
   })
   ```

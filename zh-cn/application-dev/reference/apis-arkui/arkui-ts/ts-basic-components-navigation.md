@@ -6,7 +6,7 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
+> 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.KEYBOARD, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 
 
 ## 子组件
@@ -29,7 +29,7 @@ Navigation(pathInfos: NavPathStack)
 
 绑定路由栈到Navigation组件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -47,7 +47,7 @@ title(value: ResourceStr | CustomBuilder | NavigationCommonTitle | NavigationCus
 
 设置页面标题。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -78,9 +78,14 @@ subTitle(value: string)
 
 menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
+
 设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -96,7 +101,7 @@ titleMode(value: NavigationTitleMode)
 
 设置页面标题栏显示模式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -120,17 +125,30 @@ toolBar(value: object | CustomBuilder)
 
 | 参数名 | 类型                                                         | 必填 | 说明         |
 | ------ | ------------------------------------------------------------ | ---- | ------------ |
-| value  | [object](#object类型说明)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容。 |
+| value  | object&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容。 |
+
+**object类型说明：** 
+
+| 名称     | 类型            | 必填   | 描述              |
+| ------ | ------------- | ---- | --------------- |
+| value  | string        | 是    | 工具栏单个选项的显示文本。   |
+| icon   | string        | 否    | 工具栏单个选项的图标资源路径。 |
+| action | () =&gt; void | 否    | 当前选项被选中的事件回调。   |
 
 ### toolbarConfiguration<sup>10+</sup>
 
 toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
 
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
+
 设置工具栏内容。不设置时不显示工具栏。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -147,7 +165,7 @@ hideToolBar(value: boolean)
 
 设置是否隐藏工具栏。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -163,7 +181,7 @@ hideTitleBar(value: boolean)
 
 设置是否隐藏标题栏。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -179,7 +197,7 @@ hideBackButton(value: boolean)
 
 设置是否隐藏标题栏中的返回键。返回键仅针对[titleMode](#titlemode)为NavigationTitleMode.Mini时才生效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -195,7 +213,7 @@ navBarWidth(value: Length)
 
 设置导航栏宽度。仅在Navigation组件分栏时生效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -211,7 +229,7 @@ navBarPosition(value: NavBarPosition)
 
 设置导航栏位置。仅在Navigation组件分栏时生效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -227,7 +245,7 @@ mode(value: NavigationMode)
 
 设置导航栏的显示模式。支持Stack、Split与Auto模式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -241,9 +259,14 @@ mode(value: NavigationMode)
 
 backButtonIcon(value: string | PixelMap | Resource | SymbolGlyphModifier)
 
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
+
 设置标题栏中返回键图标。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -261,7 +284,7 @@ hideNavBar(value: boolean)
 
 从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -277,7 +300,7 @@ navDestination(builder: (name: string, param: unknown) => void)
 
 创建NavDestination组件。使用builder函数，基于name和param构造NavDestination组件。builder下只能有一个根节点。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -295,7 +318,7 @@ navBarWidthRange(value: [Dimension, Dimension])
 
 **规则：** 优先级规则详见说明。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -303,7 +326,7 @@ navBarWidthRange(value: [Dimension, Dimension])
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| builder | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 是   | 导航栏最小和最大宽度。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp |
+| value | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 是   | 导航栏最小和最大宽度。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp |
 
 ### minContentWidth<sup>10+</sup>
 
@@ -313,7 +336,7 @@ minContentWidth(value: Dimension)
 
 **规则：** 优先级规则详见说明。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -321,7 +344,7 @@ minContentWidth(value: Dimension)
 
 | 参数名  | 类型                                 | 必填 | 说明                                                         |
 | ------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| builder | [Dimension](ts-types.md#dimension10) | 是   | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>undefined：行为不做处理，导航栏内容区最小宽度与默认值保持一致。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+| value | [Dimension](ts-types.md#dimension10) | 是   | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>undefined：行为不做处理，导航栏内容区最小宽度与默认值保持一致。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
 
 >  **说明：**
 >
@@ -339,7 +362,7 @@ onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void)
 
 当[titleMode](#titlemode)为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -355,7 +378,7 @@ onNavBarStateChange(callback: (isVisible: boolean) =&gt; void)
 
 导航栏显示状态切换时触发该回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -371,7 +394,7 @@ onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void)
 
 当Navigation首次显示或者单双栏状态发生变化时触发该回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -387,7 +410,7 @@ customNavContentTransition(delegate(from: NavContentInfo, to: NavContentInfo, op
 
 自定义转场动画回调。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -415,7 +438,7 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 
 将info指定的NavDestination页面信息入栈。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -424,13 +447,26 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
+### pushPath<sup>12+</sup>
+
+pushPath(info: NavPathInfo, options?: NavigationOptions): void
+
+将info指定的NavDestination页面信息入栈，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
+| options | [NavigationOptions](#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
+
 ### pushPathByName<sup>10+</sup>
 
 pushPathByName(name: string, param: unknown, animated?: boolean): void
 
 将name指定的NavDestination页面信息入栈，传递的数据为param。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -442,11 +478,11 @@ pushPathByName(name: string, param: unknown, animated?: boolean): void
 
 ### pushPathByName<sup>11+</sup>
 
-pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): void
+pushPathByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?: boolean): void
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，添加onPop回调接收入栈页面出栈时的返回结果，并进行处理。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -454,7 +490,7 @@ pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').C
 |------|------|------|------|
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
-| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
+| onPop | Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### pushDestination<sup>11+</sup>
@@ -463,7 +499,7 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -471,6 +507,36 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
+
+### pushDestination<sup>12+</sup>
+
+pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void&gt;
+
+将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
+| options | [NavigationOptions](#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
 
 **返回值：**
 
@@ -495,7 +561,7 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，使用Promise异步回调返回接口调用结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -524,11 +590,11 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 ### pushDestinationByName<sup>11+</sup>
 
-pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
+pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的OnPop回调，使用Promise异步回调返回接口调用结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -536,7 +602,7 @@ pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.b
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
-| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。 |
+| onPop | Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
@@ -562,7 +628,7 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 
 将当前页面栈栈顶退出，将info指定的NavDestination页面信息入栈。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -571,13 +637,26 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
+### replacePath<sup>12+</sup>
+
+replacePath(info: NavPathInfo, options?: NavigationOptions): void
+
+替换页面栈操作，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息。 |
+| options | [NavigationOptions](#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
+
 ### replacePathByName<sup>11+</sup>
 
 replacePathByName(name: string, param: Object, animated?: boolean): void
 
 将当前页面栈栈顶退出，将name指定的页面入栈。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -593,7 +672,7 @@ removeByIndexes(indexes: Array<number\>): number
 
 将页面栈内索引值在indexes中的NavDestination页面删除。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -613,7 +692,7 @@ removeByName(name: string): number
 
 将页面栈内指定name的NavDestination页面删除。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -633,7 +712,7 @@ pop(animated?: boolean): NavPathInfo | undefined
 
 弹出路由栈栈顶元素。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -654,7 +733,7 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 弹出路由栈栈顶元素，并触发onPop回调传入页面处理结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -676,7 +755,7 @@ popToName(name: string, animated?: boolean): number
 
 回退路由栈到由栈底开始第一个名为name的NavDestination页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -697,7 +776,7 @@ popToName(name: string, result: Object, animated?: boolean): number
 
 回退路由栈到由栈底开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -719,7 +798,7 @@ popToIndex(index: number, animated?: boolean): void
 
 回退路由栈到index指定的NavDestination页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -734,7 +813,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 
 回退路由栈到index指定的NavDestination页面，并触发onPop回调传入页面处理结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -750,7 +829,7 @@ moveToTop(name: string, animated?: boolean): number
 
 将由栈底开始第一个名为name的NavDestination页面移到栈顶。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -771,7 +850,7 @@ moveIndexToTop(index: number, animated?: boolean): void
 
 将index指定的NavDestination页面移到栈顶。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -786,7 +865,7 @@ clear(animated?: boolean): void
 
 清除栈中所有页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -800,7 +879,7 @@ getAllPathName(): Array<string\>
 
 获取栈中所有NavDestination页面的名称。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -814,7 +893,7 @@ getParamByIndex(index: number): unknown | undefined
 
 获取index指定的NavDestination页面的参数信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -835,7 +914,7 @@ getParamByName(name: string): Array<unknown\>
 
 获取全部名为name的NavDestination页面的参数信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -855,7 +934,7 @@ getIndexByName(name: string): Array<number\>
 
 获取全部名为name的NavDestination页面的位置索引。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -875,7 +954,7 @@ size(): number
 
 获取栈大小。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -889,7 +968,7 @@ disableAnimation(value: boolean): void
 
 关闭（true）或打开（false）当前Navigation中所有转场动画。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -903,7 +982,7 @@ getParent(): NavPathStack | null
 
 获取父NavPathStack。<br/>当出现Navigation嵌套Navigation的情况时（可以是直接嵌套，也可以是间接嵌套），内部Navigation的NavPathStack能够获取到外层Navigation的NavPathStack。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -917,7 +996,7 @@ setInterception(interception: NavigationInterception): void
 
 设置Navigation页面跳转拦截回调。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -931,9 +1010,9 @@ setInterception(interception: NavigationInterception): void
 
 ### constructor
 
-constructor(name: string, param: unknown)
+constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -941,13 +1020,13 @@ constructor(name: string, param: unknown)
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 否    | NavDestination页面详细参数。 |
-| onPop<sup>11+</sup> | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。 |
+| onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。 |
 
 ## PopInfo<sup>11+</sup>
 
 下一个页面返回的回调信息载体。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -960,7 +1039,7 @@ constructor(name: string, param: unknown)
 
 跳转Destination信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -974,20 +1053,20 @@ constructor(name: string, param: unknown)
 
 自定义转场动画协议，开发者需实现该协议来定义Navigation路由跳转的跳转动画。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 名称 | 类型 | 必填 | 描述 |
 |------|-----|-----|------|
 | timeout | number | 否 | 动画超时结束时间。<br> 单位：ms。<br> 默认值：1000ms。|
-| transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)): void | 是 | 自定义转场动画执行回调。<br> transitionProxy: 自定义转场动画代理对象。|
+| transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)) =&gt; void | 是 | 自定义转场动画执行回调。<br> transitionProxy: 自定义转场动画代理对象。|
 | onTransitionEnd | (success: boolean):void | 否 | 转场完成回调。<br> success: 转场是否成功。 |
 
 ## NavigationTransitionProxy <sup>11+</sup>
 
 自定义转场动画代理对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1000,41 +1079,62 @@ constructor(name: string, param: unknown)
 
 结束本次自定义转场动画，开发者需要主动触发该方法来结束本次转场，否则系统会在timeout的时间后结束本次转场。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## NavigationInterception<sup>12+</sup>
 
 Navigation跳转拦截对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称    | 类型     | 必填 | 描述    |
 | ---- | ----- | ----- | ----   |
-| willShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转前拦截，允许操作栈，在当前跳转中生效。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为navBar，则标题跳转的目标页面为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 |
-| didShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转后回调。在该回调中操作栈在下一次跳转中刷新。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为NavBar，则表示跳转目标页为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 | 否 | 发生页面跳转后回调。|
-| modeChange | (mode: [NavigationMode](#navigationmode9枚举说明)) =&gt;void | 否 | Navigation单双栏显示状态发生变更时触发该回调。|
+| willShow | [InterceptionShowCallback](#interceptionshowcallback12) | 否 | 页面跳转前拦截，允许操作栈，在当前跳转中生效。|
+| didShow | [InterceptionShowCallback](#interceptionshowcallback12) | 否 | 页面跳转后回调。在该回调中操作栈在下一次跳转中刷新。|
+| modeChange | [InterceptionModeCallback](#interceptionmodecallback12) | 否 | Navigation单双栏显示状态发生变更时触发该回调。|
+
+### InterceptionShowCallback<sup>12+</sup>
+
+type InterceptionShowCallback = (from: NavDestinationContext|NavBar, to: NavDestinationContext|NavBar, operation: NavigationOperation, isAnimated: boolean) => void
+
+navigation页面跳转前和页面跳转后的拦截回调。
+
+| 参数名  | 类型    | 必填 | 说明              |
+| ------ | ------ | ---- | ---------------- |
+| from | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|[NavBar](#navbar12) | 是 |  页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。 |
+| to | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|[NavBar](#navbar12) | 是 | 页面跳转之后的栈顶页面信息。参数值为navBar，则表示跳转的目标页面为Navigation首页。 |
+| operation | [NavigationOperation](#navigationoperation11枚举说明) | 是 | 当前页面跳转类型。 |
+| isAnimated | boolean | 是 | 页面跳转是否有动画。 |
+
+### InterceptionModeCallback<sup>12+</sup>
+
+type InterceptionModeCallback = (mode: NavigationMode) => void
+
+navigation单双栏显示状态发生变更时的拦截回调。
+
+| 参数名  | 类型    | 必填 | 说明              |
+| ------ | ------ | ---- | ---------------- |
+| mode | [NavigationMode](#navigationmode9枚举说明) | 是 |  导航栏的显示模式。 |
+
+### NavBar<sup>12+</sup>
+
+| 名称       | 描述                                       |
+| -------- | ---------------------------------------- |
+| "navBar"   | Navigation首页。 |
 
 ## NavigationMenuItem类型说明
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
-| value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 否    |菜单栏单个选项的symbol资源（优先级高于icon）。 |
-
-## object类型说明
-
-| 名称     | 类型            | 必填   | 描述              |
-| ------ | ------------- | ---- | --------------- |
-| value  | string        | 是    | 工具栏单个选项的显示文本。   |
-| icon   | string        | 否    | 工具栏单个选项的图标资源路径。 |
-| action | () =&gt; void | 否    | 当前选项被选中的事件回调。   |
 
 ## ToolbarItem<sup>10+</sup>类型说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称         | 类型                                       | 必填   | 描述                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -1048,7 +1148,7 @@ Navigation跳转拦截对象。
 
 ## ToolbarItemStatus<sup>10+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称       | 描述                                       |
 | -------- | ---------------------------------------- |
@@ -1058,7 +1158,7 @@ Navigation跳转拦截对象。
 
 ## NavigationTitleMode枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
@@ -1068,7 +1168,7 @@ Navigation跳转拦截对象。
 
 ## NavigationCommonTitle<sup>9+</sup>类型说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称   | 类型     | 必填   | 描述     |
 | ---- | ------ | ---- | ------ |
@@ -1077,7 +1177,7 @@ Navigation跳转拦截对象。
 
 ## NavigationCustomTitle<sup>9+</sup>类型说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称      | 类型                                       | 必填   | 描述       |
 | ------- | ---------------------------------------- | ---- | -------- |
@@ -1086,7 +1186,7 @@ Navigation跳转拦截对象。
 
 ## NavBarPosition<sup>9+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称    | 描述               |
 | ----- | ---------------- |
@@ -1095,7 +1195,7 @@ Navigation跳转拦截对象。
 
 ## NavigationMode<sup>9+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称  | 描述                                                         |
 | ----- | ------------------------------------------------------------ |
@@ -1105,7 +1205,7 @@ Navigation跳转拦截对象。
 
 ## TitleHeight<sup>9+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称          | 描述                         |
 | ----------- | -------------------------- |
@@ -1114,7 +1214,7 @@ Navigation跳转拦截对象。
 
 ## NavigationOperation<sup>11+</sup>枚举说明
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称    | 描述  |
 |---------|------|
@@ -1124,7 +1224,7 @@ Navigation跳转拦截对象。
 
 ## BarStyle<sup>12+</sup>枚举说明
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称    | 描述  |
 |---------|------|
@@ -1133,22 +1233,37 @@ Navigation跳转拦截对象。
 
 ## NavigationTitleOptions<sup>11+</sup>类型说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。 |
 | backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。 |
-| barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 标题栏布局方式设置。<br/>默认值：BarStyle.STANDARD<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 标题栏布局方式设置。<br/>默认值：BarStyle.STANDARD<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## NavigationToolbarOptions<sup>11+</sup>类型说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 工具栏背景颜色，不设置时为系统默认颜色。 |
 | backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 |
+
+## LaunchMode<sup>12+</sup>枚举说明
+
+| 名称    | 描述  |
+| --------- | ------ |
+| STANDARD | 系统默认的栈操作模式。<br/>push操作会将指定的NavDestination入栈；replace操作会将当前栈顶NavDestination替换。 |
+| MOVE_TO_TOP_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将对应的NavDestination页面移到栈顶（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
+| POP_TO_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。|
+
+## NavigationOptions<sup>12+</sup>类型说明
+
+| 名称     | 类型            | 必填   | 描述              |
+| ------ | ------------- | ---- | --------------- |
+| launchMode | [LaunchMode](#launchmode12枚举说明)  | 否    | 页面栈的操作模式。<br/>默认值：LaunchMode.STANDARD |
+| animated   | boolean  | 否    | 是否支持转场动画。<br/>默认值：true。 |
 
 ## 示例
 
@@ -2656,3 +2771,117 @@ struct PageOne {
 }
 ```
 ![derive_stack.gif](figures/derive_stack.gif)
+
+### 示例11
+```ts
+// 该示例主要演示Navigation和NavDestination如何使用Symbol组件
+import { SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct NavigationExample {
+  @Provide('navPathStack') navPathStack:NavPathStack = new NavPathStack();
+  @State menuItems:Array<NavigationMenuItem> = [
+    {
+      value:'menuItem1',
+      icon:'resources/base/media/ic_public_ok.svg' // 图标资源路径
+    },
+    {
+      value:'menuItem2',
+      icon:'resources/base/media/ic_public_ok.svg', // 图标资源路径
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+    },
+    {
+      value:'menuItem3',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+    },
+  ]
+
+  @State toolItems:Array<ToolbarItem>= [
+    {
+      value:'toolItem1',
+      icon:'resources/base/media/ic_public_ok.svg', // 图标资源路径
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+      status:ToolbarItemStatus.ACTIVE,
+      activeSymbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+      action:()=>{}
+    },
+    {
+      value:'toolItem2',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
+      status:ToolbarItemStatus.ACTIVE,
+      activeIcon: 'resources/base/media/ic_public_more.svg', // 图标资源路径
+      action:()=>{}
+    },
+    {
+      value:'toolItem3',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
+      status:ToolbarItemStatus.ACTIVE,
+      activeSymbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+      action:()=>{}
+    }
+  ]
+
+  @Builder
+  myRouter(name:string,param?:Object) {
+    if(name === 'NavigationMenu') {
+      NavigationMenu();
+    }
+  }
+
+  build() {
+    Navigation(this.navPathStack) {
+      Column() {
+        Button('跳转').onClick(()=> {
+          this.navPathStack.pushPathByName('NavigationMenu', null);
+        })
+      }
+    }
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))
+    .titleMode(NavigationTitleMode.Mini)
+    .menus(this.menuItems)
+    .toolbarConfiguration(this.toolItems)
+    .title('一级页面')
+    .navDestination(this.myRouter)
+  }
+}
+
+@Component
+export struct NavigationMenu{
+  @Consume('navPathStack') navPathStack:NavPathStack;
+  @State menuItems:Array<NavigationMenuItem> = [
+    {
+      value:'menuItem1',
+      icon:'resources/base/media/ic_public_ok.svg', // 图标资源路径
+      action:()=>{}
+    },
+    {
+      value:'menuItem2',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+      action:()=>{}
+    },
+    {
+      value:'menuItem3',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.repeat_1')),
+      action:()=>{}
+    },
+  ]
+
+  build() {
+    NavDestination(){
+      Row() {
+        Column(){
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+    .hideTitleBar(false)
+    .title('NavDestination title')
+    .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Blue]))
+    .menus(this.menuItems)
+  }
+}
+```
+![navigation_symbol.gif](figures/navigation_symbol.gif)

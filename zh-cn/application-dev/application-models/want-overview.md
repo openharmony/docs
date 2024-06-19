@@ -22,7 +22,7 @@
     > 从API 12开始，不再支持使用显式Want进行应用间跳转，需要通过openLink接口拉起其他应用。
   
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
   let wantInfo: Want = {
     deviceId: '', // deviceId为空表示本设备
@@ -37,7 +37,7 @@
   
   
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
   let wantInfo: Want = {
     // uncomment line below if wish to implicitly query only in the specific bundle.

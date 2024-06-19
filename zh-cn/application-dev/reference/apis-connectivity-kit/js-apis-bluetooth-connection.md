@@ -11,7 +11,7 @@ connection模块提供了对蓝牙操作和管理的方法。
 ## 导入模块
 
 ```js
-import connection from '@ohos.bluetooth.connection';
+import { connection } from '@kit.ConnectivityKit';
 ```
 
 
@@ -19,9 +19,11 @@ import connection from '@ohos.bluetooth.connection';
 
 pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-发起蓝牙配对。
+发起蓝牙配对。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -39,7 +41,7 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -48,7 +50,7 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     // 实际的地址可由扫描流程获取
     connection.pairDevice('XX:XX:XX:XX:XX:XX');
@@ -62,9 +64,11 @@ try {
 
 pairDevice(deviceId: string): Promise&lt;void&gt;
 
-发起蓝牙配对。
+发起蓝牙配对。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -87,7 +91,7 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -96,7 +100,7 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     // 实际的地址可由扫描流程获取
     connection.pairDevice('XX:XX:XX:XX:XX:XX');
@@ -113,6 +117,8 @@ getRemoteDeviceName(deviceId: string): string
 获取对端蓝牙设备的名称。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -135,7 +141,7 @@ getRemoteDeviceName(deviceId: string): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -144,7 +150,7 @@ getRemoteDeviceName(deviceId: string): string
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let remoteDeviceName: string = connection.getRemoteDeviceName('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -182,7 +188,7 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -191,7 +197,7 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let remoteDeviceClass: connection.DeviceClass = connection.getRemoteDeviceClass('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -230,7 +236,7 @@ getLocalName(): string
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let localName: string = connection.getLocalName();
 } catch (err) {
@@ -246,6 +252,8 @@ getPairedDevices(): Array&lt;string&gt;
 获取蓝牙配对列表。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -270,7 +278,7 @@ getPairedDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let devices: Array<string> = connection.getPairedDevices();
 } catch (err) {
@@ -286,6 +294,8 @@ getPairState(deviceId: string): BondState
 获取蓝牙配对状态。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -308,7 +318,7 @@ getPairState(deviceId: string): BondState
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -317,10 +327,10 @@ getPairState(deviceId: string): BondState
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let res: connection.BondState = connection.getPairState("XX:XX:XX:XX:XX:XX");
-    console.log('getPairState: ' + res);
+    console.info('getPairState: ' + res);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -356,7 +366,7 @@ getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.             |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -366,8 +376,8 @@ getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import constant from '@ohos.bluetooth.constant';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { constant } from '@kit.ConnectivityKit';
 try {
     let result: connection.ProfileConnectionState = connection.getProfileConnectionState(constant.ProfileId.PROFILE_A2DP_SOURCE);
 } catch (err) {
@@ -400,7 +410,7 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -409,7 +419,7 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认
 function onReceivePinRequiredEvent(data: connection.PinRequiredParam) { // data为配对请求的入参，配对请求参数
     console.info('pin required  = '+ JSON.stringify(data));
@@ -427,7 +437,7 @@ try {
 
 setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void&gt;): void
 
-当蓝牙配对类型PinType为PIN_TYPE_ENTER_PIN_CODE或PIN_TYPE_PIN_16_DIGITS时调用此接口，请求用户输入PIN码。
+当蓝牙配对类型PinType为PIN_TYPE_ENTER_PIN_CODE或PIN_TYPE_PIN_16_DIGITS时调用此接口，请求用户输入PIN码。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -448,7 +458,7 @@ setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -457,7 +467,7 @@ setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 //callback
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError) => {
@@ -473,7 +483,7 @@ try {
 
 setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 
-当蓝牙配对类型PinType为PIN_TYPE_ENTER_PIN_CODE或PIN_TYPE_PIN_16_DIGITS时调用此接口，请求用户输入PIN码。
+当蓝牙配对类型PinType为PIN_TYPE_ENTER_PIN_CODE或PIN_TYPE_PIN_16_DIGITS时调用此接口，请求用户输入PIN码。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -499,7 +509,7 @@ setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -508,7 +518,7 @@ setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 //promise
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345').then(() => {
@@ -546,7 +556,7 @@ setLocalName(name: string): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -555,7 +565,7 @@ setLocalName(name: string): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.setLocalName('device_name');
 } catch (err) {
@@ -588,7 +598,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -597,7 +607,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     // 设置为可连接可发现才可被远端设备扫描到，可以连接。
     connection.setBluetoothScanMode(connection.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
@@ -638,7 +648,7 @@ getBluetoothScanMode(): ScanMode
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let scanMode: connection.ScanMode = connection.getBluetoothScanMode();
 } catch (err) {
@@ -654,6 +664,8 @@ startBluetoothDiscovery(): void
 开启蓝牙扫描，可以发现远端设备。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -672,9 +684,9 @@ startBluetoothDiscovery(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<string>) {
-    console.log('data length' + data.length);
+    console.info('data length' + data.length);
 }
 try {
     connection.on('bluetoothDeviceFind', onReceiveEvent);
@@ -693,6 +705,8 @@ stopBluetoothDiscovery(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **错误码**：
@@ -710,7 +724,7 @@ stopBluetoothDiscovery(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.stopBluetoothDiscovery();
 } catch (err) {
@@ -750,10 +764,10 @@ isBluetoothDiscovering(): boolean
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let res: boolean = connection.isBluetoothDiscovering();
-    console.log('isBluetoothDiscovering: ' + res);
+    console.info('isBluetoothDiscovering: ' + res);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -763,7 +777,7 @@ try {
 
 setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 
-设置蓝牙远端设备名称。
+设置蓝牙远端设备名称。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -789,14 +803,14 @@ setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.            |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.            |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 //promise
 try {
     connection.setRemoteDeviceName('11:22:33:44:55:66', 'RemoteDeviceName').then(() => {
@@ -815,7 +829,7 @@ try {
 
 getRemoteDeviceBatteryInfo(deviceId: string): Promise&lt;BatteryInfo&gt;
 
-获取蓝牙远端设备的电量信息。
+获取蓝牙远端设备的电量信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -839,13 +853,15 @@ getRemoteDeviceBatteryInfo(deviceId: string): Promise&lt;BatteryInfo&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.            |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // promise
 try {
     connection.getRemoteDeviceBatteryInfo('11:22:33:AA:BB:FF').then((data: connection.BatteryInfo) => {
@@ -861,7 +877,7 @@ try {
 
 on(type: 'batteryChange', callback: Callback&lt;BatteryInfo&gt;): void
 
-订阅蓝牙远程设备的电量信息变更事件。
+订阅蓝牙远程设备的电量信息变更事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -881,14 +897,12 @@ on(type: 'batteryChange', callback: Callback&lt;BatteryInfo&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
-|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let onReceiveEvent: (data: connection.BatteryInfo) => void = (data: connection.BatteryInfo) => {
     console.info('BatteryInfo = '+ JSON.stringify(data));
 }
@@ -924,13 +938,12 @@ off(type: 'batteryChange', callback?: Callback&lt;BatteryInfo&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let onReceiveEvent: (data: connection.BatteryInfo) => void = (data: connection.BatteryInfo) => {
     console.info('BatteryInfo = '+ JSON.stringify(data));
 }
@@ -947,9 +960,11 @@ try {
 
 on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): void
 
-订阅蓝牙设备发现上报事件。
+订阅蓝牙设备发现上报事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -967,14 +982,14 @@ on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<string>) { // data为蓝牙设备地址集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -994,6 +1009,8 @@ off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;)
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -1010,14 +1027,13 @@ off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;)
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<string>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -1034,7 +1050,7 @@ try {
 
 on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 
-订阅蓝牙配对状态改变事件。
+订阅蓝牙配对状态改变事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1053,12 +1069,15 @@ on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: connection.BondStateParam) { // data为回调函数入参，表示配对的状态
     console.info('pair state = '+ JSON.stringify(data));
 }
@@ -1094,14 +1113,14 @@ off(type: 'bondStateChange', callback?: Callback&lt;BondStateParam&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: connection.BondStateParam) {
     console.info('bond state = '+ JSON.stringify(data));
 }
@@ -1118,7 +1137,7 @@ try {
 
 on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 
-订阅远端蓝牙设备的配对请求事件。
+订阅远端蓝牙设备的配对请求事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1138,14 +1157,14 @@ on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: connection.PinRequiredParam) { // data为配对请求参数
     console.info('pin required = '+ JSON.stringify(data));
 }
@@ -1181,14 +1200,14 @@ off(type: 'pinRequired', callback?: Callback&lt;PinRequiredParam&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: connection.PinRequiredParam) {
     console.info('pin required = '+ JSON.stringify(data));
 }
@@ -1288,6 +1307,8 @@ try {
 ## BondState
 
 枚举，配对状态。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 

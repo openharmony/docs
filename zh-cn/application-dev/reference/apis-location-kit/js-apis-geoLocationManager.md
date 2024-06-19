@@ -9,7 +9,7 @@
 
 ## 申请权限
 
-请参考[申请位置权限开发指导](../../device/location/location-guidelines.md#申请位置权限开发指导)。
+请参考[申请位置权限开发指导](../../device/location/location-permission-guidelines.md#开发步骤)。
 
 
 ## 导入模块
@@ -46,7 +46,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | country<sup>12+</sup> | string | 是 | 是 | 限制查询结果在指定的国家内，采用ISO 3166-1 alpha-2 。“CN”代表中国。默认值从设置中的“语言和地区”获取。 |
 | description | string | 是 | 是 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
 | maxItems | number | 是 | 是 | 表示返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。默认值是1。 |
-| minLatitude | number | 是 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。取值范围为-90到90。仅支持WGS84坐标系。 |
+| minLatitude | number | 是 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。取值范围为-90到90。仅支持WGS84坐标系。如果该参数有值时，下面三个参数必填。 |
 | minLongitude | number | 是 | 是 | 表示最小经度信息。取值范围为-180到180。仅支持WGS84坐标系。 |
 | maxLatitude | number | 是 | 是 | 表示最大纬度信息。取值范围为-90到90。仅支持WGS84坐标系。 |
 | maxLongitude | number | 是 | 是 | 表示最大经度信息。取值范围为-180到180。仅支持WGS84坐标系。 |
@@ -84,7 +84,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 位置信息请求参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -101,7 +101,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 当前位置信息请求参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -117,7 +117,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 持续定位的请求参数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -131,7 +131,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 单次定位的请求参数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -214,7 +214,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 位置信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -280,15 +280,15 @@ GNSS地理围栏请求参数。
 
 位置请求中位置信息优先级类型。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | UNSET | 0x200 | 表示未设置优先级，表示[LocationRequestPriority](#locationrequestpriority)无效。 |
-| ACCURACY | 0x201 | 表示精度优先。<br/>定位精度优先策略主要以GNSS定位技术为主，在2分钟内无法获取GNSS定位结果时使用网络定位技术。对设备的硬件资源消耗较大，功耗较大。 |
-| LOW_POWER | 0x202 | 表示低功耗优先。<br/>低功耗定位优先策略主要使用网络定位技术，在室内和户外场景均可提供定位服务，因为其依赖周边基站、可见WLAN、蓝牙设备的分布情况，定位结果的精度波动范围较大，推荐在对定位结果精度要求不高的场景下使用该策略，可以有效节省设备功耗。 |
+| ACCURACY | 0x201 | 表示精度优先。<br/>定位精度优先策略主要以GNSS定位技术为主。我们会在GNSS提供稳定位置结果之前使用网络定位技术提供服务。在持续定位过程中，如果超过30秒无法获取GNSS定位结果则使用网络定位技术。对设备的硬件资源消耗较大，功耗较大。 |
+| LOW_POWER | 0x202 | 表示低功耗优先。<br/>低功耗定位优先策略仅使用网络定位技术，在室内和户外场景均可提供定位服务，因为其依赖周边基站、可见WLAN、蓝牙设备的分布情况，定位结果的精度波动范围较大，推荐在对定位结果精度要求不高的场景下使用该策略，可以有效节省设备功耗。 |
 | FIRST_FIX | 0x203 | 表示快速获取位置优先，如果应用希望快速拿到一个位置，可以将优先级设置为该字段。<br/>快速定位优先策略会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以快速获取到位置结果；当各种定位技术都有提供位置结果时，系统会选择其中精度较好的结果返回给应用。因为对各种定位技术同时使用，对设备的硬件资源消耗较大，功耗也较大。 |
 
 
@@ -296,16 +296,20 @@ GNSS地理围栏请求参数。
 
 位置请求中定位场景类型。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
+
+> **说明：**
+>
+> 当使用NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING场景进行单次定位或持续定位时，我们会在GNSS提供稳定位置结果之前使用网络定位技术提供服务；在持续定位时，如果超过30秒无法获取GNSS定位结果则会使用网络定位技术获取位置。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | UNSET | 0x300 | 表示未设置场景信息。<br/>表示[LocationRequestScenario](#locationrequestscenario)字段无效。 |
-| NAVIGATION | 0x301 | 表示导航场景。<br/>适用于在户外获取设备实时位置的场景，如车载、步行导航。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。在2分钟内无法获取GNSS定位结果时使用网络定位技术。 |
-| TRAJECTORY_TRACKING | 0x302 | 表示运动轨迹记录场景。<br/>适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。在2分钟内无法获取GNSS定位结果时使用网络定位技术。 |
-| CAR_HAILING | 0x303 | 表示打车场景。<br/>适用于用户出行打车时定位当前位置的场景，如网约车类应用。<br/>主要使用GNSS定位技术提供定位服务，功耗较高，在2分钟内无法获取GNSS定位结果时使用网络定位技术。<br/>当使用NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING场景时，我们会在GNSS提供稳定位置结果之前使用网络定位技术提供服务。 |
+| NAVIGATION | 0x301 | 表示导航场景。<br/>适用于在户外获取设备实时位置的场景，如车载、步行导航。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。 |
+| TRAJECTORY_TRACKING | 0x302 | 表示运动轨迹记录场景。<br/>适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。 |
+| CAR_HAILING | 0x303 | 表示打车场景。<br/>适用于用户出行打车时定位当前位置的场景，如网约车类应用。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。 |
 | DAILY_LIFE_SERVICE | 0x304 | 表示日常服务使用场景。<br/>适用于不需要定位用户精确位置的使用场景，如新闻资讯、网购、点餐类应用。<br/>该场景仅使用网络定位技术提供定位服务，功耗较低。 |
 | NO_POWER | 0x305 | 表示无功耗功场景，这种场景下不会主动触发定位，会在其他应用定位时，才给当前应用返回位置。 |
 
@@ -386,13 +390,13 @@ GNSS地理围栏请求参数。
 
 位置请求中的功耗场景类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| HIGH_POWER_CONSUMPTION  | 0x601 | 高功耗。<br/>以GNSS定位技术为主，在2分钟内无法获取GNSS定位结果时使用网络定位技术。对设备的硬件资源消耗较大，功耗较大。 |
+| HIGH_POWER_CONSUMPTION  | 0x601 | 高功耗。<br/>以GNSS定位技术为主。我们会在GNSS提供稳定位置结果之前使用网络定位技术提供服务；在持续定位时，如果超过30秒无法获取GNSS定位结果则会使用网络定位技术获取位置。对设备的硬件资源消耗较大，功耗较大。 |
 | LOW_POWER_CONSUMPTION  | 0x602 | 低功耗。<br/>适用于对用户位置精度要求不高的使用场景，如新闻资讯、网购、点餐类应用。<br/>该场景仅使用网络定位技术提供定位服务，功耗较低。 |
 | NO_POWER_CONSUMPTION   | 0x603 | 无功耗。<br/>这种场景下不会主动触发定位，会在其他应用定位时，才给当前应用返回位置。  |
 
@@ -401,15 +405,19 @@ GNSS地理围栏请求参数。
 
 位置请求中的用户活动场景类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
+> **说明：**
+>
+> 当使用NAVIGATION/SPORT/TRANSPORT场景进行单次定位或持续定位时，我们会在GNSS提供稳定位置结果之前使用网络定位技术提供服务；在持续定位时，如果超过30秒无法获取GNSS定位结果则会使用网络定位技术获取位置。
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| NAVIGATION  | 0x401 | 表示导航场景。<br/>适用于在户外获取设备实时位置的场景，如车载、步行导航。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。在2分钟内无法获取GNSS定位结果时使用网络定位技术。 |
-| SPORT  | 0x402 | 表示运动场景。<br/>适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。在2分钟内无法获取GNSS定位结果时使用网络定位技术。 |
-| TRANSPORT   | 0x403 | 表示出行场景。<br/>适用于用户出行场景。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。在2分钟内无法获取GNSS定位结果时使用网络定位技术。<br/>当使用NAVIGATION/SPORT/TRANSPORT场景时，我们会在GNSS提供稳定位置结果之前使用网络定位技术提供服务。  |
+| NAVIGATION  | 0x401 | 表示导航场景。<br/>适用于在户外获取设备实时位置的场景，如车载、步行导航。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。 |
+| SPORT  | 0x402 | 表示运动场景。<br/>适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。 |
+| TRANSPORT   | 0x403 | 表示出行场景。<br/>适用于用户出行场景，如打车、乘坐公共交通等场景。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。  |
 | DAILY_LIFE_SERVICE   | 0x404 | 表示日常服务使用场景。<br/>适用于不需要定位用户精确位置的使用场景，如新闻资讯、网购、点餐类应用。<br/>该场景仅使用网络定位技术提供定位服务，功耗较低。  |
 
 
@@ -417,21 +425,21 @@ GNSS地理围栏请求参数。
 
 单次位置请求中的优先级类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| PRIORITY_ACCURACY  | 0x501 | 表示精度优先。<br/>定位精度优先策略主要以GNSS定位技术为主，在2分钟内无法获取GNSS定位结果时使用网络定位技术。对设备的硬件资源消耗较大，功耗较大。  |
-| PRIORITY_LOCATING_SPEED  | 0x502 | 表示快速获取位置优先，如果应用希望快速拿到一个位置，可以将优先级设置为该类型。<br/>快速定位优先策略会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以快速获取到位置结果；当各种定位技术都有提供位置结果时，系统会选择其中精度较好的结果返回给应用。因为对各种定位技术同时使用，对设备的硬件资源消耗较大，功耗也较大。 |
+| PRIORITY_ACCURACY  | 0x501 | 表示精度优先。<br/>定位精度优先策略会同时使用GNSS定位和网络定位技术，并把一段时间内精度较好的结果返回给应用；这个时间段长度为“SingleLocationRequest](#singlelocationrequest12).locatingTimeoutMs”与“30秒”中的较小者。<br/>对设备的硬件资源消耗较大，功耗较大。  |
+| PRIORITY_LOCATING_SPEED  | 0x502 | 表示快速获取位置优先，如果应用希望快速拿到一个位置，可以将优先级设置为该类型。<br/>快速定位优先策略会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以快速获取到位置结果，我们会把最先拿到的定位结果返回给应用。对设备的硬件资源消耗较大，功耗也较大。 |
 
 
 ## LocationError<sup>12+</sup>
 
 持续定位过程中的错误信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -439,7 +447,7 @@ GNSS地理围栏请求参数。
 | -------- | -------- | -------- |
 | LOCATING_FAILED_DEFAULT   | -1 |  默认值。 |
 | LOCATING_FAILED_LOCATION_PERMISSION_DENIED   | -2 | 表示ohos.permission.APPROXIMATELY_LOCATION权限或ohos.permission.LOCATION权限校验失败导致持续定位失败。 |
-| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | 表示应用在后台时位置权限校验失败导致持续定位失败。APP在后台定位时的位置权限申请方式参见[申请位置权限开发指导](../../device/location/location-guidelines.md#申请位置权限开发指导)。 |
+| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | 表示应用在后台时位置权限校验失败导致持续定位失败。APP在后台定位时的位置权限申请方式参见[申请位置权限开发指导](../../device/location/location-permission-guidelines.md#开发步骤)。 |
 | LOCATING_FAILED_LOCATION_SWITCH_OFF    | -4 | 表示位置信息开关关闭导致持续定位失败。 |
 | LOCATING_FAILED_INTERNET_ACCESS_FAILURE    | -5 | 表示无法访问网络，导致网络定位失败。 |
 
@@ -448,7 +456,7 @@ GNSS地理围栏请求参数。
 
 定位结果的来源。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -466,7 +474,7 @@ on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest,
 
 开启位置变化订阅，并发起定位请求。使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -528,7 +536,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 关闭位置变化订阅，并删除对应的定位请求。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -578,7 +586,7 @@ on(type: 'locationError', callback: Callback&lt;LocationError&gt;): void;
 
 订阅持续定位过程中的错误码。使用callback异步回调。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -635,7 +643,7 @@ off(type: 'locationError', callback?: Callback&lt;LocationError&gt;): void
 
 取消订阅持续定位过程中的错误码。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1262,7 +1270,7 @@ getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, call
 
 获取当前位置，使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1334,7 +1342,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
 获取当前位置，使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1386,7 +1394,7 @@ getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Pr
 
 获取当前位置，使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1457,7 +1465,7 @@ getLastLocation(): Location
 
 获取上一次位置。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1499,7 +1507,7 @@ isLocationEnabled(): boolean
 
 判断位置服务是否已经使能。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 

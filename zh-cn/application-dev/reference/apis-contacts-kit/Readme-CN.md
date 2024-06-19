@@ -1,5 +1,4 @@
-# Contacts Kit API参考 
+# Contacts Kit（联系人服务）
 
-- ArkTS API 
+- ArkTS API
   - [@ohos.contact (联系人)](js-apis-contact.md)
-

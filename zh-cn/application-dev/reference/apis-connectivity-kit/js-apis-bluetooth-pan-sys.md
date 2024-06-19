@@ -11,7 +11,7 @@ pan模块提供了访问蓝牙个人区域网相关功能的方法。
 ## 导入模块
 
 ```js
-import pan from '@ohos.bluetooth.pan';
+import { pan } from '@kit.ConnectivityKit';
 ```
 
 ## PanProfile
@@ -44,7 +44,7 @@ disconnect(deviceId: string): void
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -54,7 +54,7 @@ disconnect(deviceId: string): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let panProfile: pan.PanProfile = pan.createPanProfile();
     panProfile.disconnect('XX:XX:XX:XX:XX:XX');
@@ -90,7 +90,7 @@ setTethering(enable: boolean): void
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -100,7 +100,7 @@ setTethering(enable: boolean): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let panProfile: pan.PanProfile = pan.createPanProfile();
     panProfile.setTethering(false);
@@ -142,7 +142,7 @@ isTetheringOn(): boolean
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let panProfile: pan.PanProfile = pan.createPanProfile();
     panProfile.isTetheringOn();

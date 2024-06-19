@@ -10,6 +10,8 @@ Currently, the following decoding capabilities are supported:
 
 Video software decoding and hardware decoding are different. When a decoder is created based on the MIME type, only H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) is supported for software decoding, and H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) and H.265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC) are supported for hardware decoding.
 
+<!--RP1--><!--RP1End-->
+
 ## Surface Output and Buffer Output
 
 Surface output and buffer output differ in data output modes.
@@ -23,6 +25,7 @@ The two also differ slightly in the API calling modes:
 - In surface mode, an application can choose to call **OH_VideoDecoder_FreeOutputBuffer()** to free the output buffer (without rendering the data). In buffer mode, an application must call **OH_VideoDecoder_FreeOutputBuffer()** to free the output buffer.
 - In surface mode, an application must call **OH_VideoDecoder_SetSurface()** to set an OHNativeWindow before the decoder is ready and call **OH_VideoDecoder_RenderOutputBuffer()** to render the decoded data after the decoder is started.
 - In buffer mode, an application can obtain the shared memory address and data from the output buffer. In surface mode, an application can obtain the data from the output buffer.
+- The buffer mode does not support 10-bit YUV image data.
 
 For details about the development procedure, see [Surface Output](#surface-output) and [Buffer Output](#buffer-output).
 
@@ -144,6 +147,8 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
     For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
 
+    For details about the parameter verification rules, see [OH_VideoDecoder_Configure()](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_configure).
+    
     Currently, the following options must be configured for all supported formats: video frame width and height. In the code snippet below, the following variables are used:
 
     - **DEFAULT_WIDTH**: 320 pixels
@@ -608,23 +613,20 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     }
     ```
 
-    When processing the buffer data (before freeing the buffer) during hardware decoding, the system must obtain the width, height, stride, and pixel format of the data to ensure correct processing of the decoded data. For details, see [OH_NativeBuffer](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md) of the graphics module.
-
+    When processing buffer data (before releasing data) during hardware decoding, the output callback AVBuffer receives the image data after width and height alignment. Generally, copy the image width, height, stride, and pixel format to ensure correct processing of the decoded data.
     ```c++
-    // OH_NativeBuffer * You can obtain information such as the width, height, and stride of the data by calling the APIs of the graphics module.
-    OH_NativeBuffer *ohNativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
-    if (ohNativeBuffer != nullptr) {
-        // Obtain the OH_NativeBuffer_Config struct, including the OH_NativeBuffer data information.
-        OH_NativeBuffer_Config config;
-        OH_NativeBuffer_GetConfig(ohNativeBuffer, &config);
+        OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(videoDec);
+        int widthStride = 0;
+        int heightStride = 0;
 
-        // Free the OH_NativeBuffer.
-        ret = OH_NativeBuffer_Unreference(ohNativeBuffer);
+        int ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
         if (ret != AV_ERR_OK) {
             // Exception handling.
         }
-        ohNativeBuffer = nullptr;
-    }
+        ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+        if (ret != AV_ERR_OK) {
+            // Exception handling.
+        }
+        OH_AVFormat_Destory(format);
     ```
-
 The subsequent processes (including refreshing, resetting, stopping, and destroying the decoder) are basically the same as those in surface mode. For details, see steps 11-14 in [Surface Output](#surface-output).

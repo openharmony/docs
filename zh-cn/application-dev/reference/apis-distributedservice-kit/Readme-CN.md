@@ -1,4 +1,4 @@
-# Distributed Service Kit API参考
+# Distributed Service Kit（分布式管理服务）
 
 - ArkTS API 
   - [@ohos.distributedDeviceManager (设备管理)](js-apis-distributedDeviceManager.md)

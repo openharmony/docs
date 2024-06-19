@@ -11,7 +11,7 @@ map模块提供了访问信息相关功能的方法。
 ## 导入模块
 
 ```js
-import map from '@ohos.bluetooth.map';
+import { map } from '@kit.ConnectivityKit';
 ```
 
 
@@ -39,7 +39,10 @@ disconnect(deviceId: string): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900004 | Profile is not supported.                |
@@ -48,7 +51,7 @@ disconnect(deviceId: string): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let mapMseProfile = map.createMapMseProfile();
     mapMseProfile.disconnect('XX:XX:XX:XX:XX:XX');
@@ -61,7 +64,7 @@ try {
 
 setMessageAccessAuthorization(deviceId: string, authorization: AccessAuthorization): Promise&lt;void&gt;
 
-设置信息的访问权限。
+设置信息的访问权限。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -90,7 +93,7 @@ setMessageAccessAuthorization(deviceId: string, authorization: AccessAuthorizati
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -100,7 +103,7 @@ setMessageAccessAuthorization(deviceId: string, authorization: AccessAuthorizati
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let mapMseProfile = map.createMapMseProfile();
     mapMseProfile.setMessageAccessAuthorization('XX:XX:XX:XX:XX:XX', 0).then(() => {
@@ -115,7 +118,7 @@ try {
 
 getMessageAccessAuthorization(deviceId: string): Promise&lt;AccessAuthorization&gt;
 
-获取信息的访问权限。
+获取信息的访问权限。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -143,7 +146,7 @@ getMessageAccessAuthorization(deviceId: string): Promise&lt;AccessAuthorization&
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -153,7 +156,7 @@ getMessageAccessAuthorization(deviceId: string): Promise&lt;AccessAuthorization&
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let mapMseProfile = map.createMapMseProfile();
     mapMseProfile.getMessageAccessAuthorization('XX:XX:XX:XX:XX:XX').then((authorization) => {

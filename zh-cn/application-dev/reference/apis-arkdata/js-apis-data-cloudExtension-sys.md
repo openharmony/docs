@@ -21,7 +21,7 @@
 ## 导入模块
 
 ```ts
-import cloudExtension from '@ohos.data.cloudExtension';
+import { cloudExtension } from '@kit.ArkData';
 ```
 
 ## Result&lt;T&gt;
@@ -287,9 +287,8 @@ createCloudServiceStub(instance: CloudService): Promise&lt;rpc.RemoteObject&gt;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import rpc from '@ohos.rpc';
+import { Want, ServiceExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyCloudService implements cloudExtension.CloudService {
   constructor() {}
@@ -341,7 +340,7 @@ createShareServiceStub(instance: ShareCenter): Promise&lt;rpc.RemoteObject&gt;
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
@@ -378,7 +377,7 @@ createCloudDBStub(instance: CloudDB): Promise&lt;rpc.RemoteObject&gt;
 | Promise&lt;[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[CloudDB](#clouddb)的[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象。 |
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyCloudDB implements cloudExtension.CloudDB {
   // ...
@@ -417,7 +416,7 @@ createAssetLoaderStub(instance: AssetLoader): Promise&lt;rpc.RemoteObject&gt;
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyAssetLoader implements cloudExtension.AssetLoader {
   // ...
@@ -653,9 +652,9 @@ lock(): Promise&lt;Result&lt;LockInfo&gt;&gt;
 **示例：**
 
 ```ts
+let test_time: number = 10;
+let test_lockId: number = 1;
 export default class MyCloudDB implements cloudExtension.CloudDB {
-  let test_time: number = 10;
-  let test_lockId: number = 1;
   // ...
   async lock(): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`DB lock`);
@@ -697,9 +696,9 @@ heartbeat(lockId: number): Promise&lt;Result&lt;LockInfo&gt;&gt;
 **示例：**
 
 ```ts
+let test_lockId: number = 1;
+let test_time: number = 10;
 export default class MyCloudDB implements cloudExtension.CloudDB {
-  let test_lockId: number = 1;
-  let test_time: number = 10;
   // ...
   async heartbeat(lockId: number): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`heartbeat lock`);
@@ -778,7 +777,7 @@ getServiceInfo(): Promise<ServiceInfo&gt;
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 let test_space: number = 100;
 let test_userId: number = 1;
@@ -981,7 +980,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 | Promise&lt;[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[CloudDB](#clouddb)的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象。 |
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyCloudDB implements cloudExtension.CloudDB {
   // ...
@@ -1021,7 +1020,7 @@ connectAssetLoader(bundleName: string, database: Database): Promise&lt;rpc.Remot
 | Promise&lt;[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)&gt; | Promise对象，返回[AssetLoader](#assetloader)的[RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)对象。 |
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyAssetLoader implements cloudExtension.AssetLoader {
   // ...
@@ -1061,7 +1060,7 @@ connectShareCenter(userId: number, bundleName: string): Promise&lt;rpc.RemoteObj
 **示例：**
 
 ```ts
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
@@ -1183,7 +1182,7 @@ share(userId: number, bundleName: string, sharingResource: string, participants:
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
@@ -1238,7 +1237,7 @@ unshare(userId: number, bundleName: string, sharingResource: string, participant
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
@@ -1292,7 +1291,7 @@ exit(userId: number, bundleName: string, sharingResource: string): Promise&lt;Re
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
@@ -1337,7 +1336,7 @@ changePrivilege(userId: number, bundleName: string, sharingResource: string, par
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
@@ -1391,7 +1390,7 @@ queryParticipants(userId: number, bundleName: string, sharingResource: string): 
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
@@ -1465,7 +1464,7 @@ queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 
@@ -1540,7 +1539,7 @@ confirmInvitation(userId: number, bundleName: string, invitationCode: string, st
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
@@ -1586,7 +1585,7 @@ changeConfirmation(userId: number, bundleName: string, sharingResource: string, 
 **示例：**
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 
 export default class MyShareCenter implements cloudExtension.ShareCenter {
   constructor() {}
@@ -1609,11 +1608,9 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 以上示例中的类均采用implements实现，示例代码不能单独编译，需要实现父类中的所有方法才能使用，提供完整示例以作参考。
 
 ```ts
-import cloudExtension from '@ohos.data.cloudExtension';
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import rpc from '@ohos.rpc';
-import cloudData from '@ohos.data.cloudData';
+import { Want, ServiceExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { cloudData, cloudExtension } from '@kit.ArkData';
 
 type Participant = cloudData.sharing.Participant;
 let test_lockId: number = 1;

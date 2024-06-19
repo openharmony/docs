@@ -58,6 +58,10 @@ httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up
       certType: http.CertType.PEM, // Certificate type, optional. A certificate in the PEM format is used by default. This field is supported since API version 11.
       keyPassword: "passwordToKey" // Password of the key file, optional. It is supported since API version 11.
     },
+    certificatePinning:{ // Optional. It determines whether to enable dynamic configuration of certificate pinning. This attribute is supported since API version 12.
+      publicKeyHash: '', // Certificate PIN passed by the application. This attribute is supported since API version 12.
+      hashAlgorithm: 'SHA-256', // Encryption algorithm. Currently, it can only be set to SHA-256. This attribute is supported since API version 12.
+    },
     multiFormDataList: [ // Optional. This field is valid only when content-Type in the header is multipart/form-data. It is supported since API version 11.
       {
         name: "Part1", // Data name. This field is supported since API version 11.
@@ -1105,6 +1109,7 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | dnsServers<sup>11+</sup> | Array<string> | No| Array of DNS servers used for DNS resolution.<br>- You can set a maximum of three DNS servers. If there are more than three DNS servers, only the first three DNS servers are used.<br>- The DNS servers must be expressed as IPv4 or IPv6 addresses.|
 | maxLimit<sup>11+</sup>   | number   | No| Maximum number of bytes in a response. The default value is **5\*1024\*1024**. The maximum value is **100\*1024\*1024**. |
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | No| Form data list. This field is valid when **content-Type** is set to **multipart/form-data**.|
+| certificatePinning<sup>12+</sup> | [CertificatePinning](#certificatepinning12) \| CertificatePinning[] | No| Dynamic configuration of certificate pinning. One or more certificate PINs can be specified.|
 
 ## RequestMethod
 
@@ -1518,3 +1523,14 @@ Enumerates certificate types.
 | PEM | PEM certificate.|
 | DER | DER certificate.|
 | P12 | P12 certificate.|
+
+## CertificatePinning<sup>12+</sup>
+
+Defines the dynamic configuration of certificate pinning.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|  Name |  Type |   Description    |
+| ------------------  | -- | ----------- |
+| publicKeyHash       | string | Certificate PIN of the string type.|
+| hashAlgorithm        | 'SHA-256' | Encryption algorithm. Currently, only SHA-256 is supported.|

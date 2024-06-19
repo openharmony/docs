@@ -12,6 +12,19 @@
 
 <!--RP1--><!--RP1End-->
 
+通过视频解码，应用可以实现以下重点能力，包括：
+1. 通过调用OH_VideoDecoder_RegisterCallback()设置回调函数，实现改变分辨率。
+
+   具体可参考下文中：Surface模式或Buffer模式的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数。
+2. 在Surface模式下，实现动态切换Surface。
+
+   具体可参考下文中：Surface模式的步骤6-设置Surface。
+
+
+## 限制约束
+
+av_codec只支持AnnexB，AnnexB不支持多slice。
+
 ## Surface输出与Buffer输出
 
 两者数据的输出方式不同。
@@ -214,7 +227,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 6. 设置Surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
-    Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
+   Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
 
     ```c++
     // 配置送显窗口参数
@@ -377,11 +390,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 13. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
 
-    > **注意：**
-    >
-    > Flush、Start之后，需要重新传XPS。
-    >
-
     调用OH_VideoDecoder_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
 
     此时需要调用OH_VideoDecoder_Start()重新开始解码。
@@ -394,6 +402,25 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 重新开始解码
     ret = OH_VideoDecoder_Start(videoDec);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    ```
+    > **注意：**
+    > Flush之后，重新Start时，需要重新传XPS。
+    >
+
+    ```c++
+    // 配置帧数据XPS信息
+    OH_AVCodecBufferAttr info;
+    info.flags = AVCODEC_BUFFER_FLAG_CODEC_DATA;
+    // info信息写入buffer
+    int32_t ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    // 将帧数据推送到解码器中，index为对应队列下标
+    ret = OH_VideoDecoder_PushInputBuffer(videoDec, index);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -420,6 +447,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > Reset之后，重新Start时，需要重新传XPS。具体示例请参考OH_VideoDecoder_Flush()步骤12。
+    >
 
 15. （可选）调用OH_VideoDecoder_Stop()停止解码器。
 
@@ -430,6 +460,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > Stop之后，重新Start时，需要重新传XPS。具体示例请参考OH_VideoDecoder_Flush()步骤12。
+    >
 
 16. 调用OH_VideoDecoder_Destroy()销毁解码器实例，释放资源。
 
@@ -524,8 +557,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 可通过format获取到变化后的视频宽、高、跨距等
         (void)codec;
         (void)userData;
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_WIDTH, width);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_HEIGHT, height);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, width);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, height);
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
         // 获取裁剪矩形信息可选
@@ -552,8 +585,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 获取视频宽、高、跨距
         if (isFirstFrame) {
             OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(codec);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_WIDTH, width);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_HEIGHT, height);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, width);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, height);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
             // 获取裁剪矩形信息可选

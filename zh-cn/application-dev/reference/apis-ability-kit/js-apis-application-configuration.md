@@ -31,6 +31,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
 import Want from '@ohos.app.ability.Want';
 import Window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -52,7 +53,11 @@ export default class EntryAbility extends UIAbility {
         };
 
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.on('environment',envCallback);
+        try {
+            applicationContext.on('environment',envCallback);
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
 
         windowStage.loadContent('pages/index', (err, data) => {
             if (err.code) {

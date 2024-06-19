@@ -18,8 +18,8 @@
 
   
 ```ts
-import distributedKVStore from '@ohos.data.distributedKVStore';
-import { BusinessError } from '@ohos.base';
+import { distributedKVStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager | undefined = undefined;
 let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
@@ -76,7 +76,7 @@ if (kvStore !== undefined) {
 
   
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
+import { relationalStore } from '@kit.ArkData';
 
 let store: relationalStore.RdbStore;
 let context = getContext(this);

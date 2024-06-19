@@ -6,6 +6,9 @@
 > **说明：**
 >
 > 从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Param装饰器。
+>
+>当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
+
 
 
 ## 概述
@@ -23,8 +26,8 @@
 - \@Param支持null、undefined以及联合类型。
 
 
-## 现有状态管理框架的局限性
-现有状态管理框架存在多种可接受外部传入的装饰器，常用的有\@State、\@Prop、\@Link、\@ObjectLink。这些装饰器使用各有限制，不易区分，当使用不当时，还会导致性能问题。
+## 状态管理V1版本接受外部传入的装饰器的局限性
+状态管理V1存在多种可接受外部传入的装饰器，常用的有\@State、\@Prop、\@Link、\@ObjectLink。这些装饰器使用各有限制，不易区分，当使用不当时，还会导致性能问题。
 
 ```ts
 @Observed
@@ -80,7 +83,7 @@ struct Child {
 }
 ```
 
-在上面的示例中，\@State仅能在初始化时获得info的引用，当改变info之后，无法进行同步。\@Prop虽然能够进行单向同步，但是对于较复杂的类型来说，深拷贝性能较差。\@Link能够接受传入的引用进行双向同步，但它必须要求数据源也是状态变量，因此无法接受info中的成员属性region。\@ObjectLink能够接受类成员属性，但是要求该属性类型必须为\@Observed装饰的类。装饰器的不同限制使得父子组件之间传值规则十分复杂，不易使用。
+在上面的示例中，\@State仅能在初始化时获得info的引用，当改变info之后，无法进行同步。\@Prop虽然能够进行单向同步，但是对于较复杂的类型来说，深拷贝性能较差。\@Link能够接受传入的引用进行双向同步，但它必须要求数据源也是状态变量，因此无法接受info中的成员属性region。\@ObjectLink能够接受类成员属性，但是要求该属性类型必须为\@Observed装饰的类。装饰器的不同限制使得父子组件之间传值规则十分复杂，不易使用。因此推出\@Param装饰器表示组件从外部传入的状态。
 
 ## 装饰器说明
 
@@ -244,8 +247,8 @@ struct Child {
   }
   @ComponentV2
   struct Child {
-    @Param numArr: number[];
-    @Param dimensionTwo: number[][];
+    @Require @Param numArr: number[];
+    @Require @Param dimensionTwo: number[][];
     
     build() {
       Column() {
@@ -283,7 +286,7 @@ struct Child {
   @Entry
   @ComponentV2
   struct Index {
-    @Local infoArr: Info[] = [new Info("Ocean", 28, 120), new Info("Moutain", 26, 20)];
+    @Local infoArr: Info[] = [new Info("Ocean", 28, 120), new Info("Mountain", 26, 20)];
     @Local originInfo: Info = new Info("Origin", 0, 0);
     build() {
       Column() {
@@ -481,9 +484,9 @@ struct Index {
       })
       Button("change")
         .onClick(() => {
-          this.info[0] = new Info("Atom", 40, 27, 90);
-          this.info[1].name = "Bob";
-          this.info[2].region = new Region(7, 9);
+          this.infoList[0] = new Info("Atom", 40, 27, 90);
+          this.infoList[1].name = "Bob";
+          this.infoList[2].region = new Region(7, 9);
         })
     }
   }

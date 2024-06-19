@@ -54,33 +54,6 @@ try {
 }
 ```
 
-## power.rebootDevice<sup>(deprecated)</sup>
-
-rebootDevice(reason: string): void
-
-> **说明：**<br>从API version 7开始支持，从API version 9开始不再维护。建议使用[power.reboot](#powerreboot9)替代，替代接口能力仅对系统应用开放。
-
-重启设备。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.REBOOT
-
-**系统能力：** SystemCapability.PowerManager.PowerManager.Core
-
-
-**参数：**
-
-| 参数名    | 类型     | 必填   | 说明    |
-| ------ | ------ | ---- | ----- |
-| reason | string | 是    | 重启原因。 |
-
-**示例：**
-
-```js
-power.rebootDevice('reboot_test');
-```
-
 ## power.reboot<sup>9+</sup>
 
 reboot(reason: string): void
@@ -304,7 +277,7 @@ setScreenOffTime(timeout: number): void
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
-| 201 | If the permission is denied. |
+| 401 | Parameter error. Possible causes: 1. Parameter verification failed. |
 | 202 | If the system permission is denied. |
 
 **示例：**

@@ -1,10 +1,13 @@
 # \@ComponentV2装饰器：自定义组件
 
-为了在自定义组件中使用新状态变量装饰器的能力，开发者可以使用\@ComponentV2装饰器装饰自定义组件。
+为了在自定义组件中使用V2版本状态变量装饰器的能力，开发者可以使用\@ComponentV2装饰器装饰自定义组件。
 
 >**说明：**
 >
 >\@ComponentV2装饰器从API version 12开始支持。
+>
+>当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
+
 
 ## 概述
 
@@ -28,7 +31,9 @@
 
 ## 限制条件
 
-在将\@Component装饰的自定义组件与\@ComponentV2装饰的自定义组件混合使用时，仅允许相互之间传递普通变量，以下情况的变量传递是不允许的：
+在将\@Component装饰的自定义组件与\@ComponentV2装饰的自定义组件混合使用时，以下情况的变量传递是不允许的：
+
+- \@Component与\@ComponentV2相互之间传递普通变量
 
 - 将\@State、\@Prop、\@Link、\@ObjectLink、\@Provide、\@Consume、\@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp等装饰的变量传递给\@ComponentV2装饰的自定义组件。
 - 将\@Local、\@Param、\@Event、\@Provider、\@Consumer等装饰的变量传递给\@Component装饰的自定义组件。

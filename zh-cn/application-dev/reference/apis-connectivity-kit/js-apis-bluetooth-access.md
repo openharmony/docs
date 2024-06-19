@@ -10,7 +10,7 @@ access模块提供了打开和关闭蓝牙、获取蓝牙状态的方法。
 ## 导入模块
 
 ```js
-import access from '@ohos.bluetooth.access';
+import { access } from '@kit.ConnectivityKit';
 ```
 
 
@@ -21,6 +21,8 @@ enableBluetooth(): void
 开启蓝牙。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -38,7 +40,7 @@ enableBluetooth(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     access.enableBluetooth();
 } catch (err) {
@@ -54,6 +56,8 @@ disableBluetooth(): void
 关闭蓝牙。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -71,7 +75,7 @@ disableBluetooth(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     access.disableBluetooth();
 } catch (err) {
@@ -88,7 +92,7 @@ getState(): BluetoothState
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**: 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -112,7 +116,7 @@ getState(): BluetoothState
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let state = access.getState();
 } catch (err) {
@@ -124,9 +128,11 @@ try {
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
-订阅蓝牙设备开关状态事件。
+订阅蓝牙设备开关状态事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -144,14 +150,14 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099   | Operation failed.  |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: access.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
@@ -171,6 +177,8 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -187,14 +195,14 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: access.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
@@ -211,7 +219,7 @@ try {
 
 枚举，蓝牙开关状态。
 
-**元服务API**: 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**: 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 

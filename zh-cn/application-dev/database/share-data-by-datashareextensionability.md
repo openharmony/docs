@@ -51,8 +51,7 @@
 
 2. 在DataShareAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为DataShareExtAbility.ets。
 
-3. 在DataShareExtAbility.ets文件中，导入
-`@ohos.application.DataShareExtensionAbility`模块，开发者可根据应用需求选择性重写其业务实现。例如数据提供方只提供插入、删除和查询服务，则可只重写这些接口，并导入对应的基础依赖模块；如果需要增加权限校验，可以在重写的回调方法中使用IPC提供的[getCallingPid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingpid)、[getCallingUid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid)、[getCallingTokenId](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8)方法获取访问者信息来进行权限校验。
+3. 在DataShareExtAbility.ets文件中，导入DataShareExtensionAbility模块，开发者可根据应用需求选择性重写其业务实现。例如数据提供方只提供插入、删除和查询服务，则可只重写这些接口，并导入对应的基础依赖模块；如果需要增加权限校验，可以在重写的回调方法中使用IPC提供的[getCallingPid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingpid)、[getCallingUid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid)、[getCallingTokenId](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8)方法获取访问者信息来进行权限校验。
    
    ```ts
    import { DataShareExtensionAbility, dataShare, dataSharePredicates, relationalStore } from '@kit.ArkData';
@@ -80,7 +79,7 @@
        relationalStore.getRdbStore(this.context, {
          name: DB_NAME,
          securityLevel: relationalStore.SecurityLevel.S1
-       }, (err, data) => {
+       }, (err:BusinessError, data:relationalStore.RdbStore) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
            console.info(`DataShareExtAbility onCreate, executeSql done err:${err}`);
@@ -97,7 +96,7 @@
          console.info('invalid predicates');
        }
        try {
-         rdbStore.query(TBL_NAME, predicates, columns, (err, resultSet) => {
+         rdbStore.query(TBL_NAME, predicates, columns, (err:BusinessError, resultSet:relationalStore.ResultSet) => {
            if (resultSet !== undefined) {
              console.info(`resultSet.rowCount:${resultSet.rowCount}`);
            }
@@ -141,15 +140,15 @@
 
      **表1** module.json5对应属性字段
    
-   | 属性名称 | 备注说明 | 必填 | 
+   | 属性名称 | 备注说明 | 必填 |
    | -------- | -------- | -------- |
-   | name | Ability名称，对应Ability派生的ExtensionAbility类名。 | 是 | 
-   | type | Ability类型，DataShare对应的Ability类型为“dataShare”，表示基于datashare模板开发的。 | 是 | 
-   | uri | 通信使用的URI，是客户端链接服务端的唯一标识。 | 是 | 
-   | exported | 对其他应用是否可见，设置为true时，才能与其他应用进行通信传输数据。 | 是 | 
-   | readPermission | 访问数据时需要的权限，不配置默认不进行读权限校验。 | 否 | 
-   | writePermission | 修改数据时需要的权限，不配置默认不进行写权限校验。 | 否 | 
-   | metadata   | 增加静默访问所需的额外配置项，包含name和resource字段。<br /> name类型固定为"ohos.extension.dataShare"，是配置的唯一标识。 <br /> resource类型固定为"$profile:data_share_config"，表示配置文件的名称为data_share_config.json。 | 若Ability启动模式为"singleton"，则metadata必填，Ability启动模式可见[abilities对象的内部结构-launchType](../quick-start/module-structure.md#abilities对象的内部结构)；其他情况下无需填写。 | 
+   | name | Ability名称，对应Ability派生的ExtensionAbility类名。 | 是 |
+   | type | Ability类型，DataShare对应的Ability类型为“dataShare”，表示基于datashare模板开发的。 | 是 |
+   | uri | 通信使用的URI，是客户端链接服务端的唯一标识。 | 是 |
+   | exported | 对其他应用是否可见，设置为true时，才能与其他应用进行通信传输数据。 | 是 |
+   | readPermission | 访问数据时需要的权限，不配置默认不进行读权限校验。 | 否 |
+   | writePermission | 修改数据时需要的权限，不配置默认不进行写权限校验。 | 否 |
+   | metadata   | 增加静默访问所需的额外配置项，包含name和resource字段。<br /> name类型固定为"ohos.extension.dataShare"，是配置的唯一标识。 <br /> resource类型固定为"$profile:data_share_config"，表示配置文件的名称为data_share_config.json。 | 若Ability启动模式为"singleton"，则metadata必填，Ability启动模式可见[abilities对象的内部结构-launchType](../quick-start/module-structure.md#abilities对象的内部结构)；其他情况下无需填写。 |
 
    **module.json5配置样例：**
    
@@ -167,18 +166,17 @@
      }
    ]
    ```
-   
+
    **表2** data_share_config.json对应属性字段
 
    | 属性名称            | 备注说明                                                     | 必填 |
    | ------------------- | ------------------------------------------------------------ | ---- |
-   | tableConfig         | 配置标签。                                                   | 是   |
-   | uri                 | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是   |
-   | crossUserMode       | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。 | 是   |
+   | tableConfig         | 配置标签。包括uri和crossUserMode。<br>**-uri：** 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表<br>**-crossUserMode：** 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。 | 是   |
    | isSilentProxyEnable | 标识该ExtensionAbility是否关闭静默访问。<br />false：代表关闭静默访问。<br />true：代表打开静默访问。<br />不填写默认为true，即默认开启静默访问。<br />如果该应用下存在多个ExtensionAbility，其中一个配置了该属性为false，代表应用关闭静默访问。<br />如果数据提供方调用过enableSilentProxy和disableSilentProxy接口，则按照接口的设置结果来开启或关闭静默访问。否则会读取该配置来开启或关闭静默访问。 | 否   |
+   | launchInfos         | 包括storeId和tableNames。<br>该配置中表粒度的数据变更时，通过所属extensionAbilities中的uri拉起extension。若业务方需要在非主动数据变更时做处理，则配置此项，拉起extension即时处理；若不需要，则可以不配置。<br>**-storeId：** 数据库名。该配置需要去掉数据库名后缀，如：数据库名为test.db时，配置信息填入test即可。<br>**-tableNames：** 数据库表名集合。集合内单个表数据变更就会拉起extension。 | 否   |
    
    **data_share_config.json配置样例**
-
+   
    ```json
    {
        "tableConfig":[
@@ -195,7 +193,13 @@
                "crossUserMode":2
            }
        ],
-       "isSilentProxyEnable":true
+       "isSilentProxyEnable":true,
+       "launchInfos":[
+           {
+               "storeId": "test",
+               "tableNames":["test1", "test2"]
+           }
+       ]
    }
    ```
 
@@ -271,19 +275,19 @@
    
    if (dsHelper != undefined) {
      // 插入一条数据
-     (dsHelper as dataShare.DataShareHelper).insert(dseUri, valuesBucket, (err, data) => {
+     (dsHelper as dataShare.DataShareHelper).insert(dseUri, valuesBucket, (err:BusinessError, data:number) => {
        console.info(`dsHelper insert result:${data}`);
      });
      // 更新数据
-     (dsHelper as dataShare.DataShareHelper).update(dseUri, predicates, updateBucket, (err, data) => {
+     (dsHelper as dataShare.DataShareHelper).update(dseUri, predicates, updateBucket, (err:BusinessError, data:number) => {
        console.info(`dsHelper update result:${data}`);
      });
      // 查询数据
-     (dsHelper as dataShare.DataShareHelper).query(dseUri, predicates, valArray, (err, data) => {
+     (dsHelper as dataShare.DataShareHelper).query(dseUri, predicates, valArray, (err:BusinessError, data:number) => {
        console.info(`dsHelper query result:${data}`);
      });
      // 删除指定的数据
-     (dsHelper as dataShare.DataShareHelper).delete(dseUri, predicates, (err, data) => {
+     (dsHelper as dataShare.DataShareHelper).delete(dseUri, predicates, (err:BusinessError, data:number) => {
        console.info(`dsHelper delete result:${data}`);
      });
      // 批量更新数据

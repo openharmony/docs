@@ -26,13 +26,27 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
-  // Parameters corresponding to the call scenario need to be used.
+  // Set the parameters related to the call scenario.
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // Audio stream usage type: voice communication.
   rendererFlags: 0 // AudioRenderer flag. The default value is 0.
 }
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
+}
+
+let path = getContext().cacheDir;
+// Ensure that the resource exists in the path.
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+
+let writeDataCallback = (buffer: ArrayBuffer) => {
+  let options: Options = {
+    offset: bufferSize,
+    length: buffer.byteLength
+  }
+  fs.readSync(file.fd, buffer, options);
+  bufferSize += buffer.byteLength;
 }
 
 // Create an AudioRenderer instance, and set the events to listen for.
@@ -54,6 +68,7 @@ audio.createAudioRenderer(audioRendererOptions, (err: BusinessError, renderer: a
           console.info('ON Triggered successfully');
         }
       });
+      renderModel.on('writeData', writeDataCallback);
     }
   } else {
     console.info(`${TAG}: creating AudioRenderer failed, error: ${err.message}`);
@@ -68,40 +83,13 @@ async function start() {
       console.error(TAG + 'start failed');
       return;
     }
-    await renderModel.start(); // Start rendering.
-    const bufferSize: number = await renderModel.getBufferSize();
-    // The process of reading audio file data is used as an example. In actual audio call development, audio data transmitted from the peer needs to be read.
-
-    let path = context.filesDir;
-
-    const filePath = path + '/voice_call_data.wav'; // Sandbox path. The actual path is /data/storage/el2/base/haps/entry/files/voice_call_data.wav.
-    let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-    let stat = await fs.stat(filePath);
-    let buf = new ArrayBuffer(bufferSize);
-    let len = stat.size % bufferSize === 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-    class Option {
-      offset: number = 0
-      length: number = 0
-    }
-    for (let i = 0; i < len; i++) {
-      let options: Option = {
-        offset: i * bufferSize,
-        length: bufferSize
-      };
-      let readsize = await fs.read(file.fd, buf, options);
-      // buf indicates the audio data to be written to the buffer. Before calling AudioRenderer.write(), you can preprocess the audio data for personalized playback. The AudioRenderer reads the audio data written to the buffer for rendering.
-      let writeSize: number = await renderModel.write(buf);
-      if (renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) { // The rendering stops if the AudioRenderer is in the STATE_RELEASED state.
-        fs.close(file);
-        await renderModel.stop();
+    renderModel.start((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer start failed.');
+      } else {
+        console.info('Renderer start success.');
       }
-      if (renderModel.state.valueOf() === audio.AudioState.STATE_RUNNING) {
-        if (i === len - 1) { // The rendering stops if the file finishes reading.
-          fs.close(file);
-          await renderModel.stop();
-        }
-      }
-    }
+    });
   }
 }
 
@@ -162,7 +150,7 @@ async function release() {
 This process is similar to the process of [using AudioCapturer to develop audio recording](using-audiocapturer-for-recording.md). The key differences lie in the **audioCapturerInfo** parameter and audio data stream direction. In the **audioCapturerInfo** parameter used for audio calling, **source** must be set to **SOURCE_TYPE_VOICE_COMMUNICATION**.
 
 You must request the **ohos.permission.MICROPHONE** permission for all recording tasks. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
- 
+
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
@@ -179,13 +167,26 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 }
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  // Parameters corresponding to the call scenario need to be used.
+  // Set the parameters related to the call scenario.
   source: audio.SourceType.SOURCE_TYPE_VOICE_COMMUNICATION, // Audio source type: voice communication.
   capturerFlags: 0 // AudioCapturer flag. The default value is 0.
 }
 let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
+}
+
+let path = getContext().cacheDir;
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+
+let readDataCallback = (buffer: ArrayBuffer) => {
+  let options: Options = {
+    offset: bufferSize,
+    length: buffer.byteLength
+  }
+  fs.writeSync(file.fd, buffer, options);
+  bufferSize += buffer.byteLength;
 }
 
 // Create an AudioRenderer instance, and set the events to listen for.
@@ -208,6 +209,7 @@ async function init() {
           console.info('ON Triggered successfully');
         }
       });
+      audioCapturer.on('readData', readDataCallback);
     }
   });
 }
@@ -220,33 +222,13 @@ async function start() {
       console.error(`${TAG}: start failed`);
       return;
     }
-    await audioCapturer.start(); // Start recording.
-    // The following describes how to write audio data to a file. In actual audio call development, the local audio data needs to be encoded and packed, and then sent to the peer through the network.
-    const path = context.filesDir + '/voice_call_data.wav'; // Path for storing the recorded audio file.
-    let file = fs.openSync(path, 0o2 | 0o100); // Create the file if it does not exist.
-    let fd = file.fd;
-    let numBuffersToCapture = 150; // Write data for 150 times.
-    let count = 0;
-    class Options {
-      offset: number = 0
-      length: number = 0
-    }
-    while (numBuffersToCapture) {
-      let bufferSize: number = await audioCapturer.getBufferSize();
-      let buffer: ArrayBuffer = await audioCapturer.read(bufferSize, true);
-      let options: Options = {
-        offset: count * bufferSize,
-        length: bufferSize
-      };
-      if (buffer === undefined) {
-        console.error(`${TAG}: read buffer failed`);
+    audioCapturer.start((err: BusinessError) => {
+      if (err) {
+        console.error('Capturer start failed.');
       } else {
-        let number = fs.writeSync(fd, buffer, options);
-        console.info(`${TAG}: write date: ${number}`);
+        console.info('Capturer start success.');
       }
-      numBuffersToCapture--;
-      count++;
-    }
+    });
   }
 }
 

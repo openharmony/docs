@@ -42,10 +42,10 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 | 1600007  | The notification is not exist.                       |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -110,10 +110,10 @@ publish(request: NotificationRequest): Promise\<void\>
 | 1600007  | The notification is not exist.                       |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -721,14 +721,14 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 ```ts
 import Base from '@ohos.base';
 
-let removeAllCallBack = (err: Base.BusinessError): void => {
+let removeAllSlotsCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAllSlots success");
     }
 }
-notificationManager.removeAllSlots(removeAllCallBack);
+notificationManager.removeAllSlots(removeAllSlotsCallback);
 ```
 
 ## notificationManager.removeAllSlots
@@ -894,9 +894,9 @@ import Base from '@ohos.base';
 let badgeNumber: number = 10;
 
 notificationManager.setBadgeNumber(badgeNumber).then(() => {
-	console.info("displayBadge success");
+	console.info("setBadgeNumber success");
 }).catch((err: Base.BusinessError) => {
-    console.error(`displayBadge fail: ${JSON.stringify(err)}`);
+    console.error(`setBadgeNumber fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -934,12 +934,11 @@ import Base from '@ohos.base';
 
 let setBadgeNumberCallback = (err: Base.BusinessError): void => {
     if (err) {
-        console.info(`displayBadge failed code is ${err.code}, message is ${err.message}`);
+        console.info(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("displayBadge success");
+        console.info("setBadgeNumber success");
     }
 }
-
 let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 ```
@@ -1056,10 +1055,9 @@ let getActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notif
     if (err) {
         console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getActiveNotifications success");
+        console.info("getActiveNotifications success" + JSON.stringify(data));
     }
 }
-
 notificationManager.getActiveNotifications(getActiveNotificationsCallback);
 ```
 
@@ -1224,10 +1222,9 @@ let isSupportTemplateCallback = (err: Base.BusinessError, data: boolean): void =
     if (err) {
         console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isSupportTemplate success");
+        console.info("isSupportTemplate success, data: " + JSON.stringify(data));
     }
 }
-
 notificationManager.isSupportTemplate(templateName, isSupportTemplateCallback);
 ```
 
@@ -1300,7 +1297,7 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
@@ -1342,7 +1339,7 @@ requestEnableNotification(): Promise\<void\>
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
@@ -1384,7 +1381,7 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
@@ -1440,7 +1437,7 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 

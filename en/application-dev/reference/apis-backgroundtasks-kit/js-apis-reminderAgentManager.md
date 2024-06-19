@@ -538,8 +538,6 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 >
 > For an alarm reminder that repeats every day, the reminder is valid regardless of whether the user touches the CLOSE button.
 
-**Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
-
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 **Return value**
@@ -547,6 +545,14 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 | Type                                             | Description                                                        |
 | ------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<Array\<[ReminderInfo](#reminderinfo12)>> | Promise used to return all the valid reminders.|
+
+**Error codes**
+
+For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
 
 **Example**
 
@@ -580,6 +586,138 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 }).catch((err: BusinessError) => {
   console.error("promise err code:" + err.code + " message:" + err.message);
 }); 
+```
+
+## reminderAgentManager.addExcludeDate<sup>12+</sup>
+
+addExcludeDate(reminderId: number, date: Date): Promise\<void>
+
+Adds a date to be excluded for a duplicate calendar event with the specified ID. No reminder is triggered within the date. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.ReminderAgent
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                            |
+| ---------- | ------ | ---- | -------------------------------- |
+| reminderId | number | Yes  | ID of the duplicate calendar event.|
+| date       | Date   | Yes  | Date to be excluded.                  |
+
+**Return value**
+
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                      |
+| -------- | ---------------------------------------------- |
+| 201      | Permission verification failed.                |
+| 401      | If the input parameter is not valid parameter. |
+| 1700003  | The reminder does not exist.                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let reminderId: number = 1;
+let date = new Date();
+reminderAgentManager.addExcludeDate(reminderId, date).then(() => {
+  console.log("addExcludeDate promise");
+}).catch((err: BusinessError) => {
+  console.error("promise err code:" + err.code + " message:" + err.message);
+});
+```
+
+## reminderAgentManager.deleteExcludeDates<sup>12+</sup>
+
+deleteExcludeDates(reminderId: number): Promise\<void>
+
+Deletes all excluded dates set for a duplicate calendar event with the specified ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.ReminderAgent
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                            |
+| ---------- | ------ | ---- | -------------------------------- |
+| reminderId | number | Yes  | ID of the duplicate calendar event.|
+
+**Return value**
+
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 201      | Permission verification failed. |
+| 1700003  | The reminder does not exist.    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let reminderId: number = 1;
+reminderAgentManager.deleteExcludeDates(reminderId).then(() => {
+  console.log("deleteExcludeDates promise");
+}).catch((err: BusinessError) => {
+  console.error("promise err code:" + err.code + " message:" + err.message);
+});
+```
+
+## reminderAgentManager.getExcludeDates<sup>12+</sup>
+
+getExcludeDates(reminderId: number): Promise\<Array\<Date>>
+
+Obtains all excluded dates set for a duplicate calendar event with the specified ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.ReminderAgent
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                            |
+| ---------- | ------ | ---- | -------------------------------- |
+| reminderId | number | Yes  | ID of the duplicate calendar event.|
+
+**Return value**
+
+| Type                  | Description                             |
+| ---------------------- | --------------------------------- |
+| Promise\<Array\<Date>> | Promise used to return all the excluded dates.|
+
+**Error codes**
+
+For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------- |
+| 201      | Permission verification failed. |
+| 1700003  | The reminder does not exist.    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let reminderId: number = 1;
+reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
+  console.log("getExcludeDates promise length: " + dates.length);
+  for (let i = 0; i < dates.length; i++) {
+	console.log("getExcludeDates promise date is: " + dates[i].toString());
+  }
+}).catch((err: BusinessError) => {
+  console.error("promise err code:" + err.code + " message:" + err.message);
+});
 ```
 
 ## ActionButtonType
@@ -623,10 +761,6 @@ Defines the button on the reminder displayed.
 
 Defines the information about the redirected-to ability.
 
-> **NOTE**
->
-> Since API version 12, the **uri** parameter is open to all applications.
-
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 
@@ -635,7 +769,7 @@ Defines the information about the redirected-to ability.
 | pkgName | string | Yes| Name of the target package.|
 | abilityName | string | Yes| Name of the target ability.|
 | parameters<sup>12+</sup> | Record\<string, Object> | No| Parameters to be transferred to the target.|
-| uri<sup>10+</sup> | string | No| URI of the target ability.|
+| uri<sup>12+</sup> | string | No| URI of the target ability.|
 
 
 ## MaxScreenWantAgent
@@ -691,6 +825,7 @@ Defines a reminder for a calendar event.
 | repeatMonths | Array\<number> | No| Month in which the reminder repeats.|
 | repeatDays | Array\<number> | No| Date on which the reminder repeats.|
 | daysOfWeek<sup>11+</sup> | Array\<number> | No| Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday.|
+| endDateTime<sup>12+</sup> | [LocalDateTime](#localdatetime) | No| End time of the reminder.|
 
 
 ## ReminderRequestAlarm
@@ -744,5 +879,5 @@ Defines the reminder information.
 
 | Name       | Type                               | Mandatory| Description                 |
 | ----------- | ----------------------------------- | ---- | --------------------- |
-| reminderId  | number                              | No  | ID of the reminder.|
-| reminderReq | [ReminderRequest](#reminderrequest) | No  | Request used for publishing the reminder.       |
+| reminderId  | number                              | N/A  | ID of the reminder.|
+| reminderReq | [ReminderRequest](#reminderrequest) | N/A  | Request used for publishing the reminder.       |
