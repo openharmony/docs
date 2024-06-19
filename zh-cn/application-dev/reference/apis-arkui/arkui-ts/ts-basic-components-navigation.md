@@ -1048,6 +1048,8 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 | name | string | 否 | NavDestination名称，如果为根视图(NavBar)，则返回值为undefined。|
 | index | number | 是 | NavDestination在NavPathStack中的序号， 如果为根视图(NavBar)，则返回值为 -1。|
 | mode | [NavDestinationMode](ts-basic-components-navdestination.md#navdestinationmode枚举说明) | 否 | NavDestination的模式，如果是根视图(NavBar)，则返回值为undefined。|
+| param<sup>12+</sup> | Object | 否 | NavDestination页面加载的参数。|
+| navDestinationId<sup>12+</sup> | string | 否 | NavDestination的唯一标识符。|
 
 ## NavigationAnimatedTransition<sup>11+</sup>
 
@@ -1058,9 +1060,10 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 **参数：**
 | 名称 | 类型 | 必填 | 描述 |
 |------|-----|-----|------|
-| timeout | number | 否 | 动画超时结束时间。<br> 单位：ms。<br> 默认值：1000ms。|
+| timeout | number | 否 | 动画超时结束时间。<br> 单位：ms。<br> 默认值：可交互动画无默认值，不可交互动画默认超时时间为1000ms。|
 | transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)) =&gt; void | 是 | 自定义转场动画执行回调。<br> transitionProxy: 自定义转场动画代理对象。|
 | onTransitionEnd | (success: boolean):void | 否 | 转场完成回调。<br> success: 转场是否成功。 |
+| isInteractive<sup>12+</sup> | boolean | 否 | 本次转场动画是否为可交互转场。<br> 默认值：false。|
 
 ## NavigationTransitionProxy <sup>11+</sup>
 
@@ -1074,12 +1077,27 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 |------|-------|-----|-------|
 | from | [NavContentInfo](#navcontentinfo11) | 是 | 退场页面信息。|
 | to | [NavContentInfo](#navcontentinfo11) | 是 | 进场页面信息。|
+| isInteractive<sup>12+</sup> | boolean | 否 | 是否为可交互转场动画。|
 
 ### finishTransition
 
 结束本次自定义转场动画，开发者需要主动触发该方法来结束本次转场，否则系统会在timeout的时间后结束本次转场。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+### cancelTransition<sup>12+</sup>
+
+取消本次交互转场，恢复到页面跳转前的页面栈(不支持取消不可交互转场动画)。
+
+### updateTransition<sup>12+</sup>
+
+更新交互转场动画进度(不可交互动画不支持动画进度设置)。
+
+**参数：**
+
+| 名称 | 类型 | 必填 | 描述 |
+|------|------|------|-----|
+| progress | number | 是 | 设置交互转场动画进度百分比。取值范围 0-1。|
 
 ## NavigationInterception<sup>12+</sup>
 
