@@ -43,8 +43,6 @@
 | 日历 | 创建日程 | [addEvent](../reference/apis-calendar-kit/js-apis-calendarManager.md#addevent) |
 
 
-> **说明：**
-> 
-> 拉起设置应用的页面，暂未实现，已有相关能力规划。
+
 
 
