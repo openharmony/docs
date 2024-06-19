@@ -1,4 +1,4 @@
-# 同层渲染绘制
+# 同层渲染绘制Video和Button组件
 
 同层渲染是ArkWeb组件为应用提供原生组件和Web元素渲染在同一层级的能力。支持的组件范围请参考[NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype)说明。 
 
