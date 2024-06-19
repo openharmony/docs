@@ -1329,7 +1329,7 @@
   - [系统能力SystemCapability使用指南](reference/syscap.md)
   - [系统能力SystemCapability列表](reference/syscap-list.md)
   - [通用错误码](reference/errorcode-universal.md)
-  - Ability Kit API参考<!--ability-api-->
+  - Ability Kit（程序框架服务）<!--ability-api-->
     - ArkTS API<!--ability-arkts-->
       - Stage模型能力的接口
         - [@ohos.app.ability.Ability (Ability基类)](reference/apis-ability-kit/js-apis-app-ability-ability.md)
@@ -1569,7 +1569,7 @@
       - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
       - [包管理子系统通用错误码](reference/apis-ability-kit/errorcode-bundle.md)
       - [访问控制错误码](reference/apis-ability-kit/errorcode-access-token.md)
-  - Accessibility Kit API参考<!--accessibility-api-->
+  - Accessibility Kit（无障碍开发服务）<!--accessibility-api-->
     - ArkTS API<!--accessibility-arkts-->
       - [@ohos.accessibility (辅助功能)](reference/apis-accessibility-kit/js-apis-accessibility.md)
       - [@ohos.accessibility.GesturePath (手势路径)](reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md)
@@ -1582,7 +1582,7 @@
     - 错误码<!--accessibility-arkts-errcode-->
       - [无障碍子系统错误码](reference/apis-accessibility-kit/errorcode-accessibility.md)
   <!--Del-->
-  - Ads Kit API参考<!--ads-api-->
+  - Ads Kit（广告服务）<!--ads-api-->
     - ArkTS API<!--ads-arkts-->
       - [@ohos.advertising (广告服务框架)](reference/apis-ads-kit/js-apis-advertising.md)
       - [@ohos.identifier.oaid (广告标识服务)](reference/apis-ads-kit/js-apis-oaid.md)
@@ -2412,7 +2412,7 @@
           - [ArkWeb_ProxyObject](reference/apis-arkweb/_ark_web___proxy_object.md)
     - 错误码<!--arkweb-arkts-errcode-->
       - [Webview错误码](reference/apis-arkweb/errorcode-webview.md)
-  - Asset Store Kit API参考<!--asset-store-api-->
+  - Asset Store Kit（关键资产存储服务）<!--asset-store-api-->
     - ArkTS API<!--asset-store-arkts-->
       - [@ohos.security.asset (关键资产存储服务)](reference/apis-asset-store-kit/js-apis-asset.md)
       <!--Del-->
@@ -2433,7 +2433,7 @@
         - [Asset_Value](reference/apis-asset-store-kit/union_asset___value.md)
     - 错误码<!--asset-store-arkts-errcode-->
       - [Asset错误码](reference/apis-asset-store-kit/errorcode-asset.md)
-  - Audio Kit API参考<!--audio-api-->
+  - Audio Kit（音频服务）<!--audio-api-->
     - ArkTS API<!--audio-arkts-->
       - [@ohos.multimedia.audio (音频管理)](reference/apis-audio-kit/js-apis-audio.md)
       - [@ohos.multimedia.audioHaptic (音振协同)](reference/apis-audio-kit/js-apis-audioHaptic.md)
@@ -2463,7 +2463,7 @@
         - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
     - 错误码<!--audio-arkts-errcode-->
       - [Audio错误码](reference/apis-audio-kit/errorcode-audio.md)
-  - AVCodec Kit API参考<!--avcodec-api-->
+  - AVCodec Kit（音视频编解码服务）<!--avcodec-api-->
     - C API<!--avcodec-c-->
       - 模块<!--avcodec-module-->
         - [AudioCodec](reference/apis-avcodec-kit/_audio_codec.md)
@@ -2504,7 +2504,7 @@
         - [OH_AVDataSource](reference/apis-avcodec-kit/_o_h___a_v_data_source.md)
         - [OH_AVRange](reference/apis-avcodec-kit/_o_h___a_v_range.md)
         - [DrmSubsample](reference/apis-avcodec-kit/_drm_subsample.md)
-  - AVSession Kit API参考<!--avsession-api-->
+  - AVSession Kit（音视频播控服务）<!--avsession-api-->
     - ArkTS API<!--avsession-arkts-->
       - [@ohos.multimedia.avsession (媒体会话管理)](reference/apis-avsession-kit/js-apis-avsession.md)
       - [@ohos.multimedia.avCastPickerParam (投播组件参数)](reference/apis-avsession-kit/js-apis-avCastPickerParam.md)
@@ -2518,7 +2518,7 @@
       - [@ohos.multimedia.avCastPicker (投播组件)](reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md)
     - 错误码<!--avsession-arkts-errcode-->
       - [媒体会话管理错误码](reference/apis-avsession-kit/errorcode-avsession.md)
-  - Background Tasks Kit API参考<!--background-tasks-api-->
+  - Background Tasks Kit（后台任务开发服务）<!--background-tasks-api-->
     - ArkTS API<!--background-tasks-arkts-->
       - [@ohos.reminderAgentManager (后台代理提醒)](reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)
       - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md) 
@@ -2545,7 +2545,7 @@
       - [DeviceUsageStatistics错误码](reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md)
       - [reminderAgentManager错误码](reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md)
       - [workScheduler错误码](reference/apis-backgroundtasks-kit/errorcode-workScheduler.md)
-  - Basic Services Kit API参考<!--basic-services-api-->
+  - Basics Service Kit（基础服务）<!--basic-services-api-->
     - ArkTS API<!--basic-services-arkts-->
       - 帐号管理
         - [@ohos.account.appAccount (应用帐号管理)](reference/apis-basic-services-kit/js-apis-appAccount.md)
@@ -2680,12 +2680,12 @@
       - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
       - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
       - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
-  - Calendar Kit API参考<!--calendar-api-->
+  - Calendar Kit（日历服务）<!--calendar-api-->
     - ArkTS API<!--calendar-arkts-->
       - [@ohos.calendarManager（日程管理）](reference/apis-calendar-kit/js-apis-calendarManager.md)
     - 错误码<!--calendar-arkts-errcode-->
       - [CalendarManager错误码](reference/apis-calendar-kit/errorcode-calendarManager.md)
-  - Camera Kit API参考<!--camera-api-->
+  - Camera Kit（相机服务）<!--camera-api-->
     - ArkTS API<!--camera-arkts-->
       - [@ohos.multimedia.camera (相机管理)](reference/apis-camera-kit/js-apis-camera.md)
       - [@ohos.multimedia.cameraPicker (相机选择器)](reference/apis-camera-kit/js-apis-cameraPicker.md)
@@ -2729,7 +2729,7 @@
         - [VideoOutput_Callbacks](reference/apis-camera-kit/_video_output___callbacks.md)
     - 错误码<!--camera-arkts-errcode-->
       - [Camera错误码](reference/apis-camera-kit/errorcode-camera.md)
-  - Connectivity Kit API参考<!--connectivity-api-->
+  - Connectivity Kit（短距通信服务）<!--connectivity-api-->
     - ArkTS API<!--connectivity-arkts--> 
       - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md)
       - [@ohos.bluetooth.access(蓝牙access模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-access.md)
@@ -2785,10 +2785,10 @@
       - [@ohos.bluetooth (蓝牙)(待停用)(系统接口)](reference/apis-connectivity-kit/js-apis-bluetooth-sys.md)
       - [@ohos.wifi (WLAN)(待停用)(系统接口)](reference/apis-connectivity-kit/js-apis-wifi-sys.md)
       <!--DelEnd-->
-  - Contacts Kit API参考<!--contacts-->
+  - Contacts Kit（联系人服务）<!--contacts-->
     - ArkTS API<!--contacts-arkts-->
       - [@ohos.contact (联系人)](reference/apis-contacts-kit/js-apis-contact.md)
-  - Core File Kit API参考<!--core-file-api-->
+  - Core File Kit（文件基础服务）<!--core-file-api-->
     - ArkTS API<!--core-file-arkts-->
       - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md)
       - [@ohos.file.cloudSync (端云同步能力)](reference/apis-core-file-kit/js-apis-file-cloudsync.md)
@@ -2838,14 +2838,14 @@
         - [FileShare_PolicyInfo](reference/apis-core-file-kit/_file_share___policy_info.md)
     - 错误码<!--core-file-arkts-errcode-->
       - [文件管理错误码](reference/apis-core-file-kit/errorcode-filemanagement.md)
-  - Crypto Architecture Kit API参考<!--crypto-architecture-api-->
+  - Crypto Architecture Kit（加解密算法框架服务）<!--crypto-architecture-api-->
     - ArkTS API<!--crypto-architecture-arkts-->
       - [@ohos.security.cryptoFramework (加解密算法库框架)](reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md)
       - 已停止维护的接口<!--crypto-architecture-arkts-dep-->
         - [@system.cipher (加密算法)](reference/apis-crypto-architecture-kit/js-apis-system-cipher.md)
     - 错误码<!--crypto-architecture-arkts-errcode-->
       - [crypto framework错误码](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
-  - Data Loss Prevention Kit API参考<!--data-loss-prevention-api-->
+  - Data Loss Prevention Kit（数据防泄漏服务）<!--data-loss-prevention-api-->
     - ArkTS API<!--data-loss-prevention-arkts-->
       - [@ohos.dlpPermission (数据防泄漏)](reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md)
       <!--Del-->
@@ -2853,7 +2853,7 @@
       <!--DelEnd-->
     - 错误码<!--data-loss-prevention-arkts-errcode-->
       - [DLP服务错误码](reference/apis-data-loss-prevention-kit/errorcode-dlp.md)
-  - Device Certificate Kit API参考<!--device-certificate-api-->
+  - Device Certificate Kit（设备证书服务）<!--device-certificate-api-->
     - ArkTS API<!--device-certificate-arkts-->
       - [@ohos.security.cert (证书模块)](reference/apis-device-certificate-kit/js-apis-cert.md)
       - [@ohos.security.certManager (证书管理模块)](reference/apis-device-certificate-kit/js-apis-certManager.md)
@@ -2863,7 +2863,7 @@
     - 错误码<!--device-certificate-arkts-errcode-->
       - [证书错误码](reference/apis-device-certificate-kit/errorcode-cert.md)
       - [证书管理错误码](reference/apis-device-certificate-kit/errorcode-certManager.md)
-  - Distributed Service Kit API参考<!--distributed-service-api-->
+  - Distributed Service Kit（分布式管理服务）<!--distributed-service-api-->
     - ArkTS API<!--distributed-service-arkts-->
       - [@ohos.distributedDeviceManager (设备管理)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
       <!--Del-->
@@ -2876,7 +2876,7 @@
     - 错误码<!--distributed-service-arkts-errcode-->
       - [设备管理错误码](reference/apis-distributedservice-kit/errorcode-device-manager.md)
       - [键鼠穿越管理错误码](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
-  - Driver Development Kit API参考<!--driver-development-api-->
+  - Driver Development Kit（驱动开发服务）<!--driver-development-api-->
     - ArkTS API<!--driver-development-arkts-->
       - [@ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)](reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)
       - [@ohos.driver.deviceManager (外设管理)](reference/apis-driverdevelopment-kit/js-apis-driver-deviceManager.md)
@@ -2918,7 +2918,7 @@
         - [Hid_KeyCodeArray](reference/apis-driverdevelopment-kit/_hid___key_code_array.md)
         - [Hid_MscEventArray](reference/apis-driverdevelopment-kit/_hid___msc_event_array.md)
         - [Hid_RelAxesArray](reference/apis-driverdevelopment-kit/_hid___rel_axes_array.md)
-  - DRM Kit API参考<!--drm-api-->
+  - DRM Kit（数字版权保护服务）<!--drm-api-->
     - ArkTS API<!--drm-arkts-->
       - [@ohos.multimedia.drm (数字版权保护)](reference/apis-drm-kit/js-apis-drm.md)
     - C API<!--drm-c-->
@@ -2943,7 +2943,7 @@
         - [OH_MediaKeySession_Callback](reference/apis-drm-kit/_o_h___media_key_session___callback.md)
     - 错误码<!--drm-arkts-errcode-->
       - [DRM错误码](reference/apis-drm-kit/errorcode-drm.md)
-  - Function Flow Runtime Kit API参考<!--function-flow-runtime-api-->
+  - Function Flow Runtime Kit（任务并发调度服务）<!--function-flow-runtime-api-->
     - C API<!--function-flow-runtime-c-->
       - 模块<!--function-flow-runtime-module-->
         - [FFRT](reference/apis-ffrt-kit/_f_f_r_t.md)
@@ -2967,7 +2967,7 @@
           - [ffrt_mutexattr_t](reference/apis-ffrt-kit/ffrt__mutexattr__t.md)
           - [ffrt_queue_attr_t](reference/apis-ffrt-kit/ffrt__queue__attr__t.md)
           - [ffrt_task_attr_t](reference/apis-ffrt-kit/ffrt__task__attr__t.md)
-  - Form Kit API参考<!--form-api-->
+  - Form Kit（卡片开发服务）<!--form-api-->
     - ArkTS API<!--form-arkts-->
       - [@ohos.app.form.formBindingData (卡片数据绑定类)](reference/apis-form-kit/js-apis-app-form-formBindingData.md)
       - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)
@@ -2998,7 +2998,7 @@
       <!--DelEnd-->
     - 错误码<!--form-arkts-errcode-->
       - [卡片错误码](reference/apis-form-kit/errorcode-form.md)
-  - Image Kit API参考<!--image-api-->
+  - Image Kit（图片处理服务）<!--image-api-->
     - ArkTS API<!--image-arkts-->
       - [@ohos.multimedia.image (图片处理)](reference/apis-image-kit/js-apis-image.md)
       - [@ohos.multimedia.sendableImage (基于Sendable对象的图片处理)](reference/apis-image-kit/js-apis-sendableImage.md)
@@ -3057,7 +3057,7 @@
         - [ImageEffect_Size](reference/apis-image-kit/_image_effect___size.md)
     - 错误码<!--image-arkts-errcode-->
       - [图片错误码](reference/apis-image-kit/errorcode-image.md)
-  - IME Kit API参考<!--ime-api-->
+  - IME Kit（输入法开发服务）<!--ime-api-->
     - ArkTS API<!--ime-arkts-->
       - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md)
       - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](reference/apis-ime-kit/js-apis-inputmethod-extension-context.md)
@@ -3071,7 +3071,7 @@
       - [@ohos.inputMethodList (输入法切换列表控件)](reference/apis-ime-kit/js-apis-inputmethodlist.md)
     - 错误码<!--ime-arkts-errcode-->
       - [输入法框架错误码](reference/apis-ime-kit/errorcode-inputmethod-framework.md)
-  - Input Kit API参考<!--input-api-->
+  - Input Kit（多模输入服务）<!--input-api-->
     - ArkTS API<!--input-arkts-->
       - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis-input-kit/js-apis-inputdevice.md)
       - [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis-input-kit/js-apis-inputevent.md)
@@ -3102,12 +3102,12 @@
             - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
     - 错误码<!--input-arkts-errcode-->
       - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
-  - IPC Kit API参考<!--ipc-api-->
+  - IPC Kit（进程间通信服务）<!--ipc-api-->
     - ArkTS API<!--ipc-arkts-->
       - [@ohos.rpc (RPC通信)](reference/apis-ipc-kit/js-apis-rpc.md)
     - 错误码<!--ipc-arkts-errcode-->
       - [RPC错误码](reference/apis-ipc-kit/errorcode-rpc.md)
-  - Localization Kit API参考<!--localization-api-->
+  - Localization Kit（本地化开发服务）<!--localization-api-->
     - ArkTS API<!--localization-arkts-->
       - [@ohos.i18n (国际化-I18n)](reference/apis-localization-kit/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis-localization-kit/js-apis-intl.md)
@@ -3132,7 +3132,7 @@
     - 错误码<!--localization-arkts-errcode-->
       - [I18n错误码](reference/apis-localization-kit/errorcode-i18n.md)
       - [资源管理错误码](reference/apis-localization-kit/errorcode-resource-manager.md)
-  - Location Kit API参考<!--location-api-->
+  - Location Kit（位置服务）<!--location-api-->
     - ArkTS API<!--location-arkts-->
       - [@ohos.geoLocationManager (位置服务)](reference/apis-location-kit/js-apis-geoLocationManager.md)
       <!--Del-->
@@ -3143,7 +3143,7 @@
         - [@system.geolocation (地理位置)](reference/apis-location-kit/js-apis-system-location.md)
     - 错误码<!--location-arkts-errcode-->
       - [位置服务错误码](reference/apis-location-kit/errorcode-geoLocationManager.md)
-  - MDM Kit API参考<!--mdm-api-->
+  - MDM Kit（企业设备管理服务）<!--mdm-api-->
     - ArkTS API<!--mdm-arkts-->
       - [@ohos.enterprise.accountManager（帐户管理）](reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)
       - [@ohos.enterprise.adminManager (企业设备管理)](reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)
@@ -3181,7 +3181,7 @@
       <!--DelEnd-->
     - 错误码<!--mdm-arkts-errcode-->
       - [企业设备管理错误码](reference/apis-mdm-kit/errorcode-enterpriseDeviceManager.md)
-  - Media Kit API参考<!--media-api-->
+  - Media Kit（媒体服务）<!--media-api-->
     - ArkTS API<!--media-arkts-->
       - [@ohos.multimedia.media (媒体服务)](reference/apis-media-kit/js-apis-media.md)
       <!--Del-->
@@ -3217,7 +3217,7 @@
         - [OH_VideoInfo](reference/apis-media-kit/_o_h___video_info.md)
     - 错误码<!--media-arkts-errcode-->
       - [Media错误码](reference/apis-media-kit/errorcode-media.md)
-  - Media Library Kit API参考<!--media-library-api-->
+  - Media Library Kit（媒体文件管理服务）<!--media-library-api-->
     - ArkTS API<!--media-library-arkts-->
       - [@ohos.file.photoAccessHelper (相册管理模块)](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)
       <!--Del-->
@@ -3240,7 +3240,7 @@
       - 结构体<!--media-library-struct-->
         - [MediaLibrary_RequestId](reference/apis-media-library-kit/_media_library___request_id.md)
         - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/_media_library___request_options.md)  
-  - MindSpore Lite Kit API参考<!--mindspore-lite-api-->
+  - MindSpore Lite Kit（昇思推理框架服务）<!--mindspore-lite-api-->
     - ArkTS API<!--mindspore-lite-arkts-->
       - [@ohos.ai.mindSporeLite (端侧AI框架)](reference/apis-mindspore-lite-kit/js-apis-mindSporeLite.md)
       <!--Del-->
@@ -3265,10 +3265,10 @@
     - 错误码<!--mindspore-lite-errcode-->
       - [智能语音错误码](reference/apis-mindspore-lite-kit/errorcode-intelligentVoice.md)
     <!--DelEnd-->
-  - Multimodal Awareness Kit API参考<!--multimodal-awareness-api-->
+  - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-api-->
     - ArkTS API<!--multimodal-awareness-arkts-->
       - [@ohos.stationary (设备状态感知框架)](reference/apis-multimodalawareness-kit/js-apis-stationary.md)
-  - Network Kit API参考<!--network-api-->
+  - Network Kit（网络服务）<!--network-api-->
     - ArkTS API<!--network-api-arkts-->
       - [@ohos.net.connection (网络连接管理)](reference/apis-network-kit/js-apis-net-connection.md)
       - [@ohos.net.http (数据请求)](reference/apis-network-kit/js-apis-http.md)
@@ -3329,7 +3329,7 @@
       - [MDNS错误码](reference/apis-network-kit/errorcode-net-mdns.md)
       - [流量管理错误码](reference/apis-network-kit/errorcode-net-statistics.md)
       - [VPN错误码](reference/apis-network-kit/errorcode-net-vpn.md)
-  - Neural Network Runtime Kit API参考<!--neural-network-runtime-api-->
+  - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-api-->
     - C API<!--neural-network-runtime-c-->
       - 模块<!--neural-network-runtime-module-->
         - [NeuralNetworkRuntime](reference/apis-neural-network-runtime-kit/_neural_nework_runtime.md)
@@ -3342,7 +3342,7 @@
         - [OH_NN_QuantParam](reference/apis-neural-network-runtime-kit/_o_h___n_n___quant_param.md)
         - [OH_NN_Tensor](reference/apis-neural-network-runtime-kit/_o_h___n_n___tensor.md)
         - [OH_NN_UInt32Array](reference/apis-neural-network-runtime-kit/_o_h___n_n___u_int32_array.md)
-  - Notification Kit API参考<!--notification-api-->
+  - Notification Kit（用户通知服务）<!--notification-api-->
     - ArkTS API<!--notification-arkts-->
       - [@ohos.notificationManager (NotificationManager模块)](reference/apis-notification-kit/js-apis-notificationManager.md)
       <!--Del-->
@@ -3376,7 +3376,7 @@
         <!--DelEnd-->
     - 错误码<!--notification-arkts-errcode-->
       - [通知错误码](reference/apis-notification-kit/errorcode-notification.md)
-  - Performance Analysis Kit API参考<!--performance-analysis-api-->
+  - Performance Analysis Kit（性能分析服务）<!--performance-analysis-api-->
     - ArkTS API<!--performance-analysis-arkts-->
       - [@ohos.faultLogger (故障日志获取)](reference/apis-performance-analysis-kit/js-apis-faultLogger.md)
       - [@ohos.hichecker (检测模式)](reference/apis-performance-analysis-kit/js-apis-hichecker.md)
@@ -3424,7 +3424,7 @@
       - [系统事件错误码](reference/apis-performance-analysis-kit/errorcode-hisysevent-sys.md)
       - [维测日志错误码](reference/apis-performance-analysis-kit/errorcode-loglibrary-sys.md)
       <!--DelEnd-->
-  - Sensor Service Kit API参考<!--sensor-service-api-->
+  - Sensor Service Kit（传感器服务）<!--sensor-service-api-->
     - ArkTS API<!--sensor-service-arkts-->
       - [@ohos.sensor(传感器)](reference/apis-sensor-service-kit/js-apis-sensor.md)
       - [@ohos.vibrator(振动)](reference/apis-sensor-service-kit/js-apis-vibrator.md)
@@ -3448,7 +3448,7 @@
     - 错误码<!--sensor-service-arkts-errcode-->
       - [Sensor错误码](reference/apis-sensor-service-kit/errorcode-sensor.md)
       - [Vibrator错误码](reference/apis-sensor-service-kit/errorcode-vibrator.md)
-  - Telephony Kit API参考<!--telephony-api-->
+  - Telephony Kit（蜂窝通信服务）<!--telephony-api-->
     - ArkTS API<!--telephony-arkts-->
       - [@ohos.telephony.call (拨打电话)](reference/apis-telephony-kit/js-apis-call.md)
       - [@ohos.telephony.data (蜂窝数据)](reference/apis-telephony-kit/js-apis-telephony-data.md)
@@ -3467,7 +3467,7 @@
       <!--DelEnd-->
     - 错误码<!--telephony-arkts-errcode-->
       - [电话子系统错误码](reference/apis-telephony-kit/errorcode-telephony.md)
-  - Test Kit API参考<!--test-api-->
+  - Test Kit（应用测试服务）<!--test-api-->
     - ArkTS API<!--test-arkts-->
        - [@ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-app-ability-abilityDelegatorRegistry.md)
        - [@ohos.application.testRunner (TestRunner)](reference/apis-test-kit/js-apis-application-testRunner.md)
@@ -3480,7 +3480,7 @@
           - [@ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-application-abilityDelegatorRegistry.md)
     - 错误码<!--test-arkts-errcode-->
        - [uitest错误码](reference/apis-test-kit/errorcode-uitest.md)
-  - Universal Keystore Kit API参考<!--universal-keystore-api-->
+  - Universal Keystore Kit（密钥管理服务）<!--universal-keystore-api-->
     - ArkTS API<!--universal-keystore-arkts-->
       - [@ohos.security.huks (通用密钥库系统)](reference/apis-universal-keystore-kit/js-apis-huks.md)
       <!--Del-->
@@ -3511,7 +3511,7 @@
         - [OH_Huks_Result](reference/apis-universal-keystore-kit/_o_h___huks___result.md)
     - 错误码<!--universal-keystore-arkts-errcode-->
       - [HUKS错误码](reference/apis-universal-keystore-kit/errorcode-huks.md)
-  - User Authentication Kit API参考<!--user-authentication-api-->
+  - User Authentication Kit（用户认证服务）<!--user-authentication-api-->
     - ArkTS API<!--user-authentication-arkts-->
       - [@ohos.userIAM.userAuth (用户认证)](reference/apis-user-authentication-kit/js-apis-useriam-userauth.md)
       <!--Del-->
