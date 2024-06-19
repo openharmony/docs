@@ -526,7 +526,7 @@ getDeviceType(networkId: string): number;
 
 ### startDiscovering
 
-startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object} ): void;
+startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object;} ): void;
 
 发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。wifi场景要求同局域网。
 
@@ -621,7 +621,7 @@ stopDiscovering(): void;
 
 ### bindTarget
 
-bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , callback: AsyncCallback&lt;{deviceId: string}>): void;
+bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , callback: AsyncCallback&lt;{deviceId: string;}>): void;
 
 认证设备。
 
@@ -725,7 +725,7 @@ unbindTarget(deviceId: string): void;
 
 ### on('deviceStateChange')
 
-on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
+on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void;
 
 注册设备状态回调，以便在设备状态发生变化时根据应用捆绑包名通知应用。
 
@@ -778,7 +778,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
 
 ### off('deviceStateChange')
 
-off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
+off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void;
 
 取消注册设备状态回调。
 
@@ -831,7 +831,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 ### on('discoverSuccess')
 
-on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt;): void;
+on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo; }&gt;): void;
 
 注册发现设备成功回调监听。
 
@@ -883,7 +883,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt
 
 ### off('discoverSuccess')
 
-off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&gt;): void;
+off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo; }&gt;): void;
 
 取消注册设备发现成功回调。
 
@@ -934,7 +934,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&
 
 ### on('deviceNameChange')
 
-on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): void;
+on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string; }&gt;): void;
 
 注册设备名称变更回调，以便在设备名称改变时通知应用程序。
 
@@ -980,7 +980,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): 
 
 ### off('deviceNameChange')
 
-off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;): void;
+off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string; }&gt;): void;
 
 取消注册设备名称变更回调监听。
 
@@ -1026,7 +1026,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
 
 ### on('discoverFailure')
 
-on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
+on(type: 'discoverFailure', callback: Callback&lt;{ reason: number; }&gt;): void;
 
 注册设备发现失败回调监听。
 
@@ -1072,7 +1072,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
 
 ### off('discoverFailure')
 
-off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): void;
+off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number; }&gt;): void;
 
 取消注册设备发现失败回调。
 
