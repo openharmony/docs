@@ -128,6 +128,7 @@
               let bundleCodeDir = applicationContext.bundleCodeDir;
               let distributedFilesDir = applicationContext.distributedFilesDir;
               let preferencesDir = applicationContext.preferencesDir;
+              let cloudFileDir = applicationContext.cloudFileDir;
               // 获取应用文件路径
               let filePath = tempDir + 'test.txt';
               hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
@@ -191,6 +192,7 @@
               let bundleCodeDir = this.context.bundleCodeDir;
               let distributedFilesDir = this.context.distributedFilesDir;
               let preferencesDir = this.context.preferencesDir;
+              let cloudFileDir = applicationContext.cloudFileDir;
               // 获取应用文件路径
               let filePath = tempDir + 'test.txt';
               hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
