@@ -22,7 +22,7 @@
 
 ## 开发步骤
 
-1. 获取设备的位置信息，需要有位置权限，位置权限申请的方法和步骤见[申请位置权限开发指导](location-permission-guidelines.md)。
+1. 获取设备的位置信息，需要有位置权限，位置权限申请的方法和步骤见[申请位置权限开发指导](location-permission-guidelines.md#申请位置权限开发指导)。
 
 2. 导入geoLocationManager模块，所有与基础定位能力相关的功能API，都是通过该模块提供的。
    
