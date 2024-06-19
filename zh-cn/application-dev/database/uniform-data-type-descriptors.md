@@ -180,7 +180,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 下面以媒体类文件的归属类型查询场景为例，说明如何使用UTD。
 
-1. 导入`@ohos.data.uniformTypeDescriptor`模块。
+1. 导入uniformTypeDescriptor模块。
 2. 可根据 “.mp3” 文件后缀查询对应UTD数据类型，并查询对应UTD数据类型的具体属性。
 3. 可根据 “audio/mp3” MIMEType查询对应UTD数据类型，并查询对应UTD数据类型的具体属性。
 4. 将上述步骤查询出来的数据类型进行比较，确认类型是否相等。
@@ -237,7 +237,7 @@ try {
 
 下面以通过“.mp3”文件后缀获取对应的MIMEType列表为例，说明如何通过文件后缀获取对应的MIMEType列表。
 
-1. 导入`@ohos.data.uniformTypeDescriptor`模块。
+1. 导入uniformTypeDescriptor模块。
 2. 可根据 “.mp3” 文件后缀查询对应UTD数据类型。
 3. 根据UTD数据类型查询对应的MIMEType列表。
 
@@ -260,7 +260,7 @@ try {
 
 下面以通过“audio/mp3”MIMEType获取对应文件后缀列表为例，说明如何通过MIMEType获取对应的后缀列表。
 
-1. 导入`@ohos.data.uniformTypeDescriptor`模块。
+1. 导入uniformTypeDescriptor模块。
 2. 可根据 “audio/mp3” MIMEType查询对应UTD数据类型。
 3. 根据UTD数据类型查询对应的MIMEType列表。
 

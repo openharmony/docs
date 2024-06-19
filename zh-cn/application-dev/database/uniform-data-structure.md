@@ -48,7 +48,7 @@ UDMF提供了统一数据对象UnifiedData，用于封装一组数据记录Unifi
 
 以使用标准化数据结构定义数据内容（包含图片、纯文本两条数据记录）为例，提供基本的开发步骤。
 
-1. 导入`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
+1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
 
    ```ts
    import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';

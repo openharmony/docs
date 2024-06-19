@@ -43,9 +43,9 @@
       - [使用Deep Linking实现应用间跳转](deep-linking-startup.md)
       - [使用App Linking实现应用间跳转](app-linking-startup.md)
       - [应用间显式跳转切换link跳转适配指导](uiability-startup-adjust.md)
-
     - 通用意图跳转
       - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
+      - [通过startAbility拉起文件处理类应用](file-processing-apps-startup.md)
     - [拉起系统应用](system-app-startup.md)
   - [进程模型](process-model-stage.md)
   - [线程模型](thread-model-stage.md)
