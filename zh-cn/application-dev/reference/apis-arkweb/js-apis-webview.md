@@ -14770,10 +14770,10 @@ exitFullscreen(): void
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>
 
+type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, mediaInfo: MediaInfo) => NativeMediaPlayerBridge
+
 [onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)方法的参数。
 一个回调函数， 创建一个播放器, 用于接管网页中的媒体播放。
-
-type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, mediaInfo: MediaInfo) => NativeMediaPlayerBridge
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
