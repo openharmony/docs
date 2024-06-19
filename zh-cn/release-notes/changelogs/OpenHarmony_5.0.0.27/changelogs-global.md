@@ -39,4 +39,4 @@
 
 **适配指导**
 
-可以通过font.getUIFontConfig和font.getFontByName接口获取当前系统支持字体进行适配。
+使用变更后的字体文件名。
