@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import emitter from '@ohos.events.emitter';
+import { emitter } from '@kit.BasicServicesKit';
 ```
 
 ## 权限列表
