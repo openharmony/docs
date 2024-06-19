@@ -177,7 +177,7 @@ buffer数组的列表。
 | 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | type | [GeneralNameType](#generalname12)    | 是 |  指定具体的证书主体类型。  |
-| name | Uint8Array    | 是  |  指定具体的证书主体DER格式内容。  |
+| name | Uint8Array    | 否  |  指定具体的证书主体DER格式内容。  |
 
 ## X509CertMatchParameters<sup>11+</sup>
 
