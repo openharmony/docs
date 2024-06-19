@@ -44,11 +44,11 @@ y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若
 
 允许自行拼接组合显示格式，即：年、月、日、星期、时、分、秒、毫秒可拆分为子元素，可自行排布组合。时间更新频率最高为一秒一次，不建议单独设置厘秒和毫秒格式。
 
-当设置无效字母时（非上述字母被认为是无效字母），该字母会被忽略。如果format全是无效字母时，显示为格式yyyy/MM/dd aa hh:mm:ss.SSS
+当设置无效字母时（非上述字母被认为是无效字母），该字母会被忽略。如果format全是无效字母时，显示格式跟随系统语言和系统小时制。例如系统语言为中文时，12小时制显示格式为yyyy/MM/dd aa hh:mm:ss.SSS，24小时制显示格式为yyyy/MM/dd HH:mm:ss.SSS。
 
 若format为空或者undefined，则使用默认值。
 
-非卡片中默认值：aa hh:mm:ss。卡片中默认值：hh:mm 。卡片中使用时，最小时间单位为分钟。如果设置格式中有秒或厘秒按默认值处理。
+非卡片中默认值：12小时制：aa hh:mm:ss，24小时制：HH:mm:ss。<br />卡片中默认值：12小时制：hh:mm，24小时制：HH:mm 。<br />卡片中使用时，最小时间单位为分钟。如果设置格式中有秒或厘秒按默认值处理。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -170,7 +170,7 @@ dateTimeOptions(dateTimeOptions: DateTimeOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| dateTimeOptions  | Optional<[DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions)> | 是   | 设置小时是否显示前导0，只支持设置hour参数。<br/>默认值：undefined，由组件根据应用设置格式自行判断是否显示前导0。<br/>只支持{hour: 'numeric}和{hour: '2-digit'} |
+| dateTimeOptions  | Optional<[DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions)> | 是   | 设置小时是否显示前导0，只支持设置hour参数，参数值为{hour: "2-digit"}时表示显示前导0，参数值为{hour: "numeric"}时表示不显示前导0。<br/>默认值：undefined，由组件根据应用设置格式自行判断是否显示前导0。|
 
 ## 事件
 
@@ -399,17 +399,17 @@ struct TextClockExample {
     Column({ space: 8 }) {
       Row() {
         Text("24小时制去除前导0：")
-          .fontSize(30)
+          .fontSize(20)
         TextClock()
-          .fontSize(30)
+          .fontSize(20)
           .format("HH:mm:ss")
           .dateTimeOptions({hour: "numeric"})
       }
       Row() {
         Text("12小时制增加前导0：")
-          .fontSize(30)
+          .fontSize(20)
         TextClock()
-          .fontSize(30)
+          .fontSize(20)
           .format("aa hh:mm:ss")
           .dateTimeOptions({hour: "2-digit"})
       }
