@@ -64,9 +64,9 @@ The following example describes how to implement many-to-many data sharing. The 
      intention: unifiedDataChannel.Intention.DATA_HUB
    }
    try {
-     unifiedDataChannel.insertData(options, unifiedData, (err, data) => {
+     unifiedDataChannel.insertData(options, unifiedData, (err, key) => {
        if (err === undefined) {
-         console.info(`Succeeded in inserting data. key = ${data}`);
+         console.info(`Succeeded in inserting data. key = ${key}`);
        } else {
          console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
        }
@@ -86,6 +86,7 @@ The following example describes how to implement many-to-many data sharing. The 
    
    // Specify the URI of the UnifiedData object to update.
    let options: unifiedDataChannel.Options = {
+     // The key here is an example and cannot be used. Use the value in the callback of insertData().
      key: 'udmf://DataHub/com.ohos.test/0123456789'
    };
    
