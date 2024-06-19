@@ -42,9 +42,9 @@
       - [（可选）使用canOpenLink判断应用是否可访问](canopenlink.md)
       - [使用Deep Linking实现应用间跳转](deep-linking-startup.md)
       - [使用App Linking实现应用间跳转](app-linking-startup.md)
-
     - 通用意图跳转
       - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
+      - [过startAbility拉起文件处理类应用](file-processing-apps-startup.md)
     - [拉起系统应用](system-app-startup.md)
   - [进程模型](process-model-stage.md)
   - [线程模型](thread-model-stage.md)
