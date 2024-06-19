@@ -390,7 +390,7 @@ function finish() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| width | number | 是 | 是 | 图片宽度，取值范围大于0。 |
-| height | number | 是 | 是 | 图片高度，取值范围大于0。 |
+| width | number | 是 | 否 | 图片宽度，取值范围大于0。 |
+| height | number | 是 | 否 | 图片高度，取值范围大于0。 |
