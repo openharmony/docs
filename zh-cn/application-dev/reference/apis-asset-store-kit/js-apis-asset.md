@@ -587,7 +587,7 @@ querySync(query: AssetMap): Array\<AssetMap>
 
 | 类型                     | 说明                                  |
 | ------------------------ | ------------------------------------- |
-| <Array\<AssetMap> | 查询结果列表。 |
+| Array\<AssetMap> | 查询结果列表。 |
 
 **错误码：**
 
@@ -878,7 +878,7 @@ type AssetMap = Map\<Tag, Value>
 | NEED_SYNC   | 0    | 需要进行同步操作。 |
 | NEED_LOGOUT | 1    | 需要进行登出操作。 |
 
-## AssetErrorCode
+## ErrorCode
 
 表示错误码的枚举。
 
