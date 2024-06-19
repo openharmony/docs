@@ -127,12 +127,12 @@ RouterPageInfo包含的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                 | 类型                                                         | 必填 | 说明                                         |
-| -------------------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) / [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发生命周期的routerPage页面对应的上下文信息。 |
-| index                | number                                                       | 是   | 触发生命周期的routerPage在栈中的位置。       |
-| name                 | string                                                       | 是   | 触发生命周期的routerPage页面的名称。         |
-| path                 | string                                                       | 是   | 触发生命周期的routerPage页面的路径。         |
+| 名称                 | 类型                                                         | 必填 | 说明                                           |
+| -------------------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
+| context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发生命周期的routerPage页面对应的上下文信息。 |
+| index                | number                                                       | 是   | 触发生命周期的routerPage在栈中的位置。         |
+| name                 | string                                                       | 是   | 触发生命周期的routerPage页面的名称。           |
+| path                 | string                                                       | 是   | 触发生命周期的routerPage页面的路径。           |
 | state                | [RouterPageState](#routerpagestate)                          | 是   | 触发生命周期的routerPage页面的状态。           |
 | pageId<sup>12+</sup> | string                                                       | 是   | 触发生命周期的routerPage页面的唯一标识。       |
 
