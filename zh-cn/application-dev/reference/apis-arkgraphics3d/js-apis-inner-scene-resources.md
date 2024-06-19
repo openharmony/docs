@@ -34,7 +34,7 @@ import { SceneResourceType, SceneResource, Shader, MaterialType, Material, Shade
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| name | string | 是 | 否 | 名称，没有特殊格式要求。 |
+| name | string | 否 | 否 | 名称，没有特殊格式要求。 |
 | resourceType | [SceneResourceType](#sceneresourcetype) | 是 | 否 | 场景资源类型，默认值为undefined。|
 | uri | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 是 | 需要加载的资源，默认值为undefined。|
 
