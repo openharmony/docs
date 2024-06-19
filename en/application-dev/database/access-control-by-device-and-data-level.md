@@ -21,13 +21,14 @@ The data can be rated into four security levels: S1, S2, S3, and S4.
 
 
 ### Device Security Levels
-
+<!--RP1-->
 Device security levels are classified into SL1 to SL5 based on devices' security capabilities, for example, whether a Trusted Execution Environment (TEE) or a secure storage chip is available. For example, the development boards RK3568 and Hi3516 are SL1 (lower security) devices, and tablets are SL4 (higher security) devices.
 
 During device networking, you can run the **hidumper -s 3511** command to query the device security level. The following example shows how to query the security level of the RK3568 board:
-
+<!--RP1End-->
+<!--Del-->
 ![en-us_image_0000001542496993](figures/en-us_image_0000001542496993.png)
-
+<!--DelEnd-->
 
 ## Access Control Mechanism in Cross-Device Sync
 
@@ -40,9 +41,9 @@ In cross-device data sync, data access is controlled based on the device securit
 |SL3|S1 to S3|
 |SL4|S1 to S4|
 |SL5|S1 to S4| 
-
+<!--RP2-->
 For example, the security level of development boards RK3568 and Hi3516 is SL1. The database with data security label S1 can be synced with RK3568 and Hi3516, but the databases with database labels S2-S4 cannot.
-
+<!--RP2End-->
 
 ## When to Use
 
@@ -58,8 +59,8 @@ For details about the APIs, see [Distributed KV Store](../reference/apis-arkdata
 
   
 ```ts
-import distributedKVStore from '@ohos.data.distributedKVStore';
-import { BusinessError } from '@ohos.base';
+import { distributedKVStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
 let kvStore: distributedKVStore.SingleKVStore;
@@ -108,15 +109,16 @@ For details about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-da
 
   
 ```ts
-import { BusinessError } from '@ohos.base';
-import relationalStore from '@ohos.data.relationalStore';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { relationalStore } from '@kit.ArkData';
 
 let store: relationalStore.RdbStore;
+let context = getContext(this);
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: 'RdbTest.db',
   securityLevel: relationalStore.SecurityLevel.S1
 };
-let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
+let promise = relationalStore.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
   store = rdbStore;
   console.info('Succeeded in getting RdbStore.')
