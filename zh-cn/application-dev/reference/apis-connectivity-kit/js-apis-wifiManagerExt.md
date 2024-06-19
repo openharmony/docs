@@ -2,7 +2,7 @@
 该模块主要提供WLAN扩展接口，供非通用类型产品使用。
 
 > **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 该文档中的接口只供非通用类型产品使用，如路由器等，对于常规类型产品，不应该使用这些接口。
 
 
@@ -18,6 +18,9 @@ enableHotspot(): void;
 
 使能WLAN热点。
 
+> **说明：**
+> 从 API version 9开始支持，从API version 10开始废弃。
+
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
@@ -35,13 +38,13 @@ enableHotspot(): void;
 **示例：**
 
 ```ts
-        import { wifiManagerExt } from '@kit.ConnectivityKit';
+  import { wifiManagerExt } from '@kit.ConnectivityKit';
 
-        try {
-            wifiManagerExt.enableHotspot();
-        }catch(error){
-            console.error("failed:" + JSON.stringify(error));
-        }
+  try {
+      wifiManagerExt.enableHotspot();
+  }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+  }
 ```
 
 ## wifiManagerExt.disableHotspot<sup>9+</sup>
@@ -50,6 +53,9 @@ disableHotspot(): void;
 
 去使能WLAN热点。
 
+> **说明：**
+> 从 API version 9开始支持，从API version 10开始废弃。
+
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
@@ -67,13 +73,13 @@ disableHotspot(): void;
 **示例：**
 
 ```ts
-        import { wifiManagerExt } from '@kit.ConnectivityKit';
+  import { wifiManagerExt } from '@kit.ConnectivityKit';
 
-        try {
-            wifiManagerExt.disableHotspot();
-        }catch(error){
-            console.error("failed:" + JSON.stringify(error));
-        }
+  try {
+      wifiManagerExt.disableHotspot();
+  }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+  }
 ```
 
 ## wifiManagerExt.getSupportedPowerMode<sup>9+</sup>
@@ -144,21 +150,21 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
 **示例：**
 
 ```ts
-        import { wifiManagerExt } from '@kit.ConnectivityKit';
+  import { wifiManagerExt } from '@kit.ConnectivityKit';
 
-        wifiManagerExt.getSupportedPowerMode((err, data) => {
-            if (err) {
-                console.error("get supported power mode info error");
-                return;
-            }
-            console.info("get supported power mode info: " + JSON.stringify(data));
-        });
+  wifiManagerExt.getSupportedPowerMode((err, data) => {
+      if (err) {
+          console.error("get supported power mode info error");
+          return;
+      }
+      console.info("get supported power mode info: " + JSON.stringify(data));
+  });
 
-        wifiManagerExt.getSupportedPowerMode().then(data => {
-            console.info("get supported power mode info: " + JSON.stringify(data));
-        }).catch((error:number) => {
-            console.info("get supported power mode error");
-        });
+  wifiManagerExt.getSupportedPowerMode().then(data => {
+      console.info("get supported power mode info: " + JSON.stringify(data));
+  }).catch((error:number) => {
+      console.info("get supported power mode error");
+  });
 ```
 
 ## wifiManagerExt.getPowerMode<sup>9+</sup>
@@ -166,6 +172,9 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
 getPowerMode(): Promise&lt;PowerMode&gt;
 
 获取功率模式，使用Promise异步回调。
+
+> **说明：**
+> 从 API version 9开始支持，从API version 10开始废弃。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -190,14 +199,14 @@ getPowerMode(): Promise&lt;PowerMode&gt;
 **示例：**
 
 ```ts
-        import { wifiManagerExt } from '@kit.ConnectivityKit';
+  import { wifiManagerExt } from '@kit.ConnectivityKit';
 
-        try {
-            let model = wifiManagerExt.getPowerMode();
-            console.info("model info:" + model);
-        }catch(error){
-            console.error("failed:" + JSON.stringify(error));
-        }
+  try {
+      let model = wifiManagerExt.getPowerMode();
+      console.info("model info:" + model);
+  }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+  }
 ```
 
 ## wifiManagerExt.getPowerMode<sup>9+</sup>
@@ -229,21 +238,21 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
 **示例：**
 
 ```ts
-        import { wifiManagerExt } from '@kit.ConnectivityKit';
+  import { wifiManagerExt } from '@kit.ConnectivityKit';
 
-        wifiManagerExt.getPowerMode((err, data) => {
-            if (err) {
-                console.error("get linked info error");
-                return;
-            }
-            console.info("get power mode info: " + JSON.stringify(data));
-        });
+  wifiManagerExt.getPowerMode((err, data) => {
+      if (err) {
+          console.error("get linked info error");
+          return;
+      }
+      console.info("get power mode info: " + JSON.stringify(data));
+  });
 
-        wifiManagerExt.getPowerMode().then(data => {
-            console.info("get power mode info: " + JSON.stringify(data));
-        }).catch((error:number) => {
-            console.info("get power mode error");
-        });
+  wifiManagerExt.getPowerMode().then(data => {
+      console.info("get power mode info: " + JSON.stringify(data));
+  }).catch((error:number) => {
+      console.info("get power mode error");
+  });
 ```
 
 ## wifiManagerExt.setPowerMode<sup>9+</sup>
@@ -258,9 +267,9 @@ setPowerMode(mode: PowerMode) : void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | model | [PowerMode](#powermode9) | 是 | 功率模式。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| model | [PowerMode](#powermode9) | 是 | 功率模式。 |
 
 **错误码：**
 
@@ -275,12 +284,12 @@ setPowerMode(mode: PowerMode) : void;
 **示例：**
 
 ```ts
-        import { wifiManagerExt } from '@kit.ConnectivityKit';
+  import { wifiManagerExt } from '@kit.ConnectivityKit';
 
-        try {
-            let model = 0;
-            wifiManagerExt.setPowerMode(model);
-        }catch(error){
-            console.error("failed:" + JSON.stringify(error));
-        }
+  try {
+      let model = 0;
+      wifiManagerExt.setPowerMode(model);
+  }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+  }
 ```

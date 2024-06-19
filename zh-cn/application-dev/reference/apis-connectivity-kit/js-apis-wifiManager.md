@@ -137,7 +137,7 @@ ohos.permission.GET_WIFI_PEERS_MAC权限仅系统应用可申请。
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;&gt; | 是 | 回调函数。当成功时，err为0，data为扫描到的热点；否则err为非0值，data为空。 |
-  | Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt; | 返回扫描到的热点列表。 |
+| Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt; | 返回扫描到的热点列表。 |
 
 **错误码：**
 
@@ -1620,7 +1620,11 @@ getP2pLocalDevice(): Promise&lt;WifiP2pDevice&gt;
 
 获取P2P本端设备信息，使用Promise异步回调。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG（该权限仅系统应用可申请）
+**需要权限：** 
+
+API 9：ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
+
+API 11起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -1646,7 +1650,11 @@ getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
 
 获取P2P本端设备信息，使用callback异步回调。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG（该权限仅系统应用可申请）
+**需要权限：**
+
+API 9：ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
+
+API 11起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
