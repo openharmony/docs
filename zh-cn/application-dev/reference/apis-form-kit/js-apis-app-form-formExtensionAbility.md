@@ -245,7 +245,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 onConfigurationUpdate(newConfig: Configuration): void
 
 当系统配置更新时调用。  
-仅当前formExtensionAbility存活时更新配置才会触发此生命周期。需要注意：formExtensionAbility创建后5秒内无操作将会被清理。
+仅当前formExtensionAbility存活时更新配置才会触发此生命周期。需要注意：formExtensionAbility创建后10秒内无操作将会被清理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -266,7 +266,7 @@ import { Configuration } from '@kit.AbilityKit';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onConfigurationUpdate(newConfig: Configuration) {
     // 仅当前formExtensionAbility存活时更新配置才会触发此生命周期。
-    // 需要注意：formExtensionAbility创建后5秒内无操作将会被清理。
+    // 需要注意：formExtensionAbility创建后10秒内无操作将会被清理。
     console.log(`onConfigurationUpdate, config: ${JSON.stringify(newConfig)}`);
   }
 };
