@@ -736,7 +736,7 @@ Sets a **DataAbilityPredicates** object to specify the index column. Before call
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| indexName | string | Yes| Name of the index.|
+| field | string | Yes| Name of the index column.|
 
 **Return value**
 
