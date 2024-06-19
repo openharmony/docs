@@ -997,7 +997,7 @@
     - [申请位置权限开发指导](device/location/location-permission-guidelines.md)
     - [获取设备的位置信息开发指导](device/location/location-guidelines.md)
     - [地理编码转化与逆地理编码转化开发指导](device/location/geocode-guidelines.md)
-    - [地理围栏开发指导](geofence-guidelines.md)
+    - [地理围栏开发指导](device/location/geofence-guidelines.md)
   - MDM Kit（企业设备管理服务）
     - [MDM Kit简介](mdm/mdm-kit-intro.md)
     - [MDM Kit开发指南](mdm/mdm-kit-guide.md)
