@@ -745,8 +745,8 @@ crc32Combine(crc1: number, crc2: number, len2: number): Promise&lt;number&gt;
 
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
-| adler1 | number | 是   | 第一个要合并的CRC-32校验。       |
-| adler2 | number | 是   | 第二个要合并的CRC-32校验。       |
+| crc1 | number | 是   | 第一个要合并的CRC-32校验。       |
+| crc2 | number | 是   | 第二个要合并的CRC-32校验。       |
 | len2   | number | 是   | 第二个CRC-32校验的数据块的长度。 |
 
 **返回值：**
@@ -3006,7 +3006,7 @@ deflateBound(strm: ZStream, sourceLength: number): Promise&lt;number&gt;
 | 参数名    | 类型    | 必填 | 说明                            |
 | --------- | ------- | ---- | ------------------------------- |
 | strm      | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
-| sourceLen | number  | 是   | 源数据长度。                    |
+| sourceLength | number  | 是   | 源数据长度。                    |
 
 **返回值：**
 
@@ -5542,7 +5542,7 @@ gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;numb
 | 参数名 | 类型                          | 必填 | 说明                   |
 | ------ | ----------------------------- | ---- | ---------------------- |
 | format | string                        | 是   | 格式化描述符和纯文本。 |
-| args   | Array&lt;string \| number&gt; | 是   | 可变参数列表。         |
+| args   | Array&lt;string \| number&gt; | 否   | 可变参数列表。         |
 
 **返回值：**
 
