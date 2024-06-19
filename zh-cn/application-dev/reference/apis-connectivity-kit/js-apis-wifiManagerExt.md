@@ -31,8 +31,8 @@ enableHotspot(): void;
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-|201 | Permission denied.                 |
-|801 | Capability not supported.          |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **示例：**
@@ -66,8 +66,8 @@ disableHotspot(): void;
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-|201 | Permission denied.                 |
-|801 | Capability not supported.          |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **示例：**
@@ -104,8 +104,8 @@ getSupportedPowerMode(): Promise&lt;Array&lt;PowerMode&gt;&gt;
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-|201 | Permission denied.                 |
-|801 | Capability not supported.          |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 ## PowerMode<sup>9+</sup>
@@ -143,8 +143,9 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-|201 | Permission denied.                 |
-|801 | Capability not supported.          |
+| 201 | Permission denied.                 |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **示例：**
@@ -192,8 +193,8 @@ getPowerMode(): Promise&lt;PowerMode&gt;
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-|201 | Permission denied.                 |
-|801 | Capability not supported.          |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **示例：**
@@ -231,8 +232,9 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-|201 | Permission denied.                 |
-|801 | Capability not supported.          |
+| 201 | Permission denied.                 |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **示例：**
@@ -277,8 +279,9 @@ setPowerMode(mode: PowerMode) : void;
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
-|201 | Permission denied.                 |
-|801 | Capability not supported.          |
+| 201 | Permission denied.                 |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **示例：**
