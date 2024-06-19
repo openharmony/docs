@@ -132,8 +132,15 @@
         <!--DelEnd-->
         - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
       - 应用间跳转
+        - [应用间跳转概述](link-between-apps-overview.md)
+        - 指向性跳转
+          - [（可选）使用canOpenLink判断应用是否可访问](canopenlink.md)
+          - [使用Deep Linking实现应用间跳转](deep-linking-startup.md)
+          - [使用App Linking实现应用间跳转](app-linking-startup.md)
         - 通用意图跳转
-          - [通过startAbilityByType拉起垂类应用](application-models/start-intent-panel.md)
+          - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
+          - [通过startAbility拉起文件处理类应用](file-processing-apps-startup.md)
+        - [拉起系统应用](system-app-startup.md)
       - [进程模型](application-models/process-model-stage.md)
       - [线程模型](application-models/thread-model-stage.md)
       <!--Del-->
