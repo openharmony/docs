@@ -89,6 +89,7 @@ export class Store {
       try {
         kvStore = await kvManager.getKVStore<distributedKVStore.SingleKVStore>(storeInfo.storeId, storeInfo.option);
         if (kvStore != undefined) {
+          console.info(`ECDB_Encry succeeded in getting store : ${storeInfo.storeId}`);
           return kvStore;
         }
       } catch (e) {
@@ -183,7 +184,7 @@ export class Store {
 
 ```ts
 // SecretKeyObserver.ts
-import { ECStoreManager } from './ECStoreManager'
+import { ECStoreManager } from './ECStoreManager';
 
 export enum SecretStatus {
   Lock,
@@ -230,11 +231,11 @@ ECStoreManager类用于管理应用的E类数据库和C类数据库。提供配�
 
 ```ts
 // ECStoreManager.ts
-import distributedKVStore from '@ohos.data.distributedKVStore';
-import { Mover } from './Mover'
+import { distributedKVStore } from '@kit.ArkData';
+import { Mover } from './Mover';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { StoreInfo, Store } from './Store'
-import { SecretStatus } from './SecretKeyObserver'
+import { StoreInfo, Store } from './Store';
+import { SecretStatus } from './SecretKeyObserver';
 
 let store = new Store();
 
@@ -253,7 +254,6 @@ export class ECStoreManager {
     if (screanStatus === SecretStatus.UnLock) {
       try {
         this.eStore = await store.getECStore(this.eInfo);
-        console.info("Succeeded in getting Store ：estore");
       } catch (e) {
         let error = e as BusinessError;
         console.error(`Failed to GetECStore.code is ${error.code},message is ${error.message}`);
@@ -273,7 +273,6 @@ export class ECStoreManager {
       this.needMove = true;
       try {
         this.cStore = await store.getECStore(this.cInfo);
-        console.info("Succeeded in getting Store ：cstore");
       } catch (e) {
         let error = e as BusinessError;
         console.error(`Failed to GetECStore.code is ${error.code},message is ${error.message}`);
@@ -331,12 +330,12 @@ import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityK
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { distributedKVStore } from '@kit.ArkData';
-import { ECStoreManager } from './ECStoreManager'
-import { StoreInfo } from './Store'
-import { Mover } from './Mover'
-import { SecretKeyObserver } from './SecretKeyObserver'
-import { commonEventManager } from '@kit.BasicServicesKit'
-import Base from '@ohos.base';
+import { ECStoreManager } from './ECStoreManager';
+import { StoreInfo } from './Store';
+import { Mover } from './Mover';
+import { SecretKeyObserver } from './SecretKeyObserver';
+import { commonEventManager } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 export let storeManager = new ECStoreManager();
@@ -347,12 +346,12 @@ let mover = new Mover();
 
 let subscriber: commonEventManager.CommonEventSubscriber;
 
-export function createCB(err: Base.BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
+export function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
   if (!err) {
     console.info('ECDB_Encry createSubscriber');
     subscriber = commonEventSubscriber;
     try {
-      commonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
+      commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
         if (err) {
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
@@ -361,7 +360,7 @@ export function createCB(err: Base.BusinessError, commonEventSubscriber: commonE
         }
       });
     } catch (error) {
-      const err: Base.BusinessError = error as Base.BusinessError;
+      const err: BusinessError = error as BusinessError;
       console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     }
   } else {
@@ -420,7 +419,7 @@ export default class EntryAbility extends UIAbility {
       }, createCB);
       console.info(`ECDB_Encry success subscribe`);
     } catch (error) {
-      const err: Base.BusinessError = error as Base.BusinessError;
+      const err: BusinessError = error as BusinessError;
       console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
     }
     storeManager.config(cInfo, eInfo);
@@ -433,7 +432,6 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err) => {
@@ -446,17 +444,14 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageDestroy(): void {
-    // Main window is destroyed, release UI related resources
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
-    // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {
-    // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }
@@ -468,7 +463,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // Index.ets
-import { storeManager, e_secretKeyObserver } from "../entryability/EntryAbility"
+import { storeManager, e_secretKeyObserver } from "../entryability/EntryAbility";
 import { distributedKVStore } from '@kit.ArkData';
 import { Store } from '../entryability/Store';
 
@@ -544,11 +539,11 @@ import { relationalStore } from '@kit.ArkData';
 export class Mover {
   async move(eStore: relationalStore.RdbStore, cStore: relationalStore.RdbStore) {
     if (eStore != null && cStore != null) {
-      let predicates = new relationalStore.RdbPredicates('test');
+      let predicates = new relationalStore.RdbPredicates('employee');
       let resultSet = await cStore.query(predicates);
       while (resultSet.goToNextRow()) {
         let bucket = resultSet.getRow();
-        await eStore.insert('test', bucket);
+        await eStore.insert('employee', bucket);
       }
     }
   }
@@ -571,6 +566,7 @@ export class StoreInfo {
   storeId: string;
 }
 
+let id = 1;
 const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)';
 
 
@@ -581,6 +577,7 @@ export class Store {
       rdbStore = await relationalStore.getRdbStore(storeInfo.context, storeInfo.config);
       if (rdbStore.version == 0) {
         await rdbStore.executeSql(SQL_CREATE_TABLE);
+        console.info(`ECDB_Encry succeeded in getting Store ：${storeInfo.storeId}`);
         rdbStore.version = 1;
       }
     } catch (e) {
@@ -593,6 +590,7 @@ export class Store {
   async putOnedata(rdbStore: relationalStore.RdbStore) {
     if (rdbStore != undefined) {
       const valueBucket: relationalStore.ValuesBucket = {
+        ID: id++,
         NAME: 'Lisa',
         AGE: 18,
         SALARY: 100.5,
@@ -600,6 +598,7 @@ export class Store {
       };
       try {
         await rdbStore.insert("EMPLOYEE", valueBucket);
+        console.info(`ECDB_Encry insert success`);
       } catch (e) {
         let error = e as BusinessError;
         console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
@@ -613,6 +612,7 @@ export class Store {
         let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
         let resultSet = await rdbStore.query(predicates);
         let count = resultSet.rowCount;
+        console.info(`ECDB_Encry getdatanum success count : ${count}`);
       } catch (e) {
         let error = e as BusinessError;
         console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
@@ -620,12 +620,13 @@ export class Store {
     }
   }
 
-  async deleteOnedata(rdbStore: relationalStore.RdbStore) {
+  async deleteAlldata(rdbStore: relationalStore.RdbStore) {
     if (rdbStore != undefined) {
       try {
         let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-        predicates.equalTo('NAME', 'Lisa');
-        await rdbStore.delete(predicates)
+        predicates.equalTo('AGE', 18);
+        await rdbStore.delete(predicates);
+        console.info(`ECDB_Encry delete Success`);
       } catch (e) {
         let error = e as BusinessError;
         console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
@@ -640,11 +641,11 @@ export class Store {
         predicates.equalTo('NAME', 'Lisa');
         const valueBucket: relationalStore.ValuesBucket = {
           NAME: 'Anna',
-          AGE: 30,
           SALARY: 100.5,
           CODES: new Uint8Array([1, 2, 3, 4, 5]),
         };
         await rdbStore.update(valueBucket, predicates);
+        console.info(`ECDB_Encry update success`);
       } catch (e) {
         let error = e as BusinessError;
         console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
@@ -660,7 +661,7 @@ export class Store {
 
 ```ts
 // SecretKeyObserver.ts
-import { ECStoreManager } from './ECStoreManager'
+import { ECStoreManager } from './ECStoreManager';
 
 export enum SecretStatus {
   Lock,
@@ -707,10 +708,10 @@ ECStoreManager类用于管理应用的E类数据库和C类数据库。提供配�
 ```ts
 // ECStoreManager.ts
 import { relationalStore } from '@kit.ArkData';
-import { Mover } from './Mover'
+import { Mover } from './Mover';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { StoreInfo, Store } from './Store'
-import { SecretStatus } from './SecretKeyObserver'
+import { StoreInfo, Store } from './Store';
+import { SecretStatus } from './SecretKeyObserver';
 
 let store = new Store();
 
@@ -728,7 +729,6 @@ export class ECStoreManager {
     if (screanStatus === SecretStatus.UnLock) {
       try {
         this.eStore = await store.getECStore(this.eInfo);
-        console.info("ECDB_Encry Succeeded in getting Store ：estore");
       } catch (e) {
         let error = e as BusinessError;
         console.error(`Failed to GetECStore.code is ${error.code},message is ${error.message}`);
@@ -737,6 +737,7 @@ export class ECStoreManager {
       if (this.needMove) {
         if (this.eStore != undefined && this.cStore != undefined) {
           await this.mover.move(this.eStore, this.cStore);
+          console.info(`ECDB_Encry cstore data move to estore success`);
         }
         this.deleteCStore();
         this.needMove = false;
@@ -747,7 +748,6 @@ export class ECStoreManager {
       this.needMove = true;
       try {
         this.cStore = await store.getECStore(this.cInfo);
-        console.info("ECDB_Encry Succeeded in getting Store ：cstore");
       } catch (e) {
         let error = e as BusinessError;
         console.error(`Failed to GetECStore.code is ${error.code},message is ${error.message}`);
@@ -788,12 +788,12 @@ import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityK
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { relationalStore } from '@kit.ArkData';
-import { ECStoreManager } from './ECStoreManager'
-import { StoreInfo } from './Store'
-import { Mover } from './Mover'
-import { SecretKeyObserver } from './SecretKeyObserver'
-import { commonEventManager } from '@kit.BasicServicesKit'
-import Base from '@ohos.base';
+import { ECStoreManager } from './ECStoreManager';
+import { StoreInfo } from './Store';
+import { Mover } from './Mover';
+import { SecretKeyObserver } from './SecretKeyObserver';
+import { commonEventManager } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 export let storeManager = new ECStoreManager();
@@ -804,12 +804,12 @@ let mover = new Mover();
 
 let subscriber: commonEventManager.CommonEventSubscriber;
 
-export function createCB(err: Base.BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
+export function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
   if (!err) {
     console.info('ECDB_Encry createSubscriber');
     subscriber = commonEventSubscriber;
     try {
-      commonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
+      commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
         if (err) {
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
@@ -818,7 +818,7 @@ export function createCB(err: Base.BusinessError, commonEventSubscriber: commonE
         }
       });
     } catch (error) {
-      const err: Base.BusinessError = error as Base.BusinessError;
+      const err: BusinessError = error as BusinessError;
       console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
     }
   } else {
@@ -843,8 +843,8 @@ export default class EntryAbility extends UIAbility {
     }
     let eContext = this.context.createModuleContext("entry");
     eContext.area = contextConstant.AreaMode.EL5;
-    cInfo = {
-      context: cContext,
+    eInfo = {
+      context: eContext,
       config: {
         name: 'estore.db',
         securityLevel: relationalStore.SecurityLevel.S1,
@@ -859,7 +859,7 @@ export default class EntryAbility extends UIAbility {
       }, createCB);
       console.info(`ECDB_Encry success subscribe`);
     } catch (error) {
-      const err: Base.BusinessError = error as Base.BusinessError;
+      const err: BusinessError = error as BusinessError;
       console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
     }
     storeManager.config(cInfo, eInfo);
@@ -872,7 +872,6 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err) => {
@@ -885,17 +884,14 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageDestroy(): void {
-    // Main window is destroyed, release UI related resources
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
-    // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {
-    // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }
@@ -907,7 +903,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // Index.ets
-import { storeManager, e_secretKeyObserver } from "../entryability/EntryAbility"
+import { storeManager, e_secretKeyObserver } from "../entryability/EntryAbility";
 import { relationalStore } from '@kit.ArkData';
 import { Store } from '../entryability/Store';
 
@@ -935,6 +931,7 @@ struct Index {
         }).margin("5");
         Button('store type').onClick(async (event: ClickEvent) => {
           e_secretKeyObserver.getCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
+          console.info(`ECDB_Encry current store : ${this.message}`);
         }).margin("5");
 
         Button("put").onClick(async (event: ClickEvent) => {
@@ -949,7 +946,7 @@ struct Index {
 
         Button("delete").onClick(async (event: ClickEvent) => {
           let store: relationalStore.RdbStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
-          storeOption.deleteOnedata(store);
+          storeOption.deleteAlldata(store);
         }).margin(5)
 
         Button("updata").onClick(async (event: ClickEvent) => {
