@@ -475,7 +475,7 @@ print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): voi
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
 | callback | AsyncCallback&lt;PrintTask&gt; | 是 | 异步获取打印完成之后的回调 |
 
 **错误码：**
@@ -494,10 +494,10 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 //传入文件的uri
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
 //或者传入id
-//let file = ['fd://1', 'fd://2'];
-print.print(file, (err: BusinessError, printTask: print.PrintTask) => {
+//let files = ['fd://1', 'fd://2'];
+print.print(files, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
     } else {
@@ -522,7 +522,7 @@ print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
 
 **返回值：**
 | **类型** | **说明** |
@@ -545,10 +545,10 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 //传入文件的uri
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
 //或者传入id
-//let file = ['fd://1', 'fd://2'];
-print.print(file).then((printTask: print.PrintTask) => {
+//let files = ['fd://1', 'fd://2'];
+print.print(files).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
@@ -571,7 +571,7 @@ print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;P
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
 | context | Context | 是 | 用于启动打印的UIAbilityContext |
 | callback | AsyncCallback&lt;PrintTask&gt; | 是 | 异步获取打印完成之后的回调 |
 
@@ -591,11 +591,11 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 //传入文件的uri
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
 //或者传入id
-//let file = ['fd://1', 'fd://2'];
+//let files = ['fd://1', 'fd://2'];
 let context = getContext(this);
-print.print(file, context, (err: BusinessError, printTask: print.PrintTask) => {
+print.print(files, context, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
     } else {
@@ -620,7 +620,7 @@ print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
+| files | Array&lt;string&gt; | 是 | 待打印文件列表，支持图片（.jpg .png .gif .bmp .webp） |
 | context | Context | 是 | 用于启动打印的UIAbilityContext |
 
 **返回值：**
@@ -644,11 +644,11 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 //传入文件的uri
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
 //或者传入id
-//let file = ['fd://1', 'fd://2'];
+//let files = ['fd://1', 'fd://2'];
 let context = getContext(this);
-print.print(file, context).then((printTask: print.PrintTask) => {
+print.print(files, context).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
