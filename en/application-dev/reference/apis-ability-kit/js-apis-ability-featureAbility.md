@@ -14,7 +14,7 @@ The APIs of the **FeatureAbility** module can be called only by PageAbilities.
 ## Modules to Import
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
 ```
 
 ## featureAbility.startAbility
@@ -41,30 +41,30 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { featureAbility, wantConstant } from '@kit.AbilityKit';
+
 featureAbility.startAbility(
+  {
+    want:
     {
-        want:
-        {
-            action: '',
-            entities: [''],
-            type: '',
-            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: '',
-            bundleName: 'com.example.myapplication',
-            /* In the FA model, abilityName consists of package and ability names. */
-            abilityName: 'com.example.myapplication.secondAbility',
-            uri: ''
-        },
+      action: '',
+      entities: [''],
+      type: '',
+      flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      /* In the FA model, abilityName consists of package and ability names. */
+      abilityName: 'com.example.myapplication.secondAbility',
+      uri: ''
     },
-    (error, data) => {
-        if (error && error.code !== 0) {
-            console.error(`startAbility fail, error: ${JSON.stringify(error)}`);
-        } else {
-            console.log(`startAbility success, data: ${JSON.stringify(data)}`);
-        }
+  },
+  (error, data) => {
+    if (error && error.code !== 0) {
+      console.error(`startAbility fail, error: ${JSON.stringify(error)}`);
+    } else {
+      console.log(`startAbility success, data: ${JSON.stringify(data)}`);
     }
+  }
 );
 ```
 
@@ -99,25 +99,25 @@ Starts an ability. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { featureAbility, wantConstant } from '@kit.AbilityKit';
+
 featureAbility.startAbility(
+  {
+    want:
     {
-        want:
-        {
-            action: 'ohos.want.action.home',
-            entities: ['entity.system.home'],
-            type: 'MIMETYPE',
-            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: '',
-            bundleName: 'com.example.myapplication',
-            /* In the FA model, abilityName consists of package and ability names. */
-            abilityName: 'com.example.myapplication.secondAbility',
-            uri: ''
-        },
-    }
+      action: 'ohos.want.action.home',
+      entities: ['entity.system.home'],
+      type: 'MIMETYPE',
+      flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      /* In the FA model, abilityName consists of package and ability names. */
+      abilityName: 'com.example.myapplication.secondAbility',
+      uri: ''
+    },
+  }
 ).then((data) => {
-    console.info(`startAbility data: ${JSON.stringify(data)}`);
+  console.info(`startAbility data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -152,9 +152,10 @@ Obtains a **dataAbilityHelper** object.
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
+
 let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
-    'dataability:///com.example.DataAbility'
+  'dataability:///com.example.DataAbility'
 );
 ```
 
@@ -186,30 +187,30 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { featureAbility, wantConstant } from '@kit.AbilityKit';
+
 featureAbility.startAbilityForResult(
-   {
-        want:
-        {
-            action: 'ohos.want.action.home',
-            entities: ['entity.system.home'],
-            type: 'MIMETYPE',
-            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: '',
-            bundleName: 'com.example.myapplication',
-            /* In the FA model, abilityName consists of package and ability names. */
-            abilityName: 'com.example.myapplication.secondAbility',
-            uri:''
-        },
+  {
+    want:
+    {
+      action: 'ohos.want.action.home',
+      entities: ['entity.system.home'],
+      type: 'MIMETYPE',
+      flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      /* In the FA model, abilityName consists of package and ability names. */
+      abilityName: 'com.example.myapplication.secondAbility',
+      uri: ''
     },
-    (error, data) => {
-        if (error && error.code !== 0) {
-            console.error(`startAbilityForResult fail, error: ${JSON.stringify(error)}`);
-        } else {
-            console.log(`startAbilityForResult success, data: ${JSON.stringify(data)}`);
-        }
+  },
+  (error, data) => {
+    if (error && error.code !== 0) {
+      console.error(`startAbilityForResult fail, error: ${JSON.stringify(error)}`);
+    } else {
+      console.log(`startAbilityForResult success, data: ${JSON.stringify(data)}`);
     }
+  }
 );
 ```
 
@@ -244,36 +245,36 @@ Starts an ability. This API uses a promise to return the result when the ability
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { featureAbility, wantConstant } from '@kit.AbilityKit';
+
 featureAbility.startAbilityForResult(
+  {
+    want:
     {
-        want:
-        {
-            action: 'ohos.want.action.home',
-            entities: ['entity.system.home'],
-            type: 'MIMETYPE',
-            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: '',
-            bundleName: 'com.example.myapplication',
-            /* In the FA model, abilityName consists of package and ability names. */
-            abilityName: 'com.example.myapplication.secondAbility',
-            uri:'',
-            parameters:
-            {
-                mykey0: 1111,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'xxxxxxxxxxxxxxxxxxxxxx',
-                mykey4: [1, 15],
-                mykey5: [false, true, false],
-                mykey6: ['aaaaaa', 'bbbbb', 'ccccccccccc'],
-                mykey7: true,
-            },
-        },
+      action: 'ohos.want.action.home',
+      entities: ['entity.system.home'],
+      type: 'MIMETYPE',
+      flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      /* In the FA model, abilityName consists of package and ability names. */
+      abilityName: 'com.example.myapplication.secondAbility',
+      uri: '',
+      parameters:
+      {
+        mykey0: 1111,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'xxxxxxxxxxxxxxxxxxxxxx',
+        mykey4: [1, 15],
+        mykey5: [false, true, false],
+        mykey6: ['aaaaaa', 'bbbbb', 'ccccccccccc'],
+        mykey7: true,
+      },
     },
+  },
 ).then((data) => {
-    console.info(`startAbilityForResult data: ${JSON.stringify(data)}`);
+  console.info(`startAbilityForResult data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -297,37 +298,37 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { featureAbility, wantConstant } from '@kit.AbilityKit';
+
 featureAbility.terminateSelfWithResult(
+  {
+    resultCode: 1,
+    want:
     {
-        resultCode: 1,
-        want:
-        {
-            action: 'ohos.want.action.home',
-            entities: ['entity.system.home'],
-            type: 'MIMETYPE',
-            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: '',
-            bundleName: 'com.example.myapplication',
-            /* In the FA model, abilityName consists of package and ability names. */
-            abilityName: 'com.example.myapplication.secondAbility',
-            uri:'',
-            parameters: {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [1, 15],
-                mykey5: [false, true, false],
-                mykey6: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey7: true,
-            }
-        },
+      action: 'ohos.want.action.home',
+      entities: ['entity.system.home'],
+      type: 'MIMETYPE',
+      flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      /* In the FA model, abilityName consists of package and ability names. */
+      abilityName: 'com.example.myapplication.secondAbility',
+      uri: '',
+      parameters: {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [1, 15],
+        mykey5: [false, true, false],
+        mykey6: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey7: true,
+      }
     },
-    (error) => {
-        console.error(`error: ${JSON.stringify(error)}`);
-    }
+  },
+  (error) => {
+    console.error(`error: ${JSON.stringify(error)}`);
+  }
 );
 ```
 
@@ -356,36 +357,36 @@ Terminates this ability. This API uses a promise to return the result. If the ab
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { featureAbility, wantConstant } from '@kit.AbilityKit';
+
 featureAbility.terminateSelfWithResult(
+  {
+    resultCode: 1,
+    want:
     {
-        resultCode: 1,
-        want:
-        {
-            action: 'ohos.want.action.home',
-            entities: ['entity.system.home'],
-            type: 'MIMETYPE',
-            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: '',
-            bundleName: 'com.example.myapplication',
-            /* In the FA model, abilityName consists of package and ability names. */
-            abilityName: 'com.example.myapplication.secondAbility',
-            uri:'',
-            parameters: {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [1, 15],
-                mykey5: [false, true, false],
-                mykey6: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey7: true,
-            }
-        },
-    }
+      action: 'ohos.want.action.home',
+      entities: ['entity.system.home'],
+      type: 'MIMETYPE',
+      flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      /* In the FA model, abilityName consists of package and ability names. */
+      abilityName: 'com.example.myapplication.secondAbility',
+      uri:'',
+      parameters: {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [1, 15],
+        mykey5: [false, true, false],
+        mykey6: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey7: true,
+      }
+    },
+  }
 ).then(() => {
-    console.info('==========================>terminateSelfWithResult=======================>');
+  console.info('==========================>terminateSelfWithResult=======================>');
 });
 ```
 
@@ -408,13 +409,14 @@ Checks whether the main window of this ability has the focus. This API uses an a
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
+
 featureAbility.hasWindowFocus((error, data) => {
-    if (error && error.code !== 0) {
-        console.error(`hasWindowFocus fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`hasWindowFocus success, data: ${JSON.stringify(data)}`);
-    }
+  if (error && error.code !== 0) {
+    console.error(`hasWindowFocus fail, error: ${JSON.stringify(error)}`);
+  } else {
+    console.log(`hasWindowFocus success, data: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -435,9 +437,10 @@ Checks whether the main window of this ability has the focus. This API uses a pr
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
+
 featureAbility.hasWindowFocus().then((data) => {
-    console.info(`hasWindowFocus data: ${JSON.stringify(data)}`);
+  console.info(`hasWindowFocus data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -460,13 +463,14 @@ Obtains the Want corresponding to the ability to start. This API uses an asynchr
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
+
 featureAbility.getWant((error, data) => {
-    if (error && error.code !== 0) {
-        console.error(`getWant fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`getWant success, data: ${JSON.stringify(data)}`);
-    }
+  if (error && error.code !== 0) {
+    console.error(`getWant fail, error: ${JSON.stringify(error)}`);
+  } else {
+    console.log(`getWant success, data: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -489,9 +493,10 @@ Obtains the Want corresponding to the ability to start. This API uses a promise 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
+
 featureAbility.getWant().then((data) => {
-    console.info(`getWant data: ${JSON.stringify(data)}`);
+  console.info(`getWant data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -514,14 +519,15 @@ Obtains the application context.
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
+
 let context = featureAbility.getContext();
 context.getBundleName((error, data) => {
-    if (error && error.code !== 0) {
-        console.error(`getBundleName fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`getBundleName success, data: ${JSON.stringify(data)}`);
-    }
+  if (error && error.code !== 0) {
+    console.error(`getBundleName fail, error: ${JSON.stringify(error)}`);
+  } else {
+    console.log(`getBundleName success, data: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -544,11 +550,12 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
+
 featureAbility.terminateSelf(
-    (error) => {
-        console.error(`error: ${JSON.stringify(error)}`);
-    }
+  (error) => {
+    console.error(`error: ${JSON.stringify(error)}`);
+  }
 )
 ```
 
@@ -571,9 +578,10 @@ Terminates this ability. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
+
 featureAbility.terminateSelf().then(() => {
-    console.info('==========================>terminateSelf=======================>');
+  console.info('==========================>terminateSelf=======================>');
 });
 ```
 
@@ -609,26 +617,26 @@ Connects this ability to a ServiceAbility.
 **Example**
 
 ```ts
-import rpc from '@ohos.rpc';
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
 let connectId = featureAbility.connectAbility(
-    {
-        deviceId: '',
-        bundleName: 'com.ix.ServiceAbility',
-        abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
+  {
+    deviceId: '',
+    bundleName: 'com.ix.ServiceAbility',
+    abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
+  },
+  {
+    onConnect: (element, remote) => {
+      console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
     },
-    {
-        onConnect: (element, remote) => {
-            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
-        },
-        onDisconnect: (element) => {
-            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`)
-        },
-        onFailed: (code) => {
-            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`)
-        },
+    onDisconnect: (element) => {
+      console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`)
     },
+    onFailed: (code) => {
+      console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`)
+    },
+  },
 );
 ```
 
@@ -652,33 +660,33 @@ Disconnects this ability from a specific ServiceAbility. This API uses an asynch
 **Example**
 
 ```ts
-import rpc from '@ohos.rpc';
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
 let connectId = featureAbility.connectAbility(
-    {
-        bundleName: 'com.ix.ServiceAbility',
-        abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
+  {
+    bundleName: 'com.ix.ServiceAbility',
+    abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
+  },
+  {
+    onConnect: (element, remote) => {
+      console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
     },
-    {
-        onConnect: (element, remote) => {
-            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
-        },
-        onDisconnect: (element) => {
-            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
-        },
-        onFailed: (code) => {
-            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
-        },
+    onDisconnect: (element) => {
+      console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
     },
+    onFailed: (code) => {
+      console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
+    },
+  },
 );
 
 featureAbility.disconnectAbility(connectId, (error) => {
-    if (error && error.code !== 0) {
-        console.error(`disconnectAbility fail, connectId: ${connectId}, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`disconnectAbility success, connectId: ${connectId}`);
-    }
+  if (error && error.code !== 0) {
+    console.error(`disconnectAbility fail, connectId: ${connectId}, error: ${JSON.stringify(error)}`);
+  } else {
+    console.log(`disconnectAbility success, connectId: ${connectId}`);
+  }
 });
 ```
 
@@ -686,7 +694,7 @@ featureAbility.disconnectAbility(connectId, (error) => {
 
 disconnectAbility(connection: number): Promise\<void>
 
-Disconnects this ability from a specific ServiceAbility. This API uses a promise to return the result.
+Disconnects this ability from a specific a ServiceAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -707,32 +715,32 @@ Disconnects this ability from a specific ServiceAbility. This API uses a promise
 **Example**
 
 ```ts
-import rpc from '@ohos.rpc';
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base';
+import { featureAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let connectId = featureAbility.connectAbility(
-    {
-        bundleName: 'com.ix.ServiceAbility',
-        abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
+  {
+    bundleName: 'com.ix.ServiceAbility',
+    abilityName: 'com.ix.ServiceAbility.ServiceAbilityA',
+  },
+  {
+    onConnect: (element, remote) => {
+      console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
     },
-    {
-        onConnect: (element, remote) => {
-            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
-        },
-        onDisconnect: (element) => {
-            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
-        },
-        onFailed: (code) => {
-            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
-        },
+    onDisconnect: (element) => {
+      console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
     },
+    onFailed: (code) => {
+      console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
+    },
+  },
 );
 
 featureAbility.disconnectAbility(connectId).then(() => {
-    console.log('disconnectAbility success')
+  console.log('disconnectAbility success')
 }).catch((error: BusinessError)=>{
-    console.error(`featureAbilityTest result errCode : ${error.code}`);
+  console.error(`featureAbilityTest result errCode : ${error.code}`);
 });
 ```
 
@@ -756,16 +764,16 @@ Obtains the window corresponding to this ability. This API uses an asynchronous 
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { featureAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 featureAbility.getWindow((error: BusinessError, data: window.Window) => {
-    if (error && error.code !== 0) {
-        console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`getWindow success, data: ${typeof(data)}`);
-    }
+  if (error && error.code !== 0) {
+    console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
+  } else {
+    console.log(`getWindow success, data: ${typeof(data)}`);
+  }
 });
 ```
 
@@ -788,14 +796,14 @@ Obtains the window corresponding to this ability. This API uses a promise to ret
 **Example**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { featureAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 featureAbility.getWindow().then((data: window.Window) => {
-    console.log(`getWindow success, data: ${typeof(data)}`);
+  console.log(`getWindow success, data: ${typeof(data)}`);
 }).catch((error: BusinessError)=>{
-    console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
+  console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -822,7 +830,7 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 
 ## AbilityStartSetting<sup>7+</sup>
 
-Defines the window attribute corresponding to this ability. The **abilityStartSetting** attribute is an object defined in the format of [**key: string]: any**, where **key** is an enumerated value of **AbilityStartSetting** and **value** is an enumerated value of **AbilityWindowConfiguration**.
+Defines the window property corresponding to this ability. The **abilityStartSetting** property is an object defined in the format of [**key: string]: any**, where **key** is an enumerated value of **AbilityStartSetting** and **value** is an enumerated value of **AbilityWindowConfiguration**.
 
 The value is obtained through **featureAbility.AbilityStartSetting**.
 

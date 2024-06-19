@@ -38,7 +38,7 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -126,7 +126,7 @@ Adds a contact. This API uses a promise to return the result.
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **Example**
 
@@ -210,7 +210,7 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **Example**
 
@@ -290,7 +290,7 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **Example**
 
@@ -368,7 +368,7 @@ Updates a contact based on the specified contact information. This API uses an a
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -452,7 +452,7 @@ Updates a contact based on the specified contact information. This API uses an a
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **Example**
 
@@ -546,7 +546,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **Example**
 
@@ -636,7 +636,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 
 **Example**
 
@@ -715,7 +715,7 @@ Checks whether the ID of this contact is in the local address book. This API use
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **Example**
 
@@ -792,7 +792,7 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **Example**
 
@@ -872,7 +872,7 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **Example**
 
@@ -948,7 +948,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **Example**
 
@@ -1021,7 +1021,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -1104,7 +1104,7 @@ Queries my card based on the specified contact attributes. This API uses a promi
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -1172,8 +1172,6 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 >
 > This API is supported since API version 7 and deprecated since API version 10. You are advised to use [selectContacts](#contactselectcontacts10).
 
-**Permission required**: ohos.permission.READ_CONTACTS
-
 **System capability**: SystemCapability.Applications.Contacts
 
 **Parameters**
@@ -1205,8 +1203,6 @@ Selects a contact. This API uses a promise to return the result.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 10. You are advised to use [selectContacts](#contactselectcontacts10-1).
-
-**Permission required**: ohos.permission.READ_CONTACTS
 
 **System capability**: SystemCapability.Applications.Contacts
 
@@ -1248,7 +1244,7 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 
 | ID| Error Message          |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **Example**
 
@@ -1283,7 +1279,7 @@ Selects a contact. This API uses a promise to return the result.
 
 | ID| Error Message          |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -1318,7 +1314,7 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 
 | ID| Error Message          |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -1361,7 +1357,7 @@ Selects a contact. This API uses a promise to return the result.
 
 | ID| Error Message          |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -1398,7 +1394,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -1474,7 +1470,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -1558,7 +1554,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -1639,7 +1635,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -1734,7 +1730,7 @@ Queries contacts based on the specified key, application, and attributes. This A
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -1823,7 +1819,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -1896,7 +1892,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -1978,7 +1974,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -2057,7 +2053,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -2149,7 +2145,7 @@ Queries all contacts based on the specified application and attributes. This API
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -2239,7 +2235,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -2315,7 +2311,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -2399,7 +2395,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -2480,7 +2476,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -2575,7 +2571,7 @@ Queries contacts based on the specified phone number, application, and attribute
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -2666,7 +2662,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -2741,7 +2737,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -2825,7 +2821,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -2906,7 +2902,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -3001,7 +2997,7 @@ Queries contacts based on the specified email address, application, and attribut
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -3091,7 +3087,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -3164,7 +3160,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -3251,7 +3247,7 @@ Queries all groups of this contact based on the specified application. This API 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -3335,7 +3331,7 @@ Queries all applications that have created contacts. This API uses an asynchrono
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -3412,7 +3408,7 @@ Queries all applications that have created contacts. This API uses a promise to 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **Example**
 
@@ -3483,7 +3479,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **Example**
 
@@ -3558,7 +3554,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **Example**
 
@@ -3647,7 +3643,7 @@ Queries the key of a contact based on the specified contact ID and application. 
 | ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **Example**
 

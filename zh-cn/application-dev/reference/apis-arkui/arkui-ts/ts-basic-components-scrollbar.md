@@ -16,7 +16,7 @@
 
 ScrollBar(value: ScrollBarOptions)
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -26,7 +26,7 @@ ScrollBar(value: ScrollBarOptions)
 
 ## ScrollBarOptions对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
@@ -44,7 +44,7 @@ ScrollBar(value: ScrollBarOptions)
 
 ## ScrollBarDirection枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 描述 |
 | -------- | -------- |

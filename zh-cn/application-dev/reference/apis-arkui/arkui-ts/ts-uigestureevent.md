@@ -12,7 +12,7 @@
 
 ### addGesture
 
-addGesture(gesture: GestureHandler, priority?: GesturePriority, mask?: GestureMask): void
+addGesture(gesture: GestureHandler\<T>, priority?: GesturePriority, mask?: GestureMask): void
 
 添加手势。
 
@@ -20,13 +20,13 @@ addGesture(gesture: GestureHandler, priority?: GesturePriority, mask?: GestureMa
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| gesture  |  GestureHandler | 是   | 手势处理器对象。 |
+| gesture  |  [GestureHandler\<T>](#gesturehandlert) | 是   | 手势处理器对象。 |
 | priority  |  [GesturePriority](#gesturepriority枚举说明) | 否   | 绑定手势的优先级。 |
 | mask  |  [GestureMask](./ts-gesture-settings.md#gesturemask枚举说明) | 否   | 事件响应设置。 |
 
 ### addParallelGesture
 
-addParallelGesture(gesture: GestureHandler, mask?: GestureMask): void
+addParallelGesture(gesture: GestureHandler\<T>, mask?: GestureMask): void
 
 绑定可与子组件手势同时触发的手势。
 
@@ -34,7 +34,7 @@ addParallelGesture(gesture: GestureHandler, mask?: GestureMask): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| gesture  |  GestureHandler | 是   | 手势处理器对象。 |
+| gesture  |  [GestureHandler\<T>](#gesturehandlert) | 是   | 手势处理器对象。 |
 | mask  |  [GestureMask](./ts-gesture-settings.md#gesturemask枚举说明) | 否   | 事件响应设置。 |
 
 ### removeGestureByTag
@@ -67,9 +67,9 @@ tag(tag: string): T
 
 **参数：**
 
-| 名称 | 类型    |描述                                        |
-| ----  | ------  | ---------------------------------------- |
-| tag   | string  | 设置手势处理器标志。|
+| 名称 | 类型 | 必填 |描述                                        |
+| ----  | ------  | ------|---------------------------------- |
+| tag   | string  | 是 |设置手势处理器标志。|
 
 ## TapGestureHandler
 

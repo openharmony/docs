@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 ```
 
 ## display.hasPrivateWindow<sup>9+</sup>
@@ -48,7 +48,7 @@ hasPrivateWindow(displayId: number): boolean
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
 try {
@@ -101,7 +101,7 @@ on(type: 'privateModeChange', callback: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<boolean> = (data: boolean) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
@@ -176,7 +176,7 @@ setFoldDisplayMode(mode: FoldDisplayMode): void
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 try {
   let mode: display.FoldDisplayMode = display.FoldDisplayMode.FOLD_DISPLAY_MODE_FULL;
@@ -214,7 +214,7 @@ setFoldStatusLocked(locked: boolean): void
 **示例：**
 
 ```ts
-import display from '@ohos.display';
+import { display } from '@kit.ArkUI';
 
 try {
   let locked: boolean = false;
@@ -257,8 +257,8 @@ hasImmersiveWindow(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import display from '@ohos.display'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
@@ -299,8 +299,8 @@ hasImmersiveWindow(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import display from '@ohos.display'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
@@ -340,8 +340,8 @@ getAvailableArea(): Promise&lt;Rect&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import display from '@ohos.display'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
 try {
@@ -387,8 +387,8 @@ on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
-import display from '@ohos.display'
+import { Callback } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let callback: Callback<display.Rect> = (data: display.Rect) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
@@ -433,8 +433,8 @@ off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 **示例：**
 
 ```ts
-import { Callback } from '@ohos.base';
-import display from '@ohos.display'
+import { Callback } from '@kit.BasicServicesKit';
+import { display } from '@kit.ArkUI';
 
 let callback: Callback<display.Rect> = (data: display.Rect) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));

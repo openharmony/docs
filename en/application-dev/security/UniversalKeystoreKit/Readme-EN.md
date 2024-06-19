@@ -64,5 +64,12 @@
   - Exporting a Key
     - [Exporting a Key (ArkTS)](huks-export-key-arkts.md)
     - [Exporting a Key (C/C++)](huks-export-key-ndk.md)
-   <!--Del-->
+  - Querying Key Aliases
+    - [Querying Key Aliases (ArkTS)](huks-list-aliases-arkts.md)
+    - [Querying Key Aliases (C/C++)](huks-list-aliases-ndk.md)
+  - HMAC
+    - [HMAC(ArkTS)](huks-hmac-arkts.md)
+    - [HMAC(C/C++)](huks-hmac-ndk.md)
+  <!--Del-->
   - [Specifying the User for Key Operations (for System Applications Only)](huks-as-user-sys.md)
+  <!--DelEnd-->

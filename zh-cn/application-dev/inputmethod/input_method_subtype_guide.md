@@ -4,7 +4,7 @@
 
 ## 输入法子类型的配置与实现
 
-1. 输入法应用开发者只需要注册实现一个[InputMethodExtensionAbility](../application-models/inputmethodextentionability.md)，所有的输入法子类型共用该InputMethodExtensionAbility，在[module.json5配置文件](../quick-start/module-configuration-file.md)中添加metadata，name为ohos_extension.input_method，用于配置所有子类型的资源信息.
+1. 输入法应用开发者只需要注册实现一个InputMethodExtensionAbility，所有的输入法子类型共用该InputMethodExtensionAbility，在[module.json5配置文件](../quick-start/module-configuration-file.md)中添加metadata，name为ohos_extension.input_method，用于配置所有子类型的资源信息。
    ```ts
    {
      "module": {
@@ -29,7 +29,7 @@
    }
    ```
    
-2. 子类型配置文件格式如下，字段释义参照[InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#inputmethodsubtype)，开发者需要严格按照配置文件格式及字段进行子类型信息配置, locale字段的配置参照[BCP 47](https://tools.ietf.org/html/bcp47).
+2. 子类型配置文件格式如下，字段释义参照[InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#inputmethodsubtype)，开发者需要严格按照配置文件格式及字段进行子类型信息配置, locale字段的配置参照[BCP 47](https://tools.ietf.org/html/bcp47)。
    ```
    {
      "subtypes": [

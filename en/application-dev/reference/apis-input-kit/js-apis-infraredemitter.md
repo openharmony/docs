@@ -20,6 +20,8 @@ transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 
 Generates IR signals at the specified frequency and level.
 
+**Required permissions**: ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
+
 **System capability**: SystemCapability.MultimodalInput.Input.InfraredEmitter
 
 **Parameters**
@@ -54,6 +56,8 @@ try {
 getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 
 Queries the frequency range of IR signals supported by the mobile phone.
+
+**Required permissions**: ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
 
 **System capability**: SystemCapability.MultimodalInput.Input.InfraredEmitter
 

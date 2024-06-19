@@ -12,13 +12,13 @@
 
 | 名称 | 参数类型 | 参数描述 |
 | -------- | -------- | -------- |
-| transition | [TransitionOptions](#transitionoptionsdeprecated)<sup>(deprecated)</sup> \| [TransitionEffect](#transitioneffect10对象说明)<sup>10+</sup>  | 设置组件插入显示和删除隐藏的过渡效果。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>详细描述见[TransitionOptions](#transitionoptionsdeprecated)和[TransitionEffect](#transitioneffect10对象说明)对象说明。 |
+| transition | [TransitionOptions](#transitionoptionsdeprecated)<sup>(deprecated)</sup> \| [TransitionEffect](#transitioneffect10对象说明)<sup>10+</sup>  | 设置组件插入显示和删除隐藏的过渡效果。<br/>**原子化服务API： ** 从API version 11开始，该接口支持在元服务中使用。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>详细描述见[TransitionOptions](#transitionoptionsdeprecated)和[TransitionEffect](#transitioneffect10对象说明)对象说明。 |
 
 
 ## TransitionEffect<sup>10+</sup>对象说明
 TransitionEffect以函数的形式指定转场效果。提供了以下接口：
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 接口名称 | 参数类型 | 是否静态函数 | 参数描述 |
 | -------- | ---------- | -------- | -------- |
@@ -37,7 +37,7 @@ TransitionEffect以函数的形式指定转场效果。提供了以下接口：
 | -------- | -------- |
 | IDENTITY | 禁用转场效果。 |
 | OPACITY | 指定透明度为0的转场效果。即相当于TransitionEffect.opacity(0) |
-| SLIDE | 指定出现时从左侧滑入、消失时从右侧滑出的转场效果。即相当于TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.START), TransitionEffect.move(TransitionEdge.END)) |
+| SLIDE | ​START：​在LTR模式下，从左侧划入，从左侧划出。RTL模式，从右侧划入，从右侧划出。<br/> END:​在LTR模式下，从右侧划入，从右侧划出。RTL模式，从左侧划入，从左侧划出。<br/>即相当于TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.START), TransitionEffect.move(TransitionEdge.END));
 | SLIDE_SWITCH | 指定出现时从右先缩小再放大侧滑入、消失时从左侧先缩小再放大滑出的转场效果。动画时长600ms,指定动画曲线曲线cubicBezierCurve(0.24f, 0.0f, 0.50f, 1.0f)，最小缩放比例为0.8。|
 
 >  **说明：**

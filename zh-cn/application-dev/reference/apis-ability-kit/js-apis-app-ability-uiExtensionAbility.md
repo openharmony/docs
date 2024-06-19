@@ -22,7 +22,7 @@ import { UIExtensionAbility } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | 否 | 是 | UIExtensionAbility的上下文。 |
 
-## UIExtensionAbility.onCreate<sup>12+</sup>
+## UIExtensionAbility.onCreate
 
 onCreate(launchParam: AbilityConstant.LaunchParam): void
 
@@ -32,7 +32,7 @@ UIExtensionAbility创建时回调，执行初始化业务逻辑操作。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是| 创建UIExtensionAbility、上次异常退出的原因信息。|
+| launchParam<sup>12+</sup> | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是| 创建UIExtensionAbility、上次异常退出的原因信息。|
 
 **示例：**
 

@@ -32,9 +32,9 @@ The **type_def.h** file declares the common types.
 
 | Name| Description| 
 | -------- | -------- |
-|  typedef int [ffrt_qos_t] (_f_f_r_t.md#types)| Defines the QoS type. | 
-|  typedef void(\*[ffrt_function_t] (_f_f_r_t.md#types))(void\*)| Defines the type of the pointer to a task execution function. | 
-|  typedef void\* [ffrt_task_handle_t] (_f_f_r_t.md#types)| Defines the handle to a task. | 
+|  typedef int [ffrt_qos_t](_f_f_r_t.md#types)| Defines the QoS type. | 
+|  typedef void(\*[ffrt_function_t](_f_f_r_t.md#types))(void\*)| Defines the type of the pointer to a task execution function. | 
+|  typedef void\* [ffrt_task_handle_t](_f_f_r_t.md#types)| Defines the handle to a task. | 
 
 
 ### Enums

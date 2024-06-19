@@ -44,7 +44,7 @@ edgeAntialiasing(value: number)
 | ------ | ------ | ---- | ----------------------------------- |
 | value  | number | 是   | SVG图源抗锯齿效果。<br/>默认值：$0$ |
 
-## pointLight<sup>11+</sup>
+### pointLight<sup>11+</sup>
 
 pointLight(value: PointLightStyle)
 
@@ -60,6 +60,24 @@ pointLight(value: PointLightStyle)
 | ------ | ------------------------------------------------------------ | ---- | ------------ |
 | value  | [PointLightStyle](ts-universal-attributes-point-light-style-sys.md#pointlightstyle) | 是   | 点光源样式。 |
 
+### enhancedImageQuality<sup>12+</sup>
+
+enhancedImageQuality(imageQuality: ResolutionQuality)
+
+设置图像解码时图像解码分辨率选项。
+
+该属性不支持 svg，[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)，[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) 等非解码图片类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                    | 必填 | 说明                             |
+| ------ | --------------------------------------- | ---- | -------------------------------- |
+| imageQuality | [ResolutionQuality](#resolutionquality12) | 是   | 图像解码分辨率质量。 |
+
 ## ImageAnalyzerConfig<sup>11+</sup>
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
@@ -74,3 +92,17 @@ pointLight(value: PointLightStyle)
 | -------- | -------------- |
 | SUBJECT | 主体识别功能。 |
 | TEXT | 文字识别功能。 |
+
+## ResolutionQuality<sup>12+</sup>
+
+图像解码时图像解码分辨率选项。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述                      |
+| ------ | --------------------------  |
+| Low   | 低图像分辨率，解码时间适中。   |
+| Medium | 中等图像分辨率，解码时间适中。  |
+| High   | 高图像分辨率，解码时间长。    |

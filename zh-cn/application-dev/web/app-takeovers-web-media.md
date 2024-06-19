@@ -50,15 +50,17 @@ Web组件提供了应用接管网页中的媒体播放的能力， 用来支持�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
+
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .enableNativeMediaPlayer({enable: true, shouldOverlay: false})
+          .enableNativeMediaPlayer({ enable: true, shouldOverlay: false })
       }
     }
   }
@@ -81,13 +83,13 @@ Web组件提供了应用接管网页中的媒体播放的能力， 用来支持�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   // 实现 webview.NativeMediaPlayerBridge 接口。
   // ArkWeb 内核调用该类的方法来对 NativeMediaPlayer 进行播控。
-  class NativeMediaPlayerImpl implements web_webview.NativeMediaPlayerBridge {
+  class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
     // ... 实现 NativeMediaPlayerBridge 里的接口方法 ...
-    constructor(handler: web_webview.NativeMediaPlayerHandler, mediaInfo: web_webview.MediaInfo) {}
+    constructor(handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) {}
     updateRect(x: number, y: number, width: number, height: number) {}
     play() {}
     pause() {}
@@ -103,13 +105,14 @@ Web组件提供了应用接管网页中的媒体播放的能力， 用来支持�
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .enableNativeMediaPlayer({enable: true, shouldOverlay: false})
+          .enableNativeMediaPlayer({ enable: true, shouldOverlay: false })
           .onPageBegin((event) => {
-            this.controller.onCreateNativeMediaPlayer((handler: web_webview.NativeMediaPlayerHandler, mediaInfo: web_webview.MediaInfo) => {
+            this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) => {
               // 判断需不需要接管当前的媒体。
               if (!shouldHandle(mediaInfo)) {
                 // 本地播放器不接管该媒体。
@@ -118,7 +121,7 @@ Web组件提供了应用接管网页中的媒体播放的能力， 用来支持�
               }
               // 接管当前的媒体。
               // 返回一个本地播放器实例给 ArkWeb 内核。
-              let nativePlayer: web_webview.NativeMediaPlayerBridge = new NativeMediaPlayerImpl(handler, mediaInfo);
+              let nativePlayer: webview.NativeMediaPlayerBridge = new NativeMediaPlayerImpl(handler, mediaInfo);
               return nativePlayer;
             });
           })
@@ -127,7 +130,7 @@ Web组件提供了应用接管网页中的媒体播放的能力， 用来支持�
   }
 
   // stub
-  function shouldHandle(mediaInfo: web_webview.MediaInfo) {
+  function shouldHandle(mediaInfo: webview.MediaInfo) {
     return true;
   }
   ```
@@ -145,98 +148,98 @@ Web组件提供了应用接管网页中的媒体播放的能力， 用来支持�
 
 1. 要在应用启动阶段保存 UIContext ，后续的同层渲染绘制流程会用到该 UIContext 。
 
-  ```ts
-  // xxxAbility.ets
+   ```ts
+   // xxxAbility.ets
 
-  import { UIAbility } from '@kit.AbilityKit';
-  import { window } from '@kit.ArkUI';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
 
-  export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage): void {
-      windowStage.loadContent('pages/Index', (err, data) => {
-        if (err.code) {
-          return;
-        }
-        // 保存 UIContext， 在后续的同层渲染绘制中会用到。
-        AppStorage.setOrCreate<UIContext>("UIContext", windowStage.getMainWindowSync().getUIContext());
-      });
-    }
+   export default class EntryAbility extends UIAbility {
+     onWindowStageCreate(windowStage: window.WindowStage): void {
+       windowStage.loadContent('pages/Index', (err, data) => {
+         if (err.code) {
+           return;
+         }
+         // 保存 UIContext， 在后续的同层渲染绘制中会用到。
+         AppStorage.setOrCreate<UIContext>("UIContext", windowStage.getMainWindowSync().getUIContext());
+       });
+     }
 
-    // ... 其他需要重写的方法 ...
-  }
-  ```
+     // ... 其他需要重写的方法 ...
+   }
+   ```
 
 2. 使用 ArkWeb 内核创建的 surface 进行同层渲染绘制。
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import { BuilderNode, FrameNode, NodeController, NodeRenderType } from '@kit.ArkUI';
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { BuilderNode, FrameNode, NodeController, NodeRenderType } from '@kit.ArkUI';
 
-  interface ComponentParams {}
+   interface ComponentParams {}
 
-  class MyNodeController extends NodeController {
-    private rootNode: BuilderNode<[ComponentParams]> | undefined;
+   class MyNodeController extends NodeController {
+     private rootNode: BuilderNode<[ComponentParams]> | undefined;
 
-    constructor(surfaceId: string, renderType: NodeRenderType) {
-      super();
+     constructor(surfaceId: string, renderType: NodeRenderType) {
+       super();
 
-      // 获取之前保存的 UIContext 。
-      let uiContext = AppStorage.get<UIContext>("UIContext");
-      this.rootNode = new BuilderNode(uiContext as UIContext, {surfaceId: surfaceId, type: renderType});
-    }
+       // 获取之前保存的 UIContext 。
+       let uiContext = AppStorage.get<UIContext>("UIContext");
+       this.rootNode = new BuilderNode(uiContext as UIContext, { surfaceId: surfaceId, type: renderType });
+     }
 
-    makeNode(uiContext: UIContext): FrameNode | null {
-      if (this.rootNode) {
-        return this.rootNode.getFrameNode() as FrameNode;
-      }
-      return null;
-    }
+     makeNode(uiContext: UIContext): FrameNode | null {
+       if (this.rootNode) {
+         return this.rootNode.getFrameNode() as FrameNode;
+       }
+       return null;
+     }
 
-    build() {
-      // 构造本地播放器组件
-    }
-  }
+     build() {
+       // 构造本地播放器组件
+     }
+   }
 
-  @Entry
-  @Component
-  struct WebComponent {
-    node_controller?: MyNodeController;
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
-    @State show_native_media_player: boolean = false;
+   @Entry
+   @Component
+   struct WebComponent {
+     node_controller?: MyNodeController;
+     controller: webview.WebviewController = new webview.WebviewController();
+     @State show_native_media_player: boolean = false;
 
-    build() {
-      Column() {
-        Stack({alignContent: Alignment.TopStart}) {
-          if (this.show_native_media_player) {
-            NodeContainer(this.node_controller)
-              .width(300)
-              .height(150)
-              .backgroundColor(Color.Transparent)
-              .border({ width: 2, color: Color.Orange })
-          }
-          Web({ src: 'www.example.com', controller: this.controller })
-            .enableNativeMediaPlayer({enable: true, shouldOverlay: false})
-            .onPageBegin((event) => {
-              this.controller.onCreateNativeMediaPlayer((handler: web_webview.NativeMediaPlayerHandler, mediaInfo: web_webview.MediaInfo) => {
-                // 接管当前的媒体。
+     build() {
+       Column() {
+         Stack({ alignContent: Alignment.TopStart }) {
+           if (this.show_native_media_player) {
+             NodeContainer(this.node_controller)
+               .width(300)
+               .height(150)
+               .backgroundColor(Color.Transparent)
+               .border({ width: 2, color: Color.Orange })
+           }
+           Web({ src: 'www.example.com', controller: this.controller })
+             .enableNativeMediaPlayer({ enable: true, shouldOverlay: false })
+             .onPageBegin((event) => {
+               this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo:    webview.MediaInfo) => {
+                 // 接管当前的媒体。
 
-                // 使用同层渲染流程提供的 surface 来构造一个本地播放器组件。
-                this.node_controller = new MyNodeController(mediaInfo..surfaceInfo.id, NodeRenderType.RENDER_TYPE_TEXTURE);
-                this.node_controller.build()
+                 // 使用同层渲染流程提供的 surface 来构造一个本地播放器组件。
+                 this.node_controller = new MyNodeController(mediaInfo..surfaceInfo.id, NodeRenderType.  RENDER_TYPE_TEXTURE);
+                 this.node_controller.build();
 
-                // 展示本地播放器组件。
-                this.show_native_media_player = true;
+                 // 展示本地播放器组件。
+                 this.show_native_media_player = true;
 
-                // 返回一个本地播放器实例给 ArkWeb 内核。
-                return null;
-              });
-            })
-        }
-      }
-    }
-  }
-  ```
+                 // 返回一个本地播放器实例给 ArkWeb 内核。
+                 return null;
+               });
+             })
+         }
+       }
+     }
+   }
+   ```
 
 动态创建组件并绘制到 Surface 上的详细介绍见 [同层渲染绘制](web-same-layer.md) 。
 
@@ -246,7 +249,7 @@ Web组件提供了应用接管网页中的媒体播放的能力， 用来支持�
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   class ActualNativeMediaPlayerListener {
     constructor(handler: webview.NativeMediaPlayerHandler) {}
@@ -317,7 +320,7 @@ ArkWeb 内核需要本地播放器的状态信息来更新到网页， 如视频
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
   class ActualNativeMediaPlayerListener {
     handler: webview.NativeMediaPlayerHandler;
@@ -480,9 +483,8 @@ ArkWeb 内核需要本地播放器的状态信息来更新到网页， 如视频
 - 应用侧代码，视频托管使用示例。
 
   ```ts
-  import webview from '@ohos.web.webview';
-  import { BuilderNode, FrameNode, NodeController, NodeRenderType } from '@ohos.arkui.node';
-  import { UIContext } from '@ohos.arkui.UIContext';
+  import { webview } from '@kit.ArkWeb';
+  import { BuilderNode, FrameNode, NodeController, NodeRenderType, UIContext } from '@kit.ArkUI';
   import { AVPlayerDemo, AVPlayerListener } from './PlayerDemo';
 
   // 实现 webview.NativeMediaPlayerBridge 接口。
@@ -771,9 +773,9 @@ ArkWeb 内核需要本地播放器的状态信息来更新到网页， 如视频
 - 应用侧代码，视频播放示例, ./PlayerDemo.ets。
 
   ```ts
-  import media from '@ohos.multimedia.media';
-  import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
+  import { media } from '@kit.MediaKit';
+  import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   export interface AVPlayerListener {
     onPlaying() : void

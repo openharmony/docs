@@ -29,7 +29,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **装饰器类型：**\@Component
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -46,7 +46,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 ##  GridObjectSortComponentOptions
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称           | 类型                      | 必填 | 说明                                                   |
 | -------------- | ------------------------- | ---- | ------------------------------------------------------ |
@@ -59,7 +59,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 ## GridObjectSortComponentType 
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型   | 值           | 说明           |
 | -------- | ------ | ------------ | -------------- |
@@ -68,7 +68,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 ## GridObjectSortComponentItem
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |

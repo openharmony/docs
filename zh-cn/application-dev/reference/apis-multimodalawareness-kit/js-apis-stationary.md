@@ -20,13 +20,13 @@ import { stationary } from '@kit.MultimodalAwarenessKit';
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Stationary
 
-### 属性
-
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | state | [ActivityState](#activitystate) | 是 | 否 | 设备状态变化返回值。 |
 
 ## ActivityType
+
+type ActivityType = 'still' | 'relativeStill'
 
 设备状态类型。
 

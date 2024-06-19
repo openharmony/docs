@@ -11,7 +11,7 @@ The **wantConstant** module provides the actions, entities, and flags used in **
 ## Modules to Import
 
 ```ts
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { wantConstant } from '@kit.AbilityKit';
 ```
 
 ## wantConstant.Params

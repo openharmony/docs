@@ -66,7 +66,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [NetConn_NetCap](#netconn_netcap) {<br/>NETCONN_NET_CAPABILITY_MMS = 0,<br/>NETCONN_NET_CAPABILITY_NOT_METERED = 11,<br/>NETCONN_NET_CAPABILITY_INTERNET = 12,<br/>NETCONN_NET_CAPABILITY_NOT_VPN = 15,<br/>NETCONN_NET_CAPABILITY_VALIDATED = 16<br/>} | 网络能力集。 | 
-| [NetConn_NetBearerType](#netconn_netbearertype) {<br/>NETCONN_BEARER_CELLULAR = 0,<br/>NETCONN_BEARER_WIFI = 1,<br/>NETCONN_BEARER_ETHERNET = 3<br/>} | 网络载体类型。 | 
+| [NetConn_NetBearerType](#netconn_netbearertype) {<br/>NETCONN_BEARER_CELLULAR = 0,<br/>NETCONN_BEARER_WIFI = 1,<br/>NETCONN_BEARER_ETHERNET = 3<br/>NETCONN_BEARER_VPN = 4<br/>} | 网络载体类型。 |
 
 
 ### 函数
@@ -244,11 +244,12 @@ enum NetConn_NetBearerType
 
 **起始版本：** 11
 
-| 枚举值 | 描述 | 
-| -------- | -------- |
-| NETCONN_BEARER_CELLULAR | 蜂窝网络。 | 
-| NETCONN_BEARER_WIFI | WIFI。 | 
-| NETCONN_BEARER_ETHERNET | Ethernet。 | 
+|         枚举值          |         描述            |
+| ------------------------| ----------------------- |
+| NETCONN_BEARER_CELLULAR | 蜂窝网络。              |
+| NETCONN_BEARER_WIFI     | WIFI。                  |
+| NETCONN_BEARER_ETHERNET | Ethernet。              |
+| NETCONN_BEARER_VPN      | VPN。<br/>起始版本：12。|
 
 
 ### NetConn_NetCap

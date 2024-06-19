@@ -133,7 +133,7 @@ struct ParentComponent {
   >
   > 从API version 10开始，\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数或者一个可选的[EntryOptions](#entryOptions)参数。
   >
-  > 从API version 11开始，该装饰器支持在元服务中使用。
+  > 从API version 11开始，该装饰器支持在原子化服务中使用。
 
   ```ts
   @Entry
@@ -348,7 +348,7 @@ struct Son {
   }
   ```
 
-- 不允许使用switch语法，如果需要使用条件判断，请使用if。反例如下。
+- 不允许使用switch语法，如果需要使用条件判断，请使用if。示例如下。
 
   ```ts
   build() {
@@ -364,6 +364,14 @@ struct Son {
         default:
           Text('...')
           break;
+      }
+      // 正例：使用if
+      if(expression == 1) {
+        Text('...')
+      } else if(expression == 2) {
+        Image('...')
+      } else() {
+        Text('...')
       }
     }
   }

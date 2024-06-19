@@ -23,7 +23,7 @@ I/O密集型任务的性能重点通常不在于CPU的处理能力，而在于I/
 
 	```ts
     import { write } from './a'
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     @Concurrent
     async function concurrentTest(fileList: string[]): Promise<boolean> {
@@ -43,7 +43,7 @@ I/O密集型任务的性能重点通常不在于CPU的处理能力，而在于I/
 2. 使用TaskPool执行包含密集I/O的并发函数：通过调用[execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute)方法执行任务，并在回调中进行调度结果处理。示例中的filePath1和filePath2的获取方式请参见[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。
 
     ```ts
-    import taskpool from '@ohos.taskpool';
+    import { taskpool } from '@kit.ArkTS';
 
     let filePath1: string = "path1"; // 应用文件路径
     let filePath2: string = "path2";

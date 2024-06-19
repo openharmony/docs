@@ -164,7 +164,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     };
 
     OH_AudioInfo audioInfo = {
-        .micCapInfo = micCapInfo, 
+        .micCapInfo = micCapInfo,
+        .innerCapInfo = innerCapInfo,
         .audioEncInfo = audioEncInfo
     };
 

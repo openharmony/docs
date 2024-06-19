@@ -7,7 +7,7 @@
 
 ## BundleInfo
 
- **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -34,7 +34,7 @@
 
 应用运行时需向系统申请的权限集合的详细信息。
 
- **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -52,7 +52,7 @@
 
 描述权限使用的场景和时机。
 
- **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -65,7 +65,7 @@
 
 描述应用包的签名信息。
 
- **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -73,13 +73,13 @@
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | appId     | string         | 是   | 否   | 应用的appId。                 |
 |fingerprint| string         | 是   | 否   | 应用包的指纹信息。使用的签名证书发生变化，该字段会发生变化。            |
-|appIdentifier<sup>11</sup>| string         | 是   | 否   | 应用的唯一标识，由云端统一分配。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。            |
+|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识，由云端统一分配。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。            |
 
 ## AppCloneIdentity
 
 描述应用包的身份信息。
 
- **元服务API：** 从API version 12开始，该接口不支持在元服务中使用。
+ **原子化服务API：** 从API version 12开始，该接口不支持在原子化服务中使用。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 

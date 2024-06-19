@@ -19,7 +19,7 @@ getCalendarManager(context : Context): CalendarManager
 
 根据上下文获取CalendarManager对象，用于管理日历。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -296,7 +296,7 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 
 **需要权限**：ohos.permission.READ_CALENDAR
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -331,7 +331,7 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 **需要权限**： ohos.permission.READ_CALENDAR
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -376,7 +376,7 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 **需要权限**： ohos.permission.READ_CALENDAR
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -481,7 +481,7 @@ calendarMgr?.getAllCalendars().then((data: calendarManager.Calendar[]) => {
 
 ### 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -495,7 +495,7 @@ addEvent(event: Event, callback: AsyncCallback\<number>): void
 
 创建日程，入参Event不填日程id，使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -540,7 +540,7 @@ addEvent(event: Event): Promise\<number>
 
 创建日程，入参Event不填日程id，使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1040,6 +1040,48 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 });
 ```
 
+### editEvent
+
+editEvent(event: Event): Promise\<number>
+
+创建单个日程，入参Event不填日程id，调用该接口会跳转到日程创建页面，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**： SystemCapability.Applications.CalendarData
+
+**参数**：
+
+| 参数名 | 类型            | 必填 | 说明        |
+| ------ | --------------- | ---- | ----------- |
+| event  | [Event](#event) | 是   | Event对象。 |
+
+**返回值**：
+
+| 类型           | 说明                     |
+| -------------- | ------------------------ |
+| Promise\<number> | Promise对象，返回日程的id。 |
+
+**示例**：
+
+```typescript
+import { BusinessError } from '@ohos.base';
+import { calendarMgr } from '../entryability/EntryAbility';
+
+const date = new Date();
+const event: calendarManager.Event = {
+  title: 'title',
+  type: calendarManager.EventType.NORMAL,
+  startTime: date.getTime(),
+  endTime: date.getTime() + 60 * 60 * 1000
+};
+calendarMgr?.editEvent(event).then((eventId: number): void => {
+  console.info(`create Event id = ${eventId}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create Event, err -> ${JSON.stringify(err)}`);
+});
+```
+
 ### getEvents
 
 getEvents(callback: AsyncCallback\<Event[]>): void
@@ -1357,7 +1399,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 日历帐户信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1382,12 +1424,12 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 日程对象，包含日程标题、开始时间、结束时间等信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称           | 类型                              | 只读 | 必填 | 说明                                                                                                                                                 |
-| -------------- | --------------------------------- | ---- | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
+| 名称           | 类型                                | 只读 | 必填 | 说明                                                                                                                                                 |
+| -------------- |-----------------------------------| ---- | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
 | id             | number                            | 否   | 否   | 日程id。当调用[addEvent()](#addevent)、[addEvents()](#addevents)创建日程时，不填写此参数。                                                                             |
 | type           | [EventType](#eventtype)           | 否   | 是   | 日程类型。                                                                                                                                              |
 | title          | string                            | 否   | 否   | 日程标题。不填时，默认为空字符串。                                                                                                                                  |
@@ -1401,12 +1443,14 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 | recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 否   | 日程重复规则。不填时，默认为不重复。                                                                                                                                 |
 | description    | string                            | 否   | 否   | 日程描述。不填时，默认为空字符串。                                                                                                                                  |
 | service        | [EventService](#eventservice)     | 否   | 否   | 日程服务。不填时，默认没有一键服务。                                                                                                                                 |
+| identifier     | string                            | 否   | 否   | 写入方可指定日程唯一标识。不填时，默认为null。                                                                                                                          |
+
 
 ## CalendarType
 
 帐户类型枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1422,7 +1466,7 @@ calendarMgr?.getCalendar((err: BusinessError, data:calendarManager.Calendar) => 
 
 日程地点。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1628,7 +1672,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 日程类型枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1641,20 +1685,23 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 日程重复规则。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称                | 类型                                        | 只读 | 必填 | 说明                            |
-| ------------------- | ------------------------------------------- | ---- | ---- | ------------------------------- |
-| recurrenceFrequency | [RecurrenceFrequency](#recurrencefrequency) | 否   | 是   | 日程重复规则类型。              |
-| expire              | number                                      | 否   | 否   | 重复周期截止日。不填时，默认为0。 |
+| 名称                  | 类型                                        | 只读 | 必填 | 说明                  |
+|---------------------| ------------------------------------------- | ---- | ---- |---------------------|
+| recurrenceFrequency | [RecurrenceFrequency](#recurrencefrequency) | 否   | 是   | 日程重复规则类型。           |
+| expire              | number                                      | 否   | 否   | 重复周期截止日。不填时，默认为0。   |
+| count               | number                                      | 否   | 否   | 重复日程重复次数。 不填时，默认为0。 |
+| interval            | number                                      | 否   | 否   | 重复日程重复间隔。 不填时，默认为0。 |
+| excludedDates       | number[]                                    | 否   | 否   | 重复日程排除日期。           |
 
 ## RecurrenceFrequency
 
 日程重复规则类型枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1669,20 +1716,21 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 日程参与者。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
-| 名称  | 类型   | 只读 | 必填 | 说明           |
-| ----- | ------ | ---- | ---- | -------------- |
-| name  | string | 否   | 是   | 参与者的姓名。 |
-| email | string | 否   | 是   | 参与者的邮箱。 |
+| 名称    | 类型                            | 只读 | 必填  | 说明      |
+|-------|-------------------------------| ---- |-----|---------|
+| name  | string                        | 否   | 是   | 参与者的姓名。 |
+| email | string                        | 否   | 是   | 参与者的邮箱。 |
+| role  | [AttendeeRole](#attendeerole) | 否   | 否   | 参与者的角色。 |
 
 ## EventService
 
 日程服务。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1696,7 +1744,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 日程服务类型枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Applications.CalendarData
 
@@ -1711,3 +1759,16 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | CLASS           | 'Class'          | 一键上课。   |
 | SPORTS_EVENTS   | 'SportsEvents'   | 一键看赛事。 |
 | SPORTS_EXERCISE | 'SportsExercise' | 一键运动。   |
+
+## AttendeeRole
+
+与会人角色类型枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.CalendarData
+
+| 名称           | 值             | 说明     |
+|--------------|---------------|--------|
+| ORGANIZER    | 'organizer'   | 会议组织者。 |
+| PARTICIPANT  | 'participant' | 会议参与者。 |

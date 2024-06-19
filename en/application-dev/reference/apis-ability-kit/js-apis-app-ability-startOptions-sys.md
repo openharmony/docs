@@ -13,10 +13,10 @@
 ## Modules to Import
 
 ```ts
-import StartOptions from '@ohos.app.ability.StartOptions';
+import { StartOptions } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -27,10 +27,8 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import StartOptions from '@ohos.app.ability.StartOptions';
-  import { BusinessError } from '@ohos.base';
+  import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   export default class EntryAbility extends UIAbility {
 

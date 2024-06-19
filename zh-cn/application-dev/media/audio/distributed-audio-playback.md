@@ -81,8 +81,7 @@ let audioRoutingManager = audioManager.getRoutingManager();
 let outputAudioRendererFilter: audio.AudioRendererFilter  = {
     uid: 20010041,
     rendererInfo: {
-        content: audio.ContentType.CONTENT_TYPE_MUSIC,
-        usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+        usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
         rendererFlags: 0 } as audio.AudioRendererInfo,
     rendererId: 0 };
 

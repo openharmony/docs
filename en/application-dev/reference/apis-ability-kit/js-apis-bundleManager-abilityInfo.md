@@ -23,13 +23,13 @@ The **AbilityInfo** module defines the ability information. A third-party applic
 | iconId                | number                                                   | Yes  | No  | ID of the ability icon.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | process               | string                                                   | Yes  | No  | Process in which the ability runs. If this parameter is not set, the bundle name is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | exported             | boolean                                                  | Yes  | No  | Whether the ability can be called by other bundles.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| type                  | [AbilityType](js-apis-bundleManager.md#abilitytype)      | Yes  | No  | Ability type.<br>This attribute can be used only in the FA model.|
+| type                  | [AbilityType](js-apis-bundleManager.md#abilitytype)      | Yes  | No  | Ability type.<br>This property can be used only in the FA model.|
 | orientation           | [DisplayOrientation](js-apis-bundleManager.md#displayorientation)  | Yes  | No  | Ability display orientation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | launchType            | [LaunchType](js-apis-bundleManager.md#launchtype)        | Yes  | No  | Ability launch mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | permissions           | Array\<string>                                           | Yes  | No  | Permissions required for other applications to call the ability.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| readPermission        | string                                                   | Yes  | No  | Permission required for reading the ability data.<br>This attribute can be used only in the FA model.|
-| writePermission       | string                                                   | Yes  | No  | Permission required for writing data to the ability.<br>This attribute can be used only in the FA model.|
-| uri                   | string                                                   | Yes  | No  | URI of the ability.<br>This attribute can be used only in the FA model.|
+| readPermission        | string                                                   | Yes  | No  | Permission required for reading the ability data.<br>This property can be used only in the FA model.|
+| writePermission       | string                                                   | Yes  | No  | Permission required for writing data to the ability.<br>This property can be used only in the FA model.|
+| uri                   | string                                                   | Yes  | No  | URI of the ability.<br>This property can be used only in the FA model.|
 | deviceTypes           | Array\<string>                                           | Yes  | No  | Device types supported by the ability.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | applicationInfo       | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)     | Yes  | No  | Application information. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_APPLICATION** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | metadata              | Array\<[Metadata](js-apis-bundleManager-metadata.md)>           | Yes  | No  | Metadata of the ability. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_METADATA** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -38,6 +38,7 @@ The **AbilityInfo** module defines the ability information. A third-party applic
 | windowSize|[WindowSize](#windowsize)                                            |    Yes  | No  | Window size.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | excludeFromDock<sup>12+</sup>             | boolean                                                  | Yes  | No  | Whether the ability can hide icons in the dock area.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | Yes  | No  | Skills of the ability.       |
+| appIndex<sup>12+</sup>    | number    | Yes  | No  | Index of an application clone. It takes effect only for cloned applications.|
 
 ## WindowSize
 

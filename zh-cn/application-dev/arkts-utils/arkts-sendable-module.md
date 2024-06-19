@@ -46,75 +46,70 @@
 
 ## 使用示例
 
-1. 共享模块内导出sendable对象，同时导入非共享模块"./test.ets"的testStr对象。
+1. 共享模块内导出sendable对象。
 
     ```ts
     // 共享模块sharedModule.ets
-    import {testStr} from "./test"
     import { ArkTSUtils } from '@kit.ArkTS';
-    
+
+    // 声明当前模块为共享模块，只能导出可Sendable数据
     "use shared"
-    // 导出sendable对象
-    export { SingletonA }
-    
+
+    // 共享模块，SingletonA全局唯一
     @Sendable
     class SingletonA {
-      private static instance: SingletonA;
-      private count: number = 0;
-    
-      public static getInstance(): SingletonA {
-        if (SingletonA.instance == undefined) {
-          SingletonA.instance = new SingletonA();
-        }
-        return SingletonA.instance;
-      }
-    
-      public fetchCount(): Promise<number> {
-        let lock: ArkTSUtils.locks.AsyncLock = ArkTSUtils.locks.AsyncLock.request("lock");
-        return lock.lockAsync(() => {
-          return this.count;
+      private count_: number = 0;
+      lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock()
+
+      public async getCount(): Promise<number> {
+        return this.lock_.lockAsync(() => {
+          return this.count_;
         })
       }
     
-      public incrementCount() {
-        let lock: ArkTSUtils.locks.AsyncLock = ArkTSUtils.locks.AsyncLock.request("lock");
-        lock.lockAsync(() => {
-          this.count = this.count + 1;
+      public async increaseCount() {
+        await this.lock_.lockAsync(() => {
+          this.count_++;
         })
       }
     }
+
+    export let singletonA = new SingletonA();
+    ```
+
+2. 在多个线程中操作共享模块导出的对象。
+
+    ```ts
+    import { ArkTSUtils, taskpool } from '@kit.ArkTS';
+    import { singletonA } from './sharedModule'
     
     @Sendable
     export class A {
-      num: number = 100;
-      say() {
-        console.log("this is say !");
+      private count_: number = 0;
+      lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock()
+
+      public async getCount(): Promise<number> {
+        return this.lock_.lockAsync(() => {
+          return this.count_;
+        })
+      }
+    
+      public async increaseCount() {
+        await this.lock_.lockAsync(() => {
+          this.count_++;
+        })
       }
     }
-    ```
 
-    ```ts
-    // 非共享模块test.ets
-    export let testStr = "Hello World";
-    ```
-
-2. 非共享模块导入共享模块，并在多个线程中操作共享模块导出的对象。
-
-    ```ts
-    import taskpool from '@ohos.taskpool';
-    import { SingletonA, A } from './sendableTest'
-    
-    let sig = SingletonA.getInstance();
-    
     @Concurrent
-    async function test2(sig: SingletonA, a: A) {
-      console.info("sendable: taskpool count is:" + await sig.fetchCount());
-      a.say();
-      let n = Date.now();
-      // 等待1000us,模拟实际业务
-      while (Date.now() - n < 1000) {
-    
-      }
+    async function increaseCount() {
+      await singletonA.increaseCount();
+      console.info("SharedModule: count is:" + await singletonA.getCount());
+    }
+
+    @Concurrent
+    async function printCount() {
+      console.info("SharedModule: count is:" + await singletonA.getCount());
     }
     
     @Entry
@@ -125,17 +120,21 @@
       build() {
         Row() {
           Column() {
-            Button("MainThread")
+            Button("MainThread print count")
               .onClick(async () => {
-                // 主线程调用单例sig.incrementCount()、fetchCount();
-                sig.incrementCount();
-                console.info("sendable: main thread count is:" + await sig.fetchCount());
+                await printCount()
               })
-            Button("TaskpoolTest")
+            Button("Taskpool print count")
               .onClick(async () => {
-                let a: A = new A;
-                let task = new taskpool.Task(test2, sig, a);
-                await taskpool.execute(task);
+                await taskpool.execute(printCount);
+              })
+            Button("MainThread increase count")
+              .onClick(async () => {
+                await increaseCount()
+              })
+            Button("Taskpool increase count")
+              .onClick(async () => {
+                await taskpool.execute(increaseCount);
               })
           }
           .width('100%')

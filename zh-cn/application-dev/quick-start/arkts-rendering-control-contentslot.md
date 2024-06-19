@@ -12,7 +12,7 @@
 ContentSlot(content: Content); // 当前开发者需要使用ArkUI提供的NodeContent作为管理器
 ```
 
-| 参数名  | 参数类型 | 必填 | 参数描述                                                     |
+| 参数名  | 类型 | 必填 | 参数描述                                                     |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | content | Content  | 是   | Content作为ContentSlot的管理器，通过Native侧提供的接口，可以注册并触发ContentSlot的上下树事件回调以及管理ContentSlot的子组件。 |
 
@@ -31,7 +31,7 @@ abstract class Content {
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填 | 参数描述                                                     |
+| 参数名  | 类型 | 必填 | 参数描述                                                     |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | content | Content  | 是   | Content作为ContentSlot的管理器，通过Native侧提供的接口，可以注册并触发ContentSlot的上下树事件回调以及管理ContentSlot的子组件。 |
 
@@ -51,6 +51,9 @@ abstract class Content {
 |OH_ArkUI_NodeContent_InsertNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node, int32_t position)|在Content上插入子组件。|
 |OH_ArkUI_NodeContent_RemoveNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node)|在Content上移除子组件。|
 |OH_ArkUI_GetNodeContentFromNapiValue(napi_env env, napi_value value, ArkUI_NodeContentHandle* content)|在Native侧获取ArkTS侧Content指针。|
+|OH_ArkUI_NodeContentEvent_GetNodeContentHandle(ArkUI_NodeContentEvent* event)|获取触发上下树事件的Content对象。|
+|OH_ArkUI_NodeContent_SetUserData(ArkUI_NodeContentHandle content, void* userData)|在Content上设置用户自定义属性。|
+|OH_ArkUI_NodeContent_GetUserData(ArkUI_NodeContentHandle content)|在Content上获取用户自定义属性。|
 |typedef enum {<br>   NOTE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW = 0,<br>   NOTE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW = 1,<br>} ArkUI_NodeContentEventType|Content上会触发的上树和下树两种事件类型。|
 
 ## 开发实现
@@ -80,9 +83,9 @@ struct Parent {
 ```
 
 ### Native侧代码实现
-Napi的基础开发知识请查看以下文档：[开发导读](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/ndk-development-overview.md)
+Napi的基础开发知识请查看以下文档：[开发导读](../napi/ndk-development-overview.md)。
 
-本章节仅描述实现ContentSlot相关逻辑代码。
+本章节仅描述实现ContentSlot相关逻辑代码。创建C侧组件，具体请查看ArkUI api文档的[Capi章节](../reference/apis-arkui/_ark_u_i___native_module.md)。
 
 ```c++
 ArkUI_NodeContentHandle nodeContentHandle_ = nullptr;
@@ -112,7 +115,7 @@ napi_value Manager::CreateNativeNode(napi_env, napi_callback_info info) {
     if (nodeAPI != nullptr) {
         if (nodeAPI->createNode != nullptr && nodeAPI->addChild != nullptr) {
             ArkUINodeHandle component;
-            // 创建C侧组件，具体请查看ArkUI api文档的Capi章节(https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/apis-arkui)
+            // 创建C侧组件，具体请查看ArkUI api文档的Capi章节
             component = CreateNodeHandle();
             // 将组件添加到nodeContent管理器中
             OH_ArkUI_NodeContent_AddNode(nodeContentHandle_, component);
@@ -121,16 +124,18 @@ napi_value Manager::CreateNativeNode(napi_env, napi_callback_info info) {
 }
 ```
 
-#### 注册上下树事件
+#### 注册上下树事件，并通过事件获取对应的Content对象
 
 ```c++
 auto nodeContentEvent = [](ArkUI_NodeContentEvent *event) {
+    ArkUI_NodeContentHandle content = OH_ArkUI_NodeContentEvent_GetNodeContentHandle(event);
+    // 针对不同content需要额外做的逻辑
     if (OH_ArkUINodeContentEvent_GetEventType(event) = NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW) {
         // ContentSlot上树时需要触发的逻辑
     } else if (OH_ArkUINodeContentEvent_GetEventType(event) = NODE_CONTENT_EVENT_ON_DETACH_FROM_WINDOW) {
         // ContentSlot下树时需要触发的逻辑
     };
-}
+};
 // 将该事件注册到nodeContent上
 OH_ArkUI_NodeContent_RegisterCallback(nodeContentHandle_, nodeContentEvent);
 ```
@@ -158,4 +163,18 @@ OH_ArkUI_NodeContent_InsertNode(nodeContentHandle_, component, position);
 ```c++
 // 在nodeContent中移除对应组件
 OH_ArkUI_NodeContent_RemoveNode(nodeContentHandle_, component);
+```
+
+#### 设置自定义属性
+
+```c++
+// 创建需要定义的自定义数据
+void *userData = CreateUserData();
+OH_ArkUI_NodeContent_SetUserData(nodeContentHandle_, userData);
+```
+
+#### 获取自定义属性
+
+```
+void *userData = OH_ArkUI_NodeContent_GetUserData(nodeContentHandle_);
 ```

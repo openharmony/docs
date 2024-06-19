@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Location service is unavailable.
+The location service is unavailable.
 
 **Description**
 
@@ -78,44 +78,6 @@ This error code is reported if the location service fails, leading to a failure 
 
 5. Enable automatic setting on the **Time & Date** page.
 
-## 3301201 Network Positioning Failed Due to Network Disconnection
-
-**Error Message**
-
-Network locating failure due to internet access failure.
-
-**Description**
-
-This error code is reported if network positioning fails because the network is disconnected.
-
-**Possible Cause**
-
-1. Wi-Fi and mobile data are not enabled.
-
-2. Cellular or Wi-Fi signals are weak.
-
-**Procedure**
-
-If you are in an indoor environment, ensure that Wi-Fi or mobile data is enabled and you can access the Internet, and then initiate a location request.
-
-## 3301202 Positioning Failed Due to No Background Location Permission
-
-**Error Message**
-
-Locating failure due to no background locating permission.
-
-**Description**
-
-This error code is reported if positioning fails because the application does not have the **ohos.permission.LOCATION_IN_BACKGROUND** permission.
-
-**Possible Cause**
-
-The application does not have the **ohos.permission.LOCATION_IN_BACKGROUND** permission or a [continuous task](../../task-management/continuous-task.md) of the LOCATION type while running at the background.
-
-**Procedure**
-
-To allow your application to access the location service at the background, request for a [continuous task](../../task-management/continuous-task.md) of the LOCATION type.
-Alternatively, display a prompt asking the user to enable location access for your application by selecting **Allow all the time** on the **Location permission** page.
 
 ## 3301300 Query Failed During Reverse Geocoding
 

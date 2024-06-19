@@ -415,6 +415,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_is_exception_pending | 判断是否出现了异常。 |
 | napi_fatal_error | 引发致命错误以立即终止进程。 |
 | napi_get_last_error_info | 获取napi_extended_error_info结构体，其中包含最近一次出现的error信息。 |
+| napi_fatal_exception | 抛出一个致命异常并终止进程, 同时产生相应的crash日志。 |
 
 ### 属性相关
 

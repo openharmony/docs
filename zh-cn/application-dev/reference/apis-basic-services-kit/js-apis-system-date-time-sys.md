@@ -46,10 +46,10 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-| -------- |----------------------------------------------------------------------------------------------------------------|
-| 201       | Permission denied.                                                                                             |
-| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 错误码ID | 错误信息                                                                                                        |
+| -------- |-------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                          |
+| 202       | Permission verification failed. A non-system application calls a system API.                                |
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -101,10 +101,10 @@ setTime(time : number) : Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-| -------- |----------------------------------------------------------------------------------------------------------------|
-| 201       | Permission denied.                                                                                             |
-| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 错误码ID | 错误信息                                                                                                        |
+| -------- |-------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                          |
+| 202       | Permission verification failed. A non-system application calls a system API.                                |
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -153,10 +153,10 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                                                            |
-| -------- |-------------------------------------------------------------------------------------------------------------------------------------------------|
-| 201       | Permission denied.                                                                                                                              |
-| 202       | Permission denied, Non system application use system APIs.                                                                                      |
+| 错误码ID | 错误信息                                                                                                                                         |
+| -------- |----------------------------------------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                                                           |
+| 202       | Permission verification failed. A non-system application calls a system API.                                                                 |
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
@@ -211,10 +211,10 @@ setDate(date: Date): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                                                            |
-| -------- |-------------------------------------------------------------------------------------------------------------------------------------------------|
-| 201       | Permission denied.                                                                                                                              |
-| 202       | Permission denied, Non system application use system APIs.                                                                                      |
+| 错误码ID | 错误信息                                                                                                                                         |
+| -------- |----------------------------------------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                                                           |
+| 202       | Permission verification failed. A non-system application calls a system API.                                                                 |
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
@@ -258,10 +258,10 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-| -------- |----------------------------------------------------------------------------------------------------------------|
-| 201       | Permission denied.                                                                                             |
-| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 错误码ID | 错误信息                                                                                                        |
+| -------- |-------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                          |
+| 202       | Permission verification failed. A non-system application calls a system API.                                |
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
@@ -311,10 +311,10 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-| -------- |----------------------------------------------------------------------------------------------------------------|
-| 201       | Permission denied.                                                                                             |
-| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 错误码ID | 错误信息                                                                                                        |
+| -------- |-------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                          |
+| 202       | Permission verification failed. A non-system application calls a system API.                                |
 | 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**

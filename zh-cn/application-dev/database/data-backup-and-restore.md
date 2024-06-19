@@ -27,8 +27,8 @@
 
      
    ```ts
-   import distributedKVStore from '@ohos.data.distributedKVStore';
-   import { BusinessError } from '@ohos.base';
+   import { distributedKVStore } from '@kit.ArkData';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager;
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
@@ -95,9 +95,9 @@
 3. 使用backup()方法备份数据。
      
    ```ts
-   let file = 'BK001';
+   let backupFile = 'BK001';
    try {
-     kvStore.backup(file, (err) => {
+     kvStore.backup(backupFile, (err) => {
        if (err) {
          console.error(`Fail to backup data.code:${err.code},message:${err.message}`);
        } else {
@@ -130,9 +130,9 @@
 5. 使用restore()方法恢复数据。
      
    ```ts
-   let file = 'BK001';
+   let backupFile = 'BK001';
    try {
-     kvStore.restore(file, (err) => {
+     kvStore.restore(backupFile, (err) => {
        if (err) {
          console.error(`Fail to restore data. Code:${err.code},message:${err.message}`);
        } else {
@@ -169,8 +169,8 @@
 1. 使用getRdbStore()方法创建关系型数据库。
      
    ```ts
-   import relationalStore from '@ohos.data.relationalStore';
-   import { BusinessError } from '@ohos.base';
+   import { relationalStore } from '@kit.ArkData';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -195,7 +195,7 @@
 2. 使用insert()方法插入数据。
      
    ```ts
-   import { ValuesBucket } from '@ohos.data.ValuesBucket';
+   import { ValuesBucket } from '@kit.ArkData';
 
    let value1 = 'Rose';
    let value2 = 18;

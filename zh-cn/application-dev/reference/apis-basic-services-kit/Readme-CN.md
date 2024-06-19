@@ -1,4 +1,4 @@
-# Basic Services Kit API参考
+# Basic Services Kit（基础服务）
 
 - ArkTS API
   - 帐号管理
@@ -37,6 +37,7 @@
     - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
     <!--Del-->
     - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](js-apis-app-ability-PrintExtensionAbility-sys.md)
+    - [@ohos.pasetboard (剪贴板)(系统接口)](js-apis-pasteboard-sys.md)
     - [@ohos.print (打印)(系统接口)](js-apis-print-sys.md)
     - [@ohos.request (上传下载)(系统接口)](js-apis-request-sys.md)
     <!--DelEnd-->
@@ -78,6 +79,7 @@
       <!--DelEnd-->
   - 其他
     - [@ohos.base (公共回调信息)](js-apis-base.md)
+    - [@ohos.customization.customConfig (定制配置)](js-apis-customization-customConfig.md)
     - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
     - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
     - [@ohos.resourceschedule.systemload (性能功耗热融合档位)](js-apis-resourceschedule-systemload.md)

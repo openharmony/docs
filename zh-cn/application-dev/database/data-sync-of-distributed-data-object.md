@@ -145,10 +145,10 @@
 
 以一次分布式数据对象同步为例，说明开发步骤。
 
-1. 导入`@ohos.data.distributedDataObject`模块。
+1. 导入distributedDataObject模块。
 
    ```ts
-   import distributedDataObject from '@ohos.data.distributedDataObject';
+   import { distributedDataObject } from '@kit.ArkData';
    ```
 
 2. 请求权限。
@@ -162,10 +162,9 @@
    
    ```ts
    // 导入模块
-   import distributedDataObject from '@ohos.data.distributedDataObject';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
-   import window from '@ohos.window';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { window } from '@kit.ArkUI';
 
    class ParentObject {
      mother: string
@@ -203,8 +202,7 @@
 
    ```ts
    // 导入模块
-   import distributedDataObject from '@ohos.data.distributedDataObject';
-   import featureAbility from '@ohos.ability.featureAbility';
+   import { featureAbility } from '@kit.AbilityKit';
    // 获取context
    let context = featureAbility.getContext();
    class ParentObject {
@@ -363,11 +361,10 @@
 
 分布式对象中加入资产类型属性，可以触发资产同步机制，将资产类型属性所描述的文件同步到其他设备。持有资产文件的设备为发起端，得到资产文件的设备为接收端。
 
-1. 导入`@ohos.data.distributedDataObject`和`@ohos.data.commonType`模块。
+1. 导入distributedDataObject和commonType模块。
 
    ```ts
-   import distributedDataObject from '@ohos.data.distributedDataObject';
-   import commonType from '@ohos.data.commonType';
+   import { distributedDataObject, commonType } from '@kit.ArkData';
    ```
 
 2. 请求权限。
@@ -378,11 +375,9 @@
 3. 发起端创建包含资产的分布式对象并加入组网。
 
     ```ts
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import type window from '@ohos.window';
-    import distributedDataObject from '@ohos.data.distributedDataObject';
-    import commonType from '@ohos.data.commonType';
-    import type { BusinessError } from '@ohos.base';
+    import { UIAbility } from '@kit.AbilityKit';
+    import { window } from '@kit.ArkUI';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     class Note {
       title: string | undefined

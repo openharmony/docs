@@ -80,11 +80,11 @@ struct SecondTest {
 
 在上面的示例中：
 
-1.点击页面A中的Button “first page storLink + 1”，storLink状态变量改变，@Watch中注册的方法first会被调用。
+1.点击页面A中的Button “first page storageLink + 1”，storageLink状态变量改变，@Watch中注册的方法first会被调用。
 
 2.通过router.pushUrl({url: 'pages/second'})，跳转到页面B，页面A隐藏，状态由active变为inactive。
 
-3.点击页面B中的Button “this.storLink2 += 2”，只回调页面B@Watch中注册的方法second，因为页面A的状态变量此时已被冻结。
+3.点击页面B中的Button “this.storageLink2 += 2”，只回调页面B@Watch中注册的方法second，因为页面A的状态变量此时已被冻结。
 
 4.点击“back”，页面B被销毁，页面A的状态由inactive变为active，重新刷新在inactive时被冻结的状态变量，页面A@Watch中注册的方法first被再次调用。
 
@@ -301,7 +301,7 @@ struct FreezeChild {
 
 在上面的示例中：
 
-1.点击“change message”更改message的值，当前正在显示的ListItem中的子组件@Watch中注册的方法onMessageUpdated被触发。缓存节点@Watch中注册的方法不会被触发。（如果不加组件冻结，当前正在显示的ListItem和cachcount缓存节点@Watch中注册的方法onMessageUpdated都会触发watch回调。）
+1.点击“change message”更改message的值，当前正在显示的ListItem中的子组件@Watch中注册的方法onMessageUpdated被触发。缓存节点@Watch中注册的方法不会被触发。（如果不加组件冻结，当前正在显示的ListItem和cachecount缓存节点@Watch中注册的方法onMessageUpdated都会触发watch回调。）
 
 2.List区域外的ListItem滑动到List区域内，状态由inactive变为active，对应的@Watch中注册的方法onMessageUpdated被触发。
 

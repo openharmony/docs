@@ -246,7 +246,7 @@ struct Index {
       if (info.state == observer.RouterPageState.ON_PAGE_SHOW) {
         console.log(`Index onPageShow`);
       } else if (info.state == observer.RouterPageState.ON_PAGE_HIDE) {
-        console.log(`Index onPgaeHide`);
+        console.log(`Index onPageHide`);
       }
     }
   }
@@ -282,7 +282,7 @@ struct SubComponent {
       if (info.state == observer.RouterPageState.ON_PAGE_SHOW) {
         console.log(`SubComponent onPageShow`);
       } else if (info.state == observer.RouterPageState.ON_PAGE_HIDE) {
-        console.log(`SubComponent onPgaeHide`);
+        console.log(`SubComponent onPageHide`);
       }
     }
   }

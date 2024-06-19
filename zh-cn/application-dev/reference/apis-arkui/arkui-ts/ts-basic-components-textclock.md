@@ -17,7 +17,9 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
@@ -50,7 +52,7 @@ y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -102,7 +104,7 @@ textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -128,7 +130,7 @@ fontFeature(value: string)
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -152,6 +154,24 @@ contentModifier(modifier: ContentModifier\<TextClockConfiguration>)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
 | modifier  | [ContentModifier\<TextClockConfiguration>](#textclockconfiguration12对象说明) | 是   | 在TextClock组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
+### dateTimeOptions<sup>12+</sup>
+
+dateTimeOptions(dateTimeOptions: DateTimeOptions)
+
+设置小时是否显示前导0。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| dateTimeOptions  | Optional<[DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions)> | 是   | 设置小时是否显示前导0，只支持设置hour参数。<br/>默认值：undefined，由组件根据应用设置格式自行判断是否显示前导0。<br/>只支持{hour: 'numeric}和{hour: '2-digit'} |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -170,7 +190,7 @@ onDateChange(event: (value: number) => void)
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -186,7 +206,9 @@ TextClock容器组件的控制器，可以将该控制器绑定到TextClock组�
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 导入对象
 
@@ -202,7 +224,9 @@ start()
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### stop
 
@@ -212,11 +236,15 @@ stop()
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## TextClockConfiguration<sup>12+</sup>对象说明
 
 开发者需要自定义class实现ContentModifier接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名  | 类型    |    默认值      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
@@ -360,3 +388,34 @@ struct TextClockExample {
 }
 ```
 ![ContentModifierExample](figures/text_clock_contentmodifier.gif)
+
+### 示例4
+该示例演示了dateTimeOptions属性为小时字段增加或去除前导0的功能。24小时制的小时字段默认带有前导0，可通过dateTimeOptions属性去除前导0，12小时制的小时字段默认不带有前导0，可通过dateTimeOptions属性增加前导0。
+``` ts
+@Entry
+@Component
+struct TextClockExample {
+  build() {
+    Column({ space: 8 }) {
+      Row() {
+        Text("24小时制去除前导0：")
+          .fontSize(30)
+        TextClock()
+          .fontSize(30)
+          .format("HH:mm:ss")
+          .dateTimeOptions({hour: "numeric"})
+      }
+      Row() {
+        Text("12小时制增加前导0：")
+          .fontSize(30)
+        TextClock()
+          .fontSize(30)
+          .format("aa hh:mm:ss")
+          .dateTimeOptions({hour: "2-digit"})
+      }
+    }
+    .alignItems(HorizontalAlign.Start)
+  }
+}
+```
+![TextClockExample](figures/text_clock_datetimeoptions.png)

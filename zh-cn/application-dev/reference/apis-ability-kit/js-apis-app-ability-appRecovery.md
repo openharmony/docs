@@ -15,7 +15,7 @@ import { appRecovery } from '@kit.AbilityKit';
 
 应用重启标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口重启选项参数，该类型为枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -30,7 +30,7 @@ import { appRecovery } from '@kit.AbilityKit';
 
 保存条件标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口状态保存时的选项参数，该类型为枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -43,7 +43,7 @@ import { appRecovery } from '@kit.AbilityKit';
 
 状态保存标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口状态保存方式的参数，该类型为枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -60,7 +60,7 @@ enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -103,7 +103,7 @@ API10时将启动由[setRestartWant](#apprecoverysetrestartwant10)指定的Abili
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -136,7 +136,7 @@ saveAppState(): boolean
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -174,7 +174,7 @@ saveAppState(context?: UIAbilityContext): boolean
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -218,7 +218,7 @@ setRestartWant(want: Want): void
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

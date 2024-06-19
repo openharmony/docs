@@ -49,8 +49,11 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -67,8 +70,7 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -141,8 +143,11 @@ Starts an ability with the start options and account ID specified. This API uses
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -159,8 +164,7 @@ Starts an ability with the start options and account ID specified. This API uses
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -241,8 +245,11 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -259,8 +266,7 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -322,8 +328,11 @@ Starts a ServiceExtensionAbility. This API uses an asynchronous callback to retu
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -333,10 +342,9 @@ Starts a ServiceExtensionAbility. This API uses an asynchronous callback to retu
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -392,8 +400,11 @@ Starts a ServiceExtensionAbility. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -403,10 +414,9 @@ Starts a ServiceExtensionAbility. This API uses a promise to return the result.
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -470,8 +480,11 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses an
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -481,10 +494,9 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses an
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -548,8 +560,11 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses a 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -559,10 +574,9 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses a 
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -619,8 +633,11 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -631,8 +648,6 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -688,8 +703,11 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -698,8 +716,6 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -763,8 +779,11 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -773,8 +792,6 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -838,8 +855,11 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -848,8 +868,6 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -920,8 +938,11 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -932,8 +953,6 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 | 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1009,8 +1028,11 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1027,8 +1049,7 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -1099,8 +1120,11 @@ Starts an ability with the account ID and start options specified. This API uses
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1117,8 +1141,7 @@ Starts an ability with the account ID and start options specified. This API uses
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -1192,8 +1215,11 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1210,8 +1236,7 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -1273,12 +1298,13 @@ Sets an icon for this ability in the mission. This API uses an asynchronous call
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1334,12 +1360,13 @@ Sets an icon for this ability in the mission. This API uses a promise to return 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1397,10 +1424,11 @@ Starts an ability. If the ability has multiple instances, the latest instance is
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1416,6 +1444,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -1476,10 +1505,11 @@ You can use this API to carry start options.
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1495,6 +1525,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -1559,10 +1590,11 @@ This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1578,6 +1610,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -1651,8 +1684,11 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1664,8 +1700,7 @@ Observe the following when using this API:
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released.        |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -1736,8 +1771,11 @@ Starts an ability with the caller information specified. The caller information 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1753,8 +1791,7 @@ Starts an ability with the caller information specified. The caller information 
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -1808,8 +1845,11 @@ Starts an ability with the caller information and start options specified. The c
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -1823,8 +1863,7 @@ Starts an ability with the caller information and start options specified. The c
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -1888,8 +1927,11 @@ Starts an ability with the caller information specified. The caller information 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1905,8 +1947,7 @@ Starts an ability with the caller information specified. The caller information 
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -1948,11 +1989,11 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses a promise to return the result.
 
+Before starting the UIExtensionAility, ensure that the foreground application has finished page initialization. Otherwise, the UIExtensionAility fails to start and the error message "uiContent is nullptr" is displayed. The application can determine the time to start the UIExtensionAbility by listening for the page loading status. After the page initialization is successful, the key log information "UIContentImpl: focus again" is recorded.
+
 > **NOTE**
 >
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
-> If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
-
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1962,7 +2003,7 @@ Requests the specified foreground application to start the UIExtensionAbility of
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pickerWant | [Want](js-apis-app-ability-want.md)  | Yes| Want information used to start the modal window.|
+| pickerWant | [Want](js-apis-app-ability-want.md)  | Yes| Want information used to start the UIExtensionAility.|
 
 **Return value**
 
@@ -1972,11 +2013,12 @@ Requests the specified foreground application to start the UIExtensionAbility of
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -2023,11 +2065,12 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses an asynchronous callback to return the result.
 
+Before starting the UIExtensionAility, ensure that the foreground application has finished page initialization. Otherwise, the UIExtensionAility fails to start and the error message "uiContent is nullptr" is displayed. The application can determine the time to start the UIExtensionAbility by listening for the page loading status. After the page initialization is successful, the key log information "UIContentImpl: focus again" is recorded.
+
 > **NOTE**
 >
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
-> If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- 
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.
@@ -2036,16 +2079,17 @@ Requests the specified foreground application to start the UIExtensionAbility of
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pickerWant | [Want](js-apis-app-ability-want.md)  | Yes| Want information used to start the modal window.|
+| pickerWant | [Want](js-apis-app-ability-want.md)  | Yes| Want information used to start the UIExtensionAility.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the UIExtensionAbility is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 

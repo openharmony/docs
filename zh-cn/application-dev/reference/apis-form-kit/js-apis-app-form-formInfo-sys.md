@@ -23,8 +23,6 @@ import { formInfo } from '@kit.FormKit';
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
 | DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | 设备标识。 <br>**系统接口：** 此接口为系统接口。  |
-| FORM_PERMISSION_NAME_KEY | 'ohos.extra.param.key.permission_name' | 用户授权权限名称 |
-| FORM_PERMISSION_GRANTED_KEY | 'ohos.extra.param.key.permission_granted' | 用户是否授权 |
 
 ## FormUsageState
 

@@ -10,8 +10,8 @@ UIAbility组件的基本用法包括：指定UIAbility的启动页面以及获�
 
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
@@ -36,10 +36,8 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
 - 在UIAbility中可以通过`this.context`获取UIAbility实例的上下文信息。
   
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  
+  import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+
   export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       // 获取UIAbility实例的上下文
@@ -52,21 +50,20 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
 - 在页面中获取UIAbility实例的上下文信息，包括导入依赖资源context模块和在组件中定义一个context变量两个部分。
   
   ```ts
-  import common from '@ohos.app.ability.common';
-  import Want from '@ohos.app.ability.Want';
-  
+  import { common, Want } from '@kit.AbilityKit';
+
   @Entry
   @Component
   struct Page_EventHub {
     private context = getContext(this) as common.UIAbilityContext;
-  
-    startAbilityTest() : void {
+
+    startAbilityTest(): void {
       let want: Want = {
         // Want参数信息
       };
       this.context.startAbility(want);
     }
-  
+
     // 页面展示
     build() {
       // ...
@@ -78,13 +75,11 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
 
   
   ```ts
-  import common from '@ohos.app.ability.common';
-  import Want from '@ohos.app.ability.Want';
-  
+  import { common, Want } from '@kit.AbilityKit';
+
   @Entry
   @Component
   struct Page_UIAbilityComponentsBasicUsage {
-  
     startAbilityTest(): void {
       let context = getContext(this) as common.UIAbilityContext;
       let want: Want = {
@@ -92,7 +87,7 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
       };
       context.startAbility(want);
     }
-  
+
     // 页面展示
     build() {
       // ...

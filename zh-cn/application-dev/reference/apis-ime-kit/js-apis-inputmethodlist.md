@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import inputMethodL from '@ohos.inputMethodList';
+import { inputMethodL } from '@kit.IMEKit';
 ```
 
 ## 子组件
@@ -40,7 +40,7 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | defaultSelected<sup>11+</sup>  | number | 是 | 是 | 非必填。默认选择的模式。 |
 | patterns<sup>11+</sup>    | Array<[Pattern](#pattern)> | 是 | 是 | 必填。模式选项的资源。 |
@@ -50,7 +50,7 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | icon<sup>11+</sup>  | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 是 | 必填。默认图片资源。 |
 | selectedIcon<sup>11+</sup>    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 是 | 必填。选中时的图片资源。 |
@@ -62,7 +62,7 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 ##  示例
 
 ```ts
-import { InputMethodListDialog, Pattern, PatternOptions } from '@ohos.inputMethodList';
+import { InputMethodListDialog, Pattern, PatternOptions } from '@kit.IMEKit';
 
 @Entry
 // 设置组件

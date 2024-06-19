@@ -47,13 +47,14 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
 | callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   |Callback used to return the result, which is a **ResourceManager** object.|
 
 **Example**
+  <!--code_no_check_fa-->
   ```js
   resourceManager.getResourceManager((error, mgr) => {
     if (error != null) {
       console.error("error is " + error);
       return;
     }
-    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -81,7 +82,7 @@ Obtains the **ResourceManager** object of the specified application. This API us
 | callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the result, which is a **ResourceManager** object.|
 
 **Example**
-
+  <!--code_no_check_fa-->
   ```js
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
   });
@@ -104,12 +105,13 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result, which is a **ResourceManager** object.|
 
 **Example**
+  <!--code_no_check_fa-->
   ```js
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -144,6 +146,7 @@ Obtains the **ResourceManager** object of the specified application. This API us
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result, which is a **ResourceManager** object.|
 
 **Example**
+  <!--code_no_check_fa-->
   ```js
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -220,10 +223,12 @@ Enumerates the device types.
 <!--RP1-->
 | Name                  | Value | Description  |
 | -------------------- | ---- | ---- |
+| DEVICE_TYPE_PHONE    | 0x00 | Phone  |
 | DEVICE_TYPE_TABLET   | 0x01 | Tablet  |
 | DEVICE_TYPE_CAR      | 0x02 | Automobile  |
 | DEVICE_TYPE_TV       | 0x04 | TV |
 | DEVICE_TYPE_WEARABLE | 0x06 | Wearable  |
+| DEVICE_TYPE_2IN1<sup>11+</sup>     | 0x07 | 2-in-1  |
 <!--RP1End-->
 
 ## ScreenDensity
@@ -300,6 +305,8 @@ Defines the device capability.
 
 Defines the descriptor of the HAP where the raw file is located.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -313,6 +320,8 @@ Defines the descriptor of the HAP where the raw file is located.
 ## Resource<sup>9+</sup>
 
 Defines the resource information of an application.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 

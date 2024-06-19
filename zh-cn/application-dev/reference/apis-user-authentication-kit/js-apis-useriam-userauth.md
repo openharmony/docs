@@ -525,28 +525,36 @@ try {
 
 ## EventInfo<sup>(deprecated)</sup>
 
+type EventInfo = AuthResultInfo | TipInfo
+
 表示认证过程中事件信息的类型。
+
+该类型为下表类型中的联合类型。
 
 > **说明：**
 > 从 API version 9 开始支持，从 API version 11 开始废弃，请使用[UserAuthResult](#userauthresult10)替代。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core。
 
-| 取值类型    | 说明                       |
+| 类型    | 说明                       |
 | --------- | ----------------------- |
 | [AuthResultInfo](#authresultinfodeprecated)    | 获取到的认证结果信息。  |
 | [TipInfo](#tipinfodeprecated)    | 认证过程中的提示信息。      |
 
 ## AuthEventKey<sup>(deprecated)</sup>
 
+type AuthEventKey = 'result' | 'tip'
+
 表示认证事件类型的关键字，作为[on](#ondeprecated)接口的的参数。
+
+该类型为下表类型取值中的联合类型。
 
 > **说明：**
 > 从 API version 9 开始支持，从 API version 11 开始废弃。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core。
 
-| 取值类型       | 说明                    |
+| 类型       | 说明                    |
 | ---------- | ----------------------- |
 | "result" | [on](#ondeprecated)接口第一个参数为"result"时，[callback](#callbackdeprecated)回调返回认证的结果信息。 |
 | "tip"    | [on](#ondeprecated)接口第一个参数为"tip"时，[callback](#callbackdeprecated)回调返回认证操作中的提示信息。 |

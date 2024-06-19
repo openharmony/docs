@@ -17,7 +17,7 @@ createAtManager(): AtManager
 
 访问控制管理：获取访问控制模块对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -44,7 +44,7 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 
 校验应用是否授予权限。使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -184,7 +184,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 >
 > 仅支持<!--RP1-->UIAbility<!--RP1End-->。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -241,7 +241,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 >
 > 仅支持<!--RP1-->UIAbility<!--RP1End-->。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -335,7 +335,7 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 校验应用是否被授予权限，同步返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -377,7 +377,7 @@ console.log(`data->${JSON.stringify(data)}`);
 
 表示授权状态的枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 

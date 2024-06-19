@@ -10,6 +10,7 @@
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
     - [组件复用使用指导](component-recycle.md)
     - [组件复用性能优化指导](component_recycle_case.md)
+    - [组件复用总览](component-reuse-overview.md)
     - [WaterFlow高性能开发指导](waterflow_optimization.md)
     - [Swiper高性能开发指导](swiper_optimization.md)
     - [合理进行状态管理](proper_state_management.md)

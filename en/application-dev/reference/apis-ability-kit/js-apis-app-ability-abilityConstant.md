@@ -11,7 +11,7 @@ The **AbilityConstant** module defines the UIAbility-related enums, including th
 ## Modules to Import
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { AbilityConstant } from '@kit.AbilityKit';
 ```
 
 ## AbilityConstant.LaunchParam
@@ -46,16 +46,14 @@ Enumerates the initial ability launch reasons. You can use it together with the 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
-            console.log('The ability has been started by the way of startAbility.');
-        }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
+      console.log('The ability has been started by the way of startAbility.');
     }
+  }
 }
 ```
 
@@ -73,23 +71,24 @@ Enumerates the reasons for the last exit. You can use it together with the value
 | CPP_CRASH<sup>10+</sup>  | 3    | The ability exits due to abnormal signals on the local host.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | JS_ERROR<sup>10+</sup>  | 4    | The ability exits due to a JS_ERROR fault triggered when an application has a JS syntax error that is not captured by developers.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | APP_FREEZE<sup>10+</sup>  | 5    | The ability exits because watchdog detects that the application is frozen.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | The ability exits due to system performance problems, for example, insufficient device memory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| RESOURCE_CONTROL<sup>10+</sup>  | 7    | The ability exits because the system resource usage (CPU, I/O, or memory usage) exceeds the upper limit.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | The ability exits due to system performance problems, for example, insufficient device memory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**NOTE**: This API will be deprecated. You are advised to use **RESOURCE_CONTROL** instead.|
+| RESOURCE_CONTROL<sup>10+</sup>  | 7    | The ability exits due to improper use of system resources. The specific error cause can be obtained through [LaunchParam.lastExitMessage](#abilityconstantlaunchparam). The possible causes are as follows:<br> - **CPU Highload**: The CPU load is high.<br> - **CPU_EXT Highload**: A fast CPU load detection is carried out.<br> - **IO Manage Control**: An I/O management and control operation is carried out.<br> -** App Memory Deterioration**: The application memory usage exceeds the threshold.<br> - **Temperature Control**: The temperature is too high or too low.<br> - **Memory Pressure**: The system is low on memory, triggering ability exiting in ascending order of priority.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | UPGRADE<sup>10+</sup>  | 8    | The ability exits due to an update.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        if (launchParam.lastExitReason === AbilityConstant.LastExitReason.APP_FREEZE) {
-            console.log('The ability has exit last because the ability was not responding.');
-        }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    if (launchParam.lastExitReason === AbilityConstant.LastExitReason.APP_FREEZE) {
+      console.log('The ability has exit last because the ability was not responding.');
     }
+    if (launchParam.lastExitReason === AbilityConstant.LastExitReason.RESOURCE_CONTROL) {
+      console.log('The ability has exit last because the rss control, the lastExitReason is '+ launchParam.lastExitReason + ', the lastExitMessage is ' + launchParam.lastExitMessage);
+    }
+  }
 }
 ```
 
@@ -110,13 +109,12 @@ Enumerates the ability continuation results. You can use it together with [onCon
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
-    onContinue(wantParam: Record<string, Object>) {
-        return AbilityConstant.OnContinueResult.AGREE;
-    }
+  onContinue(wantParam: Record<string, Object>) {
+    return AbilityConstant.OnContinueResult.AGREE;
+  }
 }
 ```
 
@@ -137,15 +135,14 @@ Enumerates the memory levels. You can use it in [onMemoryLevel(level)](js-apis-a
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
-    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-        if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
-            console.log('The memory of device is critical, please release some memory.');
-        }
+  onMemoryLevel(level: AbilityConstant.MemoryLevel) {
+    if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
+      console.log('The memory of device is critical, please release some memory.');
     }
+  }
 }
 ```
 
@@ -163,11 +160,8 @@ Enumerates the window mode when the ability is started. It can be used together 
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, StartOptions, Want, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   bundleName: 'com.example.myapplication',
@@ -180,10 +174,10 @@ let option: StartOptions = {
 // Ensure that the context is obtained.
 class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    this.context.startAbility(want, option).then(()=>{
+    this.context.startAbility(want, option).then(() => {
       console.log('Succeed to start ability.');
-    }).catch((error: BusinessError)=>{
-      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to start ability with error: ${JSON.stringify(error)}`);
     });
   }
 }
@@ -209,13 +203,12 @@ Enumerates the result types for the operation of saving application data. You ca
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
-    onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
-        return AbilityConstant.OnSaveResult.ALL_AGREE;
-    }
+  onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
+    return AbilityConstant.OnSaveResult.ALL_AGREE;
+  }
 }
 ```
 
@@ -235,16 +228,15 @@ Enumerates the scenarios for saving application data. You can use it in [onSaveS
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
-    onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
-        if (reason === AbilityConstant.StateType.CONTINUATION) {
-            console.log('Save the ability data when the ability continuation.');
-        } 
-        return AbilityConstant.OnSaveResult.ALL_AGREE;
+  onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
+    if (reason === AbilityConstant.StateType.CONTINUATION) {
+      console.log('Save the ability data when the ability continuation.');
     }
+    return AbilityConstant.OnSaveResult.ALL_AGREE;
+  }
 }
 ```
 
@@ -264,10 +256,8 @@ Enumerates the mission continuation states of the application. It is used in the
 **Example**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {

@@ -9,14 +9,14 @@
 ## 导入模块
 
 ```ts
-import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.arkui.theme'；
+import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.arkui.theme';
 ```
 
 ## Theme
 
 当前生效的主题风格对象，可从[onWillApplyTheme](arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)中获取。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -28,13 +28,13 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 
 主题颜色资源。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                           | 类型                                                 | 只读  | 可选  | 说明               |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------------|
-| brand                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 鸿蒙品牌色。           |
+| brand                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 品牌色。           |
 | warning                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级警示色。           |
 | alert                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级提示色。           |
 | confirm                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 确认色。             |
@@ -90,7 +90,7 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 
 自定义主题风格对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -100,7 +100,13 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 
 ## CustomColors
 
+type CustomColors = Partial\<Colors>
+
 自定义主题颜色资源类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型  | 说明           |
 |-----|--------------|
@@ -110,7 +116,7 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 
 ThemeControl将自定义Theme应用于App组件内，实现App组件风格跟随Theme切换。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -120,7 +126,7 @@ setDefaultTheme(theme: [CustomTheme](#customtheme)): void
 
 将用户自定义Theme设置应用级默认主题，实现应用风格跟随Theme切换。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

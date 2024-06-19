@@ -14,7 +14,9 @@
 
 TextTimer(options?: TextTimerOptions)
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：** 
 
@@ -24,7 +26,9 @@ TextTimer(options?: TextTimerOptions)
 
 ## TextTimerOptions对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名     | 参数类型     | 必填  | 参数描述                   |
 | ----------- | -------- | -------- | -------- |
@@ -44,7 +48,7 @@ format(value: string)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -60,7 +64,7 @@ textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 
 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。不支持fill字段, 不支持智能取色模式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -92,7 +96,9 @@ onTimer(event:&nbsp;(utc:&nbsp;number,&nbsp;elapsedTime:&nbsp;number)&nbsp;=&gt;
 
 时间文本发生变化时触发。锁屏状态和应用后台状态下不会触发该事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -107,7 +113,9 @@ onTimer(event:&nbsp;(utc:&nbsp;number,&nbsp;elapsedTime:&nbsp;number)&nbsp;=&gt;
 
 TextTimer组件的控制器，用于控制文本计时器。一个TextTimer组件仅支持绑定一个控制器。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### 导入对象
 
@@ -121,7 +129,11 @@ start()
 
 计时开始。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### pause
 
@@ -129,7 +141,11 @@ pause()
 
 计时暂停。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### reset
 
@@ -137,11 +153,17 @@ reset()
 
 重置计时器。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## TextTimerConfiguration<sup>12+</sup>对象说明
 
 开发者需要自定义class实现ContentModifier接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名  | 类型    |    默认值      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |

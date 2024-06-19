@@ -50,6 +50,10 @@ In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -60,24 +64,25 @@ export default class EntryAbility extends UIAbility {
         let stageEventType: window.WindowStageEventType = data;
         switch (stageEventType) {
           case window.WindowStageEventType.SHOWN: // Switch to the foreground.
-            console.info('windowStage foreground.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage foreground.');
             break;
           case window.WindowStageEventType.ACTIVE: // Gain focus.
-            console.info('windowStage active.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage active.');
             break;
           case window.WindowStageEventType.INACTIVE: // Lose focus.
-            console.info('windowStage inactive.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage inactive.');
             break;
           case window.WindowStageEventType.HIDDEN: // Switch to the background.
-            console.info('windowStage background.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage background.');
             break;
           default:
             break;
         }
       });
     } catch (exception) {
-      console.error('Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
+      hilog.error(DOMAIN_NUMBER, TAG, 'Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
     }
+    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
     // Set the page to be loaded.
     windowStage.loadContent('pages/Index', (err, data) => {
       // ...
@@ -95,6 +100,11 @@ Before the UIAbility instance is destroyed, the **onWindowStageDestroy()** callb
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import hilog from '@ohos.hilog';
+import type { BusinessError } from '@ohos.base';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
@@ -105,9 +115,47 @@ export default class EntryAbility extends UIAbility {
   }
   onWindowStageDestroy() {
     // Release UI resources.
+    // Unsubscribe from the WindowStage events such as having or losing focus in the onWindowStageDestroy() callback.
+    try {
+      if (this.windowStage) {
+        this.windowStage.off('windowStageEvent');
+      }
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
+    };
   }
 }
 ```
+
+### WindowStageWillDestroy
+
+The **onWindowStageWillDestroy()** callback is invoked before the window stage is destroyed. In this case, the window stage can still be used.
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  windowStage: window.WindowStage | undefined = undefined;
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    this.windowStage = windowStage;
+    // ...
+  }
+  onWindowStageWillDestroy(windowStage: window.WindowStage) {
+    // Release the resources obtained through the windowStage object.
+  }
+  onWindowStageDestroy() {
+    // Release UI resources.
+  }
+}
+```
+
+> **NOTE**
+>
+> For details about how to use WindowStage, see [Window Development](../windowmanager/application-window-stage.md).
 
 
 ### Foreground and Background

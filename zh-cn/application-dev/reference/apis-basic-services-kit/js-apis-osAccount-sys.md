@@ -43,7 +43,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -97,7 +97,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -150,7 +150,7 @@ deactivateOsAccount(localId: number): Promise&lt;void&gt;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
@@ -201,7 +201,7 @@ isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
 **示例：** 判断ID为100的系统帐号是否处于激活状态
@@ -253,7 +253,7 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
@@ -305,7 +305,7 @@ isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
 **示例：**
@@ -351,7 +351,7 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -409,7 +409,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -462,7 +462,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -520,7 +520,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -569,7 +569,7 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or localName. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -626,7 +626,7 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or localName.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -671,7 +671,7 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 | -------- | ------------- |
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -712,8 +712,7 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
 | 202 | Not system application.|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -752,7 +751,7 @@ queryMaxLoggedInOsAccountNumber(): Promise&lt;number&gt;
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
 | 202 | Not system application.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -801,7 +800,7 @@ getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
 **示例：** 获取ID为100的系统帐号的全部约束
@@ -846,7 +845,7 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -887,8 +886,7 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -927,7 +925,7 @@ getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
 | 202 | Not system application.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -972,12 +970,12 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localName or type. |
 | 12300004 | Local name already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
+| 12300007 | The number of accounts has reached the upper limit. |
 
 **示例：**
 
@@ -1028,13 +1026,13 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localName, type or options. |
 | 12300004 | Local name already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
-| 12300015 | Short name already exists. |
+| 12300007 | The number of accounts has reached the upper limit. |
+| 12300015 | The short name already exists. |
 
 **示例：**
 
@@ -1084,12 +1082,12 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type or domainInfo. |
 | 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
+| 12300007 | The number of accounts has reached the upper limit. |
 
 **示例：**
 
@@ -1143,13 +1141,13 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, opt
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type, domainInfo or options. |
 | 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
-| 12300015 | Short name already exists. |
+| 12300007 | The number of accounts has reached the upper limit. |
+| 12300015 | The short name already exists. |
 
 **示例：**
 
@@ -1197,7 +1195,7 @@ queryOsAccount(): Promise&lt;OsAccountInfo&gt;
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -1241,7 +1239,7 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
@@ -1292,7 +1290,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId. |
 | 12300003 | Account not found. |
 
@@ -1339,7 +1337,7 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
@@ -1390,7 +1388,7 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
@@ -1438,7 +1436,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or photo.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -1494,7 +1492,7 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or photo.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
@@ -1547,7 +1545,7 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type or name. |
 
 **示例：**
@@ -1591,7 +1589,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type or name. |
 
 **示例：**
@@ -1634,7 +1632,7 @@ on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type. |
 
 **示例：**
@@ -1677,7 +1675,7 @@ off(type: 'switching', callback?: Callback&lt;OsAccountSwitchEventData&gt;): voi
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type. |
 
 **示例：**
@@ -1717,7 +1715,7 @@ on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type. |
 
 **示例：**
@@ -1760,7 +1758,7 @@ off(type: 'switched', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type. |
 
 **示例：**
@@ -1797,7 +1795,7 @@ getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
 | -------- | ------------- |
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid uid. |
 
 **示例：**
@@ -1844,7 +1842,7 @@ getBundleIdForUid(uid: number): Promise&lt;number&gt;
 | -------- | ------------- |
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid uid. |
 
 **示例：**
@@ -1932,7 +1930,7 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -1973,8 +1971,7 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 | -------- | ------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
@@ -2019,7 +2016,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
 
@@ -2071,7 +2068,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
 
@@ -2123,7 +2120,7 @@ getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
 **示例：**
@@ -2231,7 +2228,7 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType or authTrustLevel. |
 
 **示例：**
@@ -2273,7 +2270,7 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
 | 12300003 | Account not found. |
 
@@ -2331,7 +2328,7 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
 | 12300003 | Account not found. |
 
@@ -2385,7 +2382,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): v
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
 
 **示例：**
@@ -2441,7 +2438,7 @@ setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
 
 **示例：**
@@ -2498,16 +2495,16 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
-| 12300101 | Credential is incorrect. |
+| 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
-| 12300105 | Unsupported authTrustLevel. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
+| 12300105 | The trust level is not supported. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
 | 12300117 | PIN is expired. |
 
 **示例：**
@@ -2563,17 +2560,17 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType, authTrustLevel or options. |
 | 12300003 | Account not found. |
-| 12300101 | Credential is incorrect. |
+| 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
-| 12300105 | Unsupported authTrustLevel. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
+| 12300105 | The trust level is not supported. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
 | 12300117 | PIN is expired. |
 
 **示例：**
@@ -2632,17 +2629,17 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
-| 12300101 | Credential is incorrect. |
+| 12300101 | The credential is incorrect. |
 | 12300102 | Credential not enrolled. |
 | 12300003 | Account not found. |
-| 12300105 | Unsupported authTrustLevel. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
+| 12300105 | The trust level is not supported. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
 | 12300117 | PIN is expired. |
 
 **示例：**
@@ -2689,7 +2686,7 @@ cancelAuth(contextID: Uint8Array): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid contextId. |
 
 **示例：**
@@ -2762,9 +2759,9 @@ registerInputer(inputer: IInputer): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid inputer. |
-| 12300103 | Inputer already registered. |
+| 12300103 | The credential inputer already exists. |
 
 **示例：**
   ```ts
@@ -2837,10 +2834,10 @@ static registerInputer(authType: AuthType, inputer: IInputer): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType or inputer. |
-| 12300103 | The credential inputer has been registered. |
-| 12300106 | Unsupported authType. |
+| 12300103 | The credential inputer already exists. |
+| 12300106 | The authentication type is not supported. |
 
 **示例：**
   ```ts
@@ -3493,17 +3490,17 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo or credential. |
 | 12300003 | Domain account does not exist. |
 | 12300013 | Network exception. |
 | 12300101 | Authentication failed. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
-| 12300113 | Authentication service does not exist. |
-| 12300114 | Authentication service exception. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The account authentication service does not exist. |
+| 12300114 | The account authentication service works abnormally. |
 
 **示例：**
   ```ts
@@ -3552,16 +3549,16 @@ authWithPopup(callback: IUserAuthCallback): void
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | No domain account is bound. |
 | 12300013 | Network exception. |
 | 12300101 | Authentication failed. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
-| 12300113 | Authentication service does not exist. |
-| 12300114 | Authentication service exception. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The account authentication service does not exist. |
+| 12300114 | The account authentication service works abnormally. |
 
 **示例：**
   ```ts
@@ -3606,17 +3603,17 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId. |
 | 12300003 | No domain account is bound. |
 | 12300013 | Network exception. |
 | 12300101 | Authentication failed. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
-| 12300113 | Authentication service does not exist. |
-| 12300114 | Authentication service exception. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The account authentication service does not exist. |
+| 12300114 | The account authentication service works abnormally. |
 
 **示例：**
   ```ts
@@ -3659,10 +3656,10 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300111 | The authentication time out. |
 
 **示例：**
   ```ts
@@ -3716,10 +3713,10 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300111 | The authentication time out. |
 
 **示例：**
   ```ts
@@ -3766,7 +3763,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, call
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid token. |
 | 12300003 | Account not found. |
 
@@ -3824,7 +3821,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid token. |
 | 12300003 | Account not found. |
 
@@ -3875,7 +3872,7 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | The new account info is invalid. |
 | 12300003 | The old account not found. |
 | 12300004 | The new account already exists. |
@@ -3925,10 +3922,10 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300111 | The authentication time out. |
 
 **示例：**
   ```ts
@@ -3983,10 +3980,10 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300111 | The authentication time out. |
 
 **示例：**
   ```ts
@@ -4031,12 +4028,12 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid business parameters. |
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
-| 12300014 | Domain account not authenticated. |
-| 12300111 | Operation timeout. |
+| 12300014 | The domain account is not authenticated. |
+| 12300111 | The authentication time out. |
 
 **示例：**
   ```ts
@@ -4088,12 +4085,12 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid business parameters. |
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
-| 12300014 | Domain account not authenticated. |
-| 12300111 | Operation timeout. |
+| 12300014 | The domain account is not authenticated. |
+| 12300111 | The authentication time out. |
 
 **示例：**
   ```ts
@@ -4146,7 +4143,7 @@ isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolea
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Domain account not found. |
 
 **示例：**
@@ -4215,7 +4212,7 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | - System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | - Invalid server config parameters. |
 | 12300211 | - Server unreachable. |
 
@@ -4265,7 +4262,7 @@ static removeServerConfig(configId: string): Promise&lt;void&gt;
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 |- System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300212 | - Server config not found. |
 
 **示例：**
@@ -4316,7 +4313,7 @@ static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;
 | 202 | Not system application.|
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.|
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Domain account not found. |
 
 **示例：**
@@ -4386,7 +4383,7 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
   ```ts
@@ -4432,8 +4429,8 @@ openSession(accountId?: number): Promise&lt;Uint8Array&gt;
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted account. |
 
@@ -4479,14 +4476,14 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted account. |
-| 12300101 | Token is invalid. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Operation is canceled. |
-| 12300111 | Operation timeout. |
+| 12300101 | The token is invalid. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300111 | The authentication time out. |
 | 12300115 | The number of credentials reaches the upper limit. |
 | 12300116 | Credential complexity verification failed. |
 
@@ -4546,14 +4543,14 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType or token. |
 | 12300003 | Account not found. |
-| 12300101 | Token is invalid. |
+| 12300101 | The token is invalid. |
 | 12300102 | Credential not enrolled.|
-| 12300106 | Unsupported authType. |
-| 12300109 | Operation is canceled. |
-| 12300111 | Operation timeout. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300111 | The authentication time out. |
 | 12300116 | Credential complexity verification failed. |
 
 **示例：**
@@ -4622,7 +4619,7 @@ closeSession(accountId?: number): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted account. |
 
@@ -4658,7 +4655,7 @@ cancel(challenge: Uint8Array): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge. |
 
 **示例：**
@@ -4698,8 +4695,8 @@ delUser(token: Uint8Array, callback: IIdmCallback): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
-| 12300101 | Token is invalid. |
+| 12300001 | The system service works abnormally. |
+| 12300101 | The token is invalid. |
 
 **示例：**
   ```ts
@@ -4744,9 +4741,9 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialId. |
-| 12300101 | Token is invalid. |
+| 12300101 | The token is invalid. |
 | 12300102 | Credential not enrolled. |
 
 **示例：**
@@ -4791,7 +4788,7 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300102 | Credential not enrolled. |
 
 **示例：**
@@ -4834,7 +4831,7 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 | 201 | Permission denied.|
 | 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
 | 12300102 | Credential not enrolled. |
 
@@ -4883,8 +4880,8 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
 | 12300102 | Credential not enrolled. |
 
@@ -4933,8 +4930,8 @@ getAuthInfo(options?: GetAuthInfoOptions): Promise&lt;Array&lt;EnrolledCredInfo&
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401 | Parameters error. Possible causes: Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid options. |
 | 12300003 | Account not found. |
 
@@ -4988,12 +4985,12 @@ getEnrolledId(authType: AuthType, accountId?: number): Promise&lt;Uint8Array&gt;
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401      | Parameters error. Parameters error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12300001 | System service exception. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
 | 12300003 | Account not found. |
 | 12300102 | Credential not enrolled. |
-| 12300106 | Unsupported authType. |
+| 12300106 | The authentication type is not supported. |
 
 **示例：**
   ```ts

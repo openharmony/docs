@@ -806,7 +806,7 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](js-apis-audio.md#getminvolume9)和[getMaxVolume](js-apis-audio.md#getmaxvolume9)获取。 |
 | callback   | AsyncCallback&lt;void&gt;           | 是   | 回调函数。当设置指定流的音量成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -842,7 +842,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](js-apis-audio.md#getminvolume9)和[getMaxVolume](js-apis-audio.md#getmaxvolume9)获取。 |
 
 **返回值：**
 
@@ -862,7 +862,7 @@ audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
 
 setVolumeWithFlag(volumeType: AudioVolumeType, volume: number, flags: number): Promise&lt;void&gt;
 
-通过系统音量条设置指定流的音量，使用Promise方式异步返回结果。
+设置指定流的音量，同时指定本次修改音量是否要显示系统音量条，使用Promise方式异步返回结果。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -877,8 +877,8 @@ setVolumeWithFlag(volumeType: AudioVolumeType, volume: number, flags: number): P
 | 参数名     | 类型                                | 必填 | 说明                                   |
 | ---------- | ----------------------------------- | ---- |--------------------------------------|
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                               |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
-| flags | number | 是 | 拉起系统音量条 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](js-apis-audio.md#getminvolume9)和[getMaxVolume](js-apis-audio.md#getmaxvolume9)获取。 |
+| flags      | number                              | 是   | 是否需要显示系统音量条，0为不需要显示，1为需要显示。 |
 
 **返回值：**
 
@@ -898,7 +898,7 @@ setVolumeWithFlag(volumeType: AudioVolumeType, volume: number, flags: number): P
 **示例：**
 
 ```ts
-audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
+audioVolumeGroupManager.setVolumeWithFlag(audio.AudioVolumeType.MEDIA, 10, 1).then(() => {
   console.info('Promise returned to indicate a successful volume setting.');
 });
 ```

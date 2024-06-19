@@ -18,22 +18,22 @@
    #include <multimedia/player_framework/native_avcodec_base.h>
    ```
 
-3. 获得音视频编解码能力句柄。
+3. 获得音视频编解码能力实例。
 
-   支持两种获取音视频编解码能力句柄的方式：
+   支持两种获取音视频编解码能力实例的方式：
    
-   方式一：通过`OH_AVCodec_GetCapability`获取框架推荐的音视频编解码器能力句柄。与`OH_XXX_CreateByMime`系列接口框架推荐策略一致。
+   方式一：通过`OH_AVCodec_GetCapability`获取框架推荐的音视频编解码器能力实例。与`OH_XXX_CreateByMime`系列接口框架推荐策略一致。
    ```c++
-   // 获取系统推荐的音频AAC解码器能力句柄
+   // 获取系统推荐的音频AAC解码器能力实例
    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, false);
    ```
    
-   方式二：通过`OH_AVCodec_GetCapabilityByCategory`获取指定软件或硬件的编解码能力句柄。
+   方式二：通过`OH_AVCodec_GetCapabilityByCategory`获取指定软件或硬件的编解码能力实例。
    ```c++
-   // 获取指定硬件的视频AVC编码器能力句柄
+   // 获取指定硬件的视频AVC编码器能力实例
    OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true, HARDWARE);
    ```
-   若获取能力句柄成功，则可继续向下执行。开发者无需关注该句柄的回收问题，框架会自行回收。
+   若获取能力实例成功，则可继续向下执行。开发者无需关注该实例的回收问题，框架会自行回收。
 
 4. 按需调用相应查询接口，详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_a_v_capability.md)。
 
@@ -42,15 +42,15 @@
 
 ### 创建指定名称的编解码器
 
-如系统内存在同MIME_TYPE的多个编码器或同MIME_TYPE的多个解码器。使用`OH_XXX_CreateByMime`系列接口只能创建系统推荐的特定编解码器。若需创建其他编解码器，开发者可先获取编解码器名称，再通过`OH_XXX_CreateByName`系列接口创建指定名称的编解码器。
+如系统内存在相同MIME类型的多个编码器或多个解码器。使用`OH_XXX_CreateByMime`系列接口只能创建系统推荐的特定编解码器。若需创建其他编解码器，开发者可先获取编解码器名称，再通过`OH_XXX_CreateByName`系列接口创建指定名称的编解码器。
 
 | 接口     | 功能描述                         |
 | -------- | -------------------------------- |
-| OH_AVCapability_GetName     | 获取能力句柄对应编解码器的名称 |
+| OH_AVCapability_GetName     | 获取能力实例对应编解码器的名称 |
 
 H.264软件解码器和H.264硬件解码器共存时，创建H.264软件解码器示例：
 ```c++
-// 1. 获取H.264软件解码器能力句柄
+// 1. 获取H.264软件解码器能力实例
 OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, SOFTWARE);
 if (capability != nullptr) {
    // 2. 获取H.264软件解码器名称
@@ -68,11 +68,11 @@ if (capability != nullptr) {
 
 * **硬件编解码器:** 指在专有硬件上进行编解码工作的编解码器，其特点是已在硬件平台硬化，能力随硬件平台迭代。相比软件编解码器具有更好的功耗、耗时和吞吐表现，同时能降低CPU负载。
 
-基于上述软件编解码器和硬件编解码器的特点，在硬件编解码器满足要求的时候，优先使用硬件编解码器，否则使用软件编解码器。开发者可基于软件还是硬件类别调整编解码配置。
+基于上述软件编解码器和硬件编解码器的特点，在硬件编解码器满足要求的时候，优先使用硬件编解码器，否则使用软件编解码器。开发者可基于软件还是硬件类别差异化配置编解码参数。
 
 | 接口     | 功能描述                         |
 | -------- | -------------------------------- |
-| OH_AVCapability_IsHardware  | 确认能力句柄对应编解码器是否硬件的 |
+| OH_AVCapability_IsHardware  | 确认能力实例对应的编解码器是否是硬件的 |
 
 视频编码，软硬件差异化配置帧率示例：
 
@@ -99,7 +99,7 @@ OH_AVFormat_Destroy(format);
 
 | 接口     | 功能描述                         |
 | -------- | -------------------------------- |
-| OH_AVCapability_GetMaxSupportedInstances  | 获取能力句柄对应编解码器可同时运行的最大实例数，实际能成功创建的数目还受系统其他资源的约束 |
+| OH_AVCapability_GetMaxSupportedInstances  | 获取能力实例对应编解码器可同时运行的最大实例数，实际能成功创建的数目还受系统其他资源的约束 |
 
 优先创建硬件解码器实例，不够时再创建软件解码器实例，示例如下：
 
@@ -132,7 +132,7 @@ if (createdVDecNum < NEEDED_VDEC_NUM) {
 
 ### 控制编码质量
 
-同输入下，编码质量主要由码控模式参数，恒定质量码控模式下的质量参数以及恒定码率与动态码率码控模式下的码率参数决定。
+当前提供三种码控模式供开发者选用，分别是恒定码率（CBR）码控模式、动态码率（VBR）码控模式，以及恒定质量（CQ）码控模式。对于CBR和VBR码控模式，编码质量由码率参数决定。对于CQ码控模式，编码质量由质量参数决定。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -232,13 +232,13 @@ int32_t ret = OH_AVCapability_GetEncoderComplexityRange(capability, &complexityR
 
 ### 设置正确的音频编解码参数
 
-音频编解码场景设置的参数中有采样率和通道数两个关键参数需要查询后设置，编码场景还有码率参数需要查询后设置。
+在音频编解码场景中，有采样率、通道数以及码率（仅音频编码）等参数需要查询后设置。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
 | OH_AVCapability_GetAudioSupportedSampleRates     | 获取当前音频编解码器支持的采样率范围 |
 | OH_AVCapability_GetAudioChannelCountRange  | 获取当前音频编解码器支持的通道数范围 |
-| OH_AVCapability_GetEncoderBitrateRange     | 获取当前编解码器支持的码率范围 |
+| OH_AVCapability_GetEncoderBitrateRange     | 获取当前编码器支持的码率范围 |
 
 音频编码场景，确认并设置正确的编码的参数，示例如下：
 
@@ -300,7 +300,7 @@ OH_AVFormat_Destroy(format);
 
 ### 查询编解码档次和级别支持情况
 
-编解码标准由很多编码工具构成，能应对多种编码场景。对于特定应用场景，并非需要所有的工具，编解码标准按档次确定多种编码工具的使能与关闭情况。以H.264为例，存在基本档次、主档次和高档次，参考OH_AVCProfile。
+编解码标准由很多编码工具构成，能应对多种编码场景。对于特定应用场景，并非需要所有的工具，编解码标准按档次确定多种编码工具的开启与关闭情况。以H.264为例，存在基本档次、主档次和高档次，参考OH_AVCProfile。
 
 级别是对编解码器所需的处理能力和储存空间的划分。以H.264为例，存在1到6.2的20个级别，参考OH_AVCLevel。
 
@@ -365,7 +365,7 @@ OH_AVFormat_Destroy(format);
 已知需要的编码档次和级别组合，直接查询支持情况示例如下：
 
 ```c++
-// 1. 获取H.264编码器能力句柄
+// 1. 获取H.264编码器能力实例
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
    // 异常处理
@@ -493,7 +493,7 @@ $$
 | -------- | ---------------------------- |
 | OH_AVCapability_GetVideoFrameRateRange             | 获取当前视频编解码器支持的帧率的范围 |
 | OH_AVCapability_GetVideoFrameRateRangeForSize      | 获取当前视频编解码器在给定图像尺寸情况下的帧率的范围 |
-| OH_AVCapability_AreVideoSizeAndFrameRateSupported  | 获取当前视频编解码器支持的高的范围 |
+| OH_AVCapability_AreVideoSizeAndFrameRateSupported  | 检查视频编解码器是否支持视频大小和帧率的特定组合 |
 
 有需求的帧率目标，确认帧率是否在可选范围内，示例如下：
 
@@ -605,7 +605,7 @@ if (isSupported) {
       }
    }
 }
-// 4. 编码器创建和配置
+// 3. 编码器创建和配置
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
    // 异常处理

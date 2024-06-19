@@ -14,7 +14,7 @@
 
 Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -24,7 +24,7 @@ Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 
 ## SelectOption对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 参数类型                            | 必填 | 参数描述       |
 | ------ | ----------------------------------- | ---- | -------------- |
@@ -44,7 +44,7 @@ selected(value: number | Resource)
 
 从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -62,7 +62,7 @@ value(value: ResourceStr)
 
 从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -110,7 +110,7 @@ menuItemContentModifier(modifier: ContentModifier\<MenuItemConfiguration>)
 
 ### divider<sup>12+</sup>
 
-divider(value: Optional\<DividerOptions> | null)
+divider(options: Optional\<DividerOptions> | null)
 
 设置分割线样式，不设置该属性则按“默认值”展示分割线。
 
@@ -119,7 +119,7 @@ divider(value: Optional\<DividerOptions> | null)
 **参数：**
 | 参数名 | 类型    | 必填 | 说明                                                                  |
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
-| divider  | Optional\<[DividerOptions](ts-basic-components-textpicker.md#divideroptions12类型说明)> \| null | 否   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px', , <br/>color: '#33182431'<br/>}<br/>2.设置为null时，不显示分割线。 |
+| options  | Optional\<[DividerOptions](ts-basic-components-textpicker.md#divideroptions12类型说明)> \| null | 否   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px', , <br/>color: '#33182431'<br/>}<br/>2.设置为null时，不显示分割线。<br/>3.strokeWidth设置过宽时，会覆盖文字。分割线会从每一个Item底部开始，同时向上向下画分割线。<br/>4.startMargin和endMargin的默认值与不设置divider属性时的分割线样式保持一致。startMargin和endMargin的和与optionWidth的值相等时，不显示分割线。 startMargin和endMargin的和超过optionWidth的值时，按照默认样式显示分割线。|
 
 ### font
 
@@ -127,7 +127,7 @@ font(value: Font)
 
 设置下拉按钮本身的文本样式。当size为0的时候，文本不显示，当size为负值的时候，文本的size按照默认值显示。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -143,7 +143,7 @@ fontColor(value: ResourceColor)
 
 设置下拉按钮本身的文本颜色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -159,7 +159,7 @@ selectedOptionBgColor(value: ResourceColor)
 
 设置下拉菜单选中项的背景色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -175,7 +175,7 @@ selectedOptionFont(value: Font)
 
 设置下拉菜单选中项的文本样式。当size为0的时候，文本不显示，当size为负值的时候，文本的size按照默认值显示。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -191,7 +191,7 @@ selectedOptionFontColor(value: ResourceColor)
 
 设置下拉菜单选中项的文本颜色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -207,7 +207,7 @@ optionBgColor(value: ResourceColor)
 
 设置下拉菜单项的背景色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -223,7 +223,7 @@ optionFont(value: Font)
 
 设置下拉菜单项的文本样式。当size为0的时候，文本不显示，当size为负值的时候，文本的size按照默认值显示。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -239,7 +239,7 @@ optionFontColor(value: ResourceColor)
 
 设置下拉菜单项的文本颜色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -255,7 +255,7 @@ space(value: Length)
 
 设置下拉菜单项的文本与箭头之间的间距。不支持设置百分比。设置为null、undefined，或者小于等于8的值，取默认值。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -271,7 +271,7 @@ arrowPosition(value: ArrowPosition)
 
 设置下拉菜单项的文本与箭头之间的对齐方式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -287,7 +287,7 @@ menuAlign(alignType: MenuAlignType, offset?: Offset)
 
 设置下拉按钮与下拉菜单间的对齐方式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -308,7 +308,7 @@ optionWidth(value: Dimension | OptionWidthMode )
 
 当菜单项设置宽度小于最小宽度56vp时，菜单宽度回弹至2栅格。正常值范围大于等于0。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -328,7 +328,7 @@ optionHeight(value: Dimension)
 
 正常值范围大于0。如果下拉菜单所有选项的实际高度没有设定的高度大，下拉菜单的高度按实际高度显示。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -368,7 +368,7 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 ## OptionWidthMode<sup>11+</sup>枚举说明
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称        | 描述                           |
 | ----------- | ------------------------------ |
@@ -377,7 +377,7 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 ## ArrowPosition<sup>10+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                | 描述               |
 | ------------------- | ------------------ |
@@ -386,7 +386,7 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 ## MenuAlignType<sup>10+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                | 描述               |
 | ------------------- | ------------------ |
@@ -413,7 +413,7 @@ onSelect(callback: (index: number, value:&nbsp;string) => void)
 
 下拉菜单选中某一项的回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

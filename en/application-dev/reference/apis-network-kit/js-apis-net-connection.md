@@ -73,7 +73,6 @@ Obtains the default active data network. This API uses an asynchronous callback 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
@@ -152,7 +151,6 @@ Obtains the default active data network in synchronous mode. You can use [getNet
 | ID| Error Message                        |
 | ------- | -------------------------------- |
 | 201     | Permission denied.               |
-| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.           |
 
@@ -418,7 +416,6 @@ Obtains information about the network bound to an application. This API uses an 
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 401 | Parameter error.|
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -612,7 +609,6 @@ Obtains the list of all connected networks. This API uses an asynchronous callba
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -982,7 +978,6 @@ Checks whether the data traffic usage on the current network is metered. This AP
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -1085,7 +1080,6 @@ Checks whether the default data network is activated. This API uses an asynchron
 | ID| Error Message                         |
 | ------- | --------------------------------- |
 | 201     | Permission denied.                |
-| 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
 
@@ -1615,7 +1609,6 @@ Removes all custom DNS rules from the current application. This API uses an asyn
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
@@ -1709,7 +1702,7 @@ Registers a listener for network status changes.
 | 401     | Parameter error.             |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
-| 2101008 | The callback does not exist.     |
+| 2101008 | The callback already exists.     |
 | 2101022 | The number of requests exceeded the maximum allowed. |
 
 **Example**
@@ -1745,10 +1738,9 @@ Unregisters the listener for network status changes.
 | ID| Error Message                         |
 | ------- | --------------------------------- |
 | 201     | Permission denied.                |
-| 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
-| 2101007 | The callback already exists.      |
+| 2101007 | The callback does not exist.      |
 
 **Example**
 

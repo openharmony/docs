@@ -521,7 +521,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。                                                                                                                                       |
 | STREAM_USAGE_MEDIA<sup>(deprecated)</sup>                        | 1      | 媒体。<br/> 从API version 7开始支持，从API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME或STREAM_USAGE_AUDIOBOOK替代。 |
 | STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。                                                                                                                                         |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。                                                                                                                                       | 
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VOIP通话。                                                                                                                                       | 
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。                                                                                                                                       |
 | STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。                                                                                                                                         |
 | STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。                                                                                                                                       |

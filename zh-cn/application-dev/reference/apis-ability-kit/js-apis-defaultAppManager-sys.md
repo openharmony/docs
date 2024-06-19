@@ -26,7 +26,7 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 
 getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型获取默认应用信息，使用Promise形式返回结果。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型获取默认应用信息，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.GET_DEFAULT_APPLICATION
 
@@ -38,7 +38,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                        |
 
 **返回值：**
@@ -66,6 +66,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 import { BusinessError } from '@ohos.base';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
   .then((data) => {
@@ -82,13 +83,21 @@ defaultAppMgr.getDefaultApplication("image/png")
   .catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
   });
+
+defaultAppMgr.getDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI)
+  .then((data) => {
+    console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
+  })
+  .catch((error: BusinessError) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+  });
 ```
 
 ## defaultAppMgr.getDefaultApplication
 
 getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<BundleInfo>) : void
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型获取默认应用信息，使用callback形式返回结果。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型获取默认应用信息，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.GET_DEFAULT_APPLICATION
 
@@ -100,7 +109,7 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | userId  | number | 是    | 用户ID。                           |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回包信息。                    |
 
@@ -123,6 +132,7 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 import { BusinessError } from '@ohos.base';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 let userId = 100;
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err: BusinessError, data) => {
@@ -140,13 +150,21 @@ defaultAppMgr.getDefaultApplication("image/png", userId, (err: BusinessError, da
   }
   console.info('Operation successful. bundleInfo:' + JSON.stringify(data));
 });
+
+defaultAppMgr.getDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, userId, (err: BusinessError, data) => {
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. bundleInfo:' + JSON.stringify(data));
+});
 ```
 
 ## defaultAppMgr.getDefaultApplication
 
 getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型获取默认应用信息，使用callback形式返回结果。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型获取默认应用信息，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.GET_DEFAULT_APPLICATION
 
@@ -158,7 +176,7 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回包信息。                    |
 
 **错误码：**
@@ -179,6 +197,7 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 import { BusinessError } from '@ohos.base';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: BusinessError, data) => {
   if (err) {
@@ -187,7 +206,16 @@ defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err:
   }
   console.info('Operation successful. bundleInfo:' + JSON.stringify(data));
 });
+
 defaultAppMgr.getDefaultApplication("image/png", (err: BusinessError, data) => {
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful. bundleInfo:' + JSON.stringify(data));
+});
+
+defaultAppMgr.getDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -212,7 +240,7 @@ getDefaultApplicationSync(type: string, userId?: number): BundleInfo
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | -------| ------ | ---- | --------------------------------------- |
-| type   | string | 是   | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。|
+| type   | string | 是   | 要查询的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。|
 | userId | number | 否   | 用户ID。默认值：调用方所在用户。         |
 
 **返回值：**
@@ -239,6 +267,8 @@ getDefaultApplicationSync(type: string, userId?: number): BundleInfo
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+
 try {
   let data = defaultAppMgr.getDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER)
   console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
@@ -252,13 +282,20 @@ try {
 } catch(error) {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));
 };
+
+try {
+  let data = defaultAppMgr.getDefaultApplicationSync(uniformTypeDescriptor.UniformDataType.AVI)
+  console.info('Operation successful. bundleInfo: ' + JSON.stringify(data));
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
 ```
 
 ## defaultAppMgr.setDefaultApplication
 
 setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<void>
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用，使用Promise形式返回结果。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型设置默认应用，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -270,7 +307,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | 是    | 要设置为默认应用的组件信息。                           |
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                           |
 
@@ -299,6 +336,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 import { BusinessError } from '@ohos.base';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
   bundleName: "com.example.myapplication",
@@ -330,13 +368,23 @@ defaultAppMgr.setDefaultApplication("image/png", {
 }).catch((error: BusinessError) => {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));
 });
+
+defaultAppMgr.setDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, userId).then((data) => {
+  console.info('Operation successful.');
+}).catch((error: BusinessError) => {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+});
 ```
 
 ## defaultAppMgr.setDefaultApplication
 
 setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>) : void
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用，使用callback形式返回结果。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型设置默认应用，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -348,7 +396,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | 是    | 要设置为默认应用的组件信息。                           |
 | userId  | number | 是    | 用户ID。                           |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
@@ -372,6 +420,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 import { BusinessError } from '@ohos.base';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 let userId = 100;
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
@@ -397,13 +446,25 @@ defaultAppMgr.setDefaultApplication("image/png", {
   }
   console.info('Operation successful.');
 });
+
+defaultAppMgr.setDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, userId, (err: BusinessError, data) => {
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful.');
+});
 ```
 
 ## defaultAppMgr.setDefaultApplication
 
 setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>) : void
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用，使用callback形式返回结果。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型设置默认应用，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -415,7 +476,7 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | 是    | 要设置为默认应用的组件信息。                           |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
 
@@ -437,6 +498,7 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 import { BusinessError } from '@ohos.base';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
   bundleName: "com.example.myapplication",
@@ -451,6 +513,18 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
 });
 
 defaultAppMgr.setDefaultApplication("image/png", {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, (err: BusinessError, data) => {
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful.');
+});
+
+defaultAppMgr.setDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, {
   bundleName: "com.example.myapplication",
   moduleName: "module01",
   abilityName: "EntryAbility"
@@ -479,7 +553,7 @@ setDefaultApplicationSync(type: string, elementName: ElementName, userId?: numbe
 
 | 参数名      | 类型   | 必填 | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type        | string | 是   | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。|
+| type        | string | 是   | 要设置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。|
 | elementName | [ElementName](js-apis-bundle-ElementName.md) | 是 | 要设置为默认应用的组件信息。                           |
 | userId      | number | 否   | 用户ID。默认值：调用方所在用户。                           |
 
@@ -501,6 +575,8 @@ setDefaultApplicationSync(type: string, elementName: ElementName, userId?: numbe
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+
 try {
   defaultAppMgr.setDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER, {
   bundleName: "com.example.myapplication",
@@ -534,13 +610,24 @@ try {
 } catch(error) {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));
 };
+
+try {
+  defaultAppMgr.setDefaultApplicationSync(uniformTypeDescriptor.UniformDataType.AVI, {
+  bundleName: "com.example.myapplication",
+  moduleName: "module01",
+  abilityName: "EntryAbility"
+}, userId);
+  console.info('Operation successful.');
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
 ```
 
 ## defaultAppMgr.resetDefaultApplication
 
 resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用，使用Promise形式返回结果。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型重置默认应用，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -552,7 +639,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                           |
 
 **错误码：**
@@ -573,6 +660,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 import { BusinessError } from '@ohos.base';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 let userId = 100;
 defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId)
@@ -590,13 +678,21 @@ defaultAppMgr.resetDefaultApplication("image/png", userId)
   .catch((error: BusinessError) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
   });
+
+defaultAppMgr.resetDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, userId)
+  .then((data) => {
+    console.info('Operation successful.');
+  })
+  .catch((error: BusinessError) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+  });
 ```
 
 ## defaultAppMgr.resetDefaultApplication
 
 resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>) : void
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用，使用callback形式返回结果。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型重置默认应用，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -608,7 +704,7 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | userId  | number | 是    | 用户ID。                          |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
 
@@ -630,6 +726,7 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 import { BusinessError } from '@ohos.base';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 let userId = 100;
 defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, userId, (err: BusinessError, data) => {
@@ -647,13 +744,21 @@ defaultAppMgr.resetDefaultApplication("image/png", userId, (err: BusinessError, 
   }
   console.info('Operation successful.');
 });
+
+defaultAppMgr.resetDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, userId, (err: BusinessError, data) => {
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful.');
+});
 ```
 
 ## defaultAppMgr.resetDefaultApplication
 
 resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用，使用callback形式返回结果。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型重置默认应用，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -665,7 +770,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void
 
 | 参数名         | 类型     | 必填   | 说明                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。       |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
 
 **错误码：**
@@ -685,6 +790,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 import { BusinessError } from '@ohos.base';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err: BusinessError, data) => {
   if (err) {
@@ -695,6 +801,14 @@ defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (er
 });
 
 defaultAppMgr.resetDefaultApplication("image/png", (err: BusinessError, data) => {
+  if (err) {
+    console.error('Operation failed. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Operation successful.');
+});
+
+defaultAppMgr.resetDefaultApplication(uniformTypeDescriptor.UniformDataType.AVI, (err: BusinessError, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
     return;
@@ -719,7 +833,7 @@ resetDefaultApplicationSync(type: string, userId?: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
-| type   | string | 是   | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。|
+| type   | string | 是   | 要重置的应用类型，取[ApplicationType](js-apis-defaultAppManager.md#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型，或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型。|
 | userId | number | 否   | 用户ID。默认值：调用方所在用户。                           |
 
 **错误码：**
@@ -739,6 +853,7 @@ resetDefaultApplicationSync(type: string, userId?: number): void
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 let userId = 100;
 try {
@@ -750,6 +865,13 @@ try {
 
 try {
   defaultAppMgr.resetDefaultApplicationSync("image/png", userId);
+  console.info('Operation successful.');
+} catch(error) {
+  console.error('Operation failed. Cause: ' + JSON.stringify(error));
+};
+
+try {
+  defaultAppMgr.resetDefaultApplicationSync(uniformTypeDescriptor.UniformDataType.AVI, userId);
   console.info('Operation successful.');
 } catch(error) {
   console.error('Operation failed. Cause: ' + JSON.stringify(error));

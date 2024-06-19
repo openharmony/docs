@@ -36,9 +36,9 @@ Web组件提供位置权限管理能力。开发者可以通过[onGeolocationSho
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { abilityAccessCtrl, common } from '@kit.AbilityKit';
-  import { BusinessError } from '@ohos.base';
 
   let context = getContext(this) as common.UIAbilityContext;
   let atManager = abilityAccessCtrl.createAtManager();
@@ -55,12 +55,13 @@ Web组件提供位置权限管理能力。开发者可以通过[onGeolocationSho
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:$rawfile('getLocation.html'), controller:this.controller })
+        Web({ src: $rawfile('getLocation.html'), controller: this.controller })
           .geolocationAccess(true)
-          .onGeolocationShow((event) => {  // 地理位置权限申请通知
+          .onGeolocationShow((event) => { // 地理位置权限申请通知
             AlertDialog.show({
               title: '位置权限请求',
               message: '是否允许获取位置信息',
@@ -68,7 +69,7 @@ Web组件提供位置权限管理能力。开发者可以通过[onGeolocationSho
                 value: 'cancel',
                 action: () => {
                   if (event) {
-                    event.geolocation.invoke(event.origin, false, false);   // 不允许此站点地理位置权限请求
+                    event.geolocation.invoke(event.origin, false, false); // 不允许此站点地理位置权限请求
                   }
                 }
               },
@@ -76,13 +77,13 @@ Web组件提供位置权限管理能力。开发者可以通过[onGeolocationSho
                 value: 'ok',
                 action: () => {
                   if (event) {
-                    event.geolocation.invoke(event.origin, true, false);    // 允许此站点地理位置权限请求
+                    event.geolocation.invoke(event.origin, true, false); // 允许此站点地理位置权限请求
                   }
                 }
               },
               cancel: () => {
                 if (event) {
-                  event.geolocation.invoke(event.origin, false, false);   // 不允许此站点地理位置权限请求
+                  event.geolocation.invoke(event.origin, false, false); // 不允许此站点地理位置权限请求
                 }
               }
             })

@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import panel from '@ohos.inputMethod.Panel';
+import { panel } from '@kit.IMEKit';
 ```
 
 ## PanelInfo

@@ -14,7 +14,7 @@
 import systemTime from '@ohos.systemTime';
 ```
 
-## systemTime.setTime
+## systemTime.setTime<sup>(deprecated)</sup>
 
 setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
@@ -37,7 +37,7 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -60,7 +60,7 @@ try {
 }
 ```
 
-## systemTime.setTime
+## systemTime.setTime<sup>(deprecated)</sup>
 
 setTime(time : number) : Promise&lt;void&gt;
 
@@ -88,7 +88,7 @@ setTime(time : number) : Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -109,7 +109,7 @@ try {
 }
 ```
 
-## systemTime.setDate
+## systemTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
@@ -132,7 +132,7 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -154,7 +154,7 @@ try {
 }
 ```
 
-## systemTime.setDate
+## systemTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date): Promise&lt;void&gt;
 
@@ -182,7 +182,7 @@ setDate(date: Date): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -202,7 +202,7 @@ try {
 }
 ```
 
-## systemTime.setTimezone
+## systemTime.setTimezone<sup>(deprecated)</sup>
 
 setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -225,7 +225,7 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -246,7 +246,7 @@ try {
 }
 ```
 
-## systemTime.setTimezon
+## systemTime.setTimezone<sup>(deprecated)</sup>
 
 setTimezone(timezone: string): Promise&lt;void&gt;
 
@@ -274,7 +274,7 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 

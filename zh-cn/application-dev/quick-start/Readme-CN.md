@@ -100,17 +100,16 @@
       - [状态管理合理使用开发指导](properly-use-state-management-to-develope.md)
 
     - 状态管理（V2试用版）
-      - 状态管理（V2试用版）所属装饰器
-        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-observedV2-and-trace.md)
-        - [\@ComponentV2装饰器：自定义组件](arkts-new-componentV2.md)
-        - [\@Local装饰器：组件内部状态](arkts-new-local.md)
-        - [\@Param装饰器：组件外部输入](arkts-new-param.md)
-        - [\@Once装饰器：初始化同步一次](arkts-new-once.md)
-        - [\@Event装饰器：组件输出](arkts-new-event.md)
-        - [\@Monitor装饰器：状态变量修改监听](arkts-new-monitor.md)
-        - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](arkts-new-Provider-and-Consumer.md)
-        - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
-        - [!!语法：双向绑定](arkts-new-binding.md)
+      - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-observedV2-and-trace.md)
+      - [\@ComponentV2装饰器：自定义组件](arkts-new-componentV2.md)
+      - [\@Local装饰器：组件内部状态](arkts-new-local.md)
+      - [\@Param装饰器：组件外部输入](arkts-new-param.md)
+      - [\@Once装饰器：初始化同步一次](arkts-new-once.md)
+      - [\@Event装饰器：组件输出](arkts-new-event.md)
+      - [\@Monitor装饰器：状态变量修改监听](arkts-new-monitor.md)
+      - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](arkts-new-Provider-and-Consumer.md)
+      - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
+      - [!!语法：双向绑定](arkts-new-binding.md)
 
   - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)

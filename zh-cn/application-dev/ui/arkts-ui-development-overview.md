@@ -32,6 +32,9 @@
 
   交互事件是UI和用户交互的必要元素。方舟开发框架提供了多种交互事件，除了触摸事件、鼠标事件、键盘按键事件、焦点事件等通用事件外，还包括基于通用事件进行进一步识别的手势事件。手势事件有单一手势如点击手势、长按手势、拖动手势、捏合手势、旋转手势、滑动手势，以及通过单一手势事件进行组合的组合手势事件。
 
+- **自定义能力**
+
+  自定义能力是UI开发框架提供给开发者对UI界面进行开发和定制化的能力。现阶段提供的自定义能力包括：自定义节点。提供给开发者不同层次的自定义能力用于实现不同场景的应用的开发。自定义能力的层次越低，开发的灵活程度越高，但是相应应用的开发难度以及对于开发者能力的要求越高。
 
 ## 特点
 
@@ -87,6 +90,21 @@
 | 显示图形        | 介绍了如何显示图片、绘制自定义几何图形以及使用画布绘制自定义图形。   | -&nbsp;[图片](arkts-graphics-display.md)<br/>-&nbsp;[几何图形](arkts-geometric-shape-drawing.md)<br/>-&nbsp;[画布](arkts-drawing-customization-on-canvas.md) |
 | 使用动画        | 介绍了组件和页面使用动画的典型场景。                  | - [属性动画](arkts-attribute-animation-overview.md)<br>- [转场动画](arkts-transition-overview.md)<br>- [组件动画](arkts-component-animation.md)<br>- [动画曲线](arkts-traditional-curve.md)<br>- [动画衔接](arkts-animation-smoothing.md)<br>- [动画效果](arkts-blur-effect.md) |
 | 绑定事件        | 介绍了事件的基本概念和如何使用通用事件和手势事件。           | -&nbsp;[通用事件](arkts-common-events-touch-screen-event.md)<br/>-&nbsp;[手势事件](arkts-gesture-events-binding.md) |
+| 使用自定义能力        | 介绍了自定义能力的基本概念和如何使用自定义能力。       | -&nbsp;[自定义节点](arkts-user-defined-node.md)<br/>|
+
+## 通用规则
+
+- **默认单位**
+
+  表示长度的入参单位默认为vp，即入参为number类型、以及[Length](../reference/apis-arkui/arkui-ts/ts-types.md#length)和[Dimension](../reference/apis-arkui/arkui-ts/ts-types.md#dimension10)类型中的number单位为vp。
+
+- **异常值处理**
+
+  输入的参数为异常（undefined，null或无效值）时，处理规则如下：
+
+  （1）对应参数有默认值，按默认值处理；
+
+  （2）对应参数无默认值，该参数对应的属性或接口不生效。
 
 ## 相关实例
 
@@ -97,3 +115,4 @@
 - [像素转换（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/PixelConversion)
 
 - [购物应用（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)
+

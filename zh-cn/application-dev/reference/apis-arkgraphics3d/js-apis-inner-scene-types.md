@@ -83,28 +83,34 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | height | number | 否 | 是 | 矩形高度，有效取值范围大于0。 |
 
 ## Position3
+type Position3 = Vec3
+
 用于表示3维空间中物体的位置，是[Vec3](#vec3)类型。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 取值范围 | 说明 |
+| 类型  | 说明 |
 | ---- | ---- |
 | [Vec3](#vec3) | 类型为三维向量，可取任意值。 |
 
 ## Rotation3
+type Rotation3 = Vec3
+
 用于表示3维空间中物体的旋转，是[Vec3](#vec3)类型。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 取值范围 | 说明 |
+| 类型  | 说明 |
 | ---- | ---- |
 | [Vec3](#vec3) | 类型为三维向量，可取任意值。 |
 
 ## Scale3
+type Scale3 = Vec3
+
 用于表示3维空间中物体的缩放，是[Vec3](#vec3)类型。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 取值范围 | 说明 |
+| 类型 | 说明 |
 | ---- | ---- |
 | [Vec3](#vec3) | 类型为三维向量，可取任意值。 |

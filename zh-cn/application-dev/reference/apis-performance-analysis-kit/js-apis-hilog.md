@@ -18,7 +18,7 @@ isLoggable(domain: number, tag: string, level: LogLevel) : boolean
 
 在打印日志前调用该接口，用于检查指定领域标识、日志标识和级别的日志是否可以打印。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 
@@ -46,7 +46,7 @@ hilog.isLoggable(0x0001, "testTag", hilog.LogLevel.INFO);
 
 日志级别。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 
@@ -66,7 +66,7 @@ debug(domain: number, tag: string, format: string, ...args: any[]) : void
 
 DEBUG级别的日志在正式发布版本中默认不被打印，只有在调试版本或打开调试开关的情况下才会打印。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 
@@ -99,7 +99,7 @@ info(domain: number, tag: string, format: string, ...args: any[]) : void
 
 打印INFO级别的日志。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 
@@ -132,7 +132,7 @@ warn(domain: number, tag: string, format: string, ...args: any[]) : void
 
 打印WARN级别的日志。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 
@@ -165,7 +165,7 @@ error(domain: number, tag: string, format: string, ...args: any[]) : void
 
 打印ERROR级别的日志。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 
@@ -198,7 +198,7 @@ fatal(domain: number, tag: string, format: string, ...args: any[]) : void
 
 打印FATAL级别的日志。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 

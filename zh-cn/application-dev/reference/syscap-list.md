@@ -784,6 +784,14 @@ GNSS硬件相关能力
 |---------|--------|--------------|
 | 是       | 是      | 否            |
 
+## SystemCapability.Customization.CustomConfig
+
+定制配置
+
+| Default | Tablet | LiteWearable |
+|---------|--------|--------------|
+| 是       | 是      | 否            |
+
 ## SystemCapability.Customization.EnterpriseDeviceManager
 
 企业设备管理

@@ -7,19 +7,19 @@ This topic walks you through on how to create a certificate chain object, obtain
 1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
 
    ```ts
-   import certFramework from '@ohos.security.cert';
+   import { cert } from '@kit.DeviceCertificateKit';
    ```
 
-2. Use [cryptoCert.createX509CertChain](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509certchain11) to create an X.509 certificate chain (**X509CertChain**) instance.
+2. Use [cert.createX509CertChain](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509certchain11) to create an X.509 certificate chain (**X509CertChain**) object.
 
 3. Use [x509CertChain.getCertList](../../reference/apis-device-certificate-kit/js-apis-cert.md#getcertlist11) to obtain information about the X.509 certificates of the certificate chain.
 
 4. Use [x509CertChain.validate](../../reference/apis-device-certificate-kit/js-apis-cert.md#validate11) to validate the certificate chain.
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
-import util from '@ohos.util';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "MIID6jCCAtKgAwIBAgIIIM2q/TmRoLcwDQYJKoZIhvcNAQELBQAwWjELMAkGA1UE\n" +
@@ -79,14 +79,14 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
 async function sample() {
   let textEncoder = new util.TextEncoder();
   // Certificate chain binary data, which may vary with the service.
-  const encodingBlob: certFramework.EncodingBlob = {
+  const encodingBlob: cert.EncodingBlob = {
     data: textEncoder.encodeInto(certChainData),
     // Set the encoding format, which can be FORMAT_PEM, FORMAT_DER, or FORMAT_PKCS7.
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
-  let x509CertChain: certFramework.X509CertChain = {} as certFramework.X509CertChain;
+  let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
   try {
-    x509CertChain = await certFramework.createX509CertChain(encodingBlob);
+    x509CertChain = await cert.createX509CertChain(encodingBlob);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error(`createX509CertChain failed, errCode: ${e.code}, errMsg: ${e.message}`);
@@ -100,7 +100,7 @@ async function sample() {
   }
 
   // Certificate chain validation data, which may vary with the service.
-  const param: certFramework.CertChainValidationParameters = {
+  const param: cert.CertChainValidationParameters = {
     date: '20231212080000Z',
     trustAnchors: [{
       CAPubKey: new Uint8Array([0x30, 0x2a, 0x30, 0x05, 0x06, 0x03, 0x2b, 0x65, 0x70, 0x03, 0x21, 0x00, 0xbb, 0x16,0x9d, 0x8f, 0x5c, 0x30, 0xd0, 0xba, 0x8f, 0x37, 0x6e, 0x33, 0xaf, 0x6f, 0x23, 0x71, 0x23, 0xa5, 0x49, 0x60,0x1e, 0xd1, 0x07, 0x4b, 0xc9, 0x11, 0x7e, 0x66, 0x01, 0xba, 0x92, 0x52]),

@@ -236,7 +236,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 可选 配置录屏旋转，此接口在感知到手机屏幕旋转时调用，如果手机的屏幕实际上没有发生旋转，调用接口是无效的。
     OH_AVScreenCapture_SetCanvasRotation(capture, true);
     // 可选 [过滤音频]
-    OH_AVScreenCapture_ContentFilter contentFilter= OH_AVScreenCapture_CreateContentFilter();
+    OH_AVScreenCapture_ContentFilter *contentFilter= OH_AVScreenCapture_CreateContentFilter();
     // 添加过滤通知音
     OH_AVScreenCapture_ContentFilter_AddAudioContent(contentFilter, OH_SCREEN_CAPTURE_NOTIFICATION_AUDIO);
     // 排除指定窗口id

@@ -22,7 +22,7 @@ on(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)
 
 持续订阅指定的事件，并在接收到该事件时，执行对应的回调处理函数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -52,7 +52,7 @@ on(eventId: string, callback:  Callback\<[EventData](#eventdata)\>): void
 
 持续订阅指定事件，并在接收到该事件时，执行对应的回调处理函数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -78,7 +78,7 @@ once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdat
 
 单次订阅指定的事件，并在接收到该事件并执行完相应的回调函数后，自动取消订阅。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -108,7 +108,7 @@ once(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
 
 单次订阅指定事件，并在接收到该事件并执行完相应的回调函数后，自动取消订阅。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -134,7 +134,7 @@ off(eventId: number): void
 
 取消针对该事件ID的订阅。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -157,7 +157,7 @@ off(eventId: string): void
 
 取消订阅指定事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -180,7 +180,7 @@ off(eventId: number, callback: Callback\<[EventData](#eventdata)\>): void
 
 取消针对该事件ID的订阅，传入可选参数callback，并且该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -207,7 +207,7 @@ off(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
 
 取消针对该事件ID的订阅，传入可选参数callback，并且该callback已经通过on或者once接口订阅，则取消该订阅；否则，不做任何处理。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -234,7 +234,7 @@ emit(event: [InnerEvent](#innerevent), data?: [EventData](#eventdata)): void
 
 发送指定的事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -269,7 +269,7 @@ emit(eventId: string, data?: [EventData](#eventdata)): void
 
 发送指定事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -299,7 +299,7 @@ emit(eventId: string, options: [Options](#options11), data?: [EventData](#eventd
 
 发送指定优先级事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -334,7 +334,7 @@ getListenerCount(eventId: number|string): number
 
 获取指定事件的订阅数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -354,7 +354,7 @@ let count = emitter.getListenerCount("eventId");
 
 用于表示事件被发送的优先级。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**:  `SystemCapability.Notification.Emitter`
 
@@ -369,7 +369,7 @@ let count = emitter.getListenerCount("eventId");
 
 订阅或发送的事件，订阅事件时`EventPriority`不生效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -382,7 +382,7 @@ let count = emitter.getListenerCount("eventId");
 
 发送事件时传递的数据。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 
@@ -394,7 +394,7 @@ let count = emitter.getListenerCount("eventId");
 
 发送事件的优先级。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: `SystemCapability.Notification.Emitter`
 

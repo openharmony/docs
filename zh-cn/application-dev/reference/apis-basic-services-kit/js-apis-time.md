@@ -13,7 +13,7 @@
 import systemTime from '@ohos.systemTime';
 ```
 
-## systemTime.getCurrentTime<sup>8+</sup>
+## systemTime.getCurrentTime<sup>8+</sup> <sup>(deprecated)</sup>
 
 getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -34,7 +34,7 @@ getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -55,7 +55,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime<sup>8+</sup>
+## systemTime.getCurrentTime<sup>8+</sup> <sup>(deprecated)</sup>
 
 getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -75,7 +75,7 @@ getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -96,7 +96,7 @@ try {
 }
 ```
 
-## systemTime.getCurrentTime<sup>8+</sup>
+## systemTime.getCurrentTime<sup>8+</sup> <sup>(deprecated)</sup>
 
 getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -122,7 +122,7 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -141,7 +141,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>8+<sup>
+## systemTime.getRealActiveTime<sup>8+<sup> <sup>(deprecated)</sup>
 
 getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -162,7 +162,7 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -183,7 +183,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>8+<sup>
+## systemTime.getRealActiveTime<sup>8+<sup> <sup>(deprecated)</sup>
 
 getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -203,7 +203,7 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -224,7 +224,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>8+<sup>
+## systemTime.getRealActiveTime<sup>8+<sup> <sup>(deprecated)</sup>
 
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -250,7 +250,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -269,7 +269,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>8+<sup>
+## systemTime.getRealTime<sup>8+<sup> <sup>(deprecated)</sup>
 
 getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -290,7 +290,7 @@ getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -311,7 +311,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>8+<sup>
+## systemTime.getRealTime<sup>8+<sup> <sup>(deprecated)</sup>
 
 getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -331,7 +331,7 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -352,7 +352,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>8+<sup>
+## systemTime.getRealTime<sup>8+<sup> <sup>(deprecated)</sup>
 
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -378,7 +378,7 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -397,7 +397,7 @@ try {
 }
 ```
 
-## systemTime.getDate<sup>8+<sup>
+## systemTime.getDate<sup>8+<sup> <sup>(deprecated)</sup>
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
@@ -417,7 +417,7 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -438,7 +438,7 @@ try {
 }
 ```
 
-## systemTime.getDate<sup>8+<sup>
+## systemTime.getDate<sup>8+<sup> <sup>(deprecated)</sup>
 
 getDate(): Promise&lt;Date&gt;
 
@@ -458,7 +458,7 @@ getDate(): Promise&lt;Date&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -477,7 +477,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone<sup>8+<sup>
+## systemTime.getTimezone<sup>8+<sup> <sup>(deprecated)</sup>
 
 getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
@@ -497,7 +497,7 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -518,7 +518,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone<sup>8+<sup>
+## systemTime.getTimezone<sup>8+<sup> <sup>(deprecated)</sup>
 
 getTimezone(): Promise&lt;string&gt;
 
@@ -538,7 +538,7 @@ getTimezone(): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 

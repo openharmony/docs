@@ -10,7 +10,7 @@ InputMethodExtensionContext模块是InputMethodExtensionAbility的上下文环�
 ## 导入模块
 
 ```ts
-import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
+import { InputMethodExtensionContext } from '@kit.IMEKit';
 ```
 
 ## 使用说明
@@ -18,8 +18,8 @@ import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
 在使用InputMethodExtensionContext的功能前，需要通过InputMethodExtensionAbility子类实例获取。
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
 class InputMethodExtnAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
     let context = this.context;
@@ -44,9 +44,9 @@ destroy(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class InputMethodExtnAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
@@ -81,9 +81,9 @@ destroy(): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class InputMethodExtnAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
@@ -147,9 +147,9 @@ startAbility(want: Want): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { InputMethodExtensionAbility } from '@kit.IMEKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class InputMethodExtnAbility extends InputMethodExtensionAbility {
   onCreate(want: Want): void {

@@ -44,7 +44,7 @@ disconnect(deviceId: string): void
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -67,7 +67,7 @@ try {
 
 setShareType(deviceId: string, type: ShareType, callback: AsyncCallback&lt;void&gt;): void
 
-设置电话簿信息的共享类型。
+设置电话簿信息的共享类型。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -91,7 +91,7 @@ setShareType(deviceId: string, type: ShareType, callback: AsyncCallback&lt;void&
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -117,7 +117,7 @@ try {
 
 setShareType(deviceId: string, type: ShareType): Promise&lt;void&gt;
 
-设置电话簿信息的共享类型。
+设置电话簿信息的共享类型。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -146,7 +146,7 @@ setShareType(deviceId: string, type: ShareType): Promise&lt;void&gt;
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -171,7 +171,7 @@ try {
 
 getShareType(deviceId: string, callback: AsyncCallback&lt;ShareType&gt;): void
 
-获取电话簿信息的共享类型。
+获取电话簿信息的共享类型。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -194,7 +194,7 @@ getShareType(deviceId: string, callback: AsyncCallback&lt;ShareType&gt;): void
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -219,7 +219,7 @@ try {
 
 getShareType(deviceId: string): Promise&lt;ShareType&gt;
 
-获取电话簿信息的共享类型。
+获取电话簿信息的共享类型。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -247,7 +247,7 @@ getShareType(deviceId: string): Promise&lt;ShareType&gt;
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -272,7 +272,7 @@ try {
 
 setPhoneBookAccessAuthorization(deviceId: string, authorization: AccessAuthorization, callback: AsyncCallback&lt;void&gt;): void
 
-设置电话簿信息的访问权限。
+设置电话簿信息的访问权限。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -296,7 +296,7 @@ setPhoneBookAccessAuthorization(deviceId: string, authorization: AccessAuthoriza
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -322,7 +322,7 @@ try {
 
 setPhoneBookAccessAuthorization(deviceId: string, authorization: AccessAuthorization): Promise&lt;void&gt;
 
-设置电话簿信息的访问权限。
+设置电话簿信息的访问权限。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -351,7 +351,7 @@ setPhoneBookAccessAuthorization(deviceId: string, authorization: AccessAuthoriza
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -376,7 +376,7 @@ try {
 
 getPhoneBookAccessAuthorization(deviceId: string, callback: AsyncCallback&lt;AccessAuthorization&gt;): void
 
-获取电话簿信息的访问权限。
+获取电话簿信息的访问权限。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -399,7 +399,7 @@ getPhoneBookAccessAuthorization(deviceId: string, callback: AsyncCallback&lt;Acc
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -424,7 +424,7 @@ try {
 
 getPhoneBookAccessAuthorization(deviceId: string): Promise&lt;AccessAuthorization&gt;
 
-获取电话簿信息的访问权限。
+获取电话簿信息的访问权限。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -452,7 +452,7 @@ getPhoneBookAccessAuthorization(deviceId: string): Promise&lt;AccessAuthorizatio
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |

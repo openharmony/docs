@@ -1,6 +1,6 @@
 # @ohos.data.dataSharePredicates (DataShare Predicates)
 
-You can use **DataSharePredicates** to specify conditions for [updating](js-apis-data-dataShare-sys.md#update), [deleting](js-apis-data-dataShare-sys.md#delete), and [querying](js-apis-data-dataShare-sys.md#query) data when **DataShare** is used to manage data.
+**DataSharePredicates** provides a filter object to query data in a database by using **DataShare** APIs. It is often used to update, delete, and query data.
 
 The APIs provided by **DataSharePredicates** correspond to the filter criteria of the database. Before using the APIs, you need to have basic database knowledge.
 
@@ -15,7 +15,7 @@ The APIs provided by **DataSharePredicates** correspond to the filter criteria o
 ## Modules to Import
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 ```
 
 ## DataSharePredicates
@@ -58,7 +58,7 @@ and(): DataSharePredicates
 
 Adds the AND condition to this **DataSharePredicates** object.
 
-Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+Currently, only the relational database (RDB) and key-value database (KVDB, schema) support this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -83,7 +83,7 @@ orderByAsc(field: string): DataSharePredicates
 
 Sets a **DataSharePredicates** object that sorts data in ascending order.
 
-Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+Currently, only the relational database (RDB) and key-value database (KVDB, schema) support this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -112,7 +112,7 @@ orderByDesc(field: string): DataSharePredicates
 
 Sets a **DataSharePredicates** object that sorts data in descending order.
 
-Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+Currently, only the relational database (RDB) and key-value database (KVDB, schema) support this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -141,7 +141,7 @@ limit(total: number, offset: number): DataSharePredicates
 
 Sets a **DataSharePredicates** object to specify the number of results and the start position.
 
-Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+Currently, only the relational database (RDB) and key-value database (KVDB, schema) support this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -171,7 +171,7 @@ in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
 Sets a **DataSharePredicates** object to match the data that is within the specified value.
 
-Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
+Currently, only the relational database (RDB) and key-value database (KVDB, schema) support this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 

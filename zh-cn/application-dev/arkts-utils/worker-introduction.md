@@ -61,7 +61,7 @@ Worker线程文件需要放在"{moduleName}/src/main/ets/"目录层级之下，�
 
 ```ts
 // 导入模块
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // API 9及之后版本使用：
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ets');
@@ -81,7 +81,7 @@ const worker2: worker.Worker = new worker.Worker('entry/ets/workers/MyWorker.ets
 加载Ability中的worker线程文件，加载路径规则：{moduleName}/ets/{relativePath}。
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // worker线程文件所在路径："entry/src/main/ets/workers/worker.ets"
 const workerStage1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ets');
@@ -95,7 +95,7 @@ const workerStage2: worker.ThreadWorker = new worker.ThreadWorker('phone/ets/Thr
 加载HSP中worker线程文件，加载路径规则：{moduleName}/ets/{relativePath}。
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // worker线程文件所在路径： "hsp/src/main/ets/workers/worker.ets"
 const workerStage3: worker.ThreadWorker = new worker.ThreadWorker('hsp/ets/workers/worker.ets');
@@ -112,7 +112,7 @@ const workerStage3: worker.ThreadWorker = new worker.ThreadWorker('hsp/ets/worke
 需要注意的是：如果HAR包会被打包成三方包使用，则HAR包中使用Worker仅支持通过相对路径加载形式创建。
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // @标识路径加载形式：
 // worker线程文件所在路径: "har/src/main/ets/workers/worker.ets"
@@ -129,7 +129,7 @@ const workerStage5: worker.ThreadWorker = new worker.ThreadWorker('../../workers
   构造函数中的scriptURL为：Worker线程文件与"{moduleName}/src/main/ets/MainAbility"的相对路径。
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // 主要说明以下三种场景：
 

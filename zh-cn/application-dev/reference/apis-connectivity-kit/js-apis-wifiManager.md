@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 ```
 
 
@@ -20,7 +20,7 @@ isWifiActive(): boolean
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -43,7 +43,7 @@ isWifiActive(): boolean
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let isWifiActive = wifiManager.isWifiActive();
@@ -79,7 +79,7 @@ scan(): void
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.scan();
@@ -151,7 +151,7 @@ ohos.permission.GET_WIFI_PEERS_MAC权限仅系统应用可申请。
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   wifiManager.getScanResults((err, result) => {
       if (err) {
@@ -226,7 +226,7 @@ ohos.permission.GET_WIFI_PEERS_MAC权限仅系统应用可申请。
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let scanInfoList = wifiManager.getScanResultsSync();
@@ -260,7 +260,7 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -283,7 +283,7 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let scanInfoList = wifiManager.getScanInfoList();
@@ -320,14 +320,14 @@ WLAN热点信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| bssidType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 热点的BSSID类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| bssidType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 热点的BSSID类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | capabilities | string | 是 | 否 | 热点能力。 |
-| securityType | [WifiSecurityType](#wifisecuritytype9) | 是 | 否 | WLAN加密类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| rssi | number | 是 | 否 | 热点的信号强度(dBm)。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| securityType | [WifiSecurityType](#wifisecuritytype9) | 是 | 否 | WLAN加密类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| rssi | number | 是 | 否 | 热点的信号强度(dBm)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | band | number | 是 | 否 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
-| frequency | number | 是 | 否 | WLAN接入点的频率。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| frequency | number | 是 | 否 | WLAN接入点的频率。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | channelWidth | number | 是 | 否 | WLAN接入点的带宽，具体定义参见[WifiChannelWidth](#wifichannelwidth9)。 |
 | centerFrequency0 | number | 是 | 否 | 热点的中心频率。 |
 | centerFrequency1 | number | 是 | 否 | 热点的中心频率。如果热点使用两个不重叠的WLAN信道，则返回两个中心频率，分别用centerFrequency0和centerFrequency1表示。 |
@@ -356,7 +356,7 @@ wifi 设备地址（mac/bssid）类型。
 | **名称** | **值** | **说明** |
 | -------- | -------- | -------- |
 | WIFI_SEC_TYPE_INVALID | 0 | 无效加密类型。 |
-| WIFI_SEC_TYPE_OPEN | 1 | 开放加密类型。候选网络配置不支持该加密类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| WIFI_SEC_TYPE_OPEN | 1 | 开放加密类型。候选网络配置不支持该加密类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | WIFI_SEC_TYPE_WEP | 2 | Wired&nbsp;Equivalent&nbsp;Privacy&nbsp;(WEP)加密类型。候选网络配置不支持该加密类型。 |
 | WIFI_SEC_TYPE_PSK | 3 | Pre-shared&nbsp;key&nbsp;(PSK)加密类型。 |
 | WIFI_SEC_TYPE_SAE | 4 | Simultaneous&nbsp;Authentication&nbsp;of&nbsp;Equals&nbsp;(SAE)加密类型。 |
@@ -437,12 +437,12 @@ WLAN配置信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| bssidType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 热点的BSSID类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。<br>当securityType为WIFI_SEC_TYPE_OPEN时该字段需为空串，其他加密类型不能为空串。<br>当securityType为WIFI_SEC_TYPE_WEP时，该字段长度只允许为5、10、13、26、16和32字节其中之一，并且当字段长度为偶数时，该字段必须为纯十六进制数字构成。<br>当securityType为WIFI_SEC_TYPE_SAE时，该字段最小长度为1字节。<br>当securityType为WIFI_SEC_TYPE_PSK时，该字段最小长度为8字节。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| bssidType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 热点的BSSID类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。<br>当securityType为WIFI_SEC_TYPE_OPEN时该字段需为空串，其他加密类型不能为空串。<br>当securityType为WIFI_SEC_TYPE_WEP时，该字段长度只允许为5、10、13、26、16和32字节其中之一，并且当字段长度为偶数时，该字段必须为纯十六进制数字构成。<br>当securityType为WIFI_SEC_TYPE_SAE时，该字段最小长度为1字节。<br>当securityType为WIFI_SEC_TYPE_PSK时，该字段最小长度为8字节。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 |
-| securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 否 | 加密类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 否 | 加密类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | 是 | 否 | 可扩展身份验证协议配置。只有securityType为WIFI_SEC_TYPE_EAP时需要填写。 |
 
 
@@ -515,7 +515,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 **需要权限：** ohos.permission.SET_WIFI_INFO
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -544,7 +544,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 **示例：**
 `````ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 	
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -592,7 +592,7 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 
 **示例：**
 `````ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -616,7 +616,7 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 
 **需要权限：** ohos.permission.SET_WIFI_INFO
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -646,7 +646,7 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let networkId = 0;
@@ -690,7 +690,7 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let networkId = 0;
@@ -714,7 +714,7 @@ API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permis
 
 API 10起：ohos.permission.GET_WIFI_INFO
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -737,7 +737,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let configs = wifiManager.getCandidateConfigs();
@@ -764,7 +764,7 @@ connectToCandidateConfig(networkId: number): void
 
 **需要权限：** ohos.permission.SET_WIFI_INFO
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -788,7 +788,7 @@ connectToCandidateConfig(networkId: number): void
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let networkId = 0; // 实际的候选网络ID，在添加候选网络时生成，取自WifiDeviceConfig.netId
@@ -836,7 +836,7 @@ getSignalLevel(rssi: number, band: number): number
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let rssi = 0;
@@ -859,7 +859,7 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
 当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回空字符串。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -913,7 +913,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   wifiManager.getLinkedInfo((err, data) => {
       if (err) {
@@ -939,15 +939,15 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| bssid | string | 是 | 否 | 热点的BSSID。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| rssi | number | 是 | 否 | 热点的信号强度(dBm)。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| bssid | string | 是 | 否 | 热点的BSSID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| rssi | number | 是 | 否 | 热点的信号强度(dBm)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | band | number | 是 | 否 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
 | linkSpeed | number | 是 | 否 | WLAN接入点的上行速度。 |
 | rxLinkSpeed<sup>10+</sup> | number | 是 | 否 | WLAN接入点的下行速度。 |
 | maxSupportedTxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大上行速率。 |
 | maxSupportedRxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大下行速率。 |
-| frequency | number | 是 | 否 | WLAN接入点的频率。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| frequency | number | 是 | 否 | WLAN接入点的频率。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络。 |
 | isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量。 |
 | macType | number | 是 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址。 |
@@ -984,7 +984,7 @@ isConnected(): boolean
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1007,7 +1007,7 @@ isConnected(): boolean
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.isConnected();
@@ -1069,7 +1069,7 @@ isFeatureSupported(featureId: number): boolean
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let featureId = 0;
@@ -1110,7 +1110,7 @@ getIpInfo(): IpInfo
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let info = wifiManager.getIpInfo();
@@ -1165,7 +1165,7 @@ getIpv6Info(): Ipv6Info
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let info = wifiManager.getIpv6Info();
@@ -1219,7 +1219,7 @@ getCountryCode(): string
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let code = wifiManager.getCountryCode();
@@ -1266,7 +1266,7 @@ isBandTypeSupported(bandType: WifiBandType): boolean
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let type = 0;
@@ -1307,7 +1307,7 @@ isMeteredHotspot(): boolean
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let isMeteredHotspot = wifiManager.isMeteredHotspot();
@@ -1378,7 +1378,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	wifiManager.getP2pLinkedInfo((err, data) => {
     if (err) {
@@ -1480,7 +1480,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 	// p2p已经建组或者连接成功，才能正常获取到当前组信息
 	wifiManager.getCurrentGroup((err, data) => {
     if (err) {
@@ -1557,7 +1557,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 	// p2p发现阶段完成，才能正常获取到对端设备列表信息
 	wifiManager.getP2pPeerDevices((err, data) => {
     if (err) {
@@ -1655,7 +1655,7 @@ getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 	// p2p已经建组或者连接成功，才能正常获取到本端设备信息
 	wifiManager.getP2pLocalDevice((err, data) => {
     if (err) {
@@ -1699,7 +1699,7 @@ createGroup(config: WifiP2PConfig): void
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiP2PConfig = {
@@ -1767,7 +1767,7 @@ removeGroup(): void
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.removeGroup();	
@@ -1809,7 +1809,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("p2p connection change receive event: " + JSON.stringify(result));
@@ -1896,7 +1896,7 @@ p2pCancelConnect(): void
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.p2pCancelConnect();	
@@ -1931,7 +1931,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.startDiscoverDevices();	
@@ -1962,7 +1962,7 @@ stopDiscoverDevices(): void
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.stopDiscoverDevices();	
@@ -2000,7 +2000,7 @@ on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -2040,7 +2040,7 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -2064,7 +2064,7 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvPowerNotifyFunc = (result:number) => {
       console.info("Receive power state change event: " + result);
@@ -2086,7 +2086,7 @@ on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -2123,7 +2123,7 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -2147,7 +2147,7 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvWifiConnectionChangeFunc = (result:number) => {
       console.info("Receive wifi connection change event: " + result);
@@ -2168,7 +2168,7 @@ on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -2205,7 +2205,7 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -2229,7 +2229,7 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvWifiScanStateChangeFunc = (result:number) => {
       console.info("Receive Wifi scan state change event: " + result);
@@ -2300,7 +2300,7 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvWifiRssiChangeFunc = (result:number) => {
       console.info("Receive wifi rssi change event: " + result);
@@ -2382,7 +2382,7 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvHotspotStateChangeFunc = (result:number) => {
       console.info("Receive hotspot state change event: " + result);
@@ -2464,7 +2464,7 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pStateChangeFunc = (result:number) => {
       console.info("Receive p2p state change event: " + result);
@@ -2535,7 +2535,7 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("Receive p2p connection change event: " + result);
@@ -2614,7 +2614,7 @@ API 10起：无
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice) => {
       console.info("Receive p2p device change event: " + result);
@@ -2693,7 +2693,7 @@ API 10起：无
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("Receive p2p peer device change event: " + result);
@@ -2764,7 +2764,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pPersistentGroupChangeFunc = (result:void) => {
       console.info("Receive p2p persistent group change event: " + result);
@@ -2842,7 +2842,7 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pDiscoveryChangeFunc = (result:number) => {
       console.info("Receive p2p discovery change event: " + result);

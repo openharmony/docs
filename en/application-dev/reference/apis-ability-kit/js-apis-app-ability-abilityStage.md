@@ -13,7 +13,7 @@
 ## Modules to Import
 
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { AbilityStage } from '@kit.AbilityKit';
 ```
 
 ## AbilityStage.onCreate
@@ -29,12 +29,12 @@ Called when the application is created.
 **Example**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { AbilityStage } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log('MyAbilityStage.onCreate is called');
-    }
+  onCreate() {
+    console.log('MyAbilityStage.onCreate is called');
+  }
 }
 ```
 
@@ -64,14 +64,13 @@ Called when a specified ability is started.
 **Example**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import Want from '@ohos.app.ability.Want';
+import { AbilityStage, Want } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onAcceptWant(want: Want) {
-        console.log('MyAbilityStage.onAcceptWant called');
-        return 'com.example.test';
-    }
+  onAcceptWant(want: Want) {
+    console.log('MyAbilityStage.onAcceptWant called');
+    return 'com.example.test';
+  }
 }
 ```
 
@@ -98,14 +97,13 @@ Called when the UIAbility is started in the specified process.
 **Example**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import Want from '@ohos.app.ability.Want';
+import { AbilityStage, Want } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onNewProcessRequest(want: Want) {
-        console.log('MyAbilityStage.onNewProcessRequest called');
-        return 'com.example.test';
-    }
+  onNewProcessRequest(want: Want) {
+    console.log('MyAbilityStage.onNewProcessRequest called');
+    return 'com.example.test';
+  }
 }
 ```
 
@@ -129,13 +127,12 @@ Called when the global configuration is updated.
 **Example**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import { Configuration } from '@ohos.app.ability.Configuration';
+import { AbilityStage, Configuration } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onConfigurationUpdate(config: Configuration) {
-        console.log(`onConfigurationUpdate, language: ${config.language}`);
-    }
+  onConfigurationUpdate(config: Configuration) {
+    console.log(`onConfigurationUpdate, language: ${config.language}`);
+  }
 }
 ```
 
@@ -158,13 +155,12 @@ Called when the system has decided to adjust the memory level. For example, this
 **Example**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { AbilityStage, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-        console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
-    } 
+  onMemoryLevel(level: AbilityConstant.MemoryLevel) {
+    console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
+  }
 }
 ```
 
@@ -185,13 +181,12 @@ Defines the context of **AbilityStage**.
 **Example**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { AbilityStage } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
     let abilityStageContext = this.context;
   }
-  // ...
 }
 ```
 
@@ -208,11 +203,11 @@ Called when the application is destroyed. This API is called during the normal l
 **Example**
 
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { AbilityStage } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onDestroy() {
-        console.log('MyAbilityStage.onDestroy is called');
-    }
+  onDestroy() {
+    console.log('MyAbilityStage.onDestroy is called');
+  }
 }
 ```
