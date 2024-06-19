@@ -177,7 +177,7 @@ export default class EntryAbility extends UIAbility {
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | result | [ResultCode](#resultcode) | 否 | 是 | 表示结果码。 |
-| want<sup>10+</sup> | [ResultWant](js-apis-app-ability-want.md)  | 否 | 否 | 表示Want类型信息，如ability名称，包名等。 |
+| want<sup>10+</sup> | [Want](js-apis-app-ability-want.md)  | 否 | 否 | 表示Want类型信息，如ability名称，包名等。 |
 
 ## RequestCallback
 
