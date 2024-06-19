@@ -19,9 +19,9 @@
 1. 导入模块。
    
    ```ts
-   import notificationManager from '@ohos.notificationManager';
-   import Base from '@ohos.base';
-   import hilog from '@ohos.hilog';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    
    const TAG: string = '[PublishOperation]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -33,7 +33,7 @@
    notificationManager.isSupportTemplate('downloadTemplate').then((data:boolean) => {
      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // isSupportTpl的值为true表示支持downloadTemplate模板类通知，false表示不支持
-   }).catch((err:Base.BusinessError) => {
+   }).catch((err: BusinessError) => {
      hilog.error(DOMAIN_NUMBER, TAG, `Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });
    ```
@@ -62,7 +62,7 @@
    }
    
    // 发布通知
-   notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+   notificationManager.publish(notificationRequest, (err: BusinessError) => {
      if (err) {
        hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
