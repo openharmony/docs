@@ -8,8 +8,8 @@ Promise和async/await提供异步并发能力，适用于单次I/O任务的场�
 
     ```ts
     import fs from '@ohos.file.fs';
-    import { BusinessError } from '@ohos.base';
-    import common from '@ohos.app.ability.common';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { common } from '@kit.AbilityKit'
 
     async function write(data: string, file: fs.File): Promise<void> {
       fs.write(file.fd, data).then((writeLen: number) => {

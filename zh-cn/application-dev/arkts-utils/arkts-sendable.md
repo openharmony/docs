@@ -191,7 +191,7 @@ class B implements I {};
 
 **反例：**
 ```ts
-import lang from '@arkts.lang';
+import { lang } from '@kit.ArkTS';
 
 type ISendable = lang.ISendable;
 
@@ -274,7 +274,7 @@ class A {
 
 **正例：**
 ```ts
-import collections from '@arkts.collections';
+import { collections } from '@kit.ArkTS';
 
 try {
   let arr1: collections.Array<number> = new collections.Array<number>();
@@ -287,7 +287,7 @@ try {
 
 **反例：**
 ```ts
-import collections from '@arkts.collections';
+import { collections } from '@kit.ArkTS';
 
 try {
   let arr1: collections.Array<Array<number>> = new collections.Array<Array<number>>();
@@ -309,7 +309,7 @@ try {
 
 **正例：**
 ```ts
-import lang from '@arkts.lang';
+import { lang } from '@kit.ArkTS';
 
 type ISendable = lang.ISendable;
 
@@ -336,7 +336,7 @@ class C {
 
 **反例：**
 ```ts
-import lang from '@arkts.lang';
+import { lang } from '@kit.ArkTS';
 
 type ISendable = lang.ISendable;
 
@@ -395,14 +395,14 @@ Sendable数据类型只能通过Sendable类型的new表达式创建。
 
 **正例：**
 ```ts
-import collections from '@arkts.collections';
+import { collections } from '@kit.ArkTS';
 
 let arr1: collections.Array<number> = new collections.Array<number>(1, 2, 3); // 是Sendable类型
 ```
 
 **反例：**
 ```ts
-import collections from '@arkts.collections';
+import { collections } from '@kit.ArkTS';
 
 let arr2: collections.Array<number> = [1, 2, 3]; // 不是Sendable类型，编译报错
 let arr3: number[] = [1, 2, 3]; // 不是Sendable类型，正例，不报错
@@ -481,7 +481,7 @@ Sendable对象可以在不同并发实例间通过引用传递。通过引用传
 **示例：**
 ```ts
 // index.ets
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 import { testTypeA, testTypeB, Test } from './sendable'
 
 // 在并发函数中模拟数据处理

@@ -20,7 +20,7 @@ CPU密集型任务是指需要占用系统资源处理大量计算能力的任�
 3. 结果数组汇总处理。
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function imageProcessing(dataSlice: ArrayBuffer): ArrayBuffer {
@@ -80,7 +80,8 @@ struct Index {
 2. 在主线程中通过调用ThreadWorker的[constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9)方法创建Worker对象，当前线程为宿主线程。
 
     ```ts
-    import worker from '@ohos.worker';
+    // Index.ets
+    import { worker } from '@kit.ArkTS';
 
     const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
     ```
@@ -89,9 +90,7 @@ struct Index {
    例如向Worker线程发送训练和预测的消息，同时接收Worker线程发送回来的消息。
 
     ```ts
-    import worker  from '@ohos.worker';
-
-    const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
+    // Index.ets
     let done = false;
 
     // 接收Worker子线程的结果
@@ -114,7 +113,8 @@ struct Index {
 4. 在MyWorker.ts文件中绑定Worker对象，当前线程为Worker线程。
 
    ```ts
-   import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
+   // MyWorker.ts
+   import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
    ```
@@ -123,8 +123,7 @@ struct Index {
     例如在Worker线程中定义预测模型及其训练过程，同时与主线程进行信息交互。
 
     ```ts
-    import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
-    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+    // MyWorker.ts
     // 定义训练模型及结果
     let result: Array<number>;
     // 定义预测函数
