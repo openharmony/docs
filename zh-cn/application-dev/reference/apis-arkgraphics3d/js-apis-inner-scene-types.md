@@ -14,7 +14,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 二维向量，通常用于表示2D空间中的点或方向，由x和y两个分量组成。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | x | number | 否 | 否 | x轴分量，取值范围是实数。 |
 | y | number | 否 | 否 | y轴分量，取值范围是实数。|
