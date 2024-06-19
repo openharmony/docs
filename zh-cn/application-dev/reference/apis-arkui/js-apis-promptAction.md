@@ -70,13 +70,8 @@ struct toastExample {
   }
 }
 ```
-API version 11及之前Toast样式。
 
 ![zh-cn_image_0001](figures/toast-api11.gif)
-
-API version 12及之后Toast样式。
-
-![zh-cn_image_0001](figures/toast-api12.gif)
 
 
 ## promptAction.showDialog
