@@ -1,4 +1,4 @@
-# webRTC拉起摄像头和麦克风
+# 使用WebRTC进行Web视频会议
 
 Web组件可以通过W3C标准协议接口拉起摄像头和麦克风。开发者在使用该功能时，需配置"ohos.permission.CAMERA"、"ohos.permission.MICROPHONE"权限。
 
