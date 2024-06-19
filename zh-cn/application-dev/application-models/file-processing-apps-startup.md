@@ -1,4 +1,4 @@
-# 通过startAbility接口拉起文件处理类应用
+# 通过startAbility拉起文件处理类应用
 
 ## 使用场景
 
