@@ -152,9 +152,9 @@ onFinished(callback: Callback\<void>): void
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| callback | Callback\<void> | 否 | 回调函数，返回值为空。 |
+| callback | Callback\<void> | 是 | 回调函数，返回值为空。 |
 
 **示例：**
 ```ts
@@ -181,9 +181,9 @@ onStarted(callback: Callback\<void>): void
 当动画开始播放时执行的回调函数，start操作以及restart操作也会触发这个回调。
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| callback | Callback\<void> | 否 | 回调函数，返回值为空。 |
+| callback | Callback\<void> | 是 | 回调函数，返回值为空。 |
 
 动画开始时会执行传入的回调函数。
 
@@ -264,9 +264,9 @@ seek(position: number): void
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| position | number | 否 | 要重新播放动画的起始位置，取值区间为[0, 1]。 |
+| position | number | 是 | 要重新播放动画的起始位置，取值区间为[0, 1]。 |
 
 **示例：**
 ```ts
@@ -390,7 +390,7 @@ function finish() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 可选 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| width | number | 是 | 否 | 图片宽度，取值范围大于0。 |
-| height | number | 是 | 否 | 图片高度，取值范围大于0。 |
+| width | number | 是 | 是 | 图片宽度，取值范围大于0。 |
+| height | number | 是 | 是 | 图片高度，取值范围大于0。 |
