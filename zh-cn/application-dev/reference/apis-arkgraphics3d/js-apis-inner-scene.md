@@ -79,9 +79,9 @@ createCamera(params: SceneNodeParameters): Promise\<Camera>
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneNodeParameters](#scenenodeparameters) | 否 | 场景结点参数。 |
+| params | [SceneNodeParameters](#scenenodeparameters) | 是 | 场景结点参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -115,10 +115,10 @@ createLight(params: SceneNodeParameters, lightType: LightType): Promise\<Light>
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneNodeParameters](#scenenodeparameters) | 否 | 场景结点参数。 |
-| lightType | [LightType](js-apis-inner-scene-nodes.md#lighttype) | 否 | 灯光类型。 |
+| params | [SceneNodeParameters](#scenenodeparameters) | 是 | 场景结点参数。 |
+| lightType | [LightType](js-apis-inner-scene-nodes.md#lighttype) | 是 | 灯光类型。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -152,9 +152,9 @@ createNode(params: SceneNodeParameters): Promise\<Node>
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneNodeParameters](#scenenodeparameters) | 否 | 场景结点参数。 |
+| params | [SceneNodeParameters](#scenenodeparameters) | 是 | 场景结点参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -189,10 +189,10 @@ createMaterial(params: SceneResourceParameters, materialType: MaterialType): Pro
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](#sceneresourceparameters) | 否 | 场景资源参数。 |
-| materialType | [MaterialType](js-apis-inner-scene-resources.md#materialtype) | 否 | 材质类型。 |
+| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景资源参数。 |
+| materialType | [MaterialType](js-apis-inner-scene-resources.md#materialtype) | 是 | 材质类型。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -226,9 +226,9 @@ createShader(params: SceneResourceParameters): Promise\<Shader>
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](#sceneresourceparameters) | 否 | 场景资源参数。 |
+| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景资源参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -264,9 +264,9 @@ createImage(params: SceneResourceParameters): Promise\<Image>
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](#sceneresourceparameters) | 否 | 场景资源参数。 |
+| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景资源参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -300,9 +300,9 @@ createEnvironment(params: SceneResourceParameters): Promise\<Environment>
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](#sceneresourceparameters) | 否 | 场景资源参数。 |
+| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景资源参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -349,9 +349,9 @@ static load(uri?: Resource): Promise\<Scene>
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| uri | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 待加载的模型文件资源路径，默认值为undefined。|
+| uri | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 否 | 待加载的模型文件资源路径，默认值为undefined。|
 
 **返回值：**
 | 类型 | 说明 |
@@ -378,10 +378,10 @@ getNodeByPath(path: string, type?: NodeType): Node | null
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| path | string | 否 | 场景结点层次中的路径。每层之间使用'/'符号进行分割。|
-| type | [NodeType](js-apis-inner-scene-nodes.md#nodetype) | 是 | 预期返回的结点类型。默认值为空。|
+| path | string | 是 | 场景结点层次中的路径。每层之间使用'/'符号进行分割。|
+| type | [NodeType](js-apis-inner-scene-nodes.md#nodetype) | 否 | 预期返回的结点类型。默认值为空。|
 
 **返回值：**
 | 类型 | 说明 |
