@@ -16,7 +16,7 @@ Supported
 
 Stack(value?: { alignContent?: Alignment })
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -30,7 +30,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name        | Type                                   | Description                                                        |
 | ------------ | ------------------------------------------- | ------------------------------------------------------------ |
-| alignContent | [Alignment](ts-appendix-enums.md#alignment) | Alignment of all child components in the container.<br>Default value: **Alignment.Center**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When both this attribute and the universal attribute [align](ts-universal-attributes-location.md) are set, whichever is set last takes effect.|
+| alignContent | [Alignment](ts-appendix-enums.md#alignment) | Alignment of all child components in the container.<br>Default value: **Alignment.Center**<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>When both this attribute and the universal attribute [align](ts-universal-attributes-location.md) are set, whichever is set last takes effect.|
 
 
 ## Example

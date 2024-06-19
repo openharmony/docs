@@ -17,7 +17,7 @@ Not supported
 
 Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boolean, src: string })
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -39,9 +39,9 @@ In addition to the universal text attributes **fontColor**, **fontSize**, **font
 
 | Name| Description|
 | -------- | -------- |
-| onStart(event: () =&gt; void) | Triggered when the marquee starts scrolling.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| onBounce(event: () =&gt; void) | Triggered when the marquee has reached the end. This event will be triggered for multiple times if the **loop** attribute is not set to **1**.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| onFinish(event: () =&gt; void) | Triggered when the marquee has finished the number of scrolling times set by the **loop** attribute.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onStart(event: () =&gt; void) | Triggered when the marquee starts scrolling.<br>This API can be used in ArkTS widgets since API version 9.|
+| onBounce(event: () =&gt; void) | Triggered when the marquee has reached the end. This event will be triggered for multiple times if the **loop** attribute is not set to **1**.<br>This API can be used in ArkTS widgets since API version 9.|
+| onFinish(event: () =&gt; void) | Triggered when the marquee has finished the number of scrolling times set by the **loop** attribute.<br>This API can be used in ArkTS widgets since API version 9.|
 
 
 ## Example

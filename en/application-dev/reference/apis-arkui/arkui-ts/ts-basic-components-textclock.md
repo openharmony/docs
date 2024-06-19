@@ -15,7 +15,7 @@ Not supported
 
 TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController })
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 **Parameters**
 
@@ -160,7 +160,7 @@ If the event is used in a widget, it is triggered when the change occurs in minu
 
 Implements the controller of the **\<TextClock>** component. You can bind the controller to the component to control its start and stop. A **\<TextClock>** component can be bound to only one controller.
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 ### Objects to Import
 
@@ -174,7 +174,7 @@ start()
 
 Starts the **<TextClock\>** component.
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 ### stop
 
@@ -182,7 +182,7 @@ stop()
 
 Stops the **<TextClock\>** component.
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 ## Example
 ### Example 1

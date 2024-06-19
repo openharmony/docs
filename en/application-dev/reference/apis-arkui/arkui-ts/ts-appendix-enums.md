@@ -6,7 +6,7 @@
 
 ## Color
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Color                    | Value          | Illustration                                    |
 | ------------------------ | ------------- | ---------------------------------------- |
@@ -25,7 +25,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ImageFit
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name       | Description                             |
 | --------- | ------------------------------- |
@@ -38,7 +38,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## BorderStyle
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name    | Description                           |
 | ------ | ----------------------------- |
@@ -47,7 +47,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Solid  | Solid border.                     |
 
 ## OutlineStyle<sup>11+</sup>
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 | Name    | Description                           |
 | ------ | ----------------------------- |
@@ -57,7 +57,7 @@ Since API version 11, this API is supported in ArkTS widgets.
 
 ## LineJoinStyle
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name   | Description        |
 | ----- | ---------- |
@@ -96,7 +96,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Curve
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name                 | Description                                      |
 | ------------------- | ---------------------------------------- |
@@ -116,7 +116,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## AnimationStatus
 
-Since API version 10, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 10.
 
 | Name     | Description       |
 | ------- | --------- |
@@ -127,7 +127,7 @@ Since API version 10, this API is supported in ArkTS widgets.
 
 ## FillMode
 
-Since API version 10, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 10.
 
 | Name       | Description                                      |
 | --------- | ---------------------------------------- |
@@ -138,7 +138,7 @@ Since API version 10, this API is supported in ArkTS widgets.
 
 ## PlayMode
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name              | Description                                      |
 | ---------------- | ---------------------------------------- |
@@ -165,13 +165,13 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name                              | Description                                      |
 | -------------------------------- | ---------------------------------------- |
-| Top                              | Top edge in the vertical direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Top                              | Top edge in the vertical direction.<br>This API can be used in ArkTS widgets since API version 9.|
 | Center<sup>(deprecated) </sup>   | Center position in the vertical direction.<br> This API is deprecated since API version 9.        |
-| Bottom                           | Bottom edge in the vertical direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Bottom                           | Bottom edge in the vertical direction.<br>This API can be used in ArkTS widgets since API version 9.|
 | Baseline<sup>(deprecated) </sup> | Text baseline position in the cross axis direction.<br> This API is deprecated since API version 9.   |
-| Start                            | Start position in the horizontal direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Start                            | Start position in the horizontal direction.<br>This API can be used in ArkTS widgets since API version 9.|
 | Middle<sup>(deprecated) </sup>   | Center position in the horizontal direction.<br> This API is deprecated since API version 9.     |
-| End                              | End position in the horizontal direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| End                              | End position in the horizontal direction.<br>This API can be used in ArkTS widgets since API version 9.|
 
 ## Week
 
@@ -187,7 +187,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Direction
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name  | Description         |
 | ---- | ----------- |
@@ -197,7 +197,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## BarState
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name  | Description                |
 | ---- | ------------------ |
@@ -207,7 +207,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## EdgeEffect
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name    | Description                                      |
 | ------ | ---------------------------------------- |
@@ -217,7 +217,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Alignment
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name         | Description      |
 | ----------- | -------- |
@@ -233,7 +233,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TransitionType
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name    | Description                            |
 | ------ | ------------------------------ |
@@ -250,7 +250,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Visibility
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name     | Description              |
 | ------- | ---------------- |
@@ -260,7 +260,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## LineCapStyle
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name    | Description                           |
 | ------ | ----------------------------- |
@@ -270,7 +270,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Axis
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name        | Description    |
 | ---------- | ------ |
@@ -279,7 +279,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## HorizontalAlign
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name    | Description          |
 | ------ | ------------ |
@@ -289,7 +289,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## FlexAlign
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name          | Description                                      |
 | ------------ | ---------------------------------------- |
@@ -302,7 +302,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ItemAlign
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name      | Description                                      |
 | -------- | ---------------------------------------- |
@@ -315,7 +315,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## FlexDirection
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name           | Description              |
 | ------------- | ---------------- |
@@ -326,7 +326,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## FlexWrap
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name         | Description                         |
 | ----------- | --------------------------- |
@@ -336,7 +336,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## VerticalAlign
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name    | Description          |
 | ------ | ------------ |
@@ -346,7 +346,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ImageRepeat
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name      | Description           |
 | -------- | ------------- |
@@ -357,7 +357,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ImageSize
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Type     | Description                                 |
 | ------- | ----------------------------------- |
@@ -367,7 +367,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## GradientDirection
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name         | Description   |
 | ----------- | ----- |
@@ -397,7 +397,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## FontStyle
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name    | Description      |
 | ------ | -------- |
@@ -406,7 +406,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## FontWeight
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name     | Description     |
 | ------- | ------- |
@@ -419,7 +419,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TextAlign
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name                   | Description     |
 | --------------------- | ------- |
@@ -430,7 +430,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TextOverflow
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
@@ -441,7 +441,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TextDecorationType
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name         | Description       |
 | ----------- | --------- |
@@ -452,7 +452,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TextCase
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name       | Description        |
 | --------- | ---------- |
@@ -503,7 +503,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## CopyOptions<sup>9+</sup>
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name         | Description      |
 | ----------- | -------- |
@@ -654,7 +654,7 @@ The object of this type can be of a custom type or **undefined**.
 | CLICK   | Click.|
 ## FinishCallbackType<sup>11+</sup>
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 | Name      | Description                                                        |
 | --------- | ------------------------------------------------------------ |
@@ -679,7 +679,7 @@ Describes the background effect.
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0,0]** |
 ## EllipsisMode<sup>11+</sup>
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 | Name | Description                                  |
 | ----- | -------------------------------------- |
