@@ -31,6 +31,7 @@
 | 照片Picker（PhotoViewPicker）| 用于访问、保存公共目录的图片或视频文件。 | - [选择媒体库资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md)  <br/> - [保存图片或视频类文件](../file-management/save-user-file.md#保存图片或视频类文件)|
 | 相机Picker （Camera Picker）| 用于拉起系统相机，进行拍照、录制。 |[cameraPicker.pick](../reference/apis-camera-kit/js-apis-cameraPicker.md#pick) |
 | 联系人Picker（Contacts Picker） | 用于拉起联系人应用，读取联系人数据人。 |[选择联系人](../contacts/contacts-intro.md#选择联系人) |
+<!--RP1--><!--RP1End-->
 
 
 
@@ -41,6 +42,9 @@
 | -------- | -------- |-------- |
 | 电话 | 跳转到拨号界面，并显示待拨出的号码。 | [mackeCall()](../reference/apis-telephony-kit/js-apis-call.md#callmakecall7) |
 | 日历 | 创建日程 | [addEvent](../reference/apis-calendar-kit/js-apis-calendarManager.md#addevent) |
+<!--RP2--><!--RP1End-->
+
+<!--RP3--><!--RP1End-->
 
 
 
