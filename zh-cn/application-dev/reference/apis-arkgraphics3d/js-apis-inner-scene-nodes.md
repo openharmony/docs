@@ -20,9 +20,9 @@ getEnabled(index: number): boolean
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| index | number | 否 | 要使能图层的下标，值域为大于等于0的整数。 |
+| index | number | 是 | 要使能图层的下标，值域为大于等于0的整数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -57,10 +57,10 @@ setEnabled(index: number, enabled: boolean): void
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| index | number | 否 | 要使能图层的下标，值域为大于等于0的整数。 |
-| enabled | boolean | 否 | 要设置的使能状态，true表示使用图层掩码，false表示不使用。 |
+| index | number | 是 | 要使能图层的下标，值域为大于等于0的整数。 |
+| enabled | boolean | 是 | 要设置的使能状态，true表示使用图层掩码，false表示不使用。 |
 
 **示例：**
 ```ts
@@ -103,9 +103,9 @@ append(item: T): void
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| item | T | 否 | T类型对象。 |
+| item | T | 是 | T类型对象。 |
 
 **示例：**
 ```ts
@@ -133,10 +133,10 @@ insertAfter(item: T, sibling: T | null): void
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| item | T | 否 | 要插入结点。 |
-| sibling | T \| null | 否 | 兄弟结点。 |
+| item | T | 是 | 要插入结点。 |
+| sibling | T \| null | 是 | 兄弟结点。 |
 
 **示例：**
 ```ts
@@ -163,9 +163,9 @@ remove(item: T): void
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| item | T | 否 | 要移除的对象。 |
+| item | T | 是 | 要移除的对象。 |
 
 **示例：**
 ```ts
@@ -192,9 +192,9 @@ get(index: number): T | null
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| index | number | 否 | 要获取对象的下标，取值范围是大于等于0的整数。 |
+| index | number | 是 | 要获取对象的下标，取值范围是大于等于0的整数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -301,9 +301,9 @@ getNodeByPath(path: string): Node | null
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：**
-| 参数名 | 类型 | 可选 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| path | string | 否 | 场景结点层次中的路径。每层之间使用'/'符号进行分割。|
+| path | string | 是 | 场景结点层次中的路径。每层之间使用'/'符号进行分割。|
 
 **返回值：**
 | 类型 | 说明 |
