@@ -875,7 +875,7 @@ dup(fd: number): File
 
 ## fs.connectDfs<sup>12+</sup>
 
-connectDfs(networkId: string, listeners: DfsListeners): Promise<void>
+connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
 
 业务调用connectDfs接口，触发建链并将对端设备公共文档目录挂载到沙箱路径下，如果对端设备出现异常，业务执行回调DfsListeners内[onStatus](#onstatus12)通知应用。
 
@@ -892,7 +892,7 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise<void>
 
   | 类型     | 说明                                       |
   | ------ | ---------------------------------------- |
-  | Promise<void>| Promise对象。无返回值。                             |
+  | Promise&lt;void&gt;| Promise对象。无返回值。                             |
 
 **错误码：**
 
@@ -920,7 +920,7 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise<void>
 
 ## fs.disconnectDfs<sup>12+</sup>
 
-disconnectDfs(networkId: string): Promise<void>
+disconnectDfs(networkId: string): Promise&lt;void&gt;
 
 业务调用disconnectDfs接口，传入networkId参数，触发断链并取消公共文档目录挂载。
 
@@ -936,7 +936,7 @@ disconnectDfs(networkId: string): Promise<void>
 
   | 类型     | 说明                                       |
   | ------ | ---------------------------------------- |
-  | Promise<void>| Promise对象。无返回值。                             |
+  | Promise&lt;void&gt;| Promise对象。无返回值。                             |
 
 **错误码：**
 
