@@ -46,7 +46,7 @@ isSupported(type: RunningLockType): boolean;
 ```js
 try {
     let isSupported = runningLock.isSupported(runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL);
-    console.info('BACKGROUND type supported: ' + isSupported);
+    console.info('PROXIMITY_SCREEN_CONTROL type supported: ' + isSupported);
 } catch(err) {
     console.error('check supported failed, err: ' + err);
 }
