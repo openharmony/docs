@@ -27,7 +27,7 @@
       - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
       - [视频播放 (Video)](arkts-common-components-video-player.md)
       - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
-      - [自定义绘制 (XComponent)](arkts-common-components-xcomponent.md)
+      - [自定义渲染 (XComponent)](arkts-common-components-xcomponent.md)
       - [Native XComponent](napi-xcomponent-guidelines.md)
     - 添加气泡和菜单
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
@@ -35,8 +35,9 @@
     - 使用文本
       - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 设置组件导航和页面路由
-    - [组件导航 (Navigation)](arkts-navigation-navigation.md)
+    - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
     - [页面路由 (@ohos.router)](arkts-routing.md)
+    - [Router切换Navigation](arkts-router-to-navigation.md)
   - 显示图形
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
@@ -86,8 +87,20 @@
       - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
       - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
       - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+  - 使用NDK接口构建UI
+    - [NDK接口概述](ndk-build-ui-overview.md)
+    - [接入ArkTS页面](ndk-access-the-arkts-page.md)
+    - 添加交互事件
+      - [监听组件事件](ndk-listen-to-component-events.md)
+      - [绑定手势事件](ndk-bind-gesture-events.md)
+    - [使用动画](ndk-use-animation.md)
+    - [使用懒加载开发长列表界面](ndk-loading-long-list.md)
+    - [构建弹窗](ndk-build-pop-up-window.md)
+    - [构建自定义组件](ndk-build-custom-components.md)
+    - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
   - 主题设置
     - [设置主题换肤](theme_skinning.md)
+  - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
 - UI开发 (兼容JS的类Web开发范式)
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明

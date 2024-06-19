@@ -18,13 +18,13 @@
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -34,12 +34,11 @@ struct WebComponent {
             // 点击按钮时，通过loadUrl，跳转到www.example1.com
             this.controller.loadUrl('www.example1.com');
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       // 组件创建时，加载www.example.com
-      Web({ src: 'www.example.com', controller: this.controller})
+      Web({ src: 'www.example.com', controller: this.controller })
     }
   }
 }
@@ -65,13 +64,13 @@ struct WebComponent {
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -81,8 +80,7 @@ struct WebComponent {
               // 点击按钮时，通过loadUrl，跳转到local1.html
               this.controller.loadUrl($rawfile("local1.html"));
             } catch (error) {
-              let e: business_error.BusinessError = error as business_error.BusinessError;
-              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
           })
         // 组件创建时，通过$rawfile加载本地文件local.html
@@ -126,13 +124,13 @@ Web组件可以通过[loadData()](../reference/apis-arkweb/js-apis-webview.md#lo
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -146,8 +144,7 @@ struct WebComponent {
               "UTF-8"
             );
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       // 组件创建时，加载www.example.com
@@ -177,14 +174,14 @@ onWindowStageCreate(windowStage: window.WindowStage): void {
 ```ts
 // 创建NodeController
 // common.ets
-import { UIContext } from '@ohos.arkui.UIContext';
-import web_webview from '@ohos.web.webview'
-import { NodeController, BuilderNode, Size, FrameNode }  from '@ohos.arkui.node';
+import { UIContext, NodeController, BuilderNode, Size, FrameNode } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
 // @Builder中为动态组件的具体组件内容
 // Data为入参封装类
 class Data{
   url: string = "https://www.example.com";
-  controller: WebviewController = new web_webview.WebviewController();
+  controller: WebviewController = new webview.WebviewController();
 }
 
 @Builder
@@ -214,17 +211,17 @@ export class myNodeController extends NodeController {
   }
   // 当布局大小发生变化时进行回调
   aboutToResize(size: Size) {
-    console.log("aboutToResize width : " + size.width  +  " height : " + size.height )
+    console.log("aboutToResize width : " + size.width  +  " height : " + size.height );
   }
 
   // 当controller对应的NodeContainer在Appear的时候进行回调
   aboutToAppear() {
-    console.log("aboutToAppear")
+    console.log("aboutToAppear");
   }
 
   // 当controller对应的NodeContainer在Disappear的时候进行回调
   aboutToDisappear() {
-    console.log("aboutToDisappear")
+    console.log("aboutToDisappear");
   }
 
   // 此函数为自定义函数，可作为初始化函数使用
@@ -235,21 +232,21 @@ export class myNodeController extends NodeController {
       return;
     }
     // 创建节点，需要uiContext
-    this.rootnode = new BuilderNode(uiContext)
+    this.rootnode = new BuilderNode(uiContext);
     // 创建动态Web组件
-    this.rootnode.build(wrap, { url:url, controller:control })
+    this.rootnode.build(wrap, { url:url, controller:control });
   }
 }
- // 创建Map保存所需要的NodeController
+// 创建Map保存所需要的NodeController
 let NodeMap:Map<string, myNodeController | undefined> = new Map();
 // 创建Map保存所需要的WebViewController
 let controllerMap:Map<string, WebviewController | undefined> = new Map();
 
 // 初始化需要UIContext 需在Ability获取
 export const createNWeb = (url: string, uiContext: UIContext) => {
-  // 创建NodeController 
+  // 创建NodeController
   let baseNode = new myNodeController();
-  let controller = new web_webview.WebviewController() ;
+  let controller = new webview.WebviewController() ;
   // 初始化自定义Web组件
   baseNode.initWeb(url, uiContext, controller);
   controllerMap.set(url, controller)

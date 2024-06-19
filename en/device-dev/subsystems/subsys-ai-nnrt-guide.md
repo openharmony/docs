@@ -358,7 +358,7 @@ The SELinux feature has been enabled for the OpenHarmony. You need to configure 
     ```
 
 10. Configure access permissions because SELinux uses the trustlist access permission mechanism. Upon service startup, run the `dmesg` command to view the AVC alarm,
-which provides a list of missing permissions. For details about the SELinux configuration, see [security_selinux] (https://gitee.com/openharmony/security_selinux/blob/master/README-en.md).
+which provides a list of missing permissions. For details about the SELinux configuration, see [security_selinux](https://gitee.com/openharmony/security_selinux/blob/master/README-en.md).
     ```shell
     hdc_std shell
     dmesg | grep nnrt

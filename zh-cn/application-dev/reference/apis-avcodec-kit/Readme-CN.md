@@ -1,4 +1,4 @@
-# AVCodec Kit API参考
+# AVCodec Kit（音视频编解码服务）
 
 - C API
   - 模块

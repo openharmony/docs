@@ -4,11 +4,15 @@
 
 同层标签对应的元素区域的背景为白色，对于Web嵌套Web组件的形式只提供一层嵌套的支持。
 
-- 使用前请在module.json5添加如下权限。
+- 使用前请在module.json5中添加网络权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
   
-  ```ts
-  "ohos.permission.INTERNET"
-  ```
+   ```
+   "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
+   ```
 
 ## 绘制XComponent+AVPlayer和Button组件
 
@@ -20,10 +24,9 @@
 
   ```ts
   // 创建NodeController
-  import webview from '@ohos.web.webview';
-  import {UIContext} from '@ohos.arkui.UIContext';
-  import {NodeController, BuilderNode, NodeRenderType, FrameNode} from "@ohos.arkui.node";
-  import {AVPlayerDemo} from './PlayerDemo';
+  import { webview } from '@kit.ArkWeb';
+  import { UIContext, NodeController, BuilderNode, NodeRenderType, FrameNode } from "@kit.ArkUI";
+  import { AVPlayerDemo } from './PlayerDemo';
 
   @Observed
   declare class Params {
@@ -250,8 +253,8 @@
 - 应用侧代码，视频播放示例, ./PlayerDemo.ets。
 
   ```ts
-  import media from '@ohos.multimedia.media';
-  import {BusinessError} from '@ohos.base';
+  import { media } from '@kit.MediaKit';
+  import { BusinessError } from '@ohos.base';
 
   export class AVPlayerDemo {
     private count: number = 0;

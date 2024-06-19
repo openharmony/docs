@@ -5,6 +5,10 @@
 
 声明OHAudio基础的数据结构。
 
+**库**：libohaudio.so
+
+**引用文件**：&lt;ohaudio/native_audiostream_base.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **起始版本：** 10

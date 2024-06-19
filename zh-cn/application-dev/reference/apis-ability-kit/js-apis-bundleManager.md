@@ -21,18 +21,18 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 | 名称                                          | 值         | 说明                                                         |
 | --------------------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_BUNDLE_INFO_DEFAULT                       | 0x00000000 | 用于获取默认bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| GET_BUNDLE_INFO_WITH_APPLICATION              | 0x00000001 | 用于获取包含applicationInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、hapModuleInfo、ability、extensionAbility和permission的信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| GET_BUNDLE_INFO_WITH_HAP_MODULE               | 0x00000002 | 用于获取包含hapModuleInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability、extensionAbility和permission的信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| GET_BUNDLE_INFO_WITH_ABILITY                  | 0x00000004 | 用于获取包含ability的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、extensionAbility和permission的信息。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY        | 0x00000008 | 用于获取包含extensionAbility的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability 和permission的信息。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION     | 0x00000010 | 用于获取包含permission的bundleInfo。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、extensionAbility和ability的信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| GET_BUNDLE_INFO_WITH_METADATA                 | 0x00000020 | 用于获取applicationInfo、moduleInfo和abilityInfo中包含的metadata。它不能单独使用，它需要与GET_BUNDLE_INFO_WITH_APPLICATION、GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| GET_BUNDLE_INFO_WITH_DISABLE                  | 0x00000040 | 用于获取application被禁用的BundleInfo和被禁用的Ability信息。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO           | 0x00000080 | 用于获取包含signatureInfo的bundleInfo。获取的bundleInfo不包含applicationInfo、hapModuleInfo、extensionAbility、ability和permission的信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>       | 0x00000100 | 用于获取包含fileContextMenuConfig的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | 用于获取包含routerMap的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | 用于获取包含skills的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| GET_BUNDLE_INFO_DEFAULT                       | 0x00000000 | 用于获取默认bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| GET_BUNDLE_INFO_WITH_APPLICATION              | 0x00000001 | 用于获取包含applicationInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、hapModuleInfo、ability、extensionAbility和permission的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| GET_BUNDLE_INFO_WITH_HAP_MODULE               | 0x00000002 | 用于获取包含hapModuleInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability、extensionAbility和permission的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| GET_BUNDLE_INFO_WITH_ABILITY                  | 0x00000004 | 用于获取包含ability的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、extensionAbility和permission的信息。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY        | 0x00000008 | 用于获取包含extensionAbility的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability 和permission的信息。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION     | 0x00000010 | 用于获取包含permission的bundleInfo。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、extensionAbility和ability的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| GET_BUNDLE_INFO_WITH_METADATA                 | 0x00000020 | 用于获取applicationInfo、moduleInfo和abilityInfo中包含的metadata。它不能单独使用，它需要与GET_BUNDLE_INFO_WITH_APPLICATION、GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| GET_BUNDLE_INFO_WITH_DISABLE                  | 0x00000040 | 用于获取application被禁用的BundleInfo和被禁用的Ability信息。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO           | 0x00000080 | 用于获取包含signatureInfo的bundleInfo。获取的bundleInfo不包含applicationInfo、hapModuleInfo、extensionAbility、ability和permission的信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>       | 0x00000100 | 用于获取包含fileContextMenuConfig的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | 用于获取包含routerMap的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | 用于获取包含skills的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ### ExtensionAbilityType
 
@@ -42,7 +42,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)：卡片扩展能力，提供卡片开发能力。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)：卡片扩展能力，提供卡片开发能力。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
 | SERVICE          | 3   | <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
@@ -71,7 +71,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 指示权限授予状态。
 
- **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -84,7 +84,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 标识该组件所支持的窗口模式。
 
- **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -98,7 +98,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 指示组件的启动方式。
 
- **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
@@ -130,27 +130,27 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 | 名称                               |值 |说明 |
 |:----------------------------------|---|---|
-| UNSPECIFIED                        |0 |表示未定义方向模式，由系统判定。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| LANDSCAPE                          |1 |表示横屏显示模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| PORTRAIT                           |2 |表示竖屏显示模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| FOLLOW_RECENT                      |3 |表示跟随上一个显示模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| LANDSCAPE_INVERTED                 |4 |表示反向横屏显示模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| PORTRAIT_INVERTED                  |5 |表示反向竖屏显示模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| AUTO_ROTATION                      |6 |表示传感器自动旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| AUTO_ROTATION_LANDSCAPE            |7 |表示传感器自动横向旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| AUTO_ROTATION_PORTRAIT             |8 |表示传感器自动竖向旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| AUTO_ROTATION_RESTRICTED           |9 |表示受开关控制的自动旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|表述受开关控制的自动横向旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| LOCKED                             |12|表示锁定模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup> |13|受开关控制和由系统判定的自动旋转模式。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
-| FOLLOW_DESKTOP<sup>12+</sup> |14|跟随桌面的旋转模式。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| UNSPECIFIED                        |0 |表示未定义方向模式，由系统判定。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| LANDSCAPE                          |1 |表示横屏显示模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| PORTRAIT                           |2 |表示竖屏显示模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| FOLLOW_RECENT                      |3 |表示跟随上一个显示模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| LANDSCAPE_INVERTED                 |4 |表示反向横屏显示模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| PORTRAIT_INVERTED                  |5 |表示反向竖屏显示模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AUTO_ROTATION                      |6 |表示传感器自动旋转模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AUTO_ROTATION_LANDSCAPE            |7 |表示传感器自动横向旋转模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AUTO_ROTATION_PORTRAIT             |8 |表示传感器自动竖向旋转模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AUTO_ROTATION_RESTRICTED           |9 |表示受开关控制的自动旋转模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|表述受开关控制的自动横向旋转模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| LOCKED                             |12|表示锁定模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup> |13|受开关控制和由系统判定的自动旋转模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| FOLLOW_DESKTOP<sup>12+</sup> |14|跟随桌面的旋转模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ### CompatiblePolicy<sup>10+</sup>
 
 标识共享库的版本兼容类型。
 
- **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -162,7 +162,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 标识模块类型。
 
- **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -176,14 +176,14 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 标识应用的类型。
 
- **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+ **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称           | 值   | 说明            |
 | -------------- | ---- | --------------- |
 | APP            | 0    | 该Bundle是应用。    |
-| ATOMIC_SERVICE | 1    | 该Bundle是元服务。 |
+| ATOMIC_SERVICE | 1    | 该Bundle是原子化服务。 |
 
 ### MultiAppModeType<sup>12+</sup>
 标识应用多开的模式类型。
@@ -204,7 +204,7 @@ getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
 以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用Promise形式返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -256,7 +256,7 @@ getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>):
 
 以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用callback形式返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -307,7 +307,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -366,7 +366,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -448,7 +448,7 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -524,7 +524,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -582,7 +582,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -654,7 +654,7 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -718,7 +718,7 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
 以同步方法根据给定的bundleFlags获取当前应用的BundleInfo。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -924,7 +924,7 @@ canOpenLink(link: string): boolean
 
 查询给定的链接是否可以打开。指定链接的scheme需要在module.json文件的querySchemes字段下配置。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 

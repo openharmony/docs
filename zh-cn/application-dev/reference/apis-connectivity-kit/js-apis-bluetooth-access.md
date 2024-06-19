@@ -22,7 +22,7 @@ enableBluetooth(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -57,7 +57,7 @@ disableBluetooth(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -92,7 +92,7 @@ getState(): BluetoothState
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -132,7 +132,7 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -177,7 +177,7 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -219,7 +219,7 @@ try {
 
 枚举，蓝牙开关状态。
 
-**元服务API**: 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**: 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 

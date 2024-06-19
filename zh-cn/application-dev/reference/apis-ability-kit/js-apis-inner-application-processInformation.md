@@ -9,12 +9,12 @@ ProcessInformation模块提供对进程运行信息进行查询的能力。
 ## 导入模块
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -35,13 +35,13 @@ import appManager from '@ohos.app.ability.appManager';
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
-appManager.getRunningProcessInformation((error, data) => { 
-    if (error) {
-        console.error(`getRunningProcessInformation fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`getRunningProcessInformation success, data: ${JSON.stringify(data)}`);
-    }
+appManager.getRunningProcessInformation((error, data) => {
+  if (error) {
+    console.error(`getRunningProcessInformation fail, error: ${JSON.stringify(error)}`);
+  } else {
+    console.log(`getRunningProcessInformation success, data: ${JSON.stringify(data)}`);
+  }
 });
 ```

@@ -12,9 +12,9 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
 
 1. In the **ets** directory of the **Module** project, right-click and choose **New > Directory** to create a directory named **myabilitystage**.
 
-2. In the **myabilitystage** directory, right-click and choose **New > ArkTS File** to create a file named **MyAbilityStage.ets**.
+2. In the **myabilitystage** directory, right-click and choose **New > ArkTS File** to create a file named **MyAbilityStage.ts**.
 
-3. Open the **MyAbilityStage.ets** file, and import the dependency package of AbilityStage. Customize a class that inherits from AbilityStage, and add the required lifecycle callbacks. The following code snippet adds the **onCreate()** lifecycle callback.
+3. Open the **MyAbilityStage.ts** file, and import the dependency package of AbilityStage. Customize a class that inherits from AbilityStage, and add the required lifecycle callbacks. The following code snippet adds the **onCreate()** lifecycle callback.
    
    ```ts
    import AbilityStage from '@ohos.app.ability.AbilityStage';
@@ -37,7 +37,7 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
      "module": {
        "name": "entry",
        "type": "entry",
-       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ets",
+       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
        ...
      }
    }
@@ -50,7 +50,7 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
 
 - **onAcceptWant()** event callback: triggered when the UIAbility is started in [specified mode](uiability-launch-type.md#specified). For details, see [UIAbility Component Launch Type](uiability-launch-type.md).
 
-- **onConfigurationUpdated()** event callback: triggered when the global system configuration changes. The global system configuration, such as the system language and theme, are defined in the [Configuration](../reference/apis/js-apis-app-ability-configuration.md) class before project configuration.
+- **onConfigurationUpdated()** event callback: triggered when the global system configuration changes. The global system configuration, such as the system language and theme, are defined in the [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md) class before project configuration.
 
 - **onMemoryLevel()** event callback: triggered when the system adjusts the memory.
 
@@ -59,7 +59,7 @@ When an application is switched to the background, it is cached in the backgroun
 
   ```ts
   import AbilityStage from '@ohos.app.ability.AbilityStage';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
   
   export default class MyAbilityStage extends AbilityStage {
     onMemoryLevel(level: AbilityConstant.MemoryLevel): void {

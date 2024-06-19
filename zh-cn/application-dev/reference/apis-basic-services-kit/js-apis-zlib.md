@@ -113,7 +113,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 压缩文件，压缩的结果，使用callback异步回调返回。成功返回null，失败返回错误码。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -170,7 +170,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 压缩文件，压缩的结果，使用Promise异步返回。成功时返回null，失败时返回错误码。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -232,7 +232,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -254,7 +254,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **示例：**
 
@@ -288,7 +288,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 
 解压文件，解压的结果，使用Promise异步返回，成功时返回null，失败时返回错误码。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -315,7 +315,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001 | The input source file is invalid.      |
 | 900002 | The input destination file is invalid. |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **示例：**
 
@@ -349,7 +349,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -370,7 +370,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **示例：**
 
@@ -423,7 +423,7 @@ getOriginalSize(compressedFile: string): Promise\<number>
 | ------ | ------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001 | The input source file is invalid.      |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **示例：**
 
@@ -514,7 +514,7 @@ createChecksum(): Promise&lt;Checksum&gt;
 
 创建校验对象，使用Promise异步返回。成功时返回Checksum对象实例。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -540,7 +540,7 @@ createChecksumSync():  Checksum
 
 创建校验对象。成功时返回Checksum对象实例。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -568,7 +568,7 @@ adler32(adler: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 计算Adler-32校验和，使用Promise异步返回。成功时返回计算后的Adler-32校验和，失败时返回错误码。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -619,7 +619,7 @@ adler32Combine(adler1: number, adler2: number, len2: number): Promise&lt;number&
 
 将两个Adler-32校验和合并，使用Promise异步返回。成功时返回合并后的Adler-32校验和，失败时返回错误码。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -683,7 +683,7 @@ crc32(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 更新CRC-32校验，使用Promise异步返回。成功时返回更新后的CRC-32校验，失败时返回错误码。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -737,7 +737,7 @@ crc32Combine(crc1: number, crc2: number, len2: number): Promise&lt;number&gt;
 
 将两个CRC-32校验合并，使用Promise异步返回。成功时返回合并后的CRC-32校验，失败时返回错误码。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -801,7 +801,7 @@ crc64(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 更新CRC-64校验，使用Promise异步返回。成功时返回更新后的CRC-64校验，失败时返回错误码。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -855,7 +855,7 @@ getCrcTable(): Promise&lt;Array&lt;number&gt;&gt;
 
 输出CRC-32校验表，使用Promise异步返回。成功时返回CRC-32校验表。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -886,7 +886,7 @@ getCrc64Table(): Promise&lt;Array&lt;number&gt;&gt;
 
 输出CRC-64校验表，使用Promise异步返回。成功时返回CRC-64校验表。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -917,7 +917,7 @@ createZip(): Promise&lt;Zip&gt;
 
 创建压缩解压缩对象实例，使用Promise异步返回，成功时返回压缩解压缩对象实例。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -948,7 +948,7 @@ createZipSync(): Zip
 
 创建压缩解压缩对象实例，成功时返回压缩解压缩对象实例。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -976,7 +976,7 @@ getZStream(): Promise&lt;ZStream&gt;
 
 输出流，使用Promise异步返回。成功时返回zlib流。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1004,7 +1004,7 @@ zlibVersion(): Promise&lt;string&gt;
 
 获取当前链接的zlib库的版本信息，使用Promise异步返回。成功时返回当前zlib库的版本信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1032,7 +1032,7 @@ zlibCompileFlags(): Promise&lt;number&gt;
 
 返回指示编译时选项的标志，使用Promise异步返回。成功时返回指示编译时选项的标志。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1060,7 +1060,7 @@ compress(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt
 
 将源缓冲区压缩到目标缓冲区，使用Promise异步返回。成功时返回结果状态和目标缓冲区的总大小。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1117,7 +1117,7 @@ compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLe
 
 将源缓冲区压缩到目标缓冲区，使用Promise异步返回。成功时返回结果状态和目标缓冲区的总大小。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1176,7 +1176,7 @@ uncompress(dest:ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&l
 
 将压缩后的数据解压缩为原始的未压缩形式，使用Promise异步返回。成功时返回结果状态和目标缓冲区的总大小。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1238,7 +1238,7 @@ uncompress2(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise
 
 将压缩后的数据解压缩为原始的未压缩形式，使用Promise异步返回。成功时返回结果状态、目标缓冲区的总大小和源数据长度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1300,7 +1300,7 @@ compressBound(sourceLen: number): Promise&lt;number&gt;
 
 计算返回压缩大小的上限，使用Promise异步返回。成功时返回压缩大小的上限。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1353,7 +1353,7 @@ inflateValidate(strm: ZStream, check: number): Promise&lt;ReturnStatus&gt;
 
 验证压缩流结构内部的校验和，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1414,7 +1414,7 @@ inflateSyncPoint(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 查找当前解压缩流的同步点，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1474,7 +1474,7 @@ inflateSync(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 跳过无效的压缩数据，直到找到一个可能的完整刷新点为止，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1567,7 +1567,7 @@ inflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 重置解压缩流的状态，以保留分配的霍夫曼解码树和预设字典，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1627,7 +1627,7 @@ inflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 
 从给定的未压缩字节序列初始化解压缩字典，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1726,7 +1726,7 @@ inflateReset2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 
 从给定的未压缩字节序列初始化解压缩字典，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1787,7 +1787,7 @@ inflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 这个函数相当于先调用inflateEnd再调用inflateInit，但是并不会释放和重新分配内部解压缩状态，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1847,7 +1847,7 @@ inflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 
 从给定的未压缩字节序列初始化解压缩字典，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1909,7 +1909,7 @@ inflateMark(strm: ZStream): Promise&lt;number&gt;
 
 用于标记输入数据中的位置以供随机访问，使用Promise异步返回。成功时返回位置信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1968,7 +1968,7 @@ inflateInit2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 
 初始化内部流状态以进行解压缩，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2025,7 +2025,7 @@ inflateInit(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 初始化内部流状态以进行解压缩，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2080,7 +2080,7 @@ inflateGetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
 
 用于在解压缩数据前设置gzip文件头部信息，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2141,7 +2141,7 @@ inflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;Diction
 
 获取当前解压缩流中使用的解压缩字典内容及其长度，使用Promise异步返回。成功时返回结果状态和字典的长度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2202,7 +2202,7 @@ inflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 解压流的所有动态分配的数据结构都被释放，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2267,7 +2267,7 @@ inflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 
 复制解压流，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2327,7 +2327,7 @@ inflateCodesUsed(strm: ZStream): Promise&lt;number&gt;
 
 当前解压缩流中使用的霍夫曼编码树的数量，使用Promise异步返回。成功时返回已使用的霍夫曼编码树的数量。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2386,7 +2386,7 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 
 使用inflateBack()函数前初始化内部流状态以进行解压缩，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2421,7 +2421,7 @@ inflateBackEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 inflateBackInit()函数分配的所有内存都被释放，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2454,7 +2454,7 @@ inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, bac
 
 实现原始解压缩，采用回调接口来处理输入和输出，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2645,7 +2645,7 @@ inflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 解压数据，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2733,7 +2733,7 @@ deflateInit(strm: ZStream, level: CompressLevel): Promise&lt;ReturnStatus&gt;
 
 初始化内部流状态以进行压缩，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2794,7 +2794,7 @@ deflateInit2(strm: ZStream, level: CompressLevel, method: CompressMethod, window
 
 初始化内部流状态以进行压缩，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2860,7 +2860,7 @@ deflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 压缩数据，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2927,7 +2927,7 @@ deflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 压缩流的所有动态分配的数据结构都被释放，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -2997,7 +2997,7 @@ deflateBound(strm: ZStream, sourceLength: number): Promise&lt;number&gt;
 
 计算压缩大小的上限，使用Promise异步返回。成功时返回压缩大小的上限。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3062,7 +3062,7 @@ deflateSetHeader(strm: ZStream, head: GzHeader): Promise&lt;ReturnStatus&gt;
 
 当deflateInit2()请求gzip流时，提供gzip标头信息，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3129,7 +3129,7 @@ deflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 
 复制压缩流，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3194,7 +3194,7 @@ deflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 
 从给定的字节序列初始化压缩字典，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3260,7 +3260,7 @@ deflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;Diction
 
 获取当前解压缩流中使用的解压缩字典内容及其长度，使用Promise异步返回。成功时返回结果状态和字典的长度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3331,7 +3331,7 @@ deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: numb
 
 微调deflate的内部压缩参数，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3400,7 +3400,7 @@ deflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 这个函数相当于先调用deflateEnd再调用deflateInit，但是并不会释放和重新分配内部解压缩状态，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3465,7 +3465,7 @@ deflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 重置初始化的deflate压缩流，但保留其设置的压缩参数和字典，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3530,7 +3530,7 @@ deflatePending(strm: ZStream): Promise&lt;DeflatePendingOutputInfo&gt;
 
 返回已生成但尚未在可用输出中提供的输出的字节数和位数，使用Promise异步返回。成功时返回结果状态、输出位数和输出字节数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3595,7 +3595,7 @@ deflateParams(strm: ZStream, level: CompressLevel, strategy: CompressStrategy): 
 
 动态更新压缩级别和压缩策略，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3662,7 +3662,7 @@ deflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 
 在压缩流中插入位和值，使用Promise异步返回。成功时返回结果状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3725,7 +3725,7 @@ async function demo() {
 
 ## Options
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3737,7 +3737,7 @@ async function demo() {
 
 ## zip.CompressLevel
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3750,7 +3750,7 @@ async function demo() {
 
 ## zip.MemLevel
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3762,7 +3762,7 @@ async function demo() {
 
 ## zip.CompressStrategy
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3785,7 +3785,7 @@ async function demo() {
 
 ## zip.CompressFlushMode<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3801,7 +3801,7 @@ async function demo() {
 
 ## zip.CompressMethod<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3811,7 +3811,7 @@ async function demo() {
 
 ## zip.ReturnStatus<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3823,7 +3823,7 @@ async function demo() {
 
 ## ZStream<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3840,7 +3840,7 @@ async function demo() {
 
 ## ZipOutputInfo<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3851,7 +3851,7 @@ async function demo() {
 
 ## DictionaryOutputInfo<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3862,7 +3862,7 @@ async function demo() {
 
 ## DecompressionOutputInfo<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3874,7 +3874,7 @@ async function demo() {
 
 ## DeflatePendingOutputInfo<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3886,7 +3886,7 @@ async function demo() {
 
 ## GzHeader<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3909,7 +3909,7 @@ createGZip(): Promise&lt;GZip&gt;
 
 创建GZip对象，使用Promise异步返回。成功时返回Gzip对象实例。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3935,7 +3935,7 @@ createGZipSync():  GZip
 
 创建GZip对象。成功时返回GZip对象实例。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3963,7 +3963,7 @@ gzdopen(fd: number, mode: string): Promise&lt;void&gt;
 
 将gzFile与文件描述符fd相关联，打开文件，用于进行读取并解压缩，或者压缩并写入。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4033,7 +4033,7 @@ gzbuffer(size: number):Promise&lt;number&gt;
 
 为当前库函数设置内部缓冲区尺寸。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4103,7 +4103,7 @@ gzopen(path: string, mode: string): Promise&lt;void&gt;
 
 打开位于指定路径的gzip（.gz）文件，用于进行读取并解压缩，或者压缩并写入。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4172,7 +4172,7 @@ gzeof(): Promise&lt;number&gt;
 
 检查gzip压缩文件的读取位置是否已到达文件的末尾。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4236,7 +4236,7 @@ gzdirect(): Promise&lt;number&gt;
 
 检查指定的gzip文件句柄文件是否直接访问原始未压缩数据，重新分配缓冲区。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4290,7 +4290,7 @@ gzclose(): Promise&lt;ReturnStatus&gt;
 
 清除文件的所有挂起输出，如有必要，关闭文件和释放(解)压缩状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4352,7 +4352,7 @@ gzclearerr(): Promise&lt;void&gt;
 
 清除文件的错误和文件结束标志。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4418,7 +4418,7 @@ gzerror(): Promise&lt;GzErrorOutputInfo&gt;
 
 文件上发生的最后一个错误的错误消息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4492,7 +4492,7 @@ gzgetc(): Promise&lt;number&gt;
 
 从文件中读取并解压缩一个字节。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4557,7 +4557,7 @@ gzflush(flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 将所有挂起的输出刷新到文件中。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4626,7 +4626,7 @@ gzfwrite(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 
 将大小为size，数量为nitems的数据块从buf压缩并写入文件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4702,7 +4702,7 @@ gzfread(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 
 从gzip压缩文件中解压缩并读取数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4782,7 +4782,7 @@ gzclosew(): Promise&lt;ReturnStatus&gt;
 
 与gzclose（）功能相同，仅适用于写入或追加时。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4844,7 +4844,7 @@ gzcloser(): Promise&lt;ReturnStatus&gt;
 
 与gzclose（）功能相同，仅适用于读取时。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4907,7 +4907,7 @@ gzwrite(buf: ArrayBuffer, len: number): Promise&lt;number&gt;
 
 将buf中的len长度的未压缩字节进行压缩并将其写入文件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4980,7 +4980,7 @@ gzungetc(c: number): Promise&lt;number&gt;
 
 将c推回到流中，以便在下次读取文件时将作为第一个字符读取。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5050,7 +5050,7 @@ gztell(): Promise&lt;number&gt;
 
 返回文件中下一个gzread或gzwrite的起始位置。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5112,7 +5112,7 @@ gzsetparams(level: CompressLevel, strategy: CompressStrategy): Promise&lt;Return
 
 动态更新文件的压缩级别和压缩策略。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5183,7 +5183,7 @@ gzseek(offset: number, whence: OffsetReferencePoint): Promise&lt;number&gt;
 
 将起始位置设置为相对于文件中下一个gzread或gzwrite的偏移位置。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5253,7 +5253,7 @@ gzrewind(): Promise&lt;ReturnStatus&gt;
 
 将文件指针重新定位到文件的开头，此功能仅用于读取。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5317,7 +5317,7 @@ gzread(buf: ArrayBuffer): Promise&lt;number&gt;
 
 从文件中读取最多len个未压缩字节并将其解压缩到buf中。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5395,7 +5395,7 @@ gzputs(str: string): Promise&lt;number&gt;
 
 压缩给定的以null结尾的字符串并将其写入文件，不包括终止的null字符。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5464,7 +5464,7 @@ gzputc(char: number): Promise&lt;number&gt;
 
 将转换为无符号字符的c压缩并写入文件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5533,10 +5533,9 @@ gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;numb
 
 在字符串格式的控制下，将参数转换和格式化后，压缩并写入文件，如fprintf中所示。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
-
 
 **参数：**
 
@@ -5605,7 +5604,7 @@ gzoffset(): Promise&lt;number&gt;
 
 返回文件的当前压缩（实际）读或写偏移量。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5667,7 +5666,7 @@ gzgets(buf: ArrayBuffer): Promise&lt;string&gt;
 
 从文件中读取字节并将其解压缩到buf中，直到读取len-1字符，或者直到读取换行符并将其传输到buf，或者遇到文件结束条件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5736,7 +5735,7 @@ struct Index {
 
 ## zip.GzErrorOutputInfo<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -5747,7 +5746,7 @@ struct Index {
 
 ## zip.OffsetReferencePoint<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 

@@ -97,15 +97,14 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
    ```ts
     // 在启动指定实例模式的UIAbility时，给每一个UIAbility实例配置一个独立的Key标识
     // 例如在文档使用场景中，可以用文档路径作为Key标识
-    import common from '@ohos.app.ability.common';
-    import hilog from '@ohos.hilog';
-    import Want from '@ohos.app.ability.Want';
-    import { BusinessError } from '@ohos.base';
+    import { common, Want } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     const TAG: string = '[Page_StartModel]';
     const DOMAIN_NUMBER: number = 0xFF00;
 
-    function getInstance() : string {
+    function getInstance(): string {
       return 'KEY';
     }
 
@@ -113,53 +112,54 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
     @Component
     struct Page_StartModel {
       private KEY_NEW = 'KEY';
+
       build() {
         Row() {
           Column() {
             // ...
-            Button()
-            // ...
-            .onClick(() => {
-              let context:common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-              // context为调用方UIAbility的UIAbilityContext;
-              let want: Want = {
-                deviceId: '', // deviceId为空表示本设备
-                bundleName: 'com.samples.stagemodelabilitydevelop',
-                abilityName: 'SpecifiedFirstAbility',
-                moduleName: 'entry', // moduleName非必选
-                parameters: { // 自定义信息
-                  instanceKey: this.KEY_NEW
-                }
-              };
-              context.startAbility(want).then(() => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting SpecifiedAbility.');
-              }).catch((err: BusinessError) => {
-                hilog.error(DOMAIN_NUMBER, TAG, `Failed to start SpecifiedAbility. Code is ${err.code}, message is ${err.message}`);
+            Button()// ...
+              .onClick(() => {
+                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+                // context为调用方UIAbility的UIAbilityContext;
+                let want: Want = {
+                  deviceId: '', // deviceId为空表示本设备
+                  bundleName: 'com.samples.stagemodelabilitydevelop',
+                  abilityName: 'SpecifiedFirstAbility',
+                  moduleName: 'entry', // moduleName非必选
+                  parameters: {
+                    // 自定义信息
+                    instanceKey: this.KEY_NEW
+                  }
+                };
+                context.startAbility(want).then(() => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting SpecifiedAbility.');
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to start SpecifiedAbility. Code is ${err.code}, message is ${err.message}`);
+                })
+                this.KEY_NEW = this.KEY_NEW + 'a';
               })
-              this.KEY_NEW = this.KEY_NEW + 'a';
-            })
             // ...
-            Button()
-            // ...
-            .onClick(() => {
-              let context:common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-              // context为调用方UIAbility的UIAbilityContext;
-              let want: Want = {
-                deviceId: '', // deviceId为空表示本设备
-                bundleName: 'com.samples.stagemodelabilitydevelop',
-                abilityName: 'SpecifiedSecondAbility',
-                moduleName: 'entry', // moduleName非必选
-                parameters: { // 自定义信息
-                  instanceKey: getInstance()
-                }
-              };
-              context.startAbility(want).then(() => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting SpecifiedAbility.');
-              }).catch((err: BusinessError) => {
-                hilog.error(DOMAIN_NUMBER, TAG, `Failed to start SpecifiedAbility. Code is ${err.code}, message is ${err.message}`);
+            Button()// ...
+              .onClick(() => {
+                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+                // context为调用方UIAbility的UIAbilityContext;
+                let want: Want = {
+                  deviceId: '', // deviceId为空表示本设备
+                  bundleName: 'com.samples.stagemodelabilitydevelop',
+                  abilityName: 'SpecifiedSecondAbility',
+                  moduleName: 'entry', // moduleName非必选
+                  parameters: {
+                    // 自定义信息
+                    instanceKey: getInstance()
+                  }
+                };
+                context.startAbility(want).then(() => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting SpecifiedAbility.');
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to start SpecifiedAbility. Code is ${err.code}, message is ${err.message}`);
+                })
+                this.KEY_NEW = this.KEY_NEW + 'a';
               })
-              this.KEY_NEW = this.KEY_NEW + 'a';
-            })
             // ...
           }
           .width('100%')
@@ -174,23 +174,22 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
    示例代码中，通过实现[`onAcceptWant()`](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)生命周期回调函数，解析传入的`want`参数，获取自定义参数`instanceKey`。业务逻辑会根据这个参数返回一个字符串Key，用于标识当前UIAbility实例。如果返回的Key已经对应一个已启动的UIAbility实例，系统会将该UIAbility实例拉回前台并获焦，而不会创建新的实例。如果返回的Key没有对应已启动的UIAbility实例，则系统会创建新的UIAbility实例并启动。
 
    ```ts
-   import AbilityStage from '@ohos.app.ability.AbilityStage';
-   import type Want from '@ohos.app.ability.Want';
-   
-   export default class MyAbilityStage extends AbilityStage {
-     onAcceptWant(want: Want): string {
-       // 在被调用方的AbilityStage中，针对启动模式为specified的UIAbility返回一个UIAbility实例对应的一个Key值
-       // 当前示例指的是module1 Module的SpecifiedAbility
-       if (want.abilityName === 'SpecifiedFirstAbility' || want.abilityName === 'SpecifiedSecondAbility') {
-         // 返回的字符串Key标识为自定义拼接的字符串内容
-         if (want.parameters) {
-           return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
-         }
-       }
+    import { AbilityStage, Want } from '@kit.AbilityKit';
+
+    export default class MyAbilityStage extends AbilityStage {
+      onAcceptWant(want: Want): string {
+        // 在被调用方的AbilityStage中，针对启动模式为specified的UIAbility返回一个UIAbility实例对应的一个Key值
+        // 当前示例指的是module1 Module的SpecifiedAbility
+        if (want.abilityName === 'SpecifiedFirstAbility' || want.abilityName === 'SpecifiedSecondAbility') {
+          // 返回的字符串Key标识为自定义拼接的字符串内容
+          if (want.parameters) {
+            return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
+          }
+        }
         // ...
-       return 'MyAbilityStage';
-     }
-   }
+        return 'MyAbilityStage';
+      }
+    }
    ```
 
    > **说明：**

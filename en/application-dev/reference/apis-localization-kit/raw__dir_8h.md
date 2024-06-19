@@ -7,7 +7,7 @@ Provides APIs for operating the **rawfile** directory, including traversing and 
 
 **Since**: 8
 
-**Related module**: [Rawfile] (rawfile.md)
+**Related module**: [Rawfile](rawfile.md)
 
 
 ## Summary

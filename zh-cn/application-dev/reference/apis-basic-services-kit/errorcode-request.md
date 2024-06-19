@@ -62,7 +62,7 @@ Task service ability error.
 
 **错误信息**
 
-other error.
+Other error.
 
 **错误描述**
 
@@ -81,7 +81,7 @@ other error.
 
 **错误信息**
 
-application task queue full error.
+The application task queue is full.
 
 **错误描述**
 
@@ -103,7 +103,7 @@ application task queue full error.
 
 **错误信息**
 
-task mode error.
+Task mode error.
 
 **错误描述**
 
@@ -123,7 +123,7 @@ task mode error.
 
 **错误信息**
 
-task not found error.
+Task not found.
 
 **错误描述**
 
@@ -145,7 +145,7 @@ task not found error.
 
 **错误信息**
 
-task state error.
+Task state error.
 
 **错误描述**
 

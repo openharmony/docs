@@ -15,7 +15,7 @@ For details about the precautions for using **Worker**, see [Precautions for Wor
 ## Modules to Import
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 ```
 
 
@@ -25,7 +25,7 @@ import worker from '@ohos.worker';
 
 | Name                             | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.                        |
+| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | Yes  | Yes  | Object of the worker thread used to communicate with the host thread. **Atomic service API**: This API can be used in atomic services since API version 11.                        |
 | parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.<br>This attribute is supported since API version 7 and deprecated since API version 9.<br>You are advised to use **workerPort<sup>9+</sup>** instead.|
 
 
@@ -37,8 +37,8 @@ Provides options that can be set for the **Worker** instance to create.
 
 | Name| Type| Read-only| Mandatory| Description|
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | Yes  | No| Mode in which the **Worker** instance executes the script. The **module** type is not supported yet. The default value is **classic**.|
-| name | string   | Yes  | No| Name of the worker thread. The default value is **undefined**.|
+| type | "classic" \| "module" | Yes  | No| Mode in which the **Worker** instance executes the script. The **module** type is not supported yet. The default value is **classic**. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| name | string   | Yes  | No| Name of the worker thread. The default value is **undefined**. **Atomic service API**: This API can be used in atomic services since API version 11.|
 | shared | boolean | Yes  | No| Whether sharing of the **Worker** instance is enabled. Currently, sharing is not supported.|
 
 ## ThreadWorker<sup>9+</sup>
@@ -51,6 +51,8 @@ constructor(scriptURL: string, options?: WorkerOptions)
 
 A constructor used to create a **ThreadWorker** instance.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -62,10 +64,11 @@ A constructor used to create a **ThreadWorker** instance.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200003 | Worker initialization failure. |
 | 10200007 | The worker file patch is invalid path. |
 
@@ -74,7 +77,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 The following code snippet shows how to load the worker thread file of the ability in the stage model. For details about how to use the library to load the worker thread file, see [Precautions for File URLs](../../arkts-utils/worker-introduction.md#precautions-for-file-urls).
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // Two scenarios are involved.
 
@@ -90,9 +93,11 @@ const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers
 
 postMessage(message: Object, transfer: ArrayBuffer[]): void
 
-Used by the host thread to send a message to the worker thread by transferring object ownership.
+Sends a message from the host thread to the worker thread by transferring object ownership.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
@@ -103,10 +108,11 @@ Used by the host thread to send a message to the worker thread by transferring o
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
@@ -123,7 +129,9 @@ workerInstance.postMessage(buffer, [buffer]);
 
 postMessage(message: Object, options?: PostMessageOptions): void
 
-Used by the host thread to send a message to the worker thread by transferring object ownership or copying data.
+Sends a message from the host thread to the worker thread by transferring object ownership or copying data.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -136,10 +144,11 @@ Used by the host thread to send a message to the worker thread by transferring o
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
@@ -153,6 +162,74 @@ workerInstance.postMessage("hello world");
 let buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
+
+
+### postMessageWithSharedSendable<sup>12+</sup>
+
+postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
+
+Sends a message from the host thread to the worker thread. In the message, a sendable object is passed by reference, and a non-sendable object is passed by serialization.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name | Type                                     | Mandatory| Description                                                        |
+| --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| message   | Object	     | Yes  | Data to be sent to the worker thread. The data object must be sequenceable or sendable. For details about the supported sequenceable types, see [Sequenceable Data Types](#sequenceable-data-types). For details about the supported sendable types, see [Sendable Data Types](../../arkts-utils/arkts-sendable.md#sendable-data).|
+| transfer  | ArrayBuffer[] | No  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the worker thread. After the transfer, the objects are available only in the worker thread. The array cannot be null. The default value is an empty array.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                               |
+| -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | An exception occurred during serialization. |
+
+**Example**
+
+```ts
+// index.ets
+// Create a SendableObject instance and pass it to the worker thread through the host thread.
+
+import { worker } from '@kit.ArkTS';
+import { SendableObject } from './sendable'
+
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+let object: SendableObject = new SendableObject();
+workerInstance.postMessageWithSharedSendable(object);
+```
+
+```ts
+// sendable.ets
+// Define SendableObject.
+
+@Sendable
+export class SendableObject {
+  a:number = 45;
+}
+```
+
+```ts
+// The worker file path is entry/src/main/ets/workers/Worker.ets.
+// Worker.ets
+// Receive and access the data passed from the host thread to the worker thread.
+
+import { SendableObject } from '../pages/sendable'
+import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents) => {
+  let obj: SendableObject = e.data;
+  console.info("sendable obj is: " + obj.a);
+}
+```
+
 
 ### on<sup>9+</sup>
 
@@ -171,10 +248,11 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -205,10 +283,11 @@ Adds an event listener for the worker thread and removes the event listener afte
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -239,10 +318,11 @@ Removes an event listener for the worker thread. This API provides the same func
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -271,10 +351,11 @@ Registers an object with the **ThreadWorker** instance of the host thread. In th
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 
 **Example**
@@ -311,11 +392,12 @@ Unregisters an object with the **ThreadWorker** instance of the host thread. Thi
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
-| 10200004 | Worker instance is not running.           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200004 | Worker instance is not running. |
 
 **Example**
 ```ts
@@ -344,6 +426,8 @@ terminate(): void
 
 Terminates the worker thread to stop it from receiving messages.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
@@ -368,14 +452,17 @@ onexit?: (code: number) =&gt; void
 
 Called when the worker thread exits. The event handler is executed in the host thread. In the callback function, the **code** value is of the number type, where the value **1** indicates abnormal exit and **0** indicates normal exit.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -402,21 +489,24 @@ onerror?: (err: ErrorEvent) =&gt; void
 
 Called when an exception occurs during worker execution. The event handler is executed in the host thread. In the callback function, the **err** type is [ErrorEvent](#errorevent), indicating the received abnormal data.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
 **Example**
 
 ```ts
-import worker, { ErrorEvent } from '@ohos.worker';
+import { worker, ErrorEvent } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.onerror = (err: ErrorEvent) => {
@@ -431,21 +521,24 @@ onmessage?: (event: MessageEvents) =&gt; void
 
 Called when the host thread receives a message sent by the worker thread through **workerPort.postMessage**. The event handler is executed in the host thread. In the callback function, the **event** type is [MessageEvents](#messageevents9), indicating the received message data.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
 **Example**
 
 ```ts
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -462,21 +555,24 @@ onmessageerror?: (event: MessageEvents) =&gt; void
 
 Called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread. In the callback function, the **event** type is [MessageEvents](#messageevents9), indicating the received message data.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
 **Example**
 
 ```ts
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.onmessageerror = (err: MessageEvents) => {
@@ -501,10 +597,11 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -535,10 +632,11 @@ Removes an event listener for the worker thread. This API provides the same func
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                     |
 | -------- | ------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running. |
 
 **Example**
@@ -574,10 +672,11 @@ Dispatches the event defined for the worker thread.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                     |
 | -------- | ------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running. |
 
 **Example**
@@ -591,7 +690,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is n
 The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
 
 ```ts
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
@@ -680,10 +779,11 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -718,6 +818,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                     |
 | -------- | ------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running. |
 
 **Example**
@@ -753,10 +854,11 @@ Dispatches the event defined for the worker thread.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                     |
 | -------- | ------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running. |
 
 **Example**
@@ -770,7 +872,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is n
 The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
 
 ```ts
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
@@ -847,7 +949,9 @@ Implements communication between the worker thread and the host thread. The **po
 
 postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
 
-Used by the worker thread to send a message to the host thread by transferring object ownership.
+Sends a message from the worker thread to the host thread by transferring object ownership.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -860,10 +964,11 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
@@ -871,7 +976,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 ```ts
 // Main thread
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
@@ -882,7 +987,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 ```ts
 // worker.ets
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
@@ -895,7 +1000,9 @@ workerPort.onmessage = (e: MessageEvents): void => {
 
 postMessage(messageObject: Object, options?: PostMessageOptions): void
 
-Used by the worker thread to send a message to the host thread by transferring object ownership or copying data.
+Sends a message from the worker thread to the host thread by transferring object ownership or copying data.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -908,10 +1015,11 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
@@ -919,7 +1027,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 ```ts
 // Main thread
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
@@ -930,13 +1038,84 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 ```ts
 // worker.ets
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.postMessage("receive data from main thread");
 }
 ```
+
+
+### postMessageWithSharedSendable<sup>12+</sup>
+
+postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
+
+Sends a message from the worker thread to the host thread. In the message, a sendable object is passed by reference, and a non-sendable object is passed by serialization.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name | Type                                     | Mandatory| Description                                                        |
+| --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| message   | Object	     | Yes  | Data to be sent to the host thread. The data object must be sequenceable or sendable. For details about the supported sequenceable types, see [Sequenceable Data Types](#sequenceable-data-types). For details about the supported sendable types, see [Sendable Data Types](../../arkts-utils/arkts-sendable.md#sendable-data).|
+| transfer  | ArrayBuffer[] | No  | **ArrayBuffer** instance holding an array of objects for which the ownership is transferred to the host thread. After the transfer, the objects are available only in the host thread. The array cannot be null. The default value is an empty array.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                               |
+| -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | An exception occurred during serialization. |
+
+**Example**
+
+```ts
+// The worker file path is entry/src/main/ets/workers/Worker.ets.
+// Worker.ets
+// Create a SendableObject instance and pass it to the host thread through the worker thread.
+
+import { SendableObject } from '../pages/sendable'
+import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents) => {
+  let object: SendableObject = new SendableObject();
+  workerPort.postMessageWithSharedSendable(object);
+}
+```
+
+```ts
+// sendable.ets
+// Define SendableObject.
+
+@Sendable
+export class SendableObject {
+  a:number = 45;
+}
+```
+
+```ts
+// Index.ets
+// Receive the data passed from the worker thread to the host thread and access its properties.
+
+import { worker, MessageEvents } from '@kit.ArkTS';
+import { SendableObject } from './sendable'
+
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+workerInstance.postMessage(1);
+workerInstance.onmessage = (e: MessageEvents) => {
+  let obj: SendableObject = e.data;
+  console.info("sendable index obj is: " + obj.a);
+}
+```
+
 
 ### callGlobalCallObjectMethod<sup>11+</sup>
 
@@ -963,10 +1142,11 @@ Calls a method of an object registered with the host thread. This API is called 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 | 10200019 | The globalCallObject is not registered. |
@@ -976,7 +1156,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 ```ts
 // worker.ets
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
@@ -1005,6 +1185,8 @@ close(): void
 
 Terminates the worker thread to stop it from receiving messages.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
@@ -1019,14 +1201,14 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 ```
 
 ```ts
 // worker.ets
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
@@ -1041,14 +1223,17 @@ onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 Called when the worker thread receives a message sent by the host thread through **postMessage**. The event handler is executed in the worker thread. In the callback function, **this** indicates the caller's [ThreadWorkerGlobalScope](#threadworkerglobalscope9), and the **ev** type is [MessageEvents](#messageevents9), indicating the received message data.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -1056,7 +1241,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
@@ -1064,7 +1249,7 @@ workerInstance.postMessage("hello world");
 
 ```ts
 // worker.ets
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
@@ -1079,14 +1264,17 @@ onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 Called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread. In the callback function, **this** indicates the caller's [ThreadWorkerGlobalScope](#threadworkerglobalscope9), and the **ev** type is [MessageEvents](#messageevents9), indicating the received message data.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -1094,14 +1282,14 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 ```
 
 ```ts
 // worker.ets
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessageerror = (err: MessageEvents) => {
@@ -1132,10 +1320,11 @@ Implements event listening.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                  |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -1152,6 +1341,8 @@ workerInstance.addEventListener("alert", (e)=>{
 ## GlobalScope<sup>9+</sup>
 
 Implements the running environment of the worker thread. The **GlobalScope** class inherits from [WorkerEventTarget](#workereventtarget9).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 ### Attributes
 
@@ -1175,14 +1366,14 @@ Called when an exception occurs during worker execution. The event handler is ex
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets")
 ```
 
 ```ts
 // worker.ets
-import worker, { ErrorEvent } from '@ohos.worker';
+import { worker, ErrorEvent } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort
 workerPort.onerror = (err: ErrorEvent) => {
@@ -1193,6 +1384,8 @@ workerPort.onerror = (err: ErrorEvent) => {
 ## MessageEvents<sup>9+</sup>
 
 Holds the data transferred between worker threads.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1222,10 +1415,11 @@ A constructor used to create a **RestrictedWorker** instance. Before using the f
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200003 | Worker initialization failure. |
 | 10200007 | The worker file patch is invalid path. |
 
@@ -1236,7 +1430,7 @@ The following code snippet shows how to load the worker thread file of the abili
 Only the **Worker** module can be imported to the restricted worker thread file. Other APIs cannot be imported. The following is sample code:
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // Two scenarios are involved.
 
@@ -1249,9 +1443,9 @@ const workerStageModel02 = new worker.RestrictedWorker('phone/ets/ThreadFile/wor
 
 ```ts
 // Restricted worker thread file
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
-// import process from '@ohos.process'; // Only worker APIs can be imported to the restricted worker thread file.
+//import { process } from '@kit.ArkTS'; // Only worker APIs can be imported to the restricted worker thread file.
 
 const workerPort = worker.workerPort;
 
@@ -1293,7 +1487,7 @@ The following code snippet shows how to load the worker thread file of the abili
 
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // Two scenarios are involved.
 
@@ -1308,7 +1502,7 @@ const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers
 
 postMessage(message: Object, transfer: ArrayBuffer[]): void
 
-Used by the host thread to send a message to the worker thread by transferring object ownership.
+Sends a message from the host thread to the worker thread by transferring object ownership.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.postMessage<sup>9+</sup>](#postmessage9) instead.
@@ -1335,7 +1529,7 @@ workerInstance.postMessage(buffer, [buffer]);
 
 postMessage(message: Object, options?: PostMessageOptions): void
 
-Used by the host thread to send a message to the worker thread by transferring object ownership or copying data.
+Sends a message from the host thread to the worker thread by transferring object ownership or copying data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.postMessage<sup>9+</sup>](#postmessage9-1) instead.
@@ -1505,7 +1699,7 @@ Called when an exception occurs during worker execution. The event handler is ex
 **Example**
 
 ```ts
-import worker, { ErrorEvent } from '@ohos.worker';
+import { worker, ErrorEvent } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onerror = (err: ErrorEvent) => {
@@ -1528,7 +1722,7 @@ Called when the host thread receives a message sent by the worker thread through
 **Example**
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onmessage = (e): void => {
@@ -1551,7 +1745,7 @@ Called when the worker thread receives a message that cannot be serialized. The 
 **Example**
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onmessageerror = (err) => {
@@ -1726,7 +1920,7 @@ Implements communication between the worker thread and the host thread. The **po
 
 postMessage(messageObject: Object, transfer: Transferable[]): void
 
-Used by the worker thread to send a message to the host thread by transferring object ownership.
+Sends a message from the worker thread to the host thread by transferring object ownership.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2).
@@ -1744,7 +1938,7 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 postMessage(messageObject: Object, transfer: ArrayBuffer[]): void
 
-Used by the worker thread to send a message to the host thread by transferring object ownership.
+Sends a message from the worker thread to the host thread by transferring object ownership.
 
 > **NOTE**
 >
@@ -1763,7 +1957,7 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
@@ -1774,7 +1968,7 @@ workerInstance.onmessage = (e): void => {
 ```
 ```ts
 // worker.ets
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e): void => {
@@ -1788,7 +1982,7 @@ workerPort.onmessage = (e): void => {
 
 postMessage(messageObject: Object, options?: PostMessageOptions): void
 
-Used by the worker thread to send a message to the host thread by transferring object ownership or copying data.
+Sends a message from the worker thread to the host thread by transferring object ownership or copying data.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-3).
@@ -1806,7 +2000,7 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
@@ -1817,7 +2011,7 @@ workerInstance.onmessage = (e): void => {
 ```
 ```ts
 // worker.ets
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e): void => {
@@ -1841,13 +2035,13 @@ Terminates the worker thread to stop it from receiving messages.
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 ```
 ```ts
 // worker.ets
-import workerfrom '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e): void => {
@@ -1871,14 +2065,14 @@ Called when the worker thread receives a message sent by the host thread through
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
 ```
 ```ts
 // worker.ets
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e): void => {
@@ -1902,13 +2096,13 @@ Called when the worker thread receives a message that cannot be deserialized. Th
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 ```
 ```ts
 // worker.ets
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
 parentPort.onmessageerror = (e) => {
@@ -1920,6 +2114,8 @@ parentPort.onmessageerror = (e) => {
 ## PostMessageOptions
 
 Defines the object for which the ownership is to be transferred during data transfer. The object must be an **ArrayBuffer** instance. After the ownership is transferred, the object becomes unavailable in the sender and can be used only in the receiver.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1977,6 +2173,8 @@ workerInstance.addEventListener("alert", (e)=>{
 
 Provides detailed information about the exception that occurs during worker execution. The **ErrorEvent** class inherits from [Event](#event).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 | Name    | Type  | Readable| Writable| Description                |
@@ -2031,13 +2229,13 @@ Called when an exception occurs during worker execution. The event handler is ex
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets")
 ```
 ```ts
 // worker.ets
-import worker, { ErrorEvent } from '@ohos.worker';
+import { worker, ErrorEvent } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort
 parentPort.onerror = (err: ErrorEvent) => {
@@ -2058,7 +2256,7 @@ Exception: When an object created through a custom class is passed, no serializa
 
 ```ts
 // Main thread
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("workers/worker.ets");
 workerInstance.postMessage("message from main thread to worker");
@@ -2069,7 +2267,7 @@ workerInstance.onmessage = (d: MessageEvents): void => {
 ```
 ```ts
 // worker.ets
-import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 class MyModel {
@@ -2112,7 +2310,7 @@ Each actor concurrently processes tasks of the main thread. For each actor, ther
 
 ```ts
 // Main thread (The following assumes that the workers directory and pages directory are at the same level.)
-import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 // Create a Worker instance in the main thread.
 const workerInstance = new worker.ThreadWorker("workers/worker.ets");
@@ -2141,7 +2339,7 @@ workerInstance.onerror = (err: ErrorEvent) => {
 ```
 ```ts
 // worker.ets
-import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 // Create an object in the worker thread for communicating with the main thread.
 const workerPort = worker.workerPort
@@ -2174,7 +2372,7 @@ Configuration of the **build-profile.json5** file:
 ### Stage Model
 ```ts
 // Main thread (The following assumes that the workers directory and pages directory are at different levels.)
-import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 // Create a Worker instance in the main thread.
 const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ets");
@@ -2202,7 +2400,7 @@ workerInstance.onerror = (err: ErrorEvent) => {
 ```
 ```ts
 // worker.ets
-import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 // Create an object in the worker thread for communicating with the main thread.
 const workerPort = worker.workerPort

@@ -1,4 +1,4 @@
-# ArkUI API参考
+# ArkUI（方舟UI框架）
 
 - ArkTS API
   - UI界面
@@ -119,6 +119,7 @@
         - [动态属性设置](arkui-ts/ts-universal-attributes-attribute-modifier.md)
         - [动态手势设置](arkui-ts/ts-universal-attributes-gesture-modifier.md)
         - [外描边设置](arkui-ts/ts-universal-attributes-outline.md)
+        - [视效设置](arkui-ts/ts-universal-attributes-filter-effect.md)
         - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
         - [自定义内容](arkui-ts/ts-universal-attributes-content-modifier.md)
         - [自定义属性设置](arkui-ts/ts-universal-attributes-custom-property.md)
@@ -288,7 +289,7 @@
       - [@ohos.arkui.advanced.ExceptionPrompt (异常提示)](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
       - [@ohos.arkui.advanced.Filter (多条件筛选)](arkui-ts/ohos-arkui-advanced-Filter.md)
       - [@ohos.arkui.advanced.FormMenu (应用内添加卡片到桌面菜单)](arkui-ts/ohos-arkui-advanced-formmenu.md)
-      - [@ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动元服务组件)](arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
+      - [@ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动原子化服务组件)](arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
       - [@ohos.arkui.advanced.GridObjectSortComponent (网格对象的编辑排序)](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
       - [@ohos.arkui.advanced.ProgressButton (下载按钮)](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
       - [@ohos.arkui.advanced.Popup (气泡组件)](arkui-ts/ohos-arkui-advanced-Popup.md)
@@ -301,6 +302,7 @@
       - [@ohos.arkui.advanced.TabTitleBar (页签型标题栏)](arkui-ts/ohos-arkui-advanced-TabTitleBar.md)
       - [@ohos.arkui.advanced.ToolBar (工具栏)](arkui-ts/ohos-arkui-advanced-ToolBar.md)
       - [@ohos.arkui.advanced.TreeView (树视图)](arkui-ts/ohos-arkui-advanced-TreeView.md)
+      - [@ohos.arkui.advanced.FoldSplitContainer (分栏布局)](arkui-ts/ohos-arkui-advanced-FoldSplitContainer.md)
     - 安全控件
       - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
       - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
@@ -334,8 +336,8 @@
       - [自定义组件内置方法](arkui-ts/ts-custom-component-api.md)
     - 类型定义
       - [基础类型定义](arkui-ts/ts-types.md)
-      - [图像类型定义](arkui-ts/ts-image-common.md)
       - [文本类型定义](arkui-ts/ts-text-common.md)
+      - [图像类型定义](arkui-ts/ts-image-common.md)
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
     - [枚举说明](arkui-ts/ts-appendix-enums.md)

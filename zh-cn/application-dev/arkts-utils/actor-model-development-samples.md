@@ -83,7 +83,7 @@ Main() {
 Actor模型不同角色之间并不共享内存，生产者线程和UI线程都有自己独占的内存。生产者生产出结果后通过序列化通信将结果发送给UI线程，UI线程消费结果后再发送新的生产任务给生产者线程。
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 // 跨线程并发任务
 @Concurrent
 async function produce(): Promise<number>{

@@ -26,7 +26,7 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 跳转到应用内的指定页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -92,7 +92,7 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 跳转到应用内的指定页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -152,7 +152,7 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 跳转到应用内的指定页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -219,7 +219,7 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 跳转到应用内的指定页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -281,7 +281,7 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。不支持设置页面转场动效，如需设置，推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
@@ -336,7 +336,7 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
@@ -386,7 +386,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
@@ -443,7 +443,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
@@ -495,7 +495,7 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 跳转到指定的命名路由页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -563,7 +563,7 @@ pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;)
 
 跳转到指定的命名路由页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -623,7 +623,7 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 
 跳转到指定的命名路由页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -690,7 +690,7 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 
 跳转到指定的命名路由页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -752,7 +752,7 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -807,7 +807,7 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -857,7 +857,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -914,7 +914,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -966,7 +966,7 @@ back(options?: RouterOptions ): void
 
 返回上一页面或指定的页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1012,7 +1012,7 @@ clear(): void
 
 清空页面栈中的所有历史页面，仅保留当前页面作为栈顶页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1028,7 +1028,7 @@ getLength(): string
 
 获取当前在页面栈内的页面数量。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1051,7 +1051,7 @@ getState(): RouterState
 
 获取当前页面的状态信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1088,8 +1088,7 @@ getStateByIndex(index: number): RouterState | undefined
 
 | 类型                          | 说明      |
 | --------------------------- | ------- |
-| [RouterState](#routerstate) | 页面状态信息。 |
-| undefined   | 索引不存在时返回undefined。|
+| [RouterState](#routerstate) \| undefined | 返回页面状态信息。索引不存在时返回undefined。 |
 
 **示例：** 
 
@@ -1142,10 +1141,10 @@ for (let i: number = 0; i < options.length; i++) {
 
 | 名称  | 类型   | 必填 | 说明                                                         |
 | ----- | ------ | ---- | ------------------------------------------------------------ |
-| index | number | 是   | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| name  | string | 否   | 表示当前页面的名称，即对应文件名。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| path  | string | 是   | 表示当前页面的路径。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| params<sup>12+</sup>  | Object |  否  | 表示当前页面携带的参数。                                         |
+| index | number | 是   | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| name  | string | 是  | 表示当前页面的名称，即对应文件名。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| path  | string | 是   | 表示当前页面的路径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| params<sup>12+</sup>  | Object |  是  | 表示当前页面携带的参数。                                         |
 
 ## router.showAlertBeforeBackPage<sup>9+</sup>
 
@@ -1153,7 +1152,7 @@ showAlertBeforeBackPage(options: EnableAlertOptions): void
 
 开启页面返回询问对话框。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1189,7 +1188,7 @@ try {
 
 页面返回询问对话框选项。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
 
@@ -1203,7 +1202,7 @@ hideAlertBeforeBackPage(): void
 
 禁用页面返回询问对话框。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1219,7 +1218,7 @@ getParams(): Object
 
 获取发起跳转的页面往当前页传入的参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1239,14 +1238,14 @@ router.getParams();
 
 路由跳转选项。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite。
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | url    | string | 是   | 表示目标页面的url，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果url的值是"/"，则跳转到首页。 |
-| params | object | 否   | 表示路由跳转时要同时传递到目标页面的数据，切换到其他页面时，当前接收的数据失效。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。<br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。 |
+| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据，切换到其他页面时，当前接收的数据失效。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。<br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。 |
 
 
   > **说明：**
@@ -1256,7 +1255,7 @@ router.getParams();
 
 路由跳转模式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
@@ -1269,14 +1268,14 @@ router.getParams();
 
 命名路由跳转选项。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| name   | string | 是   | 表示目标命名路由页面的name。 |
-| params | object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
+| name   | string | 是   | 表示目标命名路由页面的name。                                 |
+| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
 
 ## 完整示例
 

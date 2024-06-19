@@ -45,7 +45,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 
 ### 数据提供方
 
-1. 导入`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
+1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
 
    ```ts
    import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
@@ -63,9 +63,9 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
      intention: unifiedDataChannel.Intention.DATA_HUB
    }
    try {
-     unifiedDataChannel.insertData(options, unifiedData, (err, data) => {
+     unifiedDataChannel.insertData(options, unifiedData, (err, key) => {
        if (err === undefined) {
-         console.info(`Succeeded in inserting data. key = ${data}`);
+         console.info(`Succeeded in inserting data. key = ${key}`);
        } else {
          console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
        }
@@ -84,6 +84,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    
    // 指定要更新的统一数据对象的URI
    let options: unifiedDataChannel.Options = {
+     // 此处的key值仅为示例，不可直接使用，其值与insertData接口回调函数中key保持一致
      key: 'udmf://DataHub/com.ohos.test/0123456789'
    };
    
@@ -133,7 +134,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    
 ### 数据访问方
 
-1. 导入`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
+1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
 
    ```ts
    import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';

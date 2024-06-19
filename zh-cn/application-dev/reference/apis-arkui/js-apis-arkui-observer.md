@@ -17,7 +17,7 @@ import observer from '@ohos.arkui.observer'
 
 NavDestination组件状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -37,7 +37,7 @@ NavDestination组件状态。
 
 滚动事件的类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -50,7 +50,7 @@ NavDestination组件状态。
 
 routerPage生命周期触发时对应的状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,7 +66,7 @@ routerPage生命周期触发时对应的状态。
 
 NavDestination组件信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -83,7 +83,7 @@ NavDestination组件信息。
 
 Navigation组件信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -96,7 +96,7 @@ Navigation组件信息。
 
 ScrollEvent滚动信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -111,7 +111,7 @@ ScrollEvent滚动信息。
 
 Observer选项。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -123,16 +123,16 @@ Observer选项。
 
 RouterPageInfo包含的信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                 | 类型                                                         | 必填 | 说明                                         |
-| -------------------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) / [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发生命周期的routerPage页面对应的上下文信息。 |
-| index                | number                                                       | 是   | 触发生命周期的routerPage在栈中的位置。       |
-| name                 | string                                                       | 是   | 触发生命周期的routerPage页面的名称。         |
-| path                 | string                                                       | 是   | 触发生命周期的routerPage页面的路径。         |
+| 名称                 | 类型                                                         | 必填 | 说明                                           |
+| -------------------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
+| context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发生命周期的routerPage页面对应的上下文信息。 |
+| index                | number                                                       | 是   | 触发生命周期的routerPage在栈中的位置。         |
+| name                 | string                                                       | 是   | 触发生命周期的routerPage页面的名称。           |
+| path                 | string                                                       | 是   | 触发生命周期的routerPage页面的路径。           |
 | state                | [RouterPageState](#routerpagestate)                          | 是   | 触发生命周期的routerPage页面的状态。           |
 | pageId<sup>12+</sup> | string                                                       | 是   | 触发生命周期的routerPage页面的唯一标识。       |
 
@@ -140,7 +140,7 @@ RouterPageInfo包含的信息。
 
 屏幕像素密度变化回调包含的信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -153,22 +153,22 @@ RouterPageInfo包含的信息。
 
 Navigation组件页面切换的信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                                               | 必填 | 说明                                          |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | context      | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发页面切换的Navigation对应的上下文信息。 |
-| from         | [NavDestinationInfo](#navdestinationinfo) \| "navBar" | 是   | 页面切换的源页面。         |
-| to           | [NavDestinationInfo](#navdestinationinfo) \| "navBar" | 是   | 页面切换的目的页面。         |
+| from         | [NavDestinationInfo](#navdestinationinfo) \| [NavBar](./arkui-ts/ts-basic-components-navigation.md#navbar12) | 是   | 页面切换的源页面。         |
+| to           | [NavDestinationInfo](#navdestinationinfo) \| [NavBar](./arkui-ts/ts-basic-components-navigation.md#navbar12) | 是   | 页面切换的目的页面。         |
 | operation    | [NavigationOperation](./arkui-ts/ts-basic-components-navigation.md#navigationoperation11枚举说明) | 是   | 页面切换操作类型。         |
 
 ## NavDestinationSwitchObserverOptions<sup>12+</sup>
 
 Navigation组件页面切换事件的监听选项。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -182,7 +182,7 @@ on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
 
 监听NavDestination组件的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -207,7 +207,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): vo
 
 取消监听NavDestination组件的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -230,7 +230,7 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 
 监听NavDestination组件的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -256,7 +256,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 取消监听NavDestination组件的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -280,7 +280,7 @@ on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
 
 监听滚动事件的开始和结束。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -301,7 +301,7 @@ off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
 
 取消监听滚动事件的开始和结束。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -342,7 +342,7 @@ off(type: 'scrollEvent', options: ObserverOptions, callback?: Callback\<ScrollEv
 
 取消监听滚动事件的开始和结束。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -425,7 +425,7 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 
 监听router中page页面的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -454,7 +454,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 注册监听，范围是abilityContext内的page
     observer.on('routerPageUpdate', this.context, (info: observer.RouterPageInfo) => {
-      console.log('[observer][abilityContext] got info: ' + JSON.stringify(info))
+      console.info('[observer][abilityContext] got info: ' + JSON.stringify(info))
     })
   }
 
@@ -466,7 +466,7 @@ export default class EntryAbility extends UIAbility {
         this.uiContext = windowInfo.getUIContext();
         // 注册监听，范围是uiContext内的page
         observer.on('routerPageUpdate', this.uiContext, (info: observer.RouterPageInfo)=>{
-          console.log('[observer][uiContext] got info: ' + JSON.stringify(info))
+          console.info('[observer][uiContext] got info: ' + JSON.stringify(info))
         })
       })
     });
@@ -482,7 +482,7 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 
 取消监听router中page页面的状态变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -529,7 +529,7 @@ on(type: 'densityUpdate', context: UIContext, callback: Callback\<DensityInfo\>)
 
 监听屏幕像素密度变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -578,7 +578,7 @@ off(type: 'densityUpdate', context: UIContext, callback?: Callback\<DensityInfo\
 
 取消监听屏幕像素密度的变化。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -630,7 +630,7 @@ on(type: 'willDraw', context: UIContext, callback: Callback\<void\>): void
 
 监听每一帧绘制指令下发情况。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -651,7 +651,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   willDrawCallback = () => {
-    console.log("willDraw指令下发");
+    console.info("willDraw指令下发");
   }
   build() {
     Column() {
@@ -670,7 +670,7 @@ off(type: 'willDraw', context: UIContext, callback?: Callback\<void\>): void
 
 取消监听每一帧绘制指令下发情况。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -689,7 +689,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   willDrawCallback = () => {
-    console.log("willDraw指令下发")
+    console.info("willDraw指令下发")
   }
 
   build() {
@@ -713,7 +713,7 @@ on(type: 'didLayout', context: UIContext, callback: Callback\<void\>): void
 
 监听每一帧布局完成情况
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -734,7 +734,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   didLayoutCallback = () => {
-    console.log("Layout布局完成");
+    console.info("Layout布局完成");
   }
   build() {
     Column() {
@@ -753,7 +753,7 @@ off(type: 'didLayout', context: UIContext, callback?: Callback\<void\>): void
 
 取消监听每一帧布局完成情况。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -772,7 +772,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   didLayoutCallback = () => {
-    console.log("Layout布局完成")
+    console.info("Layout布局完成")
   }
 
   build() {
@@ -796,7 +796,7 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback
 
 监听Navigation的页面切换事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -822,7 +822,7 @@ import window from '@ohos.window';
 import observer from '@ohos.arkui.observer';
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 export default class EntryAbility extends UIAbility {
@@ -882,7 +882,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 @Entry
@@ -925,7 +925,7 @@ off(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callbac
 
 取消监听Navigation的页面切换事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -947,7 +947,7 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observer
 
 监听Navigation的页面切换事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -974,7 +974,7 @@ import window from '@ohos.window';
 import observer from '@ohos.arkui.observer';
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 export default class EntryAbility extends UIAbility {
@@ -1034,7 +1034,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 @Entry
@@ -1078,7 +1078,7 @@ off(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observe
 
 取消监听Navigation的页面切换事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

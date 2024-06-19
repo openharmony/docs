@@ -14,7 +14,9 @@
       - [Data Synchronization Between UIAbility and UI Page](uiability-data-sync-with-ui.md)
       - [Intra-Device Interaction Between UIAbility Components](uiability-intra-device-interaction.md)
     - [ExtensionAbility Component](extensionability-overview.md)
+      <!--Del-->
       - [ServiceExtensionAbility (for System Applications Only)](serviceextensionability.md)
+      <!--DelEnd-->
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
@@ -26,18 +28,25 @@
       - [Using Want to Share Data Between Applications](data-share-via-want.md)
     - [Component Startup Rules (Stage Model)](component-startup-rules.md)
     - [AppStartup Development](app-startup.md)
-    - Inter-Device Application Component Interaction (Continuation)
-      - [Continuation Overview](inter-device-interaction-hop-overview.md)
+    <!--Del-->
+    - Inter-Device Application Component Interaction (Hopping)
+      - [Hopping Overview](inter-device-interaction-hop-overview.md)
       - [Cross-Device Migration](hop-cross-device-migration.md)
       - [Multi-device Collaboration](hop-multi-device-collaboration.md)
+    <!--DelEnd-->
     - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
+  - Inter-Application Redirection
+    - Common Intent Redirection
+      - [Using startAbilityByType to Start Vertical Applications](start-intent-panel.md)
   - [Process Model (Stage Model)](process-model-stage.md)
   - [Thread Model (Stage Model)](thread-model-stage.md)
+  <!--Del-->
   - Mission Management (for System Applications Only)
     - [Mission Management Scenarios](mission-management-overview.md)
     - [Mission and Launch Type](mission-management-launch-type.md)
     - [Page Stack and Mission List](page-mission-stack.md)
     - [Setting the Icon and Name of a Mission Snapshot](mission-set-icon-name-for-task-snapshot.md)
+  <!--DelEnd-->
   - [Application Configuration File](config-file-stage.md)
 - FA Model Development
   - [FA Model Development Overview](fa-model-development-overview.md)
@@ -76,8 +85,11 @@
     - [Component Startup Rules (FA Model)](component-startup-rules-fa.md)
   - [Process Model (Stage Model)](process-model-fa.md)
   - [Thread Model (Stage Model)](thread-model-fa.md)
+  <!--Del-->
   - [Mission Management (for System Applications Only)](mission-management-fa.md)
+  <!--DelEnd-->
   - [Application Configuration File](config-file-fa.md)
+<!--Del-->
 - Development of Component Interaction Between the FA Model and Stage Model
   - [Component Interaction Between the FA Model and Stage Model](fa-stage-interaction-overview.md)
   - [Starting a UIAbility from the FA Model](start-uiability-from-fa.md)
@@ -111,4 +123,5 @@
     - [resourceManager Switching](resourcemanager-switch.md)
     - [window Switching](window-switch.md)
     - [Storage Switching](storage-switch.md)
+<!--DelEnd-->
 - [Ability Access Control](../security/AccessToken/Readme-EN.md)
