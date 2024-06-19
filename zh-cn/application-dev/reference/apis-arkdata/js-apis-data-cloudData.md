@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 ```
 
 ## StrategyType
@@ -67,7 +67,7 @@ setCloudStrategy(strategy: StrategyType, param?: Array&lt;commonType.ValueType&g
 **样例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 仅WIFI同步
 cloudData.setCloudStrategy(cloudData.StrategyType.NETWORK, [cloudData.NetWorkStrategy.WIFI]).then(() => {
