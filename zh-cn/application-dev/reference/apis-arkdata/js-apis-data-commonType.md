@@ -45,7 +45,7 @@ import { commonType } from '@kit.ArkData';
 
 ## Assets
 
-type Assets = Array<Asset>
+type Assets = Array\<Asset>
 
 表示[Asset](#asset)类型的数组。
 
