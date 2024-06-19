@@ -8,7 +8,7 @@
 
 **变更原因**
 
-AVFormat 可传入多种类型的参数（int、long、float、double、string、buffer），开发者可能会使用错误的 Set 接口传值，而不会报错，相关的功能模块也因此获取不到相应的参数，导致效果问题发生，故在 AVFormat Set 接口中添加参数类型校验逻辑，确保开发者正确的设置相关的参数。
+OH_AVFormat 可传入多种类型的参数（int、long、float、double、string、buffer），开发者可能会使用错误的 Set 接口传值，而不会报错，相关的功能模块也因此获取不到相应的参数，导致效果问题发生，故在 OH_AVFormat Set 接口中添加参数类型校验逻辑，确保开发者正确的设置相关的参数。
 
 **变更影响**
 
@@ -35,4 +35,4 @@ API12
 
 **适配指导**
 
-参考各参数的类型定义，正确的使用 AVFormat 的 Set 接口传入参数。
+参考各参数的类型定义，正确的使用 OH_AVFormat 的 Set 接口传入参数。
