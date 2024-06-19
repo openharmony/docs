@@ -260,7 +260,7 @@ struct CompA {
 
 - CompA中对this.storageProp1的修改，只会在CompA中生效，并没有同步回storage；
 
-- Child组件中，Text绑定的storProp2 依旧显示47。
+- Child组件中，Text绑定的storageProp2 依旧显示47。
 
 ```ts
 // 创建新实例并使用给定对象初始化
