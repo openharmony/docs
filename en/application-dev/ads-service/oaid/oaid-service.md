@@ -19,8 +19,8 @@ The OAID changes in the following scenarios:
 
 | API| Description|
 | -------- | -------- |
-| [getOAID()](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid): Promise&lt;string&gt; | Obtains an OAID. This API uses a promise to return the result.|
-| [getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;)](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1):&nbsp; void | Obtains an OAID. This API uses an asynchronous callback to return the result.|
+| [getOAID](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid)(): Promise&lt;string&gt; | Obtains an OAID. This API uses a promise to return the result.|
+| [getOAID](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1)(callback:&nbsp;AsyncCallback&lt;string&gt;):&nbsp; void | Obtains an OAID. This API uses an asynchronous callback to return the result.|
 
 > **NOTE**
 > To call **getOAID()**, the application must request the permission **ohos.permission.APP_TRACKING_CONSENT** and user authorization. Three situations are possible:
@@ -31,7 +31,7 @@ The OAID changes in the following scenarios:
 
 
 ## How to Develop
-1. In the **module.json5** file of the module, configure the permission [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent), which is a user_grant permission. In this case, the **reason** and **abilities** fields are mandatory. For details about the configuration, see [requestPermissions](../../quick-start/module-configuration-file.md#requestpermissions). 
+1. In the **module.json5** file of the module, configure the permission [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent), which is a user_grant permission. In this case, the **reason** and **abilities** fields are mandatory. For details about the configuration, see [requestPermissions](../../quick-start/module-configuration-file.md#requestpermissions).
    
    The sample code is as follows:
    
@@ -50,20 +50,19 @@ The OAID changes in the following scenarios:
            }
          }
        ]
-  }
+     }
    }
    ```
-   
+
 2. Display a dialog box during application startup to request authorization from the user, and call **getOAID** to obtain the OAID information after user authorization is obtained. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md). 
 
    The sample code is as follows:
 
    ```ts
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-   import { BusinessError } from '@ohos.base';
-   import identifier from '@ohos.identifier.oaid';
-   import hilog from '@ohos.hilog';
-   import common from '@ohos.app.ability.common';
+   import { identifier } from '@kit.AdsKit';
+   import { abilityAccessCtrl, common } from '@kit.AbilityKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    function requestOAIDTrackingConsentPermissions(context: common.Context): void {
      // Display a dialog box when the page is displayed to request the user to grant the ad tracking permission.
@@ -71,14 +70,14 @@ The OAID changes in the following scenarios:
      try {
        atManager.requestPermissionsFromUser(context, ["ohos.permission.APP_TRACKING_CONSENT"]).then((data) => {
          if (data.authResults[0] == 0) {
-           hilog.info(0x0000, 'testTag', '%{public}s', 'request permission success');
+           hilog.info(0x0000, 'testTag', '%{public}s', 'succeeded in requesting permission');
            identifier.getOAID((err: BusinessError, data: string) => {
-   		 if (err.code) {
-   		   hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
-   		 } else {
-   		   const oaid: string = data;
-   		   hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success, oaid: ${oaid}`);
-   		 }
+			 if (err.code) {
+			   hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
+			 } else {
+			   const oaid: string = data;
+			   hilog.info(0x0000, 'testTag', '%{public}s', `succeeded in getting oaid by callback , oaid: ${oaid}`);
+			 }
            });
          } else {
            hilog.error(0x0000, 'testTag', '%{public}s', 'user rejected');

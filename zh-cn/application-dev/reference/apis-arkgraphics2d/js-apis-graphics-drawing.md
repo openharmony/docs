@@ -354,7 +354,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -750,7 +750,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -793,7 +793,7 @@ class DrawingRenderNode extends RenderNode {
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachBrush(brush);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachBrush();
   }
 }
@@ -819,7 +819,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -844,7 +844,7 @@ class DrawingRenderNode extends RenderNode {
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachBrush(brush);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachBrush();
   }
 }
@@ -1555,7 +1555,7 @@ font.enableLinearMetrics(true);
 
 setSize(textSize: number): void
 
-设置字体大小，如果字体大小小于等于零，则无效。
+设置字体大小。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1563,7 +1563,7 @@ setSize(textSize: number): void
 
 | 参数名   | 类型   | 必填 | 说明             |
 | -------- | ------ | ---- | ---------------- |
-| textSize | number | 是   | 字体大小，该参数为大于0的浮点数。 |
+| textSize | number | 是   | 字体大小，该参数为浮点数，为负数时字体大小会被置为0。字体大小为0时，绘制的文字不会显示。|
 
 **错误码：**
 
@@ -2253,7 +2253,7 @@ setColorFilter(filter: ColorFilter) : void
 
 | 参数名 | 类型                        | 必填 | 说明         |
 | ------ | --------------------------- | ---- | ------------ |
-| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。 |
+| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。为null时表示清空颜色滤波器。 |
 
 **错误码：**
 
@@ -2284,7 +2284,7 @@ setMaskFilter(filter: MaskFilter): void
 
 | 参数名 | 类型                       | 必填 | 说明      |
 | ------ | ------------------------- | ---- | --------- |
-| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。 |
+| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。为null时表示清空蒙版滤镜。 |
 
 **错误码：**
 
@@ -2323,7 +2323,7 @@ setPathEffect(effect: PathEffect): void
 
 | 参数名  | 类型                       | 必填 | 说明         |
 | ------- | ------------------------- | ---- | ------------ |
-| effect  | [PathEffect](#patheffect12) | 是   | 路径效果对象。 |
+| effect  | [PathEffect](#patheffect12) | 是   | 路径效果对象。为null时表示清空路径效果。 |
 
 **错误码：**
 
@@ -2354,7 +2354,7 @@ class DrawingRenderNode extends RenderNode {
 
 setShadowLayer(shadowLayer: ShadowLayer): void
 
-设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效。
+设置画笔阴影层效果。当前仅在绘制文字时生效。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2362,7 +2362,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。 |
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果。 |
 
 **错误码：**
 
@@ -2705,7 +2705,7 @@ setColorFilter(filter: ColorFilter) : void
 
 | 参数名 | 类型                        | 必填 | 说明         |
 | ------ | --------------------------- | ---- | ------------ |
-| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。 |
+| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。为null时表示清空颜色滤波器。 |
 
 **错误码：**
 
@@ -2736,7 +2736,7 @@ setMaskFilter(filter: MaskFilter): void
 
 | 参数名 | 类型                       | 必填 | 说明      |
 | ------ | ------------------------- | ---- | --------- |
-| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。 |
+| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。为null时表示清空蒙版滤镜。 |
 
 **错误码：**
 
@@ -2765,7 +2765,7 @@ class DrawingRenderNode extends RenderNode {
 
 setShadowLayer(shadowLayer: ShadowLayer): void
 
-设置画刷阴影层效果，为空表示清空阴影层效果，当前仅对文字生效。
+设置画刷阴影层效果。当前仅在绘制文字时生效。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2773,7 +2773,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。 |
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果 |
 
 **错误码：**
 

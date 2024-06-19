@@ -12,7 +12,7 @@ onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, cur
 
 组件可见区域变化时触发该回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

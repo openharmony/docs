@@ -11,7 +11,7 @@ The **inputEventClient** module implements the input event injection capability.
 ## Modules to Import
 
 ```js
-import { inputEventClient } from '@kit.InputKit';
+import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 ```
 
 ## inputEventClient.injectEvent
@@ -155,7 +155,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { MouseEvent } from '@kit.InputKit';
+import mouseEvent from '@ohos.multimodalInput.mouseEvent'
 
 try {
   let mouseButtonUpData: mouseEvent.MouseEvent = {
@@ -255,7 +255,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { TouchEvent } from '@kit.InputKit';
+import touchEvent from '@ohos.multimodalInput.touchEvent'
 
 try {
   let touchEvent: touchEvent.Touch = {
@@ -316,6 +316,44 @@ try {
   console.log(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## inputEventClient.permitInjection<sup>12+</sup>
+
+permitInjection(result: boolean): void
+
+Specifies whether to authorize event injection.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+**Parameters**
+
+| Name   | Type   | Mandatory  | Description       |
+| -------- | ------  | ----   | --------- |
+| result   | boolean | Yes    | Authorization result. The value **true** indicates that event injection is allowed, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+
+**Example**
+
+```ts
+import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+
+try {
+  let result = true;
+  inputEventClient.permitInjection(result);
+}catch(error){
+  console.error("failed:" + JSON.stringify(error));
+}
+```
+
 
 ## KeyEvent
 

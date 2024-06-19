@@ -125,7 +125,7 @@ bm dump -a
 # 查询该应用的详细信息
 bm dump -n com.ohos.app -u 100
 # 查询该应用的快捷方式信息
-bm dump -s com.ohos.app -u 100
+bm dump -s -n com.ohos.app -u 100
 # 查询跨设备应用信息
 bm dump -n com.ohos.app -d xxxxx
 ```

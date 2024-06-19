@@ -13,6 +13,22 @@
 
 <!--RP1--><!--RP1End-->
 
+通过视频编码，应用可以实现以下重点能力，包括：
+1. 通过调用OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数，重置帧率，码率。
+
+   具体可参考下文中：Surface模式的步骤9-OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数。
+2. 通过调用OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数，重置最大，最小量化参数。
+
+   具体可参考下文中：Surface模式的步骤9-OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数。
+3. 通过调用OH_VideoEncoder_RegisterParameterCallback()在配置之前注册随帧通路回调，随帧设置最大，最小量化参数。
+
+   具体可参考下文中：Surface模式的步骤4-OH_VideoEncoder_RegisterParameterCallback()在配置之前注册随帧通路回调。
+4. 分层编码，LTR设置。具体可参考：[时域可分层视频编码](video-encoding-temporal-scalability.md)
+5. 通过调用OH_VideoEncoder_RegisterCallback()设置回调函数，获取编码每帧平均量化参数，平方误差。
+
+   具体可参考下文中：Surface模式或Buffer模式的步骤3-调用OH_VideoEncoder_RegisterCallback()设置回调函数。
+
+
 ## Surface输入与Buffer输入
 
 两者的数据来源不同。
@@ -94,6 +110,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - 运行过程中产生了新的输出数据，即编码完成。
 
     ```c++
+
+    int32_t qpAverage = 20;
+    double mseValue = 0.0;
     // 设置 OnError 回调函数
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -126,6 +145,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     {
         // 完成帧buffer对应的index，送入outIndexQueue队列
         // 完成帧的数据buffer送入outBufferQueue队列
+        // 获取视频帧的平均量化参数,平方误差
+        OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, qpAverage);
+        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, mseValue);
+        OH_AVFormat_Destroy(format);
         // 数据处理，请参考:
         // - 释放编码帧
     }
@@ -137,7 +161,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
-4. （可选）调用OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调
+4. （可选）调用OH_VideoEncoder_RegisterParameterCallback()在配置之前注册随帧通路回调
 
     ```c++
     // 4.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现
@@ -265,7 +289,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-9. （可选）OH_VideoDecoder_SetParameter()在运行过程中动态配置编码器参数。
+9. （可选）OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数。
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
    ```c++
@@ -278,6 +302,10 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 支持动态重置视频帧速率
     double frameRate = 60.0;
     OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
+    // 支持动态设置QP值
+    // 配置OH_MD_KEY_VIDEO_ENCODER_QP_MAX 的值应大于等于OH_MD_KEY_VIDEO_ENCODER_QP_MIN
+    OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MAX, 30);
+    OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MIN, 20);
 
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
@@ -451,6 +479,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int32_t widthStride = 0;
     int32_t heightStride = 0;
     bool isFirstFrame = true;
+    int32_t qpAverage = 20;
+    double mseValue = 0.0;
     // 编码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -492,6 +522,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     {
         // 完成帧buffer对应的index，送入outIndexQueue队列
         // 完成帧的数据buffer送入outBufferQueue队列
+        // 获取视频帧的平均量化参数,平方误差
+        OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, qpAverage);
+        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, mseValue);
+        OH_AVFormat_Destroy(format);
         // 数据处理，请参考:
         // - 释放编码帧
     }

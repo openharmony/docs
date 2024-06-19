@@ -7,7 +7,7 @@ Authenticate a domain account before unlocking the screen or when the login sess
 Import the **osAccount** module.
 
 ```ts
-import account_osAccount from '@ohos.account.osAccount';
+import { osAccount } from '@kit.BasicServicesKit';
 ```
 
 ## Domain Account Authentication by Password
@@ -21,7 +21,7 @@ The domain account can be authenticated by password. You can use [auth](../../re
 2. Obtain user input information, including the domain account and its password.
 
    ```ts
-     let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+     let domainAccountInfo: osAccount.DomainAccountInfo = {
        domain: 'CHINA',
        accountName: 'zhangsan'
      }
@@ -31,8 +31,8 @@ The domain account can be authenticated by password. You can use [auth](../../re
 3. Define the callback used to return the authentication result.
 
    ```ts
-   let callback: IUserAuthCallback = {
-     onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
+   let callback: osAccount.IUserAuthCallback = {
+     onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
        console.log('auth resultCode = ' + resultCode);
        console.log('auth authResult = ' + JSON.stringify(authResult));
      }
@@ -43,7 +43,7 @@ The domain account can be authenticated by password. You can use [auth](../../re
 
    ```ts
    try {
-     account_osAccount.DomainAccountManager.auth(domainAccountInfo, credential, callback);
+     osAccount.DomainAccountManager.auth(domainAccountInfo, credential, callback);
    } catch (err) {
      console.log('auth exception = ' + JSON.stringify(err));
    }
@@ -58,8 +58,8 @@ If the domain account password is unavailable, display a dialog box to authentic
 1. Define the callback used to return the authentication result.
 
    ```ts
-   let callback: IUserCallback = {
-     onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
+   let callback: osAccount.IUserAuthCallback = {
+     onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
        console.log('authWithPopup resultCode = ' + resultCode);
        console.log('authWithPopup authResult = ' + JSON.stringify(authResult));
      }
@@ -70,7 +70,7 @@ If the domain account password is unavailable, display a dialog box to authentic
 
    ```ts
    try {
-     account_osAccount.DomainAccountManager.authWithPopup(callback)
+     osAccount.DomainAccountManager.authWithPopup(callback)
    } catch (err) {
      console.log('authWithPopup exception = ' + JSON.stringify(err));
    }

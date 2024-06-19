@@ -17,7 +17,9 @@ Before getting started, you need to understand the following basic concepts:
 
 
 ## Available APIs
+
 APIs involved in MindSpore Lite model inference are categorized into context APIs, model APIs, and tensor APIs.
+
 ### Context APIs
 
 | API       | Description       |
@@ -49,9 +51,11 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 |void *OH_AI_TensorGetMutableData(const OH_AI_TensorHandle tensor)|Obtains the pointer to mutable tensor data.|
 
 ## How to Develop
+
 The following figure shows the development process for MindSpore Lite model inference.
 
 **Figure 1** Development process for MindSpore Lite model inference
+
 ![how-to-use-mindspore-lite](figures/01.png)
 
 Before moving to the development process, you need to reference related header files and compile functions to generate random input. The sample code is as follows:
@@ -80,6 +84,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 ```
 
 The development process consists of the following main steps:
+
 1. Prepare the required model.
 
     The required model can be downloaded directly or obtained using the model conversion tool.
@@ -117,11 +122,11 @@ The development process consists of the following main steps:
     Scenario 2: The neural network runtime (NNRT) and CPU heterogeneous inference contexts are created.
 
     NNRT is the runtime for cross-chip inference computing in the AI field. Generally, the acceleration hardware connected to NNRT, such as the NPU, has strong inference capabilities but supports only a limited number of operators, whereas the general-purpose CPU has weak inference capabilities but supports a wide range of operators. MindSpore Lite supports NNRT and CPU heterogeneous inference. Model operators are preferentially scheduled to NNRT for inference. If certain operators are not supported by NNRT, then they are scheduled to the CPU for inference. The following is the sample code for configuring NNRT/CPU heterogeneous inference:
-
+   <!--Del-->
    > **NOTE**
    >
    > NNRT/CPU heterogeneous inference requires access of NNRT hardware. For details, see [OpenHarmony/ai_neural_network_runtime](https://gitee.com/openharmony/ai_neural_network_runtime).
-
+   <!--DelEnd-->
     ```c
     // Create a context, and set the number of runtime threads to 2 and the thread affinity mode to 1 (big cores first).
     OH_AI_ContextHandle context = OH_AI_ContextCreate();
@@ -282,5 +287,7 @@ The development process consists of the following main steps:
     ```
 
 ## Samples
+
 The following sample is provided to help you better understand how to use MindSpore Lite:
+
 - [Simple MindSpore Lite Tutorial](https://gitee.com/openharmony/third_party_mindspore/tree/OpenHarmony-3.2-Release/mindspore/lite/examples/quick_start_c)

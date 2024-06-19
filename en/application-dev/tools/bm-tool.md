@@ -5,7 +5,7 @@ The Bundle Manager enables you to install, uninstall, update, and query a bundle
 
 > **NOTE**
 >
-> Before using this tool, you must obtain the [hdc tool](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md) and run the hdc shell command.
+> Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and run the hdc shell command.
 
 
 **Table 1** bm commands
@@ -29,7 +29,7 @@ The Bundle Manager enables you to install, uninstall, update, and query a bundle
 
 | Name| Description|
 | -------- | -------- |
-| bm help | Displays the commands supported by the bm tool.|
+| bm help | Used to display the commands supported by the Bundle Manager tool.|
 
 Example
 
@@ -262,8 +262,8 @@ bm quickfix [-h] [-a -f filePath] [-q -b bundleName]
 | Name| Description|
 | -------- | -------- |
 | -h | Used to display the commands supported by **quickfix**.|
-| -a -f | Used to run the quick fix patch installation command. **file-path** corresponds to the hqf file. You can pass in one or more hqf files or the directory where the hqf file is located.|
-| -q -b | Used to display the patch information based on the bundle name. **bundle-name** indicates the bundle name.|
+| -a -f | Used to run the quick fix patch installation command. **file-path** corresponds to the .hqf file. You can pass in one or more .hqf files or the directory where the .hqf file is located.|
+| -q -b | Used to display the patch information based on the bundle name. **bundleName** indicates the bundle name.|
 
 
 Example
@@ -282,7 +282,7 @@ bm quickfix -q -b com.ohos.app
 //  cpu abi:                          
 //  native library path:             
 //  type:                            
-# Patch installation in the quick fix:
+# Install a quick fix patch:
 bm quickfix -a -f /data/app/
 // The execution result is as follows:
 apply quickfix succeed.
@@ -464,7 +464,7 @@ When you start debugging or run an application, the error message "error: instal
 
 Some mandatory fields are missing in the **app.json5** and **module.json5** files.
 
-* Method 1: Check and add mandatory fields by referring to the [app.json5 file](../../application-dev/quick-start/app-configuration-file.md) and [module.json5 file](../../application-dev/quick-start/module-configuration-file.md).
+* Method 1: Check and add mandatory fields by referring to the [app.json5 file](../quick-start/app-configuration-file.md) and [module.json5 file](../quick-start/module-configuration-file.md).
 * Method 2: Determine the missing fields based on the HiLog.
 
     Run the following command to enable disk flushing:

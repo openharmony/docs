@@ -17,13 +17,13 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_audio_common.h](native__audio__common_8h.md) | 声明音频公共基础数据结构。<br/>**引用文件**：&lt;ohaudio/native_audio_common.h&gt;<br/>**库**：libohaudio.so | 
-| [native_audio_device_base.h](native__audio__device__base_8h.md) | 定义音频设备参数的类型以及获取每个设备参数的接口。<br/>**引用文件**：&lt;ohaudio/native_audio_device_base.h&gt;<br/>**库**：libohaudio.so | 
-| [native_audio_routing_manager.h](native__audio__routing__manager_8h.md) | 声明与音频路由管理器相关的接口。<br/>**引用文件**：&lt;ohaudio/native_audio_routing_manager.h&gt;<br/>**库**：libohaudio.so | 
-| [native_audiocapturer.h](native__audiocapturer_8h.md) | 声明输入类型的音频流相关接口。<br/>**引用文件**：&lt;ohaudio/native_audiocapturer.h&gt;<br/>**库**：libohaudio.so | 
-| [native_audiorenderer.h](native__audiorenderer_8h.md) | 声明输出类型的音频流相关接口。<br/>**引用文件**：&lt;ohaudio/native_audiorenderer.h&gt;<br/>**库**：libohaudio.so | 
-| [native_audiostream_base.h](native__audiostream__base_8h.md) | 声明OHAudio基础的数据结构。<br/>**引用文件**：&lt;ohaudio/native_audiostream_base.h&gt;<br/>**库**：libohaudio.so | 
-| [native_audiostreambuilder.h](native__audiostreambuilder_8h.md) | 声明音频流构造器相关接口。<br/>**引用文件**：&lt;ohaudio/native_audiostreambuilder.h&gt;<br/>**库**：libohaudio.so | 
+| [native_audio_common.h](native__audio__common_8h.md) | 声明音频公共基础数据结构。 | 
+| [native_audio_device_base.h](native__audio__device__base_8h.md) | 定义音频设备参数的类型以及获取每个设备参数的接口。<br/> | 
+| [native_audio_routing_manager.h](native__audio__routing__manager_8h.md) | 声明与音频路由管理器相关的接口。 | 
+| [native_audiocapturer.h](native__audiocapturer_8h.md) | 声明输入类型的音频流相关接口。 | 
+| [native_audiorenderer.h](native__audiorenderer_8h.md) | 声明输出类型的音频流相关接口。 | 
+| [native_audiostream_base.h](native__audiostream__base_8h.md) | 声明OHAudio基础的数据结构。 | 
+| [native_audiostreambuilder.h](native__audiostreambuilder_8h.md) | 声明音频流构造器相关接口。 | 
 
 
 ### 结构体
@@ -821,7 +821,7 @@ enum OH_AudioStream_Usage
 | -------- | -------- |
 | AUDIOSTREAM_USAGE_UNKNOWN | 未定义。 | 
 | AUDIOSTREAM_USAGE_MUSIC | 音乐。 | 
-| AUDIOSTREAM_USAGE_COMMUNICATION | 通话。 | 
+| AUDIOSTREAM_USAGE_COMMUNICATION | VOIP通话。 | 
 | AUDIOSTREAM_USAGE_VOICE_ASSISTANT | 语音助手。 | 
 | AUDIOSTREAM_USAGE_ALARM | 闹钟。 | 
 | AUDIOSTREAM_USAGE_VOICE_MESSAGE | 语音消息。 | 
@@ -2186,7 +2186,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetVolume (OH_AudioRenderer *renderer, fl
 | 名称 | 描述 | 
 | -------- | -------- |
 | renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
-| volume | 指向一个获取当前音频流音量值的指针。 | 
+| volume | 指向一个获取当前音频流音量值的指针。音量值的范围是[0.0, 1.0]。 | 
 
 **返回：**
 
@@ -2380,7 +2380,7 @@ OH_AudioStream_Result OH_AudioRenderer_SetVolume (OH_AudioRenderer *renderer, fl
 | 名称 | 描述 | 
 | -------- | -------- |
 | renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
-| volume | 设置当前音频流音量，音量值范围[0.0, 1.0]。 | 
+| volume | 设置当前音频流音量，音量值的范围是[0.0, 1.0]。 | 
 
 **返回：**
 

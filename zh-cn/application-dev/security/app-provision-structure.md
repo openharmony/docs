@@ -78,7 +78,8 @@ HarmonyAppProvision文件示例：
 | bundle-name  | 表示应用程序的Bundle名称。 | 字符串    | 必选 | 不可缺省   |
 | apl  | 表示应用程序的[APL级别](AccessToken/access-token-overview.md)，系统预定义的apl包括：normal、system_basic和system_core。 | 字符串    | 必选 | 不可缺省   |
 | app-feature  | 表示应用程序的类型，系统预定义的app-feature包括hos_system_app （系统应用）和hos_normal_app（普通应用）。只有系统应用才允许调用系统API，普通应用调用系统API可能会调用失败或运行异常。 | 字符串    | 必选 | 不可缺省   |
-| data-group-ids  | 表示应用程序的dataGroupId集合。在应用程序安装时，每一个dataGroupId都会生成一个目录。若一个应用和一个元服务的data-group-ids存在某个相交的dataGroupId，那么它们之间可以共享这个dataGroupId生成的共享数据目录。 | 字符串数组    | 可选 | 该标签可缺省，缺省值为空。   |
+| data-group-ids  | 表示应用程序的dataGroupId集合。在应用程序安装时，每一个dataGroupId都会生成一个目录。若一个应用和一个原子化服务的data-group-ids存在某个相交的dataGroupId，那么它们之间可以共享这个dataGroupId生成的共享数据目录。 | 字符串数组    | 可选 | 该标签可缺省，缺省值为空。   |
+| app-identifier | 应用的唯一标识，由云端统一分配。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。 | 字符串数组    | 可选 | 该标签可缺省，缺省值为空。   |
 
 
 ### acls对象内部结构

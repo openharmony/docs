@@ -11,5 +11,5 @@ EmbeddableUIAbilityContext是需要保存状态的[EmbeddableUIAbility](js-apis-
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```

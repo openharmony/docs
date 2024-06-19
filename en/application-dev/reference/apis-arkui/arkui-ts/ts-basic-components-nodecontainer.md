@@ -16,6 +16,8 @@ Not supported
 
 NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name    | Type                                            | Mandatory| Description                                                    |

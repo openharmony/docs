@@ -124,7 +124,7 @@ Obtains the supported power modes. This API uses an asynchronous callback to ret
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power modes obtained. If the operation fails, **err** is not **0**.|
+| callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the power modes obtained. If the operation fails, **err** is not **0**.|
 
 **Error codes**
 
@@ -205,7 +205,7 @@ Obtains the power mode. This API uses an asynchronous callback to return the res
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[PowerMode](#powermode9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power mode obtained. If the operation fails, **err** is not **0**.|
+| callback | AsyncCallback&lt;[PowerMode](#powermode9)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the power mode obtained. If the operation fails, **err** is not **0**.|
 
 **Error codes**
 

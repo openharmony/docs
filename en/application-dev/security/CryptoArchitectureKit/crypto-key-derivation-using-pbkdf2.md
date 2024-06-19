@@ -1,4 +1,5 @@
 # Key Derivation Using PBKDF2
+
 For details about the corresponding algorithm specifications, see [PBKDF2](crypto-key-derivation-overview.md#pbkdf2).
 
 ## How to Develop
@@ -24,10 +25,12 @@ For details about the corresponding algorithm specifications, see [PBKDF2](crypt
    | -------- | -------- |
    | generateSecret(params: KdfSpec, callback: AsyncCallback&lt;DataBlob&gt;): void | This API uses an asynchronous callback to return the result.| 
    | generateSecret(params: KdfSpec): Promise&lt;DataBlob&gt; | This API uses a promise to return the result.| 
+   | generateSecretSync(params: KdfSpec): DataBlob | This API returns the result synchronously.| 
 
 - Return the result using **await**:
+
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   
   async function kdfAwait() {
     let spec: cryptoFramework.PBKDF2Spec = {
@@ -44,9 +47,10 @@ For details about the corresponding algorithm specifications, see [PBKDF2](crypt
   ```
 
 - Return the result using a promise:
+
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   function kdfPromise() {
     let spec: cryptoFramework.PBKDF2Spec = {
@@ -63,5 +67,25 @@ For details about the corresponding algorithm specifications, see [PBKDF2](crypt
     }).catch((error: BusinessError) => {
       console.error("key derivation error.");
     });
+  }
+  ```
+
+- Return the result synchronously:
+
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  function kdfSync() {
+    let spec: cryptoFramework.PBKDF2Spec = {
+      algName: 'PBKDF2',
+      password: '123456',
+      salt: new Uint8Array(16),
+      iterations: 10000,
+      keySize: 32
+    };
+    let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
+    let secret = kdf.generateSecretSync(spec);
+    console.info("[Sync]key derivation output is " + secret.data);
   }
   ```

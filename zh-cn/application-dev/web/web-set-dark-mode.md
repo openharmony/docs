@@ -9,13 +9,14 @@ Web组件支持对前端页面进行深色模式配置。
 
     ```ts
     // xxx.ets
-    import web_webview from '@ohos.web.webview';
+    import { webview } from '@kit.ArkWeb';
       
     @Entry
     @Component
     struct WebComponent {
-      controller: web_webview.WebviewController = new web_webview.WebviewController();
+      controller: webview.WebviewController = new webview.WebviewController();
       @State mode: WebDarkMode = WebDarkMode.Auto;
+
       build() {
         Column() {
           Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -31,14 +32,15 @@ Web组件支持对前端页面进行深色模式配置。
 
     ```ts
     // xxx.ets
-    import web_webview from '@ohos.web.webview';
+    import { webview } from '@kit.ArkWeb';
 
     @Entry		
     @Component
     struct WebComponent {
-      controller: web_webview.WebviewController = new web_webview.WebviewController();
+      controller: webview.WebviewController = new webview.WebviewController();
       @State mode: WebDarkMode = WebDarkMode.On;
       @State access: boolean = true;
+      
       build() {
         Column() {
           Web({ src: $rawfile('index.html'), controller: this.controller })

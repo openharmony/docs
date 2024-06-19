@@ -105,7 +105,7 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 
 此接口提供给创建弹窗的系统应用调用。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **系统接口：** 该接口为系统接口
 

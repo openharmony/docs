@@ -10,13 +10,14 @@ The **TaskPool** APIs return error codes in numeric format. For details about th
 
 For details about the precautions for using **TaskPool**, see [Precautions for TaskPool](../../arkts-utils/taskpool-introduction.md#precautions-for-taskpool).
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 ```
 ## taskpool.execute
 
@@ -25,6 +26,8 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 Places a function to be executed in the internal queue of the task pool. The function will be distributed to the worker thread for execution. In this mode, the function cannot be canceled.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
@@ -41,10 +44,11 @@ Places a function to be executed in the internal queue of the task pool. The fun
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                     |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200003 | Worker initialization failure.               |
 | 10200006 | An exception occurred during serialization.  |
 | 10200014 | The function is not mark as concurrent.      |
@@ -67,9 +71,11 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-Places a task in the internal queue of the task pool. The task will be distributed to the worker thread for execution. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue. It can be executed by calling **execute()** for multiple times.
+Places a task in the internal queue of the task pool. The task will be distributed to the worker thread for execution. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
@@ -86,10 +92,11 @@ Places a task in the internal queue of the task pool. The task will be distribut
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                    |
 | -------- | ------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200003 | Worker initialization failure.              |
 | 10200006 | An exception occurred during serialization. |
 | 10200014 | The function is not mark as concurrent.     |
@@ -125,6 +132,8 @@ Places a task group in the internal queue of the task pool. The task group will 
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name    | Type                       | Mandatory| Description                                                          |
@@ -140,10 +149,11 @@ Places a task group in the internal queue of the task pool. The task group will 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                    |
 | -------- | ------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200006 | An exception occurred during serialization. |
 
 **Example**
@@ -179,9 +189,11 @@ taskpool.execute(taskGroup2).then((res: Array<Object>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-Executes a task after a given delay. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue. It can be executed by calling **executeDelayed()** for multiple times.
+Executes a task after a given delay. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
@@ -199,10 +211,11 @@ Executes a task after a given delay. In this mode, you can set the task priority
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID  | Error Message                        |
 | --------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200028 | The delayTime is less than zero. |
 
 **Example**
@@ -210,7 +223,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 ```ts
 @Concurrent
 // import BusinessError
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function printArgs(args: number): void {
     console.info("printArgs: " + args);
@@ -235,6 +248,8 @@ Cancels a task in the task pool. If the task is in the internal queue of the tas
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type         | Mandatory| Description                |
@@ -243,10 +258,11 @@ Cancels a task in the task pool. If the task is in the internal queue of the tas
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                     |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200015 | The task does not exist when it is canceled. |
 | 10200016 | The task is executing when it is canceled.   |
 
@@ -311,6 +327,8 @@ Cancels a task group in the task pool. If a task group is canceled before all th
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                |
@@ -319,10 +337,11 @@ Cancels a task group in the task pool. If a task group is canceled before all th
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                |
 | -------- | ------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200018 | The task group does not exist when it is canceled.      |
 
 **Example**
@@ -361,6 +380,93 @@ function concurrntFunc() {
 concurrntFunc();
 ```
 
+## taskpool.terminateTask<sup>12+</sup>
+
+terminateTask(longTask: LongTask): void
+
+Terminates a continuous task in the task pool. It is called after the continuous task is complete. After the task is terminated, the thread that executes the task may be reclaimed.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description                |
+| ------ | ------------- | ---- | -------------------- |
+| longTask   | [LongTask](#longtask12) | Yes  | Continuous task to terminate.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+@Concurrent
+function longTask(arg: number): number {
+  let t: number = Date.now();
+  while (Date.now() - t < arg) {
+    continue;
+  }
+  console.info("longTask has been executed.");
+  return arg;
+}
+
+function concurrntFunc() {
+  let task1: taskpool.LongTask = new taskpool.LongTask(longTask, 1000); // 1000: sleep time
+  taskpool.execute(task1).then((res: Object)=>{
+    taskpool.terminateTask(task1);
+    console.info("taskpool longTask result: " + res);
+  });
+}
+
+concurrntFunc();
+```
+
+## taskpool.isConcurrent<sup>12+</sup>
+
+isConcurrent(func: Function): boolean
+
+Checks whether a function is a concurrent function.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description                |
+| ------ | ------------- | ---- | -------------------- |
+| function   | Function | Yes  | Function to check.|
+
+**Return value**
+
+| Type   | Description                                |
+| ------- | ------------------------------------ |
+| boolean | **true**: The function is a concurrent function, that is, a function decorated with [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md).<br>**false**: The function is not a concurrent function.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+@Concurrent
+function test() {}
+
+let result: Boolean = taskpool.isConcurrent(test)
+console.info("result is: " + result)
+```
 
 ## taskpool.getTaskPoolInfo<sup>10+</sup>
 
@@ -369,6 +475,8 @@ getTaskPoolInfo(): TaskPoolInfo
 Obtains internal information about this task pool, including thread information and task information.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Return value**
 
@@ -384,9 +492,11 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 ## Priority
 
-Enumerates the priorities available for created tasks. The task priority applies during task execution.
+Enumerates the priorities available for created tasks. The task priority applies during task execution. The worker thread priority is updated with the task priority. For details about the mappings, see [QoS Level](../../napi/qos-guidelines.md#qos-level).
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
@@ -431,6 +541,21 @@ for (let i: number = 0; i < allCount; i+=3) { // 3: Three tasks are executed eac
 
 Implements a task. Before calling any APIs in **Task**, you must use [constructor](#constructor) to create a **Task** instance. A task can be executed for multiple times, placed in a task group or queue for execution, or added with dependencies for execution.
 
+### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+| Name                | Type      | Readable| Writable| Description                                                        |
+| -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
+| function             | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).|
+| arguments            | Object[]  | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| name<sup>11+</sup>   | string    | Yes  | No  | Name of the task specified when the task is created.                                   |
+| totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task.                                   |
+| ioDuration<sup>11+</sup>     | number    | Yes  | No  | Asynchronous I/O time of the task.                                   |
+| cpuDuration<sup>11+</sup>    | number    | Yes  | No  | CPU time of the task.                                   |
+
 ### constructor
 
 constructor(func: Function, ...args: Object[])
@@ -438,6 +563,8 @@ constructor(func: Function, ...args: Object[])
 A constructor used to create a **Task** instance.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
@@ -448,10 +575,11 @@ A constructor used to create a **Task** instance.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                |
 | -------- | --------------------------------------- |
+| 401      | The input parameters are invalid. |
 | 10200014 | The function is not mark as concurrent. |
 
 **Example**
@@ -474,6 +602,8 @@ A constructor used to create a **Task** instance, with the task name specified.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type    | Mandatory| Description                                                        |
@@ -484,10 +614,11 @@ A constructor used to create a **Task** instance, with the task name specified.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
+| 401      | The input parameters are invalid. |
 | 10200014 | The function is not mark as concurrent. |
 
 **Example**
@@ -512,6 +643,8 @@ Checks whether the running task is canceled. Before using this API, you must cre
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Return value**
 
 | Type   | Description                                |
@@ -534,7 +667,8 @@ function inspectStatus(arg: number): number {
 }
 ```
 
-> **NOTE**<br>
+> **NOTE**
+>
 > **isCanceled** must be used together with **taskpool.cancel**. If **cancel** is not called, **isCanceled** returns **false** by default.
 
 **Example**
@@ -575,10 +709,13 @@ setTransferList(transfer?: ArrayBuffer[]): void
 
 Sets the task transfer list. Before using this API, you must create a **Task** instance. If this API is not called, the ArrayBuffer in the data is transferred by default.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This API is used to set the task transfer list in the form of **ArrayBuffer** in the task pool. The **ArrayBuffer** instance does not copy the content in the task to the worker thread during transfer. Instead, it transfers the buffer control right to the worker thread. After the transfer, the **ArrayBuffer** instance becomes invalid. An empty **ArrayBuffer** will not be transferred.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
@@ -588,10 +725,11 @@ Sets the task transfer list. Before using this API, you must create a **Task** i
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                       |
 | -------- | -------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 10200029 | Can not set an arraybuffer to both transferList and cloneList. |
 
 **Example**
@@ -636,33 +774,36 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 Sets the task clone list. Before using this API, you must create a **Task** instance.
 
-> **NOTE**<br>
-> Currently, only clone is supported. This API must be used together with [@Sendable decorator](../../arkts-utils/arkts-sendable.md). Otherwise, an exception is thrown.
+> **NOTE**
+>
+> This API must be used together with the [@Sendable decorator](../../arkts-utils/arkts-sendable.md#sendable-decorator-declaring-and-verifying-a-sendable-class). Otherwise, an exception is thrown.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
 | Name   | Type                     | Mandatory| Description                                         |
 | --------- | ------------------------ | ---- | --------------------------------------------- |
-| cloneList | Object[] \| ArrayBuffer[]  | Yes| - The type of the passed-in array must be [SendableClass](../../arkts-utils/arkts-sendable.md#basic-concepts) or ArrayBuffer.<br>- For **SendableClass** instances or **ArrayBuffer** objects held by all objects passed in to the clone list, the inter-thread transmission behavior changes to the clone operation. This means that any modification to the transmitted objects does not affect the original objects.|
+| cloneList | Object[] \| ArrayBuffer[]  | Yes| - The type of the passed-in array must be [sendable data](../../arkts-utils/arkts-sendable.md#sendable-data) or ArrayBuffer.<br>- All [Sendable class](../../arkts-utils/arkts-sendable.md#sendable-class) instances or ArrayBuffer objects passed in to **cloneList** are transferred in copy mode between threads. This means that any modification to the destination objects does not affect the original objects.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                       |
 | -------- | -------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200029 | Can not set an arraybuffer to both transferList and cloneList. |
 
 **Example**
 
 ```ts
-import taskpool from '@ohos.taskpool'
-import { BusinessError } from '@ohos.base'
-
+// sendable.ets
+// Define two Sendable classes: BaseClass and its child class DeriveClass.
 @Sendable
-class BaseClass {
+export class BaseClass {
   private str: string = "sendable: BaseClass";
   static num :number = 10;
   str1: string = "sendable: this is BaseClass's string";
@@ -701,7 +842,7 @@ class BaseClass {
 }
 
 @Sendable
-class DeriveClass extends BaseClass {
+export class DeriveClass extends BaseClass {
   name: string = "sendable: this is DeriveClass";
   printName() {
     console.info(this.name);
@@ -710,6 +851,15 @@ class DeriveClass extends BaseClass {
     super();
   }
 }
+```
+
+
+```ts
+// index.ets
+// The main thread calls the methods of BaseClass and DeriveClass in the task pool thread and accesses their attributes.
+import { taskpool } from '@kit.ArkTS'
+import { BusinessError } from '@kit.BasicServicesKit'
+import { BaseClass, DeriveClass } from './sendable'
 
 @Concurrent
 function testFunc(arr: Array<BaseClass>, num: number): number {
@@ -786,6 +936,8 @@ Sends data to the host thread and triggers the registered callback. Before using
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name  | Type         | Mandatory| Description                                             |
@@ -794,10 +946,11 @@ Sends data to the host thread and triggers the registered callback. Before using
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                |
 | -------- | --------------------------------------- |
+| 401       | The input parameters are invalid. |
 | 10200006  | An exception occurred during serialization. |
 | 10200022  | The function is not called in the taskpool thread. |
 | 10200023  | The function is not called in the concurrent function. |
@@ -820,16 +973,27 @@ onReceiveData(callback?: Function): void
 
 Registers a callback for a task to receive and process data from the worker thread. Before using this API, you must create a **Task** instance.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > If multiple callbacks are registered for the same task, only the last registration takes effect.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | callback | Function | No  | Callback function for processing the data received. The data sent to the host thread is transferred to the callback as an input parameter. If no value is passed in, all the registered callbacks are canceled.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **Example**
 
@@ -866,6 +1030,8 @@ Adds dependent tasks for this task. Before using this API, you must create a **T
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type  | Mandatory| Description              |
@@ -874,10 +1040,11 @@ Adds dependent tasks for this task. Before using this API, you must create a **T
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200026 | There is a circular dependency. |
 
 **Example**
@@ -921,6 +1088,8 @@ Removes dependent tasks for this task. Before using this API, you must create a 
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type  | Mandatory| Description              |
@@ -929,10 +1098,11 @@ Removes dependent tasks for this task. Before using this API, you must create a 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200027 | The dependency does not exist. |
 
 **Example**
@@ -972,18 +1142,252 @@ taskpool.execute(task3).then(() => {
 })
 ```
 
-### Attributes
+
+### onEnqueued<sup>12+</sup>
+
+onEnqueued(callback: CallbackFunction): void
+
+Registers a callback function and calls it when a task is enqueued. The registration must be carried out before the task is executed. Otherwise, an exception is thrown.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name                | Type      | Readable| Writable| Description                                                        |
-| -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
-| function             | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).|
-| arguments            | Object[]  | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-| name<sup>11+</sup>   | string    | Yes  | No  | Name of the task specified when the task is created.                                   |
-| totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task.                                   |
-| ioDuration<sup>11+</sup>     | number    | Yes  | No  | Asynchronous I/O time of the task.                                   |
-| cpuDuration<sup>11+</sup>    | number    | Yes  | No  | CPU time of the task.                                   |
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| callback  | [CallbackFunction](#callbackfunction12) | Yes  | Callback function to register.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 401       | The input parameters are invalid. |
+| 10200034  | The executed task does not support the registration of listeners. |
+
+**Example**
+
+```ts
+import { taskpool } from '@kit.ArkTS'
+
+@Concurrent
+function delay(args: number): number {
+  let t: number = Date.now();
+  while ((Date.now() - t) < 1000) {
+	continue;
+  }
+  return args;
+}
+
+let task: taskpool.Task = new taskpool.Task(delay, 1);
+task.onEnqueued(()=>{
+  console.info("taskpool: onEnqueued")
+});
+taskpool.execute(task).then(()=> {
+  console.info("taskpool: execute task success")
+});
+```
+
+
+### onStartExecution<sup>12+</sup>
+
+onStartExecution(callback: CallbackFunction): void
+
+Registers a callback function and calls it when the execution of a task starts. The registration must be carried out before the task is executed. Otherwise, an exception is thrown.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| callback  | [CallbackFunction](#callbackfunction12)  | Yes  | Callback function to register.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 401       | The input parameters are invalid. |
+| 10200034  | The executed task does not support the registration of listeners. |
+
+**Example**
+
+```ts
+import { taskpool } from '@kit.ArkTS'
+
+@Concurrent
+function delay(args: number): number {
+  let t: number = Date.now();
+  while ((Date.now() - t) < 1000) {
+	continue;
+  }
+  return args;
+}
+
+let task: taskpool.Task = new taskpool.Task(test, 1);
+task.onStartExecution(()=>{
+  console.info("taskpool: onStartExecution")
+});
+taskpool.execute(task).then(()=> {
+  console.info("taskpool: execute task success")
+});
+```
+
+### onExecutionFailed<sup>12+</sup>
+
+onExecutionFailed(callback: CallbackFunctionWithError): void
+
+Registers a callback function and calls it when a task fails to be enqueued. The registration must be carried out before the task is executed. Otherwise, an exception is thrown.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| callback  | [CallbackFunctionWithError](#callbackfunctionwitherror12)  | Yes  | Callback function to register.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 401       | The input parameters are invalid. |
+| 10200034  | The executed task does not support the registration of listeners. |
+
+**Example**
+
+```ts
+import { taskpool } from '@kit.ArkTS'
+import { BusinessError } from '@kit.BasicServicesKit'
+import { HashMap } from '@kit.ArkTS'
+
+@Concurrent
+function test(args:number) {
+  let t = Date.now()
+  while ((Date.now() - t) < 100) {
+    continue;
+  }
+  let hashMap1: HashMap<string, number> = new HashMap();
+  hashMap1.set('a', args);
+  return hashMap1;
+}
+
+let task2 = new taskpool.Task(test, 1);
+task2.onExecutionFailed((e:Error)=>{
+  console.info("taskpool: onExecutionFailed error is " + e);
+})
+taskpool.execute(task2).then(()=>{
+  console.info("taskpool: execute task success")
+}).catch((e:BusinessError)=>{
+  console.error(`taskpool: error code: ${e.code}, error info: ${e.message}`);
+})
+```
+
+### onExecutionSucceeded<sup>12+</sup>
+
+onExecutionSucceeded(callback: CallbackFunction): void
+
+Registers a callback function and calls it when a task is executed successfully. The registration must be carried out before the task is executed. Otherwise, an exception is thrown.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| callback  | [CallbackFunction](#callbackfunction12)  | Yes  | Callback function to register.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 401       | The input parameters are invalid. |
+| 10200034  | The executed task does not support the registration of listeners. |
+
+**Example**
+
+```ts
+import { taskpool } from '@kit.ArkTS'
+
+@Concurrent
+function delay(args: number): number {
+  let t: number = Date.now();
+  while ((Date.now() - t) < 1000) {
+	  continue;
+  }
+  return args;
+}
+
+let task: taskpool.Task = new taskpool.Task(delay, 1);
+task.onExecutionSucceeded(()=>{
+  console.info("taskpool: onExecutionSucceeded")
+});
+taskpool.execute(task).then(()=> {
+  console.info("taskpool: execute task success")
+});
+```
+
+## CallbackFunction<sup>12+</sup>
+
+type CallbackFunction = () => void
+
+Describes a callback function.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+
+## CallbackFunctionWithError<sup>12+</sup>
+
+type CallbackFunctionWithError = (e: Error) => void
+
+Describes a callback function with an error message.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| e  | Error | Yes  | Error message.|
+
+
+## LongTask<sup>12+</sup>
+
+**System capability**: SystemCapability.Utils.Lang
+
+Describes a continuous task. **LongTask** is inherited from [Task](#task).
+No upper limit is set for the execution time of a continuous task, and no timeout exception is thrown if a continuous task runs for a long period of time. However, a continuous task cannot be executed in a task group or executed for multiple times.
+The thread for executing a continuous task exists until [terminateTask](#taskpoolterminatetask12) is called after the execution is complete. The thread is reclaimed when it is idle.
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args: string): string {
+  console.info("printArgs: " + args);
+  return args;
+}
+
+let task: taskpool.LongTask = new taskpool.LongTask(printArgs, "this is my first LongTask");
+```
 
 ## TaskGroup<sup>10+</sup>
 
@@ -996,6 +1400,8 @@ constructor()
 Constructor used to create a **TaskGroup** instance.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Example**
 
@@ -1011,11 +1417,21 @@ A constructor used to create a **TaskGroup** instance, with the task group name 
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type  | Mandatory| Description        |
 | ------ | ------ | ---- | ------------ |
 | name   | string | Yes  | Task group name.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1033,6 +1449,8 @@ Adds the function to be executed to this task group. Before using this API, you 
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type     | Mandatory| Description                                                                  |
@@ -1042,10 +1460,11 @@ Adds the function to be executed to this task group. Before using this API, you 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                |
 | -------- | --------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200014 | The function is not mark as concurrent. |
 
 **Example**
@@ -1065,9 +1484,11 @@ taskGroup.addTask(printArgs, 100); // 100: test number
 
 addTask(task: Task): void
 
-Adds a created task to this task group. Before using this API, you must create a **TaskGroup** instance. Tasks in another task group or queue, dependent tasks, and tasks that have been executed cannot be added to the task group.
+Adds a created task to this task group. Before using this API, you must create a **TaskGroup** instance. Tasks in another task group or queue, dependent tasks, continuous tasks, and tasks that have been executed cannot be added to the task group.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Parameters**
 
@@ -1077,10 +1498,11 @@ Adds a created task to this task group. Before using this API, you must create a
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                |
 | -------- | --------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200014 | The function is not mark as concurrent. |
 
 **Example**
@@ -1101,6 +1523,8 @@ taskGroup.addTask(task);
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name| Type  | Readable| Writable| Description                        |
 | ---- | ------ | ---- | ---- | ---------------------------- |
 | name<sup>11+</sup> | string | Yes  | Yes  | Name of the task group specified when the task group is created.|
@@ -1117,11 +1541,21 @@ A constructor used to create a **SequenceRunner** instance.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name  | Type                 | Mandatory| Description                                                      |
 | -------- | --------------------- | ---- | ---------------------------------------------------------- |
 | priority | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **Example**
 
@@ -1142,6 +1576,8 @@ Adds a task to the queue for execution. Before using this API, you must create a
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type         | Mandatory| Description                            |
@@ -1156,10 +1592,11 @@ Adds a task to the queue for execution. Before using this API, you must create a
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200003 | Worker initialization failure.              |
 | 10200006 | An exception occurred during serialization. |
 | 10200025 | Add dependent task to SequenceRunner.       |
@@ -1210,6 +1647,8 @@ Enumerates the task states. After a task is created and **execute()** is called,
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name     | Value       | Description         |
 | --------- | -------- | ------------- |
 | WAITING   | 1        | The task is waiting.|
@@ -1229,10 +1668,10 @@ Describes the internal information about a task.
 
 | Name    | Type               | Readable| Writable| Description                                                          |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
-| name<sup>12+</sup> | string             | Yes  | No  | Task name.                                                    |
-| taskId   | number             | Yes  | No  | Task ID.                                                    |
-| state    | [State](#state10)  | Yes  | No  | Task state.                                                   |
-| duration | number             | Yes  | No  | Duration that the task has been executed, in ms. If the return value is **0**, the task is not running. If the return value is empty, no task is running. |
+| name<sup>12+</sup> | string             | Yes  | No  | Task name.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                   |
+| taskId   | number             | Yes  | No  | Task ID.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                    |
+| state    | [State](#state10)  | Yes  | No  | Task state.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                   |
+| duration | number             | Yes  | No  | Duration that the task has been executed, in ms. If the return value is **0**, the task is not running. If the return value is empty, no task is running.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 
 ## ThreadInfo<sup>10+</sup>
 
@@ -1243,6 +1682,8 @@ Describes the internal information about a worker thread.
 ### Attributes
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name    | Type                   | Readable| Writable| Description                                                     |
 | -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
@@ -1259,6 +1700,8 @@ Describes the internal information about a task pool.
 ### Attributes
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name         | Type                             | Readable| Writable| Description                 |
 | ------------- | -------------------------------- | ---- | ---- | -------------------- |
@@ -1278,7 +1721,7 @@ The following sequenceable data types are supported: All Primitive Type (excludi
 ```ts
 // Common functions are supported, and variables passed in by input parameters are also supported.
 @Concurrent
-function printArgs(args: number): number {
+function printArgs(args: string): string {
   console.info("func: " + args);
   return args;
 }
@@ -1349,7 +1792,7 @@ taskpoolExecute();
 
 ```ts
 // c.ets
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function strSort(inPutArr: Array<string>): Array<string> {

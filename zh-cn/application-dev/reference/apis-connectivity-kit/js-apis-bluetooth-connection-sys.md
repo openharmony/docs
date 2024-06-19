@@ -19,7 +19,7 @@ import { connection } from '@kit.ConnectivityKit';
 
 pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: AsyncCallback&lt;void&gt;): void
 
-向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。
+向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -72,7 +72,7 @@ try {
 
 pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;void&gt;
 
-向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。
+向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -127,7 +127,7 @@ try {
 
 cancelPairedDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-删除配对的远程设备。
+删除配对的远程设备。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -172,7 +172,7 @@ try {
 
 cancelPairedDevice(deviceId: string): Promise&lt;void&gt;
 
-删除配对的远程设备。
+删除配对的远程设备。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -222,7 +222,7 @@ try {
 
 cancelPairingDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-删除正在配对中的远程设备。
+删除正在配对中的远程设备。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -267,7 +267,7 @@ try {
 
 cancelPairingDevice(deviceId: string): Promise&lt;void&gt;
 
-删除正在配对中的远程设备。
+删除正在配对中的远程设备。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -317,7 +317,7 @@ try {
 
 getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
 
-获取本地设备的profile UUID。
+获取本地设备的profile UUID。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -363,7 +363,7 @@ try {
 
 getLocalProfileUuids(): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
-获取本地设备的profile UUID。
+获取本地设备的profile UUID。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -411,7 +411,7 @@ try {
 
 getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
 
-获取对端蓝牙设备支持的Profile UUID。
+获取对端蓝牙设备支持的Profile UUID。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -459,7 +459,7 @@ try {
 
 getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
-获取对端蓝牙设备支持的Profile UUID。
+获取对端蓝牙设备支持的Profile UUID。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -513,7 +513,7 @@ try {
 
 connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-连接远端设备所有允许连接的profiles。
+连接远端设备所有允许连接的profiles。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -564,7 +564,7 @@ try {
 
 connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
-连接远端设备所有允许连接的profiles。
+连接远端设备所有允许连接的profiles。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -618,7 +618,7 @@ try {
 
 disconnectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-断开远端设备所有连接的profiles。
+断开远端设备所有连接的profiles。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -669,7 +669,7 @@ try {
 
 disconnectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
-断开远端设备所有连接的profiles。
+断开远端设备所有连接的profiles。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -771,7 +771,7 @@ try {
 
 on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
 
-订阅蓝牙设备发现上报事件。
+订阅蓝牙设备发现上报事件。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -861,7 +861,7 @@ try {
 
 setRemoteDeviceType(deviceId: string, type: DeviceType): Promise&lt;void&gt;
 
-设置蓝牙远端设备自定义类型。
+设置蓝牙远端设备自定义类型。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -912,7 +912,7 @@ try {
 
 getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 
-获取蓝牙远端设备自定义类型。
+获取蓝牙远端设备自定义类型。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 

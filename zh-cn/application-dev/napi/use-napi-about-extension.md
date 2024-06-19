@@ -22,6 +22,9 @@
 | napi_run_script_path | 用于在Node-API模块中运行指定abc文件。 |
 | napi_queue_async_work_with_qos | 用于将异步工作对象加入队列，让开发者能够根据QoS优先级来管理和调度异步工作的执行，从而更好地满足程序的性能和响应需求。 |
 | napi_coerce_to_native_binding_object | 用于给JavaScript对象绑定回调和回调所需的参数，其作用是为了给JavaScript对象携带Native信息。 |
+| napi_serialize | 将ArkTS对象转换为native数据。第一个参数env是接口执行的ArkTS环境；第二个参数object是待序列化的ArkTS对象；第三个参数transfer_list是存放需要以transfer传递的arrayBuffer的array，如不涉及可传undefined；第四个参数clone_list是存放需要克隆传递的Sendable对象的array，如不涉及可传undefined；第五个参数result是序列化结果。 |
+| napi_deserialize | 将native数据转为ArkTS对象。第一个参数env是接口执行的ArkTS环境；第二个参数buffer是序列化数据；第三个参数object是反序列化得到的结果。 |
+| napi_delete_serialization_data | 删除序列化数据。 |
 
 ## 使用示例
 
@@ -197,7 +200,7 @@ static void *DetachCb(napi_env env, void *nativeObject, void *hint)
     return nativeObject;
 }
 
-// 绑定回调，一般在序列化时调用
+// 绑定回调，一般在反序列化时调用
 static napi_value AttachCb(napi_env env, void *nativeObject, void *hint)
 {
     OH_LOG_INFO(LOG_APP, "NAPI this is attach callback");
@@ -231,7 +234,6 @@ static napi_value CoerceToNativeBindingObject(napi_env env, napi_callback_info i
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "NAPI napi_coerce_to_native_binding_object fail");
         return nullptr;
-}
     }
     return object;
 }
@@ -277,8 +279,77 @@ parent.onmessage = function(message) {
 }
 ```
 
+**注意事项**
+
+对ArkTs对象A调用`napi_coerce_to_native_binding_object`将开发者实现的detach/attach回调和native对象信息加到A上，再将A跨线程传递。跨线程传递需要对A进行序列化和反序列化，在当前线程thread1序列化A得到数据data，序列化阶段执行detach回调。然后将data传给目标线程thread2，在thread2中反序列化data，执行attach回调，最终得到ArkTS对象A'。
+![napi_coerce_to_native_binding_object](figures/napi_coerce_to_native_binding_object.png)
+
 worker相关开发配置和流程参考以下链接：
 [使用Worker进行线程间通信](../reference/apis-arkts/js-apis-worker.md)
+
+### napi_serialize、napi_deserialize、napi_delete_serialization_data
+
+用于将ArkTS对象转换为native数据、将native数据转为ArkTS对象、删除序列化数据等操作。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value AboutSerialize(napi_env env, napi_callback_info info)
+{
+    // 获取传入的ts的一个对象作为参数
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    napi_value undefined = nullptr;
+    // 构造napi_serialize方法所需参数
+    napi_get_undefined(env, &undefined);
+    void *data = nullptr;
+    // 调用napi_serialize方法将ts对象转化为native数据
+    napi_status status = napi_serialize(env, args[0], undefined, undefined, &data);
+    if (status != napi_ok ||data == nullptr) {
+        napi_throw_error(env, nullptr, "Node-API napi_serialize fail");
+        return nullptr;
+    }
+    // 构造napi_value类型的数据，用于接收将native数据转化为ts对象后的数据
+    napi_value result = nullptr;
+    napi_deserialize(env, data, &result);
+    napi_value number = nullptr;
+    // 获取native数据转化为ts对象后的数据中的numKey属性的值
+    napi_get_named_property(env, result, "numKey", &number);
+    // 判断获取到的属性值是否为number类型
+    napi_valuetype valuetype;
+    napi_typeof(env, number, &valuetype);
+    if (valuetype != napi_number) {
+        napi_throw_error(env, nullptr, "Node-API Wrong type of argment. Expects a number.");
+        return nullptr;
+    }
+    // 调用napi_delete_serialization_data方法删除序列化数据
+    napi_delete_serialization_data(env, data);
+    // 返回获取到的属性值
+    return number;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const aboutSerialize: (obj: Object) => number;
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+class Obj {
+  numKey:number = 0;
+}
+let obj: Obj = { numKey: 500 };
+hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.aboutSerialize(obj));
+```
 
 ## Sendable相关
 

@@ -20,7 +20,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-key-generat
 - Example: Randomly generate a 256-bit AES key (using promise-based APIs).
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testGenerateAesKey() {
     // Create a SymKeyGenerator instance.
@@ -37,7 +37,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-key-generat
 
 - Example using synchronous API [generateSymKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkeysync12):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testSyncGenerateAesKey() {
     // Create a SymKeyGenerator instance.
@@ -65,7 +65,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-key-generat
 - Example: Randomly generate a 128-bit SM4 key (using promise-based APIs).
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testGenerateSM4Key() {
     // Create a SymKeyGenerator instance.
@@ -82,7 +82,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-key-generat
 
 - Example using synchronous API [generateSymKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkeysync12):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testSyncGenerateAesKey() {
     // Create a SymKeyGenerator instance.

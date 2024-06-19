@@ -38,6 +38,9 @@ FileManagement_ErrCode OH_Environment_GetUserDesktopDir (char ** result)
 **描述**
 获取Desktop根目录沙箱路径。
 
+> **注意：**
+> 此接口暂无法使用，请使用“/storage/Users/currentUser/Desktop”作为用户桌面目录的沙箱路径。接口将在后续版本提供支持。
+
 **起始版本：** 12
 
 **参数:**
@@ -45,10 +48,6 @@ FileManagement_ErrCode OH_Environment_GetUserDesktopDir (char ** result)
 | 名称 | 描述 | 
 | -------- | -------- |
 | result | Desktop根目录路径指针。请引用头文件malloc.h并使用free()进行资源释放。  | 
-
-**需要权限：**
-
-ohos.permission.READ_WRITE_DESKTOP_DIRECTORY。
 
 **返回：**
 
@@ -63,6 +62,9 @@ FileManagement_ErrCode OH_Environment_GetUserDocumentDir (char ** result)
 **描述**
 获取Document根目录沙箱路径。
 
+> **注意：**
+> 此接口暂无法使用，请使用“/storage/Users/currentUser/Documents”作为用户文档目录的沙箱路径。接口将在后续版本提供支持。
+
 **起始版本：** 12
 
 **参数:**
@@ -70,10 +72,6 @@ FileManagement_ErrCode OH_Environment_GetUserDocumentDir (char ** result)
 | 名称 | 描述 | 
 | -------- | -------- |
 | result | Document根目录路径指针。请引用头文件malloc.h并使用free()进行资源释放。  | 
-
-**需要权限：**
-
-ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
 
 **返回：**
 
@@ -88,6 +86,9 @@ FileManagement_ErrCode OH_Environment_GetUserDownloadDir (char ** result)
 **描述**
 获取Download根目录沙箱路径。
 
+> **注意：**
+> 此接口暂时无法使用，在当前版本请使用“/storage/Users/currentUser/Download”作为用户下载目录的沙箱路径。接口将在后续版本提供支持。
+
 **起始版本：** 12
 
 **参数:**
@@ -95,10 +96,6 @@ FileManagement_ErrCode OH_Environment_GetUserDownloadDir (char ** result)
 | 名称 | 描述 | 
 | -------- | -------- |
 | result | Download根目录路径指针。请引用头文件malloc.h并使用free()进行资源释放。  | 
-
-**需要权限：**
-
-ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY。
 
 **返回：**
 
