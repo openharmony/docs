@@ -13,6 +13,10 @@
 
 当调度独立的任务，或者一系列任务为静态方法实现，或者可以通过单例构造唯一的句柄或类对象，可在不同任务线程之间使用时，推荐使用TaskPool。
 
+> **说明：**
+>
+> 由于[Actor模型](actor-model-development-samples.md#actor并发模型对比内存共享并发模型)不同线程间内存隔离的特性，普通单例无法在不同线程间使用。可以通过共享模块导出单例解决该问题。
+
 1. 定义并发函数，内部调用同步方法。
 
 2. 创建任务[Task](../reference/apis-arkts/js-apis-taskpool.md#task)，通过[execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute-1)接口执行该任务，并对任务返回的结果进行操作。
@@ -23,10 +27,15 @@
 
 
 ```ts
-// Handle.ts 代码
+// Handle.ets 代码
+"use shared"
+
+@Sendable
 export default class Handle {
-  static getInstance(): void {
+  private static instance: Handle = new Handle;
+  static getInstance(): Handle {
     // 返回单例对象
+    return Handle.instance;
   }
 
   static syncGet(): void {
@@ -57,15 +66,16 @@ export default class Handle {
 
 ```ts
 // Index.ets代码
-import { taskpool } from '@kit.ArkTS';
+import { taskpool} from '@kit.ArkTS';
 import Handle from './Handle'; // 返回静态句柄
 
 // 步骤1: 定义并发函数，内部调用同步方法
 @Concurrent
-function func(num: number): number {
+async function func(num: number): Promise<number> {
   // 调用静态类对象中实现的同步等待调用
   // 先调用syncSet方法并将其结果作为syncSet2的参数，模拟同步调用逻辑
   let tmpNum: number = Handle.syncSet(num);
+  console.info("this is Child_Thread")
   return Handle.syncSet2(tmpNum);
 }
 
@@ -93,9 +103,11 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .onClick(() => {
+          .onClick(async () => {
             // 步骤3: 执行并发操作
             asyncGet();
+            let num: number = Handle.syncSet(100);
+            console.info("this is Main_Thread!")
           })
       }
       .width('100%')
