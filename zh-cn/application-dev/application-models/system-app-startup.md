@@ -42,9 +42,9 @@
 | -------- | -------- |-------- |
 | 电话 | 跳转到拨号界面，并显示待拨出的号码。 | [mackeCall()](../reference/apis-telephony-kit/js-apis-call.md#callmakecall7) |
 | 日历 | 创建日程 | [addEvent](../reference/apis-calendar-kit/js-apis-calendarManager.md#addevent) |
-<!--RP2--><!--RP1End-->
+<!--RP2--><!--RP2End-->
 
-<!--RP3--><!--RP1End-->
+<!--RP3--><!--RP3End-->
 
 
 
