@@ -13,8 +13,24 @@
 
 <!--RP1--><!--RP1End-->
 
+通过视频编码，应用可以实现以下重点能力，包括：
+1. 通过调用OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数，重置帧率，码率。
+
+   具体可参考下文中：Surface模式的步骤9-OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数。
+2. 通过调用OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数，重置最大，最小量化参数。
+
+   具体可参考下文中：Surface模式的步骤9-OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数。
+3. 通过调用OH_VideoEncoder_RegisterParameterCallback()在配置之前注册随帧通路回调，随帧设置最大，最小量化参数。
+
+   具体可参考下文中：Surface模式的步骤4-OH_VideoEncoder_RegisterParameterCallback()在配置之前注册随帧通路回调。
+4. 分层编码，LTR设置。具体可参考：[时域可分层视频编码](video-encoding-temporal-scalability.md)
+5. 通过调用OH_VideoEncoder_RegisterCallback()设置回调函数，获取编码每帧平均量化参数，平方误差。
+
+   具体可参考下文中：Surface模式或Buffer模式的步骤3-调用OH_VideoEncoder_RegisterCallback()设置回调函数。
+
+
 ## 限制约束
-1. buffer模式不支持10bit yuv的图像数据。
+1. buffer模式不支持10bit的图像数据。
 2. 由于硬件编码器资源有限，每个编码器在使用完毕后都必须调用OH_VideoDecoder_Destroy()函数来销毁实例并释放资源。
 
 
@@ -47,7 +63,7 @@
    - 初始创建编码器实例时，编码器处于Initialized状态
    - 任何状态下调用OH_VideoEncoder_Reset()方法，编码器将会移回Initialized状态
 
-2. initialized状态下，调用OH_VideoEncoder_Configure()方法配置编码器，配置成功后编码器进入Configured状态。
+2. Initialized状态下，调用OH_VideoEncoder_Configure()方法配置编码器，配置成功后编码器进入Configured状态。
 3. Configured状态下调用OH_VideoEncoder_Prepare()进入Prepared状态。
 4. Prepared状态调用OH_VideoEncoder_Start()方法使编码器进入Executing状态。
    - 处于Executing状态时，调用OH_VideoEncoder_Stop()方法可以使编码器返回到Prepared状态
@@ -634,28 +650,28 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - stride: 获取到的buffer数据的跨距。
 
     ```c++
-        if (stride == width) {
-            // 处理文件流得到帧的长度，再将需要编码的数据写入到对应index的buffer中
-            int32_t frameSize = width * height * 3 / 2; // NV12颜色格式下，每帧数据大小的计算公式
-            inputFile->read(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(buffer)), frameSize);
-        } else {
-            // 如果跨距不等于宽，需要用户按照跨距进行偏移
-        }
-        // 配置buffer info信息
-        OH_AVCodecBufferAttr info;
-        info.size = frameSize;
-        info.offset = 0;
-        info.pts = 0;
-        info.flags = flags;
-        ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
-        if (ret != AV_ERR_OK) {
-            // 异常处理
-        }
-        // 送入编码输入队列进行编码，index为对应输入队列的下标
-        int32_t ret = OH_VideoEncoder_PushInputBuffer(videoEnc, index);
-        if (ret != AV_ERR_OK) {
-            // 异常处理
-        }
+    if (stride == width) {
+        // 处理文件流得到帧的长度，再将需要编码的数据写入到对应index的buffer中
+        int32_t frameSize = width * height * 3 / 2; // NV12颜色格式下，每帧数据大小的计算公式
+        inputFile->read(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(buffer)), frameSize);
+    } else {
+        // 如果跨距不等于宽，需要用户按照跨距进行偏移
+    }
+    // 配置buffer info信息
+    OH_AVCodecBufferAttr info;
+    info.size = frameSize;
+    info.offset = 0;
+    info.pts = 0;
+    info.flags = flags;
+    ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    // 送入编码输入队列进行编码，index为对应输入队列的下标
+    int32_t ret = OH_VideoEncoder_PushInputBuffer(videoEnc, index);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
     ```
     对跨距进行偏移，以NV12图像为例 示例如下：
 
@@ -666,55 +682,59 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```
 
     ```c++
-       unit8_t *dst; // 目标内存区域的指针
-       unit8_t *src; // 源内存区域的指针
-       struct rect   // 源内存区域的宽，高
-       {
-           int32_t width;
-           int32_t height;
-       }
+    struct Rect   // 源内存区域的宽，高
+    {
+        int32_t width;
+        int32_t height;
+    }
 
-       struct dstRect // 目标内存区域的宽，高跨距
-       {
-           int32_t wStride;
-           int32_t hStride;
-       }
+    struct DstRect // 目标内存区域的宽，高跨距
+    {
+        int32_t wStride;
+        int32_t hStride;
+    }
 
-       struct srcRect // 源内存区域的宽，高跨距
-       {
-           int32_t wStride;
-           int32_t hStride;
-       }
-       // Y 将Y区域的源数据复制到另一个区域的目标数据中
-       for (int32_t i = 0; i < rect.height; ++i) {
-           //将源数据的一行数据复制到目标数据的一行中
-           int32_t ret = memcpy_s(dst, dstRect.wStride, src, rect.width);
-           if (ret != AV_ERR_OK) {
-               // 复制数据失败
-           }
-           // 更新源数据和目标数据的指针，进行下一行的复制。每更新一次源数据和目标数据的指针都向下移动一个wStride
-           dst += dstRect.wStride;
-           src += srcRect.wStride;
-       }
-       // padding
-       // 更新源数据和目标数据的指针，指针都向下移动一个padding
-       dst += (dstRect.hStride - rect.height) * dstRect.wStride;
-       src += (srcRect.hStride - rect.height) * srcRect.wStride;
-       rect.height >>= 1;
-       // UV 将UV区域的源数据复制到另一个区域的目标数据中
-       for (int32_t i = 0; i < rect.height; ++i) {
-           int32_t ret = memcpy_s(dst, dstRect.wStride, src, rect.width);
-           if (ret != AV_ERR_OK) {
-               // 复制数据失败
-           }
-           dst += dstRect.wStride;
-           src += srcRect.wStride;
-       }
-       ```
+    struct SrcRect // 源内存区域的宽，高跨距
+    {
+        int32_t wStride;
+        int32_t hStride;
+    }
+    struct Rect rect;
+    struct DstRect dstRect;
+    struct SrcRect srcRect;
+    unit8_t *dst; // 目标内存区域的指针
+    unit8_t *src; // 源内存区域的指针
+
+    // Y 将Y区域的源数据复制到另一个区域的目标数据中
+    for (int32_t i = 0; i < rect.height; ++i) {
+        //将源数据的一行数据复制到目标数据的一行中
+        int32_t ret = memcpy_s(dst, dstRect.wStride, src, rect.width);
+        if (ret != AV_ERR_OK) {
+            // 复制数据失败
+        }
+        // 更新源数据和目标数据的指针，进行下一行的复制。每更新一次源数据和目标数据的指针都向下移动一个wStride
+        dst += dstRect.wStride;
+        src += srcRect.wStride;
+    }
+    // padding
+    // 更新源数据和目标数据的指针，指针都向下移动一个padding
+    dst += (dstRect.hStride - rect.height) * dstRect.wStride;
+    src += (srcRect.hStride - rect.height) * srcRect.wStride;
+    rect.height >>= 1;
+    // UV 将UV区域的源数据复制到另一个区域的目标数据中
+    for (int32_t i = 0; i < rect.height; ++i) {
+        int32_t ret = memcpy_s(dst, dstRect.wStride, src, rect.width);
+        if (ret != AV_ERR_OK) {
+            // 复制数据失败
+        }
+        dst += dstRect.wStride;
+        src += srcRect.wStride;
+    }
+    ```
     硬件编码在处理buffer数据时（推送数据前），需要用户拷贝宽高对齐后的图像数据到输入回调的AVbuffer中。
     一般需要获取数据的宽高、跨距、像素格式来保证编码输入数据被正确的处理。
     
-    具体实现请参考：Buffer模式的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽高、跨距、像素格式。
+    具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽高、跨距、像素格式。
    
 
 9. 通知编码器结束。

@@ -12,8 +12,16 @@
 
 <!--RP1--><!--RP1End-->
 
+通过视频解码，应用可以实现以下重点能力，包括：
+1. 通过调用OH_VideoDecoder_RegisterCallback()设置回调函数，实现改变分辨率。
+
+   具体可参考下文中：Surface模式或Buffer模式的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数。
+2. 在Surface模式下，实现动态切换Surface。
+
+   具体可参考下文中：Surface模式的步骤6-设置Surface。
+
 ## 限制约束
-1. buffer模式不支持10bit yuv的图像数据。
+1. buffer模式不支持10bit的图像数据。
 2. Flush，Reset，Stop之后，重新Start时，需要重新传XPS。具体示例请参考[Surface模式](#surface模式)步骤14调用OH_VideoDecoder_Flush()。
 3. 由于硬件解码器资源有限，每个解码器在使用完毕后都必须调用OH_VideoDecoder_Destroy()函数来销毁实例并释放资源。
 4. 视频解码输入码流仅支持AnnexB格式，且支持的AnnexB格式不支持多层次切片。
@@ -48,7 +56,7 @@
    - 初始创建解码器实例时，解码器处于Initialized状态
    - 任何状态下调用OH_VideoDecoder_Reset()方法，解码器将会移回Initialized状态
 
-2. initialized状态下，调用OH_VideoDecoder_Configure()方法配置解码器，配置成功后解码器进入Configured状态
+2. Initialized状态下，调用OH_VideoDecoder_Configure()方法配置解码器，配置成功后解码器进入Configured状态
 3. Configured状态下调用OH_VideoDecoder_Prepare()进入Prepared状态。
 4. Prepared状态调用OH_VideoDecoder_Start()方法使解码器进入Executing状态。
    - 处于Executing状态时，调用OH_VideoDecoder_Stop()方法可以使解码器返回到Prepared状态
@@ -819,25 +827,29 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
     ```c++
-    unit8_t *dst; // 目标内存区域的指针
-    unit8_t *src; // 源内存区域的指针
-    struct rect   // 源内存区域的宽，高
+    struct Rect   // 源内存区域的宽，高
     {
         int32_t width;
         int32_t height;
     }
 
-    struct dstRect // 目标内存区域的宽，高跨距
+    struct DstRect // 目标内存区域的宽，高跨距
     {
         int32_t wStride;
         int32_t hStride;
     }
 
-    struct srcRect // 源内存区域的宽，高跨距
+    struct SrcRect // 源内存区域的宽，高跨距
     {
         int32_t wStride;
         int32_t hStride;
     }
+
+    unit8_t *dst; // 目标内存区域的指针
+    unit8_t *src; // 源内存区域的指针
+    struct Rect rect;
+    struct DstRect dstRect;
+    struct SrcRect srcRect;
     // Y 将Y区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
         //将源数据的一行数据复制到目标数据的一行中
@@ -868,6 +880,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     硬件解码在处理buffer数据时（释放数据前），输出回调用户收到的AVbuffer是宽高对齐后的图像数据。
     一般需要获取数据的宽高、跨距、像素格式来保证解码输出数据被正确的处理。
 
-    具体实现请参考：Buffer模式的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽高、跨距、像素格式。
+    具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽高、跨距、像素格式。
 
 后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤14-17。
