@@ -684,7 +684,6 @@
       - 应用帐号
         - [管理应用帐号](basic-services/account/manage-application-account.md)
     - USB服务
-      - USB服务
         - [USB服务开发概述](basic-services/usb/usb-overview.md)
         - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
     <!--Del-->
@@ -771,15 +770,16 @@
         - [应用触发数据备份/恢复（仅对系统应用开放）](file-management/app-file-backup.md)
         <!--DelEnd-->
       - [文件授权访问(ArkTS)](file-management/app-file-authorization.md)
-      - [文件授权访问(C/C++)](file-management/native-fileshare-guidelines.md)
     - 用户文件
       - [用户文件概述](file-management/user-file-overview.md)
       - [用户文件uri介绍](file-management/user-file-uri-intro.md)
       - [FileUri开发指导(C/C++)](file-management/native-fileuri-guidelines.md)
       - [获取用户目录环境(C/C++)](file-management/native-environment-guidelines.md)
-      - 选择与保存用户文件（FilePicker）
+      - 选择与保存用户文件
         - [选择用户文件](file-management/select-user-file.md)
         - [保存用户文件](file-management/save-user-file.md)
+        - [授权持久化](file-management/file-persistPermission.md)
+        - [授权持久化(C/C++)](file-management/native-fileshare-guidelines.md)
       <!--Del-->
       - [开发用户文件管理器（仅对系统应用开放）](file-management/dev-user-file-manager.md)
       - [管理外置存储设备（仅对系统应用开放）](file-management/manage-external-storage.md)
@@ -864,11 +864,9 @@
       - [证书管理概述](security/DeviceCertificateKit/certManager-overview.md)
       - [证书管理开发指导](security/DeviceCertificateKit/certManager-guidelines.md)
   - Distributed Service Kit（分布式管理服务）
-    - 分布式管理服务
       - [Distributed Service Kit简介](distributedservice/distributedservice-kit-intro.md)
       - [分布式设备管理开发指南](distributedservice/devicemanager-guidelines.md)
   - Driver Development Kit（驱动开发服务）
-    - 驱动开发服务
       - [Driver Development Kit简介](device/driver/driverdevelopment-overview.md)
       - [驱动扩展框架DriverExtensionAbility](device/driver/driverextensionability.md)
       - [扩展外设管理开发指导](device/driver/externaldevice-guidelines.md)
