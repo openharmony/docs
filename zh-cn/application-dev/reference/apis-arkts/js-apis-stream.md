@@ -457,7 +457,7 @@ doWritev(chunks: string[] | Uint8Array[], callback: Function): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| chunk    | string[] \|  Uint8Array[] | 是 | 被批量写出的数据数组。 |
+| chunks    | string[] \|  Uint8Array[] | 是 | 被批量写出的数据数组。 |
 | callback  | Function | 是 | 回调函数。 |
 
 **错误码：**
