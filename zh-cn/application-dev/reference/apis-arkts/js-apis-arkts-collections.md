@@ -24,7 +24,7 @@ type ISendable = lang.ISendable
 
 ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自身没有任何必须的方法和属性。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -43,7 +43,7 @@ ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自�
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称   | 类型   | 可读 | 可写 | 说明              |
+| 名称   | 类型   | 只读 | 可选 | 说明              |
 | ------ | ------ | ---- | ---- | ----------------- |
 | length | number | 是   | 否   | ConcatArray的元素个数。 |
 
@@ -127,13 +127,13 @@ let slicedArray = concatArray.slice(1, 3); // 返回[2, 3]，原Array保持不�
 
 - T：Type，支持[Sendable的数据类型](../../arkts-utils/arkts-sendable.md)。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称   | 类型   | 可读 | 可写 | 说明              |
+| 名称   | 类型   | 只读 | 可选 | 说明              |
 | ------ | ------ | ---- | ---- | ----------------- |
 | length | number | 是   | 否   | Array的元素个数。 |
 
@@ -146,7 +146,7 @@ constructor()
 
 创建一个ArkTS Array的构造函数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -170,7 +170,7 @@ constructor(first: T, ...left: T[])
 
 ArkTS Array的构造函数，通过开发者提供的元素进行初始化。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -201,7 +201,7 @@ static create\<T>(arrayLength: number, initialValue: T): Array\<T>
 
 生成一个固定长度的Array，其中，每个元素的初始值为initialValue。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -238,7 +238,7 @@ static from\<T>(arrayLike: ArrayLike\<T>): Array\<T>
 
 从一个实现了ArrayLike接口的对象创建一个新的ArkTS Array。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -275,7 +275,7 @@ pop(): T | undefined
 
 从ArkTS Array中移除并返回最后一个元素。如果Array为空，则返回undefined，且Array不发生变化。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -307,7 +307,7 @@ push(...items: T[]): number
 
 在ArkTS Array的末尾添加一个或多个元素，并返回新的Array长度。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -345,7 +345,7 @@ join(separator?: string): string
 
 将ArkTS Array的所有元素连接成一个字符串，元素之间可以用指定的分隔符分隔。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -383,7 +383,7 @@ shift(): T | undefined
 
 从ArkTS Array中移除并返回第一个元素。如果Array为空，则返回undefined，且Array不发生变化。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -415,7 +415,7 @@ unshift(...items: T[]): number
 
 在ArkTS Array的首端插入一个或多个元素，并返回新的Array长度。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -453,7 +453,7 @@ slice(start?: number, end?: number): Array\<T>
 
 返回一个新的Array，该Array是原始ArkTS Array的切片。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -491,7 +491,7 @@ sort(compareFn?: (a: T, b: T) => number): Array\<T>
 
 对ArkTS Array进行排序，并返回排序后的Array。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -530,7 +530,7 @@ indexOf(searchElement: T, fromIndex?: number): number
 
 返回在ArkTS Array中搜索元素首次出现的索引，如果不存在则返回-1。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -569,7 +569,7 @@ forEach(callbackFn: (value: T, index: number, array: Array\<T>) => void): void
 
 对Array中的每个元素执行提供的回调函数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -603,7 +603,7 @@ map\<U>(callbackFn: (value: T, index: number, array: Array\<T>) => U): Array\<U>
 
 对Array中的每个元素执行提供的回调函数，并返回一个新的Array，该Array包含回调函数的结果。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -645,7 +645,7 @@ filter(predicate: (value: T, index: number, array: Array\<T>) => boolean): Array
 
 返回一个新Array，其中包含通过指定回调函数测试的所有元素。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -683,7 +683,7 @@ reduce(callbackFn: (previousValue: T, currentValue: T, currentIndex: number, arr
 
 对Array中的每个元素执行回调函数，将其结果作为累加值，并返回最终的结果。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -721,7 +721,7 @@ reduce\<U>(callbackFn: (previousValue: U, currentValue: T, currentIndex: number,
 
 与 reduce方法类似，但它接受一个初始值作为第二个参数，用于在Array遍历开始前初始化累加器。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -761,7 +761,7 @@ at(index: number): T | undefined
 
 返回Array中指定索引位置的元素。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -800,7 +800,7 @@ entries(): IterableIterator<[number, T]>
 
 返回一个新的可迭代对象，该对象包含Array中每个元素的键值对。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -833,7 +833,7 @@ keys(): IterableIterator\<number>
 
 返回一个新的可迭代对象，该对象包含Array中每个元素的键。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -868,7 +868,7 @@ values(): IterableIterator\<T>
 
 返回一个新的可迭代对象，该对象包含Array中每个元素的值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -903,7 +903,7 @@ find(predicate: (value: T, index: number, obj: Array\<T>) => boolean): T | undef
 
 返回Array中第一个满足指定测试函数的元素的值，如果所有元素都不满足，则返回undefined。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -941,7 +941,7 @@ includes(searchElement: T, fromIndex?: number): boolean
 
 判断Array是否包含指定的元素，并返回一个布尔值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -980,7 +980,7 @@ findIndex(predicate: (value: T, index: number, obj: Array\<T>) => boolean): numb
 
 返回Array中第一个满足指定测试函数的元素的索引，如果所有元素都不满足，则返回-1。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1018,7 +1018,7 @@ fill(value: T, start?: number, end?: number): Array\<T>
 
 使用指定的值填充Array中指定范围的所有元素。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1058,7 +1058,7 @@ shrinkTo(arrayLength: number): void
 
 使Array收缩到指定长度。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1093,7 +1093,7 @@ extendTo(arrayLength: number, initialValue: T): void
 
 使Array扩展到指定长度，扩展的部分使用给定值填充。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1125,7 +1125,7 @@ array2.extendTo(1, 10); // array内容不变
 
 ### concat
 
-concat(...items: ConcatArray<T>[]): Array<T>
+concat(...items: ConcatArray\<T>[]): Array\<T>
 
 拼接两个或多个数组。
 
@@ -1135,7 +1135,13 @@ concat(...items: ConcatArray<T>[]): Array<T>
 
 | 参数名 | 类型 | 必填 | 说明                               |
 | ------ | ---- | ---- | ---------------------------------- |
-| items  | ConcatArray<T>[]  | 是   | 拼接两个或多个数组。 |
+| items  | ConcatArray\<T>[]  | 是   | 拼接两个或多个数组。 |
+
+**返回值：**
+
+| 类型 | 说明                               |
+| ---- | ---------------------------------- |
+| Array\<T>  | 拼接后的数组。 |
 
 **错误码：**
 
@@ -1170,11 +1176,11 @@ K和V类型都需为[Sendable类型](../../arkts-utils/arkts-sendable.md)。
 
 ### 属性
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型   | 可读 | 可写 | 说明            |
+| 名称 | 类型   | 只读 | 可选 | 说明            |
 | ---- | ------ | ---- | ---- | --------------- |
 | size | number | 是   | 否   | Map的元素个数。 |
 
@@ -1184,7 +1190,7 @@ constructor(entries?: readonly (readonly [K, V])[] | null)
 
 构造函数，用于创建ArkTS Map对象。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1237,7 +1243,7 @@ entries(): IterableIterator<[K, V]>
 
 返回一个Map迭代器对象，该对象包含了此Map中的每个元素的[key, value]对。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1294,7 +1300,7 @@ keys(): IterableIterator\<K>
 
 返回一个Map迭代器对象，该对象包含了此Map中每个元素的键。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1332,7 +1338,7 @@ values(): IterableIterator\<V>
 
 返回一个Map迭代器对象，该对象包含此Map中每个元素的值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1370,7 +1376,7 @@ clear(): void
 
 删除该Map中的所有元素。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1402,7 +1408,7 @@ delete(key: K): boolean
 
 删除该Map中指定元素。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1447,7 +1453,7 @@ forEach(callbackFn: (value: V, key: K, map: Map<K, V>) => void): void
 
 按插入顺序对该Map中的每个键/值对执行一次回调函数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1503,7 +1509,7 @@ get(key: K): V | undefined
 
 返回该Map中的指定元素。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1545,7 +1551,7 @@ has(key: K): boolean
 
 判断该Map中是否存在指定元素。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1581,7 +1587,7 @@ set(key: K, value: V): Map<K, V>
 
 向该Map添加或更新一个指定的键值对。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1627,11 +1633,11 @@ myMap.set("foo", obj);
 
 ### 属性
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型   | 可读 | 可写 | 说明            |
+| 名称 | 类型   | 只读 | 可选 | 说明            |
 | ---- | ------ | ---- | ---- | --------------- |
 | size | number | 是   | 否   | Set的元素个数。 |
 
@@ -1641,7 +1647,7 @@ constructor(values?: readonly T[] | null)
 
 构造函数，用于创建ArkTS Set对象。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1691,7 +1697,7 @@ entries(): IterableIterator<[T, T]>
 
 返回一个Set迭代器对象。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1726,7 +1732,7 @@ keys(): IterableIterator\<T>
 
 返回一个Set迭代器对象，该对象包含了此Set中每个元素的值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1761,7 +1767,7 @@ values(): IterableIterator\<T>
 
 返回一个Set迭代器对象，该对象包含了此Set中每个元素的值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1812,7 +1818,7 @@ clear(): void
 
 删除该Set中的所有元素。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1841,7 +1847,7 @@ delete(value: T): boolean
 
 删除该Set中指定元素。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1884,7 +1890,7 @@ forEach(callbackFn: (value1: T, value2: T, set: Set\<T>) => void): void
 
 按插入顺序对该Set中的每个键/值对执行一次回调函数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1932,7 +1938,7 @@ has(value: T): boolean
 
 判断该Set中是否存在指定元素。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1966,7 +1972,7 @@ add(value: T): Set\<T>
 
 如果没有相同元素，则在该Set中插入一个新元素。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2008,9 +2014,9 @@ ArkTS TypedArray的底层数据结构。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称   | 类型   | 可读 | 可写 | 说明              |
+| 名称   | 类型   | 只读 | 可选 | 说明              |
 | ------ | ------ | ---- | ---- | ----------------|
 | byteLength | number | 是   | 否   | buffer所占的字节数。|
 
@@ -2021,7 +2027,7 @@ constructor(byteLength: number)
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2051,7 +2057,7 @@ slice(begin: number, end?: number): ArrayBuffer
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2090,7 +2096,7 @@ ArkTS TypedArray映射函数类型。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2106,7 +2112,7 @@ ArkTS TypedArray断言测试函数类型。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2123,7 +2129,7 @@ ArkTS TypedArray遍历函数类型。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2140,7 +2146,7 @@ ArkTS TypedArray归约函数类型。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2158,7 +2164,7 @@ ArkTS TypedArray排序函数类型。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2178,9 +2184,9 @@ ArkTS TypedArray排序函数类型。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称   | 类型   | 可读 | 可写 | 说明              |
+| 名称   | 类型   | 只读 | 可选 | 说明              |
 | ------ | ------ | ---- | ---- | ----------------|
 | buffer | ArrayBuffer | 是   | 否  | ArkTS TypedArray底层使用的buffer。|
 | byteLength | number | 是   | 否   | ArkTS TypedArray的所占的字节数。|
@@ -2195,7 +2201,7 @@ constructor()
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **错误码：**
 
@@ -2224,7 +2230,7 @@ constructor(length: number)
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2261,7 +2267,7 @@ constructor(array: ArrayLike\<number> | ArrayBuffer)
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2307,7 +2313,7 @@ constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2342,7 +2348,7 @@ static from(arrayLike: ArrayLike\<number>): TypedArray
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2370,7 +2376,7 @@ static from\<T>(arrayLike: ArrayLike\<T>, mapFn: TypedArrayFromMapFn\<T, number>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 参数名  | 类型   | 必填 | 说明                                        |
@@ -2414,7 +2420,7 @@ static from(iterable: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, nu
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 参数名  | 类型   | 必填 | 说明                                |
@@ -2452,7 +2458,7 @@ copyWithin(target: number, start: number, end?: number): TypedArray
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2492,7 +2498,7 @@ some(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2533,7 +2539,7 @@ every(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2574,7 +2580,7 @@ fill(value: number, start?: number, end?: number): TypedArray
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2615,7 +2621,7 @@ filter(predicate: TypedArrayPredicateFn\<number, TypedArray>): TypedArray
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2653,7 +2659,7 @@ find(predicate: TypedArrayPredicateFn\<number, TypedArray>): number | undefined
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2691,7 +2697,7 @@ findIndex(predicate: TypedArrayPredicateFn\<number, TypedArray>): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2728,7 +2734,7 @@ forEach(callbackFn: TypedArrayForEachCallback\<number, TypedArray>): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2762,7 +2768,7 @@ indexOf(searchElement: number, fromIndex?: number): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2803,7 +2809,7 @@ join(separator?: string): string
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2840,7 +2846,7 @@ map(callbackFn: TypedArrayForEachCallback\<number, TypedArray>): TypedArray
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 参数名    | 类型   | 必填 | 说明                                                 |
@@ -2877,7 +2883,7 @@ reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>): numbe
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 参数名     | 类型   | 必填 |  说明     |
@@ -2914,7 +2920,7 @@ reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>, initia
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 参数名    | 类型   | 必填 | 说明                                                 |
@@ -2953,7 +2959,7 @@ reduce\<U>(callbackFn: TypedArrayReduceCallback\<U, number, TypedArray>, initial
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2992,7 +2998,7 @@ reverse(): TypedArray
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -3023,7 +3029,7 @@ set(array: ArrayLike\<number>, offset?: number): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 参数名    | 类型   | 必填 | 说明                                                 |
@@ -3055,7 +3061,7 @@ slice(start?: number, end?: number): TypedArray
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -3095,7 +3101,7 @@ sort(compareFn?: TypedArrayCompareFn\<number>): TypedArray
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -3134,7 +3140,7 @@ subarray(begin?: number, end?: number): TypedArray
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -3173,7 +3179,7 @@ at(index: number): number | undefined
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                                         |
@@ -3211,7 +3217,7 @@ includes(searchElement: number, fromIndex?: number): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                      |
@@ -3251,7 +3257,7 @@ entries(): IterableIterator\<[number, number]>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -3285,7 +3291,7 @@ keys(): IterableIterator\<number>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -3319,7 +3325,7 @@ values(): IterableIterator\<number>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -3352,11 +3358,11 @@ BitVector是一种线性数据结构，底层基于数组实现。BitVector中�
 
 ### 属性
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称   | 类型   | 可读 | 可写 | 说明                  |
+| 名称   | 类型   | 只读 | 可选 | 说明                  |
 | ------ | ------ | ---- | ---- | --------------------- |
 | length | number | 是   | 否   | BitVector的元素个数。 |
 
@@ -3367,7 +3373,7 @@ constructor(length: number)
 
 BitVector的构造函数。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3390,7 +3396,7 @@ push(element:number): boolean
 
 在BitVector尾部插入元素。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3433,7 +3439,7 @@ pop(): number
 
 弹出BitVector尾部的元素。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3471,7 +3477,7 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 
 判断范围内是否包含特定bit值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3519,7 +3525,7 @@ setBitsByRange(element: number, fromIndex: number, toIndex: number): void
 
 将BitVector中指定范围的元素均设为特定bit值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3560,7 +3566,7 @@ setAllBits(element: number): void
 
 将BitVector中所有元素均设为特定bit值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3598,7 +3604,7 @@ getBitsByRange(fromIndex: number, toIndex: number): BitVector
 
 获取指定范围内的bit值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3649,7 +3655,7 @@ resize(size: number): void
 
 若size小于等于原BitVector的长度，则将原BitVector按size长度大小裁剪。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3690,7 +3696,7 @@ getBitCountByRange(element: number, fromIndex: number, toIndex: number): number
 
 统计指定范围内获取指定bit值的数量。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3738,7 +3744,7 @@ getIndexOf(element: number, fromIndex: number, toIndex: number): number
 
 返回指定bit值首次出现时的索引值，查找失败返回-1。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3786,7 +3792,7 @@ getLastIndexOf(element: number, fromIndex: number, toIndex: number): number
 
 返回指定bit值最后一次出现时的下标值，查找失败返回-1。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3834,7 +3840,7 @@ flipBitByIndex(index: number): void
 
 翻转BitVector指定索引处的bit值，0翻转为1，1翻转为0。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3873,7 +3879,7 @@ flipBitsByRange(fromIndex: number, toIndex: number): void
 
 翻转BitVector指定范围内的bit值，0翻转为1，1翻转为0。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3913,7 +3919,7 @@ values(): IterableIterator\<number>
 
 返回一个新的迭代器对象，该对象包含BitVector中每个元素的值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

@@ -1,8 +1,7 @@
-# Input Kit API参考
+# Input Kit（多模输入服务）
 
 - ArkTS API
   - [@ohos.multimodalInput.inputDevice (输入设备)](js-apis-inputdevice.md)
-  - [@ohos.multimodalInput.infraredEmitter (红外管理)](js-apis-infraredemitter.md)
   - [@ohos.multimodalInput.inputEvent (输入事件)](js-apis-inputevent.md)
   - [@ohos.multimodalInput.intentionCode (意图事件)](js-apis-intentioncode.md)
   - [@ohos.multimodalInput.keyCode (键值)](js-apis-keycode.md)
@@ -14,6 +13,7 @@
   <!--Del-->
   - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](js-apis-pointer-sys.md)
   - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](js-apis-shortKey-sys.md)
+  - [@ohos.multimodalInput.infraredEmitter (红外管理)(系统接口)](js-apis-infraredemitter-sys.md)
   - [@ohos.multimodalInput.inputConsumer (组合按键)(系统接口)](js-apis-inputconsumer-sys.md)
   - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](js-apis-inputdevice-sys.md)
   - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](js-apis-inputeventclient-sys.md)
@@ -26,7 +26,7 @@
     - [Input](input.md)
   - 头文件和结构体
     - 头文件
-        - [oh_input_manager.h](oh__input__manager_8h.md)
-        - [oh_key_code.h](oh__key__code_8h.md)
+      - [oh_input_manager.h](oh__input__manager_8h.md)
+      - [oh_key_code.h](oh__key__code_8h.md)
 - 错误码
   - [键鼠穿越管理错误码](errorcode-multimodalinput.md)

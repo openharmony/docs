@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import autoFillManager from '@ohos.app.ability.autoFillManager';
+import { autoFillManager } from '@kit.AbilityKit';
 ```
 
 ## AutoFillPopupConfig

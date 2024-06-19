@@ -29,7 +29,7 @@ import { inputMethod } from '@kit.IMEKit';
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | name<sup>9+</sup>  | string | 是 | 否 | 必填。输入法包名。|
 | id<sup>9+</sup>    | string | 是 | 否 | 必填。输入法唯一标识。|
@@ -178,7 +178,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | target | [InputMethodProperty](#inputmethodproperty8) | 是 | 目标输入法。 |
-| callback | AsyncCallback&lt;boolean&gt; | 否 | 回调函数。当输入法切换成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法切换成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
 
@@ -314,7 +314,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 目标输入法子类型。 |
-| callback | AsyncCallback&lt;boolean&gt; | 否 | 回调函数。当输入法子类型切换成功，err为undefined，data为true；否则为错误对象。|
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法子类型切换成功，err为undefined，data为true；否则为错误对象。|
 
 **错误码：**
 
@@ -473,7 +473,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| 是 | 目标输入法。 |
 |inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 目标输入法子类型。 |
-| callback | AsyncCallback&lt;boolean&gt; | 否 | 回调函数。当输入法和子类型切换成功，err为undefined，data为获取到的切换子类型结果true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法和子类型切换成功，err为undefined，data为获取到的切换子类型结果true；否则为错误对象。 |
 
 **错误码：**
 
@@ -703,7 +703,7 @@ Enter键的功能类型。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | 是 | 是 | 输入法enter键类型。|
 
@@ -713,7 +713,7 @@ Enter键的功能类型。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | textInputType<sup>10+</sup>  | [TextInputType](#textinputtype10) | 是 | 是 | 文本输入类型。|
 | enterKeyType<sup>10+</sup>  | [EnterKeyType](#enterkeytype10) | 是 | 是 | Enter键功能类型。|
@@ -737,7 +737,7 @@ Enter键的功能类型。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | left  | number | 是 | 是 | 光标的left坐标。|
 | top  | number | 是 | 是 | 光标的top坐标。|
@@ -750,7 +750,7 @@ Enter键的功能类型。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | start  | number | 是 | 是 | 选中文本的首字符在编辑框的索引值。|
 | end  | number | 是 | 是 | 选中文本的末字符在编辑框的索引值。|
@@ -761,7 +761,7 @@ Enter键的功能类型。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | direction  | [Direction](#direction10) | 是 | 是 | 选中文本时，光标的移动方向。|
 
@@ -771,7 +771,7 @@ Enter键的功能类型。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | name  | string | 是 | 是 | 输入法窗口的名称。|
 | left  | number | 是 | 是 | 输入法窗口左上顶点的横坐标，单位为px。|
@@ -801,7 +801,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 | -------- | -------- | -------- | -------- |
 | showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起，false表示不拉起。 |
 | textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
-| callback | AsyncCallback&lt;void&gt; | 否 | 回调函数。当绑定输入法成功后，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当绑定输入法成功后，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -1151,7 +1151,7 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | windowId | number | 是 | 绑定输入法应用的应用程序所在的窗口Id。 |
-| callback | AsyncCallback&lt;void&gt; | 否 | 回调函数。当设置成功时，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -2896,7 +2896,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 | 参数名   | 类型                                                | 必填 | 说明                          |
 | -------- | --------------------------------------------------- | ---- | ----------------------------- |
 | enable   | boolean                                             | 是   |true表示返回已激活输入法列表，false表示返回未激活输入法列表。 |
-| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | 否   | 回调函数，返回已激活/未激活输入法列表。 |
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; |  是  | 回调函数，返回已激活/未激活输入法列表。 |
 
 **错误码：**
 

@@ -1,4 +1,4 @@
-# ArkGraphics 2D API参考 
+# ArkGraphics 2D（方舟2D图形服务）
 
 - ArkTS API 
   - [@ohos.effectKit (图像效果)](js-apis-effectKit.md)
@@ -9,6 +9,8 @@
   - [@ohos.graphics.drawing (绘制模块)](js-apis-graphics-drawing.md)
   - [@ohos.graphics.hdrCapability (HDR能力)](js-apis-hdrCapability.md)
   - [@ohos.graphics.text (文本模块)](js-apis-graphics-text.md)
+  - [@ohos.graphics.uiEffect (效果级联)](js-apis-uiEffect.md)
+  - [@ohos.graphics.uiEffect (效果级联)(系统接口)](js-apis-uiEffect-sys.md)
 - C API
   - 模块
     - [Drawing](_drawing.md)
@@ -85,9 +87,13 @@
     - [OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md)
     - [OH_Filter](_o_h___filter.md)
     - [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md)
+    - [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md)
     - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
+    - [OH_NativeBuffer_Cta861](_o_h___native_buffer___cta861.md)
     - [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md)
     - [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md)
+    - [OH_NativeBuffer_Smpte2086](_o_h___native_buffer___smpte2086.md)
+    - [OH_NativeBuffer_StaticMetadata](_o_h___native_buffer___static_metadata.md)
     - [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)
     - [OHExtDataHandle](_o_h_ext_data_handle.md)
     - [OHHDRMetaData](_o_h_h_d_r_meta_data.md)

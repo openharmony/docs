@@ -7,15 +7,15 @@ This topic walks you through on how to create a **TrustAnchor** object array fro
 1. Import the [certFramework](../../reference/apis-device-certificate-kit/js-apis-cert.md) module.
 
    ```ts
-   import cert from '@ohos.security.cert';
+   import { cert } from '@kit.DeviceCertificateKit';
    ```
 
-2. Use [cert.createTrustAnchorsWithKeyStore](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509certchain11) to create a **TrustAnchor** array object based on the .p12 file.
+2. Use [cert.createTrustAnchorsWithKeyStore](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509certchain11) to create a **TrustAnchor** array object based on the .p12 file.
 
   ```ts
-  import cert from '@ohos.security.cert';
-  import { BusinessError } from '@ohos.base';
-  import util from '@ohos.util';
+  import { cert } from '@kit.DeviceCertificateKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { util } from '@kit.ArkTS';
 
   let p12Data = new Uint8Array([
       0x30,0x82,0x09,0x51,0x02,0x01,0x03,0x30,0x82,0x09,0x17,0x06,0x09,0x2A,0x86,0x48,

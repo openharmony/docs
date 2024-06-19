@@ -17,7 +17,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -31,7 +31,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称       | 描述                 |
 | -------- | ---------------- |
@@ -51,7 +51,7 @@ selectedColor(value: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -69,7 +69,7 @@ switchPointColor(color: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -91,7 +91,7 @@ switchStyle(value: SwitchStyle)
 
 | 参数名 | 类型                                                | 必填 | 说明             |
 | ------ | --------------------------------------------------- | ---- | ---------------- |
-| value  | [SwitchStyle<sup>12+</sup>](#switchstyle12对象说明) | 否   | Switch样式风格。 |
+| value  | [SwitchStyle<sup>12+</sup>](#switchstyle12对象说明) | 是  | Switch样式风格。 |
 
 ### contentModifier<sup>12+</sup>
 
@@ -128,7 +128,7 @@ onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

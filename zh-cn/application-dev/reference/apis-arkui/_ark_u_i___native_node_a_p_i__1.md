@@ -59,6 +59,7 @@ Node模块相关接口需要在主线程上调用。
 | void \*(\* [getUserData](#getuserdata) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取在组件上保存的自定义数据。  | 
 | int32_t(\* [setLengthMetricUnit](#setlengthmetricunit) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit) unit) | 指定组件的单位。  | 
 | [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle)(\* [getParent](#getparent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取父节点。  | 
+| int32_t(\* [removeAllChildren](#removeallchildren) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent) | 从父组件上卸载所有子节点。  | 
 
 
 ## 结构体成员变量说明
@@ -428,7 +429,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAt) (ArkUI_NodeHandle parent, ArkUI_
 ```
 **描述：**
 
-将组件挂载到某个父节点之下，挂载位置由**position**指定。
+将组件挂载到某个父节点之下，挂载位置由position指定。
 
 **参数:**
 
@@ -582,7 +583,6 @@ void(* ArkUI_NativeNodeAPI_1::unregisterNodeCustomEventReceiver) ()
 
 反注册自定义节点事件回调统一入口函数。
 
-
 ### registerNodeEvent
 
 ```
@@ -628,6 +628,26 @@ ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventR
 | 名称 | 描述 | 
 | -------- | -------- |
 | eventReceiver | 事件回调统一入口函数。  | 
+
+
+### removeAllChildren
+
+```
+int32_t(* ArkUI_NativeNodeAPI_1::removeAllChildren) (ArkUI_NodeHandle parent)
+```
+**描述：**
+
+从父组件上卸载所有子节点。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| parent | 目标节点对象。  | 
+
+**返回：**
+
+0 - 成功。 401 - 函数参数异常。
 
 ### unregisterNodeEventReceiver
 

@@ -12,12 +12,12 @@ The @ohos.app.appstartup.StartupConfigEntry module provides the API for configur
 ## Modules to Import
 
 ```ts
-import StartupConfigEntry from '@ohos.app.appstartup.StartupConfigEntry';
+import { StartupConfigEntry } from '@kit.AbilityKit';
 ```
 
 ## StartupConfigEntry.onConfig
 
-onConfig(): StartupConfig
+onConfig?(): StartupConfig
 
 Called during application startup to configure the AppStartup framework.
 
@@ -32,17 +32,16 @@ Called during application startup to configure the AppStartup framework.
 **Example**
 
 ```ts
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
-import StartupConfigEntry from '@ohos.app.appstartup.StartupConfigEntry';
-import StartupListener from '@ohos.app.appstartup.StartupListener';
+import { StartupConfigEntry, StartupConfig, StartupListener } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
   onConfig() {
     console.info('StartupTest MyStartupConfigEntry onConfig');
-    let onCompletedCallback = (error) => {
+    let onCompletedCallback = (error: BusinessError) => {
       console.info('StartupTest MyStartupConfigEntry callback, error=' + JSON.stringify(error));
       if (error) {
-        console.error('onCompletedCallback: %{public}d, mssage: %{public}s', error.code, error.mssage);
+        console.error('onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
       } else {
         console.info('onCompletedCallback: success');
       }

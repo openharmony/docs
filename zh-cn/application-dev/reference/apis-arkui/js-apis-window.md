@@ -52,7 +52,7 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                             | 值   | 说明                                                         |
 | -------------------------------- | ---- | ------------------------------------------------------------ |
@@ -65,9 +65,9 @@ import { window } from '@kit.ArkUI';
 
 ## SystemBarProperties
 
-状态栏、导航栏的属性。
+状态栏、导航栏的属性。在设置窗口级状态栏、导航栏属性时使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                                   | 类型 |  必填 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
@@ -80,6 +80,16 @@ import { window } from '@kit.ArkUI';
 | enableStatusBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能状态栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 | enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 
+## SystemBarStyle<sup>12+</sup>
+
+状态栏的属性。在设置页面级状态栏属性时使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称   | 类型 | 只读 | 可选 | 说明               |
+| ------ | -------- | ---- | ---- | ------------------ |
+| statusBarContentColor   | string   | 是   | 是   | 状态栏文字颜色。默认值：'#0xE5FFFFFF'。|
+
 ## Orientation<sup>9+</sup>
 
 窗口显示方向类型枚举。
@@ -87,14 +97,14 @@ import { window } from '@kit.ArkUI';
 | 名称                                  | 值   | 说明                          |
 | ------------------------------------- | ---- | ----------------------------- |
 | UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| PORTRAIT                              | 1    | 表示竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| LANDSCAPE                             | 2    | 表示横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
-| PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
-| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
-| AUTO_ROTATION                         | 5    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| PORTRAIT                              | 1    | 表示竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| LANDSCAPE                             | 2    | 表示横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| AUTO_ROTATION                         | 5    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | AUTO_ROTATION_PORTRAIT                | 6    | 跟随传感器自动竖向旋转，可以旋转到竖屏、反向竖屏，无法旋转到横屏、反向横屏。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| AUTO_ROTATION_LANDSCAPE               | 7    | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
-| AUTO_ROTATION_RESTRICTED              | 8    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向，且受控制中心的旋转开关控制。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| AUTO_ROTATION_LANDSCAPE               | 7    | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| AUTO_ROTATION_RESTRICTED              | 8    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向，且受控制中心的旋转开关控制。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 跟随传感器自动竖向旋转，可以旋转到竖屏、反向竖屏，无法旋转到横屏、反向横屏，且受控制中心的旋转开关控制。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏，且受控制中心的旋转开关控制。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | LOCKED                                | 11   | 表示锁定模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
@@ -111,7 +121,7 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
@@ -134,7 +144,7 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称       | 类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
@@ -150,7 +160,7 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
@@ -163,7 +173,7 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称                  | 值   | 说明                                                         |
 | --------------------- | ---- | ------------------------------------------------------------ |
@@ -181,7 +191,7 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称       | 类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
@@ -194,7 +204,7 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称       | 类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
@@ -209,16 +219,16 @@ import { window } from '@kit.ArkUI';
 
 | 名称                                  | 类型                  | 可读 | 可写 | 说明                                                                                                     |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                                  |
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                  |
 | drawableRect<sup>11+</sup>            | [Rect](#rect7)             | 是   | 是   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。                                                                                                  |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                                                                  |
-| isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                                                  |
-| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                                                                                                            |
+| isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                  |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                            |
 | focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。                                                                 |
 | touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。                                                                 |
-| brightness                            | number                    | 是   | 是   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                      |
+| brightness                            | number                    | 是   | 是   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
 | dimBehindValue<sup>(deprecated)</sup> | number                    | 是   | 是   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从 API version 7开始支持。 |
-| isKeepScreenOn                        | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                   |
+| isKeepScreenOn                        | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                   |
 | isPrivacyMode<sup>7+</sup>            | boolean                   | 是   | 是   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。                                                                  |
 | isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从 API version 7开始支持。      |
 | isTransparent<sup>7+</sup>            | boolean                   | 是   | 是   | 窗口是否透明。默认为false。true表示透明；false表示不透明。                                                                   |
@@ -239,7 +249,7 @@ import { window } from '@kit.ArkUI';
 
 窗口生命周期。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
@@ -252,6 +262,8 @@ import { window } from '@kit.ArkUI';
 ## WindowLimits<sup>11+</sup>
 
 窗口尺寸限制参数。可以通过[setWindowLimits](#setwindowlimits11)设置窗口尺寸限制，并且可以通过[getWindowLimits](#getwindowlimits11)获得当前的窗口尺寸限制。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -280,6 +292,8 @@ import { window } from '@kit.ArkUI';
 ## TitleButtonRect<sup>11+</sup>
 
 标题栏上的最小化、最大化、关闭按钮矩形区域，该区域位置坐标相对窗口右上角。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
@@ -410,7 +424,7 @@ findWindow(name: string): Window
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -449,6 +463,8 @@ try {
 getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用callback异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -503,6 +519,8 @@ export default class EntryAbility extends UIAbility {
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1107,7 +1125,7 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                  | 类型       | 说明     |
 |---------------------|----------|--------|
@@ -1129,7 +1147,7 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1168,7 +1186,7 @@ showWindow(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -1205,7 +1223,7 @@ destroyWindow(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1245,7 +1263,7 @@ destroyWindow(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -1285,7 +1303,7 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1334,7 +1352,7 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1395,7 +1413,7 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1453,7 +1471,7 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1503,7 +1521,7 @@ getWindowProperties(): WindowProperties
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -1537,7 +1555,7 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1600,7 +1618,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1666,7 +1684,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1733,7 +1751,7 @@ setImmersiveModeEnabledState(enabled: boolean): void
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1786,7 +1804,7 @@ getImmersiveModeEnabledState(): boolean
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 | 类型     | 说明                                                                                 |
@@ -1834,7 +1852,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 
 设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1899,7 +1917,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 
 设置主窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1969,7 +1987,7 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnim
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2038,7 +2056,7 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback:
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2109,7 +2127,7 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2183,7 +2201,7 @@ getWindowSystemBarProperties(): SystemBarProperties
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -2240,7 +2258,7 @@ setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;voi
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2303,7 +2321,7 @@ setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2369,7 +2387,7 @@ getPreferredOrientation(): Orientation
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -2424,7 +2442,7 @@ getUIContext(): UIContext
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -2485,7 +2503,7 @@ setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2531,7 +2549,7 @@ setUIContent(path: string): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2582,7 +2600,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2629,7 +2647,7 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2679,7 +2697,7 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2752,7 +2770,7 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2821,7 +2839,7 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2894,7 +2912,7 @@ isWindowShowing(): boolean
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -2929,7 +2947,7 @@ on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2966,7 +2984,7 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -3011,7 +3029,7 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -3068,7 +3086,7 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -3252,7 +3270,7 @@ on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -3289,7 +3307,7 @@ off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -3490,7 +3508,7 @@ on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -3527,7 +3545,7 @@ off(type: 'windowEvent', callback?: Callback&lt;WindowEventType&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -3855,7 +3873,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowGrayScale(grayScale: number): Promise&lt;void&gt;
 
-设置窗口灰阶，使用Promise异步回调。
+设置窗口灰阶，使用Promise异步回调。该接口需要在调用[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)使窗口加载页面内容后调用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3887,19 +3907,26 @@ setWindowGrayScale(grayScale: number): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let grayScale: number = 0.5;
-try {
-  if (canIUse("SystemCapability.Window.SessionManager")) {
-    let promise = windowClass.setWindowGrayScale(grayScale);
-    promise.then(() => {
-      console.info('Succeeded in setting the grayScale.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to set the grayScale. Cause code: ${err.code}, message: ${err.message}`);
-    });
+windowClass?.setUIContent('pages/Index', (error: BusinessError) => {
+  if (error.code) {
+    console.error(`Failed to set the content. Cause code: ${error.code}`);
+    return;
   }
-} catch (exception) {
-  console.error(`Failed to set the grayScale. Cause code: ${exception.code}, message: ${exception.message}`);
-}
+  console.info('Succeeded in setting the content.');
+  let grayScale: number = 0.5;
+  try {
+    if (canIUse("SystemCapability.Window.SessionManager")) {
+      let promise = windowClass?.setWindowGrayScale(grayScale);
+      promise?.then(() => {
+        console.info('Succeeded in setting the grayScale.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set the grayScale. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    }
+  } catch (exception) {
+    console.error(`Failed to set the grayScale. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+});
 ```
 
 ### on('windowTitleButtonRectChange')<sup>11+</sup>
@@ -3907,6 +3934,8 @@ try {
 on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
 
 开启主窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅2in1设备可用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3963,6 +3992,8 @@ export default class EntryAbility extends UIAbility {
 off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
 
 关闭主窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅2in1设备可用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4030,7 +4061,7 @@ on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -4066,7 +4097,7 @@ off(type: 'windowRectChange', callback?: Callback&lt;RectChangeOptions&gt;): voi
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -4103,6 +4134,8 @@ windowClass.off('windowRectChange');
 isWindowSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断当前窗口是否支持广色域模式，使用callback异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4141,6 +4174,8 @@ isWindowSupportWideGamut(): Promise&lt;boolean&gt;
 
 判断当前窗口是否支持广色域模式，使用Promise异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
@@ -4175,6 +4210,8 @@ promise.then((data) => {
 setWindowColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
 设置当前窗口为广色域模式或默认色域模式，使用callback异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4218,6 +4255,8 @@ try {
 setWindowColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 设置当前窗口为广色域模式或默认色域模式，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4265,6 +4304,8 @@ getWindowColorSpace(): ColorSpace
 
 获取当前窗口色域模式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
@@ -4295,7 +4336,7 @@ setWindowBackgroundColor(color: string): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -4344,7 +4385,7 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -4393,7 +4434,7 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -4441,6 +4482,8 @@ setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用callback异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -4485,6 +4528,8 @@ try {
 setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4536,7 +4581,7 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&g
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -4583,7 +4628,7 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -4633,7 +4678,7 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **需要权限：** ohos.permission.PRIVACY_WINDOW
 
@@ -4682,7 +4727,7 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **需要权限：** ohos.permission.PRIVACY_WINDOW
 
@@ -4732,6 +4777,8 @@ setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 设置窗口是否为可触状态，使用callback异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -4776,6 +4823,8 @@ try {
 setWindowTouchable(isTouchable: boolean): Promise&lt;void&gt;
 
 设置窗口是否为可触状态，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4825,6 +4874,8 @@ snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取窗口截图，使用callback异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -4864,6 +4915,8 @@ snapshot(): Promise&lt;image.PixelMap&gt;
 
 获取窗口截图，使用Promise异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
@@ -4902,6 +4955,8 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 设置窗口内容布局的比例，使用Promise异步回调。
 
 仅应用主窗口支持此接口功能，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4966,6 +5021,8 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 仅应用主窗口支持此接口功能，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -5027,6 +5084,8 @@ resetAspectRatio(): Promise&lt;void&gt;
 
 仅应用主窗口支持此接口功能，调用后将清除持久化储存的比例信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
@@ -5081,6 +5140,8 @@ resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 取消设置窗口内容布局的比例，使用callback异步回调。
 
 仅应用主窗口支持此接口功能，调用后将清除持久化储存的比例信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -5143,6 +5204,8 @@ minimize(callback: AsyncCallback&lt;void&gt;): void
 
 使用callback异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -5188,6 +5251,8 @@ minimize(): Promise&lt;void&gt;
 
 使用Promise异步回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -5224,6 +5289,8 @@ promise.then(() => {
 maximize(): Promise&lt;void&gt;
 
 主窗口调用，实现最大化功能，进入沉浸式全屏，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5281,6 +5348,8 @@ recover(): Promise&lt;void&gt;
 
 将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在多窗层叠布局效果下生效。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -5335,6 +5404,8 @@ getWindowLimits(): WindowLimits
 
 获取当前应用窗口的尺寸限制。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -5367,6 +5438,8 @@ try {
 setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
 设置当前应用窗口的尺寸限制，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5422,6 +5495,8 @@ setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;
 
 设置异形窗口的掩码，使用Promise异步回调。异形窗口为非常规形状的窗口，掩码用于描述异形窗口的形状。此接口仅限子窗和全局悬浮窗可用，仅2in1设备可用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -5475,6 +5550,8 @@ keepKeyboardOnFocus(keepKeyboardFlag: boolean): void
 
 窗口获焦时保留由其他窗口创建的软键盘，仅支持系统窗口与应用子窗口。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -5509,6 +5586,8 @@ try {
 setWindowDecorVisible(isVisible: boolean): void
 
 主窗口设置标题栏是否可见。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5579,6 +5658,8 @@ setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
 
 子窗口之外的窗口调用该接口时，会报错。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -5646,6 +5727,8 @@ setWindowDecorHeight(height: number): void
 
 设置主窗口标题栏高度。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -5700,6 +5783,8 @@ getWindowDecorHeight(): number
 
 获取主窗口标题栏高度。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -5751,6 +5836,8 @@ export default class EntryAbility extends UIAbility {
 getTitleButtonRect(): TitleButtonRect
 
 获取主窗口标题栏上的最小化、最大化、关闭按钮矩形区域。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5807,6 +5894,8 @@ enableLandscapeMultiWindow(): Promise&lt;void&gt;
 
 此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -5844,6 +5933,8 @@ disableLandscapeMultiWindow(): Promise&lt;void&gt;
 在开启多窗动态布局下，配置支持竖向悬浮窗。
 
 此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -7793,7 +7884,7 @@ windowClass.setOutsideTouchable(true, (err: BusinessError) => {
 
 setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
-设置是否允许可点击子窗口之外的区域，使用Promise异步回调。。
+设置是否允许可点击子窗口之外的区域，使用Promise异步回调。
 
 > **说明：**
 >
@@ -8014,7 +8105,7 @@ WindowStage生命周期。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
@@ -8053,7 +8144,7 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8106,7 +8197,7 @@ getMainWindow(): Promise&lt;Window&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -8157,7 +8248,7 @@ getMainWindowSync(): Window
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -8204,7 +8295,7 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8269,7 +8360,7 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8396,7 +8487,7 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8448,7 +8539,7 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -8498,7 +8589,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8559,7 +8650,7 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8624,7 +8715,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8681,7 +8772,7 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8765,7 +8856,7 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8845,7 +8936,7 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8926,7 +9017,7 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -8978,7 +9069,7 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 

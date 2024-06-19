@@ -38,6 +38,26 @@ import { rpc } from '@kit.IPCKit';
   | OS_DUP_ERROR                          | 1900013 | 执行系统调用dup失败。                         |
 
 
+## TypeCode<sup>12+</sup>
+
+从API version 12起，IPC新增[writeArrayBuffer](#writearraybuffer12)和[readArrayBuffer](#readarraybuffer12)方法传递ArrayBuffer数据，传递数据时通过具体类型值来分辨业务是以哪一种TypedArray去进行数据的读写。类型码对应数值及含义如下。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+  | 名称                         | 值     | 说明                                          |
+  | ---------------------------- | ------ | --------------------------------------------  |
+  | INT8_ARRAY                   | 0      | TypedArray类型为INT8_ARRAY。                  |
+  | UINT8_ARRAY                  | 1      | TypedArray类型为UINT8_ARRAY。                 |
+  | INT16_ARRAY                  | 2      | TypedArray类型为INT16_ARRAY。                 |
+  | UINT16_ARRAY                 | 3      | TypedArray类型为UINT16_ARRAY。                |
+  | INT32_ARRAY                  | 4      | TypedArray类型为INT32_ARRAY。                 |
+  | UINT32_ARRAY                 | 5      | TypedArray类型为UINT32_ARRAY。                |
+  | FLOAT32_ARRAY                | 6      | TypedArray类型为FLOAT32_ARRAY。               |
+  | FLOAT64_ARRAY                | 7      | TypedArray类型为FLOAT64_ARRAY。               |
+  | BIGINT64_ARRAY               | 8      | TypedArray类型为BIGINT64_ARRAY。              |
+  | BIGUINT64_ARRAY              | 9      | TypedArray类型为BIGUINT64_ARRAY。             |
+
+
 ## MessageSequence<sup>9+</sup>
 
   在RPC或IPC过程中，发送方可以使用MessageSequence提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageSequence提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
@@ -3606,6 +3626,116 @@ readRawDataBuffer(size: number): ArrayBuffer
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorCode ' + e.code);
     hilog.error(0x0000, 'testTag', 'rpc read rawdata fail, errorMessage ' + e.message);
+  }
+  ```
+
+### writeArrayBuffer<sup>12+</sup>
+
+writeArrayBuffer(buf: ArrayBuffer, typeCode: TypeCode): void
+
+将ArrayBuffer类型数据写入MessageSequence对象。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名    | 类型                      | 必填 | 说明                        |
+  | --------- | ------------------------- | ---- | --------------------------- |
+  | buf       | ArrayBuffer               | 是   | 要写入的ArrayBuffer数据。   |
+  | typeCode  | [TypeCode](#typecode12)   | 是   | ArrayBuffer数据具体是以哪一种TypedArray来访问和操作(会根据业务传递的类型枚举值去决定底层的写入方式，需要业务正确传递枚举值。) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+  | 1900009  | write data to message sequence failed |
+
+**示例：**
+
+  ```ts
+  // TypeCode 类型枚举较多，示例代码以Int16Array为例
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  const data = rpc.MessageSequence.create();
+
+  let buffer = new ArrayBuffer(10);
+  let int16View = new Int16Array(buffer);
+  for (let i = 0; i < int16View.length; i++) {
+    int16View[i] = i * 2 + 1;
+  }
+
+  try {
+    data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+  }
+  ```
+
+### readArrayBuffer<sup>12+</sup>
+
+readArrayBuffer(typeCode: TypeCode): ArrayBuffer
+
+从MessageSequence读取ArrayBuffer类型数据。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名   | 类型                     | 必填 | 说明                   |
+  | -------- | ----------------------- | ---- | ------------------------|
+  | typeCode | [TypeCode](#typecode12) | 是   | ArrayBuffer数据具体是以哪一种TypedArray来访问和操作(会根据业务传递的类型枚举值去决定底层的读取方式，需要业务正确传递枚举值，读写枚举值不匹配会导致数据异常。)  |
+
+**返回值：**
+
+  | 类型     | 说明                                         |
+  | -------- | -------------------------------------------- |
+  | ArrayBuffer | 返回ArrayBuffer类型数据（以字节为单位）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+  | 1900010  | read data from message sequence failed |
+
+**示例：**
+
+  ```ts
+  // TypeCode 类型枚举较多，示例代码以Int16Array为例
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  const data = rpc.MessageSequence.create();
+
+  let buffer = new ArrayBuffer(10);
+  let int16View = new Int16Array(buffer);
+  for (let i = 0; i < int16View.length; i++) {
+    int16View[i] = i * 2 + 1;
+  }
+
+  try {
+    data.writeArrayBuffer(buffer, rpc.TypeCode.INT16_ARRAY);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc write ArrayBuffe fail, errorMessage ' + e.message);
+  }
+  try {
+    let result = data.readArrayBuffer(rpc.TypeCode.INT16_ARRAY);
+    let readInt16View = new Int16Array(result);
+    hilog.info(0x0000, 'testTag', 'RpcTest: read ArrayBuffer result is ' + readInt16View);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    hilog.error(0x0000, 'testTag', 'rpc read ArrayBuffer fail, errorCode ' + e.code);
+    hilog.error(0x0000, 'testTag', 'rpc read ArrayBuffer fail, errorMessage ' + e.message);
   }
   ```
 

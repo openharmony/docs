@@ -145,7 +145,7 @@ function destroy() : void {
 | progress | number | 是 | 是 | 动画进度状态，取值区间为[0, 1]。 |
 
 ### onFinished
-onFinished(callback: CallBack\<void>): void
+onFinished(callback: Callback\<void>): void
 
 动画播放结束时执行的的回调函数，动画播放完成或者finish操作会触发这个回调。
 
@@ -154,7 +154,7 @@ onFinished(callback: CallBack\<void>): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| callback | CallBack\<void> | 是 | 回调函数，返回值为空。 |
+| callback | Callback\<void> | 是 | 回调函数，返回值为空。 |
 
 **示例：**
 ```ts
@@ -176,14 +176,14 @@ function onFinished() : void {
 ```
 
 ### onStarted
-onStarted(callback: CallBack\<void>): void
+onStarted(callback: Callback\<void>): void
 
 当动画开始播放时执行的回调函数，start操作以及restart操作也会触发这个回调。
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| callback | CallBack\<void> | 是 | 回调函数，返回值为空。 |
+| callback | Callback\<void> | 是 | 回调函数，返回值为空。 |
 
 动画开始时会执行传入的回调函数。
 
@@ -382,7 +382,7 @@ function finish() : void {
 | environmentMapFactor | [Vec4](js-apis-inner-scene-types.md#vec4) | 否 | 是 | 环境地图系数。 |
 | environmentImage | [Image](#image) \| null | 否 | 否 | 环境图片，默认为undefined。 |
 | radianceImage | [Image](#image) \| null | 否 | 否 | 辐射图片，默认为undefined。 |
-| radianceCoefficients | [Vec3](js-apis-inner-scene-types.md#vec3)[] | 否 | 否 | 辐射系数，默认为undefined。 |
+| irradianceCoefficients | [Vec3](js-apis-inner-scene-types.md#vec3)[] | 否 | 否 | 辐射系数，默认为undefined。 |
 
 ## Image
 图片类型，继承自[SceneResource](#sceneresource)。

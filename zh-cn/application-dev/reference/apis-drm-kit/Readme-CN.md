@@ -1,4 +1,4 @@
-# DRM Kit API参考
+# DRM Kit（数字版权保护服务）
 
 - ArkTS API
   - [@ohos.multimedia.drm (数字版权保护)](js-apis-drm.md)

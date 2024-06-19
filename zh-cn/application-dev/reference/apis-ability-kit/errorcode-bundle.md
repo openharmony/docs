@@ -528,7 +528,7 @@ Failed to install the HSP because installing a shared bundle specified by hapFil
 2. 通过install接口安装应用时，hapFilePaths参数传入了应用间共享库的安装包路径。
 
 **处理步骤**<br/>
-1. 通过-s参数指定应用间共享库的安装包路径。
+1. 通过-p参数指定应用间共享库的安装包路径。
 2. 通过installParam参数的sharedBundleDirPaths字段指定应用间共享库的安装包路径。
 
 ## 17700040 不允许卸载应用间共享库
@@ -845,6 +845,21 @@ Failed to install the HAP because the maximum count of clone app cannot be reduc
 **处理步骤**<br/>
 1. 检查更新应用是否支持分身。
 2. 检查应用在更新前后，支持最大分身数量是否减小。
+
+
+## 17700069 多开模式非分身的应用，不能创建分身实例
+
+**错误信息**<br/>
+The app does not support the creation of an appClone instance.
+
+**错误描述**<br/>
+多开模式非分身的应用，不能创建分身实例
+
+**可能原因**<br/>
+没有配置分身模式，或者多开模式配置为其他模式
+
+**处理步骤**<br/>
+1. 检查更新应用是否支持分身。
 
 ## 17700201 abc文件校验失败
 **错误信息**<br/>

@@ -223,7 +223,7 @@ setChallengeResult(result: PatternLockChallengeResult): void
 
 ```ts
 // xxx.ets
-import {LengthMetrics} from '@ohos.arkui.node'
+import {LengthUnit} from '@ohos.arkui.node'
 
 @Entry
 @Component

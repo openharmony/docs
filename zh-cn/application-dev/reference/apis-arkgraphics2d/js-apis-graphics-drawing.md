@@ -275,6 +275,10 @@ path.reset();
 
 承载绘制内容与绘制状态的载体。
 
+> **说明：**
+>
+> 画布自带一个黑色，开启反走样，不具备其他任何样式效果的默认画刷，当且仅当画布中主动设置的画刷和画笔都不存在时生效。
+
 ### constructor
 
 constructor(pixelmap: image.PixelMap)
@@ -350,7 +354,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -870,7 +874,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -913,7 +917,7 @@ class DrawingRenderNode extends RenderNode {
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachBrush(brush);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachBrush();
   }
 }
@@ -939,7 +943,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -964,7 +968,7 @@ class DrawingRenderNode extends RenderNode {
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachBrush(brush);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachBrush();
   }
 }
@@ -1675,7 +1679,7 @@ font.enableLinearMetrics(true);
 
 setSize(textSize: number): void
 
-设置字体大小，如果字体大小小于等于零，则无效。
+设置字体大小。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1683,7 +1687,7 @@ setSize(textSize: number): void
 
 | 参数名   | 类型   | 必填 | 说明             |
 | -------- | ------ | ---- | ---------------- |
-| textSize | number | 是   | 字体大小，该参数为大于0的浮点数。 |
+| textSize | number | 是   | 字体大小，该参数为浮点数，为负数时字体大小会被置为0。字体大小为0时，绘制的文字不会显示。|
 
 **错误码：**
 
@@ -1839,19 +1843,130 @@ let font = new drawing.Font();
 font.measureText("drawing", drawing.TextEncoding.TEXT_ENCODING_UTF8);
 ```
 
+### setScaleX<sup>12+</sup>
+
+setScaleX(scaleX: number): void
+
+用于设置字形对象在x轴上的缩放比例。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明       |
+| -------- | ----------------------------- | ---- | ---------- |
+| scaleX     | number                      | 是   | 文本在x轴上的缩放比例，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(5);
+    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
+    canvas.attachPen(pen);
+    let font = new drawing.Font();
+    font.setSize(100);
+    font.setScaleX(2);
+    const textBlob = drawing.TextBlob.makeFromString("hello", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 200, 200);
+  }
+}
+```
+
+### setSkewX<sup>12+</sup>
+
+setSkewX(skewX: number): void
+
+用于设置字形对象在x轴上的倾斜比例。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明       |
+| -------- | ----------------------------- | ---- | ---------- |
+| skewX     | number                      | 是   | 文本在x轴上的倾斜比例，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(5);
+    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
+    canvas.attachPen(pen);
+    let font = new drawing.Font();
+    font.setSize(100);
+    font.setSkewX(1);
+    const textBlob = drawing.TextBlob.makeFromString("hello", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 200, 200);
+  }
+}
+```
+
+## FontMetricsFlags<sup>12+</sup>
+
+字体度量标志枚举，用于指示字体度量中的各字段数据是否有效。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+| 名称                          | 值        | 说明                           |
+| ----------------------------- | --------- | ------------------------------ |
+| UNDERLINE_THICKNESS_VALID     | 1 << 0    | 表示[FontMetrics](#fontmetrics)结构中的underlineThickness（下划线厚度）字有效。    |
+| UNDERLINE_POSITION_VALID      | 1 << 1    | 表示[FontMetrics](#fontmetrics)结构中的underlinePosition（下划线位置）字段有效。  |
+| STRIKETHROUGH_THICKNESS_VALID | 1 << 2    | 表示[FontMetrics](#fontmetrics)结构中strikethroughThickness（删除线厚度）是有效的。|
+| STRIKETHROUGH_POSITION_VALID  | 1 << 3    | 表示[FontMetrics](#fontmetrics)结构中strikethroughPosition（删除线位置）字段有效。  |
+| BOUNDS_INVALID                | 1 << 4    | 表示[FontMetrics](#fontmetrics)结构中的边界度量值（如top, bottom, xMin, xMax）无效。  |
+
 ## FontMetrics
 
 描述字形大小和布局的属性信息，同一种字体中的字符属性大致相同。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| top     | number | 是   | 是   | 文字最高处到基线之间的最大距离，浮点数。                         |
-| ascent  | number | 是   | 是   | 文字最高处到基线之间的距离，浮点数。                             |
-| descent | number | 是   | 是   | 基线到文字最低处之间的距离，浮点数。                             |
-| bottom  | number | 是   | 是   | 基线到文字最低处之间的最大距离，浮点数。                         |
-| leading | number | 是   | 是   | 行间距，从上一行文字descent到下一行文字ascent之间的距离，浮点数。 |
+| flags<sup>12+</sup>   | [FontMetricsFlags](#fontmetricsflags12) | 是   | 是   | 表明哪些字体度量标志有效。        |
+| top     | number | 是   | 否   | 文字最高处到基线之间的最大距离，浮点数。                         |
+| ascent  | number | 是   | 否   | 文字最高处到基线之间的距离，浮点数。                             |
+| descent | number | 是   | 否   | 基线到文字最低处之间的距离，浮点数。                             |
+| bottom  | number | 是   | 否   | 基线到文字最低处之间的最大距离，浮点数。                         |
+| leading | number | 是   | 否   | 行间距，从上一行文字descent到下一行文字ascent之间的距离，浮点数。 |
+| avgCharWidth<sup>12+</sup> | number | 是   | 是   | 平均字符宽度。                             |
+| maxCharWidth<sup>12+</sup> | number | 是   | 是   | 最大字符宽度。                             |
+| xMin<sup>12+</sup> | number | 是    | 是   | 字体中任意字形边界框最左边沿到原点的水平距离，这个值往往小于零，意味着字形在水平方向上的最小边界。                |
+| xMax<sup>12+</sup> | number | 是   | 是   | 字体中任意字形边界框最右边沿到原点的水平距离，此值多为正数，指示了字形在水平方向上的最大延伸范围。        |
+| xHeight<sup>12+</sup> | number | 是   | 是   | 小写字母x的高度，通常为负值。                     |
+| capHeight<sup>12+</sup> | number | 是   | 是   | 大写字母的高度，通常为负值。                      |
+| underlineThickness<sup>12+</sup> | number | 是   | 是   | 下划线的厚度。                                          |
+| underlinePosition<sup>12+</sup>  | number | 是   | 是   | 文本基线到下划线顶部的垂直距离，通常是正数。             |
+| strikethroughThickness<sup>12+</sup>  | number | 是   | 是   | 文本删除线的厚度，即贯穿文本字符的水平线的宽度。    |
+| strikethroughPosition<sup>12+</sup>  | number | 是   | 是   | 文本基线到底部删除线的垂直距离，通常为负值。         |
 
 ## ColorFilter
 
@@ -2447,7 +2562,7 @@ setColorFilter(filter: ColorFilter) : void
 
 | 参数名 | 类型                        | 必填 | 说明         |
 | ------ | --------------------------- | ---- | ------------ |
-| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。 |
+| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。为null时表示清空颜色滤波器。 |
 
 **错误码：**
 
@@ -2478,7 +2593,7 @@ setMaskFilter(filter: MaskFilter): void
 
 | 参数名 | 类型                       | 必填 | 说明      |
 | ------ | ------------------------- | ---- | --------- |
-| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。 |
+| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。为null时表示清空蒙版滤镜。 |
 
 **错误码：**
 
@@ -2517,7 +2632,7 @@ setPathEffect(effect: PathEffect): void
 
 | 参数名  | 类型                       | 必填 | 说明         |
 | ------- | ------------------------- | ---- | ------------ |
-| effect  | [PathEffect](#patheffect12) | 是   | 路径效果对象。 |
+| effect  | [PathEffect](#patheffect12) | 是   | 路径效果对象。为null时表示清空路径效果。 |
 
 **错误码：**
 
@@ -2548,7 +2663,7 @@ class DrawingRenderNode extends RenderNode {
 
 setShadowLayer(shadowLayer: ShadowLayer): void
 
-设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效。
+设置画笔阴影层效果。当前仅在绘制文字时生效。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2556,7 +2671,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。 |
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果。 |
 
 **错误码：**
 
@@ -2932,7 +3047,7 @@ setColorFilter(filter: ColorFilter) : void
 
 | 参数名 | 类型                        | 必填 | 说明         |
 | ------ | --------------------------- | ---- | ------------ |
-| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。 |
+| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。为null时表示清空颜色滤波器。 |
 
 **错误码：**
 
@@ -2963,7 +3078,7 @@ setMaskFilter(filter: MaskFilter): void
 
 | 参数名 | 类型                       | 必填 | 说明      |
 | ------ | ------------------------- | ---- | --------- |
-| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。 |
+| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。为null时表示清空蒙版滤镜。 |
 
 **错误码：**
 
@@ -2992,7 +3107,7 @@ class DrawingRenderNode extends RenderNode {
 
 setShadowLayer(shadowLayer: ShadowLayer): void
 
-设置画刷阴影层效果，为空表示清空阴影层效果，当前仅对文字生效。
+设置画刷阴影层效果。当前仅在绘制文字时生效。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3000,7 +3115,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。 |
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果 |
 
 **错误码：**
 

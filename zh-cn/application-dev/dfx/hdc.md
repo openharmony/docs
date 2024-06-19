@@ -218,7 +218,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 3. 连接设备时，若仅有一台，无需指定设备标识；若有多台，一次仅能连接一台，每次连接时需要指定连接设备的标识，命令格式如下：
 
    ```shell
-   hdc-t [key] [command]
+   hdc -t [key] [command]
    ```
 
    **参数：**
