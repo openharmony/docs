@@ -2348,7 +2348,7 @@
         - [ArkUI_NativeModule](reference/apis-arkui/_ark_u_i___native_module.md)
         - [Native XComponent](reference/apis-arkui/_o_h___native_x_component.md)
         - [ArkUI_EventModule](reference/apis-arkui/_ark_u_i___event_module.md)
-        - [WindowManager_NativeMoudle](reference/apis-arkui/_window_manager___native_moudle.md)
+        - [WindowManager_NativeModule](reference/apis-arkui/_window_manager___native_module.md)
       - 头文件和结构体<!--arkui-headerfile-struct-->
         - 头文件<!--arkui-headerfile-->
           - [drawable_descriptor.h](reference/apis-arkui/drawable__descriptor_8h.md)
