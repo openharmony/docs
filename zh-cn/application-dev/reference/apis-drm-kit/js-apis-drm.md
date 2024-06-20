@@ -461,13 +461,6 @@ getMediaKeySystems(): MediaKeySystemDescription[]
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
-**参数：**
-
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | 是   | 插件名称。                   |
-| uuid  | string     | 是   | 插件唯一识别码。                   |
-
 **返回值：**
 
 | 类型                                             | 说明                           |
@@ -1194,7 +1187,7 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 | mimeType  | string     | 是   | 媒体类型。                   |
 | initData  | Uint8Array     | 是   | pssh数据（未base64编码）。                   |
 | mediaKeyType| number     | 是   | 许可证类型。                   | 0表示在线，1表示离线 |
-| OptionsData  | [OptionsData[]](#optionsdata)     | 是   | 预留的操作数据。                   |
+| options  | [OptionsData[]](#optionsdata)     | 是   | 预留的操作数据。                   |
 
 **返回值：**
 
