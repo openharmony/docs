@@ -56,7 +56,7 @@ on(eventId: string, callback:  Callback\<[EventData](#eventdata)\>): void
 
 | 参数名   | 类型                                | 必填 | 说明                                   |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| event    | string                              | 是   | 持续订阅的事件，不支持空字符串。                       |
+| eventId    | string                              | 是   | 持续订阅的事件，不支持空字符串。                       |
 | callback | Callback\<[EventData](#eventdata)\> | 是   | 接收到该事件时需要执行的回调处理函数。 |
 
 **示例：**
@@ -108,7 +108,7 @@ once(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
 
 | 参数名   | 类型                                | 必填 | 说明                                   |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| event    | string                              | 是   | 单次订阅的事件，不支持空字符串。                       |
+| eventId    | string                              | 是   | 单次订阅的事件，不支持空字符串。                       |
 | callback | Callback\<[EventData](#eventdata)\> | 是   | 接收到该事件时需要执行的回调处理函数。 |
 
 **示例：**
@@ -175,7 +175,7 @@ off(eventId: number, callback: Callback\<[EventData](#eventdata)\>): void
 | 参数名  | 类型   | 必填 | 说明   |
 | ------- | ------ | ---- | ------ |
 | eventId | number | 是   | 事件ID。 |
-| callback<sup>10+</sup> | Callback\<[EventData](#eventdata)\> | 是   | API version 10 新增取消该事件的回调处理函数。   |
+| callback | Callback\<[EventData](#eventdata)\> | 是   |取消该事件的回调处理函数。   |
 
 **示例：**
 
