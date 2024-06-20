@@ -17,7 +17,7 @@ import dataAbility from '@ohos.data.dataAbility';
 
 createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates): rdb.RdbPredicates
 
-Creates an **RdbPredicates** object with a table name and a **DataAbilityPredicates** object.
+Creates an **RdbPredicates** object with the specified table name and **DataAbilityPredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -240,7 +240,7 @@ beginsWith(field: string, value: string): DataAbilityPredicates
 
 Sets a **DataAbilityPredicates** object to match a string that starts with the specified value.
 
-This API is similar to the SQL modulo (%) operator.
+This API is similar to the percent sign (%) in SQL statements.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -269,7 +269,7 @@ endsWith(field: string, value: string): DataAbilityPredicates
 
 Sets a **DataAbilityPredicates** object to match a string that ends with the specified value.
 
-This API is similar to the SQL equal to (=) operator.
+This API is similar to the percent sign (%) in SQL statements.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -736,7 +736,7 @@ Sets a **DataAbilityPredicates** object to specify the index column. Before call
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| indexName | string | Yes| Name of the index.|
+| field | string | Yes| Name of the index.|
 
 **Return value**
 
@@ -837,6 +837,8 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array\
   ```
 
 ## ValueType
+
+type ValueType = number | string | boolean
 
 Enumerates the value types.
 
