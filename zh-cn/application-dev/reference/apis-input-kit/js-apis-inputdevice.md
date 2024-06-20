@@ -685,6 +685,8 @@ try {
 
 ## AxisType<sup>9+</sup>
 
+type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'pressure' | 'toolminor' | 'toolmajor' | 'null'
+
 输入设备的轴类型。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
@@ -719,6 +721,8 @@ try {
 
 ## SourceType<sup>9+</sup>
 
+type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick' | 'trackball'
+
 轴的输入源类型。比如鼠标设备可上报x轴事件，则x轴的输入源就是鼠标。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
@@ -733,6 +737,8 @@ try {
 | joystick    | string | 是 | 否 | 表示输入设备是操纵杆。 |
 
 ## ChangedType<sup>9+</sup>
+
+type ChangedType = 'add' | 'remove'
 
 定义监听设备热插拔事件。
 
