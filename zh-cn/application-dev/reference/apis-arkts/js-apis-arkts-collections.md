@@ -2512,7 +2512,7 @@ static from(iterable: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, nu
 **参数：**
 | 参数名  | 类型   | 必填 | 说明                                |
 | ------- | ------ | ---- | -----------------------------------|
-| iterable | Iterable\<number> | 是 | 用用于构造的可迭代对象。   |
+| iterable | Iterable\<number> | 是 | 用于构造的可迭代对象。   |
 | mapFn | [TypedArrayFromMapFn](#typedarrayfrommapfn)\<number, number> | 否 | 映射函数。如果省略，则不对元素进行加工处理。|
 
 **返回值：**
