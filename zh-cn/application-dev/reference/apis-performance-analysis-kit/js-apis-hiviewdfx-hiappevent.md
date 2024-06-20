@@ -316,6 +316,8 @@ hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
 
 ## ParamType<sup>12+</sup>
 
+type ParamType = number | string | boolean | Array&lt;string&gt;
+
 事件自定义参数值的类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
