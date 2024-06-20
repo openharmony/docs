@@ -2833,18 +2833,18 @@ getOsAccountName(): Promise&lt;string&gt;
 | localId                        | number                                                       | 是   | 系统帐号ID。                      |
 | localName                      | string                                                       | 是   | 系统帐号名称。                    |
 | type                           | [OsAccountType](#osaccounttype)                              | 是   | 系统帐号类型。                      |
-| constraints                    | Array&lt;string&gt;                                          | 否   | 系统帐号[约束](#系统帐号约束列表)，默认为空。|
+| constraints                    | Array&lt;string&gt;                                          | 是   | 系统帐号[约束](#系统帐号约束列表)，默认为空。|
 | isVerified<sup>(deprecated)</sup> | boolean                                                   | 是   | 帐号是否验证。<br>**说明**: 从API version 7开始支持，从API version 11开始废弃。                     |
 | isUnlocked<sup>11+</sup>      | boolean                                                       | 是   | 帐号是否已解锁（EL2级别目录是否解密）。                      |
-| photo<sup>8+</sup>             | string                                                       | 否   | 系统帐号头像，默认为空。                      |
+| photo<sup>8+</sup>             | string                                                       | 是   | 系统帐号头像，默认为空。                      |
 | createTime<sup>8+</sup>        | number                                                       | 是   | 系统帐号创建时间。                  |
-| lastLoginTime<sup>8+</sup>     | number                                                       | 否   | 系统帐号最后一次登录时间，默认为空。          |
+| lastLoginTime<sup>8+</sup>     | number                                                       | 是   | 系统帐号最后一次登录时间，默认为空。          |
 | serialNumber<sup>8+</sup>      | number                                                       | 是   | 系统帐号SN码。                      |
 | isActived<sup>(deprecated)</sup>         | boolean                                            | 是   | 系统帐号激活状态。<br>**说明**: 从API version 7开始支持，从API version 11开始废弃。                  |
 | isActivated<sup>11+</sup>         | boolean                                                   | 是   | 系统帐号激是否激活。                  |
 | isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统帐号创建是否完整。              |
-| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | 否   | 分布式帐号信息，默认为空。                    |
-| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | 否   | 域帐号信息，默认为空。                        |
+| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | 是   | 分布式帐号信息，默认为空。                    |
+| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | 是   | 域帐号信息，默认为空。                        |
 
 ## DomainAccountInfo<sup>8+</sup>
 

@@ -66,7 +66,7 @@
                 // host须配置关联的域名
                 "host": "www.test.com"
                 // port可选
-                "port": "80",
+                "port": "443",
                 // path可选，为了避免匹配到多个应用，建议配置该字段
                 "path": "path1"
               }
@@ -140,7 +140,7 @@ export default class EntryAbility extends UIAbility {
 
 
 
-## 实现目标应用的跳转
+## 拉起方应用实现应用跳转
 
 拉起方应用通过UIAbilityContext.openLink接口，传入目标应用的链接，拉起目标应用。
 
@@ -155,8 +155,8 @@ openLink接口提供了两种拉起目标应用的方式，开发者可根据业
 本文为了方便验证App Linking的配置是否正确，选择方式一，示例如下。
 
 ```ts
-import common from '@ohos.app.ability.common'；
-import { BusinessError } from '@ohos.base'；
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 @Entry
 @Component
