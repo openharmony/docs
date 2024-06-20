@@ -449,7 +449,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 | shown | boolean | 是 | 广告是否展示。<br/>- true：展示。<br/>- false：未展示。 | 
 | clicked | boolean | 是 | 广告是否被点击。<br/>- true：被点击。<br/>- false：未被点击。 | 
 | rewardVerifyConfig | Map&lt;string, string&gt; | 是 | 服务器验证参数。<br/>{<br/>customData: "test",<br/>userId: "12345"<br/>} | 
-| [key: string] | Object | 是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
+| [key: string] | number \| boolean \| string \| undefined  | 是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
 
 
 ## AdDisplayOptions
@@ -519,7 +519,7 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;
 **参数：**
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| adParam | [AdRequestParams](#adrequestparams) | 是 | 广告请求参数。 | 
+| adParam | [AdRequestParams[]](#adrequestparams) | 是 | 广告请求参数。 | 
 | adOptions | [AdOptions](#adoptions) | 是 | 广告配置。 | 
 
 **返回值：**
