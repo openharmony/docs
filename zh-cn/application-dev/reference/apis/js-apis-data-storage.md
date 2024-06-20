@@ -912,7 +912,7 @@ storage.off('change', observer);
 
 | 名称 | 类型 | 必填 | 说明             |
 | ---- | -------- | ---- | ---------------- |
-| key  | string   | 否   | 变更的数据内容。 |
+| key  | string   | 是   | 变更的数据内容。 |
 
 ## ValueType
 
