@@ -734,8 +734,8 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 import { media } from '@kit.MediaKit';
 
 let player = await media.createAVPlayer();
-let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
-let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
+let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
 let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
 player.setMediaSource(mediaSource, playStrategy);
 ```
@@ -6164,7 +6164,7 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | url | string | 是   | - 流媒体预下载媒体来源url，支持的流媒体格式：HLS、HTTP-FLV、Dash、Https。<br> - 本地m3u8的fd路径。  |
-| header | Record\<string, string> | 否   | 支持流媒体预下载HttpHeader自定义。 |
+| headers | Record\<string, string> | 否   | 支持流媒体预下载HttpHeader自定义。 |
 
 **返回值：**
 
@@ -6186,8 +6186,8 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 ```ts
 import { media } from '@kit.MediaKit';
 
-let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
-let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
+let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
 ```
 
 **示例2：**
@@ -6205,8 +6205,8 @@ let offset:string = this.fileDescriptor.offset.toString();
 let length:string = this.fileDescriptor.length.toString();
 let fdUrl:string = "fd://" + fd + "?offset=" + offset + "&size=" + length;
 
-let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
-let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(fdUrl,  header);
+let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(fdUrl,  headers);
 
 let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
