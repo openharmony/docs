@@ -3784,7 +3784,7 @@ type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 
 
 | 名称     | 说明                                                         |
 | -------- | ------------------------------------------------------------ |
-| 'idle     | 闲置状态。此时可以调用[AVRecorder.prepare()](#prepare9-2)方法设置录制参数，进入prepared状态。AVRecorder刚被创建，或者在任何非released状态下调用[AVRecorder.reset()](#reset9-2)方法，均进入idle状态。 |
+| 'idle'     | 闲置状态。此时可以调用[AVRecorder.prepare()](#prepare9-2)方法设置录制参数，进入prepared状态。AVRecorder刚被创建，或者在任何非released状态下调用[AVRecorder.reset()](#reset9-2)方法，均进入idle状态。 |
 | 'prepared' | 参数设置完成。此时可以调用[AVRecorder.start()](#start9)方法开始录制，进入started状态。 |
 | 'started'  | 正在录制。此时可以调用[AVRecorder.pause()](#pause9-2)方法暂停录制，进入paused状态。也可以调用[AVRecorder.stop()](#stop9-2)方法结束录制，进入stopped状态。 |
 | 'paused'   | 录制暂停。此时可以调用[AVRecorder.resume()](#resume9)方法继续录制，进入started状态。也可以调用[AVRecorder.stop()](#stop9-2)方法结束录制，进入stopped状态。 |
