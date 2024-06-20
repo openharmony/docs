@@ -1229,7 +1229,7 @@ async function Demo() {
     let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
     return imageInfo;
   }
-  rteurn undefined;
+  return undefined;
 }
 ```
 
@@ -1529,7 +1529,7 @@ async function Demo() {
     let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
     return pixelmap;
   }
-  rteurn undefined;
+  return undefined;
 }
 ```
 
