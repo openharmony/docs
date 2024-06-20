@@ -948,3 +948,4 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 
 芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
+<!--no_check-->
