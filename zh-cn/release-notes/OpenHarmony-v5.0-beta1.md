@@ -10,17 +10,13 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 
 ### 应用框架
 
-- AppStartUp框架提供一种在应用启动时初始化组件的简单而高效的方法，有效提升启动性能。
+- 新增AppStartUp应用并行化启动框架，提供一种在应用启动时初始化组件的简单而高效的方法，有效提升启动性能。
 
 - 新增原子化服务启动API，提供跳出式和嵌入式两种启动方式。
 
-- 新增SmartAutoFillExtension，支持数据的保存、填充能力，用于情景化识别的自动保存和填充场景。
+- 自动填充能力增强：开发者在使用TextInput组件时支持更多类型数据的自动保存和自动填充能力。
 
-- 填充服务支持以非模态的Popup形式拉起，提供数据的填充和保存服务。
-
-- 支持根据hint识别情景化自动填充类型，比如hint是“请输入手机号码”，把其识别为手机号码类型的自动填充类型。
-
-- 提供单色模式、反色能力、渐变撞色、卡片视觉呈现精致（模糊、投影、圆角等）、展示背景自然融合，高端精致。
+- 卡片能力增强：提供单色模式、反色能力、渐变撞色、卡片视觉呈现精致（模糊、投影、圆角等）、展示背景自然融合，高端精致。
 
 - aa工具支持隐式启动应用.
 
@@ -30,11 +26,15 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 
 - 系统环境新增字体大小和粗细变化通知。
 
-- UIExtension调用直接结果返回。
+- UIAbilityContext上下文能力增强：
+  - 提供获取WindowStage能力。
+  - 提供应用主动把UIAbility移到后台的能力。
 
-- UIAbilityContext提供获取WindowStage能力。
+- 新增应用生命周期：
+  - AbilityStage新增OnDestroy生命周期。
+  - UIAbility新增WindowStage。
 
-- UIAbilityContext提供应用主动把UIAbility移到后台能力。
+- 新增应用等待调试模式。
 
 - 支持跨端迁移时，同应用跨Ability迁移。
 
@@ -68,8 +68,6 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
   - 单例跳转能力。
   - 自定义动效能力增强。
 
-- Video/Xcopmonet/Canvas组件支持AI能力，支持文本和实体识别。
-
 - 文本类高阶能力增强：
   - 文本类组件支持属性字符串。
   - 支持WebView应用和ArkUI应用之间的图文混排拖拽。
@@ -82,17 +80,13 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 
 - 支持集成态HSP，集团内部的多个应用之间，可以使用集成态HSP实现代码和资源共享。
 
-- 支持卸载更新的能力，通过应用市场更新的预置应用，可以通过卸载更新恢复到出厂的版本。
+- 支持卸载更新的能力，通过应用市场更新的预置应用，可以通过卸载更新恢复到系统预设的版本。
 
 - 提供In-House应用的安装及查询能力，支持In-House应用管理。
 
 - 统一资源缓存，支持overlay和主题切换场景。
 
 - 支持gzip格式文件解压缩能力。
-
-- 静态快捷方式能力增强，支持跳转到指定的页面。
-
-- 提供洗白机安装管控能力，洗白机不允许安装应用。
 
 - 支持resfile目录，resfile目录开发者可以自由放置各类资源文件，应用安装时，资源会被解压到应用沙箱路径。
 
@@ -156,8 +150,27 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 
 **图形图像**
 
+- Drawing能力增强，支持矢量图元绘制、位图绘制及样式视效等，支持对文本绘制施加阴影效果。
+
+- 位图ArkTS和C API能力增强，支持转换格式、透明度预乘、效果处理等接口。
+
+- 文本引擎NDK能力增强，支持设置行间距、多种换行策略等。
+
+- surfaceNDK能力增强，支持获取YUV数据的位置、获取surfaceid、Attach和Detach和获取BufferQueueSize的C API。
+
+- 提供LTPO控帧能力。
+
+- 3D组件能力增强，支持加载编辑控制3D场景。
+
+- 提供OpenGL ES扩展接口。
+
+- 性能能效进一步优化。
 
 **窗口**
+
+- 支持应用获取状态栏的颜色属性。
+
+- 跨平台能力增强，loadContentByName、windowSizeChange等接口适配跨平台能力。
 
 
 ### 媒体
@@ -196,8 +209,6 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 
 - 支持使用C API录制系统屏幕和声音。
 
-- 支持使用C API录制系统屏幕和声音。
-
 - 支持使用Surface模式获取录屏数据。
 
 - 支持配置录屏内容跟随屏幕旋转。
@@ -211,24 +222,6 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 - 录屏支持排除指定windowID的窗口画面。
 
 - 录屏支持排除应用自身音频。
-
-**录屏应用**
-
-- 录屏预览图支持拖拽。
-
-- 录屏中锁屏，弹录屏结束通知，点击可预览录屏文件。
-
-- 录屏提供隐私弹窗，由用户授权启动录屏。
-
-- 录屏中，出现隐私界面，弹隐私提示。
-
-- 录屏支持录制操作轨迹。
-
-- 录屏支持双指关节触发和语音助手触发。
-
-- 录屏接入实况通知。
-
-- 录屏结支持麦克风控制。
 
 **数字版权保护服务（DRM）**
 
@@ -246,6 +239,28 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 
 - 支持AVPlayer及AVCodec播放框架集成。
 
+**音视频编解码(AVCodec)**
+
+- 支持ape解码和解封装。
+
+- 支持mp3编码和封装。
+
+- 支持SRT格式字幕解析。
+
+- H.264/H.265硬件编码支持随帧设置长期参考帧，参考帧编码，依赖硬件芯片能力。
+
+- H.264/H.265硬件编码支持随帧设置编码QP，依赖硬件芯片能力。
+
+- H.264/H.265硬件编解码支持低时延出帧（one-in-one-out），依赖硬件芯片能力。
+
+- H.264/H.265硬件编码支持重置码率和帧率，依赖硬件芯片能力。
+
+- H.264/H.265硬件编码支持分级P分层编码，依赖硬件芯片能力。
+
+- 支持fmp4文件解析。
+
+- surface模式下，硬件解码支持surface切换 。
+
 **相机**
 
 - 相机模式增强，新增专业、超级微距、超级慢动作、安全等模式。
@@ -255,8 +270,6 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 - 相机效果增强，支持黑白色彩、人像虚化等效果。
 
 - 相机控制增强，支持动态配置帧率，支持动效焦距、环境亮度等信息返回。
-
-- 完善DFX打点，增强相机维测能力。
 
 **音频**
 
@@ -269,6 +282,30 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 - 空间音频支持外放空间音频渲染。
 
 - VOIP语音通话支持低时延通路。
+
+- 系统音管理新增支持获取系统音列表和自定义系统音。
+
+**图片**
+
+- 图片编解码新增Heif解码
+
+- 图片编解码新增DNG解码。
+
+- 图片编解码C API支持。
+
+- 图片编解码支持HDR效果（依赖平台能力）。
+
+- 图片编解码增加exif覆盖范围和批量读写exif能力。
+
+- 支持图片解码为YUV格式（当前Heif，Jpeg支持）
+
+- GIF解码能力增强，支持获取播放次数、帧过渡模式。
+
+- webp格式支持帧时延时间获取。
+
+- Jpeg编解码硬件加速性能优化（依赖平台能力）。
+
+- 图片编辑NDK接口开放，支持管线编排、效果器、滤镜链。
 
 **媒体库**
 
@@ -362,8 +399,22 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 
 ### 电话服务
 
+- 支持获取国际移动设备软件识别版本（IMEISV）和驻留基站的PLMN编码。
+
+- 电话服务进程负载及DFX优化，包括独立编译部署、可定位性提升、稳定性提升。
+
 
 ### 网络管理
+
+- HTTP协议栈支持自动读取系统和用户安装的证书。
+
+- HTTP代理支持安全存储用户名和密码、自动更新代理认证凭据，还支持在使用预览器时自动读取代理配置。
+
+- WebSocket支持获取Header信息、设置代理等能力，同时降低了WebSocket的功耗开销。
+
+- TLSSocket支持发送ArrayBuffer数据类型，支持使用系统默认证书。
+
+- 网络管理进程负载及DFX优化，包括独立编译部署、使能FFRT降低线程数、降低内存开销、提升可定位性，同时提升了异常崩溃后自动恢复的能力。
 
 
 ### 电源
@@ -798,15 +849,17 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 
 ## 配套关系
 
-**表1** 版本软件和工具配套关系
+  **表1** 版本软件和工具配套关系
 
-| 软件 | 版本 | 备注 | 
+| 软件 | 版本 | 备注 |
 | -------- | -------- | -------- |
-
+| OpenHarmony | 5.0 Beta1 | NA |
+| Public SDK | Ohos_sdk_public 5.0.0.25 (API Version 12 Beta1) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。 |
+| HUAWEI DevEco Studio（可选） | 5.0 Beta1 | OpenHarmony应用开发推荐使用。获取方式：*待后续提供* |
+| HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。获取方式：<br />[点击跳转至下载页面](https://device.harmonyos.com/cn/develop/ide#download) |
 
 
 ## 源码获取
-
 
 ### 前提条件
 
@@ -830,52 +883,68 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 
 ### 通过repo获取
 
+**方式一（推荐）**
+
+通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
+
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-5.0-Beta1 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v5.0-Beta1 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+
+**方式二**
+
+通过repo + https 下载。
+
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-5.0-Beta1 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v5.0-Beta1 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+
 
 ### 从镜像站点获取
 
+
 **表2** 获取源码路径
 
-| 版本源码 | **版本信息** | **下载站点** | **SHA256校验码** | 
-| -------- | -------- | -------- | -------- |
-|  |  |  |  | 
-|  |  |  |  | 
-
+| 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
+| --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
+| 全量代码（标准、轻量和小型系统）        | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/code-v5.0-Beta1.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/code-v5.0-Beta1.tar.gz.sha256) | ? GB |
+| Hi3861解决方案（二进制）        | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_pegasus.tar.gz.sha256) | ? MB |
+| Hi3516解决方案-LiteOS（二进制） | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_taurus_LiteOS.tar.gz.sha256) | ? MB |
+| Hi3516解决方案-Linux（二进制）  | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_taurus_Linux.tar.gz.sha256) | ? MB |
+| RK3568标准系统解决方案（二进制）        | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/dayu200_standard_arm32.tar.gz.sha256) | ? GB |
+| 标准系统Public SDK包（Mac）             | 5.0.0.25      | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/ohos-sdk-mac-public.tar.gz.sha256) | ? MB |
+| 标准系统Public SDK包（Mac-M1）             | 5.0.0.25     | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | ? MB |
+| 标准系统Public SDK包（Windows/Linux）   | 5.0.0.25      | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/ohos-sdk-windows_linux-public.tar.gz.sha256) | ? GB |
 
 ## 更新说明
 
 本版本在OpenHarmony 4.1 Release的基础上有如下变更。
 
-
 ### 特性变更
 
+详见版本概述部分的特性变更说明。
 
 ### 芯片及开发板适配
 
 芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
-
-### Samples
-
-**表3** 新增Samples
-
-| 特性 | 名称 | 简介 | 开发语言 | 
-| -------- | -------- | -------- | -------- |
-
-请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
-
-
-## 修复缺陷列表
-
-**表4** 修复缺陷ISSUE列表
-
-| ISSUE单 | 问题描述 | 
-| -------- | -------- |
-
-
-
-## 遗留缺陷列表
-
-**表5** 遗留缺陷列表
-
-| ISSUE | 问题描述 | 影响 | 计划解决日期 | 
-| -------- | -------- | -------- | -------- |
