@@ -353,36 +353,37 @@
    进行开库及增删改查等操作时抛出错误码14800011表示数据库文件损坏。示例代码如下所示：
 
    ```ts
-   import { featureAbility } from '@kit.AbilityKit';
+   if (store !== undefined) {
+     // 数据库文件损坏后需要关闭所有数据库连接和结果集，使用store.close()方法或把对象置为null
+     (store as relationalStore.RdbStore).close();
+     store = undefined;
+     // 将config.allowRebuild配置为true，重新调用getRdbStore开库
+     const STORE_CONFIG: relationalStore.StoreConfig = {
+       name: 'RdbTest.db',
+       securityLevel: relationalStore.SecurityLevel.S1,
+       allowRebuild: true
+     };
 
-   let context = featureAbility.getContext(); 
-
-   // 数据库文件损坏后需要关闭所有数据库连接和结果集，使用store.close()方法或把对象置为null
-   (store as relationalStore.RdbStore).close();
-   store = undefined;
-   // 将config.allowRebuild配置为true，重新调用getRdbStore开库
-   const STORE_CONFIG1 :relationalStore.StoreConfig = {
-     name: 'RdbTest.db',
-     securityLevel: relationalStore.SecurityLevel.S1,
-     allowRebuild: true
-   };
-   relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
-     store = rdbStore;
-     console.info('Get RdbStore successfully.')
-   }).catch((err: BusinessError) => {
-     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-   })
-   // 查看重建结果
-   if ((store as relationalStore.RdbStore).rebuilt === relationalStore.RebuildType.REBUILT) {
-     console.info('Succeeded in rebuilt RdbStore.');
-     // 将损坏前备份的数据恢复到新数据库中
-     (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
+     relationalStore.getRdbStore(this.context, STORE_CONFIG, (err, store) => {
        if (err) {
-         console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
+         console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
          return;
        }
-      console.info(`Succeeded in restore RdbStore.`);
-    })
+       console.info('Succeeded in getting RdbStore.');
+
+       // 查看重建结果
+       if ((store as relationalStore.RdbStore).rebuilt === relationalStore.RebuildType.REBUILT) {
+         console.info('Succeeded in rebuilt RdbStore.');
+         // 将损坏前备份的数据恢复到新数据库中
+         (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
+           if (err) {
+             console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
+             return;
+           }
+           console.info(`Succeeded in restore RdbStore.`);
+         })
+       }
+     })
    }
    ``` 
 
