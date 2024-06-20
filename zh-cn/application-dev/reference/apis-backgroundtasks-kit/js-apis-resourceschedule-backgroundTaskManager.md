@@ -47,10 +47,10 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
@@ -96,10 +96,10 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed.  |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 
 **示例**：
@@ -147,10 +147,10 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
@@ -189,10 +189,10 @@ cancelSuspendDelay(requestId: number): void
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed. |
-| 9900002 | Background task verification failed. |
+| 9900001 | Caller information verification failed for a transient task. |
+| 9900002 | Transient task verification failed. |
 
 **示例**：
 
@@ -237,11 +237,11 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | 
+| 9800003 | Internal transaction failed. | 
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
@@ -331,11 +331,11 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
@@ -411,11 +411,11 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
@@ -475,11 +475,11 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
@@ -539,11 +539,11 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
@@ -667,11 +667,11 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 9800005 | Background task verification failed. |
-| 9800006 | Notification verification failed. |
-| 9800007 | Task storage failed. |
+| 9800005 | Continuous task verification failed. |
+| 9800006 | Notification verification failed for a continuous task. |
+| 9800007 | Continuous task storage failed. |
 
 **示例**：
 
