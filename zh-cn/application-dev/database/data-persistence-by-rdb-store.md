@@ -383,8 +383,8 @@
        }
       console.info(`Succeeded in restore RdbStore.`);
     })
-  }
-  ``` 
+   }
+   ``` 
 
 8. 删除数据库。
 
