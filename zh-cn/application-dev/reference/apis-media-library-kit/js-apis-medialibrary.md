@@ -1996,7 +1996,7 @@ getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 | 参数名    | 类型                                          | 必填 | 说明                                      |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callbacke | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | callback返回文件检索结果集中下一个FileAsset对象。 |
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | callback返回文件检索结果集中下一个FileAsset对象。 |
 
 **示例：**
 
