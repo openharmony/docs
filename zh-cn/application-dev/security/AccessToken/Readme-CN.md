@@ -15,7 +15,6 @@
     - [仅对系统应用开放](permissions-for-system-apps.md)
     - [仅对MDM应用开放](permissions-for-mdm-apps.md)
   - [应用权限组列表](app-permission-group-list.md)
-- [使用系统Picker](use-picker.md)
 - 使用安全控件
   - [安全控件概述](security-component-overview.md)
   - [使用粘贴控件](pastebutton.md)
