@@ -22,7 +22,7 @@ API9
 
 **变更发生版本**
 
-OpenHarmony 5.0.0.22(C00)
+从OpenHarmony SDK 5.0.0.22版本开始。
 
 **变更的接口/组件**
 
@@ -56,7 +56,7 @@ API9
 
 **变更发生版本**
 
-OpenHarmony 5.0.0.22(C00)
+从OpenHarmony SDK 5.0.0.22版本开始。
 
 **变更的接口/组件**
 
