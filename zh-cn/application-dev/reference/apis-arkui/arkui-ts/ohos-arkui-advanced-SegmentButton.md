@@ -41,7 +41,9 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 
 ### 属性
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 属性                    | 类型                                                         | 描述                                                         |
 | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -67,6 +69,10 @@ constructor(options: TabSegmentButtonOptions | CapsuleSegmentButtonOptions)
 
 构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 
@@ -79,6 +85,10 @@ constructor(options: TabSegmentButtonOptions | CapsuleSegmentButtonOptions)
 static tab(options: TabSegmentButtonConstructionOptions): SegmentButtonOptions
 
 创建页签类的SegmentButtonOptions。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -99,6 +109,10 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 创建单选类/多选类的SegmentButtonOptions。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 
@@ -116,7 +130,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 不支持百分比类型的长度的联合类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -132,7 +146,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 用于定义分段按钮组件可自定义的属性。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -159,7 +173,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 继承[CommonSegmentButtonOptions](#commonsegmentbuttonoptions)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -173,7 +187,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 继承[CommonSegmentButtonOptions](#commonsegmentbuttonoptions)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -186,7 +200,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 用于保存按钮信息的元组。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 取值范围                                  | 说明                              |
 | ----------------------------------------- | --------------------------------- |
@@ -200,7 +214,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 用于保存按钮信息的元组的联合类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -214,7 +228,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 用于保存按钮信息的数组的联合类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -238,7 +252,7 @@ constructor(elements: SegmentButtonItemTuple)
 
 构造函数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -253,7 +267,7 @@ push(...items: SegmentButtonItemArray): number
 
 在数组末尾添加新的元素，返回添加元素后数组的长度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -278,7 +292,7 @@ pop(): SegmentButtonItemOptions | undefined
 
 移除数组末尾最后一个元素，返回被移除的元素。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -296,7 +310,7 @@ shift(): SegmentButtonItemOptions | undefined
 
 移除数组开头第一个元素，返回被移除的元素。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -314,7 +328,7 @@ unshift(...items: SegmentButtonItemArray): number
 
 在数组开头添加新的元素，返回添加元素后数组的长度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -339,7 +353,7 @@ splice(start: number, deleteCount: number, ...items: SegmentButtonItemOptions[])
 
 在数组中，删除从start位置开始的deleteCount数量的元素，并插入items中的元素，返回一个包含了被删除的元素的数组。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -366,7 +380,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 创建一个SegmentButtonItemOptionsArray对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -385,7 +399,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 页签类分段按钮选项。继承自[TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -397,7 +411,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 单选类/多选类分段按钮选项。继承自[CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -409,7 +423,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 仅文本按钮信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -421,7 +435,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 仅图标按钮信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -438,7 +452,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 图标+文本按钮信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -456,7 +470,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 分段按钮中按钮的选项。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **属性：**
 
@@ -483,7 +497,7 @@ constructor(options: SegmentButtonItemOptionsConstructorOptions)
 
 SegmentButtonItemOptions的构造参数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

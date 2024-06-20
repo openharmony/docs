@@ -135,8 +135,8 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 ohos.extension.processMode.hostSpecified和ohos.extension.processMode.hostInstance同时配置时，hostSpecified优先，会运行在指定的进程中。
 如在首页文件：pages/Index.ets中添加如下内容：
 ```ts
-import Want from '@ohos.app.ability.Want'
-import { BusinessError } from '@ohos.base'
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -157,10 +157,10 @@ struct Index {
         EmbeddedComponent(this.want, EmbeddedType.EMBEDDED_UI_EXTENSION)
           .width('100%')
           .height('90%')
-          .onTerminated((info: TerminationInfo)=>{
+          .onTerminated((info: TerminationInfo) => {
             this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
           })
-          .onError((error: BusinessError)=>{
+          .onError((error: BusinessError) => {
             this.message = 'Error: code = ' + error.code;
           })
       }
@@ -170,6 +170,3 @@ struct Index {
   }
 }
 ```
-
-
-

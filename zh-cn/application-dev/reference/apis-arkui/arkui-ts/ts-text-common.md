@@ -7,7 +7,7 @@
 
 ## CaretStyle<sup>10+</sup>
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述 |
 | ------ | ------------------------------------------ | ---- | -------- |
@@ -31,7 +31,7 @@ getLineCount(): number
 
 获取组件内容的总行数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -45,7 +45,7 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 
 获取较为接近给定坐标的字形的位置信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -66,7 +66,7 @@ getLineMetrics(lineNumber: number): LineMetrics
 
 获取指定行的行信息、文本样式信息、以及字体属性信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -78,7 +78,7 @@ getLineMetrics(lineNumber: number): LineMetrics
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| LineMetrics | 行信息、文本样式信息、以及字体属性信息。 |
+| [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | 行信息、文本样式信息、以及字体属性信息。 |
 
 ## PositionWithAffinity
 
@@ -90,3 +90,15 @@ getLineMetrics(lineNumber: number): LineMetrics
 | --------- | --------------------- | ---- | ---- | ------------------------ |
 | position  | number                | 是   | 是   | 字形相对于组件内容的索引，整数。  |
 | affinity  | [Affinity](../../apis-arkgraphics2d/js-apis-graphics-text.md#affinity) | 是   | 是   | 位置亲和度。             |
+
+## ExpandedMenuItemOptions<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 参数类型                                   | 必填 | 参数描述 |
+| ------ | ------------------------------------------ | ---- | -------- |
+| content   | [ResourceStr](ts-types.md#resourcestr)  | 是     | 显示内容。     |
+| startIcon | [ResourceStr](ts-types.md#resourcestr)  | 否     | 显示图标，不支持引用SymbolSpan和网络图片。     |
+| action    | Callback\<[TextRange](ts-universal-attributes-text-style.md#textrange12)>  | 是     | 选中的文本信息。|    

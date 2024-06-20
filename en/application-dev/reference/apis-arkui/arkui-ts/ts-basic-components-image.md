@@ -25,7 +25,7 @@ Obtains an image from the specified source for subsequent rendering and display.
 
 If the **\<Image>** component fails to obtain the image or the obtained image size is 0, the **\<Image>** component is automatically resized to 0 and does not follow the layout constraints of its parent component.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -45,7 +45,7 @@ alt(value: string | Resource)
 
 Sets the placeholder image displayed during loading.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -61,7 +61,7 @@ objectFit(value: ImageFit)
 
 Sets how the image is resized to fit its container.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -77,7 +77,7 @@ objectRepeat(value: ImageRepeat)
 
 Sets how the image is repeated. When set to repeat, the image is repeated from the center to edges. The last image will be clipped if it does not fit in the component. This attribute is not applicable to SVG images.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -93,7 +93,7 @@ interpolation(value: ImageInterpolation)
 
 Sets the interpolation effect of the image, which can alleviate aliasing that occurs when the image is zoomed. This attribute is not applicable to SVG images.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -109,7 +109,7 @@ renderMode(value: ImageRenderMode)
 
 Sets the rendering mode of the image. This attribute is not applicable to SVG images.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -125,7 +125,7 @@ sourceSize(value: { width: number; height: number })
 
 Sets the decoding size of the image. This attribute works only when the target size is smaller than the source size. This attribute is not applicable to SVG images or **PixelMap** objects.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -141,7 +141,7 @@ matchTextDirection(value: boolean)
 
 Specifies whether to display the image in the system language direction. When **value** is set to **true**, the image is horizontally flipped in the right-to-left (RTL) language context.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -157,7 +157,7 @@ fitOriginalSize(value: boolean)
 
 Specifies whether to fit the component to the original size of the image source when the component size is not set. Whether to fit the image to the original size of the image source.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -173,7 +173,7 @@ fillColor(value: ResourceColor)
 
 Sets the fill color to be superimposed on the image. This attribute applies only to an SVG image. Once set, the fill color will replace that of the SVG image.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -195,7 +195,7 @@ When the image is scaled down: .autoResize(false) + .interpolation(.Medium)
 
 When the image is scaled up: .interpolation(.High)
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -211,7 +211,7 @@ syncLoad(value: boolean)
 
 Specifies whether to load the image synchronously. When loading a small image, you are advised to set **syncLoad** to **true** so that the image loading can be quickly completed on the main thread.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -227,7 +227,7 @@ copyOption(value: CopyOptions)
 
 Whether the image can be copied. When **copyOption** is set to a value other than **CopyOptions.None**, the image can be copied in various manners, such as long pressing, right-clicking, or pressing Ctrl+C. SVG images cannot be copied.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -243,7 +243,7 @@ colorFilter(value: ColorFilter)
 
 Sets the color filter for the image.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -314,7 +314,7 @@ When the sum of the values of **top** and **bottom** is greater than the origina
 
 ## ImageInterpolation
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name    | Description                        |
 | ------ | -------------------------- |
@@ -325,7 +325,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ImageRenderMode
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name      | Description     |
 | -------- | ------- |
@@ -361,7 +361,7 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 
 Triggered when an image is successfully loaded or decoded. The size of the loaded image is returned.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -386,7 +386,7 @@ onError(callback: ImageErrorCallback)
 
 Triggered when an error occurs during image loading.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -404,7 +404,7 @@ Triggered when the animation playback in the loaded SVG image is complete. If th
 
 Only SVG images are supported.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

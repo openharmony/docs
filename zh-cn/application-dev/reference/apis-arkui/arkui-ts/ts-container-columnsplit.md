@@ -24,7 +24,7 @@ resizeable(value: boolean)
 
 设置分割线是否可拖拽。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,7 +40,7 @@ divider(value: ColumnSplitDividerStyle | null)
 
 设置分割线的margin。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,7 +52,7 @@ divider(value: ColumnSplitDividerStyle | null)
 
 ## ColumnSplitDividerStyle<sup>10+</sup>对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称        | 参数类型      | 必填 | 描述                       |
 | ----------- | ------------- | ---- |--------------------------|

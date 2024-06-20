@@ -46,7 +46,7 @@ Encapsulate **javaScriptProxy** and **runJavaScript** to implement the JSBridge 
   }
   ```
 
-- In the **initJSBridge** method, use **webviewControll.runJavaScript()** to inject the JSBridge initialization script into the HTML5 page for execution. When HTML5 is called, the **window.callID** is generated to identify the callback function, and then the callID and request parameters are transferred to the native side using **JSBridgeHandle.call**. Use **JSBridgeCallback** to receive the execution result from the native side, find the callback based on the ID and execute it, and then release the memory.
+- In the **initJSBridge** method, use **webviewControll.runJavaScript()** to inject the JSBridge initialization script into the HTML5 page for execution. When HTML5 is called, the **window.callID** is generated to identify the callback function, and then the callID and request parameters are transferred to the native side using **JSBridgeHandle.call**. Use **JSBridgeCallback** to receive the execution result from the native side, find the callback based on the ID and execute it, and then free the memory.
   ```
   // bridgeKey and bridgeMethod dynamically generate the entry for invoking on the HTML5 side.
   bridgeKey: string = 'JSBridge'
@@ -369,7 +369,7 @@ struct Index {
 
 **Solution**
 
-The **\<Web>** component supports debugging of web frontend pages by using DevTools, a web frontend development and debugging tool that allows you to debug an application's frontend pages on a PC. Before you do this, use **setWebDebuggingAccess()** to enable frontend page debugging for the **\<Web>** component and make sure the test device connected to the PC runs 4.1.0 or a later version.
+The **\<Web>** component supports debugging of web frontend pages by using DevTools, a web frontend development and debugging tool that allows you to debug an application's frontend pages on a PC. Before you do this, use **setWebDebuggingAccess()** to enable frontend page debugging for the **\<Web>** component and make sure the test device connected to the 2-in-1 device runs 4.1.0 or a later version.
 
 **Reference**
 
@@ -406,3 +406,58 @@ You can call **onInterceptRequest()** to customize web page responses, file reso
 
 1. Process model: one main process and multiple render processes
 2. Rendering mechanism: web self-rendering
+
+
+## Does the system support WebRTC? What WebRTC features are provided?
+
+**Solution**
+
+1. WebView provides the peer-to-peer (P2P) and audio and video streaming features in WebRTC.
+2. When WebView is not used, the system provides technical support for adaptation, but not direct support for WebRTC. For example, the following are provided to work with WebRTC (RR-30030985):
+   * GN + Ninja cross compilation mode in the SDK
+   * Compilation samples
+
+
+## How do I set the mixed content policy in WebView to load HTTP and HTTPS mixed content?
+
+**Solution**
+
+WebView provides the **mixedMode(mixedMode: MixedMode)** API for specifying whether to enable loading of HTTP and HTTPS mixed content. By default, loading of mixed content is disabled.
+
+**Reference**
+
+[mixedmode](../reference/apis-arkweb/ts-basic-components-web.md#mixedmode)
+
+
+## In addition to setting the cache, is there any other way to speed up rendering in WebView?
+
+**Solution**
+
+You can use the **prepareForPageLoad** API to preconnect to a URL.
+
+**Reference**
+
+[prepareforpageload](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)
+
+
+## How do I create a \<Web> component? How do I reuse one?
+
+**Solution**
+
+**\<Web>** components can be pre-created, reclaimed, and reused through dynamic component tree mount and unmount capability provided by ArkUI.
+
+**Reference**
+
+[Dynamically Creating Web Components](../web/web-page-loading-with-web-components.md#dynamically-creating-web-components)
+
+
+## Does OpenHarmony provide JavaScript engine capabilities as other systems?
+
+**Solution**
+
+Yes. For details, see the reference.
+
+**Reference**
+
+[JSVM](../reference/common/_j_s_v_m.md)
+<!--no_check-->

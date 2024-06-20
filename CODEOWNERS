@@ -92,6 +92,7 @@ zh-cn/application-dev/application-models/accessibilityextensionability.md @li-ya
 
 
 [开发-ArkData]
+zh-cn/application-dev/database @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode @dboy190
 zh-cn/application-dev/database/data-mgmt-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
 zh-cn/application-dev/database/unified-data-definition-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode @dboy190
 zh-cn/application-dev/database/uniform-data-type-descriptors.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode @dboy190
@@ -117,6 +118,7 @@ zh-cn/application-dev/database/native-relation-store-guidelines.md @ge-yafang @f
 
 
 [开发-ArkGraphics2D]
+zh-cn/application-dev/graphics @ge-yafang @zhangqiang183 @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/graphics/arkgraphics2D-introduction.md @ge-yafang @zhangqiang183 @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/graphics/displaysync-overview.md @ge-yafang @zhangqiang183 @zhouyaoying @zxg-gitee @nobuggers @wind-zj
 zh-cn/application-dev/graphics/displaysync-ui.md @ge-yafang @zhangqiang183 @zhouyaoying @zxg-gitee @nobuggers @wind-zj
@@ -129,8 +131,11 @@ zh-cn/application-dev/graphics/native-buffer-guidelines.md @ge-yafang @zhangqian
 zh-cn/application-dev/graphics/native-image-guidelines.md @ge-yafang @zhangqiang183 @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/graphics/native-vsync-guidelines.md @ge-yafang @zhangqiang183 @zhouyaoying @zxg-gitee @nobuggers
 
+[开发-ArkGraphics3D]
+zh-cn/application-dev/graphics3d @ge-yafang @zhangqiang183 @zhouyaoying @zxg-gitee @nobuggers
 
 [开发-ArkTS]
+zh-cn/application-dev/arkts-utils @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
 zh-cn/application-dev/arkts-utils/arkts-commonlibrary-overview.md @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
 zh-cn/application-dev/arkts-utils/concurrency-overview.md @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
 zh-cn/application-dev/arkts-utils/async-concurrency-overview.md @ge-yafang @gongjunsong @weng-changcheng @blackstone-oh
@@ -457,20 +462,31 @@ zh-cn/application-dev/reference/apis-accessibility-kit/errorcode-accessibility.m
 
 
 [API参考-ArkGraphics2D]
+zh-cn/application-dev/reference/apis-arkgraphics2d @zhangqiang183 @ge-yafang @liuchao92 @zxg-gitee @nobuggers @sqwlly @wind-zj
 zh-cn/application-dev/reference/apis-arkgraphics2d/errorcode-colorspace-manager.md @zhangqiang183 @ge-yafang @liuchao92 @zxg-gitee 
 zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-colorSpaceManager.md @zhangqiang183 @ge-yafang @liuchao92 @zxg-gitee
+zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-sendableColorSpaceManager.md @ge-yafang @liuchao92 @zxg-gitee
 zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-effectKit.md @zhangqiang183 @wyl @ge-yafang @liuchao92 @zxg-gitee
 zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-common2D.md @ge-yafang @zxg-gitee @nobuggers @sqwlly
 zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-displaySync.md @ge-yafang @zxg-gitee @nobuggers @wind-zj
 zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-drawing.md @ge-yafang @sqwlly @zxg-gitee @nobuggers
+zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-text.md @ge-yafang @sqwlly @zxg-gitee @nobuggers
+zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-uiEffect.md @ge-yafang @sqwlly @zxg-gitee @nobuggers
+zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-uiEffect-sys.md @ge-yafang @sqwlly @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-hdrCapability.md @ge-yafang @zxg-gitee @nobuggers @wind-zj
 zh-cn/application-dev/reference/apis-arkgraphics2d/_drawing.md @zhangqiang183 @ge-yafang @liuchao92 @zxg-gitee @sqwlly @nobuggers
+zh-cn/application-dev/reference/apis-arkgraphics2d/_native_display_soloist.md
 zh-cn/application-dev/reference/apis-arkgraphics2d/_native_vsync.md @zhangqiang183 @ge-yafang @liuchao92 @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis-arkgraphics2d/_native_image.md @zhangqiang183 @ge-yafang @liuchao92 @zxg-gitee @nobuggers
+zh-cn/application-dev/reference/apis-arkgraphics2d/_o_h___native_buffer.md @zhangqiang183 @ge-yafang @liuchao92 @zxg-gitee @nobuggers
+zh-cn/application-dev/reference/apis-arkgraphics2d/effect_kit.md @zhangqiang183 @ge-yafang @liuchao92 @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis-arkgraphics2d/_native_window @zhangqiang183 @ge-yafang @liuchao92 @zxg-gitee @nobuggers
 
+[API参考-ArkGraphics3D]
+zh-cn/application-dev/reference/apis-arkgraphics3d @zhangqiang183 @ge-yafang @zxg-gitee @nobuggers @sqwlly @wind-zj
 
 [API参考-ArkTS]
+zh-cn/application-dev/reference/apis-arkts @ge-yafang @gongjunsong @blackstone-oh @weng-changcheng @yingguofeng
 zh-cn/application-dev/reference/apis-arkts/errorcode-utils.md @ge-yafang @gongjunsong @blackstone-oh @weng-changcheng @yingguofeng
 zh-cn/application-dev/reference/apis-arkts/js-apis-arraylist.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh @yingguofeng
 zh-cn/application-dev/reference/apis-arkts/js-apis-treemap.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh @yingguofeng
@@ -500,6 +516,7 @@ zh-cn/application-dev/reference/apis-arkts/js-apis-taskpool.md @gongjunsong @ge-
 
 
 [API参考-ArkData]
+zh-cn/application-dev/reference/apis-arkdata @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
 zh-cn/application-dev/reference/apis-arkdata/js-apis-data-commonType.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
 zh-cn/application-dev/reference/apis-arkdata/js-apis-data-ability.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
 zh-cn/application-dev/reference/apis-arkdata/js-apis-data-dataSharePredicates.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode

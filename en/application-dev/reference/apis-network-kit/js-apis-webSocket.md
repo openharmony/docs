@@ -298,6 +298,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
 ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("connect success");
@@ -305,7 +309,6 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
       console.log("connect fail, err:" + JSON.stringify(err))
     }
 });
-
 ws.on('open', (err: BusinessError, value: Object) => {
   console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
     ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
@@ -361,7 +364,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
-
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
 ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("connect success");

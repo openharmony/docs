@@ -1229,7 +1229,6 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 | 错误码ID | 错误信息|
 | ------- | -------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -3005,7 +3004,7 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
 ### addAccountImplicitly<sup>(deprecated)</sup>
 
-addAccountImplicitly(owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
+addAccountImplicitly(owner: string, authType: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
 根据指定的帐号所有者隐式地添加应用帐号。使用callback异步回调。
 
@@ -4014,7 +4013,7 @@ off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): voi
 
 ### authenticate<sup>(deprecated)</sup>
 
-authenticate(name: string, owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
+authenticate(name: string, owner: string, authType: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
 对应用帐号进行鉴权以获取授权令牌。使用callback异步回调。
 
@@ -4792,7 +4791,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| customData   | Record<string, Object> | 否    | 自定义数据，默认为空。 |
+| customData   | Record<string, string> | 否    | 自定义数据，默认为空。 |
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
@@ -5021,7 +5020,7 @@ OAuth认证器回调接口。
 
 ### onResult<sup>8+</sup>
 
-onResult: (code: number, result: {[key: string]: any}) =&gt; void
+onResult: (code: number, result: {[key: string]: any;}) =&gt; void
 
 通知请求结果。
 
@@ -5114,7 +5113,7 @@ createAccountImplicitly(options: CreateAccountImplicitlyOptions, callback: AuthC
 
 ### addAccountImplicitly<sup>(deprecated)</sup>
 
-addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
+addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
 根据指定的鉴权类型和可选项，隐式地添加应用帐号，并使用callback异步回调返回结果。
 
@@ -5147,13 +5146,12 @@ auth(name: string, authType: string, options: Record<string, Object>, callback: 
 | ---------------- | --------------------- | ---- | --------------- |
 | name             | string                | 是    | 应用帐号的名称。        |
 | authType         | string                | 是    | 应用帐号的鉴权类型。      |
-| callerBundleName | string                | 是    | 鉴权类型。       |
 | options          | Record<string, Object>  | 是    | 鉴权所需要的可选项。      |
 | callback         | [AuthCallback](#authcallback9) | 是    | 回调对象，用于返回鉴权结果。 |
 
 ### authenticate<sup>(deprecated)</sup>
 
-authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
+authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
 对应用帐号进行鉴权，获取OAuth令牌，并使用callback异步回调返回结果。
 

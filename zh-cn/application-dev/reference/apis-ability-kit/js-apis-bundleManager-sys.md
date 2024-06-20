@@ -5120,7 +5120,7 @@ try {
 
 getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number, userId?: number): Promise\<BundleInfo>;
 
-根据bundleName、分身索引、[bundleFlags](js-apis-bundleManager.md#bundleflag)以及用户ID查询分身应用的BundleInfo。使用Promise异步回调。
+根据bundleName、分身索引、[bundleFlags](js-apis-bundleManager.md#bundleflag)以及用户ID查询主应用或分身应用的BundleInfo。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5133,7 +5133,7 @@ getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number,
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------|
 |    bundleName     | number |  是  |       表示要查询的应用Bundle名称。      |
-|    appIndex     | number |  是  |       表示要查询的分身应用索引。      |
+|    appIndex     | number |  是  |       表示要查询的分身应用索引。<br>appIndex为0时，可以查询主应用信息。      |
 |    [bundleFlags](js-apis-bundleManager.md#bundleflag)     | number |  是  |       表示用于指定要返回的BundleInfo对象中包含的信息的标志。    |
 |    userId     | number |  否  |       表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。      |
 
@@ -5154,6 +5154,7 @@ getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number,
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified userId is invalid. |
+| 17700026 | The specified bundle is disabled. |
 | 17700061 | The appIndex is invalid. |
 
 **示例：**
@@ -5182,7 +5183,7 @@ try {
 
 getAllAppCloneBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<Array\<BundleInfo>>;
 
-根据bundleName、[bundleFlags](js-apis-bundleManager.md#bundleflag)以及用户ID查询分身应用的BundleInfo列表。使用Promise异步回调。
+根据bundleName、[bundleFlags](js-apis-bundleManager.md#bundleflag)以及用户ID查询主应用和分身应用的BundleInfo列表。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5215,6 +5216,7 @@ getAllAppCloneBundleInfo(bundleName: string, bundleFlags: number, userId?: numbe
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified userId is invalid. |
+| 17700026 | The specified bundle and clone apps are all disabled. |
 
 **示例：**
 

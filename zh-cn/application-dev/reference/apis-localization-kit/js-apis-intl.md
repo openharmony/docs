@@ -10,7 +10,7 @@
 >
 >  - 从API version 11开始，本模块部分接口支持在ArkTS卡片中使用。
 >
->  - 从API version 12开始，本模块全接口支持在元服务中使用。
+>  - 从API version 12开始，本模块全接口支持在原子化服务中使用。
 
 
 ## 导入模块
@@ -26,7 +26,7 @@ import { intl } from '@kit.LocalizationKit';
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -51,7 +51,7 @@ constructor()
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -72,7 +72,7 @@ constructor(locale: string, options?: LocaleOptions)
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -99,7 +99,7 @@ toString(): string
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -125,7 +125,7 @@ maximize(): Locale
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -159,7 +159,7 @@ minimize(): Locale
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -193,7 +193,7 @@ minimize(): Locale
 
 **卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -216,7 +216,7 @@ constructor()
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -235,7 +235,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -268,7 +268,7 @@ format(date: Date): string
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -305,7 +305,7 @@ formatRange(startDate: Date, endDate: Date): string
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -340,7 +340,7 @@ resolvedOptions(): DateTimeOptions
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -368,7 +368,7 @@ resolvedOptions(): DateTimeOptions
 
 **卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -403,7 +403,7 @@ constructor()
 
 创建数字格式化对象。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -420,7 +420,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
 创建数字格式化对象。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -444,7 +444,7 @@ format(number: number): string
 
 格式化数字字符串。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -475,7 +475,7 @@ resolvedOptions(): NumberOptions
 
 获取NumberFormat 对象的格式化选项。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -502,7 +502,7 @@ resolvedOptions(): NumberOptions
 
 从API9开始，NumberOptions中的属性改为可选。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -536,7 +536,7 @@ constructor()
 
 创建排序对象。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -553,7 +553,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 
 创建排序对象。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -577,7 +577,7 @@ compare(first: string, second: string): number
 
 依据Collator的排序策略对两个字符串进行比较。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -609,7 +609,7 @@ resolvedOptions(): CollatorOptions
 
 返回Collator对象的属性。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -635,7 +635,7 @@ resolvedOptions(): CollatorOptions
 
 从API9中，CollatorOptions中的属性改为可选。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -658,7 +658,7 @@ constructor()
 
 创建单复数对象来计算数字的单复数类别。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -675,7 +675,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 
 创建单复数对象来计算数字的单复数类别。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -699,7 +699,7 @@ select(n: number): string
 
 返回一个字符串表示该数字的单复数类别。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -734,7 +734,7 @@ select(n: number): string
 表示PluralRules对象可设置的属性。
 从API9开始，PluralRulesOptions中的属性改为可选。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -758,7 +758,7 @@ constructor()
 
 创建相对时间格式化对象。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -775,7 +775,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 
 创建相对时间格式化对象。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -799,7 +799,7 @@ format(value: number, unit: string): string
 
 依据locale和格式化选项，对value和unit进行格式化。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -831,7 +831,7 @@ formatToParts(value: number, unit: string): Array&lt;object&gt;
 
 返回一个对象数组，表示可用于自定义区域设置格式的相对时间格式。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -862,7 +862,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 获取RelativeTimeFormat对象的格式化选项。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -888,7 +888,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 从API9开始，RelativeTimeFormatInputOptions中的属性改为可选。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -902,7 +902,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 表示RelativeTimeFormat对象可设置的属性。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 

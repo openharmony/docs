@@ -30,8 +30,9 @@ For an attribute or interface table, if a tag has the same value for all the ite
 | @FAModelOnly / @StageModelOnly | Model restriction description| **Model restriction**: This API can be used only in the FA model. **Model restriction**: This API can be used only in the stage model.|
 | @form | Widget capability description| **Widget capability**: Since API version *x*, this feature is supported in ArkTS widgets.|
 | @systemapi | System API description| **System API**: This is a system API.|
-| @syscap | System capability description| **System capability**: SystemCapability.*A.B*|
+| @syscap | System capability description| **System capability**: SystemCapability.*A.B*|  1. If only one permission is required for using the API, use the following format:<br>    **Required permissions**: ohos.permission.examplePermission<br>2. If multiple permissions are required for using the API, provide the permissions with **and** or **or** in the following format:<br>    **Required permissions**: ohos.permission.examplePermissionA and ohos.permission.examplePermissionB<br>    **Required permissions**: ohos.permission.examplePermissionA or ohos.permission.examplePermissionB|
 | @permission | Permission description| 1. If only one permission is required for using the API, use the following format:<br>**Required permissions**: ohos.permission.examplePermission<br>2. If multiple permissions are required for using the API, provide the permissions with **and** or **or** in the following format:<br>**Required permissions**: ohos.permission.examplePermissionA and ohos.permission.examplePermissionB<br>**Required permissions**: ohos.permission.examplePermissionA or ohos.permission.examplePermissionB|
+| @extends | Inheritance|  If the tag is carried or the extends relationship exists but the tag is not carried, clearly state the following information: *ExampleA* inherits from *ExampleB* (provide the link of *ExampleB*).|
 
 The following describes the instructions for writing a specific API reference document.
 
@@ -86,7 +87,7 @@ You are advised to use **ArrayList** when elements in a container need to be fre
 >
 > ```js
 >    import ability_featureAbility from '@ohos.ability.featureAbility';
->    var context = ability_featureAbility.getContext();
+>    let context = ability_featureAbility.getContext();
 > ```
 
 ```js
@@ -103,11 +104,11 @@ import call from '@ohos.telephony.call';
 >
 > 3. A read-only attribute is marked with **readonly** in d.ts files. If it has a limited number of values with special meanings, enumerate the values or provide a link to the corresponding enum.
 >
-> 4. For a mandatory attribute, if only fixed fields are supported, describe them. If it is not used as a passed-in parameter value, you can enter N/A.
+> 4. For an optional attribute, if only fixed fields are supported, describe them. An attribute defined with a question mark (?) is optional.
 
 **System capability**: SystemCapability.*A.B* (This part is mandatory.)
 
-| Name            | Type                                     | Read Only| Mandatory| Description                                      |
+| Name            | Type                                     | Read Only| Optional| Description                                      |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
 | pluggedType      | [BatteryPluggedType]\(#batterypluggedtype) | Yes  | No  | Charger type of the current device.            |
 | isBatteryPresent | boolean                                   | Yes  | No  | Whether the battery is supported or present.|
@@ -138,9 +139,17 @@ import call from '@ohos.telephony.call';
 >    Example of a common method: sim.getSimIccId
 >    Example of a subscription method: sim.on('exampleEvent')
 >
-> 3. **Method calling mode**: The description must be the same as that in the .d.ts file and include the parameter type, parameter name, and return value type.
->    Example: getNetworkState(slotId: number, callback: AsyncCallback\<NetworkState>): void
->    Note: The angle bracket (<>) may be identified as a label and not displayed. To ensure normal display, you can either add a backslash (\\) (in the format of "\\<>") or use escape characters \&lt; and \&gt;.
+> 3. The method call mode is the same as that in .d.ts. The keywords (for example, **static**, **abstract**, **set**, and **get**), parameter types, parameter names, and return value types must be included.
+>
+>    Examples:
+>    
+>    getNetworkState(slotId: number, callback: AsyncCallback\<NetworkState>): void
+>
+>       abstract makeNode(uiContext: UIContext): FrameNode | null
+>
+>    Note 1: The angle bracket (<>) may be identified as a label and not displayed. To ensure normal display, you can either add a backslash (\\) (in the format of "\\<>") or use escape characters \&lt; and \&gt;.
+>
+>    Note 2: If the methods declared by the **set** and **get** keywords appear in pairs and have the same names, place them under the same title and describe the method call modes, tags, parameters, and return values in sequence. It is recommended that the **set** method be placed before the **get** method. For details, see [backgroundColor](../../application-dev/reference/apis-arkui/js-apis-arkui-renderNode.md#backgroundcolor).
 >
 > 4. **Method description**: Describe the features implemented by the method and include the prerequisites for using the method, the impact of the method, and the permissions and system capabilities required to use the method. (*Example of prerequisites: This method can be called only after the xx method is called; you must ensure that the connection to the Internet is normal. Example of impact: xx does not take effect after this method is called.*)
 >
@@ -148,7 +157,7 @@ import call from '@ohos.telephony.call';
 >
 > 6. **Line feed in a table**: Use \<br> for line feed.
 
-Provide the method name in the following format: (**static** if it is a static method) methodName (parameterName1: parameterType1, parameterName2: parameterType2, ...): returnValueType
+Provide the method call mode in the following format: (keyword, if available) methodName (parameterName1: parameterType1, parameterName2: parameterType2, ...): returnValueType
 
 Describe the method. For details, see the fourth and fifth points in "Writing Instructions" above.
 
@@ -171,7 +180,7 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 
 | Type                                      | Description                                           |
 | ------------------------------------------ | ----------------------------------------------- |
-| string                                     | Describe the return value from the following aspects:<br>1. What can be done after the return value is obtained.<br>2. If the return values can be enumerated, describe the meaning of the return values.<br>3. If the return value is a specific value or format, keeyp the value or format consistent with the actual implementation. |
+| string                                     | Describe the return value from the following aspects:<br>1. What can be done after the return value is obtained.<br>2. If the return values can be enumerated, describe the meaning of the return values.<br>3. If the return value is a specific value or format, keep the value or format consistent with the actual implementation. |
 | Promise\<Array<[CustomType](#classinterface)>> | Describe the return value. For details about how to write promise methods, see item 14 in "General Writing Instructions."|
 
 **Error codes** (This part is optional. Delete it if no error code is thrown.)
@@ -193,7 +202,7 @@ For details about the error codes, see [moduleName Error Codes]\(link to the err
 // Declare all variables that are used.
 
 // Write an actual case that can be easily used, rather than the parameter names themselves. Use comments to describe the content that are not user-defined.
-// Example: var result = xxx.createExample(parameterOne); // parameterOne is automatically obtained by scanning.
+// Example: let result = xxx.createExample(parameterOne); // parameterOne is automatically obtained by scanning.
 
 // Provide clear and concise comments in the following typical scenarios:
 // 1. The meaning of a variable name or the code logic is not self-explanatory.
@@ -248,7 +257,7 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 // Declare all variables that are used.
 
 // Write an actual case that can be easily used, rather than the parameter names themselves. Use comments to describe the content that are not user-defined.
-// Example: var result = xxx.createExample(parameterOne); // parameterOne is automatically obtained by scanning.
+// Example: let result = xxx.createExample(parameterOne); // parameterOne is automatically obtained by scanning.
 
 // Provide clear and concise comments in the following typical scenarios:
 // 1. The meaning of a variable name or the code logic is not self-explanatory.
@@ -305,22 +314,58 @@ Provide a brief description of the enum type. Example: Enumerates the charger ty
 >
 > 1. This section is optional. Delete it if there is no type. It corresponds to **type** in the .d.ts file.
 >
-> 2. If the value range is of a specific value, such as a fixed string or enumerated value, describe the data type and specified value. If the value range is of a specified type, describe whether any value of the type or a value range is used.
+> 2. Currently, there are two templates, corresponding to two different scenarios.
+>     
+>    - When the type is union or intersection, the definition format is type Xxx = number | string | 'xxx' or type AB = InterfaceA & InterfaceB. For details, see [Template 1](#type-template-1).
+>    - If the type is the alias of a function or interface, the definition format is type Xxx\<Aaa, Bbb> = (param1: number, param2: string) => void or type Xxx = (param1: number, param2: string). Explain the parameters based on the function or interface template and provide its definition before the list. For details, see [Template 2](#type-template-2).
 >
-> 3. If the type is of a custom type, create a link to the corresponding interface or enum.
+> 3. If the value range is of a specific value, such as a fixed string or enumerated value, describe the data type and specified value. If the value range is of a specified type, describe whether any value of the type or a value range is used.
+>
+> 4. If an attribute is of a custom type, create a link to the corresponding interface or enum.
 
-Provide a brief description of the union type. Example: Enumerates the value types.
+
+### Type-Template-1
+
+type Xxx = number | string | 'xxx'  
+
+Provide a brief description of the type. Example: Enumerates the value types.
+
+Provide the logic for obtaining the actual value of this type. Example: The value type is the union set or intersection set in the following table.
 
 **System capability**: SystemCapability.*A.B* (This part is mandatory.)
 
-| Value Range   | Description                         |
+| Type     | Description                         |
 | -----------| ---------------------------- |
 | number     | The value can be any number.    |
 | string     | The value can be any string.    |
+| 'xxx'      | *Meaning of the value*. The value is a string fixed at *ExampleString*.    |
+
+### Type Template 2
+
+(The function alias is used as an example. If the type is an interface alias, refer to the interface template.)
+
+(Provide the definition of the type here.) type Xxx\<Aaa, Bbb> = (param1: number, param2: string) => Interface1
+
+**System capability**: SystemCapability.*A.B* (This part is mandatory.)
+
+**Parameters** (This part is optional. Delete it if there is no parameter.)
+
+| Name  | Type                                | Mandatory| Description                                                        |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| param1    | number                              | Yes  | Describe the parameter. The instructions are the same as those provided under [Methods](#methods).         |
+| param2 | string | No  | Describe the parameter. The instructions are the same as those provided under [Methods](#methods).                         |
+
+**Return value** (This part is optional. Delete it if there is no return value.)
+
+| Type  | Description                                 |
+| ------ | ------------------------------------- |
+| [Interface1](#interface1) | Describe the return value. The instructions are the same as those provided under [Methods](#methods).|
 
 ## Change History
 | Change Description                                                                | Date        |
 | ----------------------------------------------------------------------- | ------------ |
+| 1. Updated the method template by adding the description of methods carrying the declaration of keywords such as **static**.|  2024/05/16  |
+| 1. Updated the type template. In addition to the union type, the intersection type and the type used as the alias of a function or interface were added.<br>2. Updated the attribute template to specify the rules for determining optional attributes in the interfaces and interface definitions.|  2024/05/10  |
 | 1. Changed the template for **Attributes** from **Read**, **Write**, and **Mandatory** to **Read Only** and **Mandatory**.<br>2. Changed the template for **Types** by using **Value Range** and **Description**, and provided the related description.<br>3. Deleted the custom type, and incorporated the related description under **Classes/Interfaces**.|  2023/02/01  |
 | 1. Provided the general writing instructions in a table.<br>2. Added the description about how to reference an image in "Upload path".<br>3. Added the "Document structure" item to describe the sequence of nodes in the API reference document.<br>4. Added the description for multiple permissions in "Permission description".<br>5. Added the description of @FAModelOnly and @StageModelOnly in the API reference document.<br>6. Added the description of asynchronous methods (callback and promise).<br>7. Added the standards and specifications for the sample code programming language.<br>8. Added the standard format for links used in the API reference document.<br>9. Added examples for "Module description".<br>10. Added the description of on and off subscription methods.<br>11. Updated the description of @syscap.<br>12. Updated the description of @systemapi. Now only the sentence "This is a system API." is used.  <br>13. Deleted the MR version description.                                                                |  2022/6/24  |
 | Added the error code description.                                                         | 2022/10/11  |

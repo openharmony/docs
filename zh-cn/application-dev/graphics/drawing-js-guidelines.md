@@ -29,16 +29,6 @@
 本文以实现2D图形和文字的绘制与显示为例，给出具体的开发指导。
 ### 添加开发依赖
 
-**添加动态链接库**
-
-CMakeLists.txt中添加以下lib。
-
-```txt
-libace_ndk.z.so
-libnative_window.so
-libnative_drawing.so
-```
-
 **依赖文件**
 ```js
 import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI'

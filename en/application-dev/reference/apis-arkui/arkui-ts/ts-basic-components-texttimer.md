@@ -38,7 +38,7 @@ format(value: string)
 
 Sets the custom format. The value must contain at least one of the following keywords: **HH**, mm, **ss**, and **SS**. If the specified date format is yy, MM, or dd, the default value is used instead.
 
-**Widget capability**: Since API version 10, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

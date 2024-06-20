@@ -4625,9 +4625,9 @@ Describes the sensor data reporting frequency.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name    | Type                                                       | Readable| Writable| Description                                                        |
-| -------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| interval | number/[SensorFrequency](#sensorfrequency11+)<sup>11+</sup> | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. This attribute has restrictions on the minimum and maximum values, determined by the reporting frequency supported by the hardware.|
+| Name    | Type                                                      | Readable| Writable| Description                                                        |
+| -------- | ---------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| interval | number/[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. This attribute has restrictions on the minimum and maximum values, determined by the reporting frequency supported by the hardware.|
 
 ## SensorFrequency<sup>11+</sup>
 
@@ -7292,7 +7292,7 @@ Obtains the device direction based on the rotation matrix. This API uses an asyn
 
 | Name        | Type                                    | Mandatory| Description                                 |
 | -------------- | ---------------------------------------- | ---- | ------------------------------------- |
-| rotationMatrix | Array&lt;number&gt;                      | Yes  | Rotation matrix.                       |
+| rotationMatrix | Array&lt;number&gt;                      | Yes  | Peer rotation matrix.                       |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation angle around the z, x, and y axes.|
 
 **Example**
@@ -7329,7 +7329,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 | Name           | Type                 | Mandatory  | Description     |
 | -------------- | ------------------- | ---- | ------- |
-| rotationMatrix | Array&lt;number&gt; | Yes   | Rotation matrix.|
+| rotationMatrix | Array&lt;number&gt; | Yes   | Peer rotation matrix.|
 
 **Return value**
 

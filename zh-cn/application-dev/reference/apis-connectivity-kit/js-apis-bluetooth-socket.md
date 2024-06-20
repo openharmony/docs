@@ -18,7 +18,7 @@ import { socket } from '@kit.ConnectivityKit';
 
 sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&gt;): void
 
-创建一个服务端监听Socket。
+创建一个服务端监听Socket。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -39,7 +39,7 @@ sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&g
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -74,7 +74,7 @@ try {
 
 sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
-服务端监听socket等待客户端连接。
+服务端监听socket等待客户端连接。使用Callback异步回调。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -91,7 +91,7 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -105,7 +105,7 @@ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 let serverNumber = -1;
 let acceptClientSocket = (code: BusinessError, number: number) => {
-  console.log('bluetooth error code: ' + code.code);
+  console.info('bluetooth error code: ' + code.code);
   if (code) {
     console.error('sppListen error, code is ' + code);
     return;
@@ -126,7 +126,7 @@ try {
 
 sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;number&gt;): void
 
-客户端向远端设备发起spp连接。
+客户端向远端设备发起spp连接。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -147,7 +147,7 @@ sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;num
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -165,7 +165,7 @@ let clientSocket = (code: BusinessError, number: number) => {
     console.error('sppListen error, code is ' + code);
     return;
   } else {
-    console.log('bluetooth serverSocket Number: ' + number);
+    console.info('bluetooth serverSocket Number: ' + number);
     // 获取的clientNumber用作客户端后续读/写操作socket的id。
     clientNumber = number;
   }
@@ -199,7 +199,7 @@ sppCloseServerSocket(socket: number): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.             |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
@@ -237,7 +237,7 @@ sppCloseClientSocket(socket: number): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
@@ -276,7 +276,7 @@ sppWrite(clientSocket: number, data: ArrayBuffer): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.             |
 |801 | Capability not supported.          |
 |2901054 | IO error.                                |
 |2900099 | Operation failed.                        |
@@ -301,7 +301,7 @@ try {
 
 on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
 
-订阅spp读请求事件，入参clientSocket由sppAccept或sppConnect接口获取。
+订阅spp读请求事件，入参clientSocket由sppAccept或sppConnect接口获取。使用Callback异步回调。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -319,7 +319,7 @@ on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.            |
 |801 | Capability not supported.          |
 |2901054 | IO error.                                |
 |2900099 | Operation failed.                        |
@@ -330,8 +330,8 @@ on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let dataRead = (dataBuffer: ArrayBuffer) => {
-  let data = new Uint8Array(dataBuffer);
-  console.log('bluetooth data is: ' + data[0]);
+    let data = new Uint8Array(dataBuffer);
+    console.info('bluetooth data is: ' + data[0]);
 }
 try {
     socket.on('sppRead', clientNumber, dataRead);
@@ -363,7 +363,7 @@ off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.              |
 |801 | Capability not supported.          |
 
 **示例：**

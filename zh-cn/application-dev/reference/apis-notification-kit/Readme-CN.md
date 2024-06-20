@@ -1,4 +1,4 @@
-# Notification Kit API参考
+# Notification Kit（用户通知服务）
 
 - ArkTS API  
   - [@ohos.notificationManager (NotificationManager模块)](js-apis-notificationManager.md)

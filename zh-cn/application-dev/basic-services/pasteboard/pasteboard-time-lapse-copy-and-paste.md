@@ -23,7 +23,7 @@
 
 ## 开发步骤
 
-1. 导入`@ohos.pasteboard.d.ts`,`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
+1. 导入pasteboard,unifiedDataChannel和uniformTypeDescriptor模块。
    
    ```ts\
    import {unifiedDataChannel, uniformTypeDescriptor} from '@kit.ArkData';

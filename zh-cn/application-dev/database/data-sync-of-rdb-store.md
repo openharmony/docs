@@ -68,7 +68,7 @@
 1. 导入模块。
      
    ```ts
-   import relationalStore from '@ohos.data.relationalStore';
+   import { relationalStore } from '@kit.ArkData';
    ```
 
 2. 请求权限。
@@ -79,9 +79,9 @@
 3. 创建关系型数据库，设置将需要进行分布式同步的表。
      
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
-   import { BusinessError } from "@ohos.base";
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { window } from '@kit.ArkUI';
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
@@ -162,14 +162,14 @@
      
    ```ts
    // 获取deviceIds
-   import deviceManager from '@ohos.distributedDeviceManager';
-   import { BusinessError } from '@ohos.base'
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-   let dmInstance: deviceManager.DeviceManager;
+   let dmInstance: distributedDeviceManager.DeviceManager;
    let deviceId: string | undefined = undefined ;
 
    try {
-     dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+     dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
      let devices = dmInstance.getAvailableDeviceListSync();
 
      deviceId = devices[0].networkId;

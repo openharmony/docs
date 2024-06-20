@@ -20,7 +20,7 @@ import { wearDetection } from '@kit.ConnectivityKit';
 
 enableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-使能佩戴检测。
+使能佩戴检测。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -43,7 +43,7 @@ enableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
@@ -67,7 +67,7 @@ try {
 
 enableWearDetection(deviceId: string): Promise&lt;void&gt;
 
-使能佩戴检测。
+使能佩戴检测。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -95,7 +95,7 @@ enableWearDetection(deviceId: string): Promise&lt;void&gt;
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
@@ -117,7 +117,7 @@ try {
 
 disableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-禁用佩戴检测。
+禁用佩戴检测。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -140,7 +140,7 @@ disableWearDetection(deviceId: string, callback: AsyncCallback&lt;void&gt;): voi
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
@@ -164,7 +164,7 @@ try {
 
 disableWearDetection(deviceId: string): Promise&lt;void&gt;
 
-禁用佩戴检测。
+禁用佩戴检测。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -192,7 +192,7 @@ disableWearDetection(deviceId: string): Promise&lt;void&gt;
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
@@ -214,7 +214,7 @@ try {
 
 isWearDetectionSupported(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取设备是否支持佩戴检测。
+获取设备是否支持佩戴检测。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -237,7 +237,7 @@ isWearDetectionSupported(deviceId: string, callback: AsyncCallback&lt;boolean&gt
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
@@ -259,7 +259,7 @@ try {
 
 isWearDetectionSupported(deviceId: string): Promise&lt;boolean&gt;
 
-获取设备是否支持佩戴检测。
+获取设备是否支持佩戴检测。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -287,7 +287,7 @@ isWearDetectionSupported(deviceId: string): Promise&lt;boolean&gt;
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
@@ -309,7 +309,7 @@ try {
 
 isWearDetectionEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取设备佩戴检测是否开启。
+获取设备佩戴检测是否开启。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -332,7 +332,7 @@ isWearDetectionEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;)
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |
@@ -354,7 +354,7 @@ try {
 
 isWearDetectionEnabled(deviceId: string): Promise&lt;boolean&gt;
 
-获取设备佩戴检测是否开启。
+获取设备佩戴检测是否开启。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -382,7 +382,7 @@ isWearDetectionEnabled(deviceId: string): Promise&lt;boolean&gt;
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2900003 | Bluetooth switch is off.       |

@@ -9,7 +9,7 @@ The **pointer** module provides APIs related to pointer attribute management.
 ## Modules to Import
 
 ```js
-import { pointer } from '@kit.InputKit';
+import pointer from '@ohos.multimodalInput.pointer';
 ```
 
 ## pointer.setPointerVisible
@@ -239,8 +239,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
+import { BusinessError }  from '@ohos.base';
+import window from '@ohos.window';
 
 let context = getContext(this);
 window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
@@ -294,8 +294,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
+import window from '@ohos.window';
+import { BusinessError }  from '@ohos.base';
 
 let context = getContext(this);
 window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
@@ -384,8 +384,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
+import window from '@ohos.window';
+import { BusinessError }  from '@ohos.base';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -433,8 +433,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
+import window from '@ohos.window';
+import { BusinessError }  from '@ohos.base';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -481,8 +481,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```js
-import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
+import window from '@ohos.window';
+import { BusinessError }  from '@ohos.base';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -576,8 +576,8 @@ Enumerates mouse pointer styles.
 | HORIZONTAL_TEXT_CURSOR<sup>10+</sup> | 39 | Horizontal text selection|![Horizontal_Text_Cursor.png](./figures/Horizontal_Text_Cursor.png)|
 | CURSOR_CROSS<sup>10+</sup> | 40 | Cross|![Cursor_Cross.png](./figures/Cursor_Cross.png)|
 | CURSOR_CIRCLE<sup>10+</sup> | 41 | Circle|![Cursor_Circle.png](./figures/Cursor_Circle.png)|
-| LOADING<sup>10+</sup> | 42 | Animation loading|![Loading.png](./figures/Loading.png)|
-| RUNNING<sup>10+</sup> | 43 | Animation running in the background|![Running.png](./figures/Running.png)|
+| LOADING<sup>10+</sup> | 42 | Animation loading|![Loading.png](./figures/Loading.png)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| RUNNING<sup>10+</sup> | 43 | Animation running in the background|![Running.png](./figures/Running.png)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## pointer.setCustomCursor<sup>11+</sup>
 
@@ -613,10 +613,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
-
+import image from '@ohos.multimedia.image';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
@@ -664,10 +663,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { window } from '@kit.ArkUI';
-
+import image from '@ohos.multimedia.image';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);

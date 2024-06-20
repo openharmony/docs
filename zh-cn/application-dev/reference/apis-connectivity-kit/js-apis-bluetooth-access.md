@@ -22,7 +22,7 @@ enableBluetooth(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -57,7 +57,7 @@ disableBluetooth(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -92,7 +92,7 @@ getState(): BluetoothState
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -128,11 +128,11 @@ try {
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
-订阅蓝牙设备开关状态事件。
+订阅蓝牙设备开关状态事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -150,7 +150,7 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099   | Operation failed.  |
 
@@ -177,7 +177,7 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -195,7 +195,7 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
@@ -219,7 +219,7 @@ try {
 
 枚举，蓝牙开关状态。
 
-**元服务API**: 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API**: 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 

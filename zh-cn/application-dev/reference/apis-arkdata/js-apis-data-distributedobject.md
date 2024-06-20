@@ -10,10 +10,10 @@
 ## 导入模块
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
+import { distributedDataObject } from '@kit.ArkData';
 ```
 
-## distributedObject.create<sup>9+</sup>
+## distributedDataObject.create<sup>9+</sup>
 
 create(context: Context, source: object): DataObject
 
@@ -48,9 +48,8 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 导入模块
-import distributedObject from '@ohos.data.distributedDataObject';
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base';
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 // 获取context
 let context = featureAbility.getContext();
 class SourceObject {
@@ -66,19 +65,18 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DataObject = distributedObject.create(context, source);
+let g_object: distributedDataObject.DataObject = distributedDataObject.create(context, source);
 ```
 
 Stage模型示例：
 
 ```ts
 // 导入模块
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
-let g_object: distributedObject.DataObject|null = null;
+let g_object: distributedDataObject.DataObject|null = null;
 class SourceObject {
     name: string
     age: number
@@ -94,12 +92,12 @@ class SourceObject {
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         let source: SourceObject = new SourceObject("jack", 18, false);
-        g_object = distributedObject.create(this.context, source);
+        g_object = distributedDataObject.create(this.context, source);
     }
 }
 ```
 
-## distributedObject.genSessionId
+## distributedDataObject.genSessionId
 
 genSessionId(): string
 
@@ -116,8 +114,7 @@ genSessionId(): string
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-let sessionId: string = distributedObject.genSessionId();
+let sessionId: string = distributedDataObject.genSessionId();
 ```
 
 ## SaveSuccessResponse<sup>9+</sup>
@@ -160,7 +157,7 @@ let sessionId: string = distributedObject.genSessionId();
 
 ## DataObject
 
-表示一个分布式数据对象。在使用以下接口前，需调用[create()](#distributedobjectcreate9)获取DataObject对象。
+表示一个分布式数据对象。在使用以下接口前，需调用[create()](#distributeddataobjectcreate9)获取DataObject对象。
 
 ### setSessionId<sup>9+</sup>
 
@@ -193,7 +190,7 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 // g_object加入分布式组网
-g_object.setSessionId(distributedObject.genSessionId(), ()=>{
+g_object.setSessionId(distributedDataObject.genSessionId(), ()=>{
     console.info("join session");
 });
 // g_object退出分布式组网
@@ -232,7 +229,7 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 // g_object加入分布式组网
-g_object.setSessionId(distributedObject.genSessionId(), ()=>{
+g_object.setSessionId(distributedDataObject.genSessionId(), ()=>{
     console.info("join session");
 });
 // 退出分布式组网
@@ -277,7 +274,7 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
 ```ts
 // g_object加入分布式组网
-g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
+g_object.setSessionId(distributedDataObject.genSessionId()).then (()=>{
     console.info("join session.");
     }).catch((error: BusinessError)=>{
         console.info("error:" + error.code + error.message);
@@ -466,7 +463,7 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 
 ```ts
 g_object.setSessionId("123456");
-g_object.save("local", (err: BusinessError, result:distributedObject.SaveSuccessResponse) => {
+g_object.save("local", (err: BusinessError, result:distributedDataObject.SaveSuccessResponse) => {
     if (err) {
         console.info("save failed, error code = " + err.code);
         console.info("save failed, error message: " + err.message);
@@ -520,7 +517,7 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
 
 ```ts
 g_object.setSessionId("123456");
-g_object.save("local").then((result: distributedObject.SaveSuccessResponse) => {
+g_object.save("local").then((result: distributedDataObject.SaveSuccessResponse) => {
     console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
@@ -562,7 +559,7 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 ```ts
 g_object.setSessionId("123456");
 // 持久化数据
-g_object.save("local", (err: BusinessError, result: distributedObject.SaveSuccessResponse) => {
+g_object.save("local", (err: BusinessError, result: distributedDataObject.SaveSuccessResponse) => {
     if (err) {
         console.info("save failed, error code = " + err.code);
         console.info("save failed, error message: " + err.message);
@@ -574,7 +571,7 @@ g_object.save("local", (err: BusinessError, result: distributedObject.SaveSucces
     console.info("save deviceId:  " + result.deviceId);
 });
 // 删除持久化保存的数据
-g_object.revokeSave((err: BusinessError, result: distributedObject.RevokeSaveSuccessResponse) => {
+g_object.revokeSave((err: BusinessError, result: distributedDataObject.RevokeSaveSuccessResponse) => {
     if (err) {
       console.info("revokeSave failed, error code = " + err.code);
       console.info("revokeSave failed, error message: " + err.message);
@@ -615,7 +612,7 @@ revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
 ```ts
 g_object.setSessionId("123456");
 // 持久化数据
-g_object.save("local").then((result: distributedObject.SaveSuccessResponse) => {
+g_object.save("local").then((result: distributedDataObject.SaveSuccessResponse) => {
     console.info("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
@@ -625,7 +622,7 @@ g_object.save("local").then((result: distributedObject.SaveSuccessResponse) => {
     console.info("save failed, error message: " + err.message);
 });
 // 删除持久化保存的数据
-g_object.revokeSave().then((result: distributedObject.RevokeSaveSuccessResponse) => {
+g_object.revokeSave().then((result: distributedDataObject.RevokeSaveSuccessResponse) => {
     console.info("revokeSave callback");
     console.info("sessionId" + result.sessionId);
 }).catch((err: BusinessError)=> {
@@ -664,11 +661,10 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type window from '@ohos.window';
-import distributedObject from '@ohos.data.distributedDataObject';
-import commonType from '@ohos.data.commonType';
-import type { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { commonType } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class Note {
   title: string | undefined
@@ -694,10 +690,10 @@ class EntryAbility extends UIAbility {
       status: commonType.AssetStatus.ASSET_NORMAL
     }
     let note: Note = new Note('test', 'test', attachment);
-    let g_object: distributedObject.DataObject = distributedObject.create(this.context, note);
+    let g_object: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
     g_object.setSessionId('123456');
 
-    const bindInfo: distributedObject.BindInfo = {
+    const bindInfo: distributedDataObject.BindInfo = {
       storeName: 'notepad',
       tableName: 'note_t',
       primaryKey: {
@@ -752,11 +748,10 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo): Promise&lt;void&gt;
 **示例:**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type window from '@ohos.window';
-import distributedObject from '@ohos.data.distributedDataObject';
-import commonType from '@ohos.data.commonType';
-import type { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { commonType } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class Note {
   title: string | undefined
@@ -782,10 +777,10 @@ class EntryAbility extends UIAbility {
       status: commonType.AssetStatus.ASSET_NORMAL
     }
     let note: Note = new Note('test', 'test', attachment);
-    let g_object: distributedObject.DataObject = distributedObject.create(this.context, note);
+    let g_object: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
     g_object.setSessionId('123456');
 
-    const bindInfo: distributedObject.BindInfo = {
+    const bindInfo: distributedDataObject.BindInfo = {
       storeName: 'notepad',
       tableName: 'note_t',
       primaryKey: {
@@ -804,7 +799,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## distributedObject.createDistributedObject<sup>(deprecated)</sup>
+## distributedDataObject.createDistributedObject<sup>(deprecated)</sup>
 
 createDistributedObject(source: object): DistributedObject
 
@@ -813,7 +808,7 @@ createDistributedObject(source: object): DistributedObject
 
 > **说明：**
 >
-> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用[distributedObject.create](#distributedobjectcreate9)替代。
+> 从 API Version 8 开始支持，从 API Version 9 开始废弃，建议使用[distributedDataObject.create](#distributeddataobjectcreate9)替代。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
@@ -832,7 +827,6 @@ createDistributedObject(source: object): DistributedObject
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
 class SourceObject {
     name: string
     age: number
@@ -846,12 +840,12 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+let g_object: distributedDataObject.DistributedObject = distributedDataObject.createDistributedObject(source);
 ```
 
 ## DistributedObject<sup>(deprecated)</sup>
 
-表示一个分布式数据对象。在使用以下接口前，需调用[createDistributedObject()](#distributedobjectcreatedistributedobjectdeprecated)获取DistributedObject对象。
+表示一个分布式数据对象。在使用以下接口前，需调用[createDistributedObject()](#distributeddataobjectcreatedistributedobjectdeprecated)获取DistributedObject对象。
 
 ### setSessionId<sup>(deprecated)</sup>
 
@@ -882,7 +876,6 @@ setSessionId(sessionId?: string): boolean
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
 class SourceObject {
     name: string
     age: number
@@ -896,9 +889,9 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+let g_object: distributedDataObject.DistributedObject = distributedDataObject.createDistributedObject(source);
 // g_object加入分布式组网
-g_object.setSessionId(distributedObject.genSessionId());
+g_object.setSessionId(distributedDataObject.genSessionId());
 // 设置为""退出分布式组网
 g_object.setSessionId("");
 ```
@@ -925,7 +918,6 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
 class SourceObject {
     name: string
     age: number
@@ -939,7 +931,7 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+let g_object: distributedDataObject.DistributedObject = distributedDataObject.createDistributedObject(source);
 g_object.on("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
     if (fields != null && fields != undefined) {
@@ -972,7 +964,6 @@ off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) 
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
 class SourceObject {
     name: string
     age: number
@@ -986,7 +977,7 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+let g_object: distributedDataObject.DistributedObject = distributedDataObject.createDistributedObject(source);
 // 删除数据变更回调changeCallback
 g_object.off("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
@@ -1022,7 +1013,6 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
 class SourceObject {
     name: string
     age: number
@@ -1036,7 +1026,7 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+let g_object: distributedDataObject.DistributedObject = distributedDataObject.createDistributedObject(source);
 
 g_object.on("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
     console.info("status changed " + sessionId + " " + status + " " + networkId);
@@ -1066,7 +1056,6 @@ off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'o
 **示例：**
 
 ```ts
-import distributedObject from '@ohos.data.distributedDataObject';
 class SourceObject {
     name: string
     age: number
@@ -1080,7 +1069,7 @@ class SourceObject {
 }
 
 let source: SourceObject = new SourceObject("jack", 18, false);
-let g_object: distributedObject.DistributedObject = distributedObject.createDistributedObject(source);
+let g_object: distributedDataObject.DistributedObject = distributedDataObject.createDistributedObject(source);
 // 删除上下线回调changeCallback
 g_object.off("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
     console.info("status changed " + sessionId + " " + status + " " + networkId);

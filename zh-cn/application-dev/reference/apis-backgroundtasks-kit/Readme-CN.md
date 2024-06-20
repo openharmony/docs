@@ -1,4 +1,4 @@
-# Background Tasks Kit API参考
+# Background Tasks Kit（后台任务开发服务）
 
 - ArkTS API
   - [@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)

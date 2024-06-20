@@ -1,4 +1,4 @@
-# DRM Kit API参考
+# DRM Kit（数字版权保护服务）
 
 - ArkTS API
   - [@ohos.multimedia.drm (数字版权保护)](js-apis-drm.md)
@@ -21,5 +21,6 @@
     - [DRM_PsshInfo](_d_r_m___pssh_info.md)
     - [DRM_Statistics](_d_r_m___statistics.md)
     - [MediaKeySession_Callback](_media_key_session___callback.md)
+    - [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md)
 - 错误码
   - [DRM错误码](errorcode-drm.md)

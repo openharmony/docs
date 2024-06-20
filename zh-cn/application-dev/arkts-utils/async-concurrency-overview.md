@@ -35,7 +35,7 @@ Promise对象创建后，可以使用then方法和catch方法指定fulfilled状�
 
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 promise.then((result: number) => {
  console.info(`Random number is ${result}`);

@@ -59,10 +59,10 @@ To obtain the context of the current ability on the page, call [getContext](../r
   
   @Entry
   @Component
-  struct Index {
+  struct Page_EventHub {
     private context = getContext(this) as common.UIAbilityContext;
   
-    startAbilityTest() {
+    startAbilityTest() : void {
       let want: Want = {
         // Want parameter information.
       };
@@ -85,9 +85,9 @@ To obtain the context of the current ability on the page, call [getContext](../r
   
   @Entry
   @Component
-  struct Index {
+  struct Page_UIAbilityComponentsBasicUsage {
   
-    startAbilityTest() {
+    startAbilityTest(): void {
       let context = getContext(this) as common.UIAbilityContext;
       let want: Want = {
         // Want parameter information.
