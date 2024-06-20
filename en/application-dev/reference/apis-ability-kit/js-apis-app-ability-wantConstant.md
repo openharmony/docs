@@ -29,7 +29,6 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | SUPPORT_CONTINUE_SOURCE_EXIT_KEY<sup>10+</sup>  | ohos.extra.param.key.supportContinueSourceExit      | Action of exiting the application on the source device during cross-device migration. The default value is **true**, indicating that the application on the source device automatically exits.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | SHOW_MODE_KEY<sup>12+</sup>  | ohos.extra.param.key.showMode      | Show mode. For details, see **wantConstant.ShowMode**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | PARAMS_STREAM<sup>12+</sup>  | ability.params.stream  | File URIs to be authorized to the target ability. The value must be an array of file URIs of the string type. For details about how to obtain the file URI, see [fileUri](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| APP_CLONE_INDEX_KEY<sup>12+</sup>  | ohos.extra.param.key.appCloneIndex  | Index of an application clone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## wantConstant.Flags
 
@@ -46,7 +45,7 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | FLAG_START_WITHOUT_TIPS<sup>11+</sup>              | 0x40000000 | Do not display any tips if the ability implicitly started does not match any application.      |
 ## wantConstant.ShowMode<sup>12+</sup>
 
-Enumerates the modes used to show the ability startup.
+Enumerates the modes used to show the atomic service startup.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

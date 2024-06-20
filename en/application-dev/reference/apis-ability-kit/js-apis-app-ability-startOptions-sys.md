@@ -20,9 +20,11 @@ import { StartOptions } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 | Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| [windowMode](js-apis-app-ability-abilityConstant-sys.md#abilityconstantwindowmode) | number | No| No| Window mode.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+| windowFocused<sup>12+</sup> | boolean | No| No| Whether the window has focus. The default value is **true**, indicating that the window has focus.<br>**Constraints**<br>1. This property takes effect only on tablets.<br>2. This property takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>3. This property takes effect only when the application to start is in cold start mode.|
 
 **Example**
 

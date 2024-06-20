@@ -33,6 +33,17 @@ Subscribes to auto-startup status change events of an application component.
 | type | string | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications.|
 | callback  | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | Yes   | Callback used for subscription.     |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message                                    |
+| ------- | -------------------------------- |
+| 201 | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | The parameter check failed. |
+| 16000050 | Internal error. |
+
 **Example**
 
 ```ts
@@ -68,6 +79,17 @@ Unsubscribes from auto-startup status change events of an application component.
 | --------- | ---------------------------------------- | ---- | -------------- |
 | type | string              | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications.|
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | No| Callback used for unsubscription.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message                                    |
+| ------- | -------------------------------- |
+| 201 | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | The parameter check failed. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -107,13 +129,16 @@ Sets an application component to automatically start upon system boot. This API 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
+| 201 | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | The parameter check failed. |
 | 16000004 | Can not start invisible component.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -156,13 +181,16 @@ Sets an application component to automatically start upon system boot. This API 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
+| 201 | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | The parameter check failed. |
 | 16000004 | Can not start invisible component.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -203,13 +231,16 @@ Cancels the auto-startup setting for an application component. This API uses an 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
+| 201 | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | The parameter check failed. |
 | 16000004 | Can not start invisible component.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -252,13 +283,16 @@ Cancels the auto-startup setting for an application component. This API uses a p
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
+| 201 | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | The parameter check failed. |
 | 16000004 | Can not start invisible component.           |
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -298,11 +332,14 @@ Obtains information about all auto-startup application components. This API uses
 
 **Error codes**
 
-| ID| Error Message|
-| ------- | -------- |
-| 16000050 | Internal error. |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| ID| Error Message                                    |
+| ------- | -------- |
+| 201 | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | The parameter check failed. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -336,11 +373,14 @@ Obtains information about all auto-startup application components. This API uses
 
 **Error codes**
 
-| ID| Error Message|
-| ------- | -------- |
-| 16000050 | Internal error. |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| ID| Error Message                                    |
+| ------- | -------- |
+| 201 | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | The parameter check failed. |
+| 16000050 | Internal error. |
 
 **Example**
 

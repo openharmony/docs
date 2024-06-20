@@ -29,7 +29,6 @@ import appManager from '@ohos.application.appManager';
 | moduleName<sup>9+</sup> | string   | Yes  | No  | Name of the HAP file to which the ability belongs.   |
 | abilityType | number | Yes  | No  | [Ability type](#ability-types), which can be **page** or **service**.|
 | isAtomicService<sup>12+</sup>| boolean   | Yes | No | Whether the ability belongs to an atomic service.<br>**true**: The ability belongs to an atomic service.<br>**false**: The ability does not belong to an atomic service.    |
-| appCloneIndex          | number   | Yes  | No  | Index of an application clone.                 |
 
 #### Ability States
 

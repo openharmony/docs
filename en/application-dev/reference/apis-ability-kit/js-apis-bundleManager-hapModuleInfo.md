@@ -38,9 +38,9 @@ The **HapModuleInfo** module defines the HAP module information. A third-party a
 
 Describes the preloaded module information in the atomic service.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name     | Type          | Readable| Writable| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
@@ -50,27 +50,40 @@ Describes the preloaded module information in the atomic service.
 
 Describes the information about the dynamic shared library on which the module depends.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name       | Type  | Readable| Writable| Description                  |
 | ----------- | ------ | ---- | ---- | ---------------------- |
-| bundleName  | string | Yes  | No  | Name of the shared bundle on which the current module depends.      |
+| bundleName<sup>10+</sup>  | string | Yes  | No  | Name of the shared bundle on which the current module depends.      |
 | moduleName  | string | Yes  | No  | Module name of the shared bundle on which the current module depends.|
-| versionCode | number | Yes  | No  | Version number of the shared bundle.  |
+| versionCode<sup>10+</sup> | number | Yes  | No  | Version number of the shared bundle.  |
 
 ## RouterItem<sup>12+</sup>
 
 Describes the router table configuration of the module.
 
- **Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name          | Type  | Read-only| Mandatory| Description                  |
 | ------------- | ------ | ---- | ---- | ---------------------- |
 | name          | string | Yes  | Yes  | Name of the page to be redirected to.      |
 | pageSourceFile| string | Yes  | Yes  | Path of the page in the module.  |
 | buildFunction | string | Yes  | Yes  | Function decorated by @Builder. The function describes the UI of the page.  |
-| data          | string | Yes  | Yes  | JSON string that identifies custom data.  |
+| data          | Array\<[DataItem](#dataitem12)> | Yes  | Yes  | Custom data.  |
+
+## DataItem<sup>12+</sup>
+
+Describes the user-defined data in the router table configuration of the module.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name          | Type  | Read-only| Mandatory| Description                  |
+| ------------- | ------ | ---- | ---- | ---------------------- |
+| key           | string | Yes   | Yes   | Key of the user-defined data.       |
+| value         | string | Yes   | Yes   | Value of the user-defined data. |

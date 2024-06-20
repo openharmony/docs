@@ -42,7 +42,6 @@ As a property of [StartOptions](js-apis-app-ability-startOptions.md), **ProcessM
 |-----| -------- |----------------------------------------------------------------------------------------------------------------------|
 | NEW_PROCESS_ATTACH_TO_PARENT | 1 | A new process is created, the ability is started on the process, and the process exits along with the parent process.<br>**Constraints**:<br>In this mode, the target ability and caller must be in the same application.                    |
 | NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM | 2 | A new process is created, the ability is started on the process, and the process is bound to the status bar icon.<br>**Constraints**:<br>In this mode, the target ability and caller must be in the same application, and the application must have an icon in the status bar.                 |
-| ATTACH_TO_STATUS_BAR_ITEM | 3 | The ability is started, and the process of the ability is bound to the status bar icon.<br>**Constraints**:<br>In this mode, the target ability and caller must be in the same application, and the application must have an icon in the status bar.                 |
 
 **Example**
 

@@ -27,4 +27,4 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | DLP_PARAMS_MODULE_NAME  | ohos.dlp.params.moduleName         | Action of obtaining the DLP module name.<br>**System API**: This is a system API and cannot be called by third-party applications.|
 | DLP_PARAMS_ABILITY_NAME | ohos.dlp.params.abilityName        | Action of obtaining the DLP ability name.<br>**System API**: This is a system API and cannot be called by third-party applications.|
 | DLP_PARAMS_INDEX        | ohos.dlp.params.index              | Action of obtaining the DLP index.<br>**System API**: This is a system API and cannot be called by third-party applications.|
-| ASSERT_FAULT_SESSION_ID<sup>12+</sup>  | ohos.ability.params.asssertFaultSessionId      | Session ID of the AssertFault.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+| ASSERT_FAULT_SESSION_ID<sup>12+</sup>  | ohos.ability.params.asssertFaultSessionId      | Session ID of the AssertFault.<br>**System API**: This is a system API and cannot be called by third-party applications.<br/>**Model restriction**: This attribute can be used only in the stage model.|

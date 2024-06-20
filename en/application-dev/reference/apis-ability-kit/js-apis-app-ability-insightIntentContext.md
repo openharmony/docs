@@ -55,8 +55,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000061 | Can not start component belongs to other bundle. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
   ```ts
@@ -140,8 +138,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000055 | Installation-free timed out. |
 | 16000061 | Can not start component belongs to other bundle. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 

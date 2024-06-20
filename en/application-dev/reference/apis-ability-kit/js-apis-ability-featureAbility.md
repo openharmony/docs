@@ -40,6 +40,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -98,6 +99,7 @@ Starts an ability. This API uses a promise to return the result.
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -151,6 +153,7 @@ Obtains a **dataAbilityHelper** object.
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -186,6 +189,7 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -244,6 +248,7 @@ Starts an ability. This API uses a promise to return the result when the ability
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -297,6 +302,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -356,6 +362,7 @@ Terminates this ability. This API uses a promise to return the result. If the ab
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -408,6 +415,7 @@ Checks whether the main window of this ability has the focus. This API uses an a
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -436,6 +444,7 @@ Checks whether the main window of this ability has the focus. This API uses a pr
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -462,6 +471,7 @@ Obtains the Want corresponding to the ability to start. This API uses an asynchr
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -492,6 +502,7 @@ Obtains the Want corresponding to the ability to start. This API uses a promise 
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -518,6 +529,7 @@ Obtains the application context.
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -549,6 +561,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -577,6 +590,7 @@ Terminates this ability. This API uses a promise to return the result.
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -616,6 +630,7 @@ Connects this ability to a ServiceAbility.
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -659,6 +674,7 @@ Disconnects this ability from a specific ServiceAbility. This API uses an asynch
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -714,6 +730,7 @@ Disconnects this ability from a specific a ServiceAbility. This API uses a promi
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -763,6 +780,7 @@ Obtains the window corresponding to this ability. This API uses an asynchronous 
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
@@ -795,6 +813,7 @@ Obtains the window corresponding to this ability. This API uses a promise to ret
 
 **Example**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
@@ -813,6 +832,7 @@ Defines the window configuration corresponding to this ability. The configuratio
 
 **Example**
 
+<!--code_no_check_fa-->
 ```
 featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 ```
@@ -836,6 +856,7 @@ The value is obtained through **featureAbility.AbilityStartSetting**.
 
 **Example**
 
+<!--code_no_check_fa-->
 ```
 featureAbility.AbilityStartSetting.BOUNDS_KEY
 ```
