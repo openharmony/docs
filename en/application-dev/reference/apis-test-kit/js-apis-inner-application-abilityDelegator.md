@@ -38,15 +38,16 @@ Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to r
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes      | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
+| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result. If the **AbilityMonitor** instance is added, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | AddAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -91,15 +92,16 @@ Adds an **AbilityMonitor** instance. This API uses a promise to return the resul
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |Promise that returns no value.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | AddAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -141,11 +143,12 @@ Adds an **AbilityMonitor** instance. This API returns the result synchronously. 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | AddAbilityMonitorSync failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -182,15 +185,16 @@ Removes an **AbilityMonitor** instance. This API uses an asynchronous callback t
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| callback | AsyncCallback\<void>                                         | Yes  | Callback used to return the result.                                          |
+| callback | AsyncCallback\<void>                                         | Yes  | Callback used to return the result. If the **AbilityMonitor** instance is removed, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -236,15 +240,16 @@ Removes an **AbilityMonitor** instance. This API uses a promise to return the re
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 - Example
 
@@ -287,11 +292,12 @@ Removes an **AbilityMonitor** instance. This API returns the result synchronousl
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityMonitorSync failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -329,15 +335,16 @@ Waits for the **Ability** instance that matches the **AbilityMonitor** instance 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.                                          |
+| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **Ability** instance obtained. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -382,16 +389,17 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| timeout  | number                                                       | Yes  | Maximum waiting time, in milliseconds.                                |
+| timeout  | number                                                       | Yes  | Maximum waiting time, in ms.                                |
 | callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.                                          |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -439,21 +447,22 @@ Waits a period of time for the **Ability** instance that matches the **AbilityMo
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instance.|
-| timeout | number                                                       | No  | Maximum waiting time, in milliseconds.                                |
+| timeout | number                                                       | No  | Maximum waiting time, in ms.                                |
 
 **Return value**
 
 | Type                                                       | Description                      |
 | ----------------------------------------------------------- | -------------------------- |
-| Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Promise used to return the **Ability** instance.|
+| Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Promise used to return the **Ability** instance obtained.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
 | 16000100 | WaitAbilityMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -527,6 +536,14 @@ Obtains the lifecycle state of an ability.
 | ------ | ------------------------------------------------------------ |
 | number | Lifecycle state of the ability, which is defined by **AbilityLifecycleState**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
@@ -550,7 +567,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 
-Obtains the top ability of this application. This API uses an asynchronous callback to return the result.
+Obtains the top ability of this application. This API uses an asynchronous callback to return the result. It cannot be called in the worker thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -560,15 +577,16 @@ Obtains the top ability of this application. This API uses an asynchronous callb
 
 | Name  | Type                                                        | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Yes  | Callback used to return the result. If the top ability is obtained, **err** is **undefined** and **data** is the **Ability** instance obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | GetCurrentTopAbility failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -591,7 +609,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 getCurrentTopAbility(): Promise\<UIAbility>
 
-Obtains the top ability of this application. This API uses a promise to return the result.
+Obtains the top ability of this application. This API uses a promise to return the result. It cannot be called in the worker thread.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -642,12 +660,15 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | Name  | Type                                  | Mandatory| Description              |
 | -------- | -------------------------------------- | ---- | ------------------ |
 | want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | **Want** parameter for starting the ability.   |
-| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -663,8 +684,6 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -705,12 +724,15 @@ Starts an ability. This API uses a promise to return the result.
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -726,8 +748,6 @@ Starts an ability. This API uses a promise to return the result.
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -763,15 +783,16 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses an 
 | Name  | Type                   | Mandatory| Description                                                   |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
 | ability  | UIAbility               | Yes  | Target ability.                                        |
-| callback | AsyncCallback\<void>    | Yes  | Callback used to return the result.                                      |
+| callback | AsyncCallback\<void>    | Yes  | Callback used to return the result. If the ability lifecycle state is changed to **Foreground**, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | DoAbilityForeground failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -813,15 +834,16 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses a p
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<void> | Promise used to return the result.                                   |
+| Promise\<void> | Promise that returns no value.        |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | DoAbilityForeground failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -858,15 +880,16 @@ Schedules the lifecycle state of an ability to **Background**. This API uses an 
 | Name  | Type                   | Mandatory| Description                                                   |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
 | ability  | UIAbility                 | Yes  | Target ability.                                        |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the ability lifecycle state is changed to **Background**, **err** is undefined; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the ability lifecycle state is changed to **Background**, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | DoAbilityBackground failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -912,11 +935,12 @@ Schedules the lifecycle state of an ability to **Background**. This API uses a p
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | DoAbilityBackground failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -954,6 +978,14 @@ Prints log information to the unit test console.
 | ------ | ------ | ---- | ---------- |
 | msg    | string | Yes  | Log string.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
@@ -981,7 +1013,7 @@ Prints log information to the unit test console. This API uses an asynchronous c
 | Name  | Type                | Mandatory| Description              |
 | -------- | -------------------- | ---- | ------------------ |
 | msg      | string               | Yes  | Log string.        |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the log information is printed to the unit test console, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1018,7 +1050,7 @@ Prints log information to the unit test console. This API uses a promise to retu
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |Promise that returns no value.|
 
 **Example**
 
@@ -1051,7 +1083,7 @@ Only the following shell commands are supported: aa, bm, cp, mkdir, rm, uinput, 
 | Name  | Type                                                        | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | cmd      | string                                                       | Yes  | Shell command string.   |
-| callback | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Yes  | Callback used to return the result. If the shell command is executed, **err** is **undefined** and **data** is the execution result obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1086,7 +1118,7 @@ Only the following shell commands are supported: aa, bm, cp, mkdir, rm, uinput, 
 | ----------- | ------------------------------------------------------------ | ---- | ----------------------------- |
 | cmd         | string                                                       | Yes  | Shell command string.              |
 | timeoutSecs | number                                                       | Yes  | Command timeout period, in seconds.|
-| callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Yes  | Callback used to return the result.           |
+| callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Yes  | Callback used to return the result. If the shell command is executed, **err** is **undefined** and **data** is the execution result obtained. Otherwise, **err** is an error object.  |
 
 **Example**
 
@@ -1160,15 +1192,16 @@ Finishes the test and prints log information to the unit test console. This API 
 | -------- | -------------------- | ---- | ------------------ |
 | msg      | string               | Yes  | Log string.        |
 | code     | number               | Yes  | Log code.            |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the test finishes and the log information is printed to the unit test console, **err** is undefined. Otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | FinishTest failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1206,15 +1239,16 @@ Finishes the test and prints log information to the unit test console. This API 
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | FinishTest failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1245,15 +1279,16 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
-| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
+| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result. If the **AbilityStageMonitor** instance is added, **err** is undefined. Otherwise, **err** is an error object.    |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | AddAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1292,15 +1327,16 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | AddAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1336,11 +1372,12 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | AddAbilityStageMonitorSync failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1371,15 +1408,16 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
-| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
+| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result. If the **AbilityStageMonitor** instance is removed, **err** is undefined. Otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1418,15 +1456,16 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1462,11 +1501,13 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | removeAbilityStageMonitorSync failed. |
 
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1497,15 +1538,16 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
-| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.            |
+| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, **err** is undefined and data is the [AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md) instance obtained. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1546,15 +1588,16 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 
 | Type          | Description               |
 | -------------- | ------------------- |
-| Promise\<AbilityStage> | Promise used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.|
+| Promise\<AbilityStage> | Promise used to return the [AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md) instance.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1577,7 +1620,7 @@ abilityDelegator.waitAbilityStageMonitor({
 
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback: AsyncCallback\<AbilityStage>): void
 
-Waits for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
+Waits a period of time for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1589,15 +1632,16 @@ Waits for an **AbilityStage** instance that matches the conditions set in an **A
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | Yes  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) instance.|
 | timeout | number | Yes  | Maximum waiting time, in milliseconds.|
-| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, an **AbilityStage** instance is returned. Otherwise, no value is returned.                    |
+| callback | AsyncCallback\<AbilityStage>                                         | Yes      | Callback used to return the result. If the operation is successful, **err** is undefined and data is the [AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md) instance obtained. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityStageMonitor failed. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
@@ -1636,11 +1680,12 @@ Sets a list of mock data.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message       |
 | -------- | --------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
 
 **Example**
 
