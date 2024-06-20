@@ -68,6 +68,8 @@ Examples are as follows:
 
 - **screen and (device-type: tv) or (resolution < 2)**: The query is valid when the device type is TV or the device resolution is less than 2. This is a multi-condition query that contains multiple media features.
 
+- **(dark-mode: true)**: The query is valid when the system is in dark mode.
+
 
 ### media-type
 
@@ -107,6 +109,8 @@ Media range operators include <=, >=, <, and >. For details, see the following t
 The media features include the width and height of the application display area, device resolution, and device width and height. For details, see the following table.
 
   **Table 3** Media features
+
+For width and height related features, the units vp and px are supported. If no unit is specified, px is used by default.
 
 | Type               | Description                                      |
 | ----------------- | ---------------------------------------- |
