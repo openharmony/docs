@@ -2357,6 +2357,8 @@ avPlayer.off('subtitleUpdate')
 
 ## AVPlayerState<sup>9+</sup>
 
+type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' | 'released' | 'error';
+
 [AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#onstatechange9)事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -2400,7 +2402,7 @@ avPlayer.off('subtitleUpdate')
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fileSize     | number | 是   | 待播放文件大小（字节），-1代表大小未知。如果fileSize设置为-1, 播放模式类似于直播，不能进行seek及setSpeed操作，不能设置loop属性，因此不能重新播放。 |
-| callback | function | 是   | 用户设置的回调函数，用于填写数据。<br>- 函数列式：callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- buffer，ArrayBuffer类型，表示被填写的内存，必选。<br>- length，number类型，表示被填写内存的最大长度，必选。<br>- pos，number类型，表示填写的数据在资源文件中的位置，可选，当fileSize设置为-1时，该参数禁止被使用。 <br>- 返回值，number类型，返回要填充数据的长度。 |
+| callback | (buffer: ArrayBuffer, length: number, pos?: number) => number | 否   | 用户设置的回调函数，用于填写数据。<br>- 函数列式：callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- buffer，ArrayBuffer类型，表示被填写的内存，必选。<br>- length，number类型，表示被填写内存的最大长度，必选。<br>- pos，number类型，表示填写的数据在资源文件中的位置，可选，当fileSize设置为-1时，该参数禁止被使用。 <br>- 返回值，number类型，返回要填充数据的长度。 |
 
 ## SubtitleInfo<sup>12+</sup>
 
@@ -3772,6 +3774,8 @@ avRecorder.off('audioCapturerChange');
 
 ## AVRecorderState<sup>9+</sup>
 
+type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 'released' | 'error';
+
 音视频录制的状态机。可通过state属性获取当前状态。
 
 **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
@@ -4742,6 +4746,8 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 ```
 
 ## AudioState<sup>(deprecated)</sup>
+
+type AudioState = 'idle' | 'playing' | 'paused' | 'stopped' | 'error';
 
 音频播放的状态机。可通过state属性获取当前状态。
 
@@ -5744,6 +5750,8 @@ videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'�
 ```
 
 ## VideoPlayState<sup>(deprecated)</sup>
+
+type VideoPlayState = 'idle' | 'prepared' | 'playing' | 'paused' | 'stopped' | 'error';
 
 视频播放的状态机，可通过state属性获取当前状态。
 
