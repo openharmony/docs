@@ -170,7 +170,7 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 | 参数名   | 类型                                            | 必填 | 说明             |
 | :------- | :---------------------------------------------- | :--- | :--------------- |
 | options  | [AudioCapturerOptions](#audiocaptureroptions8)  | 是   | 配置音频采集器。 |
-| callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | 是   | 回调函数。当获取音频采集器成功，err为undefined，data为获取到的音频采集器对象；否则为错误对象。 |
+| callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | 是   | Callback对象，成功将返回音频采集器对象，异常将返回error对象：<br>错误码6800301，表示包含参数校验异常、权限校验异常、系统处理异常（具体错误查看系统日志）。<br>错误码6800101，表示包含必选参数为空、参数类型错误。 |
 
 **示例：**
 
@@ -224,9 +224,9 @@ createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
 **返回值：**
 
-| 类型                                      | 说明           |
-| ----------------------------------------- | -------------- |
-| Promise<[AudioCapturer](#audiocapturer8)> | Promise对象，返回音频采集器对象。 |
+| 类型                                      | 说明                   |
+| ----------------------------------------- |----------------------|
+| Promise<[AudioCapturer](#audiocapturer8)> | Promise对象，成功将返回音频采集器对象，异常将返回error对象：<br>错误码6800301，表示包含参数校验异常、权限校验异常、系统处理异常（具体错误查看系统日志）。<br>错误码6800101，表示包含必选参数为空、参数类型错误。 |
 
 **示例：**
 
@@ -5266,7 +5266,7 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当启动音频渲染器成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | Callback对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301，表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
@@ -5294,7 +5294,7 @@ start(): Promise<void\>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，无返回结果。 |
+| Promise\<void> | Promise对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301，表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
@@ -7385,7 +7385,7 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | :------- | :------------------- | :--- | :----------------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数。当启动音频采集器成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback<void\> | 是   | Callback对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301，表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
@@ -7414,7 +7414,7 @@ start(): Promise<void\>
 
 | 类型           | 说明                          |
 | :------------- | :---------------------------- |
-| Promise<void\> | Promise对象，无返回结果。 |
+| Promise<void\> | Promise对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301，表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
