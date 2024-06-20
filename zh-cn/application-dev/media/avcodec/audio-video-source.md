@@ -1,10 +1,10 @@
-# 音视频解封装
+# 音视频资源管理对象
 
-开发者可以调用本模块的Native API接口，完成音视频解封装，即从比特流数据中取出音频、视频等媒体帧数据。
+开发者可以调用本模块的Native API接口，创建数据资源对象，获取资源属性或进行[解封装](./audio-video-demuxer.md)。
 
 当前支持的数据输入类型有：远程连接(http协议、HLS协议)和文件描述符(fd)。
 
-支持的解封装格式如下：
+支持的文件格式如下：
 
 | 媒体格式  | 封装格式                      | 码流格式                      |
 | -------- | :----------------------------| :----------------------------|
@@ -27,19 +27,22 @@
 
 - 播放
   
-  播放媒体文件时，需要先对音视频流进行解封装，然后使用解封装获取的帧数据进行解码和播放。
+  播放媒体文件时，需要先创建资源对象，再对资源对象中音视频流进行解封装，然后使用解封装获取的帧数据进行解码和播放。
 
 - 音视频编辑
   
-  编辑媒体文件时，需要先对音视频流进行解封装，获取到指定帧进行编辑。
+  编辑媒体文件时，需要先创建资源对象，再对资源对象中音视频流进行解封装，获取到指定帧进行编辑。
 
 - 媒体文件格式转换（转封装）
 
-  媒体文件格式转换时，需要先对音视频流进行解封装，然后按需将音视频流封装至新的格式文件内。
+  媒体文件格式转换时，需要先创建资源对象，再对资源对象中音视频流进行解封装，然后按需将音视频流封装至新的格式文件内。
+
+- 文件信息获取
+  获取文件信息时，需要先创建资源对象，再从资源对象中获取对应属性信息。
 
 ## 开发指导
 
-详细的API说明参考[AVDemuxer](../../reference/apis-avcodec-kit/_a_v_demuxer.md)和[AVSource](../../reference/apis-avcodec-kit/_a_v_source.md)
+详细的API说明参考[AVSource](../../reference/apis-avcodec-kit/_a_v_source.md)
 
 > **说明**
 >
@@ -51,7 +54,6 @@
 
 ``` cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
-target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
 target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 ```
@@ -61,11 +63,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 1. 添加头文件。
 
    ```c++
-   #include <multimedia/player_framework/native_avdemuxer.h>
    #include <multimedia/player_framework/native_avsource.h>
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
-   #include <multimedia/player_framework/native_avbuffer.h>
    #include <fcntl.h>
    #include <sys/stat.h>
    ```
@@ -154,62 +154,11 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return length;
    }
    ```
-3. 创建解封装器实例对象。
-   ```c++
-   // 为资源对象创建对应的解封装器
-   OH_AVDemuxer *demuxer = OH_AVDemuxer_CreateWithSource(source);
-   if (demuxer == nullptr) {
-      printf("create demuxer failed");
-      return;
-   }
-   ```
-4. 注册[DRM信息监听函数](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo)，可跳过此步）。
 
-   添加头文件
-   ```c++
-   #include <multimedia/drm_framework/native_drm_common.h>
-   ```
-   在 CMake 脚本中链接动态库
-
-   ``` cmake
-   target_link_libraries(sample PUBLIC libnative_drm.so)
-   ```
-   设置DRM信息监听的接口有两种，可根据需要选择。
-
-   使用示例一：
-   ```c++
-   // DRM信息监听回调OnDrmInfoChanged实现
-   static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
-   {
-      // 解析DRM信息，包括数量、DRM类型及对应pssh
-   }
-
-   DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
-   int32_t ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
-   ```
-
-   使用示例二：
-   ```c++
-   // DRM信息监听回调OnDrmInfoChangedWithObj实现
-   static void OnDrmInfoChangedWithObj(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *drmInfo)
-   {
-      // 解析DRM信息，包括数量、DRM类型及对应pssh
-   }
-
-   Demuxer_MediaKeySystemInfoCallback callback = &OnDrmInfoChangedWithObj;
-   int32_t ret = OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(demuxer, callback)
-
-   ```
-   在监听到DRM信息后，也可主动调用获取DRM信息接口。
-   ```c++
-   DRM_MediaKeySystemInfo mediaKeySystemInfo;
-   OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
-   ```
-
-5. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
+3. 获取文件级属性（可选，只在获取文件级属性时需要）。
 
    ```c++
-   // 从文件 source 信息获取文件轨道数，用户可通过该接口获取文件级别属性，具体支持信息参考附录 1
+   // 以获取文件轨道数为例，详细查询能力范围参考注释1
    OH_AVFormat *sourceFormat = OH_AVSource_GetSourceFormat(source);
    if (sourceFormat == nullptr) {
       printf("get source format failed");
@@ -220,113 +169,22 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat_Destroy(sourceFormat);
    ```
 
-6. 获取轨道index及信息（可选，若用户已知轨道信息，可跳过此步）。
+4. 获取轨道index及信息（可选，只在获取轨道级属性时需要）。
 
    ```c++
-   uint32_t audioTrackIndex = 0;
-   uint32_t videoTrackIndex = 0;
-   int32_t w = 0;
-   int32_t h = 0;
+   // 以获取轨道类型为例，详细查询能力范围参考注释2
    int32_t trackType;
    for (uint32_t index = 0; index < (static_cast<uint32_t>(trackCount)); index++) {
-      // 获取轨道信息，用户可通过该接口获取对应轨道级别属性，具体支持信息参考附录 2
+      // 获取轨道信息
       OH_AVFormat *trackFormat = OH_AVSource_GetTrackFormat(source, index);
       if (trackFormat == nullptr) {
          printf("get track format failed");
          return;
       }
       OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_TRACK_TYPE, &trackType);
-      static_cast<OH_MediaType>(trackType) == OH_MediaType::MEDIA_TYPE_AUD ? audioTrackIndex = index : videoTrackIndex = index;
-      // 获取视频轨宽高
-      if (trackType == OH_MediaType::MEDIA_TYPE_VID) {
-         OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_WIDTH, &w);
-         OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_HEIGHT, &h);
-      }
       OH_AVFormat_Destroy(trackFormat);
    }
    ```
-
-7. 添加解封装轨道。
-
-   ```c++
-   if(OH_AVDemuxer_SelectTrackByID(demuxer, audioTrackIndex) != AV_ERR_OK){
-      printf("select audio track failed: %d", audioTrackIndex);
-      return;
-   }
-   if(OH_AVDemuxer_SelectTrackByID(demuxer, videoTrackIndex) != AV_ERR_OK){
-      printf("select video track failed: %d", videoTrackIndex);
-      return;
-   }
-   // 取消选择轨道(可选)
-   // OH_AVDemuxer_UnselectTrackByID(demuxer, audioTrackIndex);
-   ```
-
-8. 调整轨道到指定时间点(可选)。
-
-   ```c++
-   // 调整轨道到指定时间点，后续从该时间点进行解封装
-   // 注意：
-   // 1. mpegts格式文件使用OH_AVDemuxer_SeekToTime功能时，跳转到的位置可能为非关键帧。可在跳转后调用OH_AVDemuxer_ReadSampleBuffer，通过获取到的OH_AVCodecBufferAttr判断当前帧是否为关键帧。若非关键帧影响应用侧显示等功能，可在跳转后循环读取，获取到后续第一帧关键帧后，再进行解码等处理。
-   // 2. ogg格式文件使用OH_AVDemuxer_SeekToTime功能时，会跳转到传入时间millisecond所在时间间隔(秒)的起始处，可能会导致一定数量的帧误差。
-   OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
-   ```
-
-9. 开始解封装，循环获取帧数据(以含音频、视频两轨的文件为例)。
-
-   ```c++
-   // 创建 buffer，用与保存用户解封装得到的数据
-   OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
-   if (buffer == nullptr) {
-      printf("build buffer failed");
-      return;
-   }
-   OH_AVCodecBufferAttr info;
-   bool videoIsEnd = false;
-   bool audioIsEnd = false;
-   int32_t ret;
-   while (!audioIsEnd || !videoIsEnd) {
-      // 在调用 OH_AVDemuxer_ReadSampleBuffer 接口获取数据前，需要先调用 OH_AVDemuxer_SelectTrackByID 选中需要获取数据的轨道
-      // 获取音频帧数据
-      if(!audioIsEnd) {
-         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, audioTrackIndex, buffer);
-         if (ret == AV_ERR_OK) {
-            // 可通过 buffer 获取并处理音频帧数据
-            OH_AVBuffer_GetBufferAttr(buffer, &info);
-            printf("audio info.size: %d\n", info.size);
-            if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
-               audioIsEnd = true;
-            }
-         }
-      }
-      if(!videoIsEnd) {
-         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, videoTrackIndex, buffer);
-         if (ret == AV_ERR_OK) {
-            // 可通过 buffer 获取并处理视频帧数据
-            OH_AVBuffer_GetBufferAttr(buffer, &info);
-            printf("video info.size: %d\n", info.size);
-            if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
-               videoIsEnd = true;
-            }
-         }
-      }
-   }
-   OH_AVBuffer_Destroy(buffer);
-   ```
-
-10. 销毁解封装实例。
-      ```c++
-      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
-      if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
-         printf("destroy source pointer error");
-      }
-      source = NULL;
-      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
-      if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
-         printf("destroy demuxer pointer error");
-      }
-      demuxer = NULL;
-      close(fd);
-      ```
 
 # 注释
 ## 注释1：文件级别属性支持范围
@@ -346,8 +204,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 |OH_MD_KEY_TRACK_COUNT|源格式轨道数量的键，值类型为uint32_t|
 |OH_MD_KEY_DURATION|持续时间键，值类型为int64_t|
 |OH_MD_KEY_START_TIME|文件开始时间的键，值类型为int64_t|
-
-> 注：正常解析时才可以获取对应数据，解析异常时无法获取
+注：正常解析时才可以获取对应数据，解析异常时无法获取
 
 
 ## 注释2：轨道级别属性支持范围
