@@ -713,7 +713,7 @@ struct SetSampleNestedChild {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.mySet.entries()), (item: number) => {
+        ForEach(Array.from(this.mySet.entries()), (item: [number, number]) => {
           Text(`${item}`).fontSize(30)
           Divider()
         })
