@@ -166,89 +166,90 @@ import { Want } from '@kit.AbilityKit';
         });
         ```
     * 文件描述符（FD）
+
       ```ts
-        import { fileIo } from '@kit.CoreFileKit';
-        import { common, Want } from '@kit.AbilityKit';
-        import { BusinessError } from '@kit.BasicServicesKit';
+      import { fileIo } from '@kit.CoreFileKit';
+      import { common, Want } from '@kit.AbilityKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
 
-        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let fd: number = 0;
+      let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+      let fd: number = 0;
 
-        try {
-          fd = fileIo.openSync('/data/storage/el2/base/haps/pic.png').fd;
-        } catch(err) {
-          let code = (err as BusinessError).code;
-          let message = (err as BusinessError).message;
-          console.error(`Failed to openSync. Code: ${code}, message: ${message}`);
+      try {
+        fd = fileIo.openSync('/data/storage/el2/base/haps/pic.png').fd;
+      } catch(err) {
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`Failed to openSync. Code: ${code}, message: ${message}`);
+      }
+      let want: Want = {
+        deviceId: '', // deviceId为空表示本设备
+        bundleName: 'com.example.myapplication',
+        abilityName: 'FuncAbility',
+        moduleName: 'entry', // moduleName非必选
+        parameters: {
+          'keyFd': { 'type': 'FD', 'value': fd } // {'type':'FD', 'value':fd}是固定用法，用于表示该数据是FD
         }
-        let want: Want = {
-          deviceId: '', // deviceId为空表示本设备
-          bundleName: 'com.example.myapplication',
-          abilityName: 'FuncAbility',
-          moduleName: 'entry', // moduleName非必选
-          parameters: {
-            'keyFd': { 'type': 'FD', 'value': fd } // {'type':'FD', 'value':fd}是固定用法，用于表示该数据是FD
-          }
-        };
+      };
 
-        context.startAbility(want, (err: BusinessError) => {
-          if (err.code) {
-            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
-          }
-        });
+      context.startAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        }
+      });
       ```
 
     * parameter参数用法：parameter携带开发者自定义参数，由UIAbilityA传递给UIAbilityB，并在UIAbilityB中进行获取。
 
       ```ts
-        // (1) UIAbilityA通过startability启动UIAbilityB
-        import { common, Want } from '@kit.AbilityKit';
-        import { BusinessError } from '@kit.BasicServicesKit';
+      // (1) UIAbilityA通过startability启动UIAbilityB
+      import { common, Want } from '@kit.AbilityKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
 
-        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want: Want = {
-          bundleName: 'com.example.myapplication',
-          abilityName: 'UIAbilityB',
-          parameters: {
-            developerParameters: 'parameters',
-          },
-        };
+      let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+      let want: Want = {
+        bundleName: 'com.example.myapplication',
+        abilityName: 'UIAbilityB',
+        parameters: {
+          developerParameters: 'parameters',
+        },
+      };
 
-        context.startAbility(want, (err: BusinessError) => {
-          if (err.code) {
-            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
-          }
-        });
+      context.startAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        }
+      });
       ```
 
         ```ts
-          // (2) 以UIAbilityB实例首次启动为例，会进入到UIAbilityB的onCreate生命周期
-          import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+        // (2) 以UIAbilityB实例首次启动为例，会进入到UIAbilityB的onCreate生命周期
+        import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 
-          class UIAbilityB extends UIAbility {
-            onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-              console.log(`onCreate, want parameters: ${want.parameters?.developerParameters}`);
-            }
+        class UIAbilityB extends UIAbility {
+          onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+            console.log(`onCreate, want parameters: ${want.parameters?.developerParameters}`);
           }
+        }
         ```
     * parameter参数中[wantConstant](js-apis-app-ability-wantConstant.md)的Key的使用方法。
 
       ```ts
-        import { common, Want, wantConstant } from '@kit.AbilityKit';
-        import { BusinessError } from '@kit.BasicServicesKit';
+      import { common, Want, wantConstant } from '@kit.AbilityKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
 
-        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want: Want = {
-          bundleName: 'com.example.myapplication',
-          abilityName: 'FuncAbility',
-          parameters: {
-            [wantConstant.Params.CONTENT_TITLE_KEY]: 'contentTitle',
-          },
-        };
+      let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+      let want: Want = {
+        bundleName: 'com.example.myapplication',
+        abilityName: 'FuncAbility',
+        parameters: {
+          [wantConstant.Params.CONTENT_TITLE_KEY]: 'contentTitle',
+        },
+      };
 
-        context.startAbility(want, (err: BusinessError) => {
-          if (err.code) {
-            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
-          }
-        });
+      context.startAbility(want, (err: BusinessError) => {
+        if (err.code) {
+          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        }
+      });
       ```
