@@ -27,9 +27,9 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
 
     **示例**
     ~~~typescript
-    import bundleManager from '@kit.AbilityKit';
-    import { BusinessError } from '@ohos.base';
-    import hilog from '@ohos.hilog';
+    import { bundleManager } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
     try {
       let link = 'app1Scheme://test.example.com/home';
       let canOpen = bundleManager.canOpenLink(link);
