@@ -376,6 +376,32 @@ ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;L
 >   
 >  若组件延伸到非安全区域内，此时在非安全区域里触发的事件（例如：点击事件）等可能会被系统拦截，优先响应状态栏等系统组件。
 
+### systemBarStyle<sup>12+</sup>
+
+systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
+
+当Navigation中显示Navigation首页时，设置对应系统状态栏的样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型         | 必填 | 说明               |
+| ------ | -------------- | ---- | ------------------ |
+| style  | Optional&lt;[SystemBarStyle](../js-apis-window.md#systembarstyle12)&gt; | 是   | 系统状态栏样式。 |
+
+>  **使用说明：**
+>
+> 1. 不建议混合使用systemBarStyle属性和window设置状态栏样式的相关接口，例如：[setWindowSystemBarProperties](../js-apis-window.md#setwindowsystembarproperties9)。
+> 2. 初次设置Navigation/NavDestination的systemBarStyle属性时，会备份当前状态栏样式用于后续的恢复场景。
+> 3. Navigation总是以首页（页面栈内没有NavDestination时）或者栈顶NavDestination设置的状态栏样式为准。
+> 4. Navigation首页或者任何栈顶NavDestination页面，如果设置了有效的systemBarStyle，则会使用设置的样式，反之如果之前已经备份了样式，则使用备份的样式，否则不做任何处理。
+> 5. [Split](#navigationmode9枚举说明)模式下的Navigation，如果内容区没有NavDestination，则遵从Navigation首页的设置，反之则遵从栈顶NavDestination的设置。
+> 6. 仅支持在主窗口的主页面中使用systemBarStyle设置状态栏样式。
+> 7. 仅当Navgation占满整个页面时，设置的样式才会生效，当Navigation没有占满整个页面时，如果有备份的样式，则恢复备份的样式。
+> 8. 当页面设置不同样式时，在页面转场开始时生效。
+> 9. 非全屏窗口下，Navigation/NavDestination设置的状态栏不生效。
+
 ## 事件
 
 ### onTitleModeChange
