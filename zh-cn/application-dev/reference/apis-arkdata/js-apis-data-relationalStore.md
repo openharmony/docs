@@ -4339,7 +4339,7 @@ off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
 | 参数名       | 类型                              | 必填 | 说明                                                               |
 | ------------ |---------------------------------| ---- |------------------------------------------------------------------|
 | event        | string                          | 是   | 取值为'autoSyncProgress'，表示自动同步进度通知。                                |
-| observer     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 否   | 指已注册的自动同步进度观察者。该参数存在，则取消订阅指定回调，该参数为null或undefined或不存在，则取消订阅所有回调。 |
+| progress     | Callback&lt;[ProgressDetails](#progressdetails10)&gt; | 否   | 指已注册的自动同步进度观察者。该参数存在，则取消订阅指定回调，该参数为null或undefined或不存在，则取消订阅所有回调。 |
 
 **示例：**
 
