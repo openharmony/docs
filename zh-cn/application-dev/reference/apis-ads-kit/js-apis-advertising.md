@@ -75,9 +75,11 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
+| 801      | Device not supported.  |
 | 21800001 | System internal error. | 
 | 21800003 | Failed to load the ad request. | 
-| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
+
 
 **示例：**
 
@@ -152,9 +154,10 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
+| 801      | Device not supported.  |
 | 21800001 | System internal error. | 
 | 21800003 | Failed to load the ad request. | 
-| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
 
 **示例：**
 
@@ -446,7 +449,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 | shown | boolean | 是 | 广告是否展示。<br/>- true：展示。<br/>- false：未展示。 | 
 | clicked | boolean | 是 | 广告是否被点击。<br/>- true：被点击。<br/>- false：未被点击。 | 
 | rewardVerifyConfig | Map&lt;string, string&gt; | 是 | 服务器验证参数。<br/>{<br/>customData: "test",<br/>userId: "12345"<br/>} | 
-| [key: string] | Object | 是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
+| [key: string] | number \| boolean \| string \| undefined  | 是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
 
 
 ## AdDisplayOptions
@@ -516,7 +519,7 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;
 **参数：**
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| adParam | [AdRequestParams](#adrequestparams) | 是 | 广告请求参数。 | 
+| adParam | [AdRequestParams[]](#adrequestparams) | 是 | 广告请求参数。 | 
 | adOptions | [AdOptions](#adoptions) | 是 | 广告配置。 | 
 
 **返回值：**
@@ -532,6 +535,7 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401      | Invalid input parameter.         |
+| 801      | Device not supported.            |
 | 21800001 | System internal error.           |
 
 **示例代码**  
@@ -603,12 +607,13 @@ parseAdResponse(adResponse: string, listener: MultiSlotsAdLoadListener, context:
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401      | Invalid input parameter. Possible causes: parameter is null.|
+| 801      | Device not supported.            |
 | 21800001 | System internal error.           |
 | 21800005 | Failed to parse the ad response. |
 
 **示例：**
 
-其中context的获取方式参见[UIAbilityContext的获取方式](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#概述)。
+其中context的获取方式参见[UIAbilityContext的获取方式](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。
 
 ```ts
 import { common } from '@kit.AbilityKit';
