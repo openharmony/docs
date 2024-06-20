@@ -366,29 +366,25 @@
      securityLevel: relationalStore.SecurityLevel.S1,
      allowRebuild: true
    };
-   relationalStore.getRdbStore(context, STORE_CONFIG, (err, store) => {
-     if (err) {
-       console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
-       return;
-     }
-     console.info('Succeeded in getting RdbStore.');
+   relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+     store = rdbStore;
+     console.info('Get RdbStore successfully.')
+   }).catch((err: BusinessError) => {
+     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
    })
    // 查看重建结果
    if ((store as relationalStore.RdbStore).rebuilt === relationalStore.RebuildType.REBUILT) {
      console.info('Succeeded in rebuilt RdbStore.');
-   }
-
-  if (store !== undefined) {
-    // 将损坏前备份的数据恢复到新数据库中
-    (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
-      if (err) {
-        console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
-        return;
-      }
+     // 将损坏前备份的数据恢复到新数据库中
+     (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
+       if (err) {
+         console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
+         return;
+       }
       console.info(`Succeeded in restore RdbStore.`);
     })
   }
-  ```
+  ``` 
 
 8. 删除数据库。
 
