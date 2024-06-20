@@ -1,8 +1,8 @@
 # @ohos.data.relationalStore (RDB Store)
 
-The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
+The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. Data of the Sendable type cannot be passed across threads.
 
-ArkTS supports the following basic data types: number, string, binary data, and boolean. The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
+The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
 The **relationalStore** module provides the following:
 
@@ -583,8 +583,9 @@ Enumerates the types of the value in a KV pair. The type varies with the paramet
 
 ## ValuesBucket
 
-Enumerates the types of the key in a KV pair. This type is not multi-thread safe. If a **ValuesBucket** instance is operated by multiple threads at the same time in an application, use a lock for the instance.
+type ValuesBucket = Record<string, ValueType>
 
+Defines the types of the key and value in a KV pair. Data of the Sendable type cannot be passed across threads.
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | Key Type| Value Type                  |
@@ -803,7 +804,7 @@ Represents the statistics of the overall device-cloud sync (upload and download)
 
 ## RdbPredicates
 
-Defines the predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false. This type is not multi-thread safe. If an **RdbPredicates** instance is operated by multiple threads at the same time in an application, use a lock for the instance.
+Defines the predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false. Data of the Sendable type cannot be passed across threads.
 
 ### constructor
 

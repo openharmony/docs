@@ -652,9 +652,9 @@ Locks this cloud database.
 **Example**
 
 ```ts
-export default class MyCloudDB implements cloudExtension.CloudDB {
   let test_time: number = 10;
   let test_lockId: number = 1;
+export default class MyCloudDB implements cloudExtension.CloudDB {
   // ...
   async lock(): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`DB lock`);
@@ -696,9 +696,9 @@ Extends the lock period of the database.
 **Example**
 
 ```ts
-export default class MyCloudDB implements cloudExtension.CloudDB {
   let test_lockId: number = 1;
   let test_time: number = 10;
+export default class MyCloudDB implements cloudExtension.CloudDB {
   // ...
   async heartbeat(lockId: number): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`heartbeat lock`);
