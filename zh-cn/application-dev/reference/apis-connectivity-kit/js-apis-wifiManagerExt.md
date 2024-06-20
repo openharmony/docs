@@ -271,7 +271,7 @@ setPowerMode(mode: PowerMode) : void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| model | [PowerMode](#powermode9) | 是 | 功率模式。 |
+| mode | [PowerMode](#powermode9) | 是 | 功率模式。 |
 
 **错误码：**
 
@@ -280,7 +280,7 @@ setPowerMode(mode: PowerMode) : void;
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
