@@ -739,6 +739,6 @@ export default class EntryAbility extends UIAbility {
 
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
-| slotType       | number | 是    | 长时任务通知的[渠道类型](../apis-notification-kit/js-apis-notificationManager.md#slottype)。|
-| contentType | number | 是    | 长时任务通知的[内容类型](../apis-notification-kit/js-apis-notificationManager.md#contenttype)。|
+| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 是    | 长时任务通知的渠道类型。|
+| contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | 是    | 长时任务通知的内容类型。|
 | notificationId | number | 是    | 长时任务通知 Id。|
