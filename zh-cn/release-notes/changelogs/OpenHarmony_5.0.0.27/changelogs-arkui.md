@@ -72,7 +72,7 @@ RichEditor
 **适配指导**
 
 富文本预上屏功能默认打开，预上屏时会触发相关输入回调。
-例：预上屏输入  "n" -> "ni"时，aboutToIMeInput回调 : {RichEditorInsertValue.value = "", RichEditorInsertValue.previewText = "i"}
+例：预上屏输入  "n" -> "ni"时，aboutToIMeInput回调 : {RichEditorInsertValue.insertValue = "", RichEditorInsertValue.previewText = "i"}
 onIMEInputComplete回调 ：{RichEditorTextSpanResult.value = "", RichEditorTextSpanResult.previewText = "i"}
 
 基于回调的使用方式不同，输入内容的状态可能会出现不符合开发者预期的情况,开发者可以通过设置预上屏开关，将预上屏功能关闭。
