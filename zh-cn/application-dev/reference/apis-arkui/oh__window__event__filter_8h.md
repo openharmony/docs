@@ -23,12 +23,12 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef bool(\* [OH_NativeWindowManager_KeyEventFilter](_window_manager___native_moudle.md#oh_nativewindowmanager_keyeventfilter)) (Input_KeyEvent \*keyEvent) | 定义多模按键的过滤函数。 | 
+| typedef bool(\* [OH_NativeWindowManager_KeyEventFilter](_window_manager___native_module.md#oh_nativewindowmanager_keyeventfilter)) (Input_KeyEvent \*keyEvent) | 定义多模按键的过滤函数。 | 
 
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [WindowManager_ErrorCode](_window_manager___native_moudle.md#windowmanager_errorcode)  [OH_NativeWindowManager_RegisterKeyEventFilter](_window_manager___native_moudle.md#oh_nativewindowmanager_registerkeyeventfilter) (int32_t windowId, [OH_NativeWindowManager_KeyEventFilter](_window_manager___native_moudle.md#oh_nativewindowmanager_keyeventfilter) keyEventFilter) | 注册按键事件的过滤函数。 | 
-| [WindowManager_ErrorCode](_window_manager___native_moudle.md#windowmanager_errorcode)  [OH_NativeWindowManager_UnregisterKeyEventFilter](_window_manager___native_moudle.md#oh_nativewindowmanager_unregisterkeyeventfilter) (int32_t windowId) | 取消注册窗口的按键事件过滤函数。 | 
+| [WindowManager_ErrorCode](_window_manager___native_module.md#windowmanager_errorcode)  [OH_NativeWindowManager_RegisterKeyEventFilter](_window_manager___native_module.md#oh_nativewindowmanager_registerkeyeventfilter) (int32_t windowId, [OH_NativeWindowManager_KeyEventFilter](_window_manager___native_module.md#oh_nativewindowmanager_keyeventfilter) keyEventFilter) | 注册按键事件的过滤函数。 | 
+| [WindowManager_ErrorCode](_window_manager___native_module.md#windowmanager_errorcode)  [OH_NativeWindowManager_UnregisterKeyEventFilter](_window_manager___native_module.md#oh_nativewindowmanager_unregisterkeyeventfilter) (int32_t windowId) | 取消注册窗口的按键事件过滤函数。 | 
