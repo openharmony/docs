@@ -2357,7 +2357,7 @@ avPlayer.off('subtitleUpdate')
 
 ## AVPlayerState<sup>9+</sup>
 
-type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' | 'released' | 'error';
+type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' | 'released' | 'error'
 
 [AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#onstatechange9)事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)。
 
@@ -4747,7 +4747,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 ## AudioState<sup>(deprecated)</sup>
 
-type AudioState = 'idle' | 'playing' | 'paused' | 'stopped' | 'error';
+type AudioState = 'idle' | 'playing' | 'paused' | 'stopped' | 'error'
 
 音频播放的状态机。可通过state属性获取当前状态。
 
@@ -5751,7 +5751,7 @@ videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'�
 
 ## VideoPlayState<sup>(deprecated)</sup>
 
-type VideoPlayState = 'idle' | 'prepared' | 'playing' | 'paused' | 'stopped' | 'error';
+type VideoPlayState = 'idle' | 'prepared' | 'playing' | 'paused' | 'stopped' | 'error'
 
 视频播放的状态机，可通过state属性获取当前状态。
 
