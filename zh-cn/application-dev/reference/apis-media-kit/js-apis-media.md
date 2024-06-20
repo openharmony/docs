@@ -3782,7 +3782,7 @@ type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-| 名称     | 说明                                                         |
+| 类型     | 说明                                                         |
 | -------- | ------------------------------------------------------------ |
 | 'idle'     | 闲置状态。此时可以调用[AVRecorder.prepare()](#prepare9-2)方法设置录制参数，进入prepared状态。AVRecorder刚被创建，或者在任何非released状态下调用[AVRecorder.reset()](#reset9-2)方法，均进入idle状态。 |
 | 'prepared' | 参数设置完成。此时可以调用[AVRecorder.start()](#start9)方法开始录制，进入started状态。 |
