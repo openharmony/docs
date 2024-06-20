@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import thermal from '@ohos.thermal';
+import thermal from '@kit.BasicServicesKit';
 ```
 
 ## thermal.registerThermalLevelCallback<sup>9+</sup>

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import power from '@ohos.power';
+import power from '@kit.BasicServicesKit';
 ```
 
 ## power.shutdown
