@@ -13,7 +13,7 @@
 
 **起始版本：** 12
 
-**相关模块：**[WindowManager_NativeMoudle](_window_manager___native_moudle.md)
+**相关模块：**[WindowManager_NativeModule](_window_manager___native_module.md)
 
 
 ## 汇总
@@ -23,11 +23,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [WindowManager_ErrorCode](_window_manager___native_moudle.md#windowmanager_errorcode)  [WindowManager_ErrorCode](_window_manager___native_moudle.md#windowmanager_errorcode) | 窗口管理接口返回状态码枚举。 | 
+| typedef enum [WindowManager_ErrorCode](_window_manager___native_module.md#windowmanager_errorcode)  [WindowManager_ErrorCode](_window_manager___native_module.md#windowmanager_errorcode) | 窗口管理接口返回状态码枚举。 | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [WindowManager_ErrorCode](_window_manager___native_moudle.md#windowmanager_errorcode) { OK = 0, INVAILD_WINDOW_ID = 1000, SERVICE_ERROR = 2000 } | 窗口管理接口返回状态码枚举。 | 
+| [WindowManager_ErrorCode](_window_manager___native_modle.md#windowmanager_errorcode) { OK = 0, INVAILD_WINDOW_ID = 1000, SERVICE_ERROR = 2000 } | 窗口管理接口返回状态码枚举。 | 

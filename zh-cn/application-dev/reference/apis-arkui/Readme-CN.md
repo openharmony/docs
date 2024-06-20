@@ -362,7 +362,7 @@
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
-    - [WindowManager_NativeMoudle](_window_manager___native_moudle.md)
+    - [WindowManager_NativeModule](_window_manager___native_module.md)
   - 头文件
     - [drawable_descriptor.h](drawable__descriptor_8h.md)
     - [native_animate.h](native__animate_8h.md)
