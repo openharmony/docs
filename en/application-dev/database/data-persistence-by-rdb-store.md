@@ -58,10 +58,10 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
    Stage model:
      
    ```ts
-   import relationalStore from '@ohos.data.relationalStore'; // Import modules.
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
-   import window from '@ohos.window';
+   import { relationalStore} from '@kit.ArkData'; // Import the relationalStore module.
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { window } from '@kit.ArkUI';
 
    // In this example, Ability is used to obtain an RdbStore instance. You can use other implementations as required.
    class EntryAbility extends UIAbility {
@@ -75,8 +75,8 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
        };
 
        // Check the RDB store version. If the version is incorrect, upgrade or downgrade the RDB store.
-       // The RDB store version is 3, and the table structure is EMPLOYEE (NAME, AGE, SALARY, CODES).
-       const SQL_CREATE_TABLE ='CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // SQL statement for creating a data table.
+       // For example, the RDB store version is 3 and the table structure is EMPLOYEE (NAME, AGE, SALARY, CODES, IDENTITY).
+       const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT)'; // SQL statement used to create a table. In the statement, the IDENTITY type bigint should be UNLIMITED INT.
 
        relationalStore.getRdbStore(this.context, STORE_CONFIG, (err, store) => {
          if (err) {
@@ -121,18 +121,18 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
 
      
    ```ts
-   import relationalStore from '@ohos.data.relationalStore'; // Import modules.
-   import featureAbility from '@ohos.ability.featureAbility';
+   import { relationalStore} from '@kit.ArkData'; // Import the relationalStore module.
+   import { featureAbility } from '@kit.AbilityKit';
    
-   let context = featureAbility.getContext()
+   let context = featureAbility.getContext();
 
    const STORE_CONFIG :relationalStore.StoreConfig = {
      name: 'RdbTest.db', // Database file name.
      securityLevel: relationalStore.SecurityLevel.S1 // Database security level.
    };
 
-   // The RDB store version is 3, and the table structure is EMPLOYEE (NAME, AGE, SALARY, CODES).
-   const SQL_CREATE_TABLE ='CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // SQL statement for creating a data table.
+   // For example, the RDB store version is 3 and the table structure is EMPLOYEE (NAME, AGE, SALARY, CODES, IDENTITY).
+   const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT)'; // SQL statement used to create a table. In the statement, the IDENTITY type bigint should be UNLIMITED INT.
 
    relationalStore.getRdbStore(context, STORE_CONFIG, (err, store) => {
      if (err) {
@@ -176,32 +176,34 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
 2. Use **insert()** to insert data to the RDB store. <br>Example:
      
    ```ts
-   import { ValuesBucket } from '@ohos.data.ValuesBucket';
-   
    let store: relationalStore.RdbStore | undefined = undefined;
 
    let value1 = 'Lisa';
    let value2 = 18;
    let value3 = 100.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+   let value5 = BigInt('15822401018187971961171');
    // You can use either of the following:
-   const valueBucket1: ValuesBucket = {
+   const valueBucket1: relationalStore.ValuesBucket = {
      'NAME': value1,
      'AGE': value2,
      'SALARY': value3,
      'CODES': value4,
+     'IDENTITY': value5,
    };
-   const valueBucket2: ValuesBucket = {
+   const valueBucket2: relationalStore.ValuesBucket = {
      NAME: value1,
      AGE: value2,
      SALARY: value3,
      CODES: value4,
+     IDENTITY: value5,
    };
-   const valueBucket3: ValuesBucket = {
+   const valueBucket3: relationalStore.ValuesBucket = {
      "NAME": value1,
      "AGE": value2,
      "SALARY": value3,
      "CODES": value4,
+     "IDENTITY": value5,
    };
 
    if (store !== undefined) {
@@ -230,24 +232,28 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
    let value2 = 22;
    let value3 = 200.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+   let value5 = BigInt('15822401018187971967863');
    // You can use either of the following:
-   const valueBucket1: ValuesBucket = {
+   const valueBucket1: relationalStore.ValuesBucket = {
      'NAME': value1,
      'AGE': value2,
      'SALARY': value3,
      'CODES': value4,
+     'IDENTITY': value5,
    };
-   const valueBucket2: ValuesBucket = {
+   const valueBucket2: relationalStore.ValuesBucket = {
      NAME: value1,
      AGE: value2,
      SALARY: value3,
      CODES: value4,
+     IDENTITY: value5,
    };
-   const valueBucket3: ValuesBucket = {
+   const valueBucket3: relationalStore.ValuesBucket = {
      "NAME": value1,
      "AGE": value2,
      "SALARY": value3,
      "CODES": value4,
+     "IDENTITY": value5,
    };
    
    // Modify data.
@@ -285,7 +291,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Rose');
    if (store !== undefined) {
-     (store as relationalStore.RdbStore).query(predicates, ['ID', 'NAME', 'AGE', 'SALARY'], (err: BusinessError, resultSet) => {
+     (store as relationalStore.RdbStore).query(predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'IDENTITY'], (err: BusinessError, resultSet) => {
        if (err) {
          console.error(`Failed to query data. Code:${err.code}, message:${err.message}`);
          return;
@@ -297,7 +303,8 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
          const name = resultSet.getString(resultSet.getColumnIndex('NAME'));
          const age = resultSet.getLong(resultSet.getColumnIndex('AGE'));
          const salary = resultSet.getDouble(resultSet.getColumnIndex('SALARY'));
-         console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+         const identity = resultSet.getValue(resultSet.getColumnIndex('IDENTITY'));
+         console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}, identity=${identity}`);
        }
        // Release the data set memory.
        resultSet.close();
@@ -317,7 +324,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
 
      
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
+   import { UIAbility } from '@kit.AbilityKit';
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
@@ -336,9 +343,9 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
 
      
    ```ts
-   import featureAbility from '@ohos.ability.featureAbility';
+   import { featureAbility } from '@kit.AbilityKit';
    
-   let context = getContext(this);
+   let context = featureAbility.getContext(); 
 
    relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {
      if (err) {
