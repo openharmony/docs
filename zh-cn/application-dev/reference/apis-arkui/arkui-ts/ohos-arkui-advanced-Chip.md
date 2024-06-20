@@ -38,10 +38,10 @@ ChipOptions定义chip的样式及具体式样参数。
 | enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activated<sup>12+</sup>       | boolean                                        | 否   | 操作块是否为激活态。<br>默认值：false                      |
 | prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| prefixSymbol<sup>12+</sup>    | [SymbolOptions](#symboloptions12)              | 否   | 前缀图标属性，symbol类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| prefixSymbol<sup>12+</sup>    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 前缀图标属性，symbol类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | label           | [LabelOptions](#labeloptions)                                | 是   | 文本属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | 否   | 后缀图标属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| suffixSymbol<sup>12+</sup>    | [SymbolOptions](#symboloptions12)              | 否   | 后缀图标属性，symbol类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| suffixSymbol<sup>12+</sup>    | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 后缀图标属性，symbol类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 操作块背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | 否   | 操作块激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')。 |
 | borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -116,9 +116,9 @@ SuffixIconOptions定义后缀图标的属性。
 | ------ | ---------- | ---- | ------------------ |
 | action | () => void | 否   | 后缀图标设定事件。 |
 
-## SymbolOptions<sup>12+</sup>
+## ChipSymbolGlyphOptions<sup>12+</sup>
 
-SymbolOptions定义前缀图标和后缀图标的属性。
+ChipSymbolGlyphOptions定义前缀图标和后缀图标的属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
