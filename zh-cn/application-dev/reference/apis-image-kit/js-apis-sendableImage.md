@@ -313,7 +313,7 @@ async function Demo() {
     const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     let sendablePixelMap : sendableImage.PixelMap = sendableImage.createPixelMapSync(color, opts);
-    let pixelMap : image.PixelMap = sendableImage.convertToPixelmap(sendablePixelMap);
+    let pixelMap : image.PixelMap = sendableImage.convertToPixelMap(sendablePixelMap);
     return pixelMap;
 }
 ```
@@ -853,7 +853,7 @@ async function Demo() {
     let rate: number = 0.5;
     if (pixelMap != undefined) {
         pixelMap.opacity(rate).then(() => {
-            console.info('Sucessed in setting opacity.');
+            console.info('Succeeded in setting opacity.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
         })
@@ -1000,7 +1000,7 @@ async function Demo() {
     let scaleY: number = 1.0;
     if (pixelMap != undefined) {
         pixelMap.scale(scaleX, scaleY).then(() => {
-            console.info('Sucessed in scaling pixelmap.');
+            console.info('Succeeded in scaling pixelmap.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
             
@@ -1082,7 +1082,7 @@ async function Demo() {
     let translateY: number = 10.0;
     if (pixelMap != undefined) {
         pixelMap.translate(translateX, translateY).then(() => {
-            console.info('Sucessed in translating pixelmap.');
+            console.info('Succeeded in translating pixelmap.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
         })
@@ -1161,7 +1161,7 @@ async function Demo() {
     let angle: number = 90.0;
     if (pixelMap != undefined) {
         pixelMap.rotate(angle).then(() => {
-            console.info('Sucessed in rotating pixelmap.');
+            console.info('Succeeded in rotating pixelmap.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`); 
         })
@@ -1240,7 +1240,7 @@ async function Demo() {
     let vertical: boolean = false;
     if (pixelMap != undefined) {
         pixelMap.flip(horizontal, vertical).then(() => {
-            console.info('Sucessed in flipping pixelmap.');
+            console.info('Succeeded in flipping pixelmap.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
             
