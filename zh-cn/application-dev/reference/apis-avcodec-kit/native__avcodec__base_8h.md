@@ -99,20 +99,20 @@
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](_codec_base.md#oh_avcodec_mimetype_subtitle_srt) |SRT字幕解封装器的MIME类型。                         |
 | const char \* [OH_ED_KEY_TIME_STAMP](_codec_base.md#oh_ed_key_time_stamp) | 表示surfacebuffer中时间戳的键，值类型为int64。<!--Del-->（此功能暂未支持）<!--DelEnd--> |
 | const char \* [OH_ED_KEY_EOS](_codec_base.md#oh_ed_key_eos) | 表示surfacebuffer中流结束符的键，值类型为bool。 <!--Del-->（此功能暂未支持）<!--DelEnd-->|
-| const char \* [OH_MD_KEY_TRACK_TYPE](_codec_base.md#oh_md_key_track_type) | 曲目类型的键，值类型为uint8_t，请参见[OH_MediaType](_codec_base.md#oh_mediatype)。 | 
+| const char \* [OH_MD_KEY_TRACK_TYPE](_codec_base.md#oh_md_key_track_type) | 曲目类型的键，值类型为int32_t，请参见[OH_MediaType](_codec_base.md#oh_mediatype)。 | 
 | const char \* [OH_MD_KEY_CODEC_MIME](_codec_base.md#oh_md_key_codec_mime) | 编解码器mime类型的键，值类型为string。 |
 | const char \* [OH_MD_KEY_DURATION](_codec_base.md#oh_md_key_duration) | 持续时间键，值类型为int64_t。 | 
 | const char \* [OH_MD_KEY_BITRATE](_codec_base.md#oh_md_key_bitrate) | 比特率的键，值类型为int64_t。 | 
-| const char \* [OH_MD_KEY_MAX_INPUT_SIZE](_codec_base.md#oh_md_key_max_input_size) | 设置解码输入码流大小最大值的键，值类型为uint32_t。 |
-| const char \* [OH_MD_KEY_WIDTH](_codec_base.md#oh_md_key_width) | 视频宽度的键，值类型为uint32_t。 | 
-| const char \* [OH_MD_KEY_HEIGHT](_codec_base.md#oh_md_key_height) | 视频高度键，值类型为uint32_t。 | 
+| const char \* [OH_MD_KEY_MAX_INPUT_SIZE](_codec_base.md#oh_md_key_max_input_size) | 设置解码输入码流大小最大值的键，值类型为int32_t。 |
+| const char \* [OH_MD_KEY_WIDTH](_codec_base.md#oh_md_key_width) | 视频宽度的键，值类型为int32_t。 | 
+| const char \* [OH_MD_KEY_HEIGHT](_codec_base.md#oh_md_key_height) | 视频高度键，值类型为int32_t。 | 
 | const char \* [OH_MD_KEY_PIXEL_FORMAT](_codec_base.md#oh_md_key_pixel_format) | 视频像素格式的键，值类型为int32_t，请参见[OH_AVPixelFormat](_core.md#oh_avpixelformat)。 | 
-| const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](_codec_base.md#oh_md_key_audio_sample_format) | 音频原始格式的键，值类型为uint32_t，请参见[OH_BitsPerSample](_codec_base.md#oh_bitspersample)。 | 
+| const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](_codec_base.md#oh_md_key_audio_sample_format) | 音频原始格式的键，值类型为int32_t，请参见[OH_BitsPerSample](_codec_base.md#oh_bitspersample)。 | 
 | const char \* [OH_MD_KEY_FRAME_RATE](_codec_base.md#oh_md_key_frame_rate) | 视频帧率的键，值类型为double。 | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](_codec_base.md#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode)。 | 
 | const char \* [OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile) | 编码档次，值类型为int32_t，请参见[OH_AVCProfile](_codec_base.md#oh_avcprofile),[OH_HEVCProfile](_codec_base.md#oh_hevcprofile), [OH_AACProfile](_codec_base.md#oh_aacprofile)。 |
-| const char \* [OH_MD_KEY_AUD_CHANNEL_COUNT](_codec_base.md#oh_md_key_aud_channel_count) | 音频通道计数键，值类型为uint32_t。 | 
-| const char \* [OH_MD_KEY_AUD_SAMPLE_RATE](_codec_base.md#oh_md_key_aud_sample_rate) | 音频采样率键，值类型为uint32_t。 | 
+| const char \* [OH_MD_KEY_AUD_CHANNEL_COUNT](_codec_base.md#oh_md_key_aud_channel_count) | 音频通道计数键，值类型为int32_t。 | 
+| const char \* [OH_MD_KEY_AUD_SAMPLE_RATE](_codec_base.md#oh_md_key_aud_sample_rate) | 音频采样率键，值类型为int32_t。 | 
 | const char \* [OH_MD_KEY_I_FRAME_INTERVAL](_codec_base.md#oh_md_key_i_frame_interval) | 关键帧间隔的键，值类型为int32_t，单位为毫秒。 | 
 | const char \* [OH_MD_KEY_ROTATION](_codec_base.md#oh_md_key_rotation) | surface旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。 |
 | const char \* [OH_MD_KEY_RANGE_FLAG](_codec_base.md#oh_md_key_range_flag) | 视频YUV值域标志的键，值类型为bool，true表示full range，false表示limited range。 | 
@@ -120,7 +120,7 @@
 | const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](_codec_base.md#oh_md_key_transfer_characteristics) | 视频传递函数的键，值类型为int32_t,请参见[OH_TransferCharacteristic](_codec_base.md#oh_transfercharacteristic)，遵循H.273标准Table3。 | 
 | const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](_codec_base.md#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t,请参见[OH_MatrixCoefficient](_codec_base.md#oh_matrixcoefficient)，遵循H.273标准Table4。 | 
 | const char \* [OH_MD_KEY_REQUEST_I_FRAME](_codec_base.md#oh_md_key_request_i_frame) | 请求立即编码I帧的键。值类型为bool。 | 
-| const char \* [OH_MD_KEY_QUALITY](_codec_base.md#oh_md_key_quality) | 所需编码质量的键。值类型为uint32_t，此键仅适用于配置在恒定质量模式下的编码器。 | 
+| const char \* [OH_MD_KEY_QUALITY](_codec_base.md#oh_md_key_quality) | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。 | 
 | const char \* [OH_MD_KEY_CODEC_CONFIG](_codec_base.md#oh_md_key_codec_config) | 编解码器特定数据的键，值类型为uint8_t\*。 <!--Del-->（视频编解码此功能暂未支持）<!--DelEnd--> |
 | const char \* [OH_MD_KEY_TITLE](_codec_base.md#oh_md_key_title) | 源格式标题的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_ARTIST](_codec_base.md#oh_md_key_artist) | 艺术家的源格式键，值类型为string。 | 
@@ -133,18 +133,18 @@
 | const char \* [OH_MD_KEY_LANGUAGE](_codec_base.md#oh_md_key_language) | 源格式语言的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_DESCRIPTION](_codec_base.md#oh_md_key_description) | 源格式描述的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_LYRICS](_codec_base.md#oh_md_key_lyrics) | 源格式歌词的键，值类型为string。 | 
-| const char \* [OH_MD_KEY_TRACK_COUNT](_codec_base.md#oh_md_key_track_count) | 源格式轨道数量的键，值类型为uint32_t。 | 
+| const char \* [OH_MD_KEY_TRACK_COUNT](_codec_base.md#oh_md_key_track_count) | 源格式轨道数量的键，值类型为int32_t。 | 
 | const char \* [OH_MD_KEY_CHANNEL_LAYOUT](_codec_base.md#oh_md_key_channel_layout) | 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。 | 
-| const char \* [OH_MD_KEY_BITS_PER_CODED_SAMPLE](_codec_base.md#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为uint32_t，支持flac编码器，请参见[OH_BitsPerSample](_codec_base.md#oh_bitspersample)。 | 
-| const char \* [OH_MD_KEY_AAC_IS_ADTS](_codec_base.md#oh_md_key_aac_is_adts) | aac格式的键，值类型为uint32_t,aac解码器支持。 | 
-| const char \* [OH_MD_KEY_SBR](_codec_base.md#oh_md_key_sbr) | aac sbr模式的键，值类型为uint32_t,aac编码器支持。 | 
+| const char \* [OH_MD_KEY_BITS_PER_CODED_SAMPLE](_codec_base.md#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为int32_t，支持flac编码器，请参见[OH_BitsPerSample](_codec_base.md#oh_bitspersample)。 | 
+| const char \* [OH_MD_KEY_AAC_IS_ADTS](_codec_base.md#oh_md_key_aac_is_adts) | aac格式的键，值类型为int32_t,aac解码器支持。 | 
+| const char \* [OH_MD_KEY_SBR](_codec_base.md#oh_md_key_sbr) | aac sbr模式的键，值类型为int32_t,aac编码器支持。 | 
 | const char \* [OH_MD_KEY_COMPLIANCE_LEVEL](_codec_base.md#oh_md_key_compliance_level) | flac合规性级别的键，值类型为int32_t。 | 
 | const char \* [OH_MD_KEY_IDENTIFICATION_HEADER](_codec_base.md#oh_md_key_identification_header) | vorbis标识头的键，值类型为uint8_t\*，仅vorbis解码器支持。 | 
 | const char \* [OH_MD_KEY_SETUP_HEADER](_codec_base.md#oh_md_key_setup_header) | vorbis设置头的键，值类型为uint8_t\*，仅vorbis解码器支持。 | 
-| const char \* [OH_MD_KEY_SCALING_MODE](_codec_base.md#oh_md_key_scaling_mode) | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](_codec_base.md#oh_scalingmode)。 |
+| const char \* [OH_MD_KEY_SCALING_MODE](_codec_base.md#oh_md_key_scaling_mode) | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](_codec_base.md#oh_scalingmode)。 建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../../reference/apis-arkgraphics2d/_native_window.md)接口进行设置 |
 | const char \* [OH_MD_MAX_INPUT_BUFFER_COUNT](_codec_base.md#oh_md_max_input_buffer_count) | 最大输入缓冲区个数的键, 值类型为int32_t。 | 
 | const char \* [OH_MD_MAX_OUTPUT_BUFFER_COUNT](_codec_base.md#oh_md_max_output_buffer_count) | 最大输出缓冲区个数的键, 值类型int32_t。 | 
-| const char \* [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](_codec_base.md#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，值类型为uint32_t。 | 
+| const char \* [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](_codec_base.md#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，值类型为int32_t。 | 
 | const char \* [OH_MD_KEY_VIDEO_IS_HDR_VIVID](_codec_base.md#oh_md_key_video_is_hdr_vivid) | 查询是否是hdr vivid的键，值类型为bool。 | 
 | const char \* [OH_MD_KEY_AUDIO_OBJECT_NUMBER](_codec_base.md#oh_md_key_audio_object_number) | 音频对象数目的键. 值类型为int32_t。 | 
 | const char \* [OH_MD_KEY_AUDIO_VIVID_METADATA](_codec_base.md#oh_md_key_audio_vivid_metadata) | audio vivid元数据的键，值类型为uint8_t\*。 | 
