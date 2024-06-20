@@ -563,12 +563,12 @@ Span类型信息。
 >  | 700   | 6 |
 >  | 800   | 7 |
 >  | 900   | 8 |
->  | bold   | 9 |
->  | bolder   | 10 |
->  | lighter   | 11 |
->  | medium   | 12 |
->  | normal   | 13 |
->  | regular   | 14 |
+>  | Lighter   | 12 |
+>  | Normal   | 10 |
+>  | Regular   | 14 |
+>  | Medium   | 13 |
+>  | Bold   | 9 |
+>  | Bolder   | 11 |
 >
 >  RichEditorSymbolSpanStyle和RichEditorSymbolSpanStyleResult中fontWeight的转换关系，
 >  与RichEditorTextStyle和RichEditorTextStyleResult中fontWeight的转换关系一致。
