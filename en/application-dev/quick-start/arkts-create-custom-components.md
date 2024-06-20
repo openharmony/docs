@@ -70,7 +70,6 @@ struct ParentComponent {
 
 To fully understand the preceding example, a knowledge of the following concepts is essential:
 
-
 - [Basic Structure of a Custom Component](#basic-structure-of-a-custom-component)
 
 - [Member Functions/Variables](#member-functionsvariables)
@@ -89,12 +88,12 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > The name or its class or function name of a custom component must be different from that of any built-in components.
 
-- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. When being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. Each struct can be decorated by only one \@Component. \@Component can accept an optional parameter of the Boolean type.
+- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. When being decorated by \@Component, a struct has the componentization capability. You must implement the **build** function for it to describe the UI. Each struct can be decorated by only one \@Component. \@Component can accept an optional parameter of the Boolean type.
   > **NOTE**
   >
-  > Since API version 9, this decorator is supported in ArkTS widgets.
+  > This decorator can be used in ArkTS widgets since API version 9.
   > 
-  > Since API version 11, \@Component can accept an optional parameter of the Boolean type.
+  > \@Component can accept an optional parameter of the Boolean type since API version 11.
 
   ```ts
   @Component
@@ -125,13 +124,15 @@ To fully understand the preceding example, a knowledge of the following concepts
   }
   ```
 
-- \@Entry: A custom component decorated with \@Entry is used as the default entry component of the page. Only one component can be decorated with \@Entry in a single source file. The \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md).
+- \@Entry: A custom component decorated with \@Entry is used as the default entry component of the page. Only one component can be decorated with \@Entry in a single page. The \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md).
 
   > **NOTE**
   >
-  > Since API version 9, this decorator is supported in ArkTS widgets.
+  > This decorator can be used in ArkTS widgets since API version 9.
   >
   > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryoptions10).
+  >
+  > This decorator can be used in atomic services since API version 11.
 
   ```ts
   @Entry
@@ -148,6 +149,11 @@ To fully understand the preceding example, a knowledge of the following concepts
   | ------ | ------ | ---- | ------------------------------------------------------------ |
   | routeName | string | No| Name of the target named route.|
   | storage | [LocalStorage](arkts-localstorage.md) | No| Storage of the page-level UI state.|
+  | useSharedStorage<sup>12+</sup> | boolean | No| Whether to use the [LocalStorage](arkts-localstorage.md) object returned by the **LocalStorage.getShared()** API.<br>Default value: **false**|
+
+  > **NOTE**
+  >
+  > When **useSharedStorage** is set to **true** and **storage** is assigned a value, the value of **useSharedStorage** has a higher priority.
 
   ```ts
   @Entry({ routeName : 'myPage' })
@@ -216,6 +222,44 @@ struct ParentComponent {
 }
 ```
 
+In the following example, a function in the parent component is passed to the child component and called therein.
+
+```ts
+@Entry
+@Component
+struct Parent {
+  @State cnt: number = 0
+  submit: () => void = () => {
+    this.cnt++;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.cnt}`)
+      Son({ submitArrow: this.submit })
+    }
+  }
+}
+
+@Component
+struct Son {
+  submitArrow?: () => void
+
+  build() {
+    Row() {
+      Button('add')
+        .width(80)
+        .onClick(() => {
+          if (this.submitArrow) {
+            this.submitArrow()
+          }
+        })
+    }
+    .justifyContent(FlexAlign.SpaceBetween)
+    .height(56)
+  }
+}
+```
 
 ## build() Function
 
@@ -303,7 +347,7 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
   }
   ```
 
-- The **switch** syntax is not allowed. Use **if** instead. The following example should be avoided:
+- The **switch** syntax is not allowed. Use **if** instead. The following is an example:
 
   ```ts
   build() {
@@ -319,6 +363,14 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
         default:
           Text('...')
           break;
+      }
+      // Correct usage: Use if.
+      if(expression == 1) {
+        Text('...')
+      } else if(expression == 2) {
+        Image('...')
+      } else() {
+        Text('...')
       }
     }
   }

@@ -28,16 +28,18 @@ As mentioned above, if you want to establish a binding between AppStorage and a 
 When a custom component is initialized, the attribute value corresponding to the key in AppStorage is used to initialize the \@StorageProp(key) or \@StorageLink(key) decorated variable. Whether the attribute with the given key exists in AppStorage depends on the application logic. This means that it may be missing from AppStorage. In light of this, local initialization is mandatory for the \@StorageProp(key) or \@StorageLink(key) decorated variable.
 
 By decorating a variable with \@StorageProp(key), a one-way data synchronization is established from the attribute with the given key in AppStorage to the variable. A local change can be made, but it will not be synchronized to AppStorage. An update to the attribute with the given key in AppStorage will overwrite local changes.
-
+> **NOTE**
+>
+> This decorator can be used in atomic services since API version 11.
 
 ### Rules of Use
 
 | \@StorageProp Decorator| Description                                                        |
 | ----------------------- | ------------------------------------------------------------ |
 | Decorator parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions. **any** is not supported. The **undefined** and **null** values are not allowed.|
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @StorageProp("AA") a: number \| null = null is recommended; **@StorageProp("AA") a: number = null** is not recommended.|
 | Synchronization type               | One-way: from the attribute in AppStorage to the component variable.<br>The component variable can be changed locally, but an update from AppStorage will overwrite local changes.|
-| Initial value for the decorated variable     | Mandatory. It is used as the default value for initialization if the corresponding attribute does not exist in AppStorage.|
+| Initial value for the decorated variable     | Mandatory. If the attribute does not exist in AppStorage, it will be created and initialized with this value.|
 
 
 ### Variable Transfer/Access Rules
@@ -62,9 +64,15 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes (the attributes that **Object.keys(observedObject)** returns) can be observed.
+- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes can be observed. For details, see [Example for Using AppStorage from Inside the UI](#example-of-using-appstorage-and-localstorage-inside-the-ui).
 
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
+
+- When the decorated variable is of the Date type, the value change of the **Date** object can be observed, and the following APIs can be called to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**. For details, see [Decorating Variables of the Date Type](#decorating-variables-of-the-date-type).
+
+- When the decorated variable is **Map**, value changes of **Map** can be observed. In addition, you can call the **set**, **clear**, and **delete** APIs of **Map** to update its value. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
+
+- When the decorated variable is **Set**, value changes of **Set** can be observed. In addition, you can call the **add**, **clear**, and **delete** APIs of **Set** to update its value. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
 
 
 **Framework Behavior**
@@ -81,21 +89,24 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 ## \@StorageLink
 
+> **NOTE**
+>
+> This decorator can be used in atomic services since API version 11.
+
 \@StorageLink(key) creates a two-way data synchronization between the variable it decorates and the attribute with the given key in AppStorage.
 
 1. Local changes are synchronized to AppStorage.
 
 2. Any change in AppStorage is synchronized to the attribute with the given key in all scenarios, including one-way bound variables (\@StorageProp decorated variables and one-way bound variables created through \@Prop), two-way bound variables (\@StorageLink decorated variables and two-way bound variables created through \@Link), and other instances (such as PersistentStorage).
 
-
 ### Rules of Use
 
 | \@StorageLink Decorator| Description                                      |
 | ------------------ | ---------------------------------------- |
 | Decorator parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types         | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior-1).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions. **any** is not supported. The **undefined** and **null** values are not allowed.|
+| Allowed variable types         | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @StorageLink("AA") a: number \| null = null is recommended; **@StorageLink("AA") a: number = null** is not recommended.|
 | Synchronization type              | Two-way: from the attribute in AppStorage to the custom component variable and vice versa|
-| Initial value for the decorated variable         | Mandatory. It is used as the default value for initialization if the corresponding attribute does not exist in AppStorage.|
+| Initial value for the decorated variable         | Mandatory. If the attribute does not exist in AppStorage, it will be created and initialized with this value.|
 
 
 ### Variable Transfer/Access Rules
@@ -120,9 +131,15 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes (the attributes that **Object.keys(observedObject)** returns) can be observed.
+- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes can be observed. For details, see [Example of Using AppStorage and LocalStorage Inside the UI](#example-of-using-appstorage-and-localstorage-inside-the-ui).
 
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
+
+- When the decorated variable is of the Date type, the value change of the **Date** object can be observed, and the following APIs can be called to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**. For details, see [Decorating Variables of the Date Type](#decorating-variables-of-the-date-type).
+
+- When the decorated variable is **Map**, value changes of **Map** can be observed. In addition, you can call the **set**, **clear**, and **delete** APIs of **Map** to update its value. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
+
+- When the decorated variable is **Set**, value changes of **Set** can be observed. In addition, you can call the **add**, **clear**, and **delete** APIs of **Set** to update its value. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
 
 
 **Framework Behavior**
@@ -174,26 +191,48 @@ prop.get() // == 49
 
 
 ```ts
+class PropB {
+  code: number;
+
+  constructor(code: number) {
+    this.code = code;
+  }
+}
+
 AppStorage.setOrCreate('PropA', 47);
+AppStorage.setOrCreate('PropB', new PropB(50));
 let storage = new LocalStorage();
 storage.setOrCreate('PropA', 48);
+storage.setOrCreate('PropB', new PropB(100));
 
 @Entry(storage)
 @Component
 struct CompA {
   @StorageLink('PropA') storageLink: number = 1;
   @LocalStorageLink('PropA') localStorageLink: number = 1;
+  @StorageLink('PropB') storageLinkObject: PropB = new PropB(1);
+  @LocalStorageLink('PropB') localStorageLinkObject: PropB = new PropB(1);
 
   build() {
     Column({ space: 20 }) {
       Text(`From AppStorage ${this.storageLink}`)
         .onClick(() => {
-          this.storageLink += 1
+          this.storageLink += 1;
         })
 
       Text(`From LocalStorage ${this.localStorageLink}`)
         .onClick(() => {
-          this.localStorageLink += 1
+          this.localStorageLink += 1;
+        })
+
+      Text(`From AppStorage ${this.storageLinkObject.code}`)
+        .onClick(() => {
+          this.storageLinkObject.code += 1;
+        })
+
+      Text(`From LocalStorage ${this.localStorageLinkObject.code}`)
+        .onClick(() => {
+          this.localStorageLinkObject.code += 1;
         })
     }
   }
@@ -440,7 +479,6 @@ struct Gallery2 {
 @Component
 export struct TapImage {
   @StorageLink('tapIndex') tapIndex: number = -1;
-  @State tapColor: Color = Color.Black;
   private index: number = 0;
   private uri: Resource = {
     id: 0,
@@ -467,14 +505,215 @@ export struct TapImage {
 ```
 
 
+### Union Type
+
+In the following example, the type of variable **A** is number | null, and the type of variable **B** is number | undefined. The **Text** components display **null** and **undefined** upon initialization, numbers when clicked, and **null** and **undefined** when clicked again.
+
+```ts
+@Component
+struct StorLink {
+  @StorageLink("AA") A: number | null = null;
+  @StorageLink("BB") B: number | undefined = undefined;
+
+  build() {
+    Column() {
+      Text("@StorageLink initialization, @StorageLink value")
+      Text(this.A + "").fontSize(20).onClick(() => {
+        this.A ? this.A = null : this.A = 1;
+      })
+      Text(this.B + "").fontSize(20).onClick(() => {
+        this.B ? this.B = undefined : this.B = 1;
+      })
+    }
+    .borderWidth(3).borderColor(Color.Red)
+
+  }
+}
+
+@Component
+struct StorProp {
+  @StorageProp("AAA") A: number | null = null;
+  @StorageProp("BBB") B: number | undefined = undefined;
+
+  build() {
+    Column() {
+      Text("@StorageProp initialization, @StorageProp value")
+      Text(this.A + "").fontSize(20).onClick(() => {
+        this.A ? this.A = null : this.A = 1;
+      })
+      Text(this.B + "").fontSize(20).onClick(() => {
+        this.B ? this.B = undefined : this.B = 1;
+      })
+    }
+    .borderWidth(3).borderColor(Color.Blue)
+  }
+}
+
+@Entry
+@Component
+struct TestCase3 {
+  build() {
+    Row() {
+      Column() {
+        StorLink()
+        StorProp()
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+### Decorating Variables of the Date Type
+
+> **NOTE**
+>
+> AppStorage supports the Set type since API version 12.
+
+In this example, the **selectedDate** variable decorated by @StorageLink is of the Date type. After the button is clicked, the value of **selectedDate** changes, and the UI is re-rendered.
+
+```ts
+@Entry
+@Component
+struct DateSample {
+  @StorageLink("date") selectedDate: Date = new Date('2021-08-08');
+
+  build() {
+    Column() {
+      Button('set selectedDate to 2023-07-08')
+        .margin(10)
+        .onClick(() => {
+          AppStorage.setOrCreate("date", new Date('2023-07-08'));
+        })
+      Button('increase the year by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
+        })
+      Button('increase the month by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
+        })
+      Button('increase the day by 1')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate.setDate(this.selectedDate.getDate() + 1);
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: $$this.selectedDate
+      })
+    }.width('100%')
+  }
+}
+```
+
+
+### Decorating Variables of the Map Type
+
+> **NOTE**
+>
+> AppStorage supports the Map type since API version 12.
+
+In this example, the **message** variable decorated by @StorageLink is of the Map\<number, string\> type. After the button is clicked, the value of **message** changes, and the UI is re-rendered.
+
+```ts
+@Entry
+@Component
+struct MapSample {
+  @StorageLink("map") message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`).fontSize(30)
+          Text(`${item[1]}`).fontSize(30)
+          Divider()
+        })
+        Button('init map').onClick(() => {
+          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+        })
+        Button('set new one').onClick(() => {
+          this.message.set(4, "d");
+        })
+        Button('clear').onClick(() => {
+          this.message.clear();
+        })
+        Button('replace the existing one').onClick(() => {
+          this.message.set(0, "aa");
+        })
+        Button('delete the existing one').onClick(() => {
+          AppStorage.get<Map<number, string>>("map")?.delete(0);
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+### Decorating Variables of the Set Type
+
+> **NOTE**
+>
+> AppStorage supports the Set type since API version 12.
+
+In this example, the **memberSet** variable decorated by @StorageLink is of the Set\<number\> type. After the button is clicked, the value of **memberSet** changes, and the UI is re-rendered.
+
+```ts
+@Entry
+@Component
+struct SetSample {
+  @StorageLink("set") memberSet: Set<number> = new Set([0, 1, 2, 3, 4]);
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.memberSet.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`)
+            .fontSize(30)
+          Divider()
+        })
+        Button('init set')
+          .onClick(() => {
+            this.memberSet = new Set([0, 1, 2, 3, 4]);
+          })
+        Button('set new one')
+          .onClick(() => {
+            AppStorage.get<Set<number>>("set")?.add(5);
+          })
+        Button('clear')
+          .onClick(() => {
+            this.memberSet.clear();
+          })
+        Button('delete the first one')
+          .onClick(() => {
+            this.memberSet.delete(0);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
 
 ## Restrictions
 
 When using AppStorage together with [PersistentStorage](arkts-persiststorage.md) and [Environment](arkts-environment.md), pay attention to the following:
 
-- After an attribute is created in AppStorage, a call to **PersistentStorage.persistProp()** uses the attribute value in AppStorage and overwrites any attribute with the same name in PersistentStorage. In light of this, the opposite order of calls is recommended. For an example of incorrect usage, see [Accessing Attribute in AppStorage Before PersistentStorage](arkts-persiststorage.md#accessing-attribute-in-appstorage-before-persistentstorage).
+- After an attribute is created in AppStorage, a call to **PersistentStorage.persistProp()** uses the attribute value in AppStorage and overwrites any attribute with the same name in PersistentStorage. In light of this, the opposite order of calls is recommended. For an example of incorrect usage, see [Accessing an Attribute in AppStorage Before PersistentStorage](arkts-persiststorage.md#accessing-an-attribute-in-appstorage-after-persistentstorage).
 
 - After an attribute is created in AppStorage, a call to **Environment.envProp()** with the same attribute name will fail. This is because environment variables will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable names in AppStorage.
 
-- Changes to the variables decorated by state decorators will cause UI re-rendering. If the changes are for message communication, rather than for UI re-rendering, the emitter mode is recommended. For the example, see [Unrecommended: Using @StorageLink to Implement Event Notification](#unrecommended-using-storagelink-to-implement-event-notification).
+- Changes to the variables decorated by state decorators will cause UI re-rendering. If the changes are for message communication, rather than for UI re-rendering, the emitter mode is recommended. For the example, see <!--Del-->[<!--DelEnd-->**Unrecommended: Using @StorageLink to Implement Event Notification**<!--Del-->](#unrecommended-using-storagelink-to-implement-event-notification)<!--DelEnd-->.
 <!--no_check-->
