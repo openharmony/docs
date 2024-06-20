@@ -14,8 +14,7 @@
     - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
     - [@ohos.power (系统电源管理)](js-apis-power.md)
     - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
-    - [@ohos.thermal (热管理)](js-apis-thermal.md)
-    - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)       
+    - [@ohos.thermal (热管理)](js-apis-thermal.md)      
     - [@ohos.usbManager (USB管理)](js-apis-usbManager.md)
     <!--Del-->
     - [@ohos.batteryInfo (电量信息)(系统接口)](js-apis-battery-info-sys.md)
@@ -100,6 +99,7 @@
     - [@system.battery (电量信息)](js-apis-system-battery.md)
     - [@system.device (设备信息)](js-apis-system-device.md)
     - [@system.request (上传下载)](js-apis-system-request.md)
+    - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md) 
     <!--Del-->
     - [@ohos.commonEvent (公共事件模块)(系统接口)](js-apis-commonEvent-sys.md)
     - [@ohos.usb (USB管理)(系统接口)](js-apis-usb-deprecated-sys.md)
