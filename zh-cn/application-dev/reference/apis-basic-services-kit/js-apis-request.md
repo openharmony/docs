@@ -2302,7 +2302,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | path | string | 是 | 文件路径：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，支持"internal://"及其子路径，如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>-用户公共文件，如"file://media/Photo/path/to/file.img"。仅支持前端任务。 |
 | mimeType | string | 否 | 文件的mimetype通过文件名获取。 |
 | filename | string | 否 | 文件名，默认值通过路径获取。 |
-| extras | Object | 否 | 文件信息的附加内容。 |
+| extras | object | 否 | 文件信息的附加内容。 |
 
 
 ## FormItem<sup>10+</sup> 
@@ -2432,7 +2432,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | description | string | 是 | 任务描述。 |
 | action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
 | mode | [Mode](#mode10) | 是 | 指定任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。 |
-| priority<sup>11+</sup> | number | 否 | 任务配置中的优先级。前端任务的优先级比后台任务高。相同模式的任务，数字越小优先级越高。 |
+| priority<sup>11+</sup> | number | 是 | 任务配置中的优先级。前端任务的优先级比后台任务高。相同模式的任务，数字越小优先级越高。 |
 | mimeType | string | 是 | 任务配置中的mimetype。 |
 | progress | [Progress](#progress10) | 是 | 任务的过程进度。 |
 | gauge | boolean | 是 | 后台任务的进度通知策略。 |
@@ -2442,7 +2442,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | tries | number | 是 | 任务的尝试次数。 |
 | faults | [Faults](#faults10) | 是 | 任务的失败原因。<br/>-OTHERS表示其他故障。<br/>-DISCONNECT表示网络断开连接。<br/>-TIMEOUT表示任务超时。<br/>-PROTOCOL表示协议错误。<br/>-FSIO表示文件系统io错误。|
 | reason | string | 是 | 等待/失败/停止/暂停任务的原因。|
-| extras | string | 否 | 任务的额外部分。|
+| extras | object | 否 | 任务的额外部分。|
 
 
 ## HttpResponse<sup>12+</sup> 
