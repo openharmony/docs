@@ -3165,7 +3165,7 @@ struct WebComponent {
       try {
         // 应用侧用法示例，定制UserAgent。
         this.ua = this.controller.getUserAgent() + 'xxx';
-        this.controller.setCustomUserAgent(this.us);
+        this.controller.setCustomUserAgent(this.ua);
       } catch (error) {
         console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
       }
