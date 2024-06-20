@@ -334,29 +334,29 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 1. 将多个待匹配的文档应用安装到设备，在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，配置skills标签的entities字段和actions字段。
 
-  ```json
-   {
-     "module": {
-       "abilities": [
-         {
-           ...
-           "skills": [
-             {
-               "entities": [
-                 ...
-                 "entity.system.default"
-               ],
-               "actions": [
-                 ...
-                 "ohos.want.action.viewData"
-               ]
-             }
-           ]
-         }
-       ]
-     }
-   }
-   ```
+    ```json
+    {
+      "module": {
+        "abilities": [
+          {
+            ...
+            "skills": [
+              {
+                "entities": [
+                  ...
+                  "entity.system.default"
+                ],
+                "actions": [
+                  ...
+                  "ohos.want.action.viewData"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+    ```
 
 2. 在调用方want参数中的entities和action需要被包含在待匹配UIAbility的skills配置的entities和actions中。系统匹配到符合entities和actions参数条件的UIAbility后，会弹出选择框展示匹配到的UIAbility实例列表供用户选择使用。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 
@@ -480,66 +480,66 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 2. 调用方使用[`startAbilityForResult()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法启动支付应用的UIAbility，在调用方want参数中的entities和action需要被包含在待匹配UIAbility的skills标签配置的entities和actions中。异步回调中的data用于后续接收支付UIAbility停止自身后返回给调用方的信息。系统匹配到符合entities和actions参数条件的UIAbility后，会弹出选择框展示匹配到的UIAbility实例列表供用户选择使用。
 
-  ```ts
-  import { common, Want } from '@kit.AbilityKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { promptAction } from '@kit.ArkUI';
-  import { BusinessError } from '@kit.BasicServicesKit';
+    ```ts
+    import { common, Want } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { promptAction } from '@kit.ArkUI';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-  const TAG: string = '[Page_UIAbilityComponentsInteractive]';
-  const DOMAIN_NUMBER: number = 0xFF00;
+    const TAG: string = '[Page_UIAbilityComponentsInteractive]';
+    const DOMAIN_NUMBER: number = 0xFF00;
 
-  @Entry
-  @Component
-  struct Page_UIAbilityComponentsInteractive {
-    build() {
-      Column() {
-        //...
-        List({ initialIndex: 0 }) {
-          ListItem() {
-            Row() {
-              //...
-            }
-            .onClick(() => {
-              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-              const RESULT_CODE: number = 1001;
+    @Entry
+    @Component
+    struct Page_UIAbilityComponentsInteractive {
+      build() {
+        Column() {
+          //...
+          List({ initialIndex: 0 }) {
+            ListItem() {
+              Row() {
+                //...
+              }
+              .onClick(() => {
+                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                const RESULT_CODE: number = 1001;
 
-              let want: Want = {
-                deviceId: '', // deviceId为空表示本设备
-                bundleName: '', // 隐式匹配时bundleName非必选
-                moduleName: '', // moduleName非必选
-                abilityName: '', // abilityName留空表示隐式匹配
-                action: 'ohos.want.action.editData',
-                parameters: {
-                  // 自定义信息
-                  info: '来自EntryAbility UIAbilityComponentsInteractive页面'
-                }
-              };
-              context.startAbilityForResult(want).then((data) => {
-                if (data?.resultCode === RESULT_CODE) {
-                  // 解析被调用方UIAbility返回的信息
-                  let info = data.want?.parameters?.info;
-                  hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
-                  if (info !== null) {
-                    promptAction.showToast({
-                      message: JSON.stringify(info)
-                    });
+                let want: Want = {
+                  deviceId: '', // deviceId为空表示本设备
+                  bundleName: '', // 隐式匹配时bundleName非必选
+                  moduleName: '', // moduleName非必选
+                  abilityName: '', // abilityName留空表示隐式匹配
+                  action: 'ohos.want.action.editData',
+                  parameters: {
+                    // 自定义信息
+                    info: '来自EntryAbility UIAbilityComponentsInteractive页面'
                   }
-                }
-                hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(data.resultCode) ?? '');
-              }).catch((err: BusinessError) => {
-                hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
-              });
-            })
+                };
+                context.startAbilityForResult(want).then((data) => {
+                  if (data?.resultCode === RESULT_CODE) {
+                    // 解析被调用方UIAbility返回的信息
+                    let info = data.want?.parameters?.info;
+                    hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
+                    if (info !== null) {
+                      promptAction.showToast({
+                        message: JSON.stringify(info)
+                      });
+                    }
+                  }
+                  hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(data.resultCode) ?? '');
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
+                });
+              })
+            }
+            //...
           }
           //...
         }
         //...
       }
-      //...
     }
-  }
-  ```
+    ```
 
 3. 在支付UIAbility完成支付之后，需要调用[`terminateSelfWithResult()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)方法实现停止自身，并将abilityResult参数信息返回给调用方。
 
