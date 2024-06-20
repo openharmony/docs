@@ -13,7 +13,7 @@
 
 **起始版本：** 12
 
-**相关模块：**[WindowManager_NativeMoudle](_window_manager___native_moudle.md)
+**相关模块：**[WindowManager_NativeModule](_window_manager___native_module.md)
 
 
 ## 汇总
