@@ -2027,7 +2027,7 @@ int main(int narg, char** argv)
 预期输出为：
 
 ```
-正常启动loop对象，返回值是0。
+正常停止loop对象，返回值是0。
 ```
 
 #### ffrt_loop_epoll_ctl
