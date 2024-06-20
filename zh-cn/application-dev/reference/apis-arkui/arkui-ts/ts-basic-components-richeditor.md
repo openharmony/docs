@@ -152,6 +152,22 @@ dataDetectorConfig(config: TextDataDetectorConfig)
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | config | [TextDataDetectorConfig](#textdatadetectorconfig11) | 是   | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} |
 
+### enablePreviewText<sup>12+</sup>
+
+enablePreviewText(enable: boolean)
+
+设置是否开启预上屏功能。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                              |
+| ------ | ------- | ---- | --------------------------------- |
+| enable  | boolean | 是   | 使能预上屏功能。<br/>默认值： true |
+
 ### placeholder<sup>12+</sup>
 
 placeholder(value: ResourceStr, style?: PlaceholderStyle)
@@ -449,14 +465,13 @@ onCopy(callback: Callback\<CopyEvent\>)
 
 插入文本信息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称           | 类型     | 必填   | 说明         |
 | ------------ | ------ | ---- | ---------- |
-| insertOffset | number | 是    | 插入的文本偏移位置。 |
-| insertValue  | string | 是    | 插入的文本内容。   |
+| insertOffset | number | 是    | 插入的文本偏移位置。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| insertValue  | string | 是    | 插入的文本内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| previewText<sup>12+</sup> | string | 否    | 插入的预上屏文本内容。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 
 ## RichEditorDeleteValue
@@ -504,6 +519,7 @@ onCopy(callback: Callback\<CopyEvent\>)
 | valueResource<sup>11+</sup>   | [Resource](ts-types.md#resource)         | 否    | 组件SymbolSpan内容。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
 | SymbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 否    | 组件SymbolSpan样式信息。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | paragraphStyle<sup>12+</sup>  | [RichEditorParagraphStyle](#richeditorparagraphstyle11)  | 否   | 段落样式。 |
+| previewText<sup>12+</sup>      | string                                   | 否    | 文本Span预上屏内容。              <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 
 ## RichEditorSpanPosition
@@ -568,12 +584,12 @@ Span类型信息。
 >  | 700   | 6 |
 >  | 800   | 7 |
 >  | 900   | 8 |
->  | bold   | 9 |
->  | bolder   | 10 |
->  | lighter   | 11 |
->  | medium   | 12 |
->  | normal   | 13 |
->  | regular   | 14 |
+>  | Lighter   | 12 |
+>  | Normal   | 10 |
+>  | Regular   | 14 |
+>  | Medium   | 13 |
+>  | Bold   | 9 |
+>  | Bolder   | 11 |
 >
 >  RichEditorSymbolSpanStyle和RichEditorSymbolSpanStyleResult中fontWeight的转换关系，
 >  与RichEditorTextStyle和RichEditorTextStyleResult中fontWeight的转换关系一致。
@@ -3292,6 +3308,7 @@ struct TextExample7 {
   @State email: string = '***@example.com';
   @State address: string = 'XX省XX市XX区XXXX';
   @State enableDataDetector: boolean = true;
+  @State enablePreviewText: boolean = false;
   @State types: TextDataDetectorType[] = [];
 
   build() {
@@ -3331,6 +3348,7 @@ struct TextExample7 {
           .copyOptions(CopyOptions.InApp)
           .enableDataDetector(this.enableDataDetector)
           .dataDetectorConfig({types : this.types, onDetectResultUpdate: (result: string)=>{}})
+          .enablePreviewText(this.enablePreviewText)
           .borderWidth(1)
           .padding(10)
           .width('100%')

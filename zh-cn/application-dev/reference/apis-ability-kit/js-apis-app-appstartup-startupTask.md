@@ -18,7 +18,7 @@ import { StartupTask } from '@kit.AbilityKit';
 
 onDependencyCompleted?(dependency: string, result: ESObject): void
 
-在特定的依赖组件完成初始化时调用。
+当依赖的组件完成初始化时该方法将会被调用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
 
@@ -27,21 +27,27 @@ onDependencyCompleted?(dependency: string, result: ESObject): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | dependency | string | 是 | 依赖的组件名称。 |
-| result | ESObject | 是 | 依赖组件初始化的结果。 |
+| result | Object | 是 | 依赖组件初始化的结果。 |
 
 **示例：**：
 
 ```ts
-import { StartupTask } from '@kit.AbilityKit';
+import StartupTask from '@ohos.app.appstartup.StartupTask';
+import common from '@ohos.app.ability.common';
+import hilog from '@ohos.hilog';
 
 @Sendable
-export default class Sample_001 extends StartupTask {
+export default class StartupTask_001 extends StartupTask {
   constructor() {
     super();
   }
+  async init(context: common.AbilityStageContext) {
+    // ...
+  }
 
-  onDependencyCompleted(dependence: string, result: ESObject) {
-    console.info("StartupTest Sample_001 onDependencyCompleted dependence=" + dependence);
+  onDependencyCompleted(dependence: string, result: Object): void {
+    hilog.info(0x0000, 'testTag', 'StartupTask_001 onDependencyCompleted, dependence: %{public}s, result: %{public}s',
+      dependence, JSON.stringify(result));
     // ...
   }
 }
@@ -52,7 +58,7 @@ export default class Sample_001 extends StartupTask {
 
 init(context: AbilityStageContext): Promise\<ESObject\>
 
-初始化组件
+启动任务执行的初始化业务。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
 
@@ -66,21 +72,27 @@ init(context: AbilityStageContext): Promise\<ESObject\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<ESObject\> | Promise对象，返回组件初始化结果对象。 |
+| Promise\<Object | void\> | Promise对象，返回组件初始化结果对象。 |
 
 **示例：**：
 
 ```ts
 import { StartupTask, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Sendable
-export default class Sample_001 extends StartupTask {
+export default class StartupTask_001 extends StartupTask {
   constructor() {
     super();
   }
-
   async init(context: common.AbilityStageContext) {
-    console.info("StartupTest Sample_001 init");
+    hilog.info(0x0000, 'testTag', 'StartupTask_001 init.');
+    // ...
+    
+    return 'StartupTask_001';
+  }
+
+  onDependencyCompleted(dependence: string, result: Object): void {
     // ...
   }
 }

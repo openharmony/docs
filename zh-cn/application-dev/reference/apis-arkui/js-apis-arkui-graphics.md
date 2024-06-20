@@ -169,6 +169,8 @@ const transform: Matrix4 = [
 
 用于表示包含x、y、z三个值的向量。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型   | 可读 | 可写 | 说明                          |
 | ---- | ------ | ---- | ---- | ----------------------------- |
 | x    | number | 是   | 是   | x轴方向的旋转角度，单位为vp。 |
@@ -286,6 +288,8 @@ struct Index {
 | bottom | T    | 是   | 是   | 底部边框的属性。 |
 
 ## Vector2T\<T><sup>12+</sup>
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 可读 | 可写 | 说明              |
 | ---- | ---- | ---- | ---- | ----------------- |

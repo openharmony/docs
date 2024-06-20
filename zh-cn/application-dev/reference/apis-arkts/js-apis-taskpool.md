@@ -442,7 +442,7 @@ isConcurrent(func: Function): boolean
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| function   | Function | 是   | 需要检查的函数。 |
+| func   | Function | 是   | 需要检查的函数。 |
 
 **返回值：**
 

@@ -424,6 +424,10 @@ indicatorInteractive(value: boolean)
 
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
+从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10)代替。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称          | 类型                                       | 必填 | 描述                                                 |
 | ------------- | ------------------------------------------ | ---- | ---------------------------------------------------- |
 | left          | [Length](ts-types.md#length)               | 否   | 设置导航点距离Swiper组件左边的距离。                 |
@@ -440,8 +444,6 @@ indicatorInteractive(value: boolean)
 Swiper在主轴上的尺寸大小模式枚举。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -797,9 +799,9 @@ Swiper自定义切换动画相关信息。
 
 ## SwiperContentTransitionProxy<sup>12+</sup>对象说明
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 Swiper自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画视窗内的页面信息，同时，也可以通过调用该对象的finishTransition接口通知Swiper组件页面自定义动画已结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
 
@@ -834,6 +836,8 @@ finishTransition()
 Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)中的说明。
 
 ContentDidScrollCallback = (selectedIndex: number, index: number, position: number, mainAxisLength: number) => void
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |

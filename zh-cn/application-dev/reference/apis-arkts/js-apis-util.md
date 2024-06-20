@@ -1265,7 +1265,7 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 
 ### createRationalFromString<sup>8+</sup>
 
-static createRationalFromString​(rationalString: string): RationalNumber​
+static createRationalFromString(rationalString: string): RationalNumber​
 
 基于给定的字符串创建一个RationalNumber对象。
 
@@ -1299,7 +1299,7 @@ let rational = util.RationalNumber.createRationalFromString("3/4");
 
 ### compare<sup>9+</sup>
 
-compare​(another: RationalNumber): number​
+compare(another: RationalNumber): number​
 
 将当前RationalNumber对象与目标RationalNumber对象进行比较，并返回比较结果。
 
@@ -1367,7 +1367,7 @@ console.info("result = " + result);
 
 ### equals<sup>8+</sup>
 
-equals​(obj: Object): boolean
+equals(obj: Object): boolean
 
 将当前的RationalNumber对象与给定的对象进行比较是否相等。
 
@@ -1442,7 +1442,7 @@ console.info("result = " + result);
 
 ### getNumerator<sup>8+</sup>
 
-getNumerator​(): number
+getNumerator(): number
 
 获取当前RationalNumber对象的分子。
 
@@ -1472,7 +1472,7 @@ console.info("result = " + result);
 
 ### getDenominator<sup>8+</sup>
 
-getDenominator​(): number
+getDenominator(): number
 
 获取当前RationalNumber对象的分母。
 
@@ -1502,7 +1502,7 @@ console.info("result = " + result);
 
 ### isZero<sup>8+</sup>
 
-isZero​():boolean
+isZero():boolean
 
 检查当前RationalNumber对象是否为0。
 
@@ -1532,7 +1532,7 @@ console.info("result = " + result);
 
 ### isNaN<sup>8+</sup>
 
-isNaN​(): boolean
+isNaN(): boolean
 
 检查当前RationalNumber对象是否表示非数字(NaN)值。
 
@@ -1562,7 +1562,7 @@ console.info("result = " + result);
 
 ### isFinite<sup>8+</sup>
 
-isFinite​():boolean
+isFinite():boolean
 
 检查当前RationalNumber对象是否表示一个有限值。
 
@@ -1592,7 +1592,7 @@ console.info("result = " + result);
 
 ### toString<sup>8+</sup>
 
-toString​(): string
+toString(): string
 
 获取当前RationalNumber对象的字符串表示形式。
 
@@ -1647,7 +1647,7 @@ let rationalNumber = new util.RationalNumber(1,2);
 
 ### compareTo<sup>(deprecated)</sup>
 
-compareTo​(another: RationalNumber): number​
+compareTo(another: RationalNumber): number​
 
 将当前的RationalNumber对象与给定的对象进行比较。
 
@@ -1679,7 +1679,7 @@ let result = rationalNumber.compareTo(rational);
 
 ### getCommonDivisor<sup>(deprecated)</sup>
 
-static getCommonDivisor​(number1: number,number2: number): number
+static getCommonDivisor(number1: number,number2: number): number
 
 获取两个指定整数的最大公约数。
 

@@ -498,7 +498,7 @@ Neural Network Runtime表示神经网络运行时，简称NNRt。作为中间桥
 | deviceID<sup>12+</sup>        | bigint                              | 否  | NNRt设备ID。             |
 | performanceMode<sup>12+</sup> | [PerformanceMode](#performancemode12) | 否   | NNRt设备的工作性能模式。 |
 | priority<sup>12+</sup>        | [Priority](#priority12)               | 否   | NNRt推理任务优先级。    |
-| extensions<sup>12+</sup>      | [Extension](#extension12)             | 否   | NNRt设备的扩展配置。    |
+| extensions<sup>12+</sup>      | [Extension](#extension12)[]            | 否   | NNRt设备的扩展配置。    |
 
 ## PerformanceMode<sup>12+</sup>
 

@@ -27,6 +27,10 @@ import { CircleShape, EllipseShape, PathShape, RectShape } from "@ohos.arkui.sha
 
 constructor(options?: ShapeSize)
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [ShapeSize](#shapesize) | 否 | 形状的大小。 |
@@ -44,6 +48,10 @@ constructor(options?: ShapeSize)
 ### constructor
 
 constructor(options?: ShapeSize)
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
@@ -63,6 +71,8 @@ constructor(options?: ShapeSize)
 
 constructor(options?: PathShapeOptions)
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [PathShapeOptions](#pathshapeoptions) | 否 | 路径参数。 |
@@ -74,6 +84,10 @@ constructor(options?: PathShapeOptions)
 commands(commands: string): PathShape
 
 设置路径的绘制指令。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
@@ -91,6 +105,10 @@ commands(commands: string): PathShape
 
 constructor(options?: RectShapeOptions | RoundRectShapeOptions)
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [RectShapeOptions](#rectshapeoptions) &nbsp;\|&nbsp; [RoundRectShapeOptions](#roundrectshapeoptions) | 否 | 矩形形状参数。 |
@@ -103,6 +121,10 @@ radiusWidth(rWidth: number | string): RectShape
 
 设置矩形形状圆角半径的宽度。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | rWidth | number &nbsp;\|&nbsp; string | 是 | 矩形形状圆角半径的宽度。 |
@@ -113,6 +135,10 @@ radiusHeight(rHeight: number | string): RectShape
 
 设置矩形形状圆角半径的高度。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | rHeight | number &nbsp;\|&nbsp; string | 是 | 矩形形状圆角半径的高度。 |
@@ -122,6 +148,10 @@ radiusHeight(rHeight: number | string): RectShape
 radius(radius: number | string | Array<number &nbsp;\|&nbsp; string>): RectShape
 
 设置矩形形状的圆角半径。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
@@ -196,6 +226,10 @@ width(width: Length): T
 
 设置形状的宽度。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | width | [Length](arkui-ts/ts-types.md#length) | 是 | 形状的宽度。 |
@@ -206,6 +240,10 @@ height(height: Length): T
 
 设置形状的高度。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | height | [Length](arkui-ts/ts-types.md#length) | 是 | 形状的高度。 |
@@ -215,6 +253,10 @@ height(height: Length): T
 size(size: SizeOptions): T
 
 设置形状的大小。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
@@ -232,6 +274,10 @@ offset(offset: Position): T
 
 设置相对于组件布局位置的坐标偏移。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | offset | [Position](arkui-ts/ts-types.md#position) | 是 | 相对于组件布局位置的坐标偏移。 |
@@ -242,6 +288,10 @@ fill(color: ResourceColor): T
 
 设置形状的填充颜色。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | color | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 是 | 形状的填充颜色。 |
@@ -251,6 +301,10 @@ fill(color: ResourceColor): T
 position(position: Position): T
 
 设置形状的位置。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |

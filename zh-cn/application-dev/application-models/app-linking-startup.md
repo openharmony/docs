@@ -140,7 +140,7 @@ export default class EntryAbility extends UIAbility {
 
 
 
-## 实现目标应用的跳转
+## 拉起方应用实现应用跳转
 
 拉起方应用通过UIAbilityContext.openLink接口，传入目标应用的链接，拉起目标应用。
 

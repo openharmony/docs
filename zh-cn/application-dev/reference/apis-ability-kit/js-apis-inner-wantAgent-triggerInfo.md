@@ -21,6 +21,6 @@ import { wantAgent } from '@kit.AbilityKit';
 | code       | number               | 是   | 提供给目标wantAgent的自定义结果码。 |
 | want       | Want                 | 否   | 对象间信息传递的载体，可以用于应用组件间的信息传递。    |
 | permission | string               | 否   | 权限定义。    |
-| extraInfo  | {[key: string]: any} | 否   | 额外数据。    |
+| extraInfo  | { [key: string]: any } | 否   | 额外数据。    |
 | extraInfos<sup>11+<sup>  | Record\<string, Object> | 否   | 额外数据。推荐使用该属性替代extraInfo，设置该属性后，extraInfo不再生效。    |
 | startOptions<sup>12+<sup>|[StartOptions](js-apis-app-ability-startOptions.md)         | 否  | 触发启动Ability的wantAgent时，由该属性指定启动参数。 |

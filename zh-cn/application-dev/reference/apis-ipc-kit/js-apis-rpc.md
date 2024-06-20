@@ -8774,7 +8774,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 | data          | [MessageSequence](#messagesequence9)                  | 是   | 保存待发送数据的&nbsp;MessageSequence对象。                  |
 | reply         | [MessageSequence](#messagesequence9)                  | 是   | 接收应答数据的MessageSequence对象。                          |
 | options       | [MessageOption](#messageoption)                       | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| AsyncCallback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback      | AsyncCallback&lt;[RequestResult](#requestresult9)&gt; | 是   | 接收发送结果的回调。                                         |
 
 
 **错误码：**
@@ -8837,7 +8837,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | data          | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的&nbsp;MessageParcel对象。                    |
 | reply         | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options       | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| AsyncCallback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 **示例：**
 
@@ -8907,7 +8907,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   | code   | number                               | 是   | 对端发送的服务请求码。                    |
   | data   | [MessageSequence](#messagesequence9) | 是   | 携带客户端调用参数的MessageSequence对象。 |
   | reply  | [MessageSequence](#messagesequence9) | 是   | 写入结果的MessageSequence对象。           |
-  | option | [MessageOption](#messageoption)      | 是   | 指示操作是同步还是异步。                  |
+  | options | [MessageOption](#messageoption)      | 是   | 指示操作是同步还是异步。                  |
 
 **返回值：**
 
@@ -9046,7 +9046,7 @@ sendRequest请求的响应处理函数，服务端在该函数里处理请求，
   | code   | number                                    | 是   | 对端发送的服务请求码。                  |
   | data   | [MessageParcel](#messageparceldeprecated) | 是   | 携带客户端调用参数的MessageParcel对象。 |
   | reply  | [MessageParcel](#messageparceldeprecated) | 是   | 写入结果的MessageParcel对象。           |
-  | option | [MessageOption](#messageoption)           | 是   | 指示操作是同步还是异步。                |
+  | options | [MessageOption](#messageoption)           | 是   | 指示操作是同步还是异步。                |
 
 **返回值：**
 
