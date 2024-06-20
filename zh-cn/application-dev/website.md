@@ -248,15 +248,14 @@
           <!--DelEnd-->
           - [仅对MDM应用开放](security/AccessToken/permissions-for-mdm-apps.md)
         - [应用权限组列表](security/AccessToken/app-permission-group-list.md)
-      - [使用系统Picker](security/AccessToken/use-picker.md)
       - 使用安全控件
         - [安全控件概述](security/AccessToken/security-component-overview.md)
         - [使用粘贴控件](security/AccessToken/pastebutton.md)
         - [使用保存控件](security/AccessToken/savebutton.md)
         - [使用位置控件](security/AccessToken/locationbutton.md)
   - Accessibility Kit（无障碍开发服务）
-      - [Accessibility Kit简介](accessibility/accessibilityKit.md)
-      - [AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)
+    - [Accessibility Kit简介](accessibility/accessibilityKit.md)
+    - [AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)
   <!--Del-->
   - Ads Kit（广告服务）
     - [广告标识服务](ads-service/oaid/oaid-service.md)   
