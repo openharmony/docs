@@ -3786,7 +3786,7 @@ getState(): router.RouterState
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [RouterState](js-apis-router.md#routerstate) | 页面状态信息。 |
+| router.[RouterState](js-apis-router.md#routerstate) | 页面状态信息。 |
 
 **示例：**
 
@@ -3818,9 +3818,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 | 类型                          | 说明      |
 | --------------------------- | ------- |
-| router.[RouterState](js-apis-router.md#outerstate) | 页面状态信息。 |
-| undefined   | 索引不存在时返回undefined。|
-
+| [RouterState](#routerstate) \| undefined | 返回页面状态信息。索引不存在时返回undefined。 |
 **示例：** 
 
 ```ts
