@@ -33,8 +33,8 @@ API9
 
 **适配指导**
 
-编码器相关参数范围可通过编解码器能力查询接口获取，具体指导可参考[获取支持的编解码能力]
-(../../../application-dev/media/avcodec/obtain-supported-codecs.md)。
+编码器相关参数范围可通过编解码器能力查询接口获取，具体指导可参考
+[获取支持的编解码能力](../../../application-dev/media/avcodec/obtain-supported-codecs.md)。
 
 ## c1.multimedia.1 OH_AVFormat Set 接口行为变更
 
