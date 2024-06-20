@@ -1716,7 +1716,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | ----- | ------ | ---- | ---- |-----------------------------------------------------------------------|
 | name  | string | 否   | 是   | 参与者的姓名。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
 | email | string | 否   | 是   | 参与者的邮箱。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
-| role<sup>12+</sup>  | [AttendeeRole](#attendeerole) | 否   | 否   | 参与者的角色，该字段暂不支持。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| role<sup>12+</sup>  | [AttendeeRole](#attendeerole12) | 否   | 否   | 参与者的角色，该字段暂不支持。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## EventService
 
