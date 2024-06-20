@@ -33,15 +33,15 @@ import { commonType } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.CommonType
 
-| 名称       | 类型                        | 必填 | 说明                               |
-| ---------- | --------------------------- | ---- | ---------------------------------- |
-| name       | string                      | 是   | 资产的名称。                       |
-| uri        | string                      | 是   | 资产的uri，在系统里的绝对路径。    |
-| path       | string                      | 是   | 资产在应用沙箱里的路径。           |
-| createTime | string                      | 是   | 资产被创建出来的时间。             |
-| modifyTime | string                      | 是   | 资产最后一次被修改的时间。         |
-| size       | string                      | 是   | 资产占用空间的大小。               |
-| status     | [AssetStatus](#assetstatus) | 否   | 资产的状态，默认值为ASSET_NORMAL。 |
+| 名称       | 类型                                                   | 必填 | 说明                               |
+| ---------- | ------------------------------------------------------ | ---- | ---------------------------------- |
+| name       | string \| undefined<sup>12+</sup>                      | 是   | 资产的名称。                       |
+| uri        | string \| undefined<sup>12+</sup>                      | 是   | 资产的uri，在系统里的绝对路径。    |
+| path       | string \| undefined<sup>12+</sup>                      | 是   | 资产在应用沙箱里的路径。           |
+| createTime | string \| undefined<sup>12+</sup>                      | 是   | 资产被创建出来的时间。             |
+| modifyTime | string \| undefined<sup>12+</sup>                      | 是   | 资产最后一次被修改的时间。         |
+| size       | string \| undefined<sup>12+</sup>                      | 是   | 资产占用空间的大小。               |
+| status     | [AssetStatus](#assetstatus) \| undefined<sup>12+</sup> | 否   | 资产的状态，默认值为ASSET_NORMAL。 |
 
 ## Assets
 
