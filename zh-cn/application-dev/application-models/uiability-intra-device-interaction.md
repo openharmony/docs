@@ -333,29 +333,29 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 1. 将多个待匹配的文档应用安装到设备，在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，配置skills标签的entities字段和actions字段。
 
-  ```json
-   {
-     "module": {
-       "abilities": [
-         {
-           ...
-           "skills": [
-             {
-               "entities": [
-                 ...
-                 "entity.system.default"
-               ],
-               "actions": [
-                 ...
-                 "ohos.want.action.viewData"
-               ]
-             }
-           ]
-         }
-       ]
-     }
-   }
-   ```
+    ```json
+    {
+      "module": {
+        "abilities": [
+          {
+            ...
+            "skills": [
+              {
+                "entities": [
+                  ...
+                  "entity.system.default"
+                ],
+                "actions": [
+                  ...
+                  "ohos.want.action.viewData"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+    ```
 
 2. 在调用方want参数中的entities和action需要被包含在待匹配UIAbility的skills配置的entities和actions中。系统匹配到符合entities和actions参数条件的UIAbility后，会弹出选择框展示匹配到的UIAbility实例列表供用户选择使用。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 

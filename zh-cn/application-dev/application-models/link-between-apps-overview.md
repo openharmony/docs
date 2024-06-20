@@ -53,11 +53,11 @@ scheme://host[:port]/path/
 3. 系统接收到URL等相关信息，会寻找对应匹配项，并跳转至目标应用。
 
 
-### App Linking与Deep Linking的对比
+### Deep Linking与App Linking的对比
 
-[**Deep Linking**](./deep-linking-startup.md)：是一种通过链接跳转至应用特定页面的技术，其特点是支持开发者定义任意形式的scheme。
+**Deep Linking**：是一种通过链接跳转至应用特定页面的技术，其特点是支持开发者定义任意形式的scheme。
 
-[**App Linking**](./app-linking-startup.md)：是一种特定类型的Deep Linking，其限定了scheme必须为https，同时通过增加域名校验机制，可以从已匹配到的应用中筛选过滤出目标应用，消除应用查询和定位中产生的歧义，直达受信的目标应用。
+**App Linking**：是一种特定类型的Deep Linking，其限定了scheme必须为https，同时通过增加域名校验机制，可以从已匹配到的应用中筛选过滤出目标应用，消除应用查询和定位中产生的歧义，直达受信的目标应用。
 
 相比Deep Linking，App Linking具有更高的安全性和可靠性，用户体验更佳，推荐作开发者的首选App Linking方案。
 
