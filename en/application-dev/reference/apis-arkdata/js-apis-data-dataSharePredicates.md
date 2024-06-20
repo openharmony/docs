@@ -58,7 +58,7 @@ and(): DataSharePredicates
 
 Adds the AND condition to this **DataSharePredicates** object.
 
-Currently, only the relational database (RDB) and key-value database (KVDB, schema) support this **DataSharePredicates** object.
+Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -83,7 +83,7 @@ orderByAsc(field: string): DataSharePredicates
 
 Sets a **DataSharePredicates** object that sorts data in ascending order.
 
-Currently, only the relational database (RDB) and key-value database (KVDB, schema) support this **DataSharePredicates** object.
+Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -112,7 +112,7 @@ orderByDesc(field: string): DataSharePredicates
 
 Sets a **DataSharePredicates** object that sorts data in descending order.
 
-Currently, only the relational database (RDB) and key-value database (KVDB, schema) support this **DataSharePredicates** object.
+Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -141,7 +141,7 @@ limit(total: number, offset: number): DataSharePredicates
 
 Sets a **DataSharePredicates** object to specify the number of results and the start position.
 
-Currently, only the relational database (RDB) and key-value database (KVDB, schema) support this **DataSharePredicates** object.
+Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -171,7 +171,7 @@ in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
 Sets a **DataSharePredicates** object to match the data that is within the specified value.
 
-Currently, only the relational database (RDB) and key-value database (KVDB, schema) support this **DataSharePredicates** object.
+Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 

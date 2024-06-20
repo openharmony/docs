@@ -67,7 +67,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
 let preferences: sendablePreferences.Preferences;
@@ -179,7 +179,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
@@ -236,7 +236,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
@@ -597,7 +597,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = preferences.has('startup');
 promise.then((val: boolean) => {
