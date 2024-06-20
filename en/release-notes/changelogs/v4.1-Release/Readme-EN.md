@@ -3,7 +3,7 @@ OpenHarmony 4.1 Release Changelogs
 - [Ability Framework](changelogs-ability.md)
 - [Access Token](changelogs-access_token.md)
 - [Common Event and Notification Subsystem](changelogs-ans.md)
-- [Arkcompiler](changelogs-arkcompiler.md)
+- [ArkCompiler](changelogs-arkcompiler.md)
 - [ArkUI](changelogs-arkui.md)
 - [ArkWeb](changelogs-arkweb.md)
 - [Bundle Manager Subsystem](changelogs-bundlemanager.md)

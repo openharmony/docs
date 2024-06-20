@@ -349,7 +349,7 @@ struct ViewB {
 
 ![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
-The @Observed decorated **ClassC** class can observe changes in the attributes inherited from the base class.
+The @Observed decorated **BookName** class can observe changes in the attributes inherited from the base class.
 
 
 Event handles in **ViewB**:
@@ -1263,7 +1263,7 @@ To solve the preceding problem, you can use the following method to directly obs
 
 This approach enables \@ObjectLink to serve as a proxy for the attributes of the **ParentCounter** and **SubCounter** classes. In this way, the attribute changes of the two classes can be observed and trigger UI update. Even if **this.counter[0].incrCounter()** is deleted, the UI can be updated correctly.
 
-This approach can be used to implement "two-layer" observation, that is, observation of external objects and internal nested objects. However, it is only applicable to the \@ObjectLink decorator, but not to \@Prop (\@Prop passes objects through deep copy). For details, see the differences between @Prop and @ObjectLink.
+This approach can be used to implement "two-layer" observation, that is, observation of external objects and internal nested objects. However, it is only applicable to the \@ObjectLink decorator, but not to \@Prop (\@Prop passes objects through deep copy). For details, see [Differences Between \@Prop and \@ObjectLink](#differences-between-prop-and-objectlink).
 
 
 ```ts

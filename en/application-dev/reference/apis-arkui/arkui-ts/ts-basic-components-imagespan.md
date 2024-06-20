@@ -1,5 +1,6 @@
 # ImageSpan
 
+
 As a child of the [\<Text>](ts-basic-components-text.md) and [\<ContainerSpan>](ts-basic-components-containerspan.md) components, the **\<ImageSpan>** component is used to display inline images.
 
 >  **NOTE**
@@ -37,9 +38,9 @@ The [universal attribute](ts-universal-attributes-size.md) methods can be used t
 
 | Name    | Description                          |
 | -------- | ------------------------------ |
-| TOP      | The image is top aligned with the text.  |
-| CENTER   | The image is centered aligned with the text.      |
-| BOTTOM   | The image is bottom aligned with the text.  |
+| TOP      | The image is aligned with the top edge of the line box.  |
+| CENTER   | The image is aligned with the center of the line box.      |
+| BOTTOM   | The image is aligned with the bottom edge of the line box.  |
 | BASELINE | The image is bottom aligned with the text baseline.|
 
 ## Events

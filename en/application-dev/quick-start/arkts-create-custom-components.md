@@ -341,7 +341,7 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
   }
   ```
 
-- The **switch** syntax is not allowed. Use **if** instead. The following example should be avoided:
+- The **switch** syntax is not allowed. Use **if** instead. The following is an example:
 
   ```ts
   build() {
@@ -357,6 +357,14 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
         default:
           Text('...')
           break;
+      }
+      // Correct usage: Use if.
+      if(expression == 1) {
+        Text('...')
+      } else if(expression == 2) {
+        Image('...')
+      } else() {
+        Text('...')
       }
     }
   }

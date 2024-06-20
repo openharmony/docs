@@ -17,7 +17,7 @@ Modal transition is a type of transition achieved by a modal – a view that app
 
 ## Creating Modal Transition with bindContentCover
 
-You can bind a full-screen modal to a component through the [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) attribute. Better yet, with the **ModalTransition** parameter, you can apply a transition effect for when the component is inserted or deleted.
+You can bind a full-screen modal to a component through the [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) attribute. Better yet, with the **ModalTransition** parameter, you can apply a transition effect for when the component appears or disappears.
 
 1. Define [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md).
 
