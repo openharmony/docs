@@ -27,12 +27,12 @@ This topic walks you through how to implement parallel programming based on the 
 | ffrt_mutex_destroy(ffrt_mutex_t* mutex)   | Destroys a mutex.|
 | ffrt_queue_attr_init(ffrt_queue_attr_t* attr)    | Initializes a queue attribute.|
 | ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr)    | Destroys a queue attribute.|
-| ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)    | Sets the QoS for a queue attribute.|
-| ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)      | Obtains the QoS of a queue attribute.|
+| ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)    | Sets the queue QoS.|
+| ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)      | Obtains the queue QoS.|
 | ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)   | Creates a queue.|
 | ffrt_queue_destroy(ffrt_queue_t queue)   | Destroys a queue.|
 | ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)   | Submits a task to a queue.|
-| ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)  | Submits a task to a queue, and obtains a task handle.|
+| ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)  | Submits a task to a queue, and obtains the task handle.|
 | ffrt_queue_wait(ffrt_task_handle_t handle)    | Waits until a task in the queue is complete.|
 | ffrt_queue_cancel(ffrt_task_handle_t handle)     | Cancels a task in the queue.|
 | ffrt_usleep(uint64_t usec)   | Suspends the calling thread for a given duration.|
@@ -41,15 +41,15 @@ This topic walks you through how to implement parallel programming based on the 
 | ffrt_task_attr_set_name(ffrt_task_attr_t* attr, const char* name)   | Sets a task name.|
 | ffrt_task_attr_get_name(const ffrt_task_attr_t* attr)   | Obtains a task name.|
 | ffrt_task_attr_destroy(ffrt_task_attr_t* attr)    | Destroys a task attribute.|
-| ffrt_task_attr_set_qos(ffrt_task_attr_t* attr, ffrt_qos_t qos)    | Sets the QoS for a task attribute.|
-| ffrt_task_attr_get_qos(const ffrt_task_attr_t* attr)      | Obtains the QoS of a task attribute.|
+| ffrt_task_attr_set_qos(ffrt_task_attr_t* attr, ffrt_qos_t qos)    | Sets the task QoS.|
+| ffrt_task_attr_get_qos(const ffrt_task_attr_t* attr)      | Obtains the task QoS.|
 | ffrt_task_attr_set_delay(ffrt_task_attr_t* attr, uint64_t delay_us)    | Sets the task delay time.|
 | ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr)      | Obtains the task delay time.|
 | ffrt_this_task_update_qos(ffrt_qos_t qos)    | Updates the QoS of this task.|
 | ffrt_this_task_get_id(void)    | Obtains the ID of this task.|
 | ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_t kind)     | Applies for memory for the function execution structure.|
 | ffrt_submit_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)   | Submits a task.|
-| ffrt_submit_h_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)    | Submits a task, and obtains a task handle.|
+| ffrt_submit_h_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)    | Submits a task, and obtains the task handle.|
 | ffrt_task_handle_destroy(ffrt_task_handle_t handle)    | Destroys a task handle.|
 | ffrt_skip(ffrt_task_handle_t handle)     | Skips a task.|
 | ffrt_wait_deps(const ffrt_deps_t* deps)    | Waits until the dependent tasks are complete.|
@@ -120,7 +120,7 @@ Pointer to the CPU function. The struct executed by the pointer describes two fu
 
 N/A
 
-##### Use guide
+##### Description
 * You are advised to encapsulate **ffrt_submit_base** first. For details, see **Example** below.
 * As an underlying capability, **ffrt_submit_base** must meet the following requirements:
   * The **func** pointer can be allocated by calling **ffrt_alloc_auto_managed_function_storage_base**, and the two function pointers in the struct must be in the specified sequence (**exec** prior to **destroy**).
@@ -197,7 +197,7 @@ Virtual addresses of the data to be produced. These addresses may be used as **o
 
 N/A
 
-##### Use guide
+##### Description
 * **ffrt_wait_deps(deps)** is used to suspend code execution before the data specified by **deps** is produced.
 * **ffrt_wait()** is used to suspend code execution before all subtasks (excluding grandchild tasks and lower-level subtasks) submitted by the current context are complete.
 * This API can be called inside or outside an FFRT task.
@@ -381,7 +381,7 @@ Actual address of the dependent signature content.
 
 N/A
 
-##### Use guide
+##### Description
 
 **item** is the start address pointer of each signature. The pointer can point to the heap space or stack space, but the allocated space must be greater than or equal to len * sizeof(ffrt_dependence_t).
 
@@ -443,7 +443,7 @@ Handle of the target task attribute.
 
 `qos`
 
-* Enumerated type of QoS.
+* QoS.
 * **ffrt_qos_inherent** is a QoS type, indicating that the QoS of the task to be submitted by **ffrt_submit** inherits the QoS of the current task.
 
 `delay_us`
@@ -454,7 +454,7 @@ Delay for executing the task, in μs.
 
 N/A
 
-##### Use guide
+##### Description
 * The content passed by **attr** is fetched and stored when **ffrt_submit** is being executed. You can destroy the content on receiving the return value of **ffrt_submit**.
 * Conventions:
   * If **task_attr** is not used for QoS setting during task submission, the QoS of the task is **ffrt_qos_default**.
@@ -579,7 +579,7 @@ Pointer to the CPU function. The struct executed by the pointer describes two fu
 
 Take handle. The handle can be used to establish the dependency between tasks or implement synchronization in the wait statements.
 
-##### Use guide
+##### Description
 
 * **ffrt_task_handle_t** in the C code must be explicitly destroyed by calling **ffrt_task_handle_destroy**.
 * You need to set the **ffrt_task_handle_t** object in the C code to null or destroy the object. For the same **ffrt_task_handle_t** object, **ffrt_task_handle_destroy** can be called only once. Otherwise, undefined behavior may occur.
@@ -691,7 +691,7 @@ int main(int narg, char** argv)
 }
 ```
 
-Expected output:
+Expected output
 
 ```
 hello world, x = 2
@@ -719,7 +719,7 @@ N/A
 
 ID of the task being executed.
 
-##### Use guide
+##### Description
 
 * If this API is called inside a task, the ID of this task is returned. If this API is called outside a task, **0** is returned.
 * You can determine whether the function runs on an FFRT or a non-FFRT worker thread based on the return value.
@@ -728,6 +728,8 @@ ID of the task being executed.
 ##### Example
 
 N/A
+
+
 
 #### ffrt_this_task_update_qos
 
@@ -749,7 +751,7 @@ New QoS.
 
 Returns **0** if the operation is successful; returns a non-zero value otherwise.
 
-##### Use guide
+##### Description
 
 * The QoS update takes effect immediately.
 * If the new QoS is different from the current QoS, the task is blocked and then resumed based on the new QoS.
@@ -762,7 +764,7 @@ N/A
 
 ### Serial Queue
 
-FFRT provides **queue** to implement capabilities similar to **WorkQueue** in Android. It can deliver excellent performance if being used properly.
+Based on the FFRT coroutine scheduling model, the serial queue implements a message queue. Serial tasks are executed in FFRT Worker threads. You do not need to maintain a dedicated thread, making the scheduling overhead lightweight.
 
 #### ffrt_queue_attr_t
 
@@ -779,13 +781,12 @@ void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 ##### Parameters
 
 `attr`
-
 Pointer to the uninitialized **ffrt_queue_attr_t** object.
 
 ##### Return value
 Returns **0** if the API is called successfully; returns **-1** otherwise.
 
-##### Use guide
+##### Description
 * An **ffrt_queue_attr_t** object must be created prior to an **ffrt_queue_t** object.
 * You need to set the **ffrt_queue_attr_t** object to null or destroy the object. For the same **ffrt_queue_attr_t** object, **ffrt_queue_attr_destroy** can be called only once. Otherwise, undefined behavior may occur.
 * If **ffrt_queue_attr_t** is accessed after **ffrt_queue_attr_destroy** is called, undefined behavior may occur.
@@ -821,7 +822,7 @@ Pointer to the queue attribute. For details, see **ffrt_queue_attr_t**.
 ##### Return value
 Returns the queue created if the API is called successfully; returns a null pointer otherwise.
 
-##### Use guide
+##### Description
 * Tasks submitted to the queue are executed in sequence. If a task is blocked, the execution sequence of the task cannot be ensured.
 * You need to set the **ffrt_queue_t** object to null or destroy the object. For the same **ffrt_queue_t** object, **ffrt_queue_destroy** can be called only once. Otherwise, undefined behavior may occur.
 * If **ffrt_queue_t** is accessed after **ffrt_queue_destroy** is called, undefined behavior may occur.
@@ -919,7 +920,7 @@ Pointer to the target mutex.
 
 Returns **ffrt_success** if the API is called successfully; returns an error code otherwise.
 
-##### Use guide
+##### Description
 * This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
 * The traditional function **pthread_mutex_t** may cause unexpected kernel mode trap when it fails to lock a mutex. **ffrt_mutex_t** solves this problem and therefore provides better performance if used properly.
 * Currently, recursion and timing are not supported.
@@ -1023,7 +1024,7 @@ int main(int narg, char** argv)
 }
 ```
 
-Expected output:
+Expected output
 
 ```
 sum=10
@@ -1081,7 +1082,7 @@ Pointer to the maximum duration during which the thread is blocked.
 
 Returns **ffrt_success** if the API is successfully called; returns **ffrt_error_timedout** if the maximum duration is reached before the mutex is locked.
 
-##### Use guide
+##### Description
 * This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
 * The traditional function **pthread_cond_t** may cause unexpected kernel mode trap when the conditions are not met. **ffrt_cond_t** solves this problem and therefore provides better performance if being used properly.
 * **ffrt_cond_t** in the C code must be explicitly created and destroyed by calling **ffrt_cond_init** and **ffrt_cond_destroy**, respectively.
@@ -1211,7 +1212,7 @@ int main(int narg, char** argv)
 }
 ```
 
-Expected output:
+Expected output
 
 ```
 a=1
@@ -1220,7 +1221,6 @@ a=1
 This example is for reference only and is not encouraged in practice.
 
 ### Miscellaneous
-
 #### ffrt_usleep
 
 Provides performance implementation similar to C11 sleep and Linux usleep.
@@ -1241,7 +1241,7 @@ Duration that the calling thread is suspended, in μs.
 
 N/A
 
-##### Use guide
+##### Description
 * This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
 * The traditional function **sleep** may cause unexpected kernel mode trap. **ffrt_usleep** solves this problem and therefore provides better performance if used properly.
 
@@ -1329,7 +1329,7 @@ N/A
 
 N/A
 
-##### Use guide
+##### Description
 * This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
 * The exact behavior of this API depends on the implementation, especially the mechanism and system state of the FFRT scheduler in use.
 
@@ -1337,6 +1337,41 @@ N/A
 
 N/A
 
+## Long-Time Task Monitoring
+
+### Mechanism 
+* When the task execution reaches one second, stack printing is triggered. The stack printing interval is then changed to one minute. After 10 prints, the interval is changed to 10 minutes. After another 10 prints, the interval is changed to and fixed at 30 minutes.
+* The **GetBacktraceStringByTid** interface of the DFX is called for the stack printing. This interface sends stack capture signals to the blocked thread to trigger interrupts and capture the call stack return. 
+
+### Example 
+Search for the keyword **RecordSymbolAndBacktrace** in the corresponding process log. The following is an example of the corresponding log:
+
+```
+W C01719/ffrt: 60500:RecordSymbolAndBacktrace:159 Tid[16579] function occupies worker for more than [1]s.
+W C01719/ffrt: 60501:RecordSymbolAndBacktrace:164 Backtrace:
+W C01719/ffrt: #00 pc 00000000000075f0 /system/lib64/module/file/libhash.z.so
+W C01719/ffrt: #01 pc 0000000000008758 /system/lib64/module/file/libhash.z.so
+W C01719/ffrt: #02 pc 0000000000012b98 /system/lib64/module/file/libhash.z.so
+W C01719/ffrt: #03 pc 000000000002aaa0 /system/lib64/platformsdk/libfilemgmt_libn.z.so
+W C01719/ffrt: #04 pc 0000000000054b2c /system/lib64/platformsdk/libace_napi.z.so
+W C01719/ffrt: #05 pc 00000000000133a8 /system/lib64/platformsdk/libuv.so
+W C01719/ffrt: #06 pc 00000000000461a0 /system/lib64/chipset-sdk/libffrt.so
+W C01719/ffrt: #07 pc 0000000000046d44 /system/lib64/chipset-sdk/libffrt.so
+W C01719/ffrt: #08 pc 0000000000046a6c /system/lib64/chipset-sdk/libffrt.so
+W C01719/ffrt: #09 pc 00000000000467b0 /system/lib64/chipset-sdk/libffrt.so
+```
+The log prints the task stack, Worker thread ID, and execution time of the long-time task. Find the corresponding component based on the stack to determine the blocking cause.
+
+
+### Precautions
+During long-time task monitoring, an interrupt signal is sent. If your code contains **sleep** or a blocked thread that will be woken up by the interrupt, you should receive the return value of the blocked thread and call the code again. 
+The following is an example:
+```
+unsigned int leftTime = sleep(10);
+while (leftTime != 0) {
+    leftTime = sleep(leftTime);
+}
+```
 
 ## How to Develop
 
@@ -1559,11 +1594,8 @@ In practice, you may not use pure functions in certain scenarios, with the follo
 * The FFRT C++ APIs are implemented based on the C APIs. Before using the APIs, you can manually add the C++ header file.
 * You can download the C++ APIs from the following website: [FFRT C++ APIs](https://gitee.com/openharmony/resourceschedule_ffrt/tree/master/interfaces/kits)
 
-
-
-
-
 ## Constraints
+
 
 After an FFRT object is initialized in the C code, you are responsible for setting the object to null or destroying the object.
 
