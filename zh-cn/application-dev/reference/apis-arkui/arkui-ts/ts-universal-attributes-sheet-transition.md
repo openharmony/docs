@@ -344,7 +344,7 @@ struct index {
         .bindSheet($$this.isShow, this.myBuilder(), {
           height: SheetSize.MEDIUM,
           blurStyle: BlurStyle.Thick,
-          showClose: true
+          showClose: true,
           title: { title: "title", subtitle: "subtitle" },
           preferType: SheetType.CENTER,
 
