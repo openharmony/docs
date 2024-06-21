@@ -301,7 +301,7 @@ textShadow，heightAdaptivePolicy，TextOverflow.MARQUEE使用示例：
 ```ts
 @Entry
 @Component
-struct TextExample {
+struct TextExample3 {
   build() {
     Column({ space: 8 }) {
       Text('textShadow').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
@@ -451,7 +451,7 @@ enableDataDetector和dataDetectorConfig使用示例
 ```ts
 @Entry
 @Component
-struct TextExample7 {
+struct TextExample6 {
   @State phoneNumber: string = '(86) (755) ********';
   @State url: string = 'www.********.com';
   @State email: string = '***@example.com';
@@ -492,7 +492,7 @@ bindSelectionMenu，onTextSelectionChange及closeSelectionMenu使用示例
 ```ts
 @Entry
 @Component
-struct Demo {
+struct TextExample7 {
   controller: TextController = new TextController();
   options: TextOptions = { controller: this.controller };
 
