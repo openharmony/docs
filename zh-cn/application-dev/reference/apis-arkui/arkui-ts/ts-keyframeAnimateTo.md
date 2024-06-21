@@ -12,9 +12,9 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 设置关键帧动画。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
