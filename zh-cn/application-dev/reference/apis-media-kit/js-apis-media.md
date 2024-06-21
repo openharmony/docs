@@ -1289,7 +1289,7 @@ setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boole
 
 关于drm模块的示例具体可见[js-apis-drm.md](../apis-drm-kit/js-apis-drm.md)。
 ```ts
-import drm from '@ohos.multimedia.drm'
+import { drm } from '@kit.DrmKit';
 
 // 创建MediaKeySystem系统
 let keySystem:drm.MediaKeySystem = drm.createMediaKeySystem('com.clearplay.drm');
@@ -1321,7 +1321,7 @@ getMediaKeySystemInfos(): Array\<drm.MediaKeySystemInfo>
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm'
+import { drm } from '@kit.DrmKit';
 
 const infos = avPlayer.getMediaKeySystemInfos();
 console.info('GetMediaKeySystemInfos count: ' + infos.length);
@@ -1605,8 +1605,7 @@ on(type: 'mediaKeySystemInfoUpdate', callback: (mediaKeySystemInfo: Array\<drm.M
 **示例：**
 
 ```ts
-
-import drm from './@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
 avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => {
     for (let i = 0; i < mediaKeySystemInfo.length; i++) {
