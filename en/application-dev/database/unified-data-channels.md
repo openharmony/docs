@@ -25,7 +25,7 @@ The unified data object (**UnifiedData**) is uniquely identified by a URI in the
 
 Currently, the UDMF provides the public data channel for cross-application data sharing.
 
-**Public data channel**: allows applications to write and read data. The corresponding **intention** is **DATA_HUB**.
+The public data channel is a data channel shared by applications. All applications can write data to the channel. The data writer can update, delete, and query data based on the unique identifier generated when the data is written. The data reader can read only the full data in the data channel. The intention type of the public data channel is **DATA_HUB**.
 
 ## Available APIs
 
@@ -45,16 +45,15 @@ The following example describes how to implement many-to-many data sharing. The 
 
 ### Data Provider
 
-1. Import the **@ohos.data.unifiedDataChannel** and **@ohos.data.uniformTypeDescriptor** modules.
+1. Import the **unifiedDataChannel** and **uniformTypeDescriptor** modules.
 
    ```ts
-   import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-   import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+   import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
    ```
 2. Create a **UnifiedData** object and insert it into the UDMF public data channel.
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    let plainText = new unifiedDataChannel.PlainText();
    plainText.textContent = 'hello world!';
    let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
@@ -64,9 +63,9 @@ The following example describes how to implement many-to-many data sharing. The 
      intention: unifiedDataChannel.Intention.DATA_HUB
    }
    try {
-     unifiedDataChannel.insertData(options, unifiedData, (err, data) => {
+     unifiedDataChannel.insertData(options, unifiedData, (err, key) => {
        if (err === undefined) {
-         console.info(`Succeeded in inserting data. key = ${data}`);
+         console.info(`Succeeded in inserting data. key = ${key}`);
        } else {
          console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
        }
@@ -79,13 +78,13 @@ The following example describes how to implement many-to-many data sharing. The 
 3. Update the **UnifiedData** object inserted.
 
    ```ts
-   import { BusinessError } from '@ohos.base';
    let plainText = new unifiedDataChannel.PlainText();
    plainText.textContent = 'How are you!';
    let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
    
    // Specify the URI of the UnifiedData object to update.
    let options: unifiedDataChannel.Options = {
+     // The key here is an example and cannot be directly used. Use the value in the callback of insertData().
      key: 'udmf://DataHub/com.ohos.test/0123456789'
    };
    
@@ -105,7 +104,6 @@ The following example describes how to implement many-to-many data sharing. The 
 4. Delete the **UnifiedData** object from the UDMF public data channel.
 
    ```ts
-   import { BusinessError } from '@ohos.base';
    // Specify the type of the data channel whose data is to be deleted.
    let options: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
@@ -136,16 +134,15 @@ The following example describes how to implement many-to-many data sharing. The 
    
 ### Data Consumer
 
-1. Import the **@ohos.data.unifiedDataChannel** and **@ohos.data.uniformTypeDescriptor** modules.
+1. Import the **unifiedDataChannel** and **uniformTypeDescriptor** modules.
 
    ```ts
-   import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-   import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+   import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
    ```
-2. Query the **UnifiedData** object in the UDMF public data channel.
+2. Query the full data in the UDMF public data channel.
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    // Specify the type of the data channel whose data is to be queried.
    let options: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
