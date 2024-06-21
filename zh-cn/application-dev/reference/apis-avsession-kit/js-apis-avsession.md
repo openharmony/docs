@@ -3107,7 +3107,7 @@ currentAVSession.getAllCastDisplays()
 ## AVCastControlCommandType<sup>10+</sup>
 
 type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
-  'seek' | 'setVolume' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'toggleMute';
+  'seek' | 'setVolume' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'toggleMute'
 
 投播控制器可传递的命令。
 
