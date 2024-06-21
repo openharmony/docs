@@ -3106,26 +3106,30 @@ currentAVSession.getAllCastDisplays()
 
 ## AVCastControlCommandType<sup>10+</sup>
 
+type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
+  'seek' | 'setVolume' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'toggleMute'
+
 投播控制器可传递的命令。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-| 名称           | 类型   | 说明         |
-| -------------- | ------ | ------------ |
-| play           | string | 播放         |
-| pause          | string | 暂停         |
-| stop           | string | 停止         |
-| playNext       | string | 下一首       |
-| playPrevious   | string | 上一首       |
-| fastForward    | string | 快进         |
-| rewind         | string | 快退         |
-| seek           | number | 跳转某一节点 |
-| setSpeed       | number | 设置播放倍速 |
-| setLoopMode    | string | 设置循环模式 |
-| toggleFavorite | string | 是否收藏     |
-| setVolume      | number | 设置音量     |
+| 类型             | 说明         |
+| ---------------- | ------------ |
+| 'play'           | 播放         |
+| 'pause'          | 暂停         |
+| 'stop'           | 停止         |
+| 'playNext'       | 下一首       |
+| 'playPrevious'   | 上一首       |
+| 'fastForward'    | 快进         |
+| 'rewind'         | 快退         |
+| 'seek'           | 跳转某一节点 |
+| 'setVolume'      | 设置音量     |
+| 'setSpeed'       | 设置播放倍速 |
+| 'setLoopMode'    | 设置循环模式 |
+| 'toggleFavorite' | 是否收藏     |
+| 'toggleMute'     | 设置静音状态 |
 
 ## AVCastControlCommand<sup>10+</sup>
 
@@ -3138,7 +3142,7 @@ currentAVSession.getAllCastDisplays()
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
 | command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | 是   | 命令           |
-| parameter | [LoopMode](#loopmode10) &#124; string &#124; number &#124; [media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8) | 否   | 命令对应的参数 |
+| parameter | [media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8) &#124; number &#124; string &#124; [LoopMode](#loopmode10) | 否   | 命令对应的参数 |
 
 ## AVCastController<sup>10+</sup>
 
@@ -4603,7 +4607,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
 | drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。|
 | skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 快进快退支持的时间间隔，默认为SECONDS_15，即15秒。                            |
-|displayTags<sup>11+</sup>     | number                          | 否   | 媒体资源的金标类型。                                                          |
+|displayTags<sup>11+</sup>     | number                          | 否   | 媒体资源的金标类型，取值参考[DisplayTag](#displaytag11)                                                          |
 
 ## AVMediaDescription<sup>10+</sup>
 
@@ -4617,8 +4621,8 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | title        | string                  | 否   | 播放列表媒体标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
 | subtitle     | string                  | 否   | 播放列表媒体子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
 | description  | string                  | 否   | 播放列表媒体描述的文本。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| mediaImage | image.PixelMap          | 否   | 播放列表媒体图片像素数据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| extras       | {[key: string]: any}    | 否   | 播放列表媒体额外字段。     |
+| mediaImage | image.PixelMap | string   | 否   | 播放列表媒体图片像素数据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| extras       | {[key: string]: Object}    | 否   | 播放列表媒体额外字段。     |
 | mediaUri     | string                  | 否   | 播放列表媒体URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | mediaType     | string                  | 否   | 播放列表媒体类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | mediaSize     | number                  | 否   | 播放列表媒体的大小。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
@@ -4634,7 +4638,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | startPosition     | number                  | 否   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | appName     | string                  | 否   | 播放列表提供的应用的名字。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-|displayTags<sup>12+</sup>     | number                           | 否   | 媒体资源的金标类型。        |
+|displayTags<sup>11+</sup>     | number                          | 否   | 媒体资源的金标类型，取值参考[DisplayTag](#displaytag11)。        |
 
 ## AVQueueItem<sup>10+</sup>
 
@@ -7358,6 +7362,10 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 | 'setSpeed'       | 设置播放倍速 |
 | 'setLoopMode'    | 设置循环模式 |
 | 'toggleFavorite' | 是否收藏     |
+| 'playFromAssetId'| 播放指定的assetid |
+|'answer'          | 接听        |
+| 'hangUp'         | 挂断        |
+|'toggleCallMute'  | 设置通话静音状态 |
 
 ## AVControlCommand<sup>10+</sup>
 
