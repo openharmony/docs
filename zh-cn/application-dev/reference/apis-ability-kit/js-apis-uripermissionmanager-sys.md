@@ -185,7 +185,7 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
 
 revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt;
 
-撤销授权指定应用的URI。使用callback异步回调。
+撤销授权指定应用的URI。使用Promise异步回调。
 
 
 默认仅允许撤销应用自身获得的其他应用URI，或应用授权给其他应用属于自身的URI。若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
