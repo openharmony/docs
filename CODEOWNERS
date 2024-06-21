@@ -251,9 +251,10 @@ zh-cn/application-dev/basic-services/update/sample-server-overview.md @hu-zhiqio
 zh-cn/application-dev/basic-services/update/sample-server-guidelines.md @hu-zhiqiong 
 
 [开发-CalendarManager Kit]
-zh-cn/application-dev/kit-readme/Readme-CalendarManager-Kit.md @hu-zhiqiong @jt_123456 @edollar
-zh-cn/application-dev/calendarmanager/calendarmanager-overview.md @hu-zhiqiong @jt_123456 @edollar
-zh-cn/application-dev/calendarmanager/calendarmanager-guidelines.md @hu-zhiqiong @jt_123456 @edollar
+zh-cn/application-dev/calendarmanager @ge-yafang @jt_123456 @edollar
+zh-cn/application-dev/kit-readme/Readme-CalendarManager-Kit.md @ge-yafang @jt_123456 @edollar
+zh-cn/application-dev/calendarmanager/calendarmanager-overview.md @ge-yafang @jt_123456 @edollar
+zh-cn/application-dev/calendarmanager/calendarmanager-guidelines.md @ge-yafang @jt_123456 @edollar
 
 
 [开发-Connectivity Kit]
@@ -930,7 +931,7 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-device-info.md @
 
 
 [API参考-CalendarManager Kit]
-zh-cn/application-dev/reference/apis-calendar-kit/ @hu-zhiqiong @jt_123456 @edollar
+zh-cn/application-dev/reference/apis-calendar-kit/ @ge-yafang @jt_123456 @edollar
 
 
 [API参考-Connectivity Kit-bluetooth]
