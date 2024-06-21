@@ -3197,6 +3197,90 @@
 
 **起始版本**：12
 
+### ohos.permission.QUERY_SECURITY_EVENT
+
+允许应用获取风险详细数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.REPORT_SECURITY_EVENT
+
+允许应用上报风险数据至设备风险管理平台。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.QUERY_SECURITY_MODEL_RESULT
+
+允许应用查询安全模型执行结果。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_SECURITY_GUARD_CONFIG
+
+允许应用管理设备风险管理部件的配置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.COLLECT_SECURITY_EVENT
+
+允许应用采集安全事件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.QUERY_SECURITY_POLICY_FROM_CLOUD
+
+允许应用云查安全策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.REPORT_SECURITY_EVENT_TO_CLOUD
+
+允许应用上报安全事件到云侧。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
