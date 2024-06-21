@@ -35,8 +35,6 @@ ContainerSpan()
 
 ## 示例
 
-### 示例1
-
 ```ts
 // xxx.ets
 @Component
