@@ -343,7 +343,7 @@
          console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
          return;
        }
-       console.info(`Succeeded in restore RdbStore.`);
+       console.info(`Succeeded in restoring RdbStore.`);
      })
    }
    ```
@@ -374,14 +374,14 @@
      if (store !== undefined) {
        // 查看重建结果
        if ((store as relationalStore.RdbStore).rebuilt === relationalStore.RebuildType.REBUILT) {
-         console.info('Succeeded in rebuilt RdbStore.');
+         console.info('Succeeded in rebuilding RdbStore.');
          // 将损坏前备份的数据恢复到新数据库中
          (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
            if (err) {
              console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
              return;
            }
-           console.info(`Succeeded in restore RdbStore.`);
+           console.info(`Succeeded in restoring RdbStore.`);
          })
        }
      }
