@@ -26,7 +26,7 @@
 
 ![project](figures/project.png)
 
-- **AppScope &gt; app.json5**：应用的全局配置信息。
+- **AppScope &gt; app.json5**：应用的全局配置信息，详见[app.json5配置文件](app-configuration-file.md)。
 
 - **entry**：OpenHarmony工程模块，编译构建生成一个HAP包。
   - **src &gt; main &gt; ets**：用于存放ArkTS源码。
