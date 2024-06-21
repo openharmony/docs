@@ -579,7 +579,7 @@ try {
 | backup  | boolean | 否 |设置数据库文件是否备份，默认为true，即备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
 | autoSync  | boolean | 否 |设置数据库文件是否自动同步。默认为false，即手动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
 | kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为DEVICE_COLLABORATION，即多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| securityLevel | [SecurityLevel](#securitylevel) | 是 |设置数据库安全级别(S1-S4)。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core  |
+| securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别(S1-S4)。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core  |
 | schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值，默认为undefined, 即不使用schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
@@ -624,7 +624,7 @@ KVStore常量。
 | MAX_QUERY_LENGTH  | 512000 | 最大查询长度，单位字节。 |
 | MAX_BATCH_SIZE  | 128 | 最大批处理操作数量。 |
 
-## Schema<sup>8+</sup> ##
+## Schema<sup>8+</sup>
 
 表示数据库模式，可以在创建或打开数据库时创建Schema对象并将它们放入[Options](#options)中。
 
@@ -645,7 +645,7 @@ constructor()
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
-## FieldNode<sup>8+</sup> ##
+## FieldNode<sup>8+</sup>
 
 表示 Schema 实例的节点，提供定义存储在数据库中的值的方法。
 
@@ -714,7 +714,7 @@ try {
 ```
 
 
-## KvStoreResultSet<sup>8+</sup> ##
+## KvStoreResultSet<sup>8+</sup>
 
 提供获取KVStore数据库结果集的相关方法，包括查询和移动数据读取位置等。
 
@@ -1173,7 +1173,7 @@ try {
 ```
 
 
-## Query<sup>8+</sup> ##
+## Query<sup>8+</sup>
 
 使用谓词表示数据库查询，提供创建Query实例、查询数据库中的数据和添加谓词的方法。
 
@@ -1231,7 +1231,7 @@ equalTo(field: string, value: number|string|boolean): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1266,7 +1266,7 @@ notEqualTo(field: string, value: number|string|boolean): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1301,7 +1301,7 @@ greaterThan(field: string, value: number|string|boolean): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | number\|string\|boolean  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1336,7 +1336,7 @@ lessThan(field: string, value: number|string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1371,7 +1371,7 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1406,7 +1406,7 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | number\|string  | 是    | 表示指定的值。|
 
 **返回值：**
@@ -1441,7 +1441,7 @@ isNull(field: string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 
 **返回值：**
 
@@ -1476,7 +1476,7 @@ inNumber(field: string, valueList: number[]): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | valueList  | number[]  | 是    | 表示指定的值列表。|
 
 **返回值：**
@@ -1511,7 +1511,7 @@ inString(field: string, valueList: string[]): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | valueList  | string[]  | 是    | 表示指定的字符串值列表。|
 
 **返回值：**
@@ -1546,7 +1546,7 @@ notInNumber(field: string, valueList: number[]): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | valueList  | number[]  | 是    | 表示指定的值列表。|
 
 **返回值：**
@@ -1581,7 +1581,7 @@ notInString(field: string, valueList: string[]): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | valueList  | string[]  | 是    | 表示指定的字符串值列表。|
 
 **返回值：**
@@ -1616,7 +1616,7 @@ like(field: string, value: string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | string  | 是    | 表示指定的字符串值。|
 
 **返回值：**
@@ -1651,7 +1651,7 @@ unlike(field: string, value: string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 | value  | string  | 是    | 表示指定的字符串值。|
 
 **返回值：**
@@ -1746,7 +1746,7 @@ orderByAsc(field: string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 
 **返回值：**
 
@@ -1781,7 +1781,7 @@ orderByDesc(field: string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。  |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。  |
 
 **返回值：**
 
@@ -1854,7 +1854,7 @@ isNotNull(field: string): Query
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | 是    |表示指定字段，不能包含' ^ '。      |
+| field  | string  | 是    |表示指定字段，不能包含' ^ '。      |
 
 **返回值：**
 
@@ -4080,7 +4080,7 @@ try {
 ```
 
 
-## DeviceKVStore<sup>8+</sup> ##
+## DeviceKVStore<sup>8+</sup>
 
 设备协同数据库，继承自KVStore，提供查询数据和同步数据的方法。
 
