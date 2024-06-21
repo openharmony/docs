@@ -64,7 +64,7 @@ textOverflow(value: { overflow: TextOverflow })
 
 当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
 
-当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效，此时不支持ImageSpan组件，并且在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。在跑马灯模式下，Text组件clip属性默认为true。属性字符串的[CustomSpan](ts-universal-styled-string.md#customspan)不支持跑马灯模式。
+当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效。在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。在跑马灯模式下，Text组件clip属性默认为true。属性字符串的[CustomSpan](ts-universal-styled-string.md#customspan)不支持跑马灯模式。
 
 从API version 12开始，当overflow设置为TextOverflow.MARQUEE时，支持ImageSpan组件，文本和图片在一行内滚动显示。
 
@@ -1140,7 +1140,7 @@ bindSelectionMenu，onTextSelectionChange及closeSelectionMenu使用示例
 ```ts
 @Entry
 @Component
-struct Demo {
+struct TextExample8 {
   controller: TextController = new TextController();
   options: TextOptions = { controller: this.controller };
 
@@ -1250,7 +1250,7 @@ fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用
 ```ts
 @Entry
 @Component
-struct text {
+struct TextExample9 {
   @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
@@ -1281,7 +1281,7 @@ import { LengthMetrics } from '@ohos.arkui.node'
 
 @Entry
 @Component
-struct LineSpacingExample {
+struct TextExample10 {
   build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
         Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
@@ -1321,7 +1321,7 @@ lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakS
 ```ts
 @Entry
 @Component
-struct TextExample1 {
+struct TextExample11 {
   @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
     "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
     "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
@@ -1362,11 +1362,11 @@ getLayoutManager使用示例。
 ```ts
 @Entry
 @Component
-export struct TextMessageClick {
+struct TextExample12 {
   @State lineCount: string = ""
   @State glyphPositionAtCoordinate: string = ""
   @State lineMetrics: string = ""
-  controller: TextController = new TextController();
+  controller: TextController = new TextController()
   @State textStr: string =
     'Hello World! 您好，世界！'
 
@@ -1382,7 +1382,7 @@ export struct TextMessageClick {
           .fontSize(25)
           .borderWidth(1)
           .onAreaChange(() => {
-            let layoutManager = this.controller.getLayoutManager();
+            let layoutManager: LayoutManager = this.controller.getLayoutManager()
             this.lineCount = "LineCount: " + layoutManager.getLineCount()
           })
 
@@ -1393,7 +1393,7 @@ export struct TextMessageClick {
         Button("相对组件坐标[150,50]字形信息")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            let position = layoutManager.getGlyphPositionAtCoordinate(150, 50)
+            let position: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50)
             this.glyphPositionAtCoordinate =
               "相对组件坐标[150,50] glyphPositionAtCoordinate position: " + position.position + " affinity: " +
               position.affinity
@@ -1405,7 +1405,7 @@ export struct TextMessageClick {
         Button("首行行信息、文本样式信息、以及字体属性信息")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            let lineMetrics = layoutManager.getLineMetrics(0)
+            let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0)
             this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + '\n\n'
             let runMetrics = lineMetrics.runMetrics
             runMetrics.forEach((value, key) => {
@@ -1429,10 +1429,7 @@ textSelectable使用示例，展示了设置TextSelectMode.SELECTABLE_FOCUSABEL�
 ```ts
 @Entry
 @Component
-struct TextExample {
-@Entry
-@Component
-struct Index {
+struct TextExample13 {
   @State message: string = 'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText';
   
   build() {
