@@ -206,3 +206,75 @@ struct Index {
   }
 }
 ```
+
+
+### dispose
+
+dispose(): void
+
+立即释放当前ComponentContent，即ComponentContent对象与后端实体节点解除引用关系。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import { ComponentContent } from "@ohos.arkui.node";
+
+class Params {
+  text: string = ""
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({bottom: 36})
+  }.backgroundColor('#FFF0F0F0')
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello"
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+            .onClick(() => {
+                let uiContext = this.getUIContext();
+                let promptAction = uiContext.getPromptAction();
+                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+                promptAction.openCustomDialog(contentNode);
+
+                setTimeout(() => {
+                  promptAction.closeCustomDialog(contentNode)
+                    .then(() => {
+                      console.info('customdialog closed.')
+                      if (contentNode !== null) {
+                        contentNode.dispose();   //释放contentNode
+                      }
+                    }).catch((error: BusinessError) => {
+                      let message = (error as BusinessError).message;
+                      let code = (error as BusinessError).code;
+                      console.error(`closeCustomDialog args error code is ${code}, message is ${message}`);
+                    })
+                }, 2000);     //2秒后自动关闭
+            })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
