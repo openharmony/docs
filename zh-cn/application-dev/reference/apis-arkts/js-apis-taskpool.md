@@ -934,6 +934,12 @@ static sendData(...args: Object[]): void
 
 在任务执行过程中向宿主线程发送消息并触发回调。使用该方法前需要先构造Task。
 
+> **说明：**
+>
+> - 该接口在taskpool的线程中调用。
+> - 避免在回调函数中使用该方法。
+> - 调用该接口时确保处理数据的回调函数在宿主线程已注册。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
@@ -960,12 +966,29 @@ static sendData(...args: Object[]): void
 
 ```ts
 @Concurrent
-function ConcurrentFunc(num: number): number {
+function sendDataTest(num: number): number {
   let res: number = num * 10;
   taskpool.Task.sendData(res);
   return num;
 }
+
+function pringLog(data: number): void {
+  console.info("taskpool: data is: " + data);
+}
+
+async function taskpoolTest(): Promise<void> {
+  try {
+    let task: taskpool.Task = new taskpool.Task(sendDataTest, 1);
+    task.onReceiveData(pringLog);
+    await taskpool.execute(task);
+  } catch (e) {
+    console.error(`taskpool: error code: ${e.code}, info: ${e.message}`);
+  }
+}
+
+taskpoolTest();
 ```
+
 
 ### onReceiveData<sup>11+</sup>
 
