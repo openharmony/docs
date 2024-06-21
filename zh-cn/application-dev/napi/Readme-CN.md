@@ -39,7 +39,6 @@
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - JSVM-API调优&高性能使用示例
         - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](use-jsvm-runtime-task.md)
-        - [使用codecache DEMO](use-jsvm-codecache-demo.md)
   - 资源管理
     - [Rawfile开发指导](rawfile-guidelines.md)
   - 线程调度
