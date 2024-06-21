@@ -211,10 +211,10 @@ bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then((res: Array<b
 
 | 名称                      | 类型     | 必填   | 说明                                       |
 | ------------------------ | ------ | ---- | ---------------------------------------- |
-| bundleName               | string | 是    | 应用包名。                                    |
-| abilityPrevAccessTime    | number | 是    | 应用最后一次使用的时间。                             |
-| abilityInFgTotalTime     | number | 是    | 应用在前台使用的总时间。                             |
-| id                       | number | 否    | 用户id。|
+| bundleName               | string | 否    | 应用包名。                                    |
+| abilityPrevAccessTime    | number | 否    | 应用最后一次使用的时间。                             |
+| abilityInFgTotalTime     | number | 否    | 应用在前台使用的总时间。                             |
+| id                       | number | 是    | 用户id。|
 | abilityPrevSeenTime      | number | 否    | 应用最后一次在前台可见的时间。|
 | abilitySeenTotalTime     | number | 否    | 应用在前台可见的总时间。|
 | fgAbilityAccessTotalTime | number | 否    | 应用访问前台的总时间。|
@@ -246,9 +246,9 @@ merge(toMerge: BundleStateInfo): void
 
 | 名称                   | 类型     | 必填   | 说明                                       |
 | --------------------- | ------ | ---- | ---------------------------------------- |
-| bundleName            | string | 是    | 应用包名。                                    |
-| stateType             | number | 是    | 应用事件类型。                                  |
-| stateOccurredTime     | number | 是    | 应用事件发生的时间戳。                              |
+| bundleName            | string | 否    | 应用包名。                                    |
+| stateType             | number | 否    | 应用事件类型。                                  |
+| stateOccurredTime     | number | 否    | 应用事件发生的时间戳。                              |
 | appUsagePriorityGroup | number | 否    | 应用程序的使用优先级组。|
 | indexOfLink           | string | 否    | 快捷方式id。|
 | nameOfClass           | string | 否    | 类名。|
