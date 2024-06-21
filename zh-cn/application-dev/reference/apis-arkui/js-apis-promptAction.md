@@ -411,38 +411,37 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 ```ts
 import promptAction from '@ohos.promptAction'
-let customDialogId: number = 0
-@Builder
-function customDialogBuilder() {
-  Column() {
-    Text('Custom dialog Message').fontSize(10)
-    Row() {
-      Button("确认").onClick(() => {
-        promptAction.closeCustomDialog(customDialogId)
-      })
-      Blank().width(50)
-      Button("取消").onClick(() => {
-        promptAction.closeCustomDialog(customDialogId)
-      })
-    }
-  }.height(200).padding(5)
-}
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  private customDialogComponentId: number = 0
+
+  @Builder customDialogComponent() {
+    Column() {
+      Text('弹窗').fontSize(30)
+      Row({ space: 50 }) {
+        Button("确认").onClick(() => {
+          promptAction.closeCustomDialog(this.customDialogComponentId)
+        })
+        Button("取消").onClick(() => {
+          promptAction.closeCustomDialog(this.customDialogComponentId)
+        })
+      }
+    }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
+  }
 
   build() {
     Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+      Column({ space: 20 }) {
+        Text('组件内弹窗')
+          .fontSize(30)
           .onClick(() => {
             promptAction.openCustomDialog({
-              builder: customDialogBuilder.bind(this),
-              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+              builder: () => {
+                this.customDialogComponent()
+              },
+              onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
                 console.info("reason" + JSON.stringify(dismissDialogAction.reason))
                 console.log("dialog onWillDismiss")
                 if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
@@ -453,7 +452,7 @@ struct Index {
                 }
               }
             }).then((dialogId: number) => {
-              customDialogId = dialogId
+              this.customDialogComponentId = dialogId
             })
           })
       }
@@ -462,21 +461,25 @@ struct Index {
     .height('100%')
   }
 }
+
 ```
 该示例定义了弹窗样式，如宽度、高度、背景色、阴影等等。
 ```ts
 import promptAction from '@ohos.promptAction'
+
+let customDialogId: number = 0
+
 @Builder
 function customDialogBuilder() {
   Column() {
     Text('Custom dialog Message').fontSize(10)
     Row() {
       Button("确认").onClick(() => {
-        promptAction.closeCustomDialog(0)
+        promptAction.closeCustomDialog(customDialogId)
       })
       Blank().width(50)
       Button("取消").onClick(() => {
-        promptAction.closeCustomDialog(0)
+        promptAction.closeCustomDialog(customDialogId)
       })
     }
   }
@@ -486,6 +489,12 @@ function customDialogBuilder() {
 @Component
 struct Index {
   @State message: string = 'Hello World'
+
+  @Builder
+  customDialogComponent() {
+    customDialogBuilder()
+  }
+
   build() {
     Row() {
       Column() {
@@ -494,17 +503,26 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             promptAction.openCustomDialog({
-              builder: customDialogBuilder.bind(this),
+              builder: () => {
+                this.customDialogComponent()
+              },
               showInSubWindow: false,
-              offset:{ dx: 5, dy: 5},
+              offset: { dx: 5, dy: 5 },
               backgroundColor: 0xd9ffffff,
               cornerRadius: 20,
               width: '80%',
               height: 200,
               borderWidth: 1,
-              borderStyle: BorderStyle.Dashed,//使用borderStyle属性，需要和borderWidth属性一起使用
-              borderColor: Color.Blue,//使用borderColor属性，需要和borderWidth属性一起使用
-              shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+              borderStyle: BorderStyle.Dashed, //使用borderStyle属性，需要和borderWidth属性一起使用
+              borderColor: Color.Blue, //使用borderColor属性，需要和borderWidth属性一起使用
+              shadow: ({
+                radius: 20,
+                color: Color.Grey,
+                offsetX: 50,
+                offsetY: 0
+              }),
+            }).then((dialogId: number) => {
+              customDialogId = dialogId
             })
           })
       }
@@ -638,7 +656,7 @@ closeCustomDialog(dialogId: number): void
 
 | 名称    | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是  | 设置自定义弹窗的内容。<br/>**说明：** <br/>builder需要使用bind(this)。<br/>builder根节点宽高百分比相对弹框容器大小。<br/>builder非根节点宽高百分比相对父节点大小。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是  | 设置自定义弹窗的内容。<br/>**说明：** <br/>builder需要赋值为箭头函数，格式如下：() => { this.XXX() }，其中XXX是内部builder名。<br/>如果是全局builder需要在组件内部创建一个builder，在内部builder中调用全局builder。<br/>builder根节点宽高百分比相对弹框容器大小。<br/>builder非根节点宽高百分比相对父节点大小。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundColor <sup>12+</sup>| [ResourceColor](arkui-ts/ts-types.md#resourcecolor)  | 否 | 设置弹窗背板颜色。 |
 | cornerRadius<sup>12+</sup>| [BorderRadiuses](arkui-ts/ts-types.md#borderradiuses9) &nbsp;\| &nbsp;[Dimension](arkui-ts/ts-types.md#dimension10) | 否 | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '32vp', topRight: '32vp', bottomLeft: '32vp', bottomRight: '32vp' }。<br /> 圆角大小受组件尺寸限制，最大值为组件宽或高的一半，若值为负，则按照默认值处理。 <br /> 百分比参数方式：以父元素弹窗宽和高的百分比来设置弹窗的圆角。|
 | borderWidth<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](arkui-ts/ts-types.md#edgewidths9)  | 否 | 设置弹窗背板的边框宽度。<br />可分别设置4个边框宽度。<br />默认值：0。<br /> 百分比参数方式：以父元素弹窗宽的百分比来设置弹窗的边框宽度。<br />当弹窗左边框和右边框大于弹窗宽度，弹窗上边框和下边框大于弹窗高度，显示可能不符合预期。|
