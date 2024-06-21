@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 ```
 
 ## CmKeyPurpose
@@ -166,7 +166,7 @@ import certManager from '@ohos.security.certManager';
 | CM_ERROR_MAX_CERT_COUNT_REACHED<sup>12+</sup>  | 17500004      | 表示证书或凭据数量达到上限。 |
 | CM_ERROR_NO_AUTHORIZATION<sup>12+</sup>  | 17500005      | 表示应用未经用户授权。 |
 
-## certManager.installPrivateCertificate
+## certificateManager.installPrivateCertificate
 
 installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string, callback: AsyncCallback\<CMResult>): void
 
@@ -199,7 +199,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* 安装的凭据数据需要业务赋值，本例数据非凭据数据 */
 let keystore: Uint8Array = new Uint8Array([
@@ -207,7 +207,7 @@ let keystore: Uint8Array = new Uint8Array([
 ]);
 let keystorePwd: string = "123456";
 try {
-  certManager.installPrivateCertificate(keystore, keystorePwd, "test", (err, cmResult) => {
+  certificateManager.installPrivateCertificate(keystore, keystorePwd, "test", (err, cmResult) => {
     if (err != null) {
       console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -220,7 +220,7 @@ try {
 }
 ```
 
-## certManager.installPrivateCertificate
+## certificateManager.installPrivateCertificate
 
 installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string): Promise\<CMResult>
 
@@ -259,8 +259,8 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 **示例**：
 
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 /* 安装的凭据数据需要业务赋值，本例数据非凭据数据 */
 let keystore: Uint8Array = new Uint8Array([
@@ -268,7 +268,7 @@ let keystore: Uint8Array = new Uint8Array([
 ]);
 let keystorePwd: string = "123456";
 try {
-  certManager.installPrivateCertificate(keystore, keystorePwd, 'test').then((cmResult) => {
+  certificateManager.installPrivateCertificate(keystore, keystorePwd, 'test').then((cmResult) => {
     let uri: string = (cmResult.uri == undefined) ? '' : cmResult.uri;
     console.info('Succeeded in installing private certificate.');
   }).catch((err: BusinessError) => {
@@ -279,7 +279,7 @@ try {
 }
 ```
 
-## certManager.getPrivateCertificate
+## certificateManager.getPrivateCertificate
 
 getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>): void
 
@@ -309,11 +309,11 @@ getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>): void
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
 try {
-  certManager.getPrivateCertificate(uri, (err, cmResult) => {
+  certificateManager.getPrivateCertificate(uri, (err, cmResult) => {
     if (err != null) {
       console.error(`Failed to get private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -330,7 +330,7 @@ try {
 }
 ```
 
-## certManager.getPrivateCertificate
+## certificateManager.getPrivateCertificate
 
 getPrivateCertificate(keyUri: string): Promise\<CMResult>
 
@@ -365,12 +365,12 @@ getPrivateCertificate(keyUri: string): Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
 try {
-  certManager.getPrivateCertificate(uri).then((cmResult) => {
+  certificateManager.getPrivateCertificate(uri).then((cmResult) => {
     if (cmResult.credential == undefined) {
       console.info('The result of getting private certificate is undefined.');
     } else {
@@ -385,7 +385,7 @@ try {
 }
 ```
 
-## certManager.uninstallPrivateCertificate
+## certificateManager.uninstallPrivateCertificate
 
 uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>): void
 
@@ -415,11 +415,11 @@ uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>): voi
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
 try {
-  certManager.uninstallPrivateCertificate(uri, (err, result) => {
+  certificateManager.uninstallPrivateCertificate(uri, (err, result) => {
     if (err != null) {
       console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -431,7 +431,7 @@ try {
 }
 ```
 
-## certManager.uninstallPrivateCertificate
+## certificateManager.uninstallPrivateCertificate
 
 uninstallPrivateCertificate(keyUri: string): Promise\<void>
 
@@ -466,12 +466,12 @@ uninstallPrivateCertificate(keyUri: string): Promise\<void>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
 try {
-  certManager.uninstallPrivateCertificate(uri).then((cmResult) => {
+  certificateManager.uninstallPrivateCertificate(uri).then((cmResult) => {
     console.info('Succeeded in uninstalling private certificate.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
@@ -481,7 +481,7 @@ try {
 }
 ```
 
-## certManager.init
+## certificateManager.init
 
 init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>): void
 
@@ -513,16 +513,16 @@ init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>)
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
-const req: certManager.CMSignatureSpec = {
-  purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
-  padding: certManager.CmKeyPadding.CM_PADDING_PSS,
-  digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
+const req: certificateManager.CMSignatureSpec = {
+  purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+  padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
+  digest: certificateManager.CmKeyDigest.CM_DIGEST_SHA256
 }
 try {
-  certManager.init(uri, req, (err, cmHandle) => {
+  certificateManager.init(uri, req, (err, cmHandle) => {
     if (err != null) {
       console.error(`Failed to init. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -534,7 +534,7 @@ try {
 }
 ```
 
-## certManager.init
+## certificateManager.init
 
 init(authUri: string, spec: CMSignatureSpec): Promise\<CMHandle>
 
@@ -571,17 +571,17 @@ init(authUri: string, spec: CMSignatureSpec): Promise\<CMHandle>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri: string = 'test'; /* 业务安装凭据，返回唯一标识符，此处省略 */
-const req: certManager.CMSignatureSpec = {
-  purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
-  padding: certManager.CmKeyPadding.CM_PADDING_PSS,
-  digest: certManager.CmKeyDigest.CM_DIGEST_MD5
+const req: certificateManager.CMSignatureSpec = {
+  purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
+  padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
+  digest: certificateManager.CmKeyDigest.CM_DIGEST_MD5
 }
 try {
-  certManager.init(uri, req).then((handle) => {
+  certificateManager.init(uri, req).then((handle) => {
     console.info('Succeeded in initiating.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to init. Code: ${err.code}, message: ${err.message}`);
@@ -591,7 +591,7 @@ try {
 }
 ```
 
-## certManager.update
+## certificateManager.update
 
 update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>): void
 
@@ -621,7 +621,7 @@ update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>): vo
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
@@ -631,7 +631,7 @@ let srcData: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.update(cmHandle, srcData, (err, result) => {
+  certificateManager.update(cmHandle, srcData, (err, result) => {
     if (err != null) {
       console.error(`Failed to update. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -643,7 +643,7 @@ try {
 }
 ```
 
-## certManager.update
+## certificateManager.update
 
 update(handle: Uint8Array, data: Uint8Array): Promise\<void>
 
@@ -678,8 +678,8 @@ update(handle: Uint8Array, data: Uint8Array): Promise\<void>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
@@ -689,7 +689,7 @@ let srcData: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.update(cmHandle, srcData).then((result) => {
+  certificateManager.update(cmHandle, srcData).then((result) => {
     console.info('Succeeded in updating.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to update. Code: ${err.code}, message: ${err.message}`);
@@ -699,7 +699,7 @@ try {
 }
 ```
 
-## certManager.finish
+## certificateManager.finish
 
 finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>): void
 
@@ -728,14 +728,14 @@ finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>): void
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.finish(cmHandle, (err, cmResult) => {
+  certificateManager.finish(cmHandle, (err, cmResult) => {
     if (err != null) {
       console.error(`Failed to finish. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -752,7 +752,7 @@ try {
 }
 ```
 
-## certManager.finish
+## certificateManager.finish
 
 finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMResult>): void
 
@@ -782,7 +782,7 @@ finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMRes
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
@@ -792,7 +792,7 @@ let signRes: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.finish(cmHandle, signRes, (err, cmResult) => {
+  certificateManager.finish(cmHandle, signRes, (err, cmResult) => {
     if (err != null) {
       console.error(`Failed to finish. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -804,7 +804,7 @@ try {
 }
 ```
 
-## certManager.finish
+## certificateManager.finish
 
 finish(handle: Uint8Array, signature?: Uint8Array): Promise\<CMResult>
 
@@ -839,8 +839,8 @@ finish(handle: Uint8Array, signature?: Uint8Array): Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
@@ -848,7 +848,7 @@ let cmHandle: Uint8Array = new Uint8Array([
 ]);
 try {
   /* 签名的finish操作 */
-  certManager.finish(cmHandle).then((cmResult) => {
+  certificateManager.finish(cmHandle).then((cmResult) => {
     if (cmResult.outData != undefined) {
       let signRes1: Uint8Array = cmResult.outData;
       console.info('Succeeded in finishing signature.');
@@ -864,7 +864,7 @@ try {
     0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
   ]);
   /* 验签的finish操作 */
-  certManager.finish(cmHandle, signRes).then((cmResult) => {
+  certificateManager.finish(cmHandle, signRes).then((cmResult) => {
     console.info('Succeeded in finishing verification.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to finish verification. Code: ${err.code}, message: ${err.message}`);
@@ -874,7 +874,7 @@ try {
 }
 ```
 
-## certManager.abort
+## certificateManager.abort
 
 abort(handle: Uint8Array, callback: AsyncCallback\<void>): void
 
@@ -903,14 +903,14 @@ abort(handle: Uint8Array, callback: AsyncCallback\<void>): void
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.abort(cmHandle, (err, cmResult) => {
+  certificateManager.abort(cmHandle, (err, cmResult) => {
     if (err != null) {
       console.error(`Failed to abort. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -922,7 +922,7 @@ try {
 }
 ```
 
-## certManager.abort
+## certificateManager.abort
 
 abort(handle: Uint8Array): Promise\<void>
 
@@ -956,15 +956,15 @@ abort(handle: Uint8Array): Promise\<void>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 /* cmHandle为业务调用init接口的返回值，此处仅为示例 */
 let cmHandle: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certManager.abort(cmHandle).then((result) => {
+  certificateManager.abort(cmHandle).then((result) => {
     console.info('Succeeded in aborting.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to abort. Code: ${err.code}, message: ${err.message}`);
@@ -974,7 +974,7 @@ try {
 }
 ```
 
-## certManager.getPublicCertificate<sup>12+</sup>
+## certificateManager.getPublicCertificate<sup>12+</sup>
 
 getPublicCertificate(keyUri: string): Promise\<CMResult>
 
@@ -1010,12 +1010,12 @@ getPublicCertificate(keyUri: string): Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri: string = 'test'; /* 用户安装公共凭据返回的唯一标识符，此处省略 */
 try {
-  certManager.getPublicCertificate(uri).then((cmResult) => {
+  certificateManager.getPublicCertificate(uri).then((cmResult) => {
     if (cmResult.credential == undefined) {
       console.info('The result of getting public certificate is undefined.');
     } else {
@@ -1030,7 +1030,7 @@ try {
 }
 ```
 
-## certManager.isAuthorizedApp<sup>12+</sup>
+## certificateManager.isAuthorizedApp<sup>12+</sup>
 
 isAuthorizedApp(keyUri: string): Promise\<boolean>
 
@@ -1064,12 +1064,12 @@ isAuthorizedApp(keyUri: string): Promise\<boolean>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri: string = 'test'; /* 用户授权给应用使用的凭据的唯一标识符，此处省略 */
 try {
-  certManager.isAuthorizedApp(uri).then((res) => {
+  certificateManager.isAuthorizedApp(uri).then((res) => {
     if (res) {
       console.info('The application is authorized by the user.');
     } else {
@@ -1083,7 +1083,7 @@ try {
 }
 ```
 
-## certManager.getAllUserTrustedCertificates<sup>12+</sup>
+## certificateManager.getAllUserTrustedCertificates<sup>12+</sup>
 
 getAllUserTrustedCertificates(): Promise\<CMResult>
 
@@ -1110,11 +1110,11 @@ getAllUserTrustedCertificates(): Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  certManager.getAllUserTrustedCertificates().then((cmResult) => {
+  certificateManager.getAllUserTrustedCertificates().then((cmResult) => {
     if (cmResult.certList == undefined) {
       console.info('The result of getting all user trusted certificates is undefined.');
     } else {
@@ -1129,7 +1129,7 @@ try {
 }
 ```
 
-## certManager.getUserTrustedCertificate<sup>12+</sup>
+## certificateManager.getUserTrustedCertificate<sup>12+</sup>
 
 getUserTrustedCertificate(certUri: string): Promise\<CMResult>
 
@@ -1164,12 +1164,12 @@ getUserTrustedCertificate(certUri: string): Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let certUri: string = 'testUserCert'; /* 用户安装用户根CA证书返回的唯一标识符，此处省略 */
 try {
-  certManager.getUserTrustedCertificate(certUri).then((cmResult) => {
+  certificateManager.getUserTrustedCertificate(certUri).then((cmResult) => {
     if (cmResult.certInfo == undefined) {
       console.info('The result of getting user trusted certificate is undefined.');
     } else {
