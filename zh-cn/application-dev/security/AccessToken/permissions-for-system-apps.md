@@ -3173,6 +3173,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_SUBSCRIPTION_CAPSULE_DATA
+
+允许系统应用访问订阅胶囊数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_SEARCH_SERVICE
 
 允许系统应用调用融合搜索服务提供的本地搜索能力。
