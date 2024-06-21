@@ -57,7 +57,7 @@ interface ParticleInterface {
 
 ### disturbanceFields<sup>12+</sup>
 
-disturbanceFields(fields: Array&lt;DisturbanceFieldsOptions&gt;)
+disturbanceFields(fields: Array&lt;DisturbanceFieldOptions&gt;)
 
 设置扰动场。
 
@@ -67,7 +67,7 @@ disturbanceFields(fields: Array&lt;DisturbanceFieldsOptions&gt;)
 
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------ | ------- | ---- | ---------------------------- |
-| fields  | Array<[DisturbanceFieldsOptions](#disturbancefieldsoptions12)> | 是   | 扰动场数组。 |
+| fields  | Array<[DisturbanceFieldOptions](#disturbancefieldoptions12)> | 是   | 扰动场数组。 |
 
 ### emitter<sup>12+</sup>
 emitter(value: Array&lt;EmitterProperty&gt;)
@@ -364,12 +364,12 @@ enum ParticleUpdater {
 |RANDOM | 随机变化|
 |CURVE |动画曲线变化|
 
-## DisturbanceFieldsOptions<sup>12+</sup>
+## DisturbanceFieldOptions<sup>12+</sup>
 
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------ | ------- | ---- | ---------------------------- |
 | strength  | number | 否   |场强，表示场从中心向外的排斥力的强度，默认值0。正数表示排斥力方向朝外，负数表示吸引力，方向朝内。 |
-| shape  |   [DisturbanceFieldsShape](#disturbancefieldsshape12) | 否   | 场的形状。<br/>默认为DisturbanceFieldsShape.RECT。 |
+| shape  |   [DisturbanceFieldShape](#disturbancefieldshape12) | 否   | 场的形状。<br/>默认为DisturbanceFieldShape.RECT。 |
 | size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt;| 否  |场的大小。<br/>默认值 {width:0，height:0}。 |
 | position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |场的位置。<br/>默认值{x:0，y:0}。 |
 | feather  | number | 否   |羽化值，表示场从中心点到场边缘的衰减程度，取值范围0到100的整数，如果0则表示场是一个刚体，所有范围内的粒子都被排斥在外。羽化值越大场的缓和程度越大，场范围内出现越多靠近中心点的粒子。<br/>默认值为0。 |
@@ -377,7 +377,7 @@ enum ParticleUpdater {
 | noiseFrequency  | number | 否   |噪声频率，频率越大噪声越细腻，取值大于等于0。<br/> 默认值1。 |
 | noiseAmplitude  | number | 否   |噪声震幅，噪声的波动的范围，震幅越大噪音之间差异越大。取值大于等于0。<br/> 默认值1。 |
 
-## DisturbanceFieldsShape<sup>12+</sup>
+## DisturbanceFieldShape<sup>12+</sup>
 
 | 名称        | 描述   |
 | --------| ----------|

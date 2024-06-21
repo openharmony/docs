@@ -81,9 +81,9 @@ onEnter(event: (type: RouteType, progress: number) => void): PageTransitionEnter
 
 逐帧回调，直到入场动画结束，progress从0变化到1。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -132,6 +132,11 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
 ```
 
  ## RouteType枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 
 | 名称 | 描述                                                         |
 | ---- | ------------------------------------------------------------ |
