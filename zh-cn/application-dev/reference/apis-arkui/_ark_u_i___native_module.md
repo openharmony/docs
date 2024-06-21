@@ -3313,9 +3313,9 @@ enum ArkUI_TextInputContentType
 | ARKUI_TEXTINPUT_CONTENT_TYPE_PERSON_FULL_NAME  | 【姓名】在已启用情景化自动填充的情况下，支持姓名的自动保存和自动填充。  | 
 | ARKUI_TEXTINPUT_CONTENT_TYPE_PERSON_LAST_NAME  | 【姓氏】在已启用情景化自动填充的情况下，支持姓氏的自动保存和自动填充。  | 
 | ARKUI_TEXTINPUT_CONTENT_TYPE_PERSON_FIRST_NAME  | 【名字】在已启用情景化自动填充的情况下，支持名字的自动保存和自动填充。  | 
-| ARKUI_TEXTINPUT_CONTENT_TYPE_PHONE_NUMBER  | 【手机号】在已启用情景化自动填充的情况下，支持手机号的自动保存和自动填充。  | 
+| ARKUI_TEXTINPUT_CONTENT_TYPE_PHONE_NUMBER  | 【手机号码】在已启用情景化自动填充的情况下，支持手机号码的自动保存和自动填充。  | 
 | ARKUI_TEXTINPUT_CONTENT_TYPE_PHONE_COUNTRY_CODE  | 【国家代码】在已启用情景化自动填充的情况下，支持国家代码的自动保存和自动填充。  | 
-| ARKUI_TEXTINPUT_CONTENT_TYPE_FULL_PHONE_NUMBER  | 【包含国家代码的手机号】在已启用情景化自动填充的情况下，支持包含国家代码的手机号的自动保存和自动填充。  | 
+| ARKUI_TEXTINPUT_CONTENT_TYPE_FULL_PHONE_NUMBER  | 【包含国家代码的手机号码】在已启用情景化自动填充的情况下，支持包含国家代码的手机号码的自动保存和自动填充。  | 
 | ARKUI_TEXTINPUT_CONTENT_EMAIL_ADDRESS  | 【邮箱地址】在已启用情景化自动填充的情况下，支持邮箱地址的自动保存和自动填充。  | 
 | ARKUI_TEXTINPUT_CONTENT_TYPE_BANK_CARD_NUMBER  | 【银行卡号】在已启用情景化自动填充的情况下，支持银行卡号的自动保存和自动填充。  | 
 | ARKUI_TEXTINPUT_CONTENT_TYPE_ID_CARD_NUMBER  | 【身份证号】在已启用情景化自动填充的情况下，支持身份证号的自动保存和自动填充。  | 

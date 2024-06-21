@@ -72,7 +72,7 @@ struct LinearGradientDemo {
             [0xf56c6c, 0.0],
             [0xE6A23C, .3],
           ]
-        })
+        })s
       }
 
       GridItem() {
