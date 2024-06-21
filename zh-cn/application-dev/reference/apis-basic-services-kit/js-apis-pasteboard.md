@@ -165,11 +165,11 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称          | 值 | 说明                |
-|-------------|---|-------------------|
-| INAPP       | 0 | 表示仅允许同应用内粘贴。      |
-| LOCALDEVICE | 1 | 表示允许在此设备中任何应用内粘贴。 |
-| CROSSDEVICE | 2 | 表示允许跨设备在任何应用内粘贴。  |
+| 名称                               | 值  | 说明                                                                      |
+| ---------------------------------- | --- | ------------------------------------------------------------------------- |
+| INAPP                              | 0   | 表示仅允许同应用内粘贴。                                                  |
+| LOCALDEVICE                        | 1   | 表示允许在此设备中任何应用内粘贴。                                        |
+| CROSSDEVICE<sup>(deprecated)</sup> | 2   | 表示允许跨设备在任何应用内粘贴。<br/>从API Version 12开始废弃，无替代接口 |
 
 ## pasteboard.createHtmlData<sup>(deprecated)</sup>
 
