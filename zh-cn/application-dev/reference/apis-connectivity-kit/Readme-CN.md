@@ -13,7 +13,6 @@
   - [@ohos.bluetooth.socket(蓝牙socket模块)(推荐)](js-apis-bluetooth-socket.md)
   - [@ohos.bluetooth.pbap(蓝牙pbap模块)(推荐)](js-apis-bluetooth-pbap.md)
   - [@ohos.bluetooth.map(蓝牙map模块)(推荐)](js-apis-bluetooth-map.md)
-  - [@ohos.bluetoothManager (蓝牙)(待停用)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (有源标签)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (标准NFC)](js-apis-nfcController.md)
@@ -48,6 +47,7 @@
   - [SE(secureElement)错误码](errorcode-se.md)
 - 已停止维护的接口
   - [@ohos.bluetooth (蓝牙)(待停用)](js-apis-bluetooth.md)
+  - [@ohos.bluetoothManager (蓝牙)(待停用)](js-apis-bluetoothManager.md)
   - [@ohos.wifi (WLAN)(待停用)](js-apis-wifi.md)
   - [@ohos.wifiext (WLAN扩展接口)(待停用)](js-apis-wifiext.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)
