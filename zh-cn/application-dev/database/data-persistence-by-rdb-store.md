@@ -326,10 +326,10 @@
      // "Backup.db"为备份数据库文件名
      (store as relationalStore.RdbStore).backup("Backup.db", (err: BusinessError) => {
        if (err) {
-         console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
+         console.error(`Failed to backing up RdbStore. Code:${err.code}, message:${err.message}`);
          return;
        }
-       console.info(`Succeeded in backup RdbStore.`);
+       console.info(`Succeeded in backing up RdbStore.`);
      })
    }
    ```
@@ -350,7 +350,7 @@
 
 7. 若数据库文件损坏，需要重建数据库。
 
-   进行开库及增删改查等操作时抛出错误码14800011表示数据库文件损坏。示例代码如下所示：
+   进行开库及增删改查等操作时抛出错误码14800011表示数据库文件损坏。重建数据库的示例代码如下所示：
 
    ```ts
    if (store !== undefined) {
