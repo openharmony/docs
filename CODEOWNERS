@@ -218,8 +218,8 @@ zh-cn/application-dev/ui/arkts-gesture-events-single-gesture.md	@zhaojian2021	@j
 zh-cn/application-dev/ui/arkts-gesture-events-combined-gestures.md	@zhaojian2021	@jiangtao92	@zhang-jian008	@HelloCrease
 
 [开发-ArkUI-窗口管理]
-zh-cn/application-dev/windowmanager/ @ge-yafang @zhangqiang183 @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/application-models/windowextensionability.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
+zh-cn/application-dev/windowmanager/ @ge-yafang @zhangqiang183 @zhouyaoying @zxg-gitee @nobuggers @qinliwen
+zh-cn/application-dev/application-models/windowextensionability.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers @qinliwen
 
 
 [开发-Arkweb]
@@ -819,18 +819,18 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-xcomponentNode.md  @sun
 
 [API参考-ArkUI-Window]
 
-zh-cn/application-dev/reference/apis-arkui/js-apis-window.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis-arkui/js-apis-window-sys.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis-arkui/js-apis-display.md @hjoksky @achao @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis-arkui/js-apis-display-sys.md @hjoksky @achao @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis-arkui/js-apis-pipWindow.md @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis-arkui/js-apis-screen-sys.md @hjoksky @achao @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis-arkui/js-apis-screenshot-sys.md @hjoksky @achao @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis-arkui/js-apis-windowAnimationManager-sys.md @zhangqiang183 @ge-yafang @liuchao92 @zxg-gitee
-zh-cn/application-dev/reference/apis-arkui/js-apis-application-WindowExtensionAbility-sys.md @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis-arkui/js-apis-inner-application-windowExtensionContext-sys.md @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis-arkui/errorcode-window.md @ge-yafang @zhouyaoying @zxg-gitee @nobuggers  
-zh-cn/application-dev/reference/apis-arkui/errorcode-display.md @ge-yafang @achao @zhouyaoying @zxg-gitee @nobuggers
+zh-cn/application-dev/reference/apis-arkui/js-apis-window.md @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers @qinliwen
+zh-cn/application-dev/reference/apis-arkui/js-apis-window-sys.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers @qinliwen
+zh-cn/application-dev/reference/apis-arkui/js-apis-display.md @hjoksky @achao @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers @qinliwen
+zh-cn/application-dev/reference/apis-arkui/js-apis-display-sys.md @hjoksky @achao @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers @qinliwen
+zh-cn/application-dev/reference/apis-arkui/js-apis-pipWindow.md @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers @qinliwen
+zh-cn/application-dev/reference/apis-arkui/js-apis-screen-sys.md @hjoksky @achao @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers @qinliwen
+zh-cn/application-dev/reference/apis-arkui/js-apis-screenshot-sys.md @hjoksky @achao @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers @qinliwen
+zh-cn/application-dev/reference/apis-arkui/js-apis-windowAnimationManager-sys.md @zhangqiang183 @ge-yafang @liuchao92 @zxg-gitee @qinliwen
+zh-cn/application-dev/reference/apis-arkui/js-apis-application-WindowExtensionAbility-sys.md @zhangqiang183 @ge-yafang @zhouyaoying @zxg-gitee @nobuggers @qinliwen
+zh-cn/application-dev/reference/apis-arkui/js-apis-inner-application-windowExtensionContext-sys.md @ge-yafang @zhouyaoying @zxg-gitee @nobuggers @qinliwen
+zh-cn/application-dev/reference/apis-arkui/errorcode-window.md @ge-yafang @zhouyaoying @zxg-gitee @nobuggers @qinliwen  
+zh-cn/application-dev/reference/apis-arkui/errorcode-display.md @ge-yafang @achao @zhouyaoying @zxg-gitee @nobuggers @qinliwen
 
 
 
