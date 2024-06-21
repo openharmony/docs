@@ -326,7 +326,7 @@
      // "Backup.db"为备份数据库文件名
      (store as relationalStore.RdbStore).backup("Backup.db", (err: BusinessError) => {
        if (err) {
-         console.error(`Failed to backing up RdbStore. Code:${err.code}, message:${err.message}`);
+         console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
          return;
        }
        console.info(`Succeeded in backing up RdbStore.`);
