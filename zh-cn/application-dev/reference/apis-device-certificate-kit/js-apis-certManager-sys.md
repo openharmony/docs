@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 ```
 
 ## CMErrorCode
@@ -23,7 +23,7 @@ import certManager from '@ohos.security.certManager';
 | ---------- | ------ | --------- |
 | CM_ERROR_NOT_SYSTEM_APP   | 202      | 表示应用程序不是系统应用程序 <br> **系统接口：** 此接口为系统接口。 |
 
-## certManager.getAllAppPrivateCertificates
+## certificateManager.getAllAppPrivateCertificates
 
 getAllAppPrivateCertificates(callback: AsyncCallback\<CMResult>): void
 
@@ -54,10 +54,10 @@ getAllAppPrivateCertificates(callback: AsyncCallback\<CMResult>): void
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
+import { certificateManager } from '@kit.DeviceCertificateKit';
 
 try {
-  certManager.getAllAppPrivateCertificates((err, cmResult) => {
+  certificateManager.getAllAppPrivateCertificates((err, cmResult) => {
     if (err != null) {
       console.error(`Failed to get all app private certificates. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -74,7 +74,7 @@ try {
 }
 ```
 
-## certManager.getAllAppPrivateCertificates
+## certificateManager.getAllAppPrivateCertificates
 
 getAllAppPrivateCertificates(): Promise\<CMResult>
 
@@ -104,11 +104,11 @@ getAllAppPrivateCertificates(): Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  certManager.getAllAppPrivateCertificates().then((cmResult) => {
+  certificateManager.getAllAppPrivateCertificates().then((cmResult) => {
     if (cmResult.credentialList == undefined) {
       console.info('The result of getting all app private certificates is undefined.');
     } else {
@@ -123,7 +123,7 @@ try {
 }
 ```
 
-## certManager.getAllSystemAppCertificates<sup>12+</sup>
+## certificateManager.getAllSystemAppCertificates<sup>12+</sup>
 
 getAllSystemAppCertificates(): Promise\<CMResult>
 
@@ -153,11 +153,11 @@ getAllSystemAppCertificates(): Promise\<CMResult>
 
 **示例**：
 ```ts
-import certManager from '@ohos.security.certManager';
-import { BusinessError } from '@ohos.base';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  certManager.getAllSystemAppCertificates().then((cmResult) => {
+  certificateManager.getAllSystemAppCertificates().then((cmResult) => {
     if (cmResult.credentialList == undefined) {
       console.info('The result of getting all system app certificates is undefined.');
     } else {
