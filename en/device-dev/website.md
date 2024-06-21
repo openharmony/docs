@@ -314,6 +314,7 @@
        - [Audio](driver/driver-peripherals-audio-des.md)
        - [Camera](driver/driver-peripherals-camera-des.md)
        - [Codec](driver/driver-peripherals-codec-des.md)
+       - [Display VDI](driver/driver-peripherals-display-vdi-des.md)
        - [Facial Authentication](driver/driver-peripherals-face_auth-des.md)
        - [Fingerprint Authentication](driver/driver-peripherals-fingerprint_auth-des.md)
        - [LCD](driver/driver-peripherals-lcd-des.md)
@@ -351,7 +352,8 @@
        - [FAQs](subsystems/subsys-build-FAQ.md)
   -  [ArkCompiler Development](subsystems/subsys-arkcompiler-guide.md)
   -  ArkUI
-     - [Custom Window Title Bar Development](subsystems/subsys-arkui-customize_titlebar.md) 
+     - [Window Title Bar Customization Development (ArkTS)](subsystems/subsys-arkui-customize-titlebar-arkts.md)
+     - [Window Title Bar Customization Development (C++)](subsystems/subsys-arkui-customize-titlebar-c++.md)
   -  Graphics
      - [Graphics Overview](subsystems/subsys-graphics-overview.md)
      - [Common Component Development](subsystems/subsys-graphics-common-guide.md)

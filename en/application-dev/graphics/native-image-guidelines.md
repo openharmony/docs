@@ -299,4 +299,4 @@ libnative_buffer.so
    OH_NativeImage_Destroy(&image);
    ```
 
- <!--no_check--> 
+   

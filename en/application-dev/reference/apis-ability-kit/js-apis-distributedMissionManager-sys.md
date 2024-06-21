@@ -742,4 +742,4 @@ Defines the information about the callback that is triggered for mission continu
 | state | [ContinueState](#continuestate10)   | Yes   | No   |   Continuation state of the mission.|
 | info  | [ContinuableInfo](./js-apis-inner-application-continuableInfo-sys.md) | Yes   | No   |   Continuation information of the mission.|
 
- <!--no_check--> 
+   

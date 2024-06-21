@@ -29,8 +29,7 @@ A child element does not necessarily adopt the dependency shown above to determi
 ### Setting the Anchor
 
 By setting the anchor, you set a position dependency relationship between a child element and its parent element or sibling elements. In the horizontal direction, you can set the left, middle, and right anchors. In the vertical direction, you can set the top, center, and bottom anchors.
-To specify anchors, you must set IDs for the **\<RelativeContainer>** component and its child elements. The default ID is **__container__**. The ID is set through the **id** attribute. Child elements whose IDs are not set are not displayed in the
-**\<RelativeContainer>** component. When a mutual or circular dependency occurs, none of the child components in the container are drawn. If anchors are set for more than two positions in a single direction but the anchor positions are reversed, the size of the child component is 0, which means that the child component is not drawn.
+To specify anchors, you must set IDs for the **\<RelativeContainer>** component and its child elements. The default ID is **__container__**. The ID is set through the **id** attribute. Child elements whose IDs are not set are not displayed in the **\<RelativeContainer>** component. When a mutual or circular dependency occurs, none of the child components in the container are drawn. If anchors are set for more than two positions in a single direction but the anchor positions are reversed, the size of the child component is 0, which means that the child component is not drawn.
 
 >**NOTE**
 >

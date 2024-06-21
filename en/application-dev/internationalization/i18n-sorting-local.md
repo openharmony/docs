@@ -6,7 +6,7 @@ The sorting function allows list content, for example, the language list in **Se
 
 ## How to Develop
 
-The sorting function is implemented by the [compare](../reference/apis/js-apis-intl.md#compare8) API of the [Collator](../reference/apis/js-apis-intl.md#collator8) class. The development procedure is as follows:
+The sorting function is implemented by the [compare](../reference/apis-localization-kit/js-apis-intl.md#compare8) API of the [Collator](../reference/apis-localization-kit/js-apis-intl.md#collator8) class. The development procedure is as follows:
 
 1. Import the **intl** module.
    ```ts
@@ -32,39 +32,39 @@ The sorting function is implemented by the [compare](../reference/apis/js-apis-i
 
 **Table 1** Supported sorting formats and display effects
 
-| Name| Value| Description| Display Effect| 
+| Name| Value| Description| Display Effect|
 | -------- | -------- | -------- | -------- |
-| localeMatcher | lookup | Fuzzy matching.|  | 
-|  | best fit | Exact matching.|  | 
-| usage | sort | Sorting.|  | 
-|  | search | Search for matched strings.|  | 
-| sensitivity | base | Compare different letters.| Example: a ≠ b, a = á, a = A| 
-|  | accent | Compare different letters or accents.| Example: a ≠ b, a ≠ á, a = A| 
-|  | case | Compare the capitalization of different letters or the same letter.| Example: a ≠ b, a = á, a = A| 
-|  | variant | Compare different letters or accents, and other distinctive signs or capitalization.| Example: a ≠ b, a ≠ á, a ≠ A| 
-| ignorePunctuation | true | Ignore punctuation.| a,b = ab | 
-|  | false | Not ignore punctuation.| a,b &lt; ab | 
-| numeric | true | Sort by number.| 1 &lt; 2 &lt; 10 &lt; 11 | 
-|  | false | Not sort by number.| 1 &lt; 10 &lt; 11 &lt; 2 | 
-| caseFirst | upper | Place uppercase letters in the front.| ab,aB, AB,Ab =&gt; AB &lt; Ab &lt; aB &lt; ab | 
-|  | lower | Place lowercase letters in the front.| ab,aB, AB,Ab =&gt; ab &lt; aB &lt; Ab &lt; AB | 
-|  | false | Not distinguish first letter capitalization.| ab,aB, AB,Ab =&gt; ab &lt; aB &lt; Ab &lt; AB | 
-| collation | big5han | Pinyin sorting for Latin letters.|  | 
-|  | compat | Compatibility sorting, only for Arabic.|  | 
-|  | dict | Dictionary-style sorting, only for Singhalese.|  | 
-|  | direct | Binary code sorting.|  | 
-|  | ducet | Default Unicode collation element table.|  | 
-|  | eor | European sorting.|  | 
-|  | gb2312 | Pinyin sorting, only for Chinese.|  | 
-|  | phonebk | Phonebook-style sorting.|  | 
-|  | phonetic | Phonetic sorting.|  | 
-|  | pinyin | Pinyin sorting.|  | 
-|  | reformed | Reformed sorting, only for Swedish.|  | 
-|  | searchjl | Special collation type for Korean initial consonant search.|  | 
-|  | stroke | Stroke sorting for Chinese.|  | 
-|  | trad | Traditional-style sorting, for example, Spanish.|  | 
-|  | unihan | Radical-stroke sorting for Han characters, only for Chinese, Japanese, and Korean.|  | 
-|  | zhuyin | Zhuyin sorting, only for Chinese.|  | 
+| localeMatcher | lookup | Fuzzy matching.|  |
+|  | best fit | Exact matching.|  |
+| usage | sort | Sorting.|  |
+|  | search | Search for matched strings.|  |
+| sensitivity | base | Compare different letters.| Example: a ≠ b, a = á, a = A|
+|  | accent | Compare different letters or accents.| Example: a ≠ b, a ≠ á, a = A|
+|  | case | Compare the capitalization of different letters or the same letter.| Example: a ≠ b, a = á, a = A|
+|  | variant | Compare different letters or accents, and other distinctive signs or capitalization.| Example: a ≠ b, a ≠ á, a ≠ A|
+| ignorePunctuation | true | Ignore punctuation.| a,b = ab |
+|  | false | Not ignore punctuation.| a,b &lt; ab |
+| numeric | true | Sort by number.| 1 &lt; 2 &lt; 10 &lt; 11 |
+|  | false | Not sort by number.| 1 &lt; 10 &lt; 11 &lt; 2 |
+| caseFirst | upper | Place uppercase letters in the front.| ab,aB, AB,Ab =&gt; AB &lt; Ab &lt; aB &lt; ab |
+|  | lower | Place lowercase letters in the front.| ab,aB, AB,Ab =&gt; ab &lt; aB &lt; Ab &lt; AB |
+|  | false | Not distinguish first letter capitalization.| ab,aB, AB,Ab =&gt; ab &lt; aB &lt; Ab &lt; AB |
+| collation | big5han | Pinyin sorting for Latin letters.|  |
+|  | compat | Compatibility sorting, only for Arabic.|  |
+|  | dict | Dictionary-style sorting, only for Singhalese.|  |
+|  | direct | Binary code sorting.|  |
+|  | ducet | Default Unicode collation element table.|  |
+|  | eor | European sorting.|  |
+|  | gb2312 | Pinyin sorting, only for Chinese.|  |
+|  | phonebk | Phonebook-style sorting.|  |
+|  | phonetic | Phonetic sorting.|  |
+|  | pinyin | Pinyin sorting.|  |
+|  | reformed | Reformed sorting, only for Swedish.|  |
+|  | searchjl | Special collation type for Korean initial consonant search.|  |
+|  | stroke | Stroke sorting for Chinese.|  |
+|  | trad | Traditional-style sorting, for example, Spanish.|  |
+|  | unihan | Radical-stroke sorting for Han characters, only for Chinese, Japanese, and Korean.|  |
+|  | zhuyin | Zhuyin sorting, only for Chinese.|  |
 
 **Development Example**
 
@@ -108,4 +108,5 @@ array.sort((a, b) => {
 })
 console.log("result:", array); // 甘蔗,石榴,苹果,香蕉,梨,葡萄,橘子
 ```
-<!--no_check-->
+
+ <!--no_check--> 

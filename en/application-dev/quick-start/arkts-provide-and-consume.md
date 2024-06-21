@@ -174,6 +174,8 @@ struct CompA {
 
    As can be learned from the initial render procedure, the \@Consume decorated variable holds an instance of \@Provide. After the \@Consume decorated variable is updated, the update method of \@Provide is called to synchronize the changes to \@Provide.
 
+![Provide_Consume_framework_behavior](figures/Provide_Consume_framework_behavior.png)
+
 
 ## Application Scenarios
 

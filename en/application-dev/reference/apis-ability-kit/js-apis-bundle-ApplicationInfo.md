@@ -36,4 +36,4 @@ The **ApplicationInfo** module provides application information. Unless otherwis
 | uid<sup>8+</sup>           | number                                                       | Yes  | No  | UID of the application.                                             |
 | entityType                 | string                                                       | Yes  | No  | Type of the application, for example, gaming, social networking, movies, and news.|
 
- <!--no_check--> 
+   

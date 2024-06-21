@@ -42,7 +42,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | Name                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onPatternComplete(callback: (input: Array\<number\>) => void) | Invoked when the pattern password input is complete.<br>**input**: an array of digits that are the indexes of the connected grid dots and are arranged in the same sequence as the dots are connected. The indexes of the grid dots are as follows: 0, 1, 2 for the dots in the first row from left to right; 3, 4, 5 for the dots in the second row; 6, 7, 8 for the dots in the third row.|
-| onDotConnect(callback: [CallBack](../apis/js-apis-base.md#callback)\<number\>)<sup>11+</sup>     | Invoked when a grid dot is connected during pattern password input.<br>**NOTE**<br>The callback parameter is a digit that is the index of the connected grid dot. The indexes of the grid dots are as follows: 0, 1, 2 for the dots in the first row from left to right; 3, 4, 5 for the dots in the second row; 6, 7, 8 for the dots in the third row.|
+| onDotConnect(callback: [CallBack](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\>)<sup>11+</sup>     | Invoked when a grid dot is connected during pattern password input.<br>**NOTE**<br>The callback parameter is a digit that is the index of the connected grid dot. The indexes of the grid dots are as follows: 0, 1, 2 for the dots in the first row from left to right; 3, 4, 5 for the dots in the second row; 6, 7, 8 for the dots in the third row.|
 
 ## PatternLockController
 

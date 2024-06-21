@@ -50,4 +50,4 @@ Defines attributes of the current locale.
 | language | string | Yes   | No   | Language, for example, **zh**.|
 | countryOrRegion | string | Yes   | No   | Country or region, for example, **CN** or **US**.|
 | dir | string | Yes   | No   | Text layout direction. The value can be:<br>- **ltr**: from left to right<br>- **rtl**: from right to left|
-<!--no_check-->
+ 

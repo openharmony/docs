@@ -66,7 +66,7 @@ The following figure illustrates the process of triggering a drag event.
 ![en-us_image_0000001562820825](figures/en-us_image_0000001562820825.png)
 
 
-The drag event provides the following [APIs](../reference/arkui-ts/ts-universal-events-drag-drop.md).
+The drag event provides the following [APIs](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md).
 
 
 | API                                    | Description                                      |

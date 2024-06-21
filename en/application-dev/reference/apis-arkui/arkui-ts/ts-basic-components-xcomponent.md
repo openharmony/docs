@@ -63,9 +63,16 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 
 ## Attributes
 - You can customize the content displayed in the **\<XComponent>**. Depending on the **type** settings, the support for the universal attributes [background](ts-universal-attributes-background.md), [opacity](ts-universal-attributes-opacity.md), and [image effects](ts-universal-attributes-image-effect.md) varies.
+
 - When **type** is set to **SURFACE("surface")**, only the **shadow** attribute of [image effects](ts-universal-attributes-image-effect.md). For configuration of other attributes, you are advised to use the APIs provided by EGL/OpenGL ES instead.
+
+  > **NOTE**
+  >
+  > Since API version 11, when **type** is set to **SURFACE("surface")**, the [backgroundColor](ts-universal-attributes-background.md#backgroundcolor) attribute is supported.
+
 - When **type** is set to **COMPONENT("component")**, only the **shadow** attribute of [image effects](ts-universal-attributes-image-effect.md). For configuration of other attributes, you are advised to mount child components.
-- When **type** is set to **TEXTURE**, only the **backgroundColor** attribute of [background](ts-universal-attributes-background.md), the **shadow** attribute of [image effects](ts-universal-attributes-image-effect.md), and [opacity](ts-universal-attributes-opacity.md) are supported. For configuration of other attributes, you are advised to use the APIs provided by EGL/OpenGL ES instead.
+
+- When **type** is set to **TEXTURE**, the **shadow** attribute of [image effects](ts-universal-attributes-image-effect.md), [backgroundColor](ts-universal-attributes-background.md#backgroundcolor), and [opacity](ts-universal-attributes-opacity.md) are supported. For configuration of other attributes, you are advised to use the APIs provided by EGL/OpenGL ES instead.
 
 ## Events
 
@@ -103,7 +110,7 @@ xcomponentController: XComponentController = new XComponentController()
 
 getXComponentSurfaceId(): string
 
-Obtains the ID of the surface held by the **\<XComponent>**, which can then be used for @ohos APIs. For details, see [Camera Management](../apis/js-apis-camera.md). This API works only when **type** of the **\<XComponent>** is set to **SURFACE("surface")** or **TEXTURE**.
+Obtains the ID of the surface held by the **\<XComponent>**, which can then be used for @ohos APIs. For details, see [Camera Management](../../apis-camera-kit/js-apis-camera.md). This API works only when **type** of the **\<XComponent>** is set to **SURFACE("surface")** or **TEXTURE**.
 
 
 **Return value**

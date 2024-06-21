@@ -87,4 +87,4 @@ const int32_t* OH_NN_QuantParam::zeroPoint
 
 Pointer to the zero point data in the quantization formula.
 
-<!--no_check-->
+ 

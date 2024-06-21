@@ -254,4 +254,4 @@ struct ScreenTest {
 
 [Subscribing to Display Changes](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
 
-<!--no_check-->
+ 

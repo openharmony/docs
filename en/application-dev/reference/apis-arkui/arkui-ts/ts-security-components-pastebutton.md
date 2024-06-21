@@ -1,7 +1,7 @@
 # PasteButton
 
 
-The **\<PasteButton>** security component allows you to obtain temporary pasteboard permission from the user by their touching the button, eliminating the need for a permission request dialog box.
+The **\<PasteButton>** security component allows you to obtain temporary pasteboard permission from the user by their touching the component.
 
 
 > **NOTE**
@@ -29,7 +29,7 @@ Creates a Paste button that contains the specified elements.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| option | [PasteButtonOptions](#pastebuttonoptions) | No| Creates a Paste button that contains the specified elements.|
+| option | [PasteButtonOptions](#pastebuttonoptions) | No| Options for creating the Paste button.<br>Default value:<br/>{<br/>icon: PasteIconStyle.LINES,<br/>text: PasteDescription.PASTE,<br/>buttonType: ButtonType.Capsule <br/>}|
 
 ## PasteButtonOptions
 

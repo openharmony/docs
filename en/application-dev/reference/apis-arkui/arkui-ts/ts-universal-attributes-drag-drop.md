@@ -8,9 +8,9 @@ The drag and drop control attributes set whether a component can respond to drag
 
 The ArkUI framework implements the drag and drop capability for the following components, allowing them to serve as the drag source (from which data can be dragged) or drop target (to which data can be dropped). To enable drag and drop for these components, you only need to set their **draggable** attribute to **true**.
 
-- The following component supports drag actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<RichEditor>**, **\<Text>**, **\<Image>**, **\<FormComponent>**, **\<Hyperlink>**
+- The following component supports drag actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [RichEditor](ts-basic-components-richeditor.md), [Text](ts-basic-components-text.md), [Image](ts-basic-components-image.md), [FormComponent](ts-basic-components-formcomponent-sys.md), [Hyperlink](ts-container-hyperlink.md)
 
-- The following component supports drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<Video>**
+- The following component supports drop actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [Video](ts-media-components-video.md)
 
 You can also define drag responses by implementing common drag events.
 
@@ -20,7 +20,7 @@ To enable drag and drop for other components, you need to set the **draggable** 
 
 allowDrop(value: Array&lt;UniformDataType&gt;)
 
-Type of data that can be dropped to the component.
+Sets the type of data that can be dropped to the component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -28,13 +28,13 @@ Type of data that can be dropped to the component.
 
 | Name| Type                                                        | Mandatory| Description                                           |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| value  | Array\<[UniformDataType](../apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | Yes  | Type of data that can be dropped to the component.<br>Default value: empty|
+| value  | Array\<[UniformDataType](../../apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | Yes  | Type of data that can be dropped to the component.<br>Default value: empty|
 
 ## draggable
 
 draggable(value: boolean)
 
-Whether the component is draggable.
+Sets whether the component is draggable.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -56,7 +56,7 @@ Sets the preview displayed when the component is dragged
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Preview displayed when the component is dragged. This attribute has effect for **onDragStart** only.<br>If the component supports drag and drop and a preview is specified through [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8), that specified preview is displayed when the component is dragged. The priority of the background image returned in [onDragStart](ts-universal-events-drag-drop.md#ondragstart) is lower than that of the preview set in [dragPreview](ts-universal-attributes-drag-drop.md#dragpreview11). This means that, once set, the latter will be used in place of the former. Because [CustomBuilder](ts-types.md#custombuilder8) can be used only after offline rendering, it may increase performance overhead and latency. In light of this, you are advised to use [PixelMap](../apis/js-apis-image.md#pixelmap7) in [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) to set the preview.<br>Default value: empty<br>|
+| value  | [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) | Yes  | Preview displayed when the component is dragged. This attribute has effect for **onDragStart** only.<br>If the component supports drag and drop and a preview is specified through [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8), that specified preview is displayed when the component is dragged. The priority of the background image returned in [onDragStart](ts-universal-events-drag-drop.md#ondragstart) is lower than that of the preview set in [dragPreview](ts-universal-attributes-drag-drop.md#dragPreview11). This means that, once set, the latter will be used in place of the former. Because [CustomBuilder](ts-types.md#custombuilder8) can be used only after offline rendering, it may increase performance overhead and latency. In light of this, you are advised to use [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) in [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) to set the preview.<br>Default value: empty<br>|
 
 ## dragPreviewOptions<sup>11+</sup>
 
@@ -82,8 +82,8 @@ Sets how the drag preview is processed when the component is dragged. This API w
 
 | Name| Value| Description|
 | -------- | ------- | -------- |
-| AUTO  | 0 | The system automatically changes the position of the dragged point based on the scenario and automatically scales the background image based on set rules.|
-| DISABLE_SCALE  | 1 | The system does not scale the background image.|
+| AUTO  | 1 | The system automatically changes the position of the dragged point based on the scenario and scales the drag preview based on set rules.|
+| DISABLE_SCALE  | 2 | The system does not scale the drag preview.|
 
 ## Example
 ### Example 1

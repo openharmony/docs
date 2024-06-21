@@ -44,27 +44,8 @@ Based on the preceding figure, let's look into the creation, re-rendering, and d
 
 3. If defined, the component's **aboutToAppear** callback is invoked.
 
-4. On initial render, the **build** function of the built-in component is executed for rendering. If the child component is a custom component, the rendering creates an instance of the child component. While executing the **build** function, the framework observes read access on each state variable and then constructs two mapping tables:
-   1. State variable -> UI component (including **ForEach** and **if**)
-   2. UI component -> Update function for this component, which is a lambda. As a subset of the **build** function, the lambda creates one UI component and executes its attribute methods.
+4. On initial render, the **build** function of the built-in component is executed for rendering. If the child component is a custom component, the rendering creates an instance of the child component. During initial render, the framework records the mapping between state variables and components. When a state variable changes, the framework drives the related components to update.
 
-
-   ```ts
-   build() {
-     ...
-     this.observeComponentCreation(() => {
-       Button.create();
-     })
-
-     this.observeComponentCreation(() => {
-       Text.create();
-     })
-     ...
-   }
-   ```
-
-
-When the application is started in the background, because the application process is not destroyed, only the **onPageShow** callback is invoked.
 
 
 ## Custom Component Re-rendering
@@ -160,7 +141,7 @@ struct Child {
   aboutToDisappear() {
     console.info('[lifeCycle] Child aboutToDisappear')
   }
-  // Component lifecycle
+
   aboutToAppear() {
     console.info('[lifeCycle] Child aboutToAppear')
   }

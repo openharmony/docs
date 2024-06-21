@@ -76,4 +76,4 @@ Figure 3 Mission snapshot name
 
 ![](figures/mission-set-task-snapshot-label.png)
 
- <!--no_check--> 
+   

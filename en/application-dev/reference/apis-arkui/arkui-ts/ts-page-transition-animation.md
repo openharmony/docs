@@ -1,12 +1,12 @@
 # Page Transition (pageTransition)
 
-You can customize the page entrance and exit animations in the **pageTransition** API for transition between pages. For details, see [Page Transition Animation](../../ui/arkts-page-transition-animation.md).
+You can customize the page entrance and exit animations in the **pageTransition** API for transition between pages. For details, see [Page Transition Animation](../../../ui/arkts-page-transition-animation.md).
 
 > **NOTE**
 >
 > This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> To achieve a better transition effect, you are advised to use the [\<Navigation>](../../ui/arkts-navigation-navigation.md) component and [modal transition](../../ui/arkts-modal-transition.md).
+> To achieve a better transition effect, you are advised to use the [\<Navigation>](../../../ui/arkts-navigation-navigation.md) component and [modal transition](../../../ui/arkts-modal-transition.md).
 
 ## pageTransition
 
@@ -51,7 +51,7 @@ Page exit animation.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [RouteType](#routetype)                              | No  | Route type for the page transition effect to take effect.<br>Default value: **RouteType.None**   |
 | duration | number                                                       | No  | Animation duration.<br>Unit: ms<br>Default value: **1000**                |
-| curve    | [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup> | No  | Animation curve. The value of the string type can be any of the following: "ease", "ease-in", "ease-out", "ease-in-out", "extreme-deceleration", "fast-out-linear-in", "fast-out-slow-in", "friction", "linear", "linear-out-slow-in", "rhythm", "sharp", "smooth".<br>Default value: **Curve.Linear**|
+| curve    | [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve)<sup>10+</sup> | No  | Animation curve. The value of the string type can be any of the following: "ease", "ease-in", "ease-out", "ease-in-out", "extreme-deceleration", "fast-out-linear-in", "fast-out-slow-in", "friction", "linear", "linear-out-slow-in", "rhythm", "sharp", "smooth".<br>Default value: **Curve.Linear**|
 | delay    | number                                                       | No  | Animation delay.<br>Unit: ms<br>Default value: **0**<br>**NOTE**<br>If no match is found, the default page transition effect is used (which may vary according to the device). To disable the default page transition effect, set **duration** to **0**.|
 
 

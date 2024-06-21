@@ -36,6 +36,8 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 Creates a button component based on text content. In this case, the component cannot contain child components.
 
+By default, text content is displayed in a one line.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full

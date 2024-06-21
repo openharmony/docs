@@ -16,7 +16,7 @@ This API can be used in ArkTS widgets since API version 9.
 
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| src  | string | Yes   | -    | Image source. Local images are supported.<br>1. The string format is used to load local images, for example, ImageBitmap("common/images/example.jpg"). The start point of the image loading path is the ets folder.<br>2. Supported image formats: bmp, jpg, png, svg, and webp.<br>**NOTE**<br>- ArkTS widgets do not support the strings with the **http://**, **datashare://**, or **file://data/storage**.|
+| src  | string | Yes   | -    | Image source. Local images are supported.<br>1. The string format is used to load local images, for example, **ImageBitmap("common/images/example.jpg")**. For entry and feature modules, the start point of the image path for loading is the **ets** folder of the module. For HAR and shared modules, the start point is the **ets** folder of the entry or feature module into which they are built.<br>2. Supported image formats: bmp, jpg, png, svg, and webp.<br>**NOTE**<br>- ArkTS widgets do not support the strings with the **http://**, **datashare://**, or **file://data/storage**.|
 
 
 
@@ -24,8 +24,8 @@ This API can be used in ArkTS widgets since API version 9.
 
 | Name    | Type    | Description                                      |
 | ------ | ------ | ---------------------------------------- |
-| width  | number | Pixel width of the **ImageBitmap** object, in vp. The current value is **0**.<br>This API can be used in ArkTS widgets since API version 9.|
-| height | number | Pixel height of the **ImageBitmap** object, in vp. The current value is **0**.<br>This API can be used in ArkTS widgets since API version 9.|
+| width  | number | Pixel width of the **ImageBitmap** object, in vp. Read-only.<br>This API can be used in ArkTS widgets since API version 9.|
+| height | number | Pixel height of the **ImageBitmap** object, in vp. Read-only.<br>This API can be used in ArkTS widgets since API version 9.|
 
 **Example**
 

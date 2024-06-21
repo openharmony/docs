@@ -19,7 +19,7 @@ Obtains the **UIContext** instance.
 
 | Type                                                     | Description                   |
 | --------------------------------------------------------- | ----------------------- |
-| [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext) | **UIContext** instance obtained.|
+| [UIContext](../js-apis-arkui-UIContext.md#uicontext) | **UIContext** instance obtained.|
 
 **Example**
 
@@ -51,7 +51,7 @@ Obtains the **NavDestinationInfo** instance.
 
 | Type                                                                      | Description     |
 | -------------------------------------------------------------------------- | --------- |
-| [NavDestinationInfo](../apis/js-apis-arkui-observer.md#navdestinationinfo) \| undefined | **NavDestinationInfo** instance obtained.|
+| [NavDestinationInfo](../js-apis-arkui-observer.md#navdestinationinfo) \| undefined | **NavDestinationInfo** instance obtained.|
 
 **Example**
 

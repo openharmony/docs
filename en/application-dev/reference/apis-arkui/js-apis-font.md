@@ -36,8 +36,8 @@ Registers a custom font with the font manager.
 
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
-| familyName | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Name of the custom font to register.  |
-| familySrc  | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Path of the custom font to register.|
+| familyName | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Name of the custom font to register.  |
+| familySrc  | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Path of the custom font to register.|
 
 **Example**
 
@@ -86,7 +86,7 @@ struct FontExample {
         .align(Alignment.Center)
         .fontSize(20)
         .fontFamily('medium') // medium: name of the custom font to register. (Registered fonts such as $r('app.string.mediumFamilyName') and 'mediumRawFile' can also be used.)
-      
+
       // Two methods of using iconFont
       Text(this.unicode)
         .align(Alignment.Center)
@@ -110,7 +110,7 @@ struct FontExample {
 
 getSystemFontList(): Array\<string>
 
-Obtains the list of system fonts.
+Obtains the list of supported fonts.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -310,4 +310,5 @@ struct FontExample {
   }
 }
 ```
-<!--no_check-->
+
+ <!--no_check--> 

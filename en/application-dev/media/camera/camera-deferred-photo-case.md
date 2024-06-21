@@ -6,9 +6,7 @@ Before referring to the sample code, you are advised to read [High-Performance C
 
 ## Development Process
 
-After obtaining the output stream capabilities supported by the camera, create a photo stream. The development process is as follows:
-
-![deferred-photo-development-process](figures/deferred-photo-development-process.png)
+After obtaining the output stream capabilities supported by the camera, create a photo stream.
 
 ## Sample Code
 
@@ -364,4 +362,4 @@ async function deferredPhotoCase(baseContext: common.BaseContext, surfaceId: str
 }
 ```
 
- <!--no_check--> 
+   

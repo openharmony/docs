@@ -87,4 +87,4 @@ OH_NN_TensorType OH_NN_Tensor::type
 
 Type of the specified tensor. The value is related to the tensor usage. If the tensor is used as the input or output of the model, set **type** to [OH_NN_TENSOR](_neural_network_runtime.md). If the tensor is used as an operator parameter, select an enum value other than [OH_NN_TENSOR](_neural_network_runtime.md) from [OH_NN_TensorType](_neural_network_runtime.md#oh_nn_tensortype).
 
-<!--no_check-->
+ 

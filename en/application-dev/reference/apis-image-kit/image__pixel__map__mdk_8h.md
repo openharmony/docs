@@ -60,4 +60,4 @@ The **image_pixel_map_mdk.h** file declares the APIs used to lock, access, and u
 | [OH_PixelMap_AccessPixels](image.md#oh_pixelmap_accesspixels) (const [NativePixelMap](image.md#nativepixelmap) \*native, void \*\*addr) | Obtains the memory address of a **NativePixelMap** object and locks the memory.| 
 | [OH_PixelMap_UnAccessPixels](image.md#oh_pixelmap_unaccesspixels) (const [NativePixelMap](image.md#nativepixelmap) \*native) | Unlocks the memory of a **NativePixelMap** object. This function is used with [OH_PixelMap_AccessPixels](image.md#oh_pixelmap_accesspixels) in pairs.| 
 
-<!--no_check-->
+ 

@@ -81,39 +81,6 @@ async function example() {
 }
 ```
 
-### Obtaining Images or Videos by Time
-
-Example: Obtain the media assets added between 2022-06-01 and 2023-06-01.
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let startTime = Date.parse(new Date('2022-06-01').toString()) / 1000; // The value of the start time is the number of seconds elapsed since the Epoch time.
-  let endTime = Date.parse(new Date('2023-06-01').toString()) / 1000;  // The value of the end time is the number of seconds elapsed since the Epoch time.
-  let date_added: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.DATE_ADDED;
-  predicates.between(date_added, startTime, endTime);
-  predicates.orderByDesc(date_added); // Sort the obtained records in descending order.
-  let fetchOptions: photoAccessHelper.FetchOptions = {
-    fetchColumns: [date_added], // The date_added attribute is not a default option and needs to be added.
-    predicates: predicates
-  };
-  try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    console.info('getAssets count: ' + fetchResult.getCount());
-    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets photoAsset.displayName : ' + photoAsset.displayName);
-    fetchResult.close();
-  } catch (err) {
-    console.error('getAssets failed with err: ' + err);
-  }
-}
-```
-
 ## Obtaining an Image or Video Thumbnail
 
 The thumbnails offer a quick preview on images and videos. You can use [PhotoAsset.getThumbnail](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail-2)  with the thumbnail size specified to obtain the image or video thumbnail.

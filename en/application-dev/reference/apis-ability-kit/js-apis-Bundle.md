@@ -1495,4 +1495,4 @@ Enumerates the permission grant states.
 | PERMISSION_DENIED  | -1   | Permission denied.|
 | PERMISSION_GRANTED | 0    | Permission granted.    |
 
- <!--no_check--> 
+   

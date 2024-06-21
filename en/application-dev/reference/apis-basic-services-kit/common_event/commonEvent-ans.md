@@ -10,4 +10,4 @@ Indicates that the notification slot or notification switch settings have change
 When the notification slot settings (including the switch) change or the notification feature is enabled or disabled, the notification service is triggered to publish this event.
 
 APIs related to this event: **setSlotByBundle**, **setNotificationEnableSlot**, and **setNotificationEnable**. They are system APIs and are typically called by notification setting applications. For details, see [API Reference](../../apis-notification-kit/js-apis-notificationManager.md).
-<!--no_check-->
+ 

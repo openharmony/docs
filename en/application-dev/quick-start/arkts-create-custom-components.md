@@ -89,7 +89,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > The name or its class or function name of a custom component must be different from that of any built-in components.
 
-- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. When being decorated by \@Component, a struct has the componentization capability. You must implement the **build** function for it to describe the UI. Each struct can be decorated by only one \@Component. \@Component can accept an optional parameter of the Boolean type.
+- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. When being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. Each struct can be decorated by only one \@Component. \@Component can accept an optional parameter of the Boolean type.
   > **NOTE**
   >
   > This decorator can be used in ArkTS widgets since API version 9.
@@ -125,7 +125,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   }
   ```
 
-- \@Entry: A custom component decorated with \@Entry is used as the default entry component of the page. Only one component can be decorated with \@Entry in a single page. The \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md).
+- \@Entry: A custom component decorated with \@Entry is used as the default entry component of the page. Only one component can be decorated with \@Entry in a single source file. The \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md).
 
   > **NOTE**
   >
@@ -462,4 +462,4 @@ struct MyComponent {
 >
 > When ArkUI sets styles for custom components, an invisible container component is set for **MyComponent2**. These styles are set on the container component instead of the **\<Button>** component of **MyComponent2**. As seen from the rendering result, the red background color is not directly applied to the button. Instead, it is applied to the container component that is invisible to users where the button is located.
 
-<!--no_check-->
+ 

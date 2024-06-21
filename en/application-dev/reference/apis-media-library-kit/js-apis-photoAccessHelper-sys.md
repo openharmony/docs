@@ -46,7 +46,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type displayName is not string.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -105,7 +105,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type displayName or albumUri is not string.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -159,7 +159,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type displayName is not string.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -222,7 +222,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type displayName is not string.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -4682,6 +4682,8 @@ Represents request options.
 ## PhotoProxy<sup>11+</sup>
 
 Photo proxy object, which is used by the camera application to write image data.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 

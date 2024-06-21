@@ -5,4 +5,4 @@
 | -------- | -------- | -------- |
 | [getMediaLibrary(): MediaLibrary;](../reference/apis-media-library-kit/js-apis-medialibrary.md#medialibrarygetmedialibrary) | \@ohos.file.photoAccessHelper.d.ts | [getPhotoAccessHelper(context: Context): PhotoAccessHelper;](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper) |
 
- <!--no_check--> 
+   

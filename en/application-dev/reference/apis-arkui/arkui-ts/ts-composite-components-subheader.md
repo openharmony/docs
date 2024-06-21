@@ -23,11 +23,15 @@ Not supported
 ## Attributes
 The [universal attributes](ts-universal-attributes-size.md) are supported.
 
+> **NOTE**
+>
+> The [universal text attributes](ts-universal-attributes-text-style.md) are not supported.
+
 ## SubHeader
 
 SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: ResourceStr, select?: SelectOptions, operationType?: OperationType, operationItem?: Array&lt;OperationOption&gt;})
 
-**Decorator**: @Component
+**Decorator**: \@Component
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

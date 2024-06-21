@@ -80,7 +80,15 @@ bool result = object->AddDeathRecipient(deathRecipient); // Add a recipient for 
 result = object->RemoveDeathRecipient(deathRecipient); // Remove the recipient for death notifications.
 ```
 
-## **Development Using ArkTS APIs**
+## Development Using ArkTS APIs
+
+> **NOTE**
+>
+> - The sample code in this topic implements communication between system applications across processes.
+>
+> - Currently, third-party applications cannot implement ServiceExtensionAbility. The UIAbility components of a third-party application can connect to the ServiceExtensionAbility provided by the system via **Context**.
+>
+> - The development applies only to the scenario, in which the client is a third-party application and the server is a system application.
 
 | API                                                      | Return Value Type| Description                                                    |
 | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |

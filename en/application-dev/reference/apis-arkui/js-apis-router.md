@@ -42,7 +42,7 @@ Navigates to a specified page in the application.
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -100,7 +100,7 @@ Navigates to a specified page in the application.
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -163,7 +163,7 @@ Navigates to a specified page in the application.
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -222,7 +222,7 @@ Navigates to a specified page in the application.
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -285,7 +285,7 @@ Replaces the current page with another one in the application and destroys the c
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -332,7 +332,7 @@ Replaces the current page with another one in the application and destroys the c
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -386,7 +386,7 @@ Replaces the current page with another one in the application and destroys the c
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -434,7 +434,7 @@ Replaces the current page with another one in the application and destroys the c
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -487,7 +487,7 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -547,7 +547,7 @@ Navigates to a page using the named route. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -610,7 +610,7 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -669,7 +669,7 @@ Navigates to a page using the named route. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -732,7 +732,7 @@ Replaces the current page with another one using the named route and destroys th
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -779,7 +779,7 @@ Replaces the current page with another one using the named route and destroys th
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -833,7 +833,7 @@ Replaces the current page with another one using the named route and destroys th
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -881,7 +881,7 @@ Replaces the current page with another one using the named route and destroys th
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -924,7 +924,7 @@ Returns to the previous page or a specified page.
 
 | Name | Type                           | Mandatory| Description                                                        |
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RouterOptions](#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
+| options | [RouterOptions](#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up. The **back** API does not work if url is set to a slash (/).|
 
 **Example**
 
@@ -1018,7 +1018,7 @@ Enables the display of a confirm dialog box before returning to the previous pag
 
 **Error codes**
 
-For details about the error codes, see [Router Error Codes](../errorcodes/errorcode-router.md).
+For details about the error codes, see [Router Error Codes](errorcode-router.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -1127,7 +1127,7 @@ The following sample code applies only to JavaScript files, not ArkTS files.
 // Current page
 export default {
   pushPage() {
-    router.push({
+    router.pushUrl({
       url: 'pages/detail/detail',
       params: {
         data1: 'message'
