@@ -1834,7 +1834,7 @@ runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessa
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| script   | string \| ArrayBuffer         | 是   | JavaScript脚本，ArrayBuffer类型从API　version12开始支持。                                             |
+| script   | string \| ArrayBuffer<sup>12+</sup>         | 是   | JavaScript脚本。                   |
 | callback | AsyncCallback\<[JsMessageExt](#jsmessageext10)\> | 是   | 回调执行JavaScript脚本结果。 |
 
 **错误码：**
@@ -2043,7 +2043,7 @@ runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 | 参数名 | 类型 | 必填 | 说明         |
 | ------ | -------- | ---- | ---------------- |
-| script | string \| ArrayBuffer | 是   | JavaScript脚本，ArrayBuffer类型从API　version12开始支持。 |
+| script | string \| ArrayBuffer<sup>12+</sup> | 是   | JavaScript脚本。 |
 
 **返回值：**
 
@@ -2653,7 +2653,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------|
-| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口，默认false不使用。 从API version 10开始，该接口支持此参数。|
+| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口，默认false不使用。|
 
 **返回值：**
 
@@ -9440,7 +9440,7 @@ static deleteAllData(incognito?: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| incognito<sup>11+</sup>    | boolean | 否   | true表示删除所有隐私模式下内存中的web数据，false表示删除正常非隐私模式下Web的SQL数据库当前使用的所有存储。 |
+| incognito<sup>11+</sup>    | boolean | 否   | true表示删除所有隐私模式下内存中的web数据，false表示删除正常非隐私模式下Web的SQL数据库当前使用的所有存储。|
 
 **示例：**
 
@@ -9910,7 +9910,7 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string>>, incognito?
 | 参数名   | 类型                         | 必填 | 说明                                     |
 | -------- | ---------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback\<Array\<string>> | 是   | 返回已存储地理位置权限状态的所有源信息。 |
-| incognito<sup>11+</sup>    | boolean | 否   | true表示获取隐私模式下以回调方式异步获取已存储地理位置权限状态的所有源信息，false表示正常非隐私模式下以回调方式异步获取已存储地理位置权限状态的所有源信息。 |
+| incognito<sup>11+</sup>   | boolean | 否   | true表示获取隐私模式下以回调方式异步获取已存储地理位置权限状态的所有源信息，false表示正常非隐私模式下以回调方式异步获取已存储地理位置权限状态的所有源信息。 |
 
 **示例：**
 
@@ -13413,7 +13413,7 @@ setMimeType(type: string): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  text | string | 是   | 媒体类型。 |
+|  type | string | 是   | 媒体类型。 |
 
 **错误码：**
 
@@ -14366,9 +14366,9 @@ exitFullscreen(): void
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 |------|------|------|------|------|
-| type | [SourceType](#sourcetype12) | 否 | N/A | 媒体源的类型。 |
-| source | string | 否 | N/A | 媒体源地址。 |
-| format | string | 否 | N/A | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
+| type | [SourceType](#sourcetype12) | 否 | 是 | 媒体源的类型。 |
+| source | string | 否 | 是 | 媒体源地址。 |
+| format | string | 否 | 是 | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
 
 ## NativeMediaPlayerSurfaceInfo<sup>12+<sup>
 
@@ -14378,8 +14378,8 @@ exitFullscreen(): void
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 |------|------|------|------|------|
-| id | string | 否 | N/A | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
-| rect | {<br/>x: number, <br/>y: number, <br/>width: number, <br/>height: number<br/>} | 否 | N/A | surface 的位置信息。 |
+| id | string | 否 | 是 | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
+| rect | {<br/>x: number, <br/>y: number, <br/>width: number, <br/>height: number<br/>} | 否 | 是 | surface 的位置信息。 |
 
 ## Preload<sup>12+<sup>
 
@@ -14402,17 +14402,17 @@ exitFullscreen(): void
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 |------|------|------|------|------|
-| embedID | string | 否 | N/A | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
-| mediaType | [MediaType](#mediatype12) | 否 | N/A | 媒体的类型。 |
-| mediaSrcList | Array\<[MediaSourceInfo](#mediasourceinfo12)\> | 否 | N/A | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
-| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 否 | N/A | 用于同层渲染的 surface 信息。 |
-| controlsShown | boolean | 否 | N/A | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
-| controlList | Array\<string\> | 否 | N/A | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
-| muted | boolean | 否 | N/A | 是否要求静音播放。 |
-| posterUrl | string | 否 | N/A | 海报的地址。 |
-| preload | [Preload](#preload12) | 否 | N/A | 是否需要预加载。 |
-| headers | Record\<string, string\> | 否 | N/A | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
-| attributes | Record\<string, string\> | 否 | N/A | `<video>` 或 `<audio>` 标签中的属性。 |
+| embedID | string | 否 | 是 | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| mediaType | [MediaType](#mediatype12) | 否 | 是 | 媒体的类型。 |
+| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 否 | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 否 | 是 | 用于同层渲染的 surface 信息。 |
+| controlsShown | boolean | 否 | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
+| controlList | string[] | 否 | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
+| muted | boolean | 否 | 是 | 是否要求静音播放。 |
+| posterUrl | string | 否 | 是 | 海报的地址。 |
+| preload | [Preload](#preload12) | 否 | 是 | 是否需要预加载。 |
+| headers | Record\<string, string\> | 否 | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
+| attributes | Record\<string, string\> | 否 | 是 | `<video>` 或 `<audio>` 标签中的属性。 |
 
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>
@@ -14495,3 +14495,104 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | PLUGIN_RESOURCE | 17 | 插件请求的资源。 |
 | NAVIGATION_PRELOAD_MAIN_FRAME | 19 | 触发service worker预热的主frame跳转请求。 |
 | NAVIGATION_PRELOAD_SUB_FRAME | 20 | 触发service worker预热的子frame跳转请求。 |
+
+### enableWholeWebPageDrawing<sup>12+</sup>
+
+static enableWholeWebPageDrawing(): void
+
+设置开启网页全量绘制能力。仅在web初始化时设置。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.enableWholeWebPageDrawing();
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### webPageSnapshot<sup>12+</sup>
+
+webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
+
+获取网页全量绘制结果。（本地资源网页暂不支持）
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型           | 必填  | 说明                      |
+| ----------- | ------------- | ---- | ------------------------ |
+| info        | [SnapshotInfo](#snapshotinfo12)| 是   | 全量绘制结果入参。 |
+| callback        | [SnapshotResult](#snapshotresult12)| 是   | 全量绘制回调结果。 
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('webPageSnapshot')
+        .onClick(() => {
+          try {
+            this.controller.webPageSnapshot({ id: "1234", size: { width: 100, height: 100 } }, (error, result) => {
+              if (error) {
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+                return;
+              }
+              if (result) {
+                console.info(`return value is:${result}`);
+                //开发者可以根据需要处理返回结果
+              }
+            });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+## SnapshotResult<sup>12+</sup>
+
+全量绘制回调结果。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 必填  |  说明 |
+|------|------| ----- |---------|
+| id | string | 否  | snapshot的id。|
+| status | boolean | 否  |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否  | web绘制的真实尺寸，number类型，单位vp。|
+| imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否  | 全量绘制结果image.pixelMap格式。|
