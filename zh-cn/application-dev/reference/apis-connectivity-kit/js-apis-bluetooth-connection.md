@@ -51,12 +51,15 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+//callback
 try {
-    // 实际的地址可由扫描流程获取
-    connection.pairDevice('XX:XX:XX:XX:XX:XX');
+    connection.pairDevice('11:22:33:44:55:66', (err: BusinessError) => {
+        console.info('pairDevice, device name err:' + JSON.stringify(err));
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
+
 ```
 
 
@@ -101,9 +104,14 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+//promise
 try {
-    // 实际的地址可由扫描流程获取
-    connection.pairDevice('XX:XX:XX:XX:XX:XX');
+    connection.pairDevice('11:22:33:44:55:66').then(() => {
+        console.info('pairDevice');
+    }, (error: BusinessError) => {
+        console.info('pairDevice: errCode:' + error.code + ',errMessage' + error.message);
+    })
+
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -351,7 +359,7 @@ getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 
 | 参数名       | 类型        | 必填   | 说明                                    |
 | --------- | --------- | ---- | ------------------------------------- |
-| ProfileId | [profileId](js-apis-bluetooth-constant.md#profileid) | 否    | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
+| profileId | [ProfileId](js-apis-bluetooth-constant.md#profileid) | 否    | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
 
 **返回值：**
 
@@ -366,7 +374,7 @@ getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified.             |
+|401 | Invalid parameter. Possible causes: 1. Incorrect parameter types.        |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
@@ -780,6 +788,8 @@ setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 设置蓝牙远端设备名称。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
