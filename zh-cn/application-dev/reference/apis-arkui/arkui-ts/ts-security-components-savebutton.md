@@ -1,34 +1,36 @@
 # SaveButton
-
-
+ 
 安全控件的保存控件，用户通过点击该保存按钮，可以临时获取存储权限，而不需要权限弹框授权确认。
-
 
 > **说明：**
 >
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
 ## 子组件
 
 不支持。
 
-
 ## 接口
 
 ### SaveButton
+
 SaveButton()
 
 默认创建带有图标、文本、背景的保存按钮。
+
+为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### SaveButton
+
 SaveButton(option:SaveButtonOptions)
 
 创建包含指定元素的保存按钮。
+
+为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -52,7 +54,6 @@ SaveButton(option:SaveButtonOptions)
 | text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
 | buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置保存按钮的背景样式<br/>不传入该参数表示没有背景。 |
 
-
 ## SaveIconStyle枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -63,7 +64,6 @@ SaveButton(option:SaveButtonOptions)
 | -------- | -------- | -------- |
 | FULL_FILLED | 0 | 保存按钮展示填充样式图标。 |
 | LINES | 1 | 保存按钮展示线条样式图标。 |
-
 
 ## SaveDescription枚举说明
 
@@ -81,7 +81,6 @@ SaveButton(option:SaveButtonOptions)
 | CONTINUE_TO_RECEIVE | 7 | 保存按钮的文字描述为“继续接收”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | SAVE_TO_GALLERY<sup>12+</sup> | 8 | 保存按钮的文字描述为“保存至图库”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
-
 ## SaveButtonOnClickResult枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -93,11 +92,9 @@ SaveButton(option:SaveButtonOptions)
 | SUCCESS | 0 | 保存按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 保存按钮点击后权限授权失败。 |
 
-
 ## 属性
 
 不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md#属性)。
-
 
 ## 事件
 
@@ -120,10 +117,9 @@ onClick(event: (event: ClickEvent, result: SaveButtonOnClickResult) =&gt; void)
 | event  | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明|
 | result | [SaveButtonOnClickResult](#savebuttononclickresult枚举说明)| 是 | 存储权限的授权结果，授权时长为10秒，即触发点击后，可以在10秒之内不限制次数的调用特定媒体库接口，超出10秒的调用会鉴权失败。|
 
-
 ## 示例
 
-```
+```ts
 // xxx.ets
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo } from '@kit.CoreFileKit';
