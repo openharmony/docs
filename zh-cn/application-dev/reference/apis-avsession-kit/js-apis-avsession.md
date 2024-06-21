@@ -3131,7 +3131,6 @@ type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPr
 | 'toggleFavorite' | 是否收藏     |
 | 'toggleMute'     | 设置静音状态 |
 
-
 ## AVCastControlCommand<sup>10+</sup>
 
 投播控制器接受的命令的对象描述。
