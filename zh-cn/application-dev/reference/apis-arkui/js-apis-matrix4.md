@@ -160,26 +160,28 @@ import matrix4 from '@ohos.matrix4'
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().translate({ x: 200 })
-  // 对matrix1的拷贝矩阵做scale操作，不影响到matrix1
-  private matrix2 = this.matrix1.copy().scale({ x: 1.5 })
-
+  private matrix1 = matrix4.identity().scale({ x: 1.5 })
+  private matrix2 = this.matrix1.copy().translate({ x: 200 })
+  imageSize:Length = '300px'
   build() {
-    Column() {
-      Image($r("app.media.test"))
-        .width("40%")
-        .height(100)
+    Column({space:"50px"}) {
+      Image($r("app.media.testImage"))
+        .width(this.imageSize)
+        .height(this.imageSize)
+      Image($r("app.media.testImage"))
+        .width(this.imageSize)
+        .height(this.imageSize)
         .transform(this.matrix1)
-      Image($r("app.media.test"))
-        .width("40%")
-        .height(100)
-        .margin({ top: 50 })
+      Image($r("app.media.testImage"))
+        .width(this.imageSize)
+        .height(this.imageSize)
         .transform(this.matrix2)
     }.alignItems(HorizontalAlign.Center)
-    .height('100%')
+    .height('100%').width("100%")
     .justifyContent(FlexAlign.Center)
   }
 }
+
 ```
 
 ![zh-cn_image_0000001219744181](figures/h-cn_image_0000001219744185.png)
@@ -356,17 +358,19 @@ Matrix的缩放函数，可以为当前矩阵增加x轴/y轴/z轴缩放效果。
 ```ts
 // xxx.ets
 import matrix4 from '@ohos.matrix4'
+
 @Entry
 @Component
 struct Test {
-  private matrix1 = matrix4.identity().scale({ x:2, y:3, z:4, centerX:50, centerY:50 })
+  private matrix1 = matrix4.identity()
+    .scale({ x: 2, y: 3, z: 4, centerX: 50, centerY: 50 })
 
   build() {
-    Column() { 
-      Image($r("app.media.bg1")).transform(this.matrix1)
-        .width("40%")
-        .height(100)
-    }
+    Column() {
+      Image($r("app.media.testImage")).transform(this.matrix1)
+        .width("300px")
+        .height("300px")
+    }.width("100%").height("100%").justifyContent(FlexAlign.Center)
   }
 }
 ```
