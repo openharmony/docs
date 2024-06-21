@@ -1834,7 +1834,7 @@ runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessa
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| script   | string \| ArrayBuffer         | 是   | JavaScript脚本，ArrayBuffer类型从API　version12开始支持。                                             |
+| script   | string \| ArrayBuffer<sup>12+</sup>         | 是   | JavaScript脚本。 |
 | callback | AsyncCallback\<[JsMessageExt](#jsmessageext10)\> | 是   | 回调执行JavaScript脚本结果。 |
 
 **错误码：**
@@ -2043,7 +2043,7 @@ runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 | 参数名 | 类型 | 必填 | 说明         |
 | ------ | -------- | ---- | ---------------- |
-| script | string \| ArrayBuffer | 是   | JavaScript脚本，ArrayBuffer类型从API　version12开始支持。 |
+| script | string \| ArrayBuffer<sup>12+</sup> | 是   | JavaScript脚本。 |
 
 **返回值：**
 
@@ -2653,7 +2653,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------|
-| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口，默认false不使用。 从API version 10开始，该接口支持此参数。|
+| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口，默认false不使用。 |
 
 **返回值：**
 
@@ -10089,7 +10089,7 @@ static deleteGeolocation(origin: string, incognito?: boolean): void
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
 | origin | string | 是   | 指定源的字符串索引 |
-| incognito<sup>11+</sup>    | boolean | 否   | true表示隐私模式下清除指定来源的地理位置权限状态，false表示正常非隐私模式下清除指定来源的地理位置权限状态。 |
+| incognito<sup>11+</sup>   | boolean | 否   | true表示隐私模式下清除指定来源的地理位置权限状态，false表示正常非隐私模式下清除指定来源的地理位置权限状态。 |
 
 **错误码：**
 
@@ -10312,7 +10312,7 @@ static getStoredGeolocation(incognito?: boolean): Promise\<Array\<string>>
 
 | 参数名   | 类型                         | 必填 | 说明                                     |
 | -------- | ---------------------------- | ---- | ---------------------------------------- |
-| incognito<sup>11+</sup>    | boolean | 否   | true表示获取隐私模式下以Promise方式异步获取已存储地理位置权限状态的所有源信息，false表示正常非隐私模式下以Promise方式异步获取已存储地理位置权限状态的所有源信息。 |
+| incognito<sup>11+</sup>   | boolean | 否   | true表示获取隐私模式下以Promise方式异步获取已存储地理位置权限状态的所有源信息，false表示正常非隐私模式下以Promise方式异步获取已存储地理位置权限状态的所有源信息。 |
 
 **返回值：**
 
@@ -13766,7 +13766,7 @@ setMimeType(type: string): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  text | string | 是   | 媒体类型。 |
+|  type | string | 是   | 媒体类型。 |
 
 **错误码：**
 
@@ -14719,9 +14719,9 @@ exitFullscreen(): void
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 |------|------|------|------|------|
-| type | [SourceType](#sourcetype12) | 否 | N/A | 媒体源的类型。 |
-| source | string | 否 | N/A | 媒体源地址。 |
-| format | string | 否 | N/A | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
+| type | [SourceType](#sourcetype12) | 否 | 是 | 媒体源的类型。 |
+| source | string | 否 | 是 | 媒体源地址。 |
+| format | string | 否 | 是 | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
 
 ## NativeMediaPlayerSurfaceInfo<sup>12+<sup>
 
@@ -14731,8 +14731,8 @@ exitFullscreen(): void
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 |------|------|------|------|------|
-| id | string | 否 | N/A | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
-| rect | [RectEvent](#rectevent12) | 否 | N/A | surface 的位置信息。 |
+| id | string | 否 | 是 | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
+| rect | [RectEvent](#rectevent12) | 否 | 是 | surface 的位置信息。 |
 
 ## Preload<sup>12+<sup>
 
@@ -14755,17 +14755,17 @@ exitFullscreen(): void
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 |------|------|------|------|------|
-| embedID | string | 否 | N/A | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
-| mediaType | [MediaType](#mediatype12) | 否 | N/A | 媒体的类型。 |
-| mediaSrcList | Array\<[MediaSourceInfo](#mediasourceinfo12)\> | 否 | N/A | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
-| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 否 | N/A | 用于同层渲染的 surface 信息。 |
-| controlsShown | boolean | 否 | N/A | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
-| controlList | Array\<string\> | 否 | N/A | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
-| muted | boolean | 否 | N/A | 是否要求静音播放。 |
-| posterUrl | string | 否 | N/A | 海报的地址。 |
-| preload | [Preload](#preload12) | 否 | N/A | 是否需要预加载。 |
-| headers | Record\<string, string\> | 否 | N/A | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
-| attributes | Record\<string, string\> | 否 | N/A | `<video>` 或 `<audio>` 标签中的属性。 |
+| embedID | string | 否 | 是 | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| mediaType | [MediaType](#mediatype12) | 否 | 是 | 媒体的类型。 |
+| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 否 | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 否 | 是 | 用于同层渲染的 surface 信息。 |
+| controlsShown | boolean | 否 | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
+| controlList | string[] | 否 | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
+| muted | boolean | 否 | 是 | 是否要求静音播放。 |
+| posterUrl | string | 否 | 是 | 海报的地址。 |
+| preload | [Preload](#preload12) | 否 | 是 | 是否需要预加载。 |
+| headers | Record\<string, string\> | 否 | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
+| attributes | Record\<string, string\> | 否 | 是 | `<video>` 或 `<audio>` 标签中的属性。 |
 
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>
