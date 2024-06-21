@@ -927,14 +927,14 @@ OpenHarmony 5.0 Beta1版本开始提供首批API Level 12接口。
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| 全量代码（标准、轻量和小型系统）        | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/code-v5.0-Beta1.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/code-v5.0-Beta1.tar.gz.sha256) | ? GB |
-| Hi3861解决方案（二进制）        | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_pegasus.tar.gz.sha256) | ? MB |
-| Hi3516解决方案-LiteOS（二进制） | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_taurus_LiteOS.tar.gz.sha256) | ? MB |
-| Hi3516解决方案-Linux（二进制）  | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_taurus_Linux.tar.gz.sha256) | ? MB |
-| RK3568标准系统解决方案（二进制）        | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/dayu200_standard_arm32.tar.gz.sha256) | ? GB |
-| 标准系统Public SDK包（Mac）             | 5.0.0.25      | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/ohos-sdk-mac-public.tar.gz.sha256) | ? MB |
-| 标准系统Public SDK包（Mac-M1）             | 5.0.0.25     | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | ? MB |
-| 标准系统Public SDK包（Windows/Linux）   | 5.0.0.25      | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/ohos-sdk-windows_linux-public.tar.gz.sha256) | ? GB |
+| 全量代码（标准、轻量和小型系统）        | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/code-v5.0-Beta1.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/code-v5.0-Beta1.tar.gz.sha256) | 40.2 GB |
+| Hi3861解决方案（二进制）        | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_pegasus.tar.gz.sha256) | 29.8 MB |
+| Hi3516解决方案-LiteOS（二进制） | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_taurus_LiteOS.tar.gz.sha256) | 326.6 MB |
+| Hi3516解决方案-Linux（二进制）  | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/hispark_taurus_Linux.tar.gz.sha256) | 215.5 MB |
+| RK3568标准系统解决方案（二进制）        | 5.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/dayu200_standard_arm32.tar.gz.sha256) | 10.1 GB |
+| 标准系统Public SDK包（Mac）             | 5.0.0.25      | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/ohos-sdk-mac-public.tar.gz.sha256) | 	1.2 GB |
+| 标准系统Public SDK包（Mac-M1）             | 5.0.0.25     | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.1 GB |
+| 标准系统Public SDK包（Windows/Linux）   | 5.0.0.25      | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Beta1/ohos-sdk-windows_linux-public.tar.gz.sha256) | 2.4 GB |
 
 ## 更新说明
 
