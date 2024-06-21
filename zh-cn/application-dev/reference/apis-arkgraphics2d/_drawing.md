@@ -230,6 +230,16 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RoundRectOffset](#oh_drawing_roundrectoffset) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*roundRect, float dx, float dy) | 用于将圆角矩形沿x轴方向和y轴方向平移指定距离。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_PointGetX](#oh_drawing_pointgetx) (const [OH_Drawing_Point](#oh_drawing_point) \*point, float \*x) | 用于获取点的x轴坐标。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_PointGetY](#oh_drawing_pointgety) (const [OH_Drawing_Point](#oh_drawing_point) \*point, float \*y) | 用于获取点的y轴坐标。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_PointSet](#oh_drawing_pointset) ([OH_Drawing_Point](#oh_drawing_point) \*point, float x, float y) | 用于设置点的x轴和y轴坐标。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontMeasureText](#oh_drawing_fontmeasuretext) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const void \*text, size_t byteLength, [OH_Drawing_TextEncoding](#oh_drawing_textencoding) encoding, [OH_Drawing_Rect](#oh_drawing_rect) \*bounds, float \*textWidth) | 用于获取文本的宽度和边界框。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasClipRegion](#oh_drawing_canvasclipregion) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const [OH_Drawing_Region](#oh_drawing_region) \*region, [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp) | 用于裁剪一个区域。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawColor](#oh_drawing_canvasdrawcolor) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, uint32_t color, [OH_Drawing_BlendMode](#oh_drawing_blendmode) blendMode) | 用于使用指定的颜色及混合模式来填充整个画布。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasGetImageInfo](#oh_drawing_canvasgetimageinfo) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*imageInfo) | 用于获取画布的图像信息。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasIsClipEmpty](#oh_drawing_canvasisclipempty) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, bool \*isClipEmpty) | 用于判断裁剪后可绘制区域是否为空。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawPoint](#oh_drawing_canvasdrawpoint) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*point) | 用于画一个点。 |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode)  [OH_Drawing_MatrixGetAll](#oh_drawing_matrixgetall) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*matrix, float value[9]) | 获取矩阵所有元素值。 |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode)  [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget) () | 获取本模块的错误码。 | 
 | [OH_Drawing_Brush](#oh_drawing_brush) \* [OH_Drawing_BrushCopy](#oh_drawing_brushcopy) ([OH_Drawing_Brush](#oh_drawing_brush) \*brush) | 创建一个画刷对象副本[OH_Drawing_Brush](#oh_drawing_brush)，用于拷贝一个已有画刷对象。 | 
@@ -2839,6 +2849,275 @@ enum OH_Drawing_WordBreakType
 
 
 ## 函数说明
+
+
+### OH_Drawing_RoundRectOffset()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_RoundRectOffset (OH_Drawing_RoundRect* roundRect, float dx, float dy )
+```
+
+**描述**
+
+用于将圆角矩形沿x轴方向和y轴方向平移指定距离。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| roundRect | 指向圆角矩形对象[OH_Drawing_Point2D](_o_h___drawing___point2_d.md)的指针。 | 
+| dx | x轴方向偏移量。 | 
+| dy | y轴方向偏移量。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数roundRect为空。
+
+
+### OH_Drawing_PointGetX()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_PointGetX (const OH_Drawing_Point* point, float* x )
+```
+
+**描述**
+
+用于获取点的x轴坐标。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| point | 指向坐标点对象[OH_Drawing_Point](#oh_drawing_point)的指针。 | 
+| x | 表示点的x轴坐标。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数point或者x为空。
+
+
+### OH_Drawing_PointGetY()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_PointGetY (const OH_Drawing_Point* point, float* y )
+```
+
+**描述**
+
+用于获取点的y轴坐标。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| point | 指向坐标点对象[OH_Drawing_Point](#oh_drawing_point)的指针。 | 
+| y | 表示点的y轴坐标。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数point或者y为空。
+
+
+### OH_Drawing_PointSet()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_PointSet (OH_Drawing_Point* point, float x, float y )
+```
+
+**描述**
+
+用于设置点的x轴和y轴坐标。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| point | 指向坐标点对象[OH_Drawing_Point](#oh_drawing_point)的指针。 | 
+| x | 表示点的x轴坐标。 | 
+| y | 表示点的y轴坐标。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数point为空。
+
+
+### OH_Drawing_FontMeasureText()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontMeasureText (const OH_Drawing_Font* font, const void* text, size_t byteLength, OH_Drawing_TextEncoding encoding, OH_Drawing_Rect* bounds, float* textWidth )
+```
+
+**描述**
+
+用于获取文本的宽度和边界框。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| text | 指向文本的指针。 | 
+| byteLength | 表示以字节为单位的文本长度。 | 
+| encoding | 文本编码类型。 | 
+| bounds | 用于承载获取的边界框，可以为NULL。 | 
+| textWidth | 表示文本宽度。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font，text，textWidth至少有一个为空， 或者byteLength为0。
+
+
+### OH_Drawing_CanvasClipRegion()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_CanvasClipRegion (OH_Drawing_Canvas* canvas, const OH_Drawing_Region* region, OH_Drawing_CanvasClipOp clipOp )
+```
+
+**描述**
+
+用于裁剪一个区域。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
+| region | 指向区域对象[OH_Drawing_Region](#oh_drawing_region)的指针。 | 
+| clipOp | 表示裁剪类型。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数canvas或者region为空。
+
+
+### OH_Drawing_CanvasDrawColor()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_CanvasDrawColor (OH_Drawing_Canvas* canvas, uint32_t color, OH_Drawing_BlendMode blendMode )
+```
+
+**描述**
+
+用于使用指定的颜色及混合模式来填充整个画布。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
+| color | 表示指定的颜色。 | 
+| blendMode | 表示指定的混合模式。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数canvas为空。
+
+
+### OH_Drawing_CanvasGetImageInfo()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_CanvasGetImageInfo (OH_Drawing_Canvas* canvas, OH_Drawing_Image_Info* imageInfo )
+```
+
+**描述**
+
+用于获取画布的图像信息。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
+| imageInfo | 指向图像信息对象[OH_Drawing_Image_Info](_o_h___drawing___image___info.md)的指针。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数canvas或者imageInfo为空。
+
+
+### OH_Drawing_CanvasIsClipEmpty()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_CanvasIsClipEmpty (OH_Drawing_Canvas* canvas, bool* isClipEmpty )
+```
+
+**描述**
+
+用于判断裁剪后可绘制区域是否为空。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
+| isClipEmpty | 表示裁剪后可绘制区域是否为空。true表示为空，false表示不为空。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数canvas或者isClipEmpty为空。
+
+
+### OH_Drawing_CanvasDrawPoint()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPoint (OH_Drawing_Canvas* canvas, const OH_Drawing_Point2D* point )
+```
+
+**描述**
+
+用于画一个点。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
+| point | 指向点对象[OH_Drawing_Point2D](_o_h___drawing___point2_d.md)的指针。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数canvas或者point为空。
+
 
 ### OH_Drawing_MatrixGetAll()
 
