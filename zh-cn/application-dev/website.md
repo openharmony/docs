@@ -1143,6 +1143,7 @@
       - [hitrace](dfx/hitrace.md)
       - [hiperf](dfx/hiperf.md)
       - [hisysevent](dfx/hisysevent.md)
+      - [toybox](dfx/toybox.md)
       <!--Del-->
       - [uinput](dfx/uinput.md)
       <!--DelEnd-->
