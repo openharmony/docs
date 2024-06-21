@@ -1,7 +1,7 @@
 # \@State装饰器：组件内状态
 
 
-\@State装饰的变量，或称为状态变量，一旦变量拥有了状态属性，就和自定义组件的渲染绑定起来。当状态改变时，UI会发生对应的渲染改变。
+\@State装饰的变量，或称为状态变量，一旦变量拥有了状态属性，就可以触发其直接绑定UI组件的刷新。当状态改变时，UI会发生对应的渲染改变。
 
 
 在状态变量相关装饰器中，\@State是最基础的，使变量拥有状态属性的装饰器，它也是大部分状态变量的数据源。
@@ -523,3 +523,118 @@ export class Model {
 ```
 
 上文示例代码将状态变量的修改放在类的普通方法中，界面开始时显示“failed”，点击后显示“success”。
+
+### 状态变量只能影响其直接绑定的UI组件的刷新
+
+【示例1】
+
+```ts
+class Parent {
+  son: string = '000';
+}
+
+@Entry
+@Component
+struct Test {
+  @State son: string = '111';
+  @State parent: Parent = new Parent();
+
+  aboutToAppear(): void {
+    this.parent.son = this.son;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.son}`);
+      Text(`${this.parent.son}`);
+      Button('change')
+        .onClick(() => {
+          this.parent.son = '222';
+        })
+    }
+  }
+}
+```
+
+以上示例点击Button('change')，此时第一行文本'111'不会更新，第二行文本'111'更新为'222'，因为son是简单类型String，简单类型是值拷贝，所以点击按钮改变的是parent中的son值，不会影响this.son的值。
+
+【示例2】
+
+```ts
+class Son {
+  son: string = '000';
+
+  constructor(son: string) {
+    this.son = son;
+  }
+}
+
+class Parent {
+  son: Son = new Son('111');
+}
+
+@Entry
+@Component
+struct Test {
+  @State son: Son = new Son('222');
+  @State parent: Parent = new Parent();
+
+  aboutToAppear(): void {
+    this.parent.son = this.son;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.son.son}`);
+      Text(`${this.parent.son.son}`);
+      Button('change')
+        .onClick(() => {
+          this.parent.son.son = '333';
+        })
+    }
+  }
+}
+```
+
+以上示例，因为在aboutToAppear中将son的引用赋值给了parent的成员属性son，因此点击按钮改变son中的属性时，会触发第一个Text组件的刷新，而第二个Text组件因为观测能力仅有一层，无法观测到二层属性的变化。
+
+【示例3】
+
+```ts
+class Son {
+  son: string = '000';
+
+  constructor(son: string) {
+    this.son = son;
+  }
+}
+
+class Parent {
+  son: Son = new Son('111');
+}
+
+@Entry
+@Component
+struct Test {
+  @State son: Son = new Son('222');
+  @State parent: Parent = new Parent();
+
+  aboutToAppear(): void {
+    this.parent.son = this.son;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.son.son}`);
+      Text(`${this.parent.son.son}`);
+      Button('change')
+        .onClick(() => {
+          this.parent.son = new Son('444');
+          this.parent.son.son = '333';
+        })
+    }
+  }
+}
+```
+
+以上示例点击Button('change')，此时第一行文本'222'不会更新，第二行文本'222'更新为'333'，因为在点击按钮后先执行'this.parent.son = new Son('444')'，此时会新创建出来一个Son对象，再执行'this.parent.son.son = '333''，改变的是新new出来的Son里面的son的值，原来对象Son中的son值并不会受到影响。
