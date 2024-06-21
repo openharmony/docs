@@ -64,7 +64,7 @@ textOverflow(value: { overflow: TextOverflow })
 
 当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
 
-当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效，此时不支持ImageSpan组件，并且在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。在跑马灯模式下，Text组件clip属性默认为true。
+当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效。在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。在跑马灯模式下，Text组件clip属性默认为true。
 
 从API version 12开始，当overflow设置为TextOverflow.MARQUEE时，支持ImageSpan组件，文本和图片在一行内滚动显示。
 
@@ -862,7 +862,7 @@ textShadow，heightAdaptivePolicy，TextOverflow.MARQUEE使用示例：
 ```ts
 @Entry
 @Component
-struct TextExample {
+struct TextExample3 {
   build() {
     Column({ space: 8 }) {
       Text('textShadow').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
@@ -1091,7 +1091,7 @@ bindSelectionMenu，onTextSelectionChange及closeSelectionMenu使用示例
 ```ts
 @Entry
 @Component
-struct Demo {
+struct TextExample8 {
   controller: TextController = new TextController();
   options: TextOptions = { controller: this.controller };
 
@@ -1201,7 +1201,7 @@ fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用
 ```ts
 @Entry
 @Component
-struct text {
+struct TextExample9 {
   @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
@@ -1232,7 +1232,7 @@ import { LengthMetrics } from '@ohos.arkui.node'
 
 @Entry
 @Component
-struct LineSpacingExample {
+struct TextExample10 {
   build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
         Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
@@ -1272,7 +1272,7 @@ lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakS
 ```ts
 @Entry
 @Component
-struct TextExample1 {
+struct TextExample11 {
   @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
     "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
     "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
