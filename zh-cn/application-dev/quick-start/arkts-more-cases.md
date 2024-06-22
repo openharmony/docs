@@ -660,14 +660,12 @@ class/interface中声明的方法应该被所有class的实例共享。ArkTS不�
 **应用代码**
 
 ```typescript
-import hilog from '@ohos.hilog'
-
 export default {
   onCreate() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
+    // ...
   },
   onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');
+    // ...
   }
 }
 ```
@@ -675,14 +673,12 @@ export default {
 **建议改法**
 
 ```typescript
-import hilog from '@ohos.hilog'
-
 class Test {
   onCreate() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
+    // ...
   }
   onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');
+    // ...
   }
 }
 
@@ -694,43 +690,51 @@ export default new Test()
 **应用代码**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
-import bluetooth from '@ohos.bluetooth';
-let serverNumber = -1;
-function serverSocket(code: BusinessError, num: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + num);
-    serverNumber = num;
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
   }
+
+  function foo(name: string, option: I): void;
 }
 
-let sppOption = { uuid: '', secure: false, type: 0 };
-bluetooth.sppListen('', sppOption, serverSocket);
+export default test;
+
+// app.ets
+import { test } from 'test';
+
+let option = { id: '', type: 0 };
+test.foo('', option);
 ```
 
 **建议改法**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
-import bluetooth from '@ohos.bluetooth';
-let serverNumber = -1;
-function serverSocket(code: BusinessError, num: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + num);
-    serverNumber = num;
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
   }
+
+  function foo(name: string, option: I): void;
 }
 
-let sppOption: bluetooth.SppOption = { uuid: '', secure: false, type: 0 };
-bluetooth.sppListen('', sppOption, serverSocket);
+export default test;
+
+// app.ets
+import { test } from 'test';
+
+let option: test.I = { id: '', type: 0 };
+test.foo('', option);
 ```
 
 **原因**
 
-对象字面量缺少类型，根据`bluetooth.sppListen`分析可以得知，`sppOption`的类型来源于SDK，那么只需要将类型导入即可。
-注意到在`@ohos.bluetooth`中，`sppOption`是定义在namespace中的，所以在ets文件中，先导入namespace，再通过名称获取相应的类型。
+对象字面量缺少类型，根据`test.foo`分析可以得知，`option`的类型来源于声明文件，那么只需要将类型导入即可。
+注意到在`test.d.ets`中，`I`是定义在namespace中的，所以在ets文件中，先导入namespace，再通过名称获取相应的类型。
 
 ### object literal传参给Object类型
 
