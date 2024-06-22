@@ -146,8 +146,8 @@ async function GenerateAesKey() {
     await huks.generateKeyItem(aesKeyAlias, options)
     .then((data) => {
         console.info(`promise: generate AES Key success, data = ${JSON.stringify(data)}`);
-    }).catch((error)=>{
-        console.error(`promise: generate AES Key failed` + error);
+    }).catch((error: Error)=>{
+        console.error(`promise: generate AES Key failed, ${JSON.stringify(error)}`);
     })
 }
 async function EncryptData() {
@@ -172,8 +172,8 @@ async function EncryptData() {
     await huks.initSession(aesKeyAlias, options)
     .then((data) => {
         handle = data.handle;
-    }).catch((error)=>{
-        console.error(`promise: init EncryptData failed` + error);
+    }).catch((error: Error)=>{
+        console.error(`promise: init EncryptData failed, ${JSON.stringify(error)}`);
     })
     /*
     * 5. 调用finishSession获取加密后的密文
@@ -182,8 +182,8 @@ async function EncryptData() {
     .then((data) => {
         console.info(`promise: encrypt data success, data is `+ Uint8ArrayToString(data.outData as Uint8Array));
         cipherData = data.outData as Uint8Array;
-    }).catch((error)=>{
-        console.error(`promise: encrypt data failed` + error);
+    }).catch((error: Error)=>{
+        console.error(`promise: encrypt data failed, ${JSON.stringify(error)}`);
     })
 }
 async function DecryptData() {
@@ -208,8 +208,8 @@ async function DecryptData() {
     await huks.initSession(aesKeyAlias, options)
     .then((data) => {
         handle = data.handle;
-    }).catch((error)=>{
-        console.error(`promise: init DecryptData failed` + error);
+    }).catch((error: Error)=>{
+        console.error(`promise: init DecryptData failed, ${JSON.stringify(error)}`);
     })
     /*
     * 5. 调用finishSession获取解密后的数据
@@ -217,8 +217,8 @@ async function DecryptData() {
     await huks.finishSession(handle, options)
     .then((data) => {
         console.info(`promise: decrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((error)=>{
-        console.error(`promise: decrypt data failed` + error);
+    }).catch((error: Error)=>{
+        console.error(`promise: decrypt data failed, ${JSON.stringify(error)}`);
     })
 }
 async function DeleteKey() {
@@ -235,8 +235,8 @@ async function DeleteKey() {
     await huks.deleteKeyItem(aesKeyAlias, emptyOptions)
     .then((data) => {
         console.info(`promise: delete data success`);
-    }).catch((error)=>{
-        console.error(`promise: delete data failed` + error);
+    }).catch((error: Error)=>{
+        console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
 }
 ```

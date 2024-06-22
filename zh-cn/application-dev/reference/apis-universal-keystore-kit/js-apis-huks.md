@@ -123,12 +123,8 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 /* 以生成ECC256密钥为例 */
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
 let keyAlias: string = 'keyAlias';
-let properties: HuksProperties[] = [
+let properties: Array<huks.HuksParam> =[
     {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -211,12 +207,8 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 ```ts
 /* 以生成ECC256密钥为例 */
 import { huks } from '@kit.UniversalKeystoreKit';
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
 let keyAlias = 'keyAlias';
-let properties: HuksProperties[] = [
+let properties: Array<huks.HuksParam> =[
     {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -244,7 +236,7 @@ try {
         .then((data) => {
             console.info(`promise: generateKeyItem success`);
         })
-        .catch((error) => {
+        .catch((error: Error) => {
             console.error(`promise: generateKeyItem failed`);
         });
 } catch (error) {
@@ -357,7 +349,7 @@ try {
         .then ((data) => {
             console.info(`promise: deleteKeyItem key success`);
         })
-        .catch((error) => {
+        .catch((error: Error) => {
             console.error(`promise: deleteKeyItem failed`);
         });
 } catch (error) {
@@ -408,11 +400,6 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 /* 以导入AES256密钥为例 */
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding |
-    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
 let plainTextSize32 = makeRandomArr(32);
 function makeRandomArr(size: number) {
     let arr = new Uint8Array(size);
@@ -422,7 +409,7 @@ function makeRandomArr(size: number) {
     return arr;
 };
 let keyAlias = 'keyAlias';
-let properties: HuksProperties[] = [
+let properties: Array<huks.HuksParam> = [
     {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_AES
@@ -510,11 +497,6 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 /* 以导入AES128为例 */
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding |
-    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
 let plainTextSize32 = makeRandomArr(32);
 function makeRandomArr(size: number) {
     let arr = new Uint8Array(size);
@@ -525,7 +507,7 @@ function makeRandomArr(size: number) {
 };
 /*第一步：生成密钥*/
 let keyAlias = 'keyAlias';
-let properties: HuksProperties[] = [
+let properties: Array<huks.HuksParam> = [
     {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_AES
@@ -556,7 +538,7 @@ try {
         .then((data) => {
             console.info(`promise: importKeyItem success`);
         })
-        .catch((error) => {
+        .catch((error: Error) => {
             console.error(`promise: importKeyItem failed`);
         });
 } catch (error) {
@@ -605,12 +587,6 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
-    huks.HuksKeyStorageType | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
-    huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
 let securityLevel = stringToUint8Array('sec_level');
 let challenge = stringToUint8Array('challenge_data');
 let versionInfo = stringToUint8Array('version_info');
@@ -627,7 +603,7 @@ function stringToUint8Array(str: string) {
 async function generateKeyThenattestKey(alias: string) {
     let aliasString = keyAliasString;
     let aliasUint8 = stringToUint8Array(aliasString);
-    let generateProperties: HuksProperties[] = [
+    let generateProperties: Array<huks.HuksParam> = [
         {
             tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
@@ -660,7 +636,7 @@ async function generateKeyThenattestKey(alias: string) {
     let generateOptions: huks.HuksOptions = {
         properties: generateProperties
     };
-    let attestProperties: HuksProperties[] = [
+    let attestProperties: Array<huks.HuksParam> = [
         {
             tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
             value: securityLevel
@@ -752,12 +728,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
-    huks.HuksKeyStorageType | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
-    huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
+
 let securityLevel = stringToUint8Array('sec_level');
 let challenge = stringToUint8Array('challenge_data');
 let versionInfo = stringToUint8Array('version_info');
@@ -771,7 +742,7 @@ function stringToUint8Array(str: string) {
     return tmpUint8Array;
 }
 async function generateKey(alias: string) {
-    let properties: HuksProperties[] = [
+    let properties: Array<huks.HuksParam> = [
         {
             tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
@@ -809,7 +780,7 @@ async function generateKey(alias: string) {
             .then((data) => {
                 console.info(`promise: generateKeyItem success`);
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.error(`promise: generateKeyItem failed`);
             });
     } catch (error) {
@@ -819,7 +790,7 @@ async function generateKey(alias: string) {
 async function attestKey() {
     let aliasString = keyAliasString;
     let aliasUint8 = stringToUint8Array(aliasString);
-    let properties: HuksProperties[] = [
+    let properties: Array<huks.HuksParam> = [
         {
             tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
             value: securityLevel
@@ -846,7 +817,7 @@ async function attestKey() {
             .then((data) => {
                 console.info(`promise: attestKeyItem success`);
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.error(`promise: attestKeyItem failed`);
             });
     } catch (error) {
@@ -897,12 +868,6 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
-    huks.HuksKeyStorageType | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
-    huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
 let securityLevel = stringToUint8Array('sec_level');
 let challenge = stringToUint8Array('challenge_data');
 let versionInfo = stringToUint8Array('version_info');
@@ -919,7 +884,7 @@ function stringToUint8Array(str: string): Uint8Array {
 async function generateKeyThenAttestKey(alias: string): Promise<void> {
     let aliasString = keyAliasString;
     let aliasUint8 = stringToUint8Array(aliasString);
-    let generateProperties: HuksProperties[] = [
+    let generateProperties: Array<huks.HuksParam> = [
         {
             tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
@@ -952,7 +917,7 @@ async function generateKeyThenAttestKey(alias: string): Promise<void> {
     let generateOptions: huks.HuksOptions = {
         properties: generateProperties
     };
-    let anonAttestProperties: HuksProperties[] = [
+    let anonAttestProperties: Array<huks.HuksParam> = [
         {
             tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
             value: securityLevel
@@ -1045,12 +1010,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
-    huks.HuksKeyStorageType | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
-    huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
+
 let securityLevel = stringToUint8Array('sec_level');
 let challenge = stringToUint8Array('challenge_data');
 let versionInfo = stringToUint8Array('version_info');
@@ -1064,7 +1024,7 @@ function stringToUint8Array(str: string): Uint8Array {
     return tmpUint8Array;
 }
 async function generateKey(alias: string): Promise<void> {
-    let properties: HuksProperties[] = [
+    let properties: Array<huks.HuksParam> = [
         {
             tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
             value: huks.HuksKeyAlg.HUKS_ALG_RSA
@@ -1106,7 +1066,7 @@ async function generateKey(alias: string): Promise<void> {
 async function anonAttestKey(): Promise<void> {
     let aliasString = keyAliasString;
     let aliasUint8 = stringToUint8Array(aliasString);
-    let properties: HuksProperties[] = [
+    let properties: Array<huks.HuksParam> = [
         {
             tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
             value: securityLevel
@@ -1179,12 +1139,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
-    huks.HuksKeyDigest | huks.HuksKeyPadding | huks.HuksUnwrapSuite |
-    huks.HuksCipherMode | huks.HuksImportKeyType = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
+
 let alias1 = "importAlias";
 let alias2 = "wrappingKeyAlias";
 async function TestGenFunc(alias: string, options: huks.HuksOptions) {
@@ -1193,7 +1148,7 @@ async function TestGenFunc(alias: string, options: huks.HuksOptions) {
             .then((data) => {
                 console.info(`callback: generateKeyItem success`);
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.error(`callback: generateKeyItem failed`);
             });
     } catch (error) {
@@ -1221,7 +1176,7 @@ async function TestExportFunc(alias: string, options: huks.HuksOptions) {
             .then((data) => {
                 console.info(`callback: exportKeyItem success, data = ${JSON.stringify(data)}`);
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.error(`callback: exportKeyItem failed`);
             });
     } catch (error) {
@@ -1249,7 +1204,7 @@ async function TestImportWrappedFunc(alias: string, wrappingAlias: string, optio
             .then((data) => {
                 console.info(`callback: importWrappedKeyItem success`);
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.error(`callback: importWrappedKeyItem failed`);
             });
     } catch (error) {
@@ -1299,7 +1254,7 @@ async function TestImportWrappedKeyFunc(
     await TestImportWrappedFunc(alias, wrappingAlias, importOptions);
 }
 function makeGenerateOptions() {
-    let properties: HuksProperties[] = [
+    let properties: Array<huks.HuksParam> = [
         {
             tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
             value: huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -1327,7 +1282,7 @@ function makeGenerateOptions() {
     return options;
 };
 function makeImportOptions() {
-    let properties: HuksProperties[] = [
+    let properties: Array<huks.HuksParam> = [
         {
             tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
             value: huks.HuksKeyAlg.HUKS_ALG_AES
@@ -1426,7 +1381,7 @@ async function TestImportWrappedFunc(alias: string, wrappingAlias: string, optio
             .then ((data) => {
                 console.info(`promise: importWrappedKeyItem success`);
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.error(`promise: importWrappedKeyItem failed`);
             });
     } catch (error) {
@@ -1548,7 +1503,7 @@ try {
         .then ((data) => {
             console.info(`promise: exportKeyItem success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error) => {
+        .catch((error: Error) => {
             console.error(`promise: exportKeyItem failed`);
         });
 } catch (error) {
@@ -1669,7 +1624,7 @@ try {
         .then ((data) => {
             console.info(`promise: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error) => {
+        .catch((error: Error) => {
             console.error(`promise: getKeyItemProperties failed`);
         });
 } catch (error) {
@@ -1789,7 +1744,7 @@ huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
         message: "keyAlias: " + keyAlias +"is existed！",
         duration: 500,
     })
-}).catch((error)=>{
+}).catch((error: Error)=>{
     promptAction.showToast({
         message: "find key failed",
         duration: 6500,
@@ -1923,7 +1878,7 @@ huks.hasKeyItem(keyAlias, emptyOptions).then((data) => {
             duration: 2500,
         })
     }
-}).catch((error)=>{
+}).catch((error: Error)=>{
     promptAction.showToast({
         message: "find key failed",
         duration: 6500,
@@ -2301,13 +2256,9 @@ import { huks } from '@kit.UniversalKeystoreKit';
  *
  * 以下以RSA2048密钥的callback功能使用为例
  */
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
-    huks.HuksKeyPadding | huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
+
 let keyAlias = "HuksDemoRSA";
-let properties: HuksProperties[] = []
+let properties: Array<huks.HuksParam> = []
 let options: huks.HuksOptions = {
     properties: properties,
     inData: new Uint8Array(0)
@@ -2415,12 +2366,6 @@ import { huks } from '@kit.UniversalKeystoreKit';
  *
  * 以下以RSA2048密钥的promise功能使用为例
  */
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
-    huks.HuksKeyDigest | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
-    huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
 
 function stringToUint8Array(str: string) {
     let arr: number[] = [];
@@ -2432,7 +2377,7 @@ function stringToUint8Array(str: string) {
 }
 
 let keyAlias = "HuksDemoRSA";
-let properties: HuksProperties[] = []
+let properties: Array<huks.HuksParam> = []
 let options: huks.HuksOptions = {
     properties: properties,
     inData: new Uint8Array(0)
@@ -2470,7 +2415,7 @@ async function generateKey() {
             .then((data) => {
                 console.info(`promise: generateKeyItem success`);
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.error(`promise: generateKeyItem failed`);
             });
     } catch (error) {
@@ -2479,14 +2424,14 @@ async function generateKey() {
 }
 
 async function huksInit() {
-    console.log('enter huksInit');
+    console.info('enter huksInit');
     try {
         await huks.initSession(keyAlias, options)
             .then((data) => {
                 console.info(`promise: initSession success, data = ${JSON.stringify(data)}`);
                 handle = data.handle;
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.error(`promise: initSession key failed`);
             });
     } catch (error) {
@@ -2495,14 +2440,14 @@ async function huksInit() {
 }
 
 async function huksUpdate() {
-    console.log('enter huksUpdate');
+    console.info('enter huksUpdate');
     options.inData = stringToUint8Array("huksHmacTest");
     try {
         await huks.updateSession(handle, options)
             .then((data) => {
                 console.info(`promise: updateSession success, data = ${JSON.stringify(data)}`);
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.error(`promise: updateSession failed`);
             });
     } catch (error) {
@@ -2511,14 +2456,14 @@ async function huksUpdate() {
 }
 
 async function huksFinish() {
-    console.log('enter huksFinish');
+    console.info('enter huksFinish');
     options.inData = new Uint8Array(0);
     try {
         await huks.finishSession(handle, options)
             .then((data) => {
                 console.info(`promise: finishSession success, data = ${JSON.stringify(data)}`);
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.error(`promise: finishSession failed`);
             });
     } catch (error) {
@@ -2527,13 +2472,13 @@ async function huksFinish() {
 }
 
 async function huksAbort() {
-    console.log('enter huksAbort');
+    console.info('enter huksAbort');
     try {
         await huks.abortSession(handle, options)
             .then((data) => {
                 console.info(`promise: abortSession success`);
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.error(`promise: abortSession failed`);
             });
     } catch (error) {
@@ -2588,13 +2533,8 @@ listAliases(options: HuksOptions): Promise\<HuksListAliasesReturnResult>;
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit'
 
-class HuksProperties {
-  tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL
-  value: huks.HuksAuthStorageLevel
-}
-
 async function testListAliases() {
-  let queryProperties: HuksProperties[] = [
+  let queryProperties: Array<huks.HuksParam> = [
     {
       tag: huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL,
       value: huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_DE
@@ -3117,13 +3057,9 @@ generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 /* 以生成RSA512密钥为例 */
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
-    huks.HuksKeyDigest | huks.HuksKeyPadding = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
+
 let keyAlias = 'keyAlias';
-let properties: HuksProperties[] = [
+let properties: Array<huks.HuksParam> = [
     {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_RSA
@@ -3184,14 +3120,9 @@ generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 /* 以生成ECC256密钥为例 */
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
-    huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
 
 let keyAlias = 'keyAlias';
-let properties: HuksProperties[] = [
+let properties: Array<huks.HuksParam> = [
     {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -3312,11 +3243,7 @@ importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 /* 以导入AES256密钥为例 */
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
-    huks.HuksKeyPadding | huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
+
 let plainTextSize32 = makeRandomArr(32);
 function makeRandomArr(size: number) {
     let arr = new Uint8Array(size);
@@ -3326,7 +3253,7 @@ function makeRandomArr(size: number) {
     return arr;
 };
 let keyAlias = 'keyAlias';
-let properties: HuksProperties[] = [
+let properties: Array<huks.HuksParam> = [
     {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_AES
@@ -3387,11 +3314,7 @@ importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 /* 以导入AES128为例 */
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
-    huks.HuksKeyPadding | huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
+
 let plainTextSize32 = makeRandomArr(32);
 function makeRandomArr(size: number) {
     let arr = new Uint8Array(size);
@@ -3402,7 +3325,7 @@ function makeRandomArr(size: number) {
 };
 /*第一步：生成密钥*/
 let keyAlias = 'keyAlias';
-let properties: HuksProperties[] = [
+let properties: Array<huks.HuksParam> = [
     {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_AES
@@ -3807,13 +3730,9 @@ import { huks } from '@kit.UniversalKeystoreKit';
  *
  * 以下以RSA2048密钥的callback操作使用为例
  */
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
-    huks.HuksKeyDigest | huks.HuksKeyPadding = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
+
 let keyAlias = "HuksDemoRSA";
-let properties: HuksProperties[] = [];
+let properties: Array<huks.HuksParam> = [];
 let options: huks.HuksOptions = {
     properties: properties,
     inData: new Uint8Array(0)
@@ -3853,10 +3772,10 @@ function stringToUint8Array(str: string) {
 }
 async function huksInit() {
     await huks.init(keyAlias, options).then((data) => {
-        console.log(`test init data: ${JSON.stringify(data)}`);
+        console.info(`test init data: ${JSON.stringify(data)}`);
         handle = data.handle;
     }).catch((err) => {
-        console.log("test init err information: " + JSON.stringify(err))
+        console.error("test init err information: " + JSON.stringify(err))
     })
 }
 async function huksUpdate() {
@@ -3868,26 +3787,27 @@ async function huksUpdate() {
             resultMessage += "update fail!";
         }
     });
-    console.log(resultMessage);
+    console.info(resultMessage);
 }
 function huksFinish() {
     options.inData = stringToUint8Array("HuksDemoHMAC");
     huks.finish(handle, options).then((data) => {
         if (data.errorCode === 0) {
             resultMessage = "finish success!";
+            console.info(resultMessage);
         } else {
             resultMessage = "finish fail errorCode: " + data.errorCode;
+            console.error(resultMessage);
         }
     }).catch((err) => {
         resultMessage = "finish fail， catch errorMessage:" + JSON.stringify(err)
     });
-    console.log(resultMessage);
 }
 async function huksAbort() {
     new Promise<huks.HuksResult>((resolve, reject) => {
         huks.abort(handle, options, (err, data) => {
-            console.log(`huksAbort data ${JSON.stringify(data)}`);
-            console.log(`huksAbort err ${JSON.stringify(err)}`);
+            console.info(`huksAbort data ${JSON.stringify(data)}`);
+            console.error(`huksAbort err ${JSON.stringify(err)}`);
         });
     });
 }
@@ -3927,13 +3847,8 @@ import { huks } from '@kit.UniversalKeystoreKit';
  *
  * 以下以RSA2048密钥的promise操作使用为例
  */
-class HuksProperties {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
-    huks.HuksKeyPadding | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC
-}
 let keyAlias = "HuksDemoRSA";
-let properties: HuksProperties[] = [];
+let properties: Array<huks.HuksParam> = [];
 let options: huks.HuksOptions = {
     properties: properties,
     inData: new Uint8Array(0)
@@ -3994,12 +3909,13 @@ async function huksUpdate() {
         huks.update(handle, options.inData, options, (err, data) => {
             if (data.errorCode === 0) {
                 resultMessage += "update success!";
+                console.info(resultMessage);
             } else {
                 resultMessage += "update fail!";
+                console.error(resultMessage);
             }
         });
     });
-    console.log(resultMessage);
 
 }
 
@@ -4019,14 +3935,13 @@ async function huksFinish() {
 function huksAbort() {
     huks.abort(handle, options).then((data) => {
         if (data.errorCode === 0) {
-            resultMessage = "abort success!";
+            console.info("abort success!");
         } else {
-            resultMessage = "abort fail errorCode: " + data.errorCode;
+            console.error("abort fail errorCode: " + data.errorCode);
         }
-    }).catch((err) => {
-        resultMessage = "abort fail， catch errorMessage:" + JSON.stringify(err)
+    }).catch((err: Error) => {
+        console.error("abort fail， catch errorMessage:" + JSON.stringify(err));
     });
-    console.log(resultMessage);
 }
 ```
 
