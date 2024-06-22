@@ -109,11 +109,12 @@ This error code is reported if the query during geocoding has failed.
 
 **Possible Cause**
 
-Network connection is poor, which makes the request fail to be sent from the device or the result fail to be returned from the cloud to the device.
+1. A certain request parameter is incorrect, or no result can be found based on the parameter.<br>
+2. Network connection is poor, which makes the request fail to be sent from the device or the result fail to be returned from the cloud to the device.
 
 **Procedure**
 
-Perform a query again.
+Check the request parameters or network status and try again.
 
 ## 3301500 Area Information Query Failed
 

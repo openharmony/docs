@@ -89,9 +89,6 @@ import deviceInfo from '@ohos.deviceInfo';
     let hardwareModelInfo: string = deviceinfo.hardwareModel;
     console.info('the value of the deviceinfo hardwareModel is :' + hardwareModelInfo);
 
-    let hardwareProfileInfo: string = deviceinfo.hardwareProfile;
-    console.info('the value of the deviceinfo hardwareProfile is :' + hardwareProfileInfo);
-
     let serialInfo: string = deviceinfo.serial;
     console.info('the value of the deviceinfo serial is :' + serialInfo);
 
