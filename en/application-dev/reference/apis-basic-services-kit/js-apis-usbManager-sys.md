@@ -19,7 +19,7 @@ addRight(bundleName: string, deviceName: string): boolean
 
 Adds the device access permission for the application. System applications are granted the device access permission by default, and calling this API will not revoke the permission.
 
-[usb.requestRight](#usbrequestright) triggers a dialog box to request for user authorization, whereas **addRight** adds the access permission directly without displaying a dialog box. 
+This API adds the access permission directly without displaying a dialog box. 
 
 **NOTE**
 
@@ -357,7 +357,7 @@ addDeviceAccessRight(tokenId: string, deviceName: string): boolean
 
 Adds the device access permission for the application. System applications are granted the device access permission by default, and calling this API will not revoke the permission.
 
-[usb.requestRight](#usbrequestright) triggers a dialog box to request for user authorization, whereas **addDeviceAccessRight** adds the access permission directly without displaying a dialog box. 
+This adds the access permission directly without displaying a dialog box. 
 
 **NOTE**
 
