@@ -120,7 +120,7 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
       .then((data) => {
         console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {
@@ -159,7 +159,7 @@ async function publicAnonAttestKey(keyAlias: string, huksOptions: huks.HuksOptio
           anonAttestCertChain = data.certChains as string[];
         }
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {

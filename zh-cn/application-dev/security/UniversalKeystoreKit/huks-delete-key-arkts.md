@@ -51,7 +51,7 @@ async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions
       .then ((data) => {
         console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {
