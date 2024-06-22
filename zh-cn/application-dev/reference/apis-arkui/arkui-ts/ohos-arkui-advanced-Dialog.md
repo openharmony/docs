@@ -452,7 +452,7 @@ struct Index {
 弹出主题风格弹框。
 
 ```ts
-import { CustomColors, CustomTheme } from '@ohos.arkui.theme'
+import { CustomColors, CustomTheme } from '@kit.ArkUI'
 import { LoadingDialog } from '@ohos.arkui.advanced.Dialog';
 
 class CustomThemeImpl implements CustomTheme {

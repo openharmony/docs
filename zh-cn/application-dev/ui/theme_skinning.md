@@ -14,7 +14,7 @@
 [CustomTheme](../reference/apis-arkui/js-apis-arkui-theme.md#customtheme)用于自定义主题，属性可选，只需要复写修改的部分，未修改内容继承于系统，参考[系统缺省token色值](#系统缺省token色值)。请参考：
 
   ```ts
-    import { CustomColors, CustomTheme } from '@ohos.arkui.theme'
+    import { CustomColors, CustomTheme } from '@kit.ArkUI'
 
     export class AppColors implements CustomColors {
       //自定义品牌色
@@ -33,7 +33,7 @@
   其中，[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于自定义组件获取当前生效的Theme对象。
 
   ```ts
-    import { Theme, ThemeControl } from '@ohos.arkui.theme'
+    import { Theme, ThemeControl } from '@kit.ArkUI'
     import { gAppTheme } from './AppTheme'
     
     //在页面build前执行ThemeControl
@@ -145,7 +145,7 @@
     import UIAbility from '@ohos.app.ability.UIAbility';
     import Want from '@ohos.app.ability.Want';
     import window from '@ohos.window';
-    import { CustomColors, ThemeControl } from '@ohos.arkui.theme';
+    import { CustomColors, ThemeControl } from '@kit.ArkUI';
 
     class AppColors implements CustomColors {
       fontPrimary = 0xFFD53032
@@ -193,7 +193,7 @@
 [onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于自定义组件获取当前生效的Theme对象。
 
   ```ts
-    import { CustomColors, CustomTheme, Theme } from '@ohos.arkui.theme'
+    import { CustomColors, CustomTheme, Theme } from '@kit.ArkUI'
 
     class AppColors implements CustomColors {
       fontPrimary: ResourceColor = $r('app.color.brand_purple')
