@@ -357,13 +357,13 @@ off(type: 'scrollEvent', options: ObserverOptions, callback?: Callback\<ScrollEv
 **示例：**
 
 ```ts
-import observer from '@ohos.arkui.observer'
+import { uiObserver } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
   scroller: Scroller = new Scroller();
-  options: observer.ObserverOptions = { id:"testId" };
+  options: uiObserver.ObserverOptions = { id:"testId" };
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   build() {
@@ -391,26 +391,26 @@ struct Index {
       Row() {
         Button('UIObserver on')
           .onClick(() => {
-            observer.on('scrollEvent', (info) => {
+            uiObserver.on('scrollEvent', (info) => {
               console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserver off')
           .onClick(() => {
-            observer.off('scrollEvent');
+            uiObserver.off('scrollEvent');
           })
       }
 
       Row() {
         Button('UIObserverWithId on')
           .onClick(() => {
-            observer.on('scrollEvent', this.options, (info) => {
+            uiObserver.on('scrollEvent', this.options, (info) => {
               console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserverWithId off')
           .onClick(() => {
-            observer.off('scrollEvent', this.options);
+            uiObserver.off('scrollEvent', this.options);
           })
       }
     }

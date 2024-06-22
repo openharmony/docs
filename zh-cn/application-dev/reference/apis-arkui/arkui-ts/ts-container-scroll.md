@@ -763,7 +763,7 @@ getItemRect(index: number): RectResult
 
 ```ts
 // xxx.ets
-import Curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -819,7 +819,7 @@ struct ScrollExample {
       Button('scroll 100')
         .height('5%')
         .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离，滑动过程配置有动画
-          let curve = Curves.interpolatingSpring(10, 1, 228, 30) //创建一个阶梯曲线
+          let curve = curves.interpolatingSpring(10, 1, 228, 30) //创建一个阶梯曲线
           const yOffset: number = this.scroller.currentOffset().yOffset;
           this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100, animation: { duration: 1000, curve: curve } })
         })
@@ -1061,8 +1061,6 @@ struct ListExample {
 
 ```ts
 // xxx.ets
-import Curves from '@ohos.curves'
-
 @Entry
 @Component
 struct ScrollExample {
