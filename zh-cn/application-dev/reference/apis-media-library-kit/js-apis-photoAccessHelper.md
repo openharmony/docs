@@ -765,7 +765,7 @@ applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
-在提交创建资产的变更请求时，对于未申请'ohos.permission.WRITE_IMAGEVIDEO'权限的应用，可以用安全控件的方式调用该接口来创建媒体资源，详情请参考[开指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
+在提交创建资产的变更请求时，对于未申请'ohos.permission.WRITE_IMAGEVIDEO'权限的应用，可以用安全控件的方式调用该接口来创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
