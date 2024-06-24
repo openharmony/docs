@@ -9,6 +9,11 @@ VideoEncoder模块提供用于视频编码的函数。
 
 **起始版本：** 9
 
+函数在每个版本，对每种模式的支持情况说明，如下图所示。
+
+![meaning](figures/meaning.PNG)
+
+![desciption of encode api history](figures/video-encode-api.PNG)
 
 ## 汇总
 
@@ -60,13 +65,6 @@ VideoEncoder模块提供用于视频编码的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_FreeOutputBuffer](#oh_videoencoder_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回给编码器。  | 
 | OH_AVFormat \* [OH_VideoEncoder_GetInputDescription](#oh_videoencoder_getinputdescription) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 获取视频编码器接收的描述信息。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_IsValid](#oh_videoencoder_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前编码实例是否有效。  | 
-
-
-## 函数版本说明
-
-![meaning](../../media/avcodec/figures/meaning.PNG)
-
-![desciption of encode api history](../../media/avcodec/figures/video-encode-api.PNG)
 
 
 ## 类型定义说明

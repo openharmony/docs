@@ -9,6 +9,11 @@ VideoDecoder模块提供用于视频解码的函数。
 
 **起始版本：** 9
 
+函数在每个版本，对每种模式的支持情况说明，如下图所示。
+
+![meaning](figures/meaning.PNG)
+
+![desciption of decode api history](figures/video-decode-api.PNG)
 
 ## 汇总
 
@@ -46,13 +51,6 @@ VideoDecoder模块提供用于视频解码的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_FreeOutputBuffer](#oh_videodecoder_freeoutputbuffer) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, uint32_t index) | 将处理后的输出缓冲区返回到解码器。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_IsValid](#oh_videodecoder_isvalid) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, bool \*isValid) | 检查当前解码实例是否有效。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoDecoder_SetDecryptionConfig](#oh_videodecoder_setdecryptionconfig) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, MediaKeySession \*mediaKeySession, bool secureVideoPath) | 设置解密配置。  | 
-
-
-## 函数版本说明
-
-![meaning](../../media/avcodec/figures/meaning.PNG)
-
-![desciption of decode api history](../../media/avcodec/figures/video-decode-api.PNG)
 
 
 ## 函数说明
