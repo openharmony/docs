@@ -59,7 +59,7 @@ function setAppShareOptions(intention: Intention, shareOptions: ShareOptions): v
 import { unifiedDataChannel } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
-  UDC.setAppShareOptions(UDC.Intention.DRAG, UDC.ShareOptions.IN_APP);
+  unifiedDataChannel.setAppShareOptions(unifiedDataChannel.Intention.DRAG, unifiedDataChannel.ShareOptions.IN_APP);
   console.error(`[UDMF]setAppShareOptions success. `);
 }catch (e){
   let error: BusinessError = e as BusinessError;
@@ -98,7 +98,7 @@ function removeAppShareOptions(intention: Intention): void
 import { unifiedDataChannel } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
-  UDC.removeAppShareOptions(UDC.Intention.DRAG);
+  unifiedDataChannel.removeAppShareOptions(unifiedDataChannel.Intention.DRAG);
   console.error(`[UDMF]removeAppShareOptions success. `);
 }catch (e){
   let error: BusinessError = e as BusinessError;
