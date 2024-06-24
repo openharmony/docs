@@ -172,11 +172,11 @@ const finishPropertiesSecond: Array<huks.HuksParam>  = [
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
-                 console.error(`promise: generateKeyItem failed` + error);
+                 console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
              }
          });
      } catch (error) {
-         console.error(`promise: generateKeyItem input arg invalid` + error);
+         console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
      }
  }
  /*初始化密钥会话接口，并获取一个句柄（必选）和挑战值（可选）*/
@@ -210,11 +210,11 @@ const finishPropertiesSecond: Array<huks.HuksParam>  = [
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
-                 console.error(`promise: doInit failed` + error);
+                 console.error(`promise: doInit failed, ${JSON.stringify(error)}`);
              }
          });
      } catch (error) {
-         console.error(`promise: doInit input arg invalid` + error);
+         console.error(`promise: doInit input arg invalid, ${JSON.stringify(error)}`);
      }
  }
  /* 分段添加密钥操作的数据并进行相应的密钥操作，输出处理数据 */
@@ -247,11 +247,11 @@ const finishPropertiesSecond: Array<huks.HuksParam>  = [
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
-                 console.error(`promise: doUpdate failed` + error);
+                 console.error(`promise: doUpdate failed, ${JSON.stringify(error)}`);
              }
          });
      } catch (error) {
-         console.error(`promise: doUpdate input arg invalid` + error);
+         console.error(`promise: doUpdate input arg invalid, ${JSON.stringify(error)}`);
      }
  }
  /* 结束密钥会话并进行相应的密钥操作，输出处理数据 */
@@ -285,11 +285,11 @@ const finishPropertiesSecond: Array<huks.HuksParam>  = [
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
-                 console.error(`promise: doFinish failed` + error);
+                 console.error(`promise: doFinish failed, ${JSON.stringify(error)}`);
              }
          });
      } catch (error) {
-         console.error(`promise: doFinish input arg invalid` + error);
+         console.error(`promise: doFinish input arg invalid, ${JSON.stringify(error)}`);
      }
  }
  /* 导出密钥 */
@@ -323,11 +323,11 @@ const finishPropertiesSecond: Array<huks.HuksParam>  = [
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
-                 console.error(`promise: exportKeyItem failed` + error);
+                 console.error(`promise: exportKeyItem failed, ${JSON.stringify(error)}`);
              }
          });
      } catch (error) {
-         console.error(`promise: exportKeyItem input arg invalid` + error);
+         console.error(`promise: exportKeyItem input arg invalid`, ${JSON.stringify(error)}`);
      }
  }
  /* 删除密钥操作 */
@@ -360,11 +360,11 @@ const finishPropertiesSecond: Array<huks.HuksParam>  = [
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
-                 console.error(`promise: deleteKeyItem failed` + error);
+                 console.error(`promise: deleteKeyItem failed, ${JSON.stringify(error)}`);
              }
          });
      } catch (error) {
-         console.error(`promise: deleteKeyItem input arg invalid` + error);
+          console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(error)}`);
      }
  }
  async function testAgree() {

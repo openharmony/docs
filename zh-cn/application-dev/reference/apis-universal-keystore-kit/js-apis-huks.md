@@ -3935,14 +3935,12 @@ async function huksFinish() {
 function huksAbort() {
     huks.abort(handle, options).then((data) => {
         if (data.errorCode === 0) {
-            resultMessage = "abort success!";
-            console.info(resultMessage);
+            console.info("abort success!");
         } else {
-            resultMessage = "abort fail errorCode: " + data.errorCode;
-            console.error(resultMessage);
+            console.error("abort fail errorCode: " + data.errorCode);
         }
     }).catch((err: Error) => {
-        resultMessage = "abort fail， catch errorMessage:" + JSON.stringify(err)
+        console.error("abort fail， catch errorMessage:" + JSON.stringify(err));
     });
 }
 ```

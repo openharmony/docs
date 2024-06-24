@@ -177,11 +177,11 @@ async function publicGenKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
             if (throwObject.isThrow) {
                 throw(error as Error);
             } else {
-                console.error(`promise: generateKeyItem failed` + error);
+                console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
             }
         });
     } catch (error) {
-        console.error(`promise: generateKeyItem input arg invalid` + error);
+        console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
     }
 }
 function initSession(keyAlias:string, huksOptions:huks.HuksOptions, throwObject:throwObject) {
@@ -213,11 +213,11 @@ async function publicInitFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
             if (throwObject.isThrow) {
                 throw(error as Error);
             } else {
-                console.error(`promise: doInit failed` + error);
+                console.error(`promise: doInit failed, ${JSON.stringify(error)}`);
             }
         });
     } catch (error) {
-        console.error(`promise: doInit input arg invalid` + error);
+        console.error(`promise: doInit input arg invalid, ${JSON.stringify(error)}`);
     }
 }
 function updateSession(handle:number, huksOptions:huks.HuksOptions, throwObject:throwObject) {
@@ -248,12 +248,12 @@ async function publicUpdateFunc(handle:number, huksOptions:huks.HuksOptions) {
             if (throwObject.isThrow) {
                 throw(error as Error);
             } else {
-                console.error(`promise: doUpdate failed` + error);
+                console.error(`promise: doUpdate failed, ${JSON.stringify(error)}`);
             }
         });
     } catch (error) {
-        console.error(`promise: doUpdate input arg invalid` + error);
-    }
+        console.error(`promise: doUpdate input arg invalid, ${JSON.stringify(error)}`);
+      }
 }
 function finishSession(handle:number, huksOptions:huks.HuksOptions, throwObject:throwObject) {
     return new Promise<huks.HuksReturnResult>((resolve, reject) => {
@@ -284,11 +284,11 @@ async function publicFinishFunc(handle:number, huksOptions:huks.HuksOptions) {
             if (throwObject.isThrow) {
                 throw(error as Error);
             } else {
-                console.error(`promise: doFinish failed` + error);
+                console.error(`promise: doFinish failed, ${JSON.stringify(error)}`);
             }
         });
     } catch (error) {
-        console.error(`promise: doFinish input arg invalid` + error);
+        console.error(`promise: doFinish input arg invalid, ${JSON.stringify(error)}`);
     }
 }
 function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions, throwObject:throwObject) {
@@ -319,11 +319,11 @@ async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions
             if (throwObject.isThrow) {
                 throw(error as Error);
             } else {
-                console.error(`promise: deleteKeyItem failed` + error);
+                console.error(`promise: deleteKeyItem failed, ${JSON.stringify(error)}`);
             }
         });
     } catch (error) {
-        console.error(`promise: deleteKeyItem input arg invalid` + error);
+        console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(error)}`);
     }
 }
 async function testDerive() {

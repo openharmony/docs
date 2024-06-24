@@ -147,7 +147,7 @@ async function GenerateAesKey() {
     .then((data) => {
         console.info(`promise: generate AES Key success, data = ${JSON.stringify(data)}`);
     }).catch((error: Error)=>{
-        console.error(`promise: generate AES Key failed` + error);
+        console.error(`promise: generate AES Key failed, ${JSON.stringify(error)}`);
     })
 }
 async function EncryptData() {
@@ -173,7 +173,7 @@ async function EncryptData() {
     .then((data) => {
         handle = data.handle;
     }).catch((error: Error)=>{
-        console.error(`promise: init EncryptData failed` + error);
+        console.error(`promise: init EncryptData failed, ${JSON.stringify(error)}`);
     })
     /*
     * 5. 调用finishSession获取加密后的密文
@@ -183,7 +183,7 @@ async function EncryptData() {
         console.info(`promise: encrypt data success, data is `+ Uint8ArrayToString(data.outData as Uint8Array));
         cipherData = data.outData as Uint8Array;
     }).catch((error: Error)=>{
-        console.error(`promise: encrypt data failed` + error);
+        console.error(`promise: encrypt data failed, ${JSON.stringify(error)}`);
     })
 }
 async function DecryptData() {
@@ -209,7 +209,7 @@ async function DecryptData() {
     .then((data) => {
         handle = data.handle;
     }).catch((error: Error)=>{
-        console.error(`promise: init DecryptData failed` + error);
+        console.error(`promise: init DecryptData failed, ${JSON.stringify(error)}`);
     })
     /*
     * 5. 调用finishSession获取解密后的数据
@@ -218,7 +218,7 @@ async function DecryptData() {
     .then((data) => {
         console.info(`promise: decrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
     }).catch((error: Error)=>{
-        console.error(`promise: decrypt data failed` + error);
+        console.error(`promise: decrypt data failed, ${JSON.stringify(error)}`);
     })
 }
 async function DeleteKey() {
@@ -236,7 +236,7 @@ async function DeleteKey() {
     .then((data) => {
         console.info(`promise: delete data success`);
     }).catch((error: Error)=>{
-        console.error(`promise: delete data failed` + error);
+        console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
 }
 ```

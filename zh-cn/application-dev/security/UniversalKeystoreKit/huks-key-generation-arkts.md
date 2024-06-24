@@ -3,6 +3,8 @@
 
 以生成DH密钥为例，生成随机密钥。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
+> **注意：**
+> 密钥别名中禁止包含个人数据等敏感信息。
 
 ## 开发步骤
 
@@ -72,10 +74,10 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
             console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
         })
         .catch((error: Error) => {
-            console.error(`promise: generateKeyItem failed` + error);
+            console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
         });
     } catch (error) {
-        console.error(`promise: generateKeyItem input arg invalid` + error);
+        console.error(`promise: generateKeyItem input arg invalid` + JSON.stringify(error));
     }
 }
 async function TestGenKey() {

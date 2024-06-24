@@ -272,10 +272,10 @@ async function publicGenerateItemFunc(keyAlias: string, huksOptions: huks.HuksOp
             console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
         })
         .catch((err: Error) => {
-            console.error(`promise: generateKeyItem failed` + err);
+            console.error(`promise: generateKeyItem failed, ${JSON.stringify(err)}`);
         })
     } catch (err) {
-        console.error(`promise: generateKeyItem invalid` + err);
+        console.error(`promise: generateKeyItem invalid, ${JSON.stringify(err)}`);
     }
 }
 async function publicImportKeyItemFunc(keyAlias: string, HuksOptions: huks.HuksOptions) {
@@ -285,10 +285,10 @@ async function publicImportKeyItemFunc(keyAlias: string, HuksOptions: huks.HuksO
         .then(data => {
             console.info(`promise: importKeyItem success, data = ${JSON.stringify(data)}`);
         }).catch((err: Error) => {
-            console.error(`promise: importKeyItem failed` + err);
+            console.error(`promise: importKeyItem failed, ${JSON.stringify(err)}`);
         })
     } catch (err) {
-        console.error(`promise: importKeyItem input arg invalid` + err);
+        console.error(`promise: importKeyItem input arg invalid, ${JSON.stringify(err)}`);
     }
 }
 async function publicDeleteKeyItemFunc(KeyAlias: string, HuksOptions: huks.HuksOptions) {
@@ -299,10 +299,10 @@ async function publicDeleteKeyItemFunc(KeyAlias: string, HuksOptions: huks.HuksO
             console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
         })
         .catch((err: Error) => {
-            console.error(`promise: deleteKeyItem failed` + err);
+            console.error(`promise: deleteKeyItem failed, ${JSON.stringify(err)}`);
         })
     } catch (err) {
-        console.error(`promise: deleteKeyItem input arg invalid` + err);
+        console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(err)}`);
     }
 }
 function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
@@ -330,11 +330,10 @@ async function publicImportWrappedKeyFunc(keyAlias: string, wrappingKeyAlias: st
             console.info(`promise: importWrappedKeyItem success, data = ${JSON.stringify(data)}`);
         })
         .catch((error: Error) => {
-            console.error(`promise: importWrappedKeyItem failed` + error);
+            console.error(`promise: importWrappedKeyItem failed, ${JSON.stringify(error)}`);
         });
     } catch (error) {
-        console.error(`promise: importWrappedKeyItem input arg invalid` + error);
-    }
+        console.error(`promise: importWrappedKeyItem input arg invalid, ${JSON.stringify(error)}`);
 }
 async function publicImportWrappedKeyPromise(keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
     console.info(`enter promise importWrappedKeyItem`);
@@ -344,10 +343,10 @@ async function publicImportWrappedKeyPromise(keyAlias: string, wrappingKeyAlias:
             console.info(`promise: importWrappedKeyItem success, data = ${JSON.stringify(data)}`);
         })
         .catch((error: Error) => {
-            console.error(`promise: importWrappedKeyItem failed` + error);
+            console.error(`promise: importWrappedKeyItem failed, ${JSON.stringify(error)}`);
         });
     } catch (error) {
-        console.error(`promise: importWrappedKeyItem input arg invalid` + error);
+        console.error(`promise: importWrappedKeyItem input arg invalid, ${JSON.stringify(error)}`);
     }
 }
 async function publicInitFunc(srcKeyAlias: string, HuksOptions: huks.HuksOptions) {
@@ -360,10 +359,10 @@ async function publicInitFunc(srcKeyAlias: string, HuksOptions: huks.HuksOptions
             handle = data.handle;
         })
         .catch((error: Error) => {
-            console.error(`promise: doInit key failed` + error);
+            console.error(`promise: doInit key failed, ${JSON.stringify(error)}`);
         });
     } catch (error) {
-        console.error(`promise: doInit input arg invalid` + error);
+        console.error(`promise: doInit input arg invalid, ${JSON.stringify(error)}`);
     }
     return handle;
 }
@@ -390,19 +389,19 @@ async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.Huk
         try {
             await huks.updateSession(handle, HuksOptions)
             .then((data) => {
-                console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+                console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
                 outData = outData.concat(Array.from(data.outData!));
             })
             .catch((error: Error) => {
-                console.error(`promise: doUpdate failed` + error);
+                console.error(`promise: doUpdate failed, ${JSON.stringify(error)}`);
             });
         } catch (error) {
-            console.error(`promise: doUpdate input arg invalid` + error);
+            console.error(`promise: doUpdate input arg invalid, ${JSON.stringify(error)}`);
         }
         if ((!isFinished) && (inDataSegPosition + maxUpdateSize > lastInDataPosition)) {
-            console.info(`update size invalid isFinished = ${isFinished}`);
-            console.info(`inDataSegPosition = ${inDataSegPosition}`);
-            console.info(`lastInDataPosition = ${lastInDataPosition}`);
+            console.error(`update size invalid isFinished = ${isFinished}`);
+            console.error(`inDataSegPosition = ${inDataSegPosition}`);
+            console.error(`lastInDataPosition = ${lastInDataPosition}`);
             return;
         }
         inDataSegPosition += maxUpdateSize;
@@ -419,10 +418,10 @@ async function publicFinishSession(handle: number, HuksOptions: huks.HuksOptions
             outData = inData.concat(Array.from(data.outData!));
         })
         .catch((error: Error) => {
-            console.error(`promise: doFinish key failed` + error);
+            console.error(`promise: doFinish key failed, ${JSON.stringify(error)}`);
         });
     } catch (error) {
-        console.error(`promise: doFinish input arg invalid` + error);
+        console.error(`promise: doFinish input arg invalid, ${JSON.stringify(error)}`);
     }
     return new Uint8Array(outData);
 }
@@ -443,10 +442,10 @@ async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, hu
             console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
         })
         .catch((error: Error) => {
-            console.error(`promise: doUpdate failed` + error);
+            console.error(`promise: doUpdate failed, ${JSON.stringify(error)}`);
         });
     } catch (error) {
-        console.error(`promise: doUpdate input arg invalid` + error);
+        console.error(`promise: doUpdate input arg invalid, ${JSON.stringify(error)}`);
     }
     console.info(`enter promise doInit`);
     try {
@@ -456,10 +455,10 @@ async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, hu
             outSharedKey = data.outData as Uint8Array;
         })
         .catch((error: Error) => {
-            console.error(`promise: doInit key failed` + error);
+            console.error(`promise: doInit key failed, ${JSON.stringify(error)}`);
         });
     } catch (error) {
-        console.error(`promise: doInit input arg invalid` + error);
+        console.error(`promise: doInit input arg invalid, ${JSON.stringify(error)}`);
     }
     return outSharedKey;
 }
@@ -482,10 +481,10 @@ async function generateAndExportPublicKey(keyAlias: string, HuksOptions: huks.Hu
             }
         })
         .catch((error: Error) => {
-            console.error(`promise: exportKeyItem failed` + error);
+            console.error(`promise: exportKeyItem failed, ${JSON.stringify(error)}`);
         });
     } catch (error) {
-        console.error(`promise: generate pubKey failed` + error);
+        console.error(`promise: generate pubKey failed, ${JSON.stringify(error)}`);
     }
 }
 async function EncryptImportedPlainKeyAndKek(keyAlias: string) {
@@ -602,7 +601,7 @@ let huksOptions:huks.HuksOptions = {
 try {
     huks.isKeyItemExist(keyAlias, huksOptions, (error, data)=> {
         if (error) {
-            console.error(`callback: isKeyItemExist failed` + error);
+            console.error(`callback: isKeyItemExist failed, ${JSON.stringify(error)}`);
         } else {
             if (data !== null && data.valueOf() !== null) {
                 isKeyExist = data.valueOf();
@@ -611,6 +610,6 @@ try {
         }
     });
 } catch (error) {
-    console.error(`callback: isKeyItemExist input arg invalid` + error);
+    console.error(`callback: isKeyItemExist input arg invalid, ${JSON.stringify(error)}`);
 }
 ```

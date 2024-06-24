@@ -94,7 +94,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
     console.info("成功生成了一个别名为：" + keyAlias + " 的密钥")
   }).catch((err: Error) => {
-    console.error("密钥生成失败，错误码是： " + err)
+    console.error("密钥生成失败，错误:" + JSON.stringify(err))
   })
 }
 
@@ -145,7 +145,7 @@ deleteKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError} from "@kit.BasicServicesKit"
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -255,7 +255,7 @@ importKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError} from "@kit.BasicServicesKit"
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -356,7 +356,7 @@ attestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError} from "@kit.BasicServicesKit"
+import { BusinessError } from "@kit.BasicServicesKit"
 
 function StringToUint8Array(str: string) {
   let arr: number[] = [];
@@ -437,9 +437,9 @@ async function LetKeyAttest(keyAlias: string, keyOptions: Array<huks.HuksParam>)
   console.info('开始attest')
   await huks.attestKeyItemAsUser(userId, keyAlias, attestOptions).then((data) => {
     console.info('attestation ok!')
-    console.info(`拿到的证书链是${JSON.stringify(data)}`) // 这里是调试信息，实际业务功能开发无需打印证书链
+    console.debug(`拿到的证书链是${JSON.stringify(data)}`) // 这里是调试信息，实际业务功能开发无需打印证书链
     for (let i = 0; data?.certChains?.length && i < data?.certChains?.length; ++i) {
-      console.info(`证书${i}是${data.certChains[i]}`) // 这里是调试信息，实际业务功能开发无需打印证书链
+      console.debug(`证书${i}是${data.certChains[i]}`) // 这里是调试信息，实际业务功能开发无需打印证书链
     }
     console.info("attest 成功")
   }).catch((err: BusinessError) => {
@@ -510,7 +510,7 @@ anonAttestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptio
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError} from "@kit.BasicServicesKit"
+import { BusinessError } from "@kit.BasicServicesKit"
 
 function StringToUint8Array(str: string) {
   let arr: number[] = [];
@@ -591,7 +591,7 @@ async function LetKeyAnonAttest(keyAlias: string, keyOptions: Array<huks.HuksPar
   console.info('开始匿名attest')
   await huks.anonAttestKeyItemAsUser(userId, keyAlias, attestOptions).then((data) => {
     console.info('匿名attestation ok!')
-    console.info(`拿到的证书链是${JSON.stringify(data)}`)
+    console.debug(`拿到的证书链是${JSON.stringify(data)}`)
     for (let i = 0; data?.certChains?.length && i < data?.certChains?.length; ++i) {
       console.info(`证书${i}是${data.certChains[i]}`)
     }
@@ -661,7 +661,7 @@ importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: s
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError} from "@kit.BasicServicesKit"
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
 const initializationVector = '0000000000000000';
@@ -1043,9 +1043,9 @@ async function PublicUpdateSessionFunction(handle: number, huksOptions: huks.Huk
       console.error(`promise: doUpdate input arg invalid, code: ${error.code}, msg: ${error.message}`);
     }
     if ((!isFinished) && (inDataSegPosition + maxUpdateSize > lastInDataPosition)) {
-      console.info(`update size invalid isFinished = ${isFinished}`);
-      console.info(`inDataSegPosition = ${inDataSegPosition}`);
-      console.info(`lastInDataPosition = ${lastInDataPosition}`);
+      console.error(`update size invalid isFinished = ${isFinished}`);
+      console.error(`inDataSegPosition = ${inDataSegPosition}`);
+      console.error(`lastInDataPosition = ${lastInDataPosition}`);
       return [];
     }
     inDataSegPosition += maxUpdateSize;
@@ -1319,7 +1319,7 @@ exportKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) 
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError} from "@kit.BasicServicesKit"
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const rsaKeyAlias = 'test_rsaKeyAlias';
 const userId = 100;
@@ -1437,7 +1437,7 @@ getKeyItemPropertiesAsUser(userId: number, keyAlias: string, huksOptions: HuksOp
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError} from "@kit.BasicServicesKit"
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
@@ -1550,7 +1550,7 @@ hasKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : P
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError} from "@kit.BasicServicesKit"
+import { BusinessError } from "@kit.BasicServicesKit"
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
@@ -1666,7 +1666,7 @@ initSessionAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : 
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError} from "@kit.BasicServicesKit"
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
 const userId = 100;

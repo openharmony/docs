@@ -85,11 +85,11 @@
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
-                   console.error(`promise: generateKeyItem failed` + error);
+                   console.error(`promise: generateKeyItem failed`+ JSON.stringify(error));
                }
            });
        } catch (error) {
-           console.error(`promise: generateKeyItem input arg invalid` + error);
+           console.error(`promise: generateKeyItem input arg invalid` + JSON.stringify(error));
        }
    }
    async function TestGenKeyForFingerprintAccessControl() {
@@ -101,7 +101,7 @@
    
    ```ts
    import { huks } from "@kit.UniversalKeystoreKit";
-   import {userAuth} from '@kit.UserAuthenticationKit';
+   import { userAuth } from '@kit.UserAuthenticationKit';
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
@@ -169,11 +169,11 @@
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
-                   console.error(`promise: doInit failed` + error);
+                   console.error(`promise: doInit failed` + JSON.stringify(error));
                }
            });
        } catch (error) {
-           console.error(`promise: doInit input arg invalid` + error);
+           console.error(`promise: doInit input arg invalid` + JSON.stringify(error));
        }
    }
    function userIAMAuthFinger(huksChallenge:Uint8Array) {
@@ -192,7 +192,7 @@
          auth = userAuth.getUserAuthInstance(authParam, widgetParam);
          console.info("get auth instance success");
        } catch (error) {
-         console.error("get auth instance failed" + error);
+         console.error("get auth instance failed" + JSON.stringify(error));
          return;
        }
        // 订阅认证结果
@@ -205,14 +205,14 @@
          });
          console.info("subscribe authentication event success");
        } catch (error) {
-         console.error("subscribe authentication event failed " + error);
+         console.error("subscribe authentication event failed " + JSON.stringify(error));
        }
        // 开始认证
        try {
          auth.start();
          console.info("authV9 start auth success");
        } catch (error) {
-         console.error("authV9 start auth failed, error = " + error);
+         console.error("authV9 start auth failed, error = " + JSON.stringify(error));
        }
      }
    async function testInitAndAuthFinger() {
@@ -312,11 +312,11 @@
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
-                   console.error(`promise: doUpdate failed` + error);
+                   console.error(`promise: doUpdate failed` + JSON.stringify(error));
                }
            });
        } catch (error) {
-           console.error(`promise: doUpdate input arg invalid` + error);
+           console.error(`promise: doUpdate input arg invalid` + JSON.stringify(error));
        }
    }
    function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: throwObject) {
@@ -348,11 +348,11 @@
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
-                   console.error(`promise: doFinish failed` + error);
+                   console.error(`promise: doFinish failed` + JSON.stringify(error));
                }
            });
        } catch (error) {
-           console.error(`promise: doFinish input arg invalid` + error);
+           console.error(`promise: doFinish input arg invalid` + JSON.stringify(error));
        }
    }
    async function testSm4Cipher() {

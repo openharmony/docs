@@ -55,11 +55,11 @@ async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {
-          console.error(`promise: deleteKeyItem failed` + error);
+          console.error(`promise: deleteKeyItem failed, ${JSON.stringify(error)}`);
         }
       });
   } catch (error) {
-    console.error(`promise: deleteKeyItem input arg invalid` + error);
+    console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(error)}`);
   }
 }
 async function testDerive() {

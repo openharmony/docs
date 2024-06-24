@@ -94,11 +94,11 @@
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
-                   console.error(`promise: generateKeyItem failed` + error);
+                   console.error(`promise: generateKeyItem failed` + JSON.stringify(error));
                }
            });
        } catch (error) {
-           console.error(`promise: generateKeyItem input arg invalid` + error);
+           console.error(`promise: generateKeyItem input arg invalid` + JSON.stringify(error));
        }
    }
    async function TestGenKeyForFingerprintAccessControl() {
@@ -192,11 +192,11 @@
                if (throwObject.isThrow) {
                    throw (error as Error);
                } else {
-                   console.error(`promise: doInit failed` + error);
+                   console.error(`promise: doInit failed` + JSON.stringify(error));
                }
            });
        } catch (error) {
-           console.error(`promise: doInit input arg invalid` + error);
+           console.error(`promise: doInit input arg invalid` + JSON.stringify(error));
        }
    }
    function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: throwObject1) {
@@ -228,11 +228,11 @@
                if (throwObject.isThrow) {
                    throw (error as Error);
                } else {
-                   console.error(`promise: doFinish failed` + error);
+                   console.error(`promise: doFinish failed` + JSON.stringify(error));
                }
            });
        } catch (error) {
-           console.error(`promise: doFinish input arg invalid` + error);
+           console.error(`promise: doFinish input arg invalid` + JSON.stringify(error));
        }
    }
    async function testSm4Cipher() {
@@ -248,8 +248,9 @@
    
    ```ts
     import { huks } from "@kit.UniversalKeystoreKit";
-    import {userAuth} from '@kit.UserAuthenticationKit';
-    import { BusinessError} from "@kit.BasicServicesKit"
+    import { userAuth } from '@kit.UserAuthenticationKit';
+    import { BusinessError } from "@kit.BasicServicesKit"
+
 
     let keyAlias = 'test_sm4_key_alias';
     let IV = '1234567890123456';
@@ -339,11 +340,11 @@
             if (throwObject.isThrow) {
             throw(error as Error);
             } else {
-            console.error(`promise: doInit failed` + error);
+            console.error(`promise: doInit failed` + JSON.stringify(error));
             }
         });
     } catch (error) {
-        console.error(`promise: doInit input arg invalid` + error);
+        console.error(`promise: doInit input arg invalid` + JSON.stringify(error));
     }
     }
     function userIAMAuthFinger(huksChallenge: Uint8Array) {
@@ -362,7 +363,7 @@
         auth = userAuth.getUserAuthInstance(authParam, widgetParam);
         console.info("get auth instance success");
     } catch (error) {
-        console.error("get auth instance failed" + error);
+        console.error("get auth instance failed" + JSON.stringify(error));
         return;
     }
     // 订阅认证结果
@@ -375,14 +376,14 @@
         });
         console.info("subscribe authentication event success");
     } catch (error) {
-        console.error("subscribe authentication event failed " + error);
+        console.error("subscribe authentication event failed " + JSON.stringify(error));
     }
     // 开始认证
     try {
         auth.start();
         console.info("authV9 start auth success");
     } catch (error) {
-        console.error("authV9 start auth failed, error = " + error);
+        console.error("authV9 start auth failed, error = " + JSON.stringify(error));
     }
     }
     function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: throwObject) {
@@ -414,11 +415,11 @@
             if (throwObject.isThrow) {
                 throw(error as Error);
             } else {
-                console.error(`promise: doFinish failed` + error);
+                console.error(`promise: doFinish failed` + JSON.stringify(error));
             }
         });
     } catch (error) {
-        console.error(`promise: doFinish input arg invalid` + error);
+        console.error(`promise: doFinish input arg invalid` + JSON.stringify(error));
     }
     }
     async function testSm4Cipher() {
