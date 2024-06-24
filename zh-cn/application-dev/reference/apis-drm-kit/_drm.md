@@ -75,7 +75,7 @@
 | typedef enum [DRM_ContentProtectionLevel](#drm_contentprotectionlevel-1) [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) | 内容保护级别类型。 | 
 | typedef enum [DRM_MediaKeyType](#drm_mediakeytype-1) [DRM_MediaKeyType](#drm_mediakeytype) | 许可证类型。 | 
 | typedef enum [DRM_MediaKeyRequestType](#drm_mediakeyrequesttype-1) [DRM_MediaKeyRequestType](#drm_mediakeyrequesttype) | 许可证请求类型。 | 
-| typedef enum [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus-1) [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus) | 离线许可证状态。 | 
+| typedef enum [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus-1) [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus) | 离线媒体密钥状态。 | 
 | typedef enum [DRM_CertificateStatus](#drm_certificatestatus-1) [DRM_CertificateStatus](#drm_certificatestatus) | 设备证书状态类型。 | 
 | typedef struct [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md) [DRM_MediaKeyRequestInfo](#drm_mediakeyrequestinfo) | 媒体密钥请求信息。 | 
 | typedef struct [DRM_MediaKeyRequest](_d_r_m___media_key_request.md) [DRM_MediaKeyRequest](#drm_mediakeyrequest) | 媒体密钥请求。 | 
@@ -108,7 +108,7 @@
 | [DRM_ContentProtectionLevel](#drm_contentprotectionlevel-1) {<br/>CONTENT_PROTECTION_LEVEL_UNKNOWN = 0, <br/>CONTENT_PROTECTION_LEVEL_SW_CRYPTO, <br/>CONTENT_PROTECTION_LEVEL_HW_CRYPTO, <br/>CONTENT_PROTECTION_LEVEL_ENHANCED_HW_CRYPTO,<br/>CONTENT_PROTECTION_LEVEL_MAX<br/>} | 内容保护级别类型。 | 
 | [DRM_MediaKeyType](#drm_mediakeytype-1) { <br/>MEDIA_KEY_TYPE_OFFLINE = 0, <br/>MEDIA_KEY_TYPE_ONLINE <br/>} | 许可证类型。 | 
 | [DRM_MediaKeyRequestType](#drm_mediakeyrequesttype-1) {<br/>MEDIA_KEY_REQUEST_TYPE_UNKNOWN = 0, <br/>MEDIA_KEY_REQUEST_TYPE_INITIAL, <br/>MEDIA_KEY_REQUEST_TYPE_RENEWAL, <br/>MEDIA_KEY_REQUEST_TYPE_RELEASE,<br/>MEDIA_KEY_REQUEST_TYPE_NONE, <br/>MEDIA_KEY_REQUEST_TYPE_UPDATE<br/>} | 许可证请求类型。 | 
-| [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus-1) { <br/>OFFLINE_MEDIA_KEY_STATUS_UNKNOWN = 0, <br/>OFFLINE_MEDIA_KEY_STATUS_USABLE, <br/>OFFLINE_MEDIA_KEY_STATUS_INACTIVE } | 离线许可证状态。 | 
+| [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus-1) { <br/>OFFLINE_MEDIA_KEY_STATUS_UNKNOWN = 0, <br/>OFFLINE_MEDIA_KEY_STATUS_USABLE, <br/>OFFLINE_MEDIA_KEY_STATUS_INACTIVE } | 离线媒体密钥状态。 | 
 | [DRM_CertificateStatus](#drm_certificatestatus-1) {<br/>CERT_STATUS_PROVISIONED = 0, <br/>CERT_STATUS_NOT_PROVISIONED, <br/>CERT_STATUS_EXPIRED, <br/>CERT_STATUS_INVALID,<br/>CERT_STATUS_UNAVAILABLE<br/>} | 设备证书状态类型。 | 
 | [Drm_ErrCode](#drm_errcode-1) {<br/>DRM_ERR_OK = 0, <br/>DRM_CAPI_ERR_BASE = 24700500, <br/>DRM_ERR_NO_MEMORY = DRM_CAPI_ERR_BASE + 1, <br/>DRM_ERR_OPERATION_NOT_PERMITTED = DRM_CAPI_ERR_BASE + 2,<br/>DRM_ERR_INVALID_VAL = DRM_CAPI_ERR_BASE + 3, <br/>DRM_ERR_IO = DRM_CAPI_ERR_BASE + 4, <br/>DRM_ERR_TIMEOUT = DRM_CAPI_ERR_BASE + 5, <br/>DRM_ERR_UNKNOWN = DRM_CAPI_ERR_BASE + 6,<br/>DRM_ERR_SERVICE_DIED = DRM_CAPI_ERR_BASE + 7, <br/>DRM_ERR_INVALID_STATE = DRM_CAPI_ERR_BASE + 8, <br/>DRM_ERR_UNSUPPORTED = DRM_CAPI_ERR_BASE + 9, <br/>DRM_ERR_MAX_SYSTEM_NUM_REACHED = DRM_CAPI_ERR_BASE + 10,<br/>DRM_ERR_MAX_SESSION_NUM_REACHED = DRM_CAPI_ERR_BASE + 11, <br/>DRM_ERR_EXTEND_START = DRM_CAPI_ERR_BASE + 100<br/>} | DRM错误码。 | 
 
@@ -700,7 +700,7 @@ typedef enum DRM_OfflineMediaKeyStatus DRM_OfflineMediaKeyStatus
 
 **描述**
 
-离线许可证状态。
+离线媒体密钥状态。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1095,7 +1095,7 @@ enum DRM_OfflineMediaKeyStatus
 
 **描述**
 
-离线许可证状态。
+离线媒体密钥状态。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
