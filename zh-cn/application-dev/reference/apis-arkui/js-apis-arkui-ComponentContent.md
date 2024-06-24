@@ -12,7 +12,7 @@ ComponentContent表示组件内容的实体封装，ComponentContent对象支持
 ## 导入模块
 
 ```ts
-import { ComponentContent } from "@ohos.arkui.node";
+import { ComponentContent } from '@kit.ArkUI';
 ```
 
 ## ComponentContent
@@ -71,7 +71,7 @@ update(args: T): void
 **示例：**
 
 ```ts
-import { ComponentContent } from "@ohos.arkui.node";
+import { ComponentContent } from "@kit.ArkUI";
 
 class Params {
   text: string = ""
@@ -141,7 +141,7 @@ recycle(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { ComponentContent } from "@ohos.arkui.node";
+import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
