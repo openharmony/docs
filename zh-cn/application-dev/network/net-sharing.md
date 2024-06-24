@@ -69,8 +69,10 @@ sharing.on('sharingStateChange', (data: boolean) => {
 });
 
 // 调用startSharing方法，来开启指定类型共享
-sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
+  console.log('start wifi sharing successful');
+}).catch((error: BusinessError) => {
+  console.log('start wifi sharing failed');
 });
 ```
 
@@ -94,8 +96,10 @@ sharing.on('sharingStateChange', (data: boolean) => {
 });
 
 // 调用stopSharing方法，来停止指定类型共享
-sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
+  console.log('start wifi sharing successful');
+}).catch((error: BusinessError) => {
+  console.log('start wifi sharing failed');
 });
 ```
 
@@ -114,24 +118,30 @@ import sharing from '@ohos.net.sharing';
 import { BusinessError } from '@ohos.base';
 
 // 调用startSharing方法，来开启指定类型共享
-sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
+  console.log('start wifi sharing successful');
+}).catch((error: BusinessError) => {
+  console.log('start wifi sharing failed');
 });
 
 // 调用getStatsTotalBytes方法，来获取共享网络数据量
-sharing.getStatsTotalBytes((error: BusinessError, data: number) => {
-  console.log(JSON.stringify(error));
+sharing.getStatsTotalBytes().then((data: number) => {
   console.log(JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.log(JSON.stringify(error));
 });
 
 // 调用stopSharing方法，来停止指定类型共享，共享网络数据量清零
-sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
+  console.log('start wifi sharing successful');
+}).catch((error: BusinessError) => {
+  console.log('start wifi sharing failed');
 });
 
 // 再次调用getStatsTotalBytes方法，共享网络数据量已清零
-sharing.getStatsTotalBytes((error: BusinessError, data: number) => {
-  console.log(JSON.stringify(error));
+sharing.getStatsTotalBytes().then((data: number) => {
   console.log(JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.log(JSON.stringify(error));
 });
 ```

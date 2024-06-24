@@ -48,38 +48,32 @@ import ethernet from '@ohos.net.ethernet';
 import { BusinessError } from '@ohos.base';
 
 // getAllActiveIfaces获取所有活动的网络设备名称
-ethernet.getAllActiveIfaces((error: BusinessError, data: string[]) => {
-  if (error) {
-    console.log("getAllActiveIfaces callback error = " + error);
-  } else {
-    console.log("getAllActiveIfaces callback data.length = " + data.length);
-    for (let i = 0; i < data.length; i++) {
-      console.log("getAllActiveIfaces callback = " + data[i]);
-    }
+ethernet.getAllActiveIfaces().then((data: string[]) => {
+  console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
+  for (let i = 0; i < data.length; i++) {
+    console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
+}).catch((error:BusinessError) => {
+  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 
 // isIfaceActive判断指定网口是否已激活
-ethernet.isIfaceActive("eth0", (error: BusinessError, data: number) => {
-  if (error) {
-    console.log("isIfaceActive callback error = " + error);
-  } else {
-    console.log("isIfaceActive callback = " + data);
-  }
+ethernet.isIfaceActive("eth0").then((data: number) => {
+  console.log("isIfaceActive promise = " + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.log("isIfaceActive promise error = " + JSON.stringify(error));
 });
 
 // getIfaceConfig获取指定以太网的网络属性
-ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceConfiguration) => {
-  if (error) {
-    console.log("getIfaceConfig  callback error = " + error);
-  } else {
-    console.log("getIfaceConfig callback mode = " + data.mode);
-    console.log("getIfaceConfig callback ipAddr = " + data.ipAddr);
-    console.log("getIfaceConfig callback routeAddr = " + data.route);
-    console.log("getIfaceConfig callback gateAddr = " + data.gateway);
-    console.log("getIfaceConfig callback maskAddr = " + data.netMask);
-    console.log("getIfaceConfig callback dns0Addr = " + data.dnsServers);
-  }
+ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
+  console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
+  console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
+  console.log("getIfaceConfig promise route = " + JSON.stringify(data.route));
+  console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
+  console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
+  console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
+}).catch((error: BusinessError) => {
+  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -100,56 +94,50 @@ import ethernet from '@ohos.net.ethernet';
 import { BusinessError } from '@ohos.base';
 
 // getAllActiveIfaces获取所有活动的网络设备名称
-ethernet.getAllActiveIfaces((error: BusinessError, data: string[]) => {
-  if (error) {
-    console.log("getAllActiveIfaces callback error = " + error);
-  } else {
-    console.log("getAllActiveIfaces callback data.length = " + data.length);
-    for (let i = 0; i < data.length; i++) {
-      console.log("getAllActiveIfaces callback = " + data[i]);
-    }
+ethernet.getAllActiveIfaces().then((data: string[]) => {
+  console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
+  for (let i = 0; i < data.length; i++) {
+    console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
+}).catch((error:BusinessError) => {
+  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 
 // isIfaceActive判断指定网口是否已激活
-ethernet.isIfaceActive("eth0", (error: BusinessError, data: number) => {
-  if (error) {
-    console.log("isIfaceActive callback error = " + error);
-  } else {
-    console.log("isIfaceActive callback = " + data);
-  }
+ethernet.isIfaceActive("eth0").then((data: number) => {
+  console.log("isIfaceActive promise = " + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.log("isIfaceActive promise error = " + JSON.stringify(error));
 });
 
-let ethernetParam: ethernet.InterfaceConfiguration = {
-  mode: ethernet.IPSetMode.STATIC,
-  ipAddr: "192.168.xx.xx",
-  route: "192.168.xx.xx",
-  gateway: "192.168.xx.xx",
-  netMask: "255.255.xx.xx",
-  dnsServers: "1.1.xx.xx"
-}
-
 // setIfaceConfig配置指定以太网的网络属性
-ethernet.setIfaceConfig("eth0", ethernetParam, (error: BusinessError) => {
-  if (error) {
-    console.log("setIfaceConfig callback error = " + error);
-  } else {
-    console.log("setIfaceConfig callback ok ");
-  }
+let config: ethernet.InterfaceConfiguration = {
+  mode: 0,
+  ipAddr: "192.168.xx.xxx",
+  route: "192.168.xx.xxx",
+  gateway: "192.168.xx.xxx",
+  netMask: "255.255.255.0",
+  dnsServers: "1.1.1.1"
+};
+
+const setConfigPromise = ethernet.setIfaceConfig("eth0", config);
+
+setConfigPromise.then(() => {
+  console.log("setIfaceConfig promise ok");
+}).catch((error: BusinessError)  => {
+  console.log("setIfaceConfig promise error = " + JSON.stringify(error));
 });
 
 // getIfaceConfig获取指定以太网的网络属性
-ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceConfiguration) => {
-  if (error) {
-    console.log("getIfaceConfig  callback error = " + error);
-  } else {
-    console.log("getIfaceConfig callback mode = " + data.mode);
-    console.log("getIfaceConfig callback ipAddr = " + data.ipAddr);
-    console.log("getIfaceConfig callback routeAddr = " + data.route);
-    console.log("getIfaceConfig callback gateAddr = " + data.gateway);
-    console.log("getIfaceConfig callback maskAddr = " + data.netMask);
-    console.log("getIfaceConfig callback dns0Addr = " + data.dnsServers);
-  }
+ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
+  console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
+  console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
+  console.log("getIfaceConfig promise route = " + JSON.stringify(data.route));
+  console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
+  console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
+  console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
+}).catch((error: BusinessError) => {
+  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 

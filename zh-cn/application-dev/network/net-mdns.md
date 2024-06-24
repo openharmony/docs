@@ -69,20 +69,17 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 // addLocalService添加本地服务
-mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+mdns.addLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
 // resolveLocalService解析本地服务对象（非必要，根据需求使用）
-mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+mdns.resolveLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 
 // removeLocalService移除本地服务
-mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```

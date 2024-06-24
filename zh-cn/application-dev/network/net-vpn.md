@@ -75,16 +75,14 @@ struct Index {
     config.mtu = 1400;
     config.dnsAddresses = ["114.114.114.114"];
 
-    try {
-      //3. 建立一个VPN网络。
-      this.VpnConnection.setUp(config, (error: BusinessError, data: number) => {
-        console.info("tunfd: " + JSON.stringify(data));
-        //4. 处理虚拟网卡的数据，如：读写操作。
-        vpn_client.startVpn(data, TunnelFd)
-      })
-    } catch (error) {
-      console.info("vpn setUp fail " + JSON.stringify(error));
-    }
+    //3. 建立一个VPN网络。
+    this.VpnConnection.setUp(config).then((data: number) => {
+      console.info("tunfd: " + JSON.stringify(data));
+      //4. 处理虚拟网卡的数据，如：读写操作。
+      vpn_client.startVpn(data, TunnelFd)
+    }).catch((err: BusinessError) => {
+      console.info("setUp fail" + JSON.stringify(err));
+    });
   }
 
   //5.销毁VPN网络。
