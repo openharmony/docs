@@ -11,7 +11,7 @@
 
 
 ```ts
-import wallpaper from '@ohos.wallpaper';
+import { wallpaper } from '@kit.BasicServicesKit';
 ```
 
 ## WallpaperType<sup>7+</sup>
@@ -144,7 +144,7 @@ getColors(wallpaperType: WallpaperType, callback: AsyncCallback&lt;Array&lt;Rgba
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: Array<wallpaper.RgbaColor>) => {
     if (error) {
@@ -182,7 +182,7 @@ getColors(wallpaperType: WallpaperType): Promise&lt;Array&lt;RgbaColor&gt;&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getColors(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: Array<wallpaper.RgbaColor>) => {
     console.log(`success to getColors: ${JSON.stringify(data)}`);
@@ -213,7 +213,7 @@ getId(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: Number) => {
     if (error) {
@@ -251,7 +251,7 @@ getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getId(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: Number) => {
     console.log(`success to getId: ${JSON.stringify(data)}`);
@@ -281,7 +281,7 @@ getMinHeight(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getMinHeight((error: BusinessError, data: Number) => {
     if (error) {
@@ -313,7 +313,7 @@ getMinHeight(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getMinHeight().then((data: Number) => {
     console.log(`success to getMinHeight: ${JSON.stringify(data)}`);
@@ -343,7 +343,7 @@ getMinWidth(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getMinWidth((error: BusinessError, data: Number) => {
     if (error) {
@@ -375,7 +375,7 @@ getMinWidth(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getMinWidth().then((data: Number) => {
     console.log(`success to getMinWidth: ${JSON.stringify(data)}`);
@@ -408,7 +408,7 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: number) => {
     if (error) {
@@ -448,7 +448,7 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: number) => {
     console.log(`success to getFile: ${JSON.stringify(data)}`);
@@ -478,7 +478,7 @@ isChangePermitted(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.isChangePermitted((error: BusinessError, data: Boolean) => {
     if (error) {
@@ -510,7 +510,7 @@ isChangePermitted(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.isChangePermitted().then((data: Boolean) => {
     console.log(`success to isChangePermitted: ${JSON.stringify(data)}`);
@@ -540,7 +540,7 @@ isOperationAllowed(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.isOperationAllowed((error: BusinessError, data: Boolean) => {
     if (error) {
@@ -572,7 +572,7 @@ isOperationAllowed(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.isOperationAllowed().then((data: Boolean) => {
     console.log(`success to isOperationAllowed: ${JSON.stringify(data)}`);
@@ -605,7 +605,7 @@ reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError) => {
     if (error) {
@@ -645,7 +645,7 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 wallpaper.reset(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to reset.`);
@@ -679,8 +679,8 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
@@ -743,8 +743,8 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 // source类型为string
 let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
