@@ -797,7 +797,7 @@ Defines the MDNS service information.
 | serviceName | string                             |  Yes|  Name of the MDNS service.  |
 | port            | number           |  No|  Port number of the MDNS server.          |
 | host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  No|  IP address of the device that provides the MDNS service. The IP address is not effective when an MDNS service is added or removed.              |
-| serviceAttribute     | serviceAttribute\<[ServiceAttribute](#serviceattribute)> |  No|  MDNS service attribute information.              |
+| serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  No|  MDNS service attribute information.              |
 
 ## ServiceAttribute
 

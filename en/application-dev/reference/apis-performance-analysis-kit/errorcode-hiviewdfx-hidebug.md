@@ -8,7 +8,7 @@
 
 **Error Message**
 
-ServiceId invalid, The system ability does not exist.
+ServiceId invalid. The system ability does not exist.
 
 **Description**
 This error code is reported if a system service cannot be obtained based on the specified service ID.

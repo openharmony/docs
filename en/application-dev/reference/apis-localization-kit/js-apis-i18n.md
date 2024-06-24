@@ -113,7 +113,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 Obtains the list of system languages.
 
-This API can be used in ArkTS widgets since API version 11.
+Since API version 11, this API is supported in ArkTS widgets.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1120,7 +1120,7 @@ Checks whether the format of the specified phone number is valid.
 
 format(number: string): string
 
-Formats a phone number.
+Formats a phone number. Formatting dialed phone numbers is supported since API version 12.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1142,6 +1142,17 @@ Formats a phone number.
   ```ts
   let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
   let formattedPhoneNumber: string = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
+
+  // Format the dialed phone number.
+  let option: i18n.PhoneNumberFormatOptions = {type: "TYPING"};
+  let phoneNumberFmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN", option);
+  let phoneNumber : string = "130493";
+  let formatResult : string = "";
+  for (let i = 0; i < phoneNumber.length; i++) {
+    formatResult += phoneNumber.charAt(i);
+    formatResult = phoneNumberFmt.format(formatResult);
+  }
+  console.log(formatResult); // formatResult: 130 493
   ```
 
 
@@ -1152,13 +1163,14 @@ getLocationName(number: string, locale: string): string
 Obtains the home location of a phone number.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
 
 | Name   | Type    | Mandatory  | Description  |
 | ------ | ------ | ---- | ---- |
-| number | string | Yes   | Phone number.|
+| number | string | Yes   | Phone number. To obtain the home location of a number in other countries/regions, you need to prefix the number with **00** and the country code.|
 | locale | string | Yes   | Locale ID.|
 
 **Return value**
@@ -1171,12 +1183,13 @@ Obtains the home location of a phone number.
   ```ts
   let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
   let locationName: string = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "Zhanjiang, Guangdong Province"
+  let locName: string = phonenumberfmt.getLocationName("0039312****789", "zh-CN"); // locName = "Italy"
   ```
 
 
 ## PhoneNumberFormatOptions<sup>8+</sup>
 
-Defines the options for this PhoneNumberFormat object.
+Defines the options for this **PhoneNumberFormat** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1184,7 +1197,7 @@ Defines the options for this PhoneNumberFormat object.
 
 | Name  | Type    | Readable  | Writable  | Description                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | Yes   | Yes   | Format type of a phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, or **RFC3966**.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.|
+| type | string | Yes   | Yes   | Formatting type of a phone number. The value can be any of the following:<br>E164, INTERNATIONAL, NATIONAL, RFC3966, or TYPING.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.<br>- **TYPING** is supported since API version 12.|
 
 
 ## UnitInfo<sup>8+</sup>

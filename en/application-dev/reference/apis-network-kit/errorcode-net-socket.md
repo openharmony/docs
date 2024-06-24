@@ -228,6 +228,24 @@ The remote address or port is invalid for the remote server.
 
 Check whether the address or port is correct.
 
+## 2303200 Network Disabled
+
+**Error Message**
+
+Network is down.
+
+**Description**
+
+The network is disabled.
+
+**Cause**
+
+The network service is not started or has been stopped.
+
+**Procedure**
+
+Check the network connection.
+
 ## 2303210 Connection Timeout
 
 **Error Message**
