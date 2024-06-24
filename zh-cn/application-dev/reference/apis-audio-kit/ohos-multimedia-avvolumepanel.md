@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```js
-import {AVVolumePanel} from '@kit.AudioKit';
+import { AVVolumePanel } from '@kit.AudioKit';
 ```
 ## 属性
 
@@ -55,7 +55,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 音量面板功能的示例说明参考如下。
 
 ```ts
-import {AVVolumePanel} from '@kit.AudioKit';
+import { AVVolumePanel } from '@kit.AudioKit';
 
 @Entry
 @Component
