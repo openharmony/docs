@@ -132,6 +132,22 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 #include "string"
 #include "unistd.h"
 
+void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+    (void)capture;
+    
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
+        // 处理状态变更
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
+        // 通话中断状态处理
+        OH_LOG_INFO(LOG_APP, "DEMO OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL");
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
+        // 处理状态变更
+    }
+    (void)userData;
+}
+
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCaptureConfig config;
     OH_AudioCaptureInfo micCapInfo = {
@@ -191,6 +207,9 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     recorderInfo.url = const_cast<char *>(fileUrl.c_str());
     recorderInfo.fileFormat = OH_ContainerFormatType::CFT_MPEG_4;
     config.recorderInfo = recorderInfo;
+
+    //设置状态回调
+    OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
 
     // 进行初始化操作
     int32_t retInit = OH_AVScreenCapture_Init(capture, config);
