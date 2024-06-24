@@ -11,9 +11,9 @@ VideoEncoder模块提供用于视频编码的函数。
 
 函数在每个版本，对每种模式的支持情况说明，如下图所示。
 
-![meaning](figures/meaning.PNG)
+![meaning](figures/meaning.png)
 
-![desciption of encode api history](figures/video-encode-api.PNG)
+![desciption of encode api history](figures/video-encode-api.png)
 
 ## 汇总
 
