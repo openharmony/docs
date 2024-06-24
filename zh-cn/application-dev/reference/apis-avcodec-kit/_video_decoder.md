@@ -11,9 +11,9 @@ VideoDecoder模块提供用于视频解码的函数。
 
 函数在每个版本，对每种模式的支持情况说明，如下图所示。
 
-![meaning](figures/meaning.PNG)
+![meaning](figures/meaning.png)
 
-![desciption of decode api history](figures/video-decode-api.PNG)
+![desciption of decode api history](figures/video-decode-api.png)
 
 ## 汇总
 
