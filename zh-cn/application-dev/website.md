@@ -1614,7 +1614,7 @@
       - [广告服务框架错误码](reference/apis-ads-kit/errorcode-ads.md)
       - [广告标识服务错误码](reference/apis-ads-kit/errorcode-oaid.md)
   <!--DelEnd-->
-  - ArkData API参考<!--arkdata-api-->
+  - ArkData（方舟编程语言）<!--arkdata-api-->
     - ArkTS API<!--arkdata-arkts-->
       - [@ohos.data.commonType (数据通用类型)](reference/apis-arkdata/js-apis-data-commonType.md)
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis-arkdata/js-apis-data-ability.md)
@@ -1683,7 +1683,7 @@
       - [分布式数据对象错误码](reference/apis-arkdata/errorcode-distributed-dataObject.md)
       - [分布式键值数据库错误码](reference/apis-arkdata/errorcode-distributedKVStore.md)
       - [用户首选项错误码](reference/apis-arkdata/errorcode-preferences.md)
-  - ArkGraphics 2D API参考<!--arkgraphics-api-->
+  - ArkGraphics 2D（方舟2D图形服务）<!--arkgraphics-api-->
     - ArkTS API<!--arkgraphics-arkts-->
       - [@ohos.effectKit (图像效果)](reference/apis-arkgraphics2d/js-apis-effectKit.md)
       - [@ohos.graphics.colorSpaceManager (色彩管理)](reference/apis-arkgraphics2d/js-apis-colorSpaceManager.md)
@@ -1780,7 +1780,7 @@
         - [Rect](reference/apis-arkgraphics2d/_rect.md)
     - 错误码<!--arkgraphics-arkts-errcode-->
       - [色彩管理错误码](reference/apis-arkgraphics2d/errorcode-colorspace-manager.md)
-  - ArkGraphics 3D API参考<!--arkgraphics-3d-api-->
+  - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-api-->
     - ArkTS API<!--arkgraphics-3d-arkts-->
       - [@ohos.graphics.scene (ArkGraphics 3D模块)](reference/apis-arkgraphics3d/js-apis-scene.md)
       - graphics3d
@@ -1789,7 +1789,7 @@
         - [SceneType](reference/apis-arkgraphics3d/js-apis-inner-scene-types.md)
         - [SceneResources](reference/apis-arkgraphics3d/js-apis-inner-scene-resources.md)
         - [ScenePostProcessSettings](reference/apis-arkgraphics3d/js-apis-inner-scene-post-process-settings.md)
-  - ArkTS API参考<!--arkts-api-->
+  - ArkTS（方舟编程语言）<!--arkts-api-->
     - ArkTS API<!--arkts-arkts--> 
       - [@arkts.collections (ArkTS容器集)](reference/apis-arkts/js-apis-arkts-collections.md)
       - [@arkts.lang (ArkTS语言基础能力)](reference/apis-arkts/js-apis-arkts-lang.md)
@@ -1823,7 +1823,7 @@
         - [@ohos.util.Vector (线性容器Vector)](reference/apis-arkts/js-apis-vector.md)
     - 错误码<!--arkts-arkts-errcode--> 
       - [语言基础类库错误码](reference/apis-arkts/errorcode-utils.md)
-  - ArkUI API参考<!--arkui-api-->
+  - ArkUI（方舟UI框架）<!--arkui-api-->
     - ArkTS API<!--arkui-arkts-->
       - UI界面
         - [@ohos.animator (动画)](reference/apis-arkui/js-apis-animator.md)
@@ -2404,7 +2404,7 @@
       - 图形图像
         - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
         - [窗口错误码](reference/apis-arkui/errorcode-window.md)
-  - ArkWeb API参考<!--arkweb-api-->
+  - ArkWeb（方舟Web）<!--arkweb-api-->
     - ArkTS API<!--arkweb-arkts-->
       - [@ohos.web.webview (Webview)](reference/apis-arkweb/js-apis-webview.md)
       - [@ohos.web.netErrorList](reference/apis-arkweb/js-apis-netErrorList.md)
