@@ -48,16 +48,10 @@
 
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
 
-## 开发指导
-
-详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_video_encoder.md)。
-如下为视频编码调用关系图：
-![Invoking relationship of video encode stream](figures/video-encode.png)
-
-
 ## 状态机调用关系
 如下为状态机调用关系图：
 ![Invoking relationship of state](figures/state-invocation.png)
+
 
 1. 有两种方式可以使编码器进入Initialized状态：
    - 初始创建编码器实例时，编码器处于Initialized状态
@@ -78,6 +72,11 @@
 
 7. 使用完编码器后，必须调用OH_VideoEncoder_Destroy()方法销毁解码器实例。使编码器进入Released 状态。
 
+## 开发指导
+
+详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_video_encoder.md)。
+如下为视频编码调用关系图：
+![Invoking relationship of video encode stream](figures/video-encode.png)
 
 ### 在 CMake 脚本中链接动态库
 

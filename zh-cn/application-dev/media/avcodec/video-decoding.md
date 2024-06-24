@@ -41,12 +41,6 @@
 
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
 
-## 开发指导
-
-详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_video_decoder.md)。
-如下为视频解码调用关系图：
-![Invoking relationship of video decode stream](figures/video-decode.png)
-
 ## 状态机调用关系
 如下为状态机调用关系图：
 ![Invoking relationship of state](figures/state-invocation.png)
@@ -71,6 +65,11 @@
 
 7. 使用完解码器后，必须调用OH_VideoDecoder_Destroy()方法销毁解码器实例。使解码器进入Released状态。
 
+## 开发指导
+
+详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_video_decoder.md)。
+如下为视频解码调用关系图：
+![Invoking relationship of video decode stream](figures/video-decode.png)
 
 ### 在 CMake 脚本中链接动态库
 
