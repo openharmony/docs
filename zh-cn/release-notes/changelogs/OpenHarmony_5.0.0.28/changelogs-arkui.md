@@ -288,6 +288,8 @@ TextInput/TextArea组件在2in1上通过双击弹出菜单时，点击全选，�
 
 **变更前：**
 
+![](figures/Menu_Before.png)
+
 菜单列表的左右padding默认为0
 
 菜单项文本字重默认为regular
@@ -301,6 +303,8 @@ TextInput/TextArea组件在2in1上通过双击弹出菜单时，点击全选，�
 对于带标题的菜单列表，标题文本字重默认为normal
 
 **变更后：**
+
+![](figures/Menu_After.png)
 
 菜单列表的左右padding默认为16vp
 
