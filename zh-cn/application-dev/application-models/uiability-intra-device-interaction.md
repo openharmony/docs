@@ -670,16 +670,12 @@ const DOMAIN_NUMBER: number = 0xFF00;
 @Component
 struct Page_UIAbilityComponentsInteractive {
   build() {
-    Button()
-      .onClick(() => {
-        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want: Want = {
-          deviceId: '', // deviceId为空表示本设备
-          bundleName: 'com.samples.stagemodelabilityinteraction',
-          moduleName: 'entry', // moduleName非必选
-          abilityName: 'FuncAbility',
-          parameters: { // 自定义参数传递页面信息
-            router: 'funcA'
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        ListItem() {
+          Row() {
+            //...
           }
           .onClick(() => {
             let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
@@ -688,9 +684,8 @@ struct Page_UIAbilityComponentsInteractive {
               bundleName: 'com.samples.stagemodelabilityinteraction',
               moduleName: 'entry', // moduleName非必选
               abilityName: 'FuncAbility',
-              parameters: {
-                // 自定义参数传递页面信息
-                router: 'FuncA'
+              parameters: { // 自定义参数传递页面信息
+                router: 'funcA'
               }
             };
             // context为调用方UIAbility的UIAbilityContext
