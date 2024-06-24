@@ -40,7 +40,7 @@ function setAppShareOptions(intention: Intention, shareOptions: ShareOptions): v
 
 | 参数名      | 类型                         | 必填 | 说明                           |
 |----------|----------------------------|----|------------------------------|
-| intention | [Intention](#intention) | 是  | 本接口支持的数据通路类型，目前仅支持设置为Intention枚举中的DRAG类型数据通道。 |
+| intention | [Intention](#intention) | 是  | 本接口支持的数据通路类型，目前仅支持设置为[Intention](#intention)枚举中的DRAG类型数据通道。 |
 | shareOptions | [ShareOptions](js-apis-data-unifiedDataChannel.md#shareoptions12) | 是  | 本接口支持的数据共享范围。 |
 
 **错误码：**

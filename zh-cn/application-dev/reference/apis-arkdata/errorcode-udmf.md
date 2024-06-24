@@ -16,8 +16,8 @@ Settings already exist.
 
 **可能原因**
 
-1. 设置应用程序共享选项时重复设置。
+设置应用程序共享选项时重复设置。
 
 **处理步骤**
 
-1. removeAppShareOptions操作后重新设置。
+removeAppShareOptions操作后重新设置。
