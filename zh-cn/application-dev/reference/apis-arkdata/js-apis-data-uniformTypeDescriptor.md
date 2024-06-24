@@ -67,8 +67,8 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 | ENCAPSULATED_POSTSCRIPT<sup>11+</sup>             | 'com.adobe.encapsulated-postscript'               | Encapsulated PostScript类型，归属类型为POSTSCRIPT。         |
 | VIDEO       | 'general.video'           | 所有视频的基类型，归属类型为MEDIA。              |
 | AVI<sup>11+</sup>        | 'general.avi'          | AVI视频类型，归属类型为VIDEO。               |
-| MPEG<sup>11+</sup>                         | 'general.mpeg'                   | MPGE-1或MPGE-2视频类型，归属类型为VIDEO。     |
-| MPEG4<sup>11+</sup>                        | 'general.mpeg-4'                  | MPGE-4视频类型，归属类型为VIDEO。            |
+| MPEG<sup>11+</sup>                         | 'general.mpeg'                   | MPEG-1或MPEG-2视频类型，归属类型为VIDEO。     |
+| MPEG4<sup>11+</sup>                        | 'general.mpeg-4'                  | MPEG-4视频类型，归属类型为VIDEO。            |
 | VIDEO_3GPP<sup>11+</sup>                        | 'general.3gpp'                  | 3GPP视频类型，归属类型为VIDEO。              |
 | VIDEO_3GPP2<sup>11+</sup>                        | 'general.3gpp2'                  | 3GPP2视频类型，归属类型为VIDEO。             |
 | WINDOWS_MEDIA_WM<sup>11+</sup>                       | 'com.microsoft.windows-media-wm'                 | WINDOWS WM视频类型，归属类型为VIDEO。        |
