@@ -394,7 +394,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 设置期望展示的图像动态范围。
 
-该属性仅在手机设备上生效。
+<!--RP1--><!--RP1End-->
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
