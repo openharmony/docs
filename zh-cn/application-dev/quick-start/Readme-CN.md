@@ -110,6 +110,7 @@
       - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](arkts-new-Provider-and-Consumer.md)
       - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
       - [!!语法：双向绑定](arkts-new-binding.md)
+      - [自定义组件冻结功能](arkts-custom-components-freezeV2.md)
 
   - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)

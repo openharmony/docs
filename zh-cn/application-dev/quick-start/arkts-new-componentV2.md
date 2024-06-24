@@ -14,7 +14,7 @@
 和[\@Component装饰器](arkts-create-custom-components.md)一样，\@ComponentV2装饰器用于装饰自定义组件：
 
 - 在\@ComponentV2装饰的自定义组件中，开发者仅可以使用全新的状态变量装饰器，包括\@Local、\@Param、\@Once、\@Event、\@Provider、\@Consumer等。
-- \@ComponentV2装饰的自定义组件暂不支持组件复用、组件冻结、LocalStorage等现有自定义组件的能力。
+- \@ComponentV2装饰的自定义组件暂不支持组件复用、LocalStorage等现有自定义组件的能力。
 - 无法同时使用\@ComponentV2与\@Component装饰同一个struct结构。
 
 - 一个简单的\@ComponentV2装饰的自定义组件应具有以下部分：
