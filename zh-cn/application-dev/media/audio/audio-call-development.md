@@ -17,7 +17,12 @@ import { BusinessError } from '@ohos.base';
 
 const TAG = 'VoiceCallDemoForAudioRenderer';
 // 与使用AudioRenderer开发音频播放功能过程相似，关键区别在于audioRendererInfo参数和音频数据来源
+class Options {
+  offset?: number;
+  length?: number;
+}
 let context = getContext(this);
+let bufferSize: number = 0;
 let renderModel: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
@@ -158,7 +163,12 @@ import { BusinessError } from '@ohos.base';
 
 let context = getContext(this);
 const TAG = 'VoiceCallDemoForAudioCapturer';
+class Options {
+  offset?: number;
+  length?: number;
+}
 // 与使用AudioCapturer开发音频录制功能过程相似，关键区别在于audioCapturerInfo参数和音频数据流向
+let bufferSize: number = 0;
 let audioCapturer: audio.AudioCapturer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100, // 采样率
