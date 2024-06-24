@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import batteryStats from '@ohos.batteryStatistics';
+import batteryStats from '@kit.BasicServicesKit';
 ```
 
 ## batteryStats.getBatteryStats

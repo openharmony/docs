@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import runningLock from '@ohos.runningLock';
+import runningLock from '@kit.BasicServicesKit';
 ```
 
 ## runningLock.isSupported<sup>9+</sup>
