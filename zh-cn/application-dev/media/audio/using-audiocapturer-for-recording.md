@@ -18,7 +18,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 1. 配置音频采集参数并创建AudioCapturer实例，音频采集参数的详细信息可以查看[AudioCapturerOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiocaptureroptions8)。
      
    ```ts
-    import audio from '@ohos.multimedia.audio';
+    import { audio } from '@kit.AudioKit';
     
     let audioStreamInfo: audio.AudioStreamInfo = {
       samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
@@ -50,8 +50,8 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 2. 调用on('readData')方法，订阅监听音频数据读入回调。
      
    ```ts
-    import { BusinessError } from '@ohos.base';
-    import fs from '@ohos.file.fs';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { fileIo } from '@kit.CoreFileKit';
 
     let bufferSize: number = 0;
     class Options {
@@ -61,14 +61,14 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
    
     let path = getContext().cacheDir;
     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
    
     let readDataCallback = (buffer: ArrayBuffer) => {
       let options: Options = {
         offset: bufferSize,
         length: buffer.byteLength
       }
-      fs.writeSync(file.fd, buffer, options);
+      fileIo.writeSync(file.fd, buffer, options);
       bufferSize += buffer.byteLength;
     }
     audioCapturer.on('readData', readDataCallback);
@@ -77,7 +77,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 3. 调用start()方法进入running状态，开始录制音频。
      
    ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
    
     audioCapturer.start((err: BusinessError) => {
       if (err) {
@@ -91,7 +91,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 4. 调用stop()方法停止录制。
      
    ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
    
     audioCapturer.stop((err: BusinessError) => {
       if (err) {
@@ -105,7 +105,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 5. 调用release()方法销毁实例，释放资源。
      
    ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
    
     audioCapturer.release((err: BusinessError) => {
       if (err) {
@@ -122,9 +122,9 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 下面展示了使用AudioCapturer录制音频的完整示例代码。
   
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 const TAG = 'AudioCapturerDemo';
 
@@ -153,14 +153,14 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
 
 let path = getContext().cacheDir;
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
 
 let readDataCallback = (buffer: ArrayBuffer) => {
    let options: Options = {
       offset: bufferSize,
       length: buffer.byteLength
    }
-   fs.writeSync(file.fd, buffer, options);
+   fileIo.writeSync(file.fd, buffer, options);
    bufferSize += buffer.byteLength;
 }
 
@@ -213,7 +213,7 @@ function stop() {
       if (err) {
         console.error('Capturer stop failed.');
       } else {
-        fs.close(file);
+        fileIo.close(file);
         console.info('Capturer stop success.');
       }
     });
