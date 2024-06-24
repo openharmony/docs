@@ -265,8 +265,15 @@ static from\<T>(arrayLike: ArrayLike\<T>): Array\<T>
 **示例：**
 
 ```ts
-let arrayLike = [1, 3, 5];
-let array = collections.Array.from<number>(arrayLike);
+// 正例
+let array : Array<string> = ['str1', 'str2', 'str3']; // 原生Array<T>，T是Sendable数据类型。
+let sendableArray = collections.Array.from<string>(array); // 返回Sendable Array<T>
+```
+
+```ts
+// 反例
+let array : Array<Array<string>> = [['str1', 'str2', 'str3'], ['str4', 'str5', 'str6'], ['str7', 'str8', 'str9']]; // 原生Array<T>，T是非Sendable数据类型。
+let sendableArray = collections.Array.from<Array<string>>(array); // 打印异常信息：Parameter error.Only accept sendable value
 ```
 
 ### pop
