@@ -13,7 +13,7 @@ WallpaperExtensionAbility为壁纸拓展模块，提供应用生命周期回调�
 ## 导入模块
 
 ```ts
-import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
+import { WallpaperExtensionAbility } from '@kit.BasicServicesKit';
 ```
 
 ## WallpaperExtensionAbility.onCreate
@@ -33,8 +33,8 @@ onCreate(want: object): void
 **示例：**
 
 ```ts
-import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { WallpaperExtensionAbility } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 class WallpaperExt extends WallpaperExtensionAbility {
     onCreate(want: Want): void {
@@ -60,8 +60,8 @@ onWallpaperChange(wallpaperType: number): void
 **示例：**
 
 ```ts
-import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
-import wallpaper from '@ohos.wallpaper';
+import { WallpaperExtensionAbility } from '@kit.BasicServicesKit';
+import { wallpaper } from '@kit.BasicServicesKit';
 
 class WallpaperExt extends WallpaperExtensionAbility {
     onWallpaperChange(wallpaperType: wallpaper.WallpaperType): void {
@@ -81,7 +81,7 @@ onDestroy(): void
 **示例：**
 
 ```ts
-import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
+import { WallpaperExtensionAbility } from '@kit.BasicServicesKit';
 
 class WallpaperExt extends WallpaperExtensionAbility {
     onDestroy(): void {
