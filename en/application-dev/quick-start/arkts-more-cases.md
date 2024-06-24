@@ -662,14 +662,12 @@ The methods declared in a class or interface should be shared by all instances o
 **Before adaptation**
 
 ```typescript
-import hilog from '@ohos.hilog'
-
 export default {
   onCreate() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
+    // ...
   },
   onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');
+    // ...
   }
 }
 ```
@@ -677,14 +675,12 @@ export default {
 **After adaptation**
 
 ```typescript
-import hilog from '@ohos.hilog'
-
 class Test {
   onCreate() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
+    // ...
   }
   onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');
+    // ...
   }
 }
 
@@ -696,43 +692,51 @@ export default new Test()
 **Before adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
-import bluetooth from '@ohos.bluetooth';
-let serverNumber = -1;
-function serverSocket(code: BusinessError, num: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + num);
-    serverNumber = num;
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
   }
+
+  function foo(name: string, option: I): void;
 }
 
-let sppOption = { uuid: '', secure: false, type: 0 };
-bluetooth.sppListen('', sppOption, serverSocket);
+export default test;
+
+// app.ets
+import { test } from 'test';
+
+let option = { id: '', type: 0 };
+test.foo('', option);
 ```
 
 **After adaptation**
 
 ```typescript
-import { BusinessError } from '@ohos.base';
-import bluetooth from '@ohos.bluetooth';
-let serverNumber = -1;
-function serverSocket(code: BusinessError, num: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + num);
-    serverNumber = num;
+// test.d.ets
+declare namespace test {
+  interface I {
+    id: string;
+    type: number;
   }
+
+  function foo(name: string, option: I): void;
 }
 
-let sppOption: bluetooth.SppOption = { uuid: '', secure: false, type: 0 };
-bluetooth.sppListen('', sppOption, serverSocket);
+export default test;
+
+// app.ets
+import { test } from 'test';
+
+let option: test.I = { id: '', type: 0 };
+test.foo('', option);
 ```
 
 **Reason for change**
 
-The object literal lacks a type. According to the analysis of **bluetooth.sppListen**, the **sppOption** type comes from the SDK. Therefore, you only need to import the type.
-In **@ohos.bluetooth**, **sppOption** is defined in the namespace. Therefore, to import the type in the .ets file, import the namespace and then obtain the target type based on the name.
+The object literal lacks a type. According to the analysis of **test.foo**, the **option** type comes from the some **.d.ets** file. Therefore, you only need to import the type.
+In **test.d.ets**, **I** is defined in the namespace. Therefore, to import the type in the .ets file, import the namespace and then obtain the target type based on the name.
 
 ### Passing Parameters from the Object Literal to the Object Type
 
