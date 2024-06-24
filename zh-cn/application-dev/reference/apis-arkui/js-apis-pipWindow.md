@@ -77,7 +77,7 @@ class Params {
   }
 }
 
-// 开发者可以通过@Builder装饰器实现布局构建方法
+// 开发者可以通过@Builder装饰器实现布局构建
 @Builder
 function buildText(params: Params) {
   Column() {
