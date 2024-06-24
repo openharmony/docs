@@ -2195,6 +2195,34 @@ AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
+### OH_AudioRenderer_SetSpeed()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_SetSpeed (OH_AudioRenderer *renderer, float speed)
+```
+**描述**
+设置音频渲染速率。
+
+**起始版本：** 11
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。  | 
+| speed | 设置播放的倍速值（倍速范围：0.25-4.0）。  | 
+
+**返回：**
+
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
+
+
 ### OH_AudioRenderer_SetVolume()
 
 ```
