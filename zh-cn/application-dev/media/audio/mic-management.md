@@ -11,7 +11,7 @@
 1. 创建audioVolumeGroupManager对象。
      
    ```ts
-   import audio from '@ohos.multimedia.audio';
+   import { audio } from '@kit.AudioKit';
 
    let audioVolumeGroupManager: audio.AudioVolumeGroupManager;
    async function loadVolumeGroupManager() { //创建audioVolumeGroupManager对象
@@ -64,7 +64,7 @@
 参考以下示例，完成从设置麦克风静音到取消麦克风静音的过程。
 
 ```ts
-   import audio from '@ohos.multimedia.audio';
+   import { audio } from '@kit.AudioKit';
    
    let audioVolumeGroupManager: audio.AudioVolumeGroupManager;
    
