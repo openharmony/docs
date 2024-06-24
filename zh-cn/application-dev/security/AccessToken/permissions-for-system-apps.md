@@ -3748,3 +3748,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.ACTIVATE_DEVICE_PSI
+
+允许系统应用设置主题内容，包括壁纸、图标、皮肤、AOD 和字体等。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
