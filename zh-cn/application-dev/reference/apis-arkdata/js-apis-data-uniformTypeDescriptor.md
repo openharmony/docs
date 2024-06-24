@@ -28,6 +28,8 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | HTML                  | 'general.html'                   | HTML文本类型，归属类型为TEXT。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
 | HYPERLINK         | 'general.hyperlink'              | 超链接类型，归属类型为TEXT。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                  |
 | XML<sup>11+</sup>    | 'general.xml'                   | XML文本类型，归属类型为TEXT。                |
+| XHTML<sup>12+</sup>    | 'general.xhtml'                   | XHTML文本类型，归属类型为XML。                |
+| RSS<sup>12+</sup>    | 'general.rss'                   | RSS文本类型，归属类型为XML。                |
 | SMIL<sup>12+</sup>                         | 'com.real.smil'                    |  同步多媒体集成语言类型，归属类型为XML文本类型。       |
 | SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | 所有源代码的基类型，归属类型为PLAIN_TEXT。        |
 | SCRIPT<sup>11+</sup>    | 'general.script'                  | 所有脚本语言源代码的基类型，归属类型为SOURCE_CODE。   |
@@ -39,12 +41,19 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | RUBY_SCRIPT<sup>11+</sup>                         | 'general.ruby-script'                   | Ruby脚本类型，归属类型为SHELL_SCRIPT。       |
 | TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript源代码类型，归属类型为SCRIPT。 |
 | JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript源代码类型，归属类型为SCRIPT。 |
+| CSS<sup>12+</sup>    | 'general.css'                   | CSS样式表类型，归属类型为SCRIPT。                |
 | C_HEADER<sup>11+</sup>                        | 'general.c-header'                  | C头文件类型，归属类型为SOURCE_CODE。          |
 | C_SOURCE<sup>11+</sup>                       | 'general.c-source'                 | C源代码类型，归属类型为SOURCE_CODE。          |
 | C_PLUS_PLUS_HEADER<sup>11+</sup>             | 'general.c-plus-plus-header'               | C++头文件类型，归属类型为SOURCE_CODE。        |
 | C_PLUS_PLUS_SOURCE<sup>11+</sup>         | 'general.c-plus-plus-source'           | C++源代码类型，归属类型为SOURCE_CODE。        |
 | JAVA_SOURCE<sup>11+</sup>        | 'general.java-source'          | Java源代码类型，归属类型为SOURCE_CODE。       |
+| TEX<sup>12+</sup>    | 'general.tex'                   | TEX源代码类型，归属类型为SOURCE_CODE。                |
 | MARKDOWN<sup>12+</sup>                         | 'general.markdown'                    | 标记语言文本类型，归属类型为PLAIN_TEXT。       |
+| ASC_TEXT<sup>12+</sup>    | 'general.asc-text'                   | ASCII文本类型，归属类型为TEXT。                |
+| RICH_TEXT<sup>12+</sup>    | 'general.rich-text'                   | 富文本类型，归属类型为TEXT。                |
+| DELIMITED_VALUES_TEXT<sup>12+</sup>    | 'general.delimited-values-text'                   | 所有分隔值文本的基类型，归属类型为TEXT。                |
+| COMMA_SEPARATED_VALUES_TEXT<sup>12+</sup>    | 'general.comma-separated-values-text'                   | CSV文本类型，归属类型为DELIMITED_VALUES_TEXT。                |
+| TAB_SEPARATED_VALUES_TEXT<sup>12+</sup>    | 'general.tab-separated-values-text'                   | TSV文本类型，归属类型为DELIMITED_VALUES_TEXT。                |
 | EBOOK<sup>11+</sup>                         | 'general.ebook'                   | 所有电子书文件格式的基类型，归属类型为COMPOSITE_OBJECT。                     |
 | EPUB<sup>11+</sup>                        | 'general.epub'                  | 电子出版物（EPUB）文件格式类型，归属类型为EBOOK。     |
 | AZW<sup>11+</sup>                        | 'com.amazon.azw'                  | AZW电子书文件格式类型，归属类型为EBOOK。          |
@@ -65,6 +74,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | JFX_FAX<sup>12+</sup>                         | 'com.j2.jfx-fax'                    | J2 jConnect传真文件类型，归属类型为FAX。       |
 | EFX_FAX<sup>12+</sup>                         | 'com.js.efx-fax'                    | 电子传真文件类型，归属类型为FAX。       |
 | XBITMAP_IMAGE<sup>12+</sup>                         | 'general.xbitmap-image'                    | X Window系统（X11）中使用的位图图像格式，归属类型为IMAGE。       |
+| GIF<sup>12+</sup>                         | 'general.gif'                    | GIF图像类型，归属类型为IMAGE。       |
 | TGA_IMAGE<sup>12+</sup>                         | 'com.truevision.tga-image'                    | 标签图形（TaggedGraphics）图像类型，归属类型为IMAGE。       |
 | SGI_IMAGE<sup>12+</sup>                         | 'com.sgi.sgi-image'                    | 硅图（Silicon Graphics）图像类型，归属类型为IMAGE。       |
 | OPENEXR_IMAGE<sup>12+</sup>                         | 'com.ilm.openexr-image'                    | 开放标准的高动态范围图像格式类型，归属类型为IMAGE。       |
@@ -72,21 +82,30 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | WORD_DOC<sup>11+</sup>                         | 'com.microsoft.word.doc'                   | Microsoft Word数据类型，归属类型为COMPOSITE_OBJECT。                |
 | EXCEL<sup>11+</sup>                        | 'com.microsoft.excel.xls'                  | Microsoft Excel数据类型，归属类型为COMPOSITE_OBJECT。               |
 | PPT<sup>11+</sup>                        | 'com.microsoft.powerpoint.ppt'                  | Microsoft PowerPoint演示文稿类型，归属类型为COMPOSITE_OBJECT。        |
+| WORD_DOT<sup>12+</sup>                         | 'com.microsoft.word.dot'                    | Microsoft Word模板类型，归属类型为COMPOSITE_OBJECT。       |
+| POWERPOINT_PPS<sup>12+</sup>                         | 'com.microsoft.powerpoint.pps'                    | Microsoft PowerPoint演示文稿幻灯片放映类型，归属类型为COMPOSITE_OBJECT。       |
+| POWERPOINT_POT<sup>12+</sup>                         | 'com.microsoft.powerpoint.pot'                    | Microsoft PowerPoint演示文稿模板类型，归属类型为COMPOSITE_OBJECT。       |
+| EXCEL_XLT<sup>12+</sup>                         | 'com.microsoft.excel.xlt'                    | Microsoft Excel模板类型，归属类型为COMPOSITE_OBJECT。       |
+| VISIO_VSD<sup>12+</sup>                         | 'com.microsoft.visio.vsd'                    | Microsoft Visio数据类型，归属类型为COMPOSITE_OBJECT。       |
 | PDF<sup>11+</sup>                        | 'com.adobe.pdf'                  | PDF数据类型，归属类型为COMPOSITE_OBJECT。                           |
 | POSTSCRIPT<sup>11+</sup>                       | 'com.adobe.postscript'                 | PostScript数据类型，归属类型为COMPOSITE_OBJECT。                    |
 | ENCAPSULATED_POSTSCRIPT<sup>11+</sup>             | 'com.adobe.encapsulated-postscript'               | Encapsulated PostScript类型，归属类型为POSTSCRIPT。         |
 | VIDEO       | 'general.video'           | 所有视频的基类型，归属类型为MEDIA。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
 | AVI<sup>11+</sup>        | 'general.avi'          | AVI视频类型，归属类型为VIDEO。               |
-| MPEG<sup>11+</sup>                         | 'general.mpeg'                   | MPGE-1或MPGE-2视频类型，归属类型为VIDEO。     |
-| MPEG4<sup>11+</sup>                        | 'general.mpeg-4'                  | MPGE-4视频类型，归属类型为VIDEO。            |
+| MPEG<sup>11+</sup>                         | 'general.mpeg'                   | MPEG-1或MPEG-2视频类型，归属类型为VIDEO。     |
+| MPEG4<sup>11+</sup>                        | 'general.mpeg-4'                  | MPEG-4视频类型，归属类型为VIDEO。            |
 | VIDEO_3GPP<sup>11+</sup>                        | 'general.3gpp'                  | 3GPP视频类型，归属类型为VIDEO。              |
 | VIDEO_3GPP2<sup>11+</sup>                        | 'general.3gpp2'                  | 3GPP2视频类型，归属类型为VIDEO。             |
+| TS<sup>12+</sup>                         | 'general.ts'                    | MPEG-TS类型，归属类型为VIDEO。       |
+| MPEGURL_VIDEO<sup>12+</sup>                         | 'general.mpegurl-video'                    | MPEG视频播放列表文件类型，归属类型为VIDEO。       |
 | WINDOWS_MEDIA_WM<sup>11+</sup>                       | 'com.microsoft.windows-media-wm'                 | WINDOWS WM视频类型，归属类型为VIDEO。        |
 | WINDOWS_MEDIA_WMV<sup>11+</sup>             | 'com.microsoft.windows-media-wmv'               | WINDOWS WMV视频类型，归属类型为VIDEO。       |
 | WINDOWS_MEDIA_WMP<sup>11+</sup>         | 'com.microsoft.windows-media-wmp'           | WINDOWS WMP视频类型，归属类型为VIDEO。       |
 | WINDOWS_MEDIA_WVX<sup>11+</sup>                        | 'com.microsoft.windows-media-wvx'                  | WINDOWS WVX视频类型，归属类型为VIDEO。       |
 | WINDOWS_MEDIA_WMX<sup>11+</sup>                        | 'com.microsoft.windows-media-wmx'                  | WINDOWS WMX视频类型，归属类型为VIDEO。       |
 | REALMEDIA<sup>12+</sup>                         | 'com.real.realmedia'                    | 流媒体视频类型，归属类型为VIDEO。       |
+| MATROSKA_VIDEO<sup>12+</sup>                         | 'org.matroska.mkv'                    | MKV视频类型，归属类型为VIDEO。       |
+| FLASH<sup>12+</sup>                         | 'com.adobe.flash'                    | FLASH视频类型，归属类型为VIDEO。       |
 | AUDIO       | 'general.audio'          | 所有音频的基类型，归属类型为MEDIA。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
 | AAC<sup>11+</sup>                         | 'general.aac'                   | AAC音频类型，归属类型为AUDIO。               |
 | AIFF<sup>11+</sup>                        | 'general.aiff'                  | AIFF音频类型，归属类型为AUDIO。              |
@@ -100,15 +119,25 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | WINDOWS_MEDIA_WAX<sup>11+</sup>                        | 'com.microsoft.windows-media-wax'                  | WINDOWS WAX音频类型，归属类型为AUDIO。       |
 | AU_AUDIO<sup>12+</sup>                         | 'general.au-audio'                    | Au数据格式，归属类型为AUDIO。       |
 | AIFC_AUDIO<sup>12+</sup>                         | 'general.aifc-audio'                    | 音频交换数据类型，归属类型为AUDIO。       |
+| MPEGURL_AUDIO<sup>12+</sup>                         | 'general.mpegurl-audio'                    | MPEG音频播放列表文件类型，归属类型为AUDIO。       |
+| MPEG_4_AUDIO<sup>12+</sup>                         | 'general.mpeg-4-audio'                    | MPEG-4音频类型，归属类型为AUDIO。       |
+| MP2<sup>12+</sup>                         | 'general.mp2'                    | MP2音频类型，归属类型为AUDIO。       |
+| MPEG_AUDIO<sup>12+</sup>                         | 'general.mpeg-audio'                    | MPGE音频类型，归属类型为AUDIO。       |
+| ULAW_AUDIO<sup>12+</sup>                         | 'general.ulaw-audio'                    | ULAW音频类型，归属类型为AUDIO。       |
 | SD2_AUDIO<sup>12+</sup>                         | 'com.digidesign.sd2-audio'                    | 单声道/立体声音频类型（Digidesign Sound Designer II），归属类型为AUDIO。       |
 | REALAUDIO<sup>12+</sup>                         | 'com.real.realaudio'                    | RealMedia音频类型，归属类型为AUDIO。       |
+| MATROSKA_AUDIO<sup>12+</sup>                         | 'org.matroska.mka'                    | MKA音频类型，归属类型为AUDIO。       |
 | FILE                       | 'general.file'                 | 所有文件的基类型，归属类型为ENTITY。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
 | DIRECTORY<sup>11+</sup>             | 'general.directory'               | 所有目录的基类型，归属类型为ENTITY。                          |
 | FOLDER        | 'general.folder'           | 所有文件夹的基类型，归属类型为DIRECTORY。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
 | SYMLINK<sup>11+</sup>        | 'general.symlink'          | 所有符号链接的基类型，归属类型为ENTITY。                        |
 | ARCHIVE<sup>11+</sup>                         | 'general.archive'                   | 所有文件和目录存档文件的基类型，归属类型为OBJECT。                   |
 | BZ2_ARCHIVE<sup>11+</sup>                        | 'general.bz2-archive'                  | BZ2存档文件类型，归属类型为ARCHIVE。           |
+| OPG<sup>12+</sup>                        | 'general.opg'                  | OPG存档文件类型，归属类型为ARCHIVE。           |
+| TAZ_ARCHIVE<sup>12+</sup>                        | 'general.taz-archive'                  | TAR压缩文件类型，归属类型为TAR_ARCHIVE。           |
+| WEB_ARCHIVE<sup>12+</sup>                        | 'general.web-archive'                  | MHTML网络存档文件类型，归属类型为ARCHIVE。           |
 | DISK_IMAGE<sup>11+</sup>                        | 'general.disk-image'                  | 所有可作为卷装载项的文件类型的基类型，归属类型为ARCHIVE。  |
+| ISO<sup>12+</sup>                        | 'general.iso'                  | 光盘映像文件类型，归属类型为DISK_IMAGE。  |
 | TAR_ARCHIVE<sup>11+</sup>                        | 'general.tar-archive'                  | TAR存档文件类型，归属类型为ARCHIVE。           |
 | ZIP_ARCHIVE<sup>11+</sup>                       | 'general.zip-archive'                 | ZIP存档文件类型，归属类型为ARCHIVE。           |
 | JAVA_ARCHIVE<sup>11+</sup>             | 'com.sun.java-archive'               | JAVA存档文件类型，归属类型为ARCHIVE和EXECUTABLE。          |
@@ -119,6 +148,12 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | WORDPROCESSINGML_DOCUMENT<sup>12+</sup>                         | 'org.openxmlformats.wordprocessingml.document'                    | 开源XML文档类型，归属类型为OPENXML和COMPOSITE_OBJECT。       |
 | SPREADSHEETML_SHEET<sup>12+</sup>                         | 'org.openxmlformats.spreadsheetml.sheet'                    | 开源XML电子表格类型，归属类型为OPENXML和COMPOSITE_OBJECT。       |
 | PRESENTATIONML_PRESENTATION<sup>12+</sup>                         | 'org.openxmlformats.presentationml.presentation'                    | 开源XML演示文稿类型，归属类型为OPENXML和COMPOSITE_OBJECT。       |
+| DRAWINGML_VISIO<sup>12+</sup>                         | 'org.openxmlformats.drawingml.visio'                    | 开源XML绘图文件类型，归属类型为OPENXML和COMPOSITE_OBJECT。       |
+| DRAWINGML_TEMPLATE<sup>12+</sup>                         | 'org.openxmlformats.drawingml.template'                    | 开源XML绘图模板类型，归属类型为OPENXML和COMPOSITE_OBJECT。       |
+| WORDPROCESSINGML_TEMPLATE<sup>12+</sup>                         | 'org.openxmlformats.wordprocessingml.template'                    | 开源XML文档模板类型，归属类型为OPENXML和COMPOSITE_OBJECT。       |
+| PRESENTATIONML_TEMPLATE<sup>12+</sup>                         | 'org.openxmlformats.presentationml.template'                    | 开源XML演示文稿模板类型，归属类型为OPENXML和COMPOSITE_OBJECT。       |
+| PRESENTATIONML_SLIDESHOW<sup>12+</sup>                         | 'org.openxmlformats.presentationml.slideshow'                    | 开源XML演示文稿幻灯片放映类型，归属类型为OPENXML和COMPOSITE_OBJECT。       |
+| SPREADSHEETML_TEMPLATE<sup>12+</sup>                         | 'org.openxmlformats.spreadsheetml.template'                    | 开源XML电子表格模板类型，归属类型为OPENXML和COMPOSITE_OBJECT。       |
 | OPENDOCUMENT<sup>12+</sup>                         | 'org.oasis.opendocument'                    | Office应用程序的开源文档类型，归属类型为ARCHIVE。       |
 | OPENDOCUMENT_TEXT<sup>12+</sup>                         | 'org.oasis.opendocument.text'                    | 开源文档类型，归属类型为OPENDOCUMENT和COMPOSITE_OBJECT。       |
 | OPENDOCUMENT_SPREADSHEET<sup>12+</sup>                         | 'org.oasis.opendocument.spreadsheet'                    | 开源文档电子表格类型，归属类型为OPENDOCUMENT和COMPOSITE_OBJECT。       |
@@ -126,6 +161,8 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | OPENDOCUMENT_GRAPHICS<sup>12+</sup>                         | 'org.oasis.opendocument.graphics'                    | 开源文档图形类型，归属类型为OPENDOCUMENT和COMPOSITE_OBJECT。       |
 | OPENDOCUMENT_FORMULA<sup>12+</sup>                         | 'org.oasis.opendocument.formula'                    | 开源文档公式集类型，归属类型为OPENDOCUMENT。       |
 | STUFFIT_ARCHIVE<sup>12+</sup>                         | 'com.allume.stuffit-archive'                    | Stuffit压缩格式类型（Stuffit archive），归属类型为ARCHIVE。       |
+| RAR_ARCHIVE<sup>12+</sup>                         | 'com.rarlab.rar-archive'                    | WinRAR压缩格式类型，归属类型为ARCHIVE。       |
+| SEVEN_ZIP_ARCHIVE<sup>12+</sup>                         | 'org.7-zip.7-zip-archive'                    | 7-zip压缩格式类型，归属类型为ARCHIVE。       |
 | CALENDAR<sup>11+</sup>                        | 'general.calendar'                  | 所有日程类数据的基类型，归属类型为OBJECT。                       |
 | VCS<sup>12+</sup>                         | 'general.vcs'                    | VCalendar日历数据类型，归属类型为CALENDAR和TEXT。       |
 | ICS<sup>12+</sup>                         | 'general.ics'                    | ICalendar日历数据类型，归属类型为CALENDAR和TEXT。       |
@@ -155,6 +192,9 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | OPENHARMONY_HINOTE<sup>12+</sup>                         | 'openharmony.hinote'                    | 系统定义的笔记数据类型，归属类型为COMPOSITE_OBJECT。       |
 | OPENHARMONY_STYLED_STRING<sup>12+</sup>                         | 'openharmony.styled-string'                    | 系统定义的样式字符串类型，归属类型为COMPOSITE_OBJECT。       |
 | OPENHARMONY_WANT<sup>12+</sup>                         | 'openharmony.want'                    | 系统定义的Want类型，归属类型为OBJECT。       |
+| OFD<sup>12+</sup>                         | 'general.ofd'                    | 开放版式文档类型，归属类型为COMPOSITE_OBJECT。       |
+| CAD<sup>12+</sup>                         | 'general.cad'                    | 所有计算机辅助设计类型的基类型，归属类型为OBJECT。       |
+| OCTET_STREAM<sup>12+</sup>                         | 'general.octet-stream'                    | 任意二进制数据类型，归属类型为OBJECT。       |
 
 
 ## TypeDescriptor<sup>11+</sup> 
