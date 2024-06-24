@@ -77,6 +77,7 @@ class Params {
   }
 }
 
+// 开发者可以通过@Builder装饰器实现布局构建方法
 @Builder
 function buildText(params: Params) {
   Column() {
@@ -84,10 +85,11 @@ function buildText(params: Params) {
       .fontSize(20)
       .fontColor(Color.Red)
   }
-  .width('100%')
-  .height('100%')
+  .width('100%') // 宽度方向充满画中画窗口
+  .height('100%') // 高度方向充满画中画窗口
 }
 
+// 开发者可通过继承NodeController实现自定义UI控制器
 class TextNodeController extends NodeController {
   private message: string;
   private textNode: BuilderNode<[Params]> | null = null;
@@ -96,16 +98,14 @@ class TextNodeController extends NodeController {
     this.message = message;
   }
 
+  // 通过BuilderNode加载自定义布局
   makeNode(context: UIContext): FrameNode | null {
     this.textNode = new BuilderNode(context);
     this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
     return this.textNode.getFrameNode();
   }
 
-  aboutToResize(size: Size): void {
-    console.log(`aboutToResize size: ${size}`);
-  }
-
+  // 开发者可自定义该方法实现布局更新
   update(message: string) {
     console.log(`update message: ${message}`);
     if (this.textNode !== null) {
