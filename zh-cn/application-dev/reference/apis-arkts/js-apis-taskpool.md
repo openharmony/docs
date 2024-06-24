@@ -208,7 +208,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 
 | 类型                 | 说明                               |
 | ----------------    | ---------------------------------- |
-| Promise\<Object>  | Promise对象数组，返回任务函数的执行结果。 |
+| Promise\<Object>  | Promise对象，返回任务函数的执行结果。 |
 
 **错误码：**
 
