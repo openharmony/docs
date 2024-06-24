@@ -37,7 +37,7 @@
 
 ### 生命周期切换超时
 
-生命周期切换超时分为[Ability生命周期](../../application-dev/application-models/uiability-lifecycle.md#uiability组件生命周期)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md#pageability的生命周期)切换超时。
+生命周期切换超时分为[Ability生命周期](../application-models/uiability-lifecycle.md#uiability组件生命周期)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md#pageability的生命周期)切换超时。
 
 该故障出现在生命周期切换的过程中，影响当前应用内Ability的切换或者不同PageAbility之间的切换。
 
@@ -400,7 +400,7 @@ MSG:ability:EntryAbility background timeout
 
 - 方式一：通过DevEco Studio获取日志
 
-    DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/ide-debug-hilog-0000001172459337-V2#section974519209435)。
+    DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考<!--RP1-->[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-0000001659706366-V5)<!--RP1End-->。
 
 - 方式二：通过hiappevent获取
 
