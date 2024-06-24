@@ -57,7 +57,7 @@ JS Crash异常根据不同的异常场景，在 Reason 字段进行了分类，�
 
 - 方式一：通过DevEco Studio获取日志
 
-    DevEco Studio会收集设备“/data/log/faultlog/faultlogger/”路径下的进程崩溃故障日志并归档在FaultLog下，获取日志的方法可参考[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/ide-debug-hilog-0000001172459337-V2#section974519209435)。
+    DevEco Studio会收集设备“/data/log/faultlog/faultlogger/”路径下的进程崩溃故障日志并归档在FaultLog下，获取日志的方法可参考<!--RP1-->[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-0000001659706366-V5)<!--RP1End-->。
 
 - 方式二：通过faultlogger接口获取
 
