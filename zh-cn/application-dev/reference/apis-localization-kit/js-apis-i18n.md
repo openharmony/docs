@@ -2435,7 +2435,7 @@ static getThreeLetterLanguage(locale: string): string
 
   ```ts
   try {
-    let language : string = I18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
+    let language : string = i18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
   } catch(error) {
     console.error(`call I18NUtil.getThreeLetterLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -2470,7 +2470,7 @@ static getThreeLetterRegion(locale: string): string
 
   ```ts
   try {
-    this.message = I18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
+    this.message = i18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
   } catch(error) {
     console.error(`call I18NUtil.getThreeLetterRegion failed, error code: ${error.code}, message: ${error.message}.`);
   }
