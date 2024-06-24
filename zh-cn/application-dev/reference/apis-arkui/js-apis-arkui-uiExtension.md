@@ -328,7 +328,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
             .width('100%')
             .height('90%')
             .onTerminated((info)=>{
-              this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
+              this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
             })
             .onError((error)=>{
               this.message = 'Error: code = ' + error.code;

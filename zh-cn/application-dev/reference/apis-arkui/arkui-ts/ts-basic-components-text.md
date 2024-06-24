@@ -585,7 +585,7 @@ textSelectable(value: TextSelectableMode)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | 是   | 文本是否支持可选择、可获焦。 <br />默认值：TextSelectableMode.SELECTABEL_UNFOCUSABLE |
+| value  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | 是   | 文本是否支持可选择、可获焦。 <br />默认值：TextSelectableMode.SELECTABLE_UNFOCUSABLE |
 
 ### selectionMenuOptions<sup>12+</sup>
 
@@ -1424,7 +1424,7 @@ struct TextExample12 {
 ![textLayoutManager](figures/textLayoutManager.gif)
 
 ### 示例13
-textSelectable使用示例，展示了设置TextSelectMode.SELECTABLE_FOCUSABEL属性时能够触发键盘框选文本功能。
+textSelectable使用示例，展示了设置TextSelectMode.SELECTABLE_FOCUSABLE属性时能够触发键盘框选文本功能。
 
 ```ts
 @Entry
