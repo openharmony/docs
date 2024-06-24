@@ -3791,7 +3791,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例通过输入法框架实现自会编辑框，可以绑定输入法应用，从输入法应用输入内容，显示和隐藏输入法。
+本示例通过输入法框架实现自绘编辑框，可以绑定输入法应用，从输入法应用输入内容，显示和隐藏输入法。
 
 ##### 使用
 
