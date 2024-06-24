@@ -50,69 +50,63 @@ import { statistics, socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 获取指定网卡实时下行流量数据。
-statistics.getIfaceRxBytes('wlan0', (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+statistics.getIfaceRxBytes("wlan0").then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 
 // 获取指定网卡实时上行流量数据。
-statistics.getIfaceTxBytes('wlan0', (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+statistics.getIfaceTxBytes("wlan0").then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 
 // 获取蜂窝实时下行流量数据。
-statistics.getCellularRxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+statistics.getCellularRxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 
 // 获取蜂窝实时上行流量数据。
-statistics.getCellularTxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+statistics.getCellularTxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 
 // 获取所有网卡实时下行流量数据。
-statistics.getAllRxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+statistics.getAllRxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 
 // 获取所有网卡实时上行流量数据。
-statistics.getAllTxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+statistics.getAllTxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 
 // 获取指定应用实时下行流量数据。
 let uid = 20010038;
-statistics.getUidRxBytes(uid, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+statistics.getUidRxBytes(uid).then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 
 // 获取指定应用实时上行流量数据。
 let uids = 20010038;
-statistics.getUidTxBytes(uids, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+statistics.getUidTxBytes(uids).then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 
 // 获取指定socket实时下行流量数据。
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.getSocketFd().then((sockfd: number) => {
-  statistics.getSockfdRxBytes(sockfd, (error: BusinessError, stats: number) => {
-    console.log(JSON.stringify(error));
+  statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
     console.log(JSON.stringify(stats));
+  }).catch((err: BusinessError) => {
+    console.error(JSON.stringify(err));
   });
 });
 
 // 获取指定socket实时上行流量数据。
 tcp.getSocketFd().then((sockfd: number) => {
-  statistics.getSockfdTxBytes(sockfd, (error: BusinessError, stats: number) => {
-    console.log(JSON.stringify(error));
+  statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
     console.log(JSON.stringify(stats));
+  }).catch((err: BusinessError) => {
+    console.error(JSON.stringify(err));
   });
 });
 ```
@@ -132,12 +126,23 @@ class IfaceInfo {
   endTime: number = 16859485670
 }
 // 获取指定网卡历史流量信息。
-statistics.getTrafficStatsByIface(new IfaceInfo(), (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
-  console.log(JSON.stringify(error))
-  console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-  console.log("getTrafficStatsByIface bytes of sent = " + JSON.stringify(statsInfo.txBytes));
-  console.log("getTrafficStatsByIface packets of received = " + JSON.stringify(statsInfo.rxPackets));
-  console.log("getTrafficStatsByIface packets of sent = " + JSON.stringify(statsInfo.txPackets));
+statistics.getTrafficStatsByIface(new IfaceInfo()).then((statsInfo: statistics.NetStatsInfo) => {
+  console.log(
+    "getTrafficStatsByIface bytes of received = " +
+    JSON.stringify(statsInfo.rxBytes)
+  );
+  console.log(
+    "getTrafficStatsByIface bytes of sent = " +
+    JSON.stringify(statsInfo.txBytes)
+  );
+  console.log(
+    "getTrafficStatsByIface packets of received = " +
+    JSON.stringify(statsInfo.rxPackets)
+  );
+  console.log(
+    "getTrafficStatsByIface packets of sent = " +
+    JSON.stringify(statsInfo.txPackets)
+  );
 });
 
 class UidInfo {
@@ -148,13 +153,12 @@ class UidInfo {
 let uidInfo = new UidInfo()
 
 // 获取指定应用历史流量信息。
-statistics.getTrafficStatsByUid(uidInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
-  console.log(JSON.stringify(error))
+statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInfo) => {
   console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
   console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
   console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
   console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
-});
+})
 ```
 
 ## 订阅流量变化事件
