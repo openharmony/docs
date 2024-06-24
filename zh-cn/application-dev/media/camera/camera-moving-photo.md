@@ -94,7 +94,6 @@
        }
        console.info('photoOutPutCallBack photoAssetAvailable');
        // 保存或使用照片，需开发者实现
-       photoAsset.saveCameraPhoto();
      });
    }
    ```
