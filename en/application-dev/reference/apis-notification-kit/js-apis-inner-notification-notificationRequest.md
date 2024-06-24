@@ -17,7 +17,7 @@ The **NotificationRequest** module provides APIs for defining the notification r
 | slotType<sup>(deprecated)</sup> | [SlotType](js-apis-notificationManager.md#slottype)    |   No | No | Notification slot type.<br>This API is deprecated since API version 11. You are advised to use **notificationSlotType** instead.                       |
 | notificationSlotType<sup>11+</sup> | [SlotType](js-apis-notificationManager.md#slottype) |   No | No | Notification slot type.                       |
 | isOngoing                     | boolean                                                  |   No | No | Whether the notification is an ongoing notification.                                                             |
-| isUnremovable                 | boolean                                                  |   No | No | Reserved. |
+| isUnremovable                 | boolean                                                  |   No | No | Not supported currently. |
 | deliveryTime                  | number                                                   |   No | No | Time when the notification is sent.                                                              |
 | tapDismissed                  | boolean                                                  |   No | No | Whether the notification is automatically cleared.                                                            |
 | autoDeletedTime               | number                                                   |   No | No | Time when the notification is automatically cleared.                                                             |
@@ -33,8 +33,8 @@ The **NotificationRequest** module provides APIs for defining the notification r
 | badgeIconStyle                | number                                                   |   No | No | Notification badge type. Not supported currently.                                                    |
 | showDeliveryTime              | boolean                                                  |   No | No | Whether to display the time when the notification is delivered.                                                            |
 | actionButtons                 | Array\<[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)\>             |   No | No | Buttons in the notification. Up to three buttons are allowed.                                                         |
-| smallIcon                     | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   No | No | Small notification icon. This field is optional, and the icon size cannot exceed 30 KB.                                                |
-| largeIcon                     | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   No | No | Large notification icon. This field is optional, and the icon size cannot exceed 30 KB.                                                |
+| smallIcon                     | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   No | No | Small notification icon. This field is optional. The total number of bytes of image pixels cannot exceed 100 KB. The display effect depends on the device capability and notification center UI style.                                                |
+| largeIcon                     | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   No | No | Large notification icon. This field is optional. The total number of bytes of image pixels cannot exceed 100 KB. The display effect depends on the device capability and notification center UI style.                                                |
 | creatorBundleName             | string                                                   |   Yes | No | Name of the bundle that creates the notification.                                                             |
 | creatorUid                    | number                                                   |   Yes | No | UID used for creating the notification.                                                            |
 | creatorPid                    | number                                                   |   Yes | No | PID used for creating the notification.                                                            |
@@ -59,4 +59,3 @@ Describes distributed notification options.
 | isDistributed<sup>8+<sup>          | boolean        | No  | Whether the notification is a distributed notification.                  |
 | supportDisplayDevices<sup>8+<sup>  | Array\<string> | No  | List of the devices to which the notification can be synchronized.           |
 | supportOperateDevices<sup>8+<sup>  | Array\<string> | No  | List of the devices on which the notification can be opened.             |
- 

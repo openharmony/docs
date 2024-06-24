@@ -18,7 +18,7 @@ import CommonEventManager from '@ohos.commonEventManager';
 
 A system common event is an event that is published by a system service or system application and requires specific permissions to subscribe to. To publish or subscribe to this type of event, you must follow the event-specific definitions.
 
-For details about the definitions of all system common events, see [System Common Events](./commonEventManager-definitions.md).
+For details about the enumerations of all system common events, see [System Common Events](./common_event/commonEventManager-definitions.md).
 
 ## CommonEventManager.publishAsUser<sup>
 
@@ -34,7 +34,7 @@ Publishes a common event to a specific user. This API uses an asynchronous callb
 
 | Name    | Type                | Mandatory| Description                              |
 | -------- | -------------------- | ---- | ---------------------------------- |
-| event    | string               | Yes  | Name of the common event to publish.            |
+| event    | string               | Yes  | Name of the common event to publish. For details, see [System Common Events](./common_event/commonEventManager-definitions.md).            |
 | userId   | number               | Yes  | User ID.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.            |
 
@@ -89,7 +89,7 @@ Publishes a common event with given attributes to a specific user. This API uses
 
 | Name    | Type                  | Mandatory| Description                  |
 | -------- | ---------------------- | ---- | ---------------------- |
-| event    | string                 | Yes  | Name of the common event to publish. |
+| event    | string                 | Yes  | Name of the common event to publish. For details, see [System Common Events](./common_event/commonEventManager-definitions.md). |
 | userId   | number | Yes| User ID.|
 | options  | [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md) | Yes  | Attributes of the common event to publish.|
 | callback | AsyncCallback\<void>   | Yes  | Callback used to return the result. |
@@ -154,7 +154,7 @@ Removes a sticky common event. This API uses an asynchronous callback to return 
 
 | Name  | Type                | Mandatory| Description                            |
 | -------- | -------------------- | ---- | -------------------------------- |
-| event    | string               | Yes  | Sticky common event to remove.      |
+| event    | string               | Yes  | Sticky common event to remove. For details, see [System Common Events](./common_event/commonEventManager-definitions.md).      |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -175,10 +175,10 @@ import Base from '@ohos.base';
 
 CommonEventManager.removeStickyCommonEvent("sticky_event", (err:Base.BusinessError) => {
     if (err) {
-        console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+        console.info(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
     }
-    console.info(`Remove sticky event AsyncCallback success`);
+    console.info(`removeStickyCommonEvent success`);
 });
 ```
 
@@ -198,7 +198,7 @@ Removes a sticky common event. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| event  | string | Yes  | Sticky common event to remove.|
+| event  | string | Yes  | Sticky common event to remove. For details, see [System Common Events](./common_event/commonEventManager-definitions.md).|
 
 **Return value**
 
@@ -223,9 +223,9 @@ For details about the error codes, see [Event Error Codes](./errorcode-CommonEve
 import Base from '@ohos.base';
 
 CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
-    console.info(`Remove sticky event AsyncCallback success`);
+    console.info(`removeStickyCommonEvent success`);
 }).catch ((err:Base.BusinessError) => {
-    console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+    console.info(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
 
@@ -265,14 +265,14 @@ import Base from '@ohos.base';
 
 CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
     if (!err) {
-        console.info(`Set static subscriber state callback failed, err is null.`);
+        console.info(`setStaticSubscriberState failed, err is null.`);
         return;
     }
     if (err.code !== undefined && err.code != null) {
-        console.info(`Set static subscriber state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
+        console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
     }
-    console.info(`Set static subscriber state callback success`);
+    console.info(`setStaticSubscriberState success`);
 });
 ```
 
@@ -316,8 +316,8 @@ For details about the error codes, see [Event Error Codes](./errorcode-CommonEve
 import Base from '@ohos.base';
 
 CommonEventManager.setStaticSubscriberState(false).then(() => {
-    console.info(`Set static subscriber state promise success`);
+    console.info(`setStaticSubscriberState success`);
 }).catch ((err:Base.BusinessError) => {
-    console.info(`Set static subscriber state promise failed, errCode: ${err.code}, errMes: ${err.message}`);
+    console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```

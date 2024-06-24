@@ -197,7 +197,7 @@ try {
 
 on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType, uri?: string) =&gt; void): void
 
-Subscribes to wallpaper change events.
+Subscribes to wallpaper change events. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -227,7 +227,7 @@ try {
 
 off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType, uri?: string) =&gt; void): void
 
-Unsubscribes from wallpaper change events.
+Unsubscribes from wallpaper change events. Multi-thread concurrent calls are not supported.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -678,5 +678,77 @@ wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: imag
     console.log(`success to getPixelMap : ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
     console.error(`failed to getPixelMap because: ${JSON.stringify(error)}`);
+});
+```
+## wallpaper.getFile<sup>(deprecated)</sup>
+
+getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the wallpaper of the specified type.
+
+> **NOTE**
+> 
+> This API is supported since API version 8 and deprecated since API version 9.
+
+**Required permissions**: ohos.permission.GET_WALLPAPER
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: number) => {
+    if (error) {
+        console.error(`failed to getFile because: ${JSON.stringify(error)}`);
+        return;
+    }
+    console.log(`success to getFile: ${JSON.stringify(data)}`);
+});
+```
+
+## wallpaper.getFile<sup>(deprecated)</sup>
+
+getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
+
+Obtains the wallpaper of the specified type.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9.
+
+**Required permissions**: ohos.permission.GET_WALLPAPER
+
+**System capability**: SystemCapability.MiscServices.Wallpaper
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | Yes| Wallpaper type.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: number) => {
+    console.log(`success to getFile: ${JSON.stringify(data)}`);
+  }).catch((error: BusinessError) => {
+    console.error(`failed to getFile because: ${JSON.stringify(error)}`);
 });
 ```

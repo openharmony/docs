@@ -1,27 +1,27 @@
 # System Common Events (To Be Deprecated Soon)
 
 This document provides indexes for predefined system common events.
-For details about the definition of a system common event, see [Support in @ohos.commonEvent (Common Event)](../js-apis-commonEvent.md#support).
+Common event types are defined in [Support enumeration of the ohos.commonEvent module](../js-apis-commonEvent.md#support).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
 * COMMON_EVENT_BOOT_COMPLETED
-Indicates that the user has finished booting and the system has been loaded.
+Indicates that the boot is complete and the system is loaded.
   - Value: **usual.event.BOOT_COMPLETED**
-  - Required subscriber permissions: ohos.permission.RECEIVER_STARTUP_COMPLETED
+  - Permission required by subscribers: ohos.permission.RECEIVER_STARTUP_COMPLETED (Only system applications can apply for this permission.)
 
 * COMMON_EVENT_LOCKED_BOOT_COMPLETED
-(Reserved, not supported yet) Indicates that the user has finished booting and the system has been loaded but the screen is still locked.
+(Reserved event, not supported currently) A message is displayed, indicating that the guidance is complete and the system is loaded, but the screen is still locked.
   - Value: **usual.event.LOCKED_BOOT_COMPLETED**
-  - Required subscriber permissions: ohos.permission.RECEIVER_STARTUP_COMPLETED
+  - Permission required by subscribers: ohos.permission.RECEIVER_STARTUP_COMPLETED (Only system applications can apply for this permission.)
 
 * COMMON_EVENT_SHUTDOWN
-Indicates that the device is being shut down and the final shutdown will proceed.
+A message is displayed, indicating that the device is being shut down and will continue until it is finally shut down.
   - Value: **usual.event.SHUTDOWN**
   - Required subscriber permissions: none
 
 * COMMON_EVENT_BATTERY_CHANGED
-Indicates that the charging state, level, and other information about the battery have changed.
+A message is displayed, indicating that the battery charging status, battery level, and other information has changed.
   - Value: **usual.event.BATTERY_CHANGED**
   - Required subscriber permissions: none
 
@@ -84,13 +84,13 @@ Indicates that the system time is set.
 
 
 * COMMON_EVENT_DATE_CHANGED
-(Reserved, not supported yet) Indicates that the system date has changed.
+This event is reserved and is not supported currently. A message is displayed, indicating that the system date has been changed.
   - Value: **usual.event.DATE_CHANGED**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_TIMEZONE_CHANGED
-Indicates that the system time zone has changed.
+A message is displayed, indicating that the system time zone is changed.
   - Value: **usual.event.TIMEZONE_CHANGED**
   - Required subscriber permissions: none
 
@@ -114,7 +114,7 @@ Indicates that a new application package has been installed on the device.
 
 
 * COMMON_EVENT_MY_PACKAGE_REPLACED
-(Reserved, not supported yet) Indicates that a later version of your application package has replaced the previous one.
+(Reserved event, not supported currently) Indicates that the new version of the application package has replaced the previous version.
   - Value: **usual.event.MY_PACKAGE_REPLACED**
   - Required subscriber permissions: none
 
@@ -161,25 +161,25 @@ Indicates that the user cleared the application package cache.
 
 
 * COMMON_EVENT_PACKAGES_SUSPENDED
-(Reserved, not supported yet) Indicates that application HAP files are suspended.
-  - Value: usual.event.PACKAGES_SUSPENDED
+(Reserved, not supported yet) Indicates that application packages have been suspended.
+  - Value: **usual.event.PACKAGES_SUSPENDED**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_PACKAGES_UNSUSPENDED
-(Reserved, not supported yet) Indicates that application HAP files are not suspended (restored from the suspended state).
+(Reserved event, not supported currently) A message is displayed, indicating that the application HAP package is not suspended (resumed from the suspended state).
   - Value: **usual.event.PACKAGES_UNSUSPENDED**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_MY_PACKAGE_SUSPENDED
-Indicates that an application HAP file is suspended.
+A message is displayed, indicating that the application HAP package is suspended.
   - Value: **usual.event.MY_PACKAGE_SUSPENDED**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_MY_PACKAGE_UNSUSPENDED
-Indicates that an application HAP file is not suspended.
+A message is displayed, indicating that the application package is not suspended.
   - Value: **usual.event.MY_PACKAGE_UNSUSPENDED**
   - Required subscriber permissions: none
 
@@ -263,13 +263,13 @@ Indicates that an application HAP file is not suspended.
 
 
 * COMMON_EVENT_USER_BACKGROUND
-(Reserved, not supported yet) Indicates that the user has been brought to the background.
+This event is reserved and is not supported currently. A message is displayed, indicating that the user has been brought to the background.
   - Value: **usual.event.USER_BACKGROUND**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_USER_FOREGROUND
-(Reserved, not supported yet) Indicates that the user has been brought to the foreground.
+This event is reserved and is not supported currently. A message is displayed, indicating that the user has been brought to the foreground.
   - Value: **usual.event.USER_FOREGROUND**
   - Required subscriber permissions: none
 
@@ -277,29 +277,29 @@ Indicates that an application HAP file is not suspended.
 * COMMON_EVENT_USER_SWITCHED
 Indicates that user switching is in progress.
   - Value: **usual.event.USER_SWITCHED**
-  - Required subscriber permissions: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+  - The subscriber requires the ohos.permission.MANAGE_LOCAL_ACCOUNTS permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_USER_STARTING
-(Reserved, not supported yet) Indicates that the user is being started.
+(Reserved, not supported yet) Indicates that the user has been started.
   - Value: **usual.event.USER_STARTING**
-  - Required subscriber permissions: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+  - Permission required by subscribers: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_USER_UNLOCKED
-(Reserved, not supported yet) Indicates that the credential-encrypted storage has been unlocked for the current user after the device is restarted.
+(Reserved event, not supported currently) When a user is unlocked after a restart, a message is displayed, indicating that the credential encryption storage of the current user has been unlocked.
   - Value: **usual.event.USER_UNLOCKED**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_USER_STOPPING
-(Reserved, not supported yet) Indicates that the user is going to be stopped.
+(Reserved event, not supported currently) Prompt the user to stop.
   - Value: **usual.event.USER_STOPPING**
-  - Required subscriber permissions: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+  - Permission required by subscribers: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_USER_STOPPED
-(Reserved, not supported yet) Indicates that the user has been stopped.
+(Reserved, not supported yet) Indicates that the user has been started.
   - Value: **usual.event.USER_STOPPED**
   - Required subscriber permissions: none
 
@@ -311,7 +311,7 @@ Indicates that the Wi-Fi state has changed, for example, enabled or disabled.
 
 
 * COMMON_EVENT_WIFI_SCAN_FINISHED
-Indicates that the Wi-Fi access point has been detected and proven to be available.
+A message is displayed, indicating that the Wi-Fi access point has been scanned and proved available.
   - Value: **usual.event.wifi.SCAN_FINISHED**
   - Required subscriber permissions: ohos.permission.LOCATION
 
@@ -329,7 +329,7 @@ Indicates that the Wi-Fi connection state has changed.
 
 
 * COMMON_EVENT_WIFI_HOTSPOT_STATE
-Indicates that the Wi-Fi hotspot state has changed, for example, enabled or disabled.
+Indicates that the Wi-Fi state has changed, for example, enabled or disabled.
   - Value: **usual.event.wifi.HOTSPOT_STATE**
   - Required subscriber permissions: none
 
@@ -341,7 +341,7 @@ Indicates that a client has joined the Wi-Fi hotspot of the current device.
 
 
 * COMMON_EVENT_WIFI_AP_STA_LEAVE
-Indicates that a client has disconnected from the Wi-Fi hotspot of the current device.
+A message is displayed, indicating that the client is disconnected from the Wi-Fi hotspot of the current device.
   - Value: **usual.event.wifi.WIFI_HS_STA_LEAVE**
   - Required subscriber permissions: ohos.permission.GET_WIFI_INFO
 
@@ -389,73 +389,73 @@ Indicates that the Wi-Fi P2P group information has changed.
 
 
 * COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE
-(Reserved, not supported yet) Indicates the connection state of Bluetooth handsfree communication.
+(Reserved event, not supported yet) Indicates the connection state of Bluetooth handsfree communication.
   - Value: **usual.event.bluetooth.handsfree.ag.CONNECT_STATE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CURRENT_DEVICE_UPDATE
-(Reserved, not supported yet) Indicates that the device connected through Bluetooth handsfree is active.
+This event is reserved and is not supported currently. It indicates that the device connected to the Bluetooth hands-free function is active.
   - Value: **usual.event.bluetooth.handsfree.ag.CURRENT_DEVICE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_AUDIO_STATE_UPDATE
-(Reserved, not supported yet) Indicates that the connection state of Bluetooth A2DP has changed.
+(Reserved, not supported yet) Indicates that the connection state of Bluetooth A2DP Sink has changed.
   - Value: **usual.event.bluetooth.handsfree.ag.AUDIO_STATE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CONNECT_STATE_UPDATE
-(Reserved, not supported yet) Indicates the connection state of Bluetooth A2DP.
+(Reserved event, not supported yet) Indicates the connection state of Bluetooth A2DP.
   - Value: **usual.event.bluetooth.a2dpsource.CONNECT_STATE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CURRENT_DEVICE_UPDATE
-(Reserved, not supported yet) Indicates that the device connected using Bluetooth A2DP is active.
+(Reserved event, not supported yet) Indicates that the device connected using Bluetooth A2DP is active.
   - Value: **usual.event.bluetooth.a2dpsource.CURRENT_DEVICE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_A2DPSOURCE_PLAYING_STATE_UPDATE
-(Reserved, not supported yet) Indicates that the playing state of Bluetooth A2DP has changed.
+(Reserved event, not supported yet) Indicates that the playing state of Bluetooth A2DP has changed.
   - Value: **usual.event.bluetooth.a2dpsource.PLAYING_STATE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_A2DPSOURCE_AVRCP_CONNECT_STATE_UPDATE
-(Reserved, not supported yet) Indicates that the AVRCP connection state of Bluetooth A2DP has changed.
+(Reserved event, not supported yet) Indicates that the AVRCP connection state of Bluetooth A2DP has changed.
   - Value: **usual.event.bluetooth.a2dpsource.AVRCP_CONNECT_STATE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_A2DPSOURCE_CODEC_VALUE_UPDATE
-(Reserved, not supported yet) Indicates that the audio codec state of Bluetooth A2DP has changed.
+(Reserved event, not supported yet) Indicates that the audio codec state of Bluetooth A2DP has changed.
   - Value: **usual.event.bluetooth.a2dpsource.CODEC_VALUE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_DISCOVERED
-(Reserved, not supported yet) Indicates that a remote Bluetooth device is discovered.
+(Reserved event, not supported yet) Indicates that a remote Bluetooth device is discovered.
   - Value: **usual.event.bluetooth.remotedevice.DISCOVERED**
   - Required subscriber permissions: ohos.permission.LOCATION and ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_CLASS_VALUE_UPDATE
-(Reserved, not supported yet) Indicates that the Bluetooth class of a remote Bluetooth device has changed.
+(Reserved event, not supported yet) Indicates that the Bluetooth class of a remote Bluetooth device has changed.
   - Value: **usual.event.bluetooth.remotedevice.CLASS_VALUE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_CONNECTED
-(Reserved, not supported yet) Indicates that a low-ACL connection with a remote Bluetooth device has been established.
+(Reserved event, not supported currently) A low-level (ACL) connection has been established with the remote Bluetooth device.
   - Value: **usual.event.bluetooth.remotedevice.ACL_CONNECTED**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED
-(Reserved, not supported yet) Indicates that the low-ACL connection with a remote Bluetooth device has been terminated.
+(Reserved event, not supported currently) A message is displayed, indicating that the low-level (ACL) connection has been disconnected from the remote Bluetooth device.
   - Value: **usual.event.bluetooth.remotedevice.ACL_DISCONNECTED**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
@@ -467,7 +467,7 @@ Indicates that the Wi-Fi P2P group information has changed.
 
 
 * COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE
-(Reserved, not supported yet) Indicates that the connection state with a remote Bluetooth device has changed.
+(Reserved, not supported yet) Indicates the connection state with a remote Bluetooth device is changed.
   - Value: **usual.event.bluetooth.remotedevice.PAIR_STATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
@@ -545,49 +545,49 @@ Indicates that the Wi-Fi P2P group information has changed.
 
 
 * COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE
-(Reserved, not supported yet) Indicates that the state of a Bluetooth adapter has changed, for example, Bluetooth has been enabled or disabled.
+(Reserved event, not supported currently) Displays a message indicating that the Bluetooth adapter status has been changed, for example, Bluetooth has been enabled or disabled.
   - Value: **usual.event.bluetooth.host.STATE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE
-(Reserved, not supported yet) Indicates the request for the user to allow Bluetooth device scanning.
+(Reserved event, not supported currently) This event is used to notify a subscriber that Bluetooth scanning is allowed.
   - Value: **usual.event.bluetooth.host.REQ_DISCOVERABLE**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE
-(Reserved, not supported yet) Indicates the request for the user to enable Bluetooth.
+(Reserved event, not supported currently) Prompt the user to enable the Bluetooth request.
   - Value: **usual.event.bluetooth.host.REQ_ENABLE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE
-(Reserved, not supported yet) Indicates the request for the user to disable Bluetooth.
+(Reserved event, not supported currently) Prompt the user to disable the Bluetooth request.
   - Value: **usual.event.bluetooth.host.REQ_DISABLE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE
-(Reserved, not supported yet) Indicates that the Bluetooth scanning mode of the device has changed.
+This event is reserved and is not supported currently. It indicates that the Bluetooth scanning mode of the device is changed.
   - Value: **usual.event.bluetooth.host.SCAN_MODE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED
-(Reserved, not supported yet) Indicates that Bluetooth scanning has been started on the device. 
+(Reserved event, not supported currently) Displays a message indicating that Bluetooth scanning has been enabled on the device.
   - Value: **usual.event.bluetooth.host.DISCOVERY_STARTED**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED
-(Reserved, not supported yet) Indicates that Bluetooth scanning is finished on the device.
+(Reserved event, not supported currently) Displays a message indicating that Bluetooth scanning on the device is complete.
   - Value: **usual.event.bluetooth.host.DISCOVERY_FINISHED**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 * COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE
-(Reserved, not supported yet) Indicates that the Bluetooth adapter name of the device has changed.
+(Reserved, not supported yet) Indicates that the name of the device Bluetooth adapter has changed.
   - Value: **usual.event.bluetooth.host.NAME_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
@@ -619,13 +619,13 @@ Indicates that the Wi-Fi P2P group information has changed.
 * COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED
 (Reserved, not supported yet) Indicates that the NFC RF field is detected to be in the enabled state.
   - Value: **usual.event.nfc.action.RF_FIELD_ON_DETECTED**
-  - Required subscriber permissions: ohos.permission.MANAGE_SECURE_SETTINGS (for system applications only)
+  - Permission required by subscribers: ohos.permission.MANAGE_SECURE_SETTINGS (Only system applications can apply for this permission.)
 
 
 * COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED
-(Reserved, not supported yet) Indicates that the NFC RF field is detected to be in the disabled state.
+(Reserved, not supported yet) Indicates that the NFC RF field is detected to be in the enabled state.
   - Value: **usual.event.nfc.action.RF_FIELD_OFF_DETECTED**
-  - Required subscriber permissions: ohos.permission.MANAGE_SECURE_SETTINGS (for system applications only)
+  - Permission required by subscribers: ohos.permission.MANAGE_SECURE_SETTINGS (Only system applications can apply for this permission.)
 
 
 * COMMON_EVENT_DISCHARGING
@@ -655,13 +655,13 @@ Indicates that the system power saving mode has changed.
 * COMMON_EVENT_USER_ADDED
 Indicates that a user has been added to the system.
   - Value: **usual.event.USER_ADDED**
-  - Required subscriber permissions: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+  - The subscriber requires the ohos.permission.MANAGE_LOCAL_ACCOUNTS permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_USER_REMOVED
 Indicates that a user has been removed from the system.
   - Value: **usual.event.USER_REMOVED**
-  - Required subscriber permissions: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+  - The subscriber requires the ohos.permission.MANAGE_LOCAL_ACCOUNTS permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_ABILITY_ADDED
@@ -689,49 +689,49 @@ Indicates that a user has been removed from the system.
 
 
 * COMMON_EVENT_IVI_SLEEP
-(Reserved, not supported yet) Indicates that the in-vehicle infotainment (IVI) system is in sleep mode.
+(Reserved event, not supported currently) Indicates that the in-vehicle infotainment (IVI) system of the vehicle is sleeping.
   - Value: **common.event.IVI_SLEEP**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_IVI_PAUSE
-(Reserved, not supported yet) Indicates that the IVI system as entered sleep mode and instructs the playing application to stop playback.
+(Reserved event, not supported currently) Displays a message indicating that the in-vehicle infotainment (IVI) system of the vehicle is in sleep mode and notifies the application to stop playing.
   - Value: **common.event.IVI_PAUSE**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_IVI_STANDBY
-(Reserved, not supported yet) Requests a third-party application in the IVI system to pause the current work.
+(Reserved event, not supported currently) This event is used to notify a third-party application in the in-vehicle infotainment (IVI) system of a vehicle that the current work is suspended.
   - Value: **common.event.IVI_STANDBY**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_IVI_LASTMODE_SAVE
-(Reserved, not supported yet) Requests a third-party application in the IVI system to save its last mode.
+(Reserved event, not supported currently) Prompts the third-party application in the in-vehicle infotainment (IVI) system of the vehicle to save the last mode.
   - Value: **common.event.IVI_LASTMODE_SAVE**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_IVI_VOLTAGE_ABNORMAL
-(Reserved, not supported yet) Indicates that the voltage of the vehicle's power system is abnormal.
+(Reserved, not supported yet) Indicates that the voltage of the vehicle's power system is restored to normal.
   - Value: **common.event.IVI_VOLTAGE_ABNORMAL**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_IVI_HIGH_TEMPERATURE
-(Reserved, not supported yet) Indicates that the temperature of the IVI system is high.
+(Reserved event, not supported currently) Indicates that the temperature of the in-vehicle infotainment (IVI) system of the vehicle is too high.
   - Value: **common.event.IVI_HIGH_TEMPERATURE**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_IVI_EXTREME_TEMPERATURE
-(Reserved, not supported yet) Indicates that the temperature of the IVI system is extremely high. 
+(Reserved event, not supported currently) Indicates that the temperature of the in-vehicle infotainment (IVI) system of the vehicle is extremely high.
   - Value: **common.event.IVI_EXTREME_TEMPERATURE**
   - Required subscriber permissions: none
 
 
 * COMMON_EVENT_IVI_TEMPERATURE_ABNORMAL
-(Reserved, not supported yet) Indicates that the IVI system is at an extreme temperature.
+(Reserved event, not supported currently) Indicates that the in-vehicle infotainment (IVI) system of the vehicle has an extreme temperature.
   - Value: **common.event.IVI_TEMPERATURE_ABNORMAL**
   - Required subscriber permissions: none
 
@@ -749,7 +749,7 @@ Indicates that a user has been removed from the system.
 
 
 * COMMON_EVENT_IVI_ACTIVE
-(Reserved, not supported yet) Indicates that the battery service of the IVI system is active.
+(Reserved event, not supported currently) Indicates that the battery service of the vehicle-mounted system is active.
   - Value: **common.event.IVI_ACTIVE**
   - Required subscriber permissions: none
 
@@ -785,7 +785,7 @@ Indicates that a USB device has been detached from the device functioning as a U
 
 
 * COMMON_EVENT_USB_ACCESSORY_DETACHED
-(Reserved, not supported yet) Indicates that a USB accessory was detached.
+(Reserved event, not supported currently) A message is displayed, indicating that the USB attachment is uninstalled.
   - Value: **usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED**
   - Required subscriber permissions: none
 
@@ -793,85 +793,85 @@ Indicates that a USB device has been detached from the device functioning as a U
 * COMMON_EVENT_DISK_REMOVED
 (Reserved, not supported yet) Indicates that an external storage device was removed.
   - Value: **usual.event.data.DISK_REMOVED**
-  - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
+  - The subscriber requires the ohos.permission.STORAGE_MANAGER permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_DISK_UNMOUNTED
 (Reserved, not supported yet) Indicates that an external storage device was unmounted.
   - Value: **usual.event.data.DISK_UNMOUNTED**
-  - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
+  - The subscriber requires the ohos.permission.STORAGE_MANAGER permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_DISK_MOUNTED
 (Reserved, not supported yet) Indicates that an external storage device was mounted.
   - Value: **usual.event.data.DISK_MOUNTED**
-  - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
+  - The subscriber requires the ohos.permission.STORAGE_MANAGER permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_DISK_BAD_REMOVAL
 (Reserved, not supported yet) Indicates that an external storage device was removed without being unmounted.
-  - Value: usual.event.data.DISK_BAD_REMOVAL
-  - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
+  - Value: **usual.event.data.DISK_BAD_REMOVAL**
+  - The subscriber requires the ohos.permission.STORAGE_MANAGER permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_DISK_UNMOUNTABLE
-(Reserved, not supported yet) Indicates that an external storage device is unmountable when the card is inserted.
+This event is reserved and is not supported currently. A message is displayed, indicating that the external storage device cannot be mounted when a card is inserted.
   - Value: **usual.event.data.DISK_UNMOUNTABLE**
-  - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
+  - The subscriber requires the ohos.permission.STORAGE_MANAGER permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_DISK_EJECT
-(Reserved, not supported yet) Indicates that an external storage device was ejected (at the software level).
+(Reserved event, not supported currently) Prompts the user that the external storage medium has been ejected (interactive operation at the system software layer, not directly ejected physically).
   - Value: **usual.event.data.DISK_EJECT**
-  - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
+  - The subscriber requires the ohos.permission.STORAGE_MANAGER permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_VOLUME_REMOVED<sup>9+</sup>
-Indicates that an external storage device was removed.
+Indicates that an external storage device was mounted.
   - Value: **usual.event.data.VOLUME_REMOVED**
-  - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
+  - The subscriber requires the ohos.permission.STORAGE_MANAGER permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+</sup>
-Indicates that an external storage device was unmounted.
+Indicates that an external storage device was mounted.
   - Value: **usual.event.data.VOLUME_UNMOUNTED**
-  - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
+  - The subscriber requires the ohos.permission.STORAGE_MANAGER permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_VOLUME_MOUNTED<sup>9+</sup>
 Indicates that an external storage device was mounted.
   - Value: **usual.event.data.VOLUME_MOUNTED**
-  - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
+  - The subscriber requires the ohos.permission.STORAGE_MANAGER permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+</sup>
 Indicates that an external storage device was removed without being unmounted.
   - Value: **usual.event.data.VOLUME_BAD_REMOVAL**
-  - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
+  - The subscriber requires the ohos.permission.STORAGE_MANAGER permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_VOLUME_EJECT<sup>9+</sup>
-Indicates that an external storage device was ejected (at the software level).
-  - Value: usual.event.data.VOLUME_EJECT
-  - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
+A message is displayed, indicating that the external storage medium has been ejected (interactive operation at the system software layer, not physical ejection).
+  - Value: **usual.event.data.VOLUME_EJECT**
+  - The subscriber requires the ohos.permission.STORAGE_MANAGER permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
 (Reserved, not supported yet) Indicates that the account visibility changed.
   - Value: **usual.event.data.VISIBLE_ACCOUNTS_UPDATED**
-  - Required subscriber permissions: ohos.permission.GET_APP_ACCOUNTS
+  - The subscriber requires the ohos.permission.GET_APP_ACCOUNTS permission. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_ACCOUNT_DELETED
 (Reserved, not supported yet) Indicates that an account was deleted.
   - Value: **usual.event.data.ACCOUNT_DELETED**
-  - Required subscriber permissions: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+  - Permission required by subscribers: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS. Only system applications can apply for this permission.
 
 
 * COMMON_EVENT_FOUNDATION_READY
 (Reserved, not supported yet) Indicates that the foundation is ready.
   - Value: **usual.event.data.FOUNDATION_READY**
-  - Required subscriber permissions: ohos.permission.RECEIVER_STARTUP_COMPLETED
+  - Permission required by subscribers: ohos.permission.RECEIVER_STARTUP_COMPLETED (Only system applications can apply for this permission.)
 
 
 * COMMON_EVENT_AIRPLANE_MODE_CHANGED
@@ -897,7 +897,7 @@ Indicates that the SPN displayed has been updated.
 
 
 * COMMON_EVENT_QUICK_FIX_APPLY_RESULT<sup>9+</sup>
-Indicates the result of applying a quick fix to the application.
+Indicates the result of quickly repairing an application.
   - Value: **usual.event.QUICK_FIX_APPLY_RESULT**
   - Required subscriber permissions: none
 

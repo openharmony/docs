@@ -1,4 +1,4 @@
-# @ohos.systemTimer (System Timer)
+# @ohos.systemTimer (System Timer) (System APIs)
 
 The **systemTimer** module provides system timer features. You can use the APIs of this module to implement the alarm clock and other timer services.
 
@@ -39,7 +39,7 @@ Defines the initialization options for **createTimer**.
 | repeat    | boolean                                       | Yes  | Whether the timer is a repeating timer.<br>The value **true** means that the timer is a repeating timer, and **false** means that the timer is a one-shot timer.                       |
 | interval  | number                                        | No  | Repeat interval.<br>For a repeating timer, the value must be greater than 5000 ms. For a one-shot timer, the value is **0**.|
 | wantAgent | WantAgent | No  | **WantAgent** object of the notification to be sent when the timer expires. (An application MainAbility can be started, but not a Service ability.)|
-| callback  | number                                        | Yes  | Callback used to return the timer ID.                            |
+| callback  | void                                          | No | Callback to be executed by the user.                           |
 
 
 ## systemTimer.createTimer

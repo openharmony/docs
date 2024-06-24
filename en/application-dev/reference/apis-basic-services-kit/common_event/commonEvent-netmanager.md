@@ -10,6 +10,15 @@ Indicates that the network connection state has changed.
 - Required subscriber permissions: none
 
 When the (Ethernet, Wi-Fi, or cellular) network connection state changes (to disconnected, connecting, or connected), the event notification service is triggered to publish this event.
+The following table lists the enumerated values and their corresponding connection status.
+
+| Value |  Connection Status |
+| ------ | ---------- |
+|    2   |   Connecting  |
+|    3   |   Connected  |
+|    4   |   Disconnecting|
+|    5   |   Disconnected  |
+
 
 ## COMMON_EVENT_AIRPLANE_MODE_CHANGED<sup>10+<sup>
 

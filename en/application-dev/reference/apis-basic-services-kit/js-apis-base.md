@@ -54,7 +54,7 @@ The information returned by the callback is of the [BusinessError](#businesserro
 
 AsyncCallback\<T, E = void> {
 
-(err: BusinessError, data: T): void;
+(err: BusinessError\<E>, data: T): void;
 
 }
 

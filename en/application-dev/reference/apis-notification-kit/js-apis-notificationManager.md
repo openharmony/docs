@@ -16,7 +16,7 @@ import notificationManager from '@ohos.notificationManager';
 
 publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
-Publishes a notification. This API uses an asynchronous callback to return the result.
+Publish a notification. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -78,7 +78,7 @@ notificationManager.publish(notificationRequest, publishCallback);
 
 publish(request: NotificationRequest): Promise\<void\>
 
-Publishes a notification. This API uses a promise to return the result.
+Publish a notification. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -185,7 +185,7 @@ notificationManager.cancel(0, "label", cancelCallback);
 
 cancel(id: number, label?: string): Promise\<void\>
 
-Cancels a notification with the specified ID and optional label. This API uses a promise to return the result.
+Cancels a notification with the specified ID and optional label. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -311,7 +311,7 @@ notificationManager.cancelAll(cancelAllCallback);
 
 cancelAll(): Promise\<void\>
 
-Cancels all notifications of this application. This API uses a promise to return the result.
+Cancels all notifications of this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -389,7 +389,7 @@ notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION, a
 
 addSlot(type: SlotType): Promise\<void\>
 
-Adds a notification slot of a specified type. This API uses a promise to return the result.
+Adds a notification slot of a specified type. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -474,7 +474,7 @@ notificationManager.getSlot(slotType, getSlotCallback);
 
 getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
-Obtains a notification slot of a specified type. This API uses a promise to return the result.
+Obtains a notification slot of a specified type. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -559,7 +559,7 @@ notificationManager.getSlots(getSlotsCallback);
 
 getSlots(): Promise\<Array\<NotificationSlot>>
 
-Obtains all notification slots of this application. This API uses a promise to return the result.
+Obtains all notification slots of this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -637,7 +637,7 @@ notificationManager.removeSlot(slotType, removeSlotCallback);
 
 removeSlot(slotType: SlotType): Promise\<void\>
 
-Removes a notification slot of a specified type for this application. This API uses a promise to return the result.
+Removes a notification slot of a specified type for this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -705,21 +705,21 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 ```ts
 import Base from '@ohos.base';
 
-let removeAllCallBack = (err: Base.BusinessError): void => {
+let removeAllSlotsCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAllSlots success");
     }
 }
-notificationManager.removeAllSlots(removeAllCallBack);
+notificationManager.removeAllSlots(removeAllSlotsCallback);
 ```
 
 ## notificationManager.removeAllSlots
 
 removeAllSlots(): Promise\<void\>
 
-Removes all notification slots for this application. This API uses a promise to return the result.
+Removes all notification slots for this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -755,7 +755,7 @@ notificationManager.removeAllSlots().then(() => {
 
 isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
-Checks whether notification is enabled for this application. This API uses an asynchronous callback to return the result.
+Checks whether notification is enabled for the specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -774,7 +774,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
-| 1600008  | The user is not exist.                   |
+| 1600008  | The user does not exist.                   |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -797,7 +797,7 @@ notificationManager.isNotificationEnabled(isNotificationEnabledCallback);
 
 isNotificationEnabled(): Promise\<boolean\>
 
-Checks whether notification is enabled for this application. This API uses a promise to return the result.
+Checks whether notification is enabled for the specified application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -816,7 +816,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
-| 1600008  | The user is not exist.                   |
+| 1600008  | The user does not exist.                   |
 | 17700001 | The specified bundle name was not found. |
 
 **Example**
@@ -835,7 +835,7 @@ notificationManager.isNotificationEnabled().then((data: boolean) => {
 
 setBadgeNumber(badgeNumber: number): Promise\<void\>
 
-Sets the notification badge number. This API uses a promise to return the result.
+Sets the notification badge number. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -868,9 +868,9 @@ import Base from '@ohos.base';
 let badgeNumber: number = 10;
 
 notificationManager.setBadgeNumber(badgeNumber).then(() => {
-	console.info("displayBadge success");
+	console.info("setBadgeNumber success");
 }).catch((err: Base.BusinessError) => {
-    console.error(`displayBadge fail: ${JSON.stringify(err)}`);
+    console.error(`setBadgeNumber fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -907,12 +907,11 @@ import Base from '@ohos.base';
 
 let setBadgeNumberCallback = (err: Base.BusinessError): void => {
     if (err) {
-        console.info(`displayBadge failed code is ${err.code}, message is ${err.message}`);
+        console.info(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("displayBadge success");
+        console.info("setBadgeNumber success");
     }
 }
-
 let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 ```
@@ -961,7 +960,7 @@ notificationManager.getActiveNotificationCount(getActiveNotificationCountCallbac
 
 getActiveNotificationCount(): Promise\<number\>
 
-Obtains the number of active notifications of this application. This API uses a promise to return the result.
+Obtains the number of active notifications of this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1026,10 +1025,9 @@ let getActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notif
     if (err) {
         console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getActiveNotifications success");
+        console.info("getActiveNotifications success" + JSON.stringify(data));
     }
 }
-
 notificationManager.getActiveNotifications(getActiveNotificationsCallback);
 ```
 
@@ -1037,7 +1035,7 @@ notificationManager.getActiveNotifications(getActiveNotificationsCallback);
 
 getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
 
-Obtains the active notifications of this application. This API uses a promise to return the result.
+Obtains the active notifications of this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1063,9 +1061,9 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 import Base from '@ohos.base';
 
 notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
-	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
+	console.info("getActiveNotifications success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
-    console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
+    console.error(`getActiveNotifications fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1116,7 +1114,7 @@ notificationManager.cancelGroup(groupName, cancelGroupCallback);
 
 cancelGroup(groupName: string): Promise\<void\>
 
-Cancels notifications under a notification group of this application. This API uses a promise to return the result.
+Cancels notifications under a notification group of this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1167,7 +1165,7 @@ Checks whether a specified template is supported. This API uses an asynchronous 
 
 | Name      | Type                    | Mandatory| Description                      |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| templateName | string                   | Yes  | Template name.                  |
+| templateName | string                   | Yes  | Template name. Currently, only **downloadTemplate** is supported.                  |
 | callback     | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the specified template is supported, and **false** means the opposite.|
 
 **Error codes**
@@ -1190,10 +1188,9 @@ let isSupportTemplateCallback = (err: Base.BusinessError, data: boolean): void =
     if (err) {
         console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isSupportTemplate success");
+        console.info("isSupportTemplate success, data: " + JSON.stringify(data));
     }
 }
-
 notificationManager.isSupportTemplate(templateName, isSupportTemplateCallback);
 ```
 
@@ -1201,7 +1198,7 @@ notificationManager.isSupportTemplate(templateName, isSupportTemplateCallback);
 
 isSupportTemplate(templateName: string): Promise\<boolean\>
 
-Checks whether a specified template is supported. This API uses a promise to return the result.
+Checks whether a specified template is supported. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1209,7 +1206,7 @@ Checks whether a specified template is supported. This API uses a promise to ret
 
 | Name      | Type  | Mandatory| Description    |
 | ------------ | ------ | ---- | -------- |
-| templateName | string | Yes  | Template name.|
+| templateName | string | Yes  | Template name. Currently, only **downloadTemplate** is supported.|
 
 **Return value**
 
@@ -1285,7 +1282,7 @@ notificationManager.requestEnableNotification(requestEnableNotificationCallback)
 
 requestEnableNotification(): Promise\<void\>
 
-Requests notification to be enabled for this application. This API uses a promise to return the result.
+Requests notification to be enabled for this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1353,11 +1350,10 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 ```ts
 import Base from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import window from '@ohos.Window';
 
 class MyAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
       if (err) {
         console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
@@ -1374,7 +1370,7 @@ class MyAbility extends UIAbility {
 
 requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
-Requests notification to be enabled for this application in a modal. This API uses a promise to return the result.
+Requests notification to be enabled for this application in a modal. This API uses a promise to return the URI of the file in the destination directory.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1409,11 +1405,10 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 ```ts
 import Base from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import window from '@ohos.Window';
 
 class MyAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     notificationManager.requestEnableNotification(this.context).then(() => {
       console.info("requestEnableNotification success");
     }).catch((err: Base.BusinessError) => {
@@ -1467,7 +1462,7 @@ notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
 
 isDistributedEnabled(): Promise\<boolean>
 
-Checks whether distributed notification is enabled on this device. This API uses a promise to return the result.
+Checks whether distributed notification is enabled on this device. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1535,9 +1530,9 @@ notificationManager.isDistributedEnabled()
 | Name                | Value      | Description      |
 | -------------------- | -------- | ---------- |
 | UNKNOWN_TYPE         | 0 | Unknown type.|
-| SOCIAL_COMMUNICATION | 1 | Notification slot for social communication.|
-| SERVICE_INFORMATION  | 2 | Notification slot for service information.|
-| CONTENT_INFORMATION  | 3 | Notification slot for content consultation.|
-| LIVE_VIEW<sup>11+</sup>            | 4 | Notification slot for live view. (Not supported currently)|
-| CUSTOMER_SERVICE<sup>11+</sup>     | 5 | Notification slot for customer service. This type is used for messages between users and customer service providers. The messages must be initiated by users. |
-| OTHER_TYPES          | 0xFFFF | Notification slot for other purposes.|
+| SOCIAL_COMMUNICATION | 1 | Social communication.|
+| SERVICE_INFORMATION  | 2 | Service information.|
+| CONTENT_INFORMATION  | 3 | Content information.|
+| LIVE_VIEW<sup>11+</sup>            | 4 | Live view. (Not supported currently)|
+| CUSTOMER_SERVICE<sup>11+</sup>     | 5 | Customer service message. This type is used for messages between users and customer service providers. The messages must be initiated by users. |
+| OTHER_TYPES          | 0xFFFF | Other.|

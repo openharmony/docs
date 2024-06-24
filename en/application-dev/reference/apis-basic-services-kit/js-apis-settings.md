@@ -4,7 +4,8 @@ The **settings** module provides APIs for setting data items.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  - The initial APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  - If no value is obtained for the accessed data item, it indicates that the current system app does not add the value of the data item to the database.
 
 ## Modules to Import
 
@@ -19,11 +20,11 @@ Describes the domain name.
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
-| Name               | Type  | Readable| Writable| Description                                                        |
+| Name                         | Type  | Readable| Writable| Description                                                        |
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| DEVICE_SHARED       | string | Yes  | Yes  | Shared device domain.                                         |
-| USER_PROPERTY       | string | Yes  | Yes  | User property domain.                                          |
-| USER_SECURITY       | string | Yes  | Yes  | User security domain.                                       |
+| DEVICE_SHARED<sup>11+</sup> | string | Yes  | Yes  | Shared device domain.                                         |
+| USER_PROPERTY<sup>11+</sup> | string | Yes  | Yes  | User property domain.                                          |
+| USER_SECURITY<sup>11+</sup> | string | Yes  | Yes  | User security domain.                                       |
 
 ## date
 
@@ -48,19 +49,19 @@ Provides data items for setting the display effects.
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
-| Name                         | Type  | Readable| Writable| Description                                                        |
-| ----------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| FONT_SCALE                    | string | Yes  | Yes  | Scale factor of the font. The value is a floating point number.                                |
-| SCREEN_BRIGHTNESS_STATUS      | string | Yes  | Yes  | Screen brightness. The value ranges from 0 to 255.                              |
-| AUTO_SCREEN_BRIGHTNESS        | string | Yes  | Yes  | Whether automatic screen brightness adjustment is enabled.<br>**AUTO_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is enabled.<br><br>**MANUAL_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is disabled.|
-| AUTO_SCREEN_BRIGHTNESS_MODE   | number | Yes  | Yes  | Value of **AUTO_SCREEN_BRIGHTNESS** when automatic screen brightness adjustment is enabled.          |
-| MANUAL_SCREEN_BRIGHTNESS_MODE | number | Yes  | Yes  | Value of **AUTO_SCREEN_BRIGHTNESS** when automatic screen brightness adjustment is disabled.          |
-| SCREEN_OFF_TIMEOUT            | string | Yes  | Yes  | Waiting time for the device to enter the sleep state when not in use (unit: ms).  |
+| Name                         | Type  | Readable| Writable| Description                                                                                                         |
+| ----------------------------- | ------ | ---- | ---- |-------------------------------------------------------------------------------------------------------------|
+| FONT_SCALE                    | string | Yes  | Yes  | Scale factor of the font. The value is a floating point number. (In the current version, only fixed values can be queried.)                                                                             |
+| SCREEN_BRIGHTNESS_STATUS      | string | Yes  | Yes  | Screen brightness. The value ranges from 0 to 255.                                                                                          |
+| AUTO_SCREEN_BRIGHTNESS        | string | Yes  | Yes  | Whether automatic screen brightness adjustment is enabled.<br>**AUTO_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is enabled.<br><br>**MANUAL_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is disabled.   |
+| AUTO_SCREEN_BRIGHTNESS_MODE   | number | Yes  | Yes  | Value of **AUTO_SCREEN_BRIGHTNESS** when automatic screen brightness adjustment is enabled.                                                                       |
+| MANUAL_SCREEN_BRIGHTNESS_MODE | number | Yes  | Yes  | Value of **AUTO_SCREEN_BRIGHTNESS** when automatic screen brightness adjustment is disabled.                                                                       |
+| SCREEN_OFF_TIMEOUT            | string | Yes  | Yes  | Waiting time for the device to enter the sleep state when not in use (unit: ms).                                                                             |
 | DEFAULT_SCREEN_ROTATION       | string | Yes  | Yes  | Rotation angle. This attribute is valid only when screen auto-rotation is disabled.<br>**0**: The screen rotates by 0 degrees.<br>**1**: The screen rotates by 90 degrees.<br>**2**: The screen rotates by 180 degrees.<br>**3**: The screen rotates by 270 degrees.|
-| ANIMATOR_DURATION_SCALE       | string | Yes  | Yes  | Scale factor for the animation duration. This affects the start delay and duration of all such animations.<br>If the value is **0**, the animation ends immediately. The default value is **1**.|
-| TRANSITION_ANIMATION_SCALE    | string | Yes  | Yes  | Scale factor for transition animations.<br>The value **0** indicates that the transition animations are disabled.          |
-| WINDOW_ANIMATION_SCALE        | string | Yes  | Yes  | Scale factor for normal window animations.<br>The value **0** indicates that window animations are disabled.      |
-| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br><br>**0**: Display color inversion is disabled.|
+| ANIMATOR_DURATION_SCALE       | string | Yes  | Yes  | Scale factor for the animation duration. This affects the start delay and duration of all such animations.<br>If the value is **0**, the animation ends immediately. The default value is **1**.                                                 |
+| TRANSITION_ANIMATION_SCALE    | string | Yes  | Yes  | Scale factor for transition animations.<br>The value **0** indicates that the transition animations are disabled.                                                                               |
+| WINDOW_ANIMATION_SCALE        | string | Yes  | Yes  | Scale factor for normal window animations.<br>The value **0** indicates that window animations are disabled.                                                                             |
+| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br><br>**0**: Display color inversion is disabled.                                                       |
 
 ## general
 
@@ -209,7 +210,7 @@ Sets the value for a data item. This API uses an asynchronous callback to return
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (for system apps only)
 
 **Parameters**
 
@@ -242,7 +243,7 @@ Sets the value for a data item. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (for system apps only)
 
 **Parameters**
 
@@ -272,13 +273,15 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').the
 
 ## setting.setValue<sup>11+</sup>
 
-setValue(context: Context, name: string, domainName: string): Promise\<boolean>
+setValue(context: Context, name: string, value: string, domainName: string): Promise\<boolean>
 
 Sets the value for a data item. This API uses a promise to return the result.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.Applications.Settings.Core
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (for system apps only)
 
 **Parameters**
 
@@ -360,7 +363,7 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 | Type            | Description                               |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | Promise used to return the value of the data item.|
+| Promise\<string> | Promise used to return the result. return the value of the data item.|
 
 **Example**
 
@@ -445,7 +448,7 @@ let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_ST
 
 ## settings.getValueSync<sup>11+</sup>
 
-getValueSync(context: Context, name: string, defvalue: string, domainName: string): boolean;
+getValueSync(context: Context, name: string, defvalue: string, domainName: string): string;
 
 Obtains the value of a data item. Unlike **getValue**, this API returns the result synchronously.
 
@@ -474,7 +477,7 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 ```js
 import settings from '@ohos.settings';
 
-// Update the value of SCREEN_BRIGHTNESS_STATUS (this data item already exists in the database).
+// Update the value of .SCREEN_BRIGHTNESS_STATUS (this data item already exists in the database).
 const context: Context =  getContext(this);
 let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100',  settings.domainName.DEVICE_SHARED);
 ```
@@ -491,7 +494,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (for system apps only)
 
 **Parameters**
 
@@ -512,14 +515,14 @@ If the specified data item exists in the database, the **setValueSync** method u
 ```js
 import settings from '@ohos.settings';
 
-// Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValueSync API will update its value.)
+// Update the value of 'settings.screen.brightness'. (As this data item exists in the database, the setValueSync API will update its value.)
 const context: Context =  getContext(this);
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
 
 ## settings.setValueSync<sup>11+</sup>
 
-setValueSync(context: Context, name: string, value: string): boolean
+setValueSync(context: Context, name: string, value: string, domainName: string): boolean
 
 Sets the value for a data item. Unlike **setValue**, this API returns the result synchronously.
 
@@ -529,7 +532,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (for system apps only)
 
 **Parameters**
 
@@ -784,7 +787,7 @@ Obtains the URI of a data item. This API uses an asynchronous callback to return
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
-| callback | AsyncCallback\<object> | Yes  | Callback used to obtain the URI of the data item.                                 |
+| callback | AsyncCallback\<object> | Yes  | Callback used to return the result. obtain the URI of the data item.                                 |
 
 **Example**
 
@@ -816,7 +819,7 @@ Obtains the URI of a data item. This API uses a promise to return the result.
 
 | Type            | Description                                |
 | ---------------- | ------------------------------------ |
-| Promise\<object> | Promise used to return the URI of the data item.|
+| Promise\<object> | Promise used to return the result. return the URI of the data item.|
 
 **Example**
 
@@ -891,7 +894,7 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 
 | Type            | Description                               |
 | ---------------- | ----------------------------------- |
-| Promise\<object> | Promise used to return the value of the data item.|
+| Promise\<object> | Promise used to return the result. return the value of the data item.|
 
 **Example**
 

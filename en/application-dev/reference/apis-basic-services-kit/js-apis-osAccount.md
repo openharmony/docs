@@ -670,7 +670,7 @@ Checks whether this system account has been verified. This API uses a promise to
 
 | Type                  | Description                                                              |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If **true** is returned, the current account has been verified. If **false** is returned, the current account has not been verified.|
+| Promise&lt;boolean&gt; | Promise used to return the result. If true is returned, the current account has been verified. If false is returned, the current account has not been verified.|
 
 **Error codes**
 
