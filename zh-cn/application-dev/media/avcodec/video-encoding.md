@@ -150,6 +150,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     示例如下所示
     ```c++
+    int32_t qpAverage = 20;
+    double mseValue = 0.0;
     // 设置OH_AVCodecOnError 回调函数，编码异常
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -513,6 +515,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     开发者可以通过处理该回调报告的信息，确保编码器正常运转。
 
     ```c++
+    int32_t qpAverage = 20;
+    double mseValue = 0.0;
     bool isFirstFrame = true;
     // 编码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
