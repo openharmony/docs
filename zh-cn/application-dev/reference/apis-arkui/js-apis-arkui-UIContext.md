@@ -3818,7 +3818,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 | 类型                          | 说明      |
 | --------------------------- | ------- |
-| [RouterState](#routerstate) \| undefined | 返回页面状态信息。索引不存在时返回undefined。 |
+| [RouterState](js-apis-router.md#routerstate) \| undefined | 返回页面状态信息。索引不存在时返回undefined。 |
 **示例：** 
 
 ```ts
