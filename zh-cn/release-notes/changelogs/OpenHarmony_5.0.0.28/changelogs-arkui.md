@@ -321,7 +321,7 @@ TextInput/TextArea组件在2in1上通过双击弹出菜单时，点击全选，�
 
 **起始API Level**
 
-12
+9
 
 **变更发生版本**
 
