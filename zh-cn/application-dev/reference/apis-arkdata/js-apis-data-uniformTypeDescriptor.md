@@ -135,7 +135,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | BZ2_ARCHIVE<sup>11+</sup>                        | 'general.bz2-archive'                  | BZ2存档文件类型，归属类型为ARCHIVE。           |
 | OPG<sup>12+</sup>                        | 'general.opg'                  | OPG存档文件类型，归属类型为ARCHIVE。           |
 | TAZ_ARCHIVE<sup>12+</sup>                        | 'general.taz-archive'                  | TAR压缩文件类型，归属类型为TAR_ARCHIVE。           |
-| WEB_ARCHIVE<sup>12+</sup>                        | 'general.web-archive'                  | MHTML网络存档文件类型，归属类型为ARCHIVE。           |
+| WEB_ARCHIVE<sup>12+</sup>                        | 'general.web-archive'                  | MHTML网页归档文件类型，归属类型为ARCHIVE。           |
 | DISK_IMAGE<sup>11+</sup>                        | 'general.disk-image'                  | 所有可作为卷装载项的文件类型的基类型，归属类型为ARCHIVE。  |
 | ISO<sup>12+</sup>                        | 'general.iso'                  | 光盘映像文件类型，归属类型为DISK_IMAGE。  |
 | TAR_ARCHIVE<sup>11+</sup>                        | 'general.tar-archive'                  | TAR存档文件类型，归属类型为ARCHIVE。           |
