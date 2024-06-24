@@ -825,13 +825,11 @@ let unifiedData = new unifiedDataChannel.UnifiedData(record);
 
 UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF数据通路所面向的不同业务场景。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称       | 值         | 说明      |
 |----------|-----------|---------|
-| DATA_HUB | 'DataHub' | 公共数据通路。 |
+| DATA_HUB | 'DataHub' | 公共数据通路。从API version 11开始，该枚举值支持在原子化服务中使用。|
 
 ## Options
 
