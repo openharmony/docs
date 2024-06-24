@@ -30,7 +30,7 @@ UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF
 
 function setAppShareOptions(intention: Intention, shareOptions: ShareOptions): void
 
-设置应用程序共享选项，本接口目前仅支持Intention::DRAG类型数据通道的管控设置，仅stage模型支持。
+设置应用程序共享选项[ShareOptions](js-apis-data-unifiedDataChannel.md#shareoptions12)，本接口目前仅支持Intention::DRAG类型数据通道的管控设置，仅stage模型支持。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -71,7 +71,7 @@ try {
 
 function removeAppShareOptions(intention: Intention): void
 
-移除应用程序共享选项，仅stage模型支持。
+移除应用程序共享选项[ShareOptions](js-apis-data-unifiedDataChannel.md#shareoptions12)，仅stage模型支持。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
