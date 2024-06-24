@@ -88,7 +88,7 @@
      inData: new Uint8Array(new Array())
  }
  /* 集成第一个协商参数集 */
- let finishProperties: Array<huks.HuksParam> = [{
+ const finishProperties: Array<huks.HuksParam> = [{
      tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
      value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
  }, {
@@ -123,7 +123,8 @@
      inData: StringToUint8Array(agreeX25519InData)
  }
  /* 集成第二个协商参数集 */
- let finishPropertiesSecond = [...finishProperties, {
+const finishPropertiesSecond: Array<huks.HuksParam>  = [
+    ...finishProperties, {
     tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
     value: StringToUint8Array(srcKeyAliasSecond + 'final'),
  }];
@@ -167,7 +168,7 @@
          .then((data) => {
              console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
          })
-         .catch((error) => {
+         .catch((error: Error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -205,7 +206,7 @@
              console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
              handle = data.handle;
          })
-         .catch((error) => {
+         .catch((error: Error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -242,7 +243,7 @@
          .then ((data) => {
              console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
          })
-         .catch((error) => {
+         .catch((error: Error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -280,7 +281,7 @@
              finishOutData = data.outData as Uint8Array;
              console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
          })
-         .catch((error) => {
+         .catch((error: Error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -318,7 +319,7 @@
              console.info(`promise: exportKeyItem success, data = ${JSON.stringify(data)}`);
              exportKey = data.outData as Uint8Array;
          })
-         .catch((error) => {
+         .catch((error: Error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -355,7 +356,7 @@
          .then ((data) => {
             console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
          })
-         .catch((error) => {
+         .catch((error: Error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -461,10 +462,10 @@ async function HuksDhAgreeExportTest(
   pubKeyA: huks.HuksReturnResult, pubKeyB: huks.HuksReturnResult) {
 
   const agreedKeyFromAlice = await HuksDhAgreeExportKey(aliasA, pubKeyB)
-  console.log(`ok! agreedKeyFromAlice export is 0x${Uint8ArrayToBigInt(agreedKeyFromAlice.outData).toString(16)}`)
+  console.info(`ok! agreedKeyFromAlice export is 0x${Uint8ArrayToBigInt(agreedKeyFromAlice.outData).toString(16)}`)
 
   const agreedKeyFromBob = await HuksDhAgreeExportKey(aliasB, pubKeyA)
-  console.log(`ok! agreedKeyFromBob export is 0x${Uint8ArrayToBigInt(agreedKeyFromBob.outData).toString(16)}`)
+  console.info(`ok! agreedKeyFromBob export is 0x${Uint8ArrayToBigInt(agreedKeyFromBob.outData).toString(16)}`)
 }
 
 async function HuksDhAgreeInHuks(keyAlias: string, peerPubKey: huks.HuksReturnResult, aliasAgreedKey: string): Promise<huks.HuksReturnResult> {
@@ -512,14 +513,14 @@ async function HuksDhAgreeInHuksTest(
   aliasAgreedKeyFromA: string, aliasAgreedKeyFromB: string) {
 
   const finishAliceResult = await HuksDhAgreeInHuks(aliasA, pubKeyB, aliasAgreedKeyFromA)
-  console.log(`ok! finishAliceResult in huks is 0x${Uint8ArrayToBigInt(finishAliceResult.outData).toString(16)}`)
+  console.info(`ok! finishAliceResult in huks is 0x${Uint8ArrayToBigInt(finishAliceResult.outData).toString(16)}`)
   const aliceAgreedExist = await huks.isKeyItemExist(aliasAgreedKeyFromA, emptyOptions)
-  console.log(`ok! aliceAgreedExist in huks is ${aliceAgreedExist}`)
+  console.info(`ok! aliceAgreedExist in huks is ${aliceAgreedExist}`)
 
   const finishBobResult = await HuksDhAgreeInHuks(aliasB, pubKeyA, aliasAgreedKeyFromB)
-  console.log(`ok! finishBobResult in huks is 0x${Uint8ArrayToBigInt(finishBobResult.outData).toString(16)}`)
+  console.info(`ok! finishBobResult in huks is 0x${Uint8ArrayToBigInt(finishBobResult.outData).toString(16)}`)
   const bobAgreedExist = await huks.isKeyItemExist(aliasAgreedKeyFromB, emptyOptions)
-  console.log(`ok! bobAgreedExist in huks is ${bobAgreedExist}`)
+  console.info(`ok! bobAgreedExist in huks is ${bobAgreedExist}`)
 
   await huks.deleteKeyItem(aliasAgreedKeyFromA, emptyOptions)
   await huks.deleteKeyItem(aliasAgreedKeyFromB, emptyOptions)
@@ -546,5 +547,4 @@ export default async function HuksDhAgreeTest() {
   await huks.deleteKeyItem(aliasAlice, emptyOptions)
   await huks.deleteKeyItem(aliasBob, emptyOptions)
 }
-
 ```

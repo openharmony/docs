@@ -271,7 +271,7 @@ async function publicGenerateItemFunc(keyAlias: string, huksOptions: huks.HuksOp
         .then(data => {
             console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
         })
-        .catch((err) => {
+        .catch((err: Error) => {
             console.error(`promise: generateKeyItem failed` + err);
         })
     } catch (err) {
@@ -284,7 +284,7 @@ async function publicImportKeyItemFunc(keyAlias: string, HuksOptions: huks.HuksO
         await huks.importKeyItem(keyAlias, HuksOptions)
         .then(data => {
             console.info(`promise: importKeyItem success, data = ${JSON.stringify(data)}`);
-        }).catch((err) => {
+        }).catch((err: Error) => {
             console.error(`promise: importKeyItem failed` + err);
         })
     } catch (err) {
@@ -298,7 +298,7 @@ async function publicDeleteKeyItemFunc(KeyAlias: string, HuksOptions: huks.HuksO
         .then(data => {
             console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
         })
-        .catch((err) => {
+        .catch((err: Error) => {
             console.error(`promise: deleteKeyItem failed` + err);
         })
     } catch (err) {
@@ -329,7 +329,7 @@ async function publicImportWrappedKeyFunc(keyAlias: string, wrappingKeyAlias: st
         .then((data) => {
             console.info(`promise: importWrappedKeyItem success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error) => {
+        .catch((error: Error) => {
             console.error(`promise: importWrappedKeyItem failed` + error);
         });
     } catch (error) {
@@ -343,7 +343,7 @@ async function publicImportWrappedKeyPromise(keyAlias: string, wrappingKeyAlias:
         .then((data) => {
             console.info(`promise: importWrappedKeyItem success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error) => {
+        .catch((error: Error) => {
             console.error(`promise: importWrappedKeyItem failed` + error);
         });
     } catch (error) {
@@ -359,7 +359,7 @@ async function publicInitFunc(srcKeyAlias: string, HuksOptions: huks.HuksOptions
             console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
             handle = data.handle;
         })
-        .catch((error) => {
+        .catch((error: Error) => {
             console.error(`promise: doInit key failed` + error);
         });
     } catch (error) {
@@ -393,16 +393,16 @@ async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.Huk
                 console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
                 outData = outData.concat(Array.from(data.outData!));
             })
-            .catch((error) => {
+            .catch((error: Error) => {
                 console.error(`promise: doUpdate failed` + error);
             });
         } catch (error) {
             console.error(`promise: doUpdate input arg invalid` + error);
         }
         if ((!isFinished) && (inDataSegPosition + maxUpdateSize > lastInDataPosition)) {
-            console.log(`update size invalid isFinished = ${isFinished}`);
-            console.log(`inDataSegPosition = ${inDataSegPosition}`);
-            console.log(`lastInDataPosition = ${lastInDataPosition}`);
+            console.info(`update size invalid isFinished = ${isFinished}`);
+            console.info(`inDataSegPosition = ${inDataSegPosition}`);
+            console.info(`lastInDataPosition = ${lastInDataPosition}`);
             return;
         }
         inDataSegPosition += maxUpdateSize;
@@ -418,7 +418,7 @@ async function publicFinishSession(handle: number, HuksOptions: huks.HuksOptions
             console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
             outData = inData.concat(Array.from(data.outData!));
         })
-        .catch((error) => {
+        .catch((error: Error) => {
             console.error(`promise: doFinish key failed` + error);
         });
     } catch (error) {
@@ -442,7 +442,7 @@ async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, hu
         .then((data) => {
             console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error) => {
+        .catch((error: Error) => {
             console.error(`promise: doUpdate failed` + error);
         });
     } catch (error) {
@@ -455,7 +455,7 @@ async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, hu
             console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
             outSharedKey = data.outData as Uint8Array;
         })
-        .catch((error) => {
+        .catch((error: Error) => {
             console.error(`promise: doInit key failed` + error);
         });
     } catch (error) {
@@ -481,7 +481,7 @@ async function generateAndExportPublicKey(keyAlias: string, HuksOptions: huks.Hu
                 huksPubKey = data.outData as Uint8Array;
             }
         })
-        .catch((error) => {
+        .catch((error: Error) => {
             console.error(`promise: exportKeyItem failed` + error);
         });
     } catch (error) {

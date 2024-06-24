@@ -11,7 +11,7 @@
 
    ```ts
    import { huks } from "@kit.UniversalKeystoreKit";
-   /*
+    /*
     * 确定密钥别名和封装密钥属性参数集
     */
    let keyAlias = 'test_sm4_key_alias';
@@ -81,7 +81,7 @@
            .then((data) => {
                console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error) => {
+           .catch((error: Error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -101,7 +101,7 @@
    
    ```ts
    import { huks } from "@kit.UniversalKeystoreKit";
-   import userIAM_userAuth from '@ohos.userIAM.userAuth';
+   import {userAuth} from '@kit.UserAuthenticationKit';
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
@@ -109,8 +109,8 @@
    let handle : number;
    let challenge : Uint8Array;
    let fingerAuthToken : Uint8Array;
-   let authType = userIAM_userAuth.UserAuthType.FINGERPRINT;
-   let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+   let authType = userAuth.UserAuthType.FINGERPRINT;
+   let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
    /* 集成生成密钥参数集 & 加密参数集 */
    let properties : Array<huks.HuksParam> = [{
        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -165,7 +165,7 @@
                handle = data.handle;
                challenge = data.challenge as Uint8Array;
            })
-           .catch((error) => {
+           .catch((error: Error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -178,19 +178,19 @@
    }
    function userIAMAuthFinger(huksChallenge:Uint8Array) {
        // 获取认证对象
-       let authTypeList:userIAM_userAuth.UserAuthType[]= [ authType ];
-       const authParam:userIAM_userAuth.AuthParam = {
+       let authTypeList:userAuth.UserAuthType[]= [ authType ];
+       const authParam:userAuth.AuthParam = {
          challenge: huksChallenge,
          authType: authTypeList,
-         authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1
+         authTrustLevel: userAuth.AuthTrustLevel.ATL1
        };
-       const widgetParam:userIAM_userAuth.WidgetParam = {
+       const widgetParam:userAuth.WidgetParam = {
          title: '请输入密码',
        };
-       let auth : userIAM_userAuth.UserAuthInstance;
+       let auth : userAuth.UserAuthInstance;
        try {
-         auth = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-         console.log("get auth instance success");
+         auth = userAuth.getUserAuthInstance(authParam, widgetParam);
+         console.info("get auth instance success");
        } catch (error) {
          console.error("get auth instance failed" + error);
          return;
@@ -199,11 +199,11 @@
        try {
          auth.on("result", {
            onResult(result) {
-             console.log("[HUKS] -> [IAM]  userAuthInstance callback result = " + JSON.stringify(result));
+             console.info("[HUKS] -> [IAM]  userAuthInstance callback result = " + JSON.stringify(result));
              fingerAuthToken = result.token;
            }
          });
-         console.log("subscribe authentication event success");
+         console.info("subscribe authentication event success");
        } catch (error) {
          console.error("subscribe authentication event failed " + error);
        }
@@ -308,7 +308,7 @@
            .then ((data) => {
                console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error) => {
+           .catch((error: Error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -344,7 +344,7 @@
                finishOutData = data.outData as Uint8Array;
                console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error) => {
+           .catch((error: Error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
