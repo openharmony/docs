@@ -188,7 +188,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     ```
     hidumper -s 3302 -a -r
     ```
-    ![low_power_led_alter](figures/low_power_led_alter.jpg)
+    ![low_power_led_alter](figures/normal_power_led_alter.jpg)
 
     3. Modify the battery power.
     ```
@@ -198,7 +198,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     ```
     hidumper -s 3302 -a -r
     ```
-    ![normal_power_led_alter](figures/normal_power_led_alter.jpg)
+    ![normal_power_led_alter](figures/low_power_led_alter.jpg)
 
     5. Modify the battery power.
     ```
