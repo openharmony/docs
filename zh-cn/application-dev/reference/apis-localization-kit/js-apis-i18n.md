@@ -2470,7 +2470,7 @@ static getThreeLetterRegion(locale: string): string
 
   ```ts
   try {
-    this.message = i18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
+    let region : string = i18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
   } catch(error) {
     console.error(`call I18NUtil.getThreeLetterRegion failed, error code: ${error.code}, message: ${error.message}.`);
   }
