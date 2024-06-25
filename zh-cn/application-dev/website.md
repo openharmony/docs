@@ -1471,7 +1471,7 @@
           - [@ohos.distributedMissionManager (分布式任务管理)(系统接口)](reference/apis-ability-kit/js-apis-distributedMissionManager-sys.md)
           - [@ohos.privacyManager (隐私管理)(系统接口)](reference/apis-ability-kit/js-apis-privacyManager-sys.md)
           <!--DelEnd-->
-        - 接口依赖的元素及定义<!--elements-definitions-interface-depend-->
+        - 接口依赖的元素及定义<!--ability-api-interface-depend-->
           - ability
             - [abilityResult](reference/apis-ability-kit/js-apis-inner-ability-abilityResult.md)
             - [connectOptions](reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md)
@@ -3066,7 +3066,7 @@
            - [@ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-app-ability-abilityDelegatorRegistry.md)
            - [@ohos.application.testRunner (TestRunner)](reference/apis-test-kit/js-apis-application-testRunner.md)
            - [@ohos.UiTest](reference/apis-test-kit/js-apis-uitest.md) 
-           - 接口依赖的元素及定义<!--elements-definitions-interface-depend-->
+           - 接口依赖的元素及定义<!--test-api-interface-depend-->
               - [abilityDelegator](reference/apis-test-kit/js-apis-inner-application-abilityDelegator.md)
               - [abilityDelegatorArgs](reference/apis-test-kit/js-apis-inner-application-abilityDelegatorArgs.md)
               - [shellCmdResult](reference/apis-test-kit/js-apis-inner-application-shellCmdResult.md)   
