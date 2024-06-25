@@ -56,8 +56,8 @@
 为了带给用户更好的体验，针对不同的音频打断事件内容，应用需要做出相应的处理操作。此处以使用AudioRenderer开发音频播放功能为例，展示推荐应用采取的处理方法，提供伪代码供开发者参考（若使用AVPlayer开发音频播放功能，处理方法类似），具体的代码实现，开发者可结合实际情况编写，处理方法也可自行调整。
   
 ```ts
-import audio from '@ohos.multimedia.audio';  // 导入audio模块
-import { BusinessError } from '@ohos.base'; // 导入BusinessError
+import { audio } from '@kit.AudioKit';  // 导入audio模块
+import { BusinessError } from '@kit.BasicServicesKit'; // 导入BusinessError
 
 let isPlay: boolean; // 是否正在播放，实际开发中，对应与音频播放状态相关的模块
 let isDucked: boolean; //是否降低音量，实际开发中，对应与音频音量相关的模块

@@ -11,9 +11,9 @@
   该过程与[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)过程相似，关键区别在于audioRendererInfo参数和音频数据来源。audioRendererInfo参数中，音频内容类型需设置为语音：CONTENT_TYPE_SPEECH，音频流使用类型需设置为VOIP通话：STREAM_USAGE_VOICE_COMMUNICATION。
   
 ```ts
-import audio from '@ohos.multimedia.audio';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = 'VoiceCallDemoForAudioRenderer';
 // 与使用AudioRenderer开发音频播放功能过程相似，关键区别在于audioRendererInfo参数和音频数据来源
@@ -43,14 +43,14 @@ let audioRendererOptions: audio.AudioRendererOptions = {
 let path = getContext().cacheDir;
 //确保该路径下存在该资源
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
 
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
   }
-  fs.readSync(file.fd, buffer, options);
+  fileIo.readSync(file.fd, buffer, options);
   bufferSize += buffer.byteLength;
 }
 
@@ -157,9 +157,9 @@ async function release() {
   所有录制均需要申请麦克风权限：ohos.permission.MICROPHONE，申请方式请参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
  
 ```ts
-import audio from '@ohos.multimedia.audio';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = getContext(this);
 const TAG = 'VoiceCallDemoForAudioCapturer';
@@ -188,14 +188,14 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
 
 let path = getContext().cacheDir;
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
 
 let readDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
   }
-  fs.writeSync(file.fd, buffer, options);
+  fileIo.writeSync(file.fd, buffer, options);
   bufferSize += buffer.byteLength;
 }
 
