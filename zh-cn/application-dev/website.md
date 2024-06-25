@@ -1258,8 +1258,6 @@
       - [Contacts Kit开发概述](contacts/contacts-intro.md)
     - Location Kit（位置服务）
       - [Location Kit简介](device/location/location-kit-intro.md)
-      - [Location Kit开发指南](device/location/location-guidelines.md)
-      - [Location Kit简介](device/location/location-kit-intro.md)
       - [申请位置权限开发指导](device/location/location-permission-guidelines.md)
       - [获取设备的位置信息开发指导](device/location/location-guidelines.md)
       - [地理编码转化与逆地理编码转化开发指导](device/location/geocode-guidelines.md)
