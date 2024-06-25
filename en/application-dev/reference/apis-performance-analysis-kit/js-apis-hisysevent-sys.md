@@ -10,7 +10,7 @@ The **hiSysEvent** module provides the system event logging functions, such as c
 ## Modules to Import
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## EventType
@@ -74,8 +74,8 @@ For details about the following error codes, see [HiSysEvent Error Codes](errorc
 **Example**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import { BusinessError } from '@ohos.base';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let customizedParams: Record<string, string | number> = {
@@ -139,8 +139,8 @@ For details about the following error codes, see [HiSysEvent Error Codes](errorc
 **Example**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import { BusinessError } from '@ohos.base';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let customizedParams: Record<string, string | number> = {
@@ -238,8 +238,8 @@ For details about the following error codes, see [HiSysEvent Error Codes](errorc
 **Example**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import { BusinessError } from '@ohos.base';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let watchRules: hiSysEvent.WatchRule[] = [{
     domain: "RELIABILITY",
@@ -293,8 +293,8 @@ For details about the following error codes, see [HiSysEvent Error Codes](errorc
 **Example**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import { BusinessError } from '@ohos.base';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let watchRules: hiSysEvent.WatchRule[] = [{
     domain: "RELIABILITY",
@@ -391,8 +391,8 @@ For details about the following error codes, see [HiSysEvent Error Codes](errorc
 **Example**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import { BusinessError } from '@ohos.base';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let customizedParams: Record<string, string | number> = {
@@ -474,9 +474,9 @@ For details about the following error codes, see [HiSysEvent Error Codes](errorc
 **Example**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let customizedParams: Record<string, string | number> = {
@@ -511,10 +511,10 @@ try {
   // Postpone reading of exported events.
   setTimeout(() => {
     let eventDir = '/data/storage/el2/base/cache/hiview/event';
-    let filenames = fs.listFileSync(eventDir);
+    let filenames = fileIo.listFileSync(eventDir);
     for (let i = 0; i < filenames.length; i++) {
       if (filenames[i].indexOf(time.toString()) != -1) {
-        let res = fs.readTextSync(eventDir + '/' + filenames[i]);
+        let res = fileIo.readTextSync(eventDir + '/' + filenames[i]);
         let events: string = JSON.parse('[' + res.slice(0, res.length - 1) + ']');
         console.log("read file end, events is :" + JSON.stringify(events));
       }
@@ -562,9 +562,9 @@ For details about the following error codes, see [HiSysEvent Error Codes](errorc
 **Example**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rules: hiSysEvent.QueryRule[] = [{
@@ -597,9 +597,9 @@ try {
   // Postpone reading of subscribed events.
   setTimeout(() => {
     let eventDir = '/data/storage/el2/base/cache/hiview/event';
-    let filenames = fs.listFileSync(eventDir);
+    let filenames = fileIo.listFileSync(eventDir);
     for (let i = 0; i < filenames.length; i++) {
-      let res = fs.readTextSync(eventDir + '/' + filenames[i]);
+      let res = fileIo.readTextSync(eventDir + '/' + filenames[i]);
       let events: string = JSON.parse('[' + res.slice(0, res.length - 1) + ']');
       console.log("read file end, events is :" + JSON.stringify(events));
     }
@@ -633,8 +633,8 @@ For details about the following error codes, see [HiSysEvent Error Codes](errorc
 **Example**
 
 ```ts
-import hiSysEvent from '@ohos.hiSysEvent';
-import { BusinessError } from '@ohos.base';
+import { hiSysEvent } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rules: hiSysEvent.QueryRule[] = [{
