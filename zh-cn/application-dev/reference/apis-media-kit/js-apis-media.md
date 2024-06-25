@@ -6201,10 +6201,13 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 
 ```ts
 import { media } from '@kit.MediaKit';
+import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
 
-private mgr: resourceManager.ResourceManager | null = null;
-mrg = ctx.resourceManager;
+let mgr: resourceManager.ResourceManager | null = null;
+let moduleContext: common.Context;
+moduleContext = this.context.createModuleContext('entry');
+mgr = moduleContext.resourceManager;
 this.fileDescriptor = await this.mgr.getRawFd("xxx.m3u8");
 
 let fd:string = this.fileDescriptor.fd.toString();
