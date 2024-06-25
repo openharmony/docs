@@ -437,8 +437,8 @@ struct Parent {
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
 para:Record<string, number> = { 'PropA': 47 };
@@ -459,7 +459,7 @@ windowStage.loadContent('pages/Index', this.storage);
 在下面的用例中，Index页面中的propA通过getShared()方法获取到共享的LocalStorage实例。点击Button跳转到Page页面，点击Change propA改变propA的值，back回Index页面后，页面中propA的值也同步修改。
 ```ts
 // index.ets
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 // 通过getShared接口获取stage共享的LocalStorage实例
 let storage = LocalStorage.getShared()
@@ -493,7 +493,7 @@ struct Index {
 
 ```ts
 // Page.ets
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 let storage = LocalStorage.getShared()
 

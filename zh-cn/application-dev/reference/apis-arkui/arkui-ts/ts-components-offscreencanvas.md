@@ -249,7 +249,7 @@ struct OffscreenCanvasExamplePage {
 **示例：**
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 @Entry
 @Component

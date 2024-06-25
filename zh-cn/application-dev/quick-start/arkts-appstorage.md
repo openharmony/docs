@@ -333,7 +333,7 @@ export struct TapImage {
 
 ```ts
 // xxx.ets
-import emitter from '@ohos.events.emitter';
+import { emitter } from '@kit.BasicServicesKit';
 
 let NextID: number = 0;
 

@@ -18,7 +18,7 @@
 页面A：
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component({ freezeWhenInactive: true })
@@ -48,7 +48,7 @@ struct FirstTest {
 页面B：
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component({ freezeWhenInactive: true })
