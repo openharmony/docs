@@ -99,7 +99,7 @@ struct Index {
 
 ```ts
 // 自定义WithTheme作用域内组件缺省配色
-import { CustomTheme, CustomColors } from '@ohos.arkui.theme';
+import { CustomTheme, CustomColors } from '@kit.ArkUI';
 
 class GreenColors implements CustomColors {
   fontPrimary = '#ff049404';
