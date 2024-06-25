@@ -12,7 +12,7 @@ request部件主要给应用提供上传下载文件、后台传输代理的基�
 
 
 ```js
-import request from '@ohos.request';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 ## 常量
@@ -833,7 +833,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -886,7 +886,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1032,7 +1032,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1079,7 +1079,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1134,7 +1134,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1191,7 +1191,7 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1279,7 +1279,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1326,7 +1326,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1379,7 +1379,7 @@ delete(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1430,7 +1430,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1483,7 +1483,7 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1534,7 +1534,7 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1587,7 +1587,7 @@ getTaskMimeType(): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1638,7 +1638,7 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1691,7 +1691,7 @@ suspend(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1742,7 +1742,7 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1795,7 +1795,7 @@ restore(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1846,7 +1846,7 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -4274,7 +4274,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
     task.start();
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -4624,7 +4624,6 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
   ```ts
   let filter: request.agent.Filter = {
-    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }
@@ -4670,7 +4669,6 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 
   ```ts
   let filter: request.agent.Filter = {
-    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }
