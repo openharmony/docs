@@ -3769,13 +3769,11 @@ onCancel(): Promise&lt;string&gt;
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
-** 示例 **：
+**示例：**
 
 ```ts
 let copySignal: fs.TaskSignal = new TaskSignal();
-copySignal.onCancel((filePath: string) => {
-  console.info("Succeeded in canceling copy task.");
-});
+console.info("copyFileWithCancel success.", + options.copySignal.onCancel());
 ```
 
 ## CopyOptions<sup>11+</sup>
@@ -3787,7 +3785,7 @@ copySignal.onCancel((filePath: string) => {
 | 名称   | 类型   | 可读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | progressListener | [ProgressListener](#progresslistener11) | 是    | 是    | 拷贝进度监听。 |
-| copySignal<sup>12+</sup> | [TaskSignal<sup>12+</sup>](#tasksignal12) | 是    | 是    | 取消拷贝信号。 |
+| copySignal | [TaskSignal](#tasksignal12) | 是    | 是    | 取消拷贝信号。 |
 
 ## ProgressListener<sup>11+</sup>
 
