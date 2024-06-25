@@ -34,7 +34,6 @@
 - Buffer输出是指经过解码的数据会以共享内存的方式输出。
 
 3. 在接口调用的过程中，两种方式的接口调用方式基本一致，但存在以下差异点：
-
 - 在Surface模式下，可选择调用OH_VideoDecoder_FreeOutputBuffer()接口丢弃输出帧（不送显）；在Buffer模式下，应用必须调用OH_VideoDecoder_FreeOutputBuffer()释放数据。
 - Surface模式下，应用在解码器就绪前，必须调用OH_VideoDecoder_SetSurface()设置OHNativeWindow，启动后，调用OH_VideoDecoder_RenderOutputBuffer()将解码数据送显；
 - 输出回调传出的buffer，在Buffer模式下，可以获取共享内存的地址和数据信息；在Surface模式下，只能获取buffer的数据信息。
@@ -825,6 +824,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```c++
     #include <string.h>
     ```
+    使用示例
 
     ```c++
     struct Rect   // 源内存区域的宽，高
