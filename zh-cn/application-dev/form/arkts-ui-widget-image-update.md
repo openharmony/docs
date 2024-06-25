@@ -50,8 +50,9 @@
       //...
     }
     ```
+
 3. 在EntryFormAbility中的onFormEvent生命周期回调中实现网络文件的刷新。
-    
+
       ```ts
       import { BusinessError } from '@kit.BasicServicesKit';
       import { fileIo } from '@kit.CoreFileKit';
@@ -81,7 +82,7 @@
           httpRequest.request(netFile, (err, data) => {
             if (!err && data.responseCode == http.ResponseCode.OK) {
               let imgFile = fileIo.openSync(tmpFile, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-              fileIo.write(imgFile.fd, data.result as ArrayBuffer).then((writeLen: number) => {
+              await fileIo.write(imgFile.fd, data.result as ArrayBuffer).then((writeLen: number) => {
                 hilog.info(DOMAIN_NUMBER, TAG, "write data to file succeed and size is:" + writeLen);
               }).catch((err: BusinessError) => {
                 hilog.error(DOMAIN_NUMBER, TAG, "write data to file failed with error message: " + err.message + ", error code: " + err.code);
