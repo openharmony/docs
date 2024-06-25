@@ -14,6 +14,7 @@
 | mp3      | MPEG(MP3)                    |
 | amr      | AMR(amrnb、amrwb)            |
 | raw      | G711mu                       |
+| ape      | APE                          |
 <!--RP1--><!--RP1End-->
 
 **适用场景**
@@ -143,7 +144,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 将对应输出buffer的 index 送入outQueue_队列
         // 将对应解码完成的数据data送入outBufferQueue_队列
     }
-    signal_ = new ADecSignal();
+    signal_ = new ADecBufferSignal();
     OH_AVCodecCallback cb_ = {&OnError, &OnOutputFormatChanged, &OnInputBufferAvailable, &OnOutputBufferAvailable};
     int32_t ret = OH_AudioCodec_RegisterCallback(audioDec_, cb_, signal_);
     if (ret != AVCS_ERR_OK) {
@@ -194,17 +195,17 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 5. 调用OH_AudioCodec_Configure()配置解码器。
    配置选项key值说明：
 
-   |                              |                             描述                             |                AAC                 | Flac |               Vorbis               | MPEG |       G711mu        |          AMR(amrnb、amrwb)         |
-   | ---------------------------- | :----------------------------------------------------------: | :--------------------------------: | :--: | :--------------------------------: | :--: | :-----------------: | :-------------------------------: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE    |                            采样率                            |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT  |                            声道数                            |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                |
-   | OH_MD_KEY_MAX_INPUT_SIZE     |                         最大输入长度                         |                可选                | 可选 |                可选                 | 可选 |        可选           |               可选                |
-   | OH_MD_KEY_AAC_IS_ADTS        |                           是否adts                           |        可选,默认1 latm类型         |  -   |                 -                  |  -   |         -             |               -                  |
-   | MD_KEY_AUDIO_SAMPLE_FORMAT   |                        输出音频流格式                        | 可选（SAMPLE_S16LE，SAMPLE_F32LE） |   -   | 可选（SAMPLE_S16LE，SAMPLE_F32LE） |  -   | 可选（默认SAMPLE_S16LE）| 可选（SAMPLE_S16LE，SAMPLE_F32LE）|
-   | MD_KEY_BITRATE               |                             可选                             |                可选                | 可选 |                可选                | 可选 |         可选           |              可选                 |
-   | MD_KEY_IDENTIFICATION_HEADER |                          ID Header                           |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |          -            |                -                  |
-   | MD_KEY_SETUP_HEADER          |                         Setup Header                         |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |          -            |                -                 |
-   | MD_KEY_CODEC_CONFIG          | MD_KEY_SETUP_HEADERID Header+Common Header+Setup Header 拼接 |                 -                  |      |   必须（和上述ID和Setup二选一）    |  -   |           -            |                -                 |
+   |                              |                             描述                             |                AAC                 | Flac |               Vorbis               | MPEG |       G711mu        |          AMR(amrnb、amrwb)         |          APE                      |
+   | ---------------------------- | :----------------------------------------------------------: | :--------------------------------: | :--: | :--------------------------------: | :--: | :-----------------: | :-------------------------------: | :-------------------------------: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE    |                            采样率                            |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                |                必须                |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT  |                            声道数                            |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                |                必须                |
+   | OH_MD_KEY_MAX_INPUT_SIZE     |                         最大输入长度                         |                可选                | 可选 |                可选                 | 可选 |        可选           |               可选                |                可选                |
+   | OH_MD_KEY_AAC_IS_ADTS        |                           是否adts                           |        可选,默认1 latm类型         |  -   |                 -                  |  -   |         -             |               -                  |                 -                  |
+   | MD_KEY_AUDIO_SAMPLE_FORMAT   |                        输出音频流格式                        | 可选（SAMPLE_S16LE，SAMPLE_F32LE） |   -   | 可选（SAMPLE_S16LE，SAMPLE_F32LE） |  可选 | 可选（默认SAMPLE_S16LE）| 可选（SAMPLE_S16LE，SAMPLE_F32LE）|               可选                |
+   | MD_KEY_BITRATE               |                             可选                             |                可选                | 可选 |                可选                | 可选 |         可选           |              可选                 |               可选                |
+   | MD_KEY_IDENTIFICATION_HEADER |                          ID Header                           |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |          -            |                -                  |                -                  |
+   | MD_KEY_SETUP_HEADER          |                         Setup Header                         |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |          -            |                -                 |                -                  |
+   | MD_KEY_CODEC_CONFIG          | MD_KEY_SETUP_HEADERID Header+Common Header+Setup Header 拼接 |                 -                  |      |   必须（和上述ID和Setup二选一）    |  -   |           -            |                -                 |                -                  |
    
    ```cpp
    // 设置解码分辨率
