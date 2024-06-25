@@ -323,7 +323,7 @@
 
    ```ts
    if (store !== undefined) {
-     // "Backup.db"为备份数据库文件名
+     // "Backup.db"为备份数据库文件名，也可写为"context.databaseDir/rdb/Backup.db"
      (store as relationalStore.RdbStore).backup("Backup.db", (err: BusinessError) => {
        if (err) {
          console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
