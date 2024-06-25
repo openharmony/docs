@@ -11,7 +11,7 @@
 - 支持基于网卡/UID 的流量变化订阅。
 
 > **说明：**
-> 为了保证应用的运行效率，大部分 API 调用都是异步的，对于异步调用的 API 均提供了 callback 和 Promise 两种方式，以下示例均采用 callback 函数，更多方式可以查阅[API 参考](../reference/apis-network-kit/js-apis-net-statistics.md)。
+> 为了保证应用的运行效率，大部分 API 调用都是异步的，对于异步调用的 API 均提供了 callback 和 Promise 两种方式，以下示例均采用 promise 函数，更多方式可以查阅[API 参考](../reference/apis-network-kit/js-apis-net-statistics.md)。
 
 以下分别介绍具体开发方式。
 
