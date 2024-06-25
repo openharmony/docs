@@ -60,8 +60,8 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | ------- | ------------------------------------------- | ------------------------------------- |
 | type    | [TouchType](ts-appendix-enums.md#touchtype) | 触摸事件的类型。                      |
 | id      | number                                      | 手指唯一标识符。                      |
-| x       | number                                      | 触摸点相对于被触摸元素原始区域左上角的X坐标。<br/>单位：vp |
-| y       | number                                      | 触摸点相对于被触摸元素原始区域左上角的Y坐标。<br/>单位：vp |
+| x       | number                                      | 触摸点相对于事件响应组件的左上角的X坐标。<br/>单位：vp |
+| y       | number                                      | 触摸点相对于事件响应组件的左上角的Y坐标。<br/>单位：vp |
 | windowX<sup>10+</sup>  | number                       | 触摸点相对于应用窗口左上角的X坐标。<br/>单位：vp   |
 | windowY<sup>10+</sup>  | number                       | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp   |
 | displayX<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的X坐标。<br/>单位：vp   |
