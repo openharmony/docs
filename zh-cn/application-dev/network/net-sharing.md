@@ -5,7 +5,7 @@
 网络共享管理分享设备已有网络给其他连接设备，支持 Wi-Fi 热点共享、蓝牙共享和 USB 共享，同时提供网络共享状态、共享流量查询功能。
 
 > **说明：**
-> 为了保证应用的运行效率，大部分 API 调用都是异步的，对于异步调用的 API 均提供了 callback 和 Promise 两种方式，以下示例均采用 callback 函数，更多方式可以查阅[API 参考](../reference/apis-network-kit/js-apis-net-sharing-sys.md)。
+> 为了保证应用的运行效率，大部分 API 调用都是异步的，对于异步调用的 API 均提供了 callback 和 Promise 两种方式，以下示例均采用 promise 函数，更多方式可以查阅[API 参考](../reference/apis-network-kit/js-apis-net-sharing-sys.md)。
 
 ## 基本概念
 
@@ -69,8 +69,10 @@ sharing.on('sharingStateChange', (data: boolean) => {
 });
 
 // 调用startSharing方法，来开启指定类型共享
-sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
+  console.log('start wifi sharing successful');
+}).catch((error: BusinessError) => {
+  console.log('start wifi sharing failed');
 });
 ```
 
@@ -94,8 +96,10 @@ sharing.on('sharingStateChange', (data: boolean) => {
 });
 
 // 调用stopSharing方法，来停止指定类型共享
-sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
+  console.log('start wifi sharing successful');
+}).catch((error: BusinessError) => {
+  console.log('start wifi sharing failed');
 });
 ```
 
@@ -114,24 +118,30 @@ import { sharing } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 调用startSharing方法，来开启指定类型共享
-sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
+  console.log('start wifi sharing successful');
+}).catch((error: BusinessError) => {
+  console.log('start wifi sharing failed');
 });
 
 // 调用getStatsTotalBytes方法，来获取共享网络数据量
-sharing.getStatsTotalBytes((error: BusinessError, data: number) => {
-  console.log(JSON.stringify(error));
+sharing.getStatsTotalBytes().then((data: number) => {
   console.log(JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.log(JSON.stringify(error));
 });
 
 // 调用stopSharing方法，来停止指定类型共享，共享网络数据量清零
-sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
+  console.log('start wifi sharing successful');
+}).catch((error: BusinessError) => {
+  console.log('start wifi sharing failed');
 });
 
 // 再次调用getStatsTotalBytes方法，共享网络数据量已清零
-sharing.getStatsTotalBytes((error: BusinessError, data: number) => {
-  console.log(JSON.stringify(error));
+sharing.getStatsTotalBytes().then((data: number) => {
   console.log(JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.log(JSON.stringify(error));
 });
 ```
