@@ -941,7 +941,7 @@
       - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
       - [使用Image_NativeModule完成图片接收器](media/image/image-receiver-c.md)
       - [使用Image_NativeModule完成位图操作](media/image/pixelmap-c.md)
-      - [使用Image_NativeModule处理图像信息](media/image/image-c.md)
+      - [使用Image_NativeModule处理图像信息](media/image/image-info-c.md)
       - [使用Image_NativeModule完成图片编码](media/image/image-packer-c.md)
       - [使用ImageEffect编辑图片](media/image/image-effect-guidelines.md)
     - 图片开发指导(依赖JS对象)(C/C++)
