@@ -3494,7 +3494,7 @@ moveTo(x: number, y: number): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000005 | This operation is not supported.         |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -3534,7 +3534,7 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000005 | This operation is not supported.         |
 | 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -3566,7 +3566,7 @@ split(): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.         |
-| 17000005 | if the action is not supported on this window.         |
+| 17000005 | This operation is not supported.         |
 
 **示例：**
 
@@ -3597,7 +3597,7 @@ maximize(): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000005 | This operation is not supported.         |
 
 **示例：**
 
@@ -3628,7 +3628,7 @@ minimize(): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.          |
-| 17000005 | if the action is not supported on this window.         |
+| 17000005 | This operation is not supported.         |
 
 **示例：**
 
@@ -3659,7 +3659,7 @@ resume(): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.          |
-| 17000005 | if the action is not supported on this window.         |
+| 17000005 | This operation is not supported.         |
 
 **示例：**
 
@@ -3690,7 +3690,7 @@ close(): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | The async function is not called with await. |
 | 17000004 | The window or component is invisible or destroyed.           |
-| 17000005 | if the action is not supported on this window.         |
+| 17000005 | This operation is not supported.         |
 
 **示例：**
 
