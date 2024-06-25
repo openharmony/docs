@@ -23,7 +23,7 @@ import { taskpool } from '@kit.ArkTS';
 
 execute(func: Function, ...args: Object[]): Promise\<Object>
 
-Places a function to be executed in the internal queue of the task pool. The function will be distributed to the worker thread for execution. In this mode, the function cannot be canceled.
+Places a function to be executed in the internal queue of the task pool. The function is not executed immediately. It waits to be distributed to the worker thread for execution. In this mode, the function cannot be canceled.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -71,7 +71,7 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-Places a task in the internal queue of the task pool. The task will be distributed to the worker thread for execution. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
+Places a task in the internal queue of the task pool. The task is not executed immediately. It waits to be distributed to the worker thread for execution. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -100,6 +100,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 10200003 | Worker initialization failure.              |
 | 10200006 | An exception occurred during serialization. |
 | 10200014 | The function is not mark as concurrent.     |
+| 10200051 | The periodic task cannot be executed again. |
 
 **Example**
 
@@ -128,7 +129,7 @@ taskpool.execute(task3, taskpool.Priority.HIGH).then((value: Object) => {
 
 execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
-Places a task group in the internal queue of the task pool. The task group will be distributed to the worker thread for execution. After all tasks in the task group are executed, a result array is returned. This API applies when you want to execute a group of associated tasks.
+Places a task group in the internal queue of the task pool. The tasks in the task group are not executed immediately. They wait to be distributed to the worker thread for execution. After all tasks in the task group are executed, a result array is returned. This API applies when you want to execute a group of associated tasks.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -189,7 +190,7 @@ taskpool.execute(taskGroup2).then((res: Array<Object>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-Executes a task after a given delay. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
+Executes a task after a given delay. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue, or a periodic task. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -217,6 +218,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | --------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200028 | The delayTime is less than zero. |
+| 10200051 | The periodic task cannot be executed again. |
 
 **Example**
 
@@ -237,6 +239,84 @@ taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
 }).catch((e: BusinessError) => {
   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
 })
+```
+
+## taskpool.executePeriodically<sup>12+</sup>
+
+executePeriodically(period: number, task: Task, priority?: Priority): void
+
+Executes a task periodically.
+
+In this execution mode, you can set the task priority and call **cancel()** to cancel the execution.
+
+A periodic task cannot be a task in a task group or queue. It cannot call **execute()** again or have a dependency relationship.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Parameters**
+
+| Name      | Type         | Mandatory | Description                |
+| -----------  | ------------- | ----- | -------------------- |
+| period       | number        | Yes   | Execution period, in ms. |
+| task         | [Task](#task) | Yes   | Task to be executed.|
+| priority     | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID  | Error Message                        |
+| ---------- | -------------------------------- |
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200003   | Worker initialization failed. |
+| 10200006   | An exception occurred during serialization. |
+| 10200014   | The function is not marked as concurrent. |
+| 10200028   | The period is less than zero. |
+| 10200050   | The concurrent task has been executed and cannot be executed periodically. |
+
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args: number): void {
+  console.info("printArgs: " + args);
+}
+
+@Concurrent
+function testExecutePeriodically(args: number): void {
+  let t = Date.now();
+  while ((Date.now() - t) < args) {
+    continue;
+  }
+  taskpool.Task.sendData(args); // Send a message to the main thread.
+}
+
+function pringResult(data: number): void {
+  console.info("taskpool: data is: " + data);
+}
+
+function taskpoolTest() {
+  try {
+    let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
+    taskpool.executePeriodically(1000, task); // 1000: period is 1000ms
+  } catch (e) {
+    console.error(`taskpool execute-1: Code: ${e.code}, message: ${e.message}`);
+  }
+
+  try {
+    let periodicTask: taskpool.Task = new taskpool.Task(testExecutePeriodically, 200); // 200: test number
+    periodicTask.onReceiveData(pringResult);
+    taskpool.executePeriodically(1000, periodicTask); // 1000: period is 1000ms
+  } catch (e) {
+    console.error(`taskpool execute-2: Code: ${e.code}, message: ${e.message}`);
+  }
+}
+
+taskpoolTest();
 ```
 
 
@@ -442,7 +522,7 @@ Checks whether a function is a concurrent function.
 
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
-| function   | Function | Yes  | Function to check.|
+| func   | Function | Yes  | Function to check.|
 
 **Return value**
 
@@ -938,6 +1018,12 @@ static sendData(...args: Object[]): void
 
 Sends data to the host thread and triggers the registered callback. Before using this API, you must create a **Task** instance.
 
+> **NOTE**
+>
+> - The API is called in the TaskPool thread.
+> - Do not use this API in a callback function.
+> - Before calling this API, ensure that the callback function for processing data has been registered in the host thread.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -964,12 +1050,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 @Concurrent
-function ConcurrentFunc(num: number): number {
+function sendDataTest(num: number): number {
   let res: number = num * 10;
   taskpool.Task.sendData(res);
   return num;
 }
+
+function pringLog(data: number): void {
+  console.info("taskpool: data is: " + data);
+}
+
+async function taskpoolTest(): Promise<void> {
+  try {
+    let task: taskpool.Task = new taskpool.Task(sendDataTest, 1);
+    task.onReceiveData(pringLog);
+    await taskpool.execute(task);
+  } catch (e) {
+    console.error(`taskpool: error code: ${e.code}, info: ${e.message}`);
+  }
+}
+
+taskpoolTest();
 ```
+
 
 ### onReceiveData<sup>11+</sup>
 
@@ -1030,7 +1133,7 @@ testFunc();
 
 addDependency(...tasks: Task[]): void
 
-Adds dependent tasks for this task. Before using this API, you must create a **Task** instance. The task and its dependent tasks cannot be a task in a task group or queue, or a task that has been executed. A task with a dependency relationship (a task that depends on another task or a task that is depended on) cannot be executed multiple times.
+Adds dependent tasks for this task. Before using this API, you must create a **Task** instance. The task and its dependent tasks cannot be a task in a task group or queue, a task that has been executed, or a periodic task. A task with a dependency relationship (a task that depends on another task or a task that is depended on) cannot be executed multiple times.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1050,6 +1153,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200026 | There is a circular dependency. |
+| 10200052 | The periodic task cannot have a dependency. |
 
 **Example**
 
@@ -1108,6 +1212,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200027 | The dependency does not exist. |
+| 10200052 | The periodic task cannot have a dependency. |
 
 **Example**
 
@@ -1535,7 +1640,7 @@ taskGroup.addTask(printArgs, 100); // 100: test number
 
 addTask(task: Task): void
 
-Adds a created task to this task group. Before using this API, you must create a **TaskGroup** instance. Tasks in another task group or queue, dependent tasks, continuous tasks, and tasks that have been executed cannot be added to the task group.
+Adds a created task to this task group. Before using this API, you must create a **TaskGroup** instance. Tasks in another task group or queue, dependent tasks, continuous tasks, tasks that have been executed, and periodic tasks cannot be added to the task group.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1555,6 +1660,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | --------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200014 | The function is not mark as concurrent. |
+| 10200051 | The periodic task cannot be executed again.  |
 
 **Example**
 
@@ -1618,7 +1724,7 @@ let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner();
 
 constructor(name: string, priority?: Priority)
 
-A constructor used to create a **SequenceRunner** instance. If the passed-in name is the same as an existing name, the same **SequenceRunner** instance is returned.
+A constructor used to create a **SequenceRunner** instance. This instance represents a global serial queue. If the passed-in name is the same as an existing name, the same serial queue is returned.
 
 > **NOTE**
 >
@@ -1687,6 +1793,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 10200003 | Worker initialization failure.              |
 | 10200006 | An exception occurred during serialization. |
 | 10200025 | Add dependent task to SequenceRunner.       |
+| 10200051 | The periodic task cannot be executed again.  |
 
 **Example**
 

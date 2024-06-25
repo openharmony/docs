@@ -150,6 +150,7 @@ The buffer size is not an integer multiple of **size**, which can be 16-bit, 32-
 
 Use a buffer the size of which meets the requirements.
 
+
 ## 10200010 Empty Container
 
 **Error Message**
@@ -672,6 +673,60 @@ The code inherits from the **Transform** class, but does not implement the [doTr
 **Solution**
 
 Implement the **doTransform** API in the inherited class.
+
+## 10200050 Concurrent Task That Has Been Executed Cannot Be Executed Periodically
+
+**Error Message**
+
+The concurrent task has been executed and cannot be executed periodically.
+
+**Description**
+
+The concurrent task that has been executed cannot be executed periodically.
+
+**Possible Causes**
+
+The task has been executed before [executePeriodically](../apis-arkts/js-apis-taskpool.md#taskpoolexecuteperiodically12) is called.
+
+**Solution**
+
+Before calling the API, ensure that the task is not executed. If you are not sure, capture exceptions.
+
+## 10200051 Periodic Task Cannot Be Executed Again
+
+**Error Message**
+
+The periodic task cannot be executed again.
+
+**Description**
+
+A periodic task cannot be executed again.
+
+**Possible Causes**
+
+[execute](../apis-arkts/js-apis-taskpool.md#execute11), [executeDelayed](../apis-arkts/js-apis-taskpool.md#taskpoolexecutedelayed11), [addTask](../apis-arkts/js-apis-taskpool.md#addtask10-1), or [execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute-1) is called again to execute a periodic call.
+
+**Solution**
+
+Before calling these APIs, ensure that the task is not a periodic task. If you are not sure, capture exceptions.
+
+## 10200052 Periodic Task Cannot Have Dependencies
+
+**Error Message**
+
+The periodic task cannot have a dependency.
+
+**Description**
+
+A periodic task cannot have dependencies.
+
+**Possible Causes**
+
+[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11) or [addDependency](../../reference/apis-arkts/js-apis-taskpool.md#adddependency11) is called to remove or add dependencies for a periodic task.
+
+**Solution**
+
+Before calling these APIs, ensure that the task is not a periodic task. If you are not sure, capture exceptions.
 
 ## 10200060 Precision Limit Is Exceeded
 
