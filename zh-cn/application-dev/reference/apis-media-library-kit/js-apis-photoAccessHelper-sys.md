@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 ```
 
 ## PhotoAccessHelper
@@ -355,7 +355,7 @@ createAlbum(name: string): Promise&lt;Album&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('createAlbumDemo');
@@ -408,7 +408,7 @@ deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   // 示例代码为删除相册名为newAlbumName的相册。
@@ -477,8 +477,8 @@ deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   // 示例代码为删除相册名为newAlbumName的相册。
@@ -534,7 +534,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options: FetchOptions, callback: 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 // 获取系统中包含隐藏文件且相册名为'newAlbumName'的相册
 async function getHiddenAlbumsView() {
@@ -591,7 +591,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, callback: AsyncCallback&lt;FetchR
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 // 获取系统预置的隐藏相册
 async function getSysHiddenAlbum() {
@@ -673,8 +673,8 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options?: FetchOptions): Promise&
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 获取系统预置的隐藏相册
 async function getSysHiddenAlbum() {
@@ -763,7 +763,7 @@ deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('deleteAssetDemo');
@@ -836,7 +836,7 @@ deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('deleteDemo');
@@ -896,7 +896,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -974,8 +974,8 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promis
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -1043,8 +1043,8 @@ saveFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('saveFormInfoDemo');
@@ -1110,8 +1110,8 @@ saveFormInfo(info:FormInfo):Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('saveFormInfoDemo');
@@ -1170,7 +1170,7 @@ removeFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('removeFormInfoDemo');
@@ -1228,7 +1228,7 @@ removeFormInfo(info:FormInfo):Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('removeFormInfoDemo');
@@ -1406,7 +1406,7 @@ setFavorite(favoriteState: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('setFavoriteDemo');
@@ -1470,8 +1470,8 @@ setFavorite(favoriteState: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('setFavoriteDemo');
@@ -1530,7 +1530,7 @@ setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('setHiddenDemo');
@@ -1596,8 +1596,8 @@ setHidden(hiddenState: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   // 示例代码为将文件从隐藏相册中恢复，需要先在隐藏相册预置资源
@@ -1656,7 +1656,7 @@ getExif(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -1716,7 +1716,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -1791,7 +1791,7 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -1851,7 +1851,7 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2030,7 +2030,7 @@ isEdited(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2092,7 +2092,7 @@ isEdited(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2150,7 +2150,7 @@ requestEditData(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2210,7 +2210,7 @@ requestEditData(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2264,7 +2264,7 @@ getEditData(): Promise&lt;MediaAssetEditData&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2317,7 +2317,7 @@ requestSource(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2374,7 +2374,7 @@ requestSource(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2432,7 +2432,7 @@ commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2502,7 +2502,7 @@ commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2558,7 +2558,7 @@ revertToOriginal(callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2617,7 +2617,7 @@ revertToOriginal(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2677,8 +2677,8 @@ requestPhoto(callback: AsyncCallback&lt;image.PixelMap&gt;): string
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image'
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit'
 
 async function example() {
   try {
@@ -2742,8 +2742,8 @@ requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.Pixe
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image'
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit'
 
 async function example() {
   try {
@@ -2806,8 +2806,8 @@ cancelPhotoRequest(requestId: string): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image'
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit'
 
 async function example() {
   try {
@@ -2871,7 +2871,7 @@ getAnalysisData(analysisType: AnalysisType): Promise\<string>
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2937,7 +2937,7 @@ recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&g
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -3007,8 +3007,8 @@ recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -3073,7 +3073,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -3145,8 +3145,8 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -3211,7 +3211,7 @@ setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -3282,8 +3282,8 @@ setCoverUri(uri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -3451,8 +3451,8 @@ setFavorite(favoriteState: boolean): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('setFavoriteDemo');
@@ -3502,8 +3502,8 @@ setHidden(hiddenState: boolean): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('setHiddenDemo');
@@ -3553,8 +3553,8 @@ setUserComment(userComment: string): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('setUserCommentDemo');
@@ -3605,8 +3605,8 @@ setEditData(editData: MediaAssetEditData): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('setEditDataDemo');
@@ -3715,8 +3715,8 @@ setLocation(longitude: number, latitude: number): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('setLocationDemo');
@@ -3865,7 +3865,7 @@ constructor(assets: Array&lt;PhotoAsset&gt;)
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('MediaAssetsChangeRequest constructorDemo');
@@ -3909,8 +3909,8 @@ setFavorite(favoriteState: boolean): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('setFavoriteDemo');
@@ -3960,8 +3960,8 @@ setHidden(hiddenState: boolean): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('setHiddenDemo');
@@ -4011,8 +4011,8 @@ setUserComment(userComment: string): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('setUserCommentDemo');
@@ -4135,7 +4135,7 @@ static deleteAlbums(context: Context, albums: Array&lt;Album&gt;): Promise&lt;vo
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('deleteAlbumsDemo');
@@ -4184,7 +4184,7 @@ setCoverUri(coverUri: string): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('setCoverUriDemo');
@@ -4240,7 +4240,7 @@ moveAssets(assets: Array&lt;PhotoAsset&gt;, targetAlbum: Album): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('moveAssetsDemo');
@@ -4300,7 +4300,7 @@ recoverAssets(assets: Array&lt;PhotoAsset&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('recoverAssetsDemo');
@@ -4357,7 +4357,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('deleteAssetsPermanentlyDemo');
@@ -4411,7 +4411,7 @@ setDisplayLevel(displayLevel: number): void
 **示例：**
 
 ``` ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -4456,7 +4456,7 @@ setIsMe(): void
 **示例：**
 
 ``` ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -4508,7 +4508,7 @@ dismissAssets(assets: Array&lt;PhotoAsset&gt;): void
 **示例：**
 
 ``` ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -4569,7 +4569,7 @@ mergeAlbum(target: Album): void
 **示例：**
 
 ``` ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -4670,7 +4670,7 @@ dismiss(): void
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('dismissDemo');
@@ -4725,7 +4725,7 @@ constructor(album: Album)
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('HighlightAlbum constructorDemo');
@@ -4774,7 +4774,7 @@ getHighlightAlbumInfo(type: HighlightAlbumInfoType): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -4832,7 +4832,7 @@ getHighlightResource(resourceUri: string): Promise&lt;ArrayBuffer&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -4889,7 +4889,7 @@ setHighlightUserActionData(type: HighlightUserActionType, actionData: number): P
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
