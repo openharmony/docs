@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.arkui.theme';
+import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@kit.ArkUI';
 ```
 
 ## Theme
@@ -137,7 +137,7 @@ setDefaultTheme(theme: [CustomTheme](#customtheme)): void
 **示例**
 
 ```ts
-import { CustomTheme, CustomColors, ThemeControl } from '@ohos.arkui.theme';
+import { CustomTheme, CustomColors, ThemeControl } from '@kit.ArkUI';
 // 自定义主题颜色
 class BlueColors implements CustomColors {
   fontPrimary = Color.White;
