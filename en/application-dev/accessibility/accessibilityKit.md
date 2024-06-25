@@ -17,7 +17,7 @@ Accessibility Kit provides a standard mechanism for exchanging information betwe
 ![AccessibilityFramework](figures/AccessibilityFramework.png)
 
 1. Accessibility application: extension service developed based on the accessibility extension service framework, for example, a screen reader application.
-2. Tartget application: third-party application assisted by the accessibility app.
+2. Target application: third-party application assisted by the accessibility app.
 3. AccessibilityAbilityManagerService (AAMS): main service of the AccessibilityExtensionAbility framework, which is used to manage the lifecycle of accessibility apps and provide a bridge for information exchange between accessibility apps and target apps.
 4. AccessibilityAbility (AAkit): ability that is used by the accessibility application to build an operating environment for the extension service ability and that provides interfaces for the accessibility application to query and operate the target application, including performing click/long press operations.
 5. AccessibilitySystemAbilityClient (ASACkit): used by the target application to send accessibility events, such as content change events, to AAMS, and to respond to the instructions (such as performing click/long press operations) sent by the accessibility application through AAMS.
