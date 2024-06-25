@@ -2675,11 +2675,11 @@ Preferences.flush()保存并刷新文件内容。
 ##### 基本原理
 
 * 签名校验的功能接口Verify封装在Model中
-    * 安装私有凭据：调用[certManager.installPrivateCertificate](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinstallprivatecertificate)接口安装证书，并获取返回结果cmResult。
-    * 使用凭据进行签名、验签的初始化操作：调用[certManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinit)接口进行初始化，并获取返回结果signHandle。
-    * 填充源数据：调用[certManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerupdate)接口填充源数据。
-    * 完成签名的操作：调用[certManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerfinish)接口完成签名，并获取签名结果signResult。
-    * 完成验签的操作：同上，再依次调用[certManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerinit)接口，[certManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerupdate)接口，[certManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certmanagerfinish-1)接口完成验签操作，最终获取验签结果verifyResult。
+    * 安装私有凭据：调用[certificateManager.installPrivateCertificate](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerinstallprivatecertificate)接口安装证书，并获取返回结果cmResult。
+    * 使用凭据进行签名、验签的初始化操作：调用[certificateManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerinit)接口进行初始化，并获取返回结果signHandle。
+    * 填充源数据：调用[certificateManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerupdate)接口填充源数据。
+    * 完成签名的操作：调用[certificateManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerfinish)接口完成签名，并获取签名结果signResult。
+    * 完成验签的操作：同上，再依次调用[certificateManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerinit)接口，[certificateManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerupdate)接口，[certificateManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerfinish-1)接口完成验签操作，最终获取验签结果verifyResult。
 
 ##### 约束与限制
 
@@ -3791,7 +3791,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 介绍
 
-本示例通过输入法框架实现自会编辑框，可以绑定输入法应用，从输入法应用输入内容，显示和隐藏输入法。
+本示例通过输入法框架实现自绘编辑框，可以绑定输入法应用，从输入法应用输入内容，显示和隐藏输入法。
 
 ##### 使用
 
