@@ -50,9 +50,10 @@
 }
 ```
 > **注意：**
-1. 声明"actions"字段的内容填写，必须包含"ohos.nfc.tag.action.TAG_FOUND"，不能更改。
-2. 声明技术时"uris"中"type"字段的内容填写，前缀必须是"tag-tech/"，后面接着NfcA/NfcB/NfcF/NfcV/IsoDep/Ndef/MifareClassic/MifareUL/NdefFormatable"中的一个。如果存在多个"type"时，需要分行填写。填写错误会造成解析失败。
-3. 声明权限时"requestPermissions"中的"name"字段的内容填写，必须是"ohos.permission.NFC_TAG"，不能更改。
+>
+>1. 声明"actions"字段的内容填写，必须包含"ohos.nfc.tag.action.TAG_FOUND"，不能更改。
+>2. 声明技术时"uris"中"type"字段的内容填写，前缀必须是"tag-tech/"，后面接着NfcA/NfcB/NfcF/NfcV/IsoDep/Ndef/MifareClassic/MifareUL/NdefFormatable"中的一个。如果存在多个"type"时，需要分行填写。填写错误会造成解析失败。
+>3. 声明权限时"requestPermissions"中的"name"字段的内容填写，必须是"ohos.permission.NFC_TAG"，不能更改。
 
 ## **导入模块**
 
@@ -130,6 +131,7 @@ getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 获取NFC A类型Tag对象，通过该对象可访问NfcA技术类型的Tag。
 
 > **说明：**
+>
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[tag.getNfcA](#taggetnfca9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
@@ -185,6 +187,7 @@ getNfcBTag(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 获取NFC B类型Tag对象，通过该对象可访问NfcB技术类型的Tag。
 
 > **说明：**
+>
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[tag.getNfcB](#taggetnfcb9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
@@ -240,6 +243,7 @@ getNfcFTag(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 获取NFC F类型Tag对象，通过该对象可访问NfcF技术类型的Tag。
 
 > **说明：**
+>
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[tag.getNfcF](#taggetnfcf9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
@@ -295,6 +299,7 @@ getNfcVTag(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 获取NFC V类型Tag对象，通过该对象可访问NfcV技术类型的Tag。
 
 > **说明：**
+>
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[tag.getNfcV](#taggetnfcv9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
