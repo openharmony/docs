@@ -38,7 +38,7 @@
 
 1. 两者的数据来源不同。
 
-2. 两者的适用场景不同
+2. 两者的适用场景不同。
 - Surface输入是指用OHNativeWindow来传递输入数据，可以与其他模块对接，例如相机模块。
 - Buffer输入是指有一块预先分配好的内存区域，调用者需要将原始数据拷贝进这块内存区域中。更适用于从文件中读取视频数据等场景。
 
@@ -50,6 +50,7 @@
 
 ## 状态机调用关系
 如下为状态机调用关系图：
+
 ![Invoking relationship of state](figures/state-invocation.png)
 
 
@@ -111,8 +112,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int32_t height = 240;
     // 配置视频颜色格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
-    int widthStride = 0;
-    int heightStride = 0;
+    int32_t widthStride = 0;
+    int32_t heightStride = 0;
     ```
    
 3. 创建编码器实例对象。
@@ -149,6 +150,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     示例如下所示
     ```c++
+    int32_t qpAverage = 20;
+    double mseValue = 0.0;
     // 设置OH_AVCodecOnError 回调函数，编码异常
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -514,6 +517,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     ```c++
     bool isFirstFrame = true;
+    int32_t qpAverage = 20;
+    double mseValue = 0.0;
     // 编码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -679,6 +684,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```c++
     #include <string.h>
     ```
+    使用示例
 
     ```c++
     struct Rect   // 源内存区域的宽，高
