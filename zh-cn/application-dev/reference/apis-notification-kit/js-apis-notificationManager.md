@@ -42,10 +42,10 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 | 1600007  | The notification is not exist.                       |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -110,10 +110,10 @@ publish(request: NotificationRequest): Promise\<void\>
 | 1600007  | The notification is not exist.                       |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -854,6 +854,38 @@ notificationManager.isNotificationEnabled().then((data: boolean) => {
 });
 ```
 
+## notificationManager.isNotificationEnabled
+
+isNotificationEnabledSync(): boolean
+
+同步获取通知使能状态。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**返回值：**
+
+| 类型                                                        | 说明                                                     |
+| ----------------------------------------------------------- |--------------------------------------------------------- |
+| boolean | 返回获取通知使能状态的结果。返回true，表示通知使能状态为开；返回false，表示通知使能状态为关。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect to the service.               |
+
+**示例：**
+
+```ts
+import notificationManager from '@ohos.notificationManager';
+
+let enabled = notificationManager.isNotificationEnabledSync();
+```
+
 ## notificationManager.setBadgeNumber<sup>10+</sup>
 
 setBadgeNumber(badgeNumber: number): Promise\<void\>
@@ -1297,7 +1329,7 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
@@ -1339,7 +1371,7 @@ requestEnableNotification(): Promise\<void\>
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
@@ -1381,7 +1413,7 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
@@ -1437,7 +1469,7 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 

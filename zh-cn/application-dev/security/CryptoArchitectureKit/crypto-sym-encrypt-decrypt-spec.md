@@ -95,6 +95,8 @@
   
   - 当需要分组模式为CFB、密钥长度为128bit、填充模式为NoPadding的SM4密钥，其字符串参数为"SM4_128|CFB|NoPadding"。
 
+  - 当需要分组模式为GCM、密钥长度为128bit、填充模式为NoPadding的SM4密钥，其字符串参数为"SM4_128|GCM|NoPadding"。
+
   | 分组模式 | 密钥长度（bit） | 填充模式 | API版本 | 
   | -------- | -------- | -------- | -------- |
   | ECB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
@@ -104,9 +106,6 @@
   | CFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | CFB128 | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | GCM | 128 | [NoPadding\|PKCS5\|PKCS7] | 12+ | 
-
-- 从API版本10开始，支持对称加解密不带密钥长度的规格。加解密参数输入密钥类型时，支持不带长度，加解密运算取决于实际输入的密钥长度。
-  举例说明，当需要分组模式为CFB、不带密钥长度、填充模式为NoPadding的SM4密钥，其字符串参数为"SM4_128|CFB|NoPadding"；当需要分组模式为GCM、不带密钥长度、填充模式为NoPadding的SM4密钥，其字符串参数为"SM4_128|GCM|NoPadding"。
 
 
 ## 填充模式

@@ -26,7 +26,7 @@
 
 ![project](figures/project.png)
 
-- **AppScope &gt; app.json5**：应用的全局配置信息。
+- **AppScope &gt; app.json5**：应用的全局配置信息，详见[app.json5配置文件](app-configuration-file.md)。
 
 - **entry**：OpenHarmony工程模块，编译构建生成一个HAP包。
   - **src &gt; main &gt; ets**：用于存放ArkTS源码。
@@ -194,8 +194,8 @@
    ```ts
    // Index.ets
    // 导入页面路由模块
-   import router from '@ohos.router';
-   import { BusinessError } from '@ohos.base';
+   import { router } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
    @Component
@@ -246,8 +246,8 @@
    ```ts
    // Second.ets
    // 导入页面路由模块
-   import router from '@ohos.router';
-   import { BusinessError } from '@ohos.base';
+   import { router } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
    @Component
@@ -310,4 +310,4 @@
 
    ![zh-cn_image_0000001364254729](figures/zh-cn_image_0000001364254729.png)
 
-恭喜您已经使用ArkTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来<!--Del-->[<!--DelEnd-->探索更多的OpenHarmony功能<!--Del-->](../application-dev-guide.md)<!--DelEnd-->吧。
+恭喜您已经使用ArkTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来探索更多的OpenHarmony功能吧。

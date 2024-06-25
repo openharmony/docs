@@ -13,7 +13,7 @@ The **inputDevice** module allows you to listen for hot swap events of input dev
 
 
 ```js
-import { inputDevice } from '@kit.InputKit';
+import inputDevice from '@ohos.multimodalInput.inputDevice';
 ```
 
 ## inputDevice.getDeviceList<sup>9+</sup>
@@ -685,6 +685,8 @@ Defines the information about an input device.
 
 ## AxisType<sup>9+</sup>
 
+type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'pressure' | 'toolminor' | 'toolmajor' | 'null'
+
 Defines the axis type of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
@@ -719,6 +721,8 @@ Defines the axis range of an input device.
 
 ## SourceType<sup>9+</sup>
 
+type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick' | 'trackball'
+
 Input source type of the axis. For example, if a mouse reports an x-axis event, the input source of the x-axis is the mouse.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
@@ -733,6 +737,8 @@ Input source type of the axis. For example, if a mouse reports an x-axis event, 
 | joystick    | string | Yes| No| The input device is a joystick.|
 
 ## ChangedType<sup>9+</sup>
+
+type ChangedType = 'add' | 'remove'
 
 Defines the change type for the hot swap event of an input device.
 

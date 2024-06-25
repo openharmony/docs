@@ -12,8 +12,6 @@ clip(value: boolean)
 
 是否对当前组件进行裁剪。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -30,7 +28,7 @@ clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectA
 
 > **说明：**  
 >
-> 从API version 7开始支持，从API version 17开始废弃。建议使用[clip](#clip12)和[clipShape](#clipshape12)替代。
+> 从API version 7开始支持，从API version 12开始废弃。建议使用[clip](#clip12)和[clipShape](#clipshape12)替代。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -48,8 +46,6 @@ clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 按指定的形状对当前组件进行裁剪。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -63,8 +59,6 @@ clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 mask(value: ProgressMask)
 
 为组件上添加指定形状的遮罩。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -82,7 +76,7 @@ mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute |
 
 > **说明：**  
 >
-> 从API version 7开始支持，从API version 17开始废弃。建议使用[mask](#mask12)和[maskShape](#maskshape12)替代。
+> 从API version 7开始支持，从API version 12开始废弃。建议使用[mask](#mask12)和[maskShape](#maskshape12)替代。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -100,8 +94,6 @@ mask(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 为组件上添加指定形状的遮罩。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -114,7 +106,7 @@ mask(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 ProgressMask设置遮罩的进度、最大值和遮罩颜色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### constructor<sup>10+</sup>
 
@@ -122,7 +114,7 @@ constructor(value: number, total: number, color: ResourceColor)
 
 构造ProgressMask对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -140,7 +132,7 @@ updateProgress(value: number): void
 
 更新进度遮罩的进度值。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -156,7 +148,7 @@ updateColor(value: ResourceColor): void
 
 更新进度遮罩的颜色。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -640,7 +640,7 @@ Enables listening for **serviceFound** events.
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | Yes      |Event type. This field has a fixed value of **serviceFound**.<br>**serviceFound**: event indicating an MDNS service is found.|
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | Yes       |   MDNS service information.     |
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | Yes       |   Callback used to return the MDNS service information. You need to call **resolveLocalService** to parse the information.     |
 
 **Example**
 
@@ -655,7 +655,10 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
-  console.log(JSON.stringify(data));
+  console.info('serviceFound', JSON.stringify(data));
+  mdns.resolveLocalService(context, data, (error: BusinessError, resolveData: mdns.LocalServiceInfo) =>  {
+    console.info('serviceFound', JSON.stringify(resolveData));
+  });
 });
 
 discoveryService.stopSearchingMDNS();
@@ -691,7 +694,10 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
-  console.log(JSON.stringify(data));
+  console.info('serviceFound', JSON.stringify(data));
+  mdns.resolveLocalService(context, data, (error: BusinessError, resolveData: mdns.LocalServiceInfo) =>  {
+    console.info('serviceFound', JSON.stringify(resolveData));
+  });
 });
 
 discoveryService.stopSearchingMDNS();
@@ -791,7 +797,7 @@ Defines the MDNS service information.
 | serviceName | string                             |  Yes|  Name of the MDNS service.  |
 | port            | number           |  No|  Port number of the MDNS server.          |
 | host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  No|  IP address of the device that provides the MDNS service. The IP address is not effective when an MDNS service is added or removed.              |
-| serviceAttribute     | serviceAttribute\<[ServiceAttribute](#serviceattribute)> |  No|  MDNS service attribute information.              |
+| serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  No|  MDNS service attribute information.              |
 
 ## ServiceAttribute
 

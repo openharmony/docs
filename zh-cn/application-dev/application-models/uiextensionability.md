@@ -2,16 +2,18 @@
 
 ## 概述
 
-[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)是UI类型的ExtensionAbility组件，需要与[UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)一起配合使用，开发者可以在UIAbility的页面中通过UIExtensionComponent嵌入提供方应用的UIExtensionAbility提供的UI。UIExtensionAbility会在独立于UIAbility的进程中运行，完成其页面的布局和渲染。常用于有进程隔离诉求的系统弹窗、状态栏、胶囊等模块化开发的场景。
+[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)是UI类型的ExtensionAbility，常用于有进程隔离诉求的系统弹窗、状态栏、胶囊等模块化开发的场景。有嵌入式显示与系统弹窗两种形式。
+- 嵌入式显示启动需要与[UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)一起配合使用，开发者可以在UIAbility的页面中通过UIExtensionComponent嵌入提供方应用的UIExtensionAbility提供的UI。UIExtensionAbility会在独立于UIAbility的进程中运行，完成其页面的布局和渲染。  
+- 系统弹窗启动形式需要调用指定接口[requestModalUIExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextrequestmodaluiextension11)或调用应用封装的指定接口启动UIExtensionAbility。
 
 > **说明：**
 >
-> 当前UIExtensionAbility和UIExtensionComponent仅支持系统应用使用。
+> 当前"sys/commonUI"、"sysDialog"和"sysPicker"类型的UIExtensionAbility仅支持系统应用使用，更详细的UIExtensionAbility类型介绍及对应权限管控可参见：[module.json5配置文件](../quick-start/module-configuration-file.md)。
 
 ## 生命周期
 [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)提供了onCreate、onSessionCreate、onSessionDestroy、onForeground、onBackground和onDestroy生命周期回调，根据需要重写对应的回调方法。
 
-- [**onCreate**](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityoncreate12)：当UIExtensionAbility创建时回调，执行初始化业务逻辑操作。
+- [**onCreate**](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityoncreate)：当UIExtensionAbility创建时回调，执行初始化业务逻辑操作。
 - [**onSessionCreate**](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)：当UIExtensionAbility界面内容对象创建后调用。
 - [**onSessionDestroy**](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessiondestroy)：当UIExtensionAbility界面内容对象销毁后调用。
 - [**onForeground**](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonforeground)：当UIExtensionAbility从后台转到前台时触发。
@@ -20,7 +22,6 @@
 
 ## 选择合适的UIExtensionAbility进程模型
 UIExtensionAbility支持多实例，每个嵌入式显示对应一个UIExtensionAbility实例。多实例场景下默认是多进程，可配置多进程模型。
-UIExtensionAbility支持多实例，每个嵌入式显示对应一个UIExtensionAbility实例。
 当应用中存在多个UIExtensionAbility实例，这些实例可以为多个独立进程，也可以共用同一个进程，还可以分为多组、同组实例共用同一个进程。通过module.json5配置文件中的extensionProcessMode字段，即可为选择对应的进程模型，三种模型对比如下：
 | 进程模型 | extensionProcessMode字段配置 | 说明 |
 | --------| --------| --------|
@@ -111,7 +112,7 @@ struct Index {
 
 采用该进程模型，进程名格式为：
 process name [{bundleName}：{UIExtensionAbility的类型}]
-例如，process name [com.ohos.intentexecutedemo:xxx]。
+例如，process name [com.ohos.intentexecutedemo:xxx]。  
 **图3** 进程模型展示  
 ![uiextension-bundle-process-example](figures/uiextability-bundle-process-example.png)
 
@@ -199,7 +200,7 @@ struct Index {
 
 采用该进程模型，进程名格式为：
 process name [{bundleName}：{UIExtensionAbility名}]
-例如，process name [com.ohos.intentexecutedemo:xxx]。
+例如，process name [com.ohos.intentexecutedemo:xxx]。  
 **图6** 进程模型展示  
 ![uiextability-type-process-example](figures/uiexteability-type-precess-example.png)
 
@@ -288,7 +289,7 @@ struct Index {
 
 采用该进程模型，进程名格式为：
 process name [{bundleName}：{UIExtensionAbility的类型}: {实例后缀}]
-例如，process name [com.ohos.intentexecutedemo:xxx:n]。
+例如，process name [com.ohos.intentexecutedemo:xxx:n]。  
 **图9** 进程模型展示  
 ![uiextability-instance-process-example](figures/uiextability-instance-process-example.png)
 
@@ -296,7 +297,7 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
 
 ## 开发步骤
 
-为了便于表述，本例中将提供UIExtensionAbility能力的一方称为提供方，将启动UIExtensionAbility的一方称为使用方，本例中使用方通过UIExtensionComponent容器启动UIExtensionAbility。
+为了便于表述，本例中将提供UIExtensionAbility能力的一方称为提供方，将启动UIExtensionAbility的一方称为使用方，本例中使用方通过UIExtensionComponent容器启动UIExtensionAbility。系统弹框形式的使用方开发示例可参考文档：[requestModalUIExtension](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextrequestmodaluiextension11)。
 
 ### 开发UIExtensionAbility提供方
 

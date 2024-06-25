@@ -50,7 +50,7 @@ function layerMask() : void {
 
 ### setEnabled
 
-setEnabled(index: number, enabled: boolean): boolean
+setEnabled(index: number, enabled: boolean): void
 
 将特定下标的图层掩码使能。
 
@@ -61,11 +61,6 @@ setEnabled(index: number, enabled: boolean): boolean
 | ---- | ---- | ---- | ---- |
 | index | number | 是 | 要使能图层的下标，值域为大于等于0的整数。 |
 | enabled | boolean | 是 | 要设置的使能状态，true表示使用图层掩码，false表示不使用。 |
-
-**返回值：**
-| 类型 | 说明 |
-| ---- | ---- |
-| boolean | 设置使能是否成功，true表示设置成功，false表示设置失败。 |
 
 **示例：**
 ```ts
@@ -101,7 +96,7 @@ function layerMask() : void {
 定义场景对象的容器。容器提供了一种将场景对象分组到层次结构中的方法。
 
 ### append
-append(item T): void
+append(item: T): void
 
 追加一个对象到容器。
 
@@ -161,7 +156,7 @@ function insertAfter() : void {
 ```
 
 ### remove
-remove(item T): void
+remove(item: T): void
 
 移除指定对象。
 
@@ -286,17 +281,17 @@ function count() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| position | [Position3](js-apis-inner-scene-types.md#position3) | 否 | 是 | 结点位置。 |
-| rotation | [Quaternion](js-apis-inner-scene-types.md#quaternion) | 否 | 是 | 结点旋转角度。 |
-| scale | [Scale3](js-apis-inner-scene-types.md#scale3) | 否 | 是 | 结点缩放。 |
-| visible | boolean | 否 | 是 | 结点是否可见，true表示该节点可见，false表示不可见。 |
-| nodeType | [NodeType](#nodetype) | 是 | 是 | 结点类型。 |
-| layerMask | [LayerMask](#layermask) | 是 | 是 | 结点的图层掩码。 |
-| path | string | 是 | 是 | 结点路径。 |
-| parent | [Node](#node) \| null | 是 | 是 | 结点的父结点，不存在则为空值。 |
-| children | [Container](js-apis-inner-scene-nodes.md#containert)\<[Node](#node)> | 是 | 是 | 结点的结点，不存在则为空值。 |
+| position | [Position3](js-apis-inner-scene-types.md#position3) | 否 | 否 | 结点位置。 |
+| rotation | [Quaternion](js-apis-inner-scene-types.md#quaternion) | 否 | 否 | 结点旋转角度。 |
+| scale | [Scale3](js-apis-inner-scene-types.md#scale3) | 否 | 否 | 结点缩放。 |
+| visible | boolean | 否 | 否 | 结点是否可见，true表示该节点可见，false表示不可见。 |
+| nodeType | [NodeType](#nodetype) | 是 | 否 | 结点类型。 |
+| layerMask | [LayerMask](#layermask) | 是 | 否 | 结点的图层掩码。 |
+| path | string | 是 | 否 | 结点路径。 |
+| parent | [Node](#node) \| null | 是 | 否 | 结点的父结点，不存在则为空值。 |
+| children | [Container](js-apis-inner-scene-nodes.md#containert)\<[Node](#node)> | 是 | 否 | 结点的结点，不存在则为空值。 |
 
 ### getNodeByPath
 getNodeByPath(path: string): Node | null
@@ -338,9 +333,9 @@ function getNode() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| mesh | [Mesh](js-apis-inner-scene-resources.md#mesh) | 是 | 是 | 网格属性。 |
+| mesh | [Mesh](js-apis-inner-scene-resources.md#mesh) | 是 | 否 | 网格属性。 |
 
 
 ## LightType
@@ -360,13 +355,13 @@ function getNode() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| lightType | [LightType](#lighttype) | 是 | 是 | 光源类型。 |
-| color | [Color](js-apis-inner-scene-types.md#color) | 否 | 是 | 颜色。 |
-| intensity | number | 否 | 是 | 光照密度，取值范围是大于0的实数。 |
-| shadowEnabled | boolean | 否 | 是 | 是否使能阴影，true表示添加阴影，false表示没有阴影效果。 |
-| enabled | boolean | 否 | 是 | 是否使能光源，true表示使用光源，false表示不使用。 |
+| lightType | [LightType](#lighttype) | 是 | 否 | 光源类型。 |
+| color | [Color](js-apis-inner-scene-types.md#color) | 否 | 否 | 颜色。 |
+| intensity | number | 否 | 否 | 光照密度，取值范围是大于0的实数。 |
+| shadowEnabled | boolean | 否 | 否 | 是否使能阴影，true表示添加阴影，false表示没有阴影效果。 |
+| enabled | boolean | 否 | 否 | 是否使能光源，true表示使用光源，false表示不使用。 |
 
 ## SpotLight
 点光源类型，继承自[Light](#light)。
@@ -386,12 +381,11 @@ function getNode() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| fov | number | 否 | 是 | 视场，取值在0到π弧度之间。 |
-| nearPlane | number | 否 | 是 | 近平面，取值大于0。 |
-| farPlane | number | 否 | 是 | 远平面，取值大于nearPlane。 |
-| viewPort | [Rect](js-apis-inner-scene-types.md#rect) | 否 | 是 | 视口。 |
-| renderResolution | [Vec2](js-apis-inner-scene-types.md#vec2) | 否 | 是 | 渲染分辨率。 |
-| postProcess | [PostProcessSettings](js-apis-inner-scene-post-process-settings.md#postprocesssettings) \| null | 否 | 是 | 后处理设置。 |
-| clearColor | [Color](js-apis-inner-scene-types.md#color) \| null | 否 | 是 | 将渲染目标（render target）清空后的特定颜色。 |
+| fov | number | 否 | 否 | 视场，取值在0到π弧度之间。 |
+| nearPlane | number | 否 | 否 | 近平面，取值大于0。 |
+| farPlane | number | 否 | 否 | 远平面，取值大于nearPlane。 |
+| enabled | boolean | 否 | 否 | 是否使能相机，true表示使用相机，false表示不使用相机。 |
+| postProcess | [PostProcessSettings](js-apis-inner-scene-post-process-settings.md#postprocesssettings) \| null | 否 | 否 | 后处理设置。 |
+| clearColor | [Color](js-apis-inner-scene-types.md#color) \| null | 否 | 否 | 将渲染目标（render target）清空后的特定颜色。 |

@@ -41,7 +41,7 @@ Sets the disposed status for an application. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
@@ -49,7 +49,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -97,7 +97,7 @@ Sets the disposed status for an application. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
@@ -105,7 +105,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -154,7 +154,7 @@ Sets the disposed status for an application. This API returns the result synchro
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
@@ -162,7 +162,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -208,7 +208,7 @@ Obtains the disposed status of an application. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
@@ -216,7 +216,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -261,7 +261,7 @@ Obtains the disposed status of an application. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
@@ -269,7 +269,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -320,7 +320,7 @@ Obtains the disposed status of an application. This API returns the result synch
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
@@ -328,7 +328,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -374,7 +374,7 @@ Deletes the disposed status for an application. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
@@ -382,7 +382,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -427,7 +427,7 @@ Deletes the disposed status for an application. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
@@ -435,7 +435,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -478,7 +478,7 @@ Deletes the disposed status for an application. This API returns the result sync
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
@@ -486,7 +486,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -498,6 +498,54 @@ let appId: string = "com.example.myapplication_xxxxx";
 
 try {
     appControl.deleteDisposedStatusSync(appId);
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('deleteDisposedStatusSync failed ' + message);
+}
+```
+
+## appControl.deleteDisposedStatusSync<sup>12+</sup>
+
+deleteDisposedStatusSync(appId: string, appIndex:? number) : void
+
+Deletes the disposed status for an application or an application clone. This API returns the result synchronously. If the operation is successful, **null** is returned. If the operation fails, an error message is returned.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+**Parameters**
+
+| Name      | Type    | Mandatory  | Description                                   |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appIndex   | number  | No  | Index of the application clone.<br>If this parameter is set to **0**, the API is used to delete the disposed status of an application, rather than an application clone.             |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                               |
+| ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
+| 17700005 |  The specified app ID is an empty string.  |
+| 17700061 | AppIndex is not in the valid range. |
+
+**Example**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appId: string = "com.example.myapplication_xxxxx";
+
+try {
+    appControl.deleteDisposedStatusSync(appId, 1);
 } catch (error) {
     let message = (error as BusinessError).message;
     console.error('deleteDisposedStatusSync failed ' + message);
@@ -557,7 +605,7 @@ Obtains the disposed rule of an application.
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
@@ -578,6 +626,62 @@ let appId = "com.example.myapplication_xxxxx";
 
 try {
   let data = appControl.getDisposedRule(appId);
+  console.info('getDisposedRule successfully. Data: ' + JSON.stringify(data));
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('getDisposedRule failed ' + message);
+}
+```
+
+## appControl.getDisposedRule<sup>12+</sup>
+
+getDisposedRule(appId: string, appIndex:? number): DisposedRule
+
+Obtains the disposed rule of an application or an application clone.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+**Parameters**
+
+| Name      | Type    | Mandatory  | Description                                   |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appIndex   | number  | No  | Index of the application clone.<br>If this parameter is set to **0**, the API is used to obtain the disposed rule of an application, rather than an application clone.             |
+
+**Return value**
+
+| Type                       | Description                |
+| ------------------------- | ------------------ |
+| [DisposedRule](#disposedrule11) | Disposed rule of the application.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                               |
+| ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
+| 17700005 |  The specified app ID is an empty string.  |
+| 17700061 | AppIndex is not in the valid range. |
+
+**Example**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+let appId = "com.example.myapplication_xxxxx";
+
+try {
+  let data = appControl.getDisposedRule(appId, 1);
   console.info('getDisposedRule successfully. Data: ' + JSON.stringify(data));
 } catch (error) {
   let message = (error as BusinessError).message;
@@ -606,7 +710,7 @@ Sets a disposed rule for an application.
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
@@ -648,6 +752,77 @@ let rule: appControl.DisposedRule = {
 
 try {
   appControl.setDisposedRule(appId, rule);
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('setDisposedRule failed ' + message);
+}
+```
+
+## appControl.setDisposedRule<sup>12+</sup>
+
+setDisposedRule(appId: string, rule: DisposedRule, appIndex:? number): void
+
+Sets the disposed rule for an application or an application clone.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+**Parameters**
+
+| Name      | Type    | Mandatory  | Description                                   |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| rule | [DisposedRule](#disposedrule11) | Yes| Disposed rule to set.|
+| appIndex   | number  | No  | Index of the application clone.<br>If this parameter is set to **0**, the API is used to set the disposed rule for an application, rather than an application clone.           |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                               |
+| ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
+| 17700005 |  The specified app ID is an empty string.  |
+| 17700061 | AppIndex is not in the valid range. |
+
+**Example**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import bundleManager from '@ohos.bundle.bundleManager';
+
+let appId = "com.example.myapplication_xxxxx";
+let want: Want = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
+let elementName: bundleManager.ElementName = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
+let rule: appControl.DisposedRule = {
+  want: want,
+  componentType: appControl.ComponentType.UI_ABILITY,
+  disposedType: appControl.DisposedType.BLOCK_APPLICATION,
+  controlType: appControl.ControlType.ALLOWED_LIST,
+  elementList: [
+    elementName
+  ],
+  priority: 100
+};
+
+try {
+  appControl.setDisposedRule(appId, rule, 1);
 } catch (error) {
   let message = (error as BusinessError).message;
   console.error('setDisposedRule failed ' + message);

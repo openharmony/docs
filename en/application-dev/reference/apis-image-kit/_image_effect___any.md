@@ -9,7 +9,7 @@ The **ImageEffect_Any** struct describes the image effect parameters.
 
 **Since**: 12
 
-**Related module**: [ImageEffect] (_image_effect.md)
+**Related module**: [ImageEffect](_image_effect.md)
 
 
 ## Summary

@@ -11,11 +11,11 @@
 
 
 ```js
-import battery, { BatteryResponse } from '@system.battery';
+import {Battery, BatteryResponse } from '@kit.BasicServicesKit';
 ```
 
 
-## battery.getStatus
+## Battery.getStatus
 
 getStatus(options?: GetStatusOptions): void;
 
@@ -32,7 +32,7 @@ getStatus(options?: GetStatusOptions): void;
 **示例：**
 
 ```js
-battery.getStatus({
+Battery.getStatus({
     success: (data: BatteryResponse) => {
         console.log('success get battery level:' + data.level);
     },

@@ -296,7 +296,9 @@ add(1, 2);
 
 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。
 
+<!--Del-->
 [指定异步任务调度优先级](../performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md#指定异步任务调度优先级)
+<!--DelEnd-->
 
 ## 给ArkTS对象绑定回调和回调所需的参数
 
@@ -317,14 +319,14 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-// 解绑回调，一般在序列化时调用，可在对象解绑时执行一些清理操作
+// 解绑回调，在序列化时调用，可在对象解绑时执行一些清理操作
 static void *DetachCb(napi_env env, void *nativeObject, void *hint)
 {
     OH_LOG_INFO(LOG_APP, "Node-API this is detach callback");
     return nativeObject;
 }
 
-// 绑定回调，一般在序列化时调用
+// 绑定回调，在反序列化时调用
 static napi_value AttachCb(napi_env env, void *nativeObject, void *hint)
 {
     OH_LOG_INFO(LOG_APP, "Node-API this is attach callback");
@@ -358,7 +360,6 @@ static napi_value CoerceToNativeBindingObject(napi_env env, napi_callback_info i
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Node-API napi_coerce_to_native_binding_object fail");
         return nullptr;
-}
     }
     return object;
 }
@@ -403,6 +404,10 @@ parent.onmessage = function(message) {
   parent.postMessage(testNapi.coerceToNativeBindingObject());
 }
 ```
+**注意事项**
+
+对ArkTs对象A调用`napi_coerce_to_native_binding_object`将开发者实现的detach/attach回调和native对象信息加到A上，再将A跨线程传递。跨线程传递需要对A进行序列化和反序列化，在当前线程thread1序列化A得到数据data，序列化阶段执行detach回调。然后将data传给目标线程thread2，在thread2中反序列化data，执行attach回调，最终得到ArkTS对象A'。
+![napi_coerce_to_native_binding_object](figures/napi_coerce_to_native_binding_object.png)
 
 worker相关开发配置和流程参考以下链接：
 [使用Worker进行线程间通信](../reference/apis-arkts/js-apis-worker.md)
@@ -443,8 +448,8 @@ worker相关开发配置和流程参考以下链接：
 
 | 接口 | 描述 |
 | -------- | -------- |
-| napi_serialize | 将ArkTS对象转换为native数据。 |
-| napi_deserialize | 将native数据转为ArkTS对象。 |
+| napi_serialize | 将ArkTS对象转换为native数据。第一个参数env是接口执行的ArkTS环境；第二个参数object是待序列化的ArkTS对象；第三个参数transfer_list是存放需要以transfer传递的arrayBuffer的array，如不涉及可传undefined；第四个参数clone_list是存放需要克隆传递的Sendable对象的array，如不涉及可传undefined；第五个参数result是序列化结果。 |
+| napi_deserialize | 将native数据转为ArkTS对象。第一个参数env是接口执行的ArkTS环境；第二个参数buffer是序列化数据；第三个参数object是反序列化得到的结果。 |
 | napi_delete_serialization_data | 删除序列化数据。 |
 
 ### 使用示例

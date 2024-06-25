@@ -77,7 +77,7 @@ try {
       createIfMissing: true,
       encrypt: true,
       backup: false,
-      autoSync: true,
+      autoSync: false,
       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
       securityLevel: distributedKVStore.SecurityLevel.S1
     };
@@ -113,11 +113,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { relationalStore } from '@kit.ArkData';
 
 let store: relationalStore.RdbStore;
+let context = getContext(this);
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: 'RdbTest.db',
   securityLevel: relationalStore.SecurityLevel.S1
 };
-let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
+let promise = relationalStore.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
   store = rdbStore;
   console.info('Succeeded in getting RdbStore.')

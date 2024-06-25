@@ -15,7 +15,7 @@ The effector supports multiple input types, such as pixel map, URI, and surface.
 
 **Since**: 12
 
-**Related module**: [ImageEffect] (_image_effect.md)
+**Related module**: [ImageEffect](_image_effect.md)
 
 
 ## Summary

@@ -144,6 +144,8 @@ let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 
 ## inputMethodEngine.CommandDataType<sup>12+</sup>
 
+type CommandDataType = number | string | boolean;
+
 表示私有数据类型，接口参数具体类型根据其功能而定。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -161,21 +163,18 @@ import { inputMethodEngine } from '@kit.IMEKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let record :Record<string, inputMethodEngine.CommandDataType> = {
+  let record: Record<string, inputMethodEngine.CommandDataType> = {
     "valueString1": "abcdefg",
     "valueString2": true,
     "valueString3": 500,
   }
-  inputClient.sendPrivateCommand(record).then((err) => {
-  }).catch(err => {
-    if (err !== undefined) {
-      let error = err as BusinessError;
-      this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
-    }
+  inputClient.sendPrivateCommand(record).then(() => {
+  }).catch((err: BusinessError) => {
+    console.error(`sendPrivateCommand catch error: ${JSON.stringify(err)}`);
   });
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+  console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -658,15 +657,15 @@ import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
-    this.addLog(`private command key: ${key}, value: ${record[key]}`);
+    console.log(`private command key: ${key}, value: ${record[key]}`);
   }
 }
 try {
-  this.addLog(`regist private command `);
+  console.log(`regist private command `);
   inputMethodEngine.getInputMethodAbility().on('privateCommand', privateCommandCallback);
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`regist private command error: ${error.code} ${error.message}`);
+  console.error(`regist private command error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -701,15 +700,15 @@ import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
-    this.addLog(`private command key: ${key}, value: ${record[key]}`);
+    console.log(`private command key: ${key}, value: ${record[key]}`);
   }
 }
 try {
-  this.addLog(`regist private command `);
+  console.log(`regist private command `);
   inputMethodEngine.getInputMethodAbility().off('privateCommand', privateCommandCallback);
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`regist private command error: ${error.code} ${error.message}`);
+  console.error(`regist private command error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -758,7 +757,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 | ------- | ----------- | ---- | ------------------------ |
 | ctx     | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
 | info    | [PanelInfo](#panelinfo10)   | 是   | 输入法应用信息。 |
-| callback | AsyncCallback\<[Panel](#panel10)> | 否   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
+| callback | AsyncCallback\<[Panel](#panel10)> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
 **错误码：**
 
@@ -847,7 +846,7 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
 | panel     | [Panel](#panel10) | 是   | 要销毁的面板对象。 |
-| callback | AsyncCallback\<void> | 否   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
 
@@ -1042,7 +1041,7 @@ on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 设置监听类型，固定取值为'keyEvent'。 |
-| callback | function | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。|
+| callback | function | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。|
 
 **示例：**
 
@@ -1327,7 +1326,7 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 具体页面的路径。 |
-| callback | AsyncCallback\<void> | 否   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **错误码：**
 
@@ -1508,7 +1507,7 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 | -------- | ---------------------- | ---- | -------- |
 | width | number | 是   | 目标面板的宽度，单位为px。|
 | height | number | 是   | 目标面板的高度，单位为px。|
-| callback | AsyncCallback\<void> | 否   | 回调函数。当面板大小改变成功，err为undefined，否则err为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当面板大小改变成功，err为undefined，否则err为错误对象。 |
 
 **错误码：**
 
@@ -1892,7 +1891,7 @@ on(type: 'sizeChange', callback: Callback&lt;window.Size&gt;): void;
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | type | string | 是 | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
-| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
+| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> |  是  | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
 
 **示例：**
 
@@ -2321,7 +2320,7 @@ keyboardController.exitCurrentInputType().then(() => {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | start  | number | 是 | 是 | 选中文本的首字符在编辑框的索引值。|
 | end  | number | 是 | 是 | 选中文本的末字符在编辑框的索引值。|
@@ -2332,7 +2331,7 @@ keyboardController.exitCurrentInputType().then(() => {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | direction  | [Direction](#direction10) | 是 | 是 | 选中文本时，光标的移动方向。|
 
@@ -2353,7 +2352,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | action | number | 是 | 功能键键值。<br/>- 当值为0时，表示无效按键。<br/>- 当值为1时，表示确认键（即回车键）。 |
-| callback | AsyncCallback&lt;boolean&gt; | 否 | 回调函数。当功能键发送成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当功能键发送成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
 
@@ -2450,7 +2449,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。不能小于0。 |
-| callback | AsyncCallback&lt;string&gt; | 否 | 回调函数。当光标前固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标前固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。 |
 
 **错误码：**
 
@@ -2583,7 +2582,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。不能小于0。 |
-| callback | AsyncCallback&lt;string&gt; | 否 | 回调函数。当光标后固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。|
+| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标后固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。|
 
 **错误码：**
 
@@ -2716,7 +2715,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。不能小于0。 |
-| callback | AsyncCallback&lt;boolean&gt; | 否 | 回调函数。当光标前固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当光标前固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
 
@@ -2851,7 +2850,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名   | 类型                         | 必填 | 说明           |
 | -------- | ---------------------------- | ---- | -------------- |
 | length   | number                       | 是   | 文本长度。不能小于0。     |
-| callback | AsyncCallback&lt;boolean&gt; | 否   | 回调函数。当光标后固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当光标后固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
 
@@ -2982,7 +2981,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | text | string | 是 | 文本内容。 |
-| callback | AsyncCallback&lt;boolean&gt; | 否 | 回调函数。当文本插入成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当文本插入成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
 
@@ -3219,7 +3218,7 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 | 参数名    | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------- |
 | direction | number                    | 是   | 光标移动方向。<br/>- 当值为1时，表示向上。<br/>- 当值为2时，表示向下。<br/>- 当值为3时，表示向左。<br/>- 当值为4时，表示向右。不能小于0。 |
-| callback  | AsyncCallback&lt;void&gt; | 否   | 回调函数。当光标移动成功，err为undefined，否则为错误对象。    |
+| callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当光标移动成功，err为undefined，否则为错误对象。    |
 
 **错误码：**
 
@@ -3340,7 +3339,7 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | range    | [Range](#range10) | 是   | 选中文本的范围。                                             |
-| callback | AsyncCallback&lt;void&gt;                                 | 否   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt;                                 | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -3464,7 +3463,7 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型  | 必填 | 说明   |
 | -------- | ------ | ---- | ------ |
 | movement | [Movement](#movement10)   | 是   | 选中时光标移动的方向。  |
-| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -3698,7 +3697,7 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | action | [ExtendAction](#extendaction10) | 是   | 要发送的扩展操作。 |
-| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。发送成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。发送成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -3826,16 +3825,16 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textIn
       "valueString2": true,
       "valueString3": 500,
     }
-    textInputClient.sendPrivateCommand(record).then((err) => {
+    textInputClient.sendPrivateCommand(record).then(() => {
     }).catch(err => {
       if (err !== undefined) {
         let error = err as BusinessError;
-        this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+        console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
       }
     });
   } catch (err) {
     let error = err as BusinessError;
-    this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+    console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
   }
 })
 ```
@@ -4051,11 +4050,11 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称         | 类型 | 可读 | 可写 | 说明               |
+| 名称         | 类型 | 只读 | 可选 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
 | enterKeyType | number   | 是   | 否   | 编辑框的功能属性。 |
 | inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
-| isTextPreviewSupported | boolean | 是 | 是 | 编辑框是否支持预上屏。 |
+| isTextPreviewSupported<sup>12+</sup> | boolean | 否 | 否 | 编辑框是否支持预上屏。 |
 
 ## KeyEvent
 
@@ -4063,7 +4062,7 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称      | 类型 | 可读 | 可写 | 说明         |
+| 名称      | 类型 | 只读 | 可选 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
 | keyCode   | number   | 是   | 否   | 按键的键值。键码值说明参考[KeyCode](../apis-input-kit/js-apis-keycode.md#keycode)。 |
 | keyAction | number   | 是   | 否   | 按键事件类型。<br/>- 当值为2时，表示按下事件；<br/>- 当值为3时，表示抬起事件。 |
@@ -4096,7 +4095,7 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称      | 类型 | 可读 | 可写 | 说明         |
+| 名称      | 类型 | 只读 | 可选 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
 | type   	| number   | 是   | 是   | 面板的类型。 |
 | flag	    | number   | 是   | 是   | 面板的状态类型。 |
@@ -4107,7 +4106,7 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称         | 类型 | 可读 | 可写 | 说明               |
+| 名称         | 类型 | 只读 | 可选 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
 | landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 是   | 是   | 横屏状态时输入法面板窗口的位置大小。 |
 | portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 是   | 是   | 竖屏状态时输入法面板窗口的位置大小。 |
@@ -4118,7 +4117,7 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称   | 类型                                                         | 可读 | 可写 | 说明           |
+| 名称   | 类型                                                         | 只读 | 可选 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
 | rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 是   | 是   | 窗口矩形区域。 |
 | status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 是   | 是   | 窗口模式类型。 |

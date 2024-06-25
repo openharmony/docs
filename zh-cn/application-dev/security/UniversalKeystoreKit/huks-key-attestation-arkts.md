@@ -120,15 +120,15 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
       .then((data) => {
         console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {
-          console.error(`promise: generateKeyItem failed` + error);
+          console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
         }
       });
   } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid` + error);
+    console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
   }
 }
 /* 4.证明密钥 */
@@ -159,15 +159,15 @@ async function publicAttestKey(keyAlias: string, huksOptions: huks.HuksOptions) 
           attestCertChain = data.certChains as string[];
         }
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {
-          console.error(`promise: attestKeyItem failed` + error);
+          console.error(`promise: attestKeyItem failed, ${JSON.stringify(error)}`);
         }
       });
   } catch (error) {
-    console.error(`promise: attestKeyItem input arg invalid` + error);
+    console.error(`promise: attestKeyItem input arg invalid, ${JSON.stringify(error)}`);
   }
 }
 async function AttestKeyTest() {

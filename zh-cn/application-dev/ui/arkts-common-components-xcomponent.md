@@ -1,7 +1,7 @@
-# 自定义绘制 (XComponent)
+# 自定义渲染 (XComponent)
 
 
-[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件作为一种绘制组件，通常用于满足开发者较为复杂的自定义绘制需求，例如相机预览流的显示和游戏画面的绘制。
+[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件作为一种渲染组件，通常用于满足开发者较为复杂的自定义渲染需求，例如相机预览流的显示和游戏画面的渲染。
 
 
 其可通过指定其type字段来实现不同的功能，主要有两个“surface”和“component”字段可供选择。
@@ -108,7 +108,7 @@ extern "C" __attribute__((constructor)) void RegisterModule(void)
 
 ### 解析XComponent组件的NativeXComponent实例
 
-NativeXComponent为XComponent提供了在native层的实例，可作为js层和native层XComponent绑定的桥梁。XComponent所提供的的NDK接口都依赖于该实例。具体NDK接口可参考[Native XComponent](../reference/apis-arkui/_o_h___native_x_component.md)。
+NativeXComponent为XComponent提供了在native层的实例，可作为js层和native层XComponent绑定的桥梁。XComponent所提供的NDK接口都依赖于该实例。具体NDK接口可参考[Native XComponent](../reference/apis-arkui/_o_h___native_x_component.md)。
 
 
 可以在模块被加载时的回调内（即[Napi模块注册](#napi模块注册)中的Init函数）解析获得NativeXComponent实例

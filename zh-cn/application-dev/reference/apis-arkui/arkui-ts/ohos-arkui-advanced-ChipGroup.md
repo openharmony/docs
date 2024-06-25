@@ -54,11 +54,11 @@ ChipGroupItemOptions定义每个chip的非共通属性。
 | 名称         | 类型                           | 必填 | 描述                                |
 | ----------   | ----------------------------- | ---- | ----------------------------------- |
 | prefixIcon   | [IconOptions](#iconoptions)   | 否   | 前缀Image图标属性。                   |
-| prefixSymbol | [SymbolOptions](ohos-arkui-advanced-Chip.md#symboloptions) | 否   | 前缀SymbolGlyph图标属性。             |
+| prefixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | 否   | 前缀SymbolGlyph图标属性。             |
 | label        | [LabelOptions](#labeloptions) | 是   | 文本属性。                            |
 | suffixIcon   | [IconOptions](#iconoptions) | 否   | 后缀Image图标属性。                   |
-| suffixSymbol | [SymbolOptions](ohos-arkui-advanced-Chip.md#symboloptions) | 否   | 后缀SymbolGlyph图标属性。             |
-| allowClose   | boolean                       | 否   | 删除图标是否显示。<br/>默认值：true。  |
+| suffixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | 否   | 后缀SymbolGlyph图标属性。             |
+| allowClose   | boolean                       | 否   | 删除图标是否显示。<br/>默认值：false。  |
 
 >**说明：**
 >
@@ -78,7 +78,7 @@ ChipItemStyle定义了chip的共通属性。
 
 > **说明：**
 >
-> 1.操作块的大小可以是两种类型，一种是ChipSize，为方便使用，有两种尺寸可选分别是NORMAL和SMALL；另一种是SizeOptions，操作块有最小宽度限制，当用户设置宽度小于最小宽度时，按最小宽度显示。
+> 1.操作块的大小可以是两种类型，一种是ChipSize，为方便使用，有两种尺寸可选分别是NORMAL和SMALL；另一种是SizeOptions。
 >
 > 2.backgroundColor、selectedBackgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
 
@@ -88,9 +88,9 @@ ChipGroupSpaceOptions 定义了chipGroup左右内边距，以及chip与chip直�
 
 | 名称       | 类型            | 必填 | 描述                                               |
 | ---------- | -------------- | ---- | ------------------------------------------------ |
-| itemSpace | string\|number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>默认值：8<br/>为undefined时，itemSpace走默认值。                |
-| startSpace | Length         | 否   | 左侧内边距（不支持百分比）。<br/>默认值：16<br/>为undefined时，startSpace走默认值。                          |
-| endSpace   | Length         | 否   | 右侧内边距（不支持百分比）。<br/>默认值：16<br/>为undefined时，endSpace走默认值。   |
+| itemSpace | string\|number  | 否   | chip与chip之间的间距（不支持百分比）。<br/>默认值：8<br/>单位：vp<br/>为undefined时，itemSpace走默认值。      |
+| startSpace | Length         | 否   | 左侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，startSpace走默认值。                |
+| endSpace   | Length         | 否   | 右侧内边距（不支持百分比）。<br/>默认值：16<br/>单位：vp<br/>为undefined时，endSpace走默认值。 |
 
 ## ChipGroupPaddingOptions
 
@@ -112,6 +112,11 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 | 名称     | 类型                    | 必填 | 描述                                                                |
 | -------- | ---------------------- | ---- | ----------------------------------------------|
 | items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 自定义builder items。|
+
+> **说明：**
+>
+> 传参SymbolGlyphModifier时，不支持通过symbolEffect修改动效类型和effectStrategy设置动效。
+>
 
 ## IconItemOptions
 
@@ -144,9 +149,8 @@ Label定义图标的共通属性。
 ### 示例1-无suffix
 
 ```typescript
-
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip'
-import { ChipGroup,IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
+import { ChipSize } from '@ohos.arkui.advanced.Chip'
+import { ChipGroup } from '@ohos.arkui.advanced.ChipGroup';
 
 @Entry
 @Preview
@@ -207,7 +211,6 @@ struct Index {
     }
   }
 }
-
 ```
 
 ![](figures/chipGroupDemo1.jpeg)
@@ -215,7 +218,7 @@ struct Index {
 ### 示例2-有suffix
 
 ```typescript
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip'
+import { ChipSize } from '@ohos.arkui.advanced.Chip'
 import { ChipGroup,IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
 
 @Entry
@@ -299,7 +302,6 @@ struct Index {
     }
   }
 }
-
 ```
 
 ![](figures/chipGroupDemo2.jpeg)

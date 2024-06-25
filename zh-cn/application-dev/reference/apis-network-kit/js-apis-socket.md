@@ -576,9 +576,6 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 取消订阅UDPSocket连接的接收消息事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -648,9 +645,6 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
 取消订阅UDPSocket连接的数据包消息事件或关闭事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -715,9 +709,6 @@ udp.on('error', (err: BusinessError) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅UDPSocket连接的error事件。使用callback方式作为异步方法。
-
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -812,7 +803,7 @@ Socket的连接信息。
 | 名称  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | address | string | 是   | 本地绑定的ip地址。                                           |
-| family  | string | 是   | 网络协议类型，可选类型：<br />- IPv4<br />- IPv6<br />默认为IPv4。 |
+| family  | 'IPv4' \| 'IPv6' | 是   | 网络协议类型，可选类型：<br />- IPv4<br />- IPv6<br />默认为IPv4。 |
 | port    | number | 是   | 端口号，范围0~65535。                                        |
 | size    | number | 是   | 服务器响应信息的字节长度。                                   |
 
@@ -2445,9 +2436,6 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 取消订阅TCPSocket连接的接收消息事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -2517,9 +2505,6 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 取消订阅TCPSocket的连接事件或关闭事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -2585,9 +2570,6 @@ off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅TCPSocket连接的error事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -2646,7 +2628,7 @@ TCPSocket连接的其他属性。
 | keepAlive         | boolean | 否   | 是否保持连接。默认为false。                                  |
 | OOBInline         | boolean | 否   | 是否为OOB内联。默认为false。                                 |
 | TCPNoDelay        | boolean | 否   | TCPSocket连接是否无时延。默认为false。                       |
-| socketLinger      | Object  | 是   | socket是否继续逗留。<br />- on：是否逗留（true：逗留；false：不逗留）。<br />- linger：逗留时长，单位毫秒（ms），取值范围为0~65535。<br />当入参on设置为true时，才需要设置。 |
+| socketLinger      | \{on:boolean, linger:number\}  | 否   | socket是否继续逗留。<br />- on：是否逗留（true：逗留；false：不逗留）。<br />- linger：逗留时长，单位毫秒（ms），取值范围为0~65535。<br />当入参on设置为true时，才需要设置。 |
 | receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte），默认为0。                               |
 | sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte），默认为0。                               |
 | reuseAddress      | boolean | 否   | 是否重用地址。默认为false。                                  |
@@ -3075,9 +3057,6 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 
 取消订阅TCPSocketServer的连接事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -3149,9 +3128,6 @@ tcpServer.on('error', (err: BusinessError) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅TCPSocketServer连接的error事件。使用callback方式作为异步方法。
-
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -3517,9 +3493,6 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 取消订阅TCPSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -3602,9 +3575,6 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 取消订阅TCPSocketConnection的关闭事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -3677,9 +3647,6 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅TCPSocketConnection连接的error事件。使用callback方式作为异步方法。
-
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4177,9 +4144,6 @@ off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 取消订阅LocalSocket连接的接收消息事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -4289,9 +4253,6 @@ on(type: 'close', callback: Callback\<void\>): void;
 
 订阅LocalSocket的关闭事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -4324,9 +4285,6 @@ client.on('close', callback);
 off(type: 'close', callback?: Callback\<void\>): void;
 
 订阅LocalSocket的关闭事件。使用callback方式作为异步方法。
-
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4396,9 +4354,6 @@ off(type: 'error', callback?: ErrorCallback): void;
 
 取消订阅LocalSocket连接的error事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -4459,7 +4414,7 @@ LocalSocket客户端在连接服务端时传入的参数信息。
 
 | 名称     | 类型       | 必填 | 说明                            |
 | ------- | ---------- | --- | ------------------------------ |
-| address | string     | 是   | 指定的本地套接字路径。            |
+| address | [LocalAddress](#localaddress11)    | 是   | 指定的本地套接字路径。            |
 | timeout | number     | 否   | 连接服务端的超时时间，单位为毫秒。  |
 
 ## LocalSendOptions<sup>11+</sup>
@@ -4746,9 +4701,6 @@ off(type: 'connect', callback?: Callback\<LocalSocketConnection\>): void
 
 取消订阅LocalSocketServer的连接事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -4821,9 +4773,6 @@ server.on('error', (err: Object) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅LocalSocketServer连接的error事件。使用callback方式作为异步方法。
-
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -5010,9 +4959,6 @@ off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 取消订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -5091,9 +5037,6 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 取消订阅LocalSocketConnection的关闭事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -5165,9 +5108,6 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅LocalSocketConnection连接的error事件。使用callback方式作为异步方法。
-
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -5594,9 +5534,6 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 取消订阅TLSSocket连接的接收消息事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -5676,9 +5613,6 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 取消订阅TLSSocket的连接事件或关闭事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -5754,9 +5688,6 @@ tls.on('error', (err: BusinessError) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅TLSSocket连接的error事件。使用callback方式作为异步方法。
-
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -8493,9 +8424,6 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 取消订阅TLSSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -8627,9 +8555,6 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 取消订阅TLSSocketConnection的关闭事件。使用callback方式作为异步方法。
 
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -8753,9 +8678,6 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅TLSSocketConnection连接的error事件。使用callback方式作为异步方法。
-
-> **说明：**
-> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 

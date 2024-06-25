@@ -9,8 +9,7 @@
 ## 导入模块
 
 ```ts
-import {image} from '@kit.ImageKit';
-import {sendableImage} from '@kit.ImageKit';
+import { sendableImage } from '@kit.ImageKit';
 ```
 
 ## sendableImage.createPixelMap
@@ -37,6 +36,7 @@ createPixelMap(colors: ArrayBuffer, options: image.InitializationOptions): Promi
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -89,7 +89,8 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 **示例：**
 
 ```ts
-import sendableImage from '@ohos.multimedia.sendableImage';
+import { sendableImage }from '@ohos.multimedia.sendableImage';
+import { image } from '@kit.ImageKit';
 import rpc from '@ohos.rpc';
 import { BusinessError } from '@ohos.base';
 
@@ -178,6 +179,7 @@ createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<Pix
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo(surfaceId: string) {
@@ -221,6 +223,7 @@ createPixelMapSync(colors: ArrayBuffer, options: image.InitializationOptions): P
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -261,6 +264,7 @@ convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -302,13 +306,14 @@ convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     let sendablePixelMap : sendableImage.PixelMap = sendableImage.createPixelMapSync(color, opts);
-    let pixelMap : image.PixelMap = sendableImage.convertToPixelmap(sendablePixelMap);
+    let pixelMap : image.PixelMap = sendableImage.convertToPixelMap(sendablePixelMap);
     return pixelMap;
 }
 ```
@@ -327,7 +332,7 @@ sendableImage下的PixelMap支持sendable属性，支持worker线程共享。sen
 
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 <br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isStrideAlignment | boolean | 是   | 否   | 设定图像内存是否为DMA内存，DMA内存的PixelMap会做256字节内存对齐，行末会存在padding区域。 |
 
 ### readPixelsToBuffer
@@ -336,7 +341,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -375,7 +380,7 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 以同步方法读取PixelMap到Buffer里。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -413,7 +418,7 @@ readPixels(area: image.PositionArea): Promise\<void>
 
 读取区域内的图片数据，使用Promise形式返回。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -432,6 +437,7 @@ readPixels(area: image.PositionArea): Promise\<void>
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -457,7 +463,7 @@ readPixelsSync(area: image.PositionArea): void
 
 读取区域内的图片数据并同步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -479,6 +485,7 @@ readPixelsSync(area: image.PositionArea): void
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -500,7 +507,7 @@ writePixels(area: image.PositionArea): Promise\<void>
 
 将PixelMap写入指定区域内，使用Promise形式返回写入结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -519,6 +526,7 @@ writePixels(area: image.PositionArea): Promise\<void>
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -548,7 +556,7 @@ writePixelsSync(area: image.PositionArea): void
 
 以同步方法将PixelMap写入指定区域内。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -570,6 +578,7 @@ writePixelsSync(area: image.PositionArea): void
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -595,7 +604,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 读取缓冲区中的图片数据，结果写入PixelMap中，使用Promise形式返回。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -638,7 +647,7 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 
 读取缓冲区中的图片数据，结果写入PixelMap并同步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -680,7 +689,7 @@ getImageInfo(): Promise\<image.ImageInfo>
 
 获取图像像素信息，使用Promise形式返回获取的图像像素信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -693,6 +702,7 @@ getImageInfo(): Promise\<image.ImageInfo>
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -714,7 +724,7 @@ getImageInfoSync(): image.ImageInfo
 
 以同步方法获取图像像素信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -735,6 +745,7 @@ getImageInfoSync(): image.ImageInfo
 **示例：**
  
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -751,7 +762,7 @@ getBytesNumberPerRow(): number
 
 获取图像像素每行字节数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -773,7 +784,7 @@ getPixelBytesNumber(): number
 
 获取图像像素的总字节数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -795,7 +806,7 @@ getDensity():number
 
 获取当前图像像素的密度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -817,7 +828,7 @@ opacity(rate: number): Promise\<void>
 
 通过设置透明比率来让PixelMap达到对应的透明效果，使用Promise形式返回。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -842,7 +853,7 @@ async function Demo() {
     let rate: number = 0.5;
     if (pixelMap != undefined) {
         pixelMap.opacity(rate).then(() => {
-            console.info('Sucessed in setting opacity.');
+            console.info('Succeeded in setting opacity.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
         })
@@ -856,7 +867,7 @@ opacitySync(rate: number): void
 
 设置PixelMap的透明比率，初始化PixelMap。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -894,7 +905,7 @@ createAlphaPixelmap(): Promise\<PixelMap>
 
 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果，使用Promise形式返回。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -926,7 +937,7 @@ createAlphaPixelmapSync(): PixelMap
 
 根据Alpha通道的信息，生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果，同步返回PixelMap类型的结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -951,8 +962,8 @@ createAlphaPixelmapSync(): PixelMap
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
-    return pixelmap;
+    let pixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
+    return pixelMap;
 }
 ```
 
@@ -962,7 +973,7 @@ scale(x: number, y: number): Promise\<void>
 
 根据输入的宽高对图片进行缩放，使用Promise形式返回。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -989,7 +1000,7 @@ async function Demo() {
     let scaleY: number = 1.0;
     if (pixelMap != undefined) {
         pixelMap.scale(scaleX, scaleY).then(() => {
-            console.info('Sucessed in scaling pixelmap.');
+            console.info('Succeeded in scaling pixelmap.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
             
@@ -1004,7 +1015,7 @@ scaleSync(x: number, y: number): void
 
 以同步方法根据输入的宽高对图片进行缩放。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1044,7 +1055,7 @@ translate(x: number, y: number): Promise\<void>
 
 根据输入的坐标对图片进行位置变换，使用Promise形式返回。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1071,7 +1082,7 @@ async function Demo() {
     let translateY: number = 10.0;
     if (pixelMap != undefined) {
         pixelMap.translate(translateX, translateY).then(() => {
-            console.info('Sucessed in translating pixelmap.');
+            console.info('Succeeded in translating pixelmap.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
         })
@@ -1085,7 +1096,7 @@ translateSync(x: number, y: number): void
 
 根据输入的坐标对图片进行位置变换并同步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1125,7 +1136,7 @@ rotate(angle: number): Promise\<void>
 
 根据输入的角度对图片进行旋转，使用Promise形式返回。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1150,7 +1161,7 @@ async function Demo() {
     let angle: number = 90.0;
     if (pixelMap != undefined) {
         pixelMap.rotate(angle).then(() => {
-            console.info('Sucessed in rotating pixelmap.');
+            console.info('Succeeded in rotating pixelmap.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`); 
         })
@@ -1164,7 +1175,7 @@ rotateSync(angle: number): void
 
 根据输入的角度对图片进行旋转并同步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1202,7 +1213,7 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 根据输入的条件对图片进行翻转，使用Promise形式返回。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1229,7 +1240,7 @@ async function Demo() {
     let vertical: boolean = false;
     if (pixelMap != undefined) {
         pixelMap.flip(horizontal, vertical).then(() => {
-            console.info('Sucessed in flipping pixelmap.');
+            console.info('Succeeded in flipping pixelmap.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
             
@@ -1244,7 +1255,7 @@ flipSync(horizontal: boolean, vertical: boolean): void
 
 根据输入的条件对图片进行翻转并同步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1284,7 +1295,7 @@ crop(region: image.Region): Promise\<void>
 
 根据输入的尺寸对图片进行裁剪，使用Promise形式返回。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1303,6 +1314,7 @@ crop(region: image.Region): Promise\<void>
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -1324,7 +1336,7 @@ cropSync(region: image.Region): void
 
 根据输入的尺寸裁剪图片。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1346,6 +1358,7 @@ cropSync(region: image.Region): void
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -1499,7 +1512,8 @@ marshalling(sequence: rpc.MessageSequence): void
 
 **示例：**
 ```ts
-import sendableImage from '@ohos.multimedia.sendableImage';
+import { sendableImage } from '@ohos.multimedia.sendableImage';
+import { image } from '@kit.ImageKit';
 import rpc from '@ohos.rpc';
 
 class MySequence implements rpc.Parcelable {
@@ -1588,6 +1602,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 ```ts
 import sendableImage from '@ohos.multimedia.sendableImage';
+import { image } from '@kit.ImageKit';
 import rpc from '@ohos.rpc';
 
 class MySequence implements rpc.Parcelable {
@@ -1647,7 +1662,7 @@ release():Promise\<void>
 
 释放PixelMap对象，使用Promise形式返回释放结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1680,7 +1695,7 @@ async function Demo() {
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1696,7 +1711,7 @@ async function Demo() {
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1713,7 +1728,7 @@ createImageSource(uri: string): ImageSource
 通过传入的uri创建图片源实例。
 
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1743,7 +1758,7 @@ createImageSource(fd: number): ImageSource
 
 通过传入文件描述符来创建图片源实例。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1778,7 +1793,7 @@ createImageSource(buf: ArrayBuffer): ImageSource
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1855,7 +1870,7 @@ createPixelMap(options?: image.DecodingOptions): Promise\<PixelMap>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 

@@ -10,7 +10,6 @@ You may need to restore a database in any of the following cases:
 - The database is unavailable due to data loss or corruption, or dirty data.
 
 
-
 Both KV stores and RDB stores support database backup and restore. In addition, KV stores allow you to delete database backups to release local storage space.
 
 
@@ -26,10 +25,10 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 
    (3) Create a **kvStore** instance.
 
-   
+     
    ```ts
-   import distributedKVStore from '@ohos.data.distributedKVStore';
-   import { BusinessError } from '@ohos.base';
+   import { distributedKVStore } from '@kit.ArkData';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager;
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
@@ -75,7 +74,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    ```
 
 2. Use **put()** to insert data to the KV store.
-   
+     
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
@@ -94,11 +93,11 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    ```
 
 3. Use **backup()** to back up the KV store.
-   
+     
    ```ts
-   let file = 'BK001';
+   let backupFile = 'BK001';
    try {
-     kvStore.backup(file, (err) => {
+     kvStore.backup(backupFile, (err) => {
        if (err) {
          console.error(`Fail to backup data.code:${err.code},message:${err.message}`);
        } else {
@@ -112,7 +111,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    ```
 
 4. Use **delete()** to delete data to simulate unexpected deletion or data tampering.
-   
+     
    ```ts
    try {
      kvStore.delete(KEY_TEST_STRING_ELEMENT, (err) => {
@@ -129,11 +128,11 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    ```
 
 5. Use **restore()** to restore the KV store.
-   
+     
    ```ts
-   let file = 'BK001';
+   let backupFile = 'BK001';
    try {
-     kvStore.restore(file, (err) => {
+     kvStore.restore(backupFile, (err) => {
        if (err) {
          console.error(`Fail to restore data. Code:${err.code},message:${err.message}`);
        } else {
@@ -147,7 +146,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    ```
 
 6. Use **deleteBackup()** to delete the backup file to release storage space.
-   
+     
    ```ts
    let files = ['BK001'];
    try {
@@ -168,10 +167,10 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 You can use **backup()** to back up an RDB store, and use **restore()** to restore an RDB store. For details about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
 1. Use **getRdbStore()** to create an RDB store.
-   
+     
    ```ts
-   import relationalStore from '@ohos.data.relationalStore';
-   import { BusinessError } from '@ohos.base';
+   import { relationalStore } from '@kit.ArkData';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -194,9 +193,9 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
    ```
 
 2. Use **insert()** to insert data to the RDB store.
-   
+     
    ```ts
-   import { ValuesBucket } from '@ohos.data.ValuesBucket';
+   import { ValuesBucket } from '@kit.ArkData';
 
    let value1 = 'Rose';
    let value2 = 18;
@@ -235,7 +234,7 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
    ```
 
 3. Use **backup()** to back up the RDB store.
-   
+     
    ```ts
    if(store != undefined) {
      (store as relationalStore.RdbStore).backup('dbBackup.db', (err) => {
@@ -249,7 +248,7 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
    ```
 
 4. Use **delete()** to delete data to simulate unexpected deletion or data tampering.
-   
+     
    ```ts
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Lisa');
@@ -263,7 +262,7 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
    ```
 
 5. Use **restore()** to restore the RDB store.
-   
+     
    ```ts
    if(store != undefined) {
      (store as relationalStore.RdbStore).restore('dbBackup.db', (err) => {

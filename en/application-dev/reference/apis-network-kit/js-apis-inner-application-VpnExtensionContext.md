@@ -71,9 +71,3 @@ Represents the callback triggered when the extended VPN is destroyed.
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core.
 
 **Model restriction**: This API can be used only in the stage model.
-
-**Parameters**
-
-| Name| Type                               | Mandatory| Description       |
-| ------ | ----------------------------------- | ---- |-----------|
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information.|

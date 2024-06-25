@@ -17,7 +17,7 @@
 | ------------------------- | ------ | ---- | --------- |
 | appCloneIndex | number | 是  | 分身应用的索引。 |
 | uid | number | 是   | 表示应用程序的UID。 |
-| pids | Array<number> | 是  | 应用的进程ID集合。 |
+| pids | Array\<number> | 是  | 应用的进程ID集合。 |
 
 ## 使用说明
 

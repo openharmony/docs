@@ -20,7 +20,7 @@ onAbilityCreate(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability创建时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -40,7 +40,7 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在windowStage创建时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -61,7 +61,7 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在windowStage获焦时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -82,7 +82,7 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在windowStage失焦时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -103,7 +103,7 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void
 
 注册监听应用上下文的生命周期后，在windowStage销毁时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -124,7 +124,7 @@ onAbilityDestroy(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability销毁时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -144,7 +144,7 @@ onAbilityForeground(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability的状态从后台转到前台时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -164,7 +164,7 @@ onAbilityBackground(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability的状态从前台转到后台时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -184,7 +184,153 @@ onAbilityContinue(ability: UIAbility): void
 
 注册监听应用上下文的生命周期后，在ability迁移时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onAbilityWillCreate
+
+onAbilityWillCreate?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的[onCreate](js-apis-app-ability-uiAbility.md#uiabilityoncreate)触发前回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onWindowStageWillCreate
+
+onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): void
+
+注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageCreate](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)触发前回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onWindowStageWillDestroy
+
+onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): void
+
+注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageDestroy](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagedestroy)触发前回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onAbilityWillForeground
+
+onAbilityWillForeground?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的[onForeground](js-apis-app-ability-uiAbility.md#uiabilityonforeground)触发前回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onAbilityWillDestroy
+
+onAbilityWillDestroy?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的[onDestroy](js-apis-app-ability-uiAbility.md#uiabilityondestroy)触发前回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onAbilityWillBackground
+
+onAbilityWillBackground?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的[onBackground](js-apis-app-ability-uiAbility.md#uiabilityonbackground)触发前回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onWillNewWant
+
+onWillNewWant?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的[onNewWant](js-apis-app-ability-uiAbility.md#uiabilityonnewwant)触发前回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onNewWant
+
+onNewWant?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的[onNewWant](js-apis-app-ability-uiAbility.md#uiabilityonnewwant)触发后回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -263,6 +409,30 @@ let abilityLifecycleCallback: AbilityLifecycleCallback = {
   },
   onAbilityContinue(ability){
     console.log('AbilityLifecycleCallback onAbilityContinue.');
+  },
+  onNewWant(ability) {
+    console.log('AbilityLifecycleCallback onNewWant');
+  },
+  onWillNewWant(ability) {
+    console.log('AbilityLifecycleCallback onWillNewWant');
+  },
+  onAbilityWillCreate(ability) {
+    console.log('AbilityLifecycleCallback onAbilityWillCreate');
+  },
+  onWindowStageWillCreate(ability, windowStage) {
+    console.log('AbilityLifecycleCallback onWindowStageWillCreate');
+  },
+  onWindowStageWillDestroy(ability, windowStage) {
+    console.log('AbilityLifecycleCallback onWindowStageWillDestroy');
+  },
+  onAbilityWillDestroy(ability) {
+    console.log('AbilityLifecycleCallback onAbilityWillDestroy');
+  },
+  onAbilityWillForeground(ability) {
+    console.log('AbilityLifecycleCallback onAbilityWillForeground');
+  },
+  onAbilityWillBackground(ability) {
+    console.log('AbilityLifecycleCallback onAbilityWillBackground');
   }
 };
 
@@ -290,19 +460,24 @@ import { UIAbility } from '@kit.AbilityKit';
 
 // 导入GlobalContext，以开发者自己声明的路径为准
 import { GlobalContext } from '../GlobalContext'
+import { BusinessError } from '@ohos.base';
 
 export default class MySecondAbility extends UIAbility {
   onDestroy() {
     let applicationContext = this.context.getApplicationContext();
     let lifecycleId = GlobalContext.getContext().getObject("lifecycleId") as number;
+    try {
     // 3.通过applicationContext注销监听应用内生命周期
-    applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
-      if (error && error.code !== 0) {
-        console.error(`unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}`);
-      } else {
-        console.log('unregisterAbilityLifecycleCallback success.');
-      }
-    });
+      applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
+        if (error && error.code !== 0) {
+          console.error(`unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}`);
+        } else {
+          console.log('unregisterAbilityLifecycleCallback success.');
+        }
+      });
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+    }
   }
 }
 ```

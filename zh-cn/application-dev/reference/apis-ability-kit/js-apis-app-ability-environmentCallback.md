@@ -22,7 +22,7 @@ onConfigurationUpdated(config: Configuration): void
 
 注册系统环境变化的监听后，在系统环境变化时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -42,7 +42,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 注册系统环境变化的监听后，在系统内存变化时触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -62,6 +62,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 ```ts
 import { UIAbility, EnvironmentCallback } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callbackId: number;
 
@@ -79,20 +80,28 @@ export default class MyAbility extends UIAbility {
     };
     // 1.获取applicationContext
     let applicationContext = this.context.getApplicationContext();
-    // 2.通过applicationContext注册监听应用内生命周期
-    callbackId = applicationContext.on('environment', environmentCallback);
+    try {
+      // 2.通过applicationContext注册监听应用内生命周期
+      callbackId = applicationContext.on('environment', environmentCallback);
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+    }
     console.log(`registerEnvironmentCallback number: ${JSON.stringify(callbackId)}`);
   }
 
   onDestroy() {
     let applicationContext = this.context.getApplicationContext();
-    applicationContext.off('environment', callbackId, (error, data) => {
-      if (error && error.code !== 0) {
-        console.error(`unregisterEnvironmentCallback fail, error: ${JSON.stringify(error)}`);
-      } else {
-        console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
-      }
-    });
+    try {
+      applicationContext.off('environment', callbackId, (error, data) => {
+        if (error && error.code !== 0) {
+          console.error(`unregisterEnvironmentCallback fail, error: ${JSON.stringify(error)}`);
+        } else {
+          console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
+        }
+      });
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+    }
   }
 }
 ```

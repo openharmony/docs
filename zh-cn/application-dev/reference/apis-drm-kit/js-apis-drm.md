@@ -13,7 +13,7 @@ DRM（Digital Rights Management）框架组件支持音视频媒体业务数字�
 ## 导入模块
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 ```
 
 ## DrmErrorCode
@@ -86,7 +86,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，请求类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -103,7 +103,7 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，内容保护级别。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -130,7 +130,7 @@ import drm from '@ohos.multimedia.drm';
 
 设备证书请求的操作数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -143,7 +143,7 @@ import drm from '@ohos.multimedia.drm';
 
 许可证请求。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -157,7 +157,7 @@ import drm from '@ohos.multimedia.drm';
 
 事件类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -181,7 +181,7 @@ import drm from '@ohos.multimedia.drm';
 
 许可证状态
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -194,7 +194,7 @@ import drm from '@ohos.multimedia.drm';
 
 许可证信息
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -207,7 +207,7 @@ import drm from '@ohos.multimedia.drm';
 
 指示媒体源的drm信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -256,15 +256,15 @@ createMediaKeySystem(name: string): MediaKeySystem
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.               |
 | 24700101                |  All unknown errors                  |
 | 24700103                |  Meet max MediaKeySystem num limit                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
-  let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+  let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`createMediaKeySystem ERROR: ${error}`);  
@@ -289,7 +289,7 @@ isMediaKeySystemSupported(name: string): boolean
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | 返回设备是否支持指定DRM类型的DRM方案。                   |
+| boolean          | 返回设备是否支持指定DRM类型的DRM方案。                   |
 
 **错误码：**
 
@@ -299,21 +299,21 @@ isMediaKeySystemSupported(name: string): boolean
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.               |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm");
+  let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm");
+  console.log("isMediaKeySystemSupported: ", supported);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`isMediaKeySystemSupported ERROR: ${error}`);  
+  console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
-
 ```
 
 ## drm.isMediaKeySystemSupported
@@ -335,7 +335,7 @@ isMediaKeySystemSupported(name: string, mimeType: string): boolean
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | 返回设备是否支持指定DRM类型、媒体类型的DRM方案。                   |
+| boolean          | 返回设备是否支持指定DRM类型、媒体类型的DRM方案。                   |
 
 **错误码：**
 
@@ -345,16 +345,17 @@ isMediaKeySystemSupported(name: string, mimeType: string): boolean
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.                |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4");
+  let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4");
+  console.log("isMediaKeySystemSupported: ", supported);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`isMediaKeySystemSupported ERROR: ${error}`);
@@ -381,7 +382,7 @@ isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtecti
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | 返回设备是否支持指定DRM类型、媒体类型和内容保护级别的DRM方案。                   |
+| boolean          | 返回设备是否支持指定DRM类型、媒体类型和内容保护级别的DRM方案。                   |
 
 **错误码：**
 
@@ -391,26 +392,26 @@ isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtecti
 | --------------- | --------------- |
 | 401                |  The parameter check failed.  Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed, the param name's length is zero or too big(exceeds 4096 Bytes)               |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let Supported = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+  let supported: boolean = drm.isMediaKeySystemSupported("com.clearplay.drm", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+  console.log("isMediaKeySystemSupported: ", supported);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
-
 ```
 
 ## drm.getMediaKeySystemUuid<sup>12+</sup>
 
-getMediaKeySystemUuid(): string
+getMediaKeySystemUuid(name: string): string;
 
 获取设备支持的DRM插件的名称和uuid。
 
@@ -434,17 +435,18 @@ getMediaKeySystemUuid(): string
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed                |
+| 401                |  The parameter check failed.Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.                |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
-  let uuid: string = drm.getMediaKeySystemUuid();
+  let uuid: String = drm.getMediaKeySystemUuid("com.clearplay.drm");
+  console.log("getMediaKeySystemUuid: ", uuid);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getMediaKeySystemUuid ERROR: ${error}`);  
@@ -459,13 +461,6 @@ getMediaKeySystems(): MediaKeySystemDescription[]
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
-**参数：**
-
-| 参数名     | 类型                                             | 必填 | 说明                           |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | 是   | 插件名称。                   |
-| uuid  | string     | 是   | 插件唯一识别码。                   |
-
 **返回值：**
 
 | 类型                                             | 说明                           |
@@ -479,13 +474,13 @@ getMediaKeySystems(): MediaKeySystemDescription[]
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let description: drm.MediaKeySystemDescription[] = drm.getMediaKeySystems();
 } catch (err) {
@@ -520,22 +515,21 @@ setConfigurationString(configName: string, value: string): void
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  mediaKeysystem.setConfigurationString("configName", "configValue");
+  mediaKeySystem.setConfigurationString("configName", "configValue");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`setConfigurationString ERROR: ${error}`);
 }
-
 ```
 
 ### getConfigurationString
@@ -566,22 +560,21 @@ getConfigurationString(configName: string): string
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed, the param's length is zero or too big(exceeds 4096 Bytes).                              |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let configValue: string = mediaKeysystem.getConfigurationString("configName");
+  let configValue: string = mediaKeySystem.getConfigurationString("configName");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationString ERROR: ${error}`);  
 }
-
 ```
 
 ### setConfigurationByteArray
@@ -607,23 +600,22 @@ setConfigurationByteArray(configName: string, value: Uint8Array): void
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.               |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let configValue = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 try {
-  mediaKeysystem.setConfigurationByteArray("configName", configValue);
+  mediaKeySystem.setConfigurationByteArray("configName", configValue);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`setConfigurationByteArray ERROR: ${error}`);  
 }
-
 ```
 
 ### getConfigurationByteArray
@@ -654,22 +646,21 @@ getConfigurationByteArray(configName: string): Uint8Array
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.        |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let configValue: Uint8Array = mediaKeysystem.getConfigurationByteArray("configName");
+  let configValue: Uint8Array = mediaKeySystem.getConfigurationByteArray("configName");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationByteArray ERROR: ${error}`);  
 }
-
 ```
 
 ### getStatistics
@@ -693,22 +684,21 @@ getStatistics(): StatisticKeyValue[]
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let statisticKeyValue: drm.StatisticKeyValue[] = mediaKeysystem.getStatistics();
+  let statisticKeyValue: drm.StatisticKeyValue[] = mediaKeySystem.getStatistics();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationByteArray ERROR: ${error}`);
 }
-
 ```
 
 ### getMaxContentProtectionLevel
@@ -732,22 +722,21 @@ getMaxContentProtectionLevel(): ContentProtectionLevel
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let maxLevel: drm.ContentProtectionLevel = mediaKeysystem.getMaxContentProtectionLevel();
+  let maxLevel: drm.ContentProtectionLevel = mediaKeySystem.getMaxContentProtectionLevel();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationByteArray ERROR: ${error}`);
 }
-
 ```
 
 ### generateKeySystemRequest
@@ -762,7 +751,7 @@ generateKeySystemRequest(): Promise<ProvisionRequest\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [ProvisionRequest](#provisionrequest)          | 获取mediaKeySystem设备证书的请求。                   |
+| Promise<[ProvisionRequest](#provisionrequest)\>          | Promise对象，返回获取mediaKeySystem设备证书的请求。                   |
 
 **错误码：**
 
@@ -771,16 +760,16 @@ generateKeySystemRequest(): Promise<ProvisionRequest\>
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-mediaKeysystem.generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionRequest) => {
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+mediaKeySystem.generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionRequest) => {
   console.log("generateKeySystemRequest");
 }).catch((err: BusinessError) => {
   console.error(`generateKeySystemRequest: ERROR: ${err}`);
@@ -801,6 +790,12 @@ processKeySystemResponse(response: Uint8Array): Promise<void\>
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
 | response  | Uint8Array     | 是   | 设备证书响应。                   |
 
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| Promise<void\>          | Promise对象。无返回结果的Promise对象。                   |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[DRM错误码](errorcode-drm.md)。
@@ -809,17 +804,17 @@ processKeySystemResponse(response: Uint8Array): Promise<void\>
 | --------------- | --------------- |
 | 401                |  he parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.         |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let keySystemResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-mediaKeysystem.processKeySystemResponse(keySystemResponse).then(() => {
+mediaKeySystem.processKeySystemResponse(keySystemResponse).then(() => {
   console.log("processKeySystemResponse");
 }).catch((err: BusinessError) => {
   console.error(`processKeySystemResponse: ERROR: ${err}`);
@@ -847,22 +842,21 @@ getCertificateStatus():CertificateStatus
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let certificateStatus: drm.CertificateStatus = mediaKeysystem.getCertificateStatus();
+  let certificateStatus: drm.CertificateStatus = mediaKeySystem.getCertificateStatus();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getCertificateStatus ERROR: ${error}`);
 }
-
 ```
 
 ### on('keySystemRequired')
@@ -878,7 +872,7 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keySystemRequired'，MediaKeySystem实例创建成功可监听。设备证书请求时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果，只要有该事件返回就证明需要请求设备证书。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，返回事件信息。只要有该事件返回就证明需请求设备证书。                 |
 
 **错误码：**
 
@@ -892,13 +886,12 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
-    console.log('keySystemRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-  });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+mediaKeySystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
+  console.log('keySystemRequired ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('keySystemRequired')
@@ -914,7 +907,7 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keySystemRequired'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选。                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -928,9 +921,8 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-function unregisterkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
-  mediaKeysystem.off('keySystemRequired');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+mediaKeySystem.off('keySystemRequired');
 ```
 
 ### createMediaKeySession
@@ -962,22 +954,21 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.The param level exceeds reasonable range, please use value in ContentProtectionLevel.          |
 | 24700101                 |  MAll unknown errors                  |
 | 24700104                 |  Meet max MediaKeySession num limit                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+  let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`createMediaKeySession ERROR: ${error}`);
 }
-
 ```
 
 ### createMediaKeySession
@@ -1002,22 +993,21 @@ createMediaKeySession(): MediaKeySession
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
 | 24700104                 |  Meet max MediaKeySession num limit                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+  let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`createMediaKeySession ERROR: ${error}`);
 }
-
 ```
 
 ### getOfflineMediaKeyIds
@@ -1042,22 +1032,21 @@ getOfflineMediaKeyIds(): Uint8Array[]
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let offlineMediaKeyIds: Uint8Array[] = mediaKeysystem.getOfflineMediaKeyIds();
+  let offlineMediaKeyIds: Uint8Array[] = mediaKeySystem.getOfflineMediaKeyIds();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getOfflineMediaKeyIds ERROR: ${error}`);
 }
-
 ```
 
 ### getOfflineMediaKeyStatus
@@ -1088,23 +1077,22 @@ getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.            |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
-  let configValue: drm.OfflineMediaKeyStatus = mediaKeysystem.getOfflineMediaKeyStatus(mediaKeyIdString);
+  let configValue: drm.OfflineMediaKeyStatus = mediaKeySystem.getOfflineMediaKeyStatus(mediaKeyIdString);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getOfflineMediaKeyStatus ERROR: ${error}`);
 }
-
 ```
 
 ### clearOfflineMediaKeys
@@ -1129,23 +1117,22 @@ clearOfflineMediaKeys(mediaKeyId: Uint8Array): void
 | --------------- | --------------- |
 | 401                |  The parameter check failed.Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.           |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeyIdString = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 try {
-  mediaKeysystem.clearOfflineMediaKeys(mediaKeyIdString);
+  mediaKeySystem.clearOfflineMediaKeys(mediaKeyIdString);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`clearOfflineMediaKeys ERROR: ${error}`);
 }
-
 ```
 
 ### destroy
@@ -1163,22 +1150,21 @@ destroy(): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  mediaKeysystem.destroy();
+  mediaKeySystem.destroy();
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`mediaKeysystem destroy ERROR: ${error}`);
+  console.error(`mediaKeySystem destroy ERROR: ${error}`);
 }
-
 ```
 
 ## MediaKeySession
@@ -1190,7 +1176,7 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 
 生成许可证请求。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1201,13 +1187,13 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 | mimeType  | string     | 是   | 媒体类型。                   |
 | initData  | Uint8Array     | 是   | pssh数据（未base64编码）。                   |
 | mediaKeyType| number     | 是   | 许可证类型。                   | 0表示在线，1表示离线 |
-| OptionsData  | [OptionsData[]](#optionsdata)     | 是   | 预留的操作数据。                   |
+| options  | [OptionsData[]](#optionsdata)     | 是   | 预留的操作数据。                   |
 
 **返回值：**
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [MediaKeyRequest](#mediakeyrequest)          | 返回许可证请求。                   |
+| Promise<[MediaKeyRequest](#mediakeyrequest)\>          | Promise对象，返回许可证请求。                   |
 
 **错误码：**
 
@@ -1217,16 +1203,16 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 | --------------- | --------------- |
 | 401                | The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.              |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let optionsData: drm.OptionsData[]  = [
     {name : "optionsDataNameA", value : "optionsDataValueA"},
     {name : "optionsDataNameB", value : "optionsDataValueB"}
@@ -1245,7 +1231,7 @@ processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 
 处理离线许可证响应返回。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1259,7 +1245,7 @@ processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [Uint8Array]          | 返回许可证Id。                   |
+| Promise<Uint8Array\>          | Promise对象，返回许可证Id。                   |
 
 **错误码：**
 
@@ -1269,16 +1255,16 @@ processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.            |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let mediaKeyResponse = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
@@ -1293,7 +1279,7 @@ mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint
 
 检查在线许可证状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1310,23 +1296,22 @@ mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   let keyStatus: drm.MediaKeyStatus[] =  mediaKeySession.checkMediaKeyStatus();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`checkMediaKeyStatus ERROR: ${error}`);
 }
-
 ```
 
 ### clearMediaKeys
@@ -1335,7 +1320,7 @@ clearMediaKeys(): void
 
 删除在线许可证。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1346,23 +1331,22 @@ clearMediaKeys(): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   mediaKeySession.clearMediaKeys();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`clearMediaKeys ERROR: ${error}`);
 }
- 
 ```
 
 ### generateOfflineReleaseRequest
@@ -1371,7 +1355,7 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 
 生成离线许可证释放请求。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1385,7 +1369,7 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [Uint8Array]          | 返回离线许可证释放的请求。                   |
+| Promise<Uint8Array\>          | Promise对象，返回离线许可证释放的请求。                   |
 
 **错误码：**
 
@@ -1395,16 +1379,16 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.         |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let Request = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(Request).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
@@ -1425,7 +1409,7 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 
 处理离线许可证响应。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1436,6 +1420,12 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 | mediaKeyId  | Uint8Array     | 是   | 离线许可证Id。                   |
 | response  | Uint8Array     | 是   | 离线许可证释放响应。                   |
 
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| Promise<void\>          | Promise对象。无返回结果的Promise对象。                   |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[DRM错误码](errorcode-drm.md)。
@@ -1444,16 +1434,16 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.            |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
 mediaKeySession.processMediaKeyResponse(offlineReleaseRequest).then((mediaKeyId: Uint8Array) => {
   console.log('processMediaKeyResponse:' + mediaKeyId);
@@ -1475,7 +1465,7 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void\>
 
 恢复离线许可证。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1485,6 +1475,11 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void\>
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
 | mediaKeyId  | Uint8Array     | 是   | 离线许可证Id。                   |
 
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| Promise<void\>          | Promise对象。无返回结果的Promise对象。                   |
 
 **错误码：**
 
@@ -1494,16 +1489,16 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void\>
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.              |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 let response = new Uint8Array ([0x00,0x00]);
 let mediaKeyId = new Uint8Array ([0x00,0x00]);
 mediaKeySession.processOfflineReleaseResponse(mediaKeyId, response).then(() => {
@@ -1524,7 +1519,7 @@ getContentProtectionLevel(): ContentProtectionLevel
 
 获取当前会话的内容保护级别。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1541,23 +1536,22 @@ getContentProtectionLevel(): ContentProtectionLevel
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   let contentProtectionLevel: drm.ContentProtectionLevel = mediaKeySession.getContentProtectionLevel();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getContentProtectionLevel ERROR: ${error}`);
 }
-
 ```
 
 ### requireSecureDecoderModule
@@ -1566,7 +1560,7 @@ requireSecureDecoderModule(mimeType: string): boolean
 
 获取安全解码模块状态。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1580,7 +1574,7 @@ requireSecureDecoderModule(mimeType: string): boolean
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | 请求安全解码模块状态，true表示安全解码模块就绪，false表示安全解码模块未就绪。                   |
+| boolean          | 请求安全解码模块状态，true表示安全解码模块就绪，false表示安全解码模块未就绪。                   |
 
 **错误码：**
 
@@ -1590,23 +1584,22 @@ requireSecureDecoderModule(mimeType: string): boolean
 | --------------- | --------------- |
 | 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.      |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   let status: boolean = mediaKeySession.requireSecureDecoderModule("mimeType");
 } catch (err) {
   let error = err as BusinessError;
   console.error(`requireSecureDecoderModule ERROR: ${error}`);
-}
-
+} 
 ```
 
 ### on('keyRequired')
@@ -1615,7 +1608,7 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 
 监听密钥请求事件，通过注册回调函数获取结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1624,7 +1617,7 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyRequired'，MediaKeySystem实例创建成功可监听。key请求时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明在进行key请求。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，返回事件信息。只要有该事件返回就证明在进行key请求。                 |
 
 **错误码：**
 
@@ -1638,13 +1631,13 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerKeyRequired(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('keyRequired', (eventInfo: drm.EventInfo) => {
-        console.log('keyRequired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('keyRequired', (eventInfo: drm.EventInfo) => {
+  console.log('keyRequired ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('keyRequired')
@@ -1653,7 +1646,7 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听密钥请求事件，注销密钥请求事件回调函数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1662,7 +1655,7 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyRequired'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -1676,11 +1669,11 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterKeyRequired(mediaKeysession: drm.MediaKeySession): void {
-  mediaKeysession.off('keyRequired');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('keyRequired');
 ```
 
 ### on('keyExpired')
@@ -1689,7 +1682,7 @@ on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 
 监听密钥过期，通过注册回调函数获取结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1698,7 +1691,7 @@ on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyExpired'，MediaKeySystem实例创建成功可监听。密钥过期时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，返回事件信息。只要有该事件返回就证明密钥过期。                 |
 
 **错误码：**
 
@@ -1712,13 +1705,13 @@ on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerKeyExpired(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('keyExpired', (eventInfo: drm.EventInfo) => {
-        console.log('keyExpired' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('keyExpired', (eventInfo: drm.EventInfo) => {
+  console.log('keyExpired ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('keyExpired')
@@ -1727,7 +1720,7 @@ off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听密钥过期事件，注销密钥过期事件回调函数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1736,7 +1729,7 @@ off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyExpired'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -1750,11 +1743,11 @@ off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterKeyExpired(mediaKeysession: drm.MediaKeySession): void {
-  mediaKeysession.off('keyExpired');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('keyExpired');
 ```
 
 ### on('vendorDefined')
@@ -1763,7 +1756,7 @@ on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 
 监听第三方定义事件，通过注册回调函数获取结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1772,7 +1765,7 @@ on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'vendorDefined'，MediaKeySystem实例创建成功可监听。第三方定义事件发生时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，返回事件信息。                 |
 
 **错误码：**
 
@@ -1786,13 +1779,13 @@ on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerVendorDefinedt(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
-        console.log('vendorDefined' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
+  console.log('vendorDefined ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('vendorDefined')
@@ -1801,7 +1794,7 @@ off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听第三方定义事件，注销第三方定义事件回调函数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1810,7 +1803,7 @@ off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'vendorDefined'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -1824,11 +1817,11 @@ off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterVendorDefined(mediaKeysession: drm.MediaKeySession): void {
-  mediaKeysession.off('vendorDefined');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('vendorDefined');
 ```
 
 ### on('expirationUpdate')
@@ -1837,7 +1830,7 @@ on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 
 监听过期更新事件，通过注册回调函数获取结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1846,7 +1839,7 @@ on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'expirationUpdate'，MediaKeySystem实例创建成功可监听。密钥过期更新时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，返回事件信息。只要有该事件返回就密钥有效期已更新。                 |
 
 **错误码：**
 
@@ -1860,13 +1853,13 @@ on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerExpirationUpdate(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
-        console.log('expirationUpdate' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
+  console.log('expirationUpdate ' + 'extra: ' + eventInfo.extraInfo + 'data: ' + eventInfo.info);
+});
 ```
 
 ### off('expirationUpdate')
@@ -1875,7 +1868,7 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听过期更新事件，注销过期更新事件回调函数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1884,7 +1877,7 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'expirationUpdate'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -1898,11 +1891,11 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterExpirationUpdate(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.off('expirationUpdate');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('expirationUpdate');
 ```
 
 ### on('keysChange')
@@ -1911,7 +1904,7 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 
 监听密钥变化事件，通过注册回调函数获取结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1920,7 +1913,7 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keysChange'，MediaKeySystem实例创建成功可监听。密钥变化时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，返回事件信息。只要有该事件返回就证明密钥变化了。                 |
 
 **错误码：**
 
@@ -1934,15 +1927,15 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function registerkeysChange(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('keysChange', (keyInfo: drm.KeysInfo[], newKeyAvailable: boolean) => {
-        for (let i = 0; i < keyInfo.length; i++) {
-            console.log('keysChange' + 'keyId:' + keyInfo[i].keyId + ' data:' + keyInfo[i].value);
-        }
-    });
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.on('keysChange', (keyInfo: drm.KeysInfo[], newKeyAvailable: boolean) => {
+  for (let i = 0; i < keyInfo.length; i++) {
+    console.log('keysChange' + 'keyId:' + keyInfo[i].keyId + ' data:' + keyInfo[i].value);
+  }
+});
 ```
 
 ### off('keysChange')
@@ -1951,7 +1944,7 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 
 注销监听密钥变化事件，注销密钥变化事件回调函数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1960,7 +1953,7 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keysChange'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -1974,11 +1967,11 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
-function unregisterkeyChange(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.off('keysChange');
-}
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
+mediaKeySession.off('keysChange');
 ```
 
 ### destroy
@@ -1987,7 +1980,7 @@ destroy(): void
 
 销毁MediaKeySession运行时申请的资源。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1998,15 +1991,16 @@ destroy(): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
+| 24700201                |  Fatal service error, for example, service died                  |
 
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
-let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
-let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
+import { drm } from '@kit.DrmKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
+let mediaKeySession: drm.MediaKeySession = mediaKeySystem.createMediaKeySession();
 try {
   mediaKeySession.destroy();
 } catch (err) {

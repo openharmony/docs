@@ -12,6 +12,8 @@ background(builder: CustomBuilder, options?: { align?: Alignment })
 
 Sets the background color of the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -31,7 +33,9 @@ backgroundColor(value: ResourceColor)
 
 Sets the background color of the component.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -43,11 +47,13 @@ Sets the background color of the component.
 
 ## backgroundImage
 
-backgroundImage(src: ResourceStr, repeat?: ImageRepeat)
+backgroundImage(src: ResourceStr | PixelMap, repeat?: ImageRepeat)
 
 Sets the background image of the component.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -55,7 +61,7 @@ Sets the background image of the component.
 
 | Name| Type                                           | Mandatory| Description                                                        |
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| src    | [ResourceStr](ts-types.md#resourcestr)          | Yes  | Image address, which can be the address of an online, a local, or a Base64 encoded image. SVG images are not supported.|
+| src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/js-apis-image.md#pixelmap7)          | Yes  | Image address, which can be the address of an online or local image, a Base64 encoded string, or a pixel map. SVG images are not supported.|
 | repeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | No  | Whether the background image is repeated. By default, the background image is not repeated. If the set image has a transparent background and **backgroundColor** is set, the image is overlaid on the background color.|
 
 ## backgroundImageSize
@@ -64,7 +70,9 @@ backgroundImageSize(value: SizeOptions | ImageSize)
 
 Sets the width and height of the component background image.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -72,7 +80,7 @@ Sets the width and height of the component background image.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions) \| [ImageSize](ts-appendix-enums.md#imagesize) | Yes  | Width and height of the background image. If the input is a **{width: Length, height: Length}** object and only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged.<br>The value range of **width** and **height** is [0, +∞).<br>Default value: **ImageSize.Auto**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. If **height** is set but **width** is not, the image width is adjusted based on the original aspect ratio of the image.|
+| value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions) \| [ImageSize](ts-appendix-enums.md#imagesize) | Yes  | Width and height of the background image. If the input is a **{width: Length, height: Length}** object and only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged.<br>The value range of **width** and **height** is [0, +∞).<br>Default value: **ImageSize.Auto**<br>**NOTE**<br>A value less than 0 evaluates to the value **0**. If **height** is set but **width** is not, the image width is adjusted based on the original aspect ratio of the image.|
 
 ## backgroundImagePosition
 
@@ -80,7 +88,9 @@ backgroundImagePosition(value: Position | Alignment)
 
 Sets the position of the component background image.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -88,7 +98,7 @@ Sets the position of the component background image.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) \| [Alignment](ts-appendix-enums.md#alignment) | Yes  | Position of the background image in the component, that is, the coordinates relative to the upper left corner of the component.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>} <br> When **x** and **y** are set in percentage, the offset is calculated based on the width and height of the component.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| value  | [Position](ts-types.md#position) \| [Alignment](ts-appendix-enums.md#alignment) | Yes  | Position of the background image in the component, that is, the coordinates relative to the upper left corner of the component.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>} <br> When **x** and **y** are set in percentage, the offset is calculated based on the width and height of the component.|
 
 ## backgroundBlurStyle<sup>9+</sup>
 
@@ -96,7 +106,9 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 
 Sets the background blur style applied between the content and the background.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -113,17 +125,63 @@ backgroundEffect(options: BackgroundEffectOptions)
 
 Sets the background effect of the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name | Type                                                        | Mandatory| Description                                      |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| options | [BackgroundEffectOptions](ts-appendix-enums.md#backgroundeffectoptions11) | No  | Background effect, including saturation, brightness, and color.|
+| options | [BackgroundEffectOptions](ts-appendix-enums.md#backgroundeffectoptions11) | Yes  | Background effect, including saturation, brightness, and color.|
+
+## backgroundImageResizable<sup>12+</sup>
+
+backgroundImageResizable(value: ResizableOptions)
+
+Sets the resizable background image options.
+
+When **ResizableOptions** is set to a valid value, the **repeat** parameter in [backgroundImage](#backgroundimage) does not take effect.
+
+When the sum of the values of **top** and **bottom** is greater than the source image height, or the sum of the values of **left** and **right** is greater than the source image width, the **ResizableOptions** attribute does not take effect.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                   | Mandatory| Description                            |
+| ------ | --------------------------------------- | ---- | -------------------------------- |
+| value  | [ResizableOptions](ts-basic-components-image.md#resizableoptions11) | Yes  | Resizable image options.|
 
 ## BackgroundBlurStyleOptions<sup>10+</sup>
 
 Inherited from [BlurStyleOptions](ts-universal-attributes-foreground-blur-style.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+
+## backgroundBrightness<sup>12+</sup> 
+
+backgroundBrightness(params: BackgroundBrightnessOptions)
+
+Sets the background brightness of the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                |
+| ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
+| params | [BackgroundBrightnessOptions](#backgroundbrightnessoptions12) | Yes  | Parameters for setting the background brightness.|
+
+## BackgroundBrightnessOptions<sup>12+</sup>
+
+
+| Name           | Type                                    | Mandatory  | Description                                      |
+| ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| rate          | number | Yes   | Brightness change rate. A larger change rate indicates a faster decrease and slower increase in brightness.<br>Default value: **0.0**<br>Value range: (0.0, +∞)<br>|
+| lightUpDegree | number | Yes   | Light up degree. A greater degree indicates a greater increase in brightness.<br> Default value: **0.0**<br>Value range: [-1.0, 1.0]<br>|
+
 
 ## Example
 
@@ -258,7 +316,7 @@ struct BackgroundExample {
 
 ### Example 4
 
-Example of setting the background brightness for the component:
+This example shows how to set the background brightness for the component.
 
 ```ts
 // xxx.ets

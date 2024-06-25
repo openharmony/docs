@@ -9,7 +9,7 @@ The following figure shows the service flowchart of the HiAppEvent data processo
 
   **Figure 1** Service flowchart of the HiAppEvent data processor library
 
-  ![Service flowchart] (../subsystems/figures/hiappevent_extend_so_stream.png)
+  ![Service flowchart](../subsystems/figures/hiappevent_extend_so_stream.png)
 
 ## Usage Scenarios
 

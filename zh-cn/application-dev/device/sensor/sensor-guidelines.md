@@ -25,8 +25,8 @@
 1. 导入模块。
 
    ```ts
-   import sensor from '@ohos.sensor';
-   import { BusinessError } from '@ohos.base';
+   import { sensor } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 查询设备支持的所有传感器的参数。
@@ -46,7 +46,7 @@
 
     ![输入图片说明](figures/001.png)
 
-    可以看到该传感器支持的最小采样周期为5000000纳秒，支持的最大采样周期是200000000纳秒，传感器上报周期interval应该设置在该范围内。
+    该传感器支持的最小采样周期为5000000纳秒，最大采样周期是200000000纳秒。不同传感器支持的采样周期范围也不同，interval应该设置在传感器支持范围内，设置数值越小数据上报越频繁，其功耗越大。
 
 3. 检查是否已经配置相应权限，具体配置方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
 

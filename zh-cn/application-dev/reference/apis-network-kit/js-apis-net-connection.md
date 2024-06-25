@@ -17,7 +17,7 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 
 创建一个NetConnection对象，[netSpecifier](#netspecifier)指定关注的网络的各项特征；timeout是超时时间(单位是毫秒)；netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -58,7 +58,7 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -73,7 +73,7 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
+| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
@@ -100,7 +100,7 @@ getDefaultNet(): Promise\<NetHandle>
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -115,7 +115,6 @@ getDefaultNet(): Promise\<NetHandle>
 | 错误码ID | 错误信息                         |
 | ------- | -------------------------------- |
 | 201     | Permission denied.               |
-| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.           |
 
@@ -137,7 +136,7 @@ getDefaultNetSync(): NetHandle
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -152,7 +151,6 @@ getDefaultNetSync(): NetHandle
 | 错误码ID | 错误信息                         |
 | ------- | -------------------------------- |
 | 201     | Permission denied.               |
-| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.           |
 
@@ -229,24 +227,26 @@ cat server.pem \
 证书锁定的配置例子如下:
 ```json
 {
-  "network-security-config": {	
-	  "domain-config": {
-		  "domains": [
-        {
-          "include-subdomains": true,
-          "name": "server.com"
-        }
-      ],
-      "pin-set": {
-        "expiration": "2024-11-08",
-        "pin": [
+  "network-security-config": {
+    "domain-config": [
+      {
+        "domains": [
           {
-            "digest-algorithm": "sha256",
-            "digest": "FEDCBA987654321"
+            "include-subdomains": true,
+            "name": "server.com"
           }
-        ]
+        ],
+        "pin-set": {
+          "expiration": "2024-11-08",
+          "pin": [
+            {
+              "digest-algorithm": "sha256",
+              "digest": "FEDCBA987654321"
+            }
+          ]
+        }
       }
-    }
+    ]
   }
 }
 ```
@@ -255,22 +255,28 @@ cat server.pem \
 ```json
 {
   "network-security-config": {
-    "base-config": {  
-      "trust-anchors": [                         
-        {"certificates": "/etc/security/certificates"}
+    "base-config": {
+      "trust-anchors": [
+        {
+          "certificates": "/etc/security/certificates"
+        }
       ]
     },
-    "domain-config": {
-      "domains": [
-        {
-          "include-subdomains": true,
-          "name": "example.com"
-        }
-      ],
-      "trust-anchors": [
-        {"certificates": "/data/storage/el1/bundle/entry/resources/resfile"}
-      ]
-    }
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "example.com"
+          }
+        ],
+        "trust-anchors": [
+          {
+            "certificates": "/data/storage/el1/bundle/entry/resources/resfile"
+          }
+        ]
+      }
+    ]
   }
 }
 
@@ -418,7 +424,7 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401 | Parameter error.|
+| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -612,7 +618,7 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
+| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -834,7 +840,7 @@ getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilitie
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -880,7 +886,7 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -926,7 +932,7 @@ getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -982,7 +988,7 @@ isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
+| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -1085,7 +1091,7 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                          |
 | ------- | --------------------------------- |
 | 201     | Permission denied.                |
-| 401     | Parameter error.                  |
+| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
 
@@ -1122,7 +1128,6 @@ hasDefaultNet(): Promise\<boolean>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
@@ -1615,7 +1620,6 @@ clearCustomDnsRules(callback: AsyncCallback\<void\>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
@@ -1691,7 +1695,7 @@ register(callback: AsyncCallback\<void>): void
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1730,7 +1734,7 @@ unregister(callback: AsyncCallback\<void>): void
 
 取消订阅默认网络状态变化的通知。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1744,7 +1748,6 @@ unregister(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                          |
 | ------- | --------------------------------- |
-| 201     | Permission denied.                |
 | 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
@@ -1770,7 +1773,7 @@ on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
 **模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1856,7 +1859,7 @@ on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void
 
 **模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1942,7 +1945,7 @@ on(type: 'netLost', callback: Callback\<NetHandle>): void
 
 **模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1986,7 +1989,7 @@ on(type: 'netUnavailable', callback: Callback\<void>): void
 
 **模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -2034,7 +2037,7 @@ netCon.unregister((error: BusinessError) => {
 
 | 名称    | 类型   | 必填 | 说明                      |
 | ------ | ------ | --- |------------------------- |
-| netId  | number | 是  |  网络ID，取值为0代表没有默认网络，其余取值必须大于等于100。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| netId  | number | 是  |  网络ID，取值为0代表没有默认网络，其余取值必须大于等于100。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ### bindSocket<sup>9+</sup>
 
@@ -2387,12 +2390,12 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 | 名称                  | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |
-| NET_CAPABILITY_MMS | 0 | 表示网络可以访问运营商的MMSC（Multimedia&nbsp;Message&nbsp;Service，多媒体短信服务）发送和接收彩信。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | 表示系统发现该网络存在强制网络门户，需要用户登陆认证，该能力由网络管理模块设置。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| NET_CAPABILITY_MMS | 0 | 表示网络可以访问运营商的MMSC（Multimedia&nbsp;Message&nbsp;Service，多媒体短信服务）发送和接收彩信。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | 表示系统发现该网络存在强制网络门户，需要用户登陆认证，该能力由网络管理模块设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## NetBearType
 
@@ -2402,9 +2405,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 |            名称         | 值   | 说明        |
 | ----------------------- | ---- | ---------- |
-| BEARER_CELLULAR | 0    | 蜂窝网络。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
-| BEARER_WIFI     | 1    | Wi-Fi网络。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| BEARER_ETHERNET | 3    | 以太网网络。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| BEARER_CELLULAR | 0    | 蜂窝网络。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| BEARER_WIFI     | 1    | Wi-Fi网络。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| BEARER_ETHERNET | 3    | 以太网网络。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | BEARER_VPN<sup>12+</sup>| 4    | VPN网络。   |
 
 ## HttpProxy<sup>10+</sup>
@@ -2415,9 +2418,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 | 名称    | 类型   | 必填 | 说明                      |
 | ------ | ------ | --- |------------------------- |
-| host  | string | 是  |  代理服务器主机名。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| port  | number | 是  |  主机端口。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| exclusionList  | Array<string> | 是  | 不使用代理的主机名列表，主机名支持域名、IP地址以及通配符形式，详细匹配规则如下：<br/>1、域名匹配规则：<br/>（1）完全匹配：代理服务器主机名只要与列表中的任意一个主机名完全相同，就可以匹配。<br/>（2）包含匹配：代理服务器主机名只要包含列表中的任意一个主机名，就可以匹配。<br/>例如，如果在主机名列表中设置了 “ample.com”，则  “ample.com”、“www.ample.com”、“ample.com:80”都会被匹配，而 “www.example.com”、“ample.com.org”则不会被匹配。<br/>2、IP地址匹配规则：代理服务器主机名只要与列表中的任意一个IP地址完全相同，就可以匹配。<br/>3、域名跟IP地址可以同时添加到列表中进行匹配。<br/>4、单个“\*”是唯一有效的通配符，当列表中只有通配符时，将与所有代理服务器主机名匹配，表示禁用代理。通配符只能单独添加，不可以与其他域名、IP地址一起添加到列表中，否则通配符将不生效。<br/>5、匹配规则不区分主机名大小写。<br/>6、匹配主机名时，不考虑http和https等协议前缀。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| host  | string | 是  |  代理服务器主机名。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| port  | number | 是  |  主机端口。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| exclusionList  | Array\<string\> | 是  | 不使用代理的主机名列表，主机名支持域名、IP地址以及通配符形式，详细匹配规则如下：<br/>1、域名匹配规则：<br/>（1）完全匹配：代理服务器主机名只要与列表中的任意一个主机名完全相同，就可以匹配。<br/>（2）包含匹配：代理服务器主机名只要包含列表中的任意一个主机名，就可以匹配。<br/>例如，如果在主机名列表中设置了 “ample.com”，则  “ample.com”、“www.ample.com”、“ample.com:80”都会被匹配，而 “www.example.com”、“ample.com.org”则不会被匹配。<br/>2、IP地址匹配规则：代理服务器主机名只要与列表中的任意一个IP地址完全相同，就可以匹配。<br/>3、域名跟IP地址可以同时添加到列表中进行匹配。<br/>4、单个“\*”是唯一有效的通配符，当列表中只有通配符时，将与所有代理服务器主机名匹配，表示禁用代理。通配符只能单独添加，不可以与其他域名、IP地址一起添加到列表中，否则通配符将不生效。<br/>5、匹配规则不区分主机名大小写。<br/>6、匹配主机名时，不考虑http和https等协议前缀。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | username<sup>12+</sup>  | string | 否 |  使用代理的用户名。|
 | password<sup>12+</sup>  | string | 否 |  使用代理的用户密码。|
 
@@ -2425,7 +2428,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 提供承载数据网络能力的实例。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -2438,14 +2441,14 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 提供承载数据网络能力的实例。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 | 名称                     | 类型                                | 必填  | 说明                                                         |
 | ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | netHandle         | [NetHandle](#nethandle) |  是  | 数据网络句柄。                                |
-| netCap |  [NetCapabilities](#netcapabilities)       |  否  |  存储数据网络的传输能力和承载类型。 |
+| netCap |  [NetCapabilities](#netcapabilities)       |  是  |  存储数据网络的传输能力和承载类型。 |
 
 ## NetCapabilities
 
@@ -2457,8 +2460,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | --------------------- | ---------------------------------- | --- | ------------------------ |
 | linkUpBandwidthKbps   | number                             |  否 |  上行（设备到网络）带宽，单位(kb/s)，0表示无法评估当前网络带宽。|
 | linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽，单位(kb/s)，0表示无法评估当前网络带宽。|
-| networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。           |
-| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。数组里面只包含了一种具体的网络类型。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。      |
+| networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
+| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。数组里面只包含了一种具体的网络类型。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 
 ## NetConnectionPropertyInfo<sup>11+</sup>
 

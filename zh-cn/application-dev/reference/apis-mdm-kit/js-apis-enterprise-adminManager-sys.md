@@ -1,4 +1,4 @@
-# @ohos.enterprise.adminManager (企业设备管理)(系统接口)
+# @ohos.enterprise.adminManager（企业设备管理）(系统接口)
 
 本模块提供企业设备管理能力，使设备具备企业场景下所需的定制能力。
 
@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，实现相应功能。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，实现相应功能。
 > 
 > 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.adminManager](js-apis-enterprise-adminManager.md)。
 

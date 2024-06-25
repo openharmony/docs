@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import power from '@ohos.power';
+import {power} from '@kit.BasicServicesKit';
 ```
 
 ## power.isActive<sup>9+</sup>

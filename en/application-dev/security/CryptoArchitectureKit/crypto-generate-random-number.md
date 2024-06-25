@@ -47,7 +47,7 @@ The random number generation algorithm uses the **RAND_priv_bytes** interface of
 
 - Return the result using **await**:
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   
   async function doRand() {
     let rand = cryptoFramework.createRandom();
@@ -61,8 +61,8 @@ The random number generation algorithm uses the **RAND_priv_bytes** interface of
 
 - Return the result synchronously:
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   function doRandBySync() {
     let rand = cryptoFramework.createRandom();

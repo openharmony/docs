@@ -18,8 +18,8 @@ For details about the APIs, see [Distributed KV Store](../reference/apis-arkdata
 
   
 ```ts
-import distributedKVStore from '@ohos.data.distributedKVStore';
-import { BusinessError } from '@ohos.base';
+import { distributedKVStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager | undefined = undefined;
 let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
@@ -76,7 +76,7 @@ For details about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-da
 
   
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
+import { relationalStore } from '@kit.ArkData';
 
 let store: relationalStore.RdbStore;
 let context = getContext(this);

@@ -8,7 +8,7 @@
 
 ## 使用AudioRenderer播放对端的通话声音
 
-  该过程与[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)过程相似，关键区别在于audioRendererInfo参数和音频数据来源。audioRendererInfo参数中，音频内容类型需设置为语音：CONTENT_TYPE_SPEECH，音频流使用类型需设置为语音通信：STREAM_USAGE_VOICE_COMMUNICATION。
+  该过程与[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)过程相似，关键区别在于audioRendererInfo参数和音频数据来源。audioRendererInfo参数中，音频内容类型需设置为语音：CONTENT_TYPE_SPEECH，音频流使用类型需设置为VOIP通话：STREAM_USAGE_VOICE_COMMUNICATION。
   
 ```ts
 import audio from '@ohos.multimedia.audio';
@@ -17,7 +17,12 @@ import { BusinessError } from '@ohos.base';
 
 const TAG = 'VoiceCallDemoForAudioRenderer';
 // 与使用AudioRenderer开发音频播放功能过程相似，关键区别在于audioRendererInfo参数和音频数据来源
+class Options {
+  offset?: number;
+  length?: number;
+}
 let context = getContext(this);
+let bufferSize: number = 0;
 let renderModel: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
@@ -27,7 +32,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
   // 需使用通话场景相应的参数
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // 音频流使用类型：语音通信
+  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // 音频流使用类型：VOIP通话
   rendererFlags: 0 // 音频渲染器标志：默认为0即可
 }
 let audioRendererOptions: audio.AudioRendererOptions = {
@@ -158,7 +163,12 @@ import { BusinessError } from '@ohos.base';
 
 let context = getContext(this);
 const TAG = 'VoiceCallDemoForAudioCapturer';
+class Options {
+  offset?: number;
+  length?: number;
+}
 // 与使用AudioCapturer开发音频录制功能过程相似，关键区别在于audioCapturerInfo参数和音频数据流向
+let bufferSize: number = 0;
 let audioCapturer: audio.AudioCapturer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100, // 采样率

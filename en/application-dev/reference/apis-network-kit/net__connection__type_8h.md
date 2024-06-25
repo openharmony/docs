@@ -64,4 +64,4 @@ Declares the structs for the C APIs of the network connection module.
 | Name| Description| 
 | -------- | -------- |
 | [NetConn_NetCap](_net_connection.md#netconn_netcap) {<br>[NETCONN_NET_CAPABILITY_MMS](_net_connection.md) = 0,<br>[NETCONN_NET_CAPABILITY_NOT_METERED](_net_connection.md) = 11,<br>[NETCONN_NET_CAPABILITY_INTERNET](_net_connection.md) = 12,<br>[NETCONN_NET_CAPABILITY_NOT_VPN](_net_connection.md) = 15,<br>[NETCONN_NET_CAPABILITY_VALIDATED](_net_connection.md) = 16<br>} | Network capability set.| 
-| [NetConn_NetBearerType](_net_connection.md#netconn_netbearertype) {<br>[NETCONN_BEARER_CELLULAR](_net_connection.md) = 0,<br>[NETCONN_BEARER_WIFI](_net_connection.md) = 1,<br>[NETCONN_BEARER_ETHERNET](_net_connection.md) = 3<br>} | Network carrier type.| 
+| [NetConn_NetBearerType](_net_connection.md#netconn_netbearertype) {<br>[NETCONN_BEARER_CELLULAR](_net_connection.md#netconn_netbearertype-1) = 0,<br>[NETCONN_BEARER_WIFI](_net_connection.md#netconn_netbearertype-1) = 1,<br>[NETCONN_BEARER_ETHERNET](_net_connection.md#netconn_netbearertype-1) = 3<br>[NETCONN_BEARER_VPN](_net_connection.md#netconn_netbearertype-1) = 4<br>} | Network carrier type.|

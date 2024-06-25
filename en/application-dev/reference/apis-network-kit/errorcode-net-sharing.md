@@ -80,7 +80,7 @@ The specified Iface does not exist or the Iface name is incorrect.
 
 1. Check whether the shared Iface is available.
 
-    ```bash
+    ```
     > ifconfig -a
     ```
 

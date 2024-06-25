@@ -95,3 +95,87 @@ API version 12及以后：Badge组件前后状态相同时不缩放，显隐时�
 **适配指导**
 
 默认行为变更，无需适配，但应注意时间窗口是否按照设置显示前导零。
+
+## cl.arkui.4 构造@ComponentV2修饰的自定义组件时，增加对常规变量的构造赋值校验
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+该变更为非兼容性变更。
+
+在@ComponentV2修饰的自定义组件中使用常规变量(没有任何装饰器修饰的，不涉及更新的普通变量)，在构造的时候传参赋值，进行校验并输出错误信息。
+
+**变更影响**
+
+执行下列用例：
+
+```ts
+@Entry
+@ComponentV2
+struct v2DecoratorInitFromParent {
+  build() {
+    Column() {
+      testChild({
+        regular_value: "hello"
+      })
+    }
+  }
+}
+
+@ComponentV2
+struct testChild {
+  regular_value: string = "hello";
+  build() {}
+}
+```
+
+变更前无报错
+
+变更后报错信息为：
+
+Property 'regular_value' in the custom component 'testChild' cannot initialize here (forbidden to specify).
+
+**起始API Level**
+
+不涉及API变更
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.29开始。
+
+**适配指导**
+
+如果开发者不按规范使用对应范式，则需按日志提示信息进行修改。
+
+## cl.arkui.5 Video切换视频源时显示预览图
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+视频源切换时预览图规格表现不一致。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：视频播放后执行视频源切换时不显示预览图，再次执行视频源切换时显示预览图。
+
+变更后：每次执行视频源切换都会显示预览图。
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.29开始。
+
+**适配指导**
+
+如果应用中使用了Video组件中的previewUri属性，且存在视频源切换行为，开发者需按照预览图是否展示的最新逻辑进行适配。
