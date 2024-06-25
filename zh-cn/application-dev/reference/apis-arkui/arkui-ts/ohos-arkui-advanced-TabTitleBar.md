@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { TabTitleBar } from "@ohos.arkui.advanced.TabTitleBar"
+import { TabTitleBar } from "@kit.ArkUI"
 ```
 
 
@@ -68,8 +68,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 ## 示例
 
 ```ts
-import { TabTitleBar } from "@ohos.arkui.advanced.TabTitleBar"
-import promptAction from '@ohos.promptAction'
+import { TabTitleBar, promptAction } from "@kit.ArkUI"
 
 class tabItem {
   title: ResourceStr;

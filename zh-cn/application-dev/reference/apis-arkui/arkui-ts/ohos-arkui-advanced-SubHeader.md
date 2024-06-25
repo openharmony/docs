@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { SubHeader } from '@ohos.arkui.advanced.SubHeader'
+import { SubHeader } from '@kit.ArkUI'
 ```
 
 
@@ -106,8 +106,7 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 ### 示例1
 
 ```ts
-import promptAction from '@ohos.promptAction'
-import { OperationType, SubHeader } from '@ohos.arkui.advanced.SubHeader'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -134,8 +133,7 @@ struct SubHeaderExample {
 ### 示例2
 
 ```ts
-import promptAction from '@ohos.promptAction'
-import { OperationType, SubHeader } from '@ohos.arkui.advanced.SubHeader'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -162,8 +160,7 @@ struct SubHeaderExample {
 ### 示例3
 
 ```ts
-import promptAction from '@ohos.promptAction'
-import { OperationType, SubHeader } from '@ohos.arkui.advanced.SubHeader'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -208,8 +205,7 @@ struct SubHeaderExample {
 
 ```ts
 
-import promptAction from '@ohos.promptAction'
-import { OperationType, SubHeader } from '@ohos.arkui.advanced.SubHeader'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -239,8 +235,7 @@ struct SubHeaderExample {
 ### 示例5
 
 ```ts
-import promptAction from '@ohos.promptAction'
-import { OperationType, SubHeader } from '@ohos.arkui.advanced.SubHeader'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -335,9 +330,8 @@ struct SubHeaderExample {
 
 ```ts
 // 该示例主要演示SubHeader设置标题和副标题字体样式以及标题内外边距的效果。
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { promptAction, OperationType, SubHeader, LengthMetrics } from '@kit.ArkUI';
 import { TextModifier } from '@ohos.arkui.modifier';
-import { LengthMetrics } from '@ohos.arkui.node';
 
 @Entry
 @Component
