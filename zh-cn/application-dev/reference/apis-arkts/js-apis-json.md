@@ -169,7 +169,7 @@ let str2 = JSON.stringify(obj, replacer);
 
 has(obj: object, property: string): boolean
 
-检查ArkTS对象是否包含某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。
+检查ArkTS对象是否包含某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。has接口仅支持最外层为字典形式（即大括号而非中括号包围）的合法json串。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -197,7 +197,6 @@ has(obj: object, property: string): boolean
 **示例：**
 
 ```ts
-
 const jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let obj = JSON.parse(jsonText);
 let rst = JSON.has(obj, "name");
@@ -208,7 +207,7 @@ let rst = JSON.has(obj, "name");
 
 remove(obj: object, property: string): void
 
-从ArkTS对象中删除某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。
+从ArkTS对象中删除某种属性，可用于[JSON.parse](#jsonparse)解析JSON字符串之后的相关操作。remove接口仅支持最外层为字典形式（即大括号而非中括号包围）的合法json串。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -230,7 +229,6 @@ remove(obj: object, property: string): void
 **示例：**
 
 ```ts
-
 const jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let obj = JSON.parse(jsonText);
 let rst = JSON.remove(obj, "name");

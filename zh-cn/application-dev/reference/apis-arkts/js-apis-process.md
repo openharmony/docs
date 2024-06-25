@@ -637,7 +637,7 @@ kill(signal: number, pid: number): boolean
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| signal | number | 是   | 发送的信号。 |
+| signal | number | 是   | 发送特定的信号给目标进程。 |
 | pid    | number | 是   | 进程的id。   |
 
 **返回值：**
