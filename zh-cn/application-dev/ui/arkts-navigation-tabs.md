@@ -365,11 +365,9 @@ Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.cu
 ![适老化弹窗](figures/tabs11.png)
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { Configuration } from '@ohos.app.ability.Configuration';
-import { BusinessError } from '@ohos.base';
-import promptAction from '@ohos.promptAction';
-import uiAppearance from '@ohos.uiAppearance';
+import { abilityManager, Configuration } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { promptAction, uiAppearance } from '@kit.ArkUI';
 
 @Entry
 @Component
