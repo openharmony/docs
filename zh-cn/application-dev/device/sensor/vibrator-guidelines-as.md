@@ -5,7 +5,7 @@
 
 当设备需要振动固定时长时，可以调用Vibrator模块，例如：设备的按键可以设置不同时长的振动。
 
-详细的接口介绍请参考[Vibrator接口](../../reference/apis-as/js-apis-vibrator.md)。
+详细的接口介绍请参考[Vibrator接口](../../reference/apis-sensor-service-kit/js-apis-vibrator.md)。
 
 
 ## 接口说明
@@ -25,8 +25,8 @@
 2. 根据指定振动时长和振动属性触发马达振动。
 
     ```ts
-    import vibrator from '@ohos.vibrator';
-    import { BusinessError } from '@ohos.base';
+    import { vibrator } from '@kit.SensorServiceKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     try {
       // 触发马达振动
@@ -52,8 +52,8 @@
 3. 停止马达的振动。
 
     ```ts
-    import vibrator from '@ohos.vibrator';
-    import { BusinessError } from '@ohos.base';
+    import { vibrator } from '@kit.SensorServiceKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     try {
       // 停止所有模式的马达振动
