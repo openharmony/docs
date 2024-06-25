@@ -12,8 +12,8 @@
 ## 导入模块
 
 ```
-import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
-```
+import { ComposeTitleBar } from "@kit.ArkUI"
+``` 
 
 
 ## 子组件
@@ -59,8 +59,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 ## 示例
 
 ```ts
-import { ComposeTitleBar } from "@ohos.arkui.advanced.ComposeTitleBar"
-import promptAction from '@ohos.promptAction'
+import { ComposeTitleBar, promptAction } from "@kit.ArkUI"
 
 interface menuItem {
   value: Resource;

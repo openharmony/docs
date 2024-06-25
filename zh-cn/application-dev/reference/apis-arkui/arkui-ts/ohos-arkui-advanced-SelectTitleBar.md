@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { SelectTitleBar } from "@ohos.arkui.advanced.SelectTitleBar"
+import { SelectTitleBar } from "@kit.ArkUI"
 ```
 
 
@@ -61,8 +61,7 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 ## 示例
 
 ```ts
-import { SelectTitleBar } from "@ohos.arkui.advanced.SelectTitleBar"
-import promptAction from '@ohos.promptAction'
+import { SelectTitleBar, promptAction } from "@kit.ArkUI"
 
 interface menuItems {
   value: Resource;
