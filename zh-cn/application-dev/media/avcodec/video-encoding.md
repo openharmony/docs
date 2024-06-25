@@ -32,6 +32,7 @@
 ## 限制约束
 1. buffer模式不支持10bit的图像数据。
 2. 由于硬件编码器资源有限，每个编码器在使用完毕后都必须调用OH_VideoDecoder_Destroy()函数来销毁实例并释放资源。
+3. 在调用Flush，Reset，Stop的过程中，开发者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
 
 
 ## Surface输入与Buffer输入
@@ -190,7 +191,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, mseValue);
         OH_AVFormat_Destroy(format);
         // 数据处理，请参考:
-        // - 释放编码帧
+        // 释放编码帧
     }
 
     // 配置异步回调，调用 OH_VideoEncoder_RegisterCallback()接口
@@ -204,7 +205,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
     >
 
-4. （可选）调用OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调
+4. （可选）调用OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调。
 
     ```c++
     // 4.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现
@@ -356,7 +357,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 10. 写入编码图像。
     在之前的第7步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputBuffer回调函数进行处理，也无需使用OH_VideoEncoder_PushInputBuffer接口输入数据。
 
-11. （可选）调用OH_VideoEncoder_PushInputParameter()通知编码器随帧参数配置输入完成
+11. （可选）调用OH_VideoEncoder_PushInputParameter()通知编码器随帧参数配置输入完成。
     在之前的第4步中，开发者已经注册随帧通路回调
 
     以下示例中：
@@ -502,11 +503,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 3. 调用OH_VideoEncoder_RegisterCallback()设置回调函数。
 
-    > **说明：**
-    >
-    > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
-    >
-
     注册回调函数指针集合OH_AVCodecCallback，包括：
     - OH_AVCodecOnError 编码器运行错误；
     - OH_AVCodecOnStreamChanged 码流信息变化，如格式变化等；
@@ -551,8 +547,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
             isFirstFrame = false;
         }
         // 数据处理
-        // - 写入编码图像
-        // - 通知编码器码流结束
+        // 写入编码图像
+        // 通知编码器码流结束
     }
     
     // 编码输出回调OH_AVCodecOnNewOutputBuffer实现
@@ -566,7 +562,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, mseValue);
         OH_AVFormat_Destroy(format);
         // 数据处理
-        // - 释放编码帧
+        // 释放编码帧
     }
     
     // 配置异步回调，调用 OH_VideoEncoder_RegisterCallback 接口
@@ -576,6 +572,10 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
+    > **说明：**
+    >
+    > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
+    >
 
 4. 调用OH_VideoEncoder_Configure()配置编码器。
 
