@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```js
-import charger from '@kit.BasicServicesKit';
+import {charger} from '@kit.BasicServicesKit';
 ```
 
 ## ChargeType
