@@ -585,7 +585,7 @@ textSelectable(value: TextSelectableMode)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | 否   | 文本是否支持可选择、可获焦。 <br />默认值：TextSelectableMode.SELECTABLE_UNFOCUSABLE |
+| value  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | 是   | 文本是否支持可选择、可获焦。 <br />默认值：TextSelectableMode.SELECTABLE_UNFOCUSABLE |
 
 ### selectionMenuOptions<sup>12+</sup>
 

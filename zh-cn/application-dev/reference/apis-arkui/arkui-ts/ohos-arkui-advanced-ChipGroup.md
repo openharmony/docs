@@ -54,8 +54,10 @@ ChipGroupItemOptions定义每个chip的非共通属性。
 | 名称         | 类型                           | 必填 | 描述                                |
 | ----------   | ----------------------------- | ---- | ----------------------------------- |
 | prefixIcon   | [IconOptions](#iconoptions)   | 否   | 前缀Image图标属性。                   |
+| prefixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | 否   | 前缀SymbolGlyph图标属性。|
 | label        | [LabelOptions](#labeloptions) | 是   | 文本属性。                            |
 | suffixIcon   | [IconOptions](#iconoptions) | 否   | 后缀Image图标属性。                   |
+| suffixSymbol | [ChipSymbolGlyphOptions](ohos-arkui-advanced-Chip.md#chipsymbolglyphoptions12) | 否   | 后缀SymbolGlyph图标属性。|
 | allowClose   | boolean                       | 否   | 删除图标是否显示。<br/>默认值：false。  |
 
 >**说明：**
@@ -110,6 +112,11 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 | 名称     | 类型                    | 必填 | 描述                                                                |
 | -------- | ---------------------- | ---- | ----------------------------------------------|
 | items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 自定义builder items。|
+
+> **说明：**
+>
+> 传参SymbolGlyphModifier时，不支持通过symbolEffect修改动效类型和effectStrategy设置动效。
+>
 
 ## IconItemOptions
 
