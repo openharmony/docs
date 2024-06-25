@@ -5,7 +5,7 @@
 网络共享管理分享设备已有网络给其他连接设备，支持 Wi-Fi 热点共享、蓝牙共享和 USB 共享，同时提供网络共享状态、共享流量查询功能。
 
 > **说明：**
-> 为了保证应用的运行效率，大部分 API 调用都是异步的，对于异步调用的 API 均提供了 callback 和 Promise 两种方式，以下示例均采用 callback 函数，更多方式可以查阅[API 参考](../reference/apis-network-kit/js-apis-net-sharing-sys.md)。
+> 为了保证应用的运行效率，大部分 API 调用都是异步的，对于异步调用的 API 均提供了 callback 和 Promise 两种方式，以下示例均采用 promise 函数，更多方式可以查阅[API 参考](../reference/apis-network-kit/js-apis-net-sharing-sys.md)。
 
 ## 基本概念
 
