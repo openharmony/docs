@@ -241,7 +241,9 @@
             - [声明权限](security/AccessToken/declare-permissions.md)
             - [向用户申请授权](security/AccessToken/request-user-authorization.md)
             - [向用户申请单次授权](security/AccessToken/one-time-authorization.md)
+            <!--Del-->
             - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
+            <!--DelEnd-->
           - 应用权限列表
             - [对所有应用开放](security/AccessToken/permissions-for-all.md)
             <!--Del-->
@@ -1187,7 +1189,7 @@
         - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
         - [使用Image_NativeModule完成图片接收器](media/image/image-receiver-c.md)
         - [使用Image_NativeModule完成位图操作](media/image/pixelmap-c.md)
-        - [使用Image_NativeModule处理图像信息](media/image/image-c.md)
+        - [使用Image_NativeModule处理图像信息](media/image/image-info-c.md)
         - [使用Image_NativeModule完成图片编码](media/image/image-packer-c.md)
         - [使用ImageEffect编辑图片](media/image/image-effect-guidelines.md)
       - 图片开发指导(依赖JS对象)(C/C++)
