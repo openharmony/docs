@@ -644,6 +644,8 @@ constructor(value: ImageAttachmentInterface)
 
 自定义绘制Span，仅提供基类，具体实现由开发者定义。
 
+自定义绘制Span拖拽显示的缩略图为空白。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onMeasure
@@ -725,6 +727,10 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 | overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   | 是    | 否    | 获取属性字符串文本段落超长时的显示方式。 |
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是    | 否    | 获取属性字符串文本段落的断行规则。 |
 | leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 是    | 否    | 获取属性字符串文本段落的缩进。 |
+
+>  **说明：**
+>
+>  属性字符串的maxLines和overflow仅在Text中生效，建议在组件侧设置。
 
 ### constructor
 
