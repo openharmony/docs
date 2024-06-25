@@ -8333,7 +8333,7 @@ let tlsSecureOptions: socket.TLSSecureOptions = {
 }
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: netAddress,
-  secureOptions: tlsSecureOptions},
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {

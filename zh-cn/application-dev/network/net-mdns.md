@@ -11,7 +11,7 @@ MDNS管理的典型场景有：
 - 发现本地服务，通过DiscoveryService对象，对指定类型的本地服务状态变化进行监听。
 
 > **说明：**
-> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[MDNS管理-API参考](../reference/apis-network-kit/js-apis-net-mdns.md)。
+> 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用promise函数，更多方式可以查阅[MDNS管理-API参考](../reference/apis-network-kit/js-apis-net-mdns.md)。
 
 以下分别介绍具体开发方式。
 
