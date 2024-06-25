@@ -25,7 +25,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OHOS::Media::OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | 用于定义PixelMap的相关信息。 | 
+| [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | 用于定义PixelMap的相关信息。 | 
 
 
 ### 枚举
