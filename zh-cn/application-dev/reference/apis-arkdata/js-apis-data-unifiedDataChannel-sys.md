@@ -26,7 +26,7 @@ UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF
 
 ## unifiedDataChannel.setAppShareOptions
 
-function setAppShareOptions(intention: Intention, shareOptions: ShareOptions): void
+setAppShareOptions(intention: Intention, shareOptions: ShareOptions): void
 
 设置应用程序共享选项[ShareOptions](js-apis-data-unifiedDataChannel.md#shareoptions12)，本接口目前仅支持Intention::DRAG类型数据通道的管控设置，仅stage模型支持。
 
@@ -64,7 +64,7 @@ try {
 
 ## unifiedDataChannel.removeAppShareOptions
 
-function removeAppShareOptions(intention: Intention): void
+removeAppShareOptions(intention: Intention): void
 
 移除应用程序共享选项[ShareOptions](js-apis-data-unifiedDataChannel.md#shareoptions12)，仅stage模型支持。
 
