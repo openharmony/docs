@@ -677,40 +677,35 @@ struct HiddenCapabilitySample {
 
   build() {
     Column() {
-      Row() {
+      Row({ space:24 }) {
         Image($r("app.media.favorite"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(1)  // 布局优先级
 
         Image($r("app.media.down"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(2)  // 布局优先级
 
         Image($r("app.media.pause"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(3)  // 布局优先级
 
         Image($r("app.media.next"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(2)  // 布局优先级
 
         Image($r("app.media.list"))
           .width(48)
           .height(48)
           .objectFit(ImageFit.Contain)
-          .margin({ left: 12, right: 12 })
           .displayPriority(1)  // 布局优先级
       }
       .width(this.rate * 100 + '%')
