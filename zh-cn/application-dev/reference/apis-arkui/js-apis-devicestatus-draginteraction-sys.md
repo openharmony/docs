@@ -11,12 +11,14 @@
 ## 导入模块
 
 ```js
-import dragInteraction from '@ohos.deviceStatus.dragInteraction';
+import { dragInteraction } from '@kit.ArkUI'
 ```
 
 ## DragState
 
 拖拽状态。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Msdp.DeviceStatus.Drag
 
@@ -30,6 +32,8 @@ import dragInteraction from '@ohos.deviceStatus.dragInteraction';
 
 拖拽对象的数据摘要。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Msdp.DeviceStatus.Drag
 
 | 名称       | 类型     | 必填 | 说明               |
@@ -39,9 +43,11 @@ import dragInteraction from '@ohos.deviceStatus.dragInteraction';
 
 ## dragInteraction.on('drag')
 
-on(type: 'drag', callback: Callback\<[DragState](#dragstate)>): void;
+on(type: 'drag', callback: Callback\<DragState>): void
 
 注册监听拖拽状态。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Msdp.DeviceStatus.Drag
 
@@ -66,9 +72,11 @@ try {
 
 ## dragInteraction.off('drag')
 
-off(type: 'drag', callback?: Callback\<[DragState](#dragstate)>): void;
+off(type: 'drag', callback?: Callback\<DragState>): void
 
 取消监听拖拽状态。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Msdp.DeviceStatus.Drag
 
@@ -109,11 +117,13 @@ try {
 }
 ```
 
-## dragInteraction.getDataSummary()<sup>11+</sup>
+## dragInteraction.getDataSummary<sup>11+</sup>
 
-getDataSummary(): Array\<[Summary](#summary11)>;
+getDataSummary(): Array\<Summary>
 
 获取所有拖拽对象的摘要。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Msdp.DeviceStatus.Drag
 
