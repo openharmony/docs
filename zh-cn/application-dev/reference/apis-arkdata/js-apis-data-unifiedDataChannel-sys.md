@@ -18,17 +18,21 @@ import { unifiedDataChannel } from '@kit.ArkData';
 
 UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF数据通路所面向的不同业务场景。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 值     | 说明                                |
 | ---- | ------ | ----------------------------------- |
-| DRAG | 'Drag' | 拖拽类型数据通道，仅stage模型支持。 |
+| DRAG | 'Drag' | 拖拽类型数据通道。 |
 
 ## unifiedDataChannel.setAppShareOptions
 
 setAppShareOptions(intention: Intention, shareOptions: ShareOptions): void
 
-设置应用程序共享选项[ShareOptions](js-apis-data-unifiedDataChannel.md#shareoptions12)，本接口目前仅支持Intention::DRAG类型数据通道的管控设置，仅stage模型支持。
+设置应用程序共享选项[ShareOptions](js-apis-data-unifiedDataChannel.md#shareoptions12)，本接口目前仅支持Intention::DRAG类型数据通道的管控设置。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -66,7 +70,9 @@ try {
 
 removeAppShareOptions(intention: Intention): void
 
-移除应用程序共享选项[ShareOptions](js-apis-data-unifiedDataChannel.md#shareoptions12)，仅stage模型支持。
+移除应用程序共享选项[ShareOptions](js-apis-data-unifiedDataChannel.md#shareoptions12)。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
