@@ -3773,7 +3773,7 @@ onCancel(): Promise&lt;string&gt;
 
 ```ts
 let copySignal: fs.TaskSignal = new TaskSignal();
-console.info("copyFileWithCancel success.", + options.copySignal.onCancel());
+console.info("copyFileWithCancel success.", + copySignal.onCancel());
 ```
 
 ## CopyOptions<sup>11+</sup>
