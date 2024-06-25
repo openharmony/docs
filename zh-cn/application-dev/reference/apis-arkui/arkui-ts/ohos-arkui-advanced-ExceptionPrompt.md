@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
 ```
 
 
@@ -81,7 +81,7 @@ MarginType定义marginType的类型。
 ### 示例1
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
@@ -115,7 +115,7 @@ struct Index {
 ### 示例2
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
 @CustomDialog
 struct CustomDialogExample {
   @Link textValue: string
