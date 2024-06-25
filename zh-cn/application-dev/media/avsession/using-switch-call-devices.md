@@ -122,24 +122,25 @@
    @State pickerImage:ResourceStr = $r('app.media.earpiece');
 
    build() {
-    Row() {
-      Column() {
-        AVCastPicker(
-          {
-            customPicker: (): void => this.MyPickerBuilder()//新增参数
-          }
-        ).size({ height: 45, width:45 })
-      }
-    }
-  }
+     Row() {
+       Column() {
+         AVCastPicker(
+           {
+              customPicker: (): void => this.MyPickerBuilder()//新增参数
+           }
+         ).size({ height: 45, width:45 })
+       }
+     }
+   }
 
-  //自定义内容
-  @Builder
-  MyPickerBuilder() {
-    Image(this.pickerImage)
-      .height('100%').width('100%')
-  }
-  ```
+   //自定义内容
+   @Builder
+   MyPickerBuilder() {
+     Image(this.pickerImage)
+       .height('100%').width('100%')
+   }
+   ```
+
 2. 监听设备变化，实时刷新自定义投播组件显示。
 
    ```ts
@@ -172,4 +173,4 @@
        pickerImage = $r('app.media.bluetooth')
      }
    }
-  ```
+   ```
