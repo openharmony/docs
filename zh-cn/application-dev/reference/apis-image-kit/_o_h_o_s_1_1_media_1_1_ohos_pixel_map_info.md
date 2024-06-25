@@ -1,4 +1,4 @@
-# OHOS::Media::OhosPixelMapInfo
+# OhosPixelMapInfo
 
 
 ## 概述
@@ -33,7 +33,7 @@
 ### height
 
 ```
-uint32_t OHOS::Media::OhosPixelMapInfo::height
+uint32_t OhosPixelMapInfo::height
 ```
 
 **描述**
@@ -44,7 +44,7 @@ uint32_t OHOS::Media::OhosPixelMapInfo::height
 ### pixelFormat
 
 ```
-int32_t OHOS::Media::OhosPixelMapInfo::pixelFormat
+int32_t OhosPixelMapInfo::pixelFormat
 ```
 
 **描述**
@@ -66,7 +66,7 @@ Pixel 的格式，取值范围如下表所示：
 ### rowSize
 
 ```
-uint32_t OHOS::Media::OhosPixelMapInfo::rowSize
+uint32_t OhosPixelMapInfo::rowSize
 ```
 
 **描述**
@@ -77,7 +77,7 @@ uint32_t OHOS::Media::OhosPixelMapInfo::rowSize
 ### width
 
 ```
-uint32_t OHOS::Media::OhosPixelMapInfo::width
+uint32_t OhosPixelMapInfo::width
 ```
 
 **描述**
