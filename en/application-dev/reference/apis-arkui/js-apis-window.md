@@ -5620,7 +5620,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowDecorHeight(height: number): void
 
-Sets the height of the title bar for the main window.
+Sets the height of the title bar for the main window or a sub window with decorations.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -5674,7 +5674,7 @@ export default class EntryAbility extends UIAbility {
 
 getWindowDecorHeight(): number
 
-Obtains the height of the title bar of the main window.
+Obtains the height of the title bar of the main window or a sub window with decorations.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -5726,7 +5726,7 @@ export default class EntryAbility extends UIAbility {
 
 getTitleButtonRect(): TitleButtonRect
 
-Obtains the rectangle that holds the minimize, maximize, and close buttons on the title bar of the main window.
+Obtains the rectangle that holds the minimize, maximize, and close buttons on the title bar of the main window or a sub window with decorations.
 
 **System capability**: SystemCapability.Window.SessionManager
 
