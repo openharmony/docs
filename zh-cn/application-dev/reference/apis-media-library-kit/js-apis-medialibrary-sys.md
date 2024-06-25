@@ -1,5 +1,7 @@
 # @ohos.multimedia.medialibrary (媒体库管理)(系统接口)
 
+从API version 12开始，该模块中的接口不再支持使用，相应功能可使用PhotoAccessHelper替代。不同功能的使用指导，请参考[Media Library Kit（媒体文件管理服务）简介](../../media/medialibrary/photoAccessHelper-overview.md)中的能力范围说明。
+
 > **说明：**
 >
 > - 该组件从API version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -43,6 +45,12 @@ deleteAsset(uri: string): Promise\<void>
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise对象，返回删除的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -96,6 +104,12 @@ deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 | uri | string | 是    | 需要删除的媒体文件资源的uri。 |
 |callback |AsyncCallback\<void>| 是  |callback返回空。|
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -145,6 +159,12 @@ getActivePeers(): Promise\<Array\<PeerInfo>>;
 | ------------------- | -------------------- |
 |  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise对象，返回获取的所有在线对端设备的PeerInfo。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -185,6 +205,12 @@ getActivePeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 | ------------------- | -------------------- |
 | callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | callback返回获取的所有在线对端设备的PeerInfo对象。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -220,6 +246,12 @@ getAllPeers(): Promise\<Array\<PeerInfo>>;
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
 |  Promise\<Array\<[PeerInfo](#peerinfo8)>> | Promise对象，返回获取的所有对端设备的PeerInfo。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -260,6 +292,12 @@ getAllPeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
 | callback: AsyncCallback\<Array\<[PeerInfo](#peerinfo8)>> | callback返回获取的所有对端设备的PeerInfo对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 

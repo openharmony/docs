@@ -1,5 +1,7 @@
 # @ohos.multimedia.medialibrary (媒体库管理)
 
+从API version 12开始，该模块中的接口不再支持使用，相应功能可使用PhotoAccessHelper替代。不同功能的使用指导，请参考[Media Library Kit（媒体文件管理服务）简介](../../media/medialibrary/photoAccessHelper-overview.md)中的能力范围说明。
+
 > **说明：**
 >
 > - 该组件从API version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -37,6 +39,12 @@ getMediaLibrary(context: Context): MediaLibrary
 | ----------------------------- | :---- |
 | [MediaLibrary](#medialibrary) | 媒体库实例。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -58,6 +66,12 @@ getMediaLibrary(): MediaLibrary
 **模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **返回值：**
 
@@ -94,6 +108,12 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 | -------- | --------------------------------------------------- | ---- | --------------------------------- |
 | options  | [MediaFetchOptions](#mediafetchoptions7)            | 是   | 文件检索选项。                      |
 | callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | 是   | callback返回文件检索结果集。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -171,6 +191,12 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 | ------------------------------------ | -------------- |
 | Promise&lt;[FetchFileResult](#fetchfileresult7)&gt; | Promise对象，返回文件检索结果集。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -237,6 +263,12 @@ on(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange'
 | type     | 'deviceChange'&#124;<br/>'albumChange'&#124;<br/>'imageChange'&#124;<br/>'audioChange'&#124;<br/>'videoChange'&#124;<br/>'fileChange'&#124;<br/>'remoteFileChange'               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
 | callback | Callback&lt;void&gt; | 是    | callbac返回空。                                    |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -263,6 +295,12 @@ off(type: 'deviceChange'&#124;'albumChange'&#124;'imageChange'&#124;'audioChange
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | type     | 'deviceChange'&#124;<br/>'albumChange'&#124;<br/>'imageChange'&#124;<br/>'audioChange'&#124;<br/>'videoChange'&#124;<br/>'fileChange'&#124;<br/>'remoteFileChange'               | 是    | 媒体类型 <br/>'deviceChange'：&nbsp;注册设备变更 <br/>'albumChange'：&nbsp;相册变更<br/>'imageChange'：&nbsp;图片文件变更<br/>'audioChange'： &nbsp;音频文件变更<br/>'videoChange'：  &nbsp;视频文件变更<br/>'fileChange'：     &nbsp;文件变更<br/>'remoteFileChange'：&nbsp;注册设备上文件变更。 |
 | callback | Callback&lt;void&gt; | 否    | callback返回空。                                    |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -295,6 +333,12 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 | displayName  | string                                  | 是   | 展示文件名。                                                   |
 | relativePath | string                                  | 是   | 文件保存路径，可以通过[getPublicDirectory](#getpublicdirectory8)获取不同类型文件的保存路径。 |
 | callback     | AsyncCallback<[FileAsset](#fileasset7)> | 是   | callback返回创建的媒体资源FileAsset对象。                          |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -343,6 +387,12 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 | ------------------------ | ----------------- |
 | Promise&lt;[FileAsset](#fileasset7)&gt; | Promise对象，返回创建媒体数据的FileAsset。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -380,6 +430,12 @@ getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string&gt;): 
 | type     | [DirectoryType](#directorytype8) | 是   | 公共目录类型。              |
 | callback | AsyncCallback&lt;string&gt;      | 是   | callback返回公共目录路径。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -416,6 +472,12 @@ getPublicDirectory(type: DirectoryType): Promise&lt;string&gt;
 | 类型             | 说明             |
 | ---------------- | ---------------- |
 | Promise\<string> | Promise对象，返回公共目录路径。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -457,6 +519,12 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback&lt;Array&lt;Album&
 | -------- | -------------------------------------------- | ---- | --------------------------- |
 | options  | [MediaFetchOptions](#mediafetchoptions7)     | 是   | 相册检索条件。                |
 | callback | AsyncCallback&lt;Array<[Album](#album7)>&gt; | 是   | callback返回获取的Album结果集。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -503,6 +571,12 @@ getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt;
 | -------------------------------- | ------------- |
 | Promise<Array<[Album](#album7)>> | Promise对象，返回获取的Album结果集。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -540,6 +614,12 @@ release(callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -567,6 +647,12 @@ release(): Promise&lt;void&gt;
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise对象，返回空。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -592,6 +678,12 @@ storeMediaAsset(option: MediaAssetOption, callback: AsyncCallback&lt;string&gt;)
 | -------- | ------------------------------------- | ---- | ----------------------- |
 | option   | [MediaAssetOption](#mediaassetoption) | 是    | 媒体资源选项。                 |
 | callback | AsyncCallback&lt;string&gt;           | 是    | callback返回保存媒体资源成功后得到的URI。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -636,6 +728,12 @@ storeMediaAsset(option: MediaAssetOption): Promise&lt;string&gt;
 | --------------------- | ---------------------------- |
 | Promise&lt;string&gt; | Promise对象，返回保存媒体资源成功后得到的URI。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -674,6 +772,12 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 | images   | Array&lt;string&gt;       | 是    | 预览的图片URI（'https://'，'file://'）列表。 |
 | index    | number                    | 是    | 开始显示的图片序号。                               |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。                        |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -717,6 +821,12 @@ startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&g
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | images   | Array&lt;string&gt;       | 是    | 预览的图片URI（'https://'，'file://'）列表。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。                        |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -766,6 +876,12 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise对象，返回空。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -809,6 +925,12 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 | option   | [MediaSelectOption](#mediaselectoption)  | 是    | 媒体选择选项。                              |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | callback返回选择的媒体URI列表。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -850,6 +972,12 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 | 类型                                 | 说明                                       |
 | ---------------------------------- | ---------------------------------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回选择的媒体URI列表。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -926,6 +1054,12 @@ isDirectory(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------- | ---- | ------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是    | callback返回boolean值，值为true则是目录，值为false则非目录。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -969,6 +1103,12 @@ isDirectory():Promise&lt;boolean&gt;
 | 类型                     | 说明                           |
 | ---------------------- | ---------------------------- |
 | Promise&lt;boolean&gt; | Promise对象，返回boolean值，值为true则是目录，值为false则非目录。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -1015,6 +1155,12 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ----- |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -1057,6 +1203,12 @@ commitModify(): Promise&lt;void&gt;
 | ------------------- | ---------- |
 | Promise&lt;void&gt; | Promise对象，返回空。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -1098,6 +1250,12 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | 是    | 打开文件方式，如：'r'（只读）, 'w'（只写）, 'rw'（读写）。 |
 | callback | AsyncCallback&lt;number&gt; | 是    | callback返回文件描述符。                            |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -1145,6 +1303,12 @@ open(mode: string): Promise&lt;number&gt;
 | --------------------- | ------------- |
 | Promise&lt;number&gt; | Promise对象，返回文件描述符。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -1183,6 +1347,12 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ----- |
 | fd       | number                    | 是    | 文件描述符。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -1241,6 +1411,12 @@ close(fd: number): Promise&lt;void&gt;
 | ------------------- | ---------- |
 | Promise&lt;void&gt; | Promise对象，返回空。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -1290,6 +1466,12 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 | -------- | ----------------------------------- | ---- | ---------------- |
 | callback | AsyncCallback&lt;image.PixelMap&gt; | 是    | callback返回缩略图的PixelMap。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -1334,6 +1516,12 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 | -------- | ----------------------------------- | ---- | ---------------- |
 | size     | [Size](#size8)                      | 是    | 缩略图尺寸。            |
 | callback | AsyncCallback&lt;image.PixelMap&gt; | 是    | callback返回缩略图的PixelMap。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -1386,6 +1574,12 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 | ----------------------------- | --------------------- |
 | Promise&lt;image.PixelMap&gt; | Promise对象，返回缩略图的PixelMap。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -1431,6 +1625,12 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 | ---------- | ------------------------- | ---- | ---------------------------------- |
 | isFavorite | boolean                   | 是    | 是否设置为收藏文件， true：设置为收藏文件，false：取消收藏。 |
 | callback   | AsyncCallback&lt;void&gt; | 是    | callback返回空。                              |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -1482,6 +1682,12 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 | ------------------- | ---------- |
 | Promise&lt;void&gt; | Promise对象，返回空。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -1526,6 +1732,12 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------- | ---- | ----------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是    | callback返回boolean值，值为true则为已收藏，值为false则为未收藏。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -1569,6 +1781,12 @@ isFavorite():Promise&lt;boolean&gt;
 | 类型                     | 说明                 |
 | ---------------------- | ------------------ |
 | Promise&lt;boolean&gt; | Promise对象，返回boolean值，值为true则为已收藏，值为false则为未收藏。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -1616,6 +1834,12 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | --------- |
 | isTrash  | boolean                   | 是    | 是否设置为垃圾文件。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback返回空。     |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -1669,6 +1893,12 @@ trash(isTrash: boolean): Promise&lt;void&gt;
 | ------------------- | ---------- |
 | Promise&lt;void&gt; | Promise对象，返回空 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -1713,6 +1943,12 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------- | ---- | --------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是    | callback返回boolean值，值为true则为垃圾文件，值为false则为非垃圾文件。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -1756,6 +1992,12 @@ isTrash():Promise&lt;boolean&gt;
 | 类型                  | 说明                   |
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise对象，返回boolean值，值为true则为垃圾文件，值为false则为非垃圾文件。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -1807,6 +2049,12 @@ getCount(): number
 | ------ | -------- |
 | number | 检索到的文件总数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -1842,6 +2090,12 @@ isAfterLast(): boolean
 | 类型      | 说明                                 |
 | ------- | ---------------------------------- |
 | boolean | 当读到最后一条记录后，后续没有记录返回true，否则返回false。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -1881,6 +2135,12 @@ close(): void
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -1914,6 +2174,12 @@ getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 | 参数名   | 类型                                          | 必填 | 说明                                        |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------- |
 | callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | callback返回文件检索结果集中第一个FileAsset对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -1956,6 +2222,12 @@ getFirstObject(): Promise&lt;FileAsset&gt;
 | --------------------------------------- | -------------------------- |
 | Promise&lt;[FileAsset](#fileasset7)&gt; | Promise对象，返回文件检索结果集中第一个FileAsset。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -1997,6 +2269,12 @@ getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 | 参数名    | 类型                                          | 必填 | 说明                                      |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
 | callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | callback返回文件检索结果集中下一个FileAsset对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -2045,6 +2323,12 @@ getNextObject(): Promise&lt;FileAsset&gt;
 | --------------------------------------- | ----------------- |
 | Promise&lt;[FileAsset](#fileasset7)&gt; | Promise对象，返回文件检索结果集中下一个FileAsset。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -2090,6 +2374,12 @@ getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 | -------- | --------------------------------------------- | ---- | --------------------------- |
 | callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是   | callback返回文件检索结果集中最后一个FileAsset对象。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -2130,6 +2420,12 @@ getLastObject(): Promise&lt;FileAsset&gt;
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
 | Promise&lt;[FileAsset](#fileasset7)&gt; | Promise对象，返回文件检索结果集中最后一个FileAsset。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -2172,6 +2468,12 @@ getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 | -------- | ---------------------------------------- | ---- | ------------------ |
 | index    | number                                   | 是    | 要获取的文件的索引，从0开始(注意该值要小于文件检索集的count值)。     |
 | callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | 是    | callback返回文件检索结果集中指定索引处的FileAsset对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -2220,6 +2522,12 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;
 | --------------------------------------- | ----------------- |
 | Promise&lt;[FileAsset](#fileasset7)&gt; | Promise对象，返回文件检索结果集中指定索引处的FileAsset。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -2260,6 +2568,12 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 | 参数名       | 类型                                       | 必填   | 说明                   |
 | -------- | ---------------------------------------- | ---- | -------------------- |
 | callback | AsyncCallback&lt;Array&lt;[FileAsset](#fileasset7)&gt;&gt; | 是    | callback返回文件检索结果集中所有的FileAsset对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -2303,6 +2617,12 @@ getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;
 | 类型                                     | 说明                  |
 | ---------------------------------------- | --------------------- |
 | Promise&lt;Array&lt;[FileAsset](#fileasset7)&gt;&gt; | Promise对象，返回文件检索结果集中所有的FileAsset。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -2371,6 +2691,12 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回空。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -2413,6 +2739,12 @@ commitModify(): Promise&lt;void&gt;
 | ------------------- | ------------ |
 | Promise&lt;void&gt; | Promise对象，返回空。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **示例：**
 
 ```ts
@@ -2454,6 +2786,12 @@ getFileAssets(callback: AsyncCallback&lt;FetchFileResult&gt;): void
 | 参数名   | 类型                                                | 必填 | 说明                                |
 | -------- | --------------------------------------------------- | ---- | ----------------------------------- |
 | callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | 是   | callback返回相册中的文件检索结果集。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -2500,6 +2838,12 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 | -------- | --------------------------------------------------- | ---- | ----------------------------------- |
 | options  | [MediaFetchOptions](#mediafetchoptions7)            | 是   | 媒体检索选项。                      |
 | callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | 是   | callback返回相册中的文件检索结果集。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
@@ -2555,6 +2899,12 @@ async function example() {
 | 类型                                          | 说明                      |
 | --------------------------------------------- | ------------------------- |
 | Promise<[FetchFileResult](#fetchfileresult7)> | Promise对象，返回相册中的文件检索结果集。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **示例：**
 
