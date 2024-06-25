@@ -2679,7 +2679,7 @@ Preferences.flush()保存并刷新文件内容。
     * 使用凭据进行签名、验签的初始化操作：调用[certificateManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerinit)接口进行初始化，并获取返回结果signHandle。
     * 填充源数据：调用[certificateManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerupdate)接口填充源数据。
     * 完成签名的操作：调用[certificateManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerfinish)接口完成签名，并获取签名结果signResult。
-    * 完成验签的操作：同上，再依次调用[certificateManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerinit)接口，[certManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerupdate)接口，[certificateManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerfinish-1)接口完成验签操作，最终获取验签结果verifyResult。
+    * 完成验签的操作：同上，再依次调用[certificateManager.init](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerinit)接口，[certificateManager.update](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerupdate)接口，[certificateManager.finish](reference/apis-device-certificate-kit/js-apis-certManager.md#certificatemanagerfinish-1)接口完成验签操作，最终获取验签结果verifyResult。
 
 ##### 约束与限制
 
