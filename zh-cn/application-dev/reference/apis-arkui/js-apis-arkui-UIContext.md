@@ -1760,9 +1760,9 @@ createComponentObserver(id: string): inspector.ComponentObserver
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { UIInspector } from '@kit.ArkUI';
 
-let inspector:UIInspector = uiContext.getUIInspector();
+let inspector: UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
 ```
 
