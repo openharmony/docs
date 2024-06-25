@@ -77,10 +77,10 @@ loadModelFromFile(model: string, context?: Context): Promise&lt;Model&gt;
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 说明                 |
-| ------- | ------------------- | ---- | -------------------- |
-| model   | string              | 是   | 模型的完整输入路径。 |
-| context | [Context](#context) | 否   | 运行环境的配置信息。 |
+| 参数名  | 类型                | 必填 | 说明                                          |
+| ------- | ------------------- | ---- | --------------------------------------------- |
+| model   | string              | 是   | 模型的完整输入路径。                          |
+| context | [Context](#context) | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
 
@@ -179,10 +179,10 @@ loadModelFromBuffer(model: ArrayBuffer, context?: Context): Promise&lt;Model&gt;
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 说明                 |
-| ------- | ------------------- | ---- | -------------------- |
-| model   | ArrayBuffer         | 是   | 包含模型的内存。     |
-| context | [Context](#context) | 否   | 运行环境的配置信息。 |
+| 参数名  | 类型                | 必填 | 说明                                          |
+| ------- | ------------------- | ---- | --------------------------------------------- |
+| model   | ArrayBuffer         | 是   | 包含模型的内存。                              |
+| context | [Context](#context) | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
 
@@ -279,10 +279,10 @@ loadModelFromFd(model: number, context?: Context): Promise&lt;Model&gt;
 
 **参数：**
 
-| 参数名  | 类型                | 必填 | 说明                 |
-| ------- | ------------------- | ---- | -------------------- |
-| model   | number              | 是   | 模型的文件描述符。   |
-| context | [Context](#context) | 否   | 运行环境的配置信息。 |
+| 参数名  | 类型                | 必填 | 说明                                          |
+| ------- | ------------------- | ---- | --------------------------------------------- |
+| model   | number              | 是   | 模型的文件描述符。                            |
+| context | [Context](#context) | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
 
@@ -311,11 +311,11 @@ loadTrainModelFromFile(model: string, trainCfg?: TrainCfg, context?: Context): P
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                 |
-| -------- | ----------------------- | ---- | -------------------- |
-| model    | string                  | 是   | 模型的完整输入路径。 |
-| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。       |
-| context  | [Context](#context)     | 否   | 运行环境的配置信息。 |
+| 参数名   | 类型                    | 必填 | 说明                                           |
+| -------- | ----------------------- | ---- | ---------------------------------------------- |
+| model    | string                  | 是   | 模型的完整输入路径。                           |
+| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。   |
+| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
 
@@ -343,11 +343,11 @@ loadTrainModelFromBuffer(model: ArrayBuffer, trainCfg?: TrainCfg, context?: Cont
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                 |
-| -------- | ----------------------- | ---- | -------------------- |
-| model    | ArrayBuffer             | 是   | 包含训练模型的内存。 |
-| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。       |
-| context  | [Context](#context)     | 否   | 运行环境的配置信息。 |
+| 参数名   | 类型                    | 必填 | 说明                                          |
+| -------- | ----------------------- | ---- | --------------------------------------------- |
+| model    | ArrayBuffer             | 是   | 包含训练模型的内存。                          |
+| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。  |
+| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
 
@@ -376,11 +376,11 @@ loadTrainModelFromFd(model: number, trainCfg?: TrainCfg, context?: Context): Pro
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                   |
-| -------- | ----------------------- | ---- | ---------------------- |
-| model    | number                  | 是   | 训练模型的文件描述符。 |
-| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。         |
-| context  | [Context](#context)     | 否   | 运行环境的配置信息。   |
+| 参数名   | 类型                    | 必填 | 说明                                          |
+| -------- | ----------------------- | ---- | --------------------------------------------- |
+| model    | number                  | 是   | 训练模型的文件描述符。                        |
+| trainCfg | [TrainCfg](#traincfg12) | 否   | 模型训练配置。默认值为TrainCfg各属性默认值。  |
+| context  | [Context](#context)     | 否   | 运行环境的配置信息。默认使用CpuDevice初始化。 |
 
 **返回值：**
 
@@ -431,11 +431,11 @@ if (all_devices == null) {
 **系统能力：** SystemCapability.AI.MindSporeLite
 
 
-| 名称   | 类型                      | 可读 | 可写 | 说明                                                         |
+| 名称   | 类型                      | 只读 | 可选 | 说明                                                         |
 | ------ | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| target | string[]                  | 是   | 是   | 配置目标后端。可选'cpu'，'nnrt'，默认'cpu'。                 |
-| cpu    | [CpuDevice](#cpudevice)   | 是   | 是   | CPU后端设备选项。只有当target包含'cpu'时，才能设置此属性。默认值为CpuDevice各属性默认值。 |
-| nnrt   | [NNRTDevice](#nnrtdevice) | 是   | 是   | NNRt后端设备选项。只有当target包含'nnrt'时，才能设置此属性，当前属性为空。 |
+| target | string[]                  | 否   | 是   | 配置目标后端。可选'cpu'，'nnrt'，默认'cpu'。                 |
+| cpu    | [CpuDevice](#cpudevice)   | 否   | 是   | CPU后端设备选项。只有当target包含'cpu'时，才能设置此属性。默认值为CpuDevice各属性默认值。 |
+| nnrt   | [NNRTDevice](#nnrtdevice) | 否   | 是   | NNRt后端设备选项。只有当target包含'nnrt'时，才能设置此属性。默认值为NNRTDevice各属性默认值。 |
 
 **示例：** 
 
@@ -452,12 +452,12 @@ CPU后端设备选项。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称                   | 类型                                      | 可读 | 可写 | 说明                                                         |
+| 名称                   | 类型                                      | 只读 | 可选 | 说明                                                         |
 | ---------------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| threadNum              | number                                    | 是   | 是   | 设置运行时的线程数，默认值：2。                              |
-| threadAffinityMode     | [ThreadAffinityMode](#threadaffinitymode) | 是   | 是   | 设置运行时的CPU绑核策略模式，默认值为不绑核：mindSporeLite.ThreadAffinityMode.NO_AFFINITIES。 |
-| threadAffinityCoreList | number[]                                  | 是   | 是   | 设置运行时的CPU绑核列表，设置绑核策略模式后使能，当绑核策略模式为mindSporeLite.ThreadAffinityMode.NO_AFFINITIES时，绑核列表为空。列表中的数字代表核的序号。默认值：[]。 |
-| precisionMode          | string                                    | 是   | 是   | 设置是否使能**Float16推理模式**，设置为'preferred_fp16'代表使能半精度推理，其余设置情况均为不支持，默认设置'enforce_fp32'表示不使能半精度推理。 |
+| threadNum              | number                                    | 否   | 是   | 设置运行时的线程数，默认值：2。                              |
+| threadAffinityMode     | [ThreadAffinityMode](#threadaffinitymode) | 否   | 是   | 设置运行时的CPU绑核策略模式，默认值为不绑核：mindSporeLite.ThreadAffinityMode.NO_AFFINITIES。 |
+| threadAffinityCoreList | number[]                                  | 否   | 是   | 设置运行时的CPU绑核列表，设置绑核策略模式后使能，当绑核策略模式为mindSporeLite.ThreadAffinityMode.NO_AFFINITIES时，绑核列表为空。列表中的数字代表核的序号。默认值：[]。 |
+| precisionMode          | string                                    | 否   | 是   | 设置是否使能**Float16推理模式**，设置为'preferred_fp16'代表使能半精度推理，其余设置情况均为不支持，默认设置'enforce_fp32'表示不使能半精度推理。 |
 
 **Float16推理模式**：  Float16又称半精度，它使用16比特表示一个数。Float16推理模式表示推理的时候用半精度进行推理。 
 
@@ -493,12 +493,12 @@ Neural Network Runtime表示神经网络运行时，简称NNRt。作为中间桥
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称                          | 类型                                | 必填 | 说明                     |
-| ----------------------------- | ----------------------------------- | ---- | ------------------------ |
-| deviceID<sup>12+</sup>        | bigint                              | 否  | NNRt设备ID。             |
-| performanceMode<sup>12+</sup> | [PerformanceMode](#performancemode12) | 否   | NNRt设备的工作性能模式。 |
-| priority<sup>12+</sup>        | [Priority](#priority12)               | 否   | NNRt推理任务优先级。    |
-| extensions<sup>12+</sup>      | [Extension](#extension12)[]            | 否   | NNRt设备的扩展配置。    |
+| 名称                          | 类型                                | 只读 | 可选 | 说明                     |
+| ----------------------------- | ----------------------------------- | ---- | ------------------------ | ------------------------ |
+| deviceID<sup>12+</sup>        | bigint                              | 否 | 是  | NNRt设备ID。默认值为0。     |
+| performanceMode<sup>12+</sup> | [PerformanceMode](#performancemode12) | 否  | 是  | NNRt设备的工作性能模式。默认值为PERFORMANCE_NONE。 |
+| priority<sup>12+</sup>        | [Priority](#priority12)               | 否  | 是  | NNRt推理任务优先级。默认值为PRIORITY_MEDIUM。 |
+| extensions<sup>12+</sup>      | [Extension](#extension12)[]         | 否  | 是  | NNRt设备的扩展配置。默认为空。 |
 
 ## PerformanceMode<sup>12+</sup>
 
@@ -535,10 +535,10 @@ NNRt推理任务优先级枚举。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称                | 类型        | 必填 | 说明             |
-| ------------------- | ----------- | ---- | ---------------- |
-| name<sup>12+</sup>  | string      | 是   | 扩展名称。       |
-| value<sup>12+</sup> | ArrayBuffer | 是   | 包含扩展的内存。 |
+| 名称                | 类型        | 只读 | 可选 | 说明             |
+| ------------------- | ----------- | ---- | ---- | ---------------- |
+| name<sup>12+</sup>  | string      | 否   | 否   | 扩展名称。       |
+| value<sup>12+</sup> | ArrayBuffer | 否   | 否   | 包含扩展的内存。 |
 
 ## NNRTDeviceDescription<sup>12+</sup>
 
@@ -657,10 +657,10 @@ NNRt设备类型枚举。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称                            | 类型                                      | 必填 | 说明                     |
-| ------------------------------- | ----------------------------------------- | ---- | ------------------------ |
-| lossName<sup>12+</sup>          | string[]                                  | 否   | 损失函数的名称列表。     |
-| optimizationLevel<sup>12+</sup> | [OptimizationLevel](#optimizationlevel12) | 否   | 端侧训练的网络优化等级。 |
+| 名称                            | 类型                                      | 只读 | 可选 | 说明                                                         |
+| ------------------------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| lossName<sup>12+</sup>          | string[]                                  | 否   | 是   | 损失函数的名称列表。默认值为["loss_fct", "_loss_fn", "SigmoidCrossEntropy"]。 |
+| optimizationLevel<sup>12+</sup> | [OptimizationLevel](#optimizationlevel12) | 否   | 是   | 端侧训练的网络优化等级。默认值为O0。                         |
 
 **示例：** 
 
@@ -706,10 +706,10 @@ cfg.optimizationLevel = mindSporeLite.OptimizationLevel.O0;
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称                       | 类型    | 必填 | 说明                 |
-| -------------------------- | ------- | ---- | -------------------- |
-| learningRate<sup>12+</sup> | number  | 否   | 训练模型的学习率。   |
-| trainMode<sup>12+</sup>    | boolean | 否   | 模型是否为训练模式。 |
+| 名称                       | 类型    | 只读 | 可选 | 说明                                                         |
+| -------------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| learningRate<sup>12+</sup> | number  | 否   | 是   | 训练模型的学习率。默认值从加载的模型中读取。                 |
+| trainMode<sup>12+</sup>    | boolean | 否   | 是   | 模型是否为训练模式。true表示训练模式，false表示非训练模式。如果是训练模型，trainMode默认是true；如果是推理模型，trainMode默认是false。 |
 
 ### getInputs
 
@@ -1042,7 +1042,7 @@ exportModel(modelFile: string, quantizationType?: QuantizationType, exportInfere
 | modelFile           | string                                  | 是   | 导出模型的文件路径。                                         |
 | quantizationType    | [QuantizationType](#quantizationtype12) | 否   | 量化类型，默认为NO_QUANT。                                   |
 | exportInferenceOnly | boolean                                 | 否   | 是否只导出推理模型。true表示只导出推理模型，false表示导出训练和推理两个模型。默认为true。 |
-| outputTensorName    | string[]                                | 否   | 设置导出模型的输出张量的名称。                               |
+| outputTensorName    | string[]                                | 否   | 设置导出模型的输出张量的名称。默认为空字符串数组，表示全量导出。 |
 
 **返回值：**
 
@@ -1076,7 +1076,7 @@ exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, ena
 | weightFile            | string   | 是   | 权重文件路径。                                               |
 | isInference           | boolean  | 否   | 是否从推理模型中导出权重。true表示从推理模型中导出权重，目前只支持`true`，默认为true。 |
 | enableFp16            | boolean  | 否   | 浮点权重是否以float16格式保存。true表示以float16格式保存，false表示不以float16格式保存。默认为false。 |
-| changeableWeightsName | string[] | 否   | 设置可变权重的名称。                                         |
+| changeableWeightsName | string[] | 否   | 设置可变权重的名称。默认为空字符串数组。                     |
 
 **返回值：**
 
@@ -1102,14 +1102,14 @@ msliteModel.exportWeightsCollaborateWithMicro("micro_weight.bin");
 
 **系统能力：**  SystemCapability.AI.MindSporeLite
 
-| 名称       | 类型                  | 可读 | 可写 | 说明                                                 |
-| ---------- | --------------------- | ---- | ---- | ---------------------------------------------------- |
-| name       | string                | 是   | 是   | 张量的名称。默认为null                               |
-| shape      | number[]              | 是   | 是   | 张量的维度数组。默认为0。                            |
-| elementNum | number                | 是   | 是   | 张量的维度数组的长度。默认为0。                      |
-| dataSize   | number                | 是   | 是   | 张量的数据的长度。默认为0。                          |
-| dtype      | [DataType](#datatype) | 是   | 是   | 张量的数据类型。默认值为0，代表TYPE_UNKNOWN。        |
-| format     | [Format](#format)     | 是   | 是   | 张量的数据排布方式。默认值为-1，代表DEFAULT_FORMAT。 |
+| 名称       | 类型                  | 只读 | 可选 | 说明                   |
+| ---------- | --------------------- | ---- | ---- | ---------------------- |
+| name       | string                | 否   | 否   | 张量的名称。           |
+| shape      | number[]              | 否   | 否   | 张量的维度数组。       |
+| elementNum | number                | 否   | 否   | 张量的维度数组的长度。 |
+| dataSize   | number                | 否   | 否   | 张量的数据的长度。     |
+| dtype      | [DataType](#datatype) | 否   | 否   | 张量的数据类型。       |
+| format     | [Format](#format)     | 否   | 否   | 张量的数据排布方式。   |
 
 **示例：** 
 
