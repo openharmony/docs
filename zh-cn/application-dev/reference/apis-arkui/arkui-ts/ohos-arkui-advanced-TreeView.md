@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```
-import { TreeView } from "@ohos.arkui.advanced.TreeView"
+import { TreeView } from "@kit.ArkUI"
 ```
 
 
@@ -235,7 +235,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 ## 示例
 
 ```ts
-import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam } from '@ohos.arkui.advanced.TreeView'
+import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam } from '@kit.ArkUI'
 
 @Entry
 @Component

@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { SplitLayout } from '@ohos.arkui.advanced.SplitLayout'
+import { SplitLayout } from '@kit.ArkUI'
 ```
 
 
@@ -50,7 +50,7 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 ## 示例
 
 ```ts
-import { SplitLayout } from '@ohos.arkui.advanced.SplitLayout'
+import { SplitLayout } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
