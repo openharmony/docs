@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { ProgressButton } from '@ohos.arkui.advanced.ProgressButton'
+import { ProgressButton } from '@kit.ArkUI'
 ```
 
 ## 属性
@@ -44,7 +44,7 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 ## 示例
 
 ```ts
-import { ProgressButton } from '@ohos.arkui.advanced.ProgressButton'
+import { ProgressButton } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
