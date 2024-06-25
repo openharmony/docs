@@ -15,6 +15,7 @@
         - [HAP](quick-start/hap-package.md)
         - [HAR](quick-start/har-package.md)
         - [HSP](quick-start/in-app-hsp.md)
+        - [Dynamic Import](quick-start/arkts-dynamic-import.md)
       - [Application Installation and Uninstallation](quick-start/application-package-install-uninstall.md)
     - Application Configuration Files in Stage Model
       - [Overview of Application Configuration Files in Stage Model](quick-start/application-configuration-file-overview-stage.md)
@@ -40,6 +41,7 @@
         - Custom Components
           - [Creating a Custom Component](quick-start/arkts-create-custom-components.md)
           - [Page and Custom Component Lifecycle](quick-start/arkts-page-custom-components-lifecycle.md)
+          - [Custom Component Layout](quick-start/arkts-page-custom-components-layout.md)
           - [Freezing a Custom Component](quick-start/arkts-custom-components-freeze.md)
         - [\@Builder Decorator: Custom Builder Function](quick-start/arkts-builder.md)
         - [\@BuilderParam Decorator: @Builder Function Reference](quick-start/arkts-builderparam.md)
@@ -456,6 +458,8 @@
     - [Printing Frontend Pages](web/web-print.md)
     - [Downloading Files](web/web-download.md)
     - [Accelerating Web Page Access with Preconnecting and Prefetching](web/web-predictor.md)
+    - [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](web/web-same-layer.md)
+    - [Starting a Camera and Microphone with WebRTC](web/web-rtc.md)
     - [Debugging Frontend Pages by Using DevTools](web/web-debugging-with-devtools.md)
   - Asset Store Kit
     - [Introduction to Asset Store Kit](security/AssetStoreKit/asset-store-kit-overview.md)
@@ -535,7 +539,18 @@
       - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-use-guide.md)
   - Basic Service Kit
     - [Introduction to Basic Services Kit](basic-services/basic-services-kit-overview.md)
+    - Application Events
+      - IPC
+          - [Introduction to Common Events](basic-services/common-event/common-event-overview.md)
           - Common Event Subscription
+              - [Common Event Subscription Overview](basic-services/common-event/common-event-subscription-overview.md)
+              - [Subscribing to Common Events in Dynamic Mode](basic-services/common-event/common-event-subscription.md)
+              - [Subscribing to Common Events in Static Mode (for System Applications Only)](basic-services/common-event/common-event-static-subscription.md)
+              - [Unsubscribing from Common Events in Dynamic Mode](basic-services/common-event/common-event-unsubscription.md)
+          - [Publishing Common Events](basic-services/common-event/common-event-publish.md)
+          - [Removing Sticky Common Events (for System Applications Only)](basic-services/common-event/common-event-remove-sticky.md)
+      - Inter-Thread Communication
+          - [Using Emitter for Inter-Thread Communication](basic-services/common-event/itc-with-emitter.md)
     - Account Management
       - [Account Management Overview](basic-services/account/account-overview.md)
       - System Account
@@ -598,6 +613,8 @@
       - [BLE Development](connectivity/bluetooth/ble-development-guide.md)
       - [GATT Development](connectivity/bluetooth/gatt-development-guide.md)
       - [SPP Development](connectivity/bluetooth/spp-development-guide.md)
+  - Contacts Kit
+    - [Contacts Kit Development](contacts/contacts-intro.md)
   - Core File Kit
     - [Introduction to Core File Kit](file-management/core-file-kit-intro.md)
     - Application Files
@@ -764,6 +781,10 @@
     - [Event Injection Development](device/input/inputeventclient-guidelines.md)
     - [Input Consumer Development](device/input/inputconsumer-guidelines.md)
     - [Shortcut Key Development](device/input/shortkey-guidelines.md)
+  - IPC Kit
+    - [IPC & RPC Overview](ipc/ipc-rpc-overview.md)
+    - [IPC & RPC Development](ipc/ipc-rpc-development-guideline.md)
+    - [Subscribing to State Changes of a Remote Object](ipc/subscribe-remote-state.md)
   - Localization Kit
     - [Introduction to Localization Kit](internationalization/i18n-l10n.md)
     - Application Internationalization
@@ -800,6 +821,9 @@
             - [Pseudo-Localization Testing for Translation](internationalization/pseudo-i18n-testing-translation.md)
             - [Pseudo-Localization Testing for UI Mirroring](internationalization/pseudo-i18n-testing-mirror.md)
         - [Linguistic Testing](internationalization/linguistic-testing.md)
+  - Location Kit
+    - [Introduction to Location Kit](device/location/location-kit-intro.md)
+    - [Location Kit Development](device/location/location-guidelines.md)
   - Media Kit
     - [Introduction to Media Kit](media/media/media-kit-intro.md)
     - Audio Playback and Recording
@@ -856,9 +880,38 @@
       - [Adding a WantAgent Object to a Notification](notification/notification-with-wantagent.md)
     - [Notification Subscription (for System Applications Only)](notification/notification-subscription.md)
   - Performance Analysis Kit
+    - [Introduction to Performance Analysis Kit](dfx/performance-analysis-kit-overview.md)
+    - HiLog Usage
+      - [Using HiLog to Print Logs (ArkTS)](dfx/hilog-guidelines-arkts.md)
+      - [Using HiLog to Print Logs (C/C++)](dfx/hilog-guidelines-ndk.md)
+    - HiAppEvent Usage
+      - [Introduction to HiAppEvent](dfx/hiappevent-intro.md)
+      - Event Subscription
+        - [Subscribing to Application Events](dfx/hiappevent-watcher-app-events.md)
+        - [Subscribing to System Events (Crash Events)](dfx/hiappevent-watcher-crash-events.md)
+        - [Subscribing to System Events (Freeze Events)](dfx/hiappevent-watcher-freeze-events.md)
+        - [Subscribing to System Events (Resource Leak Events)](dfx/hiappevent-watcher-resourceleak-events.md)
+      - [Reporting Events](dfx/hiappevent-event-reporting.md)
+    - HiTraceMeter Usage
+      - [Using HiTraceMeter to Trace Performance (ArkTS/JS)](dfx/hitracemeter-guidelines-arkts.md)
+      - [Using HiTraceMeter to Trace Performance (C/C++)](dfx/hitracemeter-guidelines-ndk.md)
+      - [Viewing HiTraceMeter Logs](dfx/hitracemeter-view.md)
+    - [HiTraceChain Usage](dfx/hitracechain-guidelines.md)
     - Error Management
       - [Development of Error Manager](dfx/errormanager-guidelines.md)
       - [Development of Application Recovery](dfx/apprecovery-guidelines.md)
+    - Fault Analysis
+      - [Analyzing JS Crash (Process Crash)](dfx/jscrash-guidelines.md)
+      - [Analyzing CPP Crash (Process Crash)](dfx/cppcrash-guidelines.md)
+      - [Analyzing Application Freeze (appfreeze)](dfx/appfreeze-guidelines.md)
+    - Command Line Tools
+      - [hdc](dfx/hdc.md)
+      - [hilog](dfx/hilog.md)
+      - [hidumper](dfx/hidumper.md)
+      - [hitrace](dfx/hitrace.md)
+      - [hiperf](dfx/hiperf.md)
+      - [hisysevent](dfx/hisysevent.md)
+      - [uinput](dfx/uinput.md)
   - Sensor Service Kit
     - [Introduction to Sensor Service Kit](device/sensor/sensorservice-kit-intro.md)
     - Sensor
@@ -970,8 +1023,6 @@
         - [Node-API FAQs](napi/use-napi-faqs.md)
       - Resource Management
         - [Raw File Development](napi/rawfile-guidelines.md)
-      - Resource Scheduling
-        - [FFRT Development](napi/ffrt-guidelines.md)
       - Memory Management
         - [Purgeable Memory Development](napi/purgeable-memory-guidelines.md)
       - Device Management
@@ -1035,6 +1086,12 @@
     - [Advanced Notification Manager](tools/anm-tool.md)
     - [restool](tools/restool.md)
     - [LLDB](tools/lldb-tool.md)
+    - hapsigner
+      - [hapsigner Overview](security/hapsigntool-overview.md)
+      - [hapsigner Guide](security/hapsigntool-guidelines.md)
+      - [HarmonyAppProvision Configuration File](security/app-provision-structure.md)
+- Hands-On Tutorials
+  - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API References
   - [SystemCapability](reference/syscap.md)
   - [SystemCapability List](reference/syscap-list.md)
@@ -1431,12 +1488,14 @@
         - [@ohos.pluginComponent (PluginComponentManager)](reference/apis-arkui/js-apis-plugincomponent.md)
         - [@ohos.promptAction (Prompt)](reference/apis-arkui/js-apis-promptAction.md)
         - [@ohos.router (Page Routing)](reference/apis-arkui/js-apis-router.md)
+        - [getContext](reference/apis-arkui/js-apis-getContext.md)
         - [postCardAction](reference/apis-arkui/js-apis-postCardAction.md)
         - [@ohos.arkui.drawableDescriptor (DrawableDescriptor) (System API)](reference/apis-arkui/js-apis-arkui-drawableDescriptor-sys.md)
         - [@ohos.arkui.performanceMonitor (Performance Monitoring) (System API)](reference/apis-arkui/js-apis-arkui-performancemonitor-sys.md) 
         - [@ohos.deviceStatus.dragInteraction (Drag Interaction) (System API)](reference/apis-arkui/js-apis-devicestatus-draginteraction-sys.md)
         - [@ohos.pluginComponent (PluginComponentManager) (System API)](reference/apis-arkui/js-apis-plugincomponent-sys.md)
         - [@ohos.uiAppearance (UI Appearance) (System API)](reference/apis-arkui/js-apis-uiappearance-sys.md)
+        - [@ohos.uiExtensionHost (System API)](reference/apis-arkui/js-apis-uiExtensionHost-sys.md)
         - arkui
           - [BuilderNode](reference/apis-arkui/js-apis-arkui-builderNode.md)
           - [FrameNode](reference/apis-arkui/js-apis-arkui-frameNode.md)
@@ -1527,6 +1586,7 @@
             - [Image Effects (System API)](reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect-sys.md)
             - [Background (System API)](reference/apis-arkui/arkui-ts/ts-universal-attributes-background-sys.md)
             - [Foreground Blur (System API)](reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style-sys.md)
+            - [Point Light Style (System API)](reference/apis-arkui/arkui-ts/ts-universal-attributes-point-light-style-sys.md)
           - Gesture Handling
             - [Gesture Binding Methods](reference/apis-arkui/arkui-ts/ts-gesture-settings.md)
             - Basic Gestures
@@ -1623,8 +1683,12 @@
           - [Tabs](reference/apis-arkui/arkui-ts/ts-container-tabs.md)
           - [TabContent](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md)
           - [WaterFlow](reference/apis-arkui/arkui-ts/ts-container-waterflow.md)
+          - [Column (System API)](reference/apis-arkui/arkui-ts/ts-container-column-sys.md)
           - [EffectComponent (System API)](reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)
+          - [Flex (System API)](reference/apis-arkui/arkui-ts/ts-container-flex-sys.md)
           - [List (System API)](reference/apis-arkui/arkui-ts/ts-container-list-sys.md)
+          - [Row (System API)](reference/apis-arkui/arkui-ts/ts-container-row-sys.md)
+          - [Stack (System API)](reference/apis-arkui/arkui-ts/ts-container-stack-sys.md)
           - [UIExtensionComponent (System API)](reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)
         - Media Components
           - [Video](reference/apis-arkui/arkui-ts/ts-media-components-video.md)
@@ -1697,11 +1761,13 @@
             - [Text Picker Dialog Box (TextPickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md)
           - [Menu](reference/apis-arkui/arkui-ts/ts-methods-menu.md)
         - [Custom Component Lifecycle](reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md)
+        - [Custom Component Layout](reference/apis-arkui/arkui-ts/ts-custom-component-layout.md)
         - [Custom Component Built-in APIs](reference/apis-arkui/arkui-ts/ts-custom-component-api.md)
         - [State Management with Application-level Variables](reference/apis-arkui/arkui-ts/ts-state-management.md)
         - [Pixel Units](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
         - [Enums](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
         - [Types](reference/apis-arkui/arkui-ts/ts-types.md)
+        - [Enums (System API)](reference/apis-arkui/arkui-ts/ts-appendix-enums-sys.md)
         - Components No Longer Maintained 
           - [AbilityComponent (System API)](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)
           - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)
@@ -1912,6 +1978,8 @@
       - [@ohos.web.webview (Webview)](reference/apis-arkweb/js-apis-webview.md)
     - ArkTS Components
       - [Web](reference/apis-arkweb/ts-basic-components-web.md)
+    - C APIs
+      - [OHWebJSBridge](reference/apis-arkweb/native_interface_arkweb.md)
     - Error Codes
       - [Webview Error Codes](reference/apis-arkweb/errorcode-webview.md)
   - Audio Kit API Reference
@@ -2027,7 +2095,10 @@
             - [@ohos.batteryInfo (Battery Information) (System API)](reference/apis-basic-services-kit/js-apis-battery-info-sys.md)
             - [@ohos.batteryStatistics (Power Consumption Statistics) (System API)](reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md)
             - [@ohos.brightness (Screen Brightness) (System API)](reference/apis-basic-services-kit/js-apis-brightness-sys.md)
+            - [@ohos.charger (Charger) (System API)](reference/apis-basic-services-kit/js-apis-charger-sys.md)
+            - [@ohos.deviceAttest (Device Attestation) (System API)](reference/apis-basic-services-kit/js-apis-deviceAttest-sys.md)
             - [@ohos.power (Power Management) (System API)](reference/apis-basic-services-kit/js-apis-power-sys.md)
+            - [@ohos.systemCapability (SystemCapability) (System API)](reference/apis-basic-services-kit/js-apis-system-capability-sys.md)
             - [@ohos.systemParameterEnhance (System Parameter) (System API)](reference/apis-basic-services-kit/js-apis-system-parameterEnhance-sys.md)
             - [@ohos.screenLock (Screen Lock) (System API)](reference/apis-basic-services-kit/js-apis-screen-lock-sys.md)
             - [@ohos.usbManager (USB Management) (System API)](reference/apis-basic-services-kit/js-apis-usbManager-sys.md)
@@ -2042,6 +2113,7 @@
             - [@ohos.request (Upload and Download) (System API)](reference/apis-basic-services-kit/js-apis-request-sys.md)
         - Process and Thread Communication
             - [@ohos.commonEventManager (Common Event)](reference/apis-basic-services-kit/js-apis-commonEventManager.md)
+            - [@ohos.events.emitter (Emitter)](reference/apis-basic-services-kit/js-apis-emitter.md)
             - [@ohos.commonEventManager (Common Event) (System API)](reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md)
             - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility) (System API)](reference/apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)
             - [@ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext) (System API)](reference/apis-basic-services-kit/js-apis-application-StaticSubscriberExtensionContext-sys.md)
@@ -2075,6 +2147,8 @@
             - [@ohos.settings (Data Item Settings)](reference/apis-basic-services-kit/js-apis-settings.md)
             - [@ohos.wallpaper (Wallpaper)](reference/apis-basic-services-kit/js-apis-wallpaper.md)
             - [@ohos.settings (Data Item Settings) (System API)](reference/apis-basic-services-kit/js-apis-settings-sys.md)
+            - [@ohos.systemDateTime (System Time and Time Zone) (System API)](reference/apis-basic-services-kit/js-apis-system-date-time-sys.md)
+            - [@ohos.systemDateTime](reference/apis-basic-services-kit/js-apis-date-time.md)
             - [@ohos.wallpaper (Wallpaper) (System API)](reference/apis-basic-services-kit/js-apis-wallpaper-sys.md)
             - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility) (System API)](reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md)
             - [@ohos.systemTimer (System Timer) (System API)](reference/apis-basic-services-kit/js-apis-system-timer-sys.md)
@@ -2083,9 +2157,12 @@
             - [@ohos.commonEvent (Common Event)](reference/apis-basic-services-kit/js-apis-commonEvent.md)
             - [@ohos.usb (USB)](reference/apis-basic-services-kit/js-apis-usb-deprecated.md)
             - [@system.brightness (Screen Brightness)](reference/apis-basic-services-kit/js-apis-system-brightness.md)
+            - [@system.battery (Battery Information)](reference/apis-basic-services-kit/js-apis-system-battery.md)
+            - [@system.device (Device Information)](reference/apis-basic-services-kit/js-apis-system-device.md)
             - [@system.request (Upload and Download)](reference/apis-basic-services-kit/js-apis-system-request.md)
             - [@ohos.commonEvent (Common Event) (System API)](reference/apis-basic-services-kit/js-apis-commonEvent-sys.md)
             - [@ohos.usb (USB) (System API)](reference/apis-basic-services-kit/js-apis-usb-deprecated-sys.md)
+            - [@ohos.systemParameter (System Parameter) (System API)](reference/apis-basic-services-kit/js-apis-system-parameter-sys.md)
             - [@ohos.systemTime (System Time and Time Zone)](reference/apis-basic-services-kit/js-apis-system-time-sys.md)
     - Error Codes
         - [USB Error Codes](reference/apis-basic-services-kit/errorcode-usb.md)
@@ -2623,8 +2700,6 @@
       - [VPN Error Codes](reference/apis-network-kit/errorcode-net-vpn.md)
   - Neural Network Runtime Kit API Reference
     - C APIs
-      - Modules
-        - [NeuralNetworkRuntime](reference/apis-neural-network-runtime-kit/_neural_nework_runtime.md)
       - Header Files
         - [neural_network_core.h](reference/apis-neural-network-runtime-kit/neural__network__core_8h.md)
         - [neural_network_runtime.h](reference/apis-neural-network-runtime-kit/neural__network__runtime_8h.md)

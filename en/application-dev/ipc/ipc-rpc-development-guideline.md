@@ -1,4 +1,4 @@
-# IPC & RPC Development Guidelines
+# IPC & RPC Development
 
 ## When to Use
 
