@@ -43,6 +43,7 @@
 
 ## 状态机调用关系
 如下为状态机调用关系图：
+
 ![Invoking relationship of state](figures/state-invocation.png)
 
 
@@ -103,8 +104,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t height = 240;
     // 配置视频颜色格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
-    int widthStride = 0;
-    int heightStride = 0;
+    int32_t widthStride = 0;
+    int32_t heightStride = 0;
     ```
 
 3. 创建解码器实例对象。

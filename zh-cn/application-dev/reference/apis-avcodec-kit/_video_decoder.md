@@ -353,9 +353,9 @@ OH_AVErrCode OH_VideoDecoder_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCall
 OH_AVErrCode OH_VideoDecoder_RenderOutputBuffer (OH_AVCodec *codec, uint32_t index )
 ```
 **描述**
-将处理后的输出缓冲返回给解码器，并通知解码器完成在输出表面上渲染，输出缓冲包含解码数据。
+将处理后的输出缓冲返回给解码器，并通知解码器完成在输出surface上渲染，输出缓冲包含解码数据。
 
-如果之前没有配置输出表面，则调用此接口仅将指定索引对应的输出缓冲区返回给解码器。
+如果之前没有配置输出surface，则调用此接口仅将指定索引对应的输出缓冲区返回给解码器。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 
@@ -464,7 +464,7 @@ OH_AVErrCode OH_VideoDecoder_SetParameter (OH_AVCodec *codec, OH_AVFormat *forma
 OH_AVErrCode OH_VideoDecoder_SetSurface (OH_AVCodec * codec, OHNativeWindow * window )
 ```
 **描述**
-指定输出表面以提供视频解码输出，必须在调用Prepare之前调用此接口。
+指定输出surface以提供视频解码输出，必须在调用Prepare之前调用此接口。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 
