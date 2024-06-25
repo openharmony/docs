@@ -12,7 +12,7 @@ systemTonePlayer需要和[@ohos.multimedia.systemSoundManager](js-apis-systemSou
 ## 导入模块
 
 ```ts
-import systemSoundManager from '@ohos.multimedia.systemSoundManager';
+import { systemSoundManager } from '@kit.AudioKit';
 ```
 
 ## SystemToneOptions
@@ -60,7 +60,7 @@ getTitle(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.getTitle().then((value: string) => {
   console.info(`Promise returned to indicate that the value of the system tone player title is obtained ${value}.`);
@@ -98,7 +98,7 @@ prepare(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.prepare().then(() => {
   console.info(`Promise returned to indicate a successful prepareing of system tone player.`);
@@ -145,7 +145,7 @@ start(toneOptions?: SystemToneOptions): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class SystemToneOptions {
   muteAudio: boolean = false;
@@ -195,7 +195,7 @@ stop(id: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let streamID: number = 0; //streamID为start方法返回的streamID,此处只做初始化。
 systemTonePlayer.stop(streamID).then(() => {
@@ -232,7 +232,7 @@ release(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.release().then(() => {
   console.info(`Promise returned to indicate a successful releasing of system tone player.`);
