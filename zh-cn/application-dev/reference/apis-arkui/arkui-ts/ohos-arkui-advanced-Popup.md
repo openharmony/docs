@@ -9,7 +9,7 @@ Popup是用于显示特定样式气泡。
 ## 导入模块
 
 ```
-import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@ohos.arkui.advanced.Popup';
+import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI';
 ```
 
 ##  子组件
@@ -99,7 +99,7 @@ PopupIconOptions定义icon（右上角图标）的属性。
 
 ```ts
 // xxx.ets
-import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@ohos.arkui.advanced.Popup';
+import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI';
 
 @Entry
 @Component
