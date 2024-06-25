@@ -376,7 +376,7 @@ uint32_t(* ArkUI_NativeNodeAPI_1::getTotalChildCount) (ArkUI_NodeHandle node)
 
 **返回：**
 
-0 - 成功。 401 - 函数参数异常。
+子节点的个数, 如果没有返回0。
 
 
 ### getUserData
