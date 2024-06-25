@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 ```
 
 ### ToastShowMode

@@ -291,7 +291,7 @@ getSharedLocalStorage(): LocalStorage | undefined
 
 ```ts
 // index.ets
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -323,7 +323,7 @@ struct SharedLocalStorage {
 }
 
 // GetSharedLocalStorage.ets
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -4001,8 +4001,9 @@ showToast(options: promptAction.ShowToastOptions): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { PromptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showToast({            
@@ -4045,8 +4046,9 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { PromptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 class ButtonsModel {
   text: string = ""
   color: string = ""
@@ -4114,8 +4116,9 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { PromptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showDialog({
@@ -4174,9 +4177,8 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 **示例：**
 
 ```ts
-import { PromptAction } from '@ohos.arkui.UIContext';
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { PromptAction, promptAction  } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promptActionF: PromptAction = uiContext.getPromptAction();
 try {
@@ -4235,9 +4237,8 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 **示例：**
 
 ```ts
-import { PromptAction } from '@ohos.arkui.UIContext';
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { PromptAction,promptAction  } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promptActionF: PromptAction = uiContext.getPromptAction();
 try {
@@ -4295,8 +4296,9 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { PromptAction,promptAction  } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showActionMenu({
@@ -4361,8 +4363,8 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import { ComponentContent } from "@ohos.arkui.node";
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
@@ -4446,8 +4448,8 @@ closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import { ComponentContent } from "@ohos.arkui.node";
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
@@ -4542,8 +4544,8 @@ updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, optio
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import { ComponentContent } from "@ohos.arkui.node";
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
