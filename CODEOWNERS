@@ -40,6 +40,11 @@ zh-cn/application-dev/quick-start/introduction-to-arkts.md @zhang_yixin13 @flyin
 zh-cn/application-dev/quick-start/arkts-migration-background.md @zhang_yixin13 @flyingwolf
 zh-cn/application-dev/quick-start/typescript-to-arkts-migration-guide.md @zhang_yixin13 @flyingwolf
 zh-cn/application-dev/quick-start/arkts-more-cases.md @zhang_yixin13 @flyingwolf
+zh-cn/application-dev/quick-start/arkts-bytecode-fundamentals.md @zhang_yixin13 @flyingwolf
+zh-cn/application-dev/quick-start/arkts-bytecode-file-format.md @zhang_yixin13 @flyingwolf
+zh-cn/application-dev/quick-start/arkts-bytecode-function-name.md @zhang_yixin13 @flyingwolf
+zh-cn/application-dev/quick-start/arkts-high-performance-programming.md @zhang_yixin13 @flyingwolf
+
 zh-cn/application-dev/quick-start/arkts-basic-syntax-overview.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
 zh-cn/application-dev/quick-start/arkts-declarative-ui-description.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
 zh-cn/application-dev/quick-start/arkts-create-custom-components.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
@@ -54,6 +59,7 @@ zh-cn/application-dev/quick-start/arkts-statestyles.md @zhang_yixin13 @zhang-jia
 zh-cn/application-dev/quick-start/arkts-state-management-overview.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
 zh-cn/application-dev/quick-start/arkts-animatable-extend.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
 zh-cn/application-dev/quick-start/arkts-require.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
+
 zh-cn/application-dev/quick-start/arkts-state-management-overview.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
 zh-cn/application-dev/quick-start/arkts-state.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu 
 zh-cn/application-dev/quick-start/arkts-prop.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
@@ -72,6 +78,18 @@ zh-cn/application-dev/quick-start/arkts-track.md @zhang_yixin13 @zhang-jian008 @
 zh-cn/application-dev/quick-start/arkts-mvvm.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
 zh-cn/application-dev/quick-start/arkts-state-management-best-practices.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
 zh-cn/application-dev/quick-start/properly-use-state-management-to-develope.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
+
+zh-cn/application-dev/quick-start/arkts-new-observedV2-and-trace.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-componentV2.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-local.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-param.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-once.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-event.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-monitor.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-Provider-and-Consumer.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-Computed.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-binding.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
+
 zh-cn/application-dev/quick-start/arkts-rendering-control-overview.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
 zh-cn/application-dev/quick-start/arkts-rendering-control-ifelse.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
 zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md @zhang_yixin13 @zhang-jian008 @s10021109 @seaside_wu
@@ -246,9 +264,9 @@ zh-cn/application-dev/device/usb-overview.md @li-yan339 @Kevin-Lau @liuhonggang1
 zh-cn/application-dev/device/usb-guidelines.md @li-yan339 @Kevin-Lau @liuhonggang123
 
 [开发-Basic Services Kit-升级服务]
-zh-cn/application-dev/basic-services/update/Readme-CN.md @hu-zhiqiong 
-zh-cn/application-dev/basic-services/update/sample-server-overview.md @hu-zhiqiong 
-zh-cn/application-dev/basic-services/update/sample-server-guidelines.md @hu-zhiqiong 
+zh-cn/application-dev/basic-services/update/Readme-CN.md @nezha-father
+zh-cn/application-dev/basic-services/update/sample-server-overview.md  @nezha-father
+zh-cn/application-dev/basic-services/update/sample-server-guidelines.md  @nezha-father
 
 [开发-CalendarManager Kit]
 zh-cn/application-dev/calendarmanager @ge-yafang @jt_123456 @edollar
@@ -263,7 +281,7 @@ zh-cn/application-dev/communication/nfc/ @knpingan @zhang_yixin13 @projectmanage
 
 
 [开发-Contacts Kit]
-zh-cn/application-dev/telephony/contacts-intro.md @zhang_yixin13 @caowyan 
+zh-cn/application-dev/telephony/contacts-intro.md @zhang_yixin13 
 
 
 [开发-Core File Kit]
@@ -287,14 +305,14 @@ zh-cn/application-dev/dfx/ @foryourself
 zh-cn/application-dev/IDL/ @huipeizi  @ccllee  @lxfycode  @lixiaogang30
 
 [开发-IME kit]
-zh-cn/application-dev/inputmethod/ @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
-zh-cn/application-dev/kit-readme/Readme-IME-Kit.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
-zh-cn/application-dev/inputmethod/Readme-CN.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
-zh-cn/application-dev/inputmethod/custom_input_box_guide.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
-zh-cn/application-dev/inputmethod/ime-kit-intro.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
-zh-cn/application-dev/inputmethod/input_method_subtype_guide.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
-zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
-zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/ @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
+zh-cn/application-dev/kit-readme/Readme-IME-Kit.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/Readme-CN.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/custom_input_box_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/ime-kit-intro.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/input_method_subtype_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
 
 [开发-Input kit]
 zh-cn/application-dev/device/inputdevice-guidelines.md @hhh2 @ningningW @mayunteng @star-wind-snow-and-rain
@@ -337,22 +355,13 @@ zh-cn/application-dev/ai/mindspore-lite-offline-model-guidelines.md @ge-yafang @
 
 
 [开发-Multimodal Awareness Kit]
-zh-cn/application-dev/kit-readme/Readme-MultimodalAwareness-Kit.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
-zh-cn/application-dev/device/multimodalawareness-kit-intro.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
-zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/kit-readme/Readme-MultimodalAwareness-Kit.md @mayunteng_1 @nezha-father @cococoler @alien0208
+zh-cn/application-dev/device/multimodalawareness-kit-intro.md @mayunteng_1 @nezha-father @cococoler @alien0208
+zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @nezha-father @cococoler @alien0208
 
 
 [开发-Network Kit]
-zh-cn/application-dev/connectivity/net-mgmt-overview.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
-zh-cn/application-dev/connectivity/http-request.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
-zh-cn/application-dev/connectivity/websocket-connection.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
-zh-cn/application-dev/connectivity/socket-connection.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
-zh-cn/application-dev/connectivity/net-sharing.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
-zh-cn/application-dev/connectivity/net-ethernet.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
-zh-cn/application-dev/connectivity/net-connection-manager.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
-zh-cn/application-dev/connectivity/net-mdns.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
-zh-cn/application-dev/connectivity/net-statistics.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
-zh-cn/application-dev/connectivity/net-vpn.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/network/ @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
 
 
 [开发-Neural NetWork Runtime Kit]
@@ -380,17 +389,17 @@ zh-cn/application-dev/security/ @zengyawen
 
 
 [开发-Sensor Service Kit]
-zh-cn/application-dev/device/sensor-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain @lixiangpeng221
-zh-cn/application-dev/device/sensor-guidelines.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensorservice-kit-intro.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/vibrator-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/vibrator-guidelines.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/device-dev/subsystems/subsys-sensor-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/sensor-overview-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/vibrator-guidelines-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor-overview.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain @lixiangpeng221
+zh-cn/application-dev/device/sensor-guidelines.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensorservice-kit-intro.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/vibrator-overview.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/vibrator-guidelines.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/device-dev/subsystems/subsys-sensor-overview.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit-as.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-overview-as.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/vibrator-guidelines-as.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
 
 
 [开发-Telephony Kit]
@@ -899,30 +908,30 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md @li
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager-sys.md @li-yan339 @Kevin-Lau @liuhonggang123
 
 [API参考-Basic Services Kit-数据文件处理]
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md @hu-zhiqiong @hanruofei @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md @hu-zhiqiong @hanruofei @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-request.md @hu-zhiqiong @hanruofei @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-update-sys.md @hughes802 @hu-zhiqiong @zhangzhengxue @mamba-ting
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @hu-zhiqiong @hanruofei @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hughes802 @hu-zhiqiong @zhangzhengxue @mamba-ting
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md @zhang_yixin13 @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md @zhang_yixin13 @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-request.md @zhang_yixin13 @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-update-sys.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @zhang_yixin13 @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting
 
 [API参考-Basic Services Kit-时间时区、公共回调、系统设置]
-zh-cn/application-dev/reference/common/js-apis-timer.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/commonEvent-screenlock.md @hu-zhiqiong
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-timer-sys.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-time.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-date-time-sys.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-time.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-date-time.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-time.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock-sys.md @hu-zhiqiong @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock.md @hu-zhiqiong @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @wangzhangjun
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings.md @xue-seu @hu-zhiqiong
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings-sys.md @xue-seu @hu-zhiqiong
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper-sys.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @wangzhangjun
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @wangzhangjun
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-screenlock.md @hu-zhiqiong @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
+zh-cn/application-dev/reference/common/js-apis-timer.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/commonEvent-screenlock.md @zhang_yixin13
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-timer-sys.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-time.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-date-time-sys.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-time.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-date-time.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-time.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock-sys.md @zhang_yixin13 @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock.md @zhang_yixin13 @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @wangzhangjun
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings.md @xue-seu @zhang_yixin13
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings-sys.md @xue-seu @zhang_yixin13
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper-sys.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @wangzhangjun
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @wangzhangjun
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-screenlock.md @zhang_yixin13 @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-capability*.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 
 [API参考-Basic Services Kit-启动恢复]
@@ -985,7 +994,7 @@ zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-se.md @knpingan 
 
 
 [API参考-Contacts Kit]
-zh-cn/application-dev/reference/apis-contacts-kit/  @zhang_yixin13 @caowyan 
+zh-cn/application-dev/reference/apis-contacts-kit/  @zhang_yixin13 
 
 
 [API参考-Core File Kit]
@@ -1012,7 +1021,7 @@ zh-cn/application-dev/reference/apis-form-kit/  @arondave  @hehe9876  @nezha-fat
 
 
 [API参考-IME kit]
-zh-cn/application-dev/reference/apis-ime-kit/ @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis-ime-kit/ @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
 
 
 [API参考-Input Kit]
@@ -1065,8 +1074,8 @@ zh-cn/application-dev/apis-mindspore-lite-kit/apis/_mind_spore.md  @ge-yafang @p
 
 
 [API参考-Multimodal Awareness Kit]
-zh-cn/application-dev/reference/apis-multimodalawareness-kit/Readme-CN.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
-zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/Readme-CN.md @mayunteng_1 @nezha-father @cococoler @alien0208
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.md @mayunteng_1 @nezha-father @cococoler @alien0208
 
 
 [API参考-Network Kit]
@@ -1097,22 +1106,22 @@ zh-cn/application-dev/reference/apis-ability-kit/errorcode-access-token.md @zeng
 
 
 [API参考-Sensor Service Kit]
-zh-cn/application-dev/reference/apis-sensor-service-kit/Readme-CN.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor-sys.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-vibrate.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_type_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_type_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_attribute.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_file_description.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/Readme-CN.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor-sys.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-vibrator.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-sensor.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-vibrate.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_sensor.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_8h.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_type_8h.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_8h.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_type_8h.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_attribute.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_file_description.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
 
 
 [API参考-Telephony Kit]
