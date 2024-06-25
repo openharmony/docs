@@ -1,9 +1,5 @@
 # IPC通信开发指导（C/C++)
 
->**说明：**
-><br>本模块首批接口从API version 12开始支持，支持异常返回功能。
-><br>后续版本新增接口，采用上角标单独标记接口的起始版本。
-> 
 
 ## 场景介绍
 
@@ -12,7 +8,7 @@ IPC CAPI接口不直接提供跨进程通信能力，两个进程之间的IPC通
 
 ![图](./figures/_i_p_c_architecture_diagram.png)
 
-进程间IPC通道建立，详情参考**元能力CAPI接口开发指导**，本文重点阐述IPC CAPI部分使用说明。
+进程间IPC通道建立，详情参考[元能力CAPI接口开发指导](./application-models/capi_nativechildprocess_development_guideline.md)，本文重点阐述IPC CAPI部分使用说明。
 
 ## 接口说明
 
