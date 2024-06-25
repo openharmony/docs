@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { ComposeListItem } from "@ohos.arkui.advanced.ComposeListItem"
+import { ComposeListItem } from "@kit.ArkUI"
 ```
 
 
