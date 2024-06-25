@@ -103,29 +103,28 @@
      // 此处以此键值对不存在时写入数据为例
      preferences.putSync('startup', 'auto');
      // 当字符串有特殊字符时，需要将字符串转为Uint8Array类型再存储
-     let uInt8Array = new util.TextEncoder().encodeInto("~！@#￥%……&*（）——+？");
-     preferences.putSync('uInt8', uInt8Array);
+     let uInt8Array1 = new util.TextEncoder().encodeInto("~！@#￥%……&*（）——+？");
+     preferences.putSync('uInt8', uInt8Array1);
    }
    ```
 
-3. 读取数据。
+4. 读取数据。
 
    使用getSync()方法获取数据，即指定键对应的值。如果值为null或者非默认值类型，则返回默认数据。
 
    示例代码如下所示：
 
    ```ts
-   import util from '@ohos.util';
    let val = preferences.getSync('startup', 'default');
    console.info("The 'startup' value is " + val);
    // 当获取的值为带有特殊字符的字符串时，需要将获取到的Uint8Array转换为字符串
-   let uInt8Array : dataPreferences.ValueType = preferences.getSync('uInt8', new Uint8Array(0));
+   let uInt8Array2 : dataPreferences.ValueType = preferences.getSync('uInt8', new Uint8Array(0));
    let textDecoder = util.TextDecoder.create('utf-8');
-   val = textDecoder.decodeWithStream(uInt8Array as Uint8Array);
+   val = textDecoder.decodeWithStream(uInt8Array2 as Uint8Array);
    console.info("The 'uInt8' value is " + val);
    ```
 
-4. 删除数据。
+5. 删除数据。
 
    使用deleteSync()方法删除指定键值对，示例代码如下所示：
 
@@ -134,7 +133,7 @@
    preferences.deleteSync('startup');
    ```
 
-5. 数据持久化。
+6. 数据持久化。
 
    应用存入数据到Preferences实例后，可以使用flush()方法实现数据持久化。示例代码如下所示：
 
@@ -148,7 +147,7 @@
    })
    ```
 
-6. 订阅数据变更。
+7. 订阅数据变更。
 
    应用订阅数据变更需要指定observer作为回调方法。订阅的Key值发生变更后，当执行flush()方法时，observer被触发回调。示例代码如下所示：
 
@@ -176,7 +175,7 @@
    })
    ```
 
-7. 删除指定文件。
+8. 删除指定文件。
 
    使用deletePreferences()方法从内存中移除指定文件对应的Preferences实例，包括内存中的数据。若该Preference存在对应的持久化文件，则同时删除该持久化文件，包括指定文件及其备份文件、损坏文件。
 
@@ -190,13 +189,12 @@
 
 
    ```ts
-   let options: dataPreferences.Options = { name: 'myStore' };
-     dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
-           return;
-       }
-       console.info('Succeeded in deleting preferences.');
+   dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
+     if (err) {
+       console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
+         return;
+     }
+     console.info('Succeeded in deleting preferences.');
    })
    ```
 
