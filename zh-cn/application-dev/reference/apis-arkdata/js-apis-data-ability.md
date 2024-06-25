@@ -10,7 +10,7 @@ DataAbility谓词用于构造关系型数据库的谓词，提供用于实现不
 ## 导入模块
 
 ```js
-import dataAbility from '@ohos.data.dataAbility';
+import { dataAbility } from '@kit.ArkData';
 ```
 
 ## dataAbility.createRdbPredicates
@@ -747,18 +747,17 @@ indexedBy(field: string): DataAbilityPredicates
 **示例：**
 
   ```js
-  import rdb from '@ohos.data.rdb'; // 导入模块
-  import featureAbility from '@ohos.ability.featureAbility';
-  import dataAbility from '@ohos.data.dataAbility';
+  import { dataAbility, relationalStore } from '@kit.ArkData';
 
   let context = getContext(this);
 
-  const STORE_CONFIG : rdb.StoreConfig= {
+  const STORE_CONFIG : relationalStore.StoreConfig = {
       name: 'RdbTest.db', // 数据库文件名
+      securityLevel: relationalStore.SecurityLevel.S3,
   };
   // 表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
   const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // 建表Sql语句
-  rdb.getRdbStore(this.context, STORE_CONFIG, 3, async (err, store) => {
+  relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
     if (err) {
       console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
       return;
