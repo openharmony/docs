@@ -1,4 +1,4 @@
-# TS Component Reference Template
+# Advanced TS Component Reference Template
 
 ## General Writing Instructions
 
@@ -6,19 +6,19 @@
 | ---- | ------------------ | ------------------------------------------------------------ |
 | 1    | Customer-oriented mindset| **Stand in the shoes of developers and provide the use cases, parameter selection principles, recommendations/tips, sample code, and anything else that a developer will need to develop the component.**|
 | 2    | Upload path          | Upload markdown files to **docs/en/application-dev/reference/apis-*ExampleKit*-kit/**.<br>Upload images to **docs/en/application-dev/reference/apis-*ExampleKit*-kit/figures**. In addition, reference the image path in the markdown file as follows: **\![]\(figures/exampleImage.jpg)**, **\![]\(figures/exampleImage.png)**, or **\![]\(figures/exampleImage.gif)**.|
-| 3    | File name          | Provide one TS component reference document for each .d.ts file. Name the file in the format of `ts-componentClassName-componentName.md`.<br>Examples:<br>For the basic component **\<Text>**, the reference file name is `ts-basic-component-text.md`.<br>For the container component **\<List>**, the reference file name is `ts-container-list.md`.|
-| 4    | Directory update          | After uploading a TS component reference document, update the **Readme-EN.md** file in **docs/en/application-dev/reference/apis-*exampleKit*-kit**. |
-| 5    | Document structure          | - Component description<br>- Initial version description<br>- Modules to import/Usage description<br>- Child components<br>- APIs, attributes, events, objects, enums, and custom types<br>  The order in which APIs are described in the document must be consistent with that in which they appear in the code. If some APIs have a logical sequence, pay attention to their sequence in the document. |
+| 3    | File name          | Provide one advanced TS component reference document for each .d.ets file. Name the reference document the same as the .d.ets file name, except by changing the dots (.) to hyphens (-).<br>Example:<br>ohos-arkui-advanced-Chip.md |
+| 4    | Directory update          | After uploading an advanced TS component reference document, update the **Readme-EN.md** file in **docs/en/application-dev/reference/apis-*exampleKit*-kit**.|
+| 5    | Document structure          | - Component description<br>- Initial version description<br>- Modules to import/Usage description<br>- Child components<br>- API description (attributes, constants, methods, enums, and custom types)<br>The order in which APIs are described in the document must be consistent with that in which they appear in the code. If some APIs have a logical sequence, pay attention to their sequence in the document.|
 | 6   | Sample code programming language      | Use code blocks to provide sample code, and mark the programming language ts by adding `// xxx.ets` at the beginning of every sample code block.|
 | 7   | Link          | Link format: [Link text]\(Link content)<br>Cross-folder link format: [markdown file name]\(\.\./../xxx/xxx.md). One `../` indicates one upper-level folder.<br>Intra-topic link format: [Interface A<sup>7+</sup>]\(#xxxa7). The text in the intra-topic link must be the same as the title to be linked. In the link, all letters must be in lowercase, and no special character (except the hyphen) or tag is included.|
 
-## Mappings Between .d.ts Tags and Document Fields
+## Mappings Between .d.ets Tags and Document Fields
 
 Except for @since, document fields mapping to the following tags must be provided under each API.
 
 For an attribute or interface table, if a tag has the same value for all the items in the table, you can place the tag description above the table. Otherwise, place the tag under **NOTE** for each item.
 
-| .d.ts Tag                    | Description    | Document Field                                                    |
+| .d.ets Tag                    | Description    | Document Field                                                    |
 | ------------------------------ | -------- | ------------------------------------------------------------ |
 | @since                         | Version description| 1. Use the greater-than sign (>) followed by a space to indent the description about the initial version of the component. Unless otherwise marked, all APIs in the component have the same initial version.<br>2. When introducing an API to an existing component, use the `<sup>` tag to mark its initial version. The format is `<sup>versionNumber+</sup>`, for example, `<sup>7+</sup>`.  <br>When introducing an attribute to an existing component, suffix the `<sup>` tag to the new attribute name, for example, `newAttribute<sup>7+</sup>`.<br>When introducing a method to an existing component, suffix the `<sup>` tag to the method name, for example, `getSimIccId<sup>7+</sup>`. The same rule applies to new interfaces, classes, and enums.|
 | @deprecated                    | Deprecated description| Do not delete the deprecated content from the document. Instead, suffix `deprecated` as a superscript to the content, and use the greater-than sign (>) to introduce the initial version and deprecated version. If there is no substitute API, provide the substitute solution.<br>Example: abandonmentMethod<sup>(deprecated)</sup><br>> This API is supported since API version 4 and deprecated since API version 7. You are advised to use [newMethod]\(#newmethod) instead.|
@@ -43,118 +43,77 @@ The following describes the instructions for writing a specific component refere
 
 Describe the component from its functionalities, use cases, and recommendations in this section. 
 
-**Example 1**: \<Marquee>
 
-The **\<Marquee>** component is used to display a scrolling piece of text. The text is scrolled only when its width exceeds the width of the **\<Marquee>** component.
 
-**Example 2**: \<SideBarContainer>
 
-The **\<SideBarContainer>** component contains a sidebar and content area as its child components. The sidebar is the first child component and can be shown or hidden as needed. The content area is the second child component.
 
-> **NOTE**
->
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+**Example**: @ohos.arkui.advanced.EditableTitleBar (Editable Title Bar)
+
+The editable title bar is a title bar that comes with button icons, typically **Cancel** on the left and **Confirm** on the right, on a multi-select or editing page.
 
 ## Modules to Import
 
 > *Writing Instructions*
 >
-> 1. This section is optional. Delete it if the document is about a component or universal method.
-> 2. This section is mandatory if the document is about an API to be imported.
-> 3. Write the modules to import based on the actual conditions. Provide the `import` statement in the form of a code block.<br>**Example:**
+> This section is mandatory. Write the modules to import based on the actual conditions. Provide the `import` statement in the form of a code block.<br>**Example:**
 >
 
 ```js
-import Curves from '@ohos.curves'
+import { EditableTitleBar } from "@ohos.arkui.advanced.EditableTitleBar"
 ```
 
 ## Child Components
 
 > *Writing Instructions*
 >
-> 1. This section is mandatory if the document is about a built-in component that contains child components.
-> 3. If there are restrictions on the use of child components, describe them here.
+> If there are restrictions on the use of child components, describe them here.
 
-Example: Supported
-
-## APIs
-
->*Writing Instructions*
->
->1. This section is mandatory if the document is about a built-in component and the component has APIs.
->2. The description of the API calling mode must be the same as that in the .d.ts file and include the parameter type and parameter name. 
->3. Add a question mark (?) after the parameter name to mark an optional parameter.
->4. Use English symbols in the complete method name, and add a space after each colon (:).
->5. Do not use a semicolon (;) at the end of the complete method name.
->6. If a custom parameter type (such as object and enum) appears for the first time, describe the parameter type in an unordered list. If this type has been described in other places, use a relative link to reference it.
->7. Note: The angle bracket (<>) may be identified as a label and not displayed. To ensure normal display, you can either add a backslash (\\) (in the format of "\\<>") or use escape characters \&lt; and \&gt;.
->8. Note: The method in the component interface has no return value and is not presented in the form of level-2 or level-3 headings. It must also meet requirements described in [Methods](#methods).
->9. Note: The default value, unit, and value range must be described in a separate line in the description.
-
-If an API has two or more constructors, describe their differences.
-
-Provide the method name in the following format: methodName (parameterName1: parameterType1, parameterName2: parameterType2, ...)<br>If an API involves multiple methods, describe the methods in sequence and set each method name as a level-3 heading.
-
-Examples:
-
-Button(options: ButtonOptions)
-
-Describe the function of the method. If there are usage restrictions, describe them in detail.
-
-**Parameters**
-
-| Name | Type                                   | Mandatory| Description                |
-| ------- | --------------------------------------- | ---- | -------------------- |
-| options | [ButtonOptions](#buttonoptions) | Yes  | Button settings.|
+Example: The *ExampleA* component can contain the child component *ExampleB*.
 
 
 ## Attributes
 
 > *Writing Instructions*
 >
-> 1. This section is optional. Delete it if there is no attribute.
-> 2. The description of the attribute method calling mode must be the same as that in the .d.ts file and include the parameter type and parameter name. 
-> 3. Set the attribute method name as a level-3 heading.
-> 4. Create a link for a custom type (such as object and enum) to the corresponding interface or enum.
-> 5. Note: The default value, unit, and value range must be described in a separate line in the description.
-
-If the document is about a built-in component, specify whether the component supports universal attributes.
+> This section is mandatory. Specify whether universal attributes are supported (with links provided).
 
 Example:
 
-type(value: ButtonType)
-
-Sets the button type.
-
-**Parameters**
-
-| Name| Type                             | Mandatory| Description                                       |
-| ------ | --------------------------------- | ---- | ------------------------------------------- |
-| value  | [ButtonType](#buttontype) | Yes  | Button type.<br>Default value: ButtonType.Capsule|
+Universal attributes are not supported.
 
 ## Events
 
 > *Writing Instructions*
 >
-> 1. This section is optional. Delete it if there is no event.
-> 2. The description of the event method calling mode must be the same as that in the .d.ts file and include the parameter type and parameter name. 
-> 3. Create a link for a custom type (such as object and enum) to the corresponding interface or enum. If this type appears for the first time, describe it under the event in the form of a level-2 heading. If this type has been described in other places, use a relative link to reference it.
-
-If the document is about a built-in component, specify whether the component supports universal events.
+> 1. This section is mandatory. Specify whether universal events are supported (with links provided).
 
 Example:
 
-In addition to the [universal events]\(a relative link to the Universal Events topic), the following events are supported.
+Universal events are not supported.
 
-onSubmit(callback: (value: string) => void)
+## Structs
 
-Triggered when users click the search icon or the search button, or touch the search button on a soft keyboard.
+> *Writing Instructions*
+>
+>  1. This section is optional. Delete it if there is no attribute. If there are multiple classes or interfaces, describe them in separate level-2 headings, prefixed with `##` followed by a space.
+>  2. The writing requirements are the same as those provided in [Methods](js-template.md#methods).
+>  3. Use the actual struct name as the level-2 heading.
+>  4. If the struct or its parameters are modified by a decorator, specify the decorator type.
+
+Example:
+
+ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
+
+**Decorator**: \@Component
+
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                  |
-| ------ | -------- | -------- | ---------------------- |
-| value  | string   | Yes      | Current text input.|
+
+| Name       | Type                       | Mandatory| Decorator| Description                  |
+| ----------- | --------------------------- | ---- | ---------- | ---------------------- |
+| contentItem | [ContentItem](#contentitem) | No  | \@Prop     | Defines the left and middle elements.|
+| operateItem | [OperateItem](#operateitem) | No  | \@Prop     | Defines the right element.        |
 
 ## Methods
 
@@ -195,7 +154,6 @@ Triggered when users click the search icon or the search button, or touch the se
 > *Writing Instructions*
 >
 > 1. This section is optional. Delete it if there is no type. The writing requirements are the same as those provided in [Types](js-template.md#types).
-
 
 ## Example
 
