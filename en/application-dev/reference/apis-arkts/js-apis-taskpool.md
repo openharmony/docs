@@ -23,7 +23,7 @@ import { taskpool } from '@kit.ArkTS';
 
 execute(func: Function, ...args: Object[]): Promise\<Object>
 
-Places a function to be executed in the internal queue of the task pool. The function will be distributed to the worker thread for execution. In this mode, the function cannot be canceled.
+Places a function to be executed in the internal queue of the task pool. The function is not executed immediately. It waits to be distributed to the worker thread for execution. In this mode, the function cannot be canceled.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -71,7 +71,7 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-Places a task in the internal queue of the task pool. The task will be distributed to the worker thread for execution. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
+Places a task in the internal queue of the task pool. The task is not executed immediately. It waits to be distributed to the worker thread for execution. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group or queue. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -128,7 +128,7 @@ taskpool.execute(task3, taskpool.Priority.HIGH).then((value: Object) => {
 
 execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
-Places a task group in the internal queue of the task pool. The task group will be distributed to the worker thread for execution. After all tasks in the task group are executed, a result array is returned. This API applies when you want to execute a group of associated tasks.
+Places a task group in the internal queue of the task pool. The tasks in the task group are not executed immediately. They wait to be distributed to the worker thread for execution. After all tasks in the task group are executed, a result array is returned. This API applies when you want to execute a group of associated tasks.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -442,7 +442,7 @@ Checks whether a function is a concurrent function.
 
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
-| function   | Function | Yes  | Function to check.|
+| func   | Function | Yes  | Function to check.|
 
 **Return value**
 
@@ -934,6 +934,12 @@ static sendData(...args: Object[]): void
 
 Sends data to the host thread and triggers the registered callback. Before using this API, you must create a **Task** instance.
 
+> **NOTE**
+>
+> - The API is called in the TaskPool thread.
+> - Do not use this API in a callback function.
+> - Before calling this API, ensure that the callback function for processing data has been registered in the host thread.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -960,12 +966,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 @Concurrent
-function ConcurrentFunc(num: number): number {
+function sendDataTest(num: number): number {
   let res: number = num * 10;
   taskpool.Task.sendData(res);
   return num;
 }
+
+function pringLog(data: number): void {
+  console.info("taskpool: data is: " + data);
+}
+
+async function taskpoolTest(): Promise<void> {
+  try {
+    let task: taskpool.Task = new taskpool.Task(sendDataTest, 1);
+    task.onReceiveData(pringLog);
+    await taskpool.execute(task);
+  } catch (e) {
+    console.error(`taskpool: error code: ${e.code}, info: ${e.message}`);
+  }
+}
+
+taskpoolTest();
 ```
+
 
 ### onReceiveData<sup>11+</sup>
 
