@@ -1069,7 +1069,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 | 名称        | 类型                                                         | 可读 | 可写 | 说明               |
 | ----------- | ------------------------------------------------------------ | ---- | --- | ------------------ |
-| contentType | [ContentType](#contenttype)                                  | 是  | 是  | 通知内容类型。       |
+| contentType | [notification.ContentType](#contenttype)                                  | 是  | 是  | 通知内容类型。       |
 | normal      | [NotificationBasicContent](#notificationbasiccontent)        | 是  | 是  | 基本类型通知内容。   |
 | longText    | [NotificationLongTextContent](#notificationlongtextcontent)  | 是  | 是  | 长文本类型通知内容。 |
 | multiLine   | [NotificationMultiLineContent](#notificationmultilinecontent) | 是  | 是  | 多行类型通知内容。   |
@@ -1085,7 +1085,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 | --------------------- | --------------------------------------------- | ---- | --- | -------------------------- |
 | content               | [NotificationContent](#notificationcontent)   | 是  | 是  | 通知内容。                   |
 | id                    | number                                        | 是  | 是  | 通知ID。                     |
-| slotType              | [SlotType](#slottype)                         | 是  | 是  | 通道类型。                   |
+| slotType              | [notification.SlotType](#slottype)                         | 是  | 是  | 通道类型。                   |
 | isOngoing             | boolean                                       | 是  | 是  | 是否进行时通知。             |
 | isUnremovable         | boolean                                       | 是  | 是  | 是否可移除。                 |
 | deliveryTime          | number                                        | 是  | 是  | 通知发送时间。               |
@@ -1138,8 +1138,8 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 
 | 名称                 | 类型                  | 可读 | 可写 | 说明                     |
 | -------------------- | --------------------- | ---- | --- |------------------------|
-| type                 | [SlotType](#slottype) | 是  | 是  | 通道类型。                  |
-| level                | number                | 是  | 是  | 通知级别，不设置则根据通知渠道类型有默认值。 |
+| type                 | [notification.SlotType](#slottype) | 是  | 是  | 通道类型。                  |
+| level                | [SlotLevel](#slotlevel)                | 是  | 是  | 通知级别，不设置则根据通知渠道类型有默认值。 |
 | desc                 | string                | 是  | 是  | 通知渠道描述信息。              |
 | badgeFlag            | boolean               | 是  | 是  | 是否显示角标。                |
 | bypassDnd            | boolean               | 是  | 是  | 设置是否在系统中绕过免打扰模式。       |
@@ -1160,7 +1160,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 | 名称 | 类型                    | 可读 | 可写 | 说明       |
 | ---- | ---------------------- | ---- | ---- | ---------- |
 | name | string                 | 是   | 是   | 模板名称。 |
-| data | {[key:string]: Object} | 是   | 是   | 模板数据。 |
+| data | Record<string, Object> | 是   | 是   | 模板数据。 |
 
 
 ## NotificationUserInput<sup>8+</sup>
