@@ -5777,7 +5777,7 @@ export default class EntryAbility extends UIAbility {
 
 enableLandscapeMultiWindow(): Promise&lt;void&gt;
 
-在开启多窗动态布局下，配置支持横向悬浮窗。
+应用部分界面支持横向布局时，在进入该界面时使能，使能后可支持进入横向多窗。不建议竖向布局界面使用。
 
 此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
 
@@ -5817,7 +5817,7 @@ promise.then(() => {
 
 disableLandscapeMultiWindow(): Promise&lt;void&gt;
 
-在开启多窗动态布局下，配置支持竖向悬浮窗。
+应用部分界面支持横向布局时，在退出该界面时去使能，去使能后不支持进入横向多窗。
 
 此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
 
