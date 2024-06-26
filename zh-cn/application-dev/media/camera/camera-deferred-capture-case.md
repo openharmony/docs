@@ -19,9 +19,9 @@ import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 let context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
   onDataPrepared(data: ArrayBuffer) {
@@ -34,11 +34,6 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
 }
 
 async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOptions: photoAccessHelper.FetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
   let requestOptions: photoAccessHelper.RequestOptions = {
     deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
   }
@@ -47,7 +42,7 @@ async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
   console.info('requestImageData successfully');
 }
 
-async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): void {
+async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
   try {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
     assetChangeRequest.saveCameraPhoto();
@@ -62,8 +57,8 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   //监听回调之后，调用photoOutput的capture方法，低质量图上报后触发回调
   photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
     console.info('getPhotoAsset start');
-    console.info(`err: ${JSON.stringify(errCode)}`);
-    if (errCode || photo === undefined) {
+    console.info(`err: ${JSON.stringify(err)}`);
+    if (err || photoAsset === undefined) {
       console.error('getPhotoAsset failed');
       return;
     }
@@ -83,6 +78,7 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
   }
   // 监听相机状态变化
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
+    console.error('cameraStatus with errorCode = ' + err.code);
     console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.info(`status: ${cameraStatusInfo.status}`);
   });
@@ -175,7 +171,7 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
     return;
   }
 
-    //注册监听photoAssetAvailable回调
+  //注册监听photoAssetAvailable回调
   setPhotoOutputCb(photoOutput);
 
   //创建会话
