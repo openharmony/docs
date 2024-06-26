@@ -1422,7 +1422,7 @@ getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): v
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { image } from '@kit.ImageKit'
+import { image } from '@kit.ImageKit';
 
 async function example() {
   console.info('getThumbnailDemo');
