@@ -60,7 +60,9 @@
        return;
      }
      console.info('photoOutPutCallBack photoAssetAvailable');
-     // 开发者可通过photoAsset获取图片相关信息
+     // 开发者可通过photoAsset调用媒体库相关接口，自定义处理图片
+     // 处理方式一：调用媒体库落盘接口保存一阶段低质量图，二阶段真图就绪后媒体库会主动帮应用替换落盘图片
+     // 处理方式二：调用媒体库接口请求图片并注册低质量图或高质量图buffer回调，自定义使用
    }
    
    function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
@@ -68,7 +70,12 @@
    }
    ```
 
+   媒体库落盘图片参考：[saveCameraPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#savecameraphoto12)
+
+   媒体库请求图片参考：[requestimagedata](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestimagedata11) 和 [ondataprepare](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#ondataprepared11)
+
 4. 参数配置，与普通拍照方式相同，请参考[拍照](camera-shooting.md)。
+
 5. 触发拍照，与普通拍照方式相同，请参考[拍照](camera-shooting.md)。
 
 ## 状态监听

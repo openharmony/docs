@@ -19,8 +19,44 @@ import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 let context = getContext(this);
+
+class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+  onDataPrepared(data: ArrayBuffer) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
+    console.info('on image data prepared');
+  }
+}
+
+async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+  }
+  const handler = new MediaDataHandler();
+  await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, handler);
+  console.info('requestImageData successfully');
+}
+
+async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): void {
+  try {
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+    assetChangeRequest.saveCameraPhoto();
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply saveCameraPhoto successfully');
+  } catch (err) {
+    console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
+  }
+}
 
 function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   //监听回调之后，调用photoOutput的capture方法，低质量图上报后触发回调
@@ -31,15 +67,10 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
       console.error('getPhotoAsset failed');
       return;
     }
-    // 调用媒体库接口落盘低质量图
-    try {
-      let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
-      assetChangeRequest.saveCameraPhoto();
-      await phAccessHelper.applyChanges(assetChangeRequest);
-      console.info('apply saveCameraPhoto successfully');
-    } catch (err) {
-      console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
-    }
+    // 调用媒体库落盘接口保存一阶段低质量图，二阶段真图就绪后媒体库会主动帮应用替换落盘图片
+    mediaLibSavePhoto(photoAsset);
+    // 调用媒体库接口注册低质量图或高质量图buffer回调，自定义处理
+    mediaLibRequestBuffer(photoAsset);
   });
 }
 
