@@ -568,7 +568,7 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(): Promise\<void\>
 
-杀死应用所在的进程。使用Promise异步回调。
+杀死应用所在的进程。使用Promise异步回调。不支持多线程并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -606,7 +606,7 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(callback: AsyncCallback\<void\>)
 
-杀死应用所在的进程。使用callback异步回调。
+杀死应用所在的进程。使用callback异步回调。不支持多线程并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -647,7 +647,7 @@ export default class MyAbility extends UIAbility {
 
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
-设置应用的颜色模式。
+设置应用的颜色模式。不支持多线程并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -685,7 +685,7 @@ export default class MyAbility extends UIAbility {
 
 setLanguage(language: string): void
 
-设置应用的语言。
+设置应用的语言。不支持多线程并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -724,7 +724,7 @@ export default class MyAbility extends UIAbility {
 
 clearUpApplicationData(): Promise\<void\>
 
-清理应用本身的数据，同时撤销应用向用户申请的权限。使用Promise异步回调。
+清理应用本身的数据，同时撤销应用向用户申请的权限。使用Promise异步回调。不支持多线程并发调用。
 
 > **说明：**
 >
@@ -764,7 +764,7 @@ export default class MyAbility extends UIAbility {
 
 clearUpApplicationData(callback: AsyncCallback\<void\>): void
 
-清理应用本身的数据，同时撤销应用向用户申请的权限。使用callback异步回调。
+清理应用本身的数据，同时撤销应用向用户申请的权限。使用callback异步回调。不支持多线程并发调用。
 
 > **说明：**
 >
@@ -808,7 +808,7 @@ export default class MyAbility extends UIAbility {
 
 restartApp(want: Want): void
 
-应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。
+应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。不支持多线程并发调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -897,7 +897,7 @@ export default class MyAbility extends UIAbility {
 
 setFont(font: string): void
 
-设置应用的字体类型。
+设置应用的字体类型。不支持多线程并发调用。
 
 > **说明：**
 >
