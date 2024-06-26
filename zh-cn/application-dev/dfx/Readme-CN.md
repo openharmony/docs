@@ -43,6 +43,9 @@
   - [使用HiTraceChain打点（C/C++）](hitracechain-guidelines-ndk.md)
 - HiChecker使用指导
   - [使用HiChecker检测问题（ArkTS/JS）](hichecker-guidelines-arkts.md)
+- Hidebug使用指导
+  - [Hidebug开发指导（ArkTS）](hidebug-guidelines-arkts.md)
+  - [Hidebug开发指导（C/C++）](hidebug-guidelines-ndk.md)
 - 错误管理
   - [错误管理开发指导](errormanager-guidelines.md)
   - [应用恢复开发指导](apprecovery-guidelines.md)
