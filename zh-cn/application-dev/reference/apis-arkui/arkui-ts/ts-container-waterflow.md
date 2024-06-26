@@ -554,7 +554,7 @@ onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | Optional&lt;[OnWillScrollCallback](ts-container-list.md#onwillscrollcallback12)&gt; | 是 | 瀑布流滑动前触发的回调。 |
+| handler | Optional&lt;[OnWillScrollCallback](ts-container-list.md#onwillscrollcallback12对象说明)&gt; | 是 | 瀑布流滑动前触发的回调。 |
 
 > **说明：** 
 > 
@@ -572,7 +572,7 @@ onDidScroll(handler: OnScrollCallback)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback对象说明) | 是 | 瀑布流滑动时触发的回调。 |
+| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback12对象说明) | 是 | 瀑布流滑动时触发的回调。 |
 
 ## 示例
 
