@@ -234,6 +234,21 @@ zh-cn/application-dev/ui/arkts-common-events-focus-event.md	@piggyguy	@jiangtao9
 zh-cn/application-dev/ui/arkts-gesture-events-binding.md	@zhaojian2021	@jiangtao92	@zhang-jian008	@HelloCrease
 zh-cn/application-dev/ui/arkts-gesture-events-single-gesture.md	@zhaojian2021	@jiangtao92	@zhang-jian008	@HelloCrease
 zh-cn/application-dev/ui/arkts-gesture-events-combined-gestures.md	@zhaojian2021	@jiangtao92	@zhang-jian008	@HelloCrease
+zh-cn/application-dev/ui/arkts-user-defined.md @sunfei2021 @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/arkts-user-defined-node.md @sunfei2021 @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/arkts-user-defined-place-hoder.md @sunfei2021 @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/arkts-user-defined-arktsNode-frameNode.md @sunfei2021 @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/arkts-user-defined-arktsNode-renderNode.md @sunfei2021 @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/arkts-user-defined-arktsNode-builderNode.md @sunfei2021 @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/ndk-build-ui-overview.md @yan-shuifeng @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/ndk-access-the-arkts-page.md  @yan-shuifeng @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/ndk-listen-to-component-events.md  @yan-shuifeng @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/ndk-bind-gesture-events.md  @yan-shuifeng @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/ndk-use-animation.md @yan-shuifeng @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/ndk-loading-long-list.md @yan-shuifeng @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/ndk-build-pop-up-window.md @yan-shuifeng @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/ndk-build-custom-components.md @yan-shuifeng @tomatodevboy @HelloCrease
+zh-cn/application-dev/ui/ndk-embed-arkts-components.md @yan-shuifeng @tomatodevboy @HelloCrease
 
 [开发-ArkUI-窗口管理]
 zh-cn/application-dev/windowmanager/ @ge-yafang @zhangqiang183 @zhouyaoying @zxg-gitee @nobuggers @qinliwen
