@@ -9,7 +9,7 @@
 1. 全局导入Image模块。
 
    ```ts
-   import image from '@ohos.multimedia.image';
+   import { image } from '@kit.ImageKit';
    ```
 
 2. 获取图片。
@@ -23,32 +23,32 @@
 
       ```ts
       // FA模型参考如下代码
-      import featureAbility from '@ohos.ability.featureAbility';
+      import { featureAbility } from '@kit.AbilityKit';
       
       const context = featureAbility.getContext();
       const filePath = context.getCacheDir() + "/test.jpg";
       ```
 
    - 方法二：通过沙箱路径获取图片的文件描述符。具体请参考[file.fs API参考文档](../../reference/apis-core-file-kit/js-apis-file-fs.md)。
-      该方法需要先导入\@ohos.file.fs模块。
+      该方法需要先导入\@kit.CoreFileKit模块。
 
       ```ts
-      import fs from '@ohos.file.fs';
+      import { fileIo } from '@kit.CoreFileKit';
       ```
 
-      然后调用fs.openSync()获取文件描述符。
+      然后调用fileIo.openSync()获取文件描述符。
   
       ```ts
       // Stage模型参考如下代码
       const context = getContext(this);
       const filePath = context.cacheDir + '/test.jpg';
-      const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
+      const file : fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
       const fd : number = file?.fd;
       ```
 
       ```ts
       // FA模型参考如下代码
-      import featureAbility from '@ohos.ability.featureAbility';
+      import { featureAbility } from '@kit.AbilityKit';
       
       const context = featureAbility.getContext();
       const filePath = context.getCacheDir() + "/test.jpg";
@@ -68,8 +68,8 @@
       ```ts
       // FA模型
       // 导入resourceManager资源管理器
-      import resourceManager from '@ohos.resourceManager';
-      import {BusinessError} from '@ohos.base';
+      import { resourceManager } from '@kit.LocalizationKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
       resourceManager.getResourceManager().then((resourceMgr : resourceManager.ResourceManager) => {
          console.log("Succeeded in getting resourceManager")
       }).catch((err : BusinessError) => {
@@ -102,8 +102,8 @@
       ```ts
       // FA模型
       // 导入resourceManager资源管理器
-      import resourceManager from '@ohos.resourceManager';
-      import {BusinessError} from '@ohos.base';
+      import { resourceManager } from '@kit.LocalizationKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
       resourceManager.getResourceManager().then((resourceMgr : resourceManager.ResourceManager) => {
          console.log("Succeeded in getting resourceManager")
       }).catch((err : BusinessError) => {
@@ -153,7 +153,7 @@
 4. 设置解码参数DecodingOptions，解码获取pixelMap图片对象。
 
    ```ts
-   import {BusinessError} from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    let decodingOptions : image.DecodingOptions = {
        editable: true,
        desiredPixelFormat: 3,
