@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import { XComponentNode } from "@ohos.arkui.node";
+import { XComponentNode } from "@kit.ArkUI";
 ```
 
 ## XComponentNode
@@ -83,8 +83,7 @@ changeRenderType(type: NodeRenderType): boolean
 ## 示例
 
 ```ts
-import { NodeController, FrameNode, XComponentNode, NodeRenderType } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext';
+import { NodeController, FrameNode, XComponentNode, NodeRenderType, UIContext} from '@kit.ArkUI'
 
 class XComponentNodeController extends NodeController {
   private xComponentNode: MyXComponentNode | null = null;
