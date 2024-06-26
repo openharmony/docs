@@ -193,3 +193,4 @@
 
 **图5** want参数中linkFeature具体匹配规则
 ![want-linkFeature](figures/linkFeature.png)
+![want-linkFeature-case](figures/want-linkFeature-case.png)
