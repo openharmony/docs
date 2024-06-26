@@ -35,7 +35,7 @@
 | action      | string                         | 是     | 否   | 参见[want参数的action匹配规则](#want参数的action匹配规则)。                                                             |
 | entities    | Array&lt;string&gt;            | 是     | 否   | 参见[want参数的entities匹配规则](#want参数的entities匹配规则)。                                                             |
 | flags       | number                         | 否     | 否   | 不参与匹配，直接传递给系统处理，一般用来设置运行态信息，例如URI数据授权等。 |
-| parameters  | {[key:&nbsp;string]:&nbsp;Object} | 是     | 否   | 应用自定义数据将直接传递给目标应用组件。当前支持使用key为linkFeature的参数进行匹配，当linkFeature配置且对应字符串不为空时，优先进行linkFeature匹配。|
+| parameters  | {[key:&nbsp;string]:&nbsp;Object} | 是     | 否   | 应用自定义数据将直接传递给目标应用组件。当前支持使用key为linkFeature的参数进行匹配，当linkFeature字段取值不为空时，优先进行linkFeature匹配。|
 
 从隐式Want的定义，可得知：
 
@@ -46,10 +46,10 @@
 
 
 系统将调用方传入的want参数（包含action、entities、uri、type和parameters属性）与已安装待匹配应用组件的skills配置（包含actions、entities、uris和type属性）进行匹配。当want参数五个属性匹配均未配置，隐式匹配失败。
-- 当parameters中的linkFeature未配置或其对应的字符串为空时，只有当action、entities、uri和type四个属性均匹配通过时，此应用才会被应用选择器展示给用户进行选择。
-- 当配置了parameters中的linkFeature且其对应的字符串不为空时，系统将优先进行linkFeature匹配。
-  1. 如果linkFeature匹配成功，并且want中配置了uri或type，则继续匹配uri和type属性，均匹配成功则隐式匹配成功；否则，匹配失败。如果want中未配置uri和type, 则隐式匹配成功。
-  2. 如果linkFeature匹配失败，则不进行后续属性匹配，匹配失败。
+- 当parameters中的linkFeature字段取值不为空时，系统将优先进行linkFeature匹配。
+ - 如果linkFeature匹配成功，并且want中配置了uri或type，则继续匹配uri和type属性，均匹配成功则隐式匹配成功；否则，匹配失败。如果want中未配置uri和type, 则隐式匹配成功。
+ - 如果linkFeature匹配失败，则不进行后续属性匹配，匹配失败。
+- 当parameters中的linkFeature未配置或取值为空时，只有当action、entities、uri和type四个属性均匹配通过时，此应用才会被应用选择器展示给用户进行选择。
 
 
 ### want参数的action匹配规则
