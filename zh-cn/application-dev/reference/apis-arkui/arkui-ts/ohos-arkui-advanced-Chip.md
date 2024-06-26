@@ -184,7 +184,7 @@ LocalizedLabelMarginOptions定义本地化文本与左右侧图标之间间距�
 自定义删除图标的操作快。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+import { Chip, ChipSize } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -228,7 +228,7 @@ struct Index {
 使用默认删除图标的操作快。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+import { Chip, ChipSize } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -267,7 +267,7 @@ struct Index {
 不显示删除图标的操作快。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+import { Chip, ChipSize } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -309,7 +309,7 @@ struct Index {
 激活态操作快。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+import { Chip, ChipSize } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -364,8 +364,7 @@ struct Index {
 Chip组件的前缀、后缀图标使用symbol类型资源展示。
 
 ```ts
-import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
-import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+import { Chip, ChipSize, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
