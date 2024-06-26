@@ -1,4 +1,4 @@
 # Update
 
-- [Sample Server Development Overview](sample-server-overview.md)
-- [Sample Server Development](sample-server-guidelines.md)
+- [Sample Server Development Overview](device/sample-server-overview.md)
+- [Sample Server Development](device/sample-server-guidelines.md)
