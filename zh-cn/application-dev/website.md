@@ -3123,7 +3123,7 @@
           - [系统事件错误码](reference/apis-performance-analysis-kit/errorcode-hisysevent-sys.md)
           - [维测日志错误码](reference/apis-performance-analysis-kit/errorcode-loglibrary-sys.md)
           <!--DelEnd-->
-  - 媒体<!--media-api-->
+  - 媒体<!--media-reference-->
     - Audio Kit（音频服务）<!--audio-api-->
       - ArkTS API<!--audio-arkts-->
         - [@ohos.multimedia.audio (音频管理)](reference/apis-audio-kit/js-apis-audio.md)
