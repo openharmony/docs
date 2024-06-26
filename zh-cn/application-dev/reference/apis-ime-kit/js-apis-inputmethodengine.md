@@ -3826,7 +3826,7 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textIn
       "valueString3": 500,
     }
     textInputClient.sendPrivateCommand(record).then(() => {
-    }).catch(err => {
+    }).catch((err: BusinessError) => {
       if (err !== undefined) {
         let error = err as BusinessError;
         console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
