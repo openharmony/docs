@@ -46,11 +46,8 @@
 
 ## 开发示例
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import errorManager from '@ohos.app.ability.errorManager';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import { AbilityConstant, errorManager, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 let registerId = -1;
 let callback: errorManager.ErrorObserver = {
