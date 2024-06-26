@@ -312,6 +312,38 @@ type PiPLiveActionEvent = 'playbackStateChanged'
 
 
 
+## PiPControlStatus<sup>12+</sup>
+
+控制面板控件状态。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                   | 值   | 说明                    |
+|----------------------|-----|-----------------------|
+| PLAY       | 1   | 播放。          |
+| PAUSE    | 0   | 暂停。           |
+| OPEN    | 1   | 打开。            |
+| CLOSE       | 0   | 关闭。          |
+
+## PiPControlType<sup>12+</sup>
+
+控制面板控件类型。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                | 值   | 说明                                   |
+|-------------------|-----|--------------------------------------|
+| VIDEO_PLAY_PAUSE  | 0   | 播放/暂停控件。   |
+| VIDEO_PREVIOUS    | 1   | 视频上一个控件。 |
+| VIDEO_NEXT        | 2   | 视频下一个控件。 |
+| FAST_FORWARD      | 3   | 视频快进控件     |
+| FAST_BACKWARD     | 4   | 视频快退控件。   |
+| HANG_UP_BUTTON           | 5   | 挂断控件。 |
+| MICROPHONE_SWITCH | 6  | 打开/关闭麦克风控件。 |
+| CAMERA_SWITCH     | 7   | 打开/关闭摄像头控件。     |
+| MUTE_SWITCH       | 8   | 静音控件。     |
+
+
 ## ControlPanelActionEventCallback<sup>12+</sup>
 
 type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: number) => void
@@ -326,6 +358,17 @@ type ControlPanelActionEventCallback = (event: PiPActionEventType, status?: numb
 |--------------------------|--------------|--------------|-----------------------------------|
 | event       |  [PiPActionEventType](#pipactioneventtype)       | 是 | 回调画中画控制事件类型。<br/>应用依据控制事件做相应处理，如触发'playbackStateChanged'事件时，需要开始或停止视频。 |
 | status | number | 否 | 表示可切换状态的控件当前的状态，如具备打开和关闭两种状态的麦克风控件组、摄像头控件组和静音控件组，打开为1，关闭为0。其余控件该参数返回默认值-1。 |
+
+## ControlEventParam<sup>12+</sup>
+
+创建画中画控件回调的参数。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                       | 类型           | 必填    | 说明                                                                                                                             |
+|--------------------------|--------------|--------------|--------------------------------------------------------------------------------------------------------------------------------|
+| controlType       |  [PiPControlType](#pipcontroltype12)      | 是 | 回调画中画控件动作事件。<br/>control表示控件。应用依据控件类型做相应处理，如视频模板中暂停/播放控件被点击时，需要开始或停止视频。                                                        |
+| status | [PiPControlStatus](#pipcontrolstatus12) | 否 | 表示可切换状态的控件当前的状态，如具备打开和关闭两种状态的麦克风控件组、摄像头控件组和静音控件组，打开为PiPControlStatus.PLAY，关闭为PiPControlStatus.PAUSE。不具备开/关和播放/暂停状态的控件默认返回值为-1。 |
 
 ## PiPController
 
@@ -454,6 +497,62 @@ let height: number = 960; // 假设当前内容高度变为960px。
 pipController.updateContentSize(width, height);
 ```
 
+### updatePiPControlStatus<sup>12+</sup>
+updatePiPControlStatus(controlType: PiPControlType, status: PiPControlStatus): void
+
+应用更新控制面板控件功能状态接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型     | 必填  | 说明                                     |
+|--------|--------|-----|----------------------------------------|
+| controlType  | [PiPControlType](#pipcontroltype12)  | 是   | 表示画中画控制面板控件类型。  |
+| status | [PiPControlStatus](#pipcontrolstatus12)  | 是   | 表示画中画控制面板控件状态。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+
+```ts
+let controlType: PiPWindow.PiPControlType = PiPWindow.PiPControlType.VIDEO_PLAY_PAUSE; // 视频播放控制面板中播放/暂停控件。
+let status: PiPWindow.PiPControlStatus = PiPWindow.PiPControlStatus.PLAY; // 视频播放控制面板中播放/暂停控件为播放状态。
+pipController.updatePiPControlStatus(controlType, status);
+```
+
+### setPiPControlEnabled<sup>12+</sup>
+setPiPControlEnabled(controlType: PiPControlType, enabled: boolean): void
+
+应用更新控制面板控件使能状态接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名         | 类型     | 必填  | 说明                                     |
+|-------------|--------|-----|----------------------------------------|
+| controlType | [PiPControlType](#pipcontroltype12)  | 是   | 表示画中画控制面板控件类型。  |
+| enabled     | boolean | 是   | 表示画中画控制面板控件使能状态。true表示控件为可使用状态，false则为禁用状态。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+
+```ts
+let controlType: PiPWindow.PiPControlType = PiPWindow.PiPControlType.VIDEO_PLAY_PAUSE; // 视频播放控制面板中播放/暂停控件。
+let enabled: boolean = false; // 视频播放控制面板中播放/暂停控件为禁用状态。
+pipController.setPiPControlEnabled(controlType, enabled);
+```
+
 ### on('stateChange')
 
 on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): void
@@ -522,7 +621,7 @@ pipController.off('stateChange');
 
 on(type: 'controlPanelActionEvent', callback: ControlPanelActionEventCallback): void
 
-开启画中画控制事件的监听。
+开启画中画控制事件的监听。(推荐使用[on('controlEvent')](#oncontrolevent12)来注册画中画控制面板控件点击事件的回调。)
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -562,11 +661,55 @@ pipController.on('controlPanelActionEvent', (event: PiPWindow.PiPActionEventType
 });
 ```
 
+### on('controlEvent')<sup>12+</sup>
+
+on(type: 'controlEvent', callback: CallBack&lt;ControlEventParam&gt;): void
+
+开启画中画控件动作事件的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名      | 类型                                                  | 必填    | 说明                                                                                                                       |
+|----------|-----------------------------------------------------|-------|--------------------------------------------------------------------------------------------------------------------------|
+| type     | string                                              | 是     | 监听事件，固定为'controlEvent'，即画中画控件动作事件。                                                                                    |
+| callback | Callback<[ControlEventParam](#controleventparam12)> | 是     | 描述画中画控制面板中控件动作事件回调。 |
+
+```ts
+pipController.on('controlEvent', (control: PiPWindow.PiPControlType, status?: PiPWindow.PiPControlStatus) => {
+  switch (control) {
+    case PiPWindow.PiPControlType.VIDEO_PLAY_PAUSE:
+      if (status === PiPWindow.PiPControlStatus.PAUSE) {
+        //停止视频
+      } else if (status === PiPWindow.PiPControlStatus.PLAY) {
+        //播放视频
+      }
+      break;
+    case PiPWindow.PiPControlType.VIDEO_NEXT:
+      // 切换到下一个视频
+      break;
+    case PiPWindow.PiPControlType.VIDEO_PREVIOUS:
+      // 切换到上一个视频
+      break;
+    case PiPWindow.PiPControlType.FAST_FORWARD:
+      // 视频进度快进
+      break;
+    case PiPWindow.PiPControlType.FAST_BACKWARD:
+      // 视频进度后退
+      break;
+    default:
+      break;
+  }
+  console.info('registerControlEventCallback, control:' + control);
+});
+```
+
 ### off('controlPanelActionEvent')
 
 off(type: 'controlPanelActionEvent'): void
 
-关闭画中画控制事件的监听。
+关闭画中画控制事件的监听。(推荐使用[off('controlEvent')](#offcontrolevent12)来解除画中画控制面板控件点击事件回调的注册)
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -580,4 +723,25 @@ off(type: 'controlPanelActionEvent'): void
 
 ```ts
 pipController.off('controlPanelActionEvent');
+```
+
+### off('controlEvent')<sup>12+</sup>
+
+off(type: 'controlEvent', callback?: CallBack&lt;ControlEventParam&gt;): void
+
+关闭画中画控件动作事件的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名        | 类型                                                  | 必填 | 说明                                      |
+|------------|-----------------------------------------------------|----|-----------------------------------------|
+| type       | string                                              | 是  | 监听事件，固定为'controlEvent'，即画中画控件动作事件。   |
+| callback | Callback<[ControlEventParam](#controleventparam12)> | 否  | 描述画中画控制面板中控件动作事件回调。 |
+
+**示例：**
+
+```ts
+pipController.off('controlEvent', (control: PiPWindow.PiPControlType, status?: PiPWindow.PiPControlStatus) => {});
 ```
