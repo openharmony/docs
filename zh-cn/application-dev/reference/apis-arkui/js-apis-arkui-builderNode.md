@@ -565,8 +565,7 @@ recycle(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { FrameNode, NodeController, BuilderNode } from "@ohos.arkui.node"
-import { UIContext } from "@ohos.arkui.UIContext"
+import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI"
 
 class MyDataSource {
   private dataArray: string[] = [];

@@ -322,7 +322,7 @@ struct SharedLocalStorage {
 }
 
 // GetSharedLocalStorage.ets
-import { router } from '@kit.ArkUI';
+import {router} from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -865,7 +865,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：**
 
 ```ts
-import { AnimatorOptions } from '@ohos.animator';
+import { AnimatorOptions } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -938,7 +938,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 **示例：**
 
 ```ts
-import { KeyboardAvoidMode, UIContext } from '@ohos.arkui.UIContext';
+import {KeyboardAvoidMode, UIContext} from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -976,7 +976,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 **示例：**
 
 ```ts
-import { KeyboardAvoidMode, UIContext } from '@ohos.arkui.UIContext';
+import {KeyboardAvoidMode, UIContext} from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1016,9 +1016,8 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 **示例：**
 
 ```ts
-import {UIContext, AtomicServiceBar} from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
@@ -1467,7 +1466,7 @@ getWindowName(): string | undefined
 **示例：**
 
 ```ts
-import window from '@ohos.window';
+import { window } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -1637,7 +1636,6 @@ registerFont(options: font.FontOptions): void
 
 ```ts
 import { Font } from '@kit.ArkUI';
-
 let font:Font = uiContext.getFont();
 font.registerFont({
   familyName: 'medium',
@@ -1664,7 +1662,6 @@ getSystemFontList(): Array\<string>
 
 ```ts
 import { Font } from '@kit.ArkUI';
-
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getSystemFontList()
@@ -1697,7 +1694,6 @@ getFontByName(fontName: string): font.FontInfo
 
 ```ts
 import { Font } from '@kit.ArkUI';
-
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getFontByName('Sans Italic')
@@ -1771,6 +1767,7 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 ```ts
 import { UIInspector } from '@kit.ArkUI';
+
 
 let inspector: UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
@@ -2539,7 +2536,7 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2566,7 +2563,7 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2593,7 +2590,7 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2620,7 +2617,7 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2647,7 +2644,7 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -2674,7 +2671,7 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -2701,7 +2698,7 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -2728,7 +2725,7 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -2793,7 +2790,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
 
 let mediaquery: MediaQuery = uiContext.getMediaQuery();
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
@@ -3719,7 +3716,6 @@ back(options?: router.RouterOptions ): void
 
 ```ts
 import { Router } from '@kit.ArkUI';
-
 let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
@@ -3743,14 +3739,12 @@ back(index: number, params?: Object): void;
 
 ```ts
 import { Router } from '@kit.ArkUI';
-
 let router: Router = uiContext.getRouter();
 router.back(1);
 ```
 
 ```ts
 import { Router } from '@kit.ArkUI';
-
 let router: Router = uiContext.getRouter();
 router.back(1, {info:'来自Home页'}); //携带参数返回
 ```
@@ -3769,7 +3763,6 @@ clear(): void
 
 ```ts
 import { Router } from '@kit.ArkUI';
-
 let router: Router = uiContext.getRouter();
 router.clear();    
 ```
@@ -3794,7 +3787,6 @@ getLength(): string
 
 ```ts
 import { Router } from '@kit.ArkUI';
-
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
 console.info('pages stack size = ' + size);    
@@ -3820,7 +3812,6 @@ getState(): router.RouterState
 
 ```ts
 import { Router } from '@kit.ArkUI';
-
 let router: Router = uiContext.getRouter();
 let page = router.getState();
 console.info('current index = ' + page.index);
@@ -3851,7 +3842,6 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 ```ts
 import { Router } from '@kit.ArkUI';
-
 let router: Router = uiContext.getRouter();
 let options: router.RouterState | undefined = router.getStateByIndex(1);
 if (options != undefined) {
@@ -3885,7 +3875,6 @@ getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerst
 
 ```ts
 import { Router } from '@kit.ArkUI';
-
 let router: Router = uiContext.getRouter();
 let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
