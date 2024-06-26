@@ -279,4 +279,3 @@ struct ProgressMaskExample {
 ```
 
 ![progressMask](figures/progressMask.gif)
-
