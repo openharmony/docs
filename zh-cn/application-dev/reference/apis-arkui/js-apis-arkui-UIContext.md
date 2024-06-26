@@ -1723,7 +1723,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
 
 let componentUtils:ComponentUtils = uiContext.getComponentUtils();
 let modePosition = componentUtils.getRectangleById("onClick");
@@ -5608,8 +5608,8 @@ restoreDefault(): void
 当光标移出绿框时，通过CursorController的restoreDefault方法恢复默认光标样式
 
 ```ts
-import pointer from '@ohos.multimodalInput.pointer';
-import uiContext, { CursorController } from '@ohos.arkui.UIContext';
+import { pointer } from '@kit.InputKit';
+import { UIContext, CursorController } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5654,8 +5654,8 @@ setCursor(value: PointerStyle): void
 当光标进入蓝框时，通过CursorController的setCursor方法修改光标样式为PointerStyle.WEST
 
 ```ts
-import pointer from '@ohos.multimodalInput.pointer';
-import uiContext, { CursorController } from '@ohos.arkui.UIContext';
+import { pointer } from '@kit.InputKit';
+import { UIContext, CursorController } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5876,8 +5876,8 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import { UIContext } from '@ohos.arkui.UIContext';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5937,8 +5937,8 @@ get(id: string): Promise<image.PixelMap>
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import { UIContext } from '@ohos.arkui.UIContext';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5996,8 +5996,8 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import { UIContext } from '@ohos.arkui.UIContext';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -6079,8 +6079,8 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import { UIContext } from '@ohos.arkui.UIContext';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component

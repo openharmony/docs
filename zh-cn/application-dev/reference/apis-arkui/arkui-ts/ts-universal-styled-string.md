@@ -924,7 +924,7 @@ struct styled_string_demo1 {
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -1012,7 +1012,7 @@ struct styled_string_demo2 {
 
 ```ts
 // xxx.ets
-import { LengthMetrics, LengthUnit } from '@ohos.arkui.node'
+import { LengthMetrics, LengthUnit } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -1198,8 +1198,8 @@ struct styled_string_demo3 {
 
 ```ts
 // xxx.ets
-import image from '@ohos.multimedia.image'
-import { LengthMetrics } from '@ohos.arkui.node'
+import { image } from '@kit.ImageKit'
+import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -1327,7 +1327,7 @@ struct styled_string_demo4 {
 属性字符串LineHeightStyle、ParagraphStyle使用示例
 
 ```ts
-import { LengthMetrics } from '@ohos.arkui.node'
+import { LengthMetrics } from '@kit.ArkUI'
 const canvasWidth = 1000
 const canvasHeight = 100
 class LeadingMarginCreator {
@@ -1474,9 +1474,9 @@ struct Index {
 
 ```ts
 // xxx.ets
-import drawing from '@ohos.graphics.drawing';
-import image from '@ohos.multimedia.image'
-import { LengthMetrics } from '@ohos.arkui.node';
+import { drawing } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
+import { LengthMetrics } from '@kit.ArkUI'
 
 class MyCustomSpan extends CustomSpan {
   constructor(word: string, width: number, height: number) {
