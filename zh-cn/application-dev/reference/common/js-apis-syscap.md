@@ -29,7 +29,7 @@ canIUse(syscap: string): boolean
 **示例：**
 
   ```js
-import geoLocationManager from '@kit.LocationKit'
+import { geoLocationManager } from '@kit.LocationKit'
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const isLocationAvailable = canIUse('SystemCapability.Location.Location.Core');
