@@ -1052,9 +1052,8 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 **示例：**
 
 ```ts
-import { UIExtensionAbility, common } from '@kit.AbilityKit';
+import { UIExtensionAbility, common, AtomicServiceOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
 
 export default class EntryAbility extends UIExtensionAbility {
   onForeground() {
@@ -1141,8 +1140,7 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
+import { UIExtensionAbility, Want, UIExtensionContentSession, OpenLinkOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function log(info: string) {
