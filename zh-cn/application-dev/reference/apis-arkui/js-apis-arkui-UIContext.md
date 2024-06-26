@@ -1786,7 +1786,7 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 **示例：**
 
 ```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
+import { UIObserver } from '@kit.ArkUI';
 
 let observer:UIObserver = uiContext.getUIObserver();
 observer.on('navDestinationUpdate', (info) => {
@@ -1814,7 +1814,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 **示例：**
 
 ```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
+import { UIObserver } from '@kit.ArkUI';
 
 let observer:UIObserver = uiContext.getUIObserver();
 observer.off('navDestinationUpdate');
@@ -1841,7 +1841,7 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 **示例：**
 
 ```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
+import { UIObserver } from '@kit.ArkUI';
 
 let observer:UIObserver = uiContext.getUIObserver();
 observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
@@ -1870,7 +1870,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 **示例：**
 
 ```ts
-import { UIObserver } from '@ohos.arkui.UIContext';
+import { UIObserver } from '@kit.ArkUI';
 
 let observer:UIObserver = uiContext.getUIObserver();
 observer.off('navDestinationUpdate', { navigationId: "testId" });
@@ -2424,7 +2424,7 @@ on(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitchO
 // Index.ets
 // 演示 UIObserver.on('navDestinationSwitch', NavDestinationSwitchObserverOptions, callback)
 // UIObserver.off('navDestinationSwitch', NavDestinationSwitchObserverOptions, callback)
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Component
 struct PageOne {
@@ -2435,7 +2435,7 @@ struct PageOne {
   }
 }
 
-function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
@@ -2817,8 +2817,8 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let router:Router = uiContext.getRouter();
 try {
@@ -2869,8 +2869,8 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let router:Router = uiContext.getRouter();
 router.pushUrl({
@@ -2929,9 +2929,9 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
-import router from '@ohos.router';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -2986,9 +2986,9 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
-import router from '@ohos.router';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3048,8 +3048,8 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router:Router = uiContext.getRouter();
 try {
   router.replaceUrl({
@@ -3095,8 +3095,8 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router:Router = uiContext.getRouter();
 router.replaceUrl({
   url: 'pages/detail',
@@ -3150,9 +3150,9 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
-import router from '@ohos.router';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3203,9 +3203,9 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector,  MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
-import router from '@ohos.router';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector,  MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3263,8 +3263,8 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router:Router = uiContext.getRouter();
 try {
   router.pushNamedRoute({
@@ -3314,8 +3314,8 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router:Router = uiContext.getRouter();
 router.pushNamedRoute({
   name: 'myPage',
@@ -3372,9 +3372,9 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
-import router from '@ohos.router';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3429,9 +3429,9 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
-import router from '@ohos.router';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3491,8 +3491,8 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router:Router = uiContext.getRouter();
 try {
   router.replaceNamedRoute({
@@ -3538,8 +3538,8 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router:Router = uiContext.getRouter();
 router.replaceNamedRoute({
   name: 'myPage',
@@ -3594,9 +3594,9 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
-import router from '@ohos.router';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3647,9 +3647,9 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
-import router from '@ohos.router';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3690,8 +3690,8 @@ back(options?: router.RouterOptions ): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
@@ -3714,15 +3714,15 @@ back(index: number, params?: Object): void;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router: Router = uiContext.getRouter();
 router.back(1);
 ```
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router: Router = uiContext.getRouter();
 router.back(1, {info:'来自Home页'}); //携带参数返回
 ```
@@ -3740,8 +3740,8 @@ clear(): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router: Router = uiContext.getRouter();
 router.clear();    
 ```
@@ -3765,8 +3765,8 @@ getLength(): string
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
 console.info('pages stack size = ' + size);    
@@ -3791,8 +3791,8 @@ getState(): router.RouterState
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router: Router = uiContext.getRouter();
 let page = router.getState();
 console.info('current index = ' + page.index);
@@ -3822,8 +3822,8 @@ getStateByIndex(index: number): router.RouterState | undefined
 **示例：** 
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router: Router = uiContext.getRouter();
 let options:router.RouterState = router.getStateByIndex(1);
 console.info('index = ' + options.index);
@@ -3854,8 +3854,8 @@ getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerst
 **示例：** 
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router: Router = uiContext.getRouter();
 let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
@@ -3894,8 +3894,8 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router: Router = uiContext.getRouter();
 try {
   router.showAlertBeforeBackPage({            
@@ -3921,8 +3921,8 @@ hideAlertBeforeBackPage(): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router: Router = uiContext.getRouter();
 router.hideAlertBeforeBackPage();    
 ```
@@ -3946,8 +3946,8 @@ getParams(): Object
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let router: Router = uiContext.getRouter();
 router.getParams();
 ```
