@@ -11,7 +11,7 @@ OpenLinkOptions可以作为[openLink()](js-apis-inner-application-uiAbilityConte
 ## 导入模块
 
 ```ts
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
+import { OpenLinkOptions } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -28,10 +28,9 @@ import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
 **示例：**
 
   ```ts
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-  import { BusinessError } from '@ohos.base';
+  import { common, OpenLinkOptions } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   const DOMAIN = 0xeeee;
   const TAG: string = '[openLinkDemo]';
