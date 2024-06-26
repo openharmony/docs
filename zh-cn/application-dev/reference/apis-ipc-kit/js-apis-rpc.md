@@ -3412,7 +3412,7 @@ getRawDataCapacity(): number
 
   | 类型   | 说明                                                         |
   | ------ | ------------------------------------------------------------ |
-  | number | 返回MessageSequence可以容纳的最大原始数据量，即128Mb。 |
+  | number | 返回MessageSequence可以容纳的最大原始数据量，即128MB。 |
 
 **示例：**
 
@@ -6148,7 +6148,7 @@ getRawDataCapacity(): number
 
   | 类型   | 说明                                                       |
   | ------ | ---------------------------------------------------------- |
-  | number | 返回MessageParcel可以容纳的最大原始数据量，即128Mb。 |
+  | number | 返回MessageParcel可以容纳的最大原始数据量，即128MB。 |
 
 **示例：**
 
