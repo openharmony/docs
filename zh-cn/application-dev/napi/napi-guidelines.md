@@ -9,7 +9,7 @@
 **错误示例**
 
 ```cpp
-static napi_value IncorrectDemo1(napi_env env, napi_callbackk_info info) {
+static napi_value IncorrectDemo1(napi_env env, napi_callback_info info) {
     // argc 未正确的初始化，其值为不确定的随机值，导致 argv 的长度可能小于 argc 声明的数量，数据越界。
     size_t argc;
     napi_value argv[10] = {nullptr};
@@ -160,6 +160,10 @@ void callbackTest(CallbackContext* context)
             CallbackContext* context = (CallbackContext*)work->data;
             napi_handle_scope scope = nullptr; napi_open_handle_scope(context->env, &scope);
             if (scope == nullptr) {
+                if (work != nullptr) {
+                    delete work;
+                }
+                delete context;
                 return;
             }
             napi_value callback = nullptr;
