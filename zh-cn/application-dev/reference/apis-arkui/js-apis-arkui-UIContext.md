@@ -1969,13 +1969,13 @@ off(type: 'scrollEvent', options: observer.ObserverOptions, callback?: Callback\
 **示例：**
 
 ```ts
-import uiContext, { UIObserver } from '@ohos.arkui.UIContext';
+import { UIObserver } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
-  scroller: Scroller = new Scroller();
-  observer: uiContext.UIObserver = new UIObserver();
+  scroller: Scroller = new Scroller()
+  observer: UIObserver = new UIObserver()
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   build() {
