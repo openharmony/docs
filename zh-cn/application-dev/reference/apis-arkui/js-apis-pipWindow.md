@@ -621,7 +621,7 @@ pipController.off('stateChange');
 
 on(type: 'controlPanelActionEvent', callback: ControlPanelActionEventCallback): void
 
-开启画中画控制事件的监听。(推荐使用[on('controlEvent')](#oncontrolevent12)来注册画中画控制面板控件点击事件的回调。)
+开启画中画控制事件的监听。(推荐使用[on('controlEvent')](#oncontrolevent12)来注册画中画控制面板控件点击事件的回调)
 
 **系统能力：** SystemCapability.Window.SessionManager
 
