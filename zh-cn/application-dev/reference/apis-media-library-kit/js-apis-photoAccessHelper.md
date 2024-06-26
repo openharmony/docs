@@ -1422,7 +1422,6 @@ getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): v
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit'
 
 async function example() {
@@ -1483,6 +1482,7 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
