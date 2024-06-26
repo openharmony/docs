@@ -579,7 +579,7 @@ Provides KV store configuration.
 | backup  | boolean | No|Whether to back up the KV store. The default value is **true**, which means to back up the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
 | autoSync  | boolean | No|Whether to automatically synchronize database files. The default value is **false**, which means the database files are manually synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
 | kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. The default value is **DEVICE_COLLABORATION**, which indicates a device KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| securityLevel | [SecurityLevel](#securitylevel) | Yes|Security level (S1 to S4) of the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| securityLevel | [SecurityLevel](#securitylevel) | No |Security level (S1 to S4) of the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
 | schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in the KV store. The default value is **undefined**, which means no schema is used.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 
@@ -1231,7 +1231,7 @@ Creates a **Query** object to match the specified field whose value is equal to 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1266,7 +1266,7 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1301,7 +1301,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1336,7 +1336,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1371,7 +1371,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1406,7 +1406,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1441,7 +1441,7 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 
 **Return value**
 
@@ -1476,7 +1476,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | valueList  | number[]  | Yes   | List of numbers.|
 
 **Return value**
@@ -1511,7 +1511,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | valueList  | string[]  | Yes   | List of strings.|
 
 **Return value**
@@ -1546,7 +1546,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | valueList  | number[]  | Yes   | List of numbers.|
 
 **Return value**
@@ -1581,7 +1581,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | valueList  | string[]  | Yes   | List of strings.|
 
 **Return value**
@@ -1616,7 +1616,7 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | string  | Yes   | String specified.|
 
 **Return value**
@@ -1651,7 +1651,7 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | string  | Yes   | String specified.|
 
 **Return value**
@@ -1746,7 +1746,7 @@ Creates a **Query** object to sort the query results in ascending order.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 
 **Return value**
 
@@ -1781,7 +1781,7 @@ Creates a **Query** object to sort the query results in descending order.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. |
 
 **Return value**
 
@@ -1854,7 +1854,7 @@ Creates a **Query** object to match the specified field whose value is not **nul
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'.     |
+| field  | string  | Yes   |Field to match. It cannot contain '^'.     |
 
 **Return value**
 
