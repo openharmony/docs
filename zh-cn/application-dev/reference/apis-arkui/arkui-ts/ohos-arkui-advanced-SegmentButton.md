@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```
-import { SegmentButton, SegmentButtonOptions, SegmentButtonItemOptionsArray } from '@ohos.arkui.advanced.SegmentButton'
+import { SegmentButton, SegmentButtonOptions, SegmentButtonItemOptionsArray } from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -43,6 +43,8 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 属性                    | 类型                                                         | 描述                                                         |
 | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | type                    | "tab" \| "capsule"                                           | 分段按钮的类型。                                             |
@@ -70,6 +72,10 @@ constructor(options: TabSegmentButtonOptions | CapsuleSegmentButtonOptions)
 
 构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 
@@ -82,6 +88,10 @@ constructor(options: TabSegmentButtonOptions | CapsuleSegmentButtonOptions)
 static tab(options: TabSegmentButtonConstructionOptions): SegmentButtonOptions
 
 创建页签类的SegmentButtonOptions。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -101,6 +111,10 @@ static tab(options: TabSegmentButtonConstructionOptions): SegmentButtonOptions
 static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonOptions
 
 创建单选类/多选类的SegmentButtonOptions。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -511,7 +525,7 @@ import {
   SegmentButtonItemTuple,
   SegmentButtonOptions,
   SegmentButtonTextItem
-} from '@ohos.arkui.advanced.SegmentButton'
+} from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -591,7 +605,7 @@ import {
   SegmentButtonItemTuple,
   SegmentButtonOptions,
   SegmentButtonTextItem
-} from '@ohos.arkui.advanced.SegmentButton'
+} from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -679,7 +693,7 @@ import {
   SegmentButtonItemOptionsArray,
   SegmentButtonItemTuple,
   SegmentButtonItemOptions
-} from '@ohos.arkui.advanced.SegmentButton'
+} from '@kit.ArkUI';
 
 @Entry
 @Component

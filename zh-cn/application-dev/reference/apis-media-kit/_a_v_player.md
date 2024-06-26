@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [avplayer.h](avplayer_8h.md) | 定义avplayer接口。使用AVPlayer提供的Native API播放媒体源。<br> **引用文件：** <br> <multimedia/player_framework/avplayer.h> <br> **库：** <text>libavplayer.so</text> | 
-| [avplayer_base.h](avplayer__base_8h.md) | 定义AVPlayer的结构体和枚举。<br> **引用文件：** <br> <multimedia/player_framework/avplayer_base.h> <br> **库：** <text>libavplayer.so</text> | 
+| [avplayer.h](avplayer_8h.md) | 定义avplayer接口。使用AVPlayer提供的Native API播放媒体源。 | 
+| [avplayer_base.h](avplayer__base_8h.md) | 定义AVPlayer的结构体和枚举。 | 
 
 
 ### 结构体

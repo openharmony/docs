@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 ```
 
 ## ErrorObserver.onUnhandledException
@@ -31,7 +31,8 @@ onUnhandledException(errMsg: string): void;
 **示例：**
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
@@ -40,9 +41,9 @@ let observer: errorManager.ErrorObserver = {
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (error) {
-    console.error(`registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}`);
+  console.error(`registerErrorObserver failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -65,7 +66,8 @@ onException?(errObject: Error): void;
 **示例：**
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
@@ -74,15 +76,15 @@ let observer: errorManager.ErrorObserver = {
   onException(errorObj) {
     console.log('onException, name: ', errorObj.name);
     console.log('onException, message: ', errorObj.message);
-    if (typeof(errorObj.stack) === 'string') {
-        console.log('onException, stack: ', errorObj.stack);
+    if (typeof (errorObj.stack) === 'string') {
+      console.log('onException, stack: ', errorObj.stack);
     }
   }
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (error) {
-    console.error(`registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}`);
+  console.error(`registerErrorObserver failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
 }
 ```

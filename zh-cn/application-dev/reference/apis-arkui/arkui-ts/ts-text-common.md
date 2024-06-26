@@ -78,7 +78,7 @@ getLineMetrics(lineNumber: number): LineMetrics
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| LineMetrics | 行信息、文本样式信息、以及字体属性信息。 |
+| [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | 行信息、文本样式信息、以及字体属性信息。 |
 
 ## PositionWithAffinity
 
@@ -100,5 +100,5 @@ getLineMetrics(lineNumber: number): LineMetrics
 | 参数名 | 参数类型                                   | 必填 | 参数描述 |
 | ------ | ------------------------------------------ | ---- | -------- |
 | content   | [ResourceStr](ts-types.md#resourcestr)  | 是     | 显示内容。     |
-| startIcon | [ResourceStr](ts-types.md#resourcestr)  | 否     | 显示图标。     |
+| startIcon | [ResourceStr](ts-types.md#resourcestr)  | 否     | 显示图标，不支持引用SymbolSpan和网络图片。     |
 | action    | Callback\<[TextRange](ts-universal-attributes-text-style.md#textrange12)>  | 是     | 选中的文本信息。|    

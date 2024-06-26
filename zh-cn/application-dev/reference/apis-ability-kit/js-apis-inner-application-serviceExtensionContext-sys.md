@@ -14,7 +14,7 @@ ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力，包�
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## 使用说明
@@ -24,13 +24,14 @@ import common from '@ohos.app.ability.common';
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
 let commRemote: rpc.IRemoteObject | null; // 断开连接时需要释放
+
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
-      let context = this.context; // 获取ServiceExtensionContext
+    let context = this.context; // 获取ServiceExtensionContext
   }
 }
 ```
@@ -81,9 +82,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -162,10 +162,8 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -185,11 +183,11 @@ class EntryAbility extends ServiceExtensionAbility {
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
-          console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
     }
   }
 }
@@ -242,10 +240,8 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -262,7 +258,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startAbility(want, options, (error: BusinessError) => {
         if (error.code) {
           // 处理业务逻辑错误
-          console.error('startAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // 执行正常业务
@@ -270,7 +266,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
     }
   }
 }
@@ -330,9 +326,8 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -347,7 +342,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startAbilityWithAccount(want, accountId, (error: BusinessError) => {
         if (error.code) {
           // 处理业务逻辑错误
-          console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // 执行正常业务
@@ -355,7 +350,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
     }
   }
 }
@@ -416,10 +411,8 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -437,7 +430,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startAbilityWithAccount(want, accountId, options, (error: BusinessError) => {
         if (error.code) {
           // 处理业务逻辑错误
-          console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // 执行正常业务
@@ -445,7 +438,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -512,10 +505,8 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -537,11 +528,11 @@ class EntryAbility extends ServiceExtensionAbility {
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
-          console.error('startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -589,9 +580,8 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -605,7 +595,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startServiceExtensionAbility(want, (error: BusinessError) => {
         if (error.code) {
           // 处理业务逻辑错误
-          console.error('startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // 执行正常业务
@@ -613,7 +603,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -666,9 +656,8 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -680,17 +669,17 @@ class EntryAbility extends ServiceExtensionAbility {
 
     try {
       this.context.startServiceExtensionAbility(want)
-        .then((data: void) => {
+        .then((data) => {
           // 执行正常业务
           console.log('startServiceExtensionAbility succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
-          console.error('startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -704,7 +693,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -745,9 +735,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -762,7 +751,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startServiceExtensionAbilityWithAccount(want, accountId, (error: BusinessError) => {
         if (error.code) {
           // 处理业务逻辑错误
-          console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // 执行正常业务
@@ -770,7 +759,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -784,7 +773,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -830,9 +820,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -851,11 +840,11 @@ class EntryAbility extends ServiceExtensionAbility {
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
-          console.error('startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`startServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -911,8 +900,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
@@ -932,7 +920,6 @@ class EntryAbility extends ServiceExtensionAbility {
     })
   }
 }
-
 ```
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
@@ -984,9 +971,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
@@ -1010,7 +995,6 @@ class EntryAbility extends ServiceExtensionAbility {
     })
   }
 }
-
 ```
 
 ## ServiceExtensionContext.startAbilityAsCaller<sup>10+<sup>
@@ -1069,10 +1053,8 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
@@ -1084,7 +1066,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
     let option: StartOptions = {
       displayId: 0
-    }
+    };
 
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, option)
@@ -1096,7 +1078,6 @@ class EntryAbility extends ServiceExtensionAbility {
       })
   }
 }
-
 ```
 
 ## ServiceExtensionContext.stopServiceExtensionAbility
@@ -1137,9 +1118,8 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -1153,7 +1133,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.stopServiceExtensionAbility(want, (error: BusinessError) => {
         if (error.code) {
           // 处理业务逻辑错误
-          console.error('stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // 执行正常业务
@@ -1161,7 +1141,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1210,9 +1190,8 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -1230,11 +1209,11 @@ class EntryAbility extends ServiceExtensionAbility {
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
-          console.error('stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`stopServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1248,7 +1227,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1285,9 +1264,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -1302,7 +1280,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.stopServiceExtensionAbilityWithAccount(want, accountId, (error: BusinessError) => {
         if (error.code) {
           // 处理业务逻辑错误
-          console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code, error.message: ${error.message}');
+          console.error(`stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // 执行正常业务
@@ -1310,7 +1288,7 @@ class EntryAbility extends ServiceExtensionAbility {
       });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1324,7 +1302,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 > **说明：**
 > 
-> 当accountId为当前用户时，不需要校验该权限。
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1366,9 +1344,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -1387,11 +1364,11 @@ class EntryAbility extends ServiceExtensionAbility {
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
-          console.error('stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`stopServiceExtensionAbilityWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1430,15 +1407,15 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     this.context.terminateSelf((error: BusinessError) => {
       if (error.code) {
         // 处理业务逻辑错误
-        console.error('terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}`);
         return;
       }
       // 执行正常业务
@@ -1480,8 +1457,8 @@ terminateSelf(): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -1490,7 +1467,7 @@ class EntryAbility extends ServiceExtensionAbility {
       console.log('terminateSelf succeed');
     }).catch((error: BusinessError) => {
       // 处理业务逻辑错误
-      console.error('terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}`);
     });
   }
 }
@@ -1500,7 +1477,11 @@ class EntryAbility extends ServiceExtensionAbility {
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
-将一个Ability与服务类型的Ability绑定。
+将当前Ability连接到一个ServiceExtensionAbility。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1541,13 +1522,12 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     let want: Want = {
@@ -1559,15 +1539,20 @@ class EntryAbility extends ServiceExtensionAbility {
         commRemote = remote;
         console.log('----------- onConnect -----------');
       },
-      onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-      onFailed(code) { console.error('----------- onFailed -----------') }
+      onDisconnect(elementName) {
+        console.log('----------- onDisconnect -----------');
+      },
+      onFailed(code) {
+        console.error('----------- onFailed -----------');
+      }
     };
     let connection: number;
+
     try {
       connection = this.context.connectServiceExtensionAbility(want, options);
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1577,7 +1562,12 @@ class EntryAbility extends ServiceExtensionAbility {
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
 
-使用AbilityInfo.AbilityType.SERVICE模板和account将当前能力连接到一个能力。
+将当前Ability连接到一个指定account的ServiceExtensionAbility。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
+> 当accountId为当前用户时，无需进行权限校验。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1622,13 +1612,12 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     let want: Want = {
@@ -1642,15 +1631,20 @@ class EntryAbility extends ServiceExtensionAbility {
         commRemote = remote;
         console.log('----------- onConnect -----------');
       },
-      onDisconnect(elementName) { console.log('----------- onDisconnect -----------'); },
-      onFailed(code) { console.log('----------- onFailed -----------'); }
+      onDisconnect(elementName) {
+        console.log('----------- onDisconnect -----------');
+      },
+      onFailed(code) {
+        console.log('----------- onFailed -----------');
+      }
     };
     let connection: number;
+
     try {
       connection = this.context.connectServiceExtensionAbilityWithAccount(want, accountId, options);
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1686,11 +1680,12 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let commRemote: rpc.IRemoteObject | null; // 断开连接时需要释放
+
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     // connection为connectServiceExtensionAbility中的返回值
@@ -1750,11 +1745,12 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let commRemote: rpc.IRemoteObject | null; // 断开连接时需要释放
+
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     // connection为connectServiceExtensionAbility中的返回值
@@ -1832,15 +1828,12 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 后台启动：
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import { Caller } from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Caller, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     let caller: Caller;
-
     // 后台启动Ability，不配置parameters
     let wantBackground: Want = {
       bundleName: 'com.example.myservice',
@@ -1857,11 +1850,11 @@ class EntryAbility extends ServiceExtensionAbility {
           console.log('startAbilityByCall succeed');
         }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
-        console.error('startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}`);
       });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1870,15 +1863,12 @@ class EntryAbility extends ServiceExtensionAbility {
 前台启动：
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import { Caller } from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Caller, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     let caller: Caller;
-
     // 前台启动Ability，将parameters中的'ohos.aafwk.param.callAbilityToForeground'配置为true
     let wantForeground: Want = {
       bundleName: 'com.example.myservice',
@@ -1898,11 +1888,11 @@ class EntryAbility extends ServiceExtensionAbility {
           console.log('startAbilityByCall succeed');
         }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
-        console.error('startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}`);
       });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1953,9 +1943,8 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -2031,10 +2020,8 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -2113,10 +2100,8 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -2203,11 +2188,8 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import { Caller } from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want, Caller } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
@@ -2234,11 +2216,11 @@ class EntryAbility extends ServiceExtensionAbility {
           console.log('startAbilityByCallWithAccount succeed');
         }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
-        console.error('startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+        console.error(`startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);
       });
     } catch (paramError) {
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -2285,9 +2267,8 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class ServiceExtension extends ServiceExtensionAbility {
   onCreate() {
@@ -2358,13 +2339,12 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class ServiceExtension extends ServiceExtensionAbility {
   onCreate() {
-     let pickerWant: Want = {
+    let pickerWant: Want = {
       bundleName: 'com.example.myapplication',
       abilityName: 'com.example.myapplication.UIExtAbility',
       moduleName: 'entry_test',
@@ -2377,15 +2357,15 @@ class ServiceExtension extends ServiceExtensionAbility {
 
     try {
       this.context.requestModalUIExtension(pickerWant, (err: BusinessError) => {
-        if (err.code) { 
+        if (err.code) {
           // 处理业务逻辑错误
           console.error(`requestModalUIExtension failed, code is ${err.code}, message is ${err.message}`);
           return;
-        } 
+        }
         // 执行正常业务
         console.info('requestModalUIExtension succeed');
       });
-    } catch (err) { 
+    } catch (err) {
       // 处理入参错误异常
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
@@ -2454,10 +2434,9 @@ openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function log(info: string) {
   console.error(`[ServiceExtApp]:: ${JSON.stringify(info)}`);

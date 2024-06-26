@@ -130,7 +130,7 @@ module.json5配置文件包含以下标签。
 | targetPriority | 标识当前Module的优先级，取值范围为1~100。配置targetModuleName字段之后，才需要配置该字段。仅在动态共享包（HSP）中适用。 |整型数值|该标签可缺省，缺省值为1。|
 | [proxyData](#proxydata标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
 | isolationMode | 标识当前Module的多进程配置项。支持的取值如下：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。 |字符串|该标签可缺省，缺省值为nonisolationFirst。|
-| generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。当配置为true时，如果系统OTA升级时应用versionCode保持不变，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。**<br/>说明：**<br/>该字段仅对预置应用生效。|布尔值|该标签可缺省，缺省值为false。|
+| generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。当配置为true时，如果系统OTA升级时应用versionCode保持不变，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。<br/>**说明：**<br/>该字段仅对预置应用生效。|布尔值|该标签可缺省，缺省值为false。|
 | compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。<br/>-&nbsp;true：libs库以压缩方式存储。<br/>-&nbsp;false：libs库以不压缩方式存储。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | libIsolation | 用于区分同应用不同HAP下的.so文件，以防止.so冲突。<br/>-&nbsp;true：当前HAP的.so文件会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前HAP的.so文件会直接储存在libs目录中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | fileContextMenu | 标识当前HAP的右键菜单配置项。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -150,6 +150,7 @@ module.json5配置文件包含以下标签。
 | 智慧屏 | tv | - |
 | 智能手表 | wearable | 系统能力较丰富的手表，具备电话功能。 |
 | 车机 | car | - |
+| 2in1 | 2in1 | 融合了屏幕触控和键鼠操作的二合一设备。 |
 | 默认设备 | default | 能够使用全部系统能力的设备。 |
 <!--RP2End-->
 
@@ -678,7 +679,7 @@ data标签示例：
 
   在分发应用包时，通过deviceTypes与这四个属性的匹配关系，唯一确定一个用于分发到设备的HAP。
 
-  * 如果需要配置该标签，则至应当包含一个属性。
+  * 如果需要配置该标签，则至少包含一个属性。
   * 如果一个Entry中配置了任意一个或多个属性，则其他Entry也必须包含相同的属性。
   * screenShape和screenWindow属性仅用于轻量级智能穿戴设备。
 
@@ -931,12 +932,12 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
       "routerMap": [
         {
           "name": "DynamicPage1",
-          "pageSourceFile": "entry/src/index",
+          "pageSourceFile": "src/main/ets/pages/pageOne.ets",
           "buildFunction": "myFunction"
         },
         {
           "name": "DynamicPage2",
-          "pageSourceFile": "entry/src/index",
+          "pageSourceFile": "src/main/ets/pages/pageTwo.ets",
           "buildFunction": "myBuilder",
           "data": {
             "key1": "data1",
@@ -961,7 +962,7 @@ data标签示例：
   "routerMap": [
     {
       "name": "DynamicPage",
-      "pageSourceFile": "entry/src/index",
+      "pageSourceFile": "src/main/ets/pages/pageOne.ets",
       "buildFunction": "myBuilder",
       "data": {
         "stringKey": "data1",

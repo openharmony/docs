@@ -37,6 +37,8 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名   | 参数类型                                    | 必填 | 参数描述                                                     |
@@ -45,6 +47,10 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10) | 否 | 滚动Grid布局选项。 |
 
 ## GridLayoutOptions<sup>10+</sup>
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 布局选项。其中,irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见示例3；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见示例1。
 
@@ -449,6 +455,8 @@ flingSpeedLimit(speedLimit: number)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   |枚举值| 描述                                   |
 | ------ |------| -------------------------------------- |
 | Row  |  0  | 主轴布局方向沿水平方向布局，即自左往右先填满一行，再去填下一行。 |
@@ -727,6 +735,8 @@ onDidScroll(handler: OnScrollCallback)
 ## ComputedBarAttribute对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型         |   描述         |
 | ---------- | ---------- | ---------- |

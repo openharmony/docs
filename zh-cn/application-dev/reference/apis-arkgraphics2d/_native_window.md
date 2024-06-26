@@ -46,11 +46,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [NativeWindowOperation](#nativewindowoperation) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br/>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br/>SET_HDR_WHITE_POINT_BRIGHTNESS, SET_SDR_WHITE_POINT_BRIGHTNESS<br/>} | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。 |
+| [NativeWindowOperation](#nativewindowoperation-1) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br/>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br/>SET_HDR_WHITE_POINT_BRIGHTNESS, SET_SDR_WHITE_POINT_BRIGHTNESS<br/>} | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。 |
 | [OHScalingMode](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | 缩放模式Scaling Mode。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
-| [OHScalingModeV2](#ohscalingmodev2) {<br/>OH_SCALING_MODE_FREEZE_V2 = 0, OH_SCALING_MODE_SCALE_TO_WINDOW_V2, OH_SCALING_MODE_SCALE_CROP_V2, OH_SCALING_MODE_NO_SCALE_CROP_V2,<br/>OH_SCALING_MODE_SCALE_FIT_V2<br/>} | 渲染缩放模式枚举。  | 
+| [OHScalingModeV2](#ohscalingmodev2-1) {<br/>OH_SCALING_MODE_FREEZE_V2 = 0, OH_SCALING_MODE_SCALE_TO_WINDOW_V2, OH_SCALING_MODE_SCALE_CROP_V2, OH_SCALING_MODE_NO_SCALE_CROP_V2,<br/>OH_SCALING_MODE_SCALE_FIT_V2<br/>} | 渲染缩放模式枚举。  | 
 | [OHHDRMetadataKey](#ohhdrmetadatakey) {<br/>OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,<br/>OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,<br/>OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,<br/>OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13<br/>} | 枚举HDR元数据关键字。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
-| [OHNativeErrorCode](#ohnativeerrorcode) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000 | 接口错误码说明（仅用于查询）。  | 
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br/>} | 接口错误码说明（仅用于查询）。  | 
 
 
 ### 函数
@@ -84,6 +84,10 @@
 | void [OH_NativeWindow_SetBufferHold](#oh_nativewindow_setbufferhold) ([OHNativeWindow](#ohnativewindow) \*window) | 提前缓存一帧buffer，且缓存的这一帧延迟一帧上屏显示，以此抵消后续一次超长帧丢帧。  | 
 | int32_t [OH_NativeWindow_WriteToParcel](#oh_nativewindow_writetoparcel) ([OHNativeWindow](#ohnativewindow) \*window, [OHIPCParcel](#ohipcparcel) \*parcel) | 将窗口对象写入IPC序列化对象中。 | 
 | int32_t [OH_NativeWindow_ReadFromParcel](#oh_nativewindow_readfromparcel) ([OHIPCParcel](#ohipcparcel) \*parcel, [OHNativeWindow](#ohnativewindow) \*\*window) | 从IPC序列化对象中读取窗口对象。 | 
+| int32_t [OH_NativeWindow_SetColorSpace](#oh_nativewindow_setcolorspace) ([OHNativeWindow](#ohnativewindow) \*window, [OH_NativeBuffer_ColorSpace](_o_h___native_buffer.md#oh_nativebuffer_colorspace) colorSpace) | 为OHNativeWindow设置颜色空间属性。 | 
+| int32_t [OH_NativeWindow_GetColorSpace](#oh_nativewindow_getcolorspace) ([OHNativeWindow](#ohnativewindow) \*window, [OH_NativeBuffer_ColorSpace](_o_h___native_buffer.md#oh_nativebuffer_colorspace) \*colorSpace) | 获取OHNativeWindow颜色空间属性。 | 
+| int32_t [OH_NativeWindow_SetMetadataValue](#oh_nativewindow_setmetadatavalue) ([OHNativeWindow](#ohnativewindow) \*window, [OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey) metadataKey, int32_t size, uint8_t \*metaData) | 为OHNativeWindow设置元数据属性值。 | 
+| int32_t [OH_NativeWindow_GetMetadataValue](#oh_nativewindow_getmetadatavalue) ([OHNativeWindow](#ohnativewindow) \*window, [OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey) metadataKey, int32_t \*size, uint8_t \*\*metaData) | 获取OHNativeWindow元数据属性值。 | 
 
 ## 类型定义说明
 
@@ -103,7 +107,7 @@ typedef struct OHIPCParcel OHIPCParcel
 ### NativeWindowOperation
 
 ```
-typedef enum NativeWindowOperationNativeWindowOperation
+typedef enum NativeWindowOperation NativeWindowOperation
 ```
 
 **描述**
@@ -316,6 +320,112 @@ enum OHScalingModeV2
 
 
 ## 函数说明
+
+### OH_NativeWindow_SetColorSpace()
+
+```
+int32_t OH_NativeWindow_SetColorSpace (OHNativeWindow *window, OH_NativeBuffer_ColorSpace colorSpace )
+```
+
+**描述**
+
+为OHNativeWindow设置颜色空间属性。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| window | 一个指向[OHNativeWindow](#ohnativewindow)的结构体实例的指针。 | 
+| colorSpace | 为OHNativeWindow设置的颜色空间，其值从[OH_NativeBuffer_ColorSpace](_o_h___native_buffer.md#oh_nativebuffer_colorspace)获取。 | 
+
+**返回：**
+
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode)。
+
+
+### OH_NativeWindow_SetMetadataValue()
+
+```
+int32_t OH_NativeWindow_SetMetadataValue (OHNativeWindow *window, OH_NativeBuffer_MetadataKey metadataKey, int32_t size, uint8_t * metaData )
+```
+
+**描述**
+
+为OHNativeWindow设置元数据属性值。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| window | 一个指向[OHNativeWindow](#ohnativewindow)的结构体实例的指针。 | 
+| metadataKey | OHNativeWindow的元数据类型，其值从[OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey)获取。 | 
+| size | uint8_t向量的大小。 | 
+| metaDate | 指向uint8_t向量的指针。 | 
+
+**返回：**
+
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode)。
+
+### OH_NativeWindow_GetColorSpace()
+
+```
+int32_t OH_NativeWindow_GetColorSpace (OHNativeWindow *window, OH_NativeBuffer_ColorSpace *colorSpace )
+```
+
+**描述**
+
+获取OHNativeWindow颜色空间属性。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| window | 一个指向[OHNativeWindow](#ohnativewindow)的结构体实例的指针。 | 
+| colorSpace | 为OHNativeWindow设置的颜色空间，其值从[OH_NativeBuffer_ColorSpace](_o_h___native_buffer.md#oh_nativebuffer_colorspace)获取, 默认值为OH_COLORSPACE_BT709_LIMIT。 | 
+
+**返回：**
+
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode)。
+
+
+### OH_NativeWindow_GetMetadataValue()
+
+```
+int32_t OH_NativeWindow_GetMetadataValue (OHNativeWindow *window, OH_NativeBuffer_MetadataKey metadataKey, int32_t *size, uint8_t **metaData )
+```
+
+**描述**
+
+获取OHNativeWindow元数据属性值。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| window | 一个指向[OHNativeWindow](#ohnativewindow)的结构体实例的指针。 | 
+| metadataKey | OHNativeWindow的元数据类型，其值从[OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey)获取。 | 
+| size | uint8_t向量的大小。 | 
+| metaDate | 指向uint8_t向量的二级指针。 | 
+
+**返回：**
+
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode)。
 
 
 ### OH_NativeWindow_WriteToParcel()

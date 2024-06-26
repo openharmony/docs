@@ -28,7 +28,7 @@
       - [使用隐式Want打开网址](ability-startup-with-implicit-want.md)
       - [应用间使用Want分享数据](data-share-via-want.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)
-    - [AppStartup开发指南](app-startup.md)
+    - [应用启动框架AppStartup](app-startup.md)
     <!--Del-->
     - 应用组件跨设备交互（流转）
       - [流转概述](inter-device-interaction-hop-overview.md)
@@ -37,8 +37,18 @@
     <!--DelEnd-->
     - [订阅系统环境变量的变化](subscribe-system-environment-variable-changes.md)
   - 应用间跳转
+    - [应用间跳转概述](link-between-apps-overview.md)
+    - 指向性跳转
+      - [（可选）使用canOpenLink判断应用是否可访问](canopenlink.md)
+      - [使用Deep Linking实现应用间跳转](deep-linking-startup.md)
+      <!--Del-->
+      - [使用App Linking实现应用间跳转](app-linking-startup.md)
+      <!--DelEnd-->
+      - [应用间显式跳转切换link跳转适配指导](uiability-startup-adjust.md)
     - 通用意图跳转
       - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
+      - [通过startAbility拉起文件处理类应用](file-processing-apps-startup.md)
+    - [拉起系统应用](system-app-startup.md)
   - [进程模型](process-model-stage.md)
   - [线程模型](thread-model-stage.md)
   <!--Del-->

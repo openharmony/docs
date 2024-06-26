@@ -6,14 +6,15 @@
 >
 > 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
 ## ContextMenu.close
+
+static close()
+
+可以通过该方法在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#属性)给组件绑定的菜单。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-|方法|描述|
-|----|---|
-| static close() | 可以通过该方法在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#属性)给组件绑定的菜单。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
 ## 示例

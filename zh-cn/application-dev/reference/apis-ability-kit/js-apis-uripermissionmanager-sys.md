@@ -12,7 +12,7 @@ URI权限管理模块。用于应用A授权/撤销授权URI给应用B
 
   
 ```ts
-import uriPermissionManager from '@ohos.application.uriPermissionManager';
+import { uriPermissionManager } from '@kit.AbilityKit';
 ```
 
 
@@ -56,24 +56,22 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 **示例：**
     
   ```ts
-  import uriPermissionManager from '@ohos.application.uriPermissionManager';
-  import WantConstant from '@ohos.app.ability.wantConstant';
-  import fs from '@ohos.file.fs';
-  import fileUri from '@ohos.file.fileuri';
+  import { uriPermissionManager, wantConstant } from '@kit.AbilityKit';
+  import { fileIo, fileUri } from '@kit.CoreFileKit';
 
   let targetBundleName = 'com.example.test_case1'
   let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
-  fs.mkdir(path, (err) => {
+  fileIo.mkdir(path, (err) => {
     if (err) {
-      console.log("mkdir error"+err.message)
+      console.log("mkdir error" + err.message);
     } else {
-      console.log("mkdir succeed")
+      console.log("mkdir succeed");
     }
   });
   let uri = fileUri.getUriFromPath(path);
-  uriPermissionManager.grantUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName, (result) => {
-    console.log("result.code = " + result.code)
-  })
+  uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName, (result) => {
+    console.log("result.code = " + result.code);
+  });
   ```
 
 
@@ -121,30 +119,29 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 **示例：**
     
   ```ts
-  import uriPermissionManager from '@ohos.application.uriPermissionManager';
-  import WantConstant from '@ohos.app.ability.wantConstant';
-  import fs from '@ohos.file.fs';
-  import fileUri from '@ohos.file.fileuri';
-  import { BusinessError } from '@ohos.base';
+  import { uriPermissionManager, wantConstant } from '@kit.AbilityKit';
+  import { fileIo, fileUri } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let targetBundleName = 'com.example.test_case1'
   let path = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
 
-  fs.mkdir(path, (err) => {
+  fileIo.mkdir(path, (err) => {
     if (err) {
-      console.log("mkdir error"+err.message)
+      console.log("mkdir error" + err.message);
     } else {
-      console.log("mkdir succeed")
+      console.log("mkdir succeed");
     }
   });
   let uri = fileUri.getUriFromPath(path);
-  uriPermissionManager.grantUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
+  uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
     .then((data) => {
-      console.log('Verification succeeded.' + data)
+      console.log('Verification succeeded.' + data);
     }).catch((error: BusinessError) => {
     console.log('Verification failed.');
-  })
+  });
   ```
+
 ## uriPermissionManager.revokeUriPermission
 
 revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallback&lt;number&gt;): void
@@ -178,13 +175,14 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
 **示例：**
     
   ```ts
-  import uriPermissionManager from '@ohos.application.uriPermissionManager';
+  import { uriPermissionManager } from '@kit.AbilityKit';
 
-  let targetBundleName = 'com.example.test_case2'
-  let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir"
+  let targetBundleName = 'com.example.test_case2';
+  let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
+
   uriPermissionManager.revokeUriPermission(uri, targetBundleName, (result) => {
-      console.log("result.code = " + result.code)
-  }) 
+    console.log("result.code = " + result.code);
+  });
   ```
 
 
@@ -228,15 +226,16 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 **示例：**
     
   ```ts
-  import uriPermissionManager from '@ohos.application.uriPermissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { uriPermissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  let targetBundleName = 'com.example.test_case2'
-  let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir"
+  let targetBundleName = 'com.example.test_case2';
+  let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir";
+
   uriPermissionManager.revokeUriPermission(uri, targetBundleName)
-  .then((data) => {
-      console.log('Verification succeeded.' + data)
-  }).catch((error: BusinessError) => {
-      console.log('Verification failed.');
-  })
+    .then((data) => {
+      console.log('Verification succeeded.' + data);
+    }).catch((error: BusinessError) => {
+    console.log('Verification failed.');
+  });
   ```

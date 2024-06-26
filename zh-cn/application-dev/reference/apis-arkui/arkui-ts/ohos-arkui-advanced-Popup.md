@@ -9,7 +9,7 @@ Popup是用于显示特定样式气泡。
 ## 导入模块
 
 ```
-import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@ohos.arkui.advanced.Popup';
+import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI';
 ```
 
 ##  子组件
@@ -21,6 +21,8 @@ import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOpt
 Popup(options: PopupOptions)
 
 **装饰器类型：**@Builder
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -82,7 +84,7 @@ PopupButtonOptions定义按钮的相关属性和事件。
 
 PopupIconOptions定义icon（右上角图标）的属性。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -98,7 +100,7 @@ PopupIconOptions定义icon（右上角图标）的属性。
 
 ```ts
 // xxx.ets
-import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@ohos.arkui.advanced.Popup';
+import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -114,21 +116,20 @@ struct PopupExample {
           width:32,
           height:32,
           fillColor:Color.White,
-          borderRadius: 16,
+          borderRadius: 16
         } as PopupIconOptions,
         // PopupTextOptions 类型设置文字内容
         title: {
           text: 'This is a popup with PopupOptions',
           fontSize: 20,
           fontColor: Color.Black,
-          fontWeight: FontWeight.Normal,
-
+          fontWeight: FontWeight.Normal
         } as PopupTextOptions,
         //PopupTextOptions 类型设置文字内容
         message: {
           text: 'This is the message',
           fontSize: 15,
-          fontColor: Color.Black,
+          fontColor: Color.Black
         } as PopupTextOptions,
         showClose: false,
         onClose: () => {
@@ -142,7 +143,6 @@ struct PopupExample {
           },
           fontSize: 15,
           fontColor: Color.Black,
-
         },
           {
             text: 'cancel',
@@ -150,8 +150,8 @@ struct PopupExample {
               console.info('cancel button click')
             },
             fontSize: 15,
-            fontColor: Color.Black,
-          },] as [PopupButtonOptions?, PopupButtonOptions?],
+            fontColor: Color.Black
+          },] as [PopupButtonOptions?, PopupButtonOptions?]
       })
     }
     .width(300)

@@ -67,7 +67,7 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
 let preferences: sendablePreferences.Preferences;
@@ -179,7 +179,7 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
@@ -236,7 +236,7 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
@@ -597,7 +597,7 @@ has(key: string): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = preferences.has('startup');
 promise.then((val: boolean) => {

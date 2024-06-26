@@ -1,4 +1,4 @@
-# Image Kit API参考
+# Image Kit（图片处理服务）
 
 - ArkTS API
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)

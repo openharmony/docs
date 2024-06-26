@@ -162,8 +162,8 @@ Json文件共包含2个属性。
    情形一，按照指定持续时间触发马达振动：
 
    ```ts
-   import vibrator from '@ohos.vibrator';
-   import { BusinessError } from '@ohos.base';
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    try {
      // 触发马达振动
@@ -189,12 +189,12 @@ Json文件共包含2个属性。
    情形二，按照预置振动效果触发马达振动，可先查询振动效果是否被支持，再调用振动接口：
 
    ```ts
-   import vibrator from '@ohos.vibrator';
-   import { BusinessError } from '@ohos.base';
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    try {
-     // 查询是否支持'haptic.clock.timer'
-     vibrator.isSupportEffect('haptic.clock.timer', (err: BusinessError, state: boolean) => {
+     // 查询是否支持'haptic.effect.soft'
+     vibrator.isSupportEffect('haptic.effect.soft', (err: BusinessError, state: boolean) => {
        if (err) {
          console.error(`Failed to query effect. Code: ${err.code}, message: ${err.message}`);
          return;
@@ -205,8 +205,9 @@ Json文件共包含2个属性。
            // 触发马达振动
            vibrator.startVibration({
              type: 'preset',
-             effectId: 'haptic.clock.timer',
+             effectId: 'haptic.effect.soft',
              count: 1,
+             intensity: 50,
            }, {
              usage: 'unknown'
            }, (error: BusinessError) => {
@@ -231,9 +232,9 @@ Json文件共包含2个属性。
    情形三，按照自定义振动配置文件触发马达振动：
 
    ```ts
-   import vibrator from '@ohos.vibrator';
-   import resourceManager from '@ohos.resourceManager';
-   import { BusinessError } from '@ohos.base';
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { resourceManager } from '@kit.LocalizationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    const fileName: string = 'xxx.json';
    
@@ -271,8 +272,8 @@ Json文件共包含2个属性。
    ​	停止固定时长振动：
 
    ```ts
-   import vibrator from '@ohos.vibrator';
-   import { BusinessError } from '@ohos.base';
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    try {
      // 按照VIBRATOR_STOP_MODE_TIME模式停止振动
@@ -292,8 +293,8 @@ Json文件共包含2个属性。
    ​	停止预置振动：
 
    ```ts
-   import vibrator from '@ohos.vibrator';
-   import { BusinessError } from '@ohos.base';
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    try {
      // 按照VIBRATOR_STOP_MODE_PRESET模式停止振动
@@ -313,8 +314,8 @@ Json文件共包含2个属性。
    方式二，停止所有模式的马达振动，包括自定义振动：
 
    ```ts
-   import vibrator from '@ohos.vibrator';
-   import { BusinessError } from '@ohos.base';
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    try {
      // 停止所有模式的马达振动

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import distributedMissionManager from '@ohos.distributedMissionManager';
+import { distributedMissionManager } from '@kit.AbilityKit';
 ```
 
 ## 属性

@@ -54,6 +54,8 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 控制虚拟键盘抬起时页面的避让模式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -72,6 +74,8 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 getKeyboardAvoidMode(): KeyboardAvoidMode
 
 返回虚拟键盘抬起时的页面避让模式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -153,7 +157,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
   hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
   windowStage.loadContent('pages/Index', (err, data) => {
-    let a = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
+    let keyboardAvoidMode = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
     // 设置虚拟键盘抬起时压缩页面大小为减去键盘的高度
   windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
     if (err.code) {
@@ -193,7 +197,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
   hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
   windowStage.loadContent('pages/Index', (err, data) => {
-    let a = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
+    let keyboardAvoidMode = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
     // 设置虚拟键盘抬起时把页面上抬直到露出光标
   windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.OFFSET);
     if (err.code) {

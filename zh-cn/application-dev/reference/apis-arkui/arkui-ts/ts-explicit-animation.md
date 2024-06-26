@@ -16,6 +16,7 @@
 ## 接口
 animateTo(value: AnimateParam, event: () => void): void
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 | 参数    | 类型                                | 是否必填 | 描述                                    |
@@ -45,7 +46,6 @@ animateTo(value: AnimateParam, event: () => void): void
 
 ## ExpectedFrameRateRange<sup>11+</sup>
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称  | 类型     | 说明      |
 |-----|--------|---------|

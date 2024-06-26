@@ -469,7 +469,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 否   | 扩展菜单选项。 |
+| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 是   | 扩展菜单选项。 |
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -611,7 +611,7 @@ onCut(callback: (value: string) => void)
 
 ### onPaste
 
-onPaste(callback: (value: string, event: PasteEvent]) => void)
+onPaste(callback: (value: string, event: PasteEvent) => void)
 
 长按搜索框弹出剪切板之后，点击剪切板的粘贴按钮触发该回调。
 
@@ -732,7 +732,7 @@ onDidDelete(callback: Callback\<DeleteValue>)
 
 ## SearchController
 
-Search组件的控制器，目前通过它可控制Search组件的光标位置。
+Search组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)。
 
 ### 导入对象
 ```
@@ -760,69 +760,7 @@ stopEditing(): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-### getTextContentRect<sup>10+</sup>
-
-getTextContentRect(): RectResult
-
-获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**返回值：**
-
-| 类型       | 说明       |
-| -------------------  | -------- |
-| [RectResult](#rectresult10) | 已编辑文本内容的相对组件的位置和大小。 |
-
-> **说明：**
->
-> - 返回的位置信息是相对Search组件中搜索图标的偏移值。
-> - 不输入文本时，返回值中有相对Search组件的位置信息，但大小为0。
-> - 返回值中的位置信息是第一个字符相对于可编辑组件的位置。
-
-### RectResult<sup>10+</sup>
-
-位置和大小，单位均为像素。
-
-| 参数      | 类型     | 描述 |
-| ------- | ------ | ----------------------- |
-| x     | number | 水平方向横坐标。|
-| y     | number | 竖直方向纵坐标。|
-| width | number | 内容宽度大小。|
-| height | number | 内容高度大小。|
-
-### getTextContentLineCount<sup>10+</sup>
-
-getTextContentLineCount(): number
-
-获取已编辑文本内容的行数。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**返回值：**
-
-| 类型  | 说明       |
-| ----- | -------- |
-| number| 已编辑文本内容行数。 |
-
-### getCaretOffset<sup>11+</sup>
-
-getCaretOffset(): CaretOffset
-
-返回当前光标所在位置信息。
-
-**返回值：**
-
-| 类型                      | 说明               |
-| ----------------------- | ---------------- |
-| [CaretOffset](ts-basic-components-textinput.md#caretoffset11对象说明) | 光标相对输入框的位置。 |
-
-> **说明：**
->
-> - 返回的位置信息是相对Search组件中搜索图标的偏移值。
-> - 不输入文本时，返回值中有相对Search组件的位置信息。
-> - 返回值中的位置信息是光标相对于可编辑组件的位置。
-> - 在当前帧更新光标位置同时调用该接口，该接口不生效。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### setTextSelection<sup>12+</sup>
 
@@ -842,6 +780,8 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.SHOW，调用setTextSelection也不弹出菜单。
+>
+>  如果选中的文本含有emoji表情时，表情的起始位置包含在设置的文本选中区域内就会被选中。
 
 ## KeyboardOptions<sup>12+</sup>
 
@@ -1209,11 +1149,11 @@ struct SearchExample {
       Column() {
         Search({ value: "Search支持插入回调文本" })
           .height(60)
-          .onWillInsert((info) => {
+          .onWillInsert((info: InsertValue) => {
             this.insertValue = info.insertValue
             return true;
           })
-          .onDidInsert((info) => {
+          .onDidInsert((info: InsertValue) => {
             this.insertOffset = info.insertOffset
           })
 
@@ -1221,12 +1161,12 @@ struct SearchExample {
 
         Search({ value: "Search支持删除回调文本b" })
           .height(60)
-          .onWillDelete((info) => {
+          .onWillDelete((info: DeleteValue) => {
             this.deleteValue = info.deleteValue
             info.direction
             return true;
           })
-          .onDidDelete((info) => {
+          .onDidDelete((info: DeleteValue) => {
             this.deleteOffset = info.deleteOffset
             this.deleteDirection = info.direction
           })

@@ -387,7 +387,7 @@ getAllRxBytes(): Promise\<number>;
 ```js
 import { statistics } from '@kit.NetworkKit';
 
-statistics.getCellularRxBytes().then((stats: number) => {
+statistics.getAllRxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 ```

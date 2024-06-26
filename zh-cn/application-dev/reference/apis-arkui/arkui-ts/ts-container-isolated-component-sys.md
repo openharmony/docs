@@ -117,7 +117,7 @@ struct Index2 {
   build() {
     Row() {
       Column() {
-        // 1、 将应用沙箱下的/data/stroage/el2/haps/entry/files/Index.abc 调用verifyAbc校验
+        // 1、 将应用沙箱下的/data/storage/el2/haps/entry/files/Index.abc 调用verifyAbc校验
         Button("verifyAbc").onClick(()=>{
           let abcFilePath = getContext(this).filesDir + "/" + this.fileName + ".abc";
           bundle.verifyAbc([abcFilePath], false);
@@ -127,9 +127,9 @@ struct Index2 {
         Button("showIsolatedComponent").onClick(()=>{
           if (!this.isShow) {
             this.worker = new worker.RestrictedWorker("./OhCardWorker");
-            // /data/stroage/el2/haps/entry/files/{fileName}.hap
+            // /data/storage/el2/haps/entry/files/{fileName}.hap
             this.resourcePath = getContext(this).filesDir + "/" + this.fileName + '.hap';
-            // /abcs/data/stroage/el2/haps/entry/files/{fileName}.hap
+            // /abcs/data/storage/el2/haps/entry/files/{fileName}.hap
             this.abcPath = "/abcs" + getContext(this).filesDir + "/" + this.fileName;
             this.entryPoint = "com.ohos.test/entry/ets/pages/Index"
             this.isShow = true;

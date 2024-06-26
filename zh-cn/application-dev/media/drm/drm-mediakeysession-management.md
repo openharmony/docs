@@ -9,13 +9,13 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 1. 导入相关接口，导入方法如下。
 
    ```ts
-   import drm from '@ohos.multimedia.drm';
+   import { drm } from '@kit.DrmKit';
    ```
 
 2. 导入BusinessError模块，用于获取drm模块相关接口抛出的错误码。
 
    ```ts
-   import {BusinessError} from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 3. 调用MediaKeySession类中的generateMediaKeyRequest方法，生成许可证请求。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。

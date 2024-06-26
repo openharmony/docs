@@ -854,6 +854,38 @@ notificationManager.isNotificationEnabled().then((data: boolean) => {
 });
 ```
 
+## notificationManager.isNotificationEnabled
+
+isNotificationEnabledSync(): boolean
+
+同步获取通知使能状态。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**返回值：**
+
+| 类型                                                        | 说明                                                     |
+| ----------------------------------------------------------- |--------------------------------------------------------- |
+| boolean | 返回获取通知使能状态的结果。返回true，表示通知使能状态为开；返回false，表示通知使能状态为关。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通知错误码](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect to the service.               |
+
+**示例：**
+
+```ts
+import notificationManager from '@ohos.notificationManager';
+
+let enabled = notificationManager.isNotificationEnabledSync();
+```
+
 ## notificationManager.setBadgeNumber<sup>10+</sup>
 
 setBadgeNumber(badgeNumber: number): Promise\<void\>

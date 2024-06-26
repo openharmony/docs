@@ -25,7 +25,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 | deviceTypes                       | Array\<string>                                               | 是   | 否   | 可以运行模块的设备类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | installationFree                  | boolean                                                      | 是   | 否   | 模块是否支持免安装。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | hashValue                         | string                                                       | 是   | 否   | 模块的Hash值。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| type                              | [ModuleType](js-apis-bundleManager.md#moduletype)            | 是   | 否   | 标识当前模块的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type                              | [bundleManager.ModuleType](js-apis-bundleManager.md#moduletype)            | 是   | 否   | 标识当前模块的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | preloads                          | Array\<[PreloadItem](#preloaditem)>                          | 是   | 否   | 原子化服务中模块的预加载列表。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | dependencies                      | Array\<[Dependency](#dependency)>                            | 是   | 否   | 模块运行依赖的动态共享库列表。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | fileContextMenuConfig<sup>11+</sup>     | string                                                       | 是   | 否   | 模块的文件菜单配置。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_MENU获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |

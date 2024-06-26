@@ -45,7 +45,7 @@
          createIfMissing: true,
          encrypt: true,
          backup: false,
-         autoSync: true,
+         autoSync: false,
          kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
          securityLevel: distributedKVStore.SecurityLevel.S1
        };

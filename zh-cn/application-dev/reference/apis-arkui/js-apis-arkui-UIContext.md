@@ -20,7 +20,7 @@ getFont(): Font
 
 获取Font对象。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,6 +84,8 @@ uiContext.getUIInspector();
 getUIObserver(): UIObserver
 
 获取UIObserver对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -289,7 +291,7 @@ getSharedLocalStorage(): LocalStorage | undefined
 
 ```ts
 // index.ets
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -321,7 +323,7 @@ struct SharedLocalStorage {
 }
 
 // GetSharedLocalStorage.ets
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -367,8 +369,7 @@ getHostContext(): Context | undefined
 
 | 类型 | 说明                             |
 | ------ | ------------------------------- |
-| [Context](../../application-models/application-context-stage.md#应用上下文context)  | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。    |
-| undefined | ability上下文不存在时返回undefined。|
+| [Context](../../application-models/application-context-stage.md#应用上下文context)&nbsp;\|&nbsp;undefined | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。ability上下文不存在时返回undefined。 |
 
 **示例：**
 
@@ -465,6 +466,105 @@ struct MyComponent {
   }
 }
 ```
+
+### getPageInfoByUniqueId<sup>12+</sup>
+
+getPageInfoByUniqueId(id: number): PageInfo
+
+提供getPageInfoByUniqueId接口通过组件的uniqueId获取该节点对应的Router和NavDestination页面信息。
+1. 当uniqueId对应的节点在Page节点中，routerPageInfo属性为其对应的Router信息；
+2. 当uniqueId对应的节点在NavDestination节点中，navDestinationInfo属性为其对应的NavDestination信息；
+3. 当uniqueId对应的节点无对应的Router或NavDestination信息时，对应的属性为undefined；
+4. 模态弹窗并不在任何Page节点中。当uniqueId对应的节点在模态弹窗中,例如[CustomDialog](./arkui-ts/ts-methods-custom-dialog-box.md)、[bindSheet](./arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)和[bindContentCover](./arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)构建的模态页面中，routerPageInfo属性为undefined。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | number | 是    | 节点对应的UniqueId                          |
+
+**返回值：**
+
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| [PageInfo](#pageinfo12) | 返回节点对应的Router和NavDestination信息。 |
+
+**示例：**
+
+```ts
+import { UIContext, PageInfo } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct PageInfoExample {
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+
+  build() {
+    Column() {
+      Navigation(this.pageInfos) {
+        NavDestination() {
+          MyComponent()
+        }
+      }.id('navigation')
+    }
+  }
+}
+
+@Component
+struct MyComponent {
+  build() {
+    Column() {
+      Text('PageInfoExample')
+      Button('click').onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        const uniqueId: number = this.getUniqueId();
+        const pageInfo: PageInfo = uiContext.getPageInfoByUniqueId(uniqueId);
+        console.log('pageInfo: ' + JSON.stringify(pageInfo));
+        console.log('navigationInfo: ' + JSON.stringify(uiContext.getNavigationInfoByUniqueId(uniqueId)));
+      })
+      TextArea({
+        text: this.content
+      })
+      .width('100%')
+      .height(100)
+    }
+    .width('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### getNavigationInfoByUniqueId<sup>12+</sup>
+
+getNavigationInfoByUniqueId(id: number): observer.NavigationInfo | undefined
+
+提供getNavigationInfoByUniqueId接口通过组件的uniqueId获取该节点对应的Navigation页面信息。
+1. 当uniqueId对应的节点在Navigation节点中，返回其对应的Navigation信息；
+2. 当uniqueId对应的节点无对应的Navigation信息时，返回undefined。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | number | 是    | 节点对应的UniqueId                          |
+
+**返回值：**
+
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| observer.[NavigationInfo](js-apis-arkui-observer.md#navigationinfo12) \| undefined | 返回节点对应的Navigation信息。 |
+
+**示例：**
+
+请参考[getPageInfoByUniqueId](#getpageinfobyuniqueid12)的示例。
 
 ### showAlertDialog
 
@@ -767,6 +867,8 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 ```ts
 import { AnimatorOptions } from '@ohos.animator';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -838,6 +940,8 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 ```ts
 import { KeyboardAvoidMode, UIContext } from '@ohos.arkui.UIContext';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -874,6 +978,8 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 ```ts
 import { KeyboardAvoidMode, UIContext } from '@ohos.arkui.UIContext';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -1371,10 +1477,10 @@ struct Index {
 
   aboutToAppear() {
     const windowName = this.getUIContext().getWindowName();
-    console.error('WindowName ' + windowName);
+    console.info('WindowName ' + windowName);
     const currWindow = window.findWindow(windowName);
     const windowProperties = currWindow.getWindowProperties();
-    console.error(`Window width ${windowProperties.windowRect.width}, height ${windowProperties.windowRect.height}`);
+    console.info(`Window width ${windowProperties.windowRect.width}, height ${windowProperties.windowRect.height}`);
   }
 
   build() {
@@ -1507,7 +1613,7 @@ registerFont(options: font.FontOptions): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { Font } from '@ohos.arkui.UIContext';
 let font:Font = uiContext.getFont();
 font.registerFont({
   familyName: 'medium',
@@ -1533,7 +1639,7 @@ getSystemFontList(): Array\<string>
 **示例：** 
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { Font } from '@ohos.arkui.UIContext';
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getSystemFontList()
@@ -1565,7 +1671,7 @@ getFontByName(fontName: string): font.FontInfo
 **示例：** 
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { Font } from '@ohos.arkui.UIContext';
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getFontByName('Sans Italic')
@@ -1594,14 +1700,15 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 **返回值：**
 
-| 类型                                       | 说明                       |
-| ---------------------------------------- | ------------------------ |
-| [ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | 组件大小、位置、平移缩放旋转及仿射矩阵属性信息。 |
+| 类型                                                         | 说明                                             |
+| ------------------------------------------------------------ | ------------------------------------------------ |
+| [componentUtils.ComponentInfo](js-apis-arkui-componentUtils.md#componentinfo) | 组件大小、位置、平移缩放旋转及仿射矩阵属性信息。 |
 
 **示例：**
 
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+
 let componentUtils:ComponentUtils = uiContext.getComponentUtils();
 let modePosition = componentUtils.getRectangleById("onClick");
 let localOffsetWidth = modePosition.size.width;
@@ -1637,10 +1744,23 @@ createComponentObserver(id: string): inspector.ComponentObserver
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-let inspector:UIInspector = uiContext.getUIInspector();
+import { UIInspector } from '@kit.ArkUI';
+
+let inspector: UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
 ```
+
+## PageInfo<sup>12+</sup>
+Router和NavDestination等页面信息，若无对应的Router或NavDestination页面信息，则对应属性为undefined。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| routerPageInfo | observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo) | 否 | Router信息。 | 
+| navDestinationInfo | observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo) | 否 | NavDestination信息。 | 
 
 ## UIObserver<sup>11+</sup>
 
@@ -1667,6 +1787,7 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 ```ts
 import { UIObserver } from '@ohos.arkui.UIContext';
+
 let observer:UIObserver = uiContext.getUIObserver();
 observer.on('navDestinationUpdate', (info) => {
     console.info('NavDestination state update', JSON.stringify(info));
@@ -1694,6 +1815,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 ```ts
 import { UIObserver } from '@ohos.arkui.UIContext';
+
 let observer:UIObserver = uiContext.getUIObserver();
 observer.off('navDestinationUpdate');
 ```
@@ -1720,6 +1842,7 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 
 ```ts
 import { UIObserver } from '@ohos.arkui.UIContext';
+
 let observer:UIObserver = uiContext.getUIObserver();
 observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
     console.info('NavDestination state update', JSON.stringify(info));
@@ -1748,6 +1871,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 ```ts
 import { UIObserver } from '@ohos.arkui.UIContext';
+
 let observer:UIObserver = uiContext.getUIObserver();
 observer.off('navDestinationUpdate', { navigationId: "testId" });
 ```
@@ -2390,6 +2514,7 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
@@ -2416,6 +2541,7 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
@@ -2442,6 +2568,7 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
@@ -2468,6 +2595,7 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
@@ -2494,6 +2622,7 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
@@ -2520,6 +2649,7 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
@@ -2546,6 +2676,7 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
@@ -2572,6 +2703,7 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 ```ts
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
@@ -2640,6 +2772,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+
 let mediaquery: MediaQuery = uiContext.getMediaQuery();
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
 ```
@@ -2686,6 +2819,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
+
 let router:Router = uiContext.getRouter();
 try {
   router.pushUrl({
@@ -2737,6 +2871,7 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 ```ts
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
+
 let router:Router = uiContext.getRouter();
 router.pushUrl({
   url: 'pages/routerpage2',
@@ -3651,7 +3786,7 @@ getState(): router.RouterState
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [RouterState](js-apis-router.md#routerstate) | 页面状态信息。 |
+| router.[RouterState](js-apis-router.md#routerstate) | 页面状态信息。 |
 
 **示例：**
 
@@ -3683,9 +3818,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 | 类型                          | 说明      |
 | --------------------------- | ------- |
-| router.[RouterState](js-apis-router.md#outerstate) | 页面状态信息。 |
-| undefined   | 索引不存在时返回undefined。|
-
+| [RouterState](js-apis-router.md#routerstate) \| undefined | 返回页面状态信息。索引不存在时返回undefined。 |
 **示例：** 
 
 ```ts
@@ -3851,8 +3984,9 @@ showToast(options: promptAction.ShowToastOptions): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { PromptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showToast({            
@@ -3895,8 +4029,9 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { PromptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 class ButtonsModel {
   text: string = ""
   color: string = ""
@@ -3964,8 +4099,9 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { PromptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showDialog({
@@ -4024,9 +4160,8 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 **示例：**
 
 ```ts
-import { PromptAction } from '@ohos.arkui.UIContext';
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { PromptAction, promptAction  } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promptActionF: PromptAction = uiContext.getPromptAction();
 try {
@@ -4085,9 +4220,8 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 **示例：**
 
 ```ts
-import { PromptAction } from '@ohos.arkui.UIContext';
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { PromptAction,promptAction  } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promptActionF: PromptAction = uiContext.getPromptAction();
 try {
@@ -4145,8 +4279,9 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { PromptAction,promptAction  } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showActionMenu({
@@ -4211,8 +4346,8 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import { ComponentContent } from "@ohos.arkui.node";
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
@@ -4296,8 +4431,8 @@ closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import { ComponentContent } from "@ohos.arkui.node";
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
@@ -4392,8 +4527,8 @@ updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, optio
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import { ComponentContent } from "@ohos.arkui.node";
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
@@ -4467,8 +4602,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                             |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 <br/> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#属性)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
 | dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
@@ -5101,6 +5236,7 @@ setVisible(visible: boolean): void
 import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
 import hilog from '@ohos.hilog';
 import window from "@ohos.window";
+
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
@@ -5111,7 +5247,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
       hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
       atomicServiceBar.setVisible(false);
     } else {
-      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
     }
   });
 }
@@ -5134,7 +5270,7 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| color | color:Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。|
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。|
 
 **示例：**
 
@@ -5183,6 +5319,7 @@ setTitleContent(content:string): void
 import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
 import hilog from '@ohos.hilog';
 import window from "@ohos.window";
+
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
@@ -5193,7 +5330,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
       hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
       atomicServiceBar.setTitleContent('text2');
     } else {
-      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
     }
   });
 }
@@ -5224,6 +5361,7 @@ setTitleFontStyle(font:FontStyle):void
 import { UIContext, Font, AtomicServiceBar } from '@ohos.arkui.UIContext';
 import hilog from '@ohos.hilog';
 import window from "@ohos.window";
+
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
@@ -5234,7 +5372,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
       hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
       atomicServiceBar.setTitleFontStyle(FontStyle.Normal);
     } else {
-      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
     }
   });
 }
@@ -5266,6 +5404,7 @@ setIconColor(color:Nullable<Color | number | string>): void
 import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
 import hilog from '@ohos.hilog';
 import window from "@ohos.window";
+
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
@@ -5276,7 +5415,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
       hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
       atomicServiceBar.setIconColor(0x12345678);
     } else {
-      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+      hilog.info(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
     }
   });
 }
@@ -5289,10 +5428,10 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 说明       |
-| ------ | ---------- |
-| OFFSET | 上抬模式。 |
-| RESIZE | 压缩模式。 |
+| 名称   | 值   | 说明       |
+| ------ | ---- | ---------- |
+| OFFSET | 0    | 上抬模式。 |
+| RESIZE | 1    | 压缩模式。 |
 
 
 ## FocusController<sup>12+</sup>
@@ -5719,12 +5858,6 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 | id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
 
-**错误码：** 
-
-| 错误码ID | 错误信息            |
-| -------- | ------------------- |
-| 100001   | if id is not valid. |
-
 **示例：**
 
 ```ts
@@ -5786,12 +5919,6 @@ get(id: string): Promise<image.PixelMap>
 | ------------------------------------------------------------ | ---------------- |
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
-**错误码：** 
-
-| 错误码ID | 错误信息            |
-| -------- | ------------------- |
-| 100001   | if id is not valid. |
-
 **示例：**
 
 ```ts
@@ -5850,12 +5977,6 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。      |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
-
-**错误码：** 
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 100001   | if builder is not a valid build function. |
 
 **示例：**
 
@@ -5939,12 +6060,6 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
-
-**错误码：** 
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 100001   | if builder is not a valid build function. |
 
 **示例：**
 

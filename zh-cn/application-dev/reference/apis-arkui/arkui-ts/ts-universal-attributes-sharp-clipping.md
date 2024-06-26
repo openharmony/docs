@@ -12,8 +12,6 @@ clip(value: boolean)
 
 是否对当前组件进行裁剪。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -48,8 +46,6 @@ clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 按指定的形状对当前组件进行裁剪。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -63,8 +59,6 @@ clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 mask(value: ProgressMask)
 
 为组件上添加指定形状的遮罩。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,8 +93,6 @@ mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute |
 mask(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 为组件上添加指定形状的遮罩。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

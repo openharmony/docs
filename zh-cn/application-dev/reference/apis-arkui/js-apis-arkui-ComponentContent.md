@@ -12,7 +12,7 @@ ComponentContent表示组件内容的实体封装，ComponentContent对象支持
 ## 导入模块
 
 ```ts
-import { ComponentContent } from "@ohos.arkui.node";
+import { ComponentContent } from '@kit.ArkUI';
 ```
 
 ## ComponentContent
@@ -64,14 +64,14 @@ update(args: T): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                        |
-| ------ | ------ | ---- | -----------------------------------------------------------|
-| arg    |   T    | 是   | 用于更新WrappedBuilder对象封装的builder函数参数，与constructor传入的参数类型保持一致。 |
+| 参数名 | 类型 | 必填 | 说明                                                         |
+| ------ | ---- | ---- | ------------------------------------------------------------ |
+| args   | T    | 是   | 用于更新WrappedBuilder对象封装的builder函数参数，与constructor传入的参数类型保持一致。 |
 
 **示例：**
 
 ```ts
-import { ComponentContent } from "@ohos.arkui.node";
+import { ComponentContent } from "@kit.ArkUI";
 
 class Params {
   text: string = ""
@@ -118,7 +118,7 @@ struct Index {
 }
 ```
 
-### reuse<sup>12+</sup>
+### reuse
 
 reuse(param?: Object): void
 
@@ -132,7 +132,7 @@ reuse(param?: Object): void
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
 | param  | Object | 否   | 用于复用WrappedBuilder对象封装的builder函数参数，与constructor传入的参数类型保持一致。 |
 
-### recycle<sup>12+</sup>
+### recycle
 
 recycle(): void
 
@@ -141,7 +141,7 @@ recycle(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { ComponentContent } from "@ohos.arkui.node";
+import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""

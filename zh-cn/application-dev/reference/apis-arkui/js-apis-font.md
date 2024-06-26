@@ -169,7 +169,7 @@ getFontByName(fontName: string): FontInfo
 
 | 类型             | 说明                          |
 | ---------------- | ---------------------------- |
-| FontInfo         | 字体的详细信息                 |
+| FontInfo         | 字体的详细信息。     |
 
 ## FontInfo<sup>10+</sup>
 
@@ -256,7 +256,7 @@ getUIFontConfig() : UIFontConfig
 | -------------- | ------- | ------------------------- | ------------------------- |
 | family        | string | 是 | 字体集名，字体文件中指定的"family"值。      |
 | alias        | Array\<[UIFontAliasInfo](#uifontaliasinfo11)>  | 是 | 别名列表。 |
-| adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | 否 | 字体原本的weight值对应需显示的值。 |
+| adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | 是 | 字体原本的weight值对应需显示的值。 |
 
 ## UIFontFallbackGroupInfo<sup>11+</sup>
 

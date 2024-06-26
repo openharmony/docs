@@ -29,7 +29,7 @@ sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&g
 | 参数名      | 类型                          | 必填   | 说明                      |
 | -------- | --------------------------- | ---- | ----------------------- |
 | name     | string                      | 是    | 服务的名称。                  |
-| option   | [SppOptions](#sppoptions)     | 是    | spp监听配置参数。              |
+| options   | [SppOptions](#sppoptions)     | 是    | spp监听配置参数。              |
 | callback | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，服务端Socket的id。 |
 
 **错误码**：
@@ -137,7 +137,7 @@ sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;num
 | 参数名      | 类型                          | 必填   | 说明                             |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | deviceId | string                      | 是    | 对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| option   | [SppOptions](#sppoptions)     | 是    | spp客户端连接配置参数。                  |
+| options   | [SppOptions](#sppoptions)     | 是    | spp客户端连接配置参数。                  |
 | callback | AsyncCallback&lt;number&gt; | 是    | 表示回调函数的入参，客户端socket的id。        |
 
 **错误码**：

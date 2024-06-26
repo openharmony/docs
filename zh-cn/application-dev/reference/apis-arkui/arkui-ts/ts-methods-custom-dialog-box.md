@@ -9,7 +9,7 @@
 
 ## 接口
 
-CustomDialogController(value: CustomDialogControllerOptions)
+constructor(value: CustomDialogControllerOptions)
 
 配置自定义弹窗的参数。
 
@@ -72,12 +72,19 @@ dialogController : CustomDialogController | null = new CustomDialogController(Cu
 ### open
 open(): void
 
-
 显示自定义弹窗内容，允许多次使用，但如果弹框为SubWindow模式，则该弹框不允许再弹出SubWindow弹框。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
 ### close
 close(): void
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
 关闭显示的自定义弹窗，若已关闭，则不生效。
@@ -107,6 +114,7 @@ struct CustomDialogExampleTwo {
   }
 }
 @CustomDialog
+@Component
 struct CustomDialogExample {
   @Link textValue: string
   @Link inputValue: string

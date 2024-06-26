@@ -5,6 +5,10 @@
 
 声明可以锁定、访问、解锁PixelMap数据的方法。
 
+**库**：libpixelmap_ndk.z.so
+
+**引用文件**：&lt;multimedia/image_framework/image_pixel_map_napi.h&gt;
+
 **起始版本：** 8
 
 **废弃起始版本：** 8

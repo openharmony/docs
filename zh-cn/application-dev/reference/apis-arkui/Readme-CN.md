@@ -1,4 +1,4 @@
-# ArkUI API参考
+# ArkUI（方舟UI框架）
 
 - ArkTS API
   - UI界面
@@ -119,6 +119,7 @@
         - [动态属性设置](arkui-ts/ts-universal-attributes-attribute-modifier.md)
         - [动态手势设置](arkui-ts/ts-universal-attributes-gesture-modifier.md)
         - [外描边设置](arkui-ts/ts-universal-attributes-outline.md)
+        - [视效设置](arkui-ts/ts-universal-attributes-filter-effect.md)
         - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
         - [自定义内容](arkui-ts/ts-universal-attributes-content-modifier.md)
         - [自定义属性设置](arkui-ts/ts-universal-attributes-custom-property.md)
@@ -301,6 +302,7 @@
       - [@ohos.arkui.advanced.TabTitleBar (页签型标题栏)](arkui-ts/ohos-arkui-advanced-TabTitleBar.md)
       - [@ohos.arkui.advanced.ToolBar (工具栏)](arkui-ts/ohos-arkui-advanced-ToolBar.md)
       - [@ohos.arkui.advanced.TreeView (树视图)](arkui-ts/ohos-arkui-advanced-TreeView.md)
+      - [@ohos.arkui.advanced.FoldSplitContainer (分栏布局)](arkui-ts/ohos-arkui-advanced-FoldSplitContainer.md)
     - 安全控件
       - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
       - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
@@ -334,8 +336,8 @@
       - [自定义组件内置方法](arkui-ts/ts-custom-component-api.md)
     - 类型定义
       - [基础类型定义](arkui-ts/ts-types.md)
-      - [图像类型定义](arkui-ts/ts-image-common.md)
       - [文本类型定义](arkui-ts/ts-text-common.md)
+      - [图像类型定义](arkui-ts/ts-image-common.md)
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
     - [枚举说明](arkui-ts/ts-appendix-enums.md)
@@ -360,7 +362,7 @@
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
-    - [WindowManager_NativeMoudle](_window_manager___native_moudle.md)
+    - [WindowManager_NativeModule](_window_manager___native_module.md)
   - 头文件
     - [drawable_descriptor.h](drawable__descriptor_8h.md)
     - [native_animate.h](native__animate_8h.md)

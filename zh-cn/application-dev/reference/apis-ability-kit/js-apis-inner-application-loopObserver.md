@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 ```
 
 ## LoopObserver.onLoopTimeOut
@@ -31,12 +31,13 @@ onLoopTimeOut?(timeout: number): void
 **示例：**
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.LoopObserver = {
-    onLoopTimeOut(timeout: number) {
-        console.log('Duration timeout: ' + timeout);
-    }
+  onLoopTimeOut(timeout: number) {
+    console.log('Duration timeout: ' + timeout);
+  }
 };
+
 errorManager.on("loopObserver", 1, observer);
 ```

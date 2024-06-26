@@ -17,15 +17,15 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [camera.h](camera_8h.md) | 声明相机的基本概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/camera.h&gt; | 
-| [camera_device.h](camera__device_8h.md) | 声明相机的基本概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/camera_device.h&gt;  | 
-| [camera_input.h](camera__input_8h.md) | 声明相机输入概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/camera_input.h&gt; | 
-| [camera_manager.h](camera__manager_8h.md) | 声明相机管理器的概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/camera_manager.h&gt; |
-| [capture_session.h](capture__session_8h.md) | 声明捕获会话概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/capture_session.h&gt; |
-| [metadata_output.h](metadata__output_8h.md) | 声明元数据输出概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/metadata_output.h&gt; | 
-| [photo_output.h](photo__output_8h.md) | 声明拍照输出概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/photo_output.h&gt; | 
-| [preview_output.h](preview__output_8h.md) | 声明预览输出概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/preview_output.h&gt; | 
-| [video_output.h](video__output_8h.md) | 声明录像输出概念。<br/>**库：** libohcamera.so<br/>**引用文件：**&lt;ohcamera/video_output.h&gt; | 
+| [camera.h](camera_8h.md) | 声明相机的基本概念。| 
+| [camera_device.h](camera__device_8h.md) | 声明相机的基本概念。  | 
+| [camera_input.h](camera__input_8h.md) | 声明相机输入概念。 | 
+| [camera_manager.h](camera__manager_8h.md) | 声明相机管理器的概念。 |
+| [capture_session.h](capture__session_8h.md) | 声明捕获会话概念。 |
+| [metadata_output.h](metadata__output_8h.md) | 声明元数据输出概念。 | 
+| [photo_output.h](photo__output_8h.md) | 声明拍照输出概念。 | 
+| [preview_output.h](preview__output_8h.md) | 声明预览输出概念。 | 
+| [video_output.h](video__output_8h.md) | 声明录像输出概念。 | 
 
 
 ### 结构体

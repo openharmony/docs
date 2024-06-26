@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import autoFillManager from '@ohos.app.ability.autoFillManager';
+import { autoFillManager } from '@kit.AbilityKit';
 ```
 
 ## FillRequest
@@ -82,81 +82,78 @@ onSuccess(response: FillResponse): void
 
 **示例：**
 
-  ```ts
-  // MyAutoFillExtensionAbility.ts
-  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import autoFillManager from '@ohos.app.ability.autoFillManager';
-  import hilog from '@ohos.hilog';
-  
-  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
-    onFillRequest(session: UIExtensionContentSession,
-                  request: autoFillManager.FillRequest,
-                  callback: autoFillManager.FillRequestCallback) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
-      try {
-        let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
-          'fillCallback': callback,
-          'message': 'AutoFill Page',
-          'viewData': request.viewData,
-        }
-        let storage_fill = new LocalStorage(storageData);
-        if (session) {
-          session.loadContent('pages/AutoFillPage', storage_fill);
-        } else {
-          hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
-        }
-      } catch (err) {
-        hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
+```ts
+// MyAutoFillExtensionAbility.ts
+import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+  onFillRequest(session: UIExtensionContentSession,
+                request: autoFillManager.FillRequest,
+                callback: autoFillManager.FillRequestCallback) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
+    try {
+      let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
+        'fillCallback': callback,
+        'message': 'AutoFill Page',
+        'viewData': request.viewData,
       }
+      let storage_fill = new LocalStorage(storageData);
+      if (session) {
+        session.loadContent('pages/AutoFillPage', storage_fill);
+      } else {
+        hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
+      }
+    } catch (err) {
+      hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
     }
   }
-  ```
+}
+```
 
-  ```ts
-  // AutoFillPage.ets
-  import autoFillManager from '@ohos.app.ability.autoFillManager';
-  import Base from '@ohos.base';
-  import hilog from '@ohos.hilog';
-  
-  let storage: LocalStorage = LocalStorage.getShared();
-  let fillCallback: autoFillManager.FillRequestCallback | undefined =
-    storage.get<autoFillManager.FillRequestCallback>('fillCallback');
-  let viewData: autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
+```ts
+// AutoFillPage.ets
+import { autoFillManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  @Entry
-  @Component
-  struct AutoFillPage {
-  
-    build() {
-      Row() {
-        Column() {
-          Text('AutoFill Page')
-            .fontSize(50)
-            .fontWeight(FontWeight.Bold)
-        }
-  
-        Button('onSuccess')
-          .onClick(() => {
-            if (viewData) {
-              viewData.pageNodeInfos[0].value = 'user1';
-              viewData.pageNodeInfos[1].value = 'user1 password';
-              viewData.pageNodeInfos[2].value = 'user1 generate new password';
-              hilog.info(0x0000, 'testTag', 'autofill success with viewData: %{public}s', JSON.stringify(viewData));
-              try {
-                fillCallback?.onSuccess({ viewData: viewData });
-              } catch (error) {
-                console.error(`catch error, code: ${(error as Base.BusinessError).code},
-                  message: ${(error as Base.BusinessError).message}`);
-              }
+let storage: LocalStorage = LocalStorage.getShared();
+let fillCallback: autoFillManager.FillRequestCallback | undefined =
+  storage.get<autoFillManager.FillRequestCallback>('fillCallback');
+let viewData: autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
+
+@Entry
+@Component
+struct AutoFillPage {
+  build() {
+    Row() {
+      Column() {
+        Text('AutoFill Page')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+
+      Button('onSuccess')
+        .onClick(() => {
+          if (viewData) {
+            viewData.pageNodeInfos[0].value = 'user1';
+            viewData.pageNodeInfos[1].value = 'user1 password';
+            viewData.pageNodeInfos[2].value = 'user1 generate new password';
+            hilog.info(0x0000, 'testTag', 'autofill success with viewData: %{public}s', JSON.stringify(viewData));
+            try {
+              fillCallback?.onSuccess({ viewData: viewData });
+            } catch (error) {
+              console.error(`catch error, code: ${(error as BusinessError).code},
+                  message: ${(error as BusinessError).message}`);
             }
-          })
-          .width('100%')
-      }
-      .height('100%')
+          }
+        })
+        .width('100%')
     }
+    .height('100%')
   }
-  ```
+}
+```
 
 ### FillRequestCallback.onFailure
 
@@ -174,74 +171,72 @@ onFailure(): void
 
 **示例：**
 
-  ```ts
-  // MyAutoFillExtensionAbility.ts
-  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import autoFillManager from '@ohos.app.ability.autoFillManager';
-  import hilog from '@ohos.hilog';
+```ts
+// MyAutoFillExtensionAbility.ts
+import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
-    onFillRequest(session : UIExtensionContentSession,
-                  request : autoFillManager.FillRequest,
-                  callback : autoFillManager.FillRequestCallback) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
-      try {
-        let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
-          'fillCallback': callback,
-          'message': 'AutoFill Page',
-          'viewData': request.viewData,
-        }
-        let storage_fill = new LocalStorage(storageData);
-        if (session) {
-          session.loadContent('pages/AutoFill Page', storage_fill);
-        } else {
-          hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
-        }
-      } catch (err) {
-        hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
+class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+  onFillRequest(session: UIExtensionContentSession,
+                request: autoFillManager.FillRequest,
+                callback: autoFillManager.FillRequestCallback) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
+    try {
+      let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
+        'fillCallback': callback,
+        'message': 'AutoFill Page',
+        'viewData': request.viewData,
       }
+      let storage_fill = new LocalStorage(storageData);
+      if (session) {
+        session.loadContent('pages/AutoFill Page', storage_fill);
+      } else {
+        hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
+      }
+    } catch (err) {
+      hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
     }
   }
-  ```
+}
+```
 
-  ```ts
-  // AutoFillPage.ets
-  import autoFillManager from '@ohos.app.ability.autoFillManager';
-  import Base from '@ohos.base';
-  import hilog from '@ohos.hilog';
+```ts
+// AutoFillPage.ets
+import { autoFillManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let storage: LocalStorage = LocalStorage.getShared();
-  let fillCallback: autoFillManager.FillRequestCallback | undefined =
-    storage.get<autoFillManager.FillRequestCallback>('fillCallback');
+let storage: LocalStorage = LocalStorage.getShared();
+let fillCallback: autoFillManager.FillRequestCallback | undefined =
+  storage.get<autoFillManager.FillRequestCallback>('fillCallback');
 
-  @Entry
-  @Component
-  struct AutoFillPage {
+@Entry
+@Component
+struct AutoFillPage {
+  build() {
+    Row() {
+      Column() {
+        Text('AutoFill Page')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
 
-    build() {
-      Row() {
-        Column() {
-          Text('AutoFill Page')
-            .fontSize(50)
-            .fontWeight(FontWeight.Bold)
-        }
-        Button('onFailure')
-          .onClick(() => {
-            hilog.info(0x0000, 'testTag', 'autofill failure');
-            try {
-              fillCallback?.onFailure();
-            } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code},
-                message: ${(error as Base.BusinessError).message}`);
-            }
-          })
+      Button('onFailure')
+        .onClick(() => {
+          hilog.info(0x0000, 'testTag', 'autofill failure');
+          try {
+            fillCallback?.onFailure();
+          } catch (error) {
+            console.error(`catch error, code: ${(error as BusinessError).code},
+              message: ${(error as BusinessError).message}`);
+          }
+        })
         .width('100%')
-      }
-      .height('100%')
     }
+    .height('100%')
   }
-  ```
+}
+```
 
 ### FillRequestCallback.onCancel
 
@@ -265,75 +260,72 @@ onCancel(fillContent?: string): void
 
 **示例：**
 
-  ```ts
-  // MyAutoFillExtensionAbility.ts
-  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import autoFillManager from '@ohos.app.ability.autoFillManager';
-  import hilog from '@ohos.hilog';
-  
-  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
-    onFillRequest(session: UIExtensionContentSession,
-                  request: autoFillManager.FillRequest,
-                  callback: autoFillManager.FillRequestCallback) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
-      try {
-        let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
-          'fillCallback': callback,
-          'message': 'AutoFill Page',
-          'viewData': request.viewData,
-        }
-        let storage_fill = new LocalStorage(storageData);
-        if (session) {
-          session.loadContent('pages/AutoFillPage', storage_fill);
-        } else {
-          hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
-        }
-      } catch (err) {
-        hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
+```ts
+// MyAutoFillExtensionAbility.ts
+import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+  onFillRequest(session: UIExtensionContentSession,
+                request: autoFillManager.FillRequest,
+                callback: autoFillManager.FillRequestCallback) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
+    try {
+      let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
+        'fillCallback': callback,
+        'message': 'AutoFill Page',
+        'viewData': request.viewData,
       }
+      let storage_fill = new LocalStorage(storageData);
+      if (session) {
+        session.loadContent('pages/AutoFillPage', storage_fill);
+      } else {
+        hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
+      }
+    } catch (err) {
+      hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
     }
   }
-  ```
+}
+```
 
-  ```ts
-  // AutoFillPage.ets
-  import autoFillManager from '@ohos.app.ability.autoFillManager';
-  import Base from '@ohos.base';
-  import hilog from '@ohos.hilog';
- 
-  let storage: LocalStorage = LocalStorage.getShared();
-  let fillCallback: autoFillManager.FillRequestCallback | undefined =
-    storage.get<autoFillManager.FillRequestCallback>('fillCallback');
+```ts
+// AutoFillPage.ets
+import { autoFillManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  @Entry
-  @Component
-  struct AutoFillPage {
-  
-    build() {
-      Row() {
-        Column() {
-          Text('Hello World')
-            .fontSize(50)
-            .fontWeight(FontWeight.Bold)
-        }
-  
-        Button('onCancel')
-          .onClick(() => {
-            hilog.info(0x0000, 'testTag', 'autofill cancel');
-            try {
-              fillCallback?.onCancel();
-            } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code},
-                message: ${(error as Base.BusinessError).message}`);
-            }
-          })
-          .width('100%')
+let storage: LocalStorage = LocalStorage.getShared();
+let fillCallback: autoFillManager.FillRequestCallback | undefined =
+  storage.get<autoFillManager.FillRequestCallback>('fillCallback');
+
+@Entry
+@Component
+struct AutoFillPage {
+  build() {
+    Row() {
+      Column() {
+        Text('Hello World')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
       }
-      .height('100%')
+
+      Button('onCancel')
+        .onClick(() => {
+          hilog.info(0x0000, 'testTag', 'autofill cancel');
+          try {
+            fillCallback?.onCancel();
+          } catch (error) {
+            console.error(`catch error, code: ${(error as BusinessError).code},
+                message: ${(error as BusinessError).message}`);
+          }
+        })
+        .width('100%')
     }
+    .height('100%')
   }
-  ```
+}
+```
 
 ### FillRequestCallback.setAutoFillPopupConfig
 
@@ -360,11 +352,10 @@ setAutoFillPopupConfig(autoFillPopupConfig: AutoFillPopupConfig ): void
 
 **示例：**
 
-  ```ts
-import autoFillManager from '@ohos.app.ability.autoFillManager'
-import hilog from '@ohos.hilog';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
+```ts
+// MyAutoFillExtensionAbility.ts
+import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class AutoFillAbility extends AutoFillExtensionAbility {
   onCreate(): void {
@@ -392,7 +383,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onUpdateRequest');
     console.log("get fill request viewData: ", JSON.stringify(request.viewData));
     let storage = LocalStorage.getShared();
-    let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback')
+    let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
 
     if (fillCallback) {
       try {
@@ -403,7 +394,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
             height: 200 + request.viewData.pageNodeInfos[0].value.length * 10
           },
           placement: autoFillManager.PopupPlacement.TOP
-        })
+        });
       } catch (err) {
         hilog.info(0x0000, 'testTag', 'autoFillPopupConfig err: ' + err.code);
       }
@@ -421,15 +412,17 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
         'message': 'AutoFill Page',
         'fillCallback': callback,
         'viewData': request.viewData,
-        'autoFillType': request.type,
+        'autoFillType': request.type
       }
       let storage_fill = new LocalStorage(localStorageData);
       console.info('testTag', 'session: ', session);
-      let size:autoFillManager.PopupSize = {
+      let size: autoFillManager.PopupSize = {
         width: 400,
         height: 200
-      }
-      callback.setAutoFillPopupConfig({popupSize:size});
+      };
+      callback.setAutoFillPopupConfig({
+        popupSize: size
+      });
       session.loadContent('pages/SelectorList', storage_fill);
     } catch (err) {
       hilog.error(0x0000, 'testTag', '%{public}s', 'autofill failed to load content: ' + JSON.stringify(err));
@@ -441,7 +434,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
     try {
       let localStorageData: Record<string, string | autoFillManager.SaveRequestCallback> = {
         'message': 'AutoFill Page',
-        'saveCallback': callback,
+        'saveCallback': callback
       };
       let storage_save = new LocalStorage(localStorageData);
       if (session) {
@@ -454,7 +447,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
     }
   }
 }
-  ```
+```
 
 ## SaveRequestCallback
 
@@ -476,75 +469,71 @@ onSuccess(): void
 
 **示例：**
 
-  ```ts
-  // MyAutoFillExtensionAbility.ts
-  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import autoFillManager from '@ohos.app.ability.autoFillManager';
-  import hilog from '@ohos.hilog';
-
-  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
-    onSaveRequest(session: UIExtensionContentSession,
-                  request: autoFillManager.SaveRequest,
-                  callback: autoFillManager.SaveRequestCallback) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
-      try {
-        let storageData: Record<string, string | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
-          'message': 'AutoFill Page',
-          'saveCallback': callback,
-          'viewData': request.viewData
-        }
-        let storage_save = new LocalStorage(storageData);
-        if (session) {
-          session.loadContent('pages/SavePage', storage_save);
-        } else {
-          hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
-        }
-      } catch (err) {
-        hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
+```ts
+// MyAutoFillExtensionAbility.ts
+import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+  onSaveRequest(session: UIExtensionContentSession,
+                request: autoFillManager.SaveRequest,
+                callback: autoFillManager.SaveRequestCallback) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
+    try {
+      let storageData: Record<string, string | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
+        'message': 'AutoFill Page',
+        'saveCallback': callback,
+        'viewData': request.viewData
+      };
+      let storage_save = new LocalStorage(storageData);
+      if (session) {
+        session.loadContent('pages/SavePage', storage_save);
+      } else {
+        hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
       }
+    } catch (err) {
+      hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
     }
   }
-  ```
+}
+```
 
-  ```ts
-  // SavePage.ets
-  import autoFillManager from '@ohos.app.ability.autoFillManager';
-  import Base from '@ohos.base';
-  import hilog from '@ohos.hilog';
+```ts
+// SavePage.ets
+import { autoFillManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let storage: LocalStorage = LocalStorage.getShared();
-  let saveCallback: autoFillManager.SaveRequestCallback | undefined =
-    storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
+let storage: LocalStorage = LocalStorage.getShared();
+let saveCallback: autoFillManager.SaveRequestCallback | undefined =
+  storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
 
-  @Entry
-  @Component
-  struct SavePage {
-  
-    build() {
-      Row() {
-        Column() {
-          Text('SavePage')
-            .fontSize(50)
-            .fontWeight(FontWeight.Bold)
-        }
-  
-        Button('onSuccess')
-          .onClick(() => {
-            hilog.info(0x0000, 'testTag', 'autosave success');
-            try {
-              saveCallback?.onSuccess();
-            } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code},
-                message: ${(error as Base.BusinessError).message}`);
-            }
-          })
-          .width('100%')
+@Entry
+@Component
+struct SavePage {
+  build() {
+    Row() {
+      Column() {
+        Text('SavePage')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
       }
-      .height('100%')
+
+      Button('onSuccess')
+        .onClick(() => {
+          hilog.info(0x0000, 'testTag', 'autosave success');
+          try {
+            saveCallback?.onSuccess();
+          } catch (error) {
+            console.error(`catch error, code: ${(error as BusinessError).code},
+                message: ${(error as BusinessError).message}`);
+          }
+        })
+        .width('100%')
     }
+    .height('100%')
   }
-  ```
+}
+```
 
 ### SaveRequestCallback.onFailure
 
@@ -562,71 +551,69 @@ onFailure(): void
 
 **示例：**
 
-  ```ts
-  // MyAutoFillExtensionAbility.ts
-  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import autoFillManager from '@ohos.app.ability.autoFillManager';
-  import hilog from '@ohos.hilog';
-  
-  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
-    onSaveRequest(session: UIExtensionContentSession,
-                  request: autoFillManager.SaveRequest,
-                  callback: autoFillManager.SaveRequestCallback) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
-      try {
-        let storageData: Record<string, string | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
-          'message': 'AutoFill Page',
-          'saveCallback': callback,
-          'viewData': request.viewData
-        }
-        let storage_save = new LocalStorage(storageData);
-        if (session) {
-          session.loadContent('pages/SavePage', storage_save);
-        } else {
-          hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
-        }
-      } catch (err) {
-        hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
+```ts
+// MyAutoFillExtensionAbility.ts
+import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+  onSaveRequest(session: UIExtensionContentSession,
+                request: autoFillManager.SaveRequest,
+                callback: autoFillManager.SaveRequestCallback) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
+    try {
+      let storageData: Record<string, string | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
+        'message': 'AutoFill Page',
+        'saveCallback': callback,
+        'viewData': request.viewData
       }
+      let storage_save = new LocalStorage(storageData);
+      if (session) {
+        session.loadContent('pages/SavePage', storage_save);
+      } else {
+        hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
+      }
+    } catch (err) {
+      hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
     }
   }
-  ```
+}
+```
 
-  ```ts
-  // SavePage.ets
-  import autoFillManager from '@ohos.app.ability.autoFillManager';
-  import Base from '@ohos.base';
-  import hilog from '@ohos.hilog';
+```ts
+// SavePage.ets
+import { autoFillManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  let storage: LocalStorage = LocalStorage.getShared();
-  let saveCallback: autoFillManager.SaveRequestCallback | undefined =
-    storage.get<autoFillManager.SaveRequestCallback>('saveCallback');  
+let storage: LocalStorage = LocalStorage.getShared();
+let saveCallback: autoFillManager.SaveRequestCallback | undefined =
+  storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
 
-  @Entry
-  @Component
-  struct SavePage {
-    build() {
-      Row() {
-        Column() {
-          Text('Save Page')
-            .fontSize(50)
-            .fontWeight(FontWeight.Bold)
-        }
-  
-        Button('onFailure')
-          .onClick(() => {
-            hilog.info(0x0000, 'testTag', 'autofill failure');
-            try {
-              saveCallback?.onFailure();
-            } catch (error) {
-              console.error(`catch error, code: ${(error as Base.BusinessError).code},
-                message: ${(error as Base.BusinessError).message}`);
-            }
-          })
-          .width('100%')
+@Entry
+@Component
+struct SavePage {
+  build() {
+    Row() {
+      Column() {
+        Text('Save Page')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
       }
-      .height('100%')
+
+      Button('onFailure')
+        .onClick(() => {
+          hilog.info(0x0000, 'testTag', 'autofill failure');
+          try {
+            saveCallback?.onFailure();
+          } catch (error) {
+            console.error(`catch error, code: ${(error as BusinessError).code},
+              message: ${(error as BusinessError).message}`);
+          }
+        })
+        .width('100%')
     }
+    .height('100%')
   }
-  ```
+}
+```

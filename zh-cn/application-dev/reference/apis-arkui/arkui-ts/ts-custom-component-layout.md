@@ -2,15 +2,17 @@
 
 自定义组件的自定义布局用于通过数据计算的方式布局自定义组件内的子组件。
 
->**说明：**
+> **说明：**
 >
->- 本模块首批接口从API version 9开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## onPlaceChildren<sup>10+</sup>
 
 onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;, constraint: ConstraintSizeOptions):void
 
 ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -27,6 +29,8 @@ ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自
 onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt;, constraint: ConstraintSizeOptions): SizeResult
 
 ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点信息和尺寸范围通过onMeasureSize传递给该开发者。不允许在onMeasureSize函数中改变状态变量。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -46,11 +50,13 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 ## GeometryInfo<sup>10+</sup>
 
-父组件布局信息。
+父组件布局信息，继承自[SizeResult](#sizeresult10)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 属性          | 属性类型      | 描述                  |
+| 属性          | 类型      | 说明                  |
 |-------------|-----------|---------------------|
 | borderWidth | [EdgeWidth](ts-types.md#edgewidths9) | 父组件边框宽度。<br>单位：vp            |
 | margin      | [Margin](ts-types.md#margin)       | 父组件margin信息。 <br>单位：vp       |
@@ -61,25 +67,74 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 ## Layoutable<sup>10+</sup>
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 子组件布局信息。
 
-| 属性         | 属性类型                                                    | 描述                  |
-|------------|---------------------------------------------------------|---------------------|
-| measureResult| [MeasureResult](#measureresult10)      | 子组件测量后的尺寸信息。   <br>单位：vp     |
-| layout     | (position: [Position](ts-types.md#position))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
-| getMargin<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的margin信息。<br/>单位：vp |
-| getPadding<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的padding信息。<br/>单位：vp |
-| getBorderWidth<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的boderWidth信息。<br/>单位：vp |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+| 属性         | 类型       | 必填      |  说明                                                      |
+|--------------|---------------------------------- | -----------------------------------------------|---------------------|
+| measureResult| [MeasureResult](#measureresult10)      |   是| 子组件测量后的尺寸信息,继承自[SizeResult](#sizeresult10)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>单位：vp     |
+
+
+### layout
+
+layout(position: Position)
+
+调用此方法对子组件的位置信息进行限制。
+
+**参数：**
+
+| 参数名         | 类型                                                    | 必填                 |说明         |
+|-----------------|---------------------------------------------------------|---------------------|-------------|
+|   position      | [Position](ts-types.md#position)                        | 是                  |   位置。   |
+
+### getMargin<sup>12+</sup>
+
+getMargin() : DirectionalEdgesT\<number>
+
+调用此方法获得子组件的margin信息。
+
+**返回值：**
+
+ | 类型                          | 说明                                        |
+ |------------------------------------|---------------------------------------------|
+ | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的margin信息。   |
+
+ ### getPadding<sup>12+</sup>
+
+getPadding() : DirectionalEdgesT\<number>
+
+ 调用此方法获得子组件的padding信息。
+
+ **返回值：**
+
+ | 类型                          | 说明                                        |
+ |------------------------------------|---------------------------------------------|
+ | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的padding信息。  |
+
+### getBorderWidth<sup>12+</sup>
+
+getBorderWidth() : DirectionalEdgesT\<number>
+
+调用此方法获得子组件的boderWidth信息。
+
+**返回值：**
+
+ | 类型                          | 说明                                        |
+ |------------------------------------|---------------------------------------------|
+ | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的boderWidth信息。  |
 
 ## Measurable<sup>10+</sup>
 
 子组件位置信息。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 属性         | 属性类型                                                                             | 描述                                    |
+| 属性         | 类型                                                                             | 说明                                    |
 |------------|----------------------------------------------------------------------------------|---------------------------------------|
 | measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions))&nbsp;=&gt;&nbsp;[MeasureResult](#measureresult10) | 调用此方法对子组件的尺寸范围进行限制。<br/>返回值：子组件测量后的尺寸。 |
 | getMargin<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的margin信息。<br/>单位：vp<br/> **说明：** <br/>如果子组件的margin以百分比形式指定，需要调用完子组件的measure后再调用此方法才能正确的获取margin。如果以具体的数值指定，measure前也可正确获取。 |
@@ -90,9 +145,11 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 测量后的组件布局信息。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 属性     | 属性类型   | 描述    |
+| 属性     | 类型   | 说明    |
 |--------|--------|-------|
 | width  | number | 测量后的宽。<br>单位：vp |
 | height | number | 测量后的高。<br>单位：vp |
@@ -102,9 +159,11 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 组件尺寸信息。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 属性     | 属性类型   | 描述    |
+| 属性     | 类型   | 说明    |
 |--------|--------|-------|
 | width  | number | 测量后的宽。<br>单位：vp |
 | height | number | 测量后的高。<br>单位：vp |
@@ -115,7 +174,9 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 属性   | 属性类型 | 描述             |
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+| 属性   | 类型 | 说明             |
 | ------ | ---- | ---------------- |
 | start   | T    | 起始边缘的属性。在LTR的方向下，为左边缘，在RTL的方向下，为右边缘。 |
 | end    | T    | 终止边缘的属性。在LTR的方向下，为右边缘，在RTL的方向下，为左边缘。 |
@@ -333,7 +394,7 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节
 从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
 
 
-| 属性       | 属性类型                                                     | 描述                                   |
+| 属性       | 类型                                                     | 说明                                   |
 | ---------- | ------------------------------------------------------------ | -------------------------------------- |
 | name       | string                                                       | 子组件名称。                           |
 | id         | string                                                       | 子组件id。                             |
@@ -349,7 +410,7 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节
 
 从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
 
-| 属性          | 属性类型                                 | 描述                      |
+| 属性          | 类型                                 | 描述                      |
 |-------------|--------------------------------------|-------------------------|
 | borderWidth | [EdgeWidths](ts-types.md#edgewidths9) | 边框宽度类型，用于描述组件边框不同方向的宽度。 |
 | margin      | [Margin](ts-types.md#margin)         | 外边距类型，用于描述组件不同方向的外边距。   |
@@ -361,7 +422,7 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节
 
 从API version 9开始，从API version 10开始废弃，该接口支持在ArkTS卡片中使用。
 
-| 属性       | 属性类型                                                   | 描述             |
+| 属性       | 类型                                                   | 说明             |
 | ---------- | ---------------------------------------------------------- | ---------------- |
 | position   | [Position](ts-types.md#position)                           | 子组件位置坐标。 |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 子组件约束尺寸。 |

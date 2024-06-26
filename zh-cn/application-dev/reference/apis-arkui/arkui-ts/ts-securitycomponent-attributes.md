@@ -358,6 +358,8 @@ constraintSize(value: ConstraintSizeOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
 | HORIZONTAL | 0 | 安全控件上图标和文字分布的方向为水平排列。 |

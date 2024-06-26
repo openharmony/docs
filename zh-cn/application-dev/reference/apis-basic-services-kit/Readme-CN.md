@@ -1,4 +1,4 @@
-# Basic Services Kit API参考
+# Basic Services Kit（基础服务）
 
 - ArkTS API
   - 帐号管理

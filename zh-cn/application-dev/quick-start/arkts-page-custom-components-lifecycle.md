@@ -240,7 +240,7 @@ import { UIObserver } from '@ohos.arkui.UIContext';
 @Entry
 @Component
 struct Index {
-  listener(info: observer.RouterPageInfo) {
+  listener: (info: observer.RouterPageInfo) => void = (info: observer.RouterPageInfo) => {
     let routerInfo: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
     if (info.pageId == routerInfo?.pageId) {
       if (info.state == observer.RouterPageState.ON_PAGE_SHOW) {
@@ -252,11 +252,11 @@ struct Index {
   }
   aboutToAppear(): void {
     let uiObserver: UIObserver = this.getUIContext().getUIObserver();
-    uiObserver.on('routerPageUpdate', this.listener.bind(this));
+    uiObserver.on('routerPageUpdate', this.listener);
   }
   aboutToDisappear(): void {
     let uiObserver: UIObserver = this.getUIContext().getUIObserver();
-    uiObserver.off('routerPageUpdate', this.listener.bind(this));
+    uiObserver.off('routerPageUpdate', this.listener);
   }
   build() {
     Column() {
@@ -276,7 +276,7 @@ struct Index {
 }
 @Component
 struct SubComponent {
-  listener(info: observer.RouterPageInfo) {
+  listener: (info: observer.RouterPageInfo) => void = (info: observer.RouterPageInfo) => {
     let routerInfo: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
     if (info.pageId == routerInfo?.pageId) {
       if (info.state == observer.RouterPageState.ON_PAGE_SHOW) {
@@ -288,11 +288,11 @@ struct SubComponent {
   }
   aboutToAppear(): void {
     let uiObserver: UIObserver = this.getUIContext().getUIObserver();
-    uiObserver.on('routerPageUpdate', this.listener.bind(this));
+    uiObserver.on('routerPageUpdate', this.listener);
   }
   aboutToDisappear(): void {
     let uiObserver: UIObserver = this.getUIContext().getUIObserver();
-    uiObserver.off('routerPageUpdate', this.listener.bind(this));
+    uiObserver.off('routerPageUpdate', this.listener);
   }
   build() {
     Column() {

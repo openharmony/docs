@@ -49,7 +49,7 @@ environment(uri: Resource)
 
 设置3D环境资源。目前仅支持GLTF格式资源，模型资源在控件创建后不支持动态修改。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：** 
 
@@ -63,7 +63,7 @@ customRender(uri: Resource, selfRenderUpdate: boolean)
 
 设置三维场景渲染的渲染管道。管线配置及自渲染属性在控件创建后不支持动态修改。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：** 
 
@@ -78,7 +78,7 @@ shader(uri: Resource)
 
 设置自定义渲染的shader文件资源。自定义渲染的shader文件资源在控件创建后不支持动态修改。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：** 
 
@@ -92,7 +92,7 @@ shaderImageTexture(uri: Resource)
 
 设置自定义渲染用到的纹理资源。若自定义渲染用到多个纹理资源则调用多次，绑定点与调用顺序一致，不支持纹理更换。纹理资源在控件创建后不支持动态修改。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：** 
 
@@ -106,7 +106,7 @@ shaderInputBuffer(buffer: Array&lt;number&gt;)
 
 设置自定义渲染用到的动效参数。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：** 
 
@@ -124,7 +124,7 @@ renderWidth(value: Dimension)
 
 渲染分辨率在控件创建后不支持动态修改。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：** 
 
@@ -142,7 +142,7 @@ renderHeight(value: Dimension)
 
 渲染分辨率在控件创建后不支持动态修改。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUi.Graphics3D
 
 **参数：** 
 

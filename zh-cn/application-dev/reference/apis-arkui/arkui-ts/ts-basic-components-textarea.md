@@ -288,6 +288,8 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -319,6 +321,8 @@ enableAutoFill(value: boolean)
 
 设置是否启用自动填充。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -332,6 +336,8 @@ enableAutoFill(value: boolean)
 contentType(contentType: ContentType)
 
 设置自动填充类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -572,8 +578,6 @@ lineSpacing(value: LengthMetrics)
 
 设置文本的行间距，设置值不大于0时，取默认值0。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -612,7 +616,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 否   | 扩展菜单选项。 |
+| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 是   | 扩展菜单选项。 |
 
 >  **说明：**
 >
@@ -813,7 +817,7 @@ onDidDelete(callback: Callback\<DeleteValue>)
 
 ## TextAreaController<sup>8+</sup>
 
-TextArea组件的控制器，目前可通过它设置TextArea组件的光标位置。
+TextArea组件的控制器继承自[TextContentControllerBase](ts-types.md#textcontentcontrollerbase10)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -839,7 +843,7 @@ caretPosition(value: number): void
 
 ### setTextSelection<sup>10+</sup>
 
-setTextSelection(selectionStart: number, selectionEnd: number, options?: SelectionOptions): void;
+setTextSelection(selectionStart: number, selectionEnd: number, options?: SelectionOptions): void
 
 组件在获焦状态下，调用该接口设置文本选择区域并高亮显示，且只有在selectionStart小于selectionEnd时，文字才会被选取、高亮显示。
 
@@ -853,6 +857,8 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 >  **说明：**
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.SHOW，调用setTextSelection也不弹出菜单。
+>
+>  如果选中的文本含有emoji表情时，表情的起始位置包含在设置的文本选中区域内就会被选中。
 
 ### stopEditing<sup>10+</sup>
 
@@ -862,69 +868,7 @@ stopEditing(): void
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-### getTextContentRect<sup>10+</sup>
-
-getTextContentRect(): [RectResult](#rectresult10)
-
-获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**返回值：**
-
-| 类型       | 说明       |
-| -------------------  | -------- |
-| [RectResult](#rectresult10) | 获取已编辑文本内容区域相对组件的位置和大小。 |
-
-> **说明：**
->
-> - 初始不输入文本时，返回值中有相对组件的位置信息，大小为0。
-> - 返回值中的位置信息是第一个字符相对于可编辑组件的位置。
-> - 有输入时返回信息中的宽度是组件编辑的固定宽度。
-
-### RectResult<sup>10+</sup>
-
-位置和大小，单位均为像素。
-
-| 参数      | 类型     | 描述 |
-| ------- | ------ | ----------------------- |
-| x     | number | 水平方向横坐标。|
-| y     | number | 竖直方向纵坐标。|
-| width | number | 内容宽度大小。|
-| height | number | 内容高度大小。|
-
-
-### getTextContentLineCount<sup>10+</sup>
-
-getTextContentLineCount(): number
-
-获取已编辑文本内容的行数。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**返回值：**
-
-| 类型  | 说明       |
-| ----- | -------- |
-| number| 已编辑文本内容行数。 |
-
-### getCaretOffset<sup>11+</sup>
-
-getCaretOffset(): CaretOffset
-
-返回当前光标所在位置信息。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**返回值：**
-
-| 类型                      | 说明               |
-| ----------------------- | ---------------- |
-| [CaretOffset](ts-basic-components-textinput.md#caretoffset11对象说明) | 光标相对输入框的位置。 |
-
-> **说明：**
->
-> - 在当前帧更新光标位置同时调用该接口，该接口不生效。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## TextDecorationOptions<sup>12+</sup>对象说明
 
@@ -962,9 +906,9 @@ getCaretOffset(): CaretOffset
 | PERSON_FULL_NAME           | 9    | 【姓名】在已启用情景化自动填充的情况下，支持姓名的自动保存和自动填充。 |
 | PERSON_LAST_NAME           | 10   | 【姓氏】在已启用情景化自动填充的情况下，支持姓氏的自动保存和自动填充。 |
 | PERSON_FIRST_NAME          | 11   | 【名字】在已启用情景化自动填充的情况下，支持名字的自动保存和自动填充。 |
-| PHONE_NUMBER               | 12   | 【手机号】在已启用情景化自动填充的情况下，支持手机号的自动保存和自动填充。 |
+| PHONE_NUMBER               | 12   | 【手机号码】在已启用情景化自动填充的情况下，支持手机号码的自动保存和自动填充。 |
 | PHONE_COUNTRY_CODE         | 13   | 【国家代码】在已启用情景化自动填充的情况下，支持国家代码的自动保存和自动填充。 |
-| FULL_PHONE_NUMBER          | 14   | 【包含国家代码的手机号】在已启用情景化自动填充的情况下，支持包含国家代码的手机号的自动保存和自动填充。 |
+| FULL_PHONE_NUMBER          | 14   | 【包含国家代码的手机号码】在已启用情景化自动填充的情况下，支持包含国家代码的手机号码的自动保存和自动填充。 |
 | EMAIL_ADDRESS              | 15   | 【邮箱地址】在已启用情景化自动填充的情况下，支持邮箱地址的自动保存和自动填充。 |
 | BANK_CARD_NUMBER           | 16   | 【银行卡号】在已启用情景化自动填充的情况下，支持银行卡号的自动保存和自动填充。 |
 | ID_CARD_NUMBER             | 17   | 【身份证号】在已启用情景化自动填充的情况下，支持身份证号的自动保存和自动填充。 |
@@ -1565,11 +1509,11 @@ struct TextAreaExample {
         TextArea({ text: "TextArea支持插入回调文本" })
           .width(300)
           .height(60)
-          .onWillInsert((info) => {
+          .onWillInsert((info: InsertValue) => {
             this.insertValue = info.insertValue
             return true;
           })
-          .onDidInsert((info) => {
+          .onDidInsert((info: InsertValue) => {
             this.insertOffset = info.insertOffset
           })
 
@@ -1578,12 +1522,12 @@ struct TextAreaExample {
         TextArea({ text: "TextArea支持删除回调文本b" })
           .width(300)
           .height(60)
-          .onWillDelete((info) => {
+          .onWillDelete((info: DeleteValue) => {
             this.deleteValue = info.deleteValue
             info.direction
             return true;
           })
-          .onDidDelete((info) => {
+          .onDidDelete((info: DeleteValue) => {
             this.deleteOffset = info.deleteOffset
             this.deleteDirection = info.direction
           })

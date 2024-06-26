@@ -207,14 +207,10 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-7. 运行`hdc shell param set hiview.memleak.test enable`，使能内存泄漏检测测试，原泄漏检测周期为200s，使能后，周期为5s。
+7. 点击IDE界面中的运行按钮，运行应用工程，资源泄漏检测服务连续3次检测到应用内存超基线，会上报应用内存泄漏事件。
+   同一个应用，24小时内至多上报一次内存泄漏，如果短时间内要二次上报，需要重启设备。
 
-   运行`hdc shell killall hiview`，重启hiview，使能内存检测测试才会生效。
-
-8. 点击IDE界面中的运行按钮，运行应用工程，hiview连续5次检测到应用内存超基线（RSS超过1228800KB），会上报应用内存泄漏事件。
-   同一个应用，5小时内至多上报一次内存泄漏，如果短时间内要二次上报，需要重启hiview。
-
-9. 内存泄漏事件上报后，可以在Log窗口看到对系统事件数据的处理日志：
+8. 内存泄漏事件上报后，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.domain=OS
@@ -228,8 +224,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_version=1.0.0
    08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.memory={"pss":2100257,"rss":1352644,"sys_avail_mem":250272,"sys_free_mem":60004,"sys_total_mem":1992340,"vss":2462936}
    ```
-   
-10. 移除应用事件观察者：
+
+9. 移除应用事件观察者：
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -239,7 +235,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
     ```
 
-11. 销毁应用事件观察者：
+10. 销毁应用事件观察者：
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {

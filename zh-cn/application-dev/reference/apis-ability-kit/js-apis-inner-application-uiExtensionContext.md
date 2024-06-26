@@ -11,7 +11,7 @@ UIExtensionContext是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## UIExtensionContext.startAbility
@@ -64,9 +64,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
 
@@ -145,13 +144,10 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -238,13 +234,10 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -327,18 +320,14 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
       bundleName: 'com.example.myapplication',
-      abilityName: 'EntryAbility'
     };
 
     try {
@@ -413,14 +402,10 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, common, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -511,14 +496,10 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, common, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -553,7 +534,11 @@ export default class EntryAbility extends UIExtensionAbility {
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
-将当前Ability连接到一个使用AbilityInfo.AbilityType.SERVICE模板的Ability。
+将当前Ability连接到一个ServiceExtensionAbility。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -592,14 +577,11 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import rpc from '@ohos.rpc';
+import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -665,12 +647,11 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import { BusinessError } from '@ohos.base';
-import rpc from '@ohos.rpc';
+import { UIExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -724,12 +705,11 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import { BusinessError } from '@ohos.base';
-import rpc from '@ohos.rpc';
+import { UIExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -774,11 +754,10 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     try {
       this.context.terminateSelf((err: BusinessError) => {
@@ -817,8 +796,8 @@ terminateSelf(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
   onForeground() {
@@ -860,13 +839,10 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -920,13 +896,10 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -985,10 +958,8 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[testTag] UIExtAbility';
 
@@ -1018,7 +989,7 @@ export default class UIExtAbility extends UIExtensionAbility {
     }
   }
 }
-  ```
+```
 
 ## UIExtensionContext.openAtomicService<sup>12+<sup>
 openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;AbilityResult&gt;
@@ -1069,13 +1040,11 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import { UIExtensionAbility, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let appId: string = '6918661953712445909';
     let options: AtomicServiceOptions = {
@@ -1160,11 +1129,9 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { UIExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
 import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function log(info: string) {
   console.error(`MyUIExtension:: ${JSON.stringify(info)}`);

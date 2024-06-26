@@ -420,7 +420,12 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | 是    | 窗口id。       |
 | pointerStyle        | [PointerStyle](#pointerstyle) | 是    | 鼠标样式。          |
-| Promise&lt;void&gt; | void                           | 是    | Promise对象。 |
+
+**返回值**：
+
+| 参数                  | 说明                  |
+| ------------------- | ------------------- |
+| Promise&lt;void&gt; | Promise对象。 |
 
 **错误码**：
 

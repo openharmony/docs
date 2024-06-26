@@ -1,4 +1,4 @@
-# Input Kit API参考
+# Input Kit（多模输入服务）
 
 - ArkTS API
   - [@ohos.multimodalInput.inputDevice (输入设备)](js-apis-inputdevice.md)
@@ -26,7 +26,7 @@
     - [Input](input.md)
   - 头文件和结构体
     - 头文件
-        - [oh_input_manager.h](oh__input__manager_8h.md)
-        - [oh_key_code.h](oh__key__code_8h.md)
+      - [oh_input_manager.h](oh__input__manager_8h.md)
+      - [oh_key_code.h](oh__key__code_8h.md)
 - 错误码
   - [键鼠穿越管理错误码](errorcode-multimodalinput.md)

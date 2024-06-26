@@ -823,7 +823,7 @@ try {
 | ------------------ | -------------------- | -------------------------------- |
 | EFFECT_CLOCK_TIMER | "haptic.clock.timer" | 描述用户调整计时器时的振动效果。|
 
-## HapticFeedback
+## HapticFeedback<sup>12+</sup>
 
 简单而通用的振动效果。
 
@@ -868,7 +868,7 @@ try {
 
 | 名称     | 类型    | 必填 | 说明                           |
 | -------- | ------ | ----- | ------------------------------ |
-| type     | string |  是   | 值为"time"，按照指定持续时间触发马达振动。 |
+| type     | "time" |  是   | 值为"time"，按照指定持续时间触发马达振动。 |
 | duration | number |  是   | 马达持续振动时长, 单位ms。         |
 
 ## VibratePreset<sup>9+</sup>
@@ -879,7 +879,7 @@ try {
 
 | 名称     | 类型      | 必填 | 说明                           |
 | -------- | -------- | ---- |------------------------------ |
-| type     | string   |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
+| type     | "preset" |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
 | effectId | string   |  是  | 预置的振动效果ID。             |
 | count    | number   |  否  | 可选参数，振动的重复次数，默认值为1。 |
 | intensity | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。 |
@@ -892,7 +892,7 @@ try {
 
 | 名称     | 类型       | 必填 | 说明                           |
 | -------- | --------  | ---- | ------------------------------ |
-| type     | string    |  是  | 值为"file"，按照振动配置文件触发马达振动。 |
+| type     | "file" |  是  | 值为"file"，按照振动配置文件触发马达振动。 |
 | hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | 是 | 振动配置文件的描述符。|
 
 ## HapticFileDescriptor<sup>10+</sup>
@@ -922,23 +922,25 @@ try {
 
 ## Usage<sup>9+</sup>
 
+type Usage = 'unknown'|'alarm'|'ring'|'notification'|'communication'|'touch'|'media'|'physicalFeedback'|'simulateReality'
+
 振动使用场景。
 
 **原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
-| 名称             | 类型   | 说明                           |
-| ---------------- | ------ | ------------------------------ |
-| unknown          | string | 没有明确使用场景，最低优先级。 |
-| alarm            | string | 用于警报场景。           |
-| ring             | string | 用于铃声场景。           |
-| notification     | string | 用于通知场景。           |
-| communication    | string | 用于通信场景。           |
-| touch            | string | 用于触摸场景。           |
-| media            | string | 用于多媒体场景。         |
-| physicalFeedback | string | 用于物理反馈场景。       |
-| simulateReality  | string | 用于模拟现实场景。       |
+| 名称             | 类型   | 必填 | 说明                           |
+| ---------------- | ------ | ------------------------------ | ------------------------------ |
+| unknown          | string | 是 | 没有明确使用场景，最低优先级。 |
+| alarm            | string | 是 | 用于警报场景。           |
+| ring             | string | 是 | 用于铃声场景。           |
+| notification     | string | 是 | 用于通知场景。           |
+| communication    | string | 是 | 用于通信场景。           |
+| touch            | string | 是 | 用于触摸场景。           |
+| media            | string | 是 | 用于多媒体场景。         |
+| physicalFeedback | string | 是 | 用于物理反馈场景。       |
+| simulateReality  | string | 是 | 用于模拟现实场景。       |
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
 

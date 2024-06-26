@@ -1,4 +1,4 @@
-# Core File Kit API参考
+# Core File Kit（文件基础服务）
 
 - ArkTS API
   - [@ohos.application.BackupExtensionAbility (备份恢复扩展能力)](js-apis-application-backupExtensionAbility.md)

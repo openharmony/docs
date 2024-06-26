@@ -2248,7 +2248,7 @@ dataPreferences.off('dataChange', keys, observer);
 
 ## ValueType
 
-type ValueType = number | string | boolean | Array<number> | Array<string> | Array<boolean> | Uint8Array | object | bigint
+type ValueType = number | string | boolean | Array\<number> | Array\<string> | Array\<boolean> | Uint8Array | object | bigint
 
 用于表示允许的数据字段类型。
 

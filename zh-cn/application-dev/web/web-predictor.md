@@ -10,12 +10,13 @@
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+  webviewController: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
       Button('loadData')
@@ -24,11 +25,11 @@ struct WebComponent {
             this.webviewController.backward();
           }
         })
-      Web({ src: 'https://www.example.com/', controller: this.webviewController})
+      Web({ src: 'https://www.example.com/', controller: this.webviewController })
         .onAppear(() => {
-            // 指定第二个参数为true，代表要进行预连接，如果为false该接口只会对网址进行dns预解析
-            // 第三个参数为要预连接socket的个数。最多允许6个。
-            web_webview.WebviewController.prepareForPageLoad('https://www.example.com/', true, 2);
+          // 指定第二个参数为true，代表要进行预连接，如果为false该接口只会对网址进行dns预解析
+          // 第三个参数为要预连接socket的个数。最多允许6个。
+          webview.WebviewController.prepareForPageLoad('https://www.example.com/', true, 2);
         })
     }
   }
@@ -43,20 +44,18 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { webview } from '@kit.ArkWeb';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("EntryAbility onCreate");
-        web_webview.WebviewController.initializeWebEngine();
-        // 预连接时，需要將'https://www.example.com'替换成真实要访问的网站地址。
-        web_webview.WebviewController.prepareForPageLoad("https://www.example.com/", true, 2);
-        AppStorage.setOrCreate("abilityWant", want);
-        console.log("EntryAbility onCreate done");
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate");
+    webview.WebviewController.initializeWebEngine();
+    // 预连接时，需要將'https://www.example.com'替换成真实要访问的网站地址。
+    webview.WebviewController.prepareForPageLoad("https://www.example.com/", true, 2);
+    AppStorage.setOrCreate("abilityWant", want);
+    console.log("EntryAbility onCreate done");
+  }
 }
 ```
 
@@ -70,18 +69,19 @@ export default class EntryAbility extends UIAbility {
   
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+  webviewController: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
-      Web({ src: 'https://www.example.com/', controller: this.webviewController})
+      Web({ src: 'https://www.example.com/', controller: this.webviewController })
         .onPageEnd(() => {
-            // 预加载https://www.iana.org/help/example-domains。
-            this.webviewController.prefetchPage('https://www.iana.org/help/example-domains');
+          // 预加载https://www.iana.org/help/example-domains。
+          this.webviewController.prefetchPage('https://www.iana.org/help/example-domains');
         })
     }
   }
@@ -96,28 +96,29 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+  webviewController: webview.WebviewController = new webview.WebviewController();
+  
   build() {
     Column() {
       Web({ src: "https://www.example.com/", controller: this.webviewController})
         .onAppear(() => {
-            // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
-            web_webview.WebviewController.prefetchResource(
-              {url:"https://www.example1.com/post?e=f&g=h",
+          // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
+          webview.WebviewController.prefetchResource(
+            {url:"https://www.example1.com/post?e=f&g=h",
               method:"POST",
               formData:"a=x&b=y",},
-              [{headerKey:"c",
-                headerValue:"z",},],
-              "KeyX", 500);
+            [{headerKey:"c",
+              headerValue:"z",},],
+            "KeyX", 500);
         })
         .onPageEnd(() => {
-            // 清除后续不再使用的预获取资源缓存。
-            web_webview.WebviewController.clearPrefetchedResource(["KeyX",]);
+          // 清除后续不再使用的预获取资源缓存。
+          webview.WebviewController.clearPrefetchedResource(["KeyX",]);
         })
     }
   }
@@ -130,24 +131,25 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+  webviewController: webview.WebviewController = new webview.WebviewController();
+  
   build() {
     Column() {
       Web({ src: 'https://www.example.com/', controller: this.webviewController})
         .onPageEnd(() => {
-            // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
-            web_webview.WebviewController.prefetchResource(
-              {url:"https://www.example1.com/post?e=f&g=h",
+          // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
+          webview.WebviewController.prefetchResource(
+            {url:"https://www.example1.com/post?e=f&g=h",
               method:"POST",
               formData:"a=x&b=y",},
-              [{headerKey:"c",
-                headerValue:"z",},],
-              "KeyX", 500);
+            [{headerKey:"c",
+              headerValue:"z",},],
+            "KeyX", 500);
         })
     }
   }
@@ -160,26 +162,24 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { webview } from '@kit.ArkWeb';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("EntryAbility onCreate");
-        web_webview.WebviewController.initializeWebEngine();
-        // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
-        web_webview.WebviewController.prefetchResource(
-          {url:"https://www.example1.com/post?e=f&g=h",
-          method:"POST",
-          formData:"a=x&b=y",},
-          [{headerKey:"c",
-            headerValue:"z",},],
-          "KeyX", 500);
-        AppStorage.setOrCreate("abilityWant", want);
-        console.log("EntryAbility onCreate done");
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate");
+    webview.WebviewController.initializeWebEngine();
+    // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
+    webview.WebviewController.prefetchResource(
+      {url:"https://www.example1.com/post?e=f&g=h",
+        method:"POST",
+        formData:"a=x&b=y",},
+      [{headerKey:"c",
+        headerValue:"z",},],
+      "KeyX", 500);
+    AppStorage.setOrCreate("abilityWant", want);
+    console.log("EntryAbility onCreate done");
+  }
 }
 ```
 
@@ -193,13 +193,13 @@ export default class EntryAbility extends UIAbility {
 
    ```ts
    // EntryAbility.ets
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
 
    const localStorage: LocalStorage = new LocalStorage('uiContext');
 
    export default class EntryAbility extends UIAbility {
-     storage: LocalStorage = localStorage
+     storage: LocalStorage = localStorage;
 
      onWindowStageCreate(windowStage: window.WindowStage) {
        windowStage.loadContent('pages/Index', this.storage, (err, data) => {
@@ -217,9 +217,8 @@ export default class EntryAbility extends UIAbility {
 
    ```ts
    // DynamicComponent.ets
-   import { NodeController, BuilderNode, FrameNode }  from '@ohos.arkui.node';
-   import { UIContext } from '@ohos.arkui.UIContext';
-   
+   import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
+
    export interface BuilderData {
      url: string;
      controller: WebviewController;
@@ -356,7 +355,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
 
    ```ts
    // Index.ets
-   import web_webview from '@ohos.web.webview';
+   import { webview } from '@kit.ArkWeb';
    import { NodeController } from '@kit.ArkUI';
    import { createNode } from "./DynamicComponent"
    import { precompileWebview } from "./PrecompileWebview"
@@ -366,10 +365,10 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
    @Component
    struct Index {
      @State precompileNode: NodeController | undefined = undefined;
-     precompileController: web_webview.WebviewController = new web_webview.WebviewController();
+     precompileController: webview.WebviewController = new webview.WebviewController();
    
      @State businessNode: NodeController | undefined = undefined;
-     businessController: web_webview.WebviewController = new web_webview.WebviewController();
+     businessController: webview.WebviewController = new webview.WebviewController();
    
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件
@@ -405,13 +404,13 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
 
    ```ts
    // EntryAbility.ets
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
 
    const localStorage: LocalStorage = new LocalStorage('uiContext');
 
    export default class EntryAbility extends UIAbility {
-     storage: LocalStorage = localStorage
+     storage: LocalStorage = localStorage;
 
      onWindowStageCreate(windowStage: window.WindowStage) {
        windowStage.loadContent('pages/Index', this.storage, (err, data) => {
@@ -429,8 +428,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
 
    ```ts
    // DynamicComponent.ets
-   import { NodeController, BuilderNode, FrameNode }  from '@ohos.arkui.node';
-   import { UIContext } from '@ohos.arkui.UIContext';
+   import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
    export interface BuilderData {
      url: string;
@@ -441,7 +439,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
 
    export class NodeControllerImpl extends NodeController {
      private rootNode: BuilderNode<BuilderData[]> | null = null;
-     private wrappedBuilder: WrappedBuilder<BuilderData[] > | null = null;
+     private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
 
      constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
        super();
@@ -478,10 +476,10 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
 
 3. 编写用于注入资源的组件代码，本例中的本地资源内容通过文件读取接口读取rawfile目录下的本地文件。
 
+   <!--code_no_check-->
    ```ts
    // InjectWebview.ets
-   import web_webview from '@ohos.web.webview';
-
+   import { webview } from '@kit.ArkWeb';
    import { resourceConfigs } from "./Resource";
    import { BuilderData } from "./DynamicComponent";
 
@@ -501,7 +499,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
    export const injectWebview = wrapBuilder<BuilderData[]>(WebBuilder);
 
    export async function getData() {
-     const resourceMapArr: Array<web_webview.OfflineResourceMap> = [];
+     const resourceMapArr: Array<webview.OfflineResourceMap> = [];
 
      // 读取配置，从rawfile目录中读取文件内容
      for (let config of resourceConfigs) {
@@ -532,6 +530,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
 
 4. 编写业务用组件代码。
 
+   <!--code_no_check-->
    ```ts
    // BusinessWebview.ets
    import { BuilderData } from "./DynamicComponent";
@@ -550,11 +549,11 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
 
    ```ts
    // Resource.ets
-   import web_webview from '@ohos.web.webview';
+   import { webview } from '@kit.ArkWeb';
 
    export interface ResourceConfig {
      urlList: Array<string>,
-     type: web_webview.OfflineResourceType,
+     type: webview.OfflineResourceType,
      responseHeaders: Array<Header>,
      localPath: string, // 本地资源存放在rawfile目录下的路径
    }
@@ -567,7 +566,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
          "https://www.example.com/path1/example.png",
          "https://www.example.com/path2/example.png",
        ],
-       type: web_webview.OfflineResourceType.IMAGE,
+       type: webview.OfflineResourceType.IMAGE,
        responseHeaders: [
          { headerKey: "Cache-Control", headerValue: "max-age=1000" },
          { headerKey: "Content-Type", headerValue: "image/png" },
@@ -578,7 +577,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
        urlList: [ // 仅提供一个url，这个url既作为资源的源，也作为资源的网络请求地址
          "https://www.example.com/example.js",
        ],
-       type: web_webview.OfflineResourceType.CLASSIC_JS,
+       type: webview.OfflineResourceType.CLASSIC_JS,
        responseHeaders: [
          // 以<script crossorigin="anoymous" />方式使用，提供额外的响应头
          { headerKey: "Cross-Origin", headerValue:"anonymous" }
@@ -588,10 +587,9 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
    ```
 
 6. 在页面中使用。
-
    ```ts
    // Index.ets
-   import web_webview from '@ohos.web.webview';
+   import { webview } from '@kit.ArkWeb';
    import { NodeController } from '@kit.ArkUI';
    import { createNode } from "./DynamicComponent"
    import { injectWebview } from "./InjectWebview"
@@ -601,10 +599,10 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
    @Component
    struct Index {
      @State injectNode: NodeController | undefined = undefined;
-     injectController: web_webview.WebviewController = new web_webview.WebviewController();
+     injectController: webview.WebviewController = new webview.WebviewController();
 
      @State businessNode: NodeController | undefined = undefined;
-     businessController: web_webview.WebviewController = new web_webview.WebviewController();
+     businessController: webview.WebviewController = new webview.WebviewController();
 
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件, 提供一个空的html页面作为url即可

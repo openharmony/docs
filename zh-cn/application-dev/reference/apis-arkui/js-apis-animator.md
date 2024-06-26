@@ -223,7 +223,7 @@ onFrame: (progress: number) => void
 
 | 参数名      | 类型     | 必填   | 说明       |
 | -------- | ------ | ---- | -------- |
-| progress | number | 是    | 动画的当前进度。 |
+| progress | number | 是    | 动画的当前值。 |
 
 **示例：**
 

@@ -5,7 +5,9 @@
 
 定义Drm MediaKeySession API。提供以下功能： 生成媒体密钥请求、处理媒体密钥响应、事件侦听、获取内容保护级别、 检查媒体密钥状态、删除媒体密钥等。
 
-**库：** libnative_drm.z.so
+**库：** libnative_drm.so
+
+**引用文件：** &lt;multimedia/drm_framework/native_mediakeysession.h&gt;
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 

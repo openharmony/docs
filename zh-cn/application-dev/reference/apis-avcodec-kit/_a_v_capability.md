@@ -17,7 +17,7 @@ AVCapability模块提供用于编解码能力查询的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_avcapability.h](native__avcapability_8h.md) | 声明用于编解码能力查询到的Native API。<br>**引用文件**：<multimedia/player_framework/native_avcapability.h> <br>**库**：libnative_media_codecbase.so| 
+| [native_avcapability.h](native__avcapability_8h.md) | 声明用于编解码能力查询到的Native API。| 
 
 
 ### 结构体

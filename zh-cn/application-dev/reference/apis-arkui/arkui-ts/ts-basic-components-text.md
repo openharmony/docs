@@ -40,7 +40,7 @@ textAlign(value: TextAlign)
 
 可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。结合TextAlign属性可控制内容在水平方向的位置。
 
-当textAlign属性设置为TextAlign.JUSTIFY时，最后一行文本不参与两端对齐，为水平对齐首部效果。
+当textAlign属性设置为TextAlign.JUSTIFY时，需要根据文本内容设置[wordBreak](#wordbreak11)属性，且最后一行文本不参与两端对齐，为水平对齐首部效果。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -64,7 +64,7 @@ textOverflow(value: { overflow: TextOverflow })
 
 当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
 
-当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效，此时不支持ImageSpan组件，并且在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。在跑马灯模式下，Text组件clip属性默认为true。属性字符串的[CustomSpan](ts-universal-styled-string.md#customspan)不支持跑马灯模式。
+当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效。在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。在跑马灯模式下，Text组件clip属性默认为true。属性字符串的[CustomSpan](ts-universal-styled-string.md#customspan)不支持跑马灯模式。
 
 从API version 12开始，当overflow设置为TextOverflow.MARQUEE时，支持ImageSpan组件，文本和图片在一行内滚动显示。
 
@@ -405,7 +405,7 @@ EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -437,7 +437,7 @@ fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| value  | boolean | 是   | 使能文本识别。<br/>默认值： false |
+| enable  | boolean | 是   | 使能文本识别。<br/>默认值： false |
 
 ### dataDetectorConfig<sup>11+</sup>
 
@@ -551,9 +551,9 @@ privacySensitive(supported: boolean)
 
 **参数：**
 
-| 参数名    | 类型    | 必填 | 说明                     |
-| --------- | ------- | ---- | ------------------------ |
-| supported | boolean | 是   | 是否支持卡片敏感隐私信息 |
+| 参数名    | 类型    | 必填 | 说明                                                         |
+| --------- | ------- | ---- | ------------------------------------------------------------ |
+| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值为false，当设置为true时，隐私模式下文字将被遮罩为横杠“-”样式。<br/>**说明：** <br/>设置null则不敏感。<br/>进入隐私模式需要[卡片框架支持](./ts-universal-attributes-obscured.md)。 |
 
 ### lineBreakStrategy<sup>12+</sup>
 
@@ -585,7 +585,7 @@ textSelectable(value: TextSelectableMode)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | 否   | 文本是否支持可选择、可获焦。 <br />默认值：TextSelectableMode.SELECTABEL_UNFOCUSABLE |
+| value  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | 是   | 文本是否支持可选择、可获焦。 <br />默认值：TextSelectableMode.SELECTABLE_UNFOCUSABLE |
 
 ### selectionMenuOptions<sup>12+</sup>
 
@@ -601,7 +601,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 否   | 扩展菜单选项。 |
+| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 是   | 扩展菜单选项。 |
 
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 
@@ -609,8 +609,8 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 | 参数名 | 类型  | 必填 | 说明  |
 | ------ | -------- | ---- | ------------------------------------------- |
-| types   | [TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11) | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
-| onDetectResultUpdate   | (callback:(result: string) => void) | 是   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
+| types   | [TextDataDetectorType[]](ts-appendix-enums.md#textdatadetectortype11) | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
+| onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
 
 ## 事件
 
@@ -653,22 +653,6 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 | selectionStart | number | 是   | 所选文本的起始位置。 |
 | selectionEnd   | number | 是   | 所选文本的结束位置。 |
 
-### onMarqueeStateChange<sup>12+</sup>
-
-onMarqueeStateChange(callback: Callback<MarqueeState>)
-
-跑马灯动画在开始、完成一次滚动和停止时，触发该回调。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名    | 类型                                  | 必填  | 说明                       |
-|--------|-------------------------------------|-----|--------------------------|
-| state  | [MarqueeState](#marqueestate12枚举说明) | 是   | 开始滚动时、每一次滚动时以及在滚动结束时触发。 |
-
 ## TextOptions<sup>11+</sup>
 
 Text初始化参数。
@@ -703,8 +687,6 @@ setStyledString(value: StyledString): void
 
 触发绑定或更新属性字符串。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **参数：**
 
 | 参数名   | 参数类型   | 必填   | 参数描述                |
@@ -724,47 +706,6 @@ getLayoutManager(): LayoutManager
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
 | [LayoutManager](ts-text-common.md#LayoutManager) | 布局管理器对象。 |
-
-## marqueeOptions<sup>12+</sup>
-
-当overflow设置为TextOverflow.MARQUEE时，可以进行初始化。
-
-| 名称             | 类型                                             | 必填 | 说明            |
-|----------------|------------------------------------------------| -------- |---------------|
-| marqueeOptions | [MarqueeOptions](#marqueeoptions12) | 是 | marquee自定义选项。 |
-
-## MarqueeOptions<sup>12+</sup>
-
-marquee初始化参数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名                | 类型                                              | 必填 | 说明                                                                                  |
-|--------------------|-------------------------------------------------|----|-------------------------------------------------------------------------------------|
-| start              | boolean                                         | 是  | 控制跑马灯进入播放状态。                                                                        |
-| step               | number                                          | 否  | 滚动动画文本滚动步长。<br/>默认值：4.0vp                                                           |
-| loop               | number                                          | 否  | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
-| fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>默认值：true                                                       |
-| delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0                                                              |
-| fadeout            | boolean                                         | 否  | 设置文字超长渐隐。开启默认渐隐后，在非输入态默认使能；输入态超长时，有未展示的文字的一侧生效渐隐，两侧都有未展示的文字时，两侧同时渐隐。<br/>默认值：false  |
-| marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy12枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
-
-## MarqueeStartPolicy<sup>12+</sup>枚举说明
-
-| 名称       | 描述            |
-|----------|---------------|
-| DEFAULT  | 默认持续滚动。       |
-| ON_FOCUS | 获焦以及鼠标悬浮时开始滚动。 |
-
-## MarqueeState<sup>12+</sup>枚举说明
-
-| 名称     | 描述                            |
-|--------|-------------------------------|
-| START  | 滚动开始时触发。                      |
-| BOUNCE | 完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。 |
-| FINISH | 滚动全部循环次数完成时触发回调。              |
 
 ## 示例
 
@@ -1020,24 +961,6 @@ struct TextExample {
         .width(300)
         .borderWidth(1)
         .textOverflow({ overflow: TextOverflow.MARQUEE })
-        .marqueeOptions({
-            start:true,
-            fromStart: true,
-            step:6,
-            loop:-1,
-            delay:0,
-            fadeout:false,
-            marqueeStartPolicy:MarqueeStartPolicy.DEFAULT
-          })
-        .onMarqueeStateChange((state:MarqueeState)=>{
-            if(state == MarqueeState.START){
-              //"收到状态: START";
-            }else if(state == MarqueeState.BOUNCE){
-              //"收到状态: BOUNCE";
-            }else if(state == MarqueeState.FINISH){
-              //"收到状态: FINISH";
-            }
-          })
     }
   }
 }
@@ -1217,7 +1140,7 @@ bindSelectionMenu，onTextSelectionChange及closeSelectionMenu使用示例
 ```ts
 @Entry
 @Component
-struct Demo {
+struct TextExample8 {
   controller: TextController = new TextController();
   options: TextOptions = { controller: this.controller };
 
@@ -1327,7 +1250,7 @@ fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用
 ```ts
 @Entry
 @Component
-struct text {
+struct TextExample9 {
   @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
@@ -1358,7 +1281,7 @@ import { LengthMetrics } from '@ohos.arkui.node'
 
 @Entry
 @Component
-struct LineSpacingExample {
+struct TextExample10 {
   build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
         Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
@@ -1398,7 +1321,7 @@ lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakS
 ```ts
 @Entry
 @Component
-struct TextExample1 {
+struct TextExample11 {
   @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
     "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
     "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
@@ -1439,11 +1362,11 @@ getLayoutManager使用示例。
 ```ts
 @Entry
 @Component
-export struct TextMessageClick {
+struct TextExample12 {
   @State lineCount: string = ""
   @State glyphPositionAtCoordinate: string = ""
   @State lineMetrics: string = ""
-  controller: TextController = new TextController();
+  controller: TextController = new TextController()
   @State textStr: string =
     'Hello World! 您好，世界！'
 
@@ -1459,7 +1382,7 @@ export struct TextMessageClick {
           .fontSize(25)
           .borderWidth(1)
           .onAreaChange(() => {
-            let layoutManager = this.controller.getLayoutManager();
+            let layoutManager: LayoutManager = this.controller.getLayoutManager()
             this.lineCount = "LineCount: " + layoutManager.getLineCount()
           })
 
@@ -1470,7 +1393,7 @@ export struct TextMessageClick {
         Button("相对组件坐标[150,50]字形信息")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            let position = layoutManager.getGlyphPositionAtCoordinate(150, 50)
+            let position: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50)
             this.glyphPositionAtCoordinate =
               "相对组件坐标[150,50] glyphPositionAtCoordinate position: " + position.position + " affinity: " +
               position.affinity
@@ -1482,7 +1405,7 @@ export struct TextMessageClick {
         Button("首行行信息、文本样式信息、以及字体属性信息")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            let lineMetrics = layoutManager.getLineMetrics(0)
+            let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0)
             this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + '\n\n'
             let runMetrics = lineMetrics.runMetrics
             runMetrics.forEach((value, key) => {
@@ -1506,10 +1429,7 @@ textSelectable使用示例，展示了设置TextSelectMode.SELECTABLE_FOCUSABEL�
 ```ts
 @Entry
 @Component
-struct TextExample {
-@Entry
-@Component
-struct Index {
+struct TextExample13 {
   @State message: string = 'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText';
   
   build() {

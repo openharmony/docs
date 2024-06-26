@@ -697,7 +697,7 @@ SetSelection接口start=end!=-1时，视为选中失败，不改变光标位置�
 
 **起始 API Level**
 
-12 
+11
 
 **变更发生版本**
 

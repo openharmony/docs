@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import inspector from '@ohos.arkui.inspector'
+import { inspector } from '@kit.ArkUI'
 ```
 
 ## inspector.createComponentObserver
@@ -107,7 +107,7 @@ off(type: 'draw', callback?: () => void): void
 **示例：**
 
   ```ts
-  import inspector from '@ohos.arkui.inspector'
+  import { inspector } from '@kit.ArkUI'
 
   @Entry
   @Component

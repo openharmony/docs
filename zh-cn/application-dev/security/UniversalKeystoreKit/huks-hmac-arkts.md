@@ -87,8 +87,8 @@ async function GenerateHMACKey() {
     await huks.generateKeyItem(HmackeyAlias, options)
     .then((data) => {
         console.info(`promise: generate HMAC Key success`);
-    }).catch((error)=>{
-        console.error(`promise: generate HMAC Key failed` + error);
+    }).catch((error: Error)=>{
+        console.error(`promise: generate HMAC Key failed, ${JSON.stringify(error)}`);
     })
 }
 async function HMACData() {
@@ -113,8 +113,8 @@ async function HMACData() {
     await huks.initSession(HmackeyAlias, options)
     .then((data) => {
         handle = data.handle;
-    }).catch((error)=>{
-        console.error(`promise: init EncryptData failed` + error);
+    }).catch((error: Error)=>{
+        console.error(`promise: init EncryptData failed, ${JSON.stringify(error)}`);
     })
     /*
     * 5. 调用finishSession获取HMAC的结果
@@ -123,9 +123,8 @@ async function HMACData() {
     .then((data) => {
         console.info(`promise: HMAC data success, data is `+ Uint8ArrayToString(data.outData as Uint8Array));
         hashData = data.outData as Uint8Array;
-    }).catch((error)=>{
-        console.error(`promise: HMAC data failed` + error);
+    }).catch((error: Error)=>{
+        console.error(`promise: HMAC data failed, ${JSON.stringify(error)}`);
     })
 }
-
 ```

@@ -301,7 +301,7 @@ onScroll(event: (xOffset: number, yOffset: number) => void)
 
 ### onWillScroll<sup>12+</sup>
 
-onWillScroll(handler: ScrollOnWillScrollCallback )
+onWillScroll(handler: ScrollOnWillScrollCallback)
 
 滚动事件回调，Scroll滚动前触发。
 
@@ -325,7 +325,7 @@ onWillScroll(handler: ScrollOnWillScrollCallback )
 
 ### onDidScroll<sup>12+</sup>
 
-onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说明) )
+onDidScroll(handler: [ScrollOnScrollCallback](#scrollonscrollcallback对象说明))
 
 滚动事件回调，Scroll滚动时触发。
 
@@ -480,7 +480,7 @@ scroller: Scroller = new Scroller()
 
 ### scrollTo
 
-scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: { duration?: number, curve?: Curve | ICurve } | boolean }): void
+scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: { duration?: number, curve?: Curve | ICurve } | boolean })
 
 
 滑动到指定位置。
@@ -498,7 +498,7 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 ### scrollEdge
 
-scrollEdge(value: Edge, options?: ScrollEdgeOptions): void
+scrollEdge(value: Edge, options?: ScrollEdgeOptions)
 
 
 滚动到容器边缘，不区分滚动轴方向，Edge.Top和Edge.Start表现相同，Edge.Bottom和Edge.End表现相同。
@@ -512,7 +512,7 @@ scrollEdge(value: Edge, options?: ScrollEdgeOptions): void
 
 ### fling<sup>12+</sup>
 
-fling(velocity: number): void
+fling(velocity: number)
 
 
 滚动类组件开启按传入的初始速度进行惯性滚动。
@@ -532,10 +532,11 @@ fling(velocity: number): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
 
 ### scrollPage<sup>9+</sup>
 
-scrollPage(value:   ScrollPageOptions)
+scrollPage(value: { next: boolean }): void
 
 滚动到下一页或者上一页。
 
@@ -543,13 +544,13 @@ scrollPage(value:   ScrollPageOptions)
 
 **参数：**
 
-| 参数名 | 参数类型                                           | 必填 | 参数描述       |
-| ------ | -------------------------------------------------- | ---- | -------------- |
-| value  | [ScrollPageOptions](#scrollpageoptions12+对象说明) | 是   | 设置翻页模式。 |
+| 参数名                            | 参数类型                          | 必填 | 参数描述                                                    |
+| --------------------------------- | --------------------------------- | ---- | ----------------------------------------------------------- |
+| next                              | boolean                           | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。         |
 
 ### scrollPage<sup>(deprecated)</sup>
 
-scrollPage(value: { next: boolean, direction?: Axis }): void
+scrollPage(value: { next: boolean, direction?: Axis })
 
 滚动到下一页或者上一页。从API version 9开始, 该接口不再维护，推荐使用 [scrollPage<sup>9+</sup>](#scrollpage9)   。
 
@@ -572,9 +573,9 @@ currentOffset(): OffsetResult
 
 ### scrollToIndex
 
-scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign): void
+scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign, options?: ScrollToIndexOptions)
 
-滑动到指定Index。
+滑动到指定Index，支持设置滑动额外偏移量。
 
 开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。
 
@@ -592,10 +593,11 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign): void
 | value | number   | 是   | 要滑动到的目标元素在当前容器中的索引值。      <br/>**说明：** <br/>value值设置成负值或者大于当前容器子组件的最大索引值，视为异常值，本次跳转不生效。                     |
 | smooth | boolean  | 否   | 设置滑动到列表项在列表中的索引值时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。|
 | align | [ScrollAlign](#scrollalign10枚举说明)  | 否   | 指定滑动到的元素与当前容器的对齐方式。<br/>List中的默认值为：ScrollAlign.START。Grid中默认值为：ScrollAlign.AUTO。WaterFlow中的默认值为：ScrollAlign.START。<br/>**说明：** <br/>仅List、Grid、WaterFlow组件支持该参数。 |
+| options<sup>12+</sup> | [ScrollToIndexOptions](#scrolltoindexoptions12对象说明)  | 否   | 设置滑动到指定Index的选项，如额外偏移量。 |
 
 ### scrollBy<sup>9+</sup>
 
-scrollBy(dx: Length, dy: Length): void
+scrollBy(dx: Length, dy: Length)
 
 
 滑动指定距离。
@@ -668,6 +670,7 @@ getItemRect(index: number): RectResult
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
 
 ## OffsetResult<sup>11+</sup>
 
@@ -699,6 +702,14 @@ getItemRect(index: number): RectResult
 | END  | 尾部对齐。指定item尾部与List尾部对齐。 |
 | AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于List,使指定item完全处于显示区。|
 
+## ScrollToIndexOptions<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称   | 类型  | 必填 | 描述              |
+| ----- | ------ | ------ | ----------------- |
+| extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 滑动到指定Index的额外偏移量。 |
+
 ## NestedScrollOptions<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -727,14 +738,6 @@ getItemRect(index: number): RectResult
 | ----- | ------| ------- | ----------------- |
 | alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果|
 
-## ScrollPageOptions<sup>12+</sup>对象说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 参数名    | 参数类型 | 必填 | 参数描述                                                     |
-| --------- | -------- | ---- | ------------------------------------------------------------ |
-| next      | boolean  | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。          |
-| animation | boolean  | 否   | 是否开启翻页动画效果。true有动画，false无动画。<br />默认值：false。 |
 
 ## OffsetOptions<sup>12+</sup>对象说明
 | 参数名   | 类型  | 必填 | 描述              |
@@ -752,7 +755,7 @@ getItemRect(index: number): RectResult
 
 ```ts
 // xxx.ets
-import Curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -808,7 +811,7 @@ struct ScrollExample {
       Button('scroll 100')
         .height('5%')
         .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离，滑动过程配置有动画
-          let curve = Curves.interpolatingSpring(10, 1, 228, 30) //创建一个阶梯曲线
+          let curve = curves.interpolatingSpring(10, 1, 228, 30) //创建一个阶梯曲线
           const yOffset: number = this.scroller.currentOffset().yOffset;
           this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100, animation: { duration: 1000, curve: curve } })
         })
@@ -822,7 +825,7 @@ struct ScrollExample {
       Button('next page')
         .height('5%')
         .onClick(() => { // 点击后滑到下一页
-          this.scroller.scrollPage({ next: true ,animation: true })
+          this.scroller.scrollPage({ next: true })
         })
         .margin({ top: 210, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)
@@ -1050,8 +1053,6 @@ struct ListExample {
 
 ```ts
 // xxx.ets
-import Curves from '@ohos.curves'
-
 @Entry
 @Component
 struct ScrollExample {

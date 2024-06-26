@@ -1,4 +1,4 @@
-# Form Kit API参考
+# Form Kit（卡片开发服务）
 
 - ArkTS API
   - [@ohos.app.form.formBindingData (卡片数据绑定类)](js-apis-app-form-formBindingData.md)

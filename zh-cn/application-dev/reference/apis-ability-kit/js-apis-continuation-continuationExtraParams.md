@@ -20,5 +20,5 @@
 | targetBundle | string | 否 | 否 | 表示目标Bundle名称。 |
 | description | string | 否 | 否 | 表示设备过滤的描述。 |
 | filter | any | 否 | 否 | 表示设备过滤的参数。 |
-| continuationMode | [ContinuationMode](js-apis-continuation-continuationManager.md#continuationmode) | 否 | 否 | 表示协同的模式。 |
+| continuationMode | [continuationManager.ContinuationMode](js-apis-continuation-continuationManager.md#continuationmode) | 否 | 否 | 表示协同的模式。 |
 | authInfo | Record<string, Object> | 否 | 否 | 表示认证的信息。 |

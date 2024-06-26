@@ -6399,9 +6399,9 @@ setFocusPoint(point: Point): void
 
 **参数：**
 
-| 参数名      | 类型                     | 必填 | 说明                 |
-| -------- | ----------------------- | ---- | ------------------- |
-| Point    | [Point](#point)         | 是   | 焦点。x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。   |
+| 参数名   | 类型                     | 可选  | 说明                 |
+|-------| ----------------------- |-----| ------------------- |
+| point | [Point](#point)         | 否   | 焦点。x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。   |
 
 **错误码：**
 
@@ -6895,7 +6895,7 @@ function unregisterCaptureSessionError(captureSession: camera.CaptureSession): v
 
 色彩管理类，用于查询色彩空间参数。
 
-### getSupportedColorSpaces<sup>11+</sup>
+### getSupportedColorSpaces<sup>12+</sup>
 
 getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
 
@@ -6944,7 +6944,7 @@ ColorManagement extends [ColorManagementQuery](#colormanagementquery12)
 
 setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
-设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces11)获取当前设备所支持的ColorSpaces。
+设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces12)获取当前设备所支持的ColorSpaces。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6952,7 +6952,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
 | 参数名         | 类型                 | 必填 | 说明                      |
 | ------------ |---------------------- | -- | -------------------------- |
-| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces11)接口获取。   |
+| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces12)接口获取。   |
 
 **错误码：**
 
