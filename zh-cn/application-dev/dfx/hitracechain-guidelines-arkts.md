@@ -1,4 +1,4 @@
-# HiTraceChain使用指导
+# 使用HiTraceChain打点（ArkTS/JS）
 
 ## 简介
 
