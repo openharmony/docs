@@ -125,7 +125,7 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 | 名称     | 类型                            | 必填 | 描述                                      |
 | -------- | --------------                 | ---- | ------------------------------           |
 | icon     | [IconOptions](#iconoptions)    | 是   | 自定义Builder icon                        |
-| action   | ()=>void                       | 是   | 自定义Builder items 的Callback<br/>为undefined时，表示解绑事件。            |
+| action   | Callback\<void>        | 是   | 自定义Builder items 的Callback<br/>为undefined时，表示解绑事件。            |
 
 ## IconOptions
 
@@ -165,32 +165,32 @@ struct Index {
             prefixIcon: { src: $r('app.media.icon') },
             label: { text: "操作块1" },
             suffixIcon: { src: $r('sys.media.ohos_ic_public_cut') },
-            allowClose: false,
+            allowClose: false
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_copy') },
             label: { text: "操作块2" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_clock') },
             label: { text: "操作块3" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
             label: { text: "操作块4" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_mirror') },
             label: { text: "操作块5" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
             label: { text: "操作块6" },
-            allowClose: true,
+            allowClose: true
           },
         ],
         itemStyle: {
@@ -255,32 +255,32 @@ struct Index {
             prefixIcon: { src: $r('app.media.icon') },
             label: { text: "操作块1" },
             suffixIcon: { src: $r('sys.media.ohos_ic_public_cut') },
-            allowClose: false,
+            allowClose: false
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_copy') },
             label: { text: "操作块2" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_clock') },
             label: { text: "操作块3" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
             label: { text: "操作块4" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_mirror') },
             label: { text: "操作块5" },
-            allowClose: true,
+            allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
             label: { text: "操作块6" },
-            allowClose: true,
+            allowClose: true
           },
         ],
         itemStyle: {
