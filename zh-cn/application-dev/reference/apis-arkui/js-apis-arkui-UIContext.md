@@ -2841,7 +2841,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let router:Router = uiContext.getRouter();
@@ -2893,7 +2893,7 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let router:Router = uiContext.getRouter();
@@ -2953,9 +2953,8 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3010,9 +3009,8 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3072,7 +3070,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 let router:Router = uiContext.getRouter();
 try {
@@ -3119,7 +3117,7 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 let router:Router = uiContext.getRouter();
 router.replaceUrl({
@@ -3174,9 +3172,8 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3227,9 +3224,8 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector,  MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3287,7 +3283,7 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 let router:Router = uiContext.getRouter();
 try {
@@ -3338,7 +3334,7 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 let router:Router = uiContext.getRouter();
 router.pushNamedRoute({
@@ -3396,9 +3392,8 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3453,9 +3448,8 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3515,7 +3509,7 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 let router:Router = uiContext.getRouter();
 try {
@@ -3562,7 +3556,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 let router:Router = uiContext.getRouter();
 router.replaceNamedRoute({
@@ -3618,9 +3612,8 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3671,9 +3664,8 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3714,8 +3706,7 @@ back(options?: router.RouterOptions ): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
@@ -3738,15 +3729,13 @@ back(index: number, params?: Object): void;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
 router.back(1);
 ```
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
 router.back(1, {info:'来自Home页'}); //携带参数返回
 ```
@@ -3764,8 +3753,7 @@ clear(): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
 router.clear();    
 ```
@@ -3789,8 +3777,7 @@ getLength(): string
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
 console.info('pages stack size = ' + size);    
@@ -3815,8 +3802,7 @@ getState(): router.RouterState
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
 let page = router.getState();
 console.info('current index = ' + page.index);
@@ -3847,8 +3833,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 **示例：** 
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
 let options:router.RouterState = router.getStateByIndex(1);
 console.info('index = ' + options.index);
@@ -3879,8 +3864,7 @@ getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerst
 **示例：** 
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
 let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
@@ -3919,7 +3903,7 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 let router: Router = uiContext.getRouter();
 try {
@@ -3946,8 +3930,7 @@ hideAlertBeforeBackPage(): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
 router.hideAlertBeforeBackPage();    
 ```
@@ -3971,8 +3954,7 @@ getParams(): Object
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
 router.getParams();
 ```
