@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```js
-import batteryInfo from '@ohos.batteryInfo';
+import {batteryInfo} from '@kit.BasicServicesKit';
 ```
 
 ## batteryInfo.setBatteryConfig<sup>11+</sup>
@@ -46,11 +46,12 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | If the system permission is denied. |
 
 **示例**：
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let sceneName = 'xxx';
   let sceneValue = '0';
@@ -89,11 +90,12 @@ getBatteryConfig(sceneName: string): string
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | If the system permission is denied. |
 
 **示例**：
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let sceneName = 'xxx';
   let result = batteryInfo.getBatteryConfig(sceneName);
@@ -131,11 +133,12 @@ isBatteryConfigSupported(sceneName: string): boolean
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | If the system permission is denied. |
 
 **示例**：
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let sceneName = 'xxx';
   let result = batteryInfo.isBatteryConfigSupported(sceneName);
@@ -153,6 +156,19 @@ isBatteryConfigSupported(sceneName: string): boolean
 | --------------- | ------------------- | ---- | ---- | ---------------------|
 | estimatedRemainingChargeTime<sup>9+</sup> | number                                         | 是   | 否   | 表示当前设备充满电的预估时间，单位毫秒。此接口为系统接口。          |
 | totalEnergy<sup>9+</sup>                  | number                                         | 是   | 否   | 表示当前设备电池的总容量，单位毫安时。此接口为系统接口。   |
-| nowCurrent<sup>9+</sup>                   | number                                         | 是   | 否   | 表示当前设备电池的电流，单位毫安。此接口为系统接口。       |
 | remainingEnergy<sup>9+</sup>              | number                                         | 是   | 否   | 表示当前设备电池的剩余容量，单位毫安时。此接口为系统接口。 |
+
+**示例**：
+  ```ts
+  import {batteryInfo} from '@kit.BasicServicesKit';
+
+  let estimatedRemainingChargeTimeInfo: number = batteryInfo.estimatedRemainingChargeTime;
+  console.info("The estimatedRemainingChargeTimeInfo is: " + estimatedRemainingChargeTimeInfo);
+  
+  let totalEnergyInfo: number = batteryInfo.totalEnergy;
+  console.info("The totalEnergyInfo is: " + totalEnergyInfo);
+
+  let remainingEnergyInfo: number = batteryInfo.remainingEnergy;
+  console.info("The remainingEnergyInfo is: " + remainingEnergyInfo);
+  ```
 

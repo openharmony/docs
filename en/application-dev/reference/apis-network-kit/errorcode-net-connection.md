@@ -62,26 +62,7 @@ This error code is reported if a system internal error occurs.
 
 2. Check whether the system is normal. If not, try again later or restart the device.
 
-## 2101007 Callback Already Exists
-
-**Error Message**
-
-The same callback exists.
-
-**Description**
-
-This error code is reported if the same callback already exists.
-
-**Cause**
-
-The **callback** object has been registered for activating a network or listening to network status changes.
-
-**Procedure**
-
-1. Check whether the **callback** object has been registered.
-2. If the **callback** object has been registered, use the registered **callback** object.
-
-## 2101008 Callback Not Exist
+## 2101007 Callback Not Exist
 
 **Error Message**
 
@@ -98,6 +79,26 @@ The **callback** object has not been registered for activating a network or list
 **Procedure**
 
 Before unregistering a **callback** object, make sure that it has been registered for activating a network or listening to network status changes.
+
+## 2101008 Callback Already Exists
+
+**Error Message**
+
+The callback already exists.
+
+**Description**
+
+This error code is reported if the same callback already exists.
+
+**Cause**
+
+The **callback** object has been registered for activating a network or listening to network status changes.
+
+**Procedure**
+
+1. Check whether the **callback** object has been registered.
+2. If the **callback** object has been registered, use the registered **callback** object.
+
 
 ## 2101022 Number of Requests Exceeding the Maximum
 

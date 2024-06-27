@@ -9,8 +9,9 @@ Among the decorators related to state variables, \@State is the most basic decor
 
 > **NOTE**
 >
-> Since API version 9, this decorator is supported in ArkTS widgets.
-
+> This decorator can be used in ArkTS widgets since API version 9.
+>
+> This decorator can be used in atomic services since API version 11.
 
 ## Overview
 
@@ -29,7 +30,8 @@ An @State decorated variable, like all other decorated variables in the declarat
 | ------------------ | ------------------------------------------------------------ |
 | Decorator parameters        | None.                                                          |
 | Synchronization type          | Does not synchronize with any type of variable in the parent component.                            |
-| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>**undefined** or **null**.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, @State a: string \| undefined = undefined is recommended; **@State a: string = undefined** is not recommended.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>**any** is not supported.|
+| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>**undefined** or **null**.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @State: string \| undefined = undefined is recommended; **@State a: string = undefined** is not recommended.
+<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>**any** is not supported.|
 | Initial value for the decorated variable| Local initialization is required.                                              |
 
 
@@ -171,29 +173,29 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
   @Entry
   @Component
   struct DatePickerExample {
-    @State selectedDate: Date = new Date('2021-08-08')
+    @State selectedDate: Date = new Date('2021-08-08');
   
     build() {
       Column() {
         Button('set selectedDate to 2023-07-08')
           .margin(10)
           .onClick(() => {
-            this.selectedDate = new Date('2023-07-08')
+            this.selectedDate = new Date('2023-07-08');
           })
         Button('increase the year by 1')
           .margin(10)
           .onClick(() => {
-            this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+            this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
           })
         Button('increase the month by 1')
           .margin(10)
           .onClick(() => {
-            this.selectedDate.setMonth(this.selectedDate.getMonth() + 1)
+            this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
           })
         Button('increase the day by 1')
           .margin(10)
           .onClick(() => {
-            this.selectedDate.setDate(this.selectedDate.getDate() + 1)
+            this.selectedDate.setDate(this.selectedDate.getDate() + 1);
           })
         DatePicker({
           start: new Date('1970-1-1'),
@@ -329,7 +331,7 @@ From this example, we learn the initialization process of an \@State decorated v
         this.increaseBy = increaseBy;
      }
    }
-   let obj = new C1(1, 2)
+   let obj = new C1(1, 2);
    MyComponent(obj)
    ```
 
@@ -346,7 +348,7 @@ In this example, the **message** variable is of the Map<number, string> type. Wh
 @Entry
 @Component
 struct MapSample {
-  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
 
   build() {
     Row() {
@@ -356,20 +358,20 @@ struct MapSample {
           Text(`${item[1]}`).fontSize(30)
           Divider()
         })
-        Button('init map').onClick(() =>{
-          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
+        Button('init map').onClick(() => {
+          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]]);
         })
-        Button('set new one').onClick(() =>{
-          this.message.set(4, "d")
+        Button('set new one').onClick(() => {
+          this.message.set(4, "d");
         })
-        Button('clear').onClick(() =>{
-          this.message.clear()
+        Button('clear').onClick(() => {
+          this.message.clear();
         })
-        Button('replace the first one').onClick(() =>{
-          this.message.set(0, "aa")
+        Button('replace the first one').onClick(() => {
+          this.message.set(0, "aa");
         })
-        Button('delete the first one').onClick(() =>{
-          this.message.delete(0)
+        Button('delete the first one').onClick(() => {
+          this.message.delete(0);
         })
       }
       .width('100%')
@@ -391,7 +393,7 @@ In this example, the **message** variable is of the Set\<number\> type. When the
 @Entry
 @Component
 struct SetSample {
-  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4]);
 
   build() {
     Row() {
@@ -400,17 +402,17 @@ struct SetSample {
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })
-        Button('init set').onClick(() =>{
-          this.message = new Set([0, 1, 2 ,3,4 ])
+        Button('init set').onClick(() => {
+          this.message = new Set([0, 1, 2, 3, 4]);
         })
-        Button('set new one').onClick(() =>{
-          this.message.add(5)
+        Button('set new one').onClick(() => {
+          this.message.add(5);
         })
-        Button('clear').onClick(() =>{
-          this.message.clear()
+        Button('clear').onClick(() => {
+          this.message.clear();
         })
-        Button('delete the first one').onClick(() =>{
-          this.message.delete(0)
+        Button('delete the first one').onClick(() => {
+          this.message.delete(0);
         })
       }
       .width('100%')
@@ -428,7 +430,6 @@ struct SetSample {
 @Entry
 @Component
 struct EntryComponent {
-
   build() {
     Column() {
       MyComponent()
@@ -438,7 +439,7 @@ struct EntryComponent {
 
 @Component
 struct MyComponent {
-  @State  count: number | undefined = 0;
+  @State count: number | undefined = 0;
 
   build() {
     Column() {
@@ -450,7 +451,6 @@ struct MyComponent {
     }
   }
 }
-
 ```
 
 
@@ -460,7 +460,7 @@ struct MyComponent {
 
 The **this** object inside the arrow function's body is established based on the scope where the arrow function is defined points, not the scope where the arrow function is executed. As such, **this** of **changeCoverUrl** points to **PlayDetailViewModel** instead of the state variable decorated by @State.
 
-Nonexample:
+Incorrect usage:
 
 ```ts
 
@@ -468,7 +468,7 @@ export default class PlayDetailViewModel {
   coverUrl: string = '#00ff00'
 
   changeCoverUrl= ()=> {
-    this.coverUrl = '#00F5FF'
+    this.coverUrl = '#00F5FF';
   }
 
 }
@@ -480,7 +480,7 @@ import PlayDetailViewModel from './PlayDetailViewModel'
 @Entry
 @Component
 struct PlayDetailPage {
-  @State vm: PlayDetailViewModel = new PlayDetailViewModel()
+  @State vm: PlayDetailViewModel = new PlayDetailViewModel();
 
   build() {
     Stack() {
@@ -488,7 +488,7 @@ struct PlayDetailPage {
       Row() {
         Button ('Change Color')
           .onClick(() => {
-            this.vm.changeCoverUrl()
+            this.vm.changeCoverUrl();
           })
       }
     }
@@ -521,7 +521,7 @@ import PlayDetailViewModel from './PlayDetailViewModel'
 @Entry
 @Component
 struct PlayDetailPage {
-  @State vm: PlayDetailViewModel = new PlayDetailViewModel()
+  @State vm: PlayDetailViewModel = new PlayDetailViewModel();
 
   build() {
     Stack() {
@@ -529,8 +529,8 @@ struct PlayDetailPage {
       Row() {
         Button ('Change Color')
           .onClick(() => {
-            let self = this.vm
-            this.vm.changeCoverUrl(self)
+            let self = this.vm;
+            this.vm.changeCoverUrl(self);
           })
       }
     }
@@ -543,9 +543,13 @@ struct PlayDetailPage {
 
 ### State Variable Changes in the Constructor Not Taking Effect
 
-In state management, classes are wrapped with a proxy. When a member variable of a class is changed in a component, the proxy intercepts the change. When the value in the data source is changed, the proxy notifies the bound component of the change. In this way, the change can be observed and trigger UI re-rendering. If a state variable is changed in a constructor, the change does not pass through the proxy (because the change occurs in the data source). Even if the change is successful, the UI cannot be re-rendered.
+In state management, classes are wrapped with a proxy. When a member variable of a class is changed in a component, the proxy intercepts the change. When the value in the data source is changed, the proxy notifies the bound component of the change. In this way, the change can be observed and trigger UI re-rendering.
 
-[Nonexample]
+If you initialize the arrow function for modifying **success** in the constructor, **this** points to the original **TestModel** class, which has not been wrapped with a proxy. As a result, the change can be observed through query event triggering.
+
+To enable the change to be observable, place the arrow function for modifying **success** in **query**. As **query** is wrapped with a proxy and has an object initialized, **this** points to the proxy object.
+
+[Incorrect Usage]
 
 ```ts
 @Entry
@@ -559,8 +563,8 @@ struct Index {
         Text(this.viewModel.isSuccess ? 'success' : 'failed')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .onClick(()=>{
-            this.viewModel.query()
+          .onClick(() => {
+            this.viewModel.query();
           })
       }.width('100%')
     }.height('100%')
@@ -568,28 +572,30 @@ struct Index {
 }
 
 export class TestModel {
-  isSuccess: boolean = false
+  isSuccess: boolean = false;
   model: Model
 
   constructor() {
-    this.model = new Model(()=>{
-      this.isSuccess = true
-      console.log(`this.isSuccess: ${this.isSuccess}`)
+    this.model = new Model(() => {
+      this.isSuccess = true;
+      console.log(`this.isSuccess: ${this.isSuccess}`);
     })
   }
+
   query() {
-    this.model.query()
+    this.model.query();
   }
 }
 
 export class Model {
-  callback: ()=>void
+  callback: () => void
 
-  constructor(cb: ()=>void) {
-    this.callback = cb
+  constructor(cb: () => void) {
+    this.callback = cb;
   }
-  query(){
-      this.callback()
+
+  query() {
+    this.callback();
   }
 }
 ```
@@ -611,7 +617,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            this.viewModel.query()
+            this.viewModel.query();
           })
       }.width('100%')
     }.height('100%')
@@ -619,15 +625,15 @@ struct Index {
 }
 
 export class TestModel {
-  isSuccess: boolean = false
+  isSuccess: boolean = false;
   model: Model = new Model(() => {
   })
 
   query() {
-    this.model = new Model(() => {
-      this.isSuccess = true
-    })
-    this.model.query()
+    this.model.callback = () => {
+      this.isSuccess = true;
+    }
+    this.model.query();
   }
 }
 
@@ -635,11 +641,11 @@ export class Model {
   callback: () => void
 
   constructor(cb: () => void) {
-    this.callback = cb
+    this.callback = cb;
   }
 
   query() {
-    this.callback()
+    this.callback();
   }
 }
 ```

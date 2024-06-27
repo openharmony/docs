@@ -37,3 +37,14 @@ Describes a rectangle, which can be defined by two coordinate points: upper left
 | top    | number | Yes  | Yes  | Y coordinate of the upper left corner of the rectangle. The value is a floating point number.|
 | right  | number | Yes  | Yes  | X coordinate of the lower right corner of the rectangle. The value is a floating point number.|
 | bottom | number | Yes  | Yes  | Y coordinate of the lower right corner of the rectangle. The value is a floating point number.|
+
+## Point<sup>12+</sup>
+
+Describes the coordinate point.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name  | Type  | Readable| Writable| Description                          |
+| ------ | ------ | ---- | ---- | ------------------------------ |
+| x      | number | Yes  | Yes  | Horizontal coordinate. The value is a floating point number.              |
+| y      | number | Yes  | Yes  | Vertical coordinate. The value is a floating point number.              |

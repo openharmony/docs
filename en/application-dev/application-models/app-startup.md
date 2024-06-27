@@ -3,7 +3,7 @@
 
 ## Overview
 
-The AppStartup framework provides a simpler and more efficient mode of initializing components. You only need to implement [StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md) for each component to be initialized and configure the dependency between components in the [startup_config](#adding-the-appstartup-framework-configuration-file) file. The AppStartup framework then uses directed acyclic graph (DAG) topological sorting to ensure that these components are initialized in the correct sequence. The AppStartup framework can be used only in the entry module.
+The AppStartup framework provides a simpler and more efficient method of initializing components. It supports asynchronous component initialization to accelerate application startup. To use the AppStartup framework, you only need to implement [StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md) for each component to be initialized and configure the dependency between AppStartups in the [startup_config](#adding-the-appstartup-framework-configuration-file) file. The AppStartup framework uses topological sorting to ensure that these components are initialized in the correct sequence. The AppStartup framework can be used only in the entry module.
 
 
 ### Setting appStartup
@@ -32,37 +32,51 @@ The sample code is as follows:
 {
   "startupTasks": [
     {
-      "name": "Sample_001",
-      "srcEntry": "./ets/startup/Sample_001.ts",
+      "name": "StartupTask_001",
+      "srcEntry": "./ets/startup/StartupTask_001.ets",
       "dependencies": [
-        "Sample_002",
-        "Sample_003"
+        "StartupTask_002",
+        "StartupTask_003"
       ],
-      "excludeFromAutoStart": true
-    },
-    {
-      "name": "Sample_002",
-      "srcEntry": "./ets/startup/Sample_002.ts",
-      "excludeFromAutoStart": true
-    },
-    {
-      "name": "Sample_003",
-      "srcEntry": "./ets/startup/Sample_003.ts",
-      "dependencies": [
-        "Sample_004"
-      ],
-      "excludeFromAutoStart": true,
+      "runOnThread": "taskPool",
       "waitOnMainThread": false
     },
     {
-      "name": "Sample_004",
-      "srcEntry": "./ets/startup/Sample_004.ts",
-      "excludeFromAutoStart": true,
+      "name": "StartupTask_002",
+      "srcEntry": "./ets/startup/StartupTask_002.ets",
+      "dependencies": [
+        "StartupTask_004"
+      ],
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false
+    },
+    {
+      "name": "StartupTask_003",
+      "srcEntry": "./ets/startup/StartupTask_003.ets",
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false
+    },
+    {
+      "name": "StartupTask_004",
+      "srcEntry": "./ets/startup/StartupTask_004.ets",
+      "runOnThread": "taskPool",
+      "waitOnMainThread": false
+    },
+    {
+      "name": "StartupTask_005",
+      "srcEntry": "./ets/startup/StartupTask_005.ets",
+      "runOnThread": "mainThread",
+      "waitOnMainThread": true
+    },
+    {
+      "name": "StartupTask_006",
+      "srcEntry": "./ets/startup/StartupTask_006.ets",
+      "runOnThread": "mainThread",
       "waitOnMainThread": false,
-      "runOnThread": "mainThread"
+      "excludeFromAutoStart": true
     }
   ],
-  "configEntry": "./ets/startup/StartupConfig.ts"
+  "configEntry": "./ets/startup/StartupConfig.ets"
 }
 ```
 
@@ -71,7 +85,7 @@ Fields in the **startup_config** file:
 | Field| Description| Data Type| Default Value Allowed|
 | -------- | -------- | -------- | -------- |
 | startupTasks | Information about the components to be initialized.| Object array| No|
-| configEntry | Path of the [StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig) file.| String| No|
+| configEntry | Path of the [StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md) file.| String| No|
 
 Description of **startupTasks**:
 
@@ -82,54 +96,62 @@ Description of **startupTasks**:
 | dependencies | Array of class names of the [StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md) API implemented by the dependency components of the current component.| Object array| Yes (initial value: left empty)|
 | excludeFromAutoStart | Indicates whether to exclude the automatic mode.<br>- **true**: manual mode.<br>- **false**: automatic mode.| Boolean| Yes (initial value: **false**)|
 | waitOnMainThread | Indicates whether to wait in the main thread.<br>- **true**: The main thread waits for component initialization.<br>- **false**: The main thread does not wait for component initialization.| Boolean| Yes (initial value: **true**)|
-| runOnThread | Thread where initialization is performed. Currently, only the main thread is supported.| String| Yes (initial value: **mainThread**)|
+| runOnThread | Thread where initialization is performed.<br>- **mainThread**: executed in the main thread.<br>- **taskPool**: executed in an asynchronous thread.| String| Yes (initial value: **mainThread**)|
 
 
 ### Adding Components
 
-All components to be initialized must implement the [StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md) API. The code file should be stored in the **startup** folder in the **ets** directory of the project.
+All components to be initialized must implement the [StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md) API. The code file should be stored in the **startup** folder in the **ets** directory of the project, and the [Sendable](../arkts-utils/arkts-sendable.md) annotation must be added to **StartupTask**.
 
 ```ts
 import StartupTask from '@ohos.app.appstartup.StartupTask';
+import common from '@ohos.app.ability.common';
+import hilog from '@ohos.hilog';
 
-export default class Sample_001 extends StartupTask {
-  async init(context) {
-    console.info("StartupTest Sample_001 init");
-    ...
+@Sendable
+export default class StartupTask_001 extends StartupTask {
+  constructor() {
+    super();
+  }
+  async init(context: common.AbilityStageContext) {
+    hilog.info(0x0000, 'testTag', 'StartupTask_001 init.');
+    return 'StartupTask_001';
   }
 
-  onDependencyCompleted(dependence: string, result) {
-    console.info("StartupTest Sample_001 onDependencyCompleted dependence=" + dependence);
-    ...
+  onDependencyCompleted(dependence: string, result: Object): void {
+    hilog.info(0x0000, 'testTag', 'StartupTask_001 onDependencyCompleted, dependence: %{public}s, result: %{public}s',
+      dependence, JSON.stringify(result));
   }
 }
 ```
 
 ### Adding the AppStartup Framework Configuration
 
-Add the AppStartup framework configuration to the **startup** folder in the **ets** directory of the project. You can configure the timeout interval and component initialization listener in the configuration file by setting [StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md) and [StartupListener](../reference/apis-ability-kit/js-apis-app-appstartup-startupListener) in [StartupConfigEntry](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md).
+Add the AppStartup framework configuration to the **startup** folder in the **ets** directory of the project. You can configure the timeout interval and component initialization listener in the configuration file by setting [StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md) and [StartupListener](../reference/apis-ability-kit/js-apis-app-appstartup-startupListener.md) in [StartupConfigEntry](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md).
 
 ```ts
 import StartupConfig from '@ohos.app.appstartup.StartupConfig';
 import StartupConfigEntry from '@ohos.app.appstartup.StartupConfigEntry';
 import StartupListener from '@ohos.app.appstartup.StartupListener';
+import hilog from '@ohos.hilog';
+import { BusinessError } from '@ohos.base';
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
   onConfig() {
-    console.log('StartupTest MyStartupConfigEntry onConfig');
-    let onCompletedCallback = (error) => {
-      console.log('StartupTest MyStartupConfigEntry callback, error=' + JSON.stringify(error));
+    hilog.info(0x0000, 'testTag', `onConfig`);
+    let onCompletedCallback = (error: BusinessError<void>) => {
+      hilog.info(0x0000, 'testTag', `onCompletedCallback`);
       if (error) {
-        console.log('onCompletedCallback: %{public}d, mssage: %{public}s', error.code, error.mssage);
+        hilog.info(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
       } else {
-        console.log('onCompletedCallback: success');
+        hilog.info(0x0000, 'testTag', `onCompletedCallback: success.`);
       }
     }
     let startupListener: StartupListener = {
       'onCompleted': onCompletedCallback
     }
     let config: StartupConfig = {
-      'timeoutMs': 5000,
+      'timeoutMs': 10000,
       'startupListener': startupListener
     }
     return config;
@@ -146,31 +168,31 @@ The AppStartup framework provides automatic and manual modes for component initi
 In manual mode, call [run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun) in [StartupManager](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md) to manually start component initialization.
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@ohos.base';
 import startupManager from '@ohos.app.appstartup.startupManager';
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
-import StartupListener from '@ohos.app.appstartup.StartupListener';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    let startup = startupManager;
-    let startParams = ['Sample_001'];
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let startParams = ['StartupTask_006'];
     try {
-        startup.run(startParams).then(() => {
+      startupManager.run(startParams).then(() => {
         console.log('StartupTest startupManager run then, startParams = ');
-        }).catch(error => {
+      }).catch((error: BusinessError) => {
         console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
         console.info("StartupTest promise catch error, startParams = "
-            + JSON.stringify(startParams));
-        })
+          + JSON.stringify(startParams));
+      })
     } catch (error) {
-        let errmsg = JSON.stringify(error);
-        let errCode = error.code;
-        console.log('Startup catch error , errCode= ' + errCode);
-        console.log('Startup catch error ,error= ' + errmsg);
+      let errMsg = JSON.stringify(error);
+      let errCode: number = error.code;
+      console.log('Startup catch error , errCode= ' + errCode);
+      console.log('Startup catch error ,error= ' + errMsg);
+    }
   }
+  ...
 }
 ```
 
@@ -182,7 +204,7 @@ In automatic mode, you only need to set **excludeFromAutoStart** in [startup_con
 {
   "startupTasks": [
     {
-      "name": "Sample_001",
+      "name": "StartupTask_001",
       ...
       "excludeFromAutoStart": false
     },

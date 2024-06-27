@@ -8,8 +8,8 @@
 
 在JSVM接口开发中，经常需要定义和操作对象。例如，创建一个API接口，该接口接受一个对象作为输入参数，对该对象执行某些操作，并返回一个结果对象。在这个过程中，需要确保接口的定义清晰、规范，并且与对象的属性和方法相兼容。
 
-> - **接口（API）**：接口定义了组件之间的交互协议，包括输入参数、输出结果以及可能的错误处理。通过接口，组件可以相互调用和交换数据，而无需了解对方的内部实现细节。
-> - **对象（Object）**：在JavaScript，对象是一种复合数据类型，允许存储多个不同类型的值作为一个单独的实体。对象是属性和方法的集合。属性是与对象相关联的值，而方法则是对象可以执行的操作。
+- **接口（API）**：接口定义了组件之间的交互协议，包括输入参数、输出结果以及可能的错误处理。通过接口，组件可以相互调用和交换数据，而无需了解对方的内部实现细节。
+- **对象（Object）**：在JavaScript，对象是一种复合数据类型，允许存储多个不同类型的值作为一个单独的实体。对象是属性和方法的集合。属性是与对象相关联的值，而方法则是对象可以执行的操作。
 
 ## 接口说明
 
@@ -30,6 +30,8 @@
 
 ## 使用示例
 
+以下样例代码的基础代码已在jsvm-api.md实现，样例的注册回调、方法别名、样例方法都需要添加到jsvm-api.md。
+
 ### OH_JSVM_GetPrototype
 
 获取给定JavaScript对象的原型。
@@ -37,16 +39,16 @@
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，GetPrototype在jsvm-api.md注册回调
+// GetPrototype注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetPrototype},
 };
 static JSVM_CallbackStruct *method = param;
-// GetPrototype方法别名，供TS侧调用。在jsvm-api.md进行添加
+// GetPrototype方法别名，供TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getPrototype", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// GetPrototype方法添加到jsvm-api.md
+// OH_JSVM_GetPrototype的样例方法
 static JSVM_Value GetPrototype(JSVM_Env env, JSVM_CallbackInfo info)
 {
     g_data_type = "utf8";
@@ -88,16 +90,16 @@ try {
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，CreateObject在jsvm-api.md注册回调
+// CreateObject注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateObject},
 };
 static JSVM_CallbackStruct *method = param;
-// CreateObject方法别名，供TS侧调用。在jsvm-api.md进行添加
+// CreateObject方法别名，供TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// CreateObject方法添加到jsvm-api.md
+// OH_JSVM_CreateObject的样例方法
 static JSVM_Value CreateObject(JSVM_Env env, JSVM_CallbackInfo info)
 {
     g_data_type = "object";
@@ -137,16 +139,16 @@ try {
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，ObjectFreeze在jsvm-api.md注册回调
+// ObjectFreeze注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = ObjectFreeze},
 };
 static JSVM_CallbackStruct *method = param;
-// ObjectFreeze方法别名，供TS侧调用。在jsvm-api.md进行添加
+// ObjectFreeze方法别名，供TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"objectFreeze", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// ObjectFreeze方法添加到jsvm-api.md
+// OH_JSVM_ObjectFreeze的样例方法
 static JSVM_Value ObjectFreeze(JSVM_Env env, JSVM_CallbackInfo info)
 {
     g_data_type = "objectstr";
@@ -191,16 +193,16 @@ try {
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，ObjectSeal在jsvm-api.md注册回调
+// ObjectSeal注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = ObjectSeal},
 };
 static JSVM_CallbackStruct *method = param;
-// ObjectSeal方法别名，供TS侧调用。在jsvm-api.md进行添加
+// ObjectSeal方法别名，供TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"objectSeal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// ObjectSeal方法添加到jsvm-api.md
+// OH_JSVM_ObjectSeal的样例方法
 static JSVM_Value ObjectSeal(JSVM_Env env, JSVM_CallbackInfo info)
 {
     g_data_type = "objectstr";
@@ -258,16 +260,16 @@ try {
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，GetTypeof在jsvm-api.md注册回调
+// GetTypeof注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetTypeof},
 };
 static JSVM_CallbackStruct *method = param;
-// GetTypeof方法别名，TS侧调用。在jsvm-api.md进行添加
+// GetTypeof方法别名，TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getTypeof", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// GetTypeof方法添加到jsvm-api.md
+// OH_JSVM_Typeof的样例方法
 static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 1;
@@ -336,16 +338,16 @@ try {
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，InstanceOf在jsvm-api.md注册回调
+// InstanceOf注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = InstanceOf},
 };
 static JSVM_CallbackStruct *method = param;
-// InstanceOf方法别名，TS侧调用。在jsvm-api.md进行添加
+// InstanceOf方法别名，TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"instanceOf", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// InstanceOf方法添加到jsvm-api.md
+// OH_JSVM_Instanceof的样例方法
 static JSVM_Value InstanceOf(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t argc = 2;
@@ -393,13 +395,13 @@ try {
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，SetTypeTagToObject，CheckObjectTypeTag在jsvm-api.md注册回调
+// SetTypeTagToObject，CheckObjectTypeTag注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = SetTypeTagToObject},
     {.data = nullptr, .callback = CheckObjectTypeTag},
 };
 static JSVM_CallbackStruct *method = param;
-// SetTypeTagToObject，CheckObjectTypeTag方法别名，TS侧调用。在jsvm-api.md进行添加
+// SetTypeTagToObject，CheckObjectTypeTag方法别名，TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"setTypeTagToObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
     {"checkObjectTypeTag", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
@@ -412,7 +414,7 @@ static const JSVM_TypeTag TagsData[NUMBERINT_FOUR] = {
     {0, 0}, // 用于表示无标签或默认标签
     {0x6a971439f5b2e5d7, 0x531dc28a7e5317c0},
 };
-// SetTypeTagToObject，CheckObjectTypeTag方法添加到jsvm-api.md
+// OH_JSVM_TypeTagObject的样例方法
 static JSVM_Value SetTypeTagToObject(JSVM_Env env, JSVM_CallbackInfo info)
 {
     // 获取函数调用信息和参数
@@ -433,7 +435,7 @@ static JSVM_Value SetTypeTagToObject(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, true, &result);
     return result;
 }
-
+// OH_JSVM_CheckObjectTypeTag的样例方法
 static JSVM_Value CheckObjectTypeTag(JSVM_Env env, JSVM_CallbackInfo info)
 {
     // 获取函数调用信息和参数
@@ -494,16 +496,16 @@ try {
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，CreateExternal在jsvm-api.md注册回调
+// CreateExternal注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateExternal},
 };
 static JSVM_CallbackStruct *method = param;
-// CreateExternal方法别名，供TS侧调用。在jsvm-api.md进行添加
+// CreateExternal方法别名，供TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createExternal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// CreateExternal方法添加到jsvm-api.md
+// OH_JSVM_CreateExternal的样例方法
 static JSVM_Value CreateExternal(JSVM_Env env, JSVM_CallbackInfo info)
 {
     size_t dataSize = 10;
@@ -546,16 +548,16 @@ OH_JSVM_CreateExternal可以创建包装自定义的C/C++对象并将其公开�
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，GetValueExternal在jsvm-api.md注册回调
+// GetValueExternal注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetValueExternal},
 };
 static JSVM_CallbackStruct *method = param;
-// GetValueExternal方法别名，供TS侧调用。在jsvm-api.md进行添加
+// GetValueExternal方法别名，供TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getValueExternal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// getValueExternal方法添加到jsvm-api.md
+// OH_JSVM_GetValueExternal的样例方法
 static JSVM_Value GetValueExternal(JSVM_Env env, JSVM_CallbackInfo info)
 {
     g_data_type = "int";
@@ -601,16 +603,16 @@ try {
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，CreateSymbol在jsvm-api.md注册回调
+// CreateSymbol注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateSymbol},
 };
 static JSVM_CallbackStruct *method = param;
-// CreateSymbol方法别名，供TS侧调用。在jsvm-api.md进行添加
+// CreateSymbol方法别名，供TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createSymbol", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// CreateSymbol方法添加到jsvm-api.md
+// OH_JSVM_CreateSymbol的样例方法
 static JSVM_Value CreateSymbol(JSVM_Env env, JSVM_CallbackInfo info)
 {
     JSVM_Value result = nullptr;
@@ -650,16 +652,16 @@ try {
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，SymbolFor在jsvm-api.md注册回调
+// SymbolFor注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = SymbolFor},
 };
 static JSVM_CallbackStruct *method = param;
-// SymbolFor方法别名，供TS侧调用。在jsvm-api.md进行添加
+// SymbolFor方法别名，供TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"symbolFor", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// SymbolFor方法添加到jsvm-api.md
+// OH_JSVM_SymbolFor的样例方法
 static JSVM_Value SymbolFor(JSVM_Env env, JSVM_CallbackInfo info)
 {
     JSVM_Value description = nullptr;

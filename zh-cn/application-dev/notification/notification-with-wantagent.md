@@ -22,6 +22,10 @@
    import wantAgent from '@ohos.app.ability.wantAgent';
    import { WantAgent } from '@ohos.app.ability.wantAgent';
    import Base from '@ohos.base';
+   import hilog from '@ohos.hilog';
+   
+   const TAG: string = '[PublishOperation]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 创建WantAgentInfo信息。
@@ -75,10 +79,10 @@
    // 创建WantAgent
    wantAgent.getWantAgent(wantAgentInfo, (err:Base.BusinessError, data:WantAgent) => {
      if (err) {
-       console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
+       hilog.error(DOMAIN_NUMBER, TAG, `Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in getting want agent.');
+     hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in getting want agent.');
      wantAgentObj = data;
    });
    ```
@@ -103,10 +107,10 @@
    
    notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
-       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+       hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in publishing notification.');
+     hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
    });
    ```
 

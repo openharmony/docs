@@ -93,4 +93,4 @@ HiTraceChain是基于云计算分布式跟踪调用链思想，在端侧业务�
 
 ## 跨进程/跨设备分布式跟踪说明
 
-跨进程/跨设备分布式跟踪依赖于OpenHarmony各模块相应业务接口的napi实现是否存在进程及设备之间的通信调用，具体请参考[HiTraceChain开发指导](../../device-dev/subsystems/subsys-dfx-hitracechain.md)。
+跨进程/跨设备分布式跟踪依赖于OpenHarmony各模块相应业务接口的napi实现是否存在进程及设备之间的通信调用<!--Del-->，具体请参考<!--Del-->[HiTraceChain开发指导](../../device-dev/subsystems/subsys-dfx-hitracechain.md)<!--DelEnd-->。

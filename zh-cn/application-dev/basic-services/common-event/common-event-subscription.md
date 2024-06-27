@@ -25,8 +25,10 @@
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
    import promptAction from '@ohos.promptAction';
+   import hilog from '@ohos.hilog';
 
    const TAG: string = 'ProcessModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 创建订阅者信息，详细的订阅者信息数据类型及包含的参数请见[CommonEventSubscribeInfo](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscribeInfo.md)文档介绍。
@@ -46,13 +48,11 @@
    // 创建订阅者回调
    commonEventManager.createSubscriber(subscribeInfo, (err: Base.BusinessError, data: commonEventManager.CommonEventSubscriber) => {
      if (err) {
-       console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+       hilog.error(DOMAIN_NUMBER, TAG, `Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in creating subscriber.');
+     hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in creating subscriber.');
      subscriber = data;
-     // 订阅公共事件回调
-     ...
    })
    ```
 
@@ -60,14 +60,15 @@
    
    ```ts
    // 订阅公共事件回调
-   if (this.subscriber !== null) {
+   if (subscriber !== null) {
      commonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
        if (err) {
-         console.error(`Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
+         hilog.error(DOMAIN_NUMBER, TAG, `Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
          return;
        }
+       // ...
      })
    } else {
-     console.error(`Need create subscriber`);
+     hilog.error(DOMAIN_NUMBER, TAG, `Need create subscriber`);
    }
    ```

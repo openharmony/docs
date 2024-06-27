@@ -45,7 +45,7 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -94,7 +94,7 @@ getTotalSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;):
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -151,7 +151,7 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -200,7 +200,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback: AsyncCallback&lt;number&gt;): 
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -257,7 +257,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -301,7 +301,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -347,7 +347,7 @@ getTotalSize(): Promise&lt;number&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -388,7 +388,7 @@ getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -432,7 +432,7 @@ getTotalSizeSync(): number
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -475,7 +475,7 @@ getFreeSize(): Promise&lt;number&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -516,7 +516,7 @@ getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -560,7 +560,7 @@ getFreeSizeSync(): number
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -603,7 +603,7 @@ getSystemSize(): Promise&lt;number&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -644,7 +644,7 @@ getSystemSize(callback: AsyncCallback&lt;number&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -688,7 +688,7 @@ getUserStorageStats(): Promise&lt;StorageStats&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -729,7 +729,7 @@ getUserStorageStats(callback: AsyncCallback&lt;StorageStats&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -779,7 +779,7 @@ getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600009 | User if out of range. |
 | 13900042 | Unknown error. |
@@ -823,7 +823,7 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600009 | User if out of range. |
 | 13900042 | Unknown error. |

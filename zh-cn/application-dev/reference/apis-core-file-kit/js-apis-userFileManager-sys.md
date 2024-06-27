@@ -1430,7 +1430,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 
 **示例：**
 
@@ -1503,7 +1503,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promis
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 
 **示例：**
 
@@ -2720,6 +2720,15 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 | --------------------------------------- | ----------------- |
 |Promise&lt;void&gt; | Promise对象，返回void。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
+
 **示例：**
 
 ```ts
@@ -2763,6 +2772,15 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ---------- |
 | userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 
 **示例：**
 

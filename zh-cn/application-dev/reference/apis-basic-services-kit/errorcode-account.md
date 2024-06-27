@@ -10,7 +10,7 @@
 
 **错误信息**
 
-System service works abnormally.
+The system service works abnormally.
 
 **可能原因**
 
@@ -141,7 +141,7 @@ The account type is not supported.
 
 **错误信息**
 
-The account number has reached the upper limit.  
+The number of accounts has reached the upper limit.  
 
 **可能原因**
 
@@ -234,7 +234,7 @@ The event listener has not been registered.
 
 **错误信息**
 
-The network exception.
+Network exception.
 
 **可能原因**
 
@@ -250,6 +250,48 @@ The network exception.
 2. 确保网络可以正常联网；
 3. 确保应用具有联网权限；
 4. 重试相关操作；
+
+## 12300014 域账号未认证
+
+**错误信息**
+
+The domain account is not authenticated.
+
+**可能原因**
+
+域账号未登录。
+
+**处理步骤**
+
+先登录域账号。
+
+## 12300015 短名称已存在
+
+**错误信息**
+
+The short name already exists.
+
+**可能原因**
+
+创建账号使用的短名称已经存在。
+
+**处理步骤**
+
+更换别的不存在的短名称。
+
+## 12300016 账号登录数已达上限
+
+**错误信息**
+
+The number of logged in accounts reaches the upper limit.
+
+**可能原因**
+
+登录的账号数已经达到上限，不能再登录新账号。
+
+**处理步骤**
+
+将已经登录的账号退出，再登录新的账号。
 
 ## 12300101 凭据不正确
 
@@ -304,7 +346,7 @@ PIN码输入器已注册，解注册之前无法重复注册。
 
 **错误信息**
 
-The credential inputer not found.
+The credential inputer is not found.
 
 **可能原因**
 
@@ -334,7 +376,7 @@ The trust level is not supported.
 
 **错误信息**
 
-The auth type is not supported.
+The authentication type is not supported.
 
 **可能原因**
 
@@ -349,7 +391,7 @@ The auth type is not supported.
 
 **错误信息**
 
-The auth type does not exist.
+The authentication type does not exist.
 
 **可能原因**
 
@@ -380,7 +422,7 @@ The authentication session does not exist.
 
 **错误信息**
 
-The authentication, enrollment, update operation is canceled.
+The authentication, enrollment, or update operation is canceled.
 
 **可能原因**
 
@@ -412,7 +454,7 @@ The authentication is locked.
 
 **错误信息**
 
-The authentication is timeout.
+The authentication time out.
 
 **可能原因**
 
@@ -429,7 +471,7 @@ The authentication is timeout.
 
 **错误信息**
 
-The auth service is busy.
+The authentication service is busy.
 
 **可能原因**
 
@@ -445,7 +487,7 @@ The auth service is busy.
 
 **错误信息**
 
-The account authenticator service does not exist.
+The account authentication service does not exist.
 
 **可能原因**
 
@@ -465,7 +507,7 @@ The account authenticator service does not exist.
 
 **错误信息**
 
-The account authenticator service works abnormally.
+The account authentication service works abnormally.
 
 **可能原因**
 
@@ -477,6 +519,50 @@ The account authenticator service works abnormally.
 
 1. 请重试或重启系统。
 2. 按照规范开发应用认证器。
+
+## 12300115 用户认证密码个数达到上限
+
+**错误信息**
+
+The number of credentials reaches the upper limit.
+
+**可能原因**
+
+1. 身份认证服务出现未知错误。
+2. 用户已有对应类型的密码， 不能再添加密码。
+
+**处理步骤**
+
+1. 请重试或重启系统。
+2. 修改密码或删除已有密码。
+
+## 12300116 凭证复杂度验证失败
+
+**错误信息**
+
+Credential complexity verification failed.
+
+**可能原因**
+
+设置的凭证太过简单。
+
+**处理步骤**
+
+按照要求录入包含特定字符的凭证。
+
+## 12300117 PIN码过期
+
+**错误信息**
+
+PIN is expired.
+
+**可能原因**
+
+用户认证的PIN码过期。
+
+**处理步骤**
+
+重新设置PIN码。
 
 ## 12400001 应用不存在
 
@@ -513,7 +599,7 @@ The custom data does not exist.
 
 **错误信息**
 
-The number of custom data reaches upper limit.
+The number of custom data records reaches the upper limit.
 
 **可能原因**
 
@@ -528,7 +614,7 @@ The number of custom data reaches upper limit.
 
 **错误信息**
 
-The number of token reaches upper limit.
+The number of tokens reaches the upper limit.
 
 **可能原因**
 
@@ -543,7 +629,7 @@ The number of token reaches upper limit.
 
 **错误信息**
 
-The size of authorization list reaches upper limit.
+The size of the authorization list reaches the upper limit.
 
 **可能原因**
 

@@ -14,14 +14,14 @@ If an error occurs in any of the preceding processes, the client will receive a 
 ## Modules to Import
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 ```
 
 ## Examples
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
@@ -144,8 +144,8 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://";
@@ -191,17 +191,21 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
-let header: Map<string, string> | undefined;
-if (header !=undefined) {
-    header.set("key", "value")
-    header.set("key2", "value2")
+let options: webSocket.WebSocketRequestOptions | undefined;
+if (options !=undefined) {
+  options.header = {
+     name1: "value1",
+     name2: "value2",
+     name3: "value3"
+  };
+  options.caPath = "";
 }
 let url = "ws://"
-ws.connect(url, header as webSocket.WebSocketRequestOptions, (err: BusinessError, value: Object) => {
+ws.connect(url, options, (err: BusinessError, value: Object) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -248,7 +252,7 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
@@ -289,11 +293,15 @@ Sends data through a WebSocket connection. This API uses an asynchronous callbac
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
 ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("connect success");
@@ -301,7 +309,6 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
       console.log("connect fail, err:" + JSON.stringify(err))
     }
 });
-
 ws.on('open', (err: BusinessError, value: Object) => {
   console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
     ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
@@ -352,12 +359,15 @@ Sends data through a WebSocket connection. This API uses a promise to return the
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
-
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
 ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("connect success");
@@ -409,8 +419,8 @@ Closes a WebSocket connection. This API uses an asynchronous callback to return 
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.close((err: BusinessError) => {
@@ -451,8 +461,8 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 
@@ -504,7 +514,7 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 let options: webSocket.WebSocketCloseOptions | undefined;
@@ -540,8 +550,8 @@ Enables listening for the **open** events of a WebSocket connection. This API us
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError, Callback } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError, Callback } from '@kit.BasicServicesKit';
 
 let ws= webSocket.createWebSocket();
 class OutValue {
@@ -576,8 +586,8 @@ Disables listening for the **open** events of a WebSocket connection. This API u
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 class OutValue {
@@ -615,8 +625,8 @@ Enables listening for the **message** events of a WebSocket connection. This API
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
@@ -648,7 +658,7 @@ Disables listening for the **message** events of a WebSocket connection. This AP
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.off('message');
@@ -674,8 +684,8 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
@@ -706,7 +716,7 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.off('close');
@@ -732,8 +742,8 @@ Enables listening for the **error** events of a WebSocket connection. This API u
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('error', (err: BusinessError) => {
@@ -764,7 +774,8 @@ Disables listening for the **error** events of a WebSocket connection. This API 
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('error');
 ```
@@ -787,7 +798,7 @@ Enables listening for the **dataEnd** events of a WebSocket connection. This API
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('dataEnd', () => {
@@ -816,7 +827,8 @@ Disables listening for the **dataEnd** events of a WebSocket connection. This AP
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('dataEnd');
 ```
@@ -839,7 +851,7 @@ Registers an observer for HTTP Response Header events. This API uses an asynchro
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('headerReceive', (data) => {
@@ -868,7 +880,8 @@ Unregisters the observer for HTTP Response Header events. This API uses an async
 **Example**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('headerReceive');
 ```

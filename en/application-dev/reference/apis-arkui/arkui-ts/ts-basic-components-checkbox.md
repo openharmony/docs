@@ -42,8 +42,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name         | Type| Description|
 | ------------- | ------- | -------- |
-| select        | boolean | Whether the check box is selected.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the check box when it is selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**<br>An invalid value is handled as the default value.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| select        | boolean | Whether the check box is selected.<br>Default value: **false**<br>This API can be used in ArkTS widgets since API version 9.<br>Since API version 10, this attribute supports [$$](../../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the check box when it is selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**<br>An invalid value is handled as the default value.<br>This API can be used in ArkTS widgets since API version 9.|
 | unselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Border color of the check box when it is not selected.|
 | mark<sup>10+</sup> | [MarkStyle](#markstyle10) | Internal icon style of the check box.|
 | shape<sup>11+</sup> | [CheckBoxShape](#checkboxshape11) | Shape of the check box.<br>Default value: **CheckBoxShape.CIRCLE**|
@@ -54,7 +54,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name                                        | Description                                                    |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| onChange(callback: (value: boolean) => void) | Triggered when the selected status of the check box changes.<br>- The value **true** means that the check box is selected.<br>- The value **false** means that the check box is not selected.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onChange(callback: (value: boolean) => void) | Triggered when the selected status of the check box changes.<br>- The value **true** means that the check box is selected.<br>- The value **false** means that the check box is not selected.<br>This API can be used in ArkTS widgets since API version 9.|
 
 ## MarkStyle<sup>10+</sup>
 

@@ -28,8 +28,17 @@ setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed    | number                    | 是    | 鼠标移动速度，范围1-11，默认为5。   |
+| speed    | number                    | 是    | 鼠标移动速度，范围1-11，默认为7。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 
 **示例**：
 
@@ -61,13 +70,22 @@ setPointerSpeed(speed: number): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | 是    | 鼠标移动速度，范围1-11，默认为5。 |
+| speed | number | 是    | 鼠标移动速度，范围1-11，默认为7。 |
 
 **返回值**：
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](../apis-distributedservice-kit/errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 
 **示例**：
 
@@ -95,7 +113,7 @@ setPointerSpeedSync(speed: number): void
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | 是    | 鼠标移动速度，范围1-11，默认为5。 |
+| speed | number | 是    | 鼠标移动速度，范围1-11，默认为7。 |
 
 **错误码**：
 
@@ -132,6 +150,15 @@ getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标移动速度。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 
 **示例**：
 
@@ -1181,7 +1208,7 @@ setTouchpadPointerSpeed(speed: number, callback: AsyncCallback\<void>): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed | number                    | 是    |speed代表光标移动速度。speed取值范围[1,11]，默认5。  |
+| speed | number                    | 是    |speed代表光标移动速度。speed取值范围[1,11]，默认6。  |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **错误码**：
@@ -1223,7 +1250,7 @@ setTouchpadPointerSpeed(speed: number): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed| number | 是    | speed代表光标移动速度。speed取值范围[1,11]，默认5。    |
+| speed| number | 是    | speed代表光标移动速度。speed取值范围[1,11]，默认6。    |
 
 **返回值**：
 
@@ -1984,7 +2011,7 @@ getPointerSize(): Promise&lt;number&gt;
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 202  | SystemAPI permission error.  |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 
 **示例**：
 
@@ -2021,7 +2048,7 @@ getPointerSizeSync(): number
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 202  | SystemAPI permission error.  |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 
 **示例**：
 
@@ -2227,7 +2254,7 @@ getPointerColor(): Promise&lt;number&gt;
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 202  | SystemAPI permission error.  |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 
 **示例**：
 
@@ -2264,7 +2291,7 @@ getPointerColorSync(): number
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 202  | SystemAPI permission error.  |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 
 **示例**：
 

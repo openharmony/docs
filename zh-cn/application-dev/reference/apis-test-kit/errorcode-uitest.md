@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Initialization failed.
+If the test framework failed to initialize.
 
 **错误描述**
 
@@ -25,11 +25,11 @@ Initialization failed.
 ## 17000002 当前无法调用
 **错误信息**
 
-The API cannot be called concurrently.
+If the async function was not called with await.
 
 **错误描述**
 
-当前无法调用API。
+API没有被异步调用。
 
 **可能原因**
 
@@ -42,7 +42,7 @@ API没有使用await进行异步调用，造成堵塞。
 ## 17000003 断言失败
 **错误信息**
 
-User assertion about component existence failed.
+If the assertion failed.
 
 **错误描述**
 
@@ -59,7 +59,7 @@ User assertion about component existence failed.
 ## 17000004 目标控件/窗口丢失
 **错误信息**
 
-Component or UiWindow lost.
+If the window or component is invisible or destroyed.
 
 **错误描述**
 

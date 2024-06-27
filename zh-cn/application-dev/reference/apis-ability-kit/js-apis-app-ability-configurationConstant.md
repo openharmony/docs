@@ -9,14 +9,14 @@ ConfigurationConstant模块提供配置信息枚举值定义的能力。
 ## 导入模块
 
 ```ts
-import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+import { ConfigurationConstant } from '@kit.AbilityKit';
 ```
 
 ## ConfigurationConstant.ColorMode
 
 表示颜色模式的枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 
@@ -31,7 +31,7 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 表示屏幕方向的枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 
@@ -46,7 +46,7 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 表示屏幕像素的枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 

@@ -22,8 +22,8 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    > Perform the subsequent operations after the AVRecorder completes value assignment, that is, after **avRecorder = recorder;** is executed.
 
    ```ts
-   import media from '@ohos.multimedia.media';
-   import { BusinessError } from '@ohos.base';
+   import { media } from '@kit.MediaKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let avRecorder: media.AVRecorder;
    media.createAVRecorder().then((recorder: media.AVRecorder) => {
@@ -40,7 +40,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    | error | Mandatory; used to listen for AVRecorder errors.|
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    // Callback function for state changes.
    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
@@ -67,8 +67,8 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../../file-management/app-file-access.md).
 
    ```ts
-   import media from '@ohos.multimedia.media';
-   import { BusinessError } from '@ohos.base';
+   import { media } from '@kit.MediaKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let avProfile: media.AVRecorderProfile = {
      audioBitrate: 100000, // Audio bit rate.
@@ -136,8 +136,8 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
   
 ```ts
-import media from '@ohos.multimedia.media';
-import { BusinessError } from '@ohos.base';
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AudioRecorderDemo {
   private avRecorder: media.AVRecorder | undefined = undefined;

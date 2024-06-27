@@ -1,5 +1,6 @@
 # 匿名密钥证明(ArkTS)
 
+在使用本功能时，需确保网络通畅。
 
 ## 开发步骤
 
@@ -18,7 +19,6 @@
  * 以下以anonAttestKey的Promise接口操作验证为例
  */
 import { huks } from "@kit.UniversalKeystoreKit";
-import { BusinessError} from "@kit.BasicServicesKit"
 /* 1.确定密钥别名 */
 let keyAliasString = "key anon attest";
 let aliasString = keyAliasString;
@@ -30,13 +30,9 @@ let anonAttestCertChain: Array<string>;
 class throwObject {
   isThrow: boolean = false;
 }
-class genKeyPropertyType {
-  tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
-  value: huks.HuksKeyAlg | huks.HuksKeyStorageType | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest
-    | huks.HuksKeyPadding | huks.HuksKeyGenerateType | huks.HuksCipherMode = huks.HuksKeyAlg.HUKS_ALG_RSA
-}
+
 /* 封装生成时的密钥参数集 */
-let genKeyProperties: genKeyPropertyType[] = [
+let genKeyProperties:Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_RSA
@@ -69,12 +65,9 @@ let genKeyProperties: genKeyPropertyType[] = [
 let genOptions: huks.HuksOptions = {
   properties: genKeyProperties
 };
-class anonAttestKeyPropertyType {
-  tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO;
-  value: Uint8Array = securityLevel;
-}
+
 /* 2.封装证明密钥的参数集 */
-let anonAttestKeyProperties: anonAttestKeyPropertyType[] = [
+let anonAttestKeyProperties: Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
     value: securityLevel
@@ -127,15 +120,15 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
       .then((data) => {
         console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
       })
-      .catch((error: BusinessError) => {
+      .catch((error: Error) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {
-          console.error(`promise: generateKeyItem failed` + error);
+          console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
         }
       });
   } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid` + error);
+    console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
   }
 }
 /* 4.证明密钥 */
@@ -166,15 +159,15 @@ async function publicAnonAttestKey(keyAlias: string, huksOptions: huks.HuksOptio
           anonAttestCertChain = data.certChains as string[];
         }
       })
-      .catch((error: BusinessError) => {
+      .catch((error: Error) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {
-          console.error(`promise: anonAttestKeyItem failed` + error);
+          console.error(`promise: anonAttestKeyItem failed, ${JSON.stringify(error)}`);
         }
       });
   } catch (error) {
-    console.error(`promise: anonAttestKeyItem input arg invalid` + error);
+    console.error(`promise: anonAttestKeyItem input arg invalid, ${JSON.stringify(error)}`);
   }
 }
 async function AnonAttestKeyTest() {

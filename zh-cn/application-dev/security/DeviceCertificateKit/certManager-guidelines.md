@@ -29,21 +29,21 @@
 
 | 实例名          | 接口名                                                       | 描述                                         |
 | --------------- | ------------------------------------------------------------ | -------------------------------------------- |
-| certManager        | installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string, callback: AsyncCallback\<CMResult>) : void  | 使用callback方式安装应用私有凭据                 |
-| certManager        | installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string) : Promise\<CMResult> | 使用promise方式安装应用私有凭据                  |
-| certManager        | getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>) : void    | 使用callback方式获取应用私有凭据          |
-| certManager        | getPrivateCertificate(keyUri: string) : Promise\<CMResult>                         | 使用promise方式获取应用私有凭据           |
-| certManager        | uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>) : void  | 使用callback方式卸载应用私有凭据         |
-| certManager        | uninstallPrivateCertificate(keyUri: string) : Promise\<void> | 使用promise方式卸载应用私有凭据 |
-| certManager | init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>) : void | 使用callback方式进行签名验签的初始化操作 |
-| certManager | init(authUri: string, spec: CMSignatureSpec) : Promise\<CMHandle>  | 使用promise方式进行签名验签的初始化操作  |
-| certManager        | update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>) : void         | 使用callback方式对待签名、验签的数据进行更新操作         |
-| certManager        | update(handle: Uint8Array, data: Uint8Array) : Promise\<void> | 使用promise方式对待签名、验签的数据进行更新操作 |
-| certManager        | finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>) : void         | 使用callback方式完成数据的签名操作         |
-| certManager        | finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMResult>) : void     | 使用callback方式完成数据的签名操作         |
-| certManager        | finish(handle: Uint8Array, signature?: Uint8Array) : Promise\<CMResult> | 使用promise方式完成数据的签名、验签操作 |
-| certManager        | abort(handle: Uint8Array, callback: AsyncCallback\<void>) : void         | 使用callback方式中止签名、验证操作         |
-| certManager        | abort(handle: Uint8Array) : Promise\<void> | 使用promise方式中止签名、验证操作 |
+| certificateManager        | installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string, callback: AsyncCallback\<CMResult>) : void  | 使用callback方式安装应用私有凭据                 |
+| certificateManager        | installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string) : Promise\<CMResult> | 使用promise方式安装应用私有凭据                  |
+| certificateManager        | getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>) : void    | 使用callback方式获取应用私有凭据          |
+| certificateManager        | getPrivateCertificate(keyUri: string) : Promise\<CMResult>                         | 使用promise方式获取应用私有凭据           |
+| certificateManager        | uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>) : void  | 使用callback方式卸载应用私有凭据         |
+| certificateManager        | uninstallPrivateCertificate(keyUri: string) : Promise\<void> | 使用promise方式卸载应用私有凭据 |
+| certificateManager | init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>) : void | 使用callback方式进行签名验签的初始化操作 |
+| certificateManager | init(authUri: string, spec: CMSignatureSpec) : Promise\<CMHandle>  | 使用promise方式进行签名验签的初始化操作  |
+| certificateManager        | update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>) : void         | 使用callback方式对待签名、验签的数据进行更新操作         |
+| certificateManager        | update(handle: Uint8Array, data: Uint8Array) : Promise\<void> | 使用promise方式对待签名、验签的数据进行更新操作 |
+| certificateManager        | finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>) : void         | 使用callback方式完成数据的签名操作         |
+| certificateManager        | finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMResult>) : void     | 使用callback方式完成数据的签名操作         |
+| certificateManager        | finish(handle: Uint8Array, signature?: Uint8Array) : Promise\<CMResult> | 使用promise方式完成数据的签名、验签操作 |
+| certificateManager        | abort(handle: Uint8Array, callback: AsyncCallback\<void>) : void         | 使用callback方式中止签名、验证操作         |
+| certificateManager        | abort(handle: Uint8Array) : Promise\<void> | 使用promise方式中止签名、验证操作 |
 
 ## 开发步骤
 
@@ -52,13 +52,13 @@
 2. 导入相关模块
 
    ```ts
-   import certManager from '@ohos.security.certManager';
-   import { BusinessError } from '@ohos.base';
+   import { certificateManager } from '@kit.DeviceCertificateKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 3. 安装应用私有凭据，获取应用私有凭据，并使用应用私有凭据进行签名、验签，最后删除应用私有凭据。
 
    ```ts
-   async function certManagerSample() {
+   async function certificateManagerSample() {
      /* 安装的凭据数据需要业务赋值，本例数据非凭据数据 */
      let keystore: Uint8Array = new Uint8Array([
        0x30, 0x82, 0x04, 0x6a, 0x02, 0x01,
@@ -69,13 +69,12 @@
      let appKeyUri: string = '';
      try {
        /* 安装私有凭据 */
-       const res = await certManager.installPrivateCertificate(keystore, keystorePwd, "testPriCredential");
+       const res = await certificateManager.installPrivateCertificate(keystore, keystorePwd, "testPriCredential");
        appKeyUri = (res.uri != undefined) ? res.uri : '';
-     } catch (err) {
-       let e: BusinessError = err as BusinessError;
-       console.error("installPrivateCertificates error, errcode:" + e.code);
+     } catch (err: BusinessError) {
+       console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
      }
-   
+
      try {
        /* srcData为待签名、验签的数据，业务自行赋值 */
        let srcData: Uint8Array = new Uint8Array([
@@ -83,40 +82,38 @@
      ]);
    
        /* 构造签名的属性参数 */
-       const signSpec: certManager.CMSignatureSpec = {
-         purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
-         padding: certManager.CmKeyPadding.CM_PADDING_PSS,
-         digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
+       const signSpec: certificateManager.CMSignatureSpec = {
+         purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+         padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
+         digest: certificateManager.CmKeyDigest.CM_DIGEST_SHA256
        };
    
        /* 签名 */
-       const signHandle: certManager.CMHandle = await certManager.init(appKeyUri, signSpec);
-       await certManager.update(signHandle.handle, srcData);
-       const signResult: certManager.CMResult = await certManager.finish(signHandle.handle);
+       const signHandle: certificateManager.CMHandle = await certificateManager.init(appKeyUri, signSpec);
+       await certificateManager.update(signHandle.handle, srcData);
+       const signResult: certificateManager.CMResult = await certificateManager.finish(signHandle.handle);
    
        /* 构造验签的的属性参数 */
-       const verifySpec: certManager.CMSignatureSpec = {
-         purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
-         padding: certManager.CmKeyPadding.CM_PADDING_PSS,
-         digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
+       const verifySpec: certificateManager.CMSignatureSpec = {
+         purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
+         padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
+         digest: certificateManager.CmKeyDigest.CM_DIGEST_SHA256
        };
    
        /* 验签 */
-       const verifyHandle: certManager.CMHandle = await certManager.init(appKeyUri, verifySpec);
-       await certManager.update(verifyHandle.handle, srcData);
-       const verifyResult = await certManager.finish(verifyHandle.handle, signResult.outData);
-       console.log("sign and verify success");
-     } catch (err) {
-       let e: BusinessError = err as BusinessError;
-       console.error("sign or verify failed, errcode:" + e.code);
+       const verifyHandle: certificateManager.CMHandle = await certificateManager.init(appKeyUri, verifySpec);
+       await certificateManager.update(verifyHandle.handle, srcData);
+       const verifyResult = await certificateManager.finish(verifyHandle.handle, signResult.outData);
+       console.info('Succeeded in signing and verifying.');
+     } catch (err: BusinessError) {
+       console.error(`Failed to sign or verify. Code: ${err.code}, message: ${err.message}`);
      }
-   
+
      try {
        /* 卸载私有凭据 */
-       await certManager.uninstallPrivateCertificate(appKeyUri);
-     } catch (err) {
-       let e: BusinessError = err as BusinessError;
-       console.error("uninstallPrivateCertificate failed, errcode:" + e.code);
+       await certificateManager.uninstallPrivateCertificate(appKeyUri);
+     } catch (err: BusinessError) {
+       console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
      }
    }
    ```

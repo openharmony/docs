@@ -16,7 +16,7 @@
 - 以使用await方式，完成密钥协商为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   async function dhAwait() {
     let keyGen = cryptoFramework.createAsyKeyGenerator('DH_modp1536');
@@ -42,7 +42,7 @@
 - 同步方法示例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function dhAwait() {
     let keyGen = cryptoFramework.createAsyKeyGenerator('DH_modp1536');

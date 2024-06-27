@@ -84,7 +84,7 @@ struct SpringMotionDemo {
           .fill(Color.Blue)
           // 第二步：将状态变量设置到相关可动画属性接口
           .position({ x: this.positionX, y: this.positionY })
-          // 第三步：在跟手过程改变状态变量值，并且采用reponsiveSpringMotion动画运动到新的值
+          // 第三步：在跟手过程改变状态变量值，并且采用responsiveSpringMotion动画运动到新的值
           .onTouch((event?: TouchEvent) => {
             if(event){
               if (event.type === TouchType.Move) {

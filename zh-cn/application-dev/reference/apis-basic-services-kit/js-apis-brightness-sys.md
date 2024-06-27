@@ -38,6 +38,7 @@ setValue(value: number): void
 |---------|---------|
 | 4700101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -74,6 +75,7 @@ setValue(value: number, continuous: boolean): void
 |---------|---------|
 | 4700101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 202      | If the system permission is denied.  |
 
 **示例：**
 

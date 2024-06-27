@@ -8,7 +8,7 @@
 
 **错误信息**
 
-The application is not a administrator of the device.
+The application is not an administrator application of the device.
 
 **错误描述**
 
@@ -131,7 +131,7 @@ The specified user ID is invalid.
 
 **错误信息**
 
-The system ability work abnormally.
+The system ability works abnormally.
 
 **错误描述**
 
@@ -153,7 +153,7 @@ The system ability work abnormally.
 
 **错误信息**
 
-The specified system events enum is invalid.
+The specified system event is invalid.
 
 **错误描述**
 
@@ -171,7 +171,7 @@ The specified system events enum is invalid.
 
 **错误信息**
 
-Authorize permission to the application failed.
+Failed to grant the permission to the application.
 
 **错误描述**
 
@@ -189,7 +189,7 @@ Authorize permission to the application failed.
 
 **错误信息**
 
-a conflicting policy has been configured.
+A conflict policy has been configured.
 
 **错误描述**
 
@@ -207,7 +207,7 @@ a conflicting policy has been configured.
 
 **错误信息**
 
-manage certificate failed
+Failed to manage the certificate.
 
 **错误描述**
 
@@ -225,7 +225,7 @@ manage certificate failed
 
 **错误信息**
 
-the application install failed.
+Failed to install the application.
 
 **错误描述**
 
@@ -244,3 +244,28 @@ the application install failed.
 1. 检查应用安装路径是有效的安装路径。
 2. 检查安装参数是有效的安装参数。
 3. 检查安装的是同一应用。
+
+## 9201003 创建帐号失败
+
+**错误信息**
+
+Failed to add an OS account.
+
+**错误描述**
+
+当企业设备管理创建帐号失败时，则会产生此错误码。
+
+**可能原因**
+
+该错误码表示创建帐号失败，可能原因如下。
+
+1. 帐号已存在。
+2. 帐号名非法。
+3. 创建帐号时未连接网络。
+4. 系统不支持多帐号。
+
+**处理步骤**
+
+1. 检查帐号名是否已存在，如果已存在则需更换。
+2. 检查帐号名长度和内容，确保正确性。
+3. 确保创建帐号时网络畅通。

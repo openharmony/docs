@@ -17,7 +17,7 @@ Not supported
 
 ImageAnimator()
 
-Since API version 10, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 10.
 
 ## Attributes
 
@@ -25,24 +25,24 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name    | Type                 |Description                  |
 | ---------- | ----------------------- |-------- |
-| images     | Array&lt;[ImageFrameInfo](#imageframeinfo)&gt; | Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. For details, see **ImageFrameInfo**.<br>Default value: **[]**<br>**NOTE**<br>Dynamic update is not supported.<br>Since API version 10, this API is supported in ArkTS widgets.|
-| state      | [AnimationStatus](ts-appendix-enums.md#animationstatus) |  Playback status of the animation. The default status is **Initial**.<br>Default value: **AnimationStatus.Initial**<br>Since API version 10, this API is supported in ArkTS widgets.|
-| duration   | number  | Playback duration, in ms. The default duration is 1000 ms. When the duration is **0**, no image is played. The value change takes effect only at the beginning of the next cycle. When a separate duration is set in **images**, the setting of this attribute is invalid.<br>Default value: **1000**<br>Since API version 10, this API is supported in ArkTS widgets.|
-| reverse    | boolean | Playback direction. The value **false** indicates that images are played from the first one to the last one, and **true** indicates that images are played from the last one to the first one.<br>Default value: **false**<br>Since API version 10, this API is supported in ArkTS widgets.|
-| fixedSize  | boolean | Whether the image size is the same as the component size.<br> **true**: The image size is the same as the component size. In this case, the width, height, top, and left attributes of the image are invalid.<br> **false**: The width, height, top, and left attributes of each image must be set separately.<br>Default value: **true**<br>Since API version 10, this API is supported in ArkTS widgets.|
+| images     | Array&lt;[ImageFrameInfo](#imageframeinfo)&gt; | Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. For details, see **ImageFrameInfo**.<br>Default value: **[]**<br>**NOTE**<br>Dynamic update is not supported.<br>This API can be used in ArkTS widgets since API version 10.|
+| state      | [AnimationStatus](ts-appendix-enums.md#animationstatus) |  Playback status of the animation. The default status is **Initial**.<br>Default value: **AnimationStatus.Initial**<br>This API can be used in ArkTS widgets since API version 10.|
+| duration   | number  | Playback duration, in ms. The default duration is 1000 ms. When the duration is **0**, no image is played. The value change takes effect only at the beginning of the next cycle. When a separate duration is set in **images**, the setting of this attribute is invalid.<br>Default value: **1000**<br>This API can be used in ArkTS widgets since API version 10.|
+| reverse    | boolean | Playback direction. The value **false** indicates that images are played from the first one to the last one, and **true** indicates that images are played from the last one to the first one.<br>Default value: **false**<br>This API can be used in ArkTS widgets since API version 10.|
+| fixedSize  | boolean | Whether the image size is the same as the component size.<br> **true**: The image size is the same as the component size. In this case, the width, height, top, and left attributes of the image are invalid.<br> **false**: The width, height, top, and left attributes of each image must be set separately.<br>Default value: **true**<br>This API can be used in ArkTS widgets since API version 10.|
 | preDecode<sup>(deprecated)</sup>  | number  | Number of pre-decoded images. The value **2** indicates that two images following the currently playing page will be pre-decoded to improve performance.<br>This API is deprecated since API version 9.<br>Default value: **0** |
-| fillMode   | [FillMode](ts-appendix-enums.md#fillmode) | Status before and after execution of the animation in the current playback direction. For details about the options, see **FillMode**. The status after execution of the animation is jointly determined by the **fillMode** and **reverse** attributes. For example, if **fillMode** is set to **Forwards**, the target will retain the state defined by the last keyframe encountered during execution. In this case, if **reverse** is set to **false**, the target will retain the state defined by the last keyframe encountered in the forward direction, that is, the last image; if **reverse** is set to **true**, the target will retain the state defined by the last keyframe encountered in the backward direction, that is, the first image.<br>Default value: **FillMode.Forwards**<br>Since API version 10, this API is supported in ArkTS widgets.|
+| fillMode   | [FillMode](ts-appendix-enums.md#fillmode) | Status before and after execution of the animation in the current playback direction. For details about the options, see **FillMode**. The status after execution of the animation is jointly determined by the **fillMode** and **reverse** attributes. For example, if **fillMode** is set to **Forwards**, the target will retain the state defined by the last keyframe encountered during execution. In this case, if **reverse** is set to **false**, the target will retain the state defined by the last keyframe encountered in the forward direction, that is, the last image; if **reverse** is set to **true**, the target will retain the state defined by the last keyframe encountered in the backward direction, that is, the first image.<br>Default value: **FillMode.Forwards**<br>This API can be used in ArkTS widgets since API version 10.|
 | iterations | number  | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times.<br>Default value: **1** |
 
 ## ImageFrameInfo
 
 | Name  | Type  | Mandatory| Description|
 | -------- | -------------- | -------- | -------- |
-| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> | Yes   | Image path. The image format can be .svg, .png, or .jpg. Since API version 9, this attribute accepts paths of the [Resource](ts-types.md#resource) type.<br>Since API version 10, this API is supported in ArkTS widgets.|
-| width    | number \| string | No | Image width.<br>Default value: **0**<br>Since API version 10, this API is supported in ArkTS widgets.      |
-| height   | number \| string | No | Image height.<br>Default value: **0**<br>Since API version 10, this API is supported in ArkTS widgets.       |
-| top      | number \| string | No | Vertical coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>Since API version 10, this API is supported in ArkTS widgets. |
-| left     | number \| string | No | Horizontal coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>Since API version 10, this API is supported in ArkTS widgets.  |
+| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> | Yes   | Image path. The image format can be .svg, .png, or .jpg. Since API version 9, this attribute accepts paths of the [Resource](ts-types.md#resource) type.<br>This API can be used in ArkTS widgets since API version 10.|
+| width    | number \| string | No | Image width.<br>Default value: **0**<br>This API can be used in ArkTS widgets since API version 10.      |
+| height   | number \| string | No | Image height.<br>Default value: **0**<br>This API can be used in ArkTS widgets since API version 10.       |
+| top      | number \| string | No | Vertical coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>This API can be used in ArkTS widgets since API version 10. |
+| left     | number \| string | No | Horizontal coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>This API can be used in ArkTS widgets since API version 10.  |
 | duration | number          | No    | Playback duration of each image frame, in milliseconds.<br>Default value: **0**        |
 
 ## Events
@@ -51,11 +51,11 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name| Description|
 | -------- | -------- |
-| onStart(event: () =&gt; void)  | Triggered when the animation starts to play.<br>Since API version 10, this API is supported in ArkTS widgets.|
-| onPause(event: () =&gt; void)  | Triggered when the animation playback is paused.<br>Since API version 10, this API is supported in ArkTS widgets.|
+| onStart(event: () =&gt; void)  | Triggered when the animation starts to play.<br>This API can be used in ArkTS widgets since API version 10.|
+| onPause(event: () =&gt; void)  | Triggered when the animation playback is paused.<br>This API can be used in ArkTS widgets since API version 10.|
 | onRepeat(event: () =&gt; void) | Triggered when the animation playback is repeated. |
-| onCancel(event: () =&gt; void) | Triggered when the animation playback returns to the initial state.<br>Since API version 10, this API is supported in ArkTS widgets.|
-| onFinish(event: () =&gt; void) | Triggered when the animation playback is complete or stopped.<br>Since API version 10, this API is supported in ArkTS widgets.|
+| onCancel(event: () =&gt; void) | Triggered when the animation playback returns to the initial state.<br>This API can be used in ArkTS widgets since API version 10.|
+| onFinish(event: () =&gt; void) | Triggered when the animation playback is complete or stopped.<br>This API can be used in ArkTS widgets since API version 10.|
 
 
 ## Example

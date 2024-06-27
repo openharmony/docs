@@ -62,7 +62,7 @@
 | ---------------------------------------- | -------------------------------------- |
 | [OH_NativeXComponent_GetXComponentId](#oh_nativexcomponent_getxcomponentid)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;char&nbsp;\*id,&nbsp;uint64_t&nbsp;\*size) | 获取ArkUI&nbsp;XComponent的id。            |
 | [OH_NativeXComponent_GetXComponentSize](#oh_nativexcomponent_getxcomponentsize)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;uint64_t&nbsp;\*width,&nbsp;uint64_t&nbsp;\*height) | 获取ArkUI&nbsp;XComponent持有的surface的大小。  |
-| [OH_NativeXComponent_GetXComponentOffset](#oh_nativexcomponent_getxcomponentoffset)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;double&nbsp;\*x,&nbsp;double&nbsp;\*y) | 获取ArkUI&nbsp;XComponent组件相对屏幕左上顶点的偏移量。 |
+| [OH_NativeXComponent_GetXComponentOffset](#oh_nativexcomponent_getxcomponentoffset)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;double&nbsp;\*x,&nbsp;double&nbsp;\*y) | 获取XComponent持有的surface相对其父组件左顶点的偏移量。 |
 | [OH_NativeXComponent_GetTouchEvent](#oh_nativexcomponent_gettouchevent)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;[OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)&nbsp;\*touchEvent) | 获取ArkUI&nbsp;XComponent调度的触摸事件。        |
 | [OH_NativeXComponent_GetTouchPointToolType](#oh_nativexcomponent_gettouchpointtooltype)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;uint32_t&nbsp;pointIndex,&nbsp;[OH_NativeXComponent_TouchPointToolType](#oh_nativexcomponent_touchpointtooltype)&nbsp;\*toolType) | 获取ArkUI&nbsp;XComponent触摸点工具类型。        |
 | [OH_NativeXComponent_GetTouchPointTiltX](#oh_nativexcomponent_gettouchpointtiltx)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;uint32_t&nbsp;pointIndex,&nbsp;float&nbsp;\*tiltX) | 获取ArkUI&nbsp;XComponent触摸点倾斜与X轴角度。     |
@@ -1089,7 +1089,7 @@ int32_t OH_NativeXComponent_GetXComponentOffset (OH_NativeXComponent * component
 
 **描述:**
 
-获取ArkUI XComponent组件相对屏幕左上顶点的偏移量。
+获取ArkUI XComponent持有的surface相对其父组件左顶点的偏移量。
 
 **参数:**
 
@@ -1097,8 +1097,8 @@ int32_t OH_NativeXComponent_GetXComponentOffset (OH_NativeXComponent * component
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
 | window    | 表示NativeWindow句柄。             |
-| x         | 指示指向当前surface的x坐标的指针。         |
-| y         | 指示指向当前surface的y坐标的指针。         |
+| x         | 指示指向当前surface相对于XComponent父组件左顶点x坐标的指针。         |
+| y         | 指示指向当前surface相对于XComponent父组件左顶点y坐标的指针。         |
 
 **返回:**
 
@@ -1790,7 +1790,7 @@ float OH_NativeXComponent_MouseEvent::screenX
 
 **描述:**
 
-点击触点相对于所在应用窗口左上角的x轴坐标。
+点击触点相对于所在应用屏幕左上角的x轴坐标。
 
 **起始版本：**
 
@@ -1835,7 +1835,7 @@ float OH_NativeXComponent_MouseEvent::screenY
 
 **描述:**
 
-点击触点相对于所在应用窗口左上角的y轴坐标。
+点击触点相对于所在应用屏幕左上角的y轴坐标。
 
 **起始版本：**
 

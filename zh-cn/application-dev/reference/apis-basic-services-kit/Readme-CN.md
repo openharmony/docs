@@ -1,4 +1,4 @@
-# Basic Services Kit API参考
+# Basic Services Kit（基础服务）
 
 - ArkTS API
   - 帐号管理
@@ -14,8 +14,7 @@
     - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
     - [@ohos.power (系统电源管理)](js-apis-power.md)
     - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
-    - [@ohos.thermal (热管理)](js-apis-thermal.md)
-    - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)       
+    - [@ohos.thermal (热管理)](js-apis-thermal.md)      
     - [@ohos.usbManager (USB管理)](js-apis-usbManager.md)
     <!--Del-->
     - [@ohos.batteryInfo (电量信息)(系统接口)](js-apis-battery-info-sys.md)
@@ -37,6 +36,7 @@
     - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
     <!--Del-->
     - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](js-apis-app-ability-PrintExtensionAbility-sys.md)
+    - [@ohos.pasetboard (剪贴板)(系统接口)](js-apis-pasteboard-sys.md)
     - [@ohos.print (打印)(系统接口)](js-apis-print-sys.md)
     - [@ohos.request (上传下载)(系统接口)](js-apis-request-sys.md)
     <!--DelEnd-->
@@ -78,6 +78,7 @@
       <!--DelEnd-->
   - 其他
     - [@ohos.base (公共回调信息)](js-apis-base.md)
+    - [@ohos.customization.customConfig (定制配置)](js-apis-customization-customConfig.md)
     - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
     - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
     - [@ohos.resourceschedule.systemload (性能功耗热融合档位)](js-apis-resourceschedule-systemload.md)
@@ -98,6 +99,7 @@
     - [@system.battery (电量信息)](js-apis-system-battery.md)
     - [@system.device (设备信息)](js-apis-system-device.md)
     - [@system.request (上传下载)](js-apis-system-request.md)
+    - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md) 
     <!--Del-->
     - [@ohos.commonEvent (公共事件模块)(系统接口)](js-apis-commonEvent-sys.md)
     - [@ohos.usb (USB管理)(系统接口)](js-apis-usb-deprecated-sys.md)

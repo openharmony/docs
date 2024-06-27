@@ -2,7 +2,7 @@
 
 The **distributedKVStore** module implements collaboration between databases for different devices that forms a Super Device. You can use the APIs provided by this module to save application data to a distributed key-value (KV) store and perform operations, such as adding, deleting, modifying, querying, and synchronizing data in distributed KV stores.
 
-The **distributedKVStore** module provides the following:
+The **distributedKVStore** module provides the following functionalities:
 
 - [KVManager](js-apis-distributedKVStore.md#kvmanager): provides a **KVManager** instance to obtain KV store information.
 - [KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset): provides APIs for accessing the results obtained from a KV store.
@@ -19,7 +19,7 @@ The **distributedKVStore** module provides the following:
 ## Modules to Import
 
 ```ts
-import distributedKVStore from '@ohos.data.distributedKVStore';
+import { distributedKVStore } from '@kit.ArkData';
 ```
 
 ## SingleKVStore
@@ -45,7 +45,7 @@ Writes batch data to this single KV store. This API uses an asynchronous callbac
 | Name  | Type                                                    | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | value    | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to write.|
-| callback | AsyncCallback&lt;void&gt;                                     | Yes  | Callback invoked to return the result.        |
+| callback | AsyncCallback&lt;void&gt;                                     | Yes  | Callback used to return the result.        |
 
 **Error codes**
 
@@ -53,6 +53,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                            |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 202          | Permission verification failed, application which is not a system application uses system API.|
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -65,7 +67,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let v8Arr: distributedKVStore.Entry[] = [];
@@ -120,6 +122,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                            |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 202          | Permission verification failed, application which is not a system application uses system API.|
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -132,7 +136,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let v8Arr: distributedKVStore.Entry[] = [];
@@ -172,7 +176,7 @@ Deletes KV pairs from this KV store. This API uses an asynchronous callback to r
 | Name    | Type                                                    | Mandatory| Description                                           |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.|
-| callback   | AsyncCallback&lt;void&gt;                                    | Yes  | Callback invoked to return the result.                                     |
+| callback   | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
 
@@ -180,6 +184,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 202          | Permission verification failed, application which is not a system application uses system API.|
 | 15100003     | Database corrupted.                    |
 | 15100005    | Database or result set already closed. |
 
@@ -192,8 +198,8 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -251,6 +257,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                            |
 | ------------ | ---------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 202          | Permission verification failed, application which is not a system application uses system API.|
 | 15100003     | Database corrupted.                      |
 | 15100005     | Database or result set already closed.   |
 
@@ -263,8 +271,8 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let predicates = new dataSharePredicates.DataSharePredicates();
@@ -305,7 +313,7 @@ Obtains a **KVStoreResultSet** object that matches the specified conditions. Thi
 | Name    | Type                                                    | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the **KVStoreResultSet** object to obtain. If this parameter is **null**, define the processing logic.             |
-| callback   | AsyncCallback&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt;   | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
+| callback   | AsyncCallback&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt;   | Yes  | Callback used to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 
@@ -313,6 +321,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 202          | Permission verification failed, application which is not a system application uses system API.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -320,8 +330,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -380,6 +390,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 202          | Permission verification failed, application which is not a system application uses system API.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -387,8 +399,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -441,7 +453,7 @@ Obtains a **KVStoreResultSet** object that matches the specified conditions for 
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the **KVStoreResultSet** object to obtain. If this parameter is **null**, define the processing logic.             |
-| callback   | AsyncCallback&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt;   | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
+| callback   | AsyncCallback&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt;   | Yes  | Callback used to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 
@@ -449,6 +461,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 202          | Permission verification failed, application which is not a system application uses system API.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -456,8 +470,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -516,6 +530,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 202          | Permission verification failed, application which is not a system application uses system API.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -523,8 +539,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -571,7 +587,7 @@ Obtains a **KVStoreResultSet** object that matches the specified conditions for 
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | Yes  | ID of the target device.                                    |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the **KVStoreResultSet** object to obtain. If this parameter is **null**, define the processing logic.             |
-| callback   | AsyncCallback&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt;   | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
+| callback   | AsyncCallback&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt;   | Yes  | Callback used to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 
@@ -579,6 +595,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 202          | Permission verification failed, application which is not a system application uses system API.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -586,8 +604,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -651,6 +669,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 
 | ID| **Error Message**                          |
 | ------------ | -------------------------------------- |
+| 401          | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 202          | Permission verification failed, application which is not a system application uses system API.|
 | 15100001     | Over max  limits.                      |
 | 15100003     | Database corrupted.                    |
 | 15100005     | Database or result set already closed. |
@@ -658,8 +678,8 @@ For details about the error codes, see [Distributed KV Store Error Codes](errorc
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;

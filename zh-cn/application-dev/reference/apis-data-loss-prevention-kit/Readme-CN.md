@@ -1,4 +1,4 @@
-# Data Loss Prevention Kit API参考
+# Data Loss Prevention Kit（数据防泄漏服务）
 
 - ArkTS API
   - [@ohos.dlpPermission (数据防泄漏)](js-apis-dlppermission.md)

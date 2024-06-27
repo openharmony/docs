@@ -11,7 +11,7 @@
 
 
 ```ts
-import systemTimer from '@ohos.systemTimer';
+import { systemTimer } from '@kit.BasicServicesKit';
 ```
 
 ## 常量
@@ -61,16 +61,15 @@ createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-|-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
-| 202   | Permission denied, Non system application use system APIs.                                                                                             |
-| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 错误码ID | 错误信息                                                                                                                                         |
+|-------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                                                 |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -115,16 +114,15 @@ createTimer(options: TimerOptions): Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-|-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
-| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -162,16 +160,15 @@ startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&g
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-|-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
-| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -224,16 +221,15 @@ startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-|-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
-| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -278,16 +274,15 @@ stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-|-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
-| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -340,16 +335,15 @@ stopTimer(timer: number): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-|-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
-| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -395,16 +389,15 @@ destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-|-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
-| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -458,16 +451,15 @@ destroyTimer(timer: number): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
 
-| 错误码ID | 错误信息                                                                                                           |
-|-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
-| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,

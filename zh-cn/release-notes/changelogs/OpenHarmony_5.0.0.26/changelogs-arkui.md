@@ -64,3 +64,106 @@ ScrollBar组件
 **适配指导**
 
 请查阅[ScrollBar组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)文档进行适配。
+
+## cl.arkui.3 UIExtensionComponent异常处理废弃onRelease和onResult，使用onTerminated和onError替代
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+UIExtensionComponent异常处理回调分散
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+API version 11及以前，被拉起的UIExtensionAbility意外Crash或被kill时，触发onRelease回调（错误码为1）；被拉起的UIExtensionAbility调用terminateSelf时会触发onRelease回调（错误码为0）；被拉起的UIExtensionAbility调用terminateSelfWithResult时会触发onRelease回调（错误码为0）和onResult回调。
+
+API version 12及以后，被拉起的UIExtensionAbility意外Crash或被kill时，触发onError回调（错误码为100014）；被拉起的UIExtensionAbility调用terminateSelf时会触发onTerminated回调，其入参"code"取默认值"0"，"want"为"undefined"；被拉起的UIExtensionAbility调用terminateSelfWithResult时会触发onTerminated回调，其携带的信息会传给回调函数的入参。
+
+**API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.26 版本开始。
+
+**变更的接口/组件**
+
+UIExtensionComponent组件
+
+**适配指导**
+
+请查阅[UIExtensionComponent组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)文档进行适配。
+
+## cl.arkui.4 手势菜单复制，粘贴，全选，剪切按钮扩大选中区域的高度至40vp
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+手势菜单复制、粘贴、全选、剪切按钮选中区域高度不符合简单易用标准
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+API version 11及以前，手势菜单复制、粘贴、全选、剪切按钮扩中区域的高度为28vp。
+
+API version 12及以后，手势菜单复制、粘贴、全选、剪切按钮扩中区域的高度为40vp，且保持长按时视觉效果一致。
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.26 版本开始。
+
+**变更的接口/组件**
+
+涉及菜单的组件：TextInput、TextArea、Search、RichEditor。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.5 pickerDialog操作区按钮大小及间距调整
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+修正视觉效果以获得更好的用户体验。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+| |变更前 | 变更后 |
+|---------|---------|---|
+| DatePickerDialog      |按钮大小：高36vp，宽150vp。 按钮边距：上18vp，左右20vp，下10vp。|按钮大小：高度40vp，宽度自适应。 按钮边距：上16vp，左右16vp，下16vp，按钮之间16vp。|
+| TimePickerDialog      |按钮大小：高36vp，宽150vp。 按钮边距：上24vp，左右20vp，下6vp。  |按钮大小：高度40vp，宽度自适应。 按钮边距：上16vp，左右16vp，下16vp，按钮之间16vp。|
+| CalendarPickerDialog  | 按钮大小：高40vp，宽150vp。 按钮边距：上8vp，左右16vp，下16vp。 |按钮大小：高度40vp，宽度自适应。 按钮边距：上16vp，左右16vp，下16vp，按钮之间16vp。|
+| TextPickerDialog      | 按钮大小：高36vp，宽150vp。 按钮边距：上32vp，左右20vp，下6vp。  |按钮大小：高度40vp，宽度自适应。 按钮边距：上16vp，左右16vp，下16vp，按钮之间16vp。|
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.26 版本开始。
+
+**变更的接口/组件**
+
+涉及菜单的组件：CalendarPickerDialog、TextPickerDialog、DatePickerDialog、TimePickerDialog。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。

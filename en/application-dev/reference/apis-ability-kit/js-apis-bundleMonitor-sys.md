@@ -22,7 +22,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
 
-## BundleChangeInfo
+## BundleChangedInfo
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -71,7 +71,7 @@ Subscribes to bundle installation, uninstall, and update events.
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                           |
 | -------- | --------------------------------------|
@@ -117,7 +117,7 @@ Unsubscribes from bundle installation, uninstall, and update events.
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                           |
 | -------- | --------------------------------------|

@@ -38,7 +38,7 @@ The AVPlayer module provides APIs related to media playback.
 | [AVPlayerOnInfoType](#avplayeroninfotype) | Defines an enum for types of messages received by the AVPlayer.| 
 | (\*[OH_AVPlayerOnInfo](#oh_avplayeroninfo)) (OH_AVPlayer \*player, [AVPlayerOnInfoType](#avplayeroninfotype) type, int32_t extra) | Defines the callback when the AVPlayer receives a message.| 
 | (\*[OH_AVPlayerOnError](#oh_avplayeronerror)) (OH_AVPlayer \*player, int32_t errorCode, const char \*errorMsg) | Defines the callback when an error occurs in the AVPlayer. This type is available in API version 9 or later.| 
-| [AVPlayerCallback](#avplayercallback) | Defines a struct that describes all the callback function pointers of an **OH_AVPlayer** instance.| 
+| [AVPlayerCallback](#avplayercallback) | Defines a struct for all the callback function pointers of an **OH_AVPlayer** instance.| 
 
 
 ### Enums
@@ -55,41 +55,44 @@ The AVPlayer module provides APIs related to media playback.
 
 | Name| Description| 
 | -------- | -------- |
-| \*[OH_AVPlayer_Create](#oh_avplayer_create) (void) | Creates an **OH_AVPlayer** instance.| 
-| [OH_AVPlayer_SetURLSource](#oh_avplayer_seturlsource) (OH_AVPlayer \*player, const char \*url) | Sets the HTTP URL of a media source to be played by an AVPlayer.  | 
-| [OH_AVPlayer_SetFDSource](#oh_avplayer_setfdsource) (OH_AVPlayer \*player, int32_t fd, int64_t offset, int64_t size) | Sets the file descriptor of a media source to be played by an AVPlayer.| 
-| [OH_AVPlayer_Prepare](#oh_avplayer_prepare) (OH_AVPlayer \*player) | Prepares the playback environment and buffers media data.| 
-| [OH_AVPlayer_Play](#oh_avplayer_play) (OH_AVPlayer \*player) | Starts playback.| 
-| [OH_AVPlayer_Pause](#oh_avplayer_pause) (OH_AVPlayer \*player) | Pauses playback.| 
-| [OH_AVPlayer_Stop](#oh_avplayer_stop) (OH_AVPlayer \*player) | Stops playback.| 
-| [OH_AVPlayer_Reset](#oh_avplayer_reset) (OH_AVPlayer \*player) | Restores the AVPlayer to the initial state.| 
-| [OH_AVPlayer_Release](#oh_avplayer_release) (OH_AVPlayer \*player) | Asynchronously releases an **OH_AVPlayer** instance.| 
-| [OH_AVPlayer_ReleaseSync](#oh_avplayer_releasesync) (OH_AVPlayer \*player) | Synchronously releases an **OH_AVPlayer** instance.| 
-| [OH_AVPlayer_SetVolume](#oh_avplayer_setvolume) (OH_AVPlayer \*player, float leftVolume, float rightVolume) | Sets the volume for an AVPlayer.| 
-| [OH_AVPlayer_Seek](#oh_avplayer_seek) (OH_AVPlayer \*player, int32_t mSeconds, [AVPlayerSeekMode](#avplayerseekmode) mode) | Seeks to a playback position.| 
-| [OH_AVPlayer_GetCurrentTime](#oh_avplayer_getcurrenttime) (OH_AVPlayer \*player, int32_t \*currentTime) | Obtains the playback position, in milliseconds.| 
-| [OH_AVPlayer_GetVideoWidth](#oh_avplayer_getvideowidth) (OH_AVPlayer \*player, int32_t \*videoWidth) | Obtains the video width.| 
-| [OH_AVPlayer_GetVideoHeight](#oh_avplayer_getvideoheight) (OH_AVPlayer \*player, int32_t \*videoHeight) | Obtains the video height.| 
-| [OH_AVPlayer_SetPlaybackSpeed](#oh_avplayer_setplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) speed) | Sets the playback speed for an AVPlayer.| 
-| [OH_AVPlayer_GetPlaybackSpeed](#oh_avplayer_getplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) \*speed) | Obtains the playback speed of an AVPlayer.| 
-| [OH_AVPlayer_SelectBitRate](#oh_avplayer_selectbitrate) (OH_AVPlayer \*player, uint32_t bitRate) | Sets the bit rate used by an HLS player.| 
-| [OH_AVPlayer_SetVideoSurface](#oh_avplayer_setvideosurface) (OH_AVPlayer \*player, OHNativeWindow \*window) | Sets a playback window.| 
-| [OH_AVPlayer_GetDuration](#oh_avplayer_getduration) (OH_AVPlayer \*player, int32_t \*duration) | Obtains the total duration of a media file, in milliseconds.| 
-| [OH_AVPlayer_GetState](#oh_avplayer_getstate) (OH_AVPlayer \*player, [AVPlayerState](#avplayerstate) \*state) | Obtains the AVPlayer state.| 
-| [OH_AVPlayer_IsPlaying](#oh_avplayer_isplaying) (OH_AVPlayer \*player) | Checks whether an AVPlayer is playing.| 
-| [OH_AVPlayer_IsLooping](#oh_avplayer_islooping) (OH_AVPlayer \*player) | Checks whether an AVPlayer is looping.| 
-| [OH_AVPlayer_SetLooping](#oh_avplayer_setlooping) (OH_AVPlayer \*player, bool loop) | Enables loop playback.| 
-| [OH_AVPlayer_SetPlayerCallback](#oh_avplayer_setplayercallback) (OH_AVPlayer \*player, [AVPlayerCallback](_a_v_player_callback.md) callback) | Sets a callback for an AVPlayer.| 
-| [OH_AVPlayer_SelectTrack](#oh_avplayer_selecttrack) (OH_AVPlayer \*player, int32_t index) | Selects an audio or subtitle track.| 
-| [OH_AVPlayer_DeselectTrack](#oh_avplayer_deselecttrack) (OH_AVPlayer \*player, int32_t index) | Deselects an audio or subtitle track.| 
-| [OH_AVPlayer_GetCurrentTrack](#oh_avplayer_getcurrenttrack) (OH_AVPlayer \*player, int32_t trackType, int32_t \*index) | Obtains the currently valid track.| 
+| OH_AVPlayer \*[OH_AVPlayer_Create](#oh_avplayer_create) (void) | Creates an **OH_AVPlayer** instance.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_SetURLSource](#oh_avplayer_seturlsource) (OH_AVPlayer \*player, const char \*url) | Sets the HTTP URL of a media source to be played by an AVPlayer.  | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_SetFDSource](#oh_avplayer_setfdsource) (OH_AVPlayer \*player, int32_t fd, int64_t offset, int64_t size) | Sets the file descriptor of a media source to be played by an AVPlayer.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_Prepare](#oh_avplayer_prepare) (OH_AVPlayer \*player) | Prepares the playback environment and buffers media data.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_Play](#oh_avplayer_play) (OH_AVPlayer \*player) | Starts playback.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Pause](#oh_avplayer_pause) (OH_AVPlayer \*player) | Pauses playback.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Stop](#oh_avplayer_stop) (OH_AVPlayer \*player) | Stops playback.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Reset](#oh_avplayer_reset) (OH_AVPlayer \*player) | Restores the AVPlayer to the initial state.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Release](#oh_avplayer_release) (OH_AVPlayer \*player) | Asynchronously releases an **OH_AVPlayer** instance.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_ReleaseSync](#oh_avplayer_releasesync) (OH_AVPlayer \*player) | Synchronously releases an **OH_AVPlayer** instance.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVolume](#oh_avplayer_setvolume) (OH_AVPlayer \*player, float leftVolume, float rightVolume) | Sets the volume for an AVPlayer.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Seek](#oh_avplayer_seek) (OH_AVPlayer \*player, int32_t mSeconds, [AVPlayerSeekMode](#avplayerseekmode) mode) | Seeks to a playback position.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetCurrentTime](#oh_avplayer_getcurrenttime) (OH_AVPlayer \*player, int32_t \*currentTime) | Obtains the playback position, in milliseconds.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetVideoWidth](#oh_avplayer_getvideowidth) (OH_AVPlayer \*player, int32_t \*videoWidth) | Obtains the video width.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetVideoHeight](#oh_avplayer_getvideoheight) (OH_AVPlayer \*player, int32_t \*videoHeight) | Obtains the video height.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetPlaybackSpeed](#oh_avplayer_setplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) speed) | Sets the playback speed for an AVPlayer.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetPlaybackSpeed](#oh_avplayer_getplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) \*speed) | Obtains the playback speed of an AVPlayer.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectBitRate](#oh_avplayer_selectbitrate) (OH_AVPlayer \*player, uint32_t bitRate) | Sets the bit rate used by an HLS player.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVideoSurface](#oh_avplayer_setvideosurface) (OH_AVPlayer \*player, OHNativeWindow \*window) | Sets a playback window.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetDuration](#oh_avplayer_getduration) (OH_AVPlayer \*player, int32_t \*duration) | Obtains the total duration of a media file, in milliseconds.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetState](#oh_avplayer_getstate) (OH_AVPlayer \*player, [AVPlayerState](#avplayerstate) \*state) | Obtains the AVPlayer state.| 
+| bool [OH_AVPlayer_IsPlaying](#oh_avplayer_isplaying) (OH_AVPlayer \*player) | Checks whether an AVPlayer is playing.| 
+| bool [OH_AVPlayer_IsLooping](#oh_avplayer_islooping) (OH_AVPlayer \*player) | Checks whether an AVPlayer is looping.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetLooping](#oh_avplayer_setlooping) (OH_AVPlayer \*player, bool loop) | Enables loop playback.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetPlayerCallback](#oh_avplayer_setplayercallback) (OH_AVPlayer \*player, [AVPlayerCallback](_a_v_player_callback.md) callback) | Sets a callback for an AVPlayer.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectTrack](#oh_avplayer_selecttrack) (OH_AVPlayer \*player, int32_t index) | Selects an audio or subtitle track.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_DeselectTrack](#oh_avplayer_deselecttrack) (OH_AVPlayer \*player, int32_t index) | Deselects an audio or subtitle track.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetCurrentTrack](#oh_avplayer_getcurrenttrack) (OH_AVPlayer \*player, int32_t trackType, int32_t \*index) | Obtains the currently valid track.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetMediaKeySystemInfoCallback](#oh_avplayer_setmediakeysysteminfocallback) (OH_AVPlayer \*player, Player_MediaKeySystemInfoCallback callback) | Sets a callback to return the media key system information for an AVPlayer.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetMediaKeySystemInfo](#oh_avplayer_getmediakeysysteminfo) (OH_AVPlayer \*player, [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | Obtains the media key system information to create a media key session.| 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetDecryptionConfig](#oh_avplayer_setdecryptionconfig) (OH_AVPlayer \*player, [MediaKeySession](_drm.md#mediakeysession) \*mediaKeySession, bool secureVideoPath) | Sets the decryption information.| 
 
 
 ### Variables
 
 | Name| Description| 
 | -------- | -------- |
-| [AVPlayerCallback::onInfo](#oninfo) | AVPlayer process information. For details, see [OH_AVPlayerOnInfo](oh_avplayeroninfo).| 
+| [AVPlayerCallback::onInfo](#oninfo) | AVPlayer process information. For details, see [OH_AVPlayerOnInfo](#oh_avplayeroninfo).| 
 | [AVPlayerCallback::onError](#onerror) | AVPlayer error information. For details, see [OH_AVPlayerOnError](#oh_avplayeronerror).| 
 
 
@@ -348,7 +351,12 @@ Creates an **OH_AVPlayer** instance.
 
 **Returns**
 
-Returns the pointer to an **OH_AVPlayer** instance.
+Returns the pointer to the **OH_AVPlayer** instance created if the operation is successful; returns a null pointer otherwise.
+
+The possible causes of an operation failure are as follows:
+
+1. The execution of **PlayerFactory::CreatePlayer** fails.
+2. The execution of **new PlayerObject** fails.
 
 
 ### OH_AVPlayer_DeselectTrack()
@@ -374,7 +382,11 @@ Deselects an audio or subtitle track.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the track is deselected; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The deselection is successful.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player DeselectTrack** fails.
 
 
 ### OH_AVPlayer_GetCurrentTime()
@@ -400,7 +412,11 @@ Obtains the playback position, in milliseconds.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the playback position is obtained; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The playback position is obtained.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player GetCurrentTime** fails.
 
 
 ### OH_AVPlayer_GetCurrentTrack()
@@ -429,7 +445,11 @@ You can set the track to the prepared, playing, paused, or completed state.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The track is obtained.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player GetCurrentTrack** fails.
 
 
 ### OH_AVPlayer_GetDuration()
@@ -455,8 +475,41 @@ Obtains the total duration of a media file, in milliseconds.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the total duration is obtained; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
 
+**AV_ERR_OK**: The total duration is obtained.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player GetDuration** fails.
+
+
+### OH_AVPlayer_GetMediaKeySystemInfo()
+
+```
+OH_AVErrCode OH_AVPlayer_GetMediaKeySystemInfo (OH_AVPlayer * player, DRM_MediaKeySystemInfo * mediaKeySystemInfo )
+```
+
+**Description**
+
+Obtains the media key system information to create a media key session.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| player | Pointer to an **OH_AVPlayer** instance.|
+| mediaKeySystemInfo | Pointer to the media key system information.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The setting is successful.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the memory is insufficient.
 
 ### OH_AVPlayer_GetPlaybackSpeed()
 
@@ -481,7 +534,11 @@ Obtains the playback speed of an AVPlayer.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the playback speed is obtained; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The playback rate is obtained.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player GetPlaybackSpeed** fails.
 
 
 ### OH_AVPlayer_GetState()
@@ -507,7 +564,11 @@ Obtains the AVPlayer state.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the state is obtained; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The AVPlayer state is obtained.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player GetState** fails.
 
 
 ### OH_AVPlayer_GetVideoHeight()
@@ -533,7 +594,11 @@ Obtains the video height.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the video height is obtained; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The video height is obtained.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer.
 
 
 ### OH_AVPlayer_GetVideoWidth()
@@ -559,7 +624,11 @@ Obtains the video width.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the video width is obtained; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The video width is obtained.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer.
 
 
 ### OH_AVPlayer_IsLooping()
@@ -584,7 +653,7 @@ Checks whether an AVPlayer is looping.
 
 **Returns**
 
-Returns **true** if the AVPlayer is looping; returns **false** otherwise.
+Returns **true** if the AVPlayer is looping; returns **false** if the AVPlayer is not looping or the input parameter **player** is a null pointer.
 
 
 ### OH_AVPlayer_IsPlaying()
@@ -609,7 +678,7 @@ Checks whether an AVPlayer is playing.
 
 **Returns**
 
-Returns **true** if the AVPlayer is playing; returns **false** otherwise.
+Returns **true** if the AVPlayer is playing; returns **false** if the AVPlayer is not playing or the input parameter **player** is a null pointer.
 
 
 ### OH_AVPlayer_Pause()
@@ -634,7 +703,11 @@ Pauses playback.
 
 **Returns**
 
-Returns **AV_ERR_OK** if **Pause** is added to the task queue; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The **Pause** operation is added to the task queue.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player Pause** fails.
 
 
 ### OH_AVPlayer_Play()
@@ -661,7 +734,11 @@ This function must be called after **Prepare**. In other words, you can call thi
 
 **Returns**
 
-Returns **AV_ERR_OK** if the playback starts; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The playback starts.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player Play** fails.
 
 
 ### OH_AVPlayer_Prepare()
@@ -688,7 +765,11 @@ This function must be called after **SetSource**.
 
 **Returns**
 
-Returns **AV_ERR_OK** if **Prepare** is added to the task queue; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The **Prepare** operation is added to the task queue.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player Prepare** fails.
 
 
 ### OH_AVPlayer_Release()
@@ -715,7 +796,11 @@ The asynchronous function ensures the performance, but cannot ensure that the su
 
 **Returns**
 
-Returns **AV_ERR_OK** if **Release** is added to the task queue; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The **Release** operation is added to the task queue.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player Release** fails.
 
 
 ### OH_AVPlayer_ReleaseSync()
@@ -728,7 +813,7 @@ OH_AVErrCode OH_AVPlayer_ReleaseSync (OH_AVPlayer * player)
 
 Synchronously releases an **OH_AVPlayer** instance.
 
-The synchronous function ensures that the surface buffer of the playback window is released, with a long time (when the engine is not idle). Therefore, you need to design an asynchronous mechanism.
+The synchronous function ensures that the display buffer of the playback window is released, with a long time. Therefore, you need to design an asynchronous mechanism.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -742,8 +827,11 @@ The synchronous function ensures that the surface buffer of the playback window 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the AVPlayer is released; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
 
+**AV_ERR_OK**: The AVPlayer is released.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player ReleaseSync** fails.
 
 ### OH_AVPlayer_Reset()
 
@@ -769,7 +857,11 @@ After the function is called, you can call **SetSource** to set the media source
 
 **Returns**
 
-Returns **AV_ERR_OK** if **Reset** is added to the task queue; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The **reset** operation is added to the task queue.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player Reset** fails.
 
 
 ### OH_AVPlayer_Seek()
@@ -793,6 +885,14 @@ This function can be used when the AVPlayer is in the playing or paused state.
 | player | Pointer to an **OH_AVPlayer** instance.| 
 | mSeconds | Position to seek to, in ms.| 
 | mode | Seek mode. For details, see [AVPlayerSeekMode](#avplayerseekmode).| 
+
+**Returns**
+
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+AV_ERR_OK: The seek operation is complete.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player Seek** fails.
 
 
 ### OH_AVPlayer_SelectBitRate()
@@ -820,7 +920,13 @@ in bit/s. This function is valid only for HLS network streams. By default, the p
 
 **Returns**
 
-Returns **AV_ERR_OK** if the setting is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+**Returns**
+
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The bit rate is set.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player SelectBitRate** fails.
 
 
 ### OH_AVPlayer_SelectTrack()
@@ -848,7 +954,41 @@ By default, the first audio stream with data is played, and the subtitle track i
 
 **Returns**
 
-Returns **AV_ERR_OK** if a track is selected; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: A track is selected.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player SelectTrack** fails.
+
+### OH_AVPlayer_SetDecryptionConfig()
+
+```
+OH_AVErrCode OH_AVPlayer_SetDecryptionConfig (OH_AVPlayer * player, MediaKeySession * mediaKeySession, bool secureVideoPath )
+```
+
+**Description**
+
+Sets the decryption information.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| player | Pointer to an **OH_AVPlayer** instance.| 
+| mediaKeySession | Pointer to the media key session with the decryption feature.| 
+| secureVideoPath | Whether a secure decoder is required.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The setting is successful.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player SetDecryptionConfig** fails.
 
 
 ### OH_AVPlayer_SetFDSource()
@@ -876,7 +1016,11 @@ Sets the file descriptor of a media source to be played by an AVPlayer.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the setting is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The file descriptor is set.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player SetFdSource** fails.
 
 
 ### OH_AVPlayer_SetLooping()
@@ -902,7 +1046,41 @@ Enables loop playback.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the setting is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: Loop playback is enabled.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player SetLooping** fails.
+
+
+### OH_AVPlayer_SetMediaKeySystemInfoCallback()
+
+```
+OH_AVErrCode OH_AVPlayer_SetMediaKeySystemInfoCallback (OH_AVPlayer * player, Player_MediaKeySystemInfoCallback callback )
+```
+
+**Description**
+
+Sets a callback to return the media key system information for an AVPlayer.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| player | Pointer to an **OH_AVPlayer** instance.| 
+| callback | Callback.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The setting is successful.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** or **callback** is a null pointer, or the execution of **player SetDrmSystemInfoCallback** fails.
 
 
 ### OH_AVPlayer_SetPlaybackSpeed()
@@ -923,6 +1101,14 @@ Sets the playback speed for an AVPlayer.
 | -------- | -------- |
 | player | Pointer to an **OH_AVPlayer** instance.| 
 | speed | Playback speed. For details, see [AVPlaybackSpeed](#avplaybackspeed).| 
+
+**Returns**
+
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The playback speed is set.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer.
 
 
 ### OH_AVPlayer_SetPlayerCallback()
@@ -948,7 +1134,11 @@ Sets a callback for an AVPlayer.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the setting is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The callback is set.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, the input parameter **callback.onInfo** or **onError** is null, or the execution of **player SetPlayerCallback** fails.
 
 
 ### OH_AVPlayer_SetURLSource()
@@ -974,7 +1164,11 @@ Sets the HTTP URL of a media source to be played by an AVPlayer.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the setting is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The setting is successful.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, the input parameter **url** is null, or the execution of **player SetUrlSource** fails.
 
 
 ### OH_AVPlayer_SetVideoSurface()
@@ -995,6 +1189,14 @@ Sets a playback window.
 | -------- | -------- |
 | player | Pointer to an **OH_AVPlayer** instance.| 
 | window | Pointer to an **OHNativeWindow** instance.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+AV_ERR_OK: The playback window is set.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** or **window** is a null pointer, or the execution of **player SetVideoSurface** fails.
 
 
 ### OH_AVPlayer_SetVolume()
@@ -1023,7 +1225,11 @@ This function can be used when the AVPlayer is in the playing or paused state. T
 
 **Returns**
 
-Returns **AV_ERR_OK** if the setting is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+AV_ERR_OK: The volume is set.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player SetVolume** fails.
 
 
 ### OH_AVPlayer_Stop()
@@ -1048,7 +1254,11 @@ Stops playback.
 
 **Returns**
 
-Returns **AV_ERR_OK** if **Stop** is added to the task queue; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
+Returns a result code defined in [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1). The following result codes are possible:
+
+**AV_ERR_OK**: The **stop** operation is added to the task queue.
+
+**AV_ERR_INVALID_VAL**: The input parameter **player** is a null pointer, or the execution of **player Stop** fails.
 
 
 ## Variable Description

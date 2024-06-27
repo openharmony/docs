@@ -400,3 +400,31 @@ nodeAPI->registerNodeEventReceiver(onclick);
 * 用户全局搜索 ArkUI_NodeEvent类型，将回调中的 event->stringEvent.pStr 修改为 OH_ArkUI_NodeEvent_GetStringAsyncEvent(event)->pStr。
 
 * 用户全局搜索 ArkUI_NodeEvent类型，将回调中的 event->touchEvent 修改为先使用 OH_ArkUI_NodeEvent_GetInputEvent(event) 方法获取到指向 ArkUI_UIInputEvent 类型的指针，再通过开放的各种获取 ArkUI_UIInputEvent 数据的函数方法获取详细的接口数据。
+
+## cl.arkui.9 visibility异常参数处理规格变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+接口异常值处理变更。
+
+**变更影响**
+
+变更前：异常值时当作hidden处理。
+
+变更后：异常值时当作visible处理。
+
+**起始API Level**
+
+该特性版本为API 7,变更版本为API 12。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.22开始。
+
+**适配指导**
+
+异常值处理逻辑变更，不涉及适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。

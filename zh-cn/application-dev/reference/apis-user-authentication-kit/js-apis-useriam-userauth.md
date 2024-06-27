@@ -89,7 +89,7 @@ getEnrolledState(authType : UserAuthType): EnrolledState
 | 错误码ID | 错误信息 |
 | -------- | ------- |
 | 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500010 | The type of credential has not been enrolled. |
@@ -249,7 +249,7 @@ on(type: 'result', callback: IAuthCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters.    |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -305,7 +305,7 @@ off(type: 'result', callback?: IAuthCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters.    |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -355,18 +355,18 @@ start(): void
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
 | 201      | Permission verification failed.                  |
-| 401      | Incorrect parameters.                            |
+| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
 | 12500001 | Authentication failed.                           |
 | 12500002 | General operation error.                         |
-| 12500003 | The operation is canceled.                       |
-| 12500004 | The operation is time-out.                       |
+| 12500003 | Authentication canceled.                         |
+| 12500004 | Authentication timeout.                          |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
-| 12500007 | The authentication task is busy.                 |
-| 12500009 | The authenticator is locked.                     |
+| 12500007 | Authentication service is busy.                  |
+| 12500009 | Authentication is locked out.                    |
 | 12500010 | The type of credential has not been enrolled.    |
-| 12500011 | The authentication is canceled from widget's navigation button.      |
-| 12500013 | Indicates that current authentication failed because of PIN expired. |
+| 12500011 | Switched to the custom authentication process.   |
+| 12500013 | Operation failed because of PIN expired. |
 
 **示例：**
 
@@ -410,7 +410,7 @@ cancel(): void
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 201      | Permission verification failed. |
-| 401      | Incorrect parameters.           |
+| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
 | 12500002 | General operation error.        |
 
 **示例：**
@@ -467,7 +467,7 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 401      | Incorrect parameters.                            |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.   |
 | 12500002 | General operation error.                         |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
@@ -525,28 +525,36 @@ try {
 
 ## EventInfo<sup>(deprecated)</sup>
 
+type EventInfo = AuthResultInfo | TipInfo
+
 表示认证过程中事件信息的类型。
+
+该类型为下表类型中的联合类型。
 
 > **说明：**
 > 从 API version 9 开始支持，从 API version 11 开始废弃，请使用[UserAuthResult](#userauthresult10)替代。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core。
 
-| 取值类型    | 说明                       |
+| 类型    | 说明                       |
 | --------- | ----------------------- |
 | [AuthResultInfo](#authresultinfodeprecated)    | 获取到的认证结果信息。  |
 | [TipInfo](#tipinfodeprecated)    | 认证过程中的提示信息。      |
 
 ## AuthEventKey<sup>(deprecated)</sup>
 
+type AuthEventKey = 'result' | 'tip'
+
 表示认证事件类型的关键字，作为[on](#ondeprecated)接口的的参数。
+
+该类型为下表类型取值中的联合类型。
 
 > **说明：**
 > 从 API version 9 开始支持，从 API version 11 开始废弃。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core。
 
-| 取值类型       | 说明                    |
+| 类型       | 说明                    |
 | ---------- | ----------------------- |
 | "result" | [on](#ondeprecated)接口第一个参数为"result"时，[callback](#callbackdeprecated)回调返回认证的结果信息。 |
 | "tip"    | [on](#ondeprecated)接口第一个参数为"tip"时，[callback](#callbackdeprecated)回调返回认证操作中的提示信息。 |
@@ -776,7 +784,7 @@ start : () => void
 | 12500001 | Authentication failed. |
 | 12500002 | General operation error. |
 | 12500003 | The operation is canceled. |
-| 12500004 | The operation is time-out. |
+| 12500004 | The operation is time-out.  |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
 | 12500007 | The authentication task is busy. |
@@ -931,12 +939,12 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 | 错误码ID | 错误信息 |
 | -------- | ------- |
 | 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
 | 12500010 | The type of credential has not been enrolled. |
-| 12500013 | Indicates that current operation failed because of PIN expired. |
+| 12500013 | Operation failed because of PIN expired. |
 
 **示例：**
 

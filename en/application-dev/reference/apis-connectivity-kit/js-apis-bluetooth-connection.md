@@ -30,7 +30,7 @@ Pairs a Bluetooth device. This API uses an asynchronous callback to return the r
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked to return the result. If the pairing is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result. If the pairing is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -239,7 +239,7 @@ Obtains the paired devices.
 
 | Type                 | Description           |
 | ------------------- | ------------- |
-| Array&lt;string&gt; | Addresses of the paired Bluetooth devices. For security purposes, the device addresses obtained are random MAC addresses.|
+| Array&lt;string&gt; | Addresses of the paired Bluetooth devices. For security purposes, the device addresses obtained are random MAC addresses. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
 
 **Error codes**
 
@@ -360,7 +360,7 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 
 Sets the device pairing confirmation.
 
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH (available only for system applications)
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -414,7 +414,7 @@ Sets the PIN for the device when **PinType** is **PIN_TYPE_ENTER_PIN_CODE** or *
 | ------ | ------- | ---- | -------------------------------- |
 | deviceId | string  | Yes   | MAC address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | code   | string  | Yes   | PIN to set.       |
-| callback   | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.       |
+| callback   | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.       |
 
 **Error codes**
 
@@ -612,7 +612,7 @@ try {
 
 startBluetoothDiscovery(): void
 
-Starts discovery of Bluetooth devices.
+Starts to discover Bluetooth devices.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -648,7 +648,7 @@ try {
 
 stopBluetoothDiscovery(): void
 
-Stops discovery of Bluetooth devices.
+Stops discovering Bluetooth devices.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -764,6 +764,133 @@ try {
 ```
 
 
+## connection.getRemoteDeviceBatteryInfo<sup>12+</sup>
+
+getRemoteDeviceBatteryInfo(deviceId: string): Promise&lt;BatteryInfo&gt;
+
+obtains the battery information of a remote Bluetooth device.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type     | Mandatory  | Description                              |
+| ------ | ------- | ---- | -------------------------------- |
+| deviceId | string  | Yes   | MAC address of the remote device, for example, **11:22:33:AA:BB:FF**.|
+
+**Return value**
+
+| Type                 | Description        |
+| ------------------- | ------------- |
+| Promise&lt;[BatteryInfo](#batteryinfo12)&gt; | Promise used to return the battery information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+// promise
+try {
+    connection.getRemoteDeviceBatteryInfo('11:22:33:AA:BB:FF').then((data: connection.BatteryInfo) => {
+        console.info('getRemoteDeviceBatteryInfo success, DeviceType:' + JSON.stringify(data));
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.on('batteryChange')<sup>12+</sup>
+
+on(type: 'batteryChange', callback: Callback&lt;BatteryInfo&gt;): void
+
+Subscribes to the changes in the battery information of a remote Bluetooth device.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                 | Mandatory  | Description                                    |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| type     | string                              | Yes   | Event type. The value is **'batteryChange'**, which indicates the change in battery information of a remote Bluetooth device.|
+| callback | Callback&lt;[BatteryInfo](#batteryinfo12)&gt; | Yes   | Callback used to return the battery information.   |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+let onReceiveEvent: (data: connection.BatteryInfo) => void = (data: connection.BatteryInfo) => {
+    console.info('BatteryInfo = '+ JSON.stringify(data));
+}
+try {
+    connection.on('batteryChange', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.off('batteryChange')<sup>12+</sup>
+
+off(type: 'batteryChange', callback?: Callback&lt;BatteryInfo&gt;): void
+
+Unsubscribes from the changes in the battery information of a remote Bluetooth device.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                 | Mandatory  | Description                                      |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| type     | string                              | Yes   | Event type. The value is **'batteryChange'**, which indicates the change in battery information of a remote Bluetooth device.  |
+| callback | Callback&lt;[BatteryInfo](#batteryinfo12)&gt; | No   | Callback to unregister.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+let onReceiveEvent: (data: connection.BatteryInfo) => void = (data: connection.BatteryInfo) => {
+    console.info('BatteryInfo = '+ JSON.stringify(data));
+}
+try {
+    connection.on('batteryChange', onReceiveEvent);
+    connection.off('batteryChange', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## connection.on('bluetoothDeviceFind')
 
 on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): void
@@ -779,7 +906,7 @@ Subscribes to the discovery of a Bluetooth device.
 | Name     | Type                                 | Mandatory  | Description                                    |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
 | type     | string                              | Yes   | Event type. The value is **bluetoothDeviceFind**, which indicates an event of discovering a Bluetooth device.|
-| callback | Callback&lt;Array&lt;string&gt;&gt; | Yes   | Callback invoked to return the discovered devices. You need to implement this callback. For security purposes, the device addresses are random MAC addresses.   |
+| callback | Callback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the discovered devices. You need to implement this callback. For security purposes, the device addresses are random MAC addresses. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.   |
 
 **Error codes**
 
@@ -819,7 +946,7 @@ Unsubscribes from the discovery of a Bluetooth device.
 | Name     | Type                                 | Mandatory  | Description                                      |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | type     | string                              | Yes   | Event type. The value is **bluetoothDeviceFind**, which indicates an event of discovering a Bluetooth device.  |
-| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Error codes**
 
@@ -860,7 +987,7 @@ Subscribes to Bluetooth pairing state changes.
 | Name     | Type                                      | Mandatory  | Description                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                   | Yes   | Event type. The value is **bondStateChange**, which indicates a Bluetooth pairing state change event.|
-| callback | Callback&lt;[BondStateParam](#bondstateparam)&gt; | Yes   | Callback invoked to return the pairing state. You need to implement this callback.   |
+| callback | Callback&lt;[BondStateParam](#bondstateparam)&gt; | Yes   | Callback used to return the pairing state. You need to implement this callback.   |
 
 **Error codes**
 
@@ -941,7 +1068,7 @@ Subscribes to the pairing request events of the remote Bluetooth device.
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **pinRequired** indicates a pairing request event.    |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | Yes   | Callback invoked to return the pairing request. You need to implement this callback.|
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | Yes   | Callback used to return the pairing request. You need to implement this callback.|
 
 **Error codes**
 
@@ -1017,6 +1144,7 @@ Represents the pairing state parameters.
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string      | Yes   | No   | ID of the device to pair.|
 | state    | BondState   | Yes   | No   | State of the device.|
+| cause<sup>12+</sup>| [UnbondCause](#unbondcause12) | Yes| No| Cause of the pairing failure.|
 
 
 ## PinRequiredParam
@@ -1043,6 +1171,23 @@ Represents the class of a Bluetooth device.
 | majorClass      | [MajorClass](js-apis-bluetooth-constant.md#majorclass)           | Yes   | No   | Major class of the Bluetooth device.  |
 | majorMinorClass | [MajorMinorClass](js-apis-bluetooth-constant.md#majorminorclass) | Yes   | No   | Major and minor classes of the Bluetooth device.|
 | classOfDevice   | number                              | Yes   | No   | Class of the device.         |
+
+
+## BatteryInfo<sup>12+</sup>
+
+Represents the battery information.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name      | Type  | Readable  | Writable  | Description         |
+| -------- | ------ | ---- | ---- | ----------- |
+| batteryLevel  | number | Yes   | No   | Battery level of the remote device. If the value is **-1**, there is no battery information.  |
+| leftEarBatteryLevel  | number | Yes   | No   | Battery level of the left earphone. If the value is **-1**, there is no battery information.  |
+| leftEarChargeState  | [DeviceChargeState](#devicechargestate12) | Yes   | No   | Charging state of the left earphone.  |
+| rightEarBatteryLevel  | number | Yes   | No   | Battery level of the right earphone. If the value is **-1**, there is no battery information.  |
+| rightEarChargeState  | [DeviceChargeState](#devicechargestate12) | Yes   | No   | Charging state of the right earphone.  |
+| boxBatteryLevel  | number | Yes   | No   | Battery level of the earbud compartment. If the value is **-1**, there is no battery information.  |
+| boxChargeState  | [DeviceChargeState](#devicechargestate12) | Yes   | No   | Charging state of the earbud compartment.  |
 
 
 ## BluetoothTransport
@@ -1084,3 +1229,32 @@ Enumerates the pairing states.
 | BOND_STATE_INVALID | 0    | Invalid pairing.|
 | BOND_STATE_BONDING | 1    | Pairing. |
 | BOND_STATE_BONDED  | 2    | Paired.  |
+
+
+## UnbondCause<sup>12+</sup>
+
+Enumerates the possible causes of a pairing failure.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name                | Value | Description    |
+| ------------------ | ---- | ------ |
+| USER_REMOVED        | 0    | The user proactively removes the device.|
+| REMOTE_DEVICE_DOWN  | 1    | The remote device is shut down.|
+| AUTH_FAILURE        | 2    | The PIN is incorrect.|
+| AUTH_REJECTED       | 3    | The remote device authentication is rejected.|
+| INTERNAL_ERROR      | 4    | Internal error.|
+
+
+## DeviceChargeState<sup>12+</sup>
+
+Enumerates the charging states.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name                | Value | Description    |
+| ------------------ | ---- | ------ |
+| DEVICE_NORMAL_CHARGE_NOT_CHARGED        | 0    | The device is not charged and does not support supercharging.|
+| DEVICE_NORMAL_CHARGE_IN_CHARGING       | 1    | The device is being charged and does not support supercharging.|
+| DEVICE_SUPER_CHARGE_NOT_CHARGED        | 2    | The device is not charged and supports supercharging.|
+| DEVICE_SUPER_CHARGE_IN_CHARGING       | 3    | The device is being charged and supports supercharging.|

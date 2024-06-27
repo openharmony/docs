@@ -21,7 +21,7 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import LightWeightSet from '@ohos.util.LightWeightSet';  
+import { LightWeightSet } from '@kit.ArkTS';
 ```
 
 ## LightWeightSet
@@ -105,7 +105,7 @@ Adds an element to this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is added; returns **false** otherwise.|
 
 **Error codes**
 
@@ -145,10 +145,11 @@ Adds all elements in a **LightWeightSet** instance to this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The addAll method cannot be bound. |
 
 **Example**
@@ -185,10 +186,11 @@ Checks whether this container contains all elements of the specified **LightWeig
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The hasAll method cannot be bound. |
 
 **Example**
@@ -295,12 +297,13 @@ Increases the capacity of this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The increaseCapacityTo method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of minimumCapacity is out of range. |
+| 10200011 | The increaseCapacityTo method cannot be bound. |
 
 **Example**
 
@@ -408,10 +411,11 @@ Removes the element at the specified position from this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The removeAt method cannot be bound. |
 
 **Example**
@@ -446,10 +450,11 @@ Obtains the value of the element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The getValueAt method cannot be bound. |
 
 **Parameters**
@@ -605,10 +610,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**

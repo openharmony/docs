@@ -1297,7 +1297,7 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
@@ -1337,7 +1337,7 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | maxNum   | number                                   | 是    |  使用记录的条数，取值范围为[1，1000]。 |
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 回调方法，Promise对象，返回不超过maxNum条，FA模型下各应用不用Hap包的使用记录。 |
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 回调方法，返回不超过maxNum条，FA模型下各应用不用Hap包的使用记录。 |
 
 **错误码**：
 
@@ -1347,7 +1347,7 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | Not System App. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |

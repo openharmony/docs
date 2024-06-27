@@ -54,6 +54,11 @@ The **drawing_pen.h** file declares functions related to the pen in the drawing 
 | [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle)[OH_Drawing_PenGetJoin](_drawing.md#oh_drawing_pengetjoin) (const [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | Obtains the line join style of a pen.|
 | void [OH_Drawing_PenSetJoin](_drawing.md#oh_drawing_pensetjoin) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle)) | Sets the line join style for a pen.|
 | void [OH_Drawing_PenSetShaderEffect](_drawing.md#oh_drawing_pensetshadereffect) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect) \*) | Sets the shader effect for a pen.|
+| void [OH_Drawing_PenSetShadowLayer](_drawing.md#oh_drawing_pensetshadowlayer) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_ShadowLayer](_drawing.md#oh_drawing_shadowlayer) \*) | Sets the shadow layer for a pen. If null is passed in, the existing shadow layer is cleared. Currently, this function is valid only for texts.|
 | void [OH_Drawing_PenSetPathEffect](_drawing.md#oh_drawing_pensetpatheffect) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_PathEffect](_drawing.md#oh_drawing_patheffect) \*) | Sets the path effect for a pen.|
 | void [OH_Drawing_PenSetFilter](_drawing.md#oh_drawing_pensetfilter) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) \*) | Sets a filter for a pen.|
+| void [OH_Drawing_PenGetFilter](_drawing.md#oh_drawing_pengetfilter) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) \*) | Obtains the filter of a pen. The filter is a container that holds a mask filter and color filter.|
 | void [OH_Drawing_PenSetBlendMode](_drawing.md#oh_drawing_pensetblendmode) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode)) | Sets a blender for a pen. The blender implements the specified blend mode.|
+| void [OH_Drawing_PenReset](_drawing.md#oh_drawing_penreset) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | Resets a pen to the initial value.|
+
+ <!--no_check--> 

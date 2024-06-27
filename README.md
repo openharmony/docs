@@ -18,7 +18,7 @@ This repository stores device and application development documents provided by 
 
  - master: the latest version.
 
- - OpenHarmony 4.1 Beta. [Learn more](en/release-notes/OpenHarmony-v4.1-beta1.md)
+ - OpenHarmony 4.1 Release. [Learn more](en/release-notes/OpenHarmony-v4.1-release.md)
 
  - OpenHarmony 4.0 Release. [Learn more](en/release-notes/OpenHarmony-v4.0-release.md)
 

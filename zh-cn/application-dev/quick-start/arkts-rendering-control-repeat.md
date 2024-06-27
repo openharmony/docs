@@ -47,22 +47,6 @@ interface RepeatItem<T> {
 | item          | T                                  | 是       | arr中每一个数据项。T为开发者传入的数据类型。 |
 | index | number | 否      | 当前数据项对应的索引。 |
 
-## 事件
-### onMove
-
-onMove(handler: Optional<(from: index, to: index) => void>)
-
-拖拽排序数据移动回调。只有在List组件中使用，并且Repeat每次迭代都生成一个ListItem组件时才生效拖拽排序。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型      | 必填 | 说明       |
-| ------ | --------- | ---- | ---------- |
-| from  | number | 是   | 数据源移动起始索引号。 |
-| to  | number | 是   | 数据源移动目标索引号。 |
-
 ## 键值生成规则
 
 在`Repeat`循环渲染过程中，系统会为每个数组元素生成一个唯一且持久的键值，用于标识对应的组件。当这个键值变化时，ArkUI框架将视为该数组元素已被替换或修改，会基于此去做对应的更新。若当前数组有数据项对应的键值与其他项重复，`Repeat`会为每一项数据补上`index`作为新的键值。
@@ -308,47 +292,3 @@ struct ChildItem {
 ![ForEach-Non-Initial-Render-Case-Effect](figures/ForEach-Non-Initial-Render-Case-Effect.gif)
 
 通过@ObservedV2和@Trace，此框架可以做到监听obj.item.message.message的变化并通知对应UI刷新。
-## 拖拽排序
-当Repeat在List组件下使用，并且设置了onMove事件，Repeat每次迭代都生成一个ListItem时，可以使能拖拽排序。拖拽排序离手后，如果数据位置发生变化，则会触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。
-
-```ts
-@Entry
-@Component
-struct RepeatSort {
-  @State arr: Array<string> = [];
-
-  build() {
-    Row() {
-      List() {
-        Repeat<string>(this.arr)
-          .each((obj: RepeatItem<string>)=> {
-            ListItem() {
-              Text(obj.item.toString())
-                .fontSize(16)
-                .textAlign(TextAlign.Center)
-                .size({height: 100, width: "100%"})
-            }.margin(10)
-            .borderRadius(10)
-            .backgroundColor("#FFFFFFFF")
-          })
-          .key((item: string) => item)
-          .onMove((from:number, to:number)=>{
-            let tmp = this.arr.splice(from, 1);
-            this.arr.splice(to, 0, tmp[0])
-          })
-      }
-      .width('100%')
-      .height('100%')
-      .backgroundColor("#FFDCDCDC")
-    }
-  }
-  aboutToAppear(): void {
-    for (let i = 0; i < 100; i++) {
-      this.arr.push(i.toString())
-    }
-  }
-}
-```
-
-**图6** Repeat拖拽排序效果图  
-![Repeat-Drag-Sort](figures/ForEach-Drag-Sort.gif)

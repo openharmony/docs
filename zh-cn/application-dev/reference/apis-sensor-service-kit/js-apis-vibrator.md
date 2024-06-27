@@ -21,7 +21,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **需要权限：** ohos.permission.VIBRATE
 
-**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
@@ -35,11 +35,14 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
 
-| 错误码ID | 错误信息                 |
-| -------- | ------------------------ |
-| 14600101 | Device operation failed. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 801      | Capability not supported.                                    |
+| 14600101 | Device operation failed.                                     |
 
 **示例：** 
 
@@ -137,7 +140,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 **需要权限：** ohos.permission.VIBRATE
 
-**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
@@ -156,11 +159,14 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
 
-| 错误码ID | 错误信息                 |
-| -------- | ------------------------ |
-| 14600101 | Device operation failed. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 801      | Capability not supported.                                    |
+| 14600101 | Device operation failed.                                     |
 
 **示例：** 
 
@@ -260,6 +266,15 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 指定的停止振动模式，支持两种：<br>VIBRATOR_STOP_MODE_TIME：停止固定时长振动；<br>VIBRATOR_STOP_MODE_PRESET：停止预置振动。<br>此接口无法停止自定义振动，请使用[vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10)。                                  |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数，当马达停止振动成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
 
 **示例：** 
 
@@ -368,6 +383,15 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
 **示例：** 
 
 停止固定时长振动：
@@ -453,7 +477,7 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限：** ohos.permission.VIBRATE
 
-**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
@@ -462,6 +486,14 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，当马达停止振动成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
 
 **示例：** 
 
@@ -492,7 +524,7 @@ stopVibration(): Promise&lt;void&gt;
 
 **需要权限：** ohos.permission.VIBRATE
 
-**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
@@ -501,6 +533,14 @@ stopVibration(): Promise&lt;void&gt;
 | 类型                | 说明          |
 | ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
 
 **示例：** 
 
@@ -529,13 +569,13 @@ stopVibrationSync(): void
 
 **需要权限：** ohos.permission.VIBRATE
 
-**元服务API：** 从API Version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API Version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -572,6 +612,15 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | effectId | string                       | 是   | 预置的振动效果。                                           |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，当返回true则表示支持该effectId，否则不支持。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
 
 **示例：** 
 
@@ -635,6 +684,15 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 | ---------------------- | --------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise对象。当返回true则表示支持该effectId，否则不支持。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
 **示例：** 
 
 ```ts
@@ -694,12 +752,12 @@ isSupportEffectSync(effectId: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
 
-| 错误码ID | 错误信息                 |
-| -------- | ------------------------ |
-| 401      | Parameter error.         |
-| 14600101 | Device operation failed. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14600101 | Device operation failed.                                     |
 
 **示例：** 
 
@@ -733,7 +791,7 @@ isHdHapticSupported(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -765,6 +823,17 @@ try {
 | ------------------ | -------------------- | -------------------------------- |
 | EFFECT_CLOCK_TIMER | "haptic.clock.timer" | 描述用户调整计时器时的振动效果。|
 
+## HapticFeedback<sup>12+</sup>
+
+简单而通用的振动效果。
+
+**系统能力：** SystemCapability.Sensors.MiscDevice
+
+| 名称         | 值                    | 说明                         |
+| ------------ | --------------------- | ---------------------------- |
+| EFFECT_SOFT  | "haptic.effect.soft"  | 较松散的振动效果，频率偏低。 |
+| EFFECT_HARD  | "haptic.effect.hard"  | 较沉重的振动效果，频率居中。 |
+| EFFECT_SHARP | "haptic.effect.sharp" | 较尖锐的振动效果，频率偏高。 |
 
 ## VibratorStopMode
 
@@ -785,7 +854,7 @@ try {
 
 | 类型                             | 说明                           |
 | -------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime9) | 按照指定持续时间触发马达振动。<br/>**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。 |
+| [VibrateTime](#vibratetime9) | 按照指定持续时间触发马达振动。<br/>**原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。 |
 | [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
 | [VibrateFromFile](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。 |
 
@@ -793,13 +862,13 @@ try {
 
 固定时长振动类型。
 
-**元服务API：** 从API Version 11开始，该接口在支持元服务中使用。
+**原子化服务API：** 从API Version 11开始，该接口在支持原子化服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
 | 名称     | 类型    | 必填 | 说明                           |
 | -------- | ------ | ----- | ------------------------------ |
-| type     | string |  是   | 值为"time"，按照指定持续时间触发马达振动。 |
+| type     | "time" |  是   | 值为"time"，按照指定持续时间触发马达振动。 |
 | duration | number |  是   | 马达持续振动时长, 单位ms。         |
 
 ## VibratePreset<sup>9+</sup>
@@ -810,9 +879,10 @@ try {
 
 | 名称     | 类型      | 必填 | 说明                           |
 | -------- | -------- | ---- |------------------------------ |
-| type     | string   |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
+| type     | "preset" |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
 | effectId | string   |  是  | 预置的振动效果ID。             |
-| count    | number   |  是  | 重复振动的次数。               |
+| count    | number   |  否  | 可选参数，振动的重复次数，默认值为1。 |
+| intensity | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。 |
 
 ## VibrateFromFile<sup>10+</sup>
 
@@ -822,7 +892,7 @@ try {
 
 | 名称     | 类型       | 必填 | 说明                           |
 | -------- | --------  | ---- | ------------------------------ |
-| type     | string    |  是  | 值为"file"，按照振动配置文件触发马达振动。 |
+| type     | "file" |  是  | 值为"file"，按照振动配置文件触发马达振动。 |
 | hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | 是 | 振动配置文件的描述符。|
 
 ## HapticFileDescriptor<sup>10+</sup>
@@ -841,7 +911,7 @@ try {
 
 马达振动属性。
 
-**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
@@ -852,23 +922,25 @@ try {
 
 ## Usage<sup>9+</sup>
 
+type Usage = 'unknown'|'alarm'|'ring'|'notification'|'communication'|'touch'|'media'|'physicalFeedback'|'simulateReality'
+
 振动使用场景。
 
-**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
-| 名称             | 类型   | 说明                           |
-| ---------------- | ------ | ------------------------------ |
-| unknown          | string | 没有明确使用场景，最低优先级。 |
-| alarm            | string | 用于警报场景。           |
-| ring             | string | 用于铃声场景。           |
-| notification     | string | 用于通知场景。           |
-| communication    | string | 用于通信场景。           |
-| touch            | string | 用于触摸场景。           |
-| media            | string | 用于多媒体场景。         |
-| physicalFeedback | string | 用于物理反馈场景。       |
-| simulateReality  | string | 用于模拟现实场景。       |
+| 名称             | 类型   | 必填 | 说明                           |
+| ---------------- | ------ | ------------------------------ | ------------------------------ |
+| unknown          | string | 是 | 没有明确使用场景，最低优先级。 |
+| alarm            | string | 是 | 用于警报场景。           |
+| ring             | string | 是 | 用于铃声场景。           |
+| notification     | string | 是 | 用于通知场景。           |
+| communication    | string | 是 | 用于通信场景。           |
+| touch            | string | 是 | 用于触摸场景。           |
+| media            | string | 是 | 用于多媒体场景。         |
+| physicalFeedback | string | 是 | 用于物理反馈场景。       |
+| simulateReality  | string | 是 | 用于模拟现实场景。       |
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
 

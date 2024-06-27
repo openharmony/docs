@@ -9,12 +9,12 @@
 ## 导入模块
 
 ```ts
-import pasteboard from '@ohos.pasteboard';
+import { pasteboard } from '@kit.BasicServicesKit';
 ```
 
 ## 常量
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -29,9 +29,11 @@ import pasteboard from '@ohos.pasteboard';
 
 ## ValueType<sup>9+</sup>
 
+type ValueType = string | image.PixelMap | Want | ArrayBuffer
+
 用于表示允许的数据字段类型。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -48,7 +50,7 @@ createData(mimeType: string, value: ValueType): PasteData
 
 构建一个自定义类型的剪贴板内容对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -94,7 +96,7 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord;
 
 创建一条自定义数据内容条目。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -139,7 +141,7 @@ getSystemPasteboard(): SystemPasteboard
 
 获取系统剪贴板对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -159,7 +161,7 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 
 可粘贴数据的范围类型枚举。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -225,7 +227,7 @@ createWantData(want: Want): PasteData
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -347,7 +349,7 @@ createWantRecord(want: Want): PasteDataRecord
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -420,7 +422,7 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等，
 该属性必须通过[setProperty](#setproperty9)方法，才能设置到剪贴板中。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -439,7 +441,7 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 
 ### 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -459,7 +461,7 @@ toPlainText(): string
 
 将一个PasteData中的内容强制转换为文本内容。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -505,7 +507,7 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToText((err: BusinessError, data: string) => {
@@ -537,7 +539,7 @@ convertToText(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToText().then((data: string) => {
@@ -561,7 +563,7 @@ getPrimaryText(): string
 
 获取首个条目的纯文本内容。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -584,7 +586,7 @@ getPrimaryHtml(): string
 
 获取首个条目的HTML内容。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -608,7 +610,7 @@ getPrimaryWant(): Want
 
 获取首个条目的Want对象内容。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -621,7 +623,7 @@ getPrimaryWant(): Want
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -637,7 +639,7 @@ getPrimaryUri(): string
 
 获取首个条目的URI内容。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -660,7 +662,7 @@ getPrimaryPixelMap(): image.PixelMap
 
 获取首个条目的PixelMap内容。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -673,7 +675,7 @@ getPrimaryPixelMap(): image.PixelMap
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 let buffer = new ArrayBuffer(128);
 let realSize: image.Size = { height: 3, width: 5 };
@@ -696,7 +698,7 @@ addRecord(record: PasteDataRecord): void
 
 向当前剪贴板内容中添加一条条目，同时也会将条目类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -722,7 +724,7 @@ addRecord(mimeType: string, value: ValueType): void
 
 向当前剪贴板内容中添加一条自定义数据内容条目，同时也会将自定义数据类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -756,7 +758,7 @@ getMimeTypes(): Array&lt;string&gt;
 
 获取剪贴板中[PasteDataProperty](#pastedataproperty7)的mimeTypes列表，当剪贴板内容为空时，返回列表为空。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -779,7 +781,7 @@ getPrimaryMimeType(): string
 
 获取剪贴板内容中首个条目的数据类型。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -802,7 +804,7 @@ getProperty(): PasteDataProperty
 
 获取剪贴板内容的属性描述对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -825,7 +827,7 @@ setProperty(property: PasteDataProperty): void
 
 设置剪贴板内容的属性描述对象[PasteDataProperty](#pastedataproperty7)。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -906,7 +908,7 @@ getRecord(index: number): PasteDataRecord
 
 获取剪贴板内容中指定下标的条目。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -944,7 +946,7 @@ getRecordCount(): number
 
 获取剪贴板内容中条目的个数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -967,7 +969,7 @@ getTag(): string
 
 获取剪贴板内容中用户自定义的标签内容，如果没有设置用户自定义的标签内容将返回空。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -990,7 +992,7 @@ hasType(mimeType: string): boolean
 
 检查剪贴板内容中是否有指定的MIME数据类型。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1027,7 +1029,7 @@ removeRecord(index: number): void
 
 移除剪贴板内容中指定下标的条目。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1059,7 +1061,7 @@ replaceRecord(index: number, record: PasteDataRecord): void
 
 替换剪贴板内容中指定下标的条目。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1133,7 +1135,7 @@ addWantRecord(want: Want): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
 let object: Want = {
@@ -1418,7 +1420,7 @@ clearData(callback: AsyncCallback&lt;void&gt;): void
 
 清空系统剪贴板内容，使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1455,7 +1457,7 @@ clearData(): Promise&lt;void&gt;
 
 清空系统剪贴板内容，使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1468,7 +1470,7 @@ clearData(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clearData().then((data: void) => {
@@ -1484,7 +1486,7 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 将数据写入系统剪贴板，使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1525,7 +1527,7 @@ setData(data: PasteData): Promise&lt;void&gt;
 
 将数据写入系统剪贴板，使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1554,7 +1556,7 @@ setData(data: PasteData): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
@@ -1573,7 +1575,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1595,7 +1597,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
@@ -1615,7 +1617,7 @@ getData(): Promise&lt;PasteData&gt;
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1637,7 +1639,7 @@ getData(): Promise&lt;PasteData&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
@@ -1653,7 +1655,7 @@ hasData(callback:  AsyncCallback&lt;boolean&gt;): void
 
 判断系统剪贴板中是否有内容，使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1674,7 +1676,7 @@ hasData(callback:  AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData((err: BusinessError, data: boolean) => {
@@ -1692,7 +1694,7 @@ hasData(): Promise&lt;boolean&gt;
 
 判断系统剪贴板中是否有内容，使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1705,7 +1707,7 @@ hasData(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData().then((data: boolean) => {
@@ -1773,7 +1775,7 @@ clear(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clear().then((data) => {
@@ -1811,7 +1813,7 @@ getPasteData( callback: AsyncCallback&lt;PasteData&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getPasteData((err: BusinessError, pasteData: pasteboard.PasteData) => {
@@ -1843,7 +1845,7 @@ getPasteData(): Promise&lt;PasteData&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getPasteData().then((pasteData: pasteboard.PasteData) => {
@@ -1881,7 +1883,7 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasPasteData((err: BusinessError, data: boolean) => {
@@ -1913,7 +1915,7 @@ hasPasteData(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasPasteData().then((data: boolean) => {
@@ -1988,7 +1990,7 @@ setPasteData(data: PasteData): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content');
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
@@ -2004,7 +2006,7 @@ isRemoteData(): boolean
 
 判断剪贴板中的数据是否来自其他设备。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2040,7 +2042,7 @@ getDataSource(): string
 
 获取数据来源。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2076,7 +2078,7 @@ hasDataType(mimeType: string): boolean
 
 检查剪贴板内容中是否有指定类型的数据。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2119,7 +2121,7 @@ clearDataSync(): void
 
 清空系统剪贴板内容, 此接口为同步接口。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2151,7 +2153,7 @@ getDataSync(): PasteData
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2188,7 +2190,7 @@ setDataSync(data: PasteData): void
 
 将数据写入系统剪贴板, 此接口为同步接口。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2226,7 +2228,7 @@ hasDataSync(): boolean
 
 判断系统剪贴板中是否有内容, 此接口为同步接口。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2284,13 +2286,13 @@ getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getUnifiedData().then((data) => {
-    let records = data.getRecords();
+    let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
     for (let j = 0; j < records.length; j++) {
         if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
             let text = records[j] as unifiedDataChannel.PlainText;
@@ -2330,7 +2332,7 @@ getUnifiedDataSync(): unifiedDataChannel.UnifiedData
 **示例：**
 
 ```ts
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { unifiedDataChannel } from '@kit.ArkData';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
@@ -2374,8 +2376,8 @@ setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { unifiedDataChannel } from '@kit.ArkData';
 
 let plainTextData = new unifiedDataChannel.UnifiedData();
 let plainText = new unifiedDataChannel.PlainText();
@@ -2421,7 +2423,7 @@ setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
 **示例：**
 
 ```ts
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { unifiedDataChannel } from '@kit.ArkData';
 
 let plainTextData = new unifiedDataChannel.UnifiedData();
 let plainText = new unifiedDataChannel.PlainText();

@@ -55,6 +55,7 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
@@ -97,7 +98,7 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201 | Permission denied.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -203,6 +204,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid accountInfo. |
@@ -254,6 +256,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 201 | Permission denied.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid accountInfo. |

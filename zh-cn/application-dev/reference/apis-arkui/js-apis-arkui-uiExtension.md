@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import uiExtension from '@ohos.arkui.uiExtension'
+import { uiExtension } from '@kit.ArkUI'
 ```
 
 ## WindowProxy
@@ -44,16 +44,18 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 **示例**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
-import window from '@ohos.window';
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
-// 在执行到EmbeddedUIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前EmbeddedUIExtensionAbility的WindowProxy实例
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// 获取宿主应用窗口的避让信息
-let avoidArea: window.AvoidArea | undefined = this.extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 获取宿主应用窗口的避让信息
+    const avoidArea = extensionHostWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+    console.log(`avoidArea: ${JSON.stringify(avoidArea)}`);
+  }
+}
 ```
 
 ### on('avoidAreaChange')
@@ -80,17 +82,18 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaInfo&gt;): void
 **示例**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-// 在执行到EmbeddedUIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前EmbeddedUIExtensionAbility的WindowProxy实例
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// 注册避让区变化的监听
-this.extensionWindow?.on('avoidAreaChange', (info) => {
-    console.info(`The avoid area of the host window is: ${JSON.stringify(info.area)}.`);
-});
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 注册避让区变化的监听
+    extensionHostWindow.on('avoidAreaChange', (info) => {
+      console.info(`The avoid area of the host window is: ${JSON.stringify(info.area)}.`);
+    });
+  }
+}
 ```
 
 ### off('avoidAreaChange')
@@ -109,15 +112,16 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaInfo&gt;): void
 **示例**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
-// 在执行到EmbeddedUIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前EmbeddedUIExtensionAbility的WindowProxy实例
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// 注销所有避让区变化的监听
-this.extensionWindow?.off('avoidAreaChange');
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 注销所有避让区变化的监听
+    extensionHostWindow.off('avoidAreaChange');
+  }
+}
 ```
 
 ### on('windowSizeChange')
@@ -144,17 +148,18 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 **示例**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-// 在执行到EmbeddedUIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前EmbeddedUIExtensionAbility的WindowProxy实例
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// 注册避让区变化的监听
-this.extensionWindow?.on('windowSizeChange', (size) => {
-    console.info('The host window size is ${JSON.stringify(size)}.');
-});
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 注册宿主应用窗口大小变化的监听
+    extensionHostWindow.on('windowSizeChange', (size) => {
+      console.info(`The avoid area of the host window is: ${JSON.stringify(size)}.`);
+    });
+  }
+}
 ```
 
 ### off('windowSizeChange')
@@ -181,15 +186,16 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 **示例**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
-// 在执行到EmbeddedUIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前EmbeddedUIExtensionAbility的WindowProxy实例
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// 注销所有宿主应用窗口大小变化的监听
-this.extensionWindow?.off('windowSizeChange');
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 注销宿主应用窗口大小变化的监听
+    extensionHostWindow.off('windowSizeChange');
+  }
+}
 ```
 
 ### createSubWindowWithOptions
@@ -199,6 +205,8 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 创建该WindowProxy实例下的子窗口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **参数：**
 
@@ -220,54 +228,55 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 801 | Capability not supported on this device. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window proxy is abnormal. |
 
 **示例：**
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+// ExtensionProvider.ts
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// 在执行到EmbeddedUIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前EmbeddedUIExtensionAbility的WindowProxy实例
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-let subWindowOpts: window.SubWindowOptions = {
-  'title': 'This is a subwindow',
-  decorEnabled: true
-};
-// 创建子窗口
-this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
-  .then((subWindow: window.Window) => {
-    this.subWindow = subWindow;
-    this.subWindow.loadContent('pages/Index', storage, (err, data) =>{
-      if (err && err.code != 0) {
-        return;
-      }
-      this.subWindow?.resize(300, 300, (err, data)=>{
-        if (err && err.code != 0) {
-          return;
-        }
-        this.subWindow?.moveWindowTo(100, 100, (err, data)=>{
+export default class EntryAbility extends EmbeddedUIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const subWindowOpts: window.SubWindowOptions = {
+      title: 'This is a subwindow',
+      decorEnabled: true
+    };
+    // 创建子窗口
+    extensionHostWindow.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
+      .then((subWindow: window.Window) => {
+        subWindow.loadContent('pages/Index', (err, data) =>{
           if (err && err.code != 0) {
             return;
           }
-          this.subWindow?.showWindow((err, data) => {
-            if (err && err.code == 0) {
-              console.info(`The subwindow has been shown!`);
-            } else {
-              console.error(`Failed to show the subwindow!`);
+          subWindow?.resize(300, 300, (err, data)=>{
+            if (err && err.code != 0) {
+              return;
             }
+            subWindow?.moveWindowTo(100, 100, (err, data)=>{
+              if (err && err.code != 0) {
+                return;
+              }
+              subWindow?.showWindow((err, data) => {
+                if (err && err.code == 0) {
+                  console.info(`The subwindow has been shown!`);
+                } else {
+                  console.error(`Failed to show the subwindow!`);
+                }
+              });
+            });
           });
         });
-      });
-    });
-  }).catch((error: BusinessError) => {
-    console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
-  })
+      }).catch((error: BusinessError) => {
+        console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
+      })
+  }
+}
 ```
 
 ## AvoidAreaInfo
@@ -290,7 +299,7 @@ this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOp
 
   ```ts
   // pages/Index.ets -- UIAbility启动时加载此页面
-  import Want from '@ohos.app.ability.Want'
+  import { Want } from '@kit.AbilityKit';
 
   @Entry
   @Component
@@ -309,7 +318,7 @@ this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOp
             .width('100%')
             .height('90%')
             .onTerminated((info)=>{
-              this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
+              this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
             })
             .onError((error)=>{
               this.message = 'Error: code = ' + error.code;
@@ -325,9 +334,7 @@ this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOp
 - EmbeddedComponent拉起的EmbeddedUIExtensionAbility在`ets/extensionAbility/ExampleEmbeddedAbility`文件中实现，内容如下：
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-  import Want from '@ohos.app.ability.Want';
+  import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
   const TAG: string = '[ExampleEmbeddedAbility]'
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
@@ -362,10 +369,9 @@ this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOp
 - EmbeddedUIExtensionAbility的入口页面文件`pages/extension.ets`内容如下：
 
   ```ts
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import uiExtension from '@ohos.arkui.uiExtension';
-  import window from '@ohos.window';
-
+  import { UIExtensionContentSession } from '@kit.AbilityKit';
+  import { uiExtension, window } from '@kit.ArkUI';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let storage = LocalStorage.getShared()
 
   @Entry(storage)
@@ -425,7 +431,6 @@ this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOp
                                   } else {
                                       console.error(`Failed to show the subwindow!`);
                                   }
-                                  
                               });
                           });
                       });

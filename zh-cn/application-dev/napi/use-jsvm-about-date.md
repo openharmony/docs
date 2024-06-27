@@ -22,6 +22,8 @@ JavaScript Date对象提供了一种在JavaScript中表示和操作日期和时�
 
 ## 使用示例
 
+以下样例代码的基础代码已在jsvm-api.md实现，样例的注册回调、方法别名、样例方法都需要添加到jsvm-api.md。
+
 ### OH_JSVM_CreateDate
 
 创建一个表示给定毫秒数的Date对象。
@@ -29,16 +31,16 @@ JavaScript Date对象提供了一种在JavaScript中表示和操作日期和时�
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，CreateDate在jsvm-api.md注册回调
+// CreateDate注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateDate},
 };
 static JSVM_CallbackStruct *method = param;
-// CreateDate方法别名，供TS侧调用。在jsvm-api.md进行添加
+// CreateDate方法别名，供TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createDate", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// CreateDate方法添加到jsvm-api.md
+// OH_JSVM_CreateDate的样例方法
 static JSVM_Value CreateDate(JSVM_Env env, JSVM_CallbackInfo info) {
     g_data_type = "date";
     double value = 1501924876711;
@@ -68,16 +70,16 @@ try {
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，GetDateValue在jsvm-api.md注册回调
+// GetDateValue注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetDateValue},
 };
 static JSVM_CallbackStruct *method = param;
-// GetDateValue方法别名，供TS侧调用。在jsvm-api.md进行添加
+// GetDateValue方法别名，供TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getDateValue", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// GetDateValue方法添加到jsvm-api.md
+// OH_JSVM_GetDateValue的样例方法
 static JSVM_Value GetDateValue(JSVM_Env env, JSVM_CallbackInfo info) {
     g_data_type = "double";
     size_t argc = 1;
@@ -117,16 +119,16 @@ try {
 cpp部分代码
 
 ```cpp
-// jsvm-api.md为基础运行框架，IsDate在jsvm-api.md注册回调
+// IsDate注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = IsDate},
 };
 static JSVM_CallbackStruct *method = param;
-// IsDate方法别名，供TS侧调用。在jsvm-api.md进行添加
+// IsDate方法别名，供TS侧调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"isDate", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// IsDate方法添加到jsvm-api.md
+// OH_JSVM_IsDate的样例方法
 static JSVM_Value IsDate(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};

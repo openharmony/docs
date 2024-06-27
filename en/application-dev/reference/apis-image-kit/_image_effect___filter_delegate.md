@@ -9,7 +9,7 @@ The **ImageEffect_FilterDelegate** struct describes the callback functions of a 
 
 **Since**: 12
 
-**Related module**: [ImageEffect] (_image_effect.md)
+**Related module**: [ImageEffect](_image_effect.md)
 
 
 ## Summary

@@ -40,34 +40,33 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import business_error from '@ohos.base';
-  import promptAction from '@ohos.promptAction';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { promptAction } from '@kit.ArkUI';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    responseweb: WebResourceResponse = new WebResourceResponse()
-    heads:Header[] = new Array()
-    @State webdata: string = "<!DOCTYPE html>\n" +
-    "<html>\n" +
-    "<head>\n" +
-    "<title>intercept test</title>\n" +
-    "</head>\n" +
-    "<body>\n" +
-    "<h1>intercept test</h1>\n" +
-    "</body>\n" +
-    "</html>"
+    controller: webview.WebviewController = new webview.WebviewController();
+    responseWeb: WebResourceResponse = new WebResourceResponse();
+    heads: Header[] = new Array();
+    @State webData: string = "<!DOCTYPE html>\n" +
+      "<html>\n" +
+      "<head>\n" +
+      "<title>intercept test</title>\n" +
+      "</head>\n" +
+      "<body>\n" +
+      "<h1>intercept test</h1>\n" +
+      "</body>\n" +
+      "</html>";
 
-  aboutToAppear(): void {
-    try {
-      web_webview.WebviewController.setWebDebuggingAccess(true);
-    } catch (error) {
-      let e: business_error.BusinessError = error as business_error.BusinessError;
-      console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+    aboutToAppear(): void {
+      try {
+        webview.WebviewController.setWebDebuggingAccess(true);
+      } catch (error) {
+        console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+      }
     }
-  }
 
     build() {
       Column() {
@@ -88,63 +87,63 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
             return true
           })
           .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
-              if (webResourceRequest && webResourceRequest.getRequestUrl() == "about:blank") {
-                return true;
-              }
-              return false;
+            if (webResourceRequest && webResourceRequest.getRequestUrl() == "about:blank") {
+              return true;
+            }
+            return false;
           })
           .onInterceptRequest((event) => {
             if (event) {
-              console.log('url:' + event.request.getRequestUrl())
+              console.log('url:' + event.request.getRequestUrl());
             }
-            let head1:Header = {
-              headerKey:"Connection",
-              headerValue:"keep-alive"
+            let head1: Header = {
+              headerKey: "Connection",
+              headerValue: "keep-alive"
             }
-            let head2:Header = {
-              headerKey:"Cache-Control",
-              headerValue:"no-cache"
+            let head2: Header = {
+              headerKey: "Cache-Control",
+              headerValue: "no-cache"
             }
-            let length = this.heads.push(head1)
-            length = this.heads.push(head2)
-            this.responseweb.setResponseHeader(this.heads)
-            this.responseweb.setResponseData(this.webdata)
-            this.responseweb.setResponseEncoding('utf-8')
-            this.responseweb.setResponseMimeType('text/html')
-            this.responseweb.setResponseCode(200)
-            this.responseweb.setReasonMessage('OK')
+            let length = this.heads.push(head1);
+            length = this.heads.push(head2);
+            this.responseWeb.setResponseHeader(this.heads);
+            this.responseWeb.setResponseData(this.webData);
+            this.responseWeb.setResponseEncoding('utf-8');
+            this.responseWeb.setResponseMimeType('text/html');
+            this.responseWeb.setResponseCode(200);
+            this.responseWeb.setReasonMessage('OK');
             // 返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载
-            return this.responseweb
+            return this.responseWeb;
           })
           .onPageBegin((event) => {
             if (event) {
-              console.log('onPageBegin url:' + event.url)
+              console.log('onPageBegin url:' + event.url);
             }
           })
           .onFirstContentfulPaint(event => {
             if (event) {
               console.log("onFirstContentfulPaint:" + "[navigationStartTick]:" +
               event.navigationStartTick + ", [firstContentfulPaintMs]:" +
-              event.firstContentfulPaintMs)
+              event.firstContentfulPaintMs);
             }
           })
           .onProgressChange((event) => {
             if (event) {
-              console.log('newProgress:' + event.newProgress)
+              console.log('newProgress:' + event.newProgress);
             }
           })
           .onPageEnd((event) => {
             // 推荐在此事件中执行JavaScript脚本
             if (event) {
-              console.log('onPageEnd url:' + event.url)
+              console.log('onPageEnd url:' + event.url);
             }
           })
           .onPageVisible((event) => {
-            console.log('onPageVisible url:' + event.url)
+            console.log('onPageVisible url:' + event.url);
           })
           .onRenderExited((event) => {
             if (event) {
-              console.log('onRenderExited reason:' + event.renderExitReason)
+              console.log('onRenderExited reason:' + event.renderExitReason);
             }
           })
           .onDisAppear(() => {

@@ -24,11 +24,11 @@ The table below lists the types of continuous tasks, which are used in various s
 | LOCATION | Positioning and navigation| location | A navigation application provides navigation in the background.|
 | BLUETOOTH_INTERACTION | Bluetooth-related task| bluetoothInteraction | Transfer a file through Bluetooth.|
 | MULTI_DEVICE_CONNECTION | Multi-device connection| multiDeviceConnection | Carry out distributed service connection.|
-| WIFI_INTERACTION | WLAN-related task (for system applications only)| wifiInteraction  | Transfer a file over WLAN.|
-| VOIP | Voice and video calls (for system applications only)| voip  | Use a system chat application to make an audio call in the background.|
-| TASK_KEEPING | Computing task (for specific devices only)| taskKeeping  | Run antivirus software.|
+| <!--DelRow-->WIFI_INTERACTION | WLAN-related task (for system applications only)| wifiInteraction  | Transfer a file over WLAN.|
+| <!--DelRow-->VOIP | Voice and video calls (for system applications only)| voip  | Use a system chat application to make an audio call in the background.|
+| TASK_KEEPING | <!--RP1-->Computing task (for specific devices only)<!--RP1End--> | taskKeeping  | Run antivirus software.|
 
-- To use the upload and download feature, the application must call the [upload and download agent API](../reference/apis-basic-services-kit/js-apis-request.md) so that the system functions as the agent.
+- Only applications that use the [network management](../network/net-mgmt-overview.md) service can request a continuous task of the DATA_TRANSFER type to upload and download data in the background and avoid being suspended. If an application calls the [upload and download agent API](../reference/apis-basic-services-kit/js-apis-request.md) to delegate the upload and download task to the system, the application will be suspended regardless of whether it has requested such a continuous task.
 - Only audio and video applications that use [AVSession](../media/avsession/avsession-overview.md) can request a continuous task of the AUDIO_PLAYBACK type to implement background playback.
 
 
@@ -39,13 +39,15 @@ The table below lists the types of continuous tasks, which are used in various s
 - **Quantity restrictions**: A UIAbility (ServiceAbility in the FA model) can request only one continuous task at a time. If a UIAbility has a running continuous task, it can request another one only after the running task is finished. If an application needs to request multiple continuous tasks at the same time, it must create multiple UIAbilities. After a UIAbility requests a continuous task, all the processes of the application are not suspended.
 
 - **Running restrictions**: The system verifies continuous tasks on mobile phones.
-   - Scenario 1: If an application requests a continuous task but does not execute or has finished the task of the requested type, the system performs certain control. For example, if the system detects that an application has requested a continuous task of the AUDIO_PLAYBACK type but does not play audio, the system terminates the application process.
+   - Scenario 1: If an application requests a continuous task but does not execute or has finished the task of the requested type, the system performs certain control. For example, if the system detects that an application has requested a continuous task of the AUDIO_PLAYBACK type but does not play audio, the system cancels the continuous task.
    - Scenario 2: If an application does not request a continuous task of a given type but executes such a continuous task, the system performs certain control. For example, if the system detects that an application requests a continuous task of the AUDIO_PLAYBACK type, but the application is playing audio (corresponding to the AUDIO_PLAYBACK type) and recording (corresponding to the AUDIO_RECORDING type), the system performs control on the application.
    - Scenario 3: If the background load of the process that runs a continuous task is higher than the corresponding typical load for a long period of time, the system performs certain control.
 
 > **NOTE**
-> 
+>
 > The application shall proactively cancel a continuous task when it is finished. Otherwise, the system will forcibly cancel the task. For example, when a user taps the UI to pause music playback, the application must cancel the continuous task in a timely manner. When the user taps the UI again to continue music playback, the application needs to request a continuous task.
+>
+> When an application that plays audio stops a continuous task in the background, it must suspend or stop the audio stream. Otherwise, the application will be forcibly terminated by the system.
 
 ## Available APIs
 
@@ -103,9 +105,9 @@ The following walks you through how to request a continuous task for recording. 
 
 4. Request and cancel a continuous task.
 
-   - In the stage model, an application can request a continuous task for itself or another application either on the local device or on a remote device.
-
-   - When a continuous task is executed across devices or applications in the background, the UIAbility can be created and run in the background in call mode. For details, see [Using Call to Implement UIAbility Interaction (for System Applications Only)](../application-models/uiability-intra-device-interaction.md#using-call-to-implement-uiability-interaction-for-system-applications-only) and [Using Cross-Device Call](../application-models/hop-multi-device-collaboration.md#using-cross-device-call).
+   - In the stage model, an application can request a continuous task for itself or another application either on the local device or on a remote device.<!--RP2--><!--RP2End-->
+   <!--Del-->
+   - When a continuous task is executed across devices or applications in the background, the UIAbility can be created and run in the background in call mode. For details, see [Using Call to Implement UIAbility Interaction (for System Applications Only)](../application-models/uiability-intra-device-interaction.md#using-call-to-implement-uiability-interaction-for-system-applications-only) and [Using Cross-Device Call](../application-models/hop-multi-device-collaboration.md#using-cross-device-call).<!--DelEnd-->
 
    The code snippet below shows how an application requests a continuous task for itself.
 
@@ -197,7 +199,7 @@ The following walks you through how to request a continuous task for recording. 
       }
     }
    ```
-
+   <!--Del-->
    The code snippet below shows how an application requests a continuous task across devices or applications.
    
    ```ts
@@ -321,6 +323,7 @@ The following walks you through how to request a continuous task for recording. 
       }
     };
    ```
+   <!--DelEnd-->
 
 ### FA Model
 
@@ -468,5 +471,5 @@ The following walks you through how to request a continuous task for recording. 
     }
 
     export default new ServiceAbility();
-   ```
+    ```
 

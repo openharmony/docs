@@ -14,34 +14,41 @@ JSVM，既标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执
 | OH_JSVM_WaitForDebugger  |  等待主机与inspector建立socket连接，连接建立后程序将继续运行。发送Runtime.runIfWaitingForDebugger命令。 |
 
 本文将介绍调试、CPU Profiler、Heap Snapshot的使用方法。
-# 调试能力使用方法
-## 调试步骤
-1. 在应用工程配置文件module.json中配置网络权限：
-   ```
-    "requestPermissions": [{
-      "name": "ohos.permission.INTERNET",
-      "reason": "$string:app_name",
-      "usedScene": {
-        "abilities": [
-          "FromAbility"
-        ],
-        "when": "inuse"
-      }
-    }]
-   ```
-2. 为避免debugger过程中的暂停被误报为无响应异常，要为应用进程临时屏蔽appfreeze检测，设置命令为：
+
+## 调试能力使用方法
+
+### 调试步骤
+
+1.在应用工程配置文件module.json中配置网络权限：
+
+```
+"requestPermissions": [{
+  "name": "ohos.permission.INTERNET",
+  "reason": "$string:app_name",
+  "usedScene": {
+    "abilities": [
+      "FromAbility"
+    ],
+    "when": "inuse"
+  }
+}]
+```
+
+2.为避免debugger过程中的暂停被误报为无响应异常，要为应用进程临时屏蔽appfreeze检测，设置命令为：
 hdc shell param set hiviewdfx.freeze.filter.(processName) (pid of processName)
 例如：
 hdc shell param set hiviewdfx.freeze.filter.com.example.helloworld 1234
-3. 在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspector(env, "localhost", 9225)，在端侧本机端口9225创建socket。
-4. 调用OH_JSVM_WaitForDebugger，等待建立socket连接。
-5. 检查端侧端口是否打开成功。hdc shell "netstat -anp | grep 9225"。结果为9225端口状态为“LISTEN"即可。
-6. 转发端口。hdc fport tcp:9229 tcp:9225。转发PC侧端口9229到端侧端口9225。结果为"Forwardport result:OK"即可。
-7. 在chrome浏览器地址栏输入"localhost:9229/json"，回车。获取端口连接信息。拷贝"devtoolsFrontendUrl"字段url内容到地址栏，回车，进入DevTools源码页，将看到在应用中通过OH_JSVM_RunScript执行的JS源码，此时暂停在第一行JS源码处。
-8. 用户可在源码页打断点，通过按钮发出各种调试命令控制JS代码执行，并查看变量。
-9. 调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
-## 示例代码
-   ```
+3.在执行JS代码之前，调用OH_JSVM_OpenInspector在指定的主机和端口上激活inspector，创建socket。例如OH_JSVM_OpenInspector(env, "localhost", 9225)，在端侧本机端口9225创建socket。
+4.调用OH_JSVM_WaitForDebugger，等待建立socket连接。
+5.检查端侧端口是否打开成功。hdc shell "netstat -anp | grep 9225"。结果为9225端口状态为“LISTEN"即可。
+6.转发端口。hdc fport tcp:9229 tcp:9225。转发PC侧端口9229到端侧端口9225。结果为"Forwardport result:OK"即可。
+7.在chrome浏览器地址栏输入"localhost:9229/json"，回车。获取端口连接信息。拷贝"devtoolsFrontendUrl"字段url内容到地址栏，回车，进入DevTools源码页，将看到在应用中通过OH_JSVM_RunScript执行的JS源码，此时暂停在第一行JS源码处。
+8.用户可在源码页打断点，通过按钮发出各种调试命令控制JS代码执行，并查看变量。
+9.调用OH_JSVM_CloseInspector关闭inspector，结束socket连接。
+
+### 示例代码
+
+```cpp
 #include "ark_runtime/jsvm.h"
 
 #include <string>
@@ -111,18 +118,24 @@ void RunDemo() {
     OH_JSVM_CloseVMScope(vm, vmScope);
     OH_JSVM_DestroyVM(vm);
 }
-   ```
+```
 
-# CPU Profiler及Heap Snapshot使用方法
+## CPU Profiler及Heap Snapshot使用方法
+
 ### CPU Profiler接口使用方法
+
 1. 在执行JS代码之前，调用OH_JSVM_StartCpuProfiler开始采样并返回JSVM_CpuProfiler。
 2. 在执行JS代码后，调用OH_JSVM_StopCpuProfiler，传入1中返回的JSVM_CpuProfiler，传入输出流回调及输出流指针。数据将会写入指定的输出流中。
 3. 输出数据为JSON字符串。可存入.cpuprofile文件中。该文件类型可导入Chrome浏览器-DevTools-JavaScript Profiler工具中解析成性能分析视图。
+
 ### Heap Snapshot接口使用方法
-1. 为分析某段JS代码的堆对象创建情况。可在执行JS代码前后，分别调用一次OH_JSVM_TakeHeapSnapshot。传入输出流回调及输出流指针。数据将会写入指定的输出流中。
-2. 输出数据可存入.heapsnapshot文件中。该文件类型可导入Chrome浏览器-DevTools-Memory工具中解析成内存分析视图。
+
+1.为分析某段JS代码的堆对象创建情况。可在执行JS代码前后，分别调用一次OH_JSVM_TakeHeapSnapshot。传入输出流回调及输出流指针。数据将会写入指定的输出流中。
+2.输出数据可存入.heapsnapshot文件中。该文件类型可导入Chrome浏览器-DevTools-Memory工具中解析成内存分析视图。
+
 ### 示例代码
-   ```
+
+```cpp
 #include "ark_runtime/jsvm.h"
 
 #include <fstream>
@@ -241,4 +254,4 @@ void RunDemo() {
     OH_JSVM_CloseVMScope(vm, vmScope);
     OH_JSVM_DestroyVM(vm);
 }
-   ```
+```

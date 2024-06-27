@@ -9,13 +9,13 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
 2. Import the **distributedAccount** module.
 
    ```ts
-   import account_distributedAccount from '@ohos.account.distributedAccount';
+   import { distributedAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
 3. Obtain a **DistributedAccountAbility** instance.
 
    ```ts
-   const distributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+   const distributedAccountAbility = distributedAccount.getDistributedAccountAbility();
    ```
 
 ## Logging In to a Distributed Account from the Current System Account
@@ -25,7 +25,7 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
 1. Specify the distributed account to be logged in. Set **event** to **Ohos.account.event.LOGIN**.
 
    ```ts
-   let distributedInfo: account_distributedAccount.DistributedInfo = {
+   let distributedInfo: distributedAccount.DistributedInfo = {
        name: 'ZhangSan',
        id: '12345',
        event: 'Ohos.account.event.LOGIN',
@@ -45,7 +45,7 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
 3. After the login, use [getOsAccountDistributedInfo](../../reference/apis-basic-services-kit/js-apis-distributed-account.md#getosaccountdistributedinfo9) to obtain information of the distributed account.
 
    ```ts
-   distributedAccountAbility.getOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
+   distributedAccountAbility.getOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
        console.log('distributed information: ' + JSON.stringify(data));
    }).catch((err: BusinessError) => {
        console.log('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
@@ -60,7 +60,7 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
 
    ```ts
    let localId: number = 100;
-   let distributedInfo: account_distributedAccount.DistributedInfo = {
+   let distributedInfo: distributedAccount.DistributedInfo = {
        name: 'ZhangSan',
        id: '12345',
        event: 'Ohos.account.event.LOGIN',
@@ -80,7 +80,7 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
 3. After the login, use [getOsAccountDistributedInfo](../../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10) to obtain information of the distributed account.
 
    ```ts
-   distributedAccountAbility.getOsAccountDistributedInfoByLocalId(localId).then((data: account_distributedAccount.DistributedInfo) => {
+   distributedAccountAbility.getOsAccountDistributedInfoByLocalId(localId).then((data: distributedAccount.DistributedInfo) => {
        console.log('distributed information: ' + JSON.stringify(data));
    }).catch((err: BusinessError) => {
        console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
@@ -94,7 +94,7 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
 1. Specify the distributed account to be logged out. Set **event** to **Ohos.account.event.LOGOUT**.
 
    ```ts
-   let distributedInfo: account_distributedAccount.DistributedInfo = {
+   let distributedInfo: distributedAccount.DistributedInfo = {
        name: 'ZhangSan',
        id: '12345',
        event: 'Ohos.account.event.LOGOUT',
@@ -119,7 +119,7 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
 
    ```ts
    let localId: number = 100;
-   let distributedInfo: account_distributedAccount.DistributedInfo = {
+   let distributedInfo: distributedAccount.DistributedInfo = {
        name: 'ZhangSan',
        id: '12345',
        event: 'Ohos.account.event.LOGOUT',

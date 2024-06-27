@@ -68,7 +68,7 @@ Most of the APIs for cross-device data sync of RDB stores are executed asynchron
 1. Import the module.
      
    ```ts
-   import relationalStore from '@ohos.data.relationalStore';
+   import { relationalStore } from '@kit.ArkData';
    ```
 
 2. Request permissions.
@@ -79,9 +79,9 @@ Most of the APIs for cross-device data sync of RDB stores are executed asynchron
 3. Create an RDB store and set a table for distributed sync.
      
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
-   import { BusinessError } from "@ohos.base";
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { window } from '@kit.ArkUI';
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
@@ -162,14 +162,14 @@ Most of the APIs for cross-device data sync of RDB stores are executed asynchron
      
    ```ts
    // Obtain device IDs.
-   import deviceManager from '@ohos.distributedDeviceManager';
-   import { BusinessError } from '@ohos.base'
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-   let dmInstance: deviceManager.DeviceManager;
+   let dmInstance: distributedDeviceManager.DeviceManager;
    let deviceId: string | undefined = undefined ;
 
    try {
-     dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+     dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
      let devices = dmInstance.getAvailableDeviceListSync();
 
      deviceId = devices[0].networkId;

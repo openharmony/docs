@@ -9,7 +9,7 @@ The **ImageEffect_DataValue** union describes the data values.
 
 **Since**: 12
 
-**Related module**: [ImageEffect] (_image_effect.md)
+**Related module**: [ImageEffect](_image_effect.md)
 
 
 ## Summary

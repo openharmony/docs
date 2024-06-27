@@ -23,18 +23,18 @@ To implement an input method application, manually create an InputMethodExtensio
 
 2. Right-click the **InputMethodExtensionAbility** directory, choose **New** > **File**, and create four files: **KeyboardController.ts**, **InputMethodService.ts**, **Index.ets**, and **KeyboardKeyData.ts**. The file directory is as follows:
 
-``` 
-/src/main/
-├── ets/InputMethodExtensionAbility
-│   └──model/KeyboardController.ts			# Shows the keyboard.
-│   └──InputMethodService.ts				# Customizes a class that inherits from InputMethodExtensionAbility and add the required lifecycle callbacks.
-│   └──pages
-│      └── Index.ets						# Draws the keyboard and adds the input and deletion features.
-│      └── KeyboardKeyData.ts			    # Defines keyboard attributes.
-├── resources/base/profile/main_pages.json  
-```
+   ``` 
+   /src/main/
+   ├── ets/InputMethodExtensionAbility
+   │   └──model/KeyboardController.ts		   # Shows the keyboard.
+   │   └──InputMethodService.ts			   # Customizes a class that inherits from InputMethodExtensionAbility and add the required lifecycle callbacks.
+   │   └──pages
+   │      └── Index.ets					  # Draws the keyboard and adds the input and deletion features.
+   │      └── KeyboardKeyData.ts			   # Defines keyboard attributes.
+   ├── resources/base/profile/main_pages.json  
+   ```
 
-## File Introduction
+## Related Files
 
 1. **InputMethodService.ts** file:
 
@@ -317,7 +317,9 @@ To implement an input method application, manually create an InputMethodExtensio
    }
    ```
 
-5. Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"inputMethod"** and **srcEntry** to the code path of the InputMethodExtensionAbility component.
+5. **module.json5** file:
+
+   Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"inputMethod"** and **srcEntry** to the code path of the InputMethodExtensionAbility component.
 
    ```json
    {
@@ -339,7 +341,25 @@ To implement an input method application, manually create an InputMethodExtensio
 
 ## Verification
 
-1. Run the hdc command to display the dialog box for switching between input methods: **hdc shell aa start ability -a InputMethod -b com.ohos.inputmethodchoosedialog**
+1. Start the dialog box that lists the input methods for switching by an API for an application.
+
+     ```ts
+     import { inputMethod } from '@kit.IMEKit';
+     import { BusinessError } from '@ohos.base';
+      
+     let inputMethodSetting = inputMethod.getSetting();
+     try {
+       inputMethodSetting.showOptionalInputMethods((err: BusinessError, data: boolean) => {
+         if (err) {
+           console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
+           return;
+         }
+         console.log('Succeeded in showing optionalInputMethods.');
+       });
+     } catch (err) {
+       console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
+     }
+     ```
 
 2. In the dialog box for switching between input methods, switch the input method to the demo application.
 
@@ -351,11 +371,10 @@ To protect the InputMethodExtensionAbility against abuse, the invoking of APIs i
 
 > **NOTE**
 >
-> - If a restricted module is imported, no error is reported during compilation, but an incorrect value (**undefined**) is returned during running, which renders the imported module ineffective.
+> - If a restricted module is imported, no error is reported during compilation, but **undefined** is returned during running, which renders the imported module ineffective.
 > - Currently, access to the [@ohos.multimedia.audio (Audio Management)](../reference/apis-audio-kit/js-apis-audio.md) module is allowed, but subject to the following rules:
 >   - Users who deny the recording permission should still be allowed to use the non-voice-input features of the input method application.
 >   - Recording-related services are allowed only when the InputMethodExtensionAbility is in the foreground. For example, perform recording only when the soft keyboard is in the foreground and the user is proactively using the voice input method; stop recording when the application is switched to the background.
 >   - Applications will be subject to increasingly stringent measures against violations with the preceding rules, and any violation may result in service exceptions.
 > - Strictly comply with the functional constraints of the basic access mode. In this mode, you should provide only basic typing features, not interaction with online services in any form. The system will gradually introduce measures for compliance with the basic access mode, including but not limited to running the Extension process as an independent process and in sandbox mode, preventing the Extension process from creating subprocesses, and restricting inter-process communication and network access. Violations may result in service exceptions.
-
 

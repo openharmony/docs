@@ -84,6 +84,8 @@ Obtains the Bluetooth state.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 **Return value**
@@ -126,8 +128,8 @@ Subscribes to Bluetooth state changes.
 
 | Name  | Type                                              | Mandatory | Description                                                      |
 | -------- | ------------------------------------------------- | ----- | ---------------------------------------------------------- |
-| type     | string                                            | Yes   | Event type. The value is **stateChange**, which indicates Bluetooth state changes.             |
-| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | Yes   | Callback invoked to return the Bluetooth state. You need to implement this callback.|
+| type     | string                                            | Yes   | Event type. The value is **stateChange**, which indicates Bluetooth state changes.              |
+| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | Yes   | Callback used to return the Bluetooth state. You need to implement this callback.|
 
 **Error codes**
 
@@ -166,8 +168,8 @@ Unsubscribes from Bluetooth state changes.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **stateChange**, which indicates a Bluetooth state change event.          |
-| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
+| type     | string                                   | Yes   | Event type. The value is **stateChange**, which indicates Bluetooth state changes.          |
+| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for Bluetooth state changes. |
 
 **Error codes**
 
@@ -197,11 +199,13 @@ try {
 
 Enumerates the Bluetooth states.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name                   | Value | Description                |
 | --------------------- | ---- | ------------------ |
-| STATE_OFF             | 0    | Bluetooth is turned off.          |
+| STATE_OFF             | 0    | Bluetooth is turned off.         |
 | STATE_TURNING_ON      | 1    | Bluetooth is being turned on.         |
 | STATE_ON              | 2    | Bluetooth is turned on.          |
 | STATE_TURNING_OFF     | 3    | Bluetooth is being turned off.         |

@@ -134,6 +134,8 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
      // 延迟任务开始回调
      onWorkStart(workInfo: workScheduler.WorkInfo) {
        console.info(`onWorkStart, workInfo = ${JSON.stringify(workInfo)}`);
+       // 打印 parameters中的参数，如：参数key1
+       // console.info(`work info parameters: ${JSON.parse(workInfo.parameters?.toString()).key1}`)
      }
    
      // 延迟任务结束回调

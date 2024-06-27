@@ -152,7 +152,7 @@ Failed to install the HAP because the HAP signature fails to be verified.
 1. 确认hap包是否签名成功。
 2. 确认hap包的签名证书是从应用市场申请。
 3. 确认多个hap包签名时使用的证书相同。
-4. 确认升级的ha包p签名证书与已安装的hap包相同。
+4. 确认升级的hap包签名证书与已安装的hap包相同。
 
 ## 17700012 安装包路径无效或者文件过大导致应用安装失败
 
@@ -518,7 +518,7 @@ The specified shared bundle does not exist.
 
 ## 17700039 不允许安装应用间共享库
 **错误信息**<br/>
-Failed to install the HSP because disallow install a shared bundle by hapFilePaths.
+Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
 
 **错误描述**<br/>
 安装应用时，传入的安装包为应用间共享库类型。
@@ -528,7 +528,7 @@ Failed to install the HSP because disallow install a shared bundle by hapFilePat
 2. 通过install接口安装应用时，hapFilePaths参数传入了应用间共享库的安装包路径。
 
 **处理步骤**<br/>
-1. 通过-s参数指定应用间共享库的安装包路径。
+1. 通过-p参数指定应用间共享库的安装包路径。
 2. 通过installParam参数的sharedBundleDirPaths字段指定应用间共享库的安装包路径。
 
 ## 17700040 不允许卸载应用间共享库
@@ -543,12 +543,12 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 2. 通过uninstall接口卸载应用时，bundleName传入的是应用间共享库的包名。
 
 **处理步骤**<br/>
-1. 通过-s参数指定卸载的应用为共享库应用。
+1. 通过-n参数指定卸载的应用为共享库应用。
 2. 通过UninstallParam参数的bundleName及versionCode指定卸载的共享库的包名及版本。
 
 ## 17700041 企业设备管理不允许安装该应用
 **错误信息**<br/>
-Failed to install the HAP because enterprise device management disallow install.
+Failed to install the HAP because the installation is forbidden by enterprise device management.
 
 **错误描述**<br/>
 安装应用时，企业设备管理不允许安装。
@@ -605,7 +605,7 @@ Failed to install the HAP because the isolationMode configured is not supported.
 
 ## 17700045 企业设备管理不允许卸载该应用
 **错误信息**<br/>
-Failed to uninstall the HAP because enterprise device management disallow uninstall.
+Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
 
 **错误描述**<br/>
 卸载应用时，企业设备管理不允许卸载。
@@ -663,7 +663,7 @@ Failed to install the HAP because the bundleName is different from the bundleNam
 
 ## 17700050 企业设备校验失败
 **错误信息**<br/>
-Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device.
+Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices.
 
 **错误描述**<br/>
 安装应用时，企业normal应用或企业mdm应用无法在非企业设备上安装。
@@ -675,7 +675,7 @@ Failed to install the HAP because an enterprise normal/MDM bundle cannot be inst
 1. 检查安装设备是否为企业设备。
 2. 检查设备参数const.bms.allowenterprisebundle是否为true
 
-## 17700051 应用自升级时安装的应用与调用方包名不同
+## 17700051 应用自升级时调用方的分发类型不是企业mdm
 **错误信息**<br/>
 Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm.
 
@@ -830,6 +830,36 @@ ShortcutInfo结构体中的want指定的ability不存在，ShortcutInfo结构体
 
 **处理步骤**<br/>
 检查ShortcutInfo结构体中的want有效性。
+
+## 17700068 应用支持分身后，最大分身数量在更新时不可减小
+
+**错误信息**<br/>
+Failed to install the HAP because the maximum count of clone app cannot be reduced.
+
+**错误描述**<br/>
+应用多开模式为appClone，在更新时，maxCount数值不允许减小。
+
+**可能原因**<br/>
+支持分身的应用在更新时，最大分身数量减小了。
+
+**处理步骤**<br/>
+1. 检查更新应用是否支持分身。
+2. 检查应用在更新前后，支持最大分身数量是否减小。
+
+
+## 17700069 多开模式非分身的应用，不能创建分身实例
+
+**错误信息**<br/>
+The app does not support the creation of an appClone instance.
+
+**错误描述**<br/>
+多开模式非分身的应用，不能创建分身实例
+
+**可能原因**<br/>
+没有配置分身模式，或者多开模式配置为其他模式
+
+**处理步骤**<br/>
+1. 检查更新应用是否支持分身。
 
 ## 17700201 abc文件校验失败
 **错误信息**<br/>

@@ -24,8 +24,8 @@ OAID会在下述场景中发生变化：
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| [getOAID()](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid): Promise&lt;string&gt; | 获取OAID，通过Promise异步返回结果。 |
-| [getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;)](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1):&nbsp; void | 获取OAID，通过Callback回调返回值。 |
+| [getOAID](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid)(): Promise&lt;string&gt; | 获取OAID，通过Promise异步返回结果。 |
+| [getOAID](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1)(callback:&nbsp;AsyncCallback&lt;string&gt;):&nbsp; void | 获取OAID，通过Callback回调返回值。 |
 
 > **说明：**
 > 如调用getOAID接口需要申请ohos.permission.APP_TRACKING_CONSENT权限，并获取用户授权。存在如下三种情况：<br/>

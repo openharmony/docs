@@ -18,8 +18,8 @@ Contacts Kit可以帮助开发者轻松实现联系人的增删改查等功能�
 1. 导入相关的联系人模块。
 
    ```ts
-   import contact from '@ohos.contact';
-   import { BusinessError } from '@ohos.base';
+   import { contact } from '@kit.ContactsKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 调用联系人接口，拉起联系人列表，用户点击对应的联系人后返回。
@@ -78,9 +78,8 @@ abilityAccessCtrl.createAtManager().requestPermissionsFromUser(context, permissi
 
 ```ts
 // 示例代码
-import common from '@ohos.app.ability.common';
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import contact from '@ohos.contact';
+import { common, abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+import { contact } from '@kit.ContactsKit';
 
 @Entry
 @Component

@@ -24,11 +24,13 @@
 
 NavDestination()
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ## 属性
 
-仅支持[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)通用属性。
+支持[通用属性](ts-universal-attributes-size.md)。
+
+不推荐设置位置、大小等布局相关属性，可能会造成页面显示异常。
 
 ### title
 
@@ -36,7 +38,7 @@ title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestination
 
 设置页面标题。使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行2行后以...截断。如果设置副标题，先缩小后以...截断。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -53,7 +55,7 @@ hideTitleBar(value: boolean)
 
 设置是否隐藏标题栏。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -69,7 +71,7 @@ mode(value: NavDestinationMode)
 
 设置NavDestination类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -83,9 +85,14 @@ mode(value: NavDestinationMode)
 
 backButtonIcon(value: ResourceStr | PixelMap | SymbolGlyphModifier)
 
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
+
 设置标题栏返回键图标。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,6 +106,11 @@ backButtonIcon(value: ResourceStr | PixelMap | SymbolGlyphModifier)
 
 menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
+
 设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -109,9 +121,50 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | value  | Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem类型说明)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
 
+### ignoreLayoutSafeArea<sup>12+</sup>
+
+ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;LayoutSafeAreaEdge&gt;)
+
+控制组件的布局，使其扩展到非安全区域
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                               | 必填 | 说明                                                         |
+| ------ | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| types  | Array <[LayoutSafeAreaType](ts-types.md#layoutsafeareatype12)> | 否   | 配置扩展安全区域的类型。<br />默认值: <br />[LayoutSafeAreaType.SYSTEM] |
+| edges  | Array <[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 配置扩展安全区域的方向。<br /> 默认值: <br />[LayoutSafeAreaEdge.TOP, LayoutSafeAreaEdge.BOTTOM]。|
+
+>  **说明：**
+>   
+>  组件设置LayoutSafeArea之后生效的条件为：   
+>  设置LayoutSafeAreaType.SYSTEM时，组件的边界与非安全区域重合时组件能够延伸到非安全区域下。例如：设备顶部状态栏高度100，组件在屏幕中纵向方位的绝对偏移需要在0到100之间。  
+>   
+>  若组件延伸到非安全区域内，此时在非安全区域里触发的事件（例如：点击事件）等可能会被系统拦截，优先响应状态栏等系统组件。
+
+### systemBarStyle<sup>12+</sup>
+
+systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
+
+当Navigation中显示当前NavDestination时，设置对应系统状态栏的样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型         | 必填 | 说明               |
+| ------ | -------------- | ---- | ------------------ |
+| style  | Optional&lt;[SystemBarStyle](../js-apis-window.md#systembarstyle12)&gt; | 是   | 系统状态栏样式。 |
+
+> **说明：**
+>
+> 1. 必须配合Navigaiton使用，作为其Navigation目的页面的根节点时才能生效。
+> 2. 其他使用限制请参考Navigation对应的[systemBarStyle](ts-basic-components-navigation.md#systembarstyle12)属性说明。
+
 ## NavDestinationMode枚举说明 <sup>11+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
@@ -128,7 +181,7 @@ onShown(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 当该NavDestination页面显示时触发此回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -138,13 +191,13 @@ onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 当该NavDestination页面隐藏时触发此回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onWillAppear<sup>12+</sup>
 
-onWillAppear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onWillAppear(callback: Callback\<void>)
 
 当该Destination挂载之前触发此回调。在该回调中允许修改页面栈，当前帧生效。
 
@@ -152,7 +205,7 @@ onWillAppear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ### onWillShow<sup>12+</sup>
 
-onWillShow(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onWillShow(callback: Callback\<void>)
 
 当该Destination显示之前触发此回调。
 
@@ -160,7 +213,7 @@ onWillShow(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ### onWillHide<sup>12+</sup>
 
-onWillHide(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onWillHide(callback: Callback\<void>)
 
 当该Destination隐藏之前触发此回调。
 
@@ -168,7 +221,7 @@ onWillHide(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ### onWillDisappear<sup>12+</sup>
 
-onWillDisappear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onWillDisappear(callback: Callback\<void>)
 
 当该Destination卸载之前触发的生命周期(有转场动画时，在转场动画开始之前触发)。
 
@@ -176,11 +229,13 @@ onWillDisappear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 ### onBackPressed<sup>10+</sup>
 
+onBackPressed(callback:&nbsp;()&nbsp;=&gt;&nbsp;boolean)
+
 当与Navigation绑定的页面栈中存在内容时，此回调生效。当点击返回键时，触发该回调。
 
 返回值为true时，表示重写返回键逻辑，返回值为false时，表示回退到上一个页面。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -190,20 +245,23 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 当NavDestination即将构建子组件之前会触发此回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## NavDestinationContext<sup>11+</sup>类型说明
 
-| 名称   | 类型     | 描述     |
-| ---- | ------ | ------ |
-| pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 跳转NavDestination时指定的参数。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 当前NavDestination所处的页面栈。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| 名称   | 类型     | 必填   |  描述     |
+| ---- | ------ | ----- | ------ |
+| pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是 | 跳转NavDestination时指定的参数。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 是 | 当前NavDestination所处的页面栈。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| navDestinationId<sup>12+</sup> | string | 否 | 当前NavDestination的唯一ID，由系统自动生成，和组件通用属性id无关。 |
 
 ### getConfigInRouteMap<sup>12+</sup>
 
 getConfigInRouteMap(): RouteMapConfig |undefined
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值**
 

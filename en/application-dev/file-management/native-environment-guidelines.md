@@ -1,6 +1,6 @@
 # Obtaining the User Directory Environment (C/C++)
 
-## **Scenario**
+## When to Use
 
 Before accessing or operating a user file, a third-party application needs to obtain the user directory. The **Environment** module provides the APIs for obtaining the user directories.
 

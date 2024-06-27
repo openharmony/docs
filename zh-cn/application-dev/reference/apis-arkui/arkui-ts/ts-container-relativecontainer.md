@@ -19,7 +19,7 @@
    * 从API Version 11开始，在RelativeContainer组件中，width、height设置auto表示自适应子组件。
    * 当width设置auto时，如果水平方向上子组件以容器作为锚点，则auto不生效，垂直方向上同理。
    * 相对布局容器内的子组件的margin含义不同于通用属性的margin，其含义为到该方向上的锚点的距离。若该方向上没有锚点，则该方向的margin不生效。
-   * guideline的位置在不声明或者声明异常值(如undefine)时，取start：0的位置；start和end两种方式声明一种即可，同时声明时仅start生效。
+   * guideline的位置在不声明或者声明异常值(如undefined)时，取start：0的位置；start和end两种方式声明一种即可，同时声明时仅start生效。
    * 当容器在某个方向的size声明为“auto”时，该方向上guideline的位置只能使用start的方式声明(不可使用百分比)。
    * 垂直方向的guideline和barrier只能作为组件水平方向的锚点，作为垂直方向的锚点时取0；水平方向的guideline和barrier只能作为组件垂直方向的锚点，作为水平方向的锚点时取0。
    * 链的形成依靠组件间的依赖关系。以一个组件A、组件B组成的最小水平链为例，需要有锚点1 <-- 组件A <---> 组件B --> 锚点2的依赖关系，即A具有left锚点，B具有right锚点，同时A的right锚点是B的HorizontalAlign.Start，B的left锚点是A的HorizontalAlign.End。
@@ -41,7 +41,7 @@ RelativeContainer()
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ## 属性
 
@@ -51,30 +51,43 @@ RelativeContainer()
 
 guideLine(value: Array&lt;GuideLineStyle&gt;)
 
-设置RelativeContaine容器内的辅助线，Array中每个项目即为一条guideline。
+设置RelativeContainer容器内的辅助线，Array中每个项目即为一条guideline。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                             |
-| ------ | ------------------------------------------ | ---- | -------------------------------- |
-| value  | Array<[GuideLineStyle](#guidelinestyle12)> | 是   | RelativeContaine容器内的辅助线。 |
+| 参数名 | 类型                                       | 必填 | 说明                              |
+| ------ | ------------------------------------------ | ---- | --------------------------------- |
+| value  | Array<[GuideLineStyle](#guidelinestyle12)> | 是   | RelativeContainer容器内的辅助线。 |
 
 ### barrier<sup>12+</sup>
 
 barrier(value: Array&lt;BarrierStyle&gt;)
 
-设置RelativeContaine容器内的屏障，Array中每个项目即为一条barrier。
+设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
+| 参数名 | 类型                                   | 必填 | 说明                            |
+| ------ | -------------------------------------- | ---- | ------------------------------- |
+| value  | Array<[BarrierStyle](#barrierstyle12)> | 是   | RelativeContainer容器内的屏障。 |
+
+### barrier<sup>12+</sup>
+
+barrier(barrierStyle: Array&lt;LocalizedBarrierStyle&gt;)
+
+设置RelativeContaine容器内的屏障，Array中每个项目即为一条barrier。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
 | 参数名 | 类型                                   | 必填 | 说明                           |
 | ------ | -------------------------------------- | ---- | ------------------------------ |
-| value  | Array<[BarrierStyle](#barrierstyle12)> | 是   | RelativeContaine容器内的屏障。 |
-
+| barrierStyle  | Array\<[LocalizedBarrierStyle](#localizedbarrierstyle12)\> | 是   | RelativeContaine容器内的屏障。 |
 
 ## GuideLineStyle<sup>12+</sup>
 
@@ -110,6 +123,29 @@ barrier参数，用于定义一条barrier的id、方向和生成时所依赖的�
 | id  | string  | 是    | barrier的id，必须是唯一的并且不可与容器内组件重名。   |
 | direction | [BarrierDirection](ts-appendix-enums.md#barrierdirection12) | 是    | 指定barrier的方向。<br />默认值：BarrierDirection.LEFT |
 | referencedId | Array\<string> | 是    | 指定生成barrier所依赖的组件。 |
+
+## LocalizedBarrierStyle<sup>12+</sup>
+
+barrier参数，用于定义一条barrier的id、方向和生成时所依赖的组件。
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| id  | string  | 是    | barrier的id，必须是唯一的并且不可与容器内组件重名。   |
+| localizedDirection | [LocalizedBarrierDirection](#localizedbarrierdirection12) | 是    | 指定barrier的方向。 |
+| referencedId | Array\<string\> | 是    | 指定生成barrier所依赖的组件。 |
+
+## LocalizedBarrierDirection<sup>12+</sup>
+
+定义屏障线的方向。
+
+| 名称 |  值  | 描述                         |
+| ------ | -- | ----------------------------- |
+| START  | 0  |屏障在其所有[referencedId](#localizedbarrierstyle12)的最左/右侧，LTR模式时为最左侧，RTL模式时为最右侧。 |
+| END    | 1  | 屏障在其所有[referencedId](#localizedbarrierstyle12)的最左/右侧, LTR模式时为最右侧，RTL模式时为最左侧。   |
+| TOP    | 2  | 屏障在其所有[referencedId](#localizedbarrierstyle12)的最上方。    |
+| BOTTOM | 3  | 屏障在其所有[referencedId](#localizedbarrierstyle12)的最下方。 |
 
 ## 示例
 
@@ -603,3 +639,56 @@ struct Index {
 
 ```
 ![relative container](figures/relativecontainer9.png)
+
+### 示例11
+
+本示例展示了在RTL模式下以barrier为锚点时使用LocalizedAlignRuleOptions和LocalizedBarrierDirection设置对齐方式的用法。
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      RelativeContainer() {
+        Row().width(100).height(100)
+          .backgroundColor("#FF3333")
+          .id("row1")
+
+        Row().width(100).height(100)
+          .backgroundColor("#FFCC00")
+          .alignRules({
+            middle: {anchor: "row1", align: HorizontalAlign.End},
+            top: {anchor: "row1", align: VerticalAlign.Bottom}
+          })
+          .id("row2")
+
+        Row().width(100).height(100)
+          .backgroundColor("#FF6633")
+          .alignRules({
+            start: {anchor: "barrier1", align: HorizontalAlign.End},
+            top: {anchor: "row1", align: VerticalAlign.Top}
+          })
+          .id("row3")
+
+        Row().width(50).height(50)
+          .backgroundColor("#FF9966")
+          .alignRules({
+            start: {anchor: "row1", align: HorizontalAlign.Start},
+            top: {anchor: "barrier2", align: VerticalAlign.Bottom}
+          })
+          .id("row4")
+      }
+      .direction(Direction.Rtl)
+      .width(300).height(300)
+      .margin({left: 50})
+      .border({width:2, color: "#6699FF"})
+      .barrier([{id: "barrier1", localizedDirection: LocalizedBarrierDirection.END, referencedId:["row1", "row2"]},
+        {id: "barrier2", localizedDirection: LocalizedBarrierDirection.BOTTOM, referencedId:["row1", "row2"]}])
+    }
+    .height('100%')
+  }
+}
+
+```
+![relative container](figures/relativecontainer10.png)

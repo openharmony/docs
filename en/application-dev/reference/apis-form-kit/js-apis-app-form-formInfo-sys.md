@@ -10,7 +10,7 @@ The **formInfo** module provides types and enums related to the widget informati
 ## Modules to Import
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo } from '@kit.FormKit';
 ```
 
 
@@ -23,10 +23,8 @@ Enumerates the widget parameters.
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |
 | DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | Device ID.<br>**System API**: This is a system API. |
-| FORM_LOCATION_KEY    | 'ohos.extra.param.key.form_location'   | Widget location. |
 | FORM_PERMISSION_NAME_KEY | 'ohos.extra.param.key.permission_name' | Name of the permission.|
 | FORM_PERMISSION_GRANTED_KEY | 'ohos.extra.param.key.permission_granted' | Whether the permission is granted.|
-| THEME_KEY | 'ohos.extra.param.key.form_is_theme' | Whether the widget is a theme widget.|
 
 ## FormUsageState
 
@@ -61,8 +59,7 @@ Defines the information about an added widget, which can be either in use or not
 | dimension | number               | Yes   | No    | Widget specifications.  |
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | Yes   | No    | Usage status of the widget.  |
 | formDescription<sup>11+</sup> | string         | Yes   | No    | Description in the widget configuration file of the provider.  |
-| formLocation<sup>12+</sup> | [FormLocation](#formlocation)| Yes   | No    | Location of the widget.  |
-| extraData<sup>12+</sup> | Record<string, Object>| Yes   | No    | Extended information of the widget.  |
+| formLocation<sup>12+</sup> | [FormLocation](#formlocation12)| Yes   | No    | Location of the widget.  |
 
 ## formProviderFilter<sup>10+</sup>
 
@@ -82,7 +79,7 @@ Defines the information about the widget provider.
 | abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.       |
 | isUnusedIncluded<sup>11+</sup> | boolean               | Yes   | No    | Whether an unused widget is included.       |
 
-## FormLocation
+## FormLocation<sup>12+</sup>
 
 Enumerates the widget locations.
 
@@ -99,3 +96,27 @@ Enumerates the widget locations.
 | FORM_MANAGER_NEGATIVE_SCREEN | 5    | The widget is located in the widget manager of the minus 1 screen.|
 | SCREEN_LOCK                  | 6    | The widget is located on the locked screen.              |
 | AI_SUGGESTION                | 7    | The widget is located in the area of Celia Suggestions.    |
+
+## PublishFormResult
+
+Describes the result for the operation of adding a widget to the home screen.
+
+**System capability**: SystemCapability.Ability.Form
+
+| Name   | Type                                         | Readable| Writable| Description                      |
+| ------- | --------------------------------------------- | ---- | ---- | -------------------------- |
+| code    | [PublishFormErrorCode](#publishformerrorcode) | Yes  | No  | Result code of the operation.      |
+| message | string                                        | Yes  | No  | Message returned for the operation.|
+
+## PublishFormErrorCode
+
+Enumerates the result codes that may be used for the operation of adding a widget to the home screen.
+
+**System capability**: SystemCapability.Ability.Form
+
+| Name          | Value  | Description                            |
+| -------------- | ---- | -------------------------------- |
+| SUCCESS        | 0    | The widget is added to the home screen.              |
+| NO_SPACE       | 1    | There is no space for adding widgets.          |
+| PARAM_ERROR    | 2    | Parameter check fails.              |
+| INTERNAL_ERROR | 3    | An internal error occurs during widget processing.|

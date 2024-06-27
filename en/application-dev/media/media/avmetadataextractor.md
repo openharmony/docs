@@ -30,10 +30,10 @@ Read [AVMetadataExtractor](../../reference/apis-media-kit/js-apis-media.md#avmet
 Refer to the sample code below to set the file descriptor and obtain the metadata and album cover of an audio asset.
 
 ```ts
-import media from '@ohos.multimedia.media'
-import image from '@ohos.multimedia.image'
-import type common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
+import { media } from '@kit.MediaKit';
+import { image } from '@kit.ImageKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 const TAG = 'MetadataDemo'
 @Entry
@@ -141,8 +141,8 @@ struct Index {
     let context = getContext(this) as common.UIAbilityContext
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let filePath: string = context.filesDir + '/cover.mp3';
-    let fd: number = fs.openSync(filePath, 0o0).fd;
-    let fileSize: number = fs.statSync(filePath).size;
+    let fd: number = fileIo.openSync(filePath, 0o0).fd;
+    let fileSize: number = fileIo.statSync(filePath).size;
     // Set the dataSrc descriptor, obtain resources from the file through a callback, and write the resources to the buffer.
     let dataSrc: media.AVDataSrcDescriptor = {
       fileSize: fileSize,
@@ -158,7 +158,7 @@ struct Index {
           position: number | undefined = pos;
         }
         let options = new Option();
-        let num = fs.readSync(fd, buffer, options)
+        let num = fileIo.readSync(fd, buffer, options)
         console.info(TAG, 'readAt end, num: ' + num)
         if (num > 0 && fileSize >= pos) {
           return num;

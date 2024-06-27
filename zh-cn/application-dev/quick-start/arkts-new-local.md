@@ -5,6 +5,8 @@
 >**说明：**
 >
 >从API version 12开始，在\@ComponentV2装饰的自定义组件中支持使用\@Local装饰器。
+>
+>当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 ## 概述
 
@@ -20,9 +22,9 @@
 
 - \@Local支持null、undefined以及联合类型。
 
-## 现有装饰器的局限性
+## 状态管理V1版本\@State装饰器的局限性
 
-现有状态管理使用[\@State装饰器](arkts-state.md)定义类中的状态变量。但由于\@State装饰器能够从外部初始化，因此\@State无法准确表达组件内部状态不能被外面修改的语义。
+状态管理V1使用[\@State装饰器](arkts-state.md)定义类中的状态变量。但由于\@State装饰器能够从外部初始化，因此\@State无法准确表达组件内部状态不能被外面修改的语义。
 
 ```ts
 class ComponentInfo {
@@ -56,7 +58,7 @@ struct Index {
 }
 ```
 
-上述代码中，可以通过在初始化Child组件时，传入新的值来覆盖Child组件想要作为内部状态变量使用的componentInfo。但Child组件并不能感知到componentInfo从外部进行了初始化，这不利于组件内部状态的管理。
+上述代码中，可以通过在初始化Child组件时，传入新的值来覆盖Child组件想要作为内部状态变量使用的componentInfo。但Child组件并不能感知到componentInfo从外部进行了初始化，这不利于组件内部状态的管理。因此推出\@Local装饰器表示组件的内部状态。
 
 ## 装饰器说明
 
@@ -203,7 +205,7 @@ struct Index {
   @Entry
   @ComponentV2
   struct Index {
-    @Local infoArr: Info[] = [new Info("Ocean", 28, 120), new Info("Moutain", 26, 20)];
+    @Local infoArr: Info[] = [new Info("Ocean", 28, 120), new Info("Mountain", 26, 20)];
     @Local originInfo: Info = new Info("Origin", 0, 0);
     build() {
       Column() {

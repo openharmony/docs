@@ -1,6 +1,6 @@
 # Accessing Application Files (C/C++) 
 
-## **Scenario**
+## When to Use
 
 The **FileIO** module provides APIs for basic file operations.
 

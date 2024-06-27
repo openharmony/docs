@@ -11,7 +11,7 @@ The **appManager** module implements application management. You can use the API
 ## Modules to Import
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## appManager.PreloadMode<sup>12+</sup>
@@ -67,15 +67,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const bundleName = "this is a bundleName";
 const versionCode = 1;
+
 appManager.isSharedBundleRunning(bundleName, versionCode).then((data) => {
-    console.log(`The shared bundle running is: ${JSON.stringify(data)}`);
+  console.log(`The shared bundle running is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -113,16 +114,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 const bundleName = "this is a bundleName";
 const versionCode = 1;
+
 appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
-    if (err) {
-        console.error(`err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`The shared bundle running is: ${JSON.stringify(data)}`);
-    }
+  if (err) {
+    console.error(`err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`The shared bundle running is: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -165,33 +167,40 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let applicationStateObserver: appManager.ApplicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
+  onForegroundApplicationChanged(appStateData) {
+    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
+  },
+  onAbilityStateChanged(abilityStateData) {
+    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+  },
+  onProcessCreated(processData) {
+    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
+  },
+  onProcessDied(processData) {
+    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
+  },
+  onProcessStateChanged(processData) {
+    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+  },
+  onAppStarted(appStateData) {
+    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+  },
+  onAppStopped(appStateData) {
+    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
+  }
 };
+
 try {
-    const observerId = appManager.on('applicationState', applicationStateObserver);
-    console.log(`[appManager] observerCode: ${observerId}`);
+  const observerId = appManager.on('applicationState', applicationStateObserver);
+  console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -235,34 +244,42 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let applicationStateObserver: appManager.ApplicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
+  onForegroundApplicationChanged(appStateData) {
+    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
+  },
+  onAbilityStateChanged(abilityStateData) {
+    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+  },
+  onProcessCreated(processData) {
+    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
+  },
+  onProcessDied(processData) {
+    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
+  },
+  onProcessStateChanged(processData) {
+    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+  },
+  onAppStarted(appStateData) {
+    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+  },
+  onAppStopped(appStateData) {
+    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
+  }
 };
+
 let bundleNameList = ['bundleName1', 'bundleName2'];
+
 try {
-    const observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
-    console.log(`[appManager] observerCode: ${observerId}`);
+  const observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
+  console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -299,20 +316,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: appManager.AppForegroundStateObserver = {
-    onAppStateChanged(appStateData) {
-        console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
-    },
+  onAppStateChanged(appStateData) {
+    console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
+  },
 };
+
 try {
-    appManager.on('appForegroundState', observer);
+  appManager.on('appForegroundState', observer);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -350,17 +368,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-abilityFirstFrameStateObserverForAll: 	 	      		   appManager.AbilityFirstFrameStateObserver = {
-  onAbilityFirstFrameDrawn(abilityStateData:             		appManager.AbilityFirstFrameStateData) {
-	  console.log("abilityFirstFrame: ",      	              		  JSON.stringify(abilityStateData));
-    }
-  };
+let abilityFirstFrameStateObserverForAll: appManager.AbilityFirstFrameStateObserver = {
+  onAbilityFirstFrameDrawn(abilityStateData: appManager.AbilityFirstFrameStateData) {
+    console.log("abilityFirstFrame: ", JSON.stringify(abilityStateData));
+  }
+};
+
 try {
-  appManager.on('abilityFirstFrameState',      				  	  this.abilityFirstFrameStateObserverForAll);
-} catch(e) {
-  console.log('error log:' + e.code)
+  appManager.on('abilityFirstFrameState', abilityFirstFrameStateObserverForAll);
+} catch (e) {
+  let code = (e as BusinessError).code;
+  let message = (e as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -398,53 +420,60 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observerId = 0;
 
-// 1. Register an application state observer.
 let applicationStateObserver: appManager.ApplicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
+  onForegroundApplicationChanged(appStateData) {
+    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
+  },
+  onAbilityStateChanged(abilityStateData) {
+    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+  },
+  onProcessCreated(processData) {
+    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
+  },
+  onProcessDied(processData) {
+    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
+  },
+  onProcessStateChanged(processData) {
+    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+  },
+  onAppStarted(appStateData) {
+    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+  },
+  onAppStopped(appStateData) {
+    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
+  }
 };
 let bundleNameList = ['bundleName1', 'bundleName2'];
+
 try {
-    observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
-    console.log(`[appManager] observerCode: ${observerId}`);
+  observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
+  console.log(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message} `);
 }
 
 // 2. Deregister the application state observer.
 function unregisterApplicationStateObserverCallback(err: BusinessError) {
-    if (err) {
-        console.error(`unregisterApplicationStateObserverCallback fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log('unregisterApplicationStateObserverCallback success.');
-    }
+  if (err) {
+    console.error(`unregisterApplicationStateObserverCallback fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log('unregisterApplicationStateObserverCallback success.');
+  }
 }
+
 try {
-    appManager.off('applicationState', observerId, unregisterApplicationStateObserverCallback);
+  appManager.off('applicationState', observerId, unregisterApplicationStateObserverCallback);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -487,49 +516,56 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observerId = 0;
 
 // 1. Register an application state observer.
 let applicationStateObserver: appManager.ApplicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
+  onForegroundApplicationChanged(appStateData) {
+    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
+  },
+  onAbilityStateChanged(abilityStateData) {
+    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+  },
+  onProcessCreated(processData) {
+    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
+  },
+  onProcessDied(processData) {
+    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
+  },
+  onProcessStateChanged(processData) {
+    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+  },
+  onAppStarted(appStateData) {
+    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+  },
+  onAppStopped(appStateData) {
+    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
+  }
 };
 let bundleNameList = ['bundleName1', 'bundleName2'];
+
 try {
-    observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
+  observerId = appManager.on('applicationState', applicationStateObserver, bundleNameList);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
-    
+
 // 2. Deregister the application state observer.
 try {
-    appManager.off('applicationState', observerId).then((data) => {
-        console.log(`unregisterApplicationStateObserver success, data: ${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.error(`unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}`);
-    });
+  appManager.off('applicationState', observerId).then((data) => {
+    console.log(`unregisterApplicationStateObserver success, data: ${JSON.stringify(data)}`);
+  }).catch((err: BusinessError) => {
+    console.error(`unregisterApplicationStateObserver fail, err: ${JSON.stringify(err)}`);
+  });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -566,8 +602,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let observer_: appManager.AppForegroundStateObserver | undefined;
 // 1. Register an observer to listen for application start or exit events.
 let observer: appManager.AppForegroundStateObserver = {
@@ -575,6 +612,7 @@ let observer: appManager.AppForegroundStateObserver = {
     console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
   },
 };
+
 try {
   appManager.on('appForegroundState', observer);
   // Save the observer object.
@@ -582,7 +620,7 @@ try {
 } catch (paramError) {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message} `);
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 
 // 2. Deregister the observer.
@@ -591,7 +629,7 @@ try {
 } catch (paramError) {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message} `);
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -628,12 +666,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let abilityFirstFrameStateObserverForAll: appManager.AbilityFirstFrameStateObserver = {
+  onAbilityFirstFrameDrawn(abilityStateData: appManager.AbilityFirstFrameStateData) {
+    console.log("abilityFirstFrame: ", JSON.stringify(abilityStateData));
+  }
+};
 
 try {
-  appManager.off('abilityFirstFrameState', 		          		this.abilityFirstFrameStateObserverForAll)
+  appManager.on('abilityFirstFrameState', abilityFirstFrameStateObserverForAll);
 } catch (e) {
-  console.log('error log:' + e.code)
+  let code = (e as BusinessError).code;
+  let message = (e as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
+}
+
+try {
+  appManager.off('abilityFirstFrameState', abilityFirstFrameStateObserverForAll);
+} catch (e) {
+  let code = (e as BusinessError).code;
+  let message = (e as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -669,22 +724,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function getForegroundApplicationsCallback(err: BusinessError, data: Array<appManager.AppStateData>) {
-    if (err) {
-        console.error(`getForegroundApplicationsCallback fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`getForegroundApplicationsCallback success, data: ${JSON.stringify(data)}`);
-    }
+  if (err) {
+    console.error(`getForegroundApplicationsCallback fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`getForegroundApplicationsCallback success, data: ${JSON.stringify(data)}`);
+  }
 }
+
 try {
-    appManager.getForegroundApplications(getForegroundApplicationsCallback);
+  appManager.getForegroundApplications(getForegroundApplicationsCallback);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -719,13 +775,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.getForegroundApplications().then((data) => {
-    console.log(`getForegroundApplications success, data: ${JSON.stringify(data)}`);
+  console.log(`getForegroundApplications success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.error(`getForegroundApplications fail, err: ${JSON.stringify(err)}`);
+  console.error(`getForegroundApplications fail, err: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -766,21 +822,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = 'bundleName';
 let accountId = 0;
+
 try {
-    appManager.killProcessWithAccount(bundleName, accountId).then(() => {
-        console.log('killProcessWithAccount success');
-    }).catch((err: BusinessError) => {
-        console.error(`killProcessWithAccount fail, err: ${JSON.stringify(err)}`);
-    });
+  appManager.killProcessWithAccount(bundleName, accountId).then(() => {
+    console.log('killProcessWithAccount success');
+  }).catch((err: BusinessError) => {
+    console.error(`killProcessWithAccount fail, err: ${JSON.stringify(err)}`);
+  });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -823,18 +880,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = 'bundleName';
 let accountId = 0;
+
 function killProcessWithAccountCallback(err: BusinessError) {
-    if (err) {
-        console.error(`killProcessWithAccountCallback fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log('killProcessWithAccountCallback success.');
-    }
+  if (err) {
+    console.error(`killProcessWithAccountCallback fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log('killProcessWithAccountCallback success.');
+  }
 }
+
 appManager.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
 ```
 
@@ -871,23 +930,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = 'bundleName';
+
 function killProcessesByBundleNameCallback(err: BusinessError) {
-    if (err) {
-        console.error(`killProcessesByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log('killProcessesByBundleNameCallback success.');
-    }
+  if (err) {
+    console.error(`killProcessesByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log('killProcessesByBundleNameCallback success.');
+  }
 }
+
 try {
-    appManager.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
+  appManager.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -929,20 +990,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = 'bundleName';
+
 try {
-    appManager.killProcessesByBundleName(bundleName).then((data) => {
-        console.log('killProcessesByBundleName success.');
-    }).catch((err: BusinessError) => {
-        console.error(`killProcessesByBundleName fail, err: ${JSON.stringify(err)}`);
-    });
+  appManager.killProcessesByBundleName(bundleName).then((data) => {
+    console.log('killProcessesByBundleName success.');
+  }).catch((err: BusinessError) => {
+    console.error(`killProcessesByBundleName fail, err: ${JSON.stringify(err)}`);
+  });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -979,23 +1041,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = 'bundleName';
+
 function clearUpApplicationDataCallback(err: BusinessError) {
-    if (err) {
-        console.error(`clearUpApplicationDataCallback fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log('clearUpApplicationDataCallback success.');
-    }
+  if (err) {
+    console.error(`clearUpApplicationDataCallback fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log('clearUpApplicationDataCallback success.');
+  }
 }
+
 try {
-    appManager.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
+  appManager.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -1037,20 +1101,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = 'bundleName';
+
 try {
-    appManager.clearUpApplicationData(bundleName).then((data) => {
-        console.log('clearUpApplicationData success.');
-    }).catch((err: BusinessError) => {
-        console.error(`clearUpApplicationData fail, err: ${JSON.stringify(err)}`);
-    });
+  appManager.clearUpApplicationData(bundleName).then((data) => {
+    console.log('clearUpApplicationData success.');
+  }).catch((err: BusinessError) => {
+    console.error(`clearUpApplicationData fail, err: ${JSON.stringify(err)}`);
+  });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -1084,23 +1149,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pid = 0;
 function getProcessMemoryByPidCallback(err: BusinessError, data: number) {
-    if (err) {
-        console.error(`getProcessMemoryByPidCallback fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log('getProcessMemoryByPidCallback success.');
-    }
+  if (err) {
+    console.error(`getProcessMemoryByPidCallback fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log('getProcessMemoryByPidCallback success.');
+  }
 }
+
 try {
-    appManager.getProcessMemoryByPid(pid, getProcessMemoryByPidCallback);
+  appManager.getProcessMemoryByPid(pid, getProcessMemoryByPidCallback);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -1139,20 +1205,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pid = 0;
+
 try {
-    appManager.getProcessMemoryByPid(pid).then((data) => {
-        console.log('getProcessMemoryByPid success.');
-    }).catch((err: BusinessError) => {
-        console.error(`getProcessMemoryByPid fail, err: ${JSON.stringify(err)}`);
-    });
+  appManager.getProcessMemoryByPid(pid).then((data) => {
+    console.log('getProcessMemoryByPid success.');
+  }).catch((err: BusinessError) => {
+    console.error(`getProcessMemoryByPid fail, err: ${JSON.stringify(err)}`);
+  });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -1186,23 +1253,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = "bundleName";
 function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: Array<appManager.ProcessInformation>) {
-    if (err) {
-        console.error(`getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log('getRunningProcessInfoByBundleNameCallback success.');
-    }
+  if (err) {
+    console.error(`getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log('getRunningProcessInfoByBundleNameCallback success.');
+  }
 }
+
 try {
-    appManager.getRunningProcessInfoByBundleName(bundleName, getRunningProcessInfoByBundleNameCallback);
+  appManager.getRunningProcessInfoByBundleName(bundleName, getRunningProcessInfoByBundleNameCallback);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -1241,20 +1309,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = "bundleName";
+
 try {
-    appManager.getRunningProcessInfoByBundleName(bundleName).then((data) => {
-        console.log('getRunningProcessInfoByBundleName success.');
-    }).catch((err: BusinessError) => {
-        console.error(`getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}`);
-    });
+  appManager.getRunningProcessInfoByBundleName(bundleName).then((data) => {
+    console.log('getRunningProcessInfoByBundleName success.');
+  }).catch((err: BusinessError) => {
+    console.error(`getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}`);
+  });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -1289,24 +1358,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = "bundleName";
 let userId = 0;
 function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: Array<appManager.ProcessInformation>) {
-    if (err) {
-        console.error(`getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log('getRunningProcessInfoByBundleNameCallback success.');
-    }
+  if (err) {
+    console.error(`getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log('getRunningProcessInfoByBundleNameCallback success.');
+  }
 }
+
 try {
-    appManager.getRunningProcessInfoByBundleName(bundleName, userId, getRunningProcessInfoByBundleNameCallback);
+  appManager.getRunningProcessInfoByBundleName(bundleName, userId, getRunningProcessInfoByBundleNameCallback);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -1346,21 +1416,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = "bundleName";
 let userId = 0;
+
 try {
-    appManager.getRunningProcessInfoByBundleName(bundleName, userId).then((data) => {
-        console.log('getRunningProcessInfoByBundleName success.');
-    }).catch((err: BusinessError) => {
-        console.error(`getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}`);
-    });
+  appManager.getRunningProcessInfoByBundleName(bundleName, userId).then((data) => {
+    console.log('getRunningProcessInfoByBundleName success.');
+  }).catch((err: BusinessError) => {
+    console.error(`getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}`);
+  });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -1402,14 +1473,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = "com.example.myapplication";
+
 appManager.isApplicationRunning(bundleName).then((data) => {
-    console.log(`The application running is: ${JSON.stringify(data)}`);
+  console.log(`The application running is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -1446,22 +1518,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = "com.example.myapplication";
+
 try {
-    appManager.isApplicationRunning(bundleName, (err, data) => {
-        if (err) {
-            console.error(`err: ${JSON.stringify(err)}`);
-        } else {
-            console.log(`The application running is: ${JSON.stringify(data)}`);
-        }
-    });
+  appManager.isApplicationRunning(bundleName, (err, data) => {
+    if (err) {
+      console.error(`err: ${JSON.stringify(err)}`);
+    } else {
+      console.log(`The application running is: ${JSON.stringify(data)}`);
+    }
+  });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
@@ -1481,19 +1554,6 @@ Enumerates the application states. This enum can be used together with [AbilityS
 | STATE_BACKGROUND        | 4   |       State indicating that the application is running in the background.          |
 | STATE_DESTROY        | 5   |           State indicating that the application is destroyed.      |
 
-## ProcessState<sup>10+</sup>
-
-Enumerates the process states. This enum can be used together with [ProcessData](js-apis-inner-application-processData-sys.md) to return the process state.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-| Name                | Value | Description                              |
-| -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 0   |      State indicating that the process is being created.      |
-| STATE_FOREGROUND          | 1   |            State indicating that the process is running in the foreground.     |
-| STATE_ACTIVE  | 2   |          State indicating that the process is active.  |
-| STATE_BACKGROUND        | 3   |       State indicating that the process is running in the background.          |
-| STATE_DESTROY        | 4   |         State indicating that the process is destroyed.        |
 
 ## appManager.getRunningProcessInformationByBundleType<sup>12+</sup>
 
@@ -1533,25 +1593,26 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
+import { appManager, bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    appManager.getRunningProcessInformationByBundleType(bundleManager.BundleType.ATOMIC_SERVICE)
-        .then((data) => {
-            console.log(`The running process information is: ${JSON.stringify(data)}`);
-        }).catch((error: BusinessError) => {
-            console.error(`error: ${JSON.stringify(error)}`);
-        });
+  appManager.getRunningProcessInformationByBundleType(bundleManager.BundleType.ATOMIC_SERVICE)
+    .then((data) => {
+      console.log(`The running process information is: ${JSON.stringify(data)}`);
+    }).catch((error: BusinessError) => {
+    console.error(`error: ${JSON.stringify(error)}`);
+  });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
 }
 ```
 
 ## appManager.preloadApplication<sup>12+</sup>
+
+preloadApplication(bundleName: string, userId: number, mode: PreloadMode, appIndex?: number): Promise\<void>
 
 Preloads an application process. A successful call does not always mean that the preloading is successful. In other words, the target application process may not be created even if the API is successfully called. This API uses a promise to return the result.
 
@@ -1569,7 +1630,7 @@ Preloads an application process. A successful call does not always mean that the
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name of the application to preload.|
 | userId | number | Yes| User ID.|
-| mode | [PreloadMode](#appmanagerpreloadmode12+) | Yes| Mode used for preloading.|
+| mode | [PreloadMode](#appmanagerpreloadmode12) | Yes| Mode used for preloading.|
 | appIndex | number | No| Application index of the twin application to be preloaded.|
 
 **Return value**
@@ -1594,8 +1655,8 @@ Preloads an application process. A successful call does not always mean that the
 
 ```ts
 import { appManager } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 try {
   let bundleName = "ohos.samples.etsclock";
@@ -1610,6 +1671,118 @@ try {
       hilog.error(0x0000, 'testTag', `preloadApplication error, code: ${err.code}, msg:${err.message}`);
     })
 } catch (err) {
-  hilog.error(0x0000, 'testTag', `preloadApplication error, code: ${err.code}, msg:${err.message}`);
+  hilog.error(0x0000, 'testTag', `preloadApplication error, code: ${(err as BusinessError).code}, msg:${(err as BusinessError).message}`);
+}
+```
+
+## appManager.getRunningMultiAppInfo<sup>12+</sup>
+
+getRunningMultiAppInfo(bundleName: string): Promise\<RunningMultiAppInfo>
+
+Obtains the information about running applications in multi-app mode. This API uses a promise to return the result. The multi-app mode means that an application can be simultaneously logged in with different accounts on the same device.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name of the application.|
+
+**Return value**
+
+| Type          | Description             |
+| -------------- | ---------------- |
+| Promise\<[RunningMultiAppInfo](js-apis-inner-application-runningMultiAppInfo-sys.md)> | Promise used to return the information about running applications with multi-app mode.|
+
+**Error codes**
+
+  For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16000072 | App clone or multi-instance is not supported. |
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let bundleName = "ohos.samples.etsclock";
+  appManager.getRunningMultiAppInfo(bundleName).then((info: appManager.RunningMultiAppInfo) => {
+      hilog.info(0x0000, 'testTag', `getRunningMultiAppInfo success`);
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
+    })
+} catch (err) {
+  hilog.error(0x0000, 'testTag', `getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
+}
+```
+
+## appManager.isAppRunning<sup>12+</sup>
+
+isAppRunning(bundleName: string, appCloneIndex?: number): Promise\<boolean>
+
+Checks whether an application is running. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name of the application.|
+| appCloneIndex | number | No| Index of the app clone.|
+
+**Return value**
+
+| Type          | Description             |
+| -------------- | ---------------- |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the application is running, and **false** means the opposite.|
+
+**Error codes**
+
+  For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16000050 | Internal error. |
+| 16000073 | The app clone index is invalid. |
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let bundleName = "ohos.samples.etsclock";
+  appManager.isAppRunning(bundleName).then((data: boolean) => {
+      hilog.info(0x0000, 'testTag', `data: ${JSON.stringify(data)}`);
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `isAppRunning error, code: ${err.code}, msg:${err.message}`);
+    })
+} catch (err) {
+  hilog.error(0x0000, 'testTag', `isAppRunning error, code: ${err.code}, msg:${err.message}`);
 }
 ```

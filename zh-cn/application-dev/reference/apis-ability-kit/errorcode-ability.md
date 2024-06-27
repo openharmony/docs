@@ -238,7 +238,7 @@ The application is controlled by EDM.
 
 **错误描述**
 
-当应用受到企业设备管理[Enterprise Device Manager](../apis-mdm-kit/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
+当应用受到企业设备管理[Enterprise Device Manager](../../enterprise-device-management/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
 
 **可能原因**
 
@@ -657,6 +657,103 @@ Ability already running.
 
 当目标Ability的launchType是singleton或者specified时，避免通过指定processMode和startupVisibility的方式重复startAbility。
 
+## 16000069 严格模式下不允许该类型Extension启动三方应用
+
+**错误信息**
+
+The extension cannot start the third party application.
+
+**错误描述**
+
+严格模式下，不允许该类型Extension启动三方应用。
+
+**可能原因**
+
+当前Extension处于严格模式，且对应的Extension类型不允许严格模式下启动其他三方应用。
+
+**处理步骤**
+
+1. 查看[对应Extension类型](../../application-models/extensionability-overview.md)严格模式开启条件。
+2. 以非严格模式启动当前Extension。
+
+## 16000070 严格模式下不允许该类型Extension启动指定ServiceExtensionAbility
+
+**错误信息**
+
+The extension cannot start the service.
+
+**错误描述**
+
+严格模式下，不允许该类型Extension启动指定ServiceExtensionAbility。
+
+**可能原因**
+
+当前Extension处于严格模式，且对应的Extension类型不允许严格模式下启动指定ServiceExtensionAbility。
+
+**处理步骤**
+
+1. 查看[对应Extension类型](../../application-models/extensionability-overview.md)严格模式开启条件。
+2. 以非严格模式启动当前Extension。
+
+## 16000071 不支持应用分身模式
+
+**错误信息**
+
+App clone is not supported.
+
+**错误描述**
+
+当应用不支持分身模式时，返回该错误码。
+
+**可能原因**
+
+在不支持应用分身的应用中调用getCurrentAppCloneIndex时，则返回该错误码。
+
+**处理步骤**
+
+在不支持应用分身的应用中，避免调用getCurrentAppCloneIndex。
+
+<!--Del-->
+## 16000072 不支持应用多开
+
+**错误信息**
+
+App clone or multi-instance is not supported.
+
+**错误描述**
+
+当应用不支持多开时，返回该错误码。
+
+**可能原因**
+
+调用getRunningMultiAppInfo查询不支持应用多开的应用多开信息，则返回该错误码。
+
+**处理步骤**
+
+调用getCurrentAppCloneIndex时确保查询的应用支持应用多开。
+<!--DelEnd-->
+
+## 16000073 传入的appCloneIndex是一个无效值
+
+**错误信息**
+
+The app clone index is invalid.
+
+**错误描述**
+
+传入一个无效的appCloneIndex，返回该错误码。
+
+**可能原因**
+
+1.调用startAbility时，使用ohos.extra.param.key.appCloneIndex携带的appCloneIndex是一个无效值，则返回该错误码。
+<!--Del-->
+2.调用isAppRunning是，入参appCloneIndex是一个无效值，则返回该错误码。
+<!--DelEnd-->
+
+**处理步骤**
+
+确认appCloneIndex的约束条件是否满足。
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**
@@ -772,6 +869,24 @@ wangAgent object has been canceled.
 **处理步骤**
 
 检查触发的wantAgent对象是否已取消。
+
+## 16000200 应用缓存后快速启动支持状态设置超过1次
+
+**错误信息**
+
+The supported process cache state cannot be set more than once.
+
+**错误描述**
+
+在单个进程实例的生命周期中，应用缓存后快速启动支持状态设置成功1次后，再次设置方法将返回错误码。
+
+**可能原因**
+
+应用缓存后快速启动支持状态设置超过1次。
+
+**处理步骤**
+
+检查应用缓存后快速启动支持状态是否设置超过1次。
 
 ## 16100001 指定Uri的Ability不存在
 

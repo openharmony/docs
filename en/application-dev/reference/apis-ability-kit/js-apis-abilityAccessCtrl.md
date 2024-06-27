@@ -17,6 +17,8 @@ createAtManager(): AtManager
 
 Creates an **AtManager** instance, which is used for application access control.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Security.AccessToken
 
 
@@ -42,6 +44,8 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 
 Checks whether a permission is granted to an application. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Security.AccessToken
 
 **Parameters**
@@ -63,7 +67,8 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or permissionName exceeds 256 bytes.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
 
 **Example**
 
@@ -107,7 +112,8 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or permissionName exceeds 256 bytes.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
 
 **Example**
 
@@ -170,13 +176,15 @@ atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCt
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;): void
 
-Requests user authorization in a dialog box opened by a UIAbility/UIExtensionAbility. This API uses an asynchronous callback to return the result.
+Requests user authorization in a dialog box opened by a <!--RP1-->UIAbility<!--RP1End-->. This API uses an asynchronous callback to return the result.
 
 If the user rejects to grant the permission, the authorization dialog box cannot be displayed again. If required, the user can manually grant the permission on the **Settings** page.
 
 > **NOTE**
 >
-> This API supports only UIAbilities/UIExtensionAbilities.
+> Only <!--RP1-->UIAbility<!--RP1End--> is supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -186,7 +194,7 @@ If the user rejects to grant the permission, the authorization dialog box cannot
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Context of the UIAbility/UIExtensionAbility that requests the permission.|
+| context | Context | Yes| Context of the <!--RP1-->UIAbility<!--RP1End--> that requests the permission.|
 | permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | requestCallback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback invoked to return the result.|
 
@@ -196,7 +204,8 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The context is invalid when it does not belong to the application itself. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The context is invalid when it does not belong to the application itself. |
 
 **Example**
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
@@ -210,7 +219,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let context: Context = getContext(this) as common.UIAbilityContext;
 atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
   if (err) {
-    console.log(`requestPermissionsFromUser fail, err->${JSON.stringify(err)}`);
+    console.error(`requestPermissionsFromUser fail, err->${JSON.stringify(err)}`);
   } else {
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);
@@ -224,13 +233,15 @@ atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: 
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;): Promise&lt;PermissionRequestResult&gt;
 
-Requests user authorization in a dialog box opened by a UIAbility/UIExtensionAbility. This API uses a promise to return the result.
+Requests user authorization in a dialog box opened by a <!--RP1-->UIAbility<!--RP1End-->. This API uses a promise to return the result.
 
 If the user rejects to grant the permission, the authorization dialog box cannot be displayed again. If required, the user can manually grant the permission on the **Settings** page.
 
 > **NOTE**
 >
-> This API supports only UIAbilities/UIExtensionAbilities.
+> Only <!--RP1-->UIAbility<!--RP1End--> is supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -240,7 +251,7 @@ If the user rejects to grant the permission, the authorization dialog box cannot
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Context of the UIAbility/UIExtensionAbility that requests the permission.|
+| context | Context | Yes| Context of the <!--RP1-->UIAbility<!--RP1End--> that requests the permission.|
 | permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
 **Return value**
@@ -255,7 +266,8 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The context is invalid when it does not belong to the application itself. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The context is invalid when it does not belong to the application itself. |
 
 **Example**
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
@@ -323,6 +335,8 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 Checks whether a permission is granted to an application. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Security.AccessToken
 
 **Parameters**
@@ -344,7 +358,8 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or permissionName exceeds 256 bytes.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
 
 **Example**
 
@@ -361,6 +376,8 @@ console.log(`data->${JSON.stringify(data)}`);
 ### GrantStatus
 
 Enumerates the permission grant states.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Security.AccessToken
 

@@ -9,7 +9,7 @@ This section describes how to use different frame rates to change the font size 
 1. Import the DisplaySync module.
 
    ```ts
-   import displaySync from '@ohos.graphics.displaySync';
+   import { displaySync } from '@kit.ArkGraphics2D';
    ```
 
 2. Define and create a **DisplaySync** instance.
@@ -104,7 +104,7 @@ This section describes how to use different frame rates to change the font size 
 
    > **NOTE**
    >
-   > After start() is called, the stop() API must be performed and the DisplaySync instance must be set to null in the aboutToDisappear function to avoid memory leakage.
+   > After **start()** is called, the **stop()** API must be performed and the **DisplaySync** instance must be set to null in the **aboutToDisappear** function to avoid memory leakage.
    ```ts
    aboutToDisappear() {
      if (this.backDisplaySyncSlow) {
@@ -142,7 +142,7 @@ This section describes how to use different frame rates to change the font size 
 
 ## Sample Code
 ```ts
-import displaySync from '@ohos.graphics.displaySync';
+import { displaySync } from '@kit.ArkGraphics2D';
 
 @Entry
 @Component

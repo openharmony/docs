@@ -93,7 +93,7 @@
     font-size: 30px;
     text-align: center;
 }
-@media (device-type: samrtVision) {
+@media (device-type: smartVision) {
   .container {
     width: 500px;
     height: 500px;

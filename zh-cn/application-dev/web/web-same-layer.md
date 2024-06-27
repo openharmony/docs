@@ -1,29 +1,32 @@
-# 同层渲染绘制
+# 同层渲染绘制Video和Button组件
 
 同层渲染是ArkWeb组件为应用提供原生组件和Web元素渲染在同一层级的能力。支持的组件范围请参考[NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype)说明。 
 
 同层标签对应的元素区域的背景为白色，对于Web嵌套Web组件的形式只提供一层嵌套的支持。
 
-- 使用前请在module.json5添加如下权限。
+- 使用前请在module.json5中添加网络权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
   
-  ```ts
-  "ohos.permission.INTERNET"
-  ```
+   ```
+   "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
+   ```
 
 ## 绘制XComponent+AVPlayer和Button组件
 
 ### 使能同层渲染模式
 
-开发者可通过[enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)控制同层渲染开关。Html文件中需要显式使用embed标签，并且embed标签内type必须以“native/”开头。同层渲染不支持选中拖拽。
+开发者可通过[enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)控制同层渲染开关。Html文件中需要显式使用embed标签，并且embed标签内type必须以“native/”开头。同层渲染不支持选中拖拽。一个应用建议不超过五个存活的同层标签（embed或object），超过这个范围需要关注体验和性能。
 
 - 应用侧代码组件使用示例。
 
   ```ts
   // 创建NodeController
-  import webview from '@ohos.web.webview';
-  import {UIContext} from '@ohos.arkui.UIContext';
-  import {NodeController, BuilderNode, NodeRenderType, FrameNode} from "@ohos.arkui.node";
-  import {AVPlayerDemo} from './PlayerDemo';
+  import { webview } from '@kit.ArkWeb';
+  import { UIContext, NodeController, BuilderNode, NodeRenderType, FrameNode } from "@kit.ArkUI";
+  import { AVPlayerDemo } from './PlayerDemo';
 
   @Observed
   declare class Params {
@@ -250,8 +253,8 @@
 - 应用侧代码，视频播放示例, ./PlayerDemo.ets。
 
   ```ts
-  import media from '@ohos.multimedia.media';
-  import {BusinessError} from '@ohos.base';
+  import { media } from '@kit.MediaKit';
+  import { BusinessError } from '@ohos.base';
 
   export class AVPlayerDemo {
     private count: number = 0;
@@ -454,7 +457,11 @@ ArkWeb将遵循w3c标准行为，不会将其识别为同层标签。
     makeNode(uiContext: UIContext): FrameNode | null{
 
       if (this.type_ === 'application/view') {
-        ...
+        this.rootNode.build(wrapBuilder(TextInputBuilder), {
+          textOne: "myInput",
+          width: this.width_,
+          height: this.height_
+        }); 
       } else {
         // other
       }
@@ -515,14 +522,14 @@ ArkWeb将遵循w3c标准行为，不会将其识别为同层标签。
     browserTabController: WebviewController = new webview.WebviewController()
     private nodeControllerMap: Map<string, MyNodeController> = new Map();
     @State componentIdArr: Array<string> = [];
-    @State pos : Position = {x: 0, y: 0};
+    @State edges: Edges = {};
 
     build() {
       Row() {
         Column() {
           Stack(){
             ForEach(this.componentIdArr, (componentId: string) => {
-              NodeContainer(this.nodeControllerMap.get(componentId)).position(this.pos)
+              NodeContainer(this.nodeControllerMap.get(componentId)).position(this.edges)
             }, (embedId: string) => embedId)
 
             Web({ src: $rawfile('test.html'), controller: this.browserTabController})
@@ -531,7 +538,8 @@ ArkWeb将遵循w3c标准行为，不会将其识别为同层标签。
               .onNativeEmbedLifecycleChange((embed) => {
                 const componentId = embed.info?.id?.toString() as string;
                 if (embed.status == NativeEmbedStatus.CREATE) {
-                  this.pos = {x: px2vp(embed.info?.position?.x as number), y: px2vp(embed.info?.position?.y as number)} as Position
+                  // 建议用edges的方式使用position，避免px和vp的转换出现浮点数运算带来额外的精度损失
+                  this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
                   let nodeController = new MyNodeController()
                   nodeController.setRenderOption({surfaceId : embed.surfaceId as string,
                     type : embed.info?.type as string,
@@ -546,7 +554,7 @@ ArkWeb将遵循w3c标准行为，不会将其识别为同层标签。
                 } else if (embed.status == NativeEmbedStatus.UPDATE) {
                   console.log("NativeEmbed update" + JSON.stringify(embed.info))
 
-                  this.pos = {x: px2vp(embed.info?.position?.x as number), y: px2vp(embed.info?.position?.y as number)} as Position
+                  this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
                   let nodeController = this.nodeControllerMap.get(componentId)
 
                   nodeController?.updateNode({text: 'update',   width : px2vp(embed.info?.width),

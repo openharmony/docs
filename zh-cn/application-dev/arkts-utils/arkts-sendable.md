@@ -59,6 +59,7 @@ Sendable interface需同时满足以下两个规则：
 - ArkTS语言标准库中定义的AsyncLock对象（须显式引入[@arkts.utils](../reference/apis-arkts/js-apis-arkts-utils.md)）。
 - 继承了[ISendable](#isendable)的interface。
 - 标注了[@Sendable装饰器](#sendable装饰器声明并校验sendable-class)的class。
+- 接入Sendable的系统对象类型（详见[Sendable系统对象](arkts-sendable-system-object-list.md)）。
 - 元素均为Sendable类型的union type数据。
 
 > **说明：**
@@ -66,6 +67,8 @@ Sendable interface需同时满足以下两个规则：
 > - JS内置对象在并发实例间的传递遵循结构化克隆算法，语义为拷贝传递。因此JS内置对象的实例不是Sendable类型。
 >
 > - 对象字面量、数组字面量在并发实例间的传递遵循结构化克隆算法，语义为拷贝传递。因此，对象字面量和数组字面量不是Sendable类型。
+>
+> - ArkTS容器集与原生API行为差异具体参考[行为差异汇总](arkts-collections-vs-native-api-comparison.md)。
 
 
 ### ISendable
@@ -166,12 +169,12 @@ class B extends A {
 
 **反例：**
 ```ts
+@Sendable
 class A {
   constructor() {
   }
 }
 
-@Sendable
 class B extends A {
   constructor() {
     super()
@@ -190,7 +193,7 @@ class B implements I {};
 
 **反例：**
 ```ts
-import lang from '@arkts.lang';
+import { lang } from '@kit.ArkTS';
 
 type ISendable = lang.ISendable;
 
@@ -273,7 +276,7 @@ class A {
 
 **正例：**
 ```ts
-import collections from '@arkts.collections';
+import { collections } from '@kit.ArkTS';
 
 try {
   let arr1: collections.Array<number> = new collections.Array<number>();
@@ -286,7 +289,7 @@ try {
 
 **反例：**
 ```ts
-import collections from '@arkts.collections';
+import { collections } from '@kit.ArkTS';
 
 try {
   let arr1: collections.Array<Array<number>> = new collections.Array<Array<number>>();
@@ -308,7 +311,7 @@ try {
 
 **正例：**
 ```ts
-import lang from '@arkts.lang';
+import { lang } from '@kit.ArkTS';
 
 type ISendable = lang.ISendable;
 
@@ -335,7 +338,7 @@ class C {
 
 **反例：**
 ```ts
-import lang from '@arkts.lang';
+import { lang } from '@kit.ArkTS';
 
 type ISendable = lang.ISendable;
 
@@ -394,14 +397,14 @@ Sendable数据类型只能通过Sendable类型的new表达式创建。
 
 **正例：**
 ```ts
-import collections from '@arkts.collections';
+import { collections } from '@kit.ArkTS';
 
 let arr1: collections.Array<number> = new collections.Array<number>(1, 2, 3); // 是Sendable类型
 ```
 
 **反例：**
 ```ts
-import collections from '@arkts.collections';
+import { collections } from '@kit.ArkTS';
 
 let arr2: collections.Array<number> = [1, 2, 3]; // 不是Sendable类型，编译报错
 let arr3: number[] = [1, 2, 3]; // 不是Sendable类型，正例，不报错
@@ -480,7 +483,7 @@ Sendable对象可以在不同并发实例间通过引用传递。通过引用传
 **示例：**
 ```ts
 // index.ets
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 import { testTypeA, testTypeB, Test } from './sendable'
 
 // 在并发函数中模拟数据处理
@@ -534,22 +537,36 @@ export class Test {
 
 ### 跨并发实例传递带方法的class实例对象
 
-由于序列化传输实例对象时会丢失方法，在必须调用实例方法的场景中，需使用引用传递方式进行开发。
+由于序列化传输实例对象时会丢失方法，在必须调用实例方法的场景中，需使用引用传递方式进行开发。在数据处理过程中有需要解析的数据，可使用[ASON工具](../reference/apis-arkts/js-apis-arkts-utils.md#arktsutilsason)进行数据解析。
 
 **示例：**
 ```ts
-// index.ets
-import taskpool from '@ohos.taskpool';
-import { Test } from './sendable'
+// Index.ets
+import { taskpool, ArkTSUtils } from '@kit.ArkTS'
+import { SendableTestClass, ISendable } from './sendable'
 
 // 在并发函数中模拟数据处理
 @Concurrent
-async function taskFunc(obj: Test) {
-  console.info("test task data1 is: " + obj.add(5) + " data2 is: " + obj.printStr("taskFunc"));
+async function taskFunc(sendableObj: SendableTestClass) {
+  console.info("SendableTestClass: name is: " + sendableObj.printName() + ", age is: " + sendableObj.printAge() + ", sex is: " + sendableObj.printSex());
+  sendableObj.setAge(28);
+  console.info("SendableTestClass: age is: " + sendableObj.printAge());
+
+  // 解析sendableObj.arr数据生成JSON字符串
+  let str = ArkTSUtils.ASON.stringify(sendableObj.arr);
+  console.info("SendableTestClass: str is: " + str);
+
+  // 解析该数据并生成ISendable数据
+  let jsonStr = '{"name": "Alexa", "age": 23, "sex": "female"}';
+  let obj = ArkTSUtils.ASON.parse(jsonStr) as ISendable;
+  console.info("SendableTestClass: type is: " + typeof obj);
+  console.info("SendableTestClass: name is: " + (obj as object)?.["name"]); // 输出: 'Alexa'
+  console.info("SendableTestClass: age is: " + (obj as object)?.["age"]); // 输出: 23
+  console.info("SendableTestClass: sex is: " + (obj as object)?.["sex"]); // 输出: 'female'
 }
 async function test() {
   // 使用taskpool传递数据
-  let obj: Test = new Test();
+  let obj: SendableTestClass = new SendableTestClass();
   let task: taskpool.Task = new taskpool.Task(taskFunc, obj);
   await taskpool.execute(task);
 }
@@ -560,17 +577,32 @@ test();
 ```ts
 // sendable.ets
 // 定义模拟类Test，模仿开发过程中需传递带方法的class
+import { lang, collections  } from '@kit.ArkTS'
+
+export type ISendable = lang.ISendable;
+
 @Sendable
-export class Test {
-  data1: number = 10;
-  data2: string = "Test";
+export class SendableTestClass {
+  name: string = 'John';
+  age: number = 20;
+  sex: string = "man";
+  arr: collections.Array<number> = new collections.Array<number>(1, 2, 3);
   constructor() {
   }
-  add(arg: number): number {
-    return this.data1 + arg;
+  setAge(age: number) : void {
+    this.age = age;
   }
-  printStr(str: string): string {
-    return this.data2 + str;
+
+  printName(): string {
+    return this.name;
+  }
+
+  printAge(): number {
+    return this.age;
+  }
+
+  printSex(): string {
+    return this.sex;
   }
 }
 ```

@@ -53,7 +53,7 @@
 
 1. 导入模块。
    ```ts
-   import Intl from '@ohos.intl';
+   import { intl } from '@kit.LocalizationKit';
    ```
 
 2. 创建区域标识对象。如下给出了三种方法。
@@ -65,13 +65,13 @@
    let date = new Date(2023, 9, 23);
    
    // 方法一：通过区域标识字符串创建区域标识对象
-   let zhLocale = new Intl.Locale("zh-Hans-CN-u-nu-latn");
+   let zhLocale = new intl.Locale("zh-Hans-CN-u-nu-latn");
    
    // 方法二：通过区域标识字符串和LocaleOptions对象创建区域标识对象
-   let enLocale = new Intl.Locale("en", {numberingSystem: "latn"});
+   let enLocale = new intl.Locale("en", {numberingSystem: "latn"});
    
    // 方法三：通过默认Locale函数创建系统区域标识对象
-   let systemLocale = new Intl.Locale();
+   let systemLocale = new intl.Locale();
    ```
 
 3. 格式化时间日期。
@@ -79,14 +79,14 @@
 
    ```ts
    // 方法一
-   let zhDateTimeFmt = new Intl.DateTimeFormat(zhLocale.toString());
+   let zhDateTimeFmt = new intl.DateTimeFormat(zhLocale.toString());
    let result = zhDateTimeFmt.format(date); // result = "2023/10/23"
    
    // 方法二
-   let enDateTimeFmt = new Intl.DateTimeFormat(enLocale.toString());
+   let enDateTimeFmt = new intl.DateTimeFormat(enLocale.toString());
    result = enDateTimeFmt.format(date); // result = "10/23/2023"
    
    // 方法三
-   let systemDateTimeFmt = new Intl.DateTimeFormat(systemLocale.toString());
+   let systemDateTimeFmt = new intl.DateTimeFormat(systemLocale.toString());
    result = systemDateTimeFmt.format(date); // result = "2023/10/23" （具体显示效果依赖于当前系统环境）
    ```

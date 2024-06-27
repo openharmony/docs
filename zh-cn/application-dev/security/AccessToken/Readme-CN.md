@@ -6,15 +6,18 @@
   - 申请应用权限
     - [选择申请权限的方式](determine-application-mode.md)
     - [声明权限](declare-permissions.md)
-    - [声明ACL权限](declare-permissions-in-acl.md)
     - [向用户申请授权](request-user-authorization.md)
     - [向用户申请单次授权](one-time-authorization.md)
+    <!--Del-->
+    - [申请使用受控权限](declare-permissions-in-acl.md)
+    <!--DelEnd-->
   - 应用权限列表
     - [对所有应用开放](permissions-for-all.md)
+    <!--Del-->
     - [仅对系统应用开放](permissions-for-system-apps.md)
+    <!--DelEnd-->
     - [仅对MDM应用开放](permissions-for-mdm-apps.md)
   - [应用权限组列表](app-permission-group-list.md)
-- [使用系统Picker](use-picker.md)
 - 使用安全控件
   - [安全控件概述](security-component-overview.md)
   - [使用粘贴控件](pastebutton.md)

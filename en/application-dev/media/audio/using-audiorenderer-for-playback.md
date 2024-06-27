@@ -34,10 +34,10 @@ During application development, you are advised to use [on('stateChange')](../..
     import audio from '@ohos.multimedia.audio';
 
     let audioStreamInfo: audio.AudioStreamInfo = {
-      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-      channels: audio.AudioChannel.CHANNEL_1,
-      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
+      channels: audio.AudioChannel.CHANNEL_2, // Channel.
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // Sampling format.
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
     };
 
     let audioRendererInfo: audio.AudioRendererInfo = {
@@ -61,7 +61,37 @@ During application development, you are advised to use [on('stateChange')](../..
     });
     ```
 
-2. Call **start()** to switch the AudioRenderer to the **running** state and start rendering.
+2. Call **on('writeData')** to subscribe to the audio data write callback.
+     
+    ```ts
+    import { BusinessError } from '@ohos.base';
+    import fs from '@ohos.file.fs';
+
+    let bufferSize: number = 0;
+    class Options {
+      offset?: number;
+      length?: number;
+    }
+
+    let path = getContext().cacheDir;
+    // Ensure that the resource exists in the path.
+    let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+   
+    let writeDataCallback = (buffer: ArrayBuffer) => {
+      
+      let options: Options = {
+        offset: bufferSize,
+        length: buffer.byteLength
+      }
+      fs.readSync(file.fd, buffer, options);
+      bufferSize += buffer.byteLength;
+    }
+
+    audioRenderer.on('writeData', writeDataCallback);
+    ```
+
+3. Call **start()** to switch the AudioRenderer to the **running** state and start rendering.
      
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -73,24 +103,6 @@ During application development, you are advised to use [on('stateChange')](../..
         console.info('Renderer start success.');
       }
     });
-    ```
-
-3. Specify the address of the file to render. Open the file and call **write()** to continuously write audio data to the buffer for rendering and playing. To implement personalized playback, process the audio data before writing it.
-     
-    ```ts
-    import fs from '@ohos.file.fs';
-
-    let context = getContext(this);
-    async function read() {
-      const bufferSize: number = await audioRenderer.getBufferSize();
-      let path = context.filesDir;
-      
-      const filePath = path + '/voice_call_data.wav';
-      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-      let buf = new ArrayBuffer(bufferSize);
-      let readsize: number = await fs.read(file.fd, buf);
-      let writeSize: number = await audioRenderer.write(buf);
-    }
     ```
 
 4. Call **stop()** to stop rendering.
@@ -127,11 +139,18 @@ Refer to the sample code below to render an audio file using AudioRenderer.
   
 ```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 
 const TAG = 'AudioRendererDemo';
 
+class Options {
+  offset?: number;
+  length?: number;
+}
+
 let context = getContext(this);
+let bufferSize: number = 0;
 let renderModel: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // Sampling rate.
@@ -147,24 +166,28 @@ let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 }
+let path = getContext().cacheDir;
+// Ensure that the resource exists in the path.
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+
+let writeDataCallback = (buffer: ArrayBuffer) => {
+  let options: Options = {
+    offset: bufferSize,
+    length: buffer.byteLength
+  }
+  fs.readSync(file.fd, buffer, options);
+   bufferSize += buffer.byteLength;
+}
 
 // Create an AudioRenderer instance, and set the events to listen for.
-async function init() {
+function init() {
   audio.createAudioRenderer(audioRendererOptions, (err, renderer) => { // Create an AudioRenderer instance.
     if (!err) {
       console.info(`${TAG}: creating AudioRenderer success`);
       renderModel = renderer;
       if (renderModel !== undefined) {
-        (renderModel as audio.AudioRenderer).on('stateChange', (state: audio.AudioState) => { // Set the events to listen for. A callback is invoked when the AudioRenderer is switched to the specified state.
-          if (state == 2) {
-            console.info('audio renderer state is: STATE_RUNNING');
-          }
-        });
-        (renderModel as audio.AudioRenderer).on('markReach', 1000, (position: number) => { // Subscribe to the markReach event. A callback is triggered when the number of rendered frames reaches 1000.
-          if (position == 1000) {
-            console.info('ON Triggered successfully');
-          }
-        });
+        (renderModel as audio.AudioRenderer).on('writeData', writeDataCallback);
       }
     } else {
       console.info(`${TAG}: creating AudioRenderer failed, error: ${err.message}`);
@@ -173,65 +196,40 @@ async function init() {
 }
 
 // Start audio rendering.
-async function start() {
+function start() {
   if (renderModel !== undefined) {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
     if (stateGroup.indexOf((renderModel as audio.AudioRenderer).state.valueOf()) === -1) { // Rendering can be started only when the AudioRenderer is in the prepared, paused, or stopped state.
       console.error(TAG + 'start failed');
       return;
     }
-    await (renderModel as audio.AudioRenderer).start(); // Start rendering.
-    
-    const bufferSize = await (renderModel as audio.AudioRenderer).getBufferSize();
-    
-    let path = context.filesDir;
-    const filePath = path + '/test.wav'; // Use the sandbox path to obtain the file. The actual file path is /data/storage/el2/base/haps/entry/files/test.wav.
-    
-    let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-    let stat = await fs.stat(filePath);
-    let buf = new ArrayBuffer(bufferSize);
-    let len = stat.size % bufferSize === 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-    class Options {
-      offset: number = 0;
-      length: number = 0
-    }
-    for (let i = 0; i < len; i++) {
-      let options: Options = {
-        offset: i * bufferSize,
-        length: bufferSize
-      };
-      let readsize = await fs.read(file.fd, buf, options);
-      
-      // buf indicates the audio data to be written to the buffer. Before calling AudioRenderer.write(), you can preprocess the audio data for personalized playback. The AudioRenderer reads the audio data written to the buffer for rendering.
-      
-      let writeSize: number = await (renderModel as audio.AudioRenderer).write(buf);
-        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // Release the instance if the AudioRenderer is in the released state.
-        fs.close(file);
+    // Start rendering.
+    (renderModel as audio.AudioRenderer).start((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer start failed.');
+      } else {
+        console.info('Renderer start success.');
       }
-      if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RUNNING) {
-        if (i === len - 1) { // The rendering stops if the file finishes reading.
-          fs.close(file);
-          await (renderModel as audio.AudioRenderer).stop();
-        }
-      }
-    }
+    });
   }
 }
 
 // Pause the rendering.
-async function pause() {
+function pause() {
   if (renderModel !== undefined) {
     // Rendering can be paused only when the AudioRenderer is in the running state.
     if ((renderModel as audio.AudioRenderer).state.valueOf() !== audio.AudioState.STATE_RUNNING) {
       console.info('Renderer is not running');
       return;
     }
-    await (renderModel as audio.AudioRenderer).pause(); // Pause rendering.
-    if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_PAUSED) {
-      console.info('Renderer is paused.');
-    } else {
-      console.error('Pausing renderer failed.');
-    }
+    // Pause the rendering.
+    (renderModel as audio.AudioRenderer).pause((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer pause failed.');
+      } else {
+        console.info('Renderer pause success.');
+      }
+    });
   }
 }
 
@@ -243,12 +241,15 @@ async function stop() {
       console.info('Renderer is not running or paused.');
       return;
     }
-    await (renderModel as audio.AudioRenderer).stop(); // Stop rendering.
-    if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_STOPPED) {
-      console.info('Renderer stopped.');
-    } else {
-      console.error('Stopping renderer failed.');
-    }
+    // Stop rendering.
+    (renderModel as audio.AudioRenderer).stop((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer stop failed.');
+      } else {
+        fs.close(file);
+        console.info('Renderer stop success.');
+      }
+    });
   }
 }
 
@@ -260,12 +261,14 @@ async function release() {
       console.info('Renderer already released');
       return;
     }
-    await renderModel.release(); // Release the instance.
-    if (renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
-      console.info('Renderer released');
-    } else {
-      console.error('Renderer release failed.');
-    }
+    // Release the resources.
+    (renderModel as audio.AudioRenderer).release((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer release failed.');
+      } else {
+        console.info('Renderer release success.');
+      }
+    });
   }
 }
 ```

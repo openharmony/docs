@@ -4,7 +4,7 @@
 ## COMMON_EVENT_SPLIT_SCREEN<sup>10+</sup>
 表示分屏行为的公共事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 - 常量值： “usual.event.SPLIT_SCREEN”
 - 订阅者需要的权限：无。

@@ -50,7 +50,7 @@ For an app in the DLP sandbox state, the permissions granted to the app are rest
 1. Import the [dlpPermission](../../reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md) module.
 
    ```ts
-   import dlpPermission from '@ohos.dlpPermission';
+   import { dlpPermission } from '@kit.DataLossPreventionKit';
    ```
 
 2. Open a DLP file. The system automatically installs a DLP sandbox app for your app. <br>Add the following code to your app:
@@ -132,19 +132,19 @@ For an app in the DLP sandbox state, the permissions granted to the app are rest
 6. Check whether the opened file is a DLP file.
 
    ```ts
-   import dlpPermission from '@ohos.dlpPermission';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
+   import { dlpPermission } from '@kit.DataLossPreventionKit';
+   import { fileIo } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-   let file = fs.openSync(uri);
+   let file = fileIo.openSync(uri);
    try {
      let res = dlpPermission.isDLPFile(file.fd);  // Check whether the file is a DLP file.
      console.info('res', res);
    } catch (err) {
      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
    }
-   fs.closeSync(file);
+   fileIo.closeSync(file);
    ```
 
 7. Subscribe to or unsubscribe from the DLP file open event.
@@ -241,12 +241,9 @@ For an app in the DLP sandbox state, the permissions granted to the app are rest
 13. Start the DLP manager app in borderless mode. This API can be called only in the UIAbility context and supports only the stage model.
 
     ```ts
-    import dlpPermission from '@ohos.dlpPermission';
-    import common from '@ohos.app.ability.common';
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import UIAbility from '@ohos.app.ability.UIAbility'
-    import Want from '@ohos.app.ability.Want';
-    import { BusinessError } from '@ohos.base';
+    import { dlpPermission } from '@kit.DataLossPreventionKit';
+    import { common, UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     try {
       let context = getContext () as common.UIAbilityContext; // Obtain the UIAbility context.
@@ -267,14 +264,12 @@ For an app in the DLP sandbox state, the permissions granted to the app are rest
 
 14. Check whether the current system provides the DLP feature.
     ```ts
-    import dlpPermission from '@ohos.dlpPermission';
-    import { BusinessError } from '@ohos.base';
+    import { dlpPermission } from '@kit.DataLossPreventionKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-    async checkIsDLPFeatureProvided() {
-      dlpPermission.isDLPFeatureProvided().then((res) => {git
-        console.info('res', JSON.stringify(res));
-      }).catch((err: BusinessError) => {
-        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
-      });
-    }
+    dlpPermission.isDLPFeatureProvided().then((res) => {
+      console.info('res', JSON.stringify(res));
+    }).catch((err: BusinessError) => {
+      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Throw an error if the operation fails.
+    });
     ```

@@ -10,13 +10,13 @@
 
 1. 导入模块。
    ```ts
-   import Intl from '@ohos.intl';
+   import { intl } from '@kit.LocalizationKit';
    ```
 
 2. 创建collator排序对象。
    构造函数支持通过CollatorOptions设置不同的排序格式，具体请参考表1。
    ```ts
-   let collator = new Intl.Collator(locale: string | Array<string>, options?: CollatorOptions);
+   let collator = new intl.Collator(locale: string | Array<string>, options?: CollatorOptions);
    ```
 
 3. 比较字串。
@@ -70,16 +70,15 @@
 
 ```ts
 // 导入模块
-import I18n from '@ohos.i18n';
-import Intl from '@ohos.intl';
+import { intl } from '@kit.LocalizationKit';
 
 // 创建排序对象
-let options: Intl.CollatorOptions = {
+let options: intl.CollatorOptions = {
     localeMatcher: "lookup", 
     usage: "sort",
     sensitivity: "case" // 区分大小写
 };
-let collator = new Intl.Collator("zh-CN", options);
+let collator = new intl.Collator("zh-CN", options);
 
 // 区分大小写排序
 let array = ["app", "App", "Apple", "ANIMAL", "animal", "apple", "APPLE"];
@@ -101,7 +100,7 @@ options = {
     usage: "sort",
     collation: "stroke"
 };
-collator = new Intl.Collator("zh-CN", options);
+collator = new intl.Collator("zh-CN", options);
 array = ["苹果", "梨", "香蕉", "石榴", "甘蔗", "葡萄", "橘子"];
 array.sort((a, b) => {
     return collator.compare(a, b);

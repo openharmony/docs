@@ -9,7 +9,7 @@ The **app.ability.WantAgent** module provides APIs for creating and comparing **
 ## Modules to Import
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
+import { WantAgent } from '@kit.AbilityKit';
 ```
 
 ## WantAgent.getWantAgent
@@ -29,66 +29,66 @@ Obtains a **WantAgent** object. This API uses an asynchronous callback to return
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, Want } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // WantAgent object
-let wantAgent: _WantAgent;
+let wantAgentData: WantAgent;
 // WantAgentInfo object
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 // getWantAgent callback
-function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err) {
-        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-    } else {
-        wantAgent = data;
-    }
+function getWantAgentCallback(err: BusinessError, data: WantAgent) {
+  if (err) {
+    console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgentData = data;
+  }
 }
+
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err) {
-    console.error(`getWantAgent failed, error: ${JSON.stringify(err)}`);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch (err) {
+  console.error(`getWantAgent failed, error: ${JSON.stringify(err)}`);
 }
 ```
-
-
 
 ## WantAgent.getWantAgent
 
@@ -112,57 +112,58 @@ Obtains a **WantAgent** object. This API uses a promise to return the result. If
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, Want } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let wantAgent: _WantAgent;
+let wantAgentData: WantAgent;
 // WantAgentInfo object
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 try {
-    WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-        wantAgent = data;
-    }).catch((err: BusinessError) => {
-        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-    });
+  wantAgent.getWantAgent(wantAgentInfo).then((data) => {
+    wantAgentData = data;
+  }).catch((err: BusinessError) => {
+    console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  });
 } catch (err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -185,79 +186,79 @@ Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, Want } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // WantAgent object
-let wantAgent: _WantAgent;
+let wantAgentData: WantAgent;
 // WantAgentInfo object
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 // getWantAgent callback
-function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
+function getWantAgentCallback(err: BusinessError, data: WantAgent) {
+  if (err) {
+    console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgentData = data;
+  }
+  // getBundleName callback
+  let getBundleNameCallback = (err: BusinessError, data: string) => {
     if (err) {
-        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+      console.error(`getBundleName failed! ${err.code} ${err.message}`);
     } else {
-        wantAgent = data;
+      console.info(`getBundleName ok! ${JSON.stringify(data)}`);
     }
-    // getBundleName callback
-    let getBundleNameCallback = (err: BusinessError, data: string) => {
-        if(err) {
-            console.error(`getBundleName failed! ${err.code} ${err.message}`);
-        } else {
-            console.info(`getBundleName ok! ${JSON.stringify(data)}`);
-        }
-    }
-    try {
-        WantAgent.getBundleName(wantAgent, getBundleNameCallback);
-    } catch(err) {
-        console.error(`getBundleName failed! ${err.code} ${err.message}`);
-    }
+  }
+  try {
+    wantAgent.getBundleName(wantAgentData, getBundleNameCallback);
+  } catch (err) {
+    console.error(`getBundleName failed! ${err.code} ${err.message}`);
+  }
 }
+
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch (err) {
+  console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
-
-
 
 ## WantAgent.getBundleName
 
@@ -281,75 +282,74 @@ Obtains the bundle name of a **WantAgent** object. This API uses a promise to re
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, Want } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
- // WantAgent object
-let wantAgent: _WantAgent;
+// WantAgent object
+let wantAgentData: WantAgent;
 // WantAgentInfo object
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 // getWantAgent callback
-function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err) {
-        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-    } else {
-        wantAgent = data;
-    }
-    try {
-        WantAgent.getBundleName(wantAgent).then((data)=>{
-            console.info(`getBundleName ok! ${JSON.stringify(data)}`);
-        }).catch((err: BusinessError)=>{
-            console.error(`getBundleName failed! ${err.code} ${err.message}`);
-        });
-    } catch(err){
-        console.error(`getBundleName failed! ${err.code} ${err.message}`);
-    }
+function getWantAgentCallback(err: BusinessError, data: WantAgent) {
+  if (err) {
+    console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgentData = data;
+  }
+  try {
+    wantAgent.getBundleName(wantAgentData).then((data)=>{
+      console.info(`getBundleName ok! ${JSON.stringify(data)}`);
+    }).catch((err: BusinessError)=>{
+      console.error(`getBundleName failed! ${err.code} ${err.message}`);
+    });
+  } catch(err){
+    console.error(`getBundleName failed! ${err.code} ${err.message}`);
+  }
 }
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
-
-
 
 ## WantAgent.getUid
 
@@ -368,79 +368,79 @@ Obtains the user ID of a **WantAgent** object. This API uses an asynchronous cal
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, Want } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // WantAgent object
-let wantAgent: _WantAgent;
+let wantAgentData: WantAgent;
 // WantAgentInfo object
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 // getWantAgent callback
-function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
+function getWantAgentCallback(err: BusinessError, data: WantAgent) {
+  if (err) {
+    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgentData = data;
+  }
+  // getUid callback
+  let getUidCallback = (err: BusinessError, data: number) => {
     if (err) {
-        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+      console.error(`getUid failed! ${err.code} ${err.message}`);
     } else {
-        wantAgent = data;
+      console.info(`getUid ok! ${JSON.stringify(data)}`);
     }
-    // getUid callback
-    let getUidCallback = (err: BusinessError, data: number) => {
-        if(err) {
-            console.error(`getUid failed! ${err.code} ${err.message}`);
-        } else {
-            console.info(`getUid ok! ${JSON.stringify(data)}`);
-        }
-    }
-    try {
-        WantAgent.getUid(wantAgent, getUidCallback);
-    } catch(err) {
-        console.error(`getUid failed! ${err.code} ${err.message}`);
-    }
+  }
+  try {
+    wantAgent.getUid(wantAgentData, getUidCallback);
+  } catch (err) {
+    console.error(`getUid failed! ${err.code} ${err.message}`);
+  }
 }
+
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch (err) {
+  console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
-
-
 
 ## WantAgent.getUid
 
@@ -464,74 +464,75 @@ Obtains the user ID of a **WantAgent** object. This API uses a promise to return
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, Want } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // WantAgent object
-let wantAgent: _WantAgent;
+let wantAgentData: WantAgent;
 // WantAgentInfo object
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 // getWantAgent callback
-function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err) {
-        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-    } else {
-        wantAgent = data;
-    }
-    try {
-        WantAgent.getUid(wantAgent).then((data)=>{
-            console.info(`getUid ok! ${JSON.stringify(data)}`);
-        }).catch((err: BusinessError)=>{
-            console.error(`getUid failed! ${err.code} ${err.message}`);
-        });
-    } catch(err){
-        console.error(`getUid failed! ${err.code} ${err.message}`);
-    }
+function getWantAgentCallback(err: BusinessError, data: WantAgent) {
+  if (err) {
+    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgentData = data;
+  }
+  try {
+    wantAgent.getUid(wantAgentData).then((data) => {
+      console.info(`getUid ok! ${JSON.stringify(data)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`getUid failed! ${err.code} ${err.message}`);
+    });
+  } catch (err) {
+    console.error(`getUid failed! ${err.code} ${err.message}`);
+  }
 }
+
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch (err) {
+  console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
-
 
 ## WantAgent.cancel
 
@@ -550,79 +551,79 @@ Cancels a **WantAgent** object. This API uses an asynchronous callback to return
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, Want } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // WantAgent object
-let wantAgent: _WantAgent;
+let wantAgentData: WantAgent;
 // WantAgentInfo object
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 // getWantAgent callback
-function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
+function getWantAgentCallback(err: BusinessError, data: WantAgent) {
+  if (err) {
+    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgentData = data;
+  }
+  // cancel callback
+  let cancelCallback = (err: BusinessError, data: void) => {
     if (err) {
-        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+      console.error(`cancel failed! ${err.code} ${err.message}`);
     } else {
-        wantAgent = data;
+      console.info(`cancel ok!`);
     }
-    // cancel callback
-    let cancelCallback = (err: BusinessError, data: void) => {
-        if(err) {
-            console.error(`cancel failed! ${err.code} ${err.message}`);
-        } else {
-            console.info(`cancel ok!`);
-        }
-    }
-    try {
-        WantAgent.cancel(wantAgent, cancelCallback);
-    } catch(err) {
-        console.error(`cancel failed! ${err.code} ${err.message}`);
-    }
+  }
+  try {
+    wantAgent.cancel(wantAgentData, cancelCallback);
+  } catch (err) {
+    console.error(`cancel failed! ${err.code} ${err.message}`);
+  }
 }
+
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch (err) {
+  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
 }
 ```
-
-
 
 ## WantAgent.cancel
 
@@ -646,71 +647,73 @@ Cancels a **WantAgent** object. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, Want } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // WantAgent object
-let wantAgent: _WantAgent;
+let wantAgentData: WantAgent;
 // WantAgentInfo object
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 // getWantAgent callback
-function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err) {
-        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-    } else {
-        wantAgent = data;
-    }
-    try {
-        WantAgent.cancel(wantAgent).then((data)=>{
-            console.info('cancel ok!');
-        }).catch((err: BusinessError)=>{
-            console.error(`cancel failed! ${err.code} ${err.message}`);
-        });
-    } catch(err){
-        console.error(`cancel failed! ${err.code} ${err.message}`);
-    }
+function getWantAgentCallback(err: BusinessError, data: WantAgent) {
+  if (err) {
+    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgentData = data;
+  }
+  try {
+    wantAgent.cancel(wantAgentData).then((data) => {
+      console.info('cancel ok!');
+    }).catch((err: BusinessError) => {
+      console.error(`cancel failed! ${err.code} ${err.message}`);
+    });
+  } catch (err) {
+    console.error(`cancel failed! ${err.code} ${err.message}`);
+  }
 }
+
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch (err) {
+  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
 }
 ```
 
@@ -730,79 +733,86 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 | triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | Yes  | **TriggerInfo** object.                |
 | callback    | AsyncCallback\<[CompleteData](#completedata)\> | No  | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, Want } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // WantAgent object
-let wantAgent: _WantAgent;
+let wantAgentData: WantAgent;
 // triggerInfo
-let triggerInfo: WantAgent.TriggerInfo = {
-    code: 0, //Custom result code.
-    startOptions : {
-        windowMode: 101
-    }
+let triggerInfo: wantAgent.TriggerInfo = {
+  code: 0, //Custom result code.
+  startOptions: {
+    windowMode: 101
+  }
 };
 // WantAgentInfo object
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 // getWantAgent callback
-function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
+function getWantAgentCallback(err: BusinessError, data: WantAgent) {
+  if (err) {
+    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgentData = data;
+  }
+  // trigger callback
+  let triggerCallback = (err: BusinessError, data: wantAgent.CompleteData) => {
     if (err) {
-        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+      console.error(`getUid failed! ${err.code} ${err.message}`);
     } else {
-        wantAgent = data;
+      console.info(`getUid ok! ${JSON.stringify(data)}`);
     }
-    // trigger callback
-    let triggerCallback = (err: BusinessError, data: WantAgent.CompleteData) => {
-        if(err) {
-            console.error(`getUid failed! ${err.code} ${err.message}`);
-        } else {
-            console.info(`getUid ok! ${JSON.stringify(data)}`);
-        }
-    }
-    try {
-        WantAgent.trigger(wantAgent, triggerInfo, triggerCallback);
-    } catch(err) {
-        console.error(`getUid failed! ${err.code} ${err.message}`);
-    }
+  }
+  try {
+    wantAgent.trigger(wantAgentData, triggerInfo, triggerCallback);
+  } catch (err) {
+    console.error(`getUid failed! ${err.code} ${err.message}`);
+  }
 }
+
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch (err) {
+  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
 }
 ```
-
-
 
 ## WantAgent.equal
 
@@ -820,74 +830,81 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | otherAgent | WantAgent                | Yes  | The second **WantAgent** object.                          |
 | callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the two **WantAgent** objects are equal, and **false** means the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, Want } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // WantAgent object
-let wantAgent1: _WantAgent;
-let wantAgent2: _WantAgent;
+let wantAgent1: WantAgent;
+let wantAgent2: WantAgent;
 // WantAgentInfo object
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 // getWantAgent callback
-function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
+function getWantAgentCallback(err: BusinessError, data: WantAgent) {
+  if (err) {
+    console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgent1 = data;
+    wantAgent2 = data;
+  }
+  // equal callback
+  let equalCallback = (err: BusinessError, data: boolean) => {
     if (err) {
-        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+      console.error(`equal failed! ${err.code} ${err.message}`);
     } else {
-        wantAgent1 = data;
-        wantAgent2 = data;
+      console.info(`equal ok! ${JSON.stringify(data)}`);
     }
-    // equal callback
-    let equalCallback = (err: BusinessError, data: boolean) => {
-        if(err) {
-            console.error(`equal failed! ${err.code} ${err.message}`);
-        } else {
-            console.info(`equal ok! ${JSON.stringify(data)}`);
-        }
-    }
-    try {
-        WantAgent.equal(wantAgent1,wantAgent2,equalCallback);
-    } catch(err) {
-        console.error(`equal failed! ${err.code} ${err.message}`);
-    }
+  }
+  try {
+    wantAgent.equal(wantAgent1, wantAgent2, equalCallback);
+  } catch (err) {
+    console.error(`equal failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
+  }
 }
+
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch (err) {
+  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
 }
 ```
-
-
 
 ## WantAgent.equal
 
@@ -910,66 +927,75 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<boolean\> | Promise used to return the result. The value **true** means that the two **WantAgent** objects are equal, and **false** means the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, Want } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // WantAgent object
-let wantAgent1: _WantAgent;
-let wantAgent2: _WantAgent;
+let wantAgent1: WantAgent;
+let wantAgent2: WantAgent;
 // WantAgentInfo object
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 // getWantAgent callback
-function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err) {
-        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-    } else {
-        wantAgent1 = data;
-        wantAgent2 = data;
-    }
-    try {
-        WantAgent.equal(wantAgent1,wantAgent2).then((data)=>{
-            console.info(`equal ok! ${JSON.stringify(data)}`);
-        }).catch((err: BusinessError)=>{
-            console.error(`equal failed! ${err.code} ${err.message}`);
-        })
-    } catch(err){
-        console.error(`equal failed! ${err.code} ${err.message}`);
-    }
+function getWantAgentCallback(err: BusinessError, data: WantAgent) {
+  if (err) {
+    console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgent1 = data;
+    wantAgent2 = data;
+  }
+  try {
+    wantAgent.equal(wantAgent1, wantAgent2).then((data) => {
+      console.info(`equal ok! ${JSON.stringify(data)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`equal failed! ${err.code} ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`equal failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
+  }
 }
+
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch (err) {
+  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
 }
 ```
 
@@ -990,76 +1016,78 @@ Obtains the operation type of a **WantAgent** object. This API uses an asynchron
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, Want } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // WantAgent object
-let wantAgent: _WantAgent;
+let wantAgentData: WantAgent;
 // WantAgentInfo object
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 // getWantAgent callback
-function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
+function getWantAgentCallback(err: BusinessError, data: WantAgent) {
+  if (err) {
+    console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgentData = data;
+  }
+  // getOperationTypeCallback callback
+  let getOperationTypeCallback = (err: BusinessError, data: number) => {
     if (err) {
-        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+      console.error(`getOperationType failed! ${err.code} ${err.message}`);
     } else {
-        wantAgent = data;
+      console.info(`getOperationType ok! ${JSON.stringify(data)}`);
     }
-    // getOperationTypeCallback callback
-    let getOperationTypeCallback = (err: BusinessError, data: number) => {
-        if(err) {
-            console.error(`getOperationType failed! ${err.code} ${err.message}`);
-        } else {
-            console.info(`getOperationType ok! ${JSON.stringify(data)}`);
-        }
-    }
-    try {
-        WantAgent.getOperationType(wantAgent, getOperationTypeCallback);
-    } catch(err) {
-        console.error(`getOperationTypeCallback failed! ${err.code} ${err.message}`);
-    }
+  }
+  try {
+    wantAgent.getOperationType(wantAgentData, getOperationTypeCallback);
+  } catch (err) {
+    console.error(`getOperationTypeCallback failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
+  }
 }
+
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch (err) {
+  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
 }
 ```
 
@@ -1085,8 +1113,11 @@ Obtains the operation type of a **WantAgent** object. This API uses a promise to
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
@@ -1096,61 +1127,62 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, Want } from '@kit.AbilityKit';
+import type { WantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // WantAgent object
-let wantAgent: _WantAgent;
+let wantAgentData: WantAgent;
 // WantAgentInfo object
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 // getWantAgent callback
-function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err) {
-        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-    } else {
-        wantAgent = data;
-    }
-    try {
-        WantAgent.getOperationType(wantAgent).then((data)=>{
-            console.info(`getOperationType ok! ${JSON.stringify(data)}`);
-        }).catch((err: BusinessError) => {
-            console.error(`getOperationType failed! ${err.code} ${err.message}`);
-        });
-    } catch(err){
-        console.error(`getOperationType failed! ${err.code} ${err.message}`);
-    }
+function getWantAgentCallback(err: BusinessError, data: WantAgent) {
+  if (err) {
+    console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgentData = data;
+  }
+  try {
+    wantAgent.getOperationType(wantAgentData).then((data) => {
+      console.info(`getOperationType ok! ${JSON.stringify(data)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`getOperationType failed! ${err.code} ${err.message}`);
+    });
+  } catch (err) {
+    console.error(`getOperationType failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
+  }
 }
+
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
-} catch(err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch (err) {
+  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
 }
 ```
 
@@ -1167,11 +1199,11 @@ Enumerates the flags used by the **WantAgent** objects.
 | CANCEL_PRESENT_FLAG | 2 | The existing **WantAgent** object should be canceled before a new object is generated.                                |
 | UPDATE_PRESENT_FLAG | 3 | Extra information of the existing **WantAgent** object is replaced with that of the new object.                               |
 | CONSTANT_FLAG       | 4 | The **WantAgent** object is immutable.                                                        |
-| REPLACE_ELEMENT     | 5 | The **element** attribute in the current Want can be replaced by the **element** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.      |
-| REPLACE_ACTION      | 6 | The **action** attribute in the current Want can be replaced by the **action** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.        |
-| REPLACE_URI         | 7 | The **uri** attribute in the current Want can be replaced by the **uri** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.              |
-| REPLACE_ENTITIES    | 8 | The **entities** attribute in the current Want can be replaced by the **entities** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.    |
-| REPLACE_BUNDLE      | 9 | The **bundleName** attribute in the current Want can be replaced by the **bundleName** attribute in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.|
+| REPLACE_ELEMENT     | 5 | The **element** property in the current Want can be replaced by the **element** property in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.      |
+| REPLACE_ACTION      | 6 | The **action** property in the current Want can be replaced by the **action** property in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.        |
+| REPLACE_URI         | 7 | The **uri** property in the current Want can be replaced by the **uri** property in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.              |
+| REPLACE_ENTITIES    | 8 | The **entities** property in the current Want can be replaced by the **entities** property in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.    |
+| REPLACE_BUNDLE      | 9 | The **bundleName** property in the current Want can be replaced by the **bundleName** property in the Want passed in **WantAgent.trigger()**. This processing is not supported yet.|
 
 
 
@@ -1200,7 +1232,7 @@ Describes the data returned by the **WantAgent** object after being triggered.
 | Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | info           | WantAgent                       | No| Yes  | A triggered **WantAgent** object.      |
-| want           | [Want](js-apis-app-ability-want.md#attributes)                           | No| Yes  | An existing triggered Want.    |
+| want           | [Want](js-apis-app-ability-want.md#properties)                           | No| Yes  | An existing triggered Want.    |
 | finalCode      | number                          | No| Yes  | Request code that triggers the **WantAgent** object.|
 | finalData      | string                          | No| Yes  | Final data collected by the common event. |
 | extraInfo      | Record\<string, Object>            | No|No  | Extra information.              |

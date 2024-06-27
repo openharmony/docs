@@ -366,11 +366,12 @@ consoleinfo('Result is:' + value);\
 编译及执行JS代码。
 
 #### 接口说明
-| 接口 | 功能说明 |
-| -------- | -------- |
-| OH_JSVM_CompileScript| 编译JavaScript代码并返回绑定到当前环境的编译脚本 |
-| OH_JSVM_CreateCodeCache| 为编译脚本创建code cache|
-| OH_JSVM_RunScript| 执行编译脚本 |
+| 接口                              | 功能说明                                                                               |
+| ------------------------------- | ---------------------------------------------------------------------------------- |
+| OH_JSVM_CompileScript           | 编译JavaScript代码并返回绑定到当前环境的编译脚本                                                      |
+| OH_JSVM_CompileScriptWithOrigin | 编译JavaScript代码并返回绑定到当前环境的编译脚本，同时传入包括 sourceMapUrl 和源文件名在内的源代码信息，用于处理 source map 信息 |
+| OH_JSVM_CreateCodeCache         | 为编译脚本创建code cache]                                                                 |
+| OH_JSVM_RunScript               | 执行编译脚本                                                                             |
 
 场景示例：
 编译及执行JS代码(创建vm，注册function，执行js，销毁vm)。
@@ -398,9 +399,11 @@ static JSVM_CallbackStruct hello_cb = { Hello, (void*)"Hello" };
 
 static string srcGlobal = R"JS(
 const concat = (...args) => args.reduce((a, b) => a + b);
+throw new Error("exception triggered")
 )JS";
 
 static void RunScript(JSVM_Env env, string& src,
+                       bool withOrigin = false,
                        const uint8_t** dataPtr = nullptr,
                        size_t* lengthPtr = nullptr) {
     JSVM_HandleScope handleScope;
@@ -414,7 +417,20 @@ static void RunScript(JSVM_Env env, string& src,
     bool cacheRejected = true;
     JSVM_Script script;
     // 编译js代码
-    OH_JSVM_CompileScript(env, jsSrc, data, length, true, &cacheRejected, &script);
+    if (withOrgin) {
+	    JSVM_ScriptOrigin origin {
+	        // 以包名 helloworld 为例, 假如存在对应的 sourcemap, source map 的的路径可以是 /data/app/el2/100/base/com.example.helloworld/files/index.js.map
+		    .sourceMapurl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
+		    // 源文件名字
+		    .resourceName = "index.js",
+		    // scirpt 在源文件中的起始行列号
+		    .resourceLineOffset = 0,
+		    .resourceColumnOffset = 0,
+	    }
+		OH_JSVM_CompileScriptWithOrigin(env, jsSrc, data, length, true, &cacheRejected, origin, &script);
+    } else {
+	    OH_JSVM_CompileScript(env, jsSrc, data, length, true, &cacheRejected, &script);
+    }
     printf("Code cache is %s\n", cacheRejected ? "rejected" : "used");
 
     JSVM_Value result;
@@ -454,7 +470,7 @@ static void CreateSnapshot() {
     OH_JSVM_OpenEnvScope(env, &envScope);
     // 执行js源码src，src中可以包含任何js语法。也可以调用已注册的native方法。
     string src = srcGlobal + "concat(hello(), ', ', 'World from CreateSnapshot!');";
-    RunScript(env, src);
+    RunScript(env, src, true);
 
     // 创建snapshot，将当前的env保存到字符串，可以在某个时机通过该字符串还原出env，避免重复定义该env中的属性，带来性能提升。
     const char* blobData = nullptr;
@@ -491,7 +507,7 @@ void RunWithoutSnapshot(const uint8_t** dataPtr, size_t* lengthPtr) {
     OH_JSVM_OpenEnvScope(env, &envScope);
     // 执行js源码src，src中可以包含任何js语法。也可以调用已注册的native方法。
     auto src = srcGlobal + "concat(hello(), ', ', 'World', ' from RunWithoutSnapshot!')";
-    RunScript(env, src, dataPtr, lengthPtr);
+    RunScript(env, src, true, dataPtr, lengthPtr);
 
     OH_JSVM_CloseEnvScope(env, envScope);
     OH_JSVM_DestroyEnv(env);
@@ -528,7 +544,7 @@ void RunWithSnapshot(const uint8_t **dataPtr, size_t *lengthPtr) {
 
     // 执行js脚本，因为快照记录的env中定义了hello()，所以无需重新定义。dataPtr中如果保存了编译后的js脚本，就能直接执行js脚本，避免从源码重复编译。
     string src = "concat(hello(), ', ', 'World', ' from RunWithSnapshot!')";
-    RunScript(env, src, dataPtr, lengthPtr);
+    RunScript(env, src, true, dataPtr, lengthPtr);
 
     OH_JSVM_CloseEnvScope(env, envScope);
     OH_JSVM_DestroyEnv(env);
@@ -980,23 +996,23 @@ JS对象属性的增删获取和判断
 #### 接口说明
 | 接口 | 功能说明 |
 | -------- | -------- |
-|OH_JSVM_GetPropertyNames | 获取给定对象的所有可枚举属性名称, 结果变量将存储一个包含所有可枚举属性名称的JavaScript数组 |
-|OH_JSVM_GetAllPropertyNames | 获取给定对象的所有可用属性名称, 结果变量将存储一个包含所有可枚举属性名称的JavaScript数组 |
-|OH_JSVM_SetProperty | 为给定对象设置一个属性 |
-|OH_JSVM_GetProperty | 用给定的属性的名称，检索目标对象的属性 |
-|OH_JSVM_HasProperty | 用给定的属性的名称，查询目标对象是否有此属性 |
-|OH_JSVM_DeleteProperty | 用给定的属性的名称，删除目标对象属性 |
-|OH_JSVM_HasOwnProperty | 检查目标对象是否具有指定的自有属性 |
-|OH_JSVM_SetNamedProperty | 用给定的属性的名称为目标对象设置属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_SetNamedProperty |
-|OH_JSVM_GetNamedProperty | 用给定的属性的名称，检索目标对象的属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_GetNamedProperty |
-|OH_JSVM_HasNamedProperty | 用给定的属性的名称，查询目标对象是否有此属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_HasNamedProperty |
-|OH_JSVM_SetElement | 在给定对象的指定索引处设置元素 |
-|OH_JSVM_GetElement | 获取给定对象指定索引处的元素 |
-|OH_JSVM_HasElement | 若给定对象的指定索引处拥有属性，获取该元素 |
-|OH_JSVM_DeleteElement | 尝试删除给定对象的指定索引处的元素 |
-|OH_JSVM_DefineProperties |  批量的向给定对象中定义属性 |
-|OH_JSVM_ObjectFreeze | 冻结给定的对象,防止向其添加新属性，删除现有属性，防止更改现有属性的可枚举性、可配置性或可写性，并防止更改现有属性的值 |
-|OH_JSVM_ObjectSeal | 密封给定的对象。这可以防止向其添加新属性，以及将所有现有属性标记为不可配置 |
+|OH_JSVM_GetPropertyNames | 获取给定对象的所有可枚举属性名称, 结果变量将存储一个包含所有可枚举属性名称的JavaScript数组。 |
+|OH_JSVM_GetAllPropertyNames | 获取给定对象的所有可用属性名称, 结果变量将存储一个包含所有可枚举属性名称的JavaScript数组。 |
+|OH_JSVM_SetProperty | 为给定对象设置一个属性。 |
+|OH_JSVM_GetProperty | 用给定的属性的名称，检索目标对象的属性。 |
+|OH_JSVM_HasProperty | 用给定的属性的名称，查询目标对象是否有此属性。 |
+|OH_JSVM_DeleteProperty | 用给定的属性的名称，删除目标对象属性。 |
+|OH_JSVM_HasOwnProperty | 检查目标对象是否具有指定的自有属性。 |
+|OH_JSVM_SetNamedProperty | 用给定的属性的名称为目标对象设置属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_SetProperty。 |
+|OH_JSVM_GetNamedProperty | 用给定的属性的名称，检索目标对象的属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_GetProperty。 |
+|OH_JSVM_HasNamedProperty | 用给定的属性的名称，查询目标对象是否有此属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_HasProperty。 |
+|OH_JSVM_SetElement | 在给定对象的指定索引处设置元素。 |
+|OH_JSVM_GetElement | 获取给定对象指定索引处的元素。 |
+|OH_JSVM_HasElement | 若给定对象的指定索引处拥有属性，获取该元素。 |
+|OH_JSVM_DeleteElement | 尝试删除给定对象的指定索引处的元素。 |
+|OH_JSVM_DefineProperties |  批量的向给定对象中定义属性。 |
+|OH_JSVM_ObjectFreeze | 冻结给定的对象,防止向其添加新属性，删除现有属性，防止更改现有属性的可枚举性、可配置性或可写性，并防止更改现有属性的值。 |
+|OH_JSVM_ObjectSeal | 密封给定的对象。这可以防止向其添加新属性，以及将所有现有属性标记为不可配置。 |
 
 场景示例:
 JS对象属性的增删获取和判断
@@ -1126,15 +1142,15 @@ static JSVM_Value CallFunction(JSVM_Env env, JSVM_CallbackInfo info)
 #### 接口说明
 | 接口 | 功能说明 |
 | -------- | -------- |
-|OH_JSVM_DefineClass| 用于在JavaScript中定义一个类，并与对应的C类进行封装和交互。它提供了创建类的构造函数、定义属性和方法的能力，以及在C和JavaScript之间进行数据交互的支持 |
-|OH_JSVM_Wrap| 在 JavaScript 对象中封装原生实例。稍后可以使用 OH_JSVM_Unwrap() 检索原生实例 |
-|OH_JSVM_Unwrap | 使用 OH_JSVM_Wrap() 检索先前封装在 JavaScript 对象中的原生实例 |
-|OH_JSVM_RemoveWrap | 检索先前封装在 JavaScript 对象中的原生实例并移除封装 |
-|OH_JSVM_TypeTagObject | 将 type_tag 指针的值与 JavaScript 对象或外部对象相关联 |
-|OH_JSVM_CheckObjectTypeTag | 检查给定的类型标签是否与对象上的类型标签匹配 |
-|OH_JSVM_AddFinalizer | 为对象添加 JSVM_Finalize 回调，以便在 JavaScript 对象被垃圾回收时调用来释放原生对象 |
-|OH_JSVM_PostFinalizer | 安排在事件循环中异步调用 JSVM_Finalize 回调 |
-|OH_JSVM_DefineClassWithPropertyHandler | 定义一个具有给定类名、构造函数、属性和回调处理程序的JavaScript类属性操作包括getter、setter、deleter、enumerator等，并作为函数回调进行调用 |
+|OH_JSVM_DefineClass| 用于在JavaScript中定义一个类，并与对应的C类进行封装和交互。它提供了创建类的构造函数、定义属性和方法的能力，以及在C和JavaScript之间进行数据交互的支持。 |
+|OH_JSVM_Wrap| 在 JavaScript 对象中封装原生实例。稍后可以使用 OH_JSVM_Unwrap() 检索原生实例。 |
+|OH_JSVM_Unwrap | 使用 OH_JSVM_Wrap() 检索先前封装在 JavaScript 对象中的原生实例。 |
+|OH_JSVM_RemoveWrap | 检索先前封装在 JavaScript 对象中的原生实例并移除封装。 |
+|OH_JSVM_TypeTagObject | 将 type_tag 指针的值与 JavaScript 对象或外部对象相关联。 |
+|OH_JSVM_CheckObjectTypeTag | 检查给定的类型标签是否与对象上的类型标签匹配。 |
+|OH_JSVM_AddFinalizer | 为对象添加 JSVM_Finalize 回调，以便在 JavaScript 对象被垃圾回收时调用来释放原生对象。 |
+|OH_JSVM_PostFinalizer | 安排在事件循环中异步调用 JSVM_Finalize 回调。 |
+|OH_JSVM_DefineClassWithPropertyHandler | 定义一个具有给定类名、构造函数、属性和回调处理程序的JavaScript类，并作为函数回调进行调用。属性操作包括getter、setter、deleter、enumerator等。 |
 
 场景示例：
 对象绑定操作。
@@ -1248,7 +1264,7 @@ static JSVM_Value assertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
 }
 
 static JSVM_Value GetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg, JSVM_Value data) {
-    // this callback is triggered by get requests on an object
+    // 该回调是由对象上的获取请求触发的
     char strValue[100];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
@@ -1270,7 +1286,7 @@ static JSVM_Value GetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value th
 }
 
 static JSVM_Value SetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value property, JSVM_Value thisArg, JSVM_Value data) {
-    // this callback is triggered by set requests on an object
+    // 该回调是由对象上的设置请求触发的
     char strValue[100];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
@@ -1292,7 +1308,7 @@ static JSVM_Value SetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value pr
 }
 
 static JSVM_Value DeleterPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg, JSVM_Value data) {
-    // this callback is triggered by delete requests on an object
+    // 该回调是由对象上的删除请求触发的
     char strValue[100];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
@@ -1314,7 +1330,7 @@ static JSVM_Value DeleterPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Valu
 }
 
 static JSVM_Value EnumeratorPropertyCbInfo(JSVM_Env env, JSVM_Value thisArg, JSVM_Value data) {
-    // this callback is triggered by get all properties requests on an object
+    // 该回调是由获取对象上的所有属性请求触发的
     JSVM_Value testArray = nullptr;
     OH_JSVM_CreateArrayWithLength(env, 2, &testArray);
     JSVM_Value name1 = nullptr;
@@ -1341,7 +1357,7 @@ static JSVM_Value EnumeratorPropertyCbInfo(JSVM_Env env, JSVM_Value thisArg, JSV
 }
 
 static JSVM_Value IndexedPropertyGet(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg, JSVM_Value data) {
-    // this function triggered by getting an indexed property of an instance objec
+    // 该回调是由获取实例对象的索引属性触发的
     uint32_t value;
     OH_JSVM_GetValueUint32(env, index, &value);
 
@@ -1363,7 +1379,7 @@ static JSVM_Value IndexedPropertyGet(JSVM_Env env, JSVM_Value index, JSVM_Value 
 }
 
 static JSVM_Value IndexedPropertySet(JSVM_Env env, JSVM_Value index, JSVM_Value property, JSVM_Value thisArg, JSVM_Value data) {
-    // this function triggered by setting an indexed property of an instance object.
+    // 该回调是由设置实例对象的索引属性触发的
     uint32_t value;
     OH_JSVM_GetValueUint32(env, index, &value);
     char str[100];
@@ -1387,7 +1403,7 @@ static JSVM_Value IndexedPropertySet(JSVM_Env env, JSVM_Value index, JSVM_Value 
 }
 
 static JSVM_Value IndexedPropertyDeleter(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg, JSVM_Value data) {
-    // this function triggered by deleting an indexed property of an instance object.
+    // 该回调是由删除实例对象的索引属性触发的
     uint32_t value;
     OH_JSVM_GetValueUint32(env, index, &value);
     JSVM_Value newResult = nullptr;
@@ -1408,7 +1424,7 @@ static JSVM_Value IndexedPropertyDeleter(JSVM_Env env, JSVM_Value index, JSVM_Va
 }
 
 static JSVM_Value IndexedPropertyEnumerator(JSVM_Env env, JSVM_Value thisArg, JSVM_Value data) {
-    // this function triggered by getting all indexed properties requests on an object.
+    // 该回调是由获取对象上的所有索引属性请求触发的
     JSVM_Value testArray = nullptr;
     OH_JSVM_CreateArrayWithLength(env, 2, &testArray);
     JSVM_Value index1 = nullptr;
@@ -1476,7 +1492,7 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
                 sizeof(*test) / sizeof(uint64_t));
     JSVM_Status status = OH_JSVM_CreateBigintWords(env, 1, 2, reinterpret_cast<const uint64_t *>(test), &res);
 
-    // initialize the propertyCfg
+    // 初始化propertyCfg
     JSVM_PropertyHandlerConfigurationStruct propertyCfg;
     propertyCfg.genericNamedPropertyGetterCallback = GetPropertyCbInfo;
     propertyCfg.genericNamedPropertySetterCallback = SetPropertyCbInfo;
@@ -1518,19 +1534,19 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     JSVM_Value setvalueName = nullptr;
     OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &setvalueName);
 
-    //======= 1. test name property callback ========================
-    // test set property
+    // 1. 名称属性回调
+    // 设置属性
     OH_JSVM_SetNamedProperty(env, instanceValue, "str11", setvalueName);
     OH_JSVM_SetNamedProperty(env, instanceValue, "str123", setvalueName);
 
-    // test get property
+    // 获取属性
     JSVM_Value valueName = nullptr;
     OH_JSVM_GetNamedProperty(env, instanceValue, "str11", &valueName);
     char str[100];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, valueName, str, 100, &size);
 
-    // test get all property names
+    // 获取所有属性的名称
     JSVM_Value allPropertyNames = nullptr;
     OH_JSVM_GetAllPropertyNames(env, instanceValue, JSVM_KEY_OWN_ONLY,
                                 static_cast<JSVM_KeyFilter>(JSVM_KEY_ENUMERABLE | JSVM_KEY_SKIP_SYMBOLS),
@@ -1545,15 +1561,15 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
         OH_JSVM_GetValueStringUtf8(env, propertyName, str, 100, &size);
     }
 
-    // delete property
+    // 删除属性
     bool result = false;
     propertyName = nullptr;
     char propertyChar[] = "str11";
     OH_JSVM_CreateStringUtf8(env, propertyChar, strlen(propertyChar), &propertyName);
     OH_JSVM_DeleteProperty(env, instanceValue, propertyName, &result);
 
-    // ======= 2. test index property callback ===================
-    // test set property
+    // 2. 索引属性回调
+    // 设置属性
     JSVM_Value jsIndex = nullptr;
     uint32_t index = 0;
     OH_JSVM_CreateUint32(env, index, &jsIndex);
@@ -1563,14 +1579,14 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     OH_JSVM_CreateUint32(env, index, &jsIndex1);
     OH_JSVM_SetProperty(env, instanceValue, jsIndex1, setvalueName);
 
-    // test get property
+    // 获取属性
     JSVM_Value valueName1 = nullptr;
     OH_JSVM_GetProperty(env, instanceValue, jsIndex, &valueName1);
     char str1[100];
     size_t size1;
     OH_JSVM_GetValueStringUtf8(env, valueName1, str1, 100, &size1);
 
-    // test get all property names
+    // 获取所有属性的名称
     JSVM_Value allPropertyNames1 = nullptr;
     OH_JSVM_GetAllPropertyNames(env, instanceValue, JSVM_KEY_OWN_ONLY,
                                 static_cast<JSVM_KeyFilter>(JSVM_KEY_ENUMERABLE | JSVM_KEY_SKIP_SYMBOLS),
@@ -1585,11 +1601,11 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
         OH_JSVM_GetValueStringUtf8(env, propertyName1, str, 100, &size);
     }
 
-    // delete property
+    // 删除属性
     bool result1 = false;
     OH_JSVM_DeleteProperty(env, instanceValue, jsIndex, &result1);
 
-    // ======= 3. test call as function callback ===================
+    // 3. 作为函数的回调
     JSVM_Value gloablObj = nullptr;
     OH_JSVM_GetGlobal(env, &gloablObj);
     OH_JSVM_SetNamedProperty(env, gloablObj, "myTestInstance", instanceValue);

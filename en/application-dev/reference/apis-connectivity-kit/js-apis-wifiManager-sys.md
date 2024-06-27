@@ -337,7 +337,7 @@ Adds network configuration. This API uses an asynchronous callback to return the
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If the operation fails, **error** is not **0**.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If the operation fails, **error** is not **0**.|
 
 **Error codes**
 
@@ -1002,6 +1002,53 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}
 ```
 
+## wifiManager.enableHiLinkHandshake<sup>12+</sup>
+
+enableHiLinkHandshake(isHiLinkEnable: boolean, bssid: string, config: WifiDeviceConfig): void
+
+**System API**: This is a system API.
+
+Enables or disables HiLink.
+
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| isHiLinkEnable | boolean | Yes| Whether to enable hiLink. The value **true** means to enable HiLink; the value **false** means the opposite.|
+| bssid | string | Yes| MAC address of the hotspot, for example, **00:11:22:33:44:55**.|
+| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration information. The value of **config.bssid** must be the same as that of the second parameter **bssid**. The default **bssidType** is random device address.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 2501000  | Operation failed.|
+
+**Example**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+	// You can obtain config data by using getScanInfoList, which can be used only when WifiScanInfo.isHiLinkNetwork is true.
+	let config:wifiManager.WifiDeviceConfig = {
+		ssid : "****",
+		preSharedKey : "****",
+		securityType : 0,
+		bssid : "38:37:8b:80:bf:cc",
+		bssidType : 1,
+		isHiddenSsid : false
+	}	
+	try {
+		wifiManager.enableHiLinkHandshake(true, config.bssid, config);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 
 ## wifiManager.factoryReset<sup>11+</sup>
 
@@ -1564,7 +1611,7 @@ API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](js-apis-wifiManager.md#wifip2pgroupinfo9)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **error** is **0** and **data** is the group information obtained. If the operation fails, **error** is not **0**. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
+| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](js-apis-wifiManager.md#wifip2pgroupinfo9)&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **error** is **0** and **data** is the group information obtained. If the operation fails, **error** is not **0**. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
@@ -1630,7 +1677,7 @@ Subscribes to Wi-Fi stream changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **streamChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the stream change, which can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the stream change, which can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
 
 **Error codes**
 
@@ -1657,7 +1704,7 @@ Unsubscribes from Wi-Fi stream changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **streamChange**.|
-| callback | Callback&lt;number&gt; | No| Callback to unregister. The stream change can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional. |
+| callback | Callback&lt;number&gt; | No| Callback to unregister. The stream change can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
 
 **Error codes**
 
@@ -1699,7 +1746,7 @@ Subscribes to Wi-Fi device configuration changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **deviceConfigChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the device configuration change, which can be any of the following values:<br>- **0**: device configuration added.<br>- **1**: device configuration changed.<br>- **2**: device configuration deleted.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the device configuration change, which can be any of the following values:<br>- **0**: device configuration added.<br>- **1**: device configuration changed.<br>- **2**: device configuration deleted.|
 
 **Error codes**
 

@@ -30,7 +30,7 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 文本类组件[Text](ts-basic-components-text.md)、[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)对选中的文本内容进行拖拽时，不支持背板图的自定义。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **事件优先级：** 长按触发时间 < 500ms，长按事件优先拖拽事件响应，长按触发时间 >= 500ms，拖拽事件优先长按事件响应。
 
@@ -40,8 +40,7 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 | 参数名      | 类型                            | 必填 | 说明               |
 | ----------- | ------------------------------- | ---- | ------------------ |
-| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息。     |
-| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: [DragEvent](#dragevent), extraParams?: string) => [CustomBuilder](ts-types.md#custombuilder8) &nbsp;\|&nbsp; [DragItemInfo](#dragiteminfo说明)  | 是   | 回调函数。<br/> **说明：**<br/> event为拖拽事件信息。<br/> extraParams为拖拽事件额外信息。需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 **返回值：**
 
@@ -55,7 +54,7 @@ onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
 
 拖拽进入组件范围内时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -63,8 +62,7 @@ onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onDragMove
 
@@ -72,7 +70,7 @@ onDragMove(event: (event: DragEvent, extraParams?: string) => void)
 
 拖拽在组件范围内移动时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -80,8 +78,7 @@ onDragMove(event: (event: DragEvent, extraParams?: string) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onDragLeave
 
@@ -89,7 +86,7 @@ onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
 
 拖拽离开组件范围内时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -97,8 +94,7 @@ onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onDrop
 
@@ -106,7 +102,7 @@ onDrop(event: (event: DragEvent, extraParams?: string) => void)
 
 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。如果没有显式使用event.setResult()，则默认result为DRAG_SUCCESSFUL。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -114,8 +110,7 @@ onDrop(event: (event: DragEvent, extraParams?: string) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onDragEnd
 
@@ -123,7 +118,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 
 绑定此事件的组件触发的拖拽结束后，触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -131,8 +126,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: [DragEvent](#dragevent), extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onPreDrag<sup>12+</sup>
 
@@ -146,15 +140,17 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| preDragStatus       | [PreDragStatus](#predragstatus12枚举说明)     | 是   | 拖拽预发起阶段。 |
+| callback    | Callback<(preDragStatus: [PreDragStatus](#predragstatus12枚举说明)> ) => void     | 是   | 回调函数。|
 
 ## DragItemInfo说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型                                     | 必填   | 描述                                |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
-| pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否    | 设置拖拽过程中显示的图片。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                     |
+| pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否    | 设置拖拽过程中显示的图片。 |
 | builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。<br /> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。|
 | extraInfo | string                                   | 否    | 拖拽项的描述。                           |
 
@@ -170,11 +166,15 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | selectedIndex | number | 当拖拽事件设在父容器的子元素时，selectedIndex表示当前被拖拽子元素是父容器第selectedIndex个子元素，selectedIndex从0开始。<br/>仅在ListItem组件的拖拽事件中生效。 |
 | insertIndex   | number | 当前拖拽元素在List组件中放下时，insertIndex表示被拖拽元素插入该组件的第insertIndex个位置，insertIndex从0开始。<br/>仅在List组件的拖拽事件中生效。 |
 
-## DragEvent说明
+## DragEvent
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
@@ -183,39 +183,43 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ### 方法
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 返回值类型                            | 描述                           |
 | ----------- | ------------------------------- | ------------------------------ |
-| setData(unifiedData: [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup>       | void   | 向DragEvent中设置拖拽相关数据。 |
-| getData()<sup>10+</sup> | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 从DragEvent中获取拖拽相关数据。数据获取结果请参考错误码说明。 |
-| getSummary()<sup>10+</sup> | [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。 |
-| setResult(dragRect: [DragResult](#dragresult10枚举说明))<sup>10+</sup> | void | 向DragEvent中设置拖拽结果。 |
-| getResult()<sup>10+</sup> | [DragResult](#dragresult10枚举说明) | 从DragEvent中获取拖拽结果。 |
-| getPreviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle对象说明) | 获取预览图所在的Rectangle。 |
-| getVelocityX()<sup>10+</sup> | number | 获取当前拖拽的x轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从左往右为正，反之为负。 |
+| setData(unifiedData: [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup>       | void   | 向DragEvent中设置拖拽相关数据。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getData()<sup>10+</sup> | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 从DragEvent中获取拖拽相关数据。数据获取结果请参考错误码说明。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getSummary()<sup>10+</sup> | [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| setResult(dragRect: [DragResult](#dragresult10枚举说明))<sup>10+</sup> | void | 向DragEvent中设置拖拽结果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getResult()<sup>10+</sup> | [DragResult](#dragresult10枚举说明) | 从DragEvent中获取拖拽结果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getPreviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle对象说明) | 获取预览图所在的Rectangle。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getVelocityX()<sup>10+</sup> | number | 获取当前拖拽的x轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从左往右为正，反之为负。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getVelocityY()<sup>10+</sup> | number | 获取当前拖拽的y轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从上往下为正，反之为负。 |
-| getVelocity()<sup>10+</sup> | number | 获取当前拖拽的主方向拖动速度。为xy轴方向速度的平方和的算术平方根。 |
-| getWindowX()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。 |
-| getWindowY()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。 |
-| getDisplayX()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。 |
-| getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
-| getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowX()代替。 |
-| getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowY()代替。 |
+| getVelocity()<sup>10+</sup> | number | 获取当前拖拽的主方向拖动速度。为xy轴方向速度的平方和的算术平方根。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getWindowX()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getWindowY()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getDisplayX()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API Version 10开始不再维护，建议使用getWindowX()代替。 |
+| getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API Version 10开始不再维护，建议使用getWindowY()代替。 |
+| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'\|'Fn'，Pad、手机外接带Fn键的键盘不支持Fn键查询。 |
 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[drag-event(拖拽事件)](../errorcode-drag-event.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[drag-event(拖拽事件)](../errorcode-drag-event.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 190001    | GetData failed, data not found. |
-| 190002    | GetData failed, data error. |
+| 401       | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
+| 190001    | Data not found.|
+| 190002    | Data error. |
 
 ## DragResult<sup>10+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | ----- | ----------------- |
@@ -229,7 +233,9 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 需要设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED，并实现[onDrop](#ondrop)回调时才能够生效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | ----- | ----------------- |
@@ -237,6 +243,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | MOVE| 剪贴模式角标。 |
 
 ## PreDragStatus<sup>12+</sup>枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 值 | 描述 |
 | ---- | - | ----------------- |

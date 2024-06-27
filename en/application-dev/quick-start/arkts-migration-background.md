@@ -112,7 +112,7 @@ function notify(who: string, what: string) {
 notify('Jack', 'You look great today')
 ```
 
-In most cases, the `notify` function will take two string variables as an input and produces a new string. However, what if we pass some “special” values to the function, for example `notify(null, undefined)`? The program will continue to work, the output will be as expected (`Dear undefined, a message for you: null`), so from the first glance everything is fine. But please note that the engine that runs our code should always check for such special cases to ensure correct behavior. In pseudocode, something like this happens:
+In most cases, the `notify` function will take two string variables as an input and produces a new string. However, what if we pass some “special” values to the function, for example `notify(null, undefined)`? The program will continue to work, the output will be as expected (`Dear null, a message for you: undefined`), so from the first glance everything is fine. But please note that the engine that runs our code should always check for such special cases to ensure correct behavior. In pseudocode, something like this happens:
 
 ```typescript
 function __internal_tostring(s: any): string {

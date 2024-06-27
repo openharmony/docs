@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
 ```
 
 
@@ -30,7 +30,7 @@ ExceptionPrompt({ options: PromptOptions })
 
 **装饰器类型：**\@Component
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -48,7 +48,7 @@ ExceptionPrompt({ options: PromptOptions })
 
 PromptOptions定义options的类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -59,13 +59,13 @@ PromptOptions定义options的类型。
 | marginType | [MarginType](#margintype) | 是 | 指定当前异常提示的边距样式 。 |
 | actionText | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的右侧图标按钮的文字内容。 |
 | marginTop | [Dimension](ts-types.md#dimension10) | 是 | 指定当前异常提示的距离顶部的位置。 |
-| isShown | boolean | 否 | 指定当前异常提示的显隐状态。<br />true:显示状态。<br />fasle：隐藏状态。 |
+| isShown | boolean | 否 | 指定当前异常提示的显隐状态。<br />true:显示状态。<br />false：隐藏状态。 |
 
 ## MarginType
 
 MarginType定义marginType的类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -81,7 +81,7 @@ MarginType定义marginType的类型。
 ### 示例1
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
@@ -115,7 +115,7 @@ struct Index {
 ### 示例2
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
 @CustomDialog
 struct CustomDialogExample {
   @Link textValue: string

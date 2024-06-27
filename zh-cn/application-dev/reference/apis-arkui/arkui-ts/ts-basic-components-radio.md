@@ -20,6 +20,8 @@ Radio(options: RadioOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -32,8 +34,8 @@ Radio(options: RadioOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string | 是 | 当前单选框的值。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| group | string | 是 | 当前单选框的所属群组名称，相同group的Radio只能有一个被选中。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| value | string | 是 | 当前单选框的值。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| group | string | 是 | 当前单选框的所属群组名称，相同group的Radio只能有一个被选中。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | indicatorType<sup>12+</sup> | [RadioIndicatorType](#radioindicatortype12枚举说明) | 否 | 配置单选框的选中样式。未设置时按照RadioIndicatorType.TICK进行显示。|
 | indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置单选框的选中样式为自定义组件。自定义组件与Radio组件为中心点对齐显示。indicatorBuilder设置为undefined时，按照RadioIndicatorType.TICK进行显示。|
 
@@ -59,7 +61,7 @@ checked(value: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -77,7 +79,7 @@ radioStyle(value?: RadioStyle)
 
 从API version 10开始，该接口支持在ArkTS组件中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -113,7 +115,7 @@ onChange(callback: (isChecked: boolean) => void)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -125,7 +127,7 @@ onChange(callback: (isChecked: boolean) => void)
 
 ## RadioStyle<sup>10+</sup>对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                   | 类型                                       | 必填 | 默认值  | 描述                   |
 | ---------------------- | ------------------------------------------ | ---- | ------- | ---------------------- |

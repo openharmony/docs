@@ -80,7 +80,7 @@
 | 接口名称 | 描述 | 
 | -------- | -------- |
 | createKVManager(config: KVManagerConfig): KVManager | 创建一个KVManager对象实例，用于管理数据库对象。 | 
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | 指定Options和storeId，创建并得到指定类型的KVStore数据库。 | 
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | 指定options和storeId，创建并得到指定类型的KVStore数据库。 | 
 | put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | 插入和更新数据。 | 
 | on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void | 订阅数据库中数据的变化。 | 
 | get(key: string, callback: AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;): void | 查询指定Key键的值。 | 
@@ -100,7 +100,7 @@
 1. 导入模块。
      
    ```ts
-   import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { distributedKVStore } from '@kit.ArkData';
    ```
 
 2. 请求权限。
@@ -116,9 +116,9 @@
      
    ```ts
    // Stage模型获取context
-   import window from '@ohos.window';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    
@@ -129,8 +129,8 @@
    }
     
     // FA模型获取context
-   import featureAbility from '@ohos.ability.featureAbility';
-   import { BusinessError } from '@ohos.base';
+   import { featureAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
     
    let context = featureAbility.getContext();
    
@@ -292,12 +292,12 @@
    > 在手动同步的方式下，其中的deviceIds通过调用[devManager.getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
    ```ts
-   import deviceManager from '@ohos.distributedDeviceManager';
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
     
-   let devManager: deviceManager.DeviceManager;
+   let devManager: distributedDeviceManager.DeviceManager;
    try {
      // create deviceManager
-     devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+     devManager = distributedDeviceManager.createDeviceManager(context.applicationInfo.name);
      // deviceIds由deviceManager调用getAvailableDeviceListSync方法得到
      let deviceIds: string[] = [];
      if (devManager != null) {

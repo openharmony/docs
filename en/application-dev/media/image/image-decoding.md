@@ -1,6 +1,6 @@
 # Image Decoding (ArkTS)
 
-Image decoding refers to the process of decoding an archived image in a supported format into a [pixel map](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, RAW, WebP, BMP, SVG, ICO, and DNG.
+Image decoding refers to the process of decoding an archived image in a supported format into a [pixel map](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, and DNG.
 
 ## How to Develop
 

@@ -99,9 +99,9 @@ OsAccount_ErrCode OH_OsAccount_GetName (char *buffer, size_t buffer_size)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| buffer | 系统帐号名称字符数组，应该为名称和结束字符('\0')留出空间。 | 
-| buffer_size | 系统帐号名称字符数组的大小。 | 
+| buffer | 名称字符数组，其应具有能够存放名称（最大长度为LOGIN_NAME_MAX）和结束字符（'\0'）的空间。 | 
+| buffer_size | 名称字符数组的大小。 | 
 
 **返回：**
 
-返回OS_ACCOUNT_ERR_OK表示成功；返回OS_ACCOUNT_ERR_INTERNAL_ERROR表示内部错误； 返回OS_ACCOUNT_ERR_INVALID_PARAMETER指示buf为NULL指针或名称的大小(包括结束字符('\0'))大于buffer_size。
+返回OS_ACCOUNT_ERR_OK表示成功；返回OS_ACCOUNT_ERR_INTERNAL_ERROR表示内部错误；返回OS_ACCOUNT_ERR_INVALID_PARAMETER指示buffer为NULL指针或名称（不包括结束字符（'\0'））的大小大于或等于buffer_size。

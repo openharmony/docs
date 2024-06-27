@@ -46,7 +46,7 @@ This attribute can be used to fix aliasing in SVG images on devices with PPI low
 
 ## ImageAnalyzerConfig<sup>11+</sup>
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 Describes the type of the AI analyzer.
 

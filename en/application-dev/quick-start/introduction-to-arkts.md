@@ -15,7 +15,7 @@ Interoperability with JavaScript was a critical consideration in the ArkTS langu
 
 To ensure best experience for UI app development for OpenHarmony ecosystem, ArkTS provides support for ArkUI, including its declarative syntax and other features. Since this feature is outside the scope of the "stock" TypeScript, a verbose ArkUI example is provided in a separate chapter.
 
-This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS.
+This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS.<!--Del--> For details about programming specifications, see [ArkTS Coding Style Guide](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md).<!--DelEnd-->
 
 ## The Basics
 
@@ -63,8 +63,6 @@ let hi2 = 'hello, world';
 ```
 
 ### Types
-
-`Class`, `interface`, `function`, `enum`, `union` types, and type `aliases` are described in the corresponding sections.
 
 #### Numeric Types
 
@@ -712,15 +710,15 @@ let sum2 = (x: number, y: number) => x + y
 
 ### Closure
 
-An arrow function is usually defined inside another function. As an inner function, it can access all variables and functions defined in the outer functions.
+A closure is the combination of a function and the lexical environment within which that function was declared. This environment consists of any local variables that were in-scope at the time the closure was created.
 
-To capture the context, an inner function forms a closure of its environment.
-The closure allows accessing such an inner function outside its own environment.
+In the following example, **z** is a reference to the instance of the function **g** that is created when **f** is executed. The instance of **g** maintains a reference to its lexical environment, within which the variable **count** exists. For this reason, when **z** is invoked, the variable **count** remains available for use.
 
 ```typescript
 function f(): () => number {
   let count = 0;
-  return (): number => { count++; return count; }
+  let g = (): number => { count++; return count; };
+  return g;
 }
 
 let z = f();
@@ -810,9 +808,9 @@ class Person {
 }
 
 let p1 = new Person('Alice', 25);
-console.log(p1.name);
+p1.name;
 let p2 = new Person('Bob', 28);
-console.log(p2.getName());
+p2.getName();
 ```
 
 #### Static Fields
@@ -853,11 +851,11 @@ class Person {
     // that name can be undefined. The most correct would be
     // to write the return type as "string | undefined". By doing so
     // we tell the users of our API about all possible return values.
-    return this.name
+    return this.name;
   }
 }
 
-let jack = new Person()
+let jack = new Person();
 // Let's assume that the developer forgets to call setName:
 // jack.setName('Jack')
 jack.getName().length; // runtime exception: name is undefined
@@ -878,6 +876,7 @@ class Person {
     return this.name;
   }
 }
+  
 
 let jack = new Person();
 // Let's assume that the developer forgets to call setName:
@@ -889,9 +888,7 @@ And here how our code behaves if the field `name` can be `undefined`
 
 ```typescript
 class Person {
-  name?: string // The field may be undefined, great
-  // More explicit syntax may also be used:
-  // name: string | undefined = undefined
+  name?: string // The field may be undefined
 
   setName(n:string): void {
     this.name = n;
@@ -901,11 +898,11 @@ class Person {
   // name can be "undefined", so we cannot say to those who use this API
   // that it returns only strings:
   getNameWrong(): string {
-    return this.name
+    return this.name;
   }
 
   getName(): string | undefined { // Return type matches the type of name
-    return this.name
+    return this.name;
   }
 }
 
@@ -1008,9 +1005,7 @@ class [extends BaseClassName] [implements listOfInterfaces] {
 }
 ```
 
-An extended class inherits fields and methods, but not constructors from
-the base class, and can add its own fields and methods, as well as override
-methods defined by the base class.
+An extended class inherits fields and methods, but not constructors from the base class, and can add its own fields and methods, as well as override methods defined by the base class.
 
 Example:
 
@@ -1067,12 +1062,12 @@ class RectangleSize {
 class FilledRectangle extends RectangleSize {
   color = ''
   constructor (h: number, w: number, c: string) {
-    super(h, w) // call of super constructor
-    this.color = c
+    super(h, w); // call of super constructor
+    this.color = c;
   }
 
   draw() {
-    super.draw() // call of super methods
+    super.draw(); // call of super methods
     // super.height - can be used here
     /* fill rectangle */
   }
@@ -1089,7 +1084,7 @@ class RectangleSize {
   // ...
   area(): number {
     // implementation
-    return 0
+    return 0;
   }
 }
 class Square extends RectangleSize {
@@ -1100,7 +1095,7 @@ class Square extends RectangleSize {
 }
 ```
 
-### Method Overload Signatures
+#### Method Overload Signatures
 
 A method can be specified to be called in different ways by writing overload signatures. To do so, several method headers that have the same name but different signatures are written and immediately followed by the single implementation method.
 
@@ -1154,7 +1149,7 @@ class RectangleSize {
 }
 class Square extends RectangleSize {
   constructor(side: number) {
-    super(side, side)
+    super(side, side);
   }
 }
 ```
@@ -1205,9 +1200,9 @@ class C {
     this.y = new_y // ok, as y is accessible within the class itself
   }
 }
-let c = new C()
-c.x = 'a' // ok, the field is public
-c.y = 'b' // compile-time error: 'y' is not visible
+let c = new C();
+c.x = 'a'; // ok, the field is public
+c.y = 'b'; // compile-time error: 'y' is not visible
 ```
 
 #### Protected Visibility
@@ -1270,7 +1265,7 @@ class C {
   n: number = 0
   s: string = ''
 }
-let cc: C[] = [{n: 1, s: 'a'}, {n: 2, s: 'b'}]
+let cc: C[] = [{n: 1, s: 'a'}, {n: 2, s: 'b'}];
 ```
 
 #### Object Literals of Record Type
@@ -1338,7 +1333,7 @@ class RectangleSize implements AreaSize {
     console.log('someMethod called');
   }
   calculateAreaSize(): number {
-    this.someMethod() // calls another method and returns result
+    this.someMethod(); // calls another method and returns result
     return this.width * this.height;
   }
 }
@@ -1354,7 +1349,9 @@ A property field is just a shortcut notation of a getter/setter pair, and the fo
 interface Style {
   color: string
 }
+```
 
+```typescript
 interface Style {
   get color(): string
   set color(x: string)
@@ -1373,8 +1370,6 @@ class StyledRectangle implements Style {
 }
 ```
 
-The short notation implicitly defines a private field and getter and setter:
-
 ```typescript
 interface Style {
   color: string
@@ -1382,8 +1377,8 @@ interface Style {
 
 class StyledRectangle implements Style {
   private _color: string = ''
-  get color(): string { return this._color }
-  set color(x: string) { this._color = x }
+  get color(): string { return this._color; }
+  set color(x: string) { this._color = x; }
 }
 ```
 
@@ -1413,7 +1408,7 @@ A class and an interface can be defined as generics, adding parameters to the ty
 
 ```typescript
 class CustomStack<Element> {
-  public push(e: Element): void {
+  public push(e: Element):void {
     // ...
   }
 }
@@ -1422,17 +1417,16 @@ class CustomStack<Element> {
 To use type CustomStack, the type argument must be specified for each type parameter:
 
 ```typescript
-let s = new CustomStack<string>()
-s.push('hello')
+let s = new CustomStack<string>();
+s.push('hello');
 ```
 
 Compiler ensures type safety while working with generic types and functions.
 See below:
 
 ```typescript
-let s = new CustomStack<string>()
-s.push(55) /* That will be a compile-time error as 55 is not compatible
-  with type string */
+let s = new CustomStack<string>();
+s.push(55); // That will be a compile-time error as 55 is not compatible with type string.
 ```
 
 ### Generic Constraints
@@ -1445,7 +1439,7 @@ interface Hashable {
 }
 class HasMap<Key extends Hashable, Value> {
   public set(k: Key, v: Value) {
-    let h = k.hash()
+    let h = k.hash();
     // ... other code ...
   }
 }
@@ -1459,7 +1453,7 @@ Use a generic function to create a more universal code. Consider a function that
 
 ```typescript
 function last(x: number[]): number {
-  return x[x.length - 1]
+  return x[x.length - 1];
 }
 last([1, 2, 3]); // output: 3
 ```
@@ -1468,7 +1462,7 @@ If the same function needs to be defined for any array, then define it as a gene
 
 ```typescript
 function last<T>(x: T[]): T {
-  return x[x.length - 1]
+  return x[x.length - 1];
 }
 ```
 
@@ -1502,9 +1496,9 @@ class Derived2 extends Base<SomeType> implements Interface<SomeType> { }
 function foo<T = number>(): T {
   // ...
 }
-foo()
+foo();
 // such function is semantically equivalent to the call below
-foo<number>()
+foo<number>();
 ```
 
 ## Null Safety
@@ -1515,17 +1509,17 @@ It is similar to TypeScript behavior in strict null checking mode (`strictNullCh
 In the example below, all lines cause a compile-time error:
 
 ```typescript
-let x: number = null    // Compile-time error
-let y: string = null    // Compile-time error
-let z: number[] = null  // Compile-time error
+let x: number = null;    // Compile-time error
+let y: string = null;    // Compile-time error
+let z: number[] = null;  // Compile-time error
 ```
 
 A variable that can have a null value is defined with a union type `T | null`.
 
 ```typescript
-let x: number | null = null
-x = 1    // ok
-x = null // ok
+let x: number | null = null;
+x = 1;    // ok
+x = null; // ok
 if (x != null) { /* do something */ }
 ```
 
@@ -1560,7 +1554,7 @@ class Person {
   // ...
   nick: string | null = null
   getNick(): string {
-    return this.nick ?? ''
+    return this.nick ?? '';
   }
 }
 ```
@@ -1575,16 +1569,16 @@ class Person {
   spouse?: Person
 
   setSpouse(spouse: Person): void {
-    this.spouse = spouse
+    this.spouse = spouse;
   }
 
   getSpouseNick(): string | null | undefined {
-    return this.spouse?.nick
+    return this.spouse?.nick;
   }
 
   constructor(nick: string) {
-    this.nick = nick
-    this.spouse = undefined
+    this.nick = nick;
+    this.spouse = undefined;
   }
 }
 ```
@@ -1603,13 +1597,13 @@ class Person {
   spouse?: Person
 
   constructor(nick: string) {
-    this.nick = nick
-    this.spouse = undefined
+    this.nick = nick;
+    this.spouse = undefined;
   }
 }
 
-let p: Person = new Person('Alice')
-p.spouse?.nick // undefined
+let p: Person = new Person('Alice');
+p.spouse?.nick; // undefined
 ```
 
 ## Modules
@@ -1633,17 +1627,19 @@ export class Point {
   x: number = 0
   y: number = 0
   constructor(x: number, y: number) {
-    this.x = x
-    this.y = y
+    this.x = x;
+    this.y = y;
   }
 }
-export let Origin = new Point(0, 0)
+export let Origin = new Point(0, 0);
 export function Distance(p1: Point, p2: Point): number {
-  return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y))
+  return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
 }
 ```
 
 ### Import
+
+#### Static Import
 
 Import declarations are used to import entities exported from other modules and provide their bindings in the current module.
 An import declaration consists of two parts:
@@ -1655,8 +1651,7 @@ Import bindings may have several forms.
 
 Let's assume a module has the path './utils' and export entities 'X' and 'Y'.
 
-An import binding of the form `* as A` binds the name 'A', and all entities exported from the module defined by the import path can be accessed by using
-the qualified name `A.name`:
+An import binding of the form `* as A` binds the name 'A', and all entities exported from the module defined by the import path can be accessed by using the qualified name `A.name`:
 
 ```typescript
 import * as Utils from './utils'
@@ -1680,6 +1675,45 @@ Z // denotes X from Utils
 Y // denotes Y from Utils
 X // Compile-time error: 'X' is not visible
 ```
+#### Dynamic Import
+Unlike static import, static import allows you to load a module conditionally or on demand.
+The **import() **syntax, commonly called dynamic import, is a function-like expression that allows for dynamic loading of a module. It returns a promise.
+In the following example, **import(modulePath)** loads the module and returns a promise that resolves into a module object that contains all its exports. This expression can be called from any place in the code.
+
+```typescript
+let modulePath = prompt("Which module to load?");
+import(modulePath)
+.then(obj => <module object>)
+.catch(err => <loading error, e.g. if no such module>)
+```
+
+You can also use **let module = await import(modulePath)** inside an async function.
+
+```typescript
+// say.ts
+export function hi() {
+  console.log('Hello');
+}
+export function bye() {
+  console.log('Bye');
+}
+```
+
+Then dynamic import can be like this:
+
+```typescript
+async function test() {
+  let ns = await import('./say');
+  let hi = ns.hi;
+  let bye = ns.bye;
+  hi();
+  bye();
+}
+```
+
+For more details about dynamic import, see [Dynamic Import](arkts-dynamic-import.md).
+
+<!--RP1--><!--RP1End-->
 
 ### Top-Level Statements
 
@@ -1695,7 +1729,7 @@ The `main` function must have either an empty parameter list or a single paramet
 
 ```typescript
 function main() {
-  console.log('this is the program entry')
+  console.log('this is the program entry');
 }
 ```
 
@@ -1718,22 +1752,22 @@ class A {
 
 Constraints:
 
-* Type Notation Using `this` Is Not Supported
-* Using `this` Inside Stand-Alone Functions Is Not Supported
+* Type notation using `this` is not supported.
+* Using `this` inside standalone functions is not supported.
 
 **Example**
 
 ```typescript
 class A {
   n: number = 0
-  f1(arg1: this) {} // Compile-time error, type notation using this is not supported
+  f1(arg1: this) {} // Compile-time error. Type notation using this is not supported.
   static f2(arg1: number) {
-    this.n = arg1;  // Compile-time error, using this inside stand-alone functions is not supported
+    this.n = arg1;  // Compile-time error. Using this inside standalone functions is not supported.
   }
 }
 
 function foo(arg1: number) {
-  this.n = i;       // Compile-time error, using this inside stand-alone functions is not supported
+  this.n = i;       // Compile-time error. Using this inside standalone functions is not supported.
 }
 ```
 
@@ -1742,7 +1776,7 @@ The keyword `this` used as a primary expression denotes a value that is a refere
 * Object for which the instance method is called; or
 * Object being constructed.
 
-The value denoted by this in a lambda body and in the surrounding context is the same.
+The value denoted by `this` in a lambda body and in the surrounding context is the same.
 
 ## Support for ArkUI
 

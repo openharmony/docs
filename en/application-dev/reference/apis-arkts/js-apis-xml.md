@@ -10,7 +10,7 @@ The **XML** module provides a series of APIs for converting XML text into JavaSc
 ## Modules to Import
 
 ```
-import xml from '@ohos.xml';
+import { xml } from '@kit.ArkTS';
 ```
 
 ## XmlSerializer
@@ -23,6 +23,8 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 A constructor used to create an **XmlSerializer** instance.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -31,6 +33,14 @@ A constructor used to create an **XmlSerializer** instance.
 | -------- | --------------------------------- | ---- | ------------------------------------------------ |
 | buffer   | ArrayBuffer \| DataView | Yes  | **ArrayBuffer** or **DataView** for storing the XML information to set.|
 | encoding | string                            | No  | Encoding format. The default value is **'utf-8'** (the only format currently supported).              |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -54,6 +64,8 @@ setAttributes(name: string, value: string): void
 
 Sets an attribute.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -62,6 +74,14 @@ Sets an attribute.
 | ------ | ------ | ---- | --------------- |
 | name   | string | Yes  | Key of the attribute.  |
 | value  | string | Yes  | Value of the attribute.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -88,6 +108,8 @@ addEmptyElement(name: string): void
 
 Adds an empty element.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -95,6 +117,14 @@ Adds an empty element.
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
 | name   | string | Yes  | Name of the empty element to add.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -118,6 +148,8 @@ console.log(view1) // <d/>
 setDeclaration(): void
 
 Sets a file declaration with encoding.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -149,6 +181,8 @@ startElement(name: string): void
 
 Writes the start tag based on the given element name.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -156,6 +190,14 @@ Writes the start tag based on the given element name.
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
 | name   | string | Yes  | Name of the element.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -181,6 +223,8 @@ console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n
 endElement(): void
 
 Writes the end tag of the element.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -210,6 +254,8 @@ setNamespace(prefix: string, namespace: string): void
 
 Sets the namespace for an element tag.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -218,6 +264,14 @@ Sets the namespace for an element tag.
 | --------- | ------ | ---- | ------------------------------ |
 | prefix    | string | Yes  | Prefix of the element and its child elements.    |
 | namespace | string | Yes  | Namespace to set.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -244,6 +298,8 @@ setComment(text: string): void
 
 Sets a comment.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -251,6 +307,14 @@ Sets a comment.
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
 | text   | string | Yes  | Comment to set.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -275,6 +339,8 @@ setCDATA(text: string): void
 
 Sets CDATA data.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -282,6 +348,14 @@ Sets CDATA data.
 | Name| Type  | Mandatory| Description             |
 | ------ | ------ | ---- | ----------------- |
 | text   | string | Yes  | CDATA data to set.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -306,6 +380,8 @@ setText(text: string): void
 
 Sets a tag value.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -313,6 +389,14 @@ Sets a tag value.
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
 | text   | string | Yes  | Tag value to set, which is the content of the **text** attribute.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -340,6 +424,8 @@ setDocType(text: string): void
 
 Sets a document type.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -347,6 +433,14 @@ Sets a document type.
 | Name| Type  | Mandatory| Description               |
 | ------ | ------ | ---- | ------------------- |
 | text   | string | Yes  | Content of **DocType** to set.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -375,6 +469,8 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 Creates and returns an **XmlPullParser** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -384,10 +480,18 @@ Creates and returns an **XmlPullParser** object.
 | buffer   | ArrayBuffer \| DataView | Yes  | XML text information to be parsed.|
 | encoding | string                            | No  | Encoding format. The default value is **'utf-8'** (the only format currently supported).        |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -430,6 +534,8 @@ parse(option: ParseOptions): void
 
 Parses XML information.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -438,10 +544,18 @@ Parses XML information.
 | ------ | ----------------------------- | ---- | -------------------------------- |
 | option | [ParseOptions](#parseoptions) | Yes  | Options for controlling and obtaining the parsed information.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -473,6 +587,8 @@ console.log(str);
 
 Defines the XML parsing options.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 
@@ -495,6 +611,8 @@ getColumnNumber(): number
 
 Obtains the column line number, starting from 1.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -506,7 +624,7 @@ Obtains the column line number, starting from 1.
 **Example**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -536,6 +654,8 @@ getDepth(): number
 
 Obtains the depth of this element.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -547,7 +667,7 @@ Obtains the depth of this element.
 **Example**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -580,6 +700,8 @@ getLineNumber(): number
 
 Obtains the current line number, starting from 1.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -591,7 +713,7 @@ Obtains the current line number, starting from 1.
 **Example**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -621,6 +743,8 @@ getName(): string
 
 Obtains the name of this element.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -632,7 +756,7 @@ Obtains the name of this element.
 **Example**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -661,6 +785,8 @@ getNamespace(): string
 
 Obtains the namespace of this element.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -672,7 +798,7 @@ Obtains the namespace of this element.
 **Example**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -701,6 +827,8 @@ getPrefix(): string
 
 Obtains the prefix of this element.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -712,7 +840,7 @@ Obtains the prefix of this element.
 **Example**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -742,6 +870,8 @@ getText(): string
 
 Obtains the text of the current event.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -753,7 +883,7 @@ Obtains the text of the current event.
 **Example**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -782,6 +912,8 @@ isEmptyElementTag(): boolean
 
 Checks whether the current element is empty.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -793,7 +925,7 @@ Checks whether the current element is empty.
 **Example**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -822,6 +954,8 @@ isWhitespace(): boolean
 
 Checks whether the current text event contains only whitespace characters.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -833,7 +967,7 @@ Checks whether the current text event contains only whitespace characters.
 **Example**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -862,6 +996,8 @@ getAttributeCount(): number
 
 Obtains the number of attributes for the current start tag.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -872,7 +1008,7 @@ Obtains the number of attributes for the current start tag.
 **Example**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -899,6 +1035,8 @@ console.log(str);
 ## EventType
 
 Enumerates the event types.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 

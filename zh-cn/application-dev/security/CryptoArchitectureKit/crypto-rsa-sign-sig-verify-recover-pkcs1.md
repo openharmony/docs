@@ -30,8 +30,8 @@
 - 异步方法示例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
   // 完整的明文被拆分为input1和input2
   let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
   async function signMessagePromise(priKey: cryptoFramework.PriKey) {
@@ -65,8 +65,8 @@
 - 同步方法示例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
   // 完整的明文被拆分为input1和input2
   let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
   function signMessagePromise(priKey: cryptoFramework.PriKey) {

@@ -16,7 +16,7 @@
    }
    ```
 
-2. 在控件中，使用Text组件作为自会编辑框的文本显示组件，使用状态变量inputText作为Text组件要显示的内容。
+2. 在控件中，使用Text组件作为自绘编辑框的文本显示组件，使用状态变量inputText作为Text组件要显示的内容。
 
    ```ets
    import { inputMethod } from '@kit.IMEKit';
@@ -26,7 +26,7 @@
      @State inputText: string = ''; // inputText作为Text组件要显示的内容。
      
      build() {
-       Text(this.inputText) // Text组件作为自会编辑框的文本显示组件。
+       Text(this.inputText) // Text组件作为自绘编辑框的文本显示组件。
          .fontSize(16)
          .width('100%')
          .lineHeight(40)
@@ -49,7 +49,7 @@
      private inputController: inputMethod.InputMethodController = inputMethod.getController();
    
      build() {
-       Text(this.inputText) // Text组件作为自会编辑框的文本显示组件。
+       Text(this.inputText) // Text组件作为自绘编辑框的文本显示组件。
          .fontSize(16)
          .width('100%')
          .lineHeight(40)

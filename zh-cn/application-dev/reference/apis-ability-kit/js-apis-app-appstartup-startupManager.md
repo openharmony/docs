@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import startupManager  from '@ohos.app.appstartup.startupManager';
+import { startupManager }  from '@kit.AbilityKit';
 ```
 
 ## startupManager.run
@@ -32,7 +32,7 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -50,31 +50,31 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import startupManager from '@ohos.app.appstartup.startupManager';
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
-import StartupListener from '@ohos.app.appstartup.StartupListener';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    let startup = startupManager;
-    let startParams = 'Sample_001';
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let startParams = ['StartupTask_001'];
     try {
-        startup.run(startParams).then(() => {
-        console.log('StartupTest startupManager run then, startParams = ')
-        }).catch(error => {
+      // 手动调用run方法
+      startupManager.run(startParams).then(() => {
+        console.log('StartupTest startupManager run then, startParams = ');
+      }).catch((error: BusinessError) => {
         console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
         console.info("StartupTest promise catch error, startParams = "
-            + JSON.stringify(startParams));
-        })
+          + JSON.stringify(startParams));
+      })
     } catch (error) {
-        let errmsg = JSON.stringify(error)
-        let errCode = error.code
-        console.log('Startup catch error , errCode= ' + errCode);
-        console.log('Startup catch error ,error= ' + errmsg);
+      let errMsg = JSON.stringify(error);
+      let errCode: number = error.code;
+      console.log('Startup catch error , errCode= ' + errCode);
+      console.log('Startup catch error ,error= ' + errMsg);
+    }
   }
+  ...
 }
 ```
 
@@ -89,25 +89,22 @@ removeAllStartupTaskResults(): void
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = removeAllStartupTaskResults.removeAllStartupTaskResults();
-    
+    startupManager.removeAllStartupTaskResults(); // 移除所有启动任务结果
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -151,24 +148,21 @@ getStartupTaskResult(startupTask: string): Object
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = startupManager.getStartupTaskResult('Sample_001');
+    let result = startupManager.getStartupTaskResult('StartupTask_001'); // 手动获取启动任务结果
     console.info("getStartupTaskResult result = " + result);
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
@@ -213,30 +207,27 @@ isStartupTaskInitialized(startupTask: string): boolean
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = startupManager.isStartupTaskInitialized('Sample_001');
+    let result = startupManager.isStartupTaskInitialized('StartupTask_001');
     if (result) {
-      console.info("Sample_001 init successful");
+      console.info("StartupTask_001 init successful");
     } else {
-      console.info("Sample_001 uninitialized");
+      console.info("StartupTask_001 uninitialized");
     }
-    
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -273,25 +264,22 @@ removeStartupTaskResult(startupTask: string): void
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    startupManager.removeStartupTaskResult('Sample_001');
-    
+    startupManager.removeStartupTaskResult('StartupTask_001');
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
