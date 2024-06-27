@@ -865,6 +865,18 @@
 
 **起始版本**：10
 
+### ohos.permission.PERCEIVE_SMART_POWER_SCENARIO
+
+允许应用感知智慧功耗场景。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_CAMERA_CONFIG
 
 允许应用进行全局相机开关等操作。
