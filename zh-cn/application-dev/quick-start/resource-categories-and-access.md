@@ -592,13 +592,13 @@ overylay是一种资源替换机制，针对不同品牌、产品的显示风格
 <!--DelEnd-->
 
 > **说明：**
-> - targetBundleName: 字符串类型，指定要overlay的bundleName
+> - targetBundleName: 字符串类型，指定要overlay的bundleName。
 >
-> - targetModuleName: 字符串类型，指定要overlay的应用中的目标module
+> - targetModuleName: 字符串类型，指定要overlay的应用中的目标module。
 >
-> - targetPriority： 整数类型，指定overlay优先级
+> - targetPriority： 整数类型，指定overlay优先级。
 >
-> - 不支持Ability、ExtensionAbility、Permission等其他字段的配置
+> - 不支持Ability、ExtensionAbility、Permission等其他字段的配置。
 >
 > - overlay不支持json类型的图片配置。
 
