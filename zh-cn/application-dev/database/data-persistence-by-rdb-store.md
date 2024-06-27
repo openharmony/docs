@@ -172,6 +172,8 @@
    > - 应用创建的数据库与其上下文（Context）有关，即使使用同样的数据库名称，但不同的应用上下文，会产生多个数据库，例如每个UIAbility都有各自的上下文。
    > 
    > - 当应用首次获取数据库（调用getRdbStore）后，在应用沙箱内会产生对应的数据库文件。使用数据库的过程中，在与数据库文件相同的目录下可能会产生以-wal和-shm结尾的临时文件。此时若开发者希望移动数据库文件到其它地方使用查看，则需要同时移动这些临时文件，当应用被卸载完成后，其在设备上产生的数据库文件及临时文件也会被移除。
+   > 
+   > - 错误码的详细介绍请参见[通用错误码](../reference/errorcode-universal.md)和[关系型数据库错误码](../reference/apis-arkdata/errorcode-data-rdb.md)。
 
 2. 获取到RdbStore后，调用insert()接口插入数据。示例代码如下所示：
      
@@ -316,7 +318,76 @@
    >
    > 当应用完成查询数据操作，不再使用结果集（ResultSet）时，请及时调用close方法关闭结果集，释放系统为其分配的内存。
 
-5. 删除数据库。
+5. 在同路径下备份数据库。示例代码如下所示：
+
+   ```ts
+   if (store !== undefined) {
+     // "Backup.db"为备份数据库文件名，默认在RdbStore同路径下备份。也可指定路径：customDir + "backup.db"
+     (store as relationalStore.RdbStore).backup("Backup.db", (err: BusinessError) => {
+       if (err) {
+         console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
+         return;
+       }
+       console.info(`Succeeded in backing up RdbStore.`);
+     })
+   }
+   ```
+
+6. 从备份数据库中恢复数据。示例代码如下所示：
+
+   ```ts
+   if (store !== undefined) {
+     (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
+       if (err) {
+         console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
+         return;
+       }
+       console.info(`Succeeded in restoring RdbStore.`);
+     })
+   }
+   ```
+
+7. 若数据库文件损坏，需要重建数据库。
+
+   进行开库及增删改查等操作时抛出错误码14800011表示数据库文件损坏。重建数据库的示例代码如下所示：
+
+   ```ts
+   if (store !== undefined) {
+     // 数据库文件损坏后需要关闭所有数据库连接和结果集，使用store.close()方法或把对象置为null
+     (store as relationalStore.RdbStore).close();
+     store = undefined;
+     // 将config.allowRebuild配置为true，重新调用getRdbStore开库
+     const STORE_CONFIG: relationalStore.StoreConfig = {
+       name: 'RdbTest.db',
+       securityLevel: relationalStore.SecurityLevel.S1,
+       allowRebuild: true
+     };
+
+     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
+       store = rdbStore;
+       console.info('Get RdbStore successfully.')
+     }).catch((err: BusinessError) => {
+       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+     })
+
+     if (store !== undefined) {
+       // 查看重建结果
+       if ((store as relationalStore.RdbStore).rebuilt === relationalStore.RebuildType.REBUILT) {
+         console.info('Succeeded in rebuilding RdbStore.');
+         // 将损坏前备份的数据恢复到新数据库中
+         (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
+           if (err) {
+             console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
+             return;
+           }
+           console.info(`Succeeded in restoring RdbStore.`);
+         })
+       }
+     }
+   }
+   ``` 
+
+8. 删除数据库。
 
    调用deleteRdbStore()方法，删除数据库及数据库相关文件。示例代码如下：
    
