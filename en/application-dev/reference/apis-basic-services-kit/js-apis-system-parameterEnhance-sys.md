@@ -27,7 +27,7 @@ Obtains the value of the system parameter with the specified key.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes| Key of the system parameter.|
+| key | string | Yes| Key of the system parameter. The value can contain a maximum of 128 bytes. Only letters, digits, periods (.), hyphens (-), at signs (@), colons (:), and underscores (_) are allowed.|
 | def | string | No| Default value of the system parameter.<br> It works only when the system parameter does not exist.<br> The value can be **undefined** or any custom value.|
 
 **Return value**
@@ -40,9 +40,10 @@ Obtains the value of the system parameter with the specified key.
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | if key is not found                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700101 | System parameter not found.                                          |
+| 14700103 | The operation on the system permission is denied.                    |
+| 14700104 | System internal error such as out memory or deadlock.                |
 
 For details about the error codes, see [System Parameter Error Codes](errorcode-system-parameterV9.md).
 
@@ -69,16 +70,17 @@ Obtains the value of the system parameter with the specified key.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes| Key of the system parameter.|
+| key | string | Yes| Key of the system parameter. The value can contain a maximum of 128 bytes. Only letters, digits, periods (.), hyphens (-), at signs (@), colons (:), and underscores (_) are allowed.|
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | if key is not found                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700101 | System parameter not found.                                          |
+| 14700103 | The operation on the system permission is denied.                    |
+| 14700104 | System internal error such as out memory or deadlock.                |
 
 For details about the error codes, see [System Parameter Error Codes](errorcode-system-parameterV9.md).
 
@@ -111,7 +113,7 @@ Obtains the value of the system parameter with the specified key. This API uses 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes| Key of the system parameter.|
+| key | string | Yes| Key of the system parameter. The value can contain a maximum of 128 bytes. Only letters, digits, periods (.), hyphens (-), at signs (@), colons (:), and underscores (_) are allowed.|
 | def | string | Yes| Default value.|
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result.|
 
@@ -119,9 +121,10 @@ Obtains the value of the system parameter with the specified key. This API uses 
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | if key is not found                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700101 | System parameter not found.                                          |
+| 14700103 | The operation on the system permission is denied.                    |
+| 14700104 | System internal error such as out memory or deadlock.                |
 
 For details about the error codes, see [System Parameter Error Codes](errorcode-system-parameterV9.md).
 
@@ -155,7 +158,7 @@ Obtains the value of the system parameter with the specified key. This API uses 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes| Key of the system parameter.|
+| key | string | Yes| Key of the system parameter. The value can contain a maximum of 128 bytes. Only letters, digits, periods (.), hyphens (-), at signs (@), colons (:), and underscores (_) are allowed.|
 | def | string | No| Default value of the system parameter.<br> It works only when the system parameter does not exist.<br> The value can be **undefined** or any custom value.|
 
 **Return value**
@@ -168,9 +171,10 @@ Obtains the value of the system parameter with the specified key. This API uses 
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | if key is not found                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700101 | System parameter not found.                                          |
+| 14700103 | The operation on the system permission is denied.                    |
+| 14700104 | System internal error such as out memory or deadlock.                |
 
 For details about the error codes, see [System Parameter Error Codes](errorcode-system-parameterV9.md).
 
@@ -203,16 +207,17 @@ Sets a value for the system parameter with the specified key.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes| Key of the system parameter.|
-| value | string | Yes| Value of the system parameter to set.|
+| key | string | Yes| Key of the system parameter. The value can contain a maximum of 128 bytes. Only letters, digits, periods (.), hyphens (-), at signs (@), colons (:), and underscores (_) are allowed.|
+| value | string | Yes| Value of the system parameter to set. The value can contain a maximum of 96 bytes (including the end character).|
 
 **Error codes**
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700102 | if value is invalid                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700102 | Invalid system parameter value.                                          |
+| 14700103 | The operation on the system permission is denied.                        |
+| 14700104 | System internal error such as out memory or deadlock.                    |
 
 For details about the error codes, see [System Parameter Error Codes](errorcode-system-parameterV9.md).
 
@@ -240,17 +245,18 @@ Sets a value for the system parameter with the specified key. This API uses an a
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes| Key of the system parameter.|
-| value | string | Yes| Value of the system parameter to set.|
+| key | string | Yes| Key of the system parameter. The value can contain a maximum of 128 bytes. Only letters, digits, periods (.), hyphens (-), at signs (@), colons (:), and underscores (_) are allowed.|
+| value | string | Yes| Value of the system parameter to set. The value can contain a maximum of 96 bytes (including the end character).|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700102 | if value is invalid                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700102 | Invalid system parameter value.                                          |
+| 14700103 | The operation on the system permission is denied.                        |
+| 14700104 | System internal error such as out memory or deadlock.                    |
 
 For details about the error codes, see [System Parameter Error Codes](errorcode-system-parameterV9.md).
 
@@ -283,8 +289,8 @@ Sets a value for the system parameter with the specified key. This API uses a pr
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | string | Yes| Key of the system parameter.|
-| value| string | Yes| Value of the system parameter to set.|
+| key | string | Yes| Key of the system parameter. The value can contain a maximum of 128 bytes. Only letters, digits, periods (.), hyphens (-), at signs (@), colons (:), and underscores (_) are allowed.|
+| value| string | Yes| Value of the system parameter to set. The value can contain a maximum of 96 bytes (including the end character).|
 
 **Return value**
 
@@ -296,9 +302,10 @@ Sets a value for the system parameter with the specified key. This API uses a pr
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 14700102 | if value is invalid                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700102 | Invalid system parameter value.                                          |
+| 14700103 | The operation on the system permission is denied.                        |
+| 14700104 | System internal error such as out memory or deadlock.                    |
 
 For details about the error codes, see [System Parameter Error Codes](errorcode-system-parameterV9.md).
 
