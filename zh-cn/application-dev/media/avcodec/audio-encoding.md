@@ -278,7 +278,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    > aac编码的每帧样点数建议使用20ms的PCM样点数，即采样率*0.02。flac编码的样点数建议根据采样率按照表格传入，大于这个值也会返回错误码，如果小于有可能出现编码文件损坏问题。
 
    ```c++
-    constexpr int32_t SAMPLES_PER_FRAME = DEFAULT_SMAPLERATE * TIME_PER_FRAME; // aac
+    constexpr int32_t SAMPLES_PER_FRAME = DEFAULT_SAMPLERATE * TIME_PER_FRAME; // aac
     constexpr int32_t DEFAULT_CHANNEL_COUNT = 2;
     constexpr int32_t INPUT_FRAME_BYTES = DEFAULT_CHANNEL_COUNT * SAMPLES_PER_FRAME * sizeof(short); // SAMPLE_S16LE
     uint32_t index = signal_->inQueue_.front();

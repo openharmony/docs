@@ -211,7 +211,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    // 设置解码分辨率
    int32_t ret;
    // 配置音频采样率（必须）
-   constexpr uint32_t DEFAULT_SMAPLERATE = 44100; 
+   constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
    // 配置音频码率（必须）
    constexpr uint32_t DEFAULT_BITRATE = 32000;
    // 配置音频声道数（必须）
@@ -222,7 +222,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    constexpr uint32_t DEFAULT_AAC_TYPE = 1;
    OH_AVFormat *format = OH_AVFormat_Create();
    // 写入format
-   OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SMAPLERATE);
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SAMPLERATE);
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_MAX_INPUT_SIZE, DEFAULT_MAX_INPUT_SIZE);
