@@ -1,8 +1,10 @@
 # OpenHarmony应用开发文档
 - 入门
+  <!--Del-->
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
     - [构建第一个ArkTS应用（Stage模型）](quick-start/start-with-ets-stage.md)
+  <!--DelEnd-->
   - 开发基础知识
     - 应用程序包基础知识
       - [应用程序包概述](quick-start/application-package-overview.md)
