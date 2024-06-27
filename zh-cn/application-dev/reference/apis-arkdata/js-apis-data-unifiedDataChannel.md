@@ -428,8 +428,8 @@ let plainTextDetails : Record<string, string> = {
 }
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: uniformTypeDescriptor.UniformDataType.PLAIN_TEXT,
-  textContent: 'This is plainText textContent example",
-  abstract: "this is abstract",
+  textContent: 'This is plainText textContent example',
+  abstract: 'this is abstract',
   details: plainTextDetails
 }
 let plainTextRecord : unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
@@ -536,8 +536,8 @@ let plainTextDetails : Record<string, string> = {
 }
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: uniformTypeDescriptor.UniformDataType.PLAIN_TEXT,
-  textContent: 'This is plainText textContent example",
-  abstract: "this is abstract",
+  textContent: 'This is plainText textContent example',
+  abstract: 'this is abstract',
   details: plainTextDetails
 }
 let plainTextRecord : unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
