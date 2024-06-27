@@ -111,6 +111,9 @@
       - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
       - [!!语法：双向绑定](arkts-new-binding.md)
       - [自定义组件冻结功能](arkts-custom-components-freezeV2.md)
+      - [AppStorageV2: 应用全局UI状态存储](arkts-new-appstoragev2.md)
+      - [PersistenceV2: 持久化存储UI状态](arkts-new-persistencev2.md)
+      - [\@Type装饰器: 标记类属性的类型](arkts-new-type.md)
 
   - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
