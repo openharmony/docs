@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { SelectTitleBar } from "@kit.ArkUI"
+import { SelectTitleBar } from '@kit.ArkUI'
 ```
 
 
@@ -61,7 +61,7 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 ## 示例
 
 ```ts
-import { SelectTitleBar, promptAction } from "@kit.ArkUI"
+import { SelectTitleBar, promptAction } from '@kit.ArkUI'
 
 interface menuItems {
   value: Resource;
