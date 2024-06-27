@@ -377,7 +377,7 @@ string资源配置attr属性示例如下：
 >
 > - 仅声明式开发范式支持使用系统资源。
 >
-> - 对于系统预置应用，建议使用系统资源；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源。
+> - 对于系统预置应用，建议使用系统资源<!--Del-->；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源<!--DelEnd-->。
 >
 > - 界面加载的系统资源字体进行显示时，可以在配置中system/etc/fontconfig.json文件查看。默认字体为HarmonyOS Sans。
 
@@ -590,13 +590,13 @@ overylay是一种资源替换机制，针对不同品牌、产品的显示风格
 <!--DelEnd-->
 
 > **说明：**
-> - targetBundleName: 字符串类型，指定要overlay的bundleName
+> - targetBundleName: 字符串类型，指定要overlay的bundleName。
 >
-> - targetModuleName: 字符串类型，指定要overlay的应用中的目标module
+> - targetModuleName: 字符串类型，指定要overlay的应用中的目标module。
 >
-> - targetPriority： 整数类型，指定overlay优先级
+> - targetPriority： 整数类型，指定overlay优先级。
 >
-> - 不支持Ability、ExtensionAbility、Permission等其他字段的配置
+> - 不支持Ability、ExtensionAbility、Permission等其他字段的配置。
 >
 > - overlay不支持json类型的图片配置。
 
