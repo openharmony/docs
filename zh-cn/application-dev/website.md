@@ -253,7 +253,6 @@
         - [使用粘贴控件](security/AccessToken/pastebutton.md)
         - [使用保存控件](security/AccessToken/savebutton.md)
         - [使用位置控件](security/AccessToken/locationbutton.md)
-    - [Native子进程开发指导（C/C++)](application-models/capi_nativechildprocess_development_guideline.md)
   - Accessibility Kit（无障碍开发服务）
     - [Accessibility Kit简介](accessibility/accessibilityKit.md)
     - [AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)
