@@ -432,7 +432,7 @@ let plainText : uniformDataStruct.PlainText = {
   abstract: 'this is abstract',
   details: plainTextDetails
 }
-let plainTextRecord : unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
+let plainTextRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 ```
 
 ### getType
@@ -502,7 +502,7 @@ let value = text.getValue();
 
 ### getObject<sup>12+</sup>
 
-getValue(): Object
+getObject(): Object
 
 获取当前数据记录的值。
 
@@ -540,8 +540,8 @@ let plainText : uniformDataStruct.PlainText = {
   abstract: 'this is abstract',
   details: plainTextDetails
 }
-let plainTextRecord : unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
-let value = plainTextRecord.Object();
+let plainTextRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
+let value = plainTextRecord.getObject();
 ```
 
 ## Text
