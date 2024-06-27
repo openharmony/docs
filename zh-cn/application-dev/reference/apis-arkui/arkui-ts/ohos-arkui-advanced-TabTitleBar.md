@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { TabTitleBar } from "@kit.ArkUI"
+import { TabTitleBar } from '@kit.ArkUI'
 ```
 
 
@@ -68,7 +68,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 ## 示例
 
 ```ts
-import { TabTitleBar, promptAction } from "@kit.ArkUI"
+import { TabTitleBar, promptAction } from '@kit.ArkUI'
 
 class tabItem {
   title: ResourceStr;
