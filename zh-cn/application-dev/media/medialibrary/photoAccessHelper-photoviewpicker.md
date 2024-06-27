@@ -53,7 +53,7 @@
    console.info('file fd: ' + file.fd);
    ```
 
-2. 通过fd使用[fileIo.readSync](../../reference/apis-core-file-kit/js-apis-file-fileIo.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
+2. 通过fd使用[fileIo.readSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
 
    ```ts
    let buffer = new ArrayBuffer(4096);
