@@ -729,6 +729,7 @@
       - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
       <!--DelEnd-->
       - [动态照片(ArkTS)](media/camera/camera-moving-photo.md)
+      - [分段式拍照(ArkTS)](media/camera/camera-deferred-capture.md)
     - 相机最佳实践(ArkTS)
       - [拍照实现方案(ArkTS)](media/camera/camera-shooting-case.md)
       - [录像实现方案(ArkTS)](media/camera/camera-recording-case.md)
@@ -736,6 +737,7 @@
       <!--Del-->
       - [性能提升方案(仅对系统应用开放)(ArkTS)](media/camera/camera-performance-improvement.md)
       - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
+      - [分段式拍照实现方案(ArkTS)](media/camera/camera-deferred-capture-case.md)
       <!--DelEnd-->
     - 相机开发指导(C/C++)
       - [设备输入(C/C++)](media/camera/native-camera-device-input.md)
