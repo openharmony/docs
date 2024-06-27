@@ -1,20 +1,19 @@
 # 分段式拍照(ArkTS)
 
-分段式拍照是相机的重要功能之一，优化了拍照响应时延，提升用户体验。分段式拍照即应用下发拍照后，系统会分多阶段上报不同质量的图片。当前**第一阶段**系统快速上报低质量图，应用通过回调会收到一个**PhotoAsset对象**，通过该对象调用媒体库接口，读取图片或落盘图片；**第二阶段**分段式子服务会根据系统压力及定制化场景进行调度，将后处理好的**原图**回传给媒体库，替换低质量图。
+分段式拍照是相机的重要功能之一，即应用下发拍照任务后，系统将分多阶段上报不同质量的图片。
+- 在第一阶段，系统快速上报低质量图，应用通过回调会收到一个PhotoAsset对象，通过该对象可调用媒体库接口，读取图片或落盘图片。
+- 在第二阶段，分段式子服务会根据系统压力及定制化场景进行调度，将后处理好的原图回传给媒体库，替换低质量图。
+通过分布式拍照，优化了系统的拍照响应时延，从而提升用户体验。
 
 应用开发分段式拍照主要分为以下步骤：
 
-- 监听**photoAssetAvailable**回调，获取**PhotoAsset对象**。
-- 通过**PhotoAsset对象**，调用媒体库相关接口，读取或落盘图片。
+- 通过PhotoOutput，监听photoAssetAvailable回调，获取[photoAccessHelper](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)的PhotoAsset对象。
+- 通过PhotoAsset对象，调用媒体库相关接口，读取或落盘图片。
 
 > **说明：**
 > 
 > - 分段式拍照能力是根据**设备**和**模式**决定的，不同的设备支持不同的模式，不同的模式下分段式能力也各有不同，所以应用在切换设备或模式后分段式能力可能会发生变化。
 > - 分段式拍照能力应用无需主动使能，相机框架会在配流期间判断设备和模式是否支持分段式，如果支持会使能分段式拍照。
-
-**注意事项：**
-**如果已经注册了photoAssetAvailable回调，在session start 之后又注册了photoAvailable回调，会导致重启流！**
-**不建议同时注册photoAvailable和photoAssetAvailable！**
 
 ## 开发步骤
 
@@ -23,12 +22,10 @@
 1. 导入依赖，需要导入相机框架、媒体库、图片相关领域依赖。
 
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import image from '@ohos.multimedia.image';
-   import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-   import fs from '@ohos.file.fs';
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServiceKit';
+   import { common } from '@kit.AbilityKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
    ```
 
 2. 确定拍照输出流。
@@ -55,10 +52,15 @@
 
 3. 设置拍照photoAssetAvailable的回调。
 
+   > **注意：**
+   > 如果已经注册了photoAssetAvailable回调，并且在Session开始之后又注册了photoAvailable回调，会导致流被重启。
+   >
+   > 不建议开发者同时注册photoAvailable和photoAssetAvailable。
+
    ```ts
    function photoAssetAvailableCallback(err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void {
      if (err) {
-       console.info(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
+       console.error(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
        return;
      }
      console.info('photoOutPutCallBack photoAssetAvailable');
@@ -76,9 +78,7 @@
 
    媒体库请求图片参考：[requestimagedata](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestimagedata11) 和 [ondataprepare](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#ondataprepared11)
 
-4. 参数配置，与普通拍照方式相同，请参考[拍照](camera-shooting.md)。
-
-5. 触发拍照，与普通拍照方式相同，请参考[拍照](camera-shooting.md)。
+4. 拍照时的会话配置及触发拍照的方式，与普通拍照相同，请参考[拍照](camera-shooting.md)的步骤4-5。
 
 ## 状态监听
 

@@ -15,10 +15,10 @@
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
-import camera from '@ohos.multimedia.camera';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServiceKit';
+import { common } from '@kit.AbilityKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
