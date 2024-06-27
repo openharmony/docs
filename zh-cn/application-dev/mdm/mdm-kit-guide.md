@@ -21,7 +21,9 @@
 
 <!--RP1End-->
 
+
 <!--RP2--><!--RP2End-->
+
 
 ### 创建EnterpriseAdminExtensionAbility
 
@@ -39,11 +41,11 @@
 ]
 ```
 
-**说明**
+> **说明**
 
 > 所需要申请的权限请参考具体接口，这里提供了[企业设备管理](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)的链接，可基于该文档查看MDM Kit内其他API文档。
 >
-> <!--RP3--><!--RP3End-->
+> <!--RP4--><!--RP4End-->
 
 ### MDM功能开发
 
@@ -51,9 +53,7 @@
 
    ```ts
    import { adminManager, restrictions } from '@kit.MDMKit';
-   ```
-
-   
+   ```   
 
 2. 调用接口，实现相应的功能。以下为禁用设备Wi-Fi的示例。
 
@@ -70,8 +70,6 @@
    }
    ```
 
-
-
 ### 调试说明
 
 由于MDM接口需要在激活企业设备管理扩展能力后使用，调试时需通过hdc命令来激活/解除激活扩展能力，命令如下：
@@ -83,10 +81,10 @@ hdc shell edm enable-admin -n 包名 -a 企业设备管理扩展能力类名
 hdc shell edm disable-admin -n 包名
 ```
 
-**说明**
-
+> **说明**
+> 
 > 正式使用时，在同一设备上只能能激活一个超级设备管理应用。
 >
-> <!--RP4--><!--RP4End-->
+> <!--RP5--><!--RP5End-->
 
-<!--RP5--><!--RP5End-->
+<!--RP6--><!--RP6End-->
