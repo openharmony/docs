@@ -253,6 +253,7 @@
         - [使用粘贴控件](security/AccessToken/pastebutton.md)
         - [使用保存控件](security/AccessToken/savebutton.md)
         - [使用位置控件](security/AccessToken/locationbutton.md)
+    - [Native子进程开发指导（C/C++)](application-models/capi_nativechildprocess_development_guideline.md)
   - Accessibility Kit（无障碍开发服务）
     - [Accessibility Kit简介](accessibility/accessibilityKit.md)
     - [AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)
@@ -797,6 +798,7 @@
         - [保存用户文件](file-management/save-user-file.md)
         - [授权持久化](file-management/file-persistPermission.md)
         - [授权持久化(C/C++)](file-management/native-fileshare-guidelines.md)
+      - [获取并使用公共目录](request-dir-permission.md)
       <!--Del-->
       - [开发用户文件管理器（仅对系统应用开放）](file-management/dev-user-file-manager.md)
       - [管理外置存储设备（仅对系统应用开放）](file-management/manage-external-storage.md)
@@ -2067,8 +2069,12 @@
           - [TabContent](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md)
           - [WaterFlow](reference/apis-arkui/arkui-ts/ts-container-waterflow.md)
           <!--Del-->
+          - [Column (系统接口)](reference/arkui-ts/ts-container-column-sys.md)
           - [EffectComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)
+          - [Flex (系统接口)](reference/arkui-ts/ts-container-flex-sys.md)
           - [List (系统接口)](reference/apis-arkui/arkui-ts/ts-container-list-sys.md)
+          - [Row (系统接口)](reference/arkui-ts/ts-container-row-sys.md)
+          - [Stack (系统接口)](reference/arkui-ts/ts-container-stack-sys.md)
           - [UIExtensionComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)
           <!--DelEnd-->
         - 媒体组件
@@ -2160,6 +2166,9 @@
         - [枚举说明](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
         - [设置事件回调](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
         - [属性字符串](reference/apis-arkui/arkui-ts/ts-universal-styled-string.md)
+        <!--Del-->
+        - [枚举说明 (系统接口)](reference/arkui-ts/ts-appendix-enums-sys.md)
+        <!--DelEnd-->
         - 已停止维护的组件 
           <!--Del-->         
           - [AbilityComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)
@@ -2603,6 +2612,7 @@
         - [@ohos.zlib (Zip模块)](reference/apis-basic-services-kit/js-apis-zlib.md)
         <!--Del-->
         - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](reference/apis-basic-services-kit/js-apis-app-ability-PrintExtensionAbility-sys.md)
+        - [@ohos.pasetboard (剪贴板)(系统接口)](reference/apis-basic-services-kit/js-apis-pasteboard-sys.md)
         - [@ohos.print (打印)(系统接口)](reference/apis-basic-services-kit/js-apis-print-sys.md)
         - [@ohos.request (上传下载)(系统接口)](reference/apis-basic-services-kit/js-apis-request-sys.md)
         <!--DelEnd-->
@@ -2763,7 +2773,6 @@
       - [@ohos.bluetooth.socket(蓝牙socket模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-socket.md)
       - [@ohos.bluetooth.pbap(蓝牙pbap模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-pbap.md)
       - [@ohos.bluetooth.map(蓝牙map模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-map.md)
-      - [@ohos.bluetoothManager (蓝牙)(待停用)](reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (有源标签)](reference/apis-connectivity-kit/js-apis-connectedTag.md)
       - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](reference/apis-connectivity-kit/js-apis-cardEmulation.md)
       - [@ohos.nfc.controller (标准NFC)](reference/apis-connectivity-kit/js-apis-nfcController.md)
@@ -2798,6 +2807,7 @@
       - [SE(secureElement)错误码](reference/apis-connectivity-kit/errorcode-se.md)
     - 已停止维护的接口<!--connectivity-arkts-dep-->
       - [@ohos.bluetooth (蓝牙)(待停用)](reference/apis-connectivity-kit/js-apis-bluetooth.md)
+      - [@ohos.bluetoothManager (蓝牙)(待停用)](reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
       - [@ohos.wifi (WLAN)(待停用)](reference/apis-connectivity-kit/js-apis-wifi.md)
       - [@ohos.wifiext (WLAN扩展接口)(待停用)](reference/apis-connectivity-kit/js-apis-wifiext.md)
       - [@system.bluetooth (蓝牙)](reference/apis-connectivity-kit/js-apis-system-bluetooth.md)
