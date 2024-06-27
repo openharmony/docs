@@ -712,5 +712,3 @@ When [crypto](js-apis-arkts-decimal.md#decimalconfig) of **Decimal** is set or t
 Use [Decimal.set](js-apis-arkts-decimal.md#set) to cancel the encryption algorithm.
 
 Example: Decimal.set({crypto: false})
-
- <!--no_check--> 
