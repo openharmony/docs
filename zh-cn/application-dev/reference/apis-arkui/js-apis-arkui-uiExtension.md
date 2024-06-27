@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import uiExtension from '@ohos.arkui.uiExtension'
+import { uiExtension } from '@kit.ArkUI'
 ```
 
 ## WindowProxy
@@ -45,10 +45,8 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
 ```ts
 // ExtensionProvider.ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -85,9 +83,7 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaInfo&gt;): void
 
 ```ts
 // ExtensionProvider.ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -117,8 +113,7 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaInfo&gt;): void
 
 ```ts
 // ExtensionProvider.ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionDestroy(session: UIExtensionContentSession) {
@@ -154,9 +149,7 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
 ```ts
 // ExtensionProvider.ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -194,8 +187,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
 ```ts
 // ExtensionProvider.ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionDestroy(session: UIExtensionContentSession) {
@@ -244,11 +236,9 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 
 ```ts
 // ExtensionProvider.ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -309,7 +299,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
   ```ts
   // pages/Index.ets -- UIAbility启动时加载此页面
-  import Want from '@ohos.app.ability.Want'
+  import { Want } from '@kit.AbilityKit';
 
   @Entry
   @Component
@@ -328,7 +318,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
             .width('100%')
             .height('90%')
             .onTerminated((info)=>{
-              this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
+              this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
             })
             .onError((error)=>{
               this.message = 'Error: code = ' + error.code;
@@ -344,9 +334,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 - EmbeddedComponent拉起的EmbeddedUIExtensionAbility在`ets/extensionAbility/ExampleEmbeddedAbility`文件中实现，内容如下：
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-  import Want from '@ohos.app.ability.Want';
+  import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
   const TAG: string = '[ExampleEmbeddedAbility]'
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
@@ -381,10 +369,9 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 - EmbeddedUIExtensionAbility的入口页面文件`pages/extension.ets`内容如下：
 
   ```ts
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import uiExtension from '@ohos.arkui.uiExtension';
-  import window from '@ohos.window';
-
+  import { UIExtensionContentSession } from '@kit.AbilityKit';
+  import { uiExtension, window } from '@kit.ArkUI';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let storage = LocalStorage.getShared()
 
   @Entry(storage)

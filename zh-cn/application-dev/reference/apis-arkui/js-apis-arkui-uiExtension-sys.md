@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```
-import uiExtension from '@ohos.arkui.uiExtension'
+import { uiExtension } from '@kit.ArkUI'
 ```
 
 ## WindowProxy
@@ -53,10 +53,8 @@ hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 ```ts
 // ExtensionProvider.ts
 
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -117,10 +115,8 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 ```ts
 // ExtensionProvider.ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
