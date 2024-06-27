@@ -177,7 +177,7 @@ export struct PageOne {
 Router通过`@ohos.router`模块提供的方法来操作页面，使用前需要先`import`：
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 // push page
 router.pushUrl({ url:"pages/pageOne", params: null })
@@ -347,7 +347,7 @@ export struct PageOne {
 **方式四**：通过自定义组件查询接口获取（参考[自定义组件方法](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#querynavigationinfo12)）；
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 // 子页面中的自定义组件
 @Component
@@ -480,8 +480,8 @@ export struct MyComponent {
 2. 配置成功后需要在跳转的页面中引入命名路由的页面并跳转：
 
 ```ts
-import router from '@ohos.router';
-import { BusinessError } from '@ohos.base';
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 import('library/src/main/ets/pages/Index');  // 引入共享包中的命名路由页面
 
 @Entry
@@ -601,7 +601,7 @@ struct mainPage {
 4. 各个路由页面将模块名称、路由名称、WrappedBuilder封装后构建函数注册如路由模块。
 5. 当路由需要跳转到指定路由时，路由模块完成对指定路由模块的动态导入，并完成路由跳转。
 
-具体的构建过程，可以参考开源工程：[Navigation动态路由示例](https://gitee.com/harmonyos-cases/cases/tree/master/CommonAppDevelopment/feature/routermodule)。
+具体的构建过程，可以参考开源工程：[Navigation动态路由示例](https://gitee.com/harmonyos-cases/cases/tree/master/CommonAppDevelopment/common/routermodule)。
 
 ****方案二：** 系统路由表**
 
@@ -614,17 +614,17 @@ Router可以通过observer实现注册监听，接口定义请参考：[Router�
 
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
-function callBackFunc(info: observer.RouterPageInfo) {
+function callBackFunc(info: uiObserver.RouterPageInfo) {
     console.info("RouterPageInfo is : " + JSON.stringify(RouterPageInfo))
 }
 
 // used in ability context.
-observer.on('routerPageUpdate', this.context, callBackFunc);
+uiObserver.on('routerPageUpdate', this.context, callBackFunc);
 
 // used in UIContext.
-observer.on('routerPageUpdate', this.getUIContext(), callBackFunc);
+uiObserver.on('routerPageUpdate', this.getUIContext(), callBackFunc);
 ```
 
 在页面状态发生变化时，注册的回调将会触发，开发者可以通过回调中传入的入参拿到页面的相关信息，如：页面的名字，索引，路径，生命周期状态等。
@@ -672,13 +672,13 @@ Router可以通过[queryRouterPageInfo](../reference/apis-arkui/arkui-ts/ts-cust
 | pageId<sup>12+</sup> | string                                                                                                                                                                                                                                                                                          | 是   | routerPage页面的唯一标识       |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 // 页面内的自定义组件
 @Component
 struct MyComponent {
   aboutToAppear() {
-    let info: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
+    let info: uiObserver.RouterPageInfo | undefined = this.queryRouterPageInfo();
   }
 
   build() {
@@ -699,7 +699,7 @@ Navigation也可以通过[queryNavDestinationInfo](../reference/apis-arkui/arkui
 | navDestinationId<sup>12+<sup> | string                                                                                                                                                      | 是   | NavDestination组件的唯一标识ID。                                                                                    |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Component
 export struct NavDestinationExample {
@@ -712,7 +712,7 @@ export struct NavDestinationExample {
 
 @Component
 struct MyComponent {
-  navDesInfo: observer.NavDestinationInfo | undefined
+  navDesInfo: uiObserver.NavDestinationInfo | undefined
 
   aboutToAppear() {
     this.navDesInfo = this.queryNavDestinationInfo();
