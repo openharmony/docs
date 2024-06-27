@@ -798,7 +798,7 @@
         - [保存用户文件](file-management/save-user-file.md)
         - [授权持久化](file-management/file-persistPermission.md)
         - [授权持久化(C/C++)](file-management/native-fileshare-guidelines.md)
-      - [获取并使用公共目录](request-dir-permission.md)
+      - [获取并使用公共目录](file-management/request-dir-permission.md)
       <!--Del-->
       - [开发用户文件管理器（仅对系统应用开放）](file-management/dev-user-file-manager.md)
       - [管理外置存储设备（仅对系统应用开放）](file-management/manage-external-storage.md)
