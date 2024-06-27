@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { ComposeTitleBar } from "@kit.ArkUI"
+import { ComposeTitleBar } from '@kit.ArkUI'
 ``` 
 
 
@@ -59,7 +59,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 ## 示例
 
 ```ts
-import { ComposeTitleBar, promptAction } from "@kit.ArkUI"
+import { ComposeTitleBar, promptAction } from '@kit.ArkUI'
 
 interface menuItem {
   value: Resource;
