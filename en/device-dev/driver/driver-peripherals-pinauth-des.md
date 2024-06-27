@@ -567,3 +567,5 @@ Verify whether PIN authentication can be successfully performed on the RK3568 pl
 2.  Press the power button to lock the screen. Press the power button again and enter the password. The screen is unlocked if a correct password is entered.
 3.  Touch **Settings** > **Biometrics & passwords** > **Password**, and verify **Disable lock screen password** and **Change lock screen password**.
 4.  After step 1 is complete, enter incorrect passwords for a specified number of times to check whether the anti-brute force cracking capability is normal. For example, if you enter incorrect passwords for five consecutive times, the device will be frozen for 60s.
+
+<!--no_check-->
