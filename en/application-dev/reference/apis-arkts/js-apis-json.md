@@ -9,8 +9,8 @@ The JSON module provides a series of APIs for converting JSON text into JSON obj
 
 ## Modules to Import
 
-```
-import JSON from '@ohos.util.json';
+```ts
+import { JSON } from '@kit.ArkTS';
 ```
 
 ## Transformer
@@ -67,8 +67,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import JSON from '@ohos.util.json';
-
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let obj = JSON.parse(jsonText);
 ```
