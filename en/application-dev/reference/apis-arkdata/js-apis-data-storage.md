@@ -911,7 +911,7 @@ storage.off('change', observer);
 
 | Name| Type| Mandatory| Description            |
 | ---- | -------- | ---- | ---------------- |
-| key  | string   | No  | Data changed.|
+| key  | string   | Yes  | Data changed.|
 
 ## ValueType
 
