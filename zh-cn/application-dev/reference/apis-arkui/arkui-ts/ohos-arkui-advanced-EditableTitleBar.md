@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { EditableTitleBar } from "@ohos.arkui.advanced.EditableTitleBar"
+import { EditableTitleBar } from '@kit.ArkUI'
 ```
 
 
