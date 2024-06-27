@@ -269,7 +269,7 @@ struct BorderExample {
 // xxx.ets
 // border属性的width、radius、color属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型
 
-import { LengthMetrics } from '@ohos.arkui.node';
+import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 struct BorderExample {
