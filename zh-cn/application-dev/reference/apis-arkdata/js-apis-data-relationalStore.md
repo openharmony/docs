@@ -430,7 +430,6 @@ class EntryAbility extends UIAbility {
     })
   }
 }
-
 ```
 
 ## relationalStore.deleteRdbStore<sup>10+</sup>
@@ -6168,15 +6167,22 @@ try {
 }
 
 try {
-  const valueBucket = {
-    'name': 'zhangsan',
-    'age': 18,
-    'salary': 25000,
-    'blobType': new Uint8Array([1, 2, 3]),
+  let value1 = "Lisa";
+  let value2 = 18;
+  let value3 = 100.5;
+  let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+
+  const valueBucket: ValuesBucket = {
+    'NAME': value1,
+    'AGE': value2,
+    'SALARY': value3,
+    'CODES': value4,
   };
-  await store.insert('test', valueBucket);
-} catch (error) {
-  console.error(`insert fail, code:${error.code}, message: ${error.message}`);
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).insert('test', valueBucket);
+  }
+} catch (err) {
+  console.error(`insert fail, code:${err.code}, message: ${err.message}`);
 }
 ```
 
