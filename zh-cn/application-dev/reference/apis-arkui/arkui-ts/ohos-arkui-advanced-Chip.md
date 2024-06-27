@@ -147,7 +147,7 @@ LabelMarginOptions定义文本与左右侧图标之间间距。
 
 ### 示例1
 
-自定义删除图标的操作快。
+自定义删除图标的操作块。
 
 ```ts
 import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
@@ -191,7 +191,7 @@ struct Index {
 
 ### 示例2
 
-使用默认删除图标的操作快。
+使用默认删除图标的操作块。
 
 ```ts
 import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
@@ -230,7 +230,7 @@ struct Index {
 
 ### 示例3
 
-不显示删除图标的操作快。
+不显示删除图标的操作块。
 
 ```ts
 import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
@@ -272,7 +272,7 @@ struct Index {
 
 ### 示例4
 
-激活态操作快。
+激活态操作块。
 
 ```ts
 import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
