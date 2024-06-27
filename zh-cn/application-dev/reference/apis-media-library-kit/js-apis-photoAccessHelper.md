@@ -3668,7 +3668,7 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
   onDataPrepared(data: image.ImageSource) {
