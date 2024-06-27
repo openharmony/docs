@@ -378,9 +378,9 @@ let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
 
 ### constructor<sup>12+</sup>
 
-constructor(type: string, value: ValueType)
+constructor(type: string, value: ValueType | object)
 
-用于创建指定类型和值的数据记录。<br />当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值;<br />当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
+用于创建指定类型和值的数据记录。<br />当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值;<br />当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。<br />当参数value为object类型时，只支持数字、字符串的组合及嵌套对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -406,6 +406,7 @@ constructor(type: string, value: ValueType)
 ```ts
 import { image } from '@kit.ImageKit';
 import { uniformTypeDescriptor } from '@kit.ArkData';
+import { uniformDataStruct } from '@kit.ArkData';
 import { Want } from '@kit.AbilityKit';
 
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, 'this is value of text');
@@ -420,6 +421,18 @@ const color = new ArrayBuffer(96);
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
 let pixelMap = image.createPixelMapSync(color, opts);
 let pixelMapRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP, pixelMap);
+
+let plainTextDetails : Record<string, string> = {
+  'key1': 'value1',
+  'key2': 'value2',
+}
+let plainText : uniformDataStruct.PlainText = {
+  uniformDataType: uniformTypeDescriptor.UniformDataType.PLAIN_TEXT,
+  textContent: 'This is plainText textContent example",
+  abstract: "this is abstract",
+  details: plainTextDetails
+}
+let plainTextRecord : unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 ```
 
 ### getType
@@ -470,6 +483,14 @@ getValue(): ValueType
 | ------ |------------------------------------------------------|
 | [ValueType](#valuetype12) | 当前数据记录对应的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[统一数据管理框架错误码](errorcode-data-udmf.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 20400002     | The store data does not support parsing.  |
+
 **示例：**
 
 ```ts
@@ -477,6 +498,50 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, 'this is value of text');
 let value = text.getValue();
+```
+
+### getObject<sup>12+</sup>
+
+getValue(): Object
+
+获取当前数据记录的值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力** ：SystemCapability.DistributedDataManager.UDMF.Core
+
+**返回值：**
+
+| 类型   | 说明                                                   |
+| ------ |------------------------------------------------------|
+| Object | 当前数据记录对应的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[统一数据管理框架错误码](errorcode-data-udmf.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 20400002     | The store data does not support parsing.  |
+
+**示例：**
+
+```ts
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { uniformDataStruct } from '@kit.ArkData';
+
+let plainTextDetails : Record<string, string> = {
+  'key1': 'value1',
+  'key2': 'value2',
+}
+let plainText : uniformDataStruct.PlainText = {
+  uniformDataType: uniformTypeDescriptor.UniformDataType.PLAIN_TEXT,
+  textContent: 'This is plainText textContent example",
+  abstract: "this is abstract",
+  details: plainTextDetails
+}
+let plainTextRecord : unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
+let value = plainTextRecord.Object();
 ```
 
 ## Text
