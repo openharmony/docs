@@ -9,5 +9,5 @@
         - [Unsubscribing from Common Events in Dynamic Mode](common-event-unsubscription.md)
     - [Publishing Common Events](common-event-publish.md)
     - [Removing Sticky Common Events (for System Applications Only)](common-event-remove-sticky.md)
-- Inter-Thread Communication (FA Model)
+- Inter-Thread Communication
     - [Using Emitter for Inter-Thread Communication](itc-with-emitter.md)
