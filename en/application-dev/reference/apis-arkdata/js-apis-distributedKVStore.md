@@ -1366,7 +1366,7 @@ Creates a **Query** object to match the specified field whose value is equal to 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1403,7 +1403,7 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1439,7 +1439,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 **Parameters**
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1477,7 +1477,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1515,7 +1515,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1553,7 +1553,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
+| field  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1590,7 +1590,7 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -1626,7 +1626,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | number[] | Yes  | List of numbers.           |
 
 **Return value**
@@ -1663,7 +1663,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | string[] | Yes  | List of strings.     |
 
 **Return value**
@@ -1700,7 +1700,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | number[] | Yes  | List of numbers.           |
 
 **Return value**
@@ -1737,7 +1737,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | string[] | Yes  | List of strings.     |
 
 **Return value**
@@ -1774,7 +1774,7 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | value  | string   | Yes  | String specified.         |
 
 **Return value**
@@ -1811,7 +1811,7 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | value  | string   | Yes  | String specified.         |
 
 **Return value**
@@ -1910,7 +1910,7 @@ Creates a **Query** object to sort the query results in ascending order.
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -1947,7 +1947,7 @@ Creates a **Query** object to sort the query results in descending order.
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -2024,7 +2024,7 @@ Creates a **Query** object to match the specified field whose value is not **nul
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
+| field  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
