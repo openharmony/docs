@@ -81,7 +81,7 @@ When a user-related API is called, the user ID passed in does not exist.
 
 **Error Message**
 
-The specified app ID is empty string.
+The specified app ID is an empty string.
 
 **Description**
 
@@ -143,12 +143,12 @@ When the **install** API of the **installer** module is called, the HAP passed i
 
 **Possible Causes**
 1. The HAP is not in ZIP format.
-2. The configuration file in the HAP is not in JSON format.
-3. Necessary fields are missing in the configuration file.
+2. The profile in the HAP is not in JSON format.
+3. Necessary fields are missing in the profile.
 
 **Solution**
 1. Check whether the HAP is in ZIP format.
-2. Check whether the configuration file is in [JSON format](../../quick-start/application-configuration-file-overview-stage.md).
+2. Check whether the profile is in [JSON format](../../quick-start/application-configuration-file-overview-stage.md).
 3. Check whether an error message is displayed when DevEco Studio compiles the HAP. If necessary fields are missing, an error message will be displayed.
 
 ## 17700011 Bundle Installation Failure Due to Signature Verification Failure
@@ -165,14 +165,14 @@ Calling the **install** API of the **installer** module to install the bundle fa
 
 1. The HAP is not signed.
 2. The source of the HAP signature information is unreliable.
-3. The signature information of the HAP used for an upgrade is different from that of the installed HAP.
+3. The signature information of the HAP to update is different from that of the installed HAP.
 4. The signature information of multiple HAPs is inconsistent.
 
 **Solution**
 1. Check whether the HAP is signed.
 2. Ensure that the signing certificate of the HAP is applied for from the application market.
 3. Check whether the same certificate is used for signing multiple HAPs.
-4. Check whether the certificate used for signing the upgrade HAP is the same as the certificate used for signing the installed HAP.
+4. Check whether the certificate used for signing the HAP to update is the same as the certificate used for signing the installed HAP.
 
 ## 17700012 Bundle Installation Failure Due to Invalid File Path or Too Large File
 
@@ -206,7 +206,7 @@ Calling the **install** API of the **installer** module to install the bundle fa
 
 **Possible Causes**
 
-The fields under **app** in the configuration files of these HAPs are inconsistent.
+The fields under **app** in the profiles of these HAPs are inconsistent.
 
 **Solution**
 
@@ -252,7 +252,7 @@ Ensure that the version of the bundle to install is not earlier than the version
 
 **Error Message**
 
-Failed to install because the dependent module does not exist.
+Failed to install the HAP or HSP because the dependent module does not exist.
 
 **Description**
 
@@ -283,7 +283,7 @@ Calling the **uninstall** API of the **installer** module to uninstall a preinst
 
 **Solution**
 1. Check whether the bundle name is correct.
-1. Check whether the preinstalled application can be uninstalled.
+2. Check whether the preinstalled application can be uninstalled.
 
 ## 17700021 Invalid UID
 
@@ -339,24 +339,26 @@ No default application is set for the device.
 
 Check whether the default application is set on the device.
 
-## 17700024 Configuration File Does Not Exist
+## 17700024 Profile Does Not Exist
 
 **Error Message**
 
-Failed to get the profile because there is no profile in the HAP.
+Failed to get the profile because the specified profile is not found in the HAP.
 
 **Description**
 
-When an API for querying the profile is called, the configuration file does not exist 
+When an API for querying the profile is called, the profile does not exist.
 
 **Possible Causes**
 
-1. The metadata name passed in the API does not exist in the configuration file.
-2. The content of the configuration file is not in JSON format.
+1. The metadata name passed in the API does not exist in the profile.
+2. The content of the profile is not in JSON format.
+3. The type of the profile to query does not exist.
 
 **Solution**
 1. Check whether the metadata name in the **ability** or **extensionAbility** to be queried exists.
 2. Check whether the content of the profile to be queried is in JSON format.
+3. Check whether the application contains a profile that matches the value of **profileType** passed in.
 
 ## 17700025 Invalid Type
 
@@ -446,7 +448,7 @@ The specified ability is disabled.
 
 **Solution**
 
-Check whether the ability is disabled. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the information.
+Check whether the ability is disabled. You can use [Bundle Manager](../../tools/bm-tool.md) to query the information.
 
 ## 17700030 Failure in Clearing Cache Files
 
@@ -463,14 +465,14 @@ When the **cleanBundleCacheFiles** API of the **bundleManager** module is called
 The application is a system application and the **AllowAppDataNotCleared** field is configured in the signing certificate.
 
 **Solution**
-1. Check whether the application is a system application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **isSystemApp** is **true**.
-2. Check whether the **AllowAppDataNotCleared** field is configured for the application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **userDataClearable** is **true**.
+1. Check whether the application is a system application. You can use [Bundle Manager](../../tools/bm-tool.md) to query the application information and check whether the value of **isSystemApp** is **true**.
+2. Check whether the **AllowAppDataNotCleared** field is configured for the application. You can use [Bundle Manager](../../tools/bm-tool.md) to query the application information and check whether the value of **userDataClearable** is **true**.
 
 ## 17700031 HAP Installation Fails Due to Overlay Feature Verification Failure
 
 **Error Message**
 
-Failed to install the HAP because the overlay check of the HAP is failed.
+Failed to install the HAP because the overlay check of the HAP failed.
 
 **Description**
 
@@ -564,7 +566,7 @@ Check whether the application contains only modules with the overlay feature.
 
 **Error Message**
 
-Failed to install the HSP because lacks appropriate permissions.
+Failed to install the HSP due to the lack of required permission.
 
 **Description**
 
@@ -582,7 +584,7 @@ Configure the **AllowAppShareLibrary** privilege for the shared library, re-sign
 
 **Error Message**
 
-The version of shared bundle is dependent on other applications.
+The version of the shared bundle is dependent on other applications.
 
 **Description**
 
@@ -618,14 +620,14 @@ The shared library to uninstall does not exist.
 
 **Error Message**
 
-Failed to install because disallow install a shared bundle by hapFilePaths.
+Failed to install the HSP because disallow install a shared bundle by hapFilePaths.
 
 **Description**
 
 During application installation, the installation package passed in is of the inter-application shared library type.
 
 **Possible Causes**
-1. When the Bundle Manager tool is used to install an application, the **-p** parameter is set to the installation package path of an inter-application shared library.
+1. When [Bundle Manager](../../tools/bm-tool.md) is used to install an application, the **-p** parameter is set to the installation package path of an inter-application shared library.
 2. When the **install** API is called to install an application, the **hapFilePaths** parameter is set to the installation package path of an inter-application shared library.
 
 **Solution**
@@ -643,7 +645,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 During application uninstall, the bundle name of an inter-application shared library is passed in.
 
 **Possible Causes**
-1. When the Bundle Manager tool is used to uninstall an application, the **-n** parameter is set to the bundle name of an inter-application shared library.
+1. When [Bundle Manager](../../tools/bm-tool.md) is used to uninstall an application, the **-n** parameter is set to the bundle name of an inter-application shared library.
 2. When the **install** API is called to uninstall an application, the **bundleName** parameter is set to the bundle name of an inter-application shared library.
 
 **Solution**
@@ -654,7 +656,7 @@ During application uninstall, the bundle name of an inter-application shared lib
 
 **Error Message**
 
-Failed to install because enterprise device management disallow install.
+Failed to install the HAP because enterprise device management disallow install.
 
 **Description**
 
@@ -701,7 +703,7 @@ During application installation, the permission level of the data proxy of a non
 **Possible Causes**
 
 1. No permission is configured for the data proxy of a non-system application.
-1. The permission level of the data proxy of a non-system application is too low.
+2. The permission level of the data proxy of a non-system application is too low.
 
 **Solution**
 
@@ -730,7 +732,7 @@ Set the **isolationMode** field in the HAP based on the isolation mode of the de
 
 **Error Message**
 
-Failed to uninstall because enterprise device management disallow uninstall.
+Failed to uninstall the HAP because enterprise device management disallow uninstall.
 
 **Description**
 
@@ -738,7 +740,7 @@ The uninstall of this application is prohibited by enterprise device management.
 
 **Possible Causes**
 
-The enterprise device management does not allow the uninstall of this application.
+The enterprise device management does not allow the installation of this application.
 
 **Solution**
 
@@ -767,7 +769,7 @@ The version of the application to be updated is not later than the current versi
 ## 17700048 Code Signature Verification Failure
 **Error Message**
 
-Failed to install the HAP because the code signature verification is failed.
+Failed to install the HAP because the code signature verification failed.
 
 **Description**
 
@@ -807,7 +809,7 @@ Ensure that the HAP or HSP to be installed belongs to the current application.
 
 **Error Message**
 
-Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device.
+Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device.
 
 **Description**
 
@@ -823,11 +825,11 @@ The device is not an enterprise device.
 
 2. Ensure that **const.bms.allowenterprisebundle** is set to **true**.
 
-## 17700051 Update Failure Because of Incorrect Distribution Type
+## 17700051 Update Failure Because of Incorrect Bundle Name
 
 **Error Message**
 
-Failed to install the HAP because the distribution type of caller application is not enterprise_mdm.
+Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm.
 
 **Description**
 
@@ -840,3 +842,4 @@ The distribution type of the caller is not enterprise MDM.
 **Solution**
 
 Ensure that the signature file of the application is correctly configured.
+
