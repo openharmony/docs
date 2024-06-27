@@ -67,7 +67,7 @@
 媒体库支持Picker选择文件URI后，根据指定URI获取图片或视频资源，下面以查询指定URI为'file://media/Photo/1/IMG_datetime_0001/displayName.jpg'为例。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
