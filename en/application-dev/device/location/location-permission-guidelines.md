@@ -16,7 +16,7 @@ For details about the permissions required for each API of Location Kit, see [Lo
 
 ## How to Develop
 
-1. Declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md#request-user-authorization.md).
+1. Declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 2. If your application needs to access the device location when running in the foreground, declare the location permission as described in the following table.
 

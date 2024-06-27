@@ -5,7 +5,7 @@
 
 With the sensor module, a device can obtain sensor data. For example, the device can subscribe to data of the orientation sensor to detect its own orientation.
 
-For details about the APIs, see [Sensor](../../reference/apis-as/js-apis-sensor.md).
+For details about the APIs, see the *Sensor API Reference*.
 
 
 ## Available APIs

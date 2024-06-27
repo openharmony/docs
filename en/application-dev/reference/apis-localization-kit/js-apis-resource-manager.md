@@ -170,7 +170,7 @@ Obtains a **ResourceManager** object.
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -336,7 +336,7 @@ Obtains a string based on the specified resource ID. This API returns the result
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -380,7 +380,7 @@ Obtains a string based on the specified resource ID and formats the string based
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ----------------------------------------------- |
@@ -426,7 +426,7 @@ Obtains a string based on the specified resource object. This API returns the re
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -478,7 +478,7 @@ Obtains a string based on the specified resource object and formats the string b
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -528,7 +528,7 @@ Obtains a string based on the specified resource name. This API returns the resu
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -572,7 +572,7 @@ Obtains a string based on the specified resource name and formats the string bas
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -611,7 +611,7 @@ Obtains a string based on the specified resource ID. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -660,7 +660,7 @@ Obtains a string based on the specified resource ID. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -704,7 +704,7 @@ Obtains a string based on the specified resource object. This API uses an asynch
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -761,7 +761,7 @@ Obtains a string based on the specified resource object. This API uses a promise
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -809,7 +809,7 @@ Obtains a string based on the specified resource name. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -858,7 +858,7 @@ Obtains a string based on the specified resource name. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -905,7 +905,7 @@ Obtains a string array based on the specified resource ID. This API returns the 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -950,7 +950,7 @@ Obtains a string array based on the specified resource object. This API returns 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -999,7 +999,7 @@ Obtains a string array based on the specified resource name. This API returns th
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1035,7 +1035,7 @@ Obtains a string array based on the specified resource ID. This API uses an asyn
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1084,7 +1084,7 @@ Obtains a string array based on the specified resource ID. This API uses a promi
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1127,7 +1127,7 @@ Obtains a string array based on the specified resource object. This API uses an 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1184,7 +1184,7 @@ Obtains a string array based on the specified resource object. This API uses a p
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1232,7 +1232,7 @@ Obtains a string array based on the specified resource name. This API uses an as
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1281,7 +1281,7 @@ Obtains a string array based on the specified resource name. This API uses a pro
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1333,7 +1333,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1383,7 +1383,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1437,7 +1437,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1480,7 +1480,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1534,7 +1534,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1583,7 +1583,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1645,7 +1645,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1698,7 +1698,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1752,7 +1752,7 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1800,7 +1800,7 @@ Obtains the content of a media file with the default or specified screen density
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1853,7 +1853,7 @@ Obtains the content of a media file with the default or specified screen density
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1910,7 +1910,7 @@ Obtains the content of a media file with the default or specified screen density
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1955,7 +1955,7 @@ Obtains the content of a media file based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1999,7 +1999,7 @@ Obtains the content of a media file with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2047,7 +2047,7 @@ Obtains the content of a media file based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2094,7 +2094,7 @@ Obtains the content of a media file with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2137,7 +2137,7 @@ Obtains the content of a media file based on the specified resource object. This
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2189,7 +2189,7 @@ Obtains the content of a media file with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2245,7 +2245,7 @@ Obtains the content of a media file based on the specified resource object. This
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2300,7 +2300,7 @@ Obtains the content of a media file with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2347,7 +2347,7 @@ Obtains the content of a media file based on the specified resource name. This A
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2391,7 +2391,7 @@ Obtains the content of a media file with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2439,7 +2439,7 @@ Obtains the content of a media file based on the specified resource name. This A
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2486,7 +2486,7 @@ Obtains the content of a media file with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2533,7 +2533,7 @@ Obtains the Base64 code of an image with the default or specified screen density
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2586,7 +2586,7 @@ Obtains the Base64 code of an image with the default or specified screen density
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2643,7 +2643,7 @@ Obtains the Base64 code of an image with the default or specified screen density
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2688,7 +2688,7 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2732,7 +2732,7 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2780,7 +2780,7 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2827,7 +2827,7 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2870,7 +2870,7 @@ Obtains the Base64 code of an image based on the specified resource object. This
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2922,7 +2922,7 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2978,7 +2978,7 @@ Obtains the Base64 code of an image based on the specified resource object. This
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3033,7 +3033,7 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3080,7 +3080,7 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3124,7 +3124,7 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3172,7 +3172,7 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3219,7 +3219,7 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3267,7 +3267,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3327,7 +3327,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3391,7 +3391,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3447,7 +3447,7 @@ Obtains a Boolean result based on the specified resource ID. This API returns th
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3491,7 +3491,7 @@ Obtains a Boolean result based on the specified resource object. This API return
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3540,7 +3540,7 @@ Obtains a Boolean result based on the specified resource name. This API returns 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3583,7 +3583,7 @@ Obtains an integer or float value based on the specified resource ID. This API r
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3636,7 +3636,7 @@ Obtains an integer or float value based on the specified resource object. This A
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3685,7 +3685,7 @@ Obtains an integer or float value based on the specified resource name. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3736,7 +3736,7 @@ Obtains a color value based on the specified resource ID. This API returns the r
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3781,7 +3781,7 @@ Obtains a color value based on the specified resource object. This API returns t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3830,7 +3830,7 @@ Obtains a color value based on the specified resource name. This API returns the
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3868,7 +3868,7 @@ Obtains a color value based on the specified resource ID. This API uses an async
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3917,7 +3917,7 @@ Obtains a color value based on the specified resource ID. This API uses a promis
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3961,7 +3961,7 @@ Obtains a color value based on the specified resource object. This API uses an a
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4018,7 +4018,7 @@ Obtains a color value based on the specified resource object. This API uses a pr
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4066,7 +4066,7 @@ Obtains a color value based on the specified resource name. This API uses an asy
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4115,7 +4115,7 @@ Obtains a color value based on the specified resource name. This API uses a prom
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4162,7 +4162,7 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4198,7 +4198,7 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4245,7 +4245,7 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4294,7 +4294,7 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4334,7 +4334,7 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4385,7 +4385,7 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4430,7 +4430,7 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory.
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4466,7 +4466,7 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory. T
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4516,7 +4516,7 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory. T
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4558,7 +4558,7 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory.
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4594,7 +4594,7 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory. Th
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4639,7 +4639,7 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory. Th
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4867,7 +4867,7 @@ Loads resources from the specified path.
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4903,7 +4903,7 @@ Removes the resources loaded from the specified path to restore the original res
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4995,7 +4995,7 @@ Obtains a symbol value based on the specified resource ID. This API returns the 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -5039,7 +5039,7 @@ Obtains a symbol value based on the specified resource object. This API returns 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -5088,7 +5088,7 @@ Obtains a symbol value based on the specified resource name. This API returns th
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
