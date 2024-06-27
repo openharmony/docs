@@ -1089,7 +1089,7 @@ async function example() {
 getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
 
 
-获取音频文件，使用callback方式返回结果。
+获取音频文件，使用promise方式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
