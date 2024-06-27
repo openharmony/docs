@@ -96,3 +96,37 @@ struct testTmp {
 **适配指导**
 
 如果开发者不按规范使用对应范式，则需按日志提示信息进行修改。
+
+## cl.arkui.2 bindContentCover动效参数变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+为满足应用述求和UX规格，全模态动效参数改为与半模态一致。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，全模态动效参数为interpolatingSpring(velocity:n, mass:1, stiffness:100, damping:20)。
+
+变更后，全模态动效参数为interpolatingSpring(velocity:n, mass:1, stiffness:328, damping:36)。
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.31开始。
+
+**变更的接口/组件**
+
+bindContentCover组件
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
