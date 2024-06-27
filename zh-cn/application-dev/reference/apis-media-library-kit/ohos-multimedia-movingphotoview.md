@@ -163,8 +163,8 @@ stopPlayback(): void
 
 ```ts
 // xxx.ets
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
-import emitter from '@ohos.events.emitter'
+import { photoAccessHelper } from '@kit.MediaLibraryKit'
+import { emitter } from '@kit.BasicServicesKit'
 import { dataSharePredicates } from '@kit.ArkData'
 import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@ohos.multimedia.movingphotoview'
 

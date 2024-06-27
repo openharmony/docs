@@ -80,7 +80,7 @@ Picker配置选项。
 ```ts
 // xxx.ets
 import { PhotoPickerComponent, PickerController, PickerOptions, DataType } from '@ohos.file.PhotoPickerComponent'
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit'
 
 @Entry
 @Component
