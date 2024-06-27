@@ -11,6 +11,7 @@
   - [元数据(ArkTS)](camera-metadata.md)
   <!--Del-->
   - [高性能拍照(仅对系统应用开放)(ArkTS)](camera-deferred-photo.md)
+  - [分段式拍照(ArkTS)](camera-deferred-capture.md)
   <!--DelEnd-->
   - [动态照片(ArkTS)](camera-moving-photo.md)
 - 相机最佳实践(ArkTS)
@@ -20,6 +21,7 @@
   <!--Del-->
   - [性能提升方案(仅对系统应用开放)(ArkTS)](camera-performance-improvement.md)
   - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](camera-deferred-photo-case.md)
+  - [分段式拍照实现方案(ArkTS)](camera-deferred-capture-case.md)
   <!--DelEnd-->
 - 相机开发指导(C/C++)
   - [设备输入(C/C++)](native-camera-device-input.md)
