@@ -253,7 +253,7 @@ struct SizeExample {
 // xxx.ets
 // padding和margin属性使用LocalizedPadding类型和LocalizedMargin类型
 
-import { LengthMetrics } from '@ohos.arkui.node'
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
