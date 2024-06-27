@@ -3,9 +3,18 @@
 
 1. 进入源码根目录，执行如下命令进行版本编译。
    
+   >编译32位ARM系统：
+   
    ```
-   ./build.sh --product-name name --ccache
+   ./build.sh --product-name {product_name} --ccache 
    ```
+
+   >编译64位ARM系统：
+   
+   ```
+   ./build.sh --product-name {product_name} --ccache --target-cpu arm64 
+   ```
+{product_name}为当前支持的平台，比如rk3568。
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > _name_为产品名称，例如Hi3516DV300、rk3568等。
