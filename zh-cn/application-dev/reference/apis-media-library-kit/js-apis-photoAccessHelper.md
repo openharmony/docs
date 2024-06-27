@@ -4043,7 +4043,7 @@ map支持返回的信息：
 
 **示例**
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
   onDataPrepared(data: image.ImageSource, map: Map<string, string>) {
