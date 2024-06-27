@@ -323,7 +323,7 @@ struct FlexExample5 {
 ### 示例6
 
 ```ts
-import {LengthMetrics} from @kit.ArkUI';
+import {LengthMetrics} from '@kit.ArkUI';
 
 @Entry
 @Component
