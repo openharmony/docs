@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```
-import uiExtensionHost from '@ohos.uiExtensionHost'
+import { uiExtensionHost } from '@kit.ArkUI'
 ```
 
 ## UIExtensionHostWindowProxy
@@ -49,10 +49,8 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 ```ts
 // ExtensionProvider.ts
 
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -89,9 +87,7 @@ on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, are
 
 ```ts
 // ExtensionProvider.ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -166,9 +162,7 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
 ```ts
 // ExtensionProvider.ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -206,8 +200,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
 ```ts
 // ExtensionProvider.ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { UIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIExtensionAbility {
   onSessionDestroy(session: UIExtensionContentSession) {
@@ -236,9 +229,7 @@ properties: UIExtensionHostWindowProxyProperties
 
 ```ts
 // ExtensionProvider.ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -286,10 +277,8 @@ hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 ```ts
 // ExtensionProvider.ts
 
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -353,11 +342,9 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 
 ```ts
 // ExtensionProvider.ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -435,10 +422,8 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 ```ts
 // ExtensionProvider.ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
@@ -482,7 +467,7 @@ export default class EntryAbility extends UIExtensionAbility {
 
   ```ts
   // pages/Index.ets -- UIAbility启动时加载此页面
-  import Want from '@ohos.app.ability.Want'
+  import { Want } from '@kit.AbilityKit';
 
   @Entry
   @Component
@@ -514,9 +499,7 @@ export default class EntryAbility extends UIExtensionAbility {
 - UIExtensionComponent拉起的UIExtensionAbility在`ets/extensionAbility/ExampleUIExtensionAbility`文件中实现，内容如下：
 
   ```ts
-  import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility'
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-  import Want from '@ohos.app.ability.Want';
+  import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
   const TAG: string = '[ExampleUIExtensionAbility]'
   export default class ExampleUIExtensionAbility extends UIExtensionAbility {
@@ -550,10 +533,9 @@ export default class EntryAbility extends UIExtensionAbility {
 - UIExtensionAbility的入口页面文件`pages/extension.ets`内容如下：
 
   ```ts
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import uiExtensionHost from '@ohos.uiExtensionHost';
-  import window from '@ohos.window';
-  import { BusinessError } from '@ohos.base';
+  import { UIExtensionContentSession } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { uiExtensionHost, window } from '@kit.ArkUI';
 
   let storage = LocalStorage.getShared()
 
