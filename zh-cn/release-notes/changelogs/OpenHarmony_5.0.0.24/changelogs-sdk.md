@@ -1,50 +1,34 @@
 # SDK子系统Changelog
 
-## cl.sdk.1 api接口对于fa,stage模型使用错误告警
+## cl.sdk.1 FA/Stage模型应用使用仅Stage/FA模型可用接口告警级别提升
 
 **变更原因**
 
-fa，stage模型使用错误的API，现阶段抛出告警，在5.0上改为Error。
+FA/Stage模型中不允许使用仅Stage/FA模型可用接口，应对异常场景进行编译拦截。
 
 **变更影响**
 
-moduleJson只能使用fa模型API接口，在开发者使用不合理的接口时，将出现错误提示，提示内容如下：
+影响应用编译行为。
 
-"This API is used only in FA Mode, but the current Mode is Stage."
+***变更前：***
 
-非moduleJson只能使用stage模型API接口，在开发者使用不合理的接口时，将出现错误提示，提示内容如下：
+FA模型中使用仅Stage模型可用接口做应用编译时，给出warn类型告警，提示内容如下：
 
 "This API is used only in Stage Mode, but the current Mode is FA."
 
-**起始 API Level**
+Stage模型中使用仅FA模型可用接口做应用编译时，给出warn类型告警，提示内容如下：
 
-12
+"This API is used only in FA Mode, but the current Mode is Stage."
 
-**变更发生版本**
+***变更后：***
 
-从OpenHarmony SDK 5.0.0.24开始。
+FA模型中使用仅Stage模型可用接口做应用编译时，给出error类型告警，提示内容如下：
 
-**变更的接口/组件**
+"This API is used only in Stage Mode, but the current Mode is FA."
 
-只包含编译结果的改变。
+Stage模型中使用仅FA模型可用接口做应用编译时，给出error类型告警，提示内容如下：
 
-**适配指导**
-
-fa模型的工程只能使用带famodelonly标签的接口，stage模型的工程只能使用带stagemodelonly标签的接口
-
-## cl.sdk.2 ts文件使用component目录中的API告警
-
-**变更原因**
-
-ts文件中使用累component目录中的API，现阶段抛出告警，在5.0上改为Error。
-
-**变更影响**
-
-不能在ts文件中import导入component目录下的API，在开发者使用不合理的接口时，将出现告警提示，提示内容如下：
-
-“Cannot find name '{0}'.”
-
-{0}为对应的API。
+"This API is used only in FA Mode, but the current Mode is Stage."
 
 **起始 API Level**
 
@@ -56,38 +40,43 @@ ts文件中使用累component目录中的API，现阶段抛出告警，在5.0上
 
 **变更的接口/组件**
 
-只包含编译结果的改变。
+此变更仅影响编译行为，涉及到的接口及其替换用接口参考[《API模型转换清单》](./api-model-switch.md)
 
 **适配指导**
 
-ts文件中需要使用非component目录下的接口。
+若由于FA/Stage模型应用使用仅Stage/FA模型可用接口，导致应用编译报错，可参考如下修改方式：
 
-## cl.sdk.3 引用二级目录下的API告警
+根据当前报错接口信息，在[《API模型转换清单》](./api-model-switch.md)中查找报错接口，查看该接口在Stage模型下是否存在可替换接口
 
-**变更原因**
+**场景一：仅FA/Stage模型可用接口在Stage/FA模型中存在可替换接口**
 
-引用二级目录下的API，现阶段抛出告警，在5.0上改为Error
+错误示例：
 
-**变更影响**
+```ts
+// 当前工程为Stage模型
+import featureAbility from '@ohos.ability.featureAbility';
 
-不能导入sdk中二级目录下的API，在开发者使用不合理的接口时，将出现告警提示，提示内容如下：
+let context: featureAbility.Context = featureAbility.getContext().getApplicationContext();
+```
 
-“Cannot find module '${module}' or its corresponding type declarations.”
+正确示例：
 
-${module}为对应二级目录文件。
+```ts
+// 当前工程为Stage模型
+import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 
-**起始 API Level**
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let applicationContext: common.Context;
+    try {
+      applicationContext = this.context.getApplicationContext();
+    } catch (error) {
+      console.error(`getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}`);
+    }
+  }
+}
+```
 
-12
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.24开始。
-
-**变更的接口/组件**
-
-只包含编译结果的改变。
-
-**适配指导**
-
-不能使用二级目录下的接口。
+**场景二：仅FA/Stage模型可用接口在Stage/FA模型中无意义（即无可替代接口），删除相关错误接口调用代码即可。**
