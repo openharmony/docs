@@ -717,12 +717,12 @@ export default class MigrationAbility extends UIAbility {
     // ...
     // 创建一个各属性为空的资产对象
     let attachment: commonType.Asset = {
-      name: '',
-      uri: '',
-      path: '',
-      createTime: '',
-      modifyTime: '',
-      size: '',
+      name: undefined,
+      uri: undefined,
+      path: undefined,
+      createTime: undefined,
+      modifyTime: undefined,
+      size: undefined,
     }
 
     // 使用该空资产对象创建分布式数据对象，其余基础属性可以直接使用undefined
