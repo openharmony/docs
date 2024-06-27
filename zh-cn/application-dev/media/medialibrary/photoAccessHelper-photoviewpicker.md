@@ -5,7 +5,7 @@
 1. 导入选择器模块和文件管理模块。
 
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
    import { fileIo } from '@kit.CoreFileKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
