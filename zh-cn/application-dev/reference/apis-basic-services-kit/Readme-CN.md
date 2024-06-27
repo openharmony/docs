@@ -118,10 +118,14 @@
   - [USB服务错误码](errorcode-usb.md)
   - [RunningLock锁错误码](errorcode-runninglock.md)
   - [zlib子系统错误码](errorcode-zlib.md)  
+  <!--Del-->
   - [电量信息错误码](errorcode-battery-info.md)
   - [耗电统计错误码](errorcode-batteryStatistics.md)
+  <!--DelEnd-->
   - [剪贴板错误码](errorcode-pasteboard.md)
+  <!--Del-->
   - [屏幕亮度错误码](errorcode-brightness.md)
+  <!--DelEnd-->
   - [热管理错误码](errorcode-thermal.md)
   - [上传下载错误码](errorcode-request.md)
   - [时间时区错误码](errorcode-time.md)
@@ -130,6 +134,8 @@
   - [系统电源管理错误码](errorcode-power.md)
   - [帐号管理错误码](errorcode-account.md)
   - [升级错误码](errorcode-update.md)
+  <!--Del-->
   - [锁屏服务错误码](errorcode-screenlock.md)
+  <!--DelEnd-->
   - [打印服务错误码](errorcode-print.md)
   - [设备证明错误码](errorcode-deviceAttest.md)
