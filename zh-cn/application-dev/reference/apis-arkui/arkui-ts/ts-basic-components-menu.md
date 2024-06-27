@@ -115,8 +115,6 @@ width(value: Length)
 
 ## 示例
 
-### 示例1
-
 ```ts
 @Entry
 @Component
