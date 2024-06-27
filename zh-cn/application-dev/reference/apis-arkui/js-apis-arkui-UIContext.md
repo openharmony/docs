@@ -1592,6 +1592,8 @@ struct Index {
 
 ### requireDynamicSyncScene<sup>12+</sup>
 
+requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
+
 请求组件的动态帧率场景，用于自定义场景相关帧率配置。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1601,6 +1603,12 @@ struct Index {
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
 | id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)
+
+**返回值：** 
+
+| 类型   | 说明                                         |
+| ------ | -------------------------------------------- |
+| Array&lt;DynamicSyncScene&gt; | 获取DynamicSyncScene对象数组。 |
 
 **示例：**
 ```ts
@@ -6199,6 +6207,8 @@ setFrameRateRange(range: ExpectedFrameRateRange): void
 
 设置期望帧率范围。
 
+一个页面有两个Swiper组件，其中一个设置期望帧率范围，另一个也会受到期望帧率范围影响。
+
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
@@ -6207,7 +6217,7 @@ setFrameRateRange(range: ExpectedFrameRateRange): void
 
 | 参数名      | 类型         | 必填   | 说明   |
 | -------- | ---------- | ---- | ---- |
-| ExpectedFrameRateRange | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| 是    | 设置期望的帧率范围。<br />默认值:{min:0, max:120, expected: 120} |
+| range | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| 是    | 设置期望的帧率范围。<br />默认值:{min:0, max:120, expected: 120} |
 
 **示例：**
 
@@ -6328,9 +6338,13 @@ struct Frame {
 ```
 ## SwiperDynamicSyncScene<sup>12+</sup>
 
-DynamicSyncScene的子类, 对应Swiper的动态帧率场景。
+SwiperDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应Swiper的动态帧率场景。
 
-### SwiperDynamicSyncSceneType<sup>12+</sup>
+| 名称       | 类型                                                      | 只读 | 可选 | 说明                                |
+| --------- | --------------------------------------------------------- | ---- | ---- | ---------------------------------- |
+| type      | [SwiperDynamicSyncSceneType](#swiperdynamicsyncscenetype12) | 是   | 否   | Swiper的动态帧率场景。             |
+
+## SwiperDynamicSyncSceneType<sup>12+</sup>
 
 枚举值，表示动态帧率场景的类型
 
