@@ -3312,10 +3312,10 @@
           - [image_effect_errors.h](reference/apis-image-kit/image__effect__errors_8h.md)
           - [image_effect_filter.h](reference/apis-image-kit/image__effect__filter_8h.md)
         - 结构体<!--image-struct-->
-          - [ImagePacker_Opts_](reference/apis-image-kit/_image_packer___opts__.md)
+          - [ImagePacker_Opts](reference/apis-image-kit/_image_packer___opts__.md)
           - [OhosImageComponent](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
           - [OhosImageRect](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
-          - [OHOS::Media::OhosPixelMapInfo](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
+          - [OhosPixelMapInfo](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
           - [OhosImageDecodingOps](reference/apis-image-kit/_ohos_image_decoding_ops.md)
           - [OhosImageReceiverInfo](reference/apis-image-kit/_ohos_image_receiver_info.md)
           - [OhosImageRegion](reference/apis-image-kit/_ohos_image_region.md)
