@@ -3755,7 +3755,7 @@ try {
 
 on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): void
 
-开启主窗口模式变化的监听。
+开启窗口模式变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3778,31 +3778,12 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        windowClass.on('windowStatusChange', (WindowStatusType) => {
-          console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
-        });
-      } catch (exception) {
-        console.error(`Failed to enable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
+try {
+    windowClass.on('windowStatusChange', (WindowStatusType) => {
+        console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
     });
-  }
+} catch (exception) {
+    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3810,7 +3791,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): void
 
-关闭主窗口模式变化的监听。
+关闭窗口模式变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3833,39 +3814,20 @@ off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): vo
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      const callback = (windowStatusType: window.WindowStatusType) => {
-        // ...
-      }
-      try {
-        windowClass.on('windowStatusChange', callback);
-      } catch (exception) {
-        console.error(`Failed to enable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-      try {
-        windowClass.off('windowStatusChange', callback);
-        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-        windowClass.off('windowStatusChange');
-      } catch (exception) {
-        console.error(`Failed to disable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+const callback = (windowStatusType: window.WindowStatusType) => {
+    // ...
+}
+try {
+    windowClass.on('windowStatusChange', callback);
+} catch (exception) {
+    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+try {
+    windowClass.off('windowStatusChange', callback);
+    // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+    windowClass.off('windowStatusChange');
+} catch (exception) {
+    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -4954,7 +4916,7 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 设置窗口内容布局的比例，使用Promise异步回调。
 
-仅应用主窗口支持此接口功能，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
+仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5019,7 +4981,7 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置窗口内容布局的比例，使用callback异步回调。
 
-仅应用主窗口支持此接口功能，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
+仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5082,7 +5044,7 @@ resetAspectRatio(): Promise&lt;void&gt;
 
 取消设置窗口内容布局的比例，使用Promise异步回调。
 
-仅应用主窗口支持此接口功能，调用后将清除持久化储存的比例信息。
+仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，调用后将清除持久化储存的比例信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5139,7 +5101,7 @@ resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 
 取消设置窗口内容布局的比例，使用callback异步回调。
 
-仅应用主窗口支持此接口功能，调用后将清除持久化储存的比例信息。
+仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，调用后将清除持久化储存的比例信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
