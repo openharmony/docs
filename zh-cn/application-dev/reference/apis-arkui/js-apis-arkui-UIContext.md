@@ -3834,11 +3834,13 @@ getStateByIndex(index: number): router.RouterState | undefined
 ```ts
 import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
-let options:router.RouterState = router.getStateByIndex(1);
-console.info('index = ' + options.index);
-console.info('name = ' + options.name);
-console.info('path = ' + options.path);
-console.info('params = ' + options.params);
+let options: router.RouterState | undefined = router.getStateByIndex(1);
+if (options != undefined) {
+  console.info('index = ' + options.index);
+  console.info('name = ' + options.name);
+  console.info('path = ' + options.path);
+  console.info('params = ' + options.params);
+}
 ```
 ### getStateByUrl<sup>12+</sup>
 
