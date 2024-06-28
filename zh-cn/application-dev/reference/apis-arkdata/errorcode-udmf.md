@@ -12,12 +12,12 @@ Settings already exist.
 
 **错误描述**
 
-应用程序共享选项设置时将要设置的信息在数据库中已存在，系统会产生此错误码。
+应用程序设置共享选项时，将要设置的信息在数据库中已存在。
 
 **可能原因**
 
-设置应用程序共享选项时重复设置。
+调用[setAppShareOptions](js-apis-data-unifiedDataChannel-sys.md#unifieddatachannelsetappshareoptions12)重复设置应用程序共享选项时，系统会产生此错误码。
 
 **处理步骤**
 
-removeAppShareOptions操作后重新设置。
+先调用[removeAppShareOptions](js-apis-data-unifiedDataChannel-sys.md#unifieddatachannelremoveappshareoptions12)移除当前共享选项后，再调用[setAppShareOptions](js-apis-data-unifiedDataChannel-sys.md#unifieddatachannelsetappshareoptions12)重新设置。
