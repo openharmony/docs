@@ -153,7 +153,7 @@ export struct PageOne {
 }
 ```
 
-每个子页也需要配置到系统配置文件`route_map.json`中（参考[系统路由配置](../ui/arkts-navigation-navigation.md#系统路由表)）：
+每个子页也需要配置到系统配置文件`route_map.json`中（参考[系统路由配置](arkts-navigation-navigation.md#系统路由表)）：
 
 ```json
 // 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
@@ -398,7 +398,7 @@ onPageHide(): void {
 ![image](figures/router_page_lifecycle.png)
 
 Navigation作为路由容器，其生命周期承载在NavDestination组件上，以组件事件的形式开放。
-具体生命周期描述请参考：[Navigation生命周期](../ui/arkts-navigation-navigation.md#页面生命周期)
+具体生命周期描述请参考：[Navigation生命周期](arkts-navigation-navigation.md#页面生命周期)
 
 ```ts
 @Component
@@ -439,17 +439,17 @@ struct PageOne {
 Router和Navigation都提供了系统的转场动画也提供了自定义转场的能力。
 
 其中Router自定义页面转场通过通用方法`pageTransition()`实现，具体可参考：
-[Router自定义转场动画](../ui/arkts-page-transition-animation.md)
+[Router自定义转场动画](arkts-page-transition-animation.md)
 
 Navigation作为路由容器组件，其内部的页面切换动画本质上属于组件跟组件之间的属性动画，可以通过Navigation中的[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)事件提供自定义转场动画的能力，具体实现可以参考如下指导：
-[Navigation自定义转场动画](../ui/arkts-navigation-navigation.md#自定义转场)（注意：Dialog类型的页面当前没有转场动画）
+[Navigation自定义转场动画](arkts-navigation-navigation.md#自定义转场)（注意：Dialog类型的页面当前没有转场动画）
 
 ### 共享元素转场
 
 页面和页面之间跳转的时候需要进行共享元素过渡动画，Router可以通过通用属性`sharedTransition`来实现共享元素转场，具体可以参考如下链接：
 [Router共享元素转场动画](../reference/apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)
 
-Navigation也提供了共享元素一镜到底的转场能力，需要配合`geometryTransition`属性，在子页面（NavDestination）之间切换时，可以实现共享元素转场，具体可以参考如下指导：[Navigation共享元素转场动画](../ui/arkts-navigation-navigation.md#共享元素转场)
+Navigation也提供了共享元素一镜到底的转场能力，需要配合`geometryTransition`属性，在子页面（NavDestination）之间切换时，可以实现共享元素转场，具体可以参考如下指导：[Navigation共享元素转场动画](arkts-navigation-navigation.md#共享元素转场)
 
 ### 跨包路由
 
@@ -606,7 +606,7 @@ struct mainPage {
 ****方案二：** 系统路由表**
 
 从API version 12版本开始，Navigation支持系统跨模块的路由表方案，整体设计是将路由表方案下沉到系统中管理，即在需要路由的各个业务模块（HSP/HAR）中独立配置`router_map.json`文件，在触发路由跳转时，应用只需要通过`NavPactStack`进行路由跳转，此时系统会自动完成路由模块的动态加载、组件构建，并完成路由跳转功能，从而实现了开发层面的模块解耦。
-具体可参考文档：[Navigation系统路由](../ui/arkts-navigation-navigation.md#系统路由表)
+具体可参考文档：[Navigation系统路由](arkts-navigation-navigation.md#系统路由表)
 
 ### 生命周期监听
 
@@ -729,4 +729,4 @@ struct MyComponent {
 
 Router原生没有提供路由拦截的能力，开发者需要自行封装路由跳转接口，并在自己封装的接口中做路由拦截的判断并重定向路由。
 
-Navigation提供了[setInterception](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#setinterception12)方法，用于设置Navigation页面跳转拦截回调。具体可以参考文档：[Navigation路由拦截](../ui/arkts-navigation-navigation.md#路由拦截)
+Navigation提供了[setInterception](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#setinterception12)方法，用于设置Navigation页面跳转拦截回调。具体可以参考文档：[Navigation路由拦截](arkts-navigation-navigation.md#路由拦截)
