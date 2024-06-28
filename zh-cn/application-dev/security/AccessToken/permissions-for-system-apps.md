@@ -2765,6 +2765,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ALLOW_TIPS_ACCESS
+
+允许系统应用拉起其他系统应用的对外暴露组件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_AI_ABILITY
 
 允许应用和系统SA调用语音视觉服务的接口。
