@@ -37,7 +37,7 @@ createPixelMap(colors: ArrayBuffer, options: image.InitializationOptions): Promi
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
@@ -89,10 +89,10 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 **示例：**
 
 ```ts
-import { sendableImage }from '@ohos.multimedia.sendableImage';
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class MySequence implements rpc.Parcelable {
     pixel_map: sendableImage.PixelMap;
@@ -180,7 +180,7 @@ createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<Pix
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo(surfaceId: string) {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
@@ -224,7 +224,7 @@ createPixelMapSync(colors: ArrayBuffer, options: image.InitializationOptions): P
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
@@ -265,7 +265,7 @@ convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
@@ -307,7 +307,7 @@ convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
@@ -360,7 +360,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
@@ -402,7 +402,7 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
@@ -438,7 +438,7 @@ readPixels(area: image.PositionArea): Promise\<void>
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     const area: image.PositionArea = {
@@ -486,7 +486,7 @@ readPixelsSync(area: image.PositionArea): void
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     const area : image.PositionArea = {
@@ -527,7 +527,7 @@ writePixels(area: image.PositionArea): Promise\<void>
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     const area: image.PositionArea = {
@@ -579,7 +579,7 @@ writePixelsSync(area: image.PositionArea): void
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     const area: image.PositionArea = {
@@ -623,7 +623,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
@@ -669,7 +669,7 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
@@ -703,7 +703,7 @@ getImageInfo(): Promise\<image.ImageInfo>
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     if (pixelMap != undefined) {
@@ -746,7 +746,7 @@ getImageInfoSync(): image.ImageInfo
  
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     if (pixelMap != undefined) {
@@ -847,7 +847,7 @@ opacity(rate: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let rate: number = 0.5;
@@ -889,7 +889,7 @@ opacitySync(rate: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let rate : number = 0.5;
@@ -918,7 +918,7 @@ createAlphaPixelmap(): Promise\<PixelMap>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     if (pixelMap != undefined) {
@@ -959,7 +959,7 @@ createAlphaPixelmapSync(): PixelMap
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let pixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
@@ -993,7 +993,7 @@ scale(x: number, y: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let scaleX: number = 2.0;
@@ -1038,7 +1038,7 @@ scaleSync(x: number, y: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let scaleX: number = 2.0;
@@ -1075,7 +1075,7 @@ translate(x: number, y: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let translateX: number = 50.0;
@@ -1119,7 +1119,7 @@ translateSync(x: number, y: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let translateX : number = 50.0;
@@ -1155,7 +1155,7 @@ rotate(angle: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let angle: number = 90.0;
@@ -1197,7 +1197,7 @@ rotateSync(angle: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let angle : number = 90.0;
@@ -1233,7 +1233,7 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let horizontal: boolean = true;
@@ -1278,7 +1278,7 @@ flipSync(horizontal: boolean, vertical: boolean): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let horizontal : boolean = true;
@@ -1315,7 +1315,7 @@ crop(region: image.Region): Promise\<void>
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
@@ -1359,7 +1359,7 @@ cropSync(region: image.Region): void
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
@@ -1429,7 +1429,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 **示例：**
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
@@ -1473,8 +1473,8 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 **示例：**
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-import { BusinessError } from '@ohos.base'
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
@@ -1512,9 +1512,9 @@ marshalling(sequence: rpc.MessageSequence): void
 
 **示例：**
 ```ts
-import { sendableImage } from '@ohos.multimedia.sendableImage';
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 class MySequence implements rpc.Parcelable {
     pixel_map: sendableImage.PixelMap;
@@ -1601,9 +1601,9 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 **示例：**
 
 ```ts
-import sendableImage from '@ohos.multimedia.sendableImage';
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 
 class MySequence implements rpc.Parcelable {
     pixel_map: sendableImage.PixelMap;
@@ -1675,7 +1675,7 @@ release():Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
     if (pixelMap != undefined) {
@@ -1777,11 +1777,11 @@ createImageSource(fd: number): ImageSource
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs'
+import { fileIo } from '@kit.CoreFileKit';
 
 const context: Context = getContext(this);
 const path: string = context.cacheDir + "/test.jpg";
-let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(file.fd);
 ```
 
@@ -1889,7 +1889,7 @@ createPixelMap(options?: image.DecodingOptions): Promise\<PixelMap>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const context: Context = getContext(this);
 const path: string = context.cacheDir + "/test.jpg";
@@ -1919,7 +1919,7 @@ release是线程不安全的。
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const context: Context = getContext(this);
 const path: string = context.cacheDir + "/test.jpg";
@@ -1971,7 +1971,7 @@ getComponent是线程不安全的。
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
   let size: image.Size = {
@@ -2008,7 +2008,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
   let size: image.Size = {
@@ -2058,7 +2058,7 @@ getReceivingSurfaceId(): Promise\<string>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2089,7 +2089,7 @@ readLatestImage(): Promise\<Image>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2120,7 +2120,7 @@ readNextImage(): Promise\<Image>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2152,7 +2152,7 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2182,7 +2182,7 @@ release是线程不安全的。
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let size: image.Size = {
     height: 8192,

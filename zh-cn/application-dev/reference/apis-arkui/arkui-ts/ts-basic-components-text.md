@@ -548,9 +548,9 @@ privacySensitive(supported: boolean)
 
 **参数：**
 
-| 参数名    | 类型    | 必填 | 说明                     |
-| --------- | ------- | ---- | ------------------------ |
-| supported | boolean | 是   | 是否支持卡片敏感隐私信息 |
+| 参数名    | 类型    | 必填 | 说明                                                         |
+| --------- | ------- | ---- | ------------------------------------------------------------ |
+| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值为false，当设置为true时，隐私模式下文字将被遮罩为横杠“-”样式。<br/>**说明：** <br/>设置null则不敏感。<br/>进入隐私模式需要[卡片框架支持](./ts-universal-attributes-obscured.md)。 |
 
 ### lineBreakStrategy<sup>12+</sup>
 
@@ -662,8 +662,19 @@ setStyledString(value: StyledString): void
 
 ### 示例1
 
+textAlign、maxLines、textOverflow、lineHeight属性接口使用示例
+
 ```ts
 // xxx.ets
+@Extend(Text)
+function style(TextAlign: TextAlign) {
+  .textAlign(TextAlign)
+  .fontSize(12)
+  .border({ width: 1 })
+  .padding(10)
+  .width('100%')
+}
+
 @Entry
 @Component
 struct TextExample1 {
@@ -673,43 +684,19 @@ struct TextExample1 {
       // 单行文本
       Text('textAlign').fontSize(9).fontColor(0xCCCCCC)
       Text('TextAlign set to Center.')
-        .textAlign(TextAlign.Center)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style(TextAlign.Center)
       Text('TextAlign set to Start.')
-        .textAlign(TextAlign.Start)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style(TextAlign.Start)
       Text('TextAlign set to End.')
-        .textAlign(TextAlign.End)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style(TextAlign.End)
 
       // 多行文本
       Text('This is the text content with textAlign set to Center.')
-        .textAlign(TextAlign.Center)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style(TextAlign.Center)
       Text('This is the text content with textAlign set to Start.')
-        .textAlign(TextAlign.Start)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style(TextAlign.Start)
       Text('This is the text content with textAlign set to End.')
-        .textAlign(TextAlign.End)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style(TextAlign.End)
 
 
       // 文本超长时显示方式
@@ -718,26 +705,21 @@ struct TextExample1 {
       Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')
         .textOverflow({ overflow: TextOverflow.Clip })
         .maxLines(1)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
+        .style(TextAlign.Start)
 
       // 超出maxLines展示省略号
-      Text('This is set textOverflow to Ellipsis text content This is set textOverflow to Ellipsis text content.'.split('')
-        .join('\u200B'))
+      Text('This is set textOverflow to Ellipsis text content This is set textOverflow to Ellipsis text content.')
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .maxLines(1)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
+        .style(TextAlign.Start)
 
       Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text with the line height set. This is the text with the line height set.')
-        .fontSize(12).border({ width: 1 }).padding(10)
+        .style(TextAlign.Start)
       Text('This is the text with the line height set. This is the text with the line height set.')
-        .fontSize(12).border({ width: 1 }).padding(10)
+        .style(TextAlign.Start)
         .lineHeight(20)
-    }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
+    }.height(600).width(340).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
@@ -748,6 +730,14 @@ struct TextExample1 {
 decoration、baselineOffset、letterSpacing、textCase属性接口使用示例
 
 ```ts
+@Extend(Text)
+function style() {
+  .fontSize(12)
+  .border({ width: 1 })
+  .padding(10)
+  .width('100%')
+}
+
 @Entry
 @Component
 struct TextExample2 {
@@ -759,11 +749,7 @@ struct TextExample2 {
           type: TextDecorationType.LineThrough,
           color: Color.Red
         })
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-
+        .style()
 
       Text('This is the text content with the decoration set to Overline and the color set to Red.')
         .decoration({
@@ -771,11 +757,7 @@ struct TextExample2 {
           color: Color.Red,
           style: TextDecorationStyle.DOTTED
         })
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-
+        .style()
 
       Text('This is the text content with the decoration set to Underline and the color set to Red.')
         .decoration({
@@ -783,71 +765,44 @@ struct TextExample2 {
           color: Color.Red,
           style: TextDecorationStyle.WAVY
         })
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
 
       // 文本基线偏移
       Text('baselineOffset').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text content with baselineOffset 0.')
         .baselineOffset(0)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
       Text('This is the text content with baselineOffset 30.')
         .baselineOffset(30)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
       Text('This is the text content with baselineOffset -20.')
         .baselineOffset(-20)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
 
       // 文本字符间距
       Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text content with letterSpacing 0.')
         .letterSpacing(0)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
       Text('This is the text content with letterSpacing 3.')
         .letterSpacing(3)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
       Text('This is the text content with letterSpacing -1.')
         .letterSpacing(-1)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
 
       Text('textCase').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text content with textCase set to Normal.')
         .textCase(TextCase.Normal)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
       // 文本全小写展示
       Text('This is the text content with textCase set to LowerCase.')
         .textCase(TextCase.LowerCase)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
+        .style()
       // 文本全大写展示
       Text('This is the text content with textCase set to UpperCase.')
         .textCase(TextCase.UpperCase)
-        .fontSize(12).border({ width: 1 }).padding(10)
+        .style()
 
     }.height(700).width(350).padding({ left: 35, right: 35, top: 35 })
   }
@@ -860,6 +815,18 @@ struct TextExample2 {
 textShadow，heightAdaptivePolicy，TextOverflow.MARQUEE使用示例：
 
 ```ts
+@Extend(Text)
+function style(HeightAdaptivePolicy: TextHeightAdaptivePolicy) {
+  .width('80%')
+  .height(90)
+  .borderWidth(1)
+  .minFontSize(10)
+  .maxFontSize(30)
+  .maxLines(2)
+  .textOverflow({ overflow: TextOverflow.Ellipsis })
+  .heightAdaptivePolicy(HeightAdaptivePolicy)
+}
+
 @Entry
 @Component
 struct TextExample3 {
@@ -873,38 +840,22 @@ struct TextExample3 {
         .fontSize(40)
         .lineHeight(55)
         .textAlign(TextAlign.Center)
-        .textShadow({ radius: 10, color: Color.Black, offsetX: 0, offsetY: 0 })
+        .textShadow({
+          radius: 10,
+          color: Color.Black,
+          offsetX: 0,
+          offsetY: 0
+        })
         .borderWidth(1)
       Divider()
       // 设置文本自适应高度的方式
       Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Text('This is the text with the height adaptive policy set')
-        .width('80%')
-        .height(90)
-        .borderWidth(1)
-        .minFontSize(10)
-        .maxFontSize(30)
-        .maxLines(3)
-        .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+        .style(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
       Text('This is the text with the height adaptive policy set')
-        .width('80%')
-        .height(90)
-        .borderWidth(1)
-        .minFontSize(10)
-        .maxFontSize(30)
-        .maxLines(3)
-        .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+        .style(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
       Text('This is the text with the height adaptive policy set')
-        .width('80%')
-        .height(90)
-        .borderWidth(1)
-        .minFontSize(10)
-        .maxFontSize(30)
-        .maxLines(3)
-        .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+        .style(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
       Divider()
       Text('marquee').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       // 设置文本超长时以跑马灯的方式展示
@@ -920,57 +871,82 @@ struct TextExample3 {
 ![](figures/text_3.gif)
 
 ### 示例4
-wordBreak使用示例
+ellipsisMode和wordBreak使用示例
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextExample4 {
-  @State type: string = 'WordBreakType:Normal且clip为true'
-  @State text: string = 'This is set wordBreak to WordBreak text content This is set wordBreak to WordBreak text content.'
+  @State text: string =
+    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.'
+  @State ellipsisModeIndex: number = 0;
+  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END]
+  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END']
+  @State wordBreakIndex: number = 0;
+  @State wordBreak: WordBreak[] = [WordBreak.NORMAL, WordBreak.BREAK_ALL, WordBreak.BREAK_WORD]
+  @State wordBreakStr: string[] = ['NORMAL', 'BREAK_ALL', 'BREAK_WORD']
+  @State textClip: boolean = false
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-      Text(this.type).fontSize(9).fontColor(0xCCCCCC)
+    Column({ space: 10 }) {
+      Text(this.text)
+        .fontSize(16)
+        .border({ width: 1 })
+        .lineHeight(20)
+        .maxLines(1)
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
+        .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
+        .width(300)
+        .margin({ left: 20, top: 20 })
+
+      Row() {
+        Button('更改省略号位置：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
+          this.ellipsisModeIndex++
+          if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
+            this.ellipsisModeIndex = 0
+          }
+        })
+      }
+
       Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
         .fontSize(12)
         .border({ width: 1 })
         .wordBreak(WordBreak.NORMAL)
         .lineHeight(20)
         .maxLines(2)
-        .clip(true)
-      Text('WordBreakType:Normal且clip为false').fontSize(9).fontColor(0xCCCCCC)
-      Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
-        .fontSize(12)
-        .border({ width: 1 })
-        .wordBreak(WordBreak.NORMAL)
-        .lineHeight(20)
-        .maxLines(2)
-        .clip(false)
-      Text("WordBreakType:BreakAll").fontSize(9).fontColor(0xCCCCCC)
+        .clip(this.textClip)
+        .width(260)
+      Row() {
+        Button('切换clip：' + this.textClip).onClick(() => {
+          this.textClip = !this.textClip
+        })
+      }
+
       Text(this.text)
         .fontSize(12)
         .border({ width: 1 })
         .maxLines(2)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .wordBreak(WordBreak.BREAK_ALL)
+        .wordBreak(this.wordBreak[this.wordBreakIndex])
         .lineHeight(20)
-      Text("WordBreakType:BreakWord").fontSize(9).fontColor(0xCCCCCC)
-      Text(this.text)
-        .fontSize(12)
-        .border({ width: 1 })
-        .maxLines(2)
-        .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .wordBreak(WordBreak.BREAK_WORD)
-        .lineHeight(20)
-    }.height(300).width(335).padding({ left: 35, right: 35, top: 35 })
+        .width(260)
+      Row() {
+        Button('更改wordBreak模式：' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {
+          this.wordBreakIndex++
+          if (this.wordBreakIndex > (this.wordBreakStr.length - 1)) {
+            this.wordBreakIndex = 0
+          }
+        })
+      }
+    }
   }
 }
 ```
-![](figures/textExample4.jpeg)
+![](figures/textExample4.gif)
 
 ### 示例5
-selection, onCopy使用示例
+selection和onCopy使用示例
 
 ```ts
 @Entry
@@ -1008,49 +984,12 @@ struct TextExample5 {
 ![](figures/textExample5.jpeg)
 
 ### 示例6
-ellipsisMode使用示例
-
-```ts
-@Entry
-@Component
-struct TextExample6 {
-  @State text: string = 'This is set ellipsisMode to EllipsisMode text content This is set ellipsisMode to EllipsisMode text content.'
-  @State ellipsisModeIndex: number = 0;
-  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END]
-  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END']
-  build() {
-    Column() {
-      Text(this.text)
-        .fontSize(16)
-        .border({ width: 1 })
-        .lineHeight(20)
-        .maxLines(1)
-        .textOverflow({overflow:TextOverflow.Ellipsis})
-        .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
-        .width(300)
-        .margin({ left: 20, top: 20 })
-
-      Row() {
-        Button('更改省略号位置：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
-          this.ellipsisModeIndex++
-          if(this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
-            this.ellipsisModeIndex = 0
-          }
-        })
-      }.margin({ top: 10 })
-    }
-  }
-}
-```
-![](figures/textExample6.gif)
-
-### 示例7
 enableDataDetector和dataDetectorConfig使用示例
 
 ```ts
 @Entry
 @Component
-struct TextExample7 {
+struct TextExample6 {
   @State phoneNumber: string = '(86) (755) ********';
   @State url: string = 'www.********.com';
   @State email: string = '***@example.com';
@@ -1084,14 +1023,14 @@ struct TextExample7 {
 ```
 ![](figures/text7.png)
 
-### 示例8
+### 示例7
 
 bindSelectionMenu，onTextSelectionChange及closeSelectionMenu使用示例
 
 ```ts
 @Entry
 @Component
-struct TextExample8 {
+struct TextExample7 {
   controller: TextController = new TextController();
   options: TextOptions = { controller: this.controller };
 
@@ -1195,114 +1134,65 @@ function MenuStyles() {
 
 ![](figures/textBindSelectionMenu.gif)
 
-### 示例9
-fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用ss01属性的效果
-
-```ts
-@Entry
-@Component
-struct TextExample9 {
-  @State text1: string = 'This is ss01 on : 0123456789'
-  @State text2: string = 'This is ss01 off: 0123456789'
-
-  build() {
-    Column(){
-      Text(this.text1)
-        .fontSize(20)
-        .margin({top:200})
-        .fontFeature("\"ss01\" on")
-      Text(this.text2)
-        .margin({top:10})
-        .fontSize(20)
-        .fontFeature("\"ss01\" off")
-    }
-    .width("90%")
-    .margin("5%")
-  }
-}
-```
-
-![fontFeature](figures/textFontFeature.png)
-
-### 示例10
-lineSpacing使用示例，对比了不设置lineSpacing与lineSpacing设置不同单位的效果。
+### 示例8
+fontFeature、lineSpacing和lineBreakStrategy使用示例。
 
 ```ts
 import { LengthMetrics } from '@ohos.arkui.node'
-
-@Entry
-@Component
-struct TextExample10 {
-  build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-        Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
-        Text('This is a context with no lineSpacing set.\nThis is a context with no lineSpacing set.')
-          .fontSize(12)
-          .border({ width: 1 })
-        Text( 'This is a context with lineSpacing set to 20_px.\nThis is a context with lineSpacing set to 20_px.')
-          .fontSize(12)
-          .border({ width: 1 })
-          .lineSpacing(LengthMetrics.px(20))
-        Text('This is the TextArea with lineSpacing set to 20_vp.\nThis is the TextArea with lineSpacing set to 20_vp.')
-          .fontSize(12)
-          .border({ width: 1 })
-          .lineSpacing(LengthMetrics.vp(20))
-        Text('This is the TextArea with lineSpacing set to 20_fp.\nThis is the TextArea with lineSpacing set to 20_fp.')
-          .fontSize(12)
-          .border({ width: 1 })
-          .lineSpacing(LengthMetrics.fp(20))
-        Text('This is the TextArea with lineSpacing set to 20_lpx.\nThis is the TextArea with lineSpacing set to 20_lpx.')
-          .fontSize(12)
-          .border({ width: 1 })
-          .lineSpacing(LengthMetrics.lpx(20))
-        Text('This is the TextArea with lineSpacing set to 100%.\nThis is the TextArea with lineSpacing set to 100%.')
-          .fontSize(12)
-          .border({ width: 1 })
-          .lineSpacing(LengthMetrics.percent(1))
-      }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
-  }
+@Extend(Text) function lineSpacingValue(LineSpacing: LengthMetrics|undefined) {
+  .lineSpacing(LineSpacing)
+  .fontSize(12)
+  .border({ width: 1 })
 }
-```
-
-![lineSpacing](figures/Text_lineSpacing.png)
-
-### 示例11
-lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakStrategy设置不同挡位的效果。
-
-```ts
 @Entry
 @Component
-struct TextExample11 {
+struct TextExample8 {
   @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
     "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
     "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
-
+  @State lineBreakStrategyIndex: number = 0;
+  @State lineBreakStrategy: LineBreakStrategy[] = [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+      Text('lineSpacing').fontSize(9).fontColor(0xCCCCCC)
+      Text('This is a context with no lineSpacing set.')
+        .lineSpacingValue(undefined)
+      Text( 'This is a context with lineSpacing set to 20_px.')
+        .lineSpacingValue(LengthMetrics.px(20))
+      Text('This is the context with lineSpacing set to 20_vp.')
+        .lineSpacingValue(LengthMetrics.vp(20))
+      Text('This is the context with lineSpacing set to 20_fp.')
+        .lineSpacingValue(LengthMetrics.fp(20))
+      Text('This is the context with lineSpacing set to 20_lpx.')
+        .lineSpacingValue(LengthMetrics.lpx(20))
+      Text('This is the context with lineSpacing set to 100%.')
+        .lineSpacingValue(LengthMetrics.percent(1))
+      Text('fontFeature').fontSize(9).fontColor(0xCCCCCC)
+      Text('This is ss01 on : 0123456789')
+        .fontSize(20)
+        .fontFeature("\"ss01\" on")
+      Text('This is ss01 off: 0123456789')
+        .fontSize(20)
+        .fontFeature("\"ss01\" off")
+      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC)
       Text(this.message1)
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
         .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.GREEDY)
-      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      Text(this.message1)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
-      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      Text(this.message1)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.BALANCED)
-    }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
+        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
+      Row() {
+        Button('更改lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+          this.lineBreakStrategyIndex++
+          if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0
+          }
+        })
+      }
+    }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![textLineBreakStrategy](figures/textLineBreakStrategy.PNG)
+![](figures/TextExample8.gif)

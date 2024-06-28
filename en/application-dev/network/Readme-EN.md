@@ -1,6 +1,6 @@
 # Network Kit
 
-- [Network Management Overview](net-mgmt-overview.md)
+- [Introduction to Network Kit](net-mgmt-overview.md)
 
 - Data Transmission Capabilities of Network Kit
     - [HTTP Data Request](http-request.md)

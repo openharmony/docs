@@ -1272,32 +1272,6 @@ let f = (s: string) => {
 }
 ```
 
-### 使用泛型函数而非泛型箭头函数
-
-**规则：**`arkts-no-generic-lambdas`
-
-**级别：错误**
-
-ArkTS不支持泛型箭头函数。
-
-**TypeScript**
-
-```typescript
-let generic_arrow_func = <T extends String> (x: T) => { return x; };
-
-generic_arrow_func('string');
-```
-
-**ArkTS**
-
-```typescript
-function generic_func<T extends String>(x: T): T {
-  return x;
-}
-
-generic_func<String>('string');
-```
-
 ### 不支持使用类表达式
 
 **规则：**`arkts-no-class-literals`
@@ -2632,26 +2606,6 @@ namespace A {
 
 // 调用初始化函数来执行
 A.init();
-```
-
-### 不支持`import default as ...`
-
-**规则：**`arkts-no-import-default-as`
-
-**级别：错误**
-
-ArkTS不支持`import default as ...`语法，使用显式的`import ... from ...`语法。
-
-**TypeScript**
-
-```typescript
-import { default as d } from 'mod'
-```
-
-**ArkTS**
-
-```typescript
-import d from 'mod'
 ```
 
 ### 不支持`require`和`import`赋值表达式

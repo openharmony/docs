@@ -335,6 +335,7 @@
         - [Sendable开发指导](arkts-utils/arkts-sendable.md)
         - [已接入Sendable的系统对象](arkts-utils/arkts-sendable-system-object-list.md)
         - [共享模块开发指导](arkts-utils/arkts-sendable-module.md)
+        - [ArkTS Collections与原生API方法的行为差异对比](arkts-utils/arkts-collections-vs-native-api-comparison.md)
     - 容器类库
       - [容器类库概述](arkts-utils/container-overview.md)
       - [线性容器](arkts-utils/linear-container.md)
@@ -728,6 +729,7 @@
       - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
       <!--DelEnd-->
       - [动态照片(ArkTS)](media/camera/camera-moving-photo.md)
+      - [分段式拍照(ArkTS)](media/camera/camera-deferred-capture.md)
     - 相机最佳实践(ArkTS)
       - [拍照实现方案(ArkTS)](media/camera/camera-shooting-case.md)
       - [录像实现方案(ArkTS)](media/camera/camera-recording-case.md)
@@ -735,6 +737,7 @@
       <!--Del-->
       - [性能提升方案(仅对系统应用开放)(ArkTS)](media/camera/camera-performance-improvement.md)
       - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
+      - [分段式拍照实现方案(ArkTS)](media/camera/camera-deferred-capture-case.md)
       <!--DelEnd-->
     - 相机开发指导(C/C++)
       - [设备输入(C/C++)](media/camera/native-camera-device-input.md)
@@ -796,6 +799,7 @@
         - [保存用户文件](file-management/save-user-file.md)
         - [授权持久化](file-management/file-persistPermission.md)
         - [授权持久化(C/C++)](file-management/native-fileshare-guidelines.md)
+      - [获取并使用公共目录](file-management/request-dir-permission.md)
       <!--Del-->
       - [开发用户文件管理器（仅对系统应用开放）](file-management/dev-user-file-manager.md)
       - [管理外置存储设备（仅对系统应用开放）](file-management/manage-external-storage.md)
@@ -941,7 +945,7 @@
       - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
       - [使用Image_NativeModule完成图片接收器](media/image/image-receiver-c.md)
       - [使用Image_NativeModule完成位图操作](media/image/pixelmap-c.md)
-      - [使用Image_NativeModule处理图像信息](media/image/image-c.md)
+      - [使用Image_NativeModule处理图像信息](media/image/image-info-c.md)
       - [使用Image_NativeModule完成图片编码](media/image/image-packer-c.md)
       - [使用ImageEffect编辑图片](media/image/image-effect-guidelines.md)
     - 图片开发指导(依赖JS对象)(C/C++)
@@ -1126,7 +1130,9 @@
       - [使用HiTraceMeter跟踪性能（ArkTS/JS）](dfx/hitracemeter-guidelines-arkts.md)
       - [使用HiTraceMeter跟踪性能（C/C++）](dfx/hitracemeter-guidelines-ndk.md)
       - [查看HiTraceMeter日志](dfx/hitracemeter-view.md)
-    - [HiTraceChain使用指导](dfx/hitracechain-guidelines.md)
+    - HiTraceChain使用指导
+      - [使用HiTraceChain打点（ArkTS/JS）](dfx/hitracechain-guidelines-arkts.md)
+      - [使用HiTraceChain打点（C/C++）](dfx/hitracechain-guidelines-ndk.md)
     - HiChecker使用指导
       - [使用HiChecker检测问题（ArkTS/JS）](dfx/hichecker-guidelines-arkts.md)
     - 错误管理
@@ -2066,8 +2072,12 @@
           - [TabContent](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md)
           - [WaterFlow](reference/apis-arkui/arkui-ts/ts-container-waterflow.md)
           <!--Del-->
+          - [Column (系统接口)](reference/apis-arkui/arkui-ts/ts-container-column-sys.md)
           - [EffectComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)
+          - [Flex (系统接口)](reference/apis-arkui/arkui-ts/ts-container-flex-sys.md)
           - [List (系统接口)](reference/apis-arkui/arkui-ts/ts-container-list-sys.md)
+          - [Row (系统接口)](reference/apis-arkui/arkui-ts/ts-container-row-sys.md)
+          - [Stack (系统接口)](reference/apis-arkui/arkui-ts/ts-container-stack-sys.md)
           - [UIExtensionComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)
           <!--DelEnd-->
         - 媒体组件
@@ -2159,6 +2169,9 @@
         - [枚举说明](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
         - [设置事件回调](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
         - [属性字符串](reference/apis-arkui/arkui-ts/ts-universal-styled-string.md)
+        <!--Del-->
+        - [枚举说明 (系统接口)](reference/apis-arkui/arkui-ts/ts-appendix-enums-sys.md)
+        <!--DelEnd-->
         - 已停止维护的组件 
           <!--Del-->         
           - [AbilityComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)
@@ -2602,6 +2615,7 @@
         - [@ohos.zlib (Zip模块)](reference/apis-basic-services-kit/js-apis-zlib.md)
         <!--Del-->
         - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](reference/apis-basic-services-kit/js-apis-app-ability-PrintExtensionAbility-sys.md)
+        - [@ohos.pasetboard (剪贴板)(系统接口)](reference/apis-basic-services-kit/js-apis-pasteboard-sys.md)
         - [@ohos.print (打印)(系统接口)](reference/apis-basic-services-kit/js-apis-print-sys.md)
         - [@ohos.request (上传下载)(系统接口)](reference/apis-basic-services-kit/js-apis-request-sys.md)
         <!--DelEnd-->
@@ -2762,7 +2776,6 @@
       - [@ohos.bluetooth.socket(蓝牙socket模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-socket.md)
       - [@ohos.bluetooth.pbap(蓝牙pbap模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-pbap.md)
       - [@ohos.bluetooth.map(蓝牙map模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-map.md)
-      - [@ohos.bluetoothManager (蓝牙)(待停用)](reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (有源标签)](reference/apis-connectivity-kit/js-apis-connectedTag.md)
       - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](reference/apis-connectivity-kit/js-apis-cardEmulation.md)
       - [@ohos.nfc.controller (标准NFC)](reference/apis-connectivity-kit/js-apis-nfcController.md)
@@ -2797,6 +2810,7 @@
       - [SE(secureElement)错误码](reference/apis-connectivity-kit/errorcode-se.md)
     - 已停止维护的接口<!--connectivity-arkts-dep-->
       - [@ohos.bluetooth (蓝牙)(待停用)](reference/apis-connectivity-kit/js-apis-bluetooth.md)
+      - [@ohos.bluetoothManager (蓝牙)(待停用)](reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
       - [@ohos.wifi (WLAN)(待停用)](reference/apis-connectivity-kit/js-apis-wifi.md)
       - [@ohos.wifiext (WLAN扩展接口)(待停用)](reference/apis-connectivity-kit/js-apis-wifiext.md)
       - [@system.bluetooth (蓝牙)](reference/apis-connectivity-kit/js-apis-system-bluetooth.md)
@@ -2888,7 +2902,7 @@
       <!--Del-->
       - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
       - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
-      - [@ohos.cooperate (键鼠穿越)（系统接口）](reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md)
+      - [@ohos.cooperate (键鼠穿越)（系统接口）](reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate-sys.md)
       - 已停止维护的接口<!--distributed-service-dep-->
         - [@ohos.distributedHardware.deviceManager (设备管理)(系统接口)(待删除)](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)
       <!--DelEnd-->
@@ -3047,10 +3061,10 @@
         - [image_effect_errors.h](reference/apis-image-kit/image__effect__errors_8h.md)
         - [image_effect_filter.h](reference/apis-image-kit/image__effect__filter_8h.md)
       - 结构体<!--image-struct-->
-        - [ImagePacker_Opts_](reference/apis-image-kit/_image_packer___opts__.md)
+        - [ImagePacker_Opts](reference/apis-image-kit/_image_packer___opts__.md)
         - [OhosImageComponent](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
         - [OhosImageRect](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
-        - [OHOS::Media::OhosPixelMapInfo](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
+        - [OhosPixelMapInfo](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
         - [OhosImageDecodingOps](reference/apis-image-kit/_ohos_image_decoding_ops.md)
         - [OhosImageReceiverInfo](reference/apis-image-kit/_ohos_image_receiver_info.md)
         - [OhosImageRegion](reference/apis-image-kit/_ohos_image_region.md)

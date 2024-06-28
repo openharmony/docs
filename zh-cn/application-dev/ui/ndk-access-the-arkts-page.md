@@ -51,7 +51,7 @@
 - 挂载对象提供了相关挂载和卸载组件接口。
   ```
   OH_ArkUI_NodeContent_AddNode(handle_, myNativeNode);
-  OH_ArkUI_NodeContent_AddNode(handle_, myNativeNode);
+  OH_ArkUI_NodeContent_RemoveNode(handle_, myNativeNode);
   ```
 
 

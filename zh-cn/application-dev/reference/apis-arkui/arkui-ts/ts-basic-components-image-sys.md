@@ -24,7 +24,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 | 参数名 | 类型                                          | 必填 | 说明         |
 | ------ | --------------------------------------------- | ---- | ------------ |
-| config | [ImageAnalyzerConfig](#imageanalyzerconfig11) | 是   | AI分析类型。 |
+| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是   | AI分析类型。 |
 
 ### edgeAntialiasing<sup>11+</sup>
 
@@ -77,21 +77,6 @@ enhancedImageQuality(imageQuality: ResolutionQuality)
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
 | imageQuality | [ResolutionQuality](#resolutionquality12) | 是   | 图像解码分辨率质量。 |
-
-## ImageAnalyzerConfig<sup>11+</sup>
-
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
-图片AI分析类型配置。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 描述           |
-| -------- | -------------- |
-| SUBJECT | 主体识别功能。 |
-| TEXT | 文字识别功能。 |
 
 ## ResolutionQuality<sup>12+</sup>
 

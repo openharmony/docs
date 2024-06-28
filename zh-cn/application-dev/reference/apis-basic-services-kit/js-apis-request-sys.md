@@ -12,7 +12,7 @@ request部件主要给应用提供上传下载文件、后台传输代理的基�
 
 
 ```js
-import request from '@ohos.request';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 

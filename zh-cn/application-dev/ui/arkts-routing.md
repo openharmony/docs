@@ -20,7 +20,7 @@ Router模块提供了两种跳转模式，分别是[router.pushUrl()](../referen
 
 >**说明：** 
 >
->- 创建新页面时，请参考[构建第二个页面](../quick-start/start-with-ets-stage.md#构建第二个页面)配置第二个页面的路由。
+>- 创建新页面时，请参考<!--RP1-->[构建第二个页面](../quick-start/start-with-ets-stage.md#构建第二个页面)<!--RP1End-->配置第二个页面的路由。
 >
 >
 >- 页面栈的最大容量为32个页面。如果超过这个限制，可以调用[router.clear()](../reference/apis-arkui/js-apis-router.md#routerclear)方法清空历史页面栈，释放内存空间。

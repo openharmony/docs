@@ -16,7 +16,7 @@
 - 被\@Trace装饰器装饰的属性property变化时，仅会通知property关联的组件进行刷新。
 - 在嵌套类中，嵌套类中的属性property被\@Trace装饰且嵌套类被\@ObservedV2装饰时，才具有触发UI刷新的能力。
 - 在继承类中，父类或子类中的属性property被\@Trace装饰且该property所在类被\@ObservedV2装饰时，才具有触发UI刷新的能力。
-- 在\@ObservedV2装饰的类中，只有被\@Trace装饰的属性才可以用在UI中，未被\@Trace装饰的属性不可以用在UI中。
+- 未被\@Trace装饰的属性用在UI中无法感知到变化，也无法触发UI刷新。
 - \@ObservedV2的类实例目前不支持使用JSON.stringify进行序列化。
 
 ## 状态管理V1版本对嵌套类对象属性变化直接观测的局限性
@@ -224,7 +224,7 @@ struct Index {
 
 \@ObservedV2与\@Trace装饰器存在以下使用限制：
 
-- 非\@Trace装饰的成员属性不能用在UI上。
+- 非\@Trace装饰的成员属性用在UI上无法触发UI刷新。
 
 ```ts
 @ObservedV2
@@ -239,10 +239,10 @@ struct Index {
 
   build() {
     Column() {
-      // age被@Trace装饰，可以用在UI中
+      // age被@Trace装饰，用在UI中可以触发UI刷新
       Text(`${this.person.age}`)
-      // id未被@Trace装饰，不可以用在UI中
-      Text(`${this.person.id}`) // 错误用法
+      // id未被@Trace装饰，用在UI中不会触发UI刷新
+      Text(`${this.person.id}`) // 当id变化时不会刷新
     }
   }
 }
@@ -262,7 +262,7 @@ class User {
 ```ts
 @ComponentV2
 struct Comp {
-  @Trace message: string = "Hello World"; // 错误用法
+  @Trace message: string = "Hello World"; // 错误用法，编译时报错
 
   build() {
   }
