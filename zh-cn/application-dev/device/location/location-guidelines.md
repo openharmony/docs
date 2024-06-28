@@ -67,7 +67,7 @@
          geoLocationManager.getCurrentLocation(request).then((result) => { // 调用getCurrentLocation获取当前设备位置，通过promise接收上报的位置
             console.log('current location: ' + JSON.stringify(result));
          })
-         .catch((error:BusinessError.BusinessError) => { // 接收上报的错误码
+         .catch((error:BusinessError) => { // 接收上报的错误码
             console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
          });
        } catch (err) {
