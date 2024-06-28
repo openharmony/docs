@@ -20,17 +20,7 @@
 
 | 参数名 | 参数类型 | 必填 | 参数描述                                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------------------------- |
-| hierarchyStrategy<sup>12+<sup> | [TransitionHierarchyStrategy](#transitionhierarchystrategy12)  | 否   | 此接口为系统接口。<br>决定共享元素动画过程中in/out组件在组件树上层级位置的移动策略，默认值：TransitionHierarchyStrategy.ADAPTIVE。<br>实际影响绑定的in/out组件相对其他组件的前后重叠关系，常规情况下慎重修改。<br>建议在发现共享元素动画过程中出现组件前后重叠关系错误时需要调整再设置此参数。|
-
-## 示例
-
-```ts
-Image($r('app.media.icon'))
-    .width('100%')
-    .aspectRatio(1)
-    // 不设置hierarchyStrategy时，默认值：TransitionHierarchyStrategy.ADAPTIVE
-    .geometryTransition("picture", {hierarchyStrategy: TransitionHierarchyStrategy.NONE})
-```
+| hierarchyStrategy<sup>12+<sup> | [TransitionHierarchyStrategy](#transitionhierarchystrategy12)  | 否   | <br>决定共享元素动画过程中in/out组件在组件树上层级位置的移动策略，默认值：TransitionHierarchyStrategy.ADAPTIVE。<br>实际影响绑定的in/out组件相对其他组件的前后重叠关系，常规情况下慎重修改。<br>建议在发现共享元素动画过程中出现组件前后重叠关系错误时需要调整再设置此参数。<br>**系统接口：** 此接口为系统接口。|
 
 ## TransitionHierarchyStrategy<sup>12+<sup>
 共享元素动画过程中in/out组件层级位置移动策略枚举。
@@ -45,3 +35,52 @@ Image($r('app.media.icon'))
 | ------ | - | ---- |
 | NONE  | 0 | 无层级提拉，in/out组件保持原来的层级位置，受父组件scale、position影响。 |
 | ADAPTIVE | 1 | 有层级提拉，in/out组件中相对低层级的组件被提拉至组件树上in/out组件相对高层级的位置上。<br>此模式还会导致被提拉的组件与父组件解绑，不受父组件scale、position影响。<br>例如in组件层级高于out组件，开启层级提拉后会在动画过程中将out组件从自己的父组件处解耦，并提拉至in组件的层级位置处，in组件层级位置不变。|
+
+## 示例
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State isShow: boolean = false
+
+  build() {
+    Stack({ alignContent: Alignment.Center }) {
+      if (this.isShow) {
+        Image($r('app.media.pic'))
+          .autoResize(false)
+          .clip(true)
+          .width(300)
+          .height(400)
+          .offset({ y: 100 })
+          .geometryTransition("picture", {hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE})
+          .transition(TransitionEffect.OPACITY)
+      } else {
+        // geometryTransition此处绑定的是容器，那么容器内的子组件需设为相对布局跟随父容器变化，
+        // 套多层容器为了说明相对布局约束传递
+        Column() {
+          Column() {
+            Image($r('app.media.icon'))
+              .width('100%').height('100%')
+          }.width('100%').height('100%')
+        }
+        .width(80)
+        .height(80)
+        // geometryTransition会同步圆角，但仅限于geometryTransition绑定处，此处绑定的是容器
+        // 则对容器本身有圆角同步而不会操作容器内部子组件的borderRadius
+        .borderRadius(20)
+        .clip(true)
+        .geometryTransition("picture", {hierarchyStrategy: TransitionHierarchyStrategy.ADAPTIVE})
+        // transition保证组件离场不被立即析构，可设置其他转场效果
+        .transition(TransitionEffect.OPACITY)
+      }
+    }
+    .onClick(() => {
+      animateTo({ duration: 1000 }, () => {
+        this.isShow = !this.isShow
+      })
+    })
+  }
+}
+```
