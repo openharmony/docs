@@ -52,9 +52,9 @@ import window from '@ohos.window';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const extensionWindow = session.getUIExtensionWindowProxy();
     // 获取宿主应用窗口的避让信息
-    const avoidArea = extensionHostWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+    let avoidArea: window.AvoidArea | undefined = extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
     console.log(`avoidArea: ${JSON.stringify(avoidArea)}`);
   }
 }
@@ -91,9 +91,9 @@ import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const extensionWindow = session.getUIExtensionWindowProxy();
     // 注册避让区变化的监听
-    extensionHostWindow.on('avoidAreaChange', (info) => {
+    extensionWindow.on('avoidAreaChange', (info) => {
       console.info(`The avoid area of the host window is: ${JSON.stringify(info.area)}.`);
     });
   }
@@ -122,9 +122,9 @@ import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSessi
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionDestroy(session: UIExtensionContentSession) {
-    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const extensionWindow = session.getUIExtensionWindowProxy();
     // 注销所有避让区变化的监听
-    extensionHostWindow.off('avoidAreaChange');
+    extensionWindow.off('avoidAreaChange');
   }
 }
 ```
@@ -160,9 +160,9 @@ import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const extensionWindow = session.getUIExtensionWindowProxy();
     // 注册宿主应用窗口大小变化的监听
-    extensionHostWindow.on('windowSizeChange', (size) => {
+    extensionWindow.on('windowSizeChange', (size) => {
       console.info(`The avoid area of the host window is: ${JSON.stringify(size)}.`);
     });
   }
@@ -199,9 +199,9 @@ import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSessi
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionDestroy(session: UIExtensionContentSession) {
-    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const extensionWindow = session.getUIExtensionWindowProxy();
     // 注销宿主应用窗口大小变化的监听
-    extensionHostWindow.off('windowSizeChange');
+    extensionWindow.off('windowSizeChange');
   }
 }
 ```
@@ -252,13 +252,13 @@ import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const extensionWindow = session.getUIExtensionWindowProxy();
     const subWindowOpts: window.SubWindowOptions = {
       title: 'This is a subwindow',
       decorEnabled: true
     };
     // 创建子窗口
-    extensionHostWindow.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
+    extensionWindow.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
       .then((subWindow: window.Window) => {
         subWindow.loadContent('pages/Index', (err, data) =>{
           if (err && err.code != 0) {
