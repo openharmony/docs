@@ -76,7 +76,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t,请参见[OH_MatrixCoefficient](#oh_matrixcoefficient)，遵循H.273标准Table4。该键是可选的。 |
 | [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame)      | 请求立即编码I帧的键。值类型为bool。该键是可选的。            |
 | [OH_MD_KEY_QUALITY](#oh_md_key_quality)                      | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。该键是可选的。 |
-| [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的。 建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../../reference/apis-arkgraphics2d/_native_window.md)接口进行设置。|
+| [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的。 建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置。|
 | [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability)          | 使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。该键是可选的且只用于视频编码，在configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size)       | 描述图片组大小的键，值类型为int32_t，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode)         | 描述图片组内参考模式的键，值类型为int32_t，请参见[OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1)，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
@@ -285,7 +285,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level) | flac合规性级别的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_IDENTIFICATION_HEADER](#oh_md_key_identification_header) | vorbis标识头的键，值类型为uint8_t\*，仅vorbis解码器支持。 |
 | const char \* [OH_MD_KEY_SETUP_HEADER](#oh_md_key_setup_header) | vorbis设置头的键，值类型为uint8_t\*，仅vorbis解码器支持。 |
-| const char \* [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode) | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。 建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../../reference/apis-arkgraphics2d/_native_window.md)接口进行设置。|
+| const char \* [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode) | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。 建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置。|
 | const char \* [OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | 最大输入缓冲区个数的键, 值类型为int32_t。 |
 | const char \* [OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | 最大输出缓冲区个数的键, 值类型int32_t。 |
 | const char \* [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，值类型为int32_t。 |
@@ -1621,7 +1621,7 @@ const char* OH_MD_KEY_AUDIO_OBJECT_NUMBER
 const char* OH_MD_KEY_AUDIO_SAMPLE_FORMAT
 ```
 **描述**
-音频原始格式的键，值类型为int32_t。请参见[AudioSampleFormat](../../reference/apis-audio-kit/js-apis-audio.md#audiosampleformat8)。
+音频原始格式的键，值类型为int32_t。请参见[AudioSampleFormat](../apis-audio-kit/js-apis-audio.md#audiosampleformat8)。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2015,7 +2015,7 @@ aac sbr模式的键，值类型为int32_t,aac编码器支持。
 const char* OH_MD_KEY_SCALING_MODE
 ```
 **描述**
-视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../../reference/apis-arkgraphics2d/_native_window.md)接口进行设置。
+视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
