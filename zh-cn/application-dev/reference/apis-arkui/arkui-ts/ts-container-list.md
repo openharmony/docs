@@ -9,6 +9,20 @@
 > - 该组件内容区小于一屏时，默认没有回弹效果。需要回弹效果，可以通过edgeEffect属性的options参数进行设置。
 > 
 > - List组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
+>
+> - 要使List处于可编辑模式需配合onItemDelete事件和ListItem的editable属性，即可编辑模式实现删除列表项功能，需满足以下条件（该功能从API9开始废弃）：
+>
+>   - editMode属性设置为true。
+>
+>   - 绑定onItemDelete事件，且事件回调返回true。
+>
+>   - ListItem的editable属性设置为true。
+>
+> - 实现ListItem拖拽，需满足以下条件：
+>
+>   - editMode属性设置为true（从API9开始无需设置editMode属性）。
+>
+>   - 绑定onDragStart事件，且事件回调中返回浮动UI布局。
 
 
 ## 子组件
@@ -157,37 +171,9 @@ flingSpeedLimit(speedLimit: number)
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
-| Idle   |  0  | 空闲状态。使用控制器提供的方法控制滚动时触发，拖动滚动条滚动时触发。<br/>**说明：** <br/> 从API version 10开始，调整为滚动状态回归空闲时触发， <br/>控制器提供的无动画方法控制滚动时触发。 |
-| Scroll |  1  | 滚动状态。使用手指拖动List滚动时触发。<br/>**说明：** <br/> 从API version 10开始，拖动滚动条滚动和滚动鼠标滚轮时也会触发。 |
-| Fling  |  2  | 惯性滚动状态。快速划动松手后进行惯性滚动和划动到边缘回弹时触发。<br/>**说明：** <br/> 从API version 10开始，由动画控制的滚动都触发。包括快速划动松手后的惯性滚动， <br/>划动到边缘回弹的滚动，快速拖动内置滚动条松手后的惯性滚动， <br/>使用滚动控制器提供的带动画的方法控制的滚动。 |
-
-ScrollState枚举变更如下。
-
-| 场景            | API version 9及以下 | API version 10开始 |
-| ------------- | ---------------- | ---------------- |
-| 手指拖动滑动        | Scroll           | Scroll           |
-| 惯性滚动          | Fling            | Fling            |
-| 过界回弹          | Fling            | Fling            |
-| 鼠标滚轮滚动        | Idle             | Scroll           |
-| 拖动滚动条         | Idle             | Scroll           |
-| 滚动控制器滚动（带动画）  | Idle             | Fling            |
-| 滚动控制器滚动（不带动画） | Idle             | Idle             |
-
->  **说明：**
->
->  要使List处于可编辑模式需配合onItemDelete事件和ListItem的editable属性，即可编辑模式实现删除列表项功能，需满足以下条件（该功能从API9开始废弃）：
->
->  - editMode属性设置为true。
->
->  - 绑定onItemDelete事件，且事件回调返回true。
->
->  - ListItem的editable属性设置为true。
->
->  实现ListItem拖拽，需满足以下条件：
->
->  - editMode属性设置为true（从API9开始无需设置editMode属性）。
->
->  - 绑定onDragStart事件，且事件回调中返回浮动UI布局。
+| Idle   |  0  | 空闲状态。滚动状态回归空闲时触发， <br/>控制器提供的无动画方法控制滚动时触发。 |
+| Scroll |  1  | 滚动状态。手指拖动List，拖动滚动条和滚动鼠标滚轮时触发。 |
+| Fling  |  2  | 惯性滚动状态。由动画控制的滚动都会触发。包括快速划动松手后的惯性滚动， <br/>划动到边缘回弹的滚动，快速拖动内置滚动条松手后的惯性滚动， <br/>使用滚动控制器提供的带动画的方法控制的滚动。 |
 
 ## ListScroller<sup>11+</sup>
 
