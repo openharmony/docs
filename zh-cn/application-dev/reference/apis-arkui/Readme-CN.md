@@ -317,6 +317,7 @@
         - [组件内转场 (transition)](arkui-ts/ts-transition-animation-component.md)
         - [共享元素转场 (sharedTransition)](arkui-ts/ts-transition-animation-shared-elements.md)
         - [组件内隐式共享元素转场 (geometryTransition)](arkui-ts/ts-transition-animation-geometrytransition.md)
+        - [组件内隐式共享元素转场 (geometryTransition)(系统接口)](arkui-ts/ts-transition-animation-geometrytransition-sys.md)
       - [路径动画 (motionPath)](arkui-ts/ts-motion-path-animation.md)
       - [粒子动画 (Particle)](arkui-ts/ts-particle-animation.md)
       - [显式动画立即下发 (animateToImmediately)](arkui-ts/ts-explicit-animatetoimmediately.md)
