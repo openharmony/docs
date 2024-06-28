@@ -2,7 +2,9 @@
 
 - [OpenHarmony Project](OpenHarmony-Overview.md)
 - [Glossary](glossary.md)
-- Release Notes
+
+<!-- [Release Notes](release-notes/OpenHarmony-v4.1-release.md) -->
+
 - OpenHarmony Third-Party Components
   - [Introduction to OpenHarmony Third-Party Components](third-party-components/third-party-components-introduction.md) 
   - [Using OpenHarmony JS and TS Third-Party Components](third-party-components/ohpm-third-party-guide.md)
@@ -17,5 +19,3 @@
   - [Writing Instructions](contribute/writing-instructions.md)
   - [Communication in Community](contribute/communication-in-community.md)
   - [FAQs](contribute/FAQ.md)
-
-<!--no_check-->
