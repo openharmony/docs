@@ -109,9 +109,6 @@
      tag: huks.HuksTag.HUKS_TAG_DIGEST,
      value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
  }, {
-     tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
-     value: StringToUint8Array(srcKeyAliasFirst+ 'final'),
- }, {
      tag: huks.HuksTag.HUKS_TAG_PADDING,
      value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
  }, {
@@ -119,7 +116,11 @@
      value: huks.HuksCipherMode.HUKS_MODE_ECB,
  }];
  let finishOptionsFirst: huks.HuksOptions = {
-     properties: finishProperties,
+     properties: [
+        ...finishProperties, {
+        tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
+        value: StringToUint8Array(srcKeyAliasFirst+ 'final'),
+     }],
      inData: StringToUint8Array(agreeX25519InData)
  }
  /* 集成第二个协商参数集 */
@@ -327,7 +328,7 @@ const finishPropertiesSecond: Array<huks.HuksParam>  = [
              }
          });
      } catch (error) {
-         console.error(`promise: exportKeyItem input arg invalid`, ${JSON.stringify(error)}`);
+         console.error(`promise: exportKeyItem input arg invalid, ${JSON.stringify(error)}`);
      }
  }
  /* 删除密钥操作 */
