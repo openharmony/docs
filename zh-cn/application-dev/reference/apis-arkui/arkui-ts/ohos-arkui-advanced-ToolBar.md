@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
+import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
 ```
 
 
@@ -68,7 +68,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 ## 示例
 
 ```ts
-import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
+import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
 
 enum ItemState {
   ENABLE = 1,

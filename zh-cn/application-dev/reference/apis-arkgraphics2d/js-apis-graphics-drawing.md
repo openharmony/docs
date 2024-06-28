@@ -1091,6 +1091,67 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### saveLayer<sup>12+</sup>
+
+saveLayer(rect?: common2D.Rect | null, brush?: Brush | null): number
+
+保存当前画布的矩阵和裁剪区域，并为后续绘制分配位图。调用恢复接口[restore](#restore12)将会舍弃对矩阵和裁剪区域做的更改，并绘制位图。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名  | 类型     | 必填   | 说明         |
+| ---- | ------ | ---- | ----------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect)\|null | 否   | 矩形对象，用于限制图层大小，默认为当前画布大小。 |
+| brush  | [Brush](#brush)\|null | 否   | 画刷对象，绘制位图时会应用画刷对象的透明度，颜色滤波器效果和混合模式，默认不设置额外效果。 |
+
+**返回值：**
+
+| 类型   | 说明                |
+| ------ | ------------------ |
+| number | 返回调用前保存的画布状态数，该参数为正整数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    canvas.saveLayer(null, null);
+    const brushRect = new drawing.Brush();
+    const colorRect: common2D.Color = {alpha: 255, red: 255, green: 255, blue: 0};
+    brushRect.setColor(colorRect);
+    canvas.attachBrush(brushRect);
+    const rect: common2D.Rect = {left:100, top:100, right:500, bottom:500};
+    canvas.drawRect(rect);
+
+    const brush = new drawing.Brush();
+    brush.setBlendMode(drawing.BlendMode.DST_OUT);
+    canvas.saveLayer(rect, brush);
+
+    const brushCircle = new drawing.Brush();
+    const colorCircle: common2D.Color = {alpha: 255, red: 0, green: 0, blue: 255};
+    brushCircle.setColor(colorCircle);
+    canvas.attachBrush(brushCircle);
+    canvas.drawCircle(500, 500, 200);
+    canvas.restore();
+    canvas.restore();
+    canvas.detachBrush();
+  }
+}
+```
+
 ### scale<sup>12+</sup>
 
 scale(sx: number, sy: number): void

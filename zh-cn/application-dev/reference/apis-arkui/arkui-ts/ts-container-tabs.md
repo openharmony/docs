@@ -1336,7 +1336,7 @@ struct TabsExample {
 
 ```ts
 // xxx.ets
-import ComponentUtils from '@ohos.arkui.UIContext';
+import { ComponentUtils } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -1346,7 +1346,7 @@ struct TabsExample {
   @State indicatorLeftMargin: number = 0
   @State indicatorWidth: number = 0
   private tabsWidth: number = 0
-  private componentUtils: ComponentUtils.ComponentUtils = this.getUIContext().getComponentUtils()
+  private componentUtils: ComponentUtils = this.getUIContext().getComponentUtils()
 
   @Builder
   tabBuilder(index: number, name: string) {

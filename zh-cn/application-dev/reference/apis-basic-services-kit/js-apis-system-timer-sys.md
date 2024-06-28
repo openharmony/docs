@@ -11,7 +11,7 @@
 
 
 ```ts
-import systemTimer from '@ohos.systemTimer';
+import { systemTimer } from '@kit.BasicServicesKit';
 ```
 
 ## 常量
@@ -69,7 +69,7 @@ createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -122,7 +122,7 @@ createTimer(options: TimerOptions): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -168,7 +168,7 @@ startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&g
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -229,7 +229,7 @@ startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -282,7 +282,7 @@ stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -343,7 +343,7 @@ stopTimer(timer: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -397,7 +397,7 @@ destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -459,7 +459,7 @@ destroyTimer(timer: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,

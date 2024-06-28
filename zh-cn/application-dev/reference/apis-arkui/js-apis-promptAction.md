@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 ```
 
 ## promptAction.showToast
@@ -46,8 +46,8 @@ showToast(options: ShowToastOptions): void
 **示例：**
 
 ```ts
-import promptAction from '@ohos.promptAction'
-import { BusinessError } from '@ohos.base';
+import { promptAction } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct toastExample {
@@ -113,8 +113,8 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 **示例：**
 
 ```ts
-import promptAction from '@ohos.promptAction'
-import { BusinessError } from '@ohos.base';
+import { promptAction } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   promptAction.showDialog({
     title: 'Title Info',
@@ -174,8 +174,8 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 **示例：**
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -209,8 +209,8 @@ try {
 当弹窗的showInSubWindow属性为true时，弹窗可显示在窗口外。
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -274,8 +274,8 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 **示例：**
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   promptAction.showActionMenu({
     title: 'Title Info',
@@ -339,8 +339,8 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 **示例：**
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   promptAction.showActionMenu({
     title: 'showActionMenu Title Info',
@@ -410,7 +410,7 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import promptAction from '@ohos.promptAction'
+import { promptAction } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -465,7 +465,7 @@ struct Index {
 ```
 该示例定义了弹窗样式，如宽度、高度、背景色、阴影等等。
 ```ts
-import promptAction from '@ohos.promptAction'
+import { promptAction } from '@kit.ArkUI'
 
 let customDialogId: number = 0
 

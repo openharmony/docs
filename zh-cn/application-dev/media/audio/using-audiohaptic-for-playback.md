@@ -18,9 +18,8 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
 1. 获取音振管理器实例，并注册音频及振动资源，资源支持情况可以查看[AudioHapticManager](../../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager)。
 
    ```ts
-   import audio from '@ohos.multimedia.audio';
-   import audioHaptic from '@ohos.multimedia.audioHaptic';
-   import { BusinessError } from '@ohos.base';
+   import { audio, audioHaptic } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.getAudioHapticManager();
 

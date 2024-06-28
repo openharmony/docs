@@ -1189,7 +1189,7 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 
 **系统能力：** SystemCapability.Sensors.Sensor
 
-**参数：SensorId**
+**参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                    |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |

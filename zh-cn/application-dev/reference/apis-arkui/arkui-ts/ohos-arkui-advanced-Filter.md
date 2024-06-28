@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { Filter } from '@ohos.arkui.advanced.Filter'
+import { Filter } from '@kit.ArkUI'
 ```
 
 
@@ -78,7 +78,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 ## 示例
 
 ```ts
-import { Filter, FilterParams, FilterResult, FilterType } from '@ohos.arkui.advanced.Filter'
+import { Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'
 
 @Entry
 @Component

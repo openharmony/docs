@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor';
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 ```
 
 ## DrawableDescriptor

@@ -163,21 +163,18 @@ import { inputMethodEngine } from '@kit.IMEKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let record :Record<string, inputMethodEngine.CommandDataType> = {
+  let record: Record<string, inputMethodEngine.CommandDataType> = {
     "valueString1": "abcdefg",
     "valueString2": true,
     "valueString3": 500,
   }
-  inputClient.sendPrivateCommand(record).then((err) => {
-  }).catch(err => {
-    if (err !== undefined) {
-      let error = err as BusinessError;
-      this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
-    }
+  inputClient.sendPrivateCommand(record).then(() => {
+  }).catch((err: BusinessError) => {
+    console.error(`sendPrivateCommand catch error: ${JSON.stringify(err)}`);
   });
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+  console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -658,17 +655,17 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
-    this.addLog(`private command key: ${key}, value: ${record[key]}`);
+    console.log(`private command key: ${key}, value: ${record[key]}`);
   }
 }
 try {
-  this.addLog(`regist private command `);
+  console.log(`regist private command `);
   inputMethodEngine.getInputMethodAbility().on('privateCommand', privateCommandCallback);
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`regist private command error: ${error.code} ${error.message}`);
+  console.error(`regist private command error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -701,17 +698,17 @@ off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
-    this.addLog(`private command key: ${key}, value: ${record[key]}`);
+    console.log(`private command key: ${key}, value: ${record[key]}`);
   }
 }
 try {
-  this.addLog(`regist private command `);
+  console.log(`regist private command `);
   inputMethodEngine.getInputMethodAbility().off('privateCommand', privateCommandCallback);
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`regist private command error: ${error.code} ${error.message}`);
+  console.error(`regist private command error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -3828,16 +3825,16 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textIn
       "valueString2": true,
       "valueString3": 500,
     }
-    textInputClient.sendPrivateCommand(record).then((err) => {
-    }).catch(err => {
+    textInputClient.sendPrivateCommand(record).then(() => {
+    }).catch((err: BusinessError) => {
       if (err !== undefined) {
         let error = err as BusinessError;
-        this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+        console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
       }
     });
   } catch (err) {
     let error = err as BusinessError;
-    this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+    console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
   }
 })
 ```

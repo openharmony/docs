@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, CustomContentDialog } from '@ohos.arkui.advanced.Dialog'
+import { TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, CustomContentDialog } from '@kit.ArkUI'
 ```
 
 
@@ -480,8 +480,7 @@ struct Index {
 弹出主题风格弹框。
 
 ```ts
-import { CustomColors, CustomTheme } from '@kit.ArkUI'
-import { LoadingDialog } from '@kit.ArkUI';
+import { CustomColors, CustomTheme, LoadingDialog } from '@kit.ArkUI'
 
 class CustomThemeImpl implements CustomTheme {
   colors?: CustomColors;
