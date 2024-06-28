@@ -1,19 +1,19 @@
-# 组件复用设计总览
+# 组件复用总览
 
 组件复用是优化用户界面性能，提升应用流畅度的一种核心策略，它通过复用已存在的组件节点而非创建新的节点，大幅度降低了因频繁创建与销毁组件带来的性能损耗，从而确保UI线程的流畅性与响应速度。组件复用针对的是自定义组件，只要发生了相同自定义组件销毁和再创建的场景，都可以使用组件复用。
 
 本文系统地描述了六种复用类型及其应用场景，帮助开发者更好地理解和实施组件复用策略以优化应用性能。
 
-关于组件复用的原理机制可以参考资料[组件复用原理机制](https://gitee.com/harmonyos-cases/cases/blob/master/docs/performance/component_recycle_case.md#%E7%BB%84%E4%BB%B6%E5%A4%8D%E7%94%A8%E5%8E%9F%E7%90%86%E6%9C%BA%E5%88%B6)，便于理解本文内容。
+关于组件复用的原理机制可以参考资料[组件复用原理机制](./component_recycle_case.md#组件复用原理机制)，便于理解本文内容。
 
 ## 复用类型总览
 
 |复用类型|描述|复用思路|参考文档|
 |:--:|--|--|--|
-|**标准型**|复用组件之间布局完全相同|标准复用|[组件复用实践](https://gitee.com/harmonyos-cases/cases/blob/master/docs/performance/component-recycle.md)|
-|**有限变化型**|复用组件之间有不同，但是类型有限|使用reuseId或者独立成两个自定义组件|[组件复用四板斧](https://gitee.com/harmonyos-cases/cases/blob/master/docs/performance/component_recycle_case.md)|
+|**标准型**|复用组件之间布局完全相同|标准复用|[组件复用实践](./component-recycle.md)|
+|**有限变化型**|复用组件之间有不同，但是类型有限|使用reuseId或者独立成两个自定义组件|[组件复用四板斧](./component_recycle_case.md)|
 |**组合型**|复用组件之间有不同，情况非常多，但是拥有共同的子组件|将复用组件改为Builder，让内部子组件相互之间复用|[组合型组件复用指导](#组合型)|
-|**全局型**|组件可在不同的父组件中复用，并且不适合使用@Builder|使用BuilderNode自定义复用组件池，在整个应用中自由流转|/|
+|**全局型**|组件可在不同的父组件中复用，并且不适合使用@Builder|使用BuilderNode自定义复用组件池，在整个应用中自由流转|[全局自定义组件复用实现](./node_custom_component_reusable_pool.md)|
 |**嵌套型**|复用组件的子组件的子组件存在差异|采用化归思想将嵌套问题转化为上面四种标准类型来解决|/|
 |**无法复用型**|组件之间差别很大，规律性不强，子组件也不相同|不建议使用组件复用|/|
 
@@ -25,7 +25,7 @@
 
 ![normal](./figures/component_reuse_overview_normal.png)
 
-这是一个标准的组件复用场景，一个滚动容器内的复用组件布局相同，只有数据不同。这种类型的组件复用可以直接参考资料[组件复用实践](https://gitee.com/harmonyos-cases/cases/blob/master/docs/performance/component-recycle.md)。
+这是一个标准的组件复用场景，一个滚动容器内的复用组件布局相同，只有数据不同。这种类型的组件复用可以直接参考资料[组件复用实践](./component-recycle.md)。
 
 **应用场景案例**
 
@@ -604,7 +604,7 @@ struct ChildComponentD {
 
 一些场景中组件需要在不同的父组件中复用，并且不适合改为Builder。如上图所示，有时候应用在多个tab页之间切换，tab页之间结构类似，需要在tab页之间复用组件，提升页面切换性能。或者有些应用在组合型场景下，由于复用组件内部含有带状态的业务逻辑，不适合改为Builder函数。
 
-针对这种类型的组件复用场景，可以通过BuilderNode自定义缓存池，将要复用的组件封装在BuilderNode中，将BuilderNode的NodeController作为复用的最小单元，自行管理复用池。
+针对这种类型的组件复用场景，可以通过BuilderNode自定义缓存池，将要复用的组件封装在BuilderNode中，将BuilderNode的NodeController作为复用的最小单元，自行管理复用池。具体实现可以参考资料[全局自定义组件复用实现](./node_custom_component_reusable_pool.md)。
 
 这种场景不适用系统自带的复用池，自行管理组件复用。
 
