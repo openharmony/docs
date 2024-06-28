@@ -6,16 +6,15 @@
 
 | 容器规格 | 音频解码类型                 |
 | -------- | :--------------------------- |
-| mp4      | AAC、MPEG(MP3)、Flac、Vorbis |
+| mp4      | AAC、MPEG(MP3)、Flac、Vorbis<!--RP1--><!--RP1End--> |
 | m4a      | AAC                          |
 | flac     | Flac                         |
-| ogg      | Vorbis                       |
+| ogg      | Vorbis<!--RP2--><!--RP2End-->    |
 | aac      | AAC                          |
 | mp3      | MPEG(MP3)                    |
 | amr      | AMR(amrnb、amrwb)            |
 | raw      | G711mu                       |
 | ape      | APE                          |
-<!--RP1--><!--RP1End-->
 
 **适用场景**
 
@@ -355,7 +354,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    
 10. 调用OH_AudioCodec_FreeOutputBuffer()，输出解码后的PCM码流。
 
-    <!--RP2-->
+    <!--RP3-->
     ```c++
     uint32_t index = signal_->outQueue_.front();
     OH_AVBuffer *data = signal_->outBufferQueue_.front();
@@ -375,7 +374,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 结束
     }
     ```
-    <!--RP2End-->
+    <!--RP3End-->
 
 11. （可选）调用OH_AudioCodec_Flush()刷新解码器。
    调用OH_AudioCodec_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
