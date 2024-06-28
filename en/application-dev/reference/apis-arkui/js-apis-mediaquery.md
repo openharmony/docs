@@ -16,7 +16,7 @@ The **mediaquery** module provides different styles for different media types.
 ## Modules to Import
 
 ```ts
-import mediaquery from '@ohos.mediaquery'
+import { mediaquery } from '@kit.ArkUI';
 ```
 
 
@@ -43,7 +43,7 @@ Sets the media query condition. This API returns the corresponding media query l
 **Example**
 
 ```ts
-import mediaquery from '@ohos.mediaquery'
+import { mediaquery } from '@kit.ArkUI';
 let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
 ```
 
@@ -100,7 +100,7 @@ Deregisters a media query listener, so that no callback is triggered when the me
 **Example**
 
   ```ts
-    import mediaquery from '@ohos.mediaquery'
+    import { mediaquery } from '@kit.ArkUI';
     
     let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
     function onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
@@ -132,7 +132,7 @@ Provides the media query result.
 ### Example
 
 ```ts
-import mediaquery from '@ohos.mediaquery'
+import { mediaquery } from '@kit.ArkUI';
 
 
 @Entry
