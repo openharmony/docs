@@ -723,7 +723,7 @@ The periodic task cannot have a dependency.
 
 **可能原因**
 
-调用了[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11)和[addDependency](../../reference/apis-arkts/js-apis-taskpool.md#adddependency11)接口给周期任务增加或移除依赖关系。
+调用了[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11)和[addDependency](js-apis-taskpool.md#adddependency11)接口给周期任务增加或移除依赖关系。
 
 **处理步骤**
 
