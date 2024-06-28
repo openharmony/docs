@@ -36,6 +36,8 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 Calculates a hash value for a file. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -78,6 +80,8 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 Calculates a hash value for a file. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -86,7 +90,7 @@ Calculates a hash value for a file. This API uses an asynchronous callback to re
 | --------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | path      | string                      | Yes  | Path of the file in the application sandbox.                            |
 | algorithm | string                      | Yes  | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**. **sha256** is recommended for security purposes.|
-| callback  | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the hash value obtained. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
+| callback  | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the hash value obtained. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
 
 **Error codes**
 
