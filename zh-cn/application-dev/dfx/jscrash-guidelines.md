@@ -65,7 +65,7 @@ JS Crash异常根据不同的异常场景，在 Reason 字段进行了分类，�
 
 - 方式三：通过hiAppEvent接口订阅故障
 
-    hiAppEvent 对外提供了故障订阅接口，可以订阅各类故障信息，详见[HiAppEvent (应用事件打点)](../dfx/hiappevent-intro.md)
+    hiAppEvent 对外提供了故障订阅接口，可以订阅各类故障信息，详见[HiAppEvent (应用事件打点)](hiappevent-intro.md)
 <!--Del-->
 - 方式四：通过shell获取日志
 
