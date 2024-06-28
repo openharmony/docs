@@ -5429,7 +5429,7 @@ setCursor(value: PointerStyle): void
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| value | [PointerStyle](../../reference/apis-input-kit/js-apis-pointer.md#pointerstyle) | 是    | 光标样式 |
+| value | [PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) | 是    | 光标样式 |
 
 **示例：**
 当光标进入蓝框时，通过CursorController的setCursor方法修改光标样式为PointerStyle.WEST

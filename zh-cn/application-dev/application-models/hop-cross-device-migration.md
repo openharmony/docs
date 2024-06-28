@@ -350,7 +350,7 @@ export default class MigrationAbility extends UIAbility {
 当前支持三种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
   > **说明：**
   >
-  > 部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)。
+  > 部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](../reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)。
   >
   > 如果涉及分布式对象和分布式文件迁移时应注意：
   > 1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
@@ -406,17 +406,17 @@ export default class MigrationAbility extends UIAbility {
 ```
 ### 使用分布式对象迁移数据       
 
-当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md)进行数据迁移。
+当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](../reference/apis-arkdata/js-apis-data-distributedobject.md)进行数据迁移。
 
-1. 在源端`onContinue()`接口中创建一个分布式数据对象[`DataObject`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject)，将所要迁移的数据填充到分布式对象数据中，并将生成的`sessionId`通过`want`传递到对端。
+1. 在源端`onContinue()`接口中创建一个分布式数据对象[`DataObject`](../reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject)，将所要迁移的数据填充到分布式对象数据中，并将生成的`sessionId`通过`want`传递到对端。
 2. 对端在`onCreate()/onNewWant`中进行数据恢复时，可以从want中读取该`sessionId`，通过分布式对象恢复数据。
 
-使用参考详见[分布式数据对象跨设备数据同步](../../application-dev/database/data-sync-of-distributed-data-object.md)。
+使用参考详见[分布式数据对象跨设备数据同步](../database/data-sync-of-distributed-data-object.md)。
 
 ### 使用分布式文件迁移数据
 当需要迁移的数据较大（100KB以上）时，也可以选择分布式文件进行数据迁移。相比于分布式对象，分布式文件更适用于需要传输的数据为文件的场景。在源端将数据写入分布式文件路径后，对端迁移后拉起的应用能够在同个分布式文件路径下访问到该文件。
 
-使用参考详见[跨设备文件访问](../../application-dev/file-management/file-access-across-devices.md)。
+使用参考详见[跨设备文件访问](../file-management/file-access-across-devices.md)。
 
 ## 验证指导
 
@@ -426,7 +426,7 @@ export default class MigrationAbility extends UIAbility {
 
 #### **配置环境**
 
-public-SDK不支持开发者使用所有的系统API，例如：全局任务中心使用的[**@ohos.distributedDeviceManager**](../../application-dev/reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)不包括在public_SDK中。因此为了正确编译安装全局任务中心，开发者需要替换full-SDK，具体操作可参见[替换指南](../../application-dev/faqs/full-sdk-switch-guide.md)。
+public-SDK不支持开发者使用所有的系统API，例如：全局任务中心使用的[**@ohos.distributedDeviceManager**](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)不包括在public_SDK中。因此为了正确编译安装全局任务中心，开发者需要替换full-SDK，具体操作可参见[替换指南](../faqs/full-sdk-switch-guide.md)。
 
 > **说明**：
 >

@@ -36,7 +36,7 @@
 
 ### 开发步骤
 
-**前提条件：** `setWindowPrivacyMode` 即设置窗口隐私模式，适用于禁止截屏/录屏的场景。该接口使用时需要申请`ohos.permission.PRIVACY_WINDOW`权限，配置方式请参见[申请应用权限](../../application-dev/quick-start/module-configuration-file.md#requestpermissions标签)。
+**前提条件：** `setWindowPrivacyMode` 即设置窗口隐私模式，适用于禁止截屏/录屏的场景。该接口使用时需要申请`ohos.permission.PRIVACY_WINDOW`权限，配置方式请参见[申请应用权限](../quick-start/module-configuration-file.md#requestpermissions标签)。
 
 1. 获取应用主窗口。
 
