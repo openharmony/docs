@@ -1758,7 +1758,7 @@ function unregisterPreviewOutputError(previewOutput: camera.PreviewOutput): void
 **示例：**
 
 ```ts
-function getSupportedFrameRates(previewOutput: camera.PreviewOutput): Array<FrameRateRange> {
+function getSupportedFrameRates(previewOutput: camera.PreviewOutput): Array<camera.FrameRateRange> {
   let supportedFrameRatesArray: Array<camera.FrameRateRange> = previewOutput.getSupportedFrameRates();
   return supportedFrameRatesArray;
 }
@@ -1819,7 +1819,7 @@ getActiveFrameRate(): FrameRateRange
 **示例：**
 
 ```ts
-function getActiveFrameRate(previewOutput: camera.PreviewOutput): FrameRateRange {
+function getActiveFrameRate(previewOutput: camera.PreviewOutput): camera.FrameRateRange {
   let activeFrameRate: camera.FrameRateRange = previewOutput.getActiveFrameRate();
   return activeFrameRate;
 }
@@ -3097,7 +3097,7 @@ getSupportedFrameRates(): Array\<FrameRateRange\>
 **示例：**
 
 ```ts
-function getSupportedFrameRates(videoOutput: camera.VideoOutput): Array<FrameRateRange> {
+function getSupportedFrameRates(videoOutput: camera.VideoOutput): Array<camera.FrameRateRange> {
   let supportedFrameRatesArray: Array<camera.FrameRateRange> = videoOutput.getSupportedFrameRates();
   return supportedFrameRatesArray;
 }
@@ -3159,7 +3159,7 @@ getActiveFrameRate(): FrameRateRange
 **示例：**
 
 ```ts
-function getActiveFrameRate(videoOutput: camera.VideoOutput): FrameRateRange {
+function getActiveFrameRate(videoOutput: camera.VideoOutput): camera.FrameRateRange {
   let activeFrameRate: camera.FrameRateRange = videoOutput.getActiveFrameRate();
   return activeFrameRate;
 }
