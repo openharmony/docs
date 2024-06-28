@@ -335,9 +335,13 @@ HAR可以作为二方库和三方库提供给其他应用使用，如果需要�
 
 > **场景说明**
 >
->在har中使用Sendable class时，开启该配置。
+>在HAR中使用Sendable class时，开启该配置。
 
-har模块中arkts文件编译后，默认产物为js文件，想要将产物修改为ts文件，可以在har模块src/main目录下的module.json5文件中的"metadata"字段下的"UseTsHar"进行设置，配置如下所示：
+> **使用限制**
+>
+>在依赖TS HAR时，禁止引用TS HAR中的ArkUI组件。
+
+HAR模块中arkts文件编译后，默认产物为js文件，想要将产物修改为ts文件，可以在HAR模块src/main目录下的module.json5文件中的"metadata"字段下的"UseTsHar"进行设置，配置如下所示：
 
   ```json
   {
