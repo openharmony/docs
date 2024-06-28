@@ -30,8 +30,7 @@ Declare the permissions to request in the **module.json5** file.
 
 Manually request the required permissions.
 ```typescript
-import { Permissions } from '@kit.SafetyDetectKit';
-import { abilityAccessCtrl, PermissionRequestResult } from '@kit.AbilityKit';
+import { abilityAccessCtrl, PermissionRequestResult, Permissions } from '@kit.AbilityKit';
 import {mContext} from '../entryability/EntryAbility'; // Obtained context, which needs to be defined.
 
 const permissions: Permissions[] = ["ohos.permission.READ_CALENDAR", "ohos.permission.WRITE_CALENDAR"];

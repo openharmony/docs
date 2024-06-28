@@ -10,36 +10,33 @@ Live view notifications enable users to get the latest updates of tasks in real 
 
 | Type                                                  | Value| Description               |
 | ------------------------------------------------------ | --- | ------------------ |
-| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | 5  | System live view notification.   |
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | 5  | Live view notification.   |
 | NOTIFICATION_CONTENT_LIVE_VIEW<sup>11+</sup>           | 6  | Common live view notification.|
 ## Available APIs
 
-The following table describes the APIs for notification publishing. You specify the notification information – content, ID, slot type, and publish time – by setting the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest) parameter in the APIs.
+The following table describes the APIs for notification publishing. You can specify the notification information – content, ID, slot type, and delivery time – by setting the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest) parameter in the APIs.  
 
 | **API**| **Description**|
 | -------- | -------- |
-| [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish)(request: NotificationRequest, callback: AsyncCallback&lt;void&gt;): void | Publishes a notification.                |
-| [cancel](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagercancel)(id: number, label: string, callback: AsyncCallback&lt;void&gt;): void | Cancels a specified notification.     |
+| [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish)(request:&nbsp;NotificationRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Publishes a notification.                |
+| [cancel](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagercancel)(id:&nbsp;number,&nbsp;label:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Cancels a specified notification.     |
 
 
 ## How to Develop
 
-1. [Request notification authorization](notification-enable.md). Your application can send notifications only after obtaining user authorization. 
-
-2. Import the modules.
+1. Import the modules.
    
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
    ```
 
-3. Publish a notification.
+2. Publishes a notification.
 
    - In addition to the parameters in the normal text notification, the system live view notification provides the **typeCode**, **capsule**, **button**, **time**, and **progress** parameters. For details, see [NotificationSystemLiveViewContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent).
      
       ```ts
       import image from '@ohos.multimedia.image';
-      import notificationSubscribe from '@ohos.notificationSubscribe';
 
       let imagePixelMap: image.PixelMap | undefined = undefined; // Obtain the image pixel map information.
       let color = new ArrayBuffer(4);
@@ -76,7 +73,7 @@ The following table describes the APIs for notification publishing. You specify 
               },
               // Progress. To update the progress, you only need to modify the progress value and publish the notification again.
               progress: {
-                maxValue: 100,ss
+                maxValue: 100,
                 currentValue: 21,
                 isPercentage: false,
               },
@@ -88,14 +85,6 @@ The following table describes the APIs for notification publishing. You specify 
                 isInTitle: false,
               }
             }
-          }
-        };
-        // subscribe callback
-        let subscribeCallback = (err: Base.BusinessError): void => {
-          if (err) {
-            console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-          } else {
-            console.info("subscribe success");
           }
         };
         // publish callback
@@ -113,19 +102,6 @@ The following table describes the APIs for notification publishing. You specify 
         let systemLiveViewSubscriber: notificationManager.SystemLiveViewSubscriber  = {
           onResponse: onResponseCallback
         };
-        // Invoked when the subscriber cancels the notification.
-        let onCancelCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
-          console.info("Cancel callback: " + JSON.stringify(data));
-        }
-        let notificationSubscriber: notificationSubscribe.NotificationSubscriber = {
-          onCancel: onCancelCallback
-        };
-        let info: notificationSubscribe.NotificationSubscribeInfo = {
-          bundleNames: ["bundleName1"],
-          userId: 123
-        };
-        // Subscribe to the notification.
-        notificationSubscribe.subscribe(notificationSubscriber, info, subscribeCallback);
         // Subscribe to the system live view notification (button).
         notificationManager.subscribeSystemLiveView(systemLiveViewSubscriber);
         // Publish the notification.
@@ -136,71 +112,83 @@ The following table describes the APIs for notification publishing. You specify 
    - In addition to the parameters in the normal text notification, the common live view provides the **status**, **version**, **extraInfo**, and **pictureInfo** parameters. For details, see [NotificationLiveViewContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent-sys.md#notificationliveviewcontent11).
 
       ```ts
-      import Want from '@ohos.app.ability.Want';
-      import wantAgent, {WantAgent as _wantAgent} from '@ohos.app.ability.wantAgent';
+      import wantAgent from '@ohos.app.ability.wantAgent';
+      import { WantAgent } from '@ohos.app.ability.wantAgent';
 
+      let wantAgentObj: WantAgent;
       let wantAgentInfo: wantAgent.WantAgentInfo = {
         wants: [
-            {
-                deviceId: '',
-                bundleName: 'com.example.myapplication',
-                abilityName: 'EntryAbility',
-                action: '',
-                entities: [],
-                uri: '',
-                parameters: {}
-            }
+          {
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: '',
+            entities: [],
+            uri: '',
+            parameters: {}
+          }
         ],
         operationType: wantAgent.OperationType.START_ABILITY,
         requestCode: 0,
         wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG]
       }
-      let notificationRequest: notificationManager.NotificationRequest = {
-        id: 1,
-        content: {
-          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
-          liveView: {
-            status: notificationManager.LiveViewStatus.LIVE_VIEW_CREATE,
-            version: 1,
-            extraInfo: {
-              "event": "TAXI",
-              "isMute": false,
-              "primaryData.title": "primary title",
-              "primaryData.content": [{ text: "text1", textColor: "#FFFFFFFF"}, { text: "text2", textColor: "#FFFFFFFF"}],
-              "primaryData.keepTime": 60,
-              "primaryData.extend.text": "extendData text",
-              "primaryData.extend.type": 1,
-              "PickupLayout.layoutType": 4,
-              "PickupLayout.title": "layout title",
-              "PickupLayout.content": "layout content",
-              "PickupLayout.underlineColor": "#FFFFFFFF",
-              "CapsuleData.status": 1,
-              "CapsuleData.type": 1,
-              "CapsuleData.backgroundColor": "#FFFFFFFF",
-              "CapsuleData.title": "capsule title",
-              "CapsuleData.content": "capsule content",
-              "TimerCapsule.content": "capsule title",
-              "TimerCapsule.initialtime": 7349485944,
-              "TimerCapsule.isCountdown": false,
-              "TimerCapsule.isPause": true
-            }
-          }
-        },
-        notificationSlotType: notificationManager.SlotType.LIVE_VIEW,
-        isOngoing: true,
-        isUnremovable: false,
-        autoDeletedTime: 500,
-        wantAgent: await WantAgent.getWantAgent(WantAgentInfo),
-        extraInfo: {
-          'testKey': 'testValue'
-        },
-      }
-
-      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+      // Create a WantAgent object.
+      wantAgent.getWantAgent(wantAgentInfo, (err:Base.BusinessError, data:WantAgent) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        console.info('Succeeded in getting want agent.');
+        wantAgentObj = data;
+
+        let notificationRequest: notificationManager.NotificationRequest = {
+          id: 1,
+          content: {
+            notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
+            liveView: {
+              title: "title",
+              text: "text",
+              status: 0,
+              version: 1,
+              extraInfo: {
+                "event": "TAXI",
+                "isMute": false,
+                "primaryData.title": "primary title",
+                "primaryData.content": [{ text: "text1", textColor: "#FFFFFFFF"}, { text: "text2", textColor: "#FFFFFFFF"}],
+                "primaryData.keepTime": 60,
+                "primaryData.extend.text": "extendData text",
+                "primaryData.extend.type": 1,
+                "PickupLayout.layoutType": 4,
+                "PickupLayout.title": "layout title",
+                "PickupLayout.content": "layout content",
+                "PickupLayout.underlineColor": "#FFFFFFFF",
+                "CapsuleData.status": 1,
+                "CapsuleData.type": 1,
+                "CapsuleData.backgroundColor": "#FFFFFFFF",
+                "CapsuleData.title": "capsule title",
+                "CapsuleData.content": "capsule content",
+                "TimerCapsule.content": "capsule title",
+                "TimerCapsule.initialtime": 7349485944,
+                "TimerCapsule.isCountdown": false,
+                "TimerCapsule.isPause": true
+              },
+            },
+          },
+          notificationSlotType: notificationManager.SlotType.LIVE_VIEW,
+          isOngoing: true,
+          isUnremovable: false,
+          autoDeletedTime: 500,
+          wantAgent: wantAgentObj,
+          extraInfo: {
+            'testKey': 'testValue'
+          },
+        }
+        notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+          if (err) {
+            console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in publishing notification.');
+        });
       });
       ```

@@ -16,13 +16,13 @@ The following table lists the notification slots and their reminder modes. **Y**
 
 ## Available APIs
 
+The main notification slot APIs are as follows. For details about other APIs, see [@ohos.notificationManager (NotificationManager)](../reference/apis-notification-kit/js-apis-notificationManager.md).
+
 | **API**| **Description**|
 | ---------- | -------- |
-| [addSlot](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanageraddslot-1)(type: SlotType, callback: AsyncCallback\<void\>): void <br> [addSlot](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanageraddslot-1)(type: SlotType): Promise\<void\> | Adds a notification slot.         |
-| [getSlot](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagergetslot)(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void <br>[getSlot](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagergetslot-1)(slotType: SlotType): Promise\<NotificationSlot\> | Obtains a notification slot. |
-| [getSlots](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagergetslots)(callback: AsyncCallback\<Array\<NotificationSlot>>): void <br> [getSlots](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagergetslots-1)(): Promise\<Array\<NotificationSlot>>  | Obtains all notification slots for this application.    |
-| [removeSlot](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerremoveslot)(slotType: SlotType, callback: AsyncCallback\<void\>): void  <br> [removeSlot](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerremoveslot-1)(slotType: SlotType): Promise\<void\>  | Removes a notification slot for this application. |
-| [removeAllSlots](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerremoveallslots)(callback: AsyncCallback\<void\>): void <br> [removeAllSlots](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerremoveallslots-1)(): Promise\<void\>   | Removes all notification slots for this application.      |
+| addSlot(type: SlotType): Promise\<void\>                 | Adds a notification slot.          |
+| getSlot(slotType: SlotType): Promise\<NotificationSlot\> | Obtains a notification slot.      |
+| removeSlot(slotType: SlotType): Promise\<void\>          | Removes a notification slot for this application. |
 
 In addition to using **addslot()**, you can also create a notification slot by passing **notificationSlotType** in the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). If the specified notification slot does not exist, it is automatically created.
 
@@ -38,8 +38,6 @@ In addition to using **addslot()**, you can also create a notification slot by p
 2. Add a notification slot.
 
     ```ts
-    import Base from '@ohos.base';
-
     // addSlot callback
     let addSlotCallBack = (err: Base.BusinessError): void => {
         if (err) {
@@ -53,13 +51,20 @@ In addition to using **addslot()**, you can also create a notification slot by p
 
 3. Obtain a notification slot.
 
+    Obtain whether the corresponding slot is created and the notification modes supported by the slot, for example, whether there is an alert tone whether there is vibration, and whether the lock screen is visible.
     ```ts
     // getSlot callback
     let getSlotCallback = (err: Base.BusinessError, data: notificationManager.NotificationSlot): void => {
         if (err) {
             console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
         } else {
-            console.info(`getSlot success, data is ${JSON.stringify(data)}`);
+            console.info(`getSlot success. `);
+            if (data != null) {
+                console.info(`slot enable status is ${JSON.stringify(data.enabled)}`);
+                console.info(`slot level is ${JSON.stringify(data.level)}`);
+                console.info(`vibrationEnabled status is ${JSON.stringify(data.vibrationEnabled)}`);
+                console.info(`lightEnabled status is ${JSON.stringify(data.lightEnabled)}`);
+            }
         }
     }
     let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
