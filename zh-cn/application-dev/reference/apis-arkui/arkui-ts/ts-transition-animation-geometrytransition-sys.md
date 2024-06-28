@@ -1,6 +1,6 @@
 # 组件内隐式共享元素转场 (geometryTransition)(系统接口)
 
-在视图切换过程中提供丝滑的上下文传承过渡。通用transition机制提供了opacity、scale等转场效果，geometryTransition通过安排绑定的in/out组件(in指新视图、out指旧视图)的frame、position使得原本独立的transition动画在空间位置上发生联系，将视觉焦点由旧视图位置引导到新视图位置。
+在视图切换过程中提供丝滑的上下文传承过渡。通用transition机制提供了opacity、scale等转场效果，geometryTransition通过安排绑定的in/out组件（in指新视图、out指旧视图）的frame、position使得原本独立的transition动画在空间位置上发生联系，将视觉焦点由旧视图位置引导到新视图位置。
 
 > **说明：**
 >
@@ -20,7 +20,7 @@
 
 | 参数名 | 参数类型 | 必填 | 参数描述                                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------------------------- |
-| hierarchyStrategy<sup>12+<sup> | [TransitionHierarchyStrategy](#transitionhierarchystrategy)  | 否   | 决定共享元素动画过程中in/out组件在组件树上层级位置移动策略，默认值：TransitionHierarchyStrategy.ADAPTIVE。<br>实际影响绑定的in/out组件相对其他组件的前后重叠关系，常规情况下慎重修改。<br>建议在发现共享元素动画过程中出现组件前后重叠关系错误时需要调整再设置此参数。|
+| hierarchyStrategy<sup>12+<sup> | [TransitionHierarchyStrategy](#transitionhierarchystrategy12)  | 否   | 此接口为系统接口。<br>决定共享元素动画过程中in/out组件在组件树上层级位置的移动策略，默认值：TransitionHierarchyStrategy.ADAPTIVE。<br>实际影响绑定的in/out组件相对其他组件的前后重叠关系，常规情况下慎重修改。<br>建议在发现共享元素动画过程中出现组件前后重叠关系错误时需要调整再设置此参数。|
 
 ## 示例
 
@@ -33,7 +33,7 @@ Image($r('app.media.icon'))
 ```
 
 ## TransitionHierarchyStrategy<sup>12+<sup>
-共享元素动画期间in/out组件层级移动策略枚举。
+共享元素动画过程中in/out组件层级位置移动策略枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -44,4 +44,4 @@ Image($r('app.media.icon'))
 | 名称   | 值 | 说明 |
 | ------ | - | ---- |
 | NONE  | 0 | 无层级提拉，in/out组件保持原来的层级位置，受父组件scale、position影响。 |
-| ADAPTIVE | 1 | 有层级提拉，in/out组件中相对低层级的组件被提拉至组件树上in/out组件相对高的层级处。<br>还会导致被提拉的组件与父组件解绑，不受父组件scale、position影响。<br>例如in组件层级高于out组件，开启层级提拉后会在动画过程中将out组件从自己的父组件处解耦，并提拉至in组件的层级位置处，in组件不变。|
+| ADAPTIVE | 1 | 有层级提拉，in/out组件中相对低层级的组件被提拉至组件树上in/out组件相对高层级的位置上。<br>此模式还会导致被提拉的组件与父组件解绑，不受父组件scale、position影响。<br>例如in组件层级高于out组件，开启层级提拉后会在动画过程中将out组件从自己的父组件处解耦，并提拉至in组件的层级位置处，in组件层级位置不变。|
