@@ -21,7 +21,7 @@ import { common } from '@kit.AbilityKit';
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
-注册监听应用内生命周期。使用callback异步回调。不支持多线程并发调用。
+注册监听应用内生命周期。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -109,7 +109,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
-取消监听应用内生命周期。使用callback异步回调。不支持多线程并发调用。
+取消监听应用内生命周期。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -162,7 +162,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
-取消监听应用内生命周期。使用Promise异步回调。不支持多线程并发调用。
+取消监听应用内生命周期。使用Promise异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -214,7 +214,7 @@ export default class MyAbility extends UIAbility {
 
 on(type: 'environment', callback: EnvironmentCallback): number
 
-注册对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
+注册对系统环境变化的监听。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -277,7 +277,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): void
 
-取消对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
+取消对系统环境变化的监听。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -329,7 +329,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number): Promise\<void\>
 
-取消对系统环境变化的监听。使用Promise异步回调。不支持多线程并发调用。
+取消对系统环境变化的监听。使用Promise异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -380,7 +380,7 @@ export default class MyAbility extends UIAbility {
 
 on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
-注册对当前应用前后台变化的监听。使用callback异步回调。不支持多线程并发调用。
+注册对当前应用前后台变化的监听。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -436,7 +436,7 @@ export default class MyAbility extends UIAbility {
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-取消当前应用注册的前后台变化的全部监听。使用callback异步回调。不支持多线程并发调用。
+取消当前应用注册的前后台变化的全部监听。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -568,7 +568,7 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(): Promise\<void\>
 
-杀死应用所在的进程。使用Promise异步回调。不支持多线程并发调用。
+杀死应用所在的进程。使用Promise异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -606,7 +606,7 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(callback: AsyncCallback\<void\>)
 
-杀死应用所在的进程。使用callback异步回调。不支持多线程并发调用。
+杀死应用所在的进程。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -647,7 +647,7 @@ export default class MyAbility extends UIAbility {
 
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
-设置应用的颜色模式。不支持多线程并发调用。
+设置应用的颜色模式。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -685,7 +685,7 @@ export default class MyAbility extends UIAbility {
 
 setLanguage(language: string): void
 
-设置应用的语言。不支持多线程并发调用。
+设置应用的语言。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -724,7 +724,7 @@ export default class MyAbility extends UIAbility {
 
 clearUpApplicationData(): Promise\<void\>
 
-清理应用本身的数据，同时撤销应用向用户申请的权限。使用Promise异步回调。不支持多线程并发调用。
+清理应用本身的数据，同时撤销应用向用户申请的权限。使用Promise异步回调。仅支持主线程调用。
 
 > **说明：**
 >
@@ -764,7 +764,7 @@ export default class MyAbility extends UIAbility {
 
 clearUpApplicationData(callback: AsyncCallback\<void\>): void
 
-清理应用本身的数据，同时撤销应用向用户申请的权限。使用callback异步回调。不支持多线程并发调用。
+清理应用本身的数据，同时撤销应用向用户申请的权限。使用callback异步回调。仅支持主线程调用。
 
 > **说明：**
 >
@@ -808,7 +808,7 @@ export default class MyAbility extends UIAbility {
 
 restartApp(want: Want): void
 
-应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。不支持多线程并发调用。
+应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -897,7 +897,7 @@ export default class MyAbility extends UIAbility {
 
 setFont(font: string): void
 
-设置应用的字体类型。不支持多线程并发调用。
+设置应用的字体类型。仅支持主线程调用。
 
 > **说明：**
 >
