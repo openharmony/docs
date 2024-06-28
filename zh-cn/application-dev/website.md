@@ -2072,12 +2072,12 @@
           - [TabContent](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md)
           - [WaterFlow](reference/apis-arkui/arkui-ts/ts-container-waterflow.md)
           <!--Del-->
-          - [Column (系统接口)](reference/arkui-ts/ts-container-column-sys.md)
+          - [Column (系统接口)](reference/apis-arkui/arkui-ts/ts-container-column-sys.md)
           - [EffectComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)
-          - [Flex (系统接口)](reference/arkui-ts/ts-container-flex-sys.md)
+          - [Flex (系统接口)](reference/apis-arkui/arkui-ts/ts-container-flex-sys.md)
           - [List (系统接口)](reference/apis-arkui/arkui-ts/ts-container-list-sys.md)
-          - [Row (系统接口)](reference/arkui-ts/ts-container-row-sys.md)
-          - [Stack (系统接口)](reference/arkui-ts/ts-container-stack-sys.md)
+          - [Row (系统接口)](reference/apis-arkui/arkui-ts/ts-container-row-sys.md)
+          - [Stack (系统接口)](reference/apis-arkui/arkui-ts/ts-container-stack-sys.md)
           - [UIExtensionComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)
           <!--DelEnd-->
         - 媒体组件
@@ -2170,7 +2170,7 @@
         - [设置事件回调](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
         - [属性字符串](reference/apis-arkui/arkui-ts/ts-universal-styled-string.md)
         <!--Del-->
-        - [枚举说明 (系统接口)](reference/arkui-ts/ts-appendix-enums-sys.md)
+        - [枚举说明 (系统接口)](reference/apis-arkui/arkui-ts/ts-appendix-enums-sys.md)
         <!--DelEnd-->
         - 已停止维护的组件 
           <!--Del-->         
@@ -2902,7 +2902,7 @@
       <!--Del-->
       - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
       - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
-      - [@ohos.cooperate (键鼠穿越)（系统接口）](reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md)
+      - [@ohos.cooperate (键鼠穿越)（系统接口）](reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate-sys.md)
       - 已停止维护的接口<!--distributed-service-dep-->
         - [@ohos.distributedHardware.deviceManager (设备管理)(系统接口)(待删除)](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)
       <!--DelEnd-->
