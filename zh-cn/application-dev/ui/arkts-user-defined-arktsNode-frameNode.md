@@ -30,7 +30,7 @@ FrameNode提供了[getRenderNode](../reference/apis-arkui/js-apis-arkui-frameNod
 
 > **说明：**
 >
-> - 无法获取原生组件代理FrameNode的RenderNode对象，即通过节点查询获得的原生组件的FrameNode中获取的。
+> - 无法获取原生组件代理FrameNode的RenderNode对象。
 > 
 > - BuilderNode中调用[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取得到的FrameNode节点对象中，可以通过getRenderNode获取对应的根节点的RenderNode对象。
 
