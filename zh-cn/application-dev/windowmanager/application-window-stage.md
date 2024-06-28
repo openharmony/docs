@@ -243,7 +243,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let windowStage_: window.windowStage | undefined = undefined;
+let windowStage_: window.WindowStage | undefined = undefined;
 let sub_windowClass: window.Window | undefined = undefined;
 @Entry
 @Component
