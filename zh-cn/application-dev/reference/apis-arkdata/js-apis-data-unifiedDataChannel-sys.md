@@ -59,7 +59,7 @@ setAppShareOptions(intention: Intention, shareOptions: ShareOptions): void
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
   unifiedDataChannel.setAppShareOptions(unifiedDataChannel.Intention.DRAG, unifiedDataChannel.ShareOptions.IN_APP);
-  console.error(`[UDMF]setAppShareOptions success. `);
+  console.info(`[UDMF]setAppShareOptions success. `);
 }catch (e){
   let error: BusinessError = e as BusinessError;
   console.error(`[UDMF]setAppShareOptions throws an exception. code is ${error.code},message is ${error.message} `);
@@ -70,7 +70,7 @@ try {
 
 removeAppShareOptions(intention: Intention): void
 
-清除应用内拖拽通道数据可使用的范围[ShareOptions](js-apis-data-unifiedDataChannel.md#shareoptions12)。
+清除[setAppShareOptions](#unifieddatachannelsetappshareoptions12)设置的管控信息。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -99,7 +99,7 @@ removeAppShareOptions(intention: Intention): void
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
   unifiedDataChannel.removeAppShareOptions(unifiedDataChannel.Intention.DRAG);
-  console.error(`[UDMF]removeAppShareOptions success. `);
+  console.info(`[UDMF]removeAppShareOptions success. `);
 }catch (e){
   let error: BusinessError = e as BusinessError;
   console.error(`[UDMF]removeAppShareOptions throws an exception. code is ${error.code},message is ${error.message} `);
