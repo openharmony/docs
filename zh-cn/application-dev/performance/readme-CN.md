@@ -41,3 +41,4 @@
     - [性能优化工具SmartPerf-Host](performance-optimization-using-smartperf-host.md)
     - [常用trace使用指导](common-trace-using-instructions.md)
     - [状态变量组件定位工具实践](state_variable_dfx_pratice.md)
+    - [Web性能问题分析案例](web-analyse.md)
