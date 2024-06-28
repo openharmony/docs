@@ -1130,7 +1130,9 @@
       - [使用HiTraceMeter跟踪性能（ArkTS/JS）](dfx/hitracemeter-guidelines-arkts.md)
       - [使用HiTraceMeter跟踪性能（C/C++）](dfx/hitracemeter-guidelines-ndk.md)
       - [查看HiTraceMeter日志](dfx/hitracemeter-view.md)
-    - [HiTraceChain使用指导](dfx/hitracechain-guidelines.md)
+    - HiTraceChain使用指导
+      - [使用HiTraceChain打点（ArkTS/JS）](dfx/hitracechain-guidelines-arkts.md)
+      - [使用HiTraceChain打点（C/C++）](dfx/hitracechain-guidelines-ndk.md)
     - HiChecker使用指导
       - [使用HiChecker检测问题（ArkTS/JS）](dfx/hichecker-guidelines-arkts.md)
     - 错误管理
