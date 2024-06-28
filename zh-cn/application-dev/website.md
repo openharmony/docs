@@ -419,6 +419,7 @@
             - [FrameNode](ui/arkts-user-defined-arktsNode-frameNode.md)
             - [RenderNode](ui/arkts-user-defined-arktsNode-renderNode.md)
             - [BuilderNode](ui/arkts-user-defined-arktsNode-builderNode.md)
+        - [使用镜像能力](ui/arkts-mirroring-display.md)
         - 使用NDK接口构建UI
           - [NDK接口概述](ui/ndk-build-ui-overview.md)
           - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
@@ -1053,7 +1054,7 @@
           - [hitrace](dfx/hitrace.md)
           - [hiperf](dfx/hiperf.md)
           - [hisysevent](dfx/hisysevent.md)
-          - [toybox](dfx/toybox.md)
+          - [toybox](tools/toybox.md)
         <!--Del-->
           - [uinput](dfx/uinput.md)
         <!--DelEnd-->
