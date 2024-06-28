@@ -85,16 +85,15 @@ Common fault types include JavaScript application crash, application freezing, a
    Enable **appRecovery** during application initialization. The following is an example of **AbilityStage**:
 
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage'
-import appRecovery from '@ohos.app.ability.appRecovery'
+import { AbilityStage, appRecovery } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.info("[Demo] MyAbilityStage onCreate");
-        appRecovery.enableAppRecovery(appRecovery.RestartFlag.ALWAYS_RESTART,
-            appRecovery.SaveOccasionFlag.SAVE_WHEN_ERROR | appRecovery.SaveOccasionFlag.SAVE_WHEN_BACKGROUND,
-            appRecovery.SaveModeFlag.SAVE_WITH_FILE);
-    }
+  onCreate() {
+    console.info("[Demo] MyAbilityStage onCreate");
+    appRecovery.enableAppRecovery(appRecovery.RestartFlag.ALWAYS_RESTART,
+      appRecovery.SaveOccasionFlag.SAVE_WHEN_ERROR | appRecovery.SaveOccasionFlag.SAVE_WHEN_BACKGROUND,
+      appRecovery.SaveModeFlag.SAVE_WITH_FILE);
+  }
 }
 ```
 ### Enabling Application Recovery for the Specified Abilities
@@ -118,9 +117,7 @@ The following is an example of **EntryAbility**:
 #### Importing the Service Package
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
-import appRecovery from '@ohos.app.ability.appRecovery';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { AbilityConstant, appRecovery, errorManager} from '@kit.AbilityKit';
 ```
 
 #### Actively Saving the Application State and Restoring Data
@@ -128,35 +125,33 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 - Define and register the [ErrorObserver](../reference/apis-ability-kit/js-apis-inner-application-errorObserver.md) callback. For details about its usage, see [errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md).
 
 ```ts
-  import appRecovery from '@ohos.app.ability.appRecovery';
-  import errorManager from '@ohos.app.ability.errorManager';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+import { appRecovery, errorManager, UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
-  let registerId = -1;
-  let callback: errorManager.ErrorObserver = {
-      onUnhandledException(errMsg) {
-          console.log(errMsg);
-          appRecovery.saveAppState();
-          appRecovery.restartApp();
-      }
+let registerId = -1;
+let callback: errorManager.ErrorObserver = {
+  onUnhandledException(errMsg) {
+    console.log(errMsg);
+    appRecovery.saveAppState();
+    appRecovery.restartApp();
   }
+}
 
-  export default class EntryAbility extends UIAbility {
-      onWindowStageCreate(windowStage: window.WindowStage) {
-          // Main window is created, set main page for this ability
-          console.log("[Demo] EntryAbility onWindowStageCreate");
-          registerId = errorManager.on('error', callback);
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("[Demo] EntryAbility onWindowStageCreate");
+    registerId = errorManager.on('error', callback);
 
-          windowStage.loadContent("pages/index", (err, data) => {
-              if (err.code) {
-                  console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                  return;
-              }
-              console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-          })
+    windowStage.loadContent("pages/index", (err, data) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
       }
+      console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+    })
   }
+}
 ```
 
 - Save data.
@@ -164,16 +159,15 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 After the callback triggers **appRecovery.saveAppState()**, **onSaveState(state, wantParams)** of **EntryAbility** is triggered.
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-    onSaveState(state:AbilityConstant.StateType, wantParams: Record<string, Object>) {
-        // Ability has called to save app data
-        console.log("[Demo] EntryAbility onSaveState");
-        wantParams["myData"] = "my1234567";
-        return AbilityConstant.OnSaveResult.ALL_AGREE;
-    }
+  onSaveState(state:AbilityConstant.StateType, wantParams: Record<string, Object>) {
+    // Ability has called to save app data
+    console.log("[Demo] EntryAbility onSaveState");
+    wantParams["myData"] = "my1234567";
+    return AbilityConstant.OnSaveResult.ALL_AGREE;
+  }
 }
 ```
 
@@ -182,47 +176,44 @@ export default class EntryAbility extends UIAbility {
 After the callback triggers **appRecovery.restartApp()**, the application is restarted. After the restart, **onCreate(want, launchParam)** of **EntryAbility** is called, and the saved data is stored in **parameters** of **want**.
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
-    storage: LocalStorage | undefined = undefined;
+  storage: LocalStorage | undefined = undefined;
 
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("[Demo] EntryAbility onCreate");
-        abilityWant = want;
-        if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
-            this.storage = new LocalStorage();
-            if (want.parameters) {
-                let recoveryData = want.parameters["myData"];
-                this.storage.setOrCreate("myData", recoveryData);
-                this.context.restoreWindowStage(this.storage);
-            }
-        }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("[Demo] EntryAbility onCreate");
+    abilityWant = want;
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
+      this.storage = new LocalStorage();
+      if (want.parameters) {
+        let recoveryData = want.parameters["myData"];
+        this.storage.setOrCreate("myData", recoveryData);
+        this.context.restoreWindowStage(this.storage);
+      }
     }
+  }
 }
 ```
 
 - Unregister the **ErrorObserver** callback.
 
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { errorManager, UIAbility } from '@kit.AbilityKit';
 
 let registerId = -1;
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] EntryAbility onWindowStageDestroy");
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("[Demo] EntryAbility onWindowStageDestroy");
 
-        errorManager.off('error', registerId, (err) => {
-            console.error("[Demo] err:", err);
-        });
-    }
+    errorManager.off('error', registerId, (err) => {
+      console.error("[Demo] err:", err);
+    });
+  }
 }
 ```
 
@@ -231,33 +222,31 @@ export default class EntryAbility extends UIAbility {
 This is triggered by the recovery framework. You do not need to register an **ErrorObserver** callback. You only need to implement **onSaveState** for application state saving and **onCreate** for data restore.
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
-    storage: LocalStorage | undefined = undefined
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  storage: LocalStorage | undefined = undefined
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log("[Demo] EntryAbility onCreate");
-        abilityWant = want;
-        if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
-            this.storage = new LocalStorage();
-            if (want.parameters) {
-                let recoveryData = want.parameters["myData"];
-                this.storage.setOrCreate("myData", recoveryData);
-                this.context.restoreWindowStage(this.storage);
-            }
-        }
+    abilityWant = want;
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
+      this.storage = new LocalStorage();
+      if (want.parameters) {
+        let recoveryData = want.parameters["myData"];
+        this.storage.setOrCreate("myData", recoveryData);
+        this.context.restoreWindowStage(this.storage);
+      }
     }
+  }
 
-    onSaveState(state:AbilityConstant.StateType, wantParams: Record<string, Object>) {
-        // Ability has called to save app data
-        console.log("[Demo] EntryAbility onSaveState");
-        wantParams["myData"] = "my1234567";
-        return AbilityConstant.OnSaveResult.ALL_AGREE;
-    }
+  onSaveState(state:AbilityConstant.StateType, wantParams: Record<string, Object>) {
+    // Ability has called to save app data
+    console.log("[Demo] EntryAbility onSaveState");
+    wantParams["myData"] = "my1234567";
+    return AbilityConstant.OnSaveResult.ALL_AGREE;
+  }
 }
 ```
 
@@ -266,20 +255,17 @@ export default class EntryAbility extends UIAbility {
 If the failed ability is restarted again, the [ABILITY_RECOVERY_RESTART](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams) flag will be added as a **parameters** member for the **want** parameter in **onCreate** and its value is **true**.
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { AbilityConstant, UIAbility, Want, wantConstant } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        if (want.parameters === undefined) {
-            return;
-        }
-        if (want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] != undefined &&
-            want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] == true) {
-            console.log("This ability need to recovery");
-        }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    if (want.parameters === undefined) {
+      return;
     }
+    if (want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] != undefined &&
+      want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] == true) {
+      console.log("This ability need to recovery");
+    }
+  }
 }
 ```
