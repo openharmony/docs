@@ -1599,7 +1599,7 @@ allowWindowOpenMethod(flag: boolean)
             }
             let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({ webviewController1: popController });
+              builder: NewWebViewComp({ webviewController1: popController })
             })
             this.dialogController.open();
             //将新窗口对应WebviewController返回给Web内核。
@@ -1983,7 +1983,7 @@ defaultTextEncodingFormat(textEncodingFormat: string)
 
 metaViewport(enable: boolean)
 
-设置mete标签的viewport属性是否可用。
+设置meta标签的viewport属性是否可用。
 
 > **说明：**
 >
@@ -1996,7 +1996,7 @@ metaViewport(enable: boolean)
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                         |
 | ------ | -------- | ---- | ------ | -------------------------------- |
-| enable | boolean  | 是   | true   | 是否支持mete标签的viewport属性。 |
+| enable | boolean  | 是   | true   | 是否支持meta标签的viewport属性。 |
 
 **示例：**
 
@@ -4969,6 +4969,7 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
@@ -4978,14 +4979,27 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        // 点击按钮跳转页面，关闭index页面，使Embed标签销毁。
+        Button('Destroy')
+        .onClick(() => {
+          try {
+            this.controller.loadUrl("www.example.com");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
           .onNativeEmbedLifecycleChange((event) => {
+            // 当加载页面中有Embed标签会触发Create。
             if (event.status == NativeEmbedStatus.CREATE) {
               this.embedStatus = 'Create';
             }
+            // 当页面中Embed标签移动或者缩放时会触发Update。
             if (event.status == NativeEmbedStatus.UPDATE) {
               this.embedStatus = 'Update';
             }
+            // 退出页面时会触发Destroy。
             if (event.status == NativeEmbedStatus.DESTROY) {
               this.embedStatus = 'Destroy';
             }
@@ -5004,6 +5018,25 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
       }
     }
   }
+  ```
+
+  加载的html文件
+  ```
+  <!-- index.html -->
+  <!Document>
+  <html>
+  <head>
+      <title>同层渲染测试html</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+      </div>
+  </div>
+  </body>
+  </html>
   ```
 
 ### onNativeEmbedGestureEvent<sup>11+</sup>
@@ -5099,7 +5132,7 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
       Column() {
         Stack() {
           NodeContainer(this.nodeController)
-          Web({ src: $rawfile("test.html"), controller: this.controller })
+          Web({ src: $rawfile("index.html"), controller: this.controller })
             .enableNativeEmbedMode(true)
             .onNativeEmbedLifecycleChange((embed) => {
               if (embed.status == NativeEmbedStatus.CREATE) {
@@ -5146,6 +5179,7 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
   ```
 加载的html文件
   ```
+  <!-- index.html -->
   <!Document>
 <html>
 <head>
