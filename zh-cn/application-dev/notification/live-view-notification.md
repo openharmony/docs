@@ -25,16 +25,14 @@
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
+   import image from '@ohos.multimedia.image';
    ```
 
 2. 发布通知。
 
-   - 系统实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，该类型的具体字段描述参考[NotificationSystemLiveViewContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent)。
+   系统实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，该类型的具体字段描述参考[NotificationSystemLiveViewContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent)。
      
       ```ts
-      import image from '@ohos.multimedia.image';
-      import notificationSubscribe from '@ohos.notificationSubscribe';
-
       let imagePixelMap: image.PixelMap | undefined = undefined; // 需要获取图片PixelMap信息
       let color = new ArrayBuffer(4);
       image.createPixelMap(color, {
@@ -70,7 +68,7 @@
               },
               // 进度，更新进度时，只需修改progress，重复publish即可
               progress: {
-                maxValue: 100,ss
+                maxValue: 100,
                 currentValue: 21,
                 isPercentage: false,
               },
@@ -82,14 +80,6 @@
                 isInTitle: false,
               }
             }
-          }
-        };
-        // subscribe回调
-        let subscribeCallback = (err: Base.BusinessError): void => {
-          if (err) {
-            console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-          } else {
-            console.info("subscribe success");
           }
         };
         // publish回调
@@ -106,17 +96,6 @@
         }
         let systemLiveViewSubscriber: notificationManager.SystemLiveViewSubscriber  = {
           onResponse: onResponseCallback
-        };
-        // subscriber取消通知回调
-        let onCancelCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
-          console.info("Cancel callback: " + JSON.stringify(data));
-        }
-        let notificationSubscriber: notificationSubscribe.NotificationSubscriber = {
-          onCancel: onCancelCallback
-        };
-        let info: notificationSubscribe.NotificationSubscribeInfo = {
-          bundleNames: ["bundleName1"],
-          userId: 123
         };
         // 订阅系统实况窗(按钮)
         notificationManager.subscribeSystemLiveView(systemLiveViewSubscriber);
