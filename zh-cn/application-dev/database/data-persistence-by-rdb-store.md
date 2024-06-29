@@ -42,11 +42,11 @@
 
 | 接口名称 | 描述 | 
 | -------- | -------- |
-| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作。 | 
+| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | 获得一个RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作。 | 
 | executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | 执行包含指定参数但不返回值的SQL语句。 | 
 | insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | 向目标表中插入一行数据。 | 
-| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | 根据RdbPredicates的指定实例对象更新数据库中的数据。 | 
-| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | 根据RdbPredicates的指定实例对象从数据库中删除数据。 | 
+| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | 根据predicates的指定实例对象更新数据库中的数据。 | 
+| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | 根据predicates的指定实例对象从数据库中删除数据。 | 
 | query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | 根据指定条件查询数据库中的数据。 | 
 | deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | 删除数据库。 | 
 
@@ -123,7 +123,8 @@
    ```ts
    import { relationalStore } from '@kit.ArkData'; // 导入模块
    import { featureAbility } from '@kit.AbilityKit';
-   
+   import { BusinessError } from '@kit.BasicServicesKit';
+
    let context = featureAbility.getContext();
 
    const STORE_CONFIG :relationalStore.StoreConfig = {
@@ -226,41 +227,39 @@
    调用update()方法修改数据，调用delete()方法删除数据。示例代码如下所示：
      
    ```ts
-   // 修改数据
-
-   let value1 = 'Rose';
-   let value2 = 22;
-   let value3 = 200.5;
-   let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-   let value5 = BigInt('15822401018187971967863');
+   let value6 = 'Rose';
+   let value7 = 22;
+   let value8 = 200.5;
+   let value9 = new Uint8Array([1, 2, 3, 4, 5]);
+   let value10 = BigInt('15822401018187971967863');
    // 以下三种方式可用
-   const valueBucket1: relationalStore.ValuesBucket = {
-     'NAME': value1,
-     'AGE': value2,
-     'SALARY': value3,
-     'CODES': value4,
-     'IDENTITY': value5,
+   const valueBucket4: relationalStore.ValuesBucket = {
+     'NAME': value6,
+     'AGE': value7,
+     'SALARY': value8,
+     'CODES': value9,
+     'IDENTITY': value10,
    };
-   const valueBucket2: relationalStore.ValuesBucket = {
-     NAME: value1,
-     AGE: value2,
-     SALARY: value3,
-     CODES: value4,
-     IDENTITY: value5,
+   const valueBucket5: relationalStore.ValuesBucket = {
+     NAME: value6,
+     AGE: value7,
+     SALARY: value8,
+     CODES: value9,
+     IDENTITY: value10,
    };
-   const valueBucket3: relationalStore.ValuesBucket = {
-     "NAME": value1,
-     "AGE": value2,
-     "SALARY": value3,
-     "CODES": value4,
-     "IDENTITY": value5,
+   const valueBucket6: relationalStore.ValuesBucket = {
+     "NAME": value6,
+     "AGE": value7,
+     "SALARY": value8,
+     "CODES": value9,
+     "IDENTITY": value10,
    };
    
    // 修改数据
-   let predicates = new relationalStore.RdbPredicates('EMPLOYEE'); // 创建表'EMPLOYEE'的predicates
-   predicates.equalTo('NAME', 'Lisa'); // 匹配表'EMPLOYEE'中'NAME'为'Lisa'的字段
+   let predicates1 = new relationalStore.RdbPredicates('EMPLOYEE'); // 创建表'EMPLOYEE'的predicates
+   predicates1.equalTo('NAME', 'Lisa'); // 匹配表'EMPLOYEE'中'NAME'为'Lisa'的字段
    if (store !== undefined) {
-     (store as relationalStore.RdbStore).update(valueBucket1, predicates, (err: BusinessError, rows: number) => {
+     (store as relationalStore.RdbStore).update(valueBucket4, predicates1, (err: BusinessError, rows: number) => {
        if (err) {
          console.error(`Failed to update data. Code:${err.code}, message:${err.message}`);
         return;
@@ -270,10 +269,10 @@
    }
 
    // 删除数据
-   predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-   predicates.equalTo('NAME', 'Lisa');
+   predicates1 = new relationalStore.RdbPredicates('EMPLOYEE');
+   predicates1.equalTo('NAME', 'Lisa');
    if (store !== undefined) {
-     (store as relationalStore.RdbStore).delete(predicates, (err: BusinessError, rows: number) => {
+     (store as relationalStore.RdbStore).delete(predicates1, (err: BusinessError, rows: number) => {
        if (err) {
          console.error(`Failed to delete data. Code:${err.code}, message:${err.message}`);
          return;
@@ -288,10 +287,10 @@
    调用query()方法查找数据，返回一个ResultSet结果集。示例代码如下所示：
      
    ```ts
-   let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-   predicates.equalTo('NAME', 'Rose');
+   let predicates2 = new relationalStore.RdbPredicates('EMPLOYEE');
+   predicates2.equalTo('NAME', 'Rose');
    if (store !== undefined) {
-     (store as relationalStore.RdbStore).query(predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'IDENTITY'], (err: BusinessError, resultSet) => {
+     (store as relationalStore.RdbStore).query(predicates2, ['ID', 'NAME', 'AGE', 'SALARY', 'IDENTITY'], (err: BusinessError, resultSet) => {
        if (err) {
          console.error(`Failed to query data. Code:${err.code}, message:${err.message}`);
          return;
@@ -319,34 +318,24 @@
 5. 删除数据库。
 
    调用deleteRdbStore()方法，删除数据库及数据库相关文件。示例代码如下：
-   
+
    Stage模型示例：
 
-     
    ```ts
    import { UIAbility } from '@kit.AbilityKit';
 
-   class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage: window.WindowStage) {
-       relationalStore.deleteRdbStore(this.context, 'RdbTest.db', (err: BusinessError) => {
-         if (err) {
-           console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
-           return;
-         }
-         console.info('Succeeded in deleting RdbStore.');
-       });
+   relationalStore.deleteRdbStore(this.context, 'RdbTest.db', (err: BusinessError) => {
+     if (err) {
+       console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
+       return;
      }
-   }
+     console.info('Succeeded in deleting RdbStore.');
+   });
    ```
 
    FA模型示例：
 
-     
    ```ts
-   import { featureAbility } from '@kit.AbilityKit';
-   
-   let context = featureAbility.getContext(); 
-
    relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {
      if (err) {
        console.error(`Failed to delete RdbStore. Code:${err.code}, message:${err.message}`);
