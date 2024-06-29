@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
+import { bundleManager } from '@kit.AbilityKit';
 ```
 
 ## 枚举
@@ -224,9 +224,9 @@ getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
 ```ts
 // 额外获取带有metadataArray信息的appInfo
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
 
@@ -271,9 +271,9 @@ getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>):
 
 ```ts
 // 额外获取带有permissions信息的abilitiesInfo
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 
@@ -328,9 +328,9 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
@@ -392,9 +392,9 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
@@ -412,9 +412,9 @@ try {
 ```
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
@@ -474,9 +474,9 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
@@ -491,9 +491,9 @@ try {
 ```
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let moduleName: string = 'entry';
 let abilityName: string = 'EntryAbility';
@@ -544,9 +544,9 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
@@ -607,9 +607,9 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
@@ -679,9 +679,9 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
@@ -737,9 +737,9 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 
@@ -783,9 +783,9 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: Asyn
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
 
@@ -839,9 +839,9 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
 
@@ -892,9 +892,9 @@ deleteAbc(abcPath: string): Promise\<void>
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let abcPath: string = '/data/storage/el2/base/a.abc';
 
@@ -945,9 +945,9 @@ canOpenLink(link: string): boolean
 **示例：**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 try {
   let link = 'welink://';
