@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Drawing_FontWeight](_drawing.md#oh_drawing_fontweight)[weight](#weight) | 计算支柱时使用的字体粗细  | 
-| [OH_Drawing_FontStyle](_drawing.md#oh_drawing_fontstyle)[style](#style) | 计算支柱时使用的字体格式  | 
+| [OH_Drawing_FontWeight](_drawing.md#oh_drawing_fontweight) [weight](#weight) | 计算支柱时使用的字体粗细  | 
+| [OH_Drawing_FontStyle](_drawing.md#oh_drawing_fontstyle) [style](#style) | 计算支柱时使用的字体格式  | 
 | double [size](#size) | 逻辑像素中的上升加下降的大小  | 
 | double [heightScale](#heightscale) | 行高  | 
 | bool [heightOverride](#heightoverride) | 是否启用高度覆盖，true表示启用，false表示不启用  | 
