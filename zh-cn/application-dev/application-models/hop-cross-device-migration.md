@@ -667,7 +667,7 @@ export default class MigrationAbility extends UIAbility {
     let ctime: string = '';
     let mtime: string = '';
     let size: string = '';
-    await fileIo.stat(distributedUri).then((stat: fileIo.Stat) => {
+    await fileIo.stat(filePath).then((stat: fileIo.Stat) => {
       ctime = stat.ctime.toString(); // 创建时间
       mtime = stat.mtime.toString(); // 修改时间
       size = stat.size.toString(); // 文件大小
