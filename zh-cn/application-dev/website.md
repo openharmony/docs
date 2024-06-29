@@ -1337,7 +1337,7 @@
       - [CPU特性](napi/cpu-features.md)
       - [使用Neon指令扩展](napi/neon-guide.md)
 - 工具
-  - 调试工具
+  - 调测调优
     - [aa工具](tools/aa-tool.md)
     - [bm工具](tools/bm-tool.md)
     - 打包拆包工具
