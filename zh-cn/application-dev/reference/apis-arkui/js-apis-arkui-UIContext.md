@@ -284,8 +284,7 @@ getSharedLocalStorage(): LocalStorage | undefined
 
 | 类型                             | 描述                |
 | ------------------------------ | ----------------- |
-| [LocalStorage](arkui-ts/ts-state-management.md#localstorage9) | 返回LocalStorage实例。 |
-| undefined | 共享的LocalStorage实例不存在时返回undefined。|
+| [LocalStorage](arkui-ts/ts-state-management.md#localstorage9)&nbsp;\|&nbsp;undefined | 返回LocalStorage实例。共享的LocalStorage实例不存在时返回undefined。 |
 
 **示例：**
 
@@ -523,8 +522,8 @@ struct MyComponent {
         const uiContext: UIContext = this.getUIContext();
         const uniqueId: number = this.getUniqueId();
         const pageInfo: PageInfo = uiContext.getPageInfoByUniqueId(uniqueId);
-        console.log('pageInfo: ' + JSON.stringify(pageInfo));
-        console.log('navigationInfo: ' + JSON.stringify(uiContext.getNavigationInfoByUniqueId(uniqueId)));
+        console.info('pageInfo: ' + JSON.stringify(pageInfo));
+        console.info('navigationInfo: ' + JSON.stringify(uiContext.getNavigationInfoByUniqueId(uniqueId)));
       })
       TextArea({
         text: this.content
@@ -987,7 +986,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
       let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
       let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
-      console.info("KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
+      hilog.info("KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -1637,7 +1636,8 @@ registerFont(options: font.FontOptions): void
 **示例：**
 
 ```ts
-import { Font } from '@ohos.arkui.UIContext';
+import { Font } from '@kit.ArkUI';
+
 let font:Font = uiContext.getFont();
 font.registerFont({
   familyName: 'medium',
@@ -1663,7 +1663,8 @@ getSystemFontList(): Array\<string>
 **示例：** 
 
 ```ts
-import { Font } from '@ohos.arkui.UIContext';
+import { Font } from '@kit.ArkUI';
+
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getSystemFontList()
@@ -1695,7 +1696,8 @@ getFontByName(fontName: string): font.FontInfo
 **示例：** 
 
 ```ts
-import { Font } from '@ohos.arkui.UIContext';
+import { Font } from '@kit.ArkUI';
+
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getFontByName('Sans Italic')
@@ -1731,7 +1733,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { ComponentUtils } from '@kit.ArkUI';
 
 let componentUtils:ComponentUtils = uiContext.getComponentUtils();
 let modePosition = componentUtils.getRectangleById("onClick");
@@ -1783,8 +1785,8 @@ Router和NavDestination等页面信息，若无对应的Router或NavDestination�
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| routerPageInfo | observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo) | 否 | Router信息。 | 
-| navDestinationInfo | observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo) | 否 | NavDestination信息。 | 
+| routerPageInfo | observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo) | 否 | Router信息。 |
+| navDestinationInfo | observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo) | 否 | NavDestination信息。 |
 
 ## UIObserver<sup>11+</sup>
 
@@ -2741,8 +2743,6 @@ ArkTS GestureEvent事件监听函数类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **参数：**
 
 | 参数名  | 类型   | 必填 | 说明                          |
@@ -2756,8 +2756,6 @@ type ClickEventListenerCallback = (event: ClickEvent, node?: FrameNode) => void
 ArkTS GestureEvent事件监听函数类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2955,6 +2953,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 ```ts
 import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3011,6 +3010,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 ```ts
 import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3072,6 +3072,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 ```ts
 import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router:Router = uiContext.getRouter();
 try {
   router.replaceUrl({
@@ -3119,6 +3120,7 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 ```ts
 import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router:Router = uiContext.getRouter();
 router.replaceUrl({
   url: 'pages/detail',
@@ -3174,6 +3176,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 ```ts
 import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3226,6 +3229,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 ```ts
 import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3285,6 +3289,7 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 ```ts
 import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router:Router = uiContext.getRouter();
 try {
   router.pushNamedRoute({
@@ -3336,6 +3341,7 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 ```ts
 import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router:Router = uiContext.getRouter();
 router.pushNamedRoute({
   name: 'myPage',
@@ -3394,6 +3400,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 ```ts
 import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3450,6 +3457,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 ```ts
 import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3511,6 +3519,7 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 ```ts
 import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router:Router = uiContext.getRouter();
 try {
   router.replaceNamedRoute({
@@ -3558,6 +3567,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 ```ts
 import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router:Router = uiContext.getRouter();
 router.replaceNamedRoute({
   name: 'myPage',
@@ -3614,6 +3624,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 ```ts
 import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3666,6 +3677,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 ```ts
 import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3707,6 +3719,7 @@ back(options?: router.RouterOptions ): void
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
@@ -3730,12 +3743,14 @@ back(index: number, params?: Object): void;
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.back(1);
 ```
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.back(1, {info:'来自Home页'}); //携带参数返回
 ```
@@ -3754,6 +3769,7 @@ clear(): void
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.clear();    
 ```
@@ -3778,6 +3794,7 @@ getLength(): string
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
 console.info('pages stack size = ' + size);    
@@ -3803,6 +3820,7 @@ getState(): router.RouterState
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let page = router.getState();
 console.info('current index = ' + page.index);
@@ -3833,6 +3851,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let options: router.RouterState | undefined = router.getStateByIndex(1);
 if (options != undefined) {
@@ -3866,6 +3885,7 @@ getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerst
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
@@ -3906,6 +3926,7 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 ```ts
 import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router: Router = uiContext.getRouter();
 try {
   router.showAlertBeforeBackPage({            
@@ -3932,6 +3953,7 @@ hideAlertBeforeBackPage(): void
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.hideAlertBeforeBackPage();    
 ```
@@ -3956,6 +3978,7 @@ getParams(): Object
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.getParams();
 ```
@@ -4061,7 +4084,7 @@ try {
     ]
   }, (err, data) => {
     if (err) {
-      console.info('showDialog err: ' + err);
+      console.error('showDialog err: ' + err);
       return;
     }
     console.info('showDialog success callback, click button: ' + data.index);
@@ -4130,7 +4153,7 @@ try {
       console.info('showDialog success, click button: ' + data.index);
     })
     .catch((err:Error) => {
-      console.info('showDialog error: ' + err);
+      console.error('showDialog error: ' + err);
     })
 } catch (error) {
   let message = (error as BusinessError).message;
@@ -4187,7 +4210,7 @@ try {
     ]
   }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
     if (err) {
-      console.info('showDialog err: ' + err);
+      console.error('showDialog err: ' + err);
       return;
     }
     console.info('showDialog success callback, click button: ' + data.index);
@@ -4309,7 +4332,7 @@ try {
       console.info('showActionMenu success, click button: ' + data.index);
     })
     .catch((err:Error) => {
-      console.info('showActionMenu error: ' + err);
+      console.error('showActionMenu error: ' + err);
     })
 } catch (error) {
   let message = (error as BusinessError).message;
@@ -4859,7 +4882,7 @@ export default class EntryAbility extends UIAbility {
       windowStage.getMainWindow((err, data) =>
       {
         if (err.code) {
-          console.info('Failed to abtain the main window. Cause:' + err.message);
+          console.error('Failed to abtain the main window. Cause:' + err.message);
           return;
         }
         let windowClass: window.Window = data;
@@ -4955,10 +4978,10 @@ struct DragControllerPage {
                 }
               })
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error("start drag Error:" + err.message);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error("create dragAction Error:" + err.message);
             }
           }
         }
@@ -5887,7 +5910,7 @@ struct SnapshotExample {
         .onClick(() => {
           this.uiContext.getComponentSnapshot().get("root", (error: Error, pixmap: image.PixelMap) => {
             if (error) {
-              console.info("error: " + JSON.stringify(error))
+              console.error("error: " + JSON.stringify(error))
               return;
             }
             this.pixmap = pixmap
@@ -5953,7 +5976,7 @@ struct SnapshotExample {
               this.pixmap = pixmap
             })
             .catch((err: Error) => {
-              console.info("error: " + err)
+              console.error("error: " + err)
             })
         }).margin(10)
     }
@@ -6025,7 +6048,7 @@ struct ComponentSnapshotExample {
           },
             (error: Error, pixmap: image.PixelMap) => {
               if (error) {
-                console.info("error: " + JSON.stringify(error))
+                console.error("error: " + JSON.stringify(error))
                 return;
               }
               this.pixmap = pixmap
@@ -6110,7 +6133,7 @@ struct ComponentSnapshotExample {
               this.pixmap = pixmap
             })
             .catch((err: Error) => {
-              console.info("error: " + err)
+              console.error("error: " + err)
             })
         })
       Image(this.pixmap)

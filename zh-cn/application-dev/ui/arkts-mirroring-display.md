@@ -6,7 +6,7 @@
 
 | 镜像前          | 镜像后                                  |
 | ----------- | ----------------------------------- |
-|![](figures/mirroring_1-0.jpg)|![](figures/mirroring_1-1.jpg)|
+|![](figures/mirroring_1-0.PNG)|![](figures/mirroring_1-1.PNG)|
 
 当组件满足以下任意条件时，镜像能力生效：
 1. 组件的direction属性设置为Direction.Rtl；
