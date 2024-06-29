@@ -1149,7 +1149,6 @@
       - [hitrace](dfx/hitrace.md)
       - [hiperf](dfx/hiperf.md)
       - [hisysevent](dfx/hisysevent.md)
-      - [toybox](dfx/toybox.md)
       <!--Del-->
       - [uinput](dfx/uinput.md)
       <!--DelEnd-->
@@ -1350,6 +1349,8 @@
     - [restool工具](tools/restool.md)
     - [LLDB工具](tools/lldb-tool.md)
     - [param工具](tools/param-tool.md)
+    - 命令行工具
+      - [toybox工具](tools/toybox.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)
   - [系统能力SystemCapability列表](reference/syscap-list.md)
