@@ -25,7 +25,7 @@
 | typedef enum [OH_Drawing_PointMode](_drawing.md#oh_drawing_pointmode)  [OH_Drawing_PointMode](_drawing.md#oh_drawing_pointmode) | 绘制多个点的方式枚举，方式分为离散点、直线或开放多边形。 | 
 | typedef enum [OH_Drawing_VertexMode](_drawing.md#oh_drawing_vertexmode)  [OH_Drawing_VertexMode](_drawing.md#oh_drawing_vertexmode) | 用于指定如何解释给定顶点的几何形状的枚举类型。 | 
 | typedef enum [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop)  [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) | 画布裁剪方式的枚举集合。 | 
-
+| typedef enum [OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags) [OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags) | 阴影标志枚举。 | 
 
 ### 枚举
 
@@ -35,7 +35,7 @@
 | [OH_Drawing_PointMode](_drawing.md#oh_drawing_pointmode) { POINT_MODE_POINTS, POINT_MODE_LINES, POINT_MODE_POLYGON } | 绘制多个点的方式枚举，方式分为离散点、直线或开放多边形。 | 
 | [OH_Drawing_VertexMode](_drawing.md#oh_drawing_vertexmode) { VERTEX_MODE_TRIANGLES, VERTEX_MODE_TRIANGLESSTRIP, VERTEX_MODE_TRIANGLEFAN } | 用于指定如何解释给定顶点的几何形状的枚举类型。 | 
 | [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) { DIFFERENCE, INTERSECT } | 画布裁剪方式的枚举集合。 | 
-
+| [OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags) { SHADOW_FLAGS_NONE, SHADOW_FLAGS_TRANSPARENT_OCCLUDER, SHADOW_FLAGS_GEOMETRIC_ONLY, SHADOW_FLAGS_ALL } | 阴影标志枚举。 | 
 
 ### 函数
 
@@ -74,8 +74,6 @@
 | void [OH_Drawing_CanvasDrawArc](_drawing.md#oh_drawing_canvasdrawarc) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*, float startAngle, float sweepAngle) | 用于画一个弧。 | 
 | void [OH_Drawing_CanvasDrawRoundRect](_drawing.md#oh_drawing_canvasdrawroundrect) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_RoundRect](_drawing.md#oh_drawing_roundrect) \*) | 用于画一个圆角矩形。 | 
 | void [OH_Drawing_CanvasDrawTextBlob](_drawing.md#oh_drawing_canvasdrawtextblob) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_TextBlob](_drawing.md#oh_drawing_textblob) \*, float x, float y) | 用于画一段文字。 | 
-| enum&nbsp;&nbsp;[OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags) { [SHADOW_FLAGS_NONE](_drawing.md), [SHADOW_FLAGS_TRANSPARENT_OCCLUDER](_drawing.md), [SHADOW_FLAGS_GEOMETRIC_ONLY](_drawing.md), [SHADOW_FLAGS_ALL](_drawing.md) } | 阴影标志枚举。 | 
-| typedef enum [OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags)[OH_Drawing_CanvasShadowFlags](_drawing.md#oh_drawing_canvasshadowflags) | 阴影标志枚举。 | 
 | void [OH_Drawing_CanvasClipRect](_drawing.md#oh_drawing_canvascliprect) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*, [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | 用于裁剪一个矩形。 | 
 | void [OH_Drawing_CanvasClipRoundRect](_drawing.md#oh_drawing_canvascliproundrect) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_RoundRect](_drawing.md#oh_drawing_roundrect) \*, [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | 用于裁剪一个圆角矩形。 | 
 | void [OH_Drawing_CanvasClipPath](_drawing.md#oh_drawing_canvasclippath) ([OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, const [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*, [OH_Drawing_CanvasClipOp](_drawing.md#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | 用于裁剪一个自定义路径。 | 
