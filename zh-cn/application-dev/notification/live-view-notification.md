@@ -25,6 +25,7 @@
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
+   import image from '@ohos.multimedia.image';
    ```
 
 2. 发布通知。
@@ -32,8 +33,6 @@
    系统实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，该类型的具体字段描述参考[NotificationSystemLiveViewContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent)。
      
       ```ts
-      import image from '@ohos.multimedia.image';
-
       let imagePixelMap: image.PixelMap | undefined = undefined; // 需要获取图片PixelMap信息
       let color = new ArrayBuffer(4);
       image.createPixelMap(color, {
