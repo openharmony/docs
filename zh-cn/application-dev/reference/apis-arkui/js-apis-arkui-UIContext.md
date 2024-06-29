@@ -6206,7 +6206,7 @@ setFrameRateRange(range: ExpectedFrameRateRange): void
 **示例：**
 
 ```ts
-import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@ohos.arkui.UIContext';
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -6272,7 +6272,7 @@ getFrameRateRange(): ExpectedFrameRateRange
 **示例：**
 
 ```ts
-import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@ohos.arkui.UIContext';
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI'
 
 @Entry
 @Component
