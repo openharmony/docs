@@ -408,6 +408,10 @@ nestedScroll(value: SwiperNestedScrollMode)
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [SwiperNestedScrollMode](#swipernestedscrollmode11枚举说明) | 是   | Swiper组件和父组件的嵌套滚动模式。<br/>默认值：SwiperNestedScrollMode.SELF_ONLY |
 
+> **说明：**
+>
+> 由于Swiper的抛滑动画逻辑和其它滚动类组件不同（Swiper一次只能滑动一页，抛滑时做翻页动画），当Swiper内嵌套其它滚动组件时，如果Swiper的翻页动画已经启动，将无法接受子节点上传的滚动偏移量。这时Swiper的翻页动画和子节点的边缘效果动画会同时执行。
+
 ### indicatorInteractive<sup>12+</sup>
 
 indicatorInteractive(value: boolean)
