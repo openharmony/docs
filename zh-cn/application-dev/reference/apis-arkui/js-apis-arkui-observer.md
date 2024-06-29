@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import observer from '@ohos.arkui.observer'
+import { uiObserver } from '@kit.ArkUI';
 ```
 
 ## NavDestinationState
@@ -442,8 +442,11 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 ```ts
 // used in UIAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { UIContext, uiObserver, window } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { UIContext } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import { window } from '@kit.ArkUI';
+
+import { uiObserver as observer } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   private uiContext: UIContext | null = null;
@@ -496,7 +499,7 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 ```ts
 // used in UIAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { UIContext, uiObserver, window } from '@kit.ArkUI';
+import { uiObserver as observer, UIContext } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // 实际使用前uiContext需要被赋值。参见示例observer.on('routerPageUpdate')
@@ -539,7 +542,7 @@ on(type: 'densityUpdate', context: UIContext, callback: Callback\<DensityInfo\>)
 **示例：**
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -586,7 +589,7 @@ off(type: 'densityUpdate', context: UIContext, callback?: Callback\<DensityInfo\
 | callback | Callback\<[DensityInfo](#densityinfo12)\> | 否   | 需要被注销的回调函数。若不指定具体的回调函数，则注销指定UIContext下所有densityUpdate事件监听。 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer, UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -640,7 +643,7 @@ on(type: 'willDraw', context: UIContext, callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -678,7 +681,7 @@ off(type: 'willDraw', context: UIContext, callback?: Callback\<void\>): void
 | callback | Callback\<void\>   | 否   | 需要被注销的回调函数。                                |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -723,7 +726,7 @@ on(type: 'didLayout', context: UIContext, callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -761,7 +764,7 @@ off(type: 'didLayout', context: UIContext, callback?: Callback\<void\>): void
 | callback | Callback\<void\>   | 否   | 需要被注销的回调函数。                                |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -810,8 +813,8 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback
 // 演示 observer.on('navDestinationSwitch', UIAbilityContext, callback)
 // observer.off('navDestinationSwitch', UIAbilityContext, callback)
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { uiObserver, window } from '@kit.ArkUI';
+import { uiObserver as observer, window } from '@kit.ArkUI';
+import { hilog } from "@kit.PerformanceAnalysisKit"
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
@@ -862,7 +865,7 @@ export default class EntryAbility extends UIAbility {
 // Index.ets
 // 演示 observer.on('navDestinationSwitch', UIContext, callback)
 // observer.off('navDestinationSwitch', UIContext, callback)
-import { uiObserver } from '@kit.ArkUI';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Component
 struct PageOne {
@@ -959,8 +962,8 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observer
 // 演示 observer.on('navDestinationSwitch', UIAbilityContext, NavDestinationSwitchObserverOptions, callback)
 // observer.off('navDestinationSwitch', UIAbilityContext, NavDestinationSwitchObserverOptions, callback)
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { uiObserver, window } from '@kit.ArkUI';
+import { uiObserver as observer, window } from '@kit.ArkUI';
+import { hilog } from "@kit.PerformanceAnalysisKit"
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
@@ -1011,7 +1014,7 @@ export default class EntryAbility extends UIAbility {
 // Index.ets
 // 演示 observer.on('navDestinationSwitch', UIContext, NavDestinationSwitchObserverOptions, callback)
 // observer.off('navDestinationSwitch', UIContext, NavDestinationSwitchObserverOptions, callback)
-import { uiObserver } from '@kit.ArkUI';
+import { uiObserver as observer } from '@kit.ArkUI';
 
 @Component
 struct PageOne {
