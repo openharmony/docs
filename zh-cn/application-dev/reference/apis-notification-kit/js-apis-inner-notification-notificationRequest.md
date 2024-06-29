@@ -16,8 +16,8 @@
 | id                            | number                                                   |   否  | 否  | 通知ID。                                                                 |
 | slotType<sup>(deprecated)</sup> | [notification.SlotType](js-apis-notificationManager.md#slottype)    |   否  | 否  | 通道类型。<br>从API version 11开始不再维护，建议使用notificationSlotType代替。                        |
 | notificationSlotType<sup>11+</sup> | [notificationManager.SlotType](js-apis-notificationManager.md#slottype) |   否  | 否  | 通道类型。                        |
-| isOngoing                     | boolean                                                  |   否  | 否  | 是否进行时通知。                                                              |
-| isUnremovable                 | boolean                                                  |   否  | 否  | 预留能力，暂不支持。  |
+| isOngoing                     | boolean                                                  |   否  | 否  | 预留能力，暂未支持。  |
+| isUnremovable                 | boolean                                                  |   否  | 否  | 预留能力，暂未支持。  |
 | deliveryTime                  | number                                                   |   否  | 否  | 通知发送时间。                                                               |
 | tapDismissed                  | boolean                                                  |   否  | 否  | 通知是否自动清除。                                                             |
 | autoDeletedTime               | number                                                   |   否  | 否  | 自动清除的时间。                                                              |
