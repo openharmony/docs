@@ -353,7 +353,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Connectivity/Socket)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket)
 
 #### 网络管理-Socket连接
 ##### 介绍
@@ -676,7 +676,7 @@ Preferences.flush()保存并刷新文件内容。
 - [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
 - [@ohos.power (系统电源管理)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-power.md%2F)
 - [@ohos.runningLock (Runninglock锁)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-runninglock.md%2F)
-- [@ohos.settings (设置数据项名称)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-settings.md%2F)
+- [@ohos.settings (设置数据项名称)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings.md)
 - [@ohos.stationary (设备状态感知框架)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-stationary.md%2F)
 - [@ohos.thermal (热管理)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-thermal.md%2F)
 - [@ohos.usbManager (USB管理)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-usbManager.md%2F)
@@ -2854,7 +2854,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 - [@ohos.uri (URI字符串解析)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-uri.md)
 - [@ohos.url (URL字符串解析)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-url.md)
 - [@ohos.util (util工具函数)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-util.md)
-- [@ohos.util.ArrayList (线性容器ArrayList)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-arraylist.md)
+- [@ohos.util.ArrayList (线性容器ArrayList)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkts/js-apis-arraylist.md)
 - [@ohos.util.Deque (线性容器Deque)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-deque.md)
 - [@ohos.util.HashMap (非线性容器HashMap)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-hashmap.md)
 - [@ohos.util.HashSet (非线性容器HashSet)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-hashset.md)
@@ -2863,7 +2863,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 - [@ohos.util.LinkedList (线性容器LinkedList)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-linkedlist.md)
 - [@ohos.util.List (线性容器List)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-list.md)
 - [@ohos.util.PlainArray (非线性容器PlainArray)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-plainarray.md)
-- [@ohos.util.Queue (线性容器Queue)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-queue.md)
+- [@ohos.util.Queue (线性容器Queue)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkts/js-apis-queue.md)
 - [@ohos.util.Stack (线性容器Stack)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-stack.md)
 - [@ohos.util.TreeMap (非线性容器TreeMap)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-treemap.md)
 - [@ohos.util.TreeSet (非线性容器TreeSet)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Release/zh-cn/application-dev/reference/apis/js-apis-treeset.md)
@@ -3232,7 +3232,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.7.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/Solutions/IM/Chat)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)
 
 ### 输入法
 
@@ -4771,7 +4771,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SystemFeature/Connectivity/Bluetooth)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Connectivity/Bluetooth)
 
 #### WLAN
 
@@ -4854,9 +4854,9 @@ return formInfo.FormState.READY }。
 本示例集合设备管理相关(系统特性)不需要复杂功能展示的模块，展示了各个模块的基础功能，包含：
 
 - [@ohos.batteryStatistics (耗电统计)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-batteryStatistics.md%2F)
-- [@ohos.brightness (屏幕亮度)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-brightness.md%2F)
+- [@ohos.brightness (屏幕亮度)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-brightness-sys.md)
 - [@ohos.power (系统电源管理)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-power.md%2F)
-- [@ohos.settings (设置数据项名称)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-settings.md%2F)
+- [@ohos.settings (设置数据项名称)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings.md)
 - [@ohos.systemCapability (系统能力)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-system-capability.md%2F)
 - [@ohos.systemParameterEnhance (系统参数)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-system-parameterEnhance.md%2F)
 - [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)
@@ -5118,7 +5118,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.9.1
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/SystemFeature/Media/Camera)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/Camera)
 
 #### 录屏示例
 
