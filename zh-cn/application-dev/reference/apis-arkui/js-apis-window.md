@@ -3204,7 +3204,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
-关闭主窗口固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+关闭固定态软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
