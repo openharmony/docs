@@ -1,6 +1,6 @@
 # @ohos.data.unifiedDataChannel (标准化数据通路)(系统接口)
 
-本模块为统一数据管理框架（Unified Data Management Framework,UDMF）的组成部分，针对拖拽通道的数据分享的范围，提供应用级别的管控，允许设置应用内数据不支持拖拽。
+本模块为统一数据管理框架（Unified Data Management Framework,UDMF）的组成部分，针对拖拽通道的数据分享的范围，提供应用级别的管控，允许设置应用内数据的拖拽范围。
 
 > **说明：**
 >
