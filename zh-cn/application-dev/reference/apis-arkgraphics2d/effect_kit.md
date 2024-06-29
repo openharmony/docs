@@ -46,14 +46,14 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [EffectErrorCode](#effecterrorcode)[OH_Filter_CreateEffect](#oh_filter_createeffect) (OH_PixelmapNative \*pixelmap, [OH_Filter](_o_h___filter.md) \*\*filter) | 创建一个OH_Filter对象。 | 
-| [EffectErrorCode](#effecterrorcode)[OH_Filter_Release](#oh_filter_release) ([OH_Filter](_o_h___filter.md) \*filter) | 释放OH_Filter对象。 | 
-| [EffectErrorCode](#effecterrorcode)[OH_Filter_Blur](#oh_filter_blur) ([OH_Filter](_o_h___filter.md) \*filter, float radius) | 创建一个毛玻璃滤镜效果，然后添加到滤镜里面。 | 
-| [EffectErrorCode](#effecterrorcode)[OH_Filter_Brighten](#oh_filter_brighten) ([OH_Filter](_o_h___filter.md) \*filter, float brightness) | 创建一个提亮效果并且添加到滤镜中。 | 
-| [EffectErrorCode](#effecterrorcode)[OH_Filter_GrayScale](#oh_filter_grayscale) ([OH_Filter](_o_h___filter.md) \*filter) | 创建一个灰度效果并且添加到滤镜中。 | 
-| [EffectErrorCode](#effecterrorcode)[OH_Filter_Invert](#oh_filter_invert) ([OH_Filter](_o_h___filter.md) \*filter) | 创建一个反色效果并且添加到滤镜中。 | 
-| [EffectErrorCode](#effecterrorcode)[OH_Filter_SetColorMatrix](#oh_filter_setcolormatrix) ([OH_Filter](_o_h___filter.md) \*filter, [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) \*matrix) | 通过矩阵创建一个自定义的效果并且添加到滤镜中。 | 
-| [EffectErrorCode](#effecterrorcode)[OH_Filter_GetEffectPixelMap](#oh_filter_geteffectpixelmap) ([OH_Filter](_o_h___filter.md) \*filter, OH_PixelmapNative \*\*pixelmap) | 获取滤镜生成的位图。 | 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_CreateEffect](#oh_filter_createeffect) (OH_PixelmapNative \*pixelmap, [OH_Filter](_o_h___filter.md) \*\*filter) | 创建一个OH_Filter对象。 | 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_Release](#oh_filter_release) ([OH_Filter](_o_h___filter.md) \*filter) | 释放OH_Filter对象。 | 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_Blur](#oh_filter_blur) ([OH_Filter](_o_h___filter.md) \*filter, float radius) | 创建一个毛玻璃滤镜效果，然后添加到滤镜里面。 | 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_Brighten](#oh_filter_brighten) ([OH_Filter](_o_h___filter.md) \*filter, float brightness) | 创建一个提亮效果并且添加到滤镜中。 | 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_GrayScale](#oh_filter_grayscale) ([OH_Filter](_o_h___filter.md) \*filter) | 创建一个灰度效果并且添加到滤镜中。 | 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_Invert](#oh_filter_invert) ([OH_Filter](_o_h___filter.md) \*filter) | 创建一个反色效果并且添加到滤镜中。 | 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_SetColorMatrix](#oh_filter_setcolormatrix) ([OH_Filter](_o_h___filter.md) \*filter, [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) \*matrix) | 通过矩阵创建一个自定义的效果并且添加到滤镜中。 | 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_GetEffectPixelMap](#oh_filter_geteffectpixelmap) ([OH_Filter](_o_h___filter.md) \*filter, OH_PixelmapNative \*\*pixelmap) | 获取滤镜生成的位图。 | 
 
 
 ## 类型定义说明
