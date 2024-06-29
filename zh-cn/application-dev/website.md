@@ -1071,10 +1071,12 @@
         - [N-API高效开发指导](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
         - [多线程能力场景化](performance/multi_thread_capability.md)
         - [利用native的方式实现跨线程调用](performance/native-threads-call-js.md)
+        - [避免开发过程中的冗余操作](performance/avoiding-redundant-operations.md)
       - 减少卡顿丢帧
         - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
         - [组件复用使用指导](performance/component-recycle.md)
         - [组件复用性能优化指导](performance/component_recycle_case.md)
+        - [组件复用总览](performance/component-reuse-overview.md)
         - [WaterFlow高性能开发指导](performance/waterflow_optimization.md)
         - [Swiper高性能开发指导](performance/swiper_optimization.md)
         - [合理进行状态管理](performance/proper_state_management.md)
