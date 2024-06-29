@@ -217,39 +217,32 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 import { hidebug } from '@kit.PerformanceAnalysisKit';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class HidebugTest extends UIAbility {
-  public testfunc() {
-    let applicationContext: common.Context | null = null;
-    try {
-      applicationContext = this.context.getApplicationContext();
-    } catch (error) {
-      console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
-    }
-
-    let filesDir: string = applicationContext!.filesDir;
-    let path: string = filesDir + "/serviceInfo.txt";
-    console.info("output path: " + path);
-    let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    let serviceId: number = 10;
-    let args: Array<string> = new Array("allInfo");
-
-    try {
-      hidebug.getServiceDump(serviceId, file.fd, args);
-    } catch (error) {
-      console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
-    }
-    fs.closeSync(file);
-  }
+let applicationContext: common.Context | null = null;
+try {
+    let context = getContext() as common.UIAbilityContext;
+    applicationContext = context.getApplicationContext();
+} catch (error) {
+    console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 
-let t = new HidebugTest();
-t.testfunc();
+let filesDir: string = applicationContext!.filesDir;
+let path: string = filesDir + "/serviceInfo.txt";
+console.info("output path: " + path);
+let file = fileIo.openSync(path, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+let serviceId: number = 10;
+let args: Array<string> = new Array("allInfo");
+
+try {
+    hidebug.getServiceDump(serviceId, file.fd, args);
+} catch (error) {
+    console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
+fileIo.closeSync(file);
 ```
 
 ## hidebug.startJsCpuProfiling<sup>9+</sup>
@@ -278,7 +271,7 @@ startJsCpuProfiling(filename : string) : void
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -301,7 +294,7 @@ stopJsCpuProfiling() : void
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -338,7 +331,7 @@ dumpJsHeapData(filename : string) : void
 
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   hidebug.dumpJsHeapData("heapData");
