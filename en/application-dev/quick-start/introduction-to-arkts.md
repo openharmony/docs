@@ -486,7 +486,7 @@ label: while (true) {
   switch (x) {
     case 1:
       // statements
-      break label // breaks the while
+      break label; // breaks the while
   }
 }
 ```
@@ -1431,13 +1431,13 @@ s.push(55); // That will be a compile-time error as 55 is not compatible with ty
 
 ### Generic Constraints
 
-Type parameters of generic types can be bounded. For example, the `Key` type parameter in the `HashMap<Key, Value>` container must have a hash method, that is, it must be hashable.
+Type parameters of generic types can be bounded. For example, the `Key` type parameter in the `MyHashMap<Key, Value>` container must have the `hash` method.
 
 ```typescript
 interface Hashable {
   hash(): number
 }
-class HasMap<Key extends Hashable, Value> {
+class MyHashMap<Key extends Hashable, Value> {
   public set(k: Key, v: Value) {
     let h = k.hash();
     // ... other code ...
