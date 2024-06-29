@@ -84,6 +84,8 @@ layout(position: Position)
 
 调用此方法对子组件的位置信息进行限制。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名         | 类型                                                    | 必填                 |说明         |
@@ -98,9 +100,9 @@ getMargin() : DirectionalEdgesT\<number>
 
 **返回值：**
 
- | 类型                          | 说明                                        |
- |------------------------------------|---------------------------------------------|
- | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的margin信息。   |
+| 类型                          | 说明                                        |
+|------------------------------------|---------------------------------------------|
+| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的margin信息。   |
 
  ### getPadding<sup>12+</sup>
 
@@ -110,9 +112,9 @@ getPadding() : DirectionalEdgesT\<number>
 
  **返回值：**
 
- | 类型                          | 说明                                        |
- |------------------------------------|---------------------------------------------|
- | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的padding信息。  |
+| 类型                          | 说明                                        |
+|------------------------------------|---------------------------------------------|
+| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的padding信息。  |
 
 ### getBorderWidth<sup>12+</sup>
 
@@ -122,9 +124,9 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
 **返回值：**
 
- | 类型                          | 说明                                        |
- |------------------------------------|---------------------------------------------|
- | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的boderWidth信息。  |
+| 类型                          | 说明                                        |
+|------------------------------------|---------------------------------------------|
+| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的boderWidth信息。  |
 
 ## Measurable<sup>10+</sup>
 
