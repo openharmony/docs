@@ -20,7 +20,7 @@ Progress(options: ProgressOptions\<Type\>)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：** 
 
@@ -30,7 +30,7 @@ Progress(options: ProgressOptions\<Type\>)
 
 ## ProgressOptions\<Type\>对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名                        | 参数类型                                | 必填   | 参数描述                                     |
 | -------------------------- | ----------------------------------- | ---- | ---------------------------------------- |
@@ -43,7 +43,7 @@ Progress(options: ProgressOptions\<Type\>)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                     | 描述                                       |
 | ---------------------- | ---------------------------------------- |
@@ -57,7 +57,7 @@ Progress(options: ProgressOptions\<Type\>)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称        | 描述                                       |
 | --------- | ---------------------------------------- |
@@ -79,7 +79,7 @@ value(value: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,7 +99,7 @@ color(value: ResourceColor | LinearGradient)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，暂不支持LinearGradient。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -133,7 +133,7 @@ style(value: ProgressStyleOptions \| CapsuleStyleOptions \| RingStyleOptions \| 
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -176,7 +176,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | total  | number | 进度总长。   |
 ## ProgressStyleOptions<sup>8+</sup>
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称          | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
@@ -187,7 +187,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## CapsuleStyleOptions<sup>10+</sup>
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
@@ -202,7 +202,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## RingStyleOptions<sup>10+</sup>
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称           | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
@@ -214,7 +214,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## LinearStyleOptions<sup>10+</sup>
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称           | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
@@ -225,7 +225,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## ScaleRingStyleOptions<sup>10+</sup>
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称          | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
@@ -236,7 +236,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## EclipseStyleOptions<sup>10+</sup>
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称          | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
@@ -244,7 +244,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 ## ProgressStatus<sup>10+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                    | 描述             |
 | ----------------------- | ---------------- |

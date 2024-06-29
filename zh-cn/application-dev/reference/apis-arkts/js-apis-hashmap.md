@@ -27,7 +27,7 @@ import { HashMap } from '@kit.ArkTS';
 
 ### 属性
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -42,7 +42,7 @@ constructor()
 
 HashMap的构造函数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -67,7 +67,7 @@ isEmpty(): boolean
 
 判断该HashMap是否为空。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -99,7 +99,7 @@ hasKey(key: K): boolean
 
 判断此HashMap中是否含有该指定key。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -138,7 +138,7 @@ hasValue(value: V): boolean
 
 判断此HashMap中是否含有该指定value。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -177,7 +177,7 @@ get(key: K): V
 
 获取指定key所对应的value，不存在返回undefined。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -217,7 +217,7 @@ setAll(map: HashMap<K, V>): void
 
 将一个HashMap中的所有元素组添加到另一个hashMap中。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -254,7 +254,7 @@ set(key: K, value: V): Object
 
 向HashMap中添加或更新一组数据。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -294,7 +294,7 @@ remove(key: K): V
 
 删除指定key所对应元素。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -334,7 +334,7 @@ clear(): void
 
 清除HashMap中的所有元素，并把length置为0。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -362,7 +362,7 @@ keys(): IterableIterator&lt;K&gt;
 
 返回包含此映射中包含的键的新迭代器对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -401,7 +401,7 @@ values(): IterableIterator&lt;V&gt;
 
 返回包含此映射中包含的键对应的值的新迭代器对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -440,7 +440,7 @@ replace(key: K, newValue: V): boolean
 
 对HashMap中一组数据进行更新（替换）。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -480,7 +480,7 @@ forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?:
 
 通过回调函数来遍历HashMap实例对象上的元素以及元素对应的下标。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -525,7 +525,7 @@ entries(): IterableIterator&lt;[K, V]&gt;
 
 返回包含此映射中包含的键值对的新迭代器对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -569,7 +569,7 @@ while(!temp.done) {
 >
 > 本接口不支持在.ets文件中使用
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

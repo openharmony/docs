@@ -23,4 +23,4 @@ ArkGraphics 3D （方舟3D图形服务）基于轻量级的3D引擎以及渲染�
 
 ## 约束限制
 
-- 使用ArkGraphics 3D模块需要硬件设备支持OpenGL ES 3.2以上或者Vulkan 1.0以上的GPU驱动。
+使用ArkGraphics 3D模块需要硬件设备支持OpenGL ES 3.2以上或者Vulkan 1.0以上的GPU驱动。

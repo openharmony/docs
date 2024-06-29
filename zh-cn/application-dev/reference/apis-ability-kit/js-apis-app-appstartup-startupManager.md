@@ -51,26 +51,30 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
 ```ts
 import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    let startParams = 'Sample_001';
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let startParams = ['StartupTask_001'];
     try {
-      startupManager.run([startParams]).then(() => {
-        console.log('StartupTest startupManager run then, startParams = ')
+      // 手动调用run方法
+      startupManager.run(startParams).then(() => {
+        console.log('StartupTest startupManager run then, startParams = ');
       }).catch((error: BusinessError) => {
         console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
         console.info("StartupTest promise catch error, startParams = "
           + JSON.stringify(startParams));
       })
     } catch (error) {
-      let errMsg = JSON.stringify((error as BusinessError).message);
-      let errCode = (error as BusinessError).code;
+      let errMsg = JSON.stringify(error);
+      let errCode: number = error.code;
       console.log('Startup catch error , errCode= ' + errCode);
       console.log('Startup catch error ,error= ' + errMsg);
     }
   }
+  ...
 }
 ```
 
@@ -92,14 +96,14 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    startupManager.removeAllStartupTaskResults();
+    startupManager.removeAllStartupTaskResults(); // 移除所有启动任务结果
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
@@ -151,14 +155,14 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = startupManager.getStartupTaskResult('Sample_001');
+    let result = startupManager.getStartupTaskResult('StartupTask_001'); // 手动获取启动任务结果
     console.info("getStartupTaskResult result = " + result);
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
@@ -210,18 +214,18 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = startupManager.isStartupTaskInitialized('Sample_001');
+    let result = startupManager.isStartupTaskInitialized('StartupTask_001');
     if (result) {
-      console.info("Sample_001 init successful");
+      console.info("StartupTask_001 init successful");
     } else {
-      console.info("Sample_001 uninitialized");
+      console.info("StartupTask_001 uninitialized");
     }
 
     windowStage.loadContent('pages/Index', (err, data) => {
@@ -267,14 +271,14 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    startupManager.run(['Sample_001']).then(() => {
-      console.info("Sample_001 init successful");
+    startupManager.run(['StartupTask_001']).then(() => {
+      console.info("StartupTask_001 init successful");
     })
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    startupManager.removeStartupTaskResult('Sample_001');
+    startupManager.removeStartupTaskResult('StartupTask_001');
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {

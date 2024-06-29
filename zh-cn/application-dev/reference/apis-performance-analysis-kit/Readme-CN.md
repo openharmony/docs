@@ -1,4 +1,4 @@
-# Performance Analysis Kit API参考
+# Performance Analysis Kit（性能分析服务）
 
 - ArkTS API
   - [@ohos.faultLogger (故障日志获取)](js-apis-faultLogger.md)

@@ -12,7 +12,7 @@ FA模型下，可以通过[startAbilityForResult](js-apis-ability-featureAbility
 
 Stage模型下：
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 FA模型下：
@@ -22,7 +22,7 @@ import ability from '@ohos.ability.ability';
 
 ## 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 

@@ -9,6 +9,8 @@
 
 **库：** libohaudio.so
 
+**引用文件**：&lt;ohaudio/native_audio_routing_manager.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **起始版本：** 12

@@ -1,4 +1,4 @@
-# 管理应用窗口（元服务）
+# 管理应用窗口（原子化服务）
 
 ## 场景介绍
 
@@ -14,7 +14,7 @@
 
 ## 接口说明
 
-上述场景涉及的常用接口如下表所示。更多API说明请参见[@ohos.window (窗口)](../reference/apis-as/js-apis-window.md)。
+上述场景涉及的常用接口如下表所示。更多API说明请参见[@ohos.window (窗口)](../reference/apis-arkui/js-apis-window.md)。
 
 | 实例名         | 接口名                                                       | 描述                                                         |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -36,7 +36,7 @@
 
 ### 开发步骤
 
-**前提条件：** `setWindowPrivacyMode` 即设置窗口隐私模式，适用于禁止截屏/录屏的场景。该接口使用时需要申请`ohos.permission.PRIVACY_WINDOW`权限，配置方式请参见[申请应用权限](../../application-dev/quick-start/module-configuration-file.md#requestpermissions标签)。
+**前提条件：** `setWindowPrivacyMode` 即设置窗口隐私模式，适用于禁止截屏/录屏的场景。该接口使用时需要申请`ohos.permission.PRIVACY_WINDOW`权限，配置方式请参见[申请应用权限](../quick-start/module-configuration-file.md#requestpermissions标签)。
 
 1. 获取应用主窗口。
 

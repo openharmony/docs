@@ -16,10 +16,11 @@ The thread that creates the worker thread is referred to as the host thread (not
 
 - A worker thread can be created manually or automatically. In manual creation mode, you must also perform related configurations. For details, see [Precautions for Creating a Worker Thread](#precautions-for-creating-a-worker-thread).
 - The URL of the worker thread file passed in to the constructor function varies according to the version in use. For details, see [Precautions for File URLs](#precautions-for-file-urls).
-- After a worker thread is created, you must manually manage its lifecycle. A maximum of eight worker threads can run simultaneously. For details, see [Lifecycle Precautions](#lifecycle-precautions).
+- After a worker thread is created, you must manually manage its lifecycle. A maximum of 64 worker threads can run simultaneously. For details, see [Lifecycle Precautions](#lifecycle-precautions).
 - Context objects vary in different threads. Therefore, the worker thread can use only a thread-safe library, but not a non-thread-safe library (for example, UI-related non-thread-safe library). For details, see [Precautions for Multithread Safe](multi-thread-safety.md).
 - A maximum of 16 MB data can be serialized.
 - You must register the **onerror** API in the main thread to listen for worker thread errors, which might cause a JavaScript crash.
+- Worker thread files cannot be used across HAPs.
 
 ### Precautions for Creating a Worker Thread
 
@@ -149,4 +150,4 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker("ThreadFile/worke
 - Creating and terminating worker threads consume performance. Therefore, you are advised to manage available workers and reuse them. The worker threads keep running even when they are idle. When a worker thread is not required, call [terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9) or [parentPort.close()](../reference/apis-arkts/js-apis-worker.md#close9) to terminate it. If a worker thread is terminated or being terminated, an error is thrown when it is called.
 
 
-- A maximum of eight worker threads can co-exist. When the number of worker threads exceeds the limit, the error "Worker initialization failure, the number of workers exceeds the maximum." is thrown.
+- The number of worker threads is determined by the memory management policy. The required memory threshold is the smaller one between 1.5 GB and 60% of the physical memory of the device. If the memory is sufficient, a maximum of 64 worker threads can run simultaneously. If excess worker threads are to be created, the system displays the error message "Worker initialization failure, the number of workers exceeds the maximum." The number of actually running worker threads is dynamically adjusted based on the memory usage. Once the accumulated memory usage of all worker threads and main threads exceeds the threshold, Out of Memory (OOM) error occurs, and applications may crash.

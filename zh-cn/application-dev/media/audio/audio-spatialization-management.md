@@ -14,7 +14,7 @@
 创建AudioSpatializationManager实例。在使用AudioSpatializationManager的API前，需要使用getSpatializationManager()创建一个AudioSpatializationManager实例。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
+  import { audio } from '@kit.AudioKit';
 
   let audioManager = audio.getAudioManager();
   let audioSpatializationManager = audioManager.getSpatializationManager();
@@ -25,7 +25,7 @@
 系统应用开发者可以通过[isSpatializationSupported](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationsupported11)接口查询当前系统是否具有空间音频渲染的能力。
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let isSpatializationSupported: boolean = audioSpatializationManager.isSpatializationSupported();
@@ -41,8 +41,8 @@
 系统应用开发者可以通过[isSpatializationSupportedForDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationsupportedfordevice11)接口查询指定设备是否具有空间音频渲染的能力，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let deviceDescriptor: audio.AudioDeviceDescriptor = {
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
@@ -72,7 +72,7 @@
 系统应用开发者可以通过[isHeadTrackingSupported](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingsupported11)接口查询当前系统是否具有头动跟踪的能力。
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let isHeadTrackingSupported: boolean = audioSpatializationManager.isHeadTrackingSupported();
@@ -88,8 +88,8 @@
 系统应用开发者可以通过[isHeadTrackingSupportedForDevice](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingsupportedfordevice11)接口查询指定设备是否具有头动跟踪的能力，开发者需要使用AudioDeviceDescriptor作为入参来指定设备，建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let deviceDescriptor: audio.AudioDeviceDescriptor = {
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
@@ -123,7 +123,7 @@
 在开启空间音频渲染时，需要先确保系统和当前发声设备都具有空间音频渲染的能力。
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let enable: boolean = true
   audioSpatializationManager.setSpatializationEnabled(enable, (err: BusinessError) => {
@@ -140,7 +140,7 @@
 系统应用开发者可以通过[isSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isspatializationenabled11)接口查询空间音频渲染效果的开关状态，返回true为空间音频渲染开启，false为空间音频渲染关闭。该接口将返回setSpatializationEnabled()接口中成功设置的值，默认为开启。该状态仅为开关状态，实际是否生效还需依赖系统和当前发声设备是否支持空间音频渲染。
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled();
@@ -156,7 +156,7 @@
 系统应用开发者可以通过[on('spatializationEnabledChange')](../../reference/apis-audio-kit/js-apis-audio-sys.md#onspatializationenabledchange11)接口订阅空间音频渲染效果的开关状态变化事件，回调为true为空间音频渲染被开启，false为空间音频渲染被关闭。当开发者通过setSpatializationEnabled()接口成功地改变了空间音频渲染的开关状态时，回调将被触发。
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   audioSpatializationManager.on('spatializationEnabledChange', (isSpatializationEnabled: boolean) => {
     console.info(`isSpatializationEnabled: ${isSpatializationEnabled}`);
@@ -168,7 +168,7 @@
 系统应用开发者可以通过[off('spatializationEnabledChange')](../../reference/apis-audio-kit/js-apis-audio-sys.md#offspatializationenabledchange11)接口取消订阅空间音频渲染效果的开关状态变化事件。
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   audioSpatializationManager.off('spatializationEnabledChange');
   ```
@@ -182,7 +182,7 @@
 在开启头动跟踪时，需要先确保系统和当前发声设备都具有头动跟踪的能力，同时头动跟踪效果的生效依赖于空间音频渲染开关打开。
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let enable: boolean = true;
   audioSpatializationManager.setHeadTrackingEnabled(enable, (err: BusinessError) => {
@@ -199,7 +199,7 @@
 系统应用开发者可以通过[isHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#isheadtrackingenabled11)接口查询头动跟踪效果的开关状态，返回true为头动跟踪开启，false为头动跟踪关闭。该接口将返回setHeadTrackingEnabled()接口中成功设置的值，默认为关闭。该状态仅为开关状态，实际是否生效还需依赖系统和当前发声设备是否支持头动跟踪，以及当前空间音频渲染开关是否打开。
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled();
@@ -237,8 +237,8 @@
 空间化设备状态AudioSpatialDeviceState的具体信息可以参考[AudioSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatialdevicestate11)。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let spatialDeviceState: audio.AudioSpatialDeviceState = {
     address: "123",
@@ -264,8 +264,8 @@
 空间音频渲染场景类型AudioSpatializationSceneType的具体信息可以参考[AudioSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatializationscenetype12)。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
     audioSpatializationManager.setSpatializationSceneType(audio.AudioSpatializationSceneType.DEFAULT);
     console.info(`AudioSpatializationManager setSpatializationSceneType success`);
@@ -282,8 +282,8 @@
 空间音频渲染场景类型AudioSpatializationSceneType的具体信息可以参考[AudioSpatializationSceneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatializationscenetype12)。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
-  import { BusinessError } from '@ohos.base';
+  import { audio } from '@kit.AudioKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
     let spatializationSceneType: audio.AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
     console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);

@@ -5,7 +5,7 @@ The **request** module provides applications with basic upload, download, and ba
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.request](./js-apis-request.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.request](js-apis-request.md).
 
 
 ## Modules to Import
@@ -68,9 +68,9 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | -------- | -------- |
 | 201 | permission denied. |
 | 202 | permission verification failed, application which is not a system application uses system API. |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
 | 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+| 21900006 | task not found. |
 
 **Example**
 
@@ -116,9 +116,9 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | -------- | -------- |
 | 201 | permission denied. |
 | 202 | permission verification failed, application which is not a system application uses system API. |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
 | 13400003 | task service ability error. |
-| 21900006 | task not found error. |
+| 21900006 | task not found. |
 
 **Example**
 

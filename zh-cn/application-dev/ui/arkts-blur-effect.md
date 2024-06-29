@@ -628,7 +628,7 @@ struct ForegroundBlurStyleDemo {
 ## 使用motionBlur为组件添加运动模糊效果
 
 ```ts
-import curves from '@kit.ArkUI';
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component

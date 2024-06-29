@@ -1,4 +1,4 @@
-# Network Kit API参考
+# Network Kit（网络服务）
 
 - ArkTS API
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)

@@ -62,8 +62,8 @@ Defines the certificate data.
 
 | Name | Type                  | Mandatory     | Description          |
 | ----- | --------------------- | --------- | -------------- |
-| type  | CertType              | Yes       | Certificate type. |
-| data  | string \| ArrayBuffer | Yes       | Certificate data.     |
+| type  | CertType              | Yes     | Certificate type. |
+| data  | string \| ArrayBuffer | Yes      | Certificate data.     |
 
 
 ## networkSecurity.certVerification

@@ -17,7 +17,7 @@ import { advertising } from '@kit.AdsKit';
 
 提供加载广告的功能
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -27,7 +27,7 @@ constructor(context: common.Context);
 
 构造函数。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -57,7 +57,7 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 
 请求单广告位广告。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -75,9 +75,11 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
+| 801      | Device not supported.  |
 | 21800001 | System internal error. | 
 | 21800003 | Failed to load the ad request. | 
-| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
+
 
 **示例：**
 
@@ -93,7 +95,7 @@ function requestAd(context: common.Context): void {
     // 广告类型
     adType: 3,
     // 测试广告位ID
-    adId: "testy63txaom86",
+    adId: "testy63txaom86"
   };
   const adOptions: advertising.AdOptions = {
     // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许
@@ -103,8 +105,7 @@ function requestAd(context: common.Context): void {
     // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
     tagForChildProtection: -1,
     // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求: -1默认值,不确定 0不希望 1希望
-    tagForUnderAgeOfPromise: -1,
-  };
+    tagForUnderAgeOfPromise: -1
   // 广告请求回调监听
   const adLoaderListener: advertising.AdLoadListener = {
     // 广告请求失败回调
@@ -134,7 +135,7 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 
 请求多广告位广告。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -152,9 +153,10 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
+| 801      | Device not supported.  |
 | 21800001 | System internal error. | 
 | 21800003 | Failed to load the ad request. | 
-| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
 
 **示例：**
 
@@ -170,13 +172,13 @@ function requestMultiAd(context: common.Context): void {
     // 广告类型
     adType: 3,
     // 测试广告位ID
-    adId: "testy63txaom86",
+    adId: "testy63txaom86"
   } as advertising.AdRequestParams,
     {
       // 广告类型
       adType: 3,
       // 测试广告位ID
-      adId: "testy63txaom86",
+      adId: "testy63txaom86"
     } as advertising.AdRequestParams
   ];
   const adOptions: advertising.AdOptions = {
@@ -187,7 +189,7 @@ function requestMultiAd(context: common.Context): void {
     // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
     tagForChildProtection: -1,
     // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求 -1默认值,不确定 0不希望 1希望
-    tagForUnderAgeOfPromise: -1,
+    tagForUnderAgeOfPromise: -1
   };
   // 广告请求回调监听
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
@@ -219,7 +221,7 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 
 展示全屏广告。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -262,7 +264,7 @@ export struct ShowAd {
   // 广告展示参数
   private adDisplayOptions: advertising.AdDisplayOptions = {
     // 是否静音，默认不静音
-    mute: false,
+    mute: false
   }
 
   build() {
@@ -288,7 +290,7 @@ export struct ShowAd {
 
 广告配置参数。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -305,7 +307,7 @@ export struct ShowAd {
 
 广告请求参数。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -325,7 +327,7 @@ export struct ShowAd {
 
 单广告位广告请求回调。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -335,7 +337,7 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 广告请求失败回调。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -351,7 +353,7 @@ onAdLoadSuccess(ads: Array&lt;advertising.Advertisement&gt;): void
 
 广告请求成功后回调。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -379,7 +381,7 @@ let adLoaderListener: advertising.AdLoadListener = {
 
 多广告位广告请求回调。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -389,7 +391,7 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 多广告位广告请求失败回调。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -405,7 +407,7 @@ onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt
 
 多广告位广告请求成功后回调。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -433,7 +435,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 请求的广告内容。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -446,7 +448,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 | shown | boolean | 是 | 广告是否展示。<br/>- true：展示。<br/>- false：未展示。 | 
 | clicked | boolean | 是 | 广告是否被点击。<br/>- true：被点击。<br/>- false：未被点击。 | 
 | rewardVerifyConfig | Map&lt;string, string&gt; | 是 | 服务器验证参数。<br/>{<br/>customData: "test",<br/>userId: "12345"<br/>} | 
-| [key: string] | Object | 是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
+| [key: string] | number \| boolean \| string \| undefined  | 是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
 
 
 ## AdDisplayOptions
@@ -454,7 +456,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 广告展示参数。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -474,7 +476,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 广告状态变化回调。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -484,7 +486,7 @@ onStatusChanged(status: string, ad: advertising.[Advertisement](#advertisement),
 
 广告状态回调。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -516,7 +518,7 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;
 **参数：**
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| adParam | [AdRequestParams](#adrequestparams) | 是 | 广告请求参数。 | 
+| adParam | [AdRequestParams[]](#adrequestparams) | 是 | 广告请求参数。 | 
 | adOptions | [AdOptions](#adoptions) | 是 | 广告配置。 | 
 
 **返回值：**
@@ -532,6 +534,7 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401      | Invalid input parameter.         |
+| 801      | Device not supported.            |
 | 21800001 | System internal error.           |
 
 **示例代码**  
@@ -549,7 +552,7 @@ function getAdRequestBody(): void {
     'adType': 3,
     'adCount': 2,
     'adWidth': 100,
-    'adHeight': 100,
+    'adHeight': 100
   };
 
   adReqParamsListForRequest.push(adReqParams as advertising.AdRequestParams);
@@ -561,20 +564,20 @@ function getAdRequestBody(): void {
     // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容，: -1默认值，不确定 0不希望 1希望
     'tagForChildProtection': 1,
     // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求 -1默认值,不确定 0不希望 1希望
-    'tagForUnderAgeOfPromise': -1,
+    'tagForUnderAgeOfPromise': -1
   };
   advertising.getAdRequestBody(adReqParamsListForRequest, adOption as advertising.AdOptions).then((data) => {
     hilog.info(0x0000, 'testTag', '%{public}s', `succeeded in getting AdRequestBody by promise: ${data}`);
     Prompt.showToast({
       message: data,
-      duration: 1000,
+      duration: 1000
     });
   }).catch((error: BusinessError) => {
     hilog.error(0x0000, 'testTag', '%{public}s',
       `getAdRequestBody failed, code: ${error.code}, message: ${error.message}`);
     Prompt.showToast({
       message: error.code.toString() + ',' + error.message,
-      duration: 1000,
+      duration: 1000
     });
   })
 }
@@ -603,19 +606,20 @@ parseAdResponse(adResponse: string, listener: MultiSlotsAdLoadListener, context:
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 401      | Invalid input parameter. Possible causes: parameter is null.|
+| 801      | Device not supported.            |
 | 21800001 | System internal error.           |
 | 21800005 | Failed to parse the ad response. |
 
 **示例：**
 
-其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
+其中context的获取方式参见[UIAbilityContext的获取方式](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。
 
 ```ts
 import { common } from '@kit.AbilityKit';
 import { advertising } from '@kit.AdsKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-function parseAdResponse(adResponse: string, context: common.Context): void {
+function parseAdResponse(adResponse: string, context: common.UIAbilityContext): void {
   // 广告解析处理回调监听
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
     // 广告解析处理失败回调
@@ -643,7 +647,7 @@ registerWebAdInterface(controller: web_webview.WebviewController, context: commo
 
 注入广告JavaScript对象到Web组件中。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 

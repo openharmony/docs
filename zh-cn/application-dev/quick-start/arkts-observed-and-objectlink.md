@@ -8,7 +8,7 @@
 >
 > 从API version 9开始，这两个装饰器支持在ArkTS卡片中使用。
 >
-> 从API version 11开始，这两个装饰器支持在元服务中使用。
+> 从API version 11开始，这两个装饰器支持在原子化服务中使用。
 
 ## 概述
 
@@ -356,15 +356,15 @@ struct ViewB {
 ViewB中的事件句柄：
 
 
-- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量b和其属性的修改。
+- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量size和其属性的修改。
 
-- this.child.bookName.size += ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
+- this.child.bookName.size += ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是Bag被\@Observed装饰，Bag的属性size的变化可以被\@ObjectLink观察到。
 
 
 ViewC中的事件句柄：
 
 
-- this.bookName.size += 1：对\@ObjectLink变量c的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
+- this.bookName.size += 1：对\@ObjectLink变量size的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
 
 - \@ObjectLink变量是只读的，this.bookName = new bookName(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
 
@@ -620,7 +620,7 @@ struct MapSampleNestedChild {
         ForEach(Array.from(this.myMap.entries()), (item: [number, string]) => {
           Text(`${item[0]}`).fontSize(30)
           Text(`${item[1]}`).fontSize(30)
-          Divider()
+          Divider().strokeWidth(5)
         })
 
         Button('set new one')
@@ -713,7 +713,7 @@ struct SetSampleNestedChild {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.mySet.entries()), (item: number) => {
+        ForEach(Array.from(this.mySet.entries()), (item: [number, number]) => {
           Text(`${item}`).fontSize(30)
           Divider()
         })

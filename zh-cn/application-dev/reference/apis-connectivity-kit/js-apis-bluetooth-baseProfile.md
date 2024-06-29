@@ -141,7 +141,7 @@ try {
 
 on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): void
 
-订阅连接状态变化事件。
+订阅连接状态变化事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 

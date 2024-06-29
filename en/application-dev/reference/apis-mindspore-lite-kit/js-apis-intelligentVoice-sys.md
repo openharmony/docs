@@ -16,7 +16,7 @@ Its functions are implemented by:
 
 ## Modules to Import
 ```ts
-import intelligentVoice from '@ohos.ai.intelligentVoice';
+import { intelligentVoice } from '@kit.MindSporeLiteKit';
 ```
 
 ## intelligentVoice.getIntelligentVoiceManager
@@ -37,16 +37,17 @@ Obtains an instance of the intelligent voice manager.
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 | 22700101 | No memory.                              |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let intelligentVoiceManager: intelligentVoice.IntelligentVoiceManager | null = null;
 try {
@@ -54,6 +55,46 @@ try {
 } catch (err) {
   let error = err as BusinessError;
   console.error(`Get IntelligentVoiceManager failed. Code:${error.code}, message:${error.message}`);
+}
+```
+
+## intelligentVoice.getWakeupManager<sup>12+</sup>
+
+getWakeupManager(): WakeupManager
+
+Obtains an instance of the **WakeupManager** class.
+
+**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+**Return value**
+
+| Type                         | Description        |
+| ----------------------------- | ------------ |
+| [WakeupManager](#wakeupmanager12) | Instance of the intelligent voice manager.|
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 22700101 | No memory.                              |
+| 22700107 | System error.                            |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let wakeupManager: intelligentVoice.WakeupManager | null = null;
+try {
+  wakeupManager = intelligentVoice.getWakeupManager();
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Get WakeupManager failed. Code:${error.code}, message:${error.message}`);
 }
 ```
 
@@ -76,17 +117,19 @@ Creates an instance of the intelligent voice enrollment engine. This API uses an
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let engineDescriptor: intelligentVoice.EnrollIntelligentVoiceEngineDescriptor = {
   wakeupPhrase: 'Xiaohua Xiaohua',
@@ -127,17 +170,19 @@ Creates an instance of the intelligent voice enrollment engine. This API uses a 
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let engineDescriptor: intelligentVoice.EnrollIntelligentVoiceEngineDescriptor = {
   wakeupPhrase: 'Xiaohua Xiaohua',
@@ -171,17 +216,19 @@ Creates an instance of the intelligent voice wakeup engine. This API uses an asy
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wakeupEngineDescriptor: intelligentVoice.WakeupIntelligentVoiceEngineDescriptor = {
   needReconfirm: true,
@@ -222,17 +269,19 @@ Creates an instance of the intelligent voice wakeup engine. This API uses a prom
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wakeupEngineDescriptor: intelligentVoice.WakeupIntelligentVoiceEngineDescriptor = {
   needReconfirm: true,
@@ -267,6 +316,14 @@ Obtains the list of supported intelligent voice engine types.
 | ----------------------------------------------- | ---------------------------- |
 |  Array\<[IntelligentVoiceEngineType](#intelligentvoiceenginetype)\>            | Array of supported intelligent voice engine types.             |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **Example**
 
 ```ts
@@ -291,6 +348,14 @@ Subscribes to service change events. A callback is invoked when the status of th
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | Yes  | Event type. This field has a fixed value of **serviceChange**.|
 | callback | Callback\<[ServiceChangeType](#servicechangetype)\> | Yes  | Callback for the service status change.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 
 **Example**
 
@@ -317,6 +382,14 @@ Unsubscribes from service change events.
 | type     | string                           | Yes  | Event type. This field has a fixed value of **serviceChange**.|
 | callback | Callback\<[ServiceChangeType](#servicechangetype)\> | No  | Callback for processing of the service status change event. If this parameter is specified, only the specified callback will be unsubscribed. Otherwise, all callbacks will be unsubscribed. |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **Example**
 
 ```ts
@@ -324,6 +397,361 @@ if (intelligentVoiceManager != null) {
   intelligentVoiceManager.off('serviceChange');
 }
 ```
+
+## WakeupManager<sup>12+</sup>
+
+Represents the **WakeupManager** class. Before using this class, you need to obtain an instance by calling [getWakeupManager()](#intelligentvoicegetwakeupmanager12).
+
+### setParameter<sup>12+</sup>
+
+setParameter(key: string, value: string): Promise\<void\>
+
+Sets the specified wakeup parameter. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+**Parameters**
+
+| Name    | Type                             | Mandatory| Description                                         |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| key     | string                           | Yes  | Key, which corresponds to the wakeup keyword. Currently, only **wakeup_phrase** is supported.|
+| value     | string                           | Yes  | Value.|
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise&lt;void&gt;            | Promise that returns no value.                  |
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 22700102 | Input parameter value error.                            |
+| 22700107 | System error.                            |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if (wakeupManager != null) {
+  (wakeupManager as intelligentVoice.WakeupManager).setParameter('wakeup_phrase', 'xiaohuaxiaohua').then(() => {
+    console.info(`Succeeded in setting parameter`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### getParameter<sup>12+</sup>
+
+getParameter(key: string): Promise\<string\>
+
+Obtains specified intelligent voice parameters. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+**Parameters**
+
+| Name    | Type                             | Mandatory| Description                                         |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| key     | string                           | Yes  | Key, which corresponds to the registration information. Currently, only **isEnrolled** is supported.|
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise\<string\>            | Promise used to return the result. The value **true** indicates registered, and the value **false** indicates the opposite.                  |
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 22700102 | Input parameter value error.                            |
+| 22700107 | System error.                            |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if (wakeupManager != null) {
+  (wakeupManager as intelligentVoice.WakeupManager).getParameter('isEnrolled').then((data: string) => {
+    let param: string = data;
+    console.info(`Succeeded in getting parameter, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### getUploadFiles<sup>12+</sup>
+
+getUploadFiles(maxCount: number): Promise&lt;Array&lt;UploadFile&gt;&gt;
+
+Obtain the saved wakeup keyword files. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+**Parameters**
+
+| Name    | Type                             | Mandatory| Description                                         |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| maxCount     | number                           | Yes  | Number of obtained files.|
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise&lt;Array&lt;[UploadFile](#uploadfile12)&gt;&gt;   | Promise used to return the obtained files.     |
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 22700101 | No memory.                        |
+| 22700102 | Input parameter value error.                            |
+| 22700107 | System error.                            |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if (wakeupManager != null) {
+  (wakeupManager as intelligentVoice.WakeupManager).getUploadFiles(2).then((data: Array<intelligentVoice.UploadFile>) => {
+    let param: Array<intelligentVoice.UploadFile> = data;
+    console.info(`Succeeded in getting upload files, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get upload files, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+
+### getWakeupSourceFiles<sup>12+</sup>
+
+getWakeupSourceFiles(): Promise&lt;Array&lt;WakeupSourceFile&gt;&gt;
+
+Obtains wakeup resource files, such as registration corpus and path. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise&lt;Array&lt;[WakeupSourceFile](#wakeupsourcefile12)&gt;&gt;            | Promise used to return the wakeup resource file.                  |
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 22700101 | No memory.                        |
+| 22700107 | System error.                            |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if (wakeupManager != null) {
+  (wakeupManager as intelligentVoice.WakeupManager).getWakeupSourceFiles().then(
+    (data: Array<intelligentVoice.WakeupSourceFile>) => {
+    let param: Array<intelligentVoice.WakeupSourceFile> = data;
+    console.info(`Succeeded in getting wakeup source files, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get wakeup source files, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### enrollWithWakeupFilesForResult<sup>12+</sup>
+
+enrollWithWakeupFilesForResult(wakeupFiles: Array\<WakeupSourceFile\>, wakeupInfo: string): Promise\<EnrollResult\>
+
+Registers with wakeup resource files to obtain wakeup word evaluation results. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+**Parameters**
+
+| Name    | Type                             | Mandatory| Description                                         |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| wakeupFiles     | Array\<[WakeupSourceFile](#wakeupsourcefile12)\>                           | Yes  | Wakeup resource files.|
+| wakeupInfo     | string                           | Yes  | Wakeup information, including the type and version of the source and target devices.|
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise&lt;[EnrollResult](#enrollresult)&gt;    | Promise used to return the result.                  |
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 22700101 | No memory.                        |
+| 22700102 | Input parameter value error.                        |
+| 22700107 | System error.                            |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let filesInfo: Array<intelligentVoice.WakeupSourceFile> = [];
+filesInfo[0] = {filePath: "", fileContent: new ArrayBuffer(100)};
+let wakeupInfo: string = "version: 123"
+
+if (wakeupManager != null) {
+  (wakeupManager as intelligentVoice.WakeupManager).enrollWithWakeupFilesForResult(
+    filesInfo, wakeupInfo).then(
+    (data: intelligentVoice.EnrollResult) => {
+      let param: intelligentVoice.EnrollResult = data;
+      console.info(`Succeeded in enrolling with wakeup files for result, param:${param}`);
+    }).catch((err: BusinessError) => {
+    console.error(`Failed to enroll with wakeup files for result, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### clearUserData<sup>12+</sup>
+
+clearUserData(): Promise&lt;void&gt;
+
+Clears user data. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise&lt;void&gt;            | Promise that returns no value.                 |
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 22700107 | System error.                            |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if (wakeupManager != null) {
+  (wakeupManager as intelligentVoice.WakeupManager).clearUserData().then(() => {
+    console.info(`Succeeded in clearing user data.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to clear user data, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+## UploadFileType<sup>12+</sup>
+
+Enumerates upload file types.
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+| Name                      | Value  | Description           |
+| ------------------------- | ---- | ------------    |
+| ENROLL_FILE      | 0    | Registration file.  |
+| WAKEUP_FILE      | 1    | Wakeup file.  |
+
+## UploadFile<sup>12+</sup>
+
+Defines an upload file, including the file type, file description, and content.
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+| Name  | Type                           |     Mandatory    | Description      |
+| ------ | ----------------------------- | -------------- | ---------- |
+| type | [UploadFileType](#uploadfiletype12) |        Yes      | File type.|
+| filesDescription | string |        Yes      | File description.|
+| filesContent | Array\<ArrayBuffer\> |        Yes      | File content.|
+
+## WakeupSourceFile<sup>12+</sup>
+
+Defines a wakeup resource file.
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+| Name  | Type                           |     Mandatory    | Description      |
+| ------ | ----------------------------- | -------------- | ---------- |
+| filePath | string |        Yes      | File path.|
+| fileContent | ArrayBuffer |        Yes      | File content.|
+
+## EvaluationResultCode<sup>12+</sup>
+
+Enumerates result codes for custom wakeup keywords.
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+| Name                      | Value  | Description           |
+| ------------------------- | ---- | ------------    |
+| UNKNOWN      | 0    | Unknown error.  |
+| PASS      | 1    | Passed.  |
+| WORD_EMPTY      | 2    | Empty word.  |
+| CHINESE_ONLY      | 3    | Chinese only.  |
+| INVALID_LENGTH      | 4    | Invalid length.  |
+| UNUSUAL_WORD      | 5    | Unusual word. |
+| CONSECUTIVE_SAME_WORD      | 6    | Consecutive same words.  |
+| TOO_FEW_PHONEMES      | 7    | Too few phonemes.  |
+| TOO_MANY_PHONEMES      | 8    | Too many phonemes.  |
+| COMMON_INSTRUCTION      | 9    | Common instructions included.  |
+| COMMON_SPOKEN_LANGUAGE      | 10    | Common spoken language included. |
+| SENSITIVE_WORD      | 11    | Sensitive words included.  |
+| NO_INITIAL_CONSONANT      | 12    | Two consecutive words without initial consonants.  |
+| REPEATED_PHONEME      | 13    | Duplicate phonemes included.  |
+
+## EvaluationResult<sup>12+</sup>
+
+Defines the wakeup word evaluation result.
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+| Name  | Type                           |     Mandatory    | Description      |
+| ------ | ----------------------------- | -------------- | ---------- |
+| score | number |        Yes      | Evaluation score of a custom wakeup keyword. The value ranges from 0 to 5.|
+| resultCode | [EvaluationResultCode](#evaluationresultcode12) |        Yes      | Evaluation result code.|
 
 ## ServiceChangeType
 
@@ -426,6 +854,22 @@ Enumerates error codes of intelligent voice wakeup.
 | INTELLIGENT_VOICE_INVALID_PARAM      | 22700102    | Invalid parameter. |
 | INTELLIGENT_VOICE_INIT_FAILED      | 22700103    | Enrollment failed.  |
 | INTELLIGENT_VOICE_COMMIT_ENROLL_FAILED      | 22700104    | Enrollment commit failed.  |
+| INTELLIGENT_VOICE_START_CAPTURER_FAILED<sup>12+</sup>      | 22700105    | Failed to start reading streams. |
+| INTELLIGENT_VOICE_READ_FAILED<sup>12+</sup>      | 22700106    | Failed to read streams.  |
+| INTELLIGENT_VOICE_SYSTEM_ERROR<sup>12+</sup>      | 22700107    | System error.  |
+
+## CapturerChannel<sup>12+</sup>
+
+Enumerates capturer channels.
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+| Name                      | Value  | Description           |
+| ------------------------- | ---- | ------------    |
+| CAPTURER_CHANNEL_1      | 0x1 << 0    | Audio channel 1.  |
+| CAPTURER_CHANNEL_2      | 0x1 << 1    | Audio channel 2.  |
+| CAPTURER_CHANNEL_3     | 0x1 << 2    | Audio channel 3.  |
+| CAPTURER_CHANNEL_4      | 0x1 << 3    | Audio channel 4.  |
 
 ## EnrollResult
 
@@ -487,10 +931,18 @@ Obtains the list of supported countries/regions. This API uses an asynchronous c
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | callback     | AsyncCallback&lt;Array&lt;string&gt;&gt;         | Yes  | Callback used to return the result, which is an array of supported countries/regions. Only China is supported currently, and the value is **CN**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let regions: Array<string> | null = null;
 if (enrollIntelligentVoiceEngine != null) {
@@ -521,10 +973,18 @@ Obtains the list of supported countries/regions. This API uses a promise to retu
 | ----------------------------------------------- | ---------------------------- |
 |  Promise&lt;Array&lt;string&gt;&gt;            | Promise used to return the result, which is an array of supported countries/regions. Only China is supported currently, and the value is **CN**.                  |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let regions: Array<string> | null = null;
 if (enrollIntelligentVoiceEngine != null) {
@@ -556,17 +1016,19 @@ Initializes the intelligent voice enrollment engine. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 | 22700103 | Init failed.                           |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: intelligentVoice.EnrollEngineConfig = {
   language: 'zh',
@@ -607,17 +1069,19 @@ Initializes the intelligent voice enrollment engine. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 | 22700103 | Init failed.                           |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: intelligentVoice.EnrollEngineConfig = {
   language: 'zh',
@@ -650,10 +1114,19 @@ Obtains the enrollment result. This API uses an asynchronous callback to return 
 | isLast     | boolean                           | Yes  | Whether this is the last enrollment. The value **value** indicates the last enrollment, and the value **false** indicates the opposite.|
 | callback     | AsyncCallback&lt;[EnrollCallbackInfo](#enrollcallbackinfo)&gt;                           | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callbackInfo: intelligentVoice.EnrollCallbackInfo | null = null;
 if (enrollIntelligentVoiceEngine != null) {
@@ -690,10 +1163,19 @@ Obtains the enrollment result. This API uses a promise to return the result.
 | ----------------------------------------------- | ---------------------------- |
 |  Promise&lt;[EnrollCallbackInfo](#enrollcallbackinfo)&gt;            | Promise used to return the result.                  |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callbackInfo: intelligentVoice.EnrollCallbackInfo | null = null;
 if (enrollIntelligentVoiceEngine != null) {
@@ -720,10 +1202,18 @@ Stops the enrollment. This API uses an asynchronous callback to return the resul
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | callback     |  AsyncCallback&lt;void&gt;                           | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).stop((err: BusinessError) => {
@@ -752,10 +1242,18 @@ Stops the enrollment. This API uses a promise to return the result.
 | ----------------------------------------------- | ---------------------------- |
 |  Promise&lt;void&gt;            | Promise that returns no value.                  |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).stop().then(() => {
@@ -784,16 +1282,17 @@ Commits the enrollment. This API uses an asynchronous callback to return the res
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 | 22700104 | Commit enroll failed.                           |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).commit((err: BusinessError) => {
@@ -824,16 +1323,17 @@ Commits the enrollment. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 | 22700104 | Commit enroll failed.                           |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).commit().then(() => {
@@ -863,16 +1363,18 @@ Sets the HAP information for the wakeup application. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let info: intelligentVoice.WakeupHapInfo = {
   bundleName: 'com.wakeup',
@@ -907,16 +1409,18 @@ Sets the HAP information for the wakeup application. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let info: intelligentVoice.WakeupHapInfo = {
   bundleName: 'com.wakeup',
@@ -950,16 +1454,18 @@ Sets the wakeup sensibility. This API uses an asynchronous callback to return th
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY, (err: BusinessError) => {
@@ -996,16 +1502,18 @@ Sets the wakeup sensibility. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY).then(() => {
@@ -1036,16 +1544,18 @@ Sets specified intelligent voice parameters. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setParameter('scene', '0', (err: BusinessError) => {
@@ -1083,16 +1593,18 @@ Sets specified intelligent voice parameters. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).setParameter('scene', '0').then(() => {
@@ -1122,16 +1634,18 @@ Obtains specified intelligent voice parameters. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).getParameter('key', (err: BusinessError, data: string) => {
@@ -1169,16 +1683,18 @@ Obtains specified intelligent voice parameters. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).getParameter('key').then((data: string) => {
@@ -1186,6 +1702,54 @@ if (enrollIntelligentVoiceEngine != null) {
     console.info(`Succeeded in getting parameter, param:${param}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### evaluateForResult<sup>12+</sup>
+
+evaluateForResult(word: string): Promise\<EvaluationResult\>
+
+Evaluates whether a custom wakeup keyword is effective. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+**Parameters**
+
+| Name    | Type                             | Mandatory| Description                                         |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| word     | string                           | Yes  | Custom wakeup keyword.|
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise&lt;[EvaluationResult](#evaluationresult12)&gt;     | Promise used to return the evaluation result.     |
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 22700107 | System error.                            |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).evaluateForResult('word').then(
+    (data: intelligentVoice.EvaluationResult) => {
+    let param: intelligentVoice.EvaluationResult = data;
+    console.info(`Succeeded in evaluating, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to evaluate, Code:${err.code}, message:${err.message}`);
   });
 }
 ```
@@ -1206,10 +1770,18 @@ Releases the intelligent voice enrollment engine. This API uses an asynchronous 
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).release((err: BusinessError) => {
@@ -1238,10 +1810,18 @@ Releases the intelligent voice enrollment engine. This API uses a promise to ret
 | ----------------------------------------------- | ---------------------------- |
 |  Promise&lt;void&gt;            | Promise that returns no value.                 |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).release().then(() => {
@@ -1270,10 +1850,18 @@ Obtains the list of supported countries/regions. This API uses an asynchronous c
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | callback     | AsyncCallback&lt;Array&lt;string&gt;&gt;                           | Yes  | Callback used to return the result, which is an array of supported countries/regions. Only China is supported currently, and the value is **CN**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getSupportedRegions((err: BusinessError, data: Array<string>) => {
@@ -1303,10 +1891,18 @@ Obtains the list of supported countries/regions. This API uses a promise to retu
 | ----------------------------------------------- | ---------------------------- |
 |  Promise&lt;Array&lt;string&gt;&gt;            | Promise used to return the result, which is an array of supported countries/regions. Only China is supported currently, and the value is **CN**.                  |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getSupportedRegions().then((data: Array<string>) => {
@@ -1337,16 +1933,18 @@ Sets the HAP information for the wakeup application. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hapInfo: intelligentVoice.WakeupHapInfo = {
   bundleName: 'com.wakeup',
@@ -1388,16 +1986,18 @@ Sets the HAP information for the wakeup application. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hapInfo: intelligentVoice.WakeupHapInfo = {
   bundleName: 'com.wakeup',
@@ -1431,16 +2031,18 @@ Sets the wakeup sensibility. This API uses an asynchronous callback to return th
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY, (err: BusinessError) => {
@@ -1477,16 +2079,18 @@ Sets the wakeup sensibility. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setSensibility(intelligentVoice.SensibilityType.LOW_SENSIBILITY).then(() => {
@@ -1517,16 +2121,18 @@ Sets specified intelligent voice parameters. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setParameter('scene', '0', (err: BusinessError) => {
@@ -1564,16 +2170,18 @@ Sets specified intelligent voice parameters. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).setParameter('scene', '0').then(() => {
@@ -1603,16 +2211,18 @@ Obtains specified intelligent voice parameters. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getParameter('key', (err: BusinessError, data: string) => {
@@ -1650,16 +2260,18 @@ Obtains specified intelligent voice parameters. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getParameter('key').then((data: string) => {
@@ -1667,6 +2279,176 @@ if (wakeupIntelligentVoiceEngine != null) {
     console.info(`Succeeded in getting parameter, param:${param}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### getPcm<sup>12+</sup>
+
+getPcm(): Promise\<ArrayBuffer\>
+
+Obtains the Pulse Code Modulation (PCM) of audio signals. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise\<ArrayBuffer\>            | Promise used to return the result.                  |
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 22700101 | No memory.                          |
+| 22700107 | System error.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getPcm().then((data: ArrayBuffer) => {
+    let param: ArrayBuffer = data;
+    console.info(`Succeeded in getting pcm, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get pcm, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### startCapturer<sup>12+</sup>
+
+startCapturer(channels: number): Promise\<void\>
+
+Starts the capturer. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+**Parameters**
+
+| Name    | Type                             | Mandatory| Description                                         |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| channels     | number                           | Yes  | Number of audio channels.|
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise\<void\>            | Promise that returns no value.                 |
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 22700102 | Input parameter value error.                         |
+| 22700105 | Start capturer failed.                          |
+| 22700107 | System error.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).startCapturer(1).then(() => {
+    console.info(`Succeeded in starting capturer`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to start capturer, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### read<sup>12+</sup>
+
+read(): Promise\<ArrayBuffer\>
+
+Reads audio data. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise\<ArrayBuffer\>            | Promise used to return the result.                 |
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 22700101 | No memory.                          |
+| 22700106 | Read failed.                        |
+| 22700107 | System error.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).read().then((data: ArrayBuffer) => {
+    let param: ArrayBuffer = data;
+    console.info(`Succeeded in reading data, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to read data, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### stopCapturer<sup>12+</sup>
+
+stopCapturer(): Promise\<void\>
+
+Stops the capturer. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise\<void\>            | Promise that returns no value.                    |
+
+**Error codes**
+
+For details about the following error codes, see [Universal Error Codes](../errorcode-universal.md) and [Intelligent Voice Error Codes](errorcode-intelligentVoice.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 22700107 | System error.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).stopCapturer().then(() => {
+    console.info(`Succeeded in stopping capturer`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to stop capturer, Code:${err.code}, message:${err.message}`);
   });
 }
 ```
@@ -1687,10 +2469,18 @@ Releases the intelligent voice wakeup engine. This API uses an asynchronous call
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | callback     | AsyncCallback\<void\>                           | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).release((err: BusinessError) => {
@@ -1719,10 +2509,18 @@ Releases the intelligent voice wakeup engine. This API uses a promise to return 
 | ----------------------------------------------- | ---------------------------- |
 |  Promise&lt;void&gt;            | Promise that returns no value.                  |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if (wakeupIntelligentVoiceEngine != null) {
   (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).release().then(() => {
@@ -1749,6 +2547,14 @@ Subscribes to wakeup events.
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string          | Yes  | Event type. This field has a fixed value of **wakeupIntelligentVoiceEvent**.|
 | callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | Yes  | Processing of the wakeup event.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 
 **Example**
 
@@ -1778,6 +2584,14 @@ Unsubscribes from wakeup events.
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     |string           | Yes  | Event type. This field has a fixed value of **wakeupIntelligentVoiceEvent**.|
 | callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | No  | Callback for processing of the wakeup event. If this parameter is specified, only the specified callback will be unsubscribed. Otherwise, all callbacks will be unsubscribed. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 
 **Example**
 

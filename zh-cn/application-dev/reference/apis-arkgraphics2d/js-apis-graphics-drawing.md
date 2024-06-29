@@ -275,6 +275,10 @@ path.reset();
 
 承载绘制内容与绘制状态的载体。
 
+> **说明：**
+>
+> 画布自带一个黑色，开启反走样，不具备其他任何样式效果的默认画刷，当且仅当画布中主动设置的画刷和画笔都不存在时生效。
+
 ### constructor
 
 constructor(pixelmap: image.PixelMap)
@@ -350,7 +354,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -870,7 +874,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -913,7 +917,7 @@ class DrawingRenderNode extends RenderNode {
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachBrush(brush);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachBrush();
   }
 }
@@ -939,7 +943,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -964,7 +968,7 @@ class DrawingRenderNode extends RenderNode {
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachBrush(brush);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachBrush();
   }
 }
@@ -1083,6 +1087,67 @@ class DrawingRenderNode extends RenderNode {
     let rect: common2D.Rect = {left: 10, right: 200, top: 100, bottom: 300};
     canvas.drawRect(rect);
     let saveCount = canvas.save();
+  }
+}
+```
+
+### saveLayer<sup>12+</sup>
+
+saveLayer(rect?: common2D.Rect | null, brush?: Brush | null): number
+
+保存当前画布的矩阵和裁剪区域，并为后续绘制分配位图。调用恢复接口[restore](#restore12)将会舍弃对矩阵和裁剪区域做的更改，并绘制位图。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名  | 类型     | 必填   | 说明         |
+| ---- | ------ | ---- | ----------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect)\|null | 否   | 矩形对象，用于限制图层大小，默认为当前画布大小。 |
+| brush  | [Brush](#brush)\|null | 否   | 画刷对象，绘制位图时会应用画刷对象的透明度，颜色滤波器效果和混合模式，默认不设置额外效果。 |
+
+**返回值：**
+
+| 类型   | 说明                |
+| ------ | ------------------ |
+| number | 返回调用前保存的画布状态数，该参数为正整数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    canvas.saveLayer(null, null);
+    const brushRect = new drawing.Brush();
+    const colorRect: common2D.Color = {alpha: 255, red: 255, green: 255, blue: 0};
+    brushRect.setColor(colorRect);
+    canvas.attachBrush(brushRect);
+    const rect: common2D.Rect = {left:100, top:100, right:500, bottom:500};
+    canvas.drawRect(rect);
+
+    const brush = new drawing.Brush();
+    brush.setBlendMode(drawing.BlendMode.DST_OUT);
+    canvas.saveLayer(rect, brush);
+
+    const brushCircle = new drawing.Brush();
+    const colorCircle: common2D.Color = {alpha: 255, red: 0, green: 0, blue: 255};
+    brushCircle.setColor(colorCircle);
+    canvas.attachBrush(brushCircle);
+    canvas.drawCircle(500, 500, 200);
+    canvas.restore();
+    canvas.restore();
+    canvas.detachBrush();
   }
 }
 ```
@@ -1577,6 +1642,52 @@ let typeface = font.getTypeface();
 let familyName = typeface.getFamilyName();
 ```
 
+### makeFromFile<sup>12+</sup>
+
+static makeFromFile(filePath: string): Typeface
+
+从指定字体文件，构造字体。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| filePath | string           | 是   | 表示字体资源存放的路径。 |
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| [Typeface](#typeface) | 返回Typeface对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class TextRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    let str = "/system/fonts/HarmonyOS_Sans_Italic.ttf";
+    const mytypeface = drawing.Typeface.makeFromFile(str);
+    font.setTypeface(mytypeface);
+    const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 60, 100);
+  }
+}
+```
+
 ## Font
 
 描述字形绘制时所使用的属性，如大小、字体等。
@@ -1675,7 +1786,7 @@ font.enableLinearMetrics(true);
 
 setSize(textSize: number): void
 
-设置字体大小，如果字体大小小于等于零，则无效。
+设置字体大小。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1683,7 +1794,7 @@ setSize(textSize: number): void
 
 | 参数名   | 类型   | 必填 | 说明             |
 | -------- | ------ | ---- | ---------------- |
-| textSize | number | 是   | 字体大小，该参数为大于0的浮点数。 |
+| textSize | number | 是   | 字体大小，该参数为浮点数，为负数时字体大小会被置为0。字体大小为0时，绘制的文字不会显示。|
 
 **错误码：**
 
@@ -1806,7 +1917,7 @@ measureText(text: string, encoding: TextEncoding): number
 
 > **说明：**
 >
-> 此接口用于测量原始字符串的文本宽度，若想测量排版后的文本宽度，建议使用[measure.measureText](../apis-arkui/js-apis-measure.md#measuremeasuretext)替代。
+> 此接口用于测量原始字符串的文本宽度，若想测量排版后的文本宽度，建议使用[measure.measureText](../apis-arkui/js-apis-measure.md#measuretextmeasuretext)替代。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1837,6 +1948,92 @@ measureText(text: string, encoding: TextEncoding): number
 import { drawing } from '@kit.ArkGraphics2D';
 let font = new drawing.Font();
 font.measureText("drawing", drawing.TextEncoding.TEXT_ENCODING_UTF8);
+```
+
+### setScaleX<sup>12+</sup>
+
+setScaleX(scaleX: number): void
+
+用于设置字形对象在x轴上的缩放比例。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明       |
+| -------- | ----------------------------- | ---- | ---------- |
+| scaleX     | number                      | 是   | 文本在x轴上的缩放比例，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(5);
+    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
+    canvas.attachPen(pen);
+    let font = new drawing.Font();
+    font.setSize(100);
+    font.setScaleX(2);
+    const textBlob = drawing.TextBlob.makeFromString("hello", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 200, 200);
+  }
+}
+```
+
+### setSkewX<sup>12+</sup>
+
+setSkewX(skewX: number): void
+
+用于设置字形对象在x轴上的倾斜比例。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明       |
+| -------- | ----------------------------- | ---- | ---------- |
+| skewX     | number                      | 是   | 文本在x轴上的倾斜比例，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(5);
+    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
+    canvas.attachPen(pen);
+    let font = new drawing.Font();
+    font.setSize(100);
+    font.setSkewX(1);
+    const textBlob = drawing.TextBlob.makeFromString("hello", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 200, 200);
+  }
+}
 ```
 
 ## FontMetricsFlags<sup>12+</sup>
@@ -2472,7 +2669,7 @@ setColorFilter(filter: ColorFilter) : void
 
 | 参数名 | 类型                        | 必填 | 说明         |
 | ------ | --------------------------- | ---- | ------------ |
-| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。 |
+| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。为null时表示清空颜色滤波器。 |
 
 **错误码：**
 
@@ -2503,7 +2700,7 @@ setMaskFilter(filter: MaskFilter): void
 
 | 参数名 | 类型                       | 必填 | 说明      |
 | ------ | ------------------------- | ---- | --------- |
-| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。 |
+| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。为null时表示清空蒙版滤镜。 |
 
 **错误码：**
 
@@ -2542,7 +2739,7 @@ setPathEffect(effect: PathEffect): void
 
 | 参数名  | 类型                       | 必填 | 说明         |
 | ------- | ------------------------- | ---- | ------------ |
-| effect  | [PathEffect](#patheffect12) | 是   | 路径效果对象。 |
+| effect  | [PathEffect](#patheffect12) | 是   | 路径效果对象。为null时表示清空路径效果。 |
 
 **错误码：**
 
@@ -2573,7 +2770,7 @@ class DrawingRenderNode extends RenderNode {
 
 setShadowLayer(shadowLayer: ShadowLayer): void
 
-设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效。
+设置画笔阴影层效果。当前仅在绘制文字时生效。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2581,7 +2778,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。 |
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果。 |
 
 **错误码：**
 
@@ -2957,7 +3154,7 @@ setColorFilter(filter: ColorFilter) : void
 
 | 参数名 | 类型                        | 必填 | 说明         |
 | ------ | --------------------------- | ---- | ------------ |
-| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。 |
+| filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。为null时表示清空颜色滤波器。 |
 
 **错误码：**
 
@@ -2988,7 +3185,7 @@ setMaskFilter(filter: MaskFilter): void
 
 | 参数名 | 类型                       | 必填 | 说明      |
 | ------ | ------------------------- | ---- | --------- |
-| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。 |
+| filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。为null时表示清空蒙版滤镜。 |
 
 **错误码：**
 
@@ -3017,7 +3214,7 @@ class DrawingRenderNode extends RenderNode {
 
 setShadowLayer(shadowLayer: ShadowLayer): void
 
-设置画刷阴影层效果，为空表示清空阴影层效果，当前仅对文字生效。
+设置画刷阴影层效果。当前仅在绘制文字时生效。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -3025,7 +3222,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。 |
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果 |
 
 **错误码：**
 

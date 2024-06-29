@@ -17,7 +17,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 
 添加一个mDNS服务，使用callback方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -76,7 +76,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 
 添加一个mDNS服务，使用Promise方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -139,7 +139,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 
 移除一个mDNS服务，使用callback方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Communication.NetManager.MDNS
 
@@ -198,7 +198,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 
 移除一个mDNS服务. 使用Promise方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Communication.NetManager.MDNS
 
@@ -260,7 +260,7 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 返回一个DiscoveryService对象，该对象用于发现指定服务类型的mDNS服务。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -304,7 +304,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 
 解析一个mDNS服务，使用callback方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Communication.NetManager.MDNS
 
@@ -363,7 +363,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 
 解析一个mDNS服务，使用Promise方式作为异步方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Communication.NetManager.MDNS
 
@@ -429,7 +429,7 @@ startSearchingMDNS(): void
 
 开始搜索局域网内的mDNS服务。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -454,7 +454,7 @@ stopSearchingMDNS(): void
 
 停止搜索局域网内的mDNS服务。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -479,7 +479,7 @@ on(type: 'discoveryStart', callback: Callback\<DiscoveryEventInfo\>): void
 
 订阅开启监听mDNS服务的通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -515,7 +515,7 @@ off(type: 'discoveryStart', callback?: Callback\<DiscoveryEventInfo\>): void
 
 取消开启监听mDNS服务的通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -555,7 +555,7 @@ on(type: 'discoveryStop', callback: Callback\<DiscoveryEventInfo\>): void
 
 订阅停止监听mDNS服务的通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -591,7 +591,7 @@ off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
 
 取消订阅停止监听mDNS服务的通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -631,7 +631,7 @@ on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 
 订阅发现mDNS服务的通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -670,7 +670,7 @@ off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 
 取消订阅发现mDNS服务的通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -713,7 +713,7 @@ on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
 订阅移除mDNS服务的通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -749,7 +749,7 @@ off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 
 取消订阅移除mDNS服务的通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -787,7 +787,7 @@ discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
 
 mDNS服务信息
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -797,13 +797,13 @@ mDNS服务信息
 | serviceName | string                             |  是 |  mDNS服务的名字。   |
 | port            | number           |  否 |  mDNS服务的端口号。           |
 | host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  否 |  mDNS服务设备的IP地址。采用设备的IP，添加服务和移除服务时候不生效。               |
-| serviceAttribute     | serviceAttribute\<[ServiceAttribute](#serviceattribute)> |  否 |  mDNS服务属性信息。               |
+| serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  否 |  mDNS服务属性信息。               |
 
 ## ServiceAttribute
 
 mDNS服务属性信息
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -816,7 +816,7 @@ mDNS服务属性信息
 
 监听到的mDNS服务事件信息
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -829,7 +829,7 @@ mDNS服务属性信息
 
 mDNS错误信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 

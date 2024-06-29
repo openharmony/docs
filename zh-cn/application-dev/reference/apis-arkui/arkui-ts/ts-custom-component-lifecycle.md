@@ -16,13 +16,15 @@ aboutToAppear函数在创建自定义组件的新实例后，在执行其build()
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## onDidBuild<sup>12+</sup>
 
 onDidBuild?(): void
 
 onDidBuild函数在执行自定义组件的build()函数之后执行。不建议在onDidBuild函数中更改状态变量、使用animateTo等功能，这可能会导致不稳定的UI表现。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ## aboutToDisappear
 
@@ -32,7 +34,9 @@ aboutToDisappear函数在自定义组件析构销毁之前执行。不允许在a
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## onPageShow
 
@@ -40,7 +44,9 @@ onPageShow?(): void
 
 页面每次显示时触发一次，包括路由过程、应用进入前台等场景，仅\@Entry装饰的自定义组件生效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## onPageHide
 
@@ -48,7 +54,9 @@ onPageHide?(): void
 
 页面每次隐藏时触发一次，包括路由过程、应用进入后台等场景，仅\@Entry装饰的自定义组件生效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## onBackPress
 
@@ -56,7 +64,9 @@ onBackPress?(): void | boolean
 
 当用户点击返回按钮时触发，仅\@Entry装饰的自定义组件生效。返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
 // xxx.ets
@@ -98,7 +108,9 @@ aboutToReuse?(params: { [key: string]: unknown }): void
 
 当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -165,7 +177,9 @@ onWillApplyTheme?(theme: Theme): void
 
 onWillApplyTheme函数用于获取当前组件上下文的Theme对象，在创建自定义组件的新实例后，在执行其build()函数之前执行。允许在onWillApplyTheme函数中改变状态变量，更改将在后续执行build()函数中生效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -175,7 +189,7 @@ onWillApplyTheme函数用于获取当前组件上下文的Theme对象，在创�
 
 ```ts
 // xxx.ets
-import { CustomTheme, CustomColors, Theme, ThemeControl } from '@ohos.arkui.theme';
+import { CustomTheme, CustomColors, Theme, ThemeControl } from '@kit.ArkUI';
 
 class BlueColors implements CustomColors {
   fontPrimary = Color.White;

@@ -160,7 +160,7 @@ Separate the build configuration data from the build script to prevent the build
 
 #### Build Logs
 
-##### G.COM.07 Generate simple and clear build logs, and use the format "timestamp + [module name] (optional) + log level + log content" for each log record.
+##### G.COM.07 Generate simple and clear build logs, and use the format "timestamp + [module name](optional) + log level + log content" for each log record.
 [Type] Requirement
 
 You are advised to set the timestamp in the format of date and time, for example, *MM/dd/yyyy HH:mm:ss*.

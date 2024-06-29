@@ -18,6 +18,8 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 
 拉起相机选择器，根据媒体类型进入相应的模式。操作结束通过Promise形式获取结果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -63,6 +65,8 @@ async function demo() {
 
 枚举，相机选择器的媒体类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称             | 值    | 说明     |
@@ -75,11 +79,13 @@ async function demo() {
 
 相机选择器的配置信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称           | 类型                               | 必填   | 说明         |
 | -------------- | --------------------------------- | ----- | ------------ |
-| cameraPosition       | [CameraPosition](js-apis-camera.md#cameraposition) | 是    | 相机的位置。   |
+| cameraPosition       | [camera.CameraPosition](js-apis-camera.md#cameraposition) | 是    | 相机的位置。   |
 | saveUri        | string                            | 否    | 保存配置信息的uri。|
 | videoDuration  | number                            | 否    | 录制的最大时长。|
 
@@ -87,6 +93,8 @@ async function demo() {
 ## PickerResult
 
 相机选择器的处理结果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 

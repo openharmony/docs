@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import commonType from '@ohos.data.commonType';
+import { commonType } from '@kit.ArkData';
 ```
 
 ## AssetStatus
@@ -33,17 +33,19 @@ import commonType from '@ohos.data.commonType';
 
 **系统能力：** SystemCapability.DistributedDataManager.CommonType
 
-| 名称       | 类型                        | 必填 | 说明                               |
-| ---------- | --------------------------- | ---- | ---------------------------------- |
-| name       | string                      | 是   | 资产的名称。                       |
-| uri        | string                      | 是   | 资产的uri，在系统里的绝对路径。    |
-| path       | string                      | 是   | 资产在应用沙箱里的路径。           |
-| createTime | string                      | 是   | 资产被创建出来的时间。             |
-| modifyTime | string                      | 是   | 资产最后一次被修改的时间。         |
-| size       | string                      | 是   | 资产占用空间的大小。               |
-| status     | [AssetStatus](#assetstatus) | 否   | 资产的状态，默认值为ASSET_NORMAL。 |
+| 名称       | 类型                                                   | 必填 | 说明                               |
+| ---------- | ------------------------------------------------------ | ---- | ---------------------------------- |
+| name       | string \| undefined<sup>12+</sup>                      | 是   | 资产的名称。                       |
+| uri        | string \| undefined<sup>12+</sup>                      | 是   | 资产的uri，在系统里的绝对路径。    |
+| path       | string \| undefined<sup>12+</sup>                      | 是   | 资产在应用沙箱里的路径。           |
+| createTime | string \| undefined<sup>12+</sup>                      | 是   | 资产被创建出来的时间。             |
+| modifyTime | string \| undefined<sup>12+</sup>                      | 是   | 资产最后一次被修改的时间。         |
+| size       | string \| undefined<sup>12+</sup>                      | 是   | 资产占用空间的大小。               |
+| status     | [AssetStatus](#assetstatus) \| undefined<sup>12+</sup> | 否   | 资产的状态，默认值为ASSET_NORMAL。 |
 
 ## Assets
+
+type Assets = Array\<Asset>
 
 表示[Asset](#asset)类型的数组。
 
@@ -54,6 +56,8 @@ import commonType from '@ohos.data.commonType';
 | Array&lt;[Asset](#asset)&gt; | 表示Asset类型的数组。 |
 
 ## ValueType
+
+type ValueType = null | number | string | boolean | Uint8Array | Asset | Assets
 
 用于表示允许的数据字段类型，接口参数具体类型根据其功能而定。
 
@@ -71,10 +75,13 @@ import commonType from '@ohos.data.commonType';
 
 ## ValuesBucket
 
+type ValuesBucket = Record<string, ValueType>
+
 用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：** SystemCapability.DistributedDataManager.CommonType
 
-| 键类型 | 值类型                  |
+| 类型 | 说明                  |
 | ------ | ----------------------- |
-| string | [ValueType](#valuetype) |
+| string | 表示键类型为string。 |
+| [ValueType](#valuetype)| 表示值类型为[ValueType](#valuetype)。 |

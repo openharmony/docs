@@ -161,13 +161,13 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  }
+  address: netAddress
 }
 udp.send(sendOptions, (err: BusinessError) => {
   if (err) {
@@ -216,13 +216,13 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  }
+  address: netAddress
 }
 udp.send(sendOptions).then(() => {
   console.log('send success');
@@ -246,6 +246,12 @@ Closes a UDP socket connection. This API uses an asynchronous callback to return
 | Name  | Type                 | Mandatory| Description      |
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  |
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **Example**
 
@@ -272,6 +278,12 @@ Closes a UDP socket connection. This API uses a promise to return the result.
 **Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **Return value**
 
@@ -357,6 +369,12 @@ Obtains the status of the UDP socket connection. This API uses a promise to retu
 **Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **Return value**
 
@@ -558,9 +576,6 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -630,9 +645,6 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **listening** events or **close** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -697,9 +709,6 @@ udp.on('error', (err: BusinessError) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of the UDP socket connection. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -794,7 +803,7 @@ Defines information about the socket connection.
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | address | string | Yes  | Bound IP address.                                          |
-| family  | string | Yes  | Network protocol type.<br>- IPv4<br>- IPv6<br>The default value is **IPv4**.|
+| family  | 'IPv4' \| 'IPv6' | Yes  | Network protocol type.<br>- IPv4<br>- IPv6<br>The default value is **IPv4**.|
 | port    | number | Yes  | Port number. The value ranges from **0** to **65535**.                                       |
 | size    | number | Yes  | Length of the server response message, in bytes.                                  |
 
@@ -1405,12 +1414,13 @@ Before sending data, call [addMembership](#addmembership11) to add a member to t
 import { socket } from '@kit.NetworkKit';
 
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
-  address: {
-    address: '239.255.0.1',
-    port: 8080
-  }
+  address: netAddress
 }
 multicast.send(sendOptions, (err: Object) => {
   if (err) {
@@ -1458,12 +1468,13 @@ Before sending data, call [addMembership](#addmembership11) to add a member to t
 import { socket } from '@kit.NetworkKit';
 
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
-  address: {
-    address: '239.255.0.1',
-    port: 8080
-  }
+  address: netAddress
 }
 multicast.send(sendOptions).then(() => {
   console.log('send success');
@@ -1494,7 +1505,7 @@ import { socket } from '@kit.NetworkKit';
 
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
 
-multicast.on('message', (data) => {
+multicast.on('message', (data: socket.SocketMessageInfo) => {
   console.info ('Received data:' + JSON.stringify (data))
   const uintArray = new Uint8Array(data.message)
   let str = ''
@@ -1525,7 +1536,7 @@ Unsubscribes to **message** events of a **MulticastSocket** object. This API use
 import { socket } from '@kit.NetworkKit';
 
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
-multicast.on('message', (data) => {
+multicast.on('message', (data: socket.SocketMessageInfo) => {
   console.info ('Received data:' + JSON.stringify (data))
   const uintArray = new Uint8Array(data.message)
   let str = ''
@@ -1698,12 +1709,12 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
@@ -1754,12 +1765,12 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions).then(() => {
@@ -1803,12 +1814,12 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
@@ -1865,12 +1876,12 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
@@ -1993,12 +2004,12 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
@@ -2045,12 +2056,12 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions).then(() => {
@@ -2097,12 +2108,12 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
@@ -2149,12 +2160,12 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions).then(() => {
@@ -2197,11 +2208,12 @@ let bindAddr: socket.NetAddress = {
   address: '0.0.0.0'
 }
 tcp.bind(bindAddr)
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions)
@@ -2238,11 +2250,12 @@ let bindAddr: socket.NetAddress = {
   address: '0.0.0.0'
 }
 tcp.bind(bindAddr)
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions)
@@ -2285,11 +2298,12 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
@@ -2353,11 +2367,12 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
@@ -2420,9 +2435,6 @@ tcp.on('message', (value: socket.SocketMessageInfo) => {
 off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -2493,9 +2505,6 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from connection or close events of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -2561,9 +2570,6 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of the TCP socket connection. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -2622,7 +2628,7 @@ Defines other properties of the TCP socket connection.
 | keepAlive         | boolean | No  | Whether to keep the connection alive. The default value is **false**.                                 |
 | OOBInline         | boolean | No  | Whether to enable OOBInline. The default value is **false**.                                |
 | TCPNoDelay        | boolean | No  | Whether to enable no-delay on the TCP socket connection. The default value is **false**.                      |
-| socketLinger      | Object  | Yes  | Socket linger.<br>- **on**: whether to enable socket linger. The value true means to enable socket linger and false means the opposite.<br>- **linger**: linger time, in ms. The value ranges from **0** to **65535**.<br>Specify this parameter only when **on** is set to **true**.|
+| socketLinger      | \{on:boolean, linger:number\}  | No  | Socket linger.<br>- **on**: whether to enable socket linger. The value true means to enable socket linger and false means the opposite.<br>- **linger**: linger time, in ms. The value ranges from **0** to **65535**.<br>Specify this parameter only when **on** is set to **true**.|
 | receiveBufferSize | number  | No  | Size of the receive buffer, in bytes. The default value is **0**.                              |
 | sendBufferSize    | number  | No  | Size of the send buffer, in bytes. The default value is **0**.                              |
 | reuseAddress      | boolean | No  | Whether to reuse addresses. The default value is **false**.                                 |
@@ -3051,9 +3057,6 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 
 Unsubscribes from **connect** events of a **TCPSocketServer** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -3125,9 +3128,6 @@ tcpServer.on('error', (err: BusinessError) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TCPSocketServer** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -3493,9 +3493,6 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -3578,9 +3575,6 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **close** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -3653,9 +3647,6 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TCPSocketConnection** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -3753,7 +3744,7 @@ Binds the address of a local socket file. This API uses a promise to return the 
 ```ts
 import { socket } from '@kit.NetworkKit';
 
-let client = socket.constructLocalSocketInstance()
+let client: socket.LocalSocket = socket.constructLocalSocketInstance()
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let address : socket.LocalAddress = {
   address: sandboxPath
@@ -3803,12 +3794,13 @@ Connects to the specified socket file. This API uses a promise to return the res
 ```ts
 import { socket } from '@kit.NetworkKit';
 
-let client = socket.constructLocalSocketInstance();
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 client.connect(connectOpt).then(() => {
@@ -3855,10 +3847,11 @@ import { socket } from '@kit.NetworkKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
 let sandboxPath: string = getContext().filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 client.connect(connectOpt).then(() => {
@@ -3934,10 +3927,11 @@ import { socket } from '@kit.NetworkKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 client.connect(connectOpt).then(() => {
@@ -3977,10 +3971,11 @@ import { socket } from '@kit.NetworkKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 client.connect(connectOpt).then(() => {
@@ -4032,10 +4027,11 @@ import { socket } from '@kit.NetworkKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 client.connect(connectOpt).then(() => {
@@ -4085,10 +4081,11 @@ import { socket } from '@kit.NetworkKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 client.connect(connectOpt).then(() => {
@@ -4118,6 +4115,12 @@ Subscribes to **message** events of a **LocalSocket** object. This API uses an a
 | type     | string                                          | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **Example**
 
 ```ts
@@ -4141,9 +4144,6 @@ off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -4152,6 +4152,12 @@ Unsubscribes from **message** events of a **LocalSocket** object. This API uses 
 | -------- | ------------------------------------------------ | ---- | ----------------------------------- |
 | type     | string                                           | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | No  | Callback passed to the **on** function.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **Example**
 
@@ -4188,6 +4194,12 @@ Subscribes to **connect** events of a **LocalSocket** object. This API uses an a
 | type     | string           | Yes  | Event type.<br/>                                            |
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                    |
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **Example**
 
 ```ts
@@ -4214,6 +4226,12 @@ Unsubscribes from **connect** events of a **LocalSocket** object. This API uses 
 | type     | string           | Yes  | Event type.<br/>                                            |
 | callback | Callback\<void\> | No  | Callback passed to the **on** function.                          |
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **Example**
 
 ```ts
@@ -4235,9 +4253,6 @@ on(type: 'close', callback: Callback\<void\>): void;
 
 Subscribes to **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -4246,6 +4261,12 @@ Subscribes to **close** events of a **LocalSocket** object. This API uses an asy
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string           | Yes  | Event type.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **Example**
 
@@ -4265,9 +4286,6 @@ off(type: 'close', callback?: Callback\<void\>): void;
 
 Unsubscribes from **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -4276,6 +4294,12 @@ Unsubscribes from **close** events of a **LocalSocket** object. This API uses an
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string           | Yes  | Event type.|
 | callback | Callback\<void\> | No  | Callback passed to the **on** function.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **Example**
 
@@ -4307,6 +4331,12 @@ Subscribes to **error** events of a **LocalSocket** object. This API uses an asy
 | type     | string        | Yes  | Event type.  |
 | callback | ErrorCallback | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **Example**
 
 ```ts
@@ -4324,9 +4354,6 @@ off(type: 'error', callback?: ErrorCallback): void;
 
 Unsubscribes from **error** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -4335,6 +4362,12 @@ Unsubscribes from **error** events of a **LocalSocket** object. This API uses an
 | -------- | ------------- | ---- | ----------------------------- |
 | type     | string        | Yes  | Event type.|
 | callback | ErrorCallback | No  | Callback passed to the **on** function.|
+
+**Error codes**
+
+| ID| Error Message                |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **Example**
 
@@ -4381,7 +4414,7 @@ Defines local socket connection parameters.
 
 | Name    | Type      | Mandatory| Description                           |
 | ------- | ---------- | --- | ------------------------------ |
-| address | string     | Yes  | Address of the local socket file.           |
+| address | [LocalAddress](#localaddress11)    | Yes  | Address of the local socket file.           |
 | timeout | number     | No  | Timeout duration of the local socket connection, in ms. |
 
 ## LocalSendOptions<sup>11+</sup>
@@ -4668,9 +4701,6 @@ off(type: 'connect', callback?: Callback\<LocalSocketConnection\>): void
 
 Unsubscribes from **connect** events of a **LocalSocketServer** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -4743,9 +4773,6 @@ server.on('error', (err: Object) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **LocalSocketServer** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -4860,7 +4887,6 @@ Closes a local socket connection. This API uses a promise to return the result.
 
 | ID| Error Message              |
 | -------- | -------------------- |
-| 201      | Permission denied.   |
 | 2301009  | Bad file descriptor. |
 
 **Example**
@@ -4932,9 +4958,6 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5014,9 +5037,6 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **close** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -5088,9 +5108,6 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **LocalSocketConnection** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5485,6 +5502,12 @@ Subscribes to **message** events of the TLS socket connection. This API uses an 
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | Yes  | Callback used to return the result.  |
 
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+
 **Example**
 
 ```ts
@@ -5511,9 +5534,6 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **TLSSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -5522,6 +5542,12 @@ Unsubscribes from **message** events of a **TLSSocket** object. This API uses an
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | Yes  | Event type.<br/> **message**: message receiving event.|
 | callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | No  | Callback used to return the result.  |
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
 
 **Example**
 
@@ -5560,6 +5586,12 @@ Subscribes to **connect** or **close** events of the TLS socket connection. This
 | type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | Yes  | Callback used to return the result.                                                    |
 
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+
 **Example**
 
 ```ts
@@ -5581,9 +5613,6 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **connect** or **close** events of a **TLSSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -5592,6 +5621,12 @@ Unsubscribes from **connect** or **close** events of a **TLSSocket** object. Thi
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | Yes  | Event type.<br>- **connect**: connection event.<br>- **close**: close event.|
 | callback | Callback\<void\> | No  | Callback used to return the result.           |
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
 
 **Example**
 
@@ -5630,6 +5665,12 @@ Subscribes to **error** events of the TLS socket connection. This API uses an as
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | Yes  | Callback used to return the result.         |
 
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+
 **Example**
 
 ```ts
@@ -5648,9 +5689,6 @@ off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TLSSocket** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -5659,6 +5697,12 @@ Unsubscribes from **error** events of a **TLSSocket** object. This API uses an a
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | Yes  | Event type.<br/> **error**: error event.|
 | callback | ErrorCallback | No  | Callback used to return the result.                            |
+
+**Error codes**
+
+| ID| Error Message                       |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
 
 **Example**
 
@@ -5727,22 +5771,23 @@ tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
 });
-
+let twoWayNetAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let twoWaySecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: twoWayNetAddr,
+  secureOptions: twoWaySecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 
@@ -5758,16 +5803,17 @@ tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
 });
-
+let oneWayNetAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let oneWaySecureOptions: socket.TLSSecureOptions = {
+  ca: ["xxxx", "xxxx"],
+  cipherSuite: "AES256-SHA256"
+}
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    ca: ["xxxx", "xxxx"],
-    cipherSuite: "AES256-SHA256"
-  }
+  address: oneWayNetAddr,
+  secureOptions: oneWaySecureOptions
 }
 tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
@@ -5831,22 +5877,23 @@ tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
 });
-
+let twoWayNetAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let twoWaySecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: twoWayNetAddr,
+  secureOptions: twoWaySecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 
@@ -5864,16 +5911,17 @@ tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
 });
-
+let oneWayNetAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let oneWaySecureOptions: socket.TLSSecureOptions = {
+  ca: ["xxxx", "xxxx"],
+  cipherSuite: "AES256-SHA256"
+}
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    ca: ["xxxx", "xxxx"],
-    cipherSuite: "AES256-SHA256"
-  }
+  address: oneWayNetAddr,
+  secureOptions: oneWaySecureOptions
 }
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
@@ -6610,22 +6658,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions, (err: BusinessError) => {
@@ -6679,22 +6728,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -6736,21 +6786,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -6798,21 +6850,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -6860,21 +6914,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -6940,21 +6996,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7014,21 +7072,23 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7080,21 +7140,23 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7144,21 +7206,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7207,21 +7271,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7267,21 +7333,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7326,21 +7394,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7389,21 +7459,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7448,21 +7520,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7528,21 +7602,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7600,21 +7676,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7663,21 +7741,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7727,21 +7807,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7787,21 +7869,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7848,21 +7932,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7909,21 +7995,23 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7973,21 +8061,23 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8037,21 +8127,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8100,21 +8192,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8160,21 +8254,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8221,21 +8317,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions},
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8280,21 +8378,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8324,9 +8424,6 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 Unsubscribes from **message** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -8349,21 +8446,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8419,21 +8518,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8453,9 +8554,6 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 off(type: 'close', callback?: Callback\<void\>): void
 
 Unsubscribes from **close** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -8479,21 +8577,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8541,21 +8641,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8576,9 +8678,6 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from **error** events of a **TLSSocketConnection** object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -8602,21 +8701,23 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {

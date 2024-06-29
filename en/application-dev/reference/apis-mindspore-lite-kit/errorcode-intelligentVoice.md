@@ -79,3 +79,58 @@ The specified number of enrollment procedures are not completed.
 **Solution**
 
 Commit the enrollment after the specified number of enrollment procedures are completed.
+
+## 22700105 Failed to Start the Capturer
+
+**Error Message**
+
+Start capturer failed.
+
+**Error Description**
+
+This error code is reported if the attempt to start the capturer by using [startCapturer()](js-apis-intelligentVoice-sys.md#startcapturer12) fails.
+
+**Possible Causes**
+
+The audio recording service has been stopped.
+
+**Solution**
+
+Stop the capturer. Start it upon next wakeup.
+
+## 22700106 Failed to Read Data
+
+**Error Message**
+
+Read failed.
+
+**Error Description**
+
+This error code is reported if the attempt to start the capturer to read data by calling [read()](js-apis-intelligentVoice-sys.md#read12) fails.
+
+**Possible Causes**
+
+1. Starting the capturer fails.
+2. Data reading times out.
+
+**Solution**
+
+Stop the capturer. Call [read()](js-apis-intelligentVoice-sys.md#read12) to read data upon next wakeup.
+
+## 22700107 System Error
+
+**Error Message**
+
+System error.
+
+**Error Description**
+
+This error code is reported if the system encounters an error.
+
+**Possible Causes**
+
+The system processing is abnormal, for example, system service restart or IPC exceptions.
+
+**Solution**
+
+Create the service again.

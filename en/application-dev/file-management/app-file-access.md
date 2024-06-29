@@ -8,29 +8,29 @@ You can use [ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) t
 
 **Table 1** APIs for basic application file operations
 
-| API| Description| Category| Synchronous Programming| Asynchronous Programming| 
+| API| Description| Category| Synchronous Programming| Asynchronous Programming|
 | -------- | -------- | -------- | -------- | -------- |
-| access | Checks whether a file exists.| Method| Supported| Supported| 
-| close | Closes a file.| Method| Supported| Supported| 
-| copyFile | Copies a file.| Method| Supported| Supported| 
-| createStream | Creates a stream based on a file path.| Method| Supported| Supported| 
-| listFile | Lists all files in a directory.| Method| Supported| Supported| 
-| mkdir | Creates a directory.| Method| Supported| Supported| 
-| moveFile | Moves a file.| Method| Supported| Supported| 
-| open | Opens a file.| Method| Supported| Supported| 
-| read | Reads data from a file.| Method| Supported| Supported| 
-| rename | Renames a file or folder.| Method| Supported| Supported| 
-| rmdir | Deletes a directory.| Method| Supported| Supported| 
-| stat | Obtains detailed file information.| Method| Supported| Supported| 
-| unlink | Deletes a single file.| Method| Supported| Supported| 
-| write | Writes data to a file.| Method| Supported| Supported| 
-| Stream.close | Closes a stream.| Method| Supported| Supported| 
-| Stream.flush | Flushes all data from this stream.| Method| Supported| Supported| 
-| Stream.write | Writes data to a stream.| Method| Supported| Supported| 
-| Stream.read | Reads data from a stream.| Method| Supported| Supported| 
-| File.fd | Defines a file descriptor.| Attribute| N/A| N/A| 
-| OpenMode | Defines the mode for opening a file.| Attribute| N/A| N/A| 
-| Filter | Defines the options for filtering files.| Type| N/A| N/A| 
+| access | Checks whether a file exists.| Method| Supported| Supported|
+| close | Closes a file.| Method| Supported| Supported|
+| copyFile | Copies a file.| Method| Supported| Supported|
+| createStream | Creates a stream based on a file path.| Method| Supported| Supported|
+| listFile | Lists all files in a directory.| Method| Supported| Supported|
+| mkdir | Creates a directory.| Method| Supported| Supported|
+| moveFile | Moves a file.| Method| Supported| Supported|
+| open | Opens a file.| Method| Supported| Supported|
+| read | Reads data from a file.| Method| Supported| Supported|
+| rename | Renames a file or folder.| Method| Supported| Supported|
+| rmdir | Deletes a directory.| Method| Supported| Supported|
+| stat | Obtains detailed file information.| Method| Supported| Supported|
+| unlink | Deletes a single file.| Method| Supported| Supported|
+| write | Writes data to a file.| Method| Supported| Supported|
+| Stream.close | Closes a stream.| Method| Supported| Supported|
+| Stream.flush | Flushes all data from this stream.| Method| Supported| Supported|
+| Stream.write | Writes data to a stream.| Method| Supported| Supported|
+| Stream.read | Reads data from a stream.| Method| Supported| Supported|
+| File.fd | Defines a file descriptor.| Attribute| N/A| N/A|
+| OpenMode | Defines the mode for opening a file.| Attribute| N/A| N/A|
+| Filter | Defines the options for filtering files.| Type| N/A| N/A|
 
 ## Development Example
 
@@ -78,7 +78,7 @@ The following example demonstrates how to read data from a file and copy it to a
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions } from '@ohos.file.fs';
+import fs, { ReadOptions, WriteOptions } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
 // Obtain the application file path.
@@ -100,7 +100,10 @@ function readWriteFile(): void {
   let readLen = fs.readSync(srcFile.fd, buf, readOptions);
   while (readLen > 0) {
     readSize += readLen;
-    fs.writeSync(destFile.fd, buf);
+    let writeOptions: WriteOptions = {
+      length: readLen
+    };
+    fs.writeSync(destFile.fd, buf, writeOptions);
     readOptions.offset = readSize;
     readLen = fs.readSync(srcFile.fd, buf, readOptions);
   }
@@ -142,7 +145,8 @@ async function readWriteFileWithStream(): Promise<void> {
   let readLen = await inputStream.read(buf, readOptions);
   readSize += readLen;
   while (readLen > 0) {
-    await outputStream.write(buf);
+    const writeBuf = readLen < bufSize ? buf.slice(0, readLen) : buf;
+    await outputStream.write(writeBuf);
     readOptions.offset = readSize;
     readLen = await inputStream.read(buf, readOptions);
     readSize += readLen;
@@ -156,7 +160,7 @@ async function readWriteFileWithStream(): Promise<void> {
 > **NOTE**
 >
 > - Close the stream once it is not required. 
-> - Comply with the programming specifications for **Stream** APIs in asynchronous mode and avoid mixed use of the APIs in synchronous mode and asynchronous mode.
+> - Comply with the programming specifications for **Stream** APIs in asynchronous mode and avoid mixed use of the APIs in synchronous mode and asynchronous mode. 
 > - The **Stream** APIs do not support concurrent read and write operations.
 
 ### Listing Files
@@ -188,4 +192,80 @@ function getListFile(): void {
     console.info(`The name of file: ${files[i]}`);
   }
 }
+```
+
+### Using File Streams
+
+The following sample code demonstrates how to use readable and writable streams.
+
+```ts
+// pages/xxx.ets
+import fs from '@ohos.file.fs';
+import common from '@ohos.app.ability.common';
+
+// Obtain the application file path.
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
+
+function copyFileWithReadable(): void {
+  // Create a readable stream.
+  const rs = fs.createReadStream(`${filesDir}/read.txt`);
+  // Create a writable stream.
+  const ws = fs.createWriteStream(`${filesDir}/write.txt`);
+  // Copy files in paused mode. 
+  rs.on('readable', () => {
+    const data = rs.read();
+    if (!data) {
+      return;
+    }
+    ws.write(data);
+  });
+}
+
+function copyFileWithData(): void {
+  // Create a readable stream.
+  const rs = fs.createReadStream(`${filesDir}/read.txt`);
+  // Create a writable stream.
+  const ws = fs.createWriteStream(`${filesDir}/write.txt`);
+  // Copy files in flowing mode.
+  rs.on('data', (emitData) => {
+    const data = emitData?.data;
+    if (!data) {
+      return;
+    }
+    ws.write(data as Uint8Array);
+  });
+}
+
+```
+
+The following code demonstrates how to use a file hash stream.
+
+```ts
+// pages/xxx.ets
+import fs from '@ohos.file.fs';
+import hash from '@ohos.file.hash';
+import common from '@ohos.app.ability.common';
+
+// Obtain the application file path.
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
+
+function hashFileWithStream() {
+  const filePath = `${filesDir}/test.txt`;
+  // Create a readable stream.
+  const rs = fs.createReadStream(filePath);
+  // Create a hash stream.
+  const hs = hash.createHash('sha256');
+  rs.on('data', (emitData) => {
+    const data = emitData?.data;
+    hs.update(new Uint8Array(data?.split('').map((x: string) => x.charCodeAt(0))).buffer);
+  });
+  rs.on('close', async () => {
+    const hashResult = hs.digest();
+    const fileHash = await hash.hash(filePath, 'sha256');
+    console.info(`hashResult: ${hashResult}, fileHash: ${fileHash}`);
+  });
+}
+
 ```

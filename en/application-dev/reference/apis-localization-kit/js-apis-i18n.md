@@ -23,6 +23,8 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 Obtains the localized script for the specified country.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -113,6 +115,8 @@ Obtains the list of system languages.
 
 Since API version 11, this API is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -138,6 +142,8 @@ Since API version 11, this API is supported in ArkTS widgets.
 static getSystemCountries(language: string): Array&lt;string&gt;
 
 Obtains the list of countries and regions supported for the specified language.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -179,6 +185,8 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 static isSuggested(language: string, region?: string): boolean
 
 Checks whether the system language matches the specified region.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -252,6 +260,8 @@ static getSystemRegion(): string
 
 Obtains the system region.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -308,6 +318,8 @@ Checks whether the 24-hour clock is used.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -335,6 +347,8 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 
 Obtains the list of preferred languages.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -361,6 +375,8 @@ static getFirstPreferredLanguage(): string
 
 Obtains the first language in the preferred language list.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -386,6 +402,8 @@ Obtains the first language in the preferred language list.
 static setAppPreferredLanguage(language: string): void
 
 Sets the preferred language of the application.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -422,6 +440,8 @@ static getAppPreferredLanguage(): string
 
 Obtains the preferred language of an application.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -448,6 +468,8 @@ Obtains the preferred language of an application.
 static getUsingLocalDigit(): boolean
 
 Checks whether use of local digits is enabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -476,6 +498,8 @@ isRTL(locale: string): boolean
 
 Checks whether a locale uses an RTL language.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -503,6 +527,8 @@ getCalendar(locale: string, type? : string): Calendar
 
 Obtains a **Calendar** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -525,11 +551,15 @@ Obtains a **Calendar** object.
 
 ## EntityRecognizer<sup>11+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 ### constructor<sup>11+</sup>
 
 constructor(locale?: string)
 
 Creates an **entityRecognizer** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -558,6 +588,8 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 Recognizes entities in text.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -594,6 +626,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 Defines an entity information object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 | Name | Type  | Readable  | Writable  | Description               |
@@ -604,12 +638,15 @@ Defines an entity information object.
 
 ## Calendar<sup>8+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### setTime<sup>8+</sup>
 
 setTime(date: Date): void
 
 Sets the date for this **Calendar** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -633,6 +670,8 @@ setTime(time: number): void
 
 Sets the date and time for this **Calendar** object. The value is represented by the number of milliseconds that have elapsed since the Unix epoch (00:00:00 UTC on January 1, 1970).
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -653,6 +692,8 @@ Sets the date and time for this **Calendar** object. The value is represented by
 set(year: number, month: number, date:number, hour?: number, minute?: number, second?: number): void
 
 Sets the year, month, day, hour, minute, and second for this **Calendar** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -680,6 +721,8 @@ setTimeZone(timezone: string): void
 
 Sets the time zone of this **Calendar** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -700,6 +743,8 @@ Sets the time zone of this **Calendar** object.
 getTimeZone(): string
 
 Obtains the time zone of this **Calendar** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -723,6 +768,8 @@ getFirstDayOfWeek(): number
 
 Obtains the start day of a week for this **Calendar** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -743,6 +790,8 @@ Obtains the start day of a week for this **Calendar** object.
 setFirstDayOfWeek(value: number): void
 
 Sets the start day of a week for this **Calendar** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -766,6 +815,8 @@ getMinimalDaysInFirstWeek(): number
 
 Obtains the minimum number of days in the first week of a year.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -786,6 +837,8 @@ Obtains the minimum number of days in the first week of a year.
 setMinimalDaysInFirstWeek(value: number): void
 
 Sets the minimum number of days in the first week of a year.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -808,6 +861,8 @@ Sets the minimum number of days in the first week of a year.
 get(field: string): number
 
 Obtains the value of the specified field in the **Calendar** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -837,6 +892,8 @@ getDisplayName(locale: string): string
 
 Obtains the displayed name of the **Calendar** object for the specified locale.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -863,6 +920,8 @@ Obtains the displayed name of the **Calendar** object for the specified locale.
 isWeekend(date?: Date): boolean
 
 Checks whether a given date is a weekend in the calendar.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -893,6 +952,8 @@ Checks whether a given date is a weekend in the calendar.
 add(field: string, amount: number): void
 
 Performs addition and subtraction operations on the specified field of the **Calendar** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -934,6 +995,8 @@ getTimeInMillis(): number
 
 Obtains number of milliseconds that have elapsed since the Unix epoch in the current **Calendar** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -955,6 +1018,8 @@ Obtains number of milliseconds that have elapsed since the Unix epoch in the cur
 compareDays(date: Date): number
 
 Compares the number of days between the calendar date and the specified date. The value is accurate to milliseconds. If the value is less than one day, it is treated as one day.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -996,12 +1061,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ## PhoneNumberFormat<sup>8+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### constructor<sup>8+</sup>
 
 constructor(country: string, options?: PhoneNumberFormatOptions)
 
 Creates a **PhoneNumberFormat** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1024,6 +1092,8 @@ Creates a **PhoneNumberFormat** object.
 isValidNumber(number: string): boolean
 
 Checks whether the format of the specified phone number is valid.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1050,7 +1120,9 @@ Checks whether the format of the specified phone number is valid.
 
 format(number: string): string
 
-Formats a phone number.
+Formats a phone number. Formatting dialed phone numbers is supported since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1070,6 +1142,17 @@ Formats a phone number.
   ```ts
   let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
   let formattedPhoneNumber: string = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
+
+  // Format the dialed phone number.
+  let option: i18n.PhoneNumberFormatOptions = {type: "TYPING"};
+  let phoneNumberFmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN", option);
+  let phoneNumber : string = "130493";
+  let formatResult : string = "";
+  for (let i = 0; i < phoneNumber.length; i++) {
+    formatResult += phoneNumber.charAt(i);
+    formatResult = phoneNumberFmt.format(formatResult);
+  }
+  console.log(formatResult); // formatResult: 130 493
   ```
 
 
@@ -1079,13 +1162,15 @@ getLocationName(number: string, locale: string): string
 
 Obtains the home location of a phone number.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
 
 | Name   | Type    | Mandatory  | Description  |
 | ------ | ------ | ---- | ---- |
-| number | string | Yes   | Phone number.|
+| number | string | Yes   | Phone number. To obtain the home location of a number in other countries/regions, you need to prefix the number with **00** and the country code.|
 | locale | string | Yes   | Locale ID.|
 
 **Return value**
@@ -1098,23 +1183,28 @@ Obtains the home location of a phone number.
   ```ts
   let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
   let locationName: string = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "Zhanjiang, Guangdong Province"
+  let locName: string = phonenumberfmt.getLocationName("0039312****789", "zh-CN"); // locName = "Italy"
   ```
 
 
 ## PhoneNumberFormatOptions<sup>8+</sup>
 
-Defines the options for this PhoneNumberFormat object.
+Defines the options for this **PhoneNumberFormat** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
 | Name  | Type    | Readable  | Writable  | Description                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | Yes   | Yes   | Format type of a phone number. The value can be **E164**, **INTERNATIONAL**, **NATIONAL**, or **RFC3966**.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.|
+| type | string | Yes   | Yes   | Formatting type of a phone number. The value can be any of the following:<br>E164, INTERNATIONAL, NATIONAL, RFC3966, or TYPING.<br>- In API version 8, **type** is mandatory.<br>- In API version 9 or later, **type** is optional.<br>- **TYPING** is supported since API version 12.|
 
 
 ## UnitInfo<sup>8+</sup>
 
 Defines the measurement unit information.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1129,6 +1219,8 @@ Defines the measurement unit information.
 getInstance(locale?:string): IndexUtil
 
 Creates an **IndexUtil** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1152,12 +1244,15 @@ Creates an **IndexUtil** object.
 
 ## IndexUtil<sup>8+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### getIndexList<sup>8+</sup>
 
 getIndexList(): Array&lt;string&gt;
 
 Obtains the index list for this **locale** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1182,6 +1277,8 @@ addLocale(locale: string): void
 
 Adds a **locale** object to the current index list.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -1202,6 +1299,8 @@ Adds a **locale** object to the current index list.
 getIndex(text: string): string
 
 Obtains the index of a **text** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1230,6 +1329,8 @@ getLineInstance(locale: string): BreakIterator
 
 Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -1252,12 +1353,15 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 
 ## BreakIterator<sup>8+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### setLineBreakText<sup>8+</sup>
 
 setLineBreakText(text: string): void
 
 Sets the text to be processed by the **BreakIterator** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1279,6 +1383,8 @@ Sets the text to be processed by the **BreakIterator** object.
 getLineBreakText(): string
 
 Obtains the text being processed by the **BreakIterator** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1302,6 +1408,8 @@ current(): number
 
 Obtains the position of the **BreakIterator** object in the text being processed.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -1323,6 +1431,8 @@ Obtains the position of the **BreakIterator** object in the text being processed
 first(): number
 
 Puts the **BreakIterator** object to the first break point, which is always at the beginning of the processed text.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1346,6 +1456,8 @@ last(): number
 
 Puts the **BreakIterator** object to the last break point, which is always the next position after the end of the processed text.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -1367,6 +1479,8 @@ Puts the **BreakIterator** object to the last break point, which is always the n
 next(index?: number): number
 
 Moves the **BreakIterator** object backward by the corresponding number of break points.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1398,6 +1512,8 @@ previous(): number
 
 Moves the **BreakIterator** object forward by one break point.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -1421,6 +1537,8 @@ Moves the **BreakIterator** object forward by one break point.
 following(offset: number): number
 
 Moves the **BreakIterator** to the break point following the specified position.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1452,6 +1570,8 @@ isBoundary(offset: number): boolean
 
 Checks whether the specified position of the text is a break point.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -1481,6 +1601,8 @@ getTimeZone(zoneID?: string): TimeZone
 
 Obtains the **TimeZone** object corresponding to the specified time zone ID.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -1503,12 +1625,15 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
 
 ## TimeZone
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### getID
 
 getID(): string
 
 Obtains the ID of the specified **TimeZone** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1530,6 +1655,8 @@ Obtains the ID of the specified **TimeZone** object.
 getDisplayName(locale?: string, isDST?: boolean): string
 
 Obtains the localized representation of a **TimeZone** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1559,6 +1686,8 @@ getRawOffset(): number
 
 Obtains the offset between the time zone represented by a **TimeZone** object and the UTC time zone.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -1579,6 +1708,8 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 getOffset(date?: number): number
 
 Obtains the offset between the time zone represented by a **TimeZone** object and the UTC time zone at a certain time.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1607,6 +1738,8 @@ static getAvailableIDs(): Array&lt;string&gt;
 
 Obtains the list of time zone IDs supported by the system.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -1628,6 +1761,8 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 
 Obtains the list of time zone city IDs supported by the system.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -1648,6 +1783,8 @@ Obtains the list of time zone city IDs supported by the system.
 static getCityDisplayName(cityID: string, locale: string): string
 
 Obtains the localized representation of a time zone city in the specified locale.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1676,6 +1813,8 @@ static getTimezoneFromCity(cityID: string): TimeZone
 
 Obtains the **TimeZone** object corresponding to the specified time zone city ID.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -1700,6 +1839,8 @@ Obtains the **TimeZone** object corresponding to the specified time zone city ID
 static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;TimeZone&gt;
 
 Creates an array of **TimeZone** objects corresponding to the specified longitude and latitude.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1736,12 +1877,15 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 ## Transliterator<sup>9+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### getAvailableIDs<sup>9+</sup>
 
 static getAvailableIDs(): string[]
 
 Obtains a list of IDs supported by the **Transliterator** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1764,6 +1908,8 @@ Obtains a list of IDs supported by the **Transliterator** object.
 static getInstance(id: string): Transliterator
 
 Creates a **Transliterator** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1791,6 +1937,8 @@ transform(text: string): string
 
 Converts the input string from the source format to the target format.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -1814,12 +1962,15 @@ Converts the input string from the source format to the target format.
 
 ## Unicode<sup>9+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### isDigit<sup>9+</sup>
 
 static isDigit(char: string): boolean
 
 Checks whether the input string is composed of digits.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1847,6 +1998,8 @@ static isSpaceChar(char: string): boolean
 
 Checks whether the input character is a space.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -1872,6 +2025,8 @@ Checks whether the input character is a space.
 static isWhitespace(char: string): boolean
 
 Checks whether the input character is a white space.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1899,6 +2054,8 @@ static isRTL(char: string): boolean
 
 Checks whether the input character is of the right to left (RTL) language.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -1924,6 +2081,8 @@ Checks whether the input character is of the right to left (RTL) language.
 static isIdeograph(char: string): boolean
 
 Checks whether the input character is an ideographic character.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -1951,6 +2110,8 @@ static isLetter(char: string): boolean
 
 Checks whether the input character is a letter.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -1976,6 +2137,8 @@ Checks whether the input character is a letter.
 static isLowerCase(char: string): boolean
 
 Checks whether the input character is a lowercase letter.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2003,6 +2166,8 @@ static isUpperCase(char: string): boolean
 
 Checks whether the input character is an uppercase letter.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -2028,6 +2193,8 @@ Checks whether the input character is an uppercase letter.
 static getType(char: string): string
 
 Obtains the type of the input string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2086,12 +2253,15 @@ The following table lists only the common types. For more details, see the Unico
 
 ## I18NUtil<sup>9+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 ### unitConvert<sup>9+</sup>
 
 static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
 Converts one measurement unit into another and formats the unit based on the specified locale and style.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2125,6 +2295,8 @@ static getDateOrder(locale: string): string
 
 Obtains the sequence of the year, month, and day in the specified locale.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -2150,6 +2322,8 @@ Obtains the sequence of the year, month, and day in the specified locale.
 static getTimePeriodName(hour:number, locale?: string): string
 
 Obtains the localized expression for the specified time of the specified locale.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2192,6 +2366,8 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 static getBestMatchLocale(locale: string, localeList: string[]): string
 
 Obtains the locale that best matches a region from the specified locale list.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2236,6 +2412,8 @@ static getThreeLetterLanguage(locale: string): string
 
 Converts a language code from two letters to three letters. For example, the two-letter language code of Chinese is **zh**, and the corresponding three-letter language code is **zho**. For details, see [ISO 639](https://www.iso.org/iso-639-language-code).
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -2269,6 +2447,8 @@ static getThreeLetterRegion(locale: string): string
 
 Converts a country/region code from two letters to three letters. For example, the two-letter country/region code of China is **CN**, and the three-letter country/region code is **CHN**. For details, see [ISO 3166](https://www.iso.org/iso-3166-country-codes.html).
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -2298,11 +2478,15 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 ## Normalizer<sup>10+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 ### getInstance<sup>10+</sup>
 
 static getInstance(mode: NormalizerMode): Normalizer
 
 Obtains a **Normalizer** object for text normalization.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2338,6 +2522,8 @@ normalize(text: string): string
 
 Normalizes text strings.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -2371,6 +2557,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 Enumerates text normalization modes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 | Name| Value| Description|
@@ -2383,11 +2571,15 @@ Enumerates text normalization modes.
 
 ## HolidayManager<sup>11+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 ### constructor<sup>11+</sup>
 
 constructor(icsPath: String)
 
 Creates a **HolidayManager** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2416,6 +2608,8 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 isHoliday(date?: Date): boolean
 
 Determines whether the specified date is a holiday.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -2462,6 +2656,8 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 Obtains the holiday information list of the specified year.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -2505,6 +2701,8 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 Represents the holiday information.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 | Name           | Type            |  Mandatory  |  Description                                  |
@@ -2518,6 +2716,8 @@ Represents the holiday information.
 ## HolidayLocalName<sup>11+</sup>
 
 Defines the local names of a holiday.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 

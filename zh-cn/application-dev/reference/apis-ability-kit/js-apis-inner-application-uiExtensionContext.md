@@ -6,11 +6,12 @@ UIExtensionContext是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility
 >
 >  - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
+>  - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
 
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## UIExtensionContext.startAbility
@@ -55,18 +56,19 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-  
+
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -134,19 +136,18 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -225,19 +226,18 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -312,37 +312,35 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
       bundleName: 'com.example.myapplication',
-      abilityName: 'EntryAbility'
     };
 
     try {
       this.context.startAbilityForResult(want, (err: BusinessError, result: common.AbilityResult) => {
-        if (err.code) { 
+        if (err.code) {
           // 处理业务逻辑错误
           console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
           return;
-        } 
+        }
         // 执行正常业务
         console.info('startAbilityForResult succeed');
       });
-    } catch (err) { 
+    } catch (err) {
       // 处理入参错误异常
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
@@ -396,20 +394,18 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, common, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -492,20 +488,18 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, common, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -540,7 +534,11 @@ export default class EntryAbility extends UIExtensionAbility {
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
-将当前Ability连接到一个使用AbilityInfo.AbilityType.SERVICE模板的Ability。
+将当前Ability连接到一个ServiceExtensionAbility。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -570,22 +568,20 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16000070 | The extension cannot start the service. |
 
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import rpc from '@ohos.rpc';
+import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -651,12 +647,11 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import { BusinessError } from '@ohos.base';
-import rpc from '@ohos.rpc';
+import { UIExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -710,12 +705,11 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import { BusinessError } from '@ohos.base';
-import rpc from '@ohos.rpc';
+import { UIExtensionAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -760,11 +754,10 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     try {
       this.context.terminateSelf((err: BusinessError) => {
@@ -803,8 +796,8 @@ terminateSelf(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
   onForeground() {
@@ -846,13 +839,10 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -906,13 +896,10 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -971,10 +958,8 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import { BusinessError } from '@ohos.base';
+import { UIExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[testTag] UIExtAbility';
 
@@ -1004,7 +989,7 @@ export default class UIExtAbility extends UIExtensionAbility {
     }
   }
 }
-  ```
+```
 
 ## UIExtensionContext.openAtomicService<sup>12+<sup>
 openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;AbilityResult&gt;
@@ -1018,7 +1003,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
- 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -1026,7 +1011,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | appId | string | 是 | 应用的唯一标识，由云端统一分配。 |
-| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | 否 | 跳出式启动元服务所携带的参数。 |
+| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | 否 | 跳出式启动原子化服务所携带的参数。 |
 
 
 **返回值：**
@@ -1048,19 +1033,18 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000050 | Internal error. |
+| 16000069 | The extension cannot start the third party application. |
 | 16200001 | The caller has been released. |
 
 
 **示例：**
 
 ```ts
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import { UIExtensionAbility, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIExtensionAbility {
-
   onForeground() {
     let appId: string = '6918661953712445909';
     let options: AtomicServiceOptions = {
@@ -1103,7 +1087,7 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
- 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -1139,16 +1123,15 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000019 | Can not match any component. |
+| 16000069 | The extension cannot start the third party application. |
 | 16200001 | The caller has been released. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { UIExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
 import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function log(info: string) {
   console.error(`MyUIExtension:: ${JSON.stringify(info)}`);

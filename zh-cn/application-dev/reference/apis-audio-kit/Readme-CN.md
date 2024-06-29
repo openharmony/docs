@@ -1,4 +1,4 @@
-# Audio Kit API参考
+# Audio Kit（音频服务）
 
 - ArkTS API
   - [@ohos.multimedia.audio (音频管理)](js-apis-audio.md)

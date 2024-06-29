@@ -67,7 +67,7 @@ try {
 
 setShareType(deviceId: string, type: ShareType, callback: AsyncCallback&lt;void&gt;): void
 
-设置电话簿信息的共享类型。
+设置电话簿信息的共享类型。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -117,7 +117,7 @@ try {
 
 setShareType(deviceId: string, type: ShareType): Promise&lt;void&gt;
 
-设置电话簿信息的共享类型。
+设置电话簿信息的共享类型。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -171,7 +171,7 @@ try {
 
 getShareType(deviceId: string, callback: AsyncCallback&lt;ShareType&gt;): void
 
-获取电话簿信息的共享类型。
+获取电话簿信息的共享类型。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -219,7 +219,7 @@ try {
 
 getShareType(deviceId: string): Promise&lt;ShareType&gt;
 
-获取电话簿信息的共享类型。
+获取电话簿信息的共享类型。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -272,7 +272,7 @@ try {
 
 setPhoneBookAccessAuthorization(deviceId: string, authorization: AccessAuthorization, callback: AsyncCallback&lt;void&gt;): void
 
-设置电话簿信息的访问权限。
+设置电话簿信息的访问权限。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -322,7 +322,7 @@ try {
 
 setPhoneBookAccessAuthorization(deviceId: string, authorization: AccessAuthorization): Promise&lt;void&gt;
 
-设置电话簿信息的访问权限。
+设置电话簿信息的访问权限。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -376,7 +376,7 @@ try {
 
 getPhoneBookAccessAuthorization(deviceId: string, callback: AsyncCallback&lt;AccessAuthorization&gt;): void
 
-获取电话簿信息的访问权限。
+获取电话簿信息的访问权限。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -424,7 +424,7 @@ try {
 
 getPhoneBookAccessAuthorization(deviceId: string): Promise&lt;AccessAuthorization&gt;
 
-获取电话簿信息的访问权限。
+获取电话簿信息的访问权限。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 

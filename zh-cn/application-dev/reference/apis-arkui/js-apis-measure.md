@@ -10,17 +10,17 @@
 
 ## 导入模块
 
-```
-import measure from '@ohos.measure'
+```ts
+import { MeasureText } from '@kit.ArkUI'
 ```
 
-## measure.measureText
+## MeasureText.measureText
 
 measureText(options: MeasureOptions): number
 
 计算指定文本单行布局下的宽度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,12 +40,12 @@ measureText(options: MeasureOptions): number
 **示例：**
 
 ```ts
-import measure from '@ohos.measure'
+import { MeasureText } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
-  @State textWidth: number = measure.measureText({
+  @State textWidth: number = MeasureText.measureText({
     textContent: "Hello word",
     fontSize: '50px'
   })
@@ -62,13 +62,13 @@ struct Index {
 }
 ```
 
-## measure.measureTextSize<sup>10+</sup>
+## MeasureText.measureTextSize<sup>10+</sup>
 
 measureTextSize(options: MeasureOptions): SizeOptions
 
 计算指定文本单行布局下的宽度和高度。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -82,17 +82,18 @@ measureTextSize(options: MeasureOptions): SizeOptions
 
 | 类型          | 说明       |
 | ------------  | --------- |
-| [SizeOption](arkui-ts/ts-types.md#sizeoptions)   | 返回文本所占布局宽度和高度。<br/>**说明:**  <br/>文本宽度以及高度返回值单位均为px。 |
+| [SizeOptions](arkui-ts/ts-types.md#sizeoptions)  | 返回文本所占布局宽度和高度。<br/>**说明:**  <br/>文本宽度以及高度返回值单位均为px。 |
 
 
 **示例：**
 
 ```ts
-import measure from '@ohos.measure'
+import { MeasureText } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
-  textSize : SizeOptions = measure.measureTextSize({
+  textSize : SizeOptions = MeasureText.measureTextSize({
     textContent: "Hello word",
     fontSize: '50px'
   })
@@ -113,7 +114,7 @@ struct Index {
 
 被计算文本属性。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -132,5 +133,5 @@ struct Index {
 | lineHeight<sup>10+</sup>  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource)    | 否   | 设置被计算文本行高。|
 | baselineOffset<sup>10+</sup>  | number&nbsp;\|&nbsp;string                                                          | 否   | 设置被计算文本基线的偏移量。<br />默认值：0 |
 | textCase<sup>10+</sup>  | number&nbsp;\|&nbsp;[TextCase](arkui-ts/ts-appendix-enums.md#textcase)                 | 否   | 设置被计算文本大小写。<br />默认值：TextCase.Normal |
-| textIndent<sup>11+</sup> | number&nbsp;\|&nbsp;string  | 否  | 设置首行文本缩进，默认值0。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| wordBreak<sup>11+</sup> | [WordBreak](arkui-ts/ts-appendix-enums.md#wordbreak11) | 否   | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD <br/>**说明：** <br/>WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，`maxLines`组合使用可实现英文单词按字母截断，超出部分以省略号显示。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| textIndent<sup>11+</sup> | number&nbsp;\|&nbsp;string  | 否  | 设置首行文本缩进，默认值0。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| wordBreak<sup>11+</sup> | [WordBreak](arkui-ts/ts-appendix-enums.md#wordbreak11) | 否   | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD <br/>**说明：** <br/>WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，`maxLines`组合使用可实现英文单词按字母截断，超出部分以省略号显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |

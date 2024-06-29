@@ -63,6 +63,7 @@
 | [OH_AI_OptimizationLevel](#oh_ai_optimizationlevel) | 训练优化等级。 |
 | [OH_AI_QuantizationType](#oh_ai_quantizationtype) | 量化类型信息。 |
 | [NNRTDeviceDesc](#nnrtdevicedesc) | NNRt设备信息描述，包含设备ID，设备名称等信息。 |
+| [OH_AI_AllocatorHandle](#oh_ai_allocatorhandle) | 指向内存分配器对象句柄。 |
 
 
 ### 枚举
@@ -169,6 +170,8 @@
 | [OH_AI_TensorGetElementNum](#oh_ai_tensorgetelementnum) (const [OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | 获取张量元素数量。 |
 | [OH_AI_TensorGetDataSize](#oh_ai_tensorgetdatasize) (const [OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | 获取张量中的数据的字节数大小。 |
 | [OH_AI_TensorSetUserData](#oh_ai_tensorsetuserdata) ([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor, void \*data, size_t data_size) | 设置张量为用户自行管理的数据。此接口常用于复用用户数据作为模型输入，可减少一次数据拷贝。 注意：此数据对于张量来说是外部数据，张量销毁时不会主动释放，由调用者负责释放。另外，在此张量 使用过程中，调用者须确保此数据有效。 |
+| [OH_AI_TensorGetAllocator](#oh_ai_tensorgetallocator)([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor) | 获取内存分配器。此接口主要是提供一种获取张量的内存分配器的方法。 |
+| [OH_AI_TensorSetAllocator](#oh_ai_tensorsetallocator)([OH_AI_TensorHandle](#oh_ai_tensorhandle) tensor, [OH_AI_AllocatorHandle](#oh_ai_allocatorhandle) allocator) | 设置内存分配器。设置内存分配器。此接口主要是提供一种设置内存分配器的方法，tensor的内存将由这个分配器分配。 |
 
 
 ## 宏定义说明
@@ -202,6 +205,17 @@ NNRt设备信息描述，包含设备ID，设备名称等信息。
 
 **起始版本：** 10
 
+### OH_AI_AllocatorHandle
+
+```
+typedef void *OH_AI_AllocatorHandle
+```
+
+**描述**
+
+指向内存分配器对象句柄。
+
+**起始版本：** 12
 
 ### OH_AI_CallBackParam
 
@@ -2065,6 +2079,28 @@ OH_AI_API OH_AI_TensorHandle OH_AI_TensorCreate (const char * name, OH_AI_DataTy
 
 指向张量对象句柄。
 
+### OH_AI_TensorGetAllocator()
+
+```
+OH_AI_API OH_AI_AllocatorHandle OH_AI_TensorGetAllocator(OH_AI_TensorHandle tensor)
+```
+
+**描述**
+
+获取内存分配器。此接口主要是提供一种获取张量的内存分配器的方法。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| tensor | 张量对象句柄。 |
+
+**返回：**
+
+内存分配器的句柄。
+
 
 ### OH_AI_TensorDestroy()
 
@@ -2268,6 +2304,29 @@ OH_AI_API const int64_t* OH_AI_TensorGetShape (const OH_AI_TensorHandle tensor, 
 **返回：**
 
 形状数组。
+
+### OH_AI_TensorSetAllocator()
+
+```
+OH_AI_API OH_AI_Status OH_AI_TensorSetAllocator(OH_AI_TensorHandle tensor, OH_AI_AllocatorHandle allocator)
+```
+
+**描述**
+
+设置内存分配器。此接口主要是提供一种设置内存分配器的方法，tensor的内存将由这个分配器分配。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称      | 描述                 |
+| --------- | -------------------- |
+| tensor    | 张量对象句柄。       |
+| allocator | 内存分配器对象句柄。 |
+
+**返回：**
+
+执行状态码。若成功返回OH_AI_STATUS_SUCCESS，否则返回具体错误码。
 
 
 ### OH_AI_TensorSetData()

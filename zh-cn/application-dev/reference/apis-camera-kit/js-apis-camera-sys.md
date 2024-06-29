@@ -92,6 +92,18 @@ lcd闪光灯信息项。
 | ------ | ----------------------------- |-----| ---------- | ---------- |
 | raw<sup>12+</sup> | [image.Image](../apis-image-kit/js-apis-image.md#image9)| NA  | 是   | raw图。 |
 
+## ExposureMode
+
+枚举，曝光模式。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                           | 值   | 说明      |
+| ----------------------------- |-----|---------|
+| EXPOSURE_MODE_MANUAL<sup>12+</sup>          | 3   | 手动曝光模式。 |
+
 ## CameraManager
 
 相机管理器类，使用前需要通过[getCameraManager](js-apis-camera.md#cameragetcameramanager)获取相机管理实例。
@@ -150,7 +162,7 @@ function muteCamera(cameraManager: camera.CameraManager): void {
 
 on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 
-禁用回调，通过注册回调函数获取相机禁用状态变化。
+禁用回调，通过注册回调函数获取相机禁用状态变化。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -464,11 +476,11 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称             | 类型   |   只读    |    必填    | 说明                                                                                                |
-| --------------- | ------ | --------- | ---------- |---------------------------------------------------------------------------------------------------|
-| skinSmoothLevel | number |  否       |  N/A       | 美颜类型光滑信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的光滑范围，例如1表示1级光滑。        |
-| faceSlender     | number |  否       |  N/A       | 美颜类型瘦脸信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的瘦脸范围，例如1表示1级瘦脸。        |
-| skinTone        | number |  否       |  N/A       | 美颜类型肤色信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的肤色范围，例如0xBF986C表示一个颜色。 |
+| 名称             | 类型   |   只读    | 可选  | 说明                                                                                                |
+| --------------- | ------ | --------- |-----|---------------------------------------------------------------------------------------------------|
+| skinSmoothLevel | number |  否       | 否   | 美颜类型光滑信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的光滑范围，例如1表示1级光滑。        |
+| faceSlender     | number |  否       | 否   | 美颜类型瘦脸信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的瘦脸范围，例如1表示1级瘦脸。        |
+| skinTone        | number |  否       | 否   | 美颜类型肤色信息，从[Beauty.getSupportedBeautyRange](#getsupportedbeautyrange12)获取支持的肤色范围，例如0xBF986C表示一个颜色。 |
 
 ## PreviewOutput
 
@@ -692,7 +704,7 @@ function attachSketchSurface(previewOutput: camera.PreviewOutput, session: camer
 
 on(type: 'sketchStatusChanged', callback: AsyncCallback\<SketchStatusData\>): void
 
-监听画中画状态信息改变，通过注册回调函数获取SketchStatusData。
+监听画中画状态信息改变，通过注册回调函数获取SketchStatusData。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -826,9 +838,9 @@ release(): Promise\<void\>
 
 **返回值：**
 
-| 类型            | 说明                     |
-| -------------- | ----------------------- |
-| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| 类型            | 说明               |
+| -------------- |------------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1083,7 +1095,7 @@ function enableAutoHighQualityPhoto(photoOutput: camera.PhotoOutput): void {
 
 on(type: 'deferredPhotoProxyAvailable', callback: AsyncCallback\<DeferredPhotoProxy\>): void
 
-注册监听缩略图上报。
+注册监听缩略图上报。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1281,7 +1293,7 @@ async function enableQuickThumbnail(context: common.BaseContext, mode: camera.Sc
 
 on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void
 
-监听快速缩略图输出事件。
+监听快速缩略图输出事件。使用callback异步回调。
 
 在enableQuickThumbnail(true)使能快速缩略图之后监听生效。
 
@@ -2377,10 +2389,10 @@ function getPortraitEffect(portraitPhotoSession: camera.PortraitPhotoSession): c
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称       | 类型                       |  只读 |  必填 | 说明               |
-| ---------- | ------------------------- | ----- | ----- | ----------------- |
-| zoomRange  | [ZoomRange](#zoomrange11) | 否    | N/A   | 特定物理光圈的变焦范围。  |
-| apertures  | Array\<number\>           | 否    | N/A   | 支持的物理光圈列表。      |
+| 名称       | 类型                       |  只读 | 可选  | 说明               |
+| ---------- | ------------------------- | ----- |-----| ----------------- |
+| zoomRange  | [ZoomRange](#zoomrange11) | 否    | 否   | 特定物理光圈的变焦范围。  |
+| apertures  | Array\<number\>           | 否    | 否   | 支持的物理光圈列表。      |
 
 ## Aperture<sup>11+</sup>
 
@@ -2799,7 +2811,7 @@ PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorManagement
 
 on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 
-监听相机微距状态变化，通过注册回调函数获取结果。
+监听相机微距状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2871,7 +2883,7 @@ function unregisterMacroStatusChanged(photoSession: camera.PhotoSession): void {
 
 on(type: 'featureDetection', featureType: SceneFeatureType, callback: AsyncCallback\<SceneFeatureDetectionResult\>): void
 
-监听相机特性检测状态变化。
+监听相机特性检测状态变化。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2962,7 +2974,7 @@ VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization, C
 
 on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 
-监听相机微距状态变化，通过注册回调函数获取结果。
+监听相机微距状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3040,7 +3052,7 @@ PortraitPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, Beauty, 
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听人像拍照会话的错误事件，通过注册回调函数获取结果。
+监听人像拍照会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3096,7 +3108,7 @@ function unregisterSessionError(portraitPhotoSession: camera.PortraitPhotoSessio
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。
+监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3152,7 +3164,7 @@ function unregisterFocusStateChange(portraitPhotoSession: camera.PortraitPhotoSe
 
 on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
 
-监听相机平滑变焦的状态变化，通过注册回调函数获取结果。
+监听相机平滑变焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3214,7 +3226,7 @@ NightPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听夜景拍照会话的错误事件，通过注册回调函数获取结果。
+监听夜景拍照会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3270,7 +3282,7 @@ function unregisterSessionError(nightPhotoSession: camera.NightPhotoSession): vo
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。
+监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3326,7 +3338,7 @@ function unregisterFocusStateChange(nightPhotoSession: camera.NightPhotoSession)
 
 on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
 
-监听相机平滑变焦的状态变化，通过注册回调函数获取结果。
+监听相机平滑变焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3382,7 +3394,7 @@ function unregisterSmoothZoomInfo(nightPhotoSession: camera.NightPhotoSession): 
 
 on(type: 'lcdFlashStatus', callback: AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\>): void
 
-监听lcd flash状态，通过注册回调函数获取结果。
+监听lcd flash状态，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3460,7 +3472,7 @@ HighResolutionPhotoSession extends Session, AutoExposure, Focus
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听高像素拍照会话的错误事件，通过注册回调函数获取结果。
+监听高像素拍照会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3531,7 +3543,7 @@ function unregisterSessionError(highResolutionPhotoSession: camera.HighResolutio
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。
+监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3624,7 +3636,7 @@ SlowMotionVideoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorE
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听慢动作录像模式会话的错误事件，通过注册回调函数获取结果。
+监听慢动作录像模式会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3696,7 +3708,7 @@ function unregisterSessionError(slowMotionVideoSession: camera.SlowMotionVideoSe
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。
+监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3768,7 +3780,7 @@ function unregisterFocusStateChange(slowMotionVideoSession: camera.SlowMotionVid
 
 on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
 
-监听相机平滑变焦的状态变化，通过注册回调函数获取结果。
+监听相机平滑变焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3840,7 +3852,7 @@ function unregisterSmoothZoomInfo(slowMotionVideoSession: camera.SlowMotionVideo
 
 on(type: 'slowMotionStatus', callback: AsyncCallback\<SlowMotionStatus\>): void
 
-监听慢动作状态变化，通过注册回调函数获取结果。
+监听慢动作状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4933,7 +4945,7 @@ ProfessionalPhotoSession extends Session, AutoExposure, ManualExposure, Focus, M
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听专业拍照会话的错误事件，通过注册回调函数获取结果。
+监听专业拍照会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5005,7 +5017,7 @@ function unregisterSessionError(professionalPhotoSession: camera.ProfessionalPho
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。
+监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5077,7 +5089,7 @@ function unregisterFocusStateChange(professionalPhotoSession: camera.Professiona
 
 on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
 
-监听相机平滑变焦的状态变化，通过注册回调函数获取结果。
+监听相机平滑变焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5149,7 +5161,7 @@ function unregisterSmoothZoomInfo(professionalPhotoSession: camera.ProfessionalP
 
 on(type: 'isoInfo', callback: AsyncCallback\<IsoInfo\>): void
 
-监听自动ISO变化事件，通过注册回调函数获取实时ISO信息。
+监听自动ISO变化事件，通过注册回调函数获取实时ISO信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5215,7 +5227,7 @@ function unregisterIsoInfoEvent(professionalPhotoSession: camera.ProfessionalPho
 
 on(type: 'exposureInfo', callback: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
 
-监听曝光信息事件，通过注册回调函数获取曝光信息。
+监听曝光信息事件，通过注册回调函数获取曝光信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5281,7 +5293,7 @@ function unregisterExposureInfoEvent(professionalPhotoSession: camera.Profession
 
 on(type: 'apertureInfo', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
 
-监听物理光圈变化事件，通过注册回调函数获取实时物理光圈信息。
+监听物理光圈变化事件，通过注册回调函数获取实时物理光圈信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5347,7 +5359,7 @@ function unregisterApertureInfoEvent(professionalPhotoSession: camera.Profession
 
 on(type: 'luminationInfo', callback: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
 
-监听光照变化事件，通过注册回调函数获取实时光照参数。
+监听光照变化事件，通过注册回调函数获取实时光照参数。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5419,7 +5431,7 @@ ProfessionalVideoSession extends Session, AutoExposure, ManualExposure, Focus, M
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听专业录像会话的错误事件，通过注册回调函数获取结果。
+监听专业录像会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5491,7 +5503,7 @@ function unregisterSessionError(professionalVideoSession: camera.ProfessionalVid
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。
+监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5563,7 +5575,7 @@ function unregisterFocusStateChange(professionalVideoSession: camera.Professiona
 
 on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
 
-监听相机平滑变焦的状态变化，通过注册回调函数获取结果。
+监听相机平滑变焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5635,7 +5647,7 @@ function unregisterSmoothZoomInfo(professionalVideoSession: camera.ProfessionalV
 
 on(type: 'isoInfo', callback: AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>): void
 
-监听自动ISO变化事件，通过注册回调函数获取实时ISO信息。
+监听自动ISO变化事件，通过注册回调函数获取实时ISO信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5701,7 +5713,7 @@ function unregisterIsoInfoEvent(professionalVideoSession: camera.ProfessionalVid
 
 on(type: 'exposureInfo', callback: AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>): void
 
-监听曝光信息事件，通过注册回调函数获取曝光信息。
+监听曝光信息事件，通过注册回调函数获取曝光信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5767,7 +5779,7 @@ function unregisterExposureInfoEvent(professionalVideoSession: camera.Profession
 
 on(type: 'apertureInfo', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
 
-监听物理光圈变化事件，通过注册回调函数获取物理光圈信息。
+监听物理光圈变化事件，通过注册回调函数获取物理光圈信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5833,7 +5845,7 @@ function unregisterApertureInfoEvent(professionalVideoSession: camera.Profession
 
 on(type: 'luminationInfo', callback: AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>): void
 
-监听光照变化事件，通过注册回调函数获取光照参数。
+监听光照变化事件，通过注册回调函数获取光照参数。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5905,7 +5917,7 @@ MacroPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听微距拍照会话的错误事件，通过注册回调函数获取结果。
+监听微距拍照会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5977,7 +5989,7 @@ function unregisterSessionError(macroPhotoSession: camera.MacroPhotoSession): vo
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。
+监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6049,7 +6061,7 @@ function unregisterFocusStateChange(macroPhotoSession: camera.MacroPhotoSession)
 
 on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
 
-监听相机平滑变焦的状态变化，通过注册回调函数获取结果。
+监听相机平滑变焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6127,7 +6139,7 @@ MacroVideoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听微距录像会话的错误事件，通过注册回调函数获取结果。
+监听微距录像会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6199,7 +6211,7 @@ function unregisterSessionError(macroVideoSession: camera.MacroVideoSession): vo
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。
+监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6271,7 +6283,7 @@ function unregisterFocusStateChange(macroVideoSession: camera.MacroVideoSession)
 
 on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
 
-监听相机平滑变焦的状态变化，通过注册回调函数获取结果。
+监听相机平滑变焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 

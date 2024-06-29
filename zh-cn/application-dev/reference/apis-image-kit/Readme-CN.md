@@ -1,4 +1,4 @@
-# Image Kit API参考
+# Image Kit（图片处理服务）
 
 - ArkTS API
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)
@@ -27,10 +27,10 @@
     - [image_effect_errors.h](image__effect__errors_8h.md)
     - [image_effect_filter.h](image__effect__filter_8h.md)
   - 结构体
-    - [ImagePacker_Opts_](_image_packer___opts__.md)
+    - [ImagePacker_Opts](_image_packer___opts__.md)
     - [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
     - [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
-    - [OHOS::Media::OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
+    - [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
     - [OhosImageDecodingOps](_ohos_image_decoding_ops.md)
     - [OhosImageReceiverInfo](_ohos_image_receiver_info.md)
     - [OhosImageRegion](_ohos_image_region.md)

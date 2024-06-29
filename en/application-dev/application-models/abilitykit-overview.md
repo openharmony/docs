@@ -7,7 +7,7 @@ Ability Kit provides an application model for application development and runnin
 - Multi-module development: You can use different types of modules (HAP, HAR, and HSP) to develop an application. The HAP is used to implement application features, and the HAR and HSP are used to share code and resources.
 - Intra-application interaction: Redirection is allowed between components of an application. For example, in a payment application, you may need to start the payment UIAbility from the entry UIAbility.
 - Inter-application interaction: An application can start another application to complete a task or operation. For example, in an application, you can start a browser application to open a website or a file application to browse or edit a file.
-- Cross-device continuation: Your application delivers a better user experience through cross-device migration and multi-device collaboration. For example, you migrate a video playback task from a tablet to a smart TV.
+- Cross-device hopping: Your application delivers a better user experience through cross-device migration and multi-device collaboration. For example, you migrate a video playback task from a tablet to a smart TV.
 
 # Capability Scope
 
@@ -17,6 +17,8 @@ Ability Kit provides an application model for application development and runnin
 - Provides APIs to continue an application on another device.
 - Provides capabilities such as multi-package, shared package, and application information configuration. For details, see [Application Package Overview](../quick-start/application-package-overview.md).
 - Provides access control capabilities. For details, see [Access Control Overview](../security/AccessToken/access-token-overview.md).
+<!--RP1-->
+<!--RP1End-->
 
 # Highlights
 

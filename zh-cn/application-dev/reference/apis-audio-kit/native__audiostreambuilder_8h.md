@@ -7,6 +7,10 @@
 
 包含构造和销毁构造器，设置音频流属性，回调等相关接口。
 
+**库**：libohaudio.so
+
+**引用文件**：&lt;ohaudio/native_audiostreambuilder.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **起始版本：** 10

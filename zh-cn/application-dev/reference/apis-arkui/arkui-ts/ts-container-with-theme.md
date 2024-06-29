@@ -31,6 +31,8 @@ WithTheme(options: WithThemeOptions)
 ## WithThemeOptions
 设置WithTheme作用域内组件缺省样式及深浅色模式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名                    | 参数类型                                                    | 必填 | 参数描述                                                             |
@@ -97,7 +99,7 @@ struct Index {
 
 ```ts
 // 自定义WithTheme作用域内组件缺省配色
-import { CustomTheme, CustomColors } from '@ohos.arkui.theme';
+import { CustomTheme, CustomColors } from '@kit.ArkUI';
 
 class GreenColors implements CustomColors {
   fontPrimary = '#ff049404';

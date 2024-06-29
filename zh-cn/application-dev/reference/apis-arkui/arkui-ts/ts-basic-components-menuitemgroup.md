@@ -14,7 +14,7 @@
 
 MenuItemGroup(value?: MenuItemGroupOptions)
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -24,7 +24,7 @@ MenuItemGroup(value?: MenuItemGroupOptions)
 
 ## MenuItemGroupOptions类型说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称   | 类型                                                                                      | 必填 | 描述                          |
 | ------ | ----------------------------------------------------------------------------------------- | ---- | ----------------------------- |

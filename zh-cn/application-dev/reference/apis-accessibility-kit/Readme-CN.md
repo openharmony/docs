@@ -1,4 +1,4 @@
-# Accessibility Kit API参考
+# Accessibility Kit（无障碍开发服务）
 
 - ArkTS API
   - [@ohos.accessibility (辅助功能)](js-apis-accessibility.md)
@@ -12,4 +12,3 @@
   <!--DelEnd-->
 - 错误码
   - [无障碍子系统错误码](errorcode-accessibility.md)
-    

@@ -9,7 +9,7 @@
 - 方法1：直接查看AudioRenderer的[state](../../reference/apis-audio-kit/js-apis-audio.md#属性)：
     
   ```ts
-  import audio from '@ohos.multimedia.audio';
+  import { audio } from '@kit.AudioKit';
   
   let audioRendererState: audio.AudioState = audioRenderer.state;
   console.info(`Current state is: ${audioRendererState }`)
@@ -18,7 +18,7 @@
 - 方法2：注册stateChange监听AudioRenderer的状态变化：
     
   ```ts
-  import audio from '@ohos.multimedia.audio';
+  import { audio } from '@kit.AudioKit';
   
   audioRenderer.on('stateChange', (rendererState: audio.AudioState) => {
     console.info(`State change to: ${rendererState}`)
@@ -51,7 +51,7 @@
    在使用AudioStreamManager的API前，需要使用getStreamManager()创建一个AudioStreamManager实例。
 
    ```ts
-   import audio from '@ohos.multimedia.audio';
+   import { audio } from '@kit.AudioKit';
    
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
@@ -60,7 +60,7 @@
 2. 使用on('audioRendererChange')监听音频播放流的变化。 如果音频流监听应用需要在音频播放流状态变化、设备变化时获取通知，可以订阅该事件。
      
    ```ts
-   import audio from '@ohos.multimedia.audio';
+   import { audio } from '@kit.AudioKit';
    
    audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
      for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
@@ -98,8 +98,8 @@
    > 对所有音频流状态进行监听的应用需要[声明权限](../../security/AccessToken/declare-permissions.md)ohos.permission.USE_BLUETOOTH，否则无法获得实际的设备名称和设备地址信息，查询到的设备名称和设备地址（蓝牙设备的相关属性）将为空字符串。
    
    ```ts
-   import audio from '@ohos.multimedia.audio';
-   import { BusinessError } from '@ohos.base';
+   import { audio } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    async function getCurrentAudioRendererInfoArray(): Promise<void> {
      await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {

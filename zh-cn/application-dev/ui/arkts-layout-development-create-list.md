@@ -217,7 +217,7 @@ ArkTS通过[ForEach](../quick-start/arkts-rendering-control-foreach.md)提供了
 
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS'
 
 class Contact {
   key: string = util.generateRandomUUID(true);
@@ -406,7 +406,7 @@ List组件的sticky属性配合ListItemGroup组件使用，用于设置ListItemG
 
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS'
 class Contact {
   key: string = util.generateRandomUUID(true);
   name: string;
@@ -669,7 +669,7 @@ ListItem() {
 
    ```ts
    //ToDo.ets
-   import util from '@ohos.util';
+   import { util } from '@kit.ArkTS'
 
    export class ToDo {
      key: string = util.generateRandomUUID(true);
@@ -827,7 +827,7 @@ ListItem() {
 
     ```ts
    // 结构参考
-   import util from '@ohos.util';
+   import { util } from '@kit.ArkTS'
    export class ToDo {
      key: string = util.generateRandomUUID(true);
      name: string;
@@ -859,7 +859,7 @@ ListItem() {
 
     ```ts
     // 结构参考
-    import util from '@ohos.util';
+    import { util } from '@kit.ArkTS'
     export class ToDo {
       key: string = util.generateRandomUUID(true);
       name: string;

@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { SubHeader } from '@ohos.arkui.advanced.SubHeader'
+import { SubHeader } from '@kit.ArkUI'
 ```
 
 
@@ -41,24 +41,24 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 图标设置项。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 图标设置项。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | iconSymbolOptions<sup>12+</sup> | [SymbolOptions](#symboloptions12) | 否 | - | icon为[Symbol资源](ts-basic-components-symbolGlyph.md)时的设置项。 |
-| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 标题内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 副标题内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| select | [SelectOptions](#selectoptions) | 否 | - | select内容以及事件。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| operationType | [OperationType](#operationtype) | 否 | \@Prop | 操作区(右侧)元素样式。<br/>默认值：OperationType.BUTTON<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| operationItem | Array&lt;[OperationOption](#operationoption)&gt; | 否 | - | 操作区（右侧）的设置项。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 标题内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 副标题内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| select | [SelectOptions](#selectoptions) | 否 | - | select内容以及事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| operationType | [OperationType](#operationtype) | 否 | \@Prop | 操作区(右侧)元素样式。<br/>默认值：OperationType.BUTTON<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| operationItem | Array&lt;[OperationOption](#operationoption)&gt; | 否 | - | 操作区（右侧）的设置项。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | operationSymbolOptions<sup>12+</sup> | Array&lt;[SymbolOptions](#symboloptions12)&gt; | 否 | - | operationType为OperationType.ICON_GROUP，<br/>operationItem设置多个图标，图标为[Symbol资源](ts-basic-components-symbolGlyph.md)时的设置项。 |
 | primaryTitleModifier<sup>12+</sup> | [TextModifier](ts-universal-attributes-attribute-modifier.md) | 否 | - | 设置标题文本属性，如设置标题颜色、字体大小、字重等。 |
 | secondaryTitleModifier<sup>12+</sup> | [TextModifier](ts-universal-attributes-attribute-modifier.md) | 否 | - | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。 |
 | titleBuilder<sup>12+</sup> | () => void | 否 | @BuildParam | 自定义标题区内容 |
-| contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 子标题外边距，不支持设置负数。<br />默认值：<br />页面断点<600vp:<br /> {start: LengthMetrics.vp(16), end: LengthMetrics.vp(16)};<br />600vp<=页面断点<840vp:<br /> {start: LengthMetrics.vp(24), end: LengthMetrics.vp(24)};<br />页面断点>=840vp:<br /> {start: LengthMetrics.vp(32), end: LengthMetrics.vp(32)}。 |
+| contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 子标题外边距，不支持设置负数。<br />默认值：<br /> `{start: LengthMetrics.resource(` <br /> `$r('sys.float.margin_left'))`, <br /> `end: LengthMetrics.resource(` <br /> `$r('sys.float.margin_right'))}` |
 | contentPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12) | 否 | @Prop | 子标题内边距。<br />默认值：<br />左侧为副标题或副标题加图标时：<br /> {start: LengthMetircs.vp(12), end: LengthMetrics.vp(12)}。|
 
 
 ## OperationType
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -69,7 +69,7 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 
 ## SelectOptions
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -80,7 +80,7 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 
 ## OperationOption
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -89,7 +89,7 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 
 ## SymbolOptions<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -106,8 +106,7 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 ### 示例1
 
 ```ts
-import promptAction from '@ohos.promptAction'
-import { OperationType, SubHeader } from '@ohos.arkui.advanced.SubHeader'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -134,8 +133,7 @@ struct SubHeaderExample {
 ### 示例2
 
 ```ts
-import promptAction from '@ohos.promptAction'
-import { OperationType, SubHeader } from '@ohos.arkui.advanced.SubHeader'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -162,8 +160,7 @@ struct SubHeaderExample {
 ### 示例3
 
 ```ts
-import promptAction from '@ohos.promptAction'
-import { OperationType, SubHeader } from '@ohos.arkui.advanced.SubHeader'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -208,8 +205,7 @@ struct SubHeaderExample {
 
 ```ts
 
-import promptAction from '@ohos.promptAction'
-import { OperationType, SubHeader } from '@ohos.arkui.advanced.SubHeader'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -239,8 +235,7 @@ struct SubHeaderExample {
 ### 示例5
 
 ```ts
-import promptAction from '@ohos.promptAction'
-import { OperationType, SubHeader } from '@ohos.arkui.advanced.SubHeader'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -335,9 +330,8 @@ struct SubHeaderExample {
 
 ```ts
 // 该示例主要演示SubHeader设置标题和副标题字体样式以及标题内外边距的效果。
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { promptAction, OperationType, SubHeader, LengthMetrics } from '@kit.ArkUI';
 import { TextModifier } from '@ohos.arkui.modifier';
-import { LengthMetrics } from '@ohos.arkui.node';
 
 @Entry
 @Component

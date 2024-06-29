@@ -9,7 +9,7 @@ The **ImageEffect_Region** struct describes the image region.
 
 **Since**: 12
 
-**Related module**: [ImageEffect] (_image_effect.md)
+**Related module**: [ImageEffect](_image_effect.md)
 
 
 ## Summary

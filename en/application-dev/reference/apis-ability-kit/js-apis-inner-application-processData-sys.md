@@ -13,7 +13,7 @@ The **ProcessData** module defines process data. If a lifecycle change listener 
 import appManager from '@ohos.application.appManager';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -51,6 +51,12 @@ let observerCode = appManager.on('applicationState', {
         console.log(`onProcessStateChanged processData.uid : ${JSON.stringify(processData.uid)}`);
         console.log(`onProcessStateChanged processData.isContinuousTask : ${JSON.stringify(processData.isContinuousTask)}`);
         console.log(`onProcessStateChanged processData.isKeepAlive : ${JSON.stringify(processData.isKeepAlive)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`onAppStarted appStateData: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`onAppStopped appStateData: ${JSON.stringify(appStateData)}`);
     }
 });
 ```

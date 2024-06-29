@@ -23,7 +23,7 @@ This component can contain only one child component.
 
 Gauge(options:{value: number, min?: number, max?: number})
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -39,11 +39,11 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| value | number | Value of the chart. It can be dynamically changed.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| startAngle | number | Start angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| endAngle | number | End angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **360**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10) \| Array&lt;[ColorStop](#colorstop)&gt; | Colors of the chart. Colors can be set for individual segments.<br>Default value in API version 9: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 11, this API follows the following rules:<br> If the parameter type is ResourceColor, the ring is of the monochrome type.<br> If the parameter type is LinearGradient, the ring is of the gradient type.<br> If the parameter type is array, the ring is of the gradient type.<br> A ring of the gradient type contains a maximum of nine color segments. If there are more than nine segments, the excess is not displayed.<br>Default value in API version 11:<br>If no color is passed or the passed array is empty, the ring will be a gradient consisting of the following colors: 0xFF64BB5C, 0xFFF7CE00, and 0xFFE84026.<br>If a color is passed but the color value is invalid, the ring will be in the color of 0xFFE84026.|
-| strokeWidth | [Length](ts-types.md#length) | Stroke width of the chart.<br>Default value: **4**<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value cannot be in percentage.|
+| value | number | Value of the chart. It can be dynamically changed.<br>Default value: **0**<br>This API can be used in ArkTS widgets since API version 9.|
+| startAngle | number | Start angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **0**<br>This API can be used in ArkTS widgets since API version 9.|
+| endAngle | number | End angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **360**<br>This API can be used in ArkTS widgets since API version 9.|
+| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10) \| Array&lt;[ColorStop](#colorstop)&gt; | Colors of the chart. Colors can be set for individual segments.<br>Default value in API version 9: **Color.Black**<br>This API can be used in ArkTS widgets since API version 9.<br>Since API version 11, this API follows the following rules:<br> If the parameter type is ResourceColor, the ring is of the monochrome type.<br> If the parameter type is LinearGradient, the ring is of the gradient type.<br> If the parameter type is array, the ring is of the gradient type.<br> A ring of the gradient type contains a maximum of nine color segments. If there are more than nine segments, the excess is not displayed.<br>Default value in API version 11:<br>If no color is passed or the passed array is empty, the ring will be a gradient consisting of the following colors: 0xFF64BB5C, 0xFFF7CE00, and 0xFFE84026.<br>If a color is passed but the color value is invalid, the ring will be in the color of 0xFFE84026.|
+| strokeWidth | [Length](ts-types.md#length) | Stroke width of the chart.<br>Default value: **4**<br>Unit: vp<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value cannot be in percentage.|
 | description<sup>11+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Description of the chart.<br>**NOTE**<br>You need to customize the content –  text or imagery recommended – in @Builder.<br>If the width and height of the custom content are in percentage, the reference range is a rectangle whose area is 44.4% x 25.4% of the ring diameter (28.6% x 28.6% for imagery), 0 vp away from the bottom of the ring, and centered horizontally.<br>If this parameter is set to null, no description is displayed.<br>If this parameter is not set, what's displayed is subject to the maximum and minimum value settings.<br>If either or both of the maximum and minimum values are set, they are displayed.<br>If neither maximum nor minimum values are set, no description is displayed.<br>The maximum and minimum values are displayed at the bottom of the ring and cannot be relocated. They may be blocked by the ring if the ring's start and end angles are not set properly.|
 | trackShadow<sup>11+</sup> | [GaugeShadowOptions](#gaugeshadowoptions11) | Shadow style of the chart.<br>**NOTE**<br>The shadow color is the same as the ring color.<br>If this attribute is set to **null**, the shadow effect is disabled.|
 | indicator<sup>11+</sup> | [GaugeIndicatorOptions](#gaugeindicatoroptions11) | Indicator style of the chart.<br>**NOTE**<br>If this attribute is set to **null**, no indicator is displayed.|
@@ -52,7 +52,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 Describes the gradient color stop.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name     | Type            | Description                                                        |
 | --------- | -------------------- | ------------------------------------------------------------ |

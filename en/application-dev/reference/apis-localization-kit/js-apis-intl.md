@@ -9,6 +9,8 @@ The [i18n](js-apis-i18n.md) module provides enhanced i18n capabilities through s
 >  - This module provides basic i18n capabilities, such as time and date formatting, number formatting, and string sorting, through the standard i18n interfaces defined in ECMA 402. For details about the enhanced i18n capabilities, see [i18n](js-apis-i18n.md).
 >
 >  - Since API version 11, some APIs of this module are supported in ArkTS widgets.
+>
+>  - Since API version 12, the APIs of this module are supported in atomic services.
 
 
 ## Modules to Import
@@ -23,6 +25,8 @@ import { intl } from '@kit.LocalizationKit';
 ### Attributes
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -47,6 +51,8 @@ Creates a **Locale** object.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
@@ -65,6 +71,8 @@ constructor(locale: string, options?: LocaleOptions)
 Creates a **Locale** object.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -91,6 +99,8 @@ Obtains the string representation of a **Locale** object.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -114,6 +124,8 @@ maximize(): Locale
 Maximizes information of the **Locale** object. If the script and locale information is missing, add the information.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -147,6 +159,8 @@ Minimizes information of the **Locale** object. If the script and locale informa
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -179,6 +193,8 @@ Since API version 9, the attributes in **LocaleOptions** are optional.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 | Name             | Type     | Mandatory  |  Description                                      |
@@ -200,6 +216,8 @@ Creates a **DateTimeOptions** object for the specified locale.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
@@ -216,6 +234,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 Creates a **DateTimeOptions** object for the specified locale.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -247,6 +267,8 @@ format(date: Date): string
 Formats the specified date and time.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -283,6 +305,8 @@ Formats the specified date range.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -316,6 +340,8 @@ Obtains the formatting options for **DateTimeFormat** object.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -341,6 +367,8 @@ Provides the options for the **DateTimeFormat** object. For details about the pa
 Since API version 9, the attributes in **DateTimeOptions** are optional.
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -375,6 +403,8 @@ constructor()
 
 Creates a **NumberFormat** object for the specified locale.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
@@ -389,6 +419,8 @@ Creates a **NumberFormat** object for the specified locale.
 constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
 Creates a **NumberFormat** object for the specified locale.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -411,6 +443,8 @@ Creates a **NumberFormat** object for the specified locale.
 format(number: number): string
 
 Formats a number.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -441,6 +475,8 @@ resolvedOptions(): NumberOptions
 
 Obtains the options of the **NumberFormat** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -465,6 +501,8 @@ Obtains the options of the **NumberFormat** object.
 Defines the device capability.
 
 Since API version 9, the attributes in **NumberOptions** are optional.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -498,6 +536,8 @@ constructor()
 
 Creates a **Collator** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
@@ -512,6 +552,8 @@ Creates a **Collator** object.
 constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 
 Creates a **Collator** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -534,6 +576,8 @@ Creates a **Collator** object.
 compare(first: string, second: string): number
 
 Compares two strings based on the sorting policy of the **Collator** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -565,6 +609,8 @@ resolvedOptions(): CollatorOptions
 
 Returns properties reflecting the locale and collation options of a **Collator** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -589,6 +635,8 @@ Represents the properties of a **Collator** object.
 
 Since API version 9, the attributes in **CollatorOptions** are optional.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 | Name               | Type     | Mandatory  | Description                                      |
@@ -610,6 +658,8 @@ constructor()
 
 Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
@@ -624,6 +674,8 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 
 Creates a **PluralRules** object to obtain the singular-plural type of numbers.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -646,6 +698,8 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 select(n: number): string
 
 Obtains a string that represents the singular-plural type of the specified number.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -680,6 +734,8 @@ Obtains a string that represents the singular-plural type of the specified numbe
 Represents the properties of a **PluralRules** object.
 Since API version 9, the attributes in **PluralRulesOptions** are optional.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 | Name                      | Type    | Readable  | Writable  | Description                                      |
@@ -702,6 +758,8 @@ constructor()
 
 Creates a **RelativeTimeFormat** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
@@ -716,6 +774,8 @@ Creates a **RelativeTimeFormat** object.
 constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatInputOptions)
 
 Creates a **RelativeTimeFormat** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -738,6 +798,8 @@ Creates a **RelativeTimeFormat** object.
 format(value: number, unit: string): string
 
 Formats the value and unit based on the specified locale and formatting options.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -769,6 +831,8 @@ formatToParts(value: number, unit: string): Array&lt;object&gt;
 
 Obtains an array of RelativeTimeFormat objects in parts for locale-aware formatting.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
@@ -798,6 +862,8 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 Obtains the formatting options for **RelativeTimeFormat** objects.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -822,6 +888,8 @@ Represents the properties of a **RelativeTimeFormat** object.
 
 Since API version 9, the attributes in **RelativeTimeFormatInputOptions** are optional.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 | Name           | Type    | Mandatory  |Description                                      |
@@ -833,6 +901,8 @@ Since API version 9, the attributes in **RelativeTimeFormatInputOptions** are op
 ## RelativeTimeFormatResolvedOptions<sup>8+</sup>
 
 Represents the properties of a **RelativeTimeFormat** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.I18n
 

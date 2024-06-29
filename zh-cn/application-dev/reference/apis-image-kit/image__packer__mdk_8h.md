@@ -19,6 +19,8 @@
 
 **库：** libimage_packer_ndk.z.so
 
+**引用文件**：&lt;multimedia/image_framework/image_packer_mdk.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Image
 
 **起始版本：** 11
@@ -33,7 +35,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ImagePacker_Opts_](_image_packer___opts__.md) | 定义图像编码选项信息。 | 
+| [ImagePacker_Opts](_image_packer___opts__.md) | 定义图像编码选项信息。 | 
 
 
 ### 类型定义

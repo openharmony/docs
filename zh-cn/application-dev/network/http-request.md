@@ -174,11 +174,9 @@ let streamInfo: http.HttpRequestOptions = {
   usingProtocol: http.HttpProtocol.HTTP1_1 // 可选，协议类型默认值由系统自动指定
 }
 
-httpRequest.requestInStream(
-  // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
-  "EXAMPLE_URL",
-  streamInfo, (err: BusinessError, data: number) => {
-  console.error('error:' + JSON.stringify(err));
+// 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
+httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
+  console.info("requestInStream OK!");
   console.info('ResponseCode :' + JSON.stringify(data));
   // 取消订阅HTTP响应头事件
   httpRequest.off('headersReceive');
@@ -190,8 +188,9 @@ httpRequest.requestInStream(
   httpRequest.off('dataEnd');
   // 当该请求使用完毕时，调用destroy方法主动销毁
   httpRequest.destroy();
-}
-);
+}).catch((err: Error) => {
+  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+});
 ```
 
 ## 相关实例

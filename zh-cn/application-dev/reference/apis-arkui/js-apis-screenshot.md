@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import screenshot from '@ohos.screenshot';
+import { screenshot } from '@kit.ArkUI';
 ```
 
 ## Rect
@@ -35,7 +35,7 @@ import screenshot from '@ohos.screenshot';
 | 名称                 | 类型          | 必填 | 说明                                                         |
 | -------------------- | ------------- | ---- | ------------------------------------------------------------ |
 | pickRect             | [Rect](#rect) | 是   | 表示截取图像的区域。                       |
-| pixelMap             | &lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;  | 是   | 表示截取的图像PixelMap对象 |
+| pixelMap             | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是   | 表示截取的图像PixelMap对象 |
 
 ## screenshot.pick
 
@@ -63,7 +63,7 @@ pick(): Promise&lt;PickInfo&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = screenshot.pick();

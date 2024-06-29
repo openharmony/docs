@@ -30,3 +30,4 @@ The **ExtensionAbilityInfo** module defines the ExtensionAbility information. A 
 | writePermission      | string                                                       | Yes  | No  | Permission required for writing data to the ExtensionAbility.                |
 | extensionAbilityTypeName<sup>11</sup>      | string                                 | Yes  | No  | Type of the ExtensionAbility.                |
 | skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | Yes  | No  | Skills of the ExtensionAbility.       |
+| appIndex<sup>12+</sup>    | number    | Yes  | No  | Index of an application clone. It takes effect only for cloned applications.|

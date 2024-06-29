@@ -73,7 +73,7 @@ Obtains the default active data network. This API uses an asynchronous callback 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
+| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
@@ -115,7 +115,6 @@ Obtains the default active data network. This API uses a promise to return the r
 | ID| Error Message                        |
 | ------- | -------------------------------- |
 | 201     | Permission denied.               |
-| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.           |
 
@@ -152,7 +151,6 @@ Obtains the default active data network in synchronous mode. You can use [getNet
 | ID| Error Message                        |
 | ------- | -------------------------------- |
 | 201     | Permission denied.               |
-| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.           |
 
@@ -229,24 +227,26 @@ The configuration file is stored in the **src/main/resources/base/profile/networ
 The following is an example configuration of the certificate pin:
 ```json
 {
-  "network-security-config": {	
-	  "domain-config": {
-		  "domains": [
-        {
-          "include-subdomains": true,
-          "name": "server.com"
-        }
-      ],
-      "pin-set": {
-        "expiration": "2024-11-08",
-        "pin": [
+  "network-security-config": {
+    "domain-config": [
+      {
+        "domains": [
           {
-            "digest-algorithm": "sha256",
-            "digest": "FEDCBA987654321"
+            "include-subdomains": true,
+            "name": "server.com"
           }
-        ]
+        ],
+        "pin-set": {
+          "expiration": "2024-11-08",
+          "pin": [
+            {
+              "digest-algorithm": "sha256",
+              "digest": "FEDCBA987654321"
+            }
+          ]
+        }
       }
-    }
+    ]
   }
 }
 ```
@@ -255,22 +255,28 @@ The following is an example configuration of the application-level certificate:
 ```json
 {
   "network-security-config": {
-    "base-config": {  
-      "trust-anchors": [                         
-        {"certificates": "/etc/security/certificates"}
+    "base-config": {
+      "trust-anchors": [
+        {
+          "certificates": "/etc/security/certificates"
+        }
       ]
     },
-    "domain-config": {
-      "domains": [
-        {
-          "include-subdomains": true,
-          "name": "example.com"
-        }
-      ],
-      "trust-anchors": [
-        {"certificates": "/data/storage/el1/bundle/entry/resources/resfile"}
-      ]
-    }
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "example.com"
+          }
+        ],
+        "trust-anchors": [
+          {
+            "certificates": "/data/storage/el1/bundle/entry/resources/resfile"
+          }
+        ]
+      }
+    ]
   }
 }
 
@@ -418,7 +424,7 @@ Obtains information about the network bound to an application. This API uses an 
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 401 | Parameter error.|
+| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -612,7 +618,7 @@ Obtains the list of all connected networks. This API uses an asynchronous callba
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
+| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -982,7 +988,7 @@ Checks whether the data traffic usage on the current network is metered. This AP
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
+| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -1085,7 +1091,7 @@ Checks whether the default data network is activated. This API uses an asynchron
 | ID| Error Message                         |
 | ------- | --------------------------------- |
 | 201     | Permission denied.                |
-| 401     | Parameter error.                  |
+| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
 
@@ -1122,7 +1128,6 @@ Checks whether the default data network is activated. This API uses a promise to
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
@@ -1615,7 +1620,6 @@ Removes all custom DNS rules from the current application. This API uses an asyn
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
@@ -1709,7 +1713,7 @@ Registers a listener for network status changes.
 | 401     | Parameter error.             |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
-| 2101008 | The callback does not exist.     |
+| 2101008 | The callback already exists.     |
 | 2101022 | The number of requests exceeded the maximum allowed. |
 
 **Example**
@@ -1744,11 +1748,10 @@ Unregisters the listener for network status changes.
 
 | ID| Error Message                         |
 | ------- | --------------------------------- |
-| 201     | Permission denied.                |
 | 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
-| 2101007 | The callback already exists.      |
+| 2101007 | The callback does not exist.      |
 
 **Example**
 
@@ -2417,7 +2420,7 @@ Represents the HTTP proxy configuration.
 | ------ | ------ | --- |------------------------- |
 | host  | string | Yes |  Host name of the proxy server.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | port  | number | Yes |  Host port.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| exclusionList  | Array<string> | Yes | List of the names of hosts that do not use a proxy. Host names can be domain names, IP addresses, or wildcards. The detailed matching rules are as follows:<br>- Domain name matching:<br>  - Exact match: The host name of the proxy server exactly matches any host name in the list.<br>  - Partial match: The host name of the proxy server contains any host name in the list.<br>For example, if **ample.com** is set in the host name list, **ample.com**, **www.ample.com**, and **ample.com:80** are matched, and **www.example.com** and **ample.com.org** are not matched.<br>- IP address matching: The host name of the proxy server exactly matches any IP address in the list.<br>- Both the domain name and IP address are added to the list for matching.<br>- A single asterisk (*) is the only valid wildcard. If the list contains only wildcards, the wildcards match all host names; that is, the HTTP proxy is disabled. A wildcard can only be added independently. It cannot be added to the list together with other domain names or IP addresses. Otherwise, the wildcard does not take effect.<br>- Host names are case insensitive.<br>- Protocol prefixes such as **http** and **https** are ignored during matching.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| exclusionList  | Array\<string\> | Yes | List of the names of hosts that do not use a proxy. Host names can be domain names, IP addresses, or wildcards. The detailed matching rules are as follows:<br>- Domain name matching:<br>  - Exact match: The host name of the proxy server exactly matches any host name in the list.<br>  - Partial match: The host name of the proxy server contains any host name in the list.<br>For example, if **ample.com** is set in the host name list, **ample.com**, **www.ample.com**, and **ample.com:80** are matched, and **www.example.com** and **ample.com.org** are not matched.<br>- IP address matching: The host name of the proxy server exactly matches any IP address in the list.<br>- Both the domain name and IP address are added to the list for matching.<br>- A single asterisk (*) is the only valid wildcard. If the list contains only wildcards, the wildcards match all host names; that is, the HTTP proxy is disabled. A wildcard can only be added independently. It cannot be added to the list together with other domain names or IP addresses. Otherwise, the wildcard does not take effect.<br>- Host names are case insensitive.<br>- Protocol prefixes such as **http** and **https** are ignored during matching.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | username<sup>12+</sup>  | string | No|  Name of the user who uses the proxy.|
 | password<sup>12+</sup>  | string | No|  Password of the user who uses the proxy.|
 
@@ -2445,7 +2448,7 @@ Provides an instance that bears data network capabilities.
 | Name                    | Type                               | Mandatory | Description                                                        |
 | ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | netHandle         | [NetHandle](#nethandle) |  Yes | Handle of the data network.                               |
-| netCap |  [NetCapabilities](#netcapabilities)       |  No |  Network transmission capabilities and bearer types of the data network.|
+| netCap |  [NetCapabilities](#netcapabilities)       |  Yes |  Network transmission capabilities and bearer types of the data network.|
 
 ## NetCapabilities
 

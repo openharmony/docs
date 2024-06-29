@@ -1,6 +1,6 @@
-# ArkWeb API参考 
+# ArkWeb（方舟Web）
 
-- ArkTS API 
+- ArkTS API
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
   - [@ohos.web.netErrorList](js-apis-netErrorList.md)
 - ArkTS 组件

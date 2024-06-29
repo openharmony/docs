@@ -60,7 +60,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
-**Example**
+**Example 1**
+
+When the callback is triggered by **emit**, the invoker is the **EventHub** object. The **EventHub** object does not have the **value** property. Therefore, the result **undefined** is returned.
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -70,6 +72,32 @@ export default class EntryAbility extends UIAbility {
 
     onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc);
+    }
+
+    onForeground() {
+        // Result
+        // eventFunc is called, value: undefined
+
+        this.context.eventHub.emit('myEvent');
+    }
+
+    eventFunc() {
+        console.log(`eventFunc is called, value: ${this.value}`);
+    }
+}
+```
+
+**Example 2**
+
+When the callback uses an arrow function, the invoker is the **EntryAbility** object. The **EntryAbility** object has the **value** property. Therefore, the result **12** is returned.
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    value: number = 12;
+
+    onCreate() {
         // Anonymous functions can be used to subscribe to events.
         this.context.eventHub.on('myEvent', () => {
             console.log(`anonymous eventFunc is called, value: ${this.value}`);
@@ -78,7 +106,6 @@ export default class EntryAbility extends UIAbility {
 
     onForeground() {
         // Result
-        // eventFunc is called, value: undefined
         // anonymous eventFunc is called, value: 12
         this.context.eventHub.emit('myEvent');
     }

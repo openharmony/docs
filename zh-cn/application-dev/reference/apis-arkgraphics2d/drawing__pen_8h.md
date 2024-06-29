@@ -55,7 +55,7 @@
 | [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle)[OH_Drawing_PenGetJoin](_drawing.md#oh_drawing_pengetjoin) (const [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | 用于获取画笔绘制折线转角的样式。 | 
 | void [OH_Drawing_PenSetJoin](_drawing.md#oh_drawing_pensetjoin) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_PenLineJoinStyle](_drawing.md#oh_drawing_penlinejoinstyle)) | 用于设置画笔绘制转角的样式。 | 
 | void [OH_Drawing_PenSetShaderEffect](_drawing.md#oh_drawing_pensetshadereffect) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect) \*) | 设置画笔着色器效果。 | 
-| void [OH_Drawing_PenSetShadowLayer](_drawing.md#oh_drawing_pensetshadowlayer) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_ShadowLayer](_drawing.md#oh_drawing_shadowlayer) \*) | 设置画笔阴影层效果，为空表示清空阴影层效果，当前仅对文字生效。 | 
+| void [OH_Drawing_PenSetShadowLayer](_drawing.md#oh_drawing_pensetshadowlayer) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_ShadowLayer](_drawing.md#oh_drawing_shadowlayer) \*) | 设置画笔阴影层效果，设置的阴影层效果当前仅在绘制文字时生效。 | 
 | void [OH_Drawing_PenSetPathEffect](_drawing.md#oh_drawing_pensetpatheffect) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_PathEffect](_drawing.md#oh_drawing_patheffect) \*) | 设置画笔路径效果。 | 
 | void [OH_Drawing_PenSetFilter](_drawing.md#oh_drawing_pensetfilter) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) \*) | 设置画笔滤波器。 | 
 | void [OH_Drawing_PenGetFilter](_drawing.md#oh_drawing_pengetfilter) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) \*) | 从画笔获取滤波器[OH_Drawing_Filter](_drawing.md#oh_drawing_filter)。滤波器是一个容器，可以承载蒙版滤波器和颜色滤波器。 | 

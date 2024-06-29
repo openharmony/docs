@@ -13,6 +13,30 @@
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
 
+### ohos.permission.CONTROL_LOCATION_SWITCH
+
+允许应用打开和关闭位置信息开关。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MOCK_LOCATION
+
+允许应用使用模拟位置功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_SETTINGS
 
 允许应用设置SettingsData中设备级配置数据表和用户级配置数据表。
@@ -864,6 +888,18 @@
 **ACL使能**：true
 
 **起始版本**：10
+
+### ohos.permission.PERCEIVE_SMART_POWER_SCENARIO
+
+允许应用感知智慧功耗场景。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ### ohos.permission.MANAGE_CAMERA_CONFIG
 
@@ -2645,6 +2681,42 @@
 
 **起始版本**：12
 
+### ohos.permission.MANAGE_FINDNETWORK
+
+允许应用管理“查找”网络开关，并可以对物品进行配对、解配对。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.OPERATE_FINDNETWORK
+
+允许应用调用“查找”网络操作类接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.QUERY_FINDNETWORK_LOCATION
+
+允许应用使用“查找”网络查询设备离线位置的功能。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_RGM
 
 允许系统服务或系统应用管理RGM。
@@ -2686,6 +2758,18 @@
 允许系统应用及系统SA调用账号服务。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ALLOW_TIPS_ACCESS
+
+允许系统应用拉起其他系统应用的对外暴露组件。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -3077,6 +3161,30 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_SCREEN_LOCK_MEDIA_DATA
+
+允许应用在锁屏后继续访问媒体图片和视频数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SCREEN_LOCK_ALL_DATA
+
+允许应用在锁屏后继续访问媒体图片和视频、通话记录、通话录音、短信内容、邮箱等敏感数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_DEVICE_COLLABORATION_PRIVATE_ABILITY
 
 允许系统服务或系统应用访问多屏协同私有应用能力。
@@ -3106,6 +3214,18 @@
 允许系统应用访问和写入铃音数据公共目录的权限。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SUBSCRIPTION_CAPSULE_DATA
+
+允许系统应用访问订阅胶囊数据。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -3389,6 +3509,12 @@
 
 **起始版本**：9
 
+**废弃版本**：12
+
+**替代方案**：
+
+请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
+
 ### ohos.permission.READ_IMAGEVIDEO
 
 允许读取用户公共目录的图片或视频文件。
@@ -3424,6 +3550,12 @@
 **ACL使能**：true
 
 **起始版本**：9
+
+**废弃版本**：12
+
+**替代方案**：
+
+请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
 
 ### ohos.permission.WRITE_IMAGEVIDEO
 

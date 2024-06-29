@@ -1,6 +1,7 @@
 # @ohos.net.vpn (VPN Management) (System API)
 
 The **vpn** module implements virtual private network (VPN) management, such as starting and stopping a VPN.
+This module is the built-in VPN function provided by the OS. It allows users to set up VPN connections through the network settings of the OS. Generally, this module provides only limited functions and is subject to strict restrictions.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.

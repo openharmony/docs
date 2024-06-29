@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import systemSoundManager from '@ohos.multimedia.systemSoundManager';
+import { systemSoundManager } from '@kit.AudioKit';
 ```
 
 ## 常量
@@ -71,7 +71,7 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 
 ## ToneAttrs<sup>12+</sup>
 
-管理铃声属性。在调用ToneAttrs<sup>12+</sup>的接口前，需要先通过[createCustomizedToneAttrs](#systemsoundmanagercreatecustomizedtoneattrs12)创建实例。
+管理铃声属性。在调用ToneAttrs<sup>12+</sup>的接口前，需要先通过[createCustomizedToneAttrs](#systemsoundmanagercreatecustomizedtoneattrs12)或[getDefaultRingtoneAttrs](#getdefaultringtoneattrs12)、[getRingtoneAttrList](#getringtoneattrlist12)等方法获取实例。
 
 ### getTitle<sup>12+</sup>
 
@@ -316,9 +316,9 @@ type ToneAttrsArray = Array&lt;[ToneAttrs](#toneattrs12)&gt;
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
-| 类型                                    | 说明      |
-|---------------------------------------|---------|
-| Array&lt;[ToneAttrs](#toneattrs12)&gt | 铃音属性数组。 |
+| 类型                                     | 说明      |
+|----------------------------------------|---------|
+| Array&lt;[ToneAttrs](#toneattrs12)&gt; | 铃音属性数组。 |
 
 ## systemSoundManager.createCustomizedToneAttrs<sup>12+</sup>
 
@@ -346,7 +346,7 @@ createCustomizedToneAttrs(): ToneAttrs
 
 **示例：**
 ```ts
-let toneAttrsInstance: systemSoundManager.ToneAttrs = systemSoundManager.createCustomizedToneAttrs();
+let toneAttrs: systemSoundManager.ToneAttrs = systemSoundManager.createCustomizedToneAttrs();
 ```
 
 ## systemSoundManager.getSystemSoundManager
@@ -399,13 +399,14 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.setSystemRingtoneUri(context, uri, type, (err: BusinessError) => {
   if (err) {
     console.error(`Failed to set system ringtone uri. ${err}`);
@@ -445,13 +446,14 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.setSystemRingtoneUri(context, uri, type).then(() => {
   console.info(`Promise returned to indicate a successful setting of the system ringtone uri.`);
 }).catch ((err: BusinessError) => {
@@ -483,12 +485,13 @@ getSystemRingtoneUri(context: Context, type: RingtoneType, callback: AsyncCallba
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getSystemRingtoneUri(context, type, (err: BusinessError, value: string) => {
   if (err) {
     console.error(`Failed to get system ringtone uri. ${err}`);
@@ -527,12 +530,13 @@ getSystemRingtoneUri(context: Context, type: RingtoneType): Promise&lt;string&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getSystemRingtoneUri(context, type).then((value: string) => {
   console.info(`Promise returned to indicate that the value of the system ringtone uri is obtained ${value}.`);
 }).catch ((err: BusinessError) => {
@@ -564,13 +568,14 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 let systemRingtonePlayer: systemSoundManager.RingtonePlayer | undefined = undefined;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getSystemRingtonePlayer(context, type, (err: BusinessError, value: systemSoundManager.RingtonePlayer) => {
   if (err) {
     console.error(`Failed to get system ringtone player. ${err}`);
@@ -610,13 +615,14 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;Ringto
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 let systemRingtonePlayer: systemSoundManager.RingtonePlayer | undefined = undefined;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getSystemRingtonePlayer(context, type).then((value: systemSoundManager.RingtonePlayer) => {
   console.info(`Promise returned to indicate that the value of the system ringtone player is obtained.`);
   systemRingtonePlayer = value;
@@ -662,13 +668,14 @@ setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&l
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.setRingtoneUri(context, uri, type).then(() => {
   console.info(`Promise returned to indicate a successful setting of the system ringtone uri.`);
 }).catch ((err: BusinessError) => {
@@ -712,12 +719,13 @@ getRingtoneUri(context: BaseContext, type: RingtoneType): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getRingtoneUri(context, type).then((value: string) => {
   console.info(`Promise returned to indicate that the value of the system ringtone uri is obtained ${value}.`);
 }).catch ((err: BusinessError) => {
@@ -760,13 +768,14 @@ getRingtonePlayer(context: BaseContext, type: RingtoneType): Promise&lt;Ringtone
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
 let systemRingtonePlayer: systemSoundManager.RingtonePlayer | undefined = undefined;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getRingtonePlayer(context, type).then((value: systemSoundManager.RingtonePlayer) => {
   console.info(`Promise returned to indicate that the value of the system ringtone player is obtained.`);
   systemRingtonePlayer = value;
@@ -812,13 +821,14 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.setSystemToneUri(context, uri, type).then(() => {
   console.info(`Promise returned to indicate a successful setting of the system tone uri.`);
 }).catch ((err: BusinessError) => {
@@ -862,12 +872,13 @@ getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getSystemToneUri(context, type).then((value: string) => {
   console.info(`Promise returned to indicate that the value of the system tone uri is obtained ${value}.`);
 }).catch ((err: BusinessError) => {
@@ -910,13 +921,14 @@ getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;Syst
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
 let systemTonePlayer: systemSoundManager.SystemTonePlayer | undefined = undefined;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getSystemTonePlayer(context, type).then((value: systemSoundManager.SystemTonePlayer) => {
   console.info(`Promise returned to indicate that the value of the system tone player is obtained.`);
     systemTonePlayer = value;
@@ -961,12 +973,13 @@ getDefaultRingtoneAttrs(context: BaseContext, type: RingtoneType): Promise&lt;To
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getDefaultRingtoneAttrs(context, type).then((value: systemSoundManager.ToneAttrs) => {
   console.info(`Promise returned to indicate that the value of the attributes of the default ringtone is obtained.`);
 }).catch ((err: BusinessError) => {
@@ -1010,12 +1023,13 @@ getRingtoneAttrList(context: BaseContext, type: RingtoneType): Promise&lt;ToneAt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getRingtoneAttrList(context, type).then((value: systemSoundManager.ToneAttrsArray) => {
   console.info(`Promise returned to indicate that the value of the attribute list of ringtone is obtained.`);
 }).catch ((err: BusinessError) => {
@@ -1059,12 +1073,13 @@ getDefaultSystemToneAttrs(context: BaseContext, type: SystemToneType): Promise&l
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getDefaultSystemToneAttrs(context, type).then((value: systemSoundManager.ToneAttrs) => {
   console.info(`Promise returned to indicate that the value of the attributes of the system ringtone is obtained.`);
 }).catch ((err: BusinessError) => {
@@ -1108,12 +1123,13 @@ getSystemToneAttrList(context: BaseContext, type: SystemToneType): Promise&lt;To
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getSystemToneAttrList(context, type).then((value: systemSoundManager.ToneAttrsArray) => {
   console.info(`Promise returned to indicate that the value of the attribute list of system tone is obtained.`);
 }).catch ((err: BusinessError) => {
@@ -1156,11 +1172,12 @@ getDefaultAlarmToneAttrs(context: BaseContext): Promise&lt;ToneAttrs&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getDefaultAlarmToneAttrs(context).then((value: systemSoundManager.ToneAttrs) => {
   console.info(`Promise returned to indicate that the value of the attributes of the default alarm tone is obtained.`);
 }).catch ((err: BusinessError) => {
@@ -1194,12 +1211,13 @@ setAlarmToneUri(context: Context, uri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.setAlarmToneUri(context, uri).then(() => {
   console.info(`Promise returned to indicate a successful setting of the alarm tone uri.`);
 }).catch ((err: BusinessError) => {
@@ -1232,11 +1250,12 @@ getAlarmToneUri(context: Context): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getAlarmToneUri(context).then((value: string) => {
   console.info(`Promise returned to indicate that the value of alarm tone uri.`);
 }).catch ((err: BusinessError) => {
@@ -1279,16 +1298,16 @@ getAlarmToneAttrList(context: BaseContext): Promise&lt;ToneAttrsArray&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
-let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
 
-systemSoundManagerInstance.getSystemToneAttrList(context, type).then((value: systemSoundManager.ToneAttrsArray) => {
-  console.info(`Promise returned to indicate that the value of the attribute list of system tone is obtained.`);
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+systemSoundManagerInstance.getAlarmToneAttrList(context).then((value: systemSoundManager.ToneAttrsArray) => {
+  console.info(`Promise returned to indicate that the value of the attribute list of alarm tone is obtained.`);
 }).catch ((err: BusinessError) => {
-  console.error(`Failed to get the attribute list of system tone ${err}`);
+  console.error(`Failed to get the attribute list of alarm tone ${err}`);
 });
 ```
 
@@ -1329,12 +1348,13 @@ openAlarmTone(context: Context, uri: string): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.openAlarmTone(context, uri).then((value: number) => {
   console.info(`Promise returned to indicate the value of fd.`);
 }).catch ((err: BusinessError) => {
@@ -1354,9 +1374,9 @@ close(fd: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明          |
-|-----| --------| ---- |-------------|
-| fd  | number  | 是   | 文件描述符。   |
+| 参数名 | 类型   | 必填 | 说明                                           |
+|-----| --------| ---- |----------------------------------------------|
+| fd  | number  | 是   | 文件描述符，通过[openAlarmTone](#openalarmtone12)获取。 |
 
 **返回值：**
 
@@ -1377,12 +1397,13 @@ close(fd: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let fd = 50; // 需更改为目标铃声的fd
 
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.close(fd).then(() => {
   console.info(`Promise returned to indicate that the fd has been close.`);
 }).catch ((err: BusinessError) => {
@@ -1429,8 +1450,8 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let title = 'test'; // 需更改为实际名称
@@ -1443,6 +1464,8 @@ toneAttrs.setFileName(fileName);
 toneAttrs.setCategory(categoryValue);
 
 let path = 'file://data/test.ogg'; // 需更改为实际铃音uri
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, path).then((value: string) => {
   console.info(`Promise returned to indicate that the value of tone uri in ringtone library.`);
 }).catch ((err: BusinessError) => {
@@ -1462,13 +1485,13 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 
 **参数：**
 
-| 参数名 | 类型        | 必填 | 说明                                     |
-|-----|-----------|----|----------------------------------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是  | 当前应用的上下文。                              |
-| toneAttr  | ToneAttrs | 是  | 铃音属性。                                  |
-| fd  | number    | 是  | 文件描述符。                                 |
-| offset  | number    | 否  | 读取数据的偏移量（以字节为单位）。默认情况下为0。              |
-| length  | number    | 否  | 读取的数据的长度（以字节为单位）。默认情况下，长度为偏移后的剩余全部字节数。 |
+| 参数名 | 类型        | 必填 | 说明                                                                     |
+|-----|-----------|----|------------------------------------------------------------------------|
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是  | 当前应用的上下文。                                                              |
+| toneAttr | [ToneAttrs](#toneattrs12) | 是  | 铃音属性。                                                                  |
+| fd  | number    | 是  | 文件描述符，可通过[fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen)获取。 |
+| offset | number    | 否  | 读取数据的偏移量（以字节为单位）。默认情况下为0。                                              |
+| length | number    | 否  | 读取的数据的长度（以字节为单位）。默认情况下，长度为偏移后的剩余全部字节数。                                 |
 
 **返回值：**
 
@@ -1491,8 +1514,8 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let title = 'test'; // 需更改为实际名称
@@ -1504,9 +1527,11 @@ toneAttrs.setTitle(title);
 toneAttrs.setFileName(fileName);
 toneAttrs.setCategory(categoryValue);
 
-let fd = 10; // 需更改为实际铃音fd
+let fd = 10; // 需更改为实际铃音fd,
 let offset = 0; // 需更改为实际所需偏移量
 let length = 50; // 需更改为实际所需数据长度
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, fd, offset, length).then((value: string) => {
   console.info(`Promise returned to indicate that the value of tone uri in ringtone library.`);
 }).catch ((err: BusinessError) => {
@@ -1526,10 +1551,10 @@ removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型        | 必填 | 说明     |
-|-----|-----------| ---- |--------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。 |
-| uri  | string    | 是   | 铃音uri。 |
+| 参数名 | 类型        | 必填 | 说明                                                                                                      |
+|-----|-----------| ---- |---------------------------------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。                                                                                               |
+| uri  | string    | 是   | 铃音uri，可通过[addCustomizedTone](#addcustomizedtone12)或[getAlarmToneAttrList](#getalarmtoneattrlist12)等方法获取 |
 
 **返回值：**
 
@@ -1552,11 +1577,13 @@ removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.removeCustomizedTone(context, uri).then(() => {
   console.info(`Promise returned to indicate that the customized tone has been deleted.`);
 }).catch ((err: BusinessError) => {

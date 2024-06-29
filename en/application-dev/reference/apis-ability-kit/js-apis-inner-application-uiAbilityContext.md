@@ -14,7 +14,7 @@
 import common from '@ohos.app.ability.common';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -52,8 +52,11 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -71,8 +74,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -132,16 +134,17 @@ Starts an ability with the start options specified. This API uses an asynchronou
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -154,8 +157,7 @@ Starts an ability with the start options specified. This API uses an asynchronou
 | 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
 | 16300003 | The target application is not self application. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -225,8 +227,11 @@ Starts an ability. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -247,8 +252,7 @@ Starts an ability. This API uses a promise to return the result.
 | 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
 | 16300003 | The target application is not self application. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -314,8 +318,11 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -333,8 +340,7 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -399,8 +405,11 @@ Starts an ability with the start options specified. This API uses an asynchronou
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -408,7 +417,6 @@ Starts an ability with the start options specified. This API uses an asynchronou
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -418,8 +426,7 @@ Starts an ability with the start options specified. This API uses an asynchronou
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -495,8 +502,11 @@ Starts an ability. This API uses a promise to return the result when the ability
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -514,8 +524,7 @@ Starts an ability. This API uses a promise to return the result when the ability
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -562,6 +571,10 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 Terminates this ability. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+> 
+> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -574,16 +587,14 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -620,6 +631,10 @@ terminateSelf(): Promise&lt;void&gt;
 
 Terminates this ability. This API uses a promise to return the result.
 
+> **NOTE**
+> 
+> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -632,16 +647,14 @@ Terminates this ability. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -678,6 +691,10 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 Terminates this ability. If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of an asynchronous callback when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
+> **NOTE**
+> 
+> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -691,16 +708,15 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -750,6 +766,10 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 Terminates this ability. If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of a promise when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
+> **NOTE**
+> 
+> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -768,16 +788,15 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -843,20 +862,21 @@ Connects this ability to a ServiceExtensionAbility.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
 
 **Example**
 
@@ -923,12 +943,13 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -980,12 +1001,13 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1054,12 +1076,14 @@ Starts an ability in the foreground or background in the cross-device scenario a
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
@@ -1067,9 +1091,7 @@ Starts an ability in the foreground or background in the cross-device scenario a
 | 16000013 | The application is controlled by EDM.       |
 | 16000018 | The application is not allow jumping to other applications. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| 16000073 | The app clone index is invalid. |
 
 **Example**
 
@@ -1173,12 +1195,13 @@ Sets a label for this ability in the mission. This API uses an asynchronous call
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1221,12 +1244,13 @@ Sets a label for this ability in the mission. This API uses a promise to return 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1268,12 +1292,13 @@ Sets the mission continuation state of this ability. This API uses an asynchrono
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1315,12 +1340,13 @@ Sets the mission continuation state of this ability. This API uses a promise to 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1358,12 +1384,13 @@ Restores the WindowStage data in the ability.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1396,11 +1423,11 @@ Checks whether this ability is in the terminating state.
 
 **Error codes**
 
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1436,8 +1463,11 @@ Starts a ServiceExtensionAbility that supports modal dialog boxes. After the Ser
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1453,8 +1483,6 @@ Starts a ServiceExtensionAbility that supports modal dialog boxes. After the Ser
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1519,8 +1547,11 @@ Starts a ServiceExtensionAbility that supports modal dialog boxes. After the Ser
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1536,8 +1567,6 @@ Starts a ServiceExtensionAbility that supports modal dialog boxes. After the Ser
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1592,12 +1621,12 @@ Reports an event indicating that page loading is complete (**loadContent()** is 
 
 **Error codes**
 
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1649,23 +1678,19 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the UIExtensionAbility to start.|
+| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting the Intent Panel in a Specific Scenario Through startAbilityByType](../../../application-dev/application-models/start-intent-panel.md#available-apis).<!--DelEnd-->|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the result.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000018 | The application is not allow jumping to other applications. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1713,7 +1738,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the UIExtensionAbility to start.|
+| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting the Intent Panel in a Specific Scenario Through startAbilityByType](../../../application-dev/application-models/start-intent-panel.md#available-apis).<!--DelEnd-->|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the result.|
 
@@ -1725,16 +1750,12 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000018 | The application is not allow jumping to other applications. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1768,7 +1789,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 ## UIAbilityContext.showAbility<sup>12+</sup>
 
-showAbility() : Promise\<void>
+showAbility(): Promise\<void>
 
 Shows the current ability. This API uses a promise to return the result. It takes effect only on tablets.
 
@@ -1784,12 +1805,12 @@ To call this API, the current ability must be started through [UIAbilityContext.
 
 **Error codes**
 
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 | 16000067 | Start options check failed. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1867,7 +1888,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 ## UIAbilityContext.hideAbility<sup>12+</sup>
 
-hideAbility() : Promise\<void>
+hideAbility(): Promise\<void>
 
 Hides the current ability. This API uses a promise to return the result. It takes effect only on tablets.
 
@@ -1883,12 +1904,12 @@ To call this API, the current ability must be started through [UIAbilityContext.
 
 **Error codes**
 
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16000050 | Internal error. |
 | 16000067 | Start options check failed. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1981,6 +2002,8 @@ Moves this ability from the foreground to the background. This API uses a promis
 
 **Error codes**
 
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
@@ -1988,8 +2011,6 @@ Moves this ability from the foreground to the background. This API uses a promis
 | 16000061 | Operation not supported. |
 | 16000065 | The interface can be called only when ability is foreground. |
 | 16000066 | An ability cannot move to foreground or background in Wukong mode. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -2030,9 +2051,9 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 
 Starts an [EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md) in jump-out mode and obtains the result. This API uses a promise to return the result.
 The following situations may be possible for a started EmbeddableUIAbility:
- - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-EmbeddableUIAbilityContext.md#embeddableuiabilitycontextterminateselfwithresult-1) to terminate the EmbeddableUIAbility. The result is returned to the caller.
+ - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the EmbeddableUIAbility. The result is returned to the caller.
  - If an exception occurs, for example, the EmbeddableUIAbility is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an EmbeddableUIAbility and then call [terminateSelfWithResult](js-apis-inner-application-EmbeddableUIAbilityContext.md#embeddableuiabilitycontextterminateselfwithresult-1) to terminate the EmbeddableUIAbility, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
+ - If different applications call this API to start an EmbeddableUIAbility and then call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the EmbeddableUIAbility, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
 > **NOTE**
 >
@@ -2058,8 +2079,11 @@ The following situations may be possible for a started EmbeddableUIAbility:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000002 | Incorrect ability type. |
 | 16000003 | The appId does not exist. |
 | 16000004 | Can not start invisible component. |
@@ -2069,8 +2093,6 @@ The following situations may be possible for a started EmbeddableUIAbility:
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -2108,14 +2130,15 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ## UIAbilityContext.openLink<sup>12+<sup>
-openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;): Promise&lt;void&gt;
+
+openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;): Promise&lt;void&gt;
 
 Starts a UIAbility through App Linking. This API uses a promise to return the result.
 
-A URI in the standard format is passed in to the **link** field to start the target UIAbility based on the implicit Want matching rules. The target UIAbility must have the following filter characteristics to process links of App Linking:
+A URL in the standard format is passed in to the **link** field to start the target UIAbility based on the implicit Want matching rules. The target UIAbility must have the following filter characteristics to process links of App Linking:
 - The **actions** field contains **ohos.want.action.viewData**.
 - The **entities** field contains **entity.system.browsable**.
-- The **uris** field contains elements whose **scheme** is **https** and **autoVerify** is **true**.
+- The **uris** field contains elements whose **scheme** is **https** and **domainVerify** is **true**.
 
 If you want to obtain the result after the started UIAbility is terminated, set the **callback** parameter. For details about how to use this parameter, see [startAbilityForResult](#uiabilitycontextstartabilityforresult).
 If an input parameter is invalid, for example, a mandatory parameter is not set or the URL set in **link** is not in the standard format, an exception is thrown. If the parameter verification is successful but an error occurs when starting the target UIAbility, the error information is returned through promise.
@@ -2144,8 +2167,11 @@ If an input parameter is invalid, for example, a mandatory parameter is not set 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -2159,8 +2185,6 @@ If an input parameter is invalid, for example, a mandatory parameter is not set 
 | 16000013 | The application is controlled by EDM.       |
 | 16000019 | Can not match any component. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -2190,29 +2214,29 @@ struct Index {
           .margin({ bottom: '12vp' })
           .onClick(() => {
             let context = getContext(this) as common.UIAbilityContext;
-            let link: string = "https://www.example.com";
+            let link: string = 'https://www.example.com';
             let openLinkOptions: OpenLinkOptions = {
               appLinkingOnly: true,
-              parameters: {demo_key: "demo_value"}
+              parameters: { demo_key: 'demo_value' }
             };
-            
+
             try {
               context.openLink(
                 link,
                 openLinkOptions,
                 (err, result) => {
-                  hilog.error(DOMAIN, TAG, 'openLink callback error.code:' + JSON.stringify(err));
-                  hilog.info(DOMAIN, TAG, 'openLink callback result:' + JSON.stringify(result.resultCode));
-                  hilog.info(DOMAIN, TAG, 'openLink callback result data:' + JSON.stringify(result.want));
+                  hilog.error(DOMAIN, TAG, `openLink callback error.code: ${JSON.stringify(err)}`);
+                  hilog.info(DOMAIN, TAG, `openLink callback result: ${JSON.stringify(result.resultCode)}`);
+                  hilog.info(DOMAIN, TAG, `openLink callback result data: ${JSON.stringify(result.want)}`);
                 }
-              ).then(()=>{
-                hilog.info(DOMAIN, TAG, 'open link success.');
-              }).catch((err: BusinessError)=>{
-                hilog.error(DOMAIN, TAG, 'open link failed, errCode ' + JSON.stringify(err.code));
+              ).then(() => {
+                hilog.info(DOMAIN, TAG, `open link success.`);
+              }).catch((err: BusinessError) => {
+                hilog.error(DOMAIN, TAG, `open link failed, errCode ${JSON.stringify(err.code)}`);
               });
             }
             catch (e) {
-              hilog.error(DOMAIN, TAG, 'exception occured, errCode ' + JSON.stringify(e.code));
+              hilog.error(DOMAIN, TAG, `exception occured, errCode ${JSON.stringify(e.code)}`);
             }
           })
       }

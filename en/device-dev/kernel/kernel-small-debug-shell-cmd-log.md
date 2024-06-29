@@ -41,7 +41,6 @@ log level [_levelNum_]
 
   If the log level specified is not within the value range, a message will be displayed.
 
-- If **[levelNum]** is not specified, this command displays the current log level and how to use it.
 
 - If the log level is set to **4** or **5** in the source code of an OpenHarmony small system, a large number of logs will be printed.
 

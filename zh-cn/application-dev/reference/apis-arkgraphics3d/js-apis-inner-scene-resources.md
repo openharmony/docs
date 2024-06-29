@@ -32,11 +32,11 @@ import { SceneResourceType, SceneResource, Shader, MaterialType, Material, Shade
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| name | string | 是 | 是 | 名称，没有特殊格式要求。 |
+| name | string | 否 | 否 | 名称，没有特殊格式要求。 |
 | resourceType | [SceneResourceType](#sceneresourcetype) | 是 | 否 | 场景资源类型，默认值为undefined。|
-| uri | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 否 | 需要加载的资源，默认值为undefined。|
+| uri | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 是 | 需要加载的资源，默认值为undefined。|
 
 ### destroy
 destroy(): void
@@ -74,9 +74,9 @@ function destroy() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| inputs | Record<string, number \| Vec2 \| Vec3 \| Vec4 \| Image> | 是 | 是 | 着色器输入。 |
+| inputs | Record<string, number \| Vec2 \| Vec3 \| Vec4 \| Image> | 是 | 否 | 着色器输入。 |
 
 ## MaterialType
 场景中物体材质类型枚举。
@@ -93,9 +93,9 @@ function destroy() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| materialType | [MaterialType](#materialtype) | 是 | 是 | 材质类型。 |
+| materialType | [MaterialType](#materialtype) | 是 | 否 | 材质类型。 |
 
 ## ShaderMaterial
 着色器材质，继承自[Material](#material)。
@@ -103,9 +103,9 @@ function destroy() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| colorShader | [Shader](#shader) | 否 | 否 | 着色器，默认值为undefined。 |
+| colorShader | [Shader](#shader) | 否 | 是 | 着色器，默认值为undefined。 |
 
 ## SubMesh
 子网格类型。
@@ -113,11 +113,11 @@ function destroy() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| name | string | 否 | 是 | 名称，没有特殊格式要求。 |
-| material | [Material](#material) | 否 | 是 | 材质。 |
-| aabb | [Aabb](js-apis-inner-scene-types.md#aabb) | 是 | 是 | 轴对齐边界盒。 |
+| name | string | 否 | 否 | 名称，没有特殊格式要求。 |
+| material | [Material](#material) | 否 | 否 | 材质。 |
+| aabb | [Aabb](js-apis-inner-scene-types.md#aabb) | 是 | 否 | 轴对齐边界盒。 |
 
 ## Mesh
 网格类型，继承自[SceneResource](#sceneresource)。
@@ -125,11 +125,11 @@ function destroy() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| subMeshes | [SubMesh](#submesh)[] | 是 | 是 | 子网格数组。 |
-| aabb | [Aabb](js-apis-inner-scene-types.md#aabb) | 是 | 是 | 轴对齐包围盒。|
-| materialOverride | [Material](#material) | 是 | 否 | 材质，默认为空。 |
+| subMeshes | [SubMesh](#submesh)[] | 是 | 否 | 子网格数组。 |
+| aabb | [Aabb](js-apis-inner-scene-types.md#aabb) | 是 | 否 | 轴对齐包围盒。|
+| materialOverride | [Material](#material) | 否 | 是 | 材质，默认为空。 |
 
 ## Animation
 动画类型，继承自[SceneResource](#sceneresource)。
@@ -137,12 +137,12 @@ function destroy() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| enabled | boolean | 否 | 是 | 动画是否使能，true表示可以播放动画，false表示不可以播放动画。 |
-| duration | number | 是 | 是 | 动画持续时间，取值范围大于等于0。 |
-| running | boolean | 是 | 是 | 动画运行状态, true表示动画正在播放，false表示动画停止播放。 |
-| progress | number | 是 | 是 | 动画进度状态，取值区间为[0, 1]。 |
+| enabled | boolean | 否 | 否 | 动画是否使能，true表示可以播放动画，false表示不可以播放动画。 |
+| duration | number | 是 | 否 | 动画持续时间，取值范围大于等于0。 |
+| running | boolean | 是 | 否 | 动画运行状态, true表示动画正在播放，false表示动画停止播放。 |
+| progress | number | 是 | 否 | 动画进度状态，取值区间为[0, 1]。 |
 
 ### onFinished
 onFinished(callback: Callback\<void>): void
@@ -374,15 +374,15 @@ function finish() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| backgroundType | [EnvironmentBackgroundType](#environmentbackgroundtype) | 否 | 是 | 环境背景类型。 |
-| indirectDiffuseFactor | [Vec4](js-apis-inner-scene-types.md#vec4) | 否 | 是 | 间接散射系数。 |
-| indirectSpecularFactor | [Vec4](js-apis-inner-scene-types.md#vec4) | 否 | 是 | 间接反射系数。 |
-| environmentMapFactor | [Vec4](js-apis-inner-scene-types.md#vec4) | 否 | 是 | 环境地图系数。 |
-| environmentImage | [Image](#image) \| null | 否 | 否 | 环境图片，默认为undefined。 |
-| radianceImage | [Image](#image) \| null | 否 | 否 | 辐射图片，默认为undefined。 |
-| irradianceCoefficients | [Vec3](js-apis-inner-scene-types.md#vec3)[] | 否 | 否 | 辐射系数，默认为undefined。 |
+| backgroundType | [EnvironmentBackgroundType](#environmentbackgroundtype) | 否 | 否 | 环境背景类型。 |
+| indirectDiffuseFactor | [Vec4](js-apis-inner-scene-types.md#vec4) | 否 | 否 | 间接散射系数。 |
+| indirectSpecularFactor | [Vec4](js-apis-inner-scene-types.md#vec4) | 否 | 否 | 间接反射系数。 |
+| environmentMapFactor | [Vec4](js-apis-inner-scene-types.md#vec4) | 否 | 否 | 环境地图系数。 |
+| environmentImage | [Image](#image) \| null | 否 | 是 | 环境图片，默认为undefined。 |
+| radianceImage | [Image](#image) \| null | 否 | 是 | 辐射图片，默认为undefined。 |
+| irradianceCoefficients | [Vec3](js-apis-inner-scene-types.md#vec3)[] | 否 | 是 | 辐射系数，默认为undefined。 |
 
 ## Image
 图片类型，继承自[SceneResource](#sceneresource)。
@@ -390,7 +390,7 @@ function finish() : void {
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| width | number | 是 | 是 | 图片宽度，取值范围大于0。 |
-| height | number | 是 | 是 | 图片高度，取值范围大于0。 |
+| width | number | 是 | 否 | 图片宽度，取值范围大于0。 |
+| height | number | 是 | 否 | 图片高度，取值范围大于0。 |

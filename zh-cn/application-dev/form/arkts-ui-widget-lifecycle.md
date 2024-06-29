@@ -69,7 +69,7 @@
     
         onConfigurationUpdate(config: Configuration) {
           // 当前formExtensionAbility存活时更新系统配置信息时触发的回调。
-          // 需注意：formExtensionAbility创建后5秒内无操作将会被清理。
+          // 需注意：formExtensionAbility创建后10秒内无操作将会被清理。
           hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
         }
     
@@ -83,4 +83,4 @@
 
 > **说明：**
 >
-> FormExtensionAbility进程不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务，在生命周期调度完成后会继续存在5秒，如5秒内没有新的生命周期回调触发则进程自动退出。针对可能需要5秒以上才能完成的业务逻辑，建议[拉起主应用](arkts-ui-widget-event-uiability.md)进行处理，处理完成后使用[updateForm()](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)通知卡片进行刷新。
+> FormExtensionAbility进程不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务，在生命周期调度完成后会继续存在10秒，如10秒内没有新的生命周期回调触发则进程自动退出。针对可能需要10秒以上才能完成的业务逻辑，建议[拉起主应用](arkts-ui-widget-event-uiability.md)进行处理，处理完成后使用[updateForm()](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)通知卡片进行刷新。

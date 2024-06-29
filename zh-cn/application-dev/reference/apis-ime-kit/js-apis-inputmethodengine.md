@@ -163,21 +163,18 @@ import { inputMethodEngine } from '@kit.IMEKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let record :Record<string, inputMethodEngine.CommandDataType> = {
+  let record: Record<string, inputMethodEngine.CommandDataType> = {
     "valueString1": "abcdefg",
     "valueString2": true,
     "valueString3": 500,
   }
-  inputClient.sendPrivateCommand(record).then((err) => {
-  }).catch(err => {
-    if (err !== undefined) {
-      let error = err as BusinessError;
-      this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
-    }
+  inputClient.sendPrivateCommand(record).then(() => {
+  }).catch((err: BusinessError) => {
+    console.error(`sendPrivateCommand catch error: ${JSON.stringify(err)}`);
   });
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+  console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -660,15 +657,15 @@ import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
-    this.addLog(`private command key: ${key}, value: ${record[key]}`);
+    console.log(`private command key: ${key}, value: ${record[key]}`);
   }
 }
 try {
-  this.addLog(`regist private command `);
+  console.log(`regist private command `);
   inputMethodEngine.getInputMethodAbility().on('privateCommand', privateCommandCallback);
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`regist private command error: ${error.code} ${error.message}`);
+  console.error(`regist private command error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -703,15 +700,15 @@ import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
-    this.addLog(`private command key: ${key}, value: ${record[key]}`);
+    console.log(`private command key: ${key}, value: ${record[key]}`);
   }
 }
 try {
-  this.addLog(`regist private command `);
+  console.log(`regist private command `);
   inputMethodEngine.getInputMethodAbility().off('privateCommand', privateCommandCallback);
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`regist private command error: ${error.code} ${error.message}`);
+  console.error(`regist private command error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -1044,7 +1041,7 @@ on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 设置监听类型，固定取值为'keyEvent'。 |
-| callback | function | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#KeyEvent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。|
+| callback | function | 是   | 回调函数，入参为按键事件信息，返回值类型为布尔类型。<br/>-&nbsp;入参按键事件信息的数据类型为[InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent)。<br/>-&nbsp;若按键事件被事件订阅者消费，则callback应返回true，否则返回false。|
 
 **示例：**
 
@@ -3828,16 +3825,16 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textIn
       "valueString2": true,
       "valueString3": 500,
     }
-    textInputClient.sendPrivateCommand(record).then((err) => {
-    }).catch(err => {
+    textInputClient.sendPrivateCommand(record).then(() => {
+    }).catch((err: BusinessError) => {
       if (err !== undefined) {
         let error = err as BusinessError;
-        this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+        console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
       }
     });
   } catch (err) {
     let error = err as BusinessError;
-    this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+    console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
   }
 })
 ```

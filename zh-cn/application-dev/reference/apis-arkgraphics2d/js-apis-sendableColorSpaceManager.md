@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import sendableColorSpaceManager from '@ohos.graphics.sendableColorSpaceManager';
+import { sendableColorSpaceManager } from '@kit.ArkGraphics2D';
 ```
 
 ## ISendable
@@ -55,7 +55,7 @@ create(colorSpaceName: colorSpaceManager.ColorSpace): ColorSpaceManager
 **示例：**
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
 let colorSpace: sendableColorSpaceManager.ColorSpaceManager;
 colorSpace = sendableColorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB);
 ```
@@ -93,7 +93,7 @@ create(primaries: colorSpaceManager.ColorSpacePrimaries, gamma: number): ColorSp
 **示例：**
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
 let colorSpace: sendableColorSpaceManager.ColorSpaceManager;
 let primaries: colorSpaceManager.ColorSpacePrimaries = {
   redX: 0.1,
@@ -168,7 +168,7 @@ getWhitePoint(): collections.Array\<number\>
 **示例：**
 
 ```ts
-import collections from '@arkts.collections';
+import { collections } from '@kit.ArkTS';
 let point: collections.Array<number> = colorSpace.getWhitePoint();
 ```
 

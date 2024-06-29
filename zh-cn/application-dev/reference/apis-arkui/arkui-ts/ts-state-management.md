@@ -24,7 +24,7 @@ AppStorage具体UI使用说明，详见[AppStorage(应用全局的UI状态存储
 
 ### ref<sup>12+</sup>
 
-static ref\<T\>(propName: string): AbstractProperty\<T\>
+static ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
 如果给定的propName在AppStorage中存在，则获得AppStorage中propName对应数据的引用。否则，返回undefined。
 
@@ -98,6 +98,8 @@ static link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 如果AppStorage中不存在propName，则返回undefined。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -130,6 +132,8 @@ static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 > **说明：**<br/>
 > 从API version 12开始，AppStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -158,6 +162,8 @@ let link2: SubscribedAbstractProperty<number> = AppStorage.setAndLink('PropA', 5
 static prop&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 与AppStorage中对应的propName建立单向属性绑定。如果给定的propName在AppStorage中存在，则返回与AppStorage中propName对应属性的单向绑定数据。如果AppStorage中不存在propName，则返回undefined。单向绑定数据的修改不会被同步回AppStorage中。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -192,6 +198,8 @@ static setAndProp&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 > **说明：**<br/>
 > 从API version 12开始，AppStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -220,6 +228,8 @@ static has(propName: string): boolean
 
 判断propName对应的属性是否在AppStorage中存在。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -245,6 +255,8 @@ AppStorage.has('simpleProp');
 static get&lt;T&gt;(propName: string): T | undefined
 
 获取propName在AppStorage中对应的属性值。如果不存在则返回undefined。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -275,6 +287,8 @@ static set&lt;T&gt;(propName: string, newValue: T): boolean
 
 > **说明：**<br/>
 > 从API version 12开始，AppStorage支持Map、Set、Date类型，支持null、understand以及联合类型。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -309,6 +323,8 @@ static setOrCreate&lt;T&gt;(propName: string, newValue: T): void
 > **说明：**<br/>
 > 从API version 12 version 开始，AppStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -333,6 +349,8 @@ static delete(propName: string): boolean
 在AppStorage中删除该属性的前提是必须保证该属性没有订阅者。如果有订阅者，则返回false。如果没有订阅者则删除成功并返回true。
 
 属性的订阅者为link、prop等接口绑定的propName，以及\@StorageLink('propName')和\@StorageProp('propName')。如果自定义组件中使用\@StorageLink('propName')和\@StorageProp('propName')或者SubscribedAbstractProperty实例依旧对propName有同步关系，则该属性不能从AppStorage中删除。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -365,7 +383,7 @@ static keys(): IterableIterator&lt;string&gt;
 
 返回AppStorage中所有的属性名。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -390,6 +408,8 @@ static clear(): boolean
 
 订阅者的含义参考[delete](#delete10)。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -410,6 +430,8 @@ let res: boolean = AppStorage.clear(); // true, there are no subscribers
 static size(): number
 
 返回AppStorage中的属性数量。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -837,7 +859,7 @@ let res: number = AppStorage.Size(); // 1
 
 LocalStorage具体UI使用说明，详见[LocalStorage(页面级UI状态存储)](../../../quick-start/arkts-localstorage.md)
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### constructor<sup>9+</sup>
 
@@ -845,9 +867,9 @@ constructor(initializingProperties?: Object)
 
 创建一个新的LocalStorage实例。使用Object.keys(initializingProperties)返回的属性和其数值，初始化LocalStorage实例。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -870,8 +892,9 @@ static getShared(): LocalStorage
 
 获取当前stage共享的LocalStorage实例。
 
-> **说明：**<br/>
-> **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -893,9 +916,9 @@ has(propName: string): boolean
 
 判断propName对应的属性是否在LocalStorage中存在。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -925,9 +948,9 @@ get&lt;T&gt;(propName: string): T | undefined
 
 获取propName在LocalStorage中对应的属性值。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -957,10 +980,13 @@ set&lt;T&gt;(propName: string, newValue: T): boolean
 
 在LocalStorage中设置propName对应属性的值。如果newValue的值和propName对应属性的值相同，即不需要做赋值操作，状态变量不会通知UI刷新propName对应属性的值。从API version 12开始，newValue可以为null或undefined。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **说明：** 
+> 
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> 从API version 11开始，该接口支持在元服务中使用。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -994,10 +1020,13 @@ setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 如果propName已经在LocalStorage中存在，并且newValue和propName对应属性的值不同，则设置propName对应属性的值为newValue，否则状态变量不会通知UI刷新propName对应属性的值。
 如果propName不存在，则创建propName属性，值为newValue。setOrCreate只可以创建单个LocalStorage的键值对，如果想创建多个LocalStorage键值对，可以多次调用此方法。从API version 12开始，newValue可以为null或undefined。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **说明：** 
+> 
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> 从API version 11开始，该接口支持在元服务中使用。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1026,7 +1055,7 @@ let res2: boolean = storage.setOrCreate('PropB', null); // false
 
 ### ref<sup>12+</sup>
 
-ref\<T\>(propName: string): AbstractProperty\<T\>
+ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
 如果给定的propName在LocalStorage中存在，则获得LocalStorage中propName对应数据的引用。否则，返回undefined。
 
@@ -1101,9 +1130,9 @@ link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 如果LocalStorage中不存在propName，则返回undefined。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1135,10 +1164,13 @@ setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProper
 
 与link接口类似，如果给定的propName在LocalStorage中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，返回其双向绑定数据。defaultValue必须为T类型，从API开始defaultValue可以为null或undefined。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **说明：** 
+> 
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> 从API version 11开始，该接口支持在元服务中使用。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1170,9 +1202,9 @@ prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
 如果给定的propName在LocalStorage中存在，则返回与LocalStorage中propName对应属性的单向绑定数据。如果LocalStorage中不存在propName，则返回undefined。单向绑定数据的修改不会被同步回LocalStorage中。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1204,10 +1236,13 @@ setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProper
 
 与prop接口类似。如果propName在LocalStorage中存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，返回其单向绑定数据。defaultValue必须为S类型，从API version 12开始defaultValue可以为null或undefined。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **说明：** 
+> 
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> 从API version 11开始，该接口支持在元服务中使用。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1241,9 +1276,9 @@ delete(propName: string): boolean
 
 属性的订阅者为link，prop等接口绑定的propName，以及\@LocalStorageLink('propName')和\@LocalStorageProp('propName')。如果自定义组件中使用\@LocalStorageLink('propName')和\@LocalStorageProp('propName')或者SubscribedAbstractProperty实例（link和prop接口的返回类型）依旧对propName有同步关系，则该属性不能从LocalStorage中删除。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1277,9 +1312,9 @@ keys(): IterableIterator&lt;string&gt;
 
 返回LocalStorage中所有的属性名。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1303,9 +1338,9 @@ size(): number
 
 返回LocalStorage中的属性数量。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1329,11 +1364,11 @@ clear(): boolean
 
 删除LocalStorage中所有的属性。删除所有属性的前提是已经没有任何订阅者。如果有订阅者，clear不会生效并返回false。如果没有订阅者则删除成功并返回true。
 
-订阅者的含义参考[delete](#delete9)
+订阅者的含义参考[delete](#delete9)。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1359,9 +1394,11 @@ static GetShared(): LocalStorage
 
 获取当前stage共享的LocalStorage实例。
 
-> **说明：**<br/>
-> **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **说明：** 
+> 
 > 从API version 10开始废弃，推荐使用[getShared10+](#getshared10)。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1463,9 +1500,9 @@ abstract get(): T
 
 读取从AppStorage/LocalStorage同步属性的数据。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1489,11 +1526,13 @@ abstract set(newValue: T): void
 
 设置AppStorage/LocalStorage同步属性的数据，newValue必须是T类型，从API version 12开始可以为null或undefined。
 
-> **说明：**<br/>
-> 从API version 9开始，该接口支持在ArkTS卡片中使用。
->
-> 从API version 12开始，AppStorage/LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> 从API version 11开始，该接口支持在元服务中使用。
+> **说明：** 
+> 
+>从API version 12开始，AppStorage/LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1519,7 +1558,7 @@ abstract aboutToBeDeleted(): void
 
 取消SubscribedAbstractProperty实例对AppStorage/LocalStorage的单/双向同步关系，并无效化SubscribedAbstractProperty实例，即当调用aboutToBeDelted方法之后不能再使用SubscribedAbstractProperty实例调用set或get方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1540,7 +1579,7 @@ PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储
 
 ### PersistPropsOptions
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1568,6 +1607,8 @@ static persistProp&lt;T&gt;(key: string, defaultValue: T): void
 
 根据上述的初始化流程，如果AppStorage中有该属性，则会使用其值，覆盖掉PersistentStorage文件中的值。由于AppStorage是内存内数据，该行为会导致数据丧失持久化能力。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1590,6 +1631,8 @@ static deleteProp(key: string): void
 
 persistProp的逆向操作。将key对应的属性从PersistentStorage中删除，后续AppStorage的操作，对PersistentStorage不会再有影响。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1609,6 +1652,8 @@ PersistentStorage.deleteProp('highScore');
 static persistProps(props: PersistPropsOptions[]): void
 
 行为和persistProp类似，不同在于可以一次性持久化多个数据，适合在应用启动的时候初始化。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1630,7 +1675,7 @@ static keys(): Array&lt;string&gt;
 
 返回所有持久化属性的属性名的数组。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1762,7 +1807,7 @@ Environment具体使用说明，详见[Environment(设备环境查询)](../../..
 
 ### EnvPropsOptions
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1783,6 +1828,8 @@ static envProp&lt;S&gt;(key: string, value: S): boolean
 所以建议在程序启动的时候调用该接口。
 
 在没有调用envProp的情况下，就使用AppStorage读取环境变量是错误的。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1811,6 +1858,8 @@ static envProps(props: EnvPropsOptions[]): void
 
 和[envProp](#envprop10)类似，不同点在于参数为数组，可以一次性初始化多个数据。建议在应用启动时调用，将系统环境变量批量存入AppStorage中。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1834,7 +1883,7 @@ static keys(): Array&lt;string&gt;
 
 返回环境变量的属性key的数组。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1951,8 +2000,323 @@ let keys: Array<string> = Environment.Keys(); // accessibilityEnabled, languageC
 | key                  | 类型            | 说明                                                         |
 | -------------------- | --------------- | ------------------------------------------------------------ |
 | accessibilityEnabled | string          | 无障碍屏幕朗读是否启用。当无法获取环境变量中的accessibilityEnabled的值时，将通过envProp、envProps等接口传入的开发者指定的默认值添加到AppStorage中。 |
-| colorMode            | ColorMode       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。|
-| fontScale            | number          | 字体大小比例。 |
+| colorMode            | ColorMode       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。 |
+| fontScale            | number          | 字体大小比例。                                               |
 | fontWeightScale      | number          | 字重比例。                                                   |
-| layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。 |
+| layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>-&nbsp;AUTO：跟随系统。 |
 | languageCode         | string          | 当前系统语言，小写字母，例如zh。                             |
+
+
+## AppStorageV2
+
+AppStorageV2具体UI使用说明，详见[AppStorageV2(应用全局的UI状态存储)](../../../quick-start/arkts-new-appstoragev2.md)
+
+### connect<sup>12+</sup>
+
+static&nbsp;connect\<T extends object\>( </br >
+  &nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;TypeConstructorWithArgs\<T\>, </br >
+  &nbsp;&nbsp;&nbsp;&nbsp;keyOrDefaultCreator?:&nbsp;string&nbsp;|&nbsp;StorageDefaultCreator\<T\>, </br >
+  &nbsp;&nbsp;&nbsp;&nbsp;defaultCreator?:&nbsp;StorageDefaultCreator\<T\> </br >
+):&nbsp;T&nbsp;|&nbsp;undefined;
+
+将键值对数据储存在应用内存中。如果给定的key已经存在于AppStorageV2中，返回对应的值；否则，通过获取默认值的构造器构造默认值，并返回。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 参数描述               |
+| -------- | ------ | ---- | ---------------------- |
+| type | TypeConstructorWithArgs\<T\> | 是   | 指定的类型，若未指定key，则使用type的name作为key。 |
+| keyOrDefaultCreater | string&nbsp;\|&nbsp;StorageDefaultCreator\<T\> | 否   | 指定的key，或者是获取默认值的构造器。 |
+| defaultCreator | StorageDefaultCreator\<T\> | 否   | 获取默认值的构造器。 |
+
+>**说明：**
+>
+>1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器；
+>
+>2、确保数据已经存储在AppStorageV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常；
+>
+>3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配；
+>
+>4、key建议使用有意义的值，长度不超过255，使用非法字符或空字符的行为是未定义的。
+
+**返回值：**
+
+| 类型                                   | 描述                                                         |
+| -------------------------------------- | ------------------------------------------------------------ |
+| T | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
+
+**示例：**
+
+```ts
+import { AppStorageV2 } from '@kit.ArkUI';
+
+@ObservedV2
+class SampleClass {
+  @Trace p: number = 0;
+}
+
+// 将key为SampleClass、value为new SampleClass()对象的键值对存储到内存中，并赋值给as1
+const as1: SampleClass | undefined = AppStorageV2.connect(SampleClass, () => new SampleClass());
+
+// 将key为key_as2、value为new SampleClass()对象的键值对存储到内存中，并赋值给as2
+const as2: SampleClass = AppStorageV2.connect(SampleClass, 'key_as2', () => new SampleClass())!;
+
+// key为SampleClass已经在AppStorageV2中，将key为SampleClass的值返回给as3
+const as3: SampleClass = AppStorageV2.connect(SampleClass) as SampleClass;
+```
+
+### remove<sup>12+</sup>
+
+static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void;
+
+将指定的键值对数据从AppStorageV2里面删除。如果指定的键值不存在于AppStorageV2中，将删除失败。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 参数描述               |
+| -------- | ------ | ---- | ---------------------- |
+| keyOrType | string \| TypeConstructorWithArgs\<T\> | 是   | 需要删除的key；如果指定的是type类型，删除的key为type的name。 |
+
+>**说明：**
+>
+>删除AppStorageV2中不存在的key会报警告。
+
+**返回值：**
+
+无。
+
+**示例：**
+
+```ts
+// 假设AppStorageV2中存在key为key_as2的键，从AppStorageV2中删除该键值对数据
+AppStorageV2.remove('key_as2');
+
+// 假设AppStorageV2中存在key为SampleClass的键，从AppStorageV2中删除该键值对数据
+AppStorageV2.remove(SampleClass);
+
+// 假设AppStorageV2中不存在key为key_as1的键，报警告
+AppStorageV2.remove('key_as1');
+```
+
+### keys<sup>12+</sup>
+
+static&nbsp;keys():&nbsp;Array\<string\>;
+
+获取AppStorageV2中的所有key。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+无。
+
+**返回值：**
+
+| 类型                                   | 描述                                                         |
+| -------------------------------------- | ------------------------------------------------------------ |
+| Array<string> | 所有AppStorageV2中的key。 |
+
+>**说明：**
+>
+>key在Array中的顺序是无序的，与key插入到AppStorageV2中的顺序无关。
+
+**示例：**
+
+```ts
+// 假设AppStorageV2中存在两个key（key_as1、key_as2），返回[key_as1、key_as2]赋值给keys
+const keys: Array<string> = AppStorageV2.keys();
+```
+
+
+
+## PersistenceV2
+
+PersistenceV2具体UI使用说明，详见[PersistenceV2(持久化存储UI状态)](../../../quick-start/arkts-new-persistencev2.md)
+
+### connect<sup>12+</sup>
+
+static&nbsp;connect\<T extends object\>( </br >
+  &nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;TypeConstructorWithArgs\<T\>, </br >
+  &nbsp;&nbsp;&nbsp;&nbsp;keyOrDefaultCreator?:&nbsp;string&nbsp;|&nbsp;StorageDefaultCreator\<T\>, </br >
+  &nbsp;&nbsp;&nbsp;&nbsp;defaultCreator?:&nbsp;StorageDefaultCreator\<T\> </br >
+):&nbsp;T&nbsp;|&nbsp;undefined;
+
+将键值对数据储存在应用磁盘中（持久化）。如果给定的key已经存在于PersistenceV2中，返回对应的值；否则，通过获取默认值的构造器构造默认值，并返回。如果connect的是\@ObservedV2对象，该对象的\@Trace属性的变化，会触发**整个关联对象的自动持久化**；非\@Trace属性的变化则不会，如有必要，可调用PersistenceV2.save接口手动持久化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 参数描述               |
+| -------- | ------ | ---- | ---------------------- |
+| type | TypeConstructorWithArgs\<T\> | 是   | 指定的类型，若未指定key，则使用type的name作为key。 |
+| keyOrDefaultCreater | string&nbsp;\|&nbsp;StorageDefaultCreator\<T\> | 否   | 指定的key，或者是获取默认值的构造器。 |
+| defaultCreator | StorageDefaultCreator\<T\> | 否   | 获取默认值的构造器。 |
+
+>**说明：**
+>
+>1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）；
+>
+>2、确保数据已经存储在PersistenceV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常；
+>
+>3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配；
+>
+>4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
+
+**返回值：**
+
+| 类型                                   | 描述                                                         |
+| -------------------------------------- | ------------------------------------------------------------ |
+| T | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
+
+**示例：**
+
+```ts
+import { PersistenceV2, Type } from '@kit.ArkUI';
+
+@ObservedV2
+class SampleClass {
+  @Trace p1: number = 0;
+  p2: number = 1;
+}
+
+@ObservedV2
+class FatherSampleClass {
+  @Trace f: SampleClass = new SampleClass();
+}
+
+// 将key为SampleClass、value为new SampleClass()对象的键值对持久化，并赋值给as1
+const as1: FatherSampleClass | undefined = PersistenceV2.connect(FatherSampleClass, () => new FatherSampleClass());
+
+// 将key为key_as2、value为new SampleClass()对象的键值对持久化，并赋值给as2
+const as2: FatherSampleClass = PersistenceV2.connect(FatherSampleClass, 'key_as2', () => new FatherSampleClass())!;
+
+// key为SampleClass已经在PersistenceV2中，将key为SampleClass的值返回给as3
+const as3: FatherSampleClass = PersistenceV2.connect(FatherSampleClass) as FatherSampleClass;
+
+@Entry
+@Component
+struct SampleComp {
+  v: FatherSampleClass = as1;
+
+  build() {
+    Column() {
+      Text(`${this.v.f.p1}`)
+        .onClick(() => {
+          // 自动持久化
+          this.v.f.p1++;
+        })
+      Text(`${this.v.f.p2}`)
+        .onClick(() => {
+          // 不能自动持久化，需要调用PersistenceV2.save
+          this.v.f.p2++;
+        })
+    }
+  }
+}
+```
+
+### remove<sup>12+</sup>
+
+static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void;
+
+将指定的键值对数据从PersistenceV2里面删除。如果指定的键值不存在于PersistenceV2中，将删除失败。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 参数描述               |
+| -------- | ------ | ---- | ---------------------- |
+| keyOrType | string \| TypeConstructorWithArgs\<T\> | 是   | 需要删除的key；如果指定的是type类型，删除的key为type的name。 |
+
+>**说明：**
+>
+>删除PersistenceV2中不存在的key会报警告。
+
+**返回值：**
+
+无。
+
+**示例：**
+
+```ts
+// 假设PersistenceV2中存在key为key_as2的键，从PersistenceV2中删除该键值对数据
+PersistenceV2.remove('key_as2');
+
+// 假设PersistenceV2中存在key为SampleClass的键，从PersistenceV2中删除该键值对数据
+PersistenceV2.remove(SampleClass);
+
+// 假设PersistenceV2中不存在key为key_as1的键，报警告
+PersistenceV2.remove('key_as1');
+```
+
+### keys<sup>12+</sup>
+
+static&nbsp;keys():&nbsp;Array\<string\>;
+
+获取PersistenceV2中的所有key。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+无。
+
+**返回值：**
+
+| 类型                                   | 描述                                                         |
+| -------------------------------------- | ------------------------------------------------------------ |
+| Array<string> | 所有PersistenceV2中的key。 |
+
+>**说明：**
+>
+>key在Array中的顺序是无序的，与key插入到PersistenceV2中的顺序无关。
+
+**示例：**
+
+```ts
+// 假设PersistenceV2中存在两个key（key_as1、key_as2），返回[key_as1、key_as2]赋值给keys
+const keys: Array<string> = PersistenceV2.keys();
+```
+
+### save<sup>12+</sup>
+
+static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void;
+
+将指定的键值对数据持久化一次。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 参数描述               |
+| -------- | ------ | ---- | ---------------------- |
+| keyOrType | string \| TypeConstructorWithArgs\<T\> | 是   | 需要持久化的key；如果指定的是type类型，持久化的key为type的name。 |
+
+>**说明：**
+>
+>由于非\@Trace的数据改变不会触发PersistenceV2的自动持久化，如有必要，可调用该接口持久化对应key的数据；
+>
+>手动持久化当前内存中不处于connect状态的key是无意义的。
+
+**返回值：**
+
+无。
+
+**示例：**
+
+```ts
+// 假设PersistenceV2中存在key为key_as2的键，持久化该键值对数据
+PersistenceV2.save('key_as2');
+
+// 假设PersistenceV2中存在key为SampleClass的键，持久化该键值对数据
+PersistenceV2.remove(SampleClass);
+
+// 假设PersistenceV2中不存在key为key_as1的键，无意义的操作
+PersistenceV2.remove('key_as1');
+```

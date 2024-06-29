@@ -22,10 +22,12 @@ value，则用于标识实际的owner tag。
 
 ## 3. 接口说明
 
-### 3.1 fdsan_set_error_level
+### fdsan_set_error_level
+
 ```
 enum fdsan_error_level fdsan_set_error_level(enum fdsan_error_level new_level);
 ```
+
 **描述：** 可以通过`fdsan_set_error_level`设定error_level，error_level用于控制检测到异常后的处理行为。默认error_level为FDSAN_ERROR_LEVEL_WARN_ALWAYS。
 
 **参数：** fdsan_error_level
@@ -39,7 +41,7 @@ enum fdsan_error_level fdsan_set_error_level(enum fdsan_error_level new_level);
 
 **返回值：** 返回旧的error_level。
 
-### 3.2 fdsan_get_error_level
+### fdsan_get_error_level
 
 ```
 enum fdsan_error_level fdsan_get_error_level();
@@ -49,7 +51,7 @@ enum fdsan_error_level fdsan_get_error_level();
 
 **返回值：** 当前的error_level。
 
-### 3.3 fdsan_create_owner_tag
+### fdsan_create_owner_tag
 ```
 uint64_t fdsan_create_owner_tag(enum fdsan_owner_type type, uint64_t tag);
 ```
@@ -68,7 +70,7 @@ uint64_t fdsan_create_owner_tag(enum fdsan_owner_type type, uint64_t tag);
 
 **返回值：** 返回创建的tag，可以用于fdsan_exchange_owner_tag函数的输入。
 
-### 3.4 fdsan_exchange_owner_tag
+### fdsan_exchange_owner_tag
 
 ```
 void fdsan_exchange_owner_tag(int fd, uint64_t expected_tag, uint64_t new_tag);
@@ -89,7 +91,7 @@ void fdsan_exchange_owner_tag(int fd, uint64_t expected_tag, uint64_t new_tag);
 
 
 
-### 3.5 fdsan_close_with_tag
+### fdsan_close_with_tag
 
 ```
 int fdsan_close_with_tag(int fd, uint64_t tag);
@@ -107,7 +109,7 @@ int fdsan_close_with_tag(int fd, uint64_t tag);
 
 **返回值：** 0或者-1，0表示close成功，-1表示close失败。
 
-### 3.6 fdsan_get_owner_tag
+### fdsan_get_owner_tag
 ```
 uint64_t fdsan_get_owner_tag(int fd);
 ```
@@ -123,7 +125,7 @@ uint64_t fdsan_get_owner_tag(int fd);
 
 **返回值：** 返回对应fd的tag。
 
-### 3.7 fdsan_get_tag_type
+### fdsan_get_tag_type
 ```
 const char* fdsan_get_tag_type(uint64_t tag);
 ```
@@ -139,7 +141,7 @@ const char* fdsan_get_tag_type(uint64_t tag);
 
 **返回值：** 返回对应tag的type。
 
-### 3.8 fdsan_get_tag_value
+### fdsan_get_tag_value
 ```
 uint64_t fdsan_get_tag_value(uint64_t tag);
 ```
@@ -206,7 +208,7 @@ int main()
 
 在fdsan引入之后，有两种方法可以检测这类问题：使用标准库接口或实现具有fdsan的函数接口
 
-### 3.1 使用标准库接口
+### 使用标准库接口
 
 标准库接口中fopen，fdopen，opendir，fdopendir都已经集成了fdsan，使用前述接口而非直接使用open可以帮助检测问题。在前述案例中可以使用fopen替代open：
 
@@ -309,7 +311,7 @@ OpenFiles:
 ```
 
 
-### 3.2 实现具有fdsan的函数接口
+### 实现具有fdsan的函数接口
 
 除了直接使用具有fdsan功能的标准库函数之外，还可以实现具有fdsan的函数接口。fdsan机制主要通过两个接口实现：`fdsan_exchange_owner_tag`和`fdsan_close_with_tag`，fdsan_exchange_owner_tag可以设置对应fd的tag，而fdsan_close_with_tag可以在关闭文件时检查对应的tag是否正确。
 
@@ -414,5 +416,4 @@ void good_write()
 ```
 
 此时运行该程序可以检测到另一个线程的double-close问题，详细信息可以参考3.2节。同样也可以设置error_level为fatal，这样可以使fdsan在检测到crash之后主动crash以获取更多信息。
-
 

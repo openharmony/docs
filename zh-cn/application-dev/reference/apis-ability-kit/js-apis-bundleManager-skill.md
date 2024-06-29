@@ -8,7 +8,7 @@ skill标签对象，三方应用可以通过[bundleManager.getBundleInfoForSelf]
 
 ## Skill
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.BundleManager.BundleFramework.Core
 | 名称     | 类型   | 可读 | 可选 | 说明       |
@@ -20,7 +20,7 @@ skill标签对象，三方应用可以通过[bundleManager.getBundleInfoForSelf]
 
 ## SkillUri
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.BundleManager.BundleFramework.Core
 | 名称            | 类型   | 可读 | 可选 | 说明                                                        |

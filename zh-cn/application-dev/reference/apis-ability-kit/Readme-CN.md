@@ -1,4 +1,4 @@
-# Ability Kit API参考
+# Ability Kit（程序框架服务）
 
 - ArkTS API
   - Stage模型能力的接口

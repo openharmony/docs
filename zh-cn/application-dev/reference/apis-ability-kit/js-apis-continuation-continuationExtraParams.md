@@ -10,7 +10,7 @@
 
 表示流转管理入口中设备选择模块所需的过滤参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.DistributedAbilityManager
 
@@ -20,5 +20,5 @@
 | targetBundle | string | 否 | 否 | 表示目标Bundle名称。 |
 | description | string | 否 | 否 | 表示设备过滤的描述。 |
 | filter | any | 否 | 否 | 表示设备过滤的参数。 |
-| continuationMode | [ContinuationMode](js-apis-continuation-continuationManager.md#continuationmode) | 否 | 否 | 表示协同的模式。 |
+| continuationMode | [continuationManager.ContinuationMode](js-apis-continuation-continuationManager.md#continuationmode) | 否 | 否 | 表示协同的模式。 |
 | authInfo | Record<string, Object> | 否 | 否 | 表示认证的信息。 |

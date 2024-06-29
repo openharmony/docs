@@ -11,16 +11,18 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
 
    ```ts
    // xxx.ets
-   import web_webview from '@ohos.web.webview';
+   import { webview } from '@kit.ArkWeb';
 
    @Entry
    @Component
    struct WebComponent {
-     controller: web_webview.WebviewController = new web_webview.WebviewController();
+     controller: webview.WebviewController = new webview.WebviewController();
+
      aboutToAppear() {
        // 配置Web开启调试模式
-       web_webview.WebviewController.setWebDebuggingAccess(true);
+       webview.WebviewController.setWebDebuggingAccess(true);
      }
+ 
      build() {
        Column() {
          Web({ src: 'www.example.com', controller: this.controller })
@@ -28,7 +30,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
      }
    }
    ```
-2. 开启调试功能需要在DevEco Studio应用工程的module.json5文件中增加权限, 具体如下：
+2. 开启调试功能需要在DevEco Studio应用工程hap模块的module.json5文件中增加如下权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
 
    ```
    "requestPermissions":[

@@ -1,4 +1,4 @@
-# IME Kit API参考
+# IME Kit（输入法开发服务）
 
 - ArkTS API
   - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)

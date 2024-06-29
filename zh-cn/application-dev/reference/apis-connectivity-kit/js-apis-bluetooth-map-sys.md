@@ -64,7 +64,7 @@ try {
 
 setMessageAccessAuthorization(deviceId: string, authorization: AccessAuthorization): Promise&lt;void&gt;
 
-设置信息的访问权限。
+设置信息的访问权限。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -118,7 +118,7 @@ try {
 
 getMessageAccessAuthorization(deviceId: string): Promise&lt;AccessAuthorization&gt;
 
-获取信息的访问权限。
+获取信息的访问权限。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 

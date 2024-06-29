@@ -26,7 +26,7 @@
 
 如果开发者希望跟主线程事件循环交互，比如插入任务等，应当使用[Node-API提供的接口](../../napi/napi-data-types-interfaces.md)。
 
-OpenHarmony 还将长期通过Node-API来为开发者提供和主线程交互及扩展js接口的能力，但会屏蔽实现层使用的事件循环。尽管我们在API12中给`napi_get_uv_event_loop`接口标记了废弃，但Node-API的主要功能接口将会长期维护，并保证与node的原生行为一致，来保证熟悉node.js的扩展机制的开发者方便地将自己的已有代码接入到OpnHarmony中来。
+OpenHarmony 还将长期通过Node-API来为开发者提供和主线程交互及扩展js接口的能力，但会屏蔽实现层使用的事件循环。尽管我们在API12中给`napi_get_uv_event_loop`接口标记了废弃，但Node-API的主要功能接口将会长期维护，并保证与node的原生行为一致，来保证熟悉node.js的扩展机制的开发者方便地将自己的已有代码接入到OpenHarmony中来。
 
 如果您对 libuv 非常熟悉，并自信能够处理好所有的内存管理和多线程问题，您仍可以像使用原生 libuv 一样，自己启动线程，并在上面使用 libuv 完成自己的业务。在没有特殊版本要求的情况下，您不需要额外引入 libuv库到您的应用工程中。
 
@@ -78,7 +78,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports){
     napi_property_descriptor desc[] = {{"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr}};
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0], desc));
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 EXTERN_C_END
     
@@ -135,7 +135,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports){
     napi_property_descriptor desc[] = {{"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr}};
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0], desc));
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 EXTERN_C_END
     
@@ -213,7 +213,7 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports){
     napi_property_descriptor desc[] = {{"testClose", nullptr, TestClose, nullptr, nullptr, nullptr, napi_default, nullptr}};
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0], desc));
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
 EXTERN_C_END
@@ -240,7 +240,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
 3. 初始化uv_poll_t，并启动该句柄使其生效，在eventfd可读时触发回调函数`poll_handler`。
 4. 新开一个线程，向eventfd里写入字符。
 
-执行上述代码，poll_handler并不能正常打印。这是由于应用主线程是靠fd驱动来执行`uv_run`的，而非以UV_RUN_DEFAULT模式来进行循环。尽管uvloop中的backend_fd已经被event_handler监听，但是当执行`uv_pool_start`的时候，fd并未通过`epoll_ctl`加入到backend_fd中被其监听，**而是在下一次`uv_run`中的`uv_io_poll`这个函数才会执行`epoll_ctl`函数。因此，如果应用进程中没有其他触发backend_fd事件的时候，libuv接口的正常使用可能不会达到开发者的预期。**
+执行上述代码，poll_handler并不能正常打印。这是由于应用主线程是靠fd驱动来执行`uv_run`的，而非以UV_RUN_DEFAULT模式来进行循环。尽管uvloop中的backend_fd已经被event_handler监听，但是当执行`uv_poll_start`的时候，fd并未通过`epoll_ctl`加入到backend_fd中被其监听，**而是在下一次`uv_run`中的`uv__io_poll`这个函数才会执行`epoll_ctl`函数。因此，如果应用进程中没有其他触发backend_fd事件的时候，libuv接口的正常使用可能不会达到开发者的预期。**
 
 **临时方案：**
 
@@ -251,7 +251,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
 ```cpp
 #include "napi/native_api.h"
 #include "uv.h"
-#define LOG_DOMAIN 0X0202
+#define LOG_DOMAIN 0x0202
 #define LOG_TAG "MyTag"
 #include <hilog/log.h>
 #include <thread>
@@ -267,7 +267,7 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
     std::thread::id this_id = std::this_thread::get_id();
     OH_LOG_INFO(LOG_APP, "ohos thread id : %{public}ld\n", this_id);
     size_t argc = 1;
-    napi_value workBname;
+    napi_value workBName;
     
     napi_create_string_utf8(env, "test", NAPI_AUTO_LENGTH, &workBName);
     
@@ -301,7 +301,7 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports){
     napi_property_descriptor desc[] = {{"testClose", nullptr, TestClose, nullptr, nullptr, nullptr, napi_default, nullptr}};
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0], desc));
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
 EXTERN_C_END
@@ -323,7 +323,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
 
 ## libuv使用指导
 
-**重要：libuv NDK中所有依赖`uv_run`的接口在当前系统的应用主循环中无法及时生效，并且可能会导致卡顿掉帧的现象。因此不建议直接在JS主线程上使用libuv NDK接口，对于异步任务执行及使用线程安全函数与主线程通信，开发者可以直接调用Node-API接口来实现相关功能。**
+**重要：libuv NDK中所有依赖`uv_run`的接口在当前系统的应用主循环中无法及时生效，并且可能会导致卡顿掉帧的现象。因此不建议直接在JS主线程上使用libuv NDK接口，对于异步任务执行及与使用线程安全函数与主线程通信，开发者可以直接调用Node-API接口来实现相关功能。**
 
 ### libuv接口与Node-API接口对应关系
 
@@ -381,7 +381,7 @@ Node-API与之对应的接口为[napi_threadsafe_function](../../napi/use-napi-t
 ```cpp
 // 创建一个线程安全的函数
 // env：指向当前环境的指针
-// func：指向Javascript函数的指针
+// func：指向JavaScript函数的指针
 // resource_name：资源名称
 // max_queue_size：最大队列大小
 // initial_thread_count：初始线程数
@@ -450,7 +450,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 - uv_poll\_\*()：poll事件相关函数（uv\_poll\_\* 表示以uv\_poll\_开头的支持poll IO的系列函数）。
 - 锁相关的操作，如uv\_mutex\_lock()、uv\_mutex\_unlock()等等。
 
-**提示：所有形如uv_xxx_init的函数，即使它是以线程安全的方式实现的，但使用时要注意，避免多个线程同时调用uv_xxx_init，否则它依旧会引起多线程资源竞争的问题。最好的方式是在事件循环函数中调用该函数。**
+**提示：所有形如uv_xxx_init的函数，即使它是以线程安全的方式实现的，但使用时要注意，避免多个线程同时调用uv_xxx_init，否则它依旧会引起多线程资源竞争的问题。最好的方式是在事件循环线程中调用该函数。**
 
 **注：uv_async_send函数被调用后，回调函数是被异步触发的。如果调用了多次uv_async_send，libuv只保证至少有一次回调会被执行。这就可能导致一旦对同一句柄触发了多次uv_async_send，libuv对回调的处理可能会违背开发者的预期。**
 
@@ -511,7 +511,7 @@ int uv_loop_alive(uv_loop_t loop);
 void uv_stop(uv_loop_t* loop);
 ```
 
-  该函数用来停止一个事件循环，在loop的下一次迭代中才会停止。如果该函数发生在I/O操作之前，将不会阻塞而是直接跳过`uv_io_poll`。
+  该函数用来停止一个事件循环，在loop的下一次迭代中才会停止。如果该函数发生在I/O操作之前，将不会阻塞而是直接跳过`uv__io_poll`。
 
 **使用技巧**：在使用loop时，需要特别注意`uv_stop`函数的使用。开发者需要确保`uv_stop`前，通知与loop相关的所有线程的handle都关闭。参考代码如下：
 
@@ -717,13 +717,13 @@ after_work_cb：loop所在线程的要执行的回调函数。
 
 ![libuv线程池工作原理](./figures/libuv-image-3.png)
 
-## OpenHarmony中libuv的使用现状
+### OpenHarmony中libuv的使用现状
 
 当前OpenHarmony系统中涉及到libuv的线程主要有主线程、JS Worker线程、Taskpool中的TaskWorker线程以及IPC线程。除了主线程内采用了eventhandler作为主循环，其他线程都是使用libuv中的UV_RUN_DEFAULT运行模式作为当前线程的事件主循环来执行任务。在主线程中，eventhandler通过fd驱动的方式来触发任务的执行，eventhandler监听了uv_loop中的backend_fd。当loop中有fd事件触发的时候，eventhandler会执行一次`uv_run`来执行libuv中的任务。
 
 综上所述，开发者会发现这样一种现象：**同样的libuv接口在主线程上不生效，但在JS Worker线程中就没问题。这主要还是因为主线程上所有不通过触发fd来驱动的uv接口都不会得到及时的响应。**
 
-另外，在应用主线程中，所有的异步任务尽管最终都是通过libuv得到执行的。但是在当前系统中，[libuv的线程池已经对接到了FFRT中](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90)，任何抛向libuv的异步任务都会在FFRT的线程中得到调度。应用主线程的回调函数也通过PostTask接口插入到eventhandler的队列上。这就意味着主线程上的异步任务完成后不再通过`uv_async_send`的方式触发主线程的回调。过程如下图:
+另外，在应用主线程中，所有的异步任务尽管最终都是通过libuv得到执行的。但是在当前系统中，[libuv的线程池已经对接到了FFRT中](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90)，任何抛向libuv的异步任务都会在FFRT的线程中得到调度。应用主线程的回调函数也通过PostTask接口插入到eventhandler的队列上。这就意味着ffrt线程上的异步任务完成后不再通过`uv_async_send`的方式触发主线程的回调。过程如下图:
 
 ![libuv的异步线程池在OpenHarmony中的应用现状](./figures/libuv-ffrt.png)
 
@@ -737,8 +737,8 @@ after_work_cb：loop所在线程的要执行的回调函数。
 /**
 * 将一个工作请求添加到事件循环的队列中。
 * 
-* @param loop 事件循环对象
-* @param req 随机数请求对象
+* @param loop 事件循环
+* @param req 随机数请求
 * @param buf 存储随机数的缓冲区
 * @param buflen 缓冲区的长度
 * @param flags 随机数生成后的回调函数
@@ -765,8 +765,8 @@ int uv_random(uv_loop_t* loop,
 * 当事件循环在下一次迭代时，work_cb函数将会在一个新的线程中被调用。
 * 当work_cb函数完成时，after_work_cb函数将会在事件循环的线程中被调用。
 * 
-* @param loop 事件循环对象
-* @param req 工作请求对象
+* @param loop 事件循环
+* @param req 工作请求
 * @param work_cb 在新线程中被调用的函数
 * @param after_work_cb 在事件循环线程中被调用的函数
 *
@@ -786,8 +786,8 @@ int uv_queue_work(uv_loop_t* loop,
 /**
 * 异步读取文件
 *
-* @param loop 事件循环对象
-* @param req 文件操作请求对象
+* @param loop 事件循环
+* @param req 文件操作请求
 * @param file 文件描述符
 * @param bufs 读取数据的缓冲区
 * @param nbufs 缓冲区的数量
@@ -805,8 +805,8 @@ int uv_fs_read(uv_loop_t* loop, uv_fs_t* req,
 /**
 * 异步打开文件
 *
-* @param loop 事件循环对象
-* @param req 文件操作请求对象
+* @param loop 事件循环
+* @param req 文件操作请求
 * @param path 文件路径
 * @param flags 打开文件的方式
 * @param mode 文件权限
@@ -824,8 +824,8 @@ int uv_fs_open(uv_loop_t* loop,
 /**
 * 异步发送文件
 *
-* @param loop 事件循环对象
-* @param req 文件操作请求对象
+* @param loop 事件循环
+* @param req 文件操作请求
 * @param out_fd 输出文件描述符
 * @param in_fd 输入文件描述符
 * @param off 文件的偏移量
@@ -845,8 +845,8 @@ int uv_fs_sendfile(uv_loop_t* loop,
 /**
 * 异步写入文件
 *
-* @param loop 事件循环对象
-* @param req 文件操作请求对象
+* @param loop 事件循环
+* @param req 文件操作请求
 * @param file 文件描述符
 * @param bufs 要写入的数据
 * @param nbufs 数据的数量

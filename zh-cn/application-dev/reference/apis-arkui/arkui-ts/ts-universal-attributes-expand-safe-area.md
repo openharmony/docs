@@ -21,7 +21,7 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 
 控制组件扩展其安全区域。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -54,6 +54,8 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 控制虚拟键盘抬起时页面的避让模式。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -72,6 +74,8 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 getKeyboardAvoidMode(): KeyboardAvoidMode
 
 返回虚拟键盘抬起时的页面避让模式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -146,14 +150,14 @@ struct SafeAreaExample {
 
 ```ts
 // EntryAbility.ets
-import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
+import { KeyboardAvoidMode } from '@kit.ArkUI';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
   windowStage.loadContent('pages/Index', (err, data) => {
-    let a = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
+    let keyboardAvoidMode = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
     // 设置虚拟键盘抬起时压缩页面大小为减去键盘的高度
   windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
     if (err.code) {
@@ -186,14 +190,14 @@ struct KeyboardAvoidExample {
 
 ```ts
 // EntryAbility.ets
-import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
+import { KeyboardAvoidMode } from '@kit.ArkUI';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
   windowStage.loadContent('pages/Index', (err, data) => {
-    let a = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
+    let keyboardAvoidMode = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
     // 设置虚拟键盘抬起时把页面上抬直到露出光标
   windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.OFFSET);
     if (err.code) {

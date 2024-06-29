@@ -1,4 +1,4 @@
-# 组件导航 (Navigation)
+# 组件导航 (Navigation)(推荐)
 
 [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)是路由容器组件，一般作为首页的根容器，包括单栏(Stack)、分栏(Split)和自适应(Auto)三种显示模式。Navigation组件适用于模块内和跨模块的路由切换，[一次开发，多端部署](../key-features/multi-device-app-dev/introduction.md)场景。通过组件级路由能力实现更加自然流畅的转场体验，并提供多种标题栏样式来呈现更好的标题和内容联动效果。在不同尺寸的设备上，Navigation组件能够自适应显示大小，自动切换分栏展示效果。
 
@@ -450,12 +450,12 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
   自定义组件提供[queryNavDestinationInfo](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#querynavdestinationinfo)方法，可以在NavDestination内部查询到当前所属页面的信息，返回值为[NavDestinationInfo](../reference/apis-arkui/js-apis-arkui-observer.md#navdestinationinfo)，若查询不到则返回undefined。
   
   ```ts
-   import observer from '@ohos.arkui.observer';
+   import { uiObserver } from '@kit.ArkUI';
   
    // NavDestination内的自定义组件
    @Component
    struct MyComponent {
-     navDesInfo: observer.NavDestinationInfo | undefined
+     navDesInfo: uiObserver.NavDestinationInfo | undefined
   
      aboutToAppear(): void {
        this.navDesInfo = this.queryNavDestinationInfo();
@@ -473,7 +473,7 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
   通过[@ohos.arkui.observer](../reference/apis-arkui/js-apis-arkui-observer.md#observeronnavdestinationupdate)提供的注册接口可以注册NavDestination生命周期变化的监听，使用方式如下：
   
   ```ts
-  observer.on('navDestinationUpdate', (info) => {
+  uiObserver.on('navDestinationUpdate', (info) => {
        console.info('NavDestination state update', JSON.stringify(info));
    });
   ```
@@ -482,16 +482,15 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
   
   ```ts
    // 在UIAbility中使用
-   import observer from '@ohos.arkui.observer';
-   import { UIContext } from '@ohos.arkui.UIContext';
+   import { UIContext, uiObserver } from '@kit.ArkUI';
   
    // callBackFunc 是开发者定义的监听回调函数
-   function callBackFunc(info: observer.NavDestinationSwitchInfo) {}
-   observer.on('navDestinationSwitch', this.context, callBackFunc);
+   function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {}
+   uiObserver.on('navDestinationSwitch', this.context, callBackFunc);
   
    // 可以通过窗口的getUIContext()方法获取对应的UIContent
    uiContext: UIContext | null = null;
-   observer.on('navDestinationSwitch', this.uiContext, callBackFunc);
+   uiObserver.on('navDestinationSwitch', this.uiContext, callBackFunc);
   ```
 
 ## 页面转场

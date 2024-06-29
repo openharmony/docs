@@ -205,7 +205,7 @@ import { drawing } from '@kit.ArkGraphics2D'
 | 名称          | 类型                                                 | 只读 | 可选 | 说明                               |
 | ------------- | ---------------------------------------------------- | --  | ---  | --------------------------------- |
 | color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是  |  是   | 字体阴影的颜色，默认为黑色Color(255, 0, 0, 0)。        |
-| point         | [common2D.Point](js-apis-graphics-common2D.md#point) | 是  |  是   | 字体阴影基于当前文本的偏移位置。    |
+| point         | [common2D.Point](js-apis-graphics-common2D.md#point12) | 是  |  是   | 字体阴影基于当前文本的偏移位置，横、纵坐标要大于等于零。    |
 | blurRadius    | number                                               | 是  |  是   | 模糊半径，浮点数，默认为0.0。       |
 
 ## RectStyle

@@ -238,7 +238,7 @@ int32_t ret = OH_AVCapability_GetEncoderComplexityRange(capability, &complexityR
 | -------- | ---------------------------- |
 | OH_AVCapability_GetAudioSupportedSampleRates     | 获取当前音频编解码器支持的采样率范围 |
 | OH_AVCapability_GetAudioChannelCountRange  | 获取当前音频编解码器支持的通道数范围 |
-| OH_AVCapability_GetEncoderBitrateRange     | 获取当前编解码器支持的码率范围 |
+| OH_AVCapability_GetEncoderBitrateRange     | 获取当前编码器支持的码率范围 |
 
 音频编码场景，确认并设置正确的编码的参数，示例如下：
 
@@ -493,7 +493,7 @@ $$
 | -------- | ---------------------------- |
 | OH_AVCapability_GetVideoFrameRateRange             | 获取当前视频编解码器支持的帧率的范围 |
 | OH_AVCapability_GetVideoFrameRateRangeForSize      | 获取当前视频编解码器在给定图像尺寸情况下的帧率的范围 |
-| OH_AVCapability_AreVideoSizeAndFrameRateSupported  | 获取当前视频编解码器支持的高的范围 |
+| OH_AVCapability_AreVideoSizeAndFrameRateSupported  | 检查视频编解码器是否支持视频大小和帧率的特定组合 |
 
 有需求的帧率目标，确认帧率是否在可选范围内，示例如下：
 
@@ -605,7 +605,7 @@ if (isSupported) {
       }
    }
 }
-// 4. 编码器创建和配置
+// 3. 编码器创建和配置
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
    // 异常处理

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 ```
 
 ## image.createPixelMap<sup>8+</sup>
@@ -38,16 +38,16 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-    image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
-        console.info('Succeeded in creating pixelmap.');
-    }).catch((error: BusinessError) => {
-        console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
-    })
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+  image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+    console.info('Succeeded in creating pixelmap.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
+  })
 }
 ```
 
@@ -70,19 +70,19 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-    image.createPixelMap(color, opts, (error: BusinessError, pixelMap: image.PixelMap) => {
-        if(error) {
-            console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
-            return;
-        } else {
-            console.info('Succeeded in creating pixelmap.');
-        }
-    })
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+  image.createPixelMap(color, opts, (error: BusinessError, pixelMap: image.PixelMap) => {
+    if(error) {
+      console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
+      return;
+    } else {
+      console.info('Succeeded in creating pixelmap.');
+    }
+  })
 }
 ```
 
@@ -125,59 +125,59 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class MySequence implements rpc.Parcelable {
-    pixel_map: image.PixelMap;
-    constructor(conPixelmap: image.PixelMap) {
-        this.pixel_map = conPixelmap;
+  pixel_map: image.PixelMap;
+  constructor(conPixelmap: image.PixelMap) {
+    this.pixel_map = conPixelmap;
+  }
+  marshalling(messageSequence: rpc.MessageSequence) {
+    this.pixel_map.marshalling(messageSequence);
+    return true;
+  }
+  unmarshalling(messageSequence: rpc.MessageSequence) {
+    try {
+      this.pixel_map = image.createPixelMapFromParcel(messageSequence);
+    } catch(e) {
+      let error = e as BusinessError;
+      console.error(`createPixelMapFromParcel error. code is ${error.code}, message is ${error.message}`);
+      return false;
     }
-    marshalling(messageSequence: rpc.MessageSequence) {
-        this.pixel_map.marshalling(messageSequence);
-        return true;
-    }
-    unmarshalling(messageSequence: rpc.MessageSequence) {
-        try {
-            this.pixel_map = image.createPixelMapFromParcel(messageSequence);
-        } catch(e) {
-            let error = e as BusinessError;
-            console.error(`createPixelMapFromParcel error. code is ${error.code}, message is ${error.message}`);
-            return false;
-        }
-      return true;
-    }
+    return true;
+  }
 }
 async function Demo() {
-   const color: ArrayBuffer = new ArrayBuffer(96);
-   let bufferArr: Uint8Array = new Uint8Array(color);
-   for (let i = 0; i < bufferArr.length; i++) {
-      bufferArr[i] = 0x80;
-   }
-   let opts: image.InitializationOptions = {
-      editable: true,
-      pixelFormat: 4,
-      size: { height: 4, width: 6 },
-      alphaType: 3
-   }
-   let pixelMap: image.PixelMap | undefined = undefined;
-   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
-      pixelMap = srcPixelMap;
-   })
-   if (pixelMap != undefined) {
-     // 序列化
-     let parcelable: MySequence = new MySequence(pixelMap);
-     let data: rpc.MessageSequence = rpc.MessageSequence.create();
-     data.writeParcelable(parcelable);
+  const color: ArrayBuffer = new ArrayBuffer(96);
+  let bufferArr: Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = 0x80;
+  }
+  let opts: image.InitializationOptions = {
+    editable: true,
+    pixelFormat: 4,
+    size: { height: 4, width: 6 },
+    alphaType: 3
+  }
+  let pixelMap: image.PixelMap | undefined = undefined;
+  image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+    pixelMap = srcPixelMap;
+  })
+  if (pixelMap != undefined) {
+    // 序列化
+    let parcelable: MySequence = new MySequence(pixelMap);
+    let data: rpc.MessageSequence = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
 
-     // 反序列化 rpc获取到data
-     let ret: MySequence = new MySequence(pixelMap);
-     data.readParcelable(ret);
+    // 反序列化 rpc获取到data
+    let ret: MySequence = new MySequence(pixelMap);
+    data.readParcelable(ret);
 
-     // 获取到pixelmap
-     let unmarshPixelmap = ret.pixel_map;
-   }
+    // 获取到pixelmap
+    let unmarshPixelmap = ret.pixel_map;
+  }
 }
 ```
 
@@ -214,15 +214,15 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo(surfaceId: string) {
-    let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    image.createPixelMapFromSurface(surfaceId, region).then(() => {
-        console.info('Succeeded in creating pixelmap from Surface');
-    }).catch((error: BusinessError) => {
-        console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
-    });
+  let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+  image.createPixelMapFromSurface(surfaceId, region).then(() => {
+    console.info('Succeeded in creating pixelmap from Surface');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
+  });
 } 
 ```
 
@@ -262,9 +262,9 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo(surfaceId: string) {
-    let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    let pixelMap : image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region);
-    return pixelMap;
+  let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+  let pixelMap : image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region);
+  return pixelMap;
 }
 ```
 
@@ -299,13 +299,13 @@ createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMa
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-    let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
-    return pixelMap;
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+  let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
+  return pixelMap;
 }
 ```
 
@@ -339,12 +339,12 @@ createPixelMapSync(options: InitializationOptions): PixelMap
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-    let pixelMap : image.PixelMap = image.createPixelMapSync(opts);
-    return pixelMap;
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+  let pixelMap : image.PixelMap = image.createPixelMapSync(opts);
+  return pixelMap;
 }
 ```
 
@@ -378,28 +378,28 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
-    let bufferArr = new Uint8Array(color);
-    for (let i = 0; i < bufferArr.length; i += 4) {
-        bufferArr[i] = 255;
-        bufferArr[i+1] = 255;
-        bufferArr[i+2] = 122;
-        bufferArr[i+3] = 122;
+  const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+  let bufferArr = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i += 4) {
+    bufferArr[i] = 255;
+    bufferArr[i+1] = 255;
+    bufferArr[i+2] = 122;
+    bufferArr[i+3] = 122;
+  }
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let srcPixelmap = image.createPixelMapSync(color, opts);
+  let dstPixelMap = image.createPixelMapSync(opts);
+  image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+    if(error) {
+      console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+      return;
+    } else {
+      console.info('Succeeded in converting pixelmap.');
     }
-    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
-    let srcPixelmap = image.createPixelMapSync(color, opts);
-    let dstPixelMap = image.createPixelMapSync(opts);
-    image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
-        if(error) {
-            console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
-            return;
-        } else {
-            console.info('Succeeded in converting pixelmap.');
-        }
-    })
+  })
 }
 ```
 
@@ -438,25 +438,25 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
-    let bufferArr = new Uint8Array(color);
-    for (let i = 0; i < bufferArr.length; i += 4) {
-        bufferArr[i] = 255;
-        bufferArr[i+1] = 255;
-        bufferArr[i+2] = 122;
-        bufferArr[i+3] = 122;
-    }
-    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
-    let srcPixelmap = image.createPixelMapSync(color, opts);
-    let dstPixelMap = image.createPixelMapSync(opts);
-    image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
-        console.info('Succeeded in converting pixelmap.');
-    }).catch((error: BusinessError) => {
-        console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
-    })
+  const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+  let bufferArr = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i += 4) {
+    bufferArr[i] = 255;
+    bufferArr[i+1] = 255;
+    bufferArr[i+2] = 122;
+    bufferArr[i+3] = 122;
+  }
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let srcPixelmap = image.createPixelMapSync(color, opts);
+  let dstPixelMap = image.createPixelMapSync(opts);
+  image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
+    console.info('Succeeded in converting pixelmap.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+  })
 }
 ```
 
@@ -490,28 +490,28 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallb
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
-    let bufferArr = new Uint8Array(color);
-    for (let i = 0; i < bufferArr.length; i += 4) {
-        bufferArr[i] = 255;
-        bufferArr[i+1] = 255;
-        bufferArr[i+2] = 122;
-        bufferArr[i+3] = 122;
+  const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+  let bufferArr = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i += 4) {
+    bufferArr[i] = 255;
+    bufferArr[i+1] = 255;
+    bufferArr[i+2] = 122;
+    bufferArr[i+3] = 122;
+  }
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let srcPixelmap = image.createPixelMapSync(color, opts);
+  let dstPixelMap = image.createPixelMapSync(opts);
+  image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+    if(error) {
+      console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+      return;
+    } else {
+      console.info('Succeeded in converting pixelmap.');
     }
-    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
-    let srcPixelmap = image.createPixelMapSync(color, opts);
-    let dstPixelMap = image.createPixelMapSync(opts);
-    image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
-        if(error) {
-            console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
-            return;
-        } else {
-            console.info('Succeeded in converting pixelmap.');
-        }
-    })
+  })
 }
 ```
 
@@ -550,25 +550,25 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
-    let bufferArr = new Uint8Array(color);
-    for (let i = 0; i < bufferArr.length; i += 4) {
-        bufferArr[i] = 255;
-        bufferArr[i+1] = 255;
-        bufferArr[i+2] = 122;
-        bufferArr[i+3] = 122;
-    }
-    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
-    let srcPixelmap = image.createPixelMapSync(color, opts);
-    let dstPixelMap = image.createPixelMapSync(opts);
-    image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
-        console.info('Succeeded in converting pixelmap.');
-    }).catch((error: BusinessError) => {
-        console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
-    })
+  const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+  let bufferArr = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i += 4) {
+    bufferArr[i] = 255;
+    bufferArr[i+1] = 255;
+    bufferArr[i+2] = 122;
+    bufferArr[i+3] = 122;
+  }
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let srcPixelmap = image.createPixelMapSync(color, opts);
+  let dstPixelMap = image.createPixelMapSync(opts);
+  image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
+    console.info('Succeeded in converting pixelmap.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+  })
 }
 ```
 
@@ -587,7 +587,7 @@ async function Demo() {
 
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | isStrideAlignment<sup>11+</sup> | boolean | 是   | 否   | 设定图像内存是否为DMA内存。 |
 
 ### readPixelsToBuffer<sup>7+</sup>
@@ -598,7 +598,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -617,17 +617,17 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-    if (pixelMap != undefined) {
-        pixelMap.readPixelsToBuffer(readBuffer).then(() => {
-            console.info('Succeeded in reading image pixel data.'); // 符合条件则进入 
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
-        })
-    }
+  const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  if (pixelMap != undefined) {
+    pixelMap.readPixelsToBuffer(readBuffer).then(() => {
+      console.info('Succeeded in reading image pixel data.'); // 符合条件则进入 
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+    })
+  }
 }
 ```
 
@@ -639,7 +639,7 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -653,20 +653,20 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-    if (pixelMap != undefined) {
-        pixelMap.readPixelsToBuffer(readBuffer, (error: BusinessError, res: void) => {
-            if(error) {
-                console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
-                return;
-            } else {
-                console.info('Succeeded in reading image pixel data.');  //符合条件则进入
-            }
-        })
-    }
+  const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  if (pixelMap != undefined) {
+    pixelMap.readPixelsToBuffer(readBuffer, (error: BusinessError, res: void) => {
+      if(error) {
+        console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+        return;
+      } else {
+        console.info('Succeeded in reading image pixel data.');  //符合条件则进入
+      }
+    })
+  }
 }
 ```
 
@@ -678,7 +678,7 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -700,13 +700,13 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-    if (pixelMap != undefined) {
-        pixelMap.readPixelsToBufferSync(readBuffer);
-    }
+  const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  if (pixelMap != undefined) {
+    pixelMap.readPixelsToBufferSync(readBuffer);
+  }
 }
 ```
 
@@ -718,7 +718,7 @@ readPixels(area: PositionArea): Promise\<void>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -737,22 +737,22 @@ readPixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const area: image.PositionArea = {
-        pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    if (pixelMap != undefined) {
-        pixelMap.readPixels(area).then(() => {
-            console.info('Succeeded in reading the image data in the area.'); //符合条件则进入
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
-        })
-    }
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  if (pixelMap != undefined) {
+    pixelMap.readPixels(area).then(() => {
+      console.info('Succeeded in reading the image data in the area.'); //符合条件则进入
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+    })
+  }
 }
 ```
 
@@ -764,7 +764,7 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -778,25 +778,25 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const area: image.PositionArea = {
-        pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    if (pixelMap != undefined) {
-        pixelMap.readPixels(area, (error: BusinessError) => {
-            if (error) {
-                console.error(`Failed to read pixelmap from the specified area. code is ${error.code}, message is ${error.message}`);
-                return;
-            } else {
-                console.info('Succeeded in reading pixelmap from the specified area.');
-            }
-        })
-    }
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  if (pixelMap != undefined) {
+    pixelMap.readPixels(area, (error: BusinessError) => {
+      if (error) {
+        console.error(`Failed to read pixelmap from the specified area. code is ${error.code}, message is ${error.message}`);
+        return;
+      } else {
+        console.info('Succeeded in reading pixelmap from the specified area.');
+      }
+    })
+  }
 }
 ```
 
@@ -806,7 +806,7 @@ readPixelsSync(area: PositionArea): void
 
 读取区域内的图片数据并同步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -828,18 +828,18 @@ readPixelsSync(area: PositionArea): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const area : image.PositionArea = {
-        pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    if (pixelMap != undefined) {
-        pixelMap.readPixelsSync(area);
-    }
+  const area : image.PositionArea = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  if (pixelMap != undefined) {
+    pixelMap.readPixelsSync(area);
+  }
 }
 ```
 
@@ -851,7 +851,7 @@ writePixels(area: PositionArea): Promise\<void>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -870,26 +870,26 @@ writePixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const area: image.PositionArea = {
-        pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    let bufferArr: Uint8Array = new Uint8Array(area.pixels);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writePixels(area).then(() => {
-            console.info('Succeeded in writing pixelmap into the specified area.');
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writePixels(area).then(() => {
+      console.info('Succeeded in writing pixelmap into the specified area.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -901,7 +901,7 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -915,28 +915,28 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const area: image.PositionArea = { pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    let bufferArr: Uint8Array = new Uint8Array(area.pixels);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writePixels(area, (error : BusinessError) => {
-            if (error) {
-                console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
-                return;
-            } else {
-                console.info('Succeeded in writing pixelmap into the specified area.');
-            }
-        })
-    }
+  const area: image.PositionArea = { pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writePixels(area, (error : BusinessError) => {
+      if (error) {
+        console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+        return;
+      } else {
+        console.info('Succeeded in writing pixelmap into the specified area.');
+      }
+    })
+  }
 }
 ```
 
@@ -948,7 +948,7 @@ writePixelsSync(area: PositionArea): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -970,22 +970,22 @@ writePixelsSync(area: PositionArea): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const area: image.PositionArea = {
-        pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    let bufferArr: Uint8Array = new Uint8Array(area.pixels);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writePixelsSync(area);
-    }
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writePixelsSync(area);
+  }
 }
 ```
 
@@ -997,7 +997,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1016,21 +1016,21 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-    let bufferArr: Uint8Array = new Uint8Array(color);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writeBufferToPixels(color).then(() => {
-            console.info("Succeeded in writing data from a buffer to a PixelMap.");
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+  let bufferArr: Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writeBufferToPixels(color).then(() => {
+      console.info("Succeeded in writing data from a buffer to a PixelMap.");
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -1042,7 +1042,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1056,24 +1056,24 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-    let bufferArr: Uint8Array = new Uint8Array(color);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writeBufferToPixels(color, (error: BusinessError) => {
-            if (error) {
-                console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
-                return;
-            } else {
-                console.info("Succeeded in writing data from a buffer to a PixelMap.");
-            }
-        })
-    }
+  const color: ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+  let bufferArr: Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writeBufferToPixels(color, (error: BusinessError) => {
+      if (error) {
+        console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
+        return;
+      } else {
+        console.info("Succeeded in writing data from a buffer to a PixelMap.");
+      }
+    })
+  }
 }
 ```
 
@@ -1083,7 +1083,7 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 
 读取缓冲区中的图片数据，结果写入PixelMap并同步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1105,17 +1105,17 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-    let bufferArr : Uint8Array = new Uint8Array(color);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writeBufferToPixelsSync(color);
-    }
+  const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+  let bufferArr : Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writeBufferToPixelsSync(color);
+  }
 }
 ```
 
@@ -1128,7 +1128,7 @@ getImageInfo(): Promise\<ImageInfo>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1141,18 +1141,18 @@ getImageInfo(): Promise\<ImageInfo>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    if (pixelMap != undefined) {
-        pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
-            if (imageInfo != undefined) {
-                console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
-            }
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+  if (pixelMap != undefined) {
+    pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+      if (imageInfo != undefined) {
+        console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
+      }
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -1164,7 +1164,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1177,19 +1177,19 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例:**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    if (pixelMap != undefined) {
-        pixelMap.getImageInfo((error: BusinessError, imageInfo: image.ImageInfo) => {
-            if (error) {
-                console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
-                return;
-            } else {
-                console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
-            }
-        })
-    }
+  if (pixelMap != undefined) {
+    pixelMap.getImageInfo((error: BusinessError, imageInfo: image.ImageInfo) => {
+      if (error) {
+        console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
+        return;
+      } else {
+        console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
+      }
+    })
+  }
 }
 ```
 
@@ -1201,7 +1201,7 @@ getImageInfoSync(): ImageInfo
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1222,14 +1222,14 @@ getImageInfoSync(): ImageInfo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    if (pixelMap != undefined) {
-        let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
-        return imageInfo;
-    }
-    rteurn undefined;
+  if (pixelMap != undefined) {
+    let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
+    return imageInfo;
+  }
+  return undefined;
 }
 ```
 
@@ -1241,7 +1241,7 @@ getBytesNumberPerRow(): number
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1265,7 +1265,7 @@ getPixelBytesNumber(): number
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1289,7 +1289,7 @@ getDensity():number
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1313,7 +1313,7 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1327,20 +1327,20 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let rate: number = 0.5;
-    if (pixelMap != undefined) {
-        pixelMap.opacity(rate, (err: BusinessError) => {
-            if (err) {
-                console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
-                return;
-            } else {
-                console.info("Succeeded in setting opacity.");
-            }
-        })
-    }
+  let rate: number = 0.5;
+  if (pixelMap != undefined) {
+    pixelMap.opacity(rate, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
+        return;
+      } else {
+        console.info("Succeeded in setting opacity.");
+      }
+    })
+  }
 }
 ```
 
@@ -1352,7 +1352,7 @@ opacity(rate: number): Promise\<void>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1371,17 +1371,17 @@ opacity(rate: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let rate: number = 0.5;
-    if (pixelMap != undefined) {
-        pixelMap.opacity(rate).then(() => {
-            console.info('Succeeded in setting opacity.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
-        })
-    }
+  let rate: number = 0.5;
+  if (pixelMap != undefined) {
+    pixelMap.opacity(rate).then(() => {
+      console.info('Succeeded in setting opacity.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
+    })
+  }
 }
 ```
 
@@ -1391,7 +1391,7 @@ opacitySync(rate: number): void
 
 设置PixelMap的透明比率，初始化PixelMap并同步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1413,13 +1413,13 @@ opacitySync(rate: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let rate : number = 0.5;
-    if (pixelMap != undefined) {
-        pixelMap.opacitySync(rate);
-    }
+  let rate : number = 0.5;
+  if (pixelMap != undefined) {
+    pixelMap.opacitySync(rate);
+  }
 }
 ```
 
@@ -1431,7 +1431,7 @@ createAlphaPixelmap(): Promise\<PixelMap>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1444,16 +1444,16 @@ createAlphaPixelmap(): Promise\<PixelMap>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    if (pixelMap != undefined) {
-        pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
-            console.info('Succeeded in creating alpha pixelmap.');
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to create alpha pixelmap. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+  if (pixelMap != undefined) {
+    pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
+      console.info('Succeeded in creating alpha pixelmap.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to create alpha pixelmap. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -1465,7 +1465,7 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1478,19 +1478,19 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    if (pixelMap != undefined) {
-        pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
-            if (alphaPixelMap == undefined) {
-                console.error(`Failed to obtain new pixel map. code is ${err.code}, message is ${err.message}`);
-                return;
-            } else {
-                console.info('Succeeded in obtaining new pixel map.');
-            }
-        }) 
-    }
+  if (pixelMap != undefined) {
+    pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
+      if (alphaPixelMap == undefined) {
+        console.error(`Failed to obtain new pixel map. code is ${err.code}, message is ${err.message}`);
+        return;
+      } else {
+        console.info('Succeeded in obtaining new pixel map.');
+      }
+    })
+  }
 }
 ```
 
@@ -1500,7 +1500,7 @@ createAlphaPixelmapSync(): PixelMap
 
 根据Alpha通道的信息，生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果，同步返回PixelMap类型的结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1522,14 +1522,14 @@ createAlphaPixelmapSync(): PixelMap
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    if (pixelMap != undefined) {
-        let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
-        return pixelmap;
-    }
-    rteurn undefined;
+  if (pixelMap != undefined) {
+    let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
+    return pixelmap;
+  }
+  return undefined;
 }
 ```
 
@@ -1541,7 +1541,7 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1556,21 +1556,21 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let scaleX: number = 2.0;
-    let scaleY: number = 1.0;
-    if (pixelMap != undefined) {
-        pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
-            if (err) {
-                console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
-                return;
-            } else {
-                console.info("Succeeded in scaling pixelmap.");
-            }
-        })
-    }
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
+        return;
+      } else {
+        console.info("Succeeded in scaling pixelmap.");
+      }
+    })
+  }
 }
 ```
 
@@ -1582,7 +1582,7 @@ scale(x: number, y: number): Promise\<void>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1602,19 +1602,19 @@ scale(x: number, y: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let scaleX: number = 2.0;
-    let scaleY: number = 1.0;
-    if (pixelMap != undefined) {
-        pixelMap.scale(scaleX, scaleY).then(() => {
-            console.info('Succeeded in scaling pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
-            
-        })   
-    }
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scale(scaleX, scaleY).then(() => {
+      console.info('Succeeded in scaling pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
+
+    })
+  }
 }
 ```
 
@@ -1624,7 +1624,7 @@ scaleSync(x: number, y: number): void
 
 以同步方法根据输入的宽高对图片进行缩放。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1647,14 +1647,14 @@ scaleSync(x: number, y: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let scaleX: number = 2.0;
-    let scaleY: number = 1.0;
-    if (pixelMap != undefined) {
-        pixelMap.scaleSync(scaleX, scaleY);
-    }
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scaleSync(scaleX, scaleY);
+  }
 }
 ```
 
@@ -1666,7 +1666,7 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1681,21 +1681,21 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let translateX: number = 50.0;
-    let translateY: number = 10.0;
-    if (pixelMap != undefined) {
-        pixelMap.translate(translateX, translateY, (err: BusinessError) => {
-            if (err) {
-                console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
-                return;
-            } else {
-                console.info("Succeeded in translating pixelmap.");
-            }
-        })
-    }
+  let translateX: number = 50.0;
+  let translateY: number = 10.0;
+  if (pixelMap != undefined) {
+    pixelMap.translate(translateX, translateY, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
+        return;
+      } else {
+        console.info("Succeeded in translating pixelmap.");
+      }
+    })
+  }
 }
 ```
 
@@ -1707,7 +1707,7 @@ translate(x: number, y: number): Promise\<void>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1727,18 +1727,18 @@ translate(x: number, y: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let translateX: number = 50.0;
-    let translateY: number = 10.0;
-    if (pixelMap != undefined) {
-        pixelMap.translate(translateX, translateY).then(() => {
-            console.info('Succeeded in translating pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
-        })
-    }
+  let translateX: number = 50.0;
+  let translateY: number = 10.0;
+  if (pixelMap != undefined) {
+    pixelMap.translate(translateX, translateY).then(() => {
+      console.info('Succeeded in translating pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
+    })
+  }
 }
 ```
 
@@ -1748,7 +1748,7 @@ translateSync(x: number, y: number): void
 
 根据输入的坐标对图片进行位置变换并同步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1771,14 +1771,14 @@ translateSync(x: number, y: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let translateX : number = 50.0;
-    let translateY : number = 10.0;
-    if (pixelMap != undefined) {
-        pixelMap.translateSync(translateX, translateY);
-    }
+  let translateX : number = 50.0;
+  let translateY : number = 10.0;
+  if (pixelMap != undefined) {
+    pixelMap.translateSync(translateX, translateY);
+  }
 }
 ```
 
@@ -1790,7 +1790,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1804,20 +1804,20 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let angle: number = 90.0;
-    if (pixelMap != undefined) {
-        pixelMap.rotate(angle, (err: BusinessError) => {
-            if (err) {
-                console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`);
-                return;
-            } else {
-                console.info("Succeeded in rotating pixelmap.");
-            }
-        })
-    }
+  let angle: number = 90.0;
+  if (pixelMap != undefined) {
+    pixelMap.rotate(angle, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`);
+        return;
+      } else {
+        console.info("Succeeded in rotating pixelmap.");
+      }
+    })
+  }
 }
 ```
 
@@ -1829,7 +1829,7 @@ rotate(angle: number): Promise\<void>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1848,17 +1848,17 @@ rotate(angle: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let angle: number = 90.0;
-    if (pixelMap != undefined) {
-        pixelMap.rotate(angle).then(() => {
-            console.info('Succeeded in rotating pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`); 
-        })
-    }
+  let angle: number = 90.0;
+  if (pixelMap != undefined) {
+    pixelMap.rotate(angle).then(() => {
+      console.info('Succeeded in rotating pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`);
+    })
+  }
 }
 ```
 
@@ -1868,7 +1868,7 @@ rotateSync(angle: number): void
 
 根据输入的角度对图片进行旋转并同步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1890,13 +1890,13 @@ rotateSync(angle: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let angle : number = 90.0;
-    if (pixelMap != undefined) {
-        pixelMap.rotateSync(angle);
-    }
+  let angle : number = 90.0;
+  if (pixelMap != undefined) {
+    pixelMap.rotateSync(angle);
+  }
 }
 ```
 
@@ -1908,7 +1908,7 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1923,21 +1923,21 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let horizontal: boolean = true;
-    let vertical: boolean = false;
-    if (pixelMap != undefined) {
-        pixelMap.flip(horizontal, vertical, (err: BusinessError) => {
-            if (err) {
-                console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
-                return;
-            } else {
-                console.info("Succeeded in flipping pixelmap.");
-            }
-        })
-    }
+  let horizontal: boolean = true;
+  let vertical: boolean = false;
+  if (pixelMap != undefined) {
+    pixelMap.flip(horizontal, vertical, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
+        return;
+      } else {
+        console.info("Succeeded in flipping pixelmap.");
+      }
+    })
+  }
 }
 ```
 
@@ -1949,7 +1949,7 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1969,19 +1969,18 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let horizontal: boolean = true;
-    let vertical: boolean = false;
-    if (pixelMap != undefined) {
-        pixelMap.flip(horizontal, vertical).then(() => {
-            console.info('Succeeded in flipping pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
-            
-        })
-    }
+  let horizontal: boolean = true;
+  let vertical: boolean = false;
+  if (pixelMap != undefined) {
+    pixelMap.flip(horizontal, vertical).then(() => {
+      console.info('Succeeded in flipping pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
+    })
+  }
 }
 ```
 
@@ -1991,7 +1990,7 @@ flipSync(horizontal: boolean, vertical: boolean): void
 
 根据输入的条件对图片进行翻转并同步返回结果。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2014,14 +2013,14 @@ flipSync(horizontal: boolean, vertical: boolean): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let horizontal : boolean = true;
-    let vertical : boolean = false;
-    if (pixelMap != undefined) {
-        pixelMap.flipSync(horizontal, vertical);
-    }
+  let horizontal : boolean = true;
+  let vertical : boolean = false;
+  if (pixelMap != undefined) {
+    pixelMap.flipSync(horizontal, vertical);
+  }
 }
 ```
 
@@ -2033,7 +2032,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2047,20 +2046,20 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    if (pixelMap != undefined) {
-        pixelMap.crop(region, (err: BusinessError) => {
-            if (err) {
-                console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
-                return;
-            } else {
-                console.info("Succeeded in cropping pixelmap.");
-            }
-        })
-    }
+  let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+  if (pixelMap != undefined) {
+    pixelMap.crop(region, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
+        return;
+      } else {
+        console.info("Succeeded in cropping pixelmap.");
+      }
+    })
+  }
 }
 ```
 
@@ -2072,7 +2071,7 @@ crop(region: Region): Promise\<void>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2091,18 +2090,18 @@ crop(region: Region): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    if (pixelMap != undefined) {
-        pixelMap.crop(region).then(() => {
-            console.info('Succeeded in cropping pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
+  let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+  if (pixelMap != undefined) {
+    pixelMap.crop(region).then(() => {
+      console.info('Succeeded in cropping pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
 
-        });
-    }
+    });
+  }
 }
 ```
 
@@ -2112,7 +2111,7 @@ cropSync(region: Region): void
 
 根据输入的尺寸裁剪图片。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2134,13 +2133,13 @@ cropSync(region: Region): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    if (pixelMap != undefined) {
-        pixelMap.cropSync(region);
-    }
+  let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+  if (pixelMap != undefined) {
+    pixelMap.cropSync(region);
+  }
 }
 ```
 
@@ -2172,9 +2171,9 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 
 ```ts
 async function Demo() {
-    if (pixelMap != undefined) {
-        let csm = pixelMap.getColorSpace();
-    }
+  if (pixelMap != undefined) {
+    let csm = pixelMap.getColorSpace();
+  }
 }
 ```
 
@@ -2204,13 +2203,13 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 **示例：**
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
 async function Demo() {
-    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
-    let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    if (pixelMap != undefined) {
-        pixelMap.setColorSpace(csm);
-    }
+  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+  let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+  if (pixelMap != undefined) {
+    pixelMap.setColorSpace(csm);
+  }
 }
 ```
 
@@ -2243,22 +2242,22 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 **示例：**
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-import { BusinessError } from '@ohos.base'
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
-    let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    if (pixelMap != undefined) {
-        pixelMap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
-            if (err) {
-                console.error(`Failed to apply color space for pixelmap object. code is ${err.code}, message is ${err.message}`);
-                return;
-            } else {
-                console.info('Succeeded in applying color space for pixelmap object.');
-            }
-        })
-    }
+  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+  let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+  if (pixelMap != undefined) {
+    pixelMap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to apply color space for pixelmap object. code is ${err.code}, message is ${err.message}`);
+        return;
+      } else {
+        console.info('Succeeded in applying color space for pixelmap object.');
+      }
+    })
+  }
 }
 ```
 
@@ -2296,19 +2295,19 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 **示例：**
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-import { BusinessError } from '@ohos.base'
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
-    let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    if (pixelMap != undefined) {
-        pixelMap.applyColorSpace(targetColorSpace).then(() => {
-            console.info('Succeeded in applying color space for pixelmap object.');
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to apply color space for pixelmap object. code is ${error.code}, message is ${error.message}`); 
-        })
-    }
+  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+  let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+  if (pixelMap != undefined) {
+    pixelMap.applyColorSpace(targetColorSpace).then(() => {
+      console.info('Succeeded in applying color space for pixelmap object.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to apply color space for pixelmap object. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -2338,57 +2337,57 @@ marshalling(sequence: rpc.MessageSequence): void
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import rpc from '@ohos.rpc';
+import { image } from '@kit.ImageKit';
+import { rpc } from '@kit.IPCKit';
 
 class MySequence implements rpc.Parcelable {
-    pixel_map: image.PixelMap;
-    constructor(conPixelMap : image.PixelMap) {
-        this.pixel_map = conPixelMap;
-    }
-    marshalling(messageSequence : rpc.MessageSequence) {
-        this.pixel_map.marshalling(messageSequence);
-        console.info('marshalling');
-        return true;
-    }
-    unmarshalling(messageSequence : rpc.MessageSequence) {
-      image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: image.PixelMap) => {
-        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: image.PixelMap) => {
-          this.pixel_map = pixelMap;
-          pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
-            console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
-          })
+  pixel_map: image.PixelMap;
+  constructor(conPixelMap : image.PixelMap) {
+    this.pixel_map = conPixelMap;
+  }
+  marshalling(messageSequence : rpc.MessageSequence) {
+    this.pixel_map.marshalling(messageSequence);
+    console.info('marshalling');
+    return true;
+  }
+  unmarshalling(messageSequence : rpc.MessageSequence) {
+    image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: image.PixelMap) => {
+      pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: image.PixelMap) => {
+        this.pixel_map = pixelMap;
+        pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+          console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
         })
-      });
-      return true;
-    }
+      })
+    });
+    return true;
+  }
 }
 async function Demo() {
-   const color: ArrayBuffer = new ArrayBuffer(96);
-   let bufferArr: Uint8Array = new Uint8Array(color);
-   for (let i = 0; i < bufferArr.length; i++) {
-      bufferArr[i] = 0x80;
-   }
-   let opts: image.InitializationOptions = {
-      editable: true,
-      pixelFormat: 4,
-      size: { height: 4, width: 6 },
-      alphaType: 3
-   }
-   let pixelMap: image.PixelMap | undefined = undefined;
-   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
-      pixelMap = srcPixelMap;
-   })
-   if (pixelMap != undefined) {
+  const color: ArrayBuffer = new ArrayBuffer(96);
+  let bufferArr: Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = 0x80;
+  }
+  let opts: image.InitializationOptions = {
+    editable: true,
+    pixelFormat: 4,
+    size: { height: 4, width: 6 },
+    alphaType: 3
+  }
+  let pixelMap: image.PixelMap | undefined = undefined;
+  image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+    pixelMap = srcPixelMap;
+  })
+  if (pixelMap != undefined) {
     // 序列化
-     let parcelable: MySequence = new MySequence(pixelMap);
-     let data: rpc.MessageSequence = rpc.MessageSequence.create();
-     data.writeParcelable(parcelable);
+    let parcelable: MySequence = new MySequence(pixelMap);
+    let data: rpc.MessageSequence = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
 
     // 反序列化 rpc获取到data
-     let ret: MySequence = new MySequence(pixelMap);
-     data.readParcelable(ret);
-   }
+    let ret: MySequence = new MySequence(pixelMap);
+    data.readParcelable(ret);
+  }
 }
 ```
 
@@ -2426,57 +2425,57 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import rpc from '@ohos.rpc';
+import { image } from '@kit.ImageKit';
+import { rpc } from '@kit.IPCKit';
 
 class MySequence implements rpc.Parcelable {
-    pixel_map: image.PixelMap;
-    constructor(conPixelMap: image.PixelMap) {
-        this.pixel_map = conPixelMap;
-    }
-    marshalling(messageSequence: rpc.MessageSequence) {
-        this.pixel_map.marshalling(messageSequence);
-        console.info('marshalling');
-        return true;
-    }
-    unmarshalling(messageSequence: rpc.MessageSequence) {
-      image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
-        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
-          this.pixel_map = pixelMap;
-          pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
-            console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
-          })
+  pixel_map: image.PixelMap;
+  constructor(conPixelMap: image.PixelMap) {
+    this.pixel_map = conPixelMap;
+  }
+  marshalling(messageSequence: rpc.MessageSequence) {
+    this.pixel_map.marshalling(messageSequence);
+    console.info('marshalling');
+    return true;
+  }
+  unmarshalling(messageSequence: rpc.MessageSequence) {
+    image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
+      pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
+        this.pixel_map = pixelMap;
+        pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+          console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
         })
-      });
-      return true;
-    }
+      })
+    });
+    return true;
+  }
 }
 async function Demo() {
-   const color: ArrayBuffer = new ArrayBuffer(96);
-   let bufferArr: Uint8Array = new Uint8Array(color);
-   for (let i = 0; i < bufferArr.length; i++) {
-      bufferArr[i] = 0x80;
-   }
-   let opts: image.InitializationOptions = {
-      editable: true,
-      pixelFormat: 4,
-      size: { height: 4, width: 6 },
-      alphaType: 3
-   }
-   let pixelMap: image.PixelMap | undefined = undefined;
-   image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
-      pixelMap = srcPixelMap;
-   })
-   if (pixelMap != undefined) {
+  const color: ArrayBuffer = new ArrayBuffer(96);
+  let bufferArr: Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = 0x80;
+  }
+  let opts: image.InitializationOptions = {
+    editable: true,
+    pixelFormat: 4,
+    size: { height: 4, width: 6 },
+    alphaType: 3
+  }
+  let pixelMap: image.PixelMap | undefined = undefined;
+  image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+    pixelMap = srcPixelMap;
+  })
+  if (pixelMap != undefined) {
     // 序列化
-     let parcelable: MySequence = new MySequence(pixelMap);
-     let data : rpc.MessageSequence = rpc.MessageSequence.create();
-     data.writeParcelable(parcelable);
+    let parcelable: MySequence = new MySequence(pixelMap);
+    let data : rpc.MessageSequence = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
 
     // 反序列化 rpc获取到data
-     let ret : MySequence = new MySequence(pixelMap);
-     data.readParcelable(ret);
-   }
+    let ret : MySequence = new MySequence(pixelMap);
+    data.readParcelable(ret);
+  }
 }
 ```
 
@@ -2490,7 +2489,7 @@ ArkTS有内存回收机制，PixelMap对象不调用release方法，内存最终
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2503,16 +2502,16 @@ ArkTS有内存回收机制，PixelMap对象不调用release方法，内存最终
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    if (pixelMap != undefined) {
-        pixelMap.release().then(() => {
-            console.info('Succeeded in releasing pixelmap object.');
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to release pixelmap object. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+  if (pixelMap != undefined) {
+    pixelMap.release().then(() => {
+      console.info('Succeeded in releasing pixelmap object.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to release pixelmap object. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -2526,7 +2525,7 @@ ArkTS有内存回收机制，PixelMap对象不调用release方法，内存最终
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2539,19 +2538,19 @@ ArkTS有内存回收机制，PixelMap对象不调用release方法，内存最终
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    if (pixelMap != undefined) {
-        pixelMap.release((err: BusinessError) => {
-            if (err) {
-                console.error(`Failed to release pixelmap object. code is ${err.code}, message is ${err.message}`);
-                return;
-            } else {
-                console.info('Succeeded in releasing pixelmap object.');
-            }
-        })
-    }
+  if (pixelMap != undefined) {
+    pixelMap.release((err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to release pixelmap object. code is ${err.code}, message is ${err.message}`);
+        return;
+      } else {
+        console.info('Succeeded in releasing pixelmap object.');
+      }
+    })
+  }
 }
 ```
 
@@ -2562,7 +2561,7 @@ createImageSource(uri: string): ImageSource
 通过传入的uri创建图片源实例。
 
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2570,7 +2569,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 
 **返回值：**
 
@@ -2582,7 +2581,8 @@ createImageSource(uri: string): ImageSource
 
 ```ts
 const context: Context = getContext(this);
-const path: string = context.cacheDir + "/test.jpg";
+//此处'test.jpg'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+const path: string = context.filesDir + "/test.jpg";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
 ```
 
@@ -2594,7 +2594,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2602,7 +2602,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 | options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。|
 
 **返回值：**
@@ -2616,6 +2616,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 ```ts
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
 const context: Context = getContext(this);
+//此处'test.png'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
 const path: string = context.filesDir + "/test.png";
 let imageSourceApi: image.ImageSource = image.createImageSource(path, sourceOptions);
 ```
@@ -2626,7 +2627,7 @@ createImageSource(fd: number): ImageSource
 
 通过传入文件描述符来创建图片源实例。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2645,7 +2646,13 @@ createImageSource(fd: number): ImageSource
 **示例：**
 
 ```ts
-const imageSourceApi: image.ImageSource = image.createImageSource(0);
+import { fileIo } from '@kit.CoreFileKit';
+
+const context: Context = getContext(this);
+//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+let filePath: string = context.filesDir + "/test.jpg";
+let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+const imageSourceApi: image.ImageSource = image.createImageSource(file.fd);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -2656,7 +2663,7 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2676,8 +2683,13 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 **示例：**
 
 ```ts
+import { fileIo } from '@kit.CoreFileKit';
+
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-const imageSourceApi: image.ImageSource = image.createImageSource(0, sourceOptions);
+//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+const filePath: string = context.filesDir + "/test.jpg";
+let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+const imageSourceApi: image.ImageSource = image.createImageSource(file.fd, sourceOptions);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -2688,7 +2700,7 @@ createImageSource(buf: ArrayBuffer): ImageSource
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2720,7 +2732,7 @@ createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2751,7 +2763,7 @@ createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOp
 
 通过图像资源文件的RawFileDescriptor创建图片源实例。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2771,15 +2783,16 @@ createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOp
 **示例：**
 
 ```ts
-import resourceManager from '@ohos.resourceManager';
+import { resourceManager } from '@kit.LocalizationKit';
 
 const context: Context = getContext(this);
 // 获取resourceManager资源管理器
 const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor: resourceManager.RawFileDescriptor) => {
-    const imageSourceApi: image.ImageSource = image.createImageSource(rawFileDescriptor);
+  const imageSourceApi: image.ImageSource = image.createImageSource(rawFileDescriptor);
 }).catch((error: BusinessError) => {
-    console.error(`Failed to get RawFileDescriptor.code is ${error.code}, message is ${error.message}`);
+  console.error(`Failed to get RawFileDescriptor.code is ${error.code}, message is ${error.message}`);
 })
 ```
 
@@ -2859,7 +2872,7 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2873,14 +2886,14 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getImageInfo(0, (error: BusinessError, imageInfo: image.ImageInfo) => { 
-    if (error) {
-        console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
-    } else {
-        console.info('Succeeded in obtaining the image information.');
-    }
+imageSourceApi.getImageInfo(0, (error: BusinessError, imageInfo: image.ImageInfo) => {
+  if (error) {
+    console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
+  } else {
+    console.info('Succeeded in obtaining the image information.');
+  }
 })
 ```
 
@@ -2892,7 +2905,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2905,14 +2918,14 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => { 
-    if (err) {
-        console.error(`Failed to obtain the image information.code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info('Succeeded in obtaining the image information.');
-    }
+imageSourceApi.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
+  if (err) {
+    console.error(`Failed to obtain the image information.code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info('Succeeded in obtaining the image information.');
+  }
 })
 ```
 
@@ -2924,7 +2937,7 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2943,14 +2956,14 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.getImageInfo(0)
-    .then((imageInfo: image.ImageInfo) => {
-		console.info('Succeeded in obtaining the image information.');
-	}).catch((error: BusinessError) => {
-        console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
-	})
+  .then((imageInfo: image.ImageInfo) => {
+    console.info('Succeeded in obtaining the image information.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
+  })
 ```
 
 ### getImageInfoSync<sup>12+</sup>
@@ -2976,17 +2989,19 @@ getImageInfoSync(index?: number): ImageInfo
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
+import { image } from '@kit.ImageKit';
 
-let filePath = "/test"
+const context: Context = getContext(this);
+//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
 let imageInfo = imageSource.getImageInfoSync(0);
 if (imageInfo == undefined) {
-    console.error('Failed to obtain the image information.');
+  console.error('Failed to obtain the image information.');
 } else {
-    console.info('Succeeded in obtaining the image information.');
-    console.info('imageInfo.size.height:' + imageInfo.size.height);
-    console.info('imageInfo.size.width:' + imageInfo.size.width);
+  console.info('Succeeded in obtaining the image information.');
+  console.info('imageInfo.size.height:' + imageInfo.size.height);
+  console.info('imageInfo.size.width:' + imageInfo.size.width);
 }
 ```
 
@@ -3023,14 +3038,14 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
 imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
 .then((data: string) => {
-    console.info('Succeeded in getting the value of the specified attribute key of the image.');
+  console.info('Succeeded in getting the value of the specified attribute key of the image.');
 }).catch((error: BusinessError) => {
-    console.error('Failed to get the value of the specified attribute key of the image.');
+  console.error('Failed to get the value of the specified attribute key of the image.');
 })
 ```
 
@@ -3062,14 +3077,14 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.getImageProperty("BitsPerSample")
-    .then((data: string) => {
-		console.info('Succeeded in getting the value of the specified attribute key of the image.');
-	}).catch((error: BusinessError) => {
-		console.error('Failed to get the value of the specified attribute key of the image.');
-	})
+  .then((data: string) => {
+    console.info('Succeeded in getting the value of the specified attribute key of the image.');
+  }).catch((error: BusinessError) => {
+    console.error('Failed to get the value of the specified attribute key of the image.');
+  })
 ```
 
 ### getImageProperty<sup>(deprecated)</sup>
@@ -3094,14 +3109,14 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getImageProperty("BitsPerSample", (error: BusinessError, data: string) => { 
-    if (error) {
-        console.error('Failed to get the value of the specified attribute key of the image.');
-    } else {
-        console.info('Succeeded in getting the value of the specified attribute key of the image.');
-    }
+imageSourceApi.getImageProperty("BitsPerSample", (error: BusinessError, data: string) => {
+  if (error) {
+    console.error('Failed to get the value of the specified attribute key of the image.');
+  } else {
+    console.info('Succeeded in getting the value of the specified attribute key of the image.');
+  }
 })
 ```
 
@@ -3128,15 +3143,15 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let property: image.GetImagePropertyOptions = { index: 0, defaultValue: '9999' }
-imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError, data: string) => { 
-    if (error) {
-        console.error('Failed to get the value of the specified attribute key of the image.');
-    } else {
-        console.info('Succeeded in getting the value of the specified attribute key of the image.');
-    }
+imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError, data: string) => {
+  if (error) {
+    console.error('Failed to get the value of the specified attribute key of the image.');
+  } else {
+    console.info('Succeeded in getting the value of the specified attribute key of the image.');
+  }
 })
 ```
 
@@ -3175,16 +3190,15 @@ getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey,
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let key = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
 imageSourceApi.getImageProperties(key).then((data) => {
-    console.info(JSON.stringify(data));
-    })
-    .catch((err: BusinessError) => {
-        console.error(JSON.stringify(err));
-    });
+  console.info(JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(JSON.stringify(err));
+});
 ```
 
 ### modifyImageProperty<sup>11+</sup>
@@ -3222,16 +3236,16 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
-    imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width: string) => {
-        console.info(`ImageWidth is :${width}`);
-    }).catch((error: BusinessError) => {
-        console.error('Failed to get the Image Width.');
-	})
+  imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width: string) => {
+    console.info(`ImageWidth is :${width}`);
+  }).catch((error: BusinessError) => {
+    console.error('Failed to get the Image Width.');
+  })
 }).catch((error: BusinessError) => {
-	console.error('Failed to modify the Image Width');
+  console.error('Failed to modify the Image Width');
 })
 ```
 
@@ -3263,16 +3277,16 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
-    imageSourceApi.getImageProperty("ImageWidth").then((width: string) => {
-        console.info(`ImageWidth is :${width}`);
-    }).catch((error: BusinessError) => {
-        console.error('Failed to get the Image Width.');
-	})
+  imageSourceApi.getImageProperty("ImageWidth").then((width: string) => {
+    console.info(`ImageWidth is :${width}`);
+  }).catch((error: BusinessError) => {
+    console.error('Failed to get the Image Width.');
+  })
 }).catch((error: BusinessError) => {
-	console.error('Failed to modify the Image Width');
+  console.error('Failed to modify the Image Width');
 })
 ```
 
@@ -3299,14 +3313,14 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => {
-    if (err) {
-        console.error(`Failed to modify the Image Width.code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info('Succeeded in modifying the Image Width.');
-    }
+  if (err) {
+    console.error(`Failed to modify the Image Width.code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info('Succeeded in modifying the Image Width.');
+  }
 })
 ```
 
@@ -3345,20 +3359,20 @@ modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let key: Record<PropertyKey, string|null> = {'ImageWidth':"1024", 'ImageLength':"2048"};
 let checkKey = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
 imageSourceApi.modifyImageProperties(key).then(() => {
-    imageSourceApi.getImageProperties(checkKey).then((data) => {
-        console.info(JSON.stringify(data));
-        }).catch((err: BusinessError) => {
-            console.error(JSON.stringify(err));
-            });
-        }).catch((err: BusinessError) => {
-           console.error(JSON.stringify(err));
-        });
+  imageSourceApi.getImageProperties(checkKey).then((data) => {
+    console.info(JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(JSON.stringify(err));
+  });
+}).catch((err: BusinessError) => {
+  console.error(JSON.stringify(err));
+});
 ```
 
 ### updateData<sup>9+</sup>
@@ -3387,13 +3401,13 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const array: ArrayBuffer = new ArrayBuffer(100);
 imageSourceApi.updateData(array, false, 0, 10).then(() => {
-    console.info('Succeeded in updating data.');
+  console.info('Succeeded in updating data.');
 }).catch((err: BusinessError) => {
-    console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
+  console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -3419,15 +3433,15 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const array: ArrayBuffer = new ArrayBuffer(100);
 imageSourceApi.updateData(array, false, 0, 10, (err: BusinessError) => {
-    if (err) {
-        console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in updating data.');
-    }
+  if (err) {
+    console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in updating data.');
+  }
 })
 ```
 
@@ -3439,7 +3453,7 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3458,12 +3472,12 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.createPixelMap().then((pixelMap: image.PixelMap) => {
-    console.info('Succeeded in creating pixelMap object through image decoding parameters.');
+  console.info('Succeeded in creating pixelMap object through image decoding parameters.');
 }).catch((error: BusinessError) => {
-    console.error('Failed to create pixelMap object through image decoding parameters.');
+  console.error('Failed to create pixelMap object through image decoding parameters.');
 })
 ```
 
@@ -3475,7 +3489,7 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3488,14 +3502,14 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => {
-    if (err) {
-        console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in creating pixelMap object.');
-    }
+  if (err) {
+    console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in creating pixelMap object.');
+  }
 })
 ```
 
@@ -3507,7 +3521,7 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3521,23 +3535,23 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let decodingOptions: image.DecodingOptions = {
-    sampleSize: 1,
-    editable: true,
-    desiredSize: { width: 1, height: 2 },
-    rotate: 10,
-    desiredPixelFormat: 3,
-    desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
-    index: 0
+  sampleSize: 1,
+  editable: true,
+  desiredSize: { width: 1, height: 2 },
+  rotate: 10,
+  desiredPixelFormat: 3,
+  desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+  index: 0
 };
-imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: image.PixelMap) => { 
-    if (err) {
-        console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in creating pixelMap object.');
-    }
+imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
+  if (err) {
+    console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in creating pixelMap object.');
+  }
 })
 ```
 
@@ -3564,32 +3578,34 @@ createPixelMapSync(options?: DecodingOptions): PixelMap
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
+import { image } from '@kit.ImageKit';
 
-let filePath = "/test"
+const context: Context = getContext(this);
+//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
 let decodingOptions: image.DecodingOptions = {
-    sampleSize: 1,
-    editable: true,
-    desiredSize: { width: 1, height: 2 },
-    rotate: 10,
-    desiredPixelFormat: 3,
-    desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
-    index: 0
+  sampleSize: 1,
+  editable: true,
+  desiredSize: { width: 1, height: 2 },
+  rotate: 10,
+  desiredPixelFormat: 3,
+  desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+  index: 0
 };
 let pixelmap = imageSource.createPixelMapSync(decodingOptions);
-    if (pixelmap != undefined) {
-        console.info('Succeeded in creating pixelMap object.');
-    } else {
-        console.info('Failed to create pixelMap.');
-    }
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+} else {
+  console.info('Failed to create pixelMap.');
+}
 ```
 
 ### createPixelMapList<sup>10+</sup>
 
 createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
-通过图片解码参数创建PixelMap数组。
+通过图片解码参数创建PixelMap数组。针对动图如Gif、Webp，此接口返回每帧图片数据；针对静态图，此接口返回唯一的一帧图片数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3633,20 +3649,20 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let decodeOpts: image.DecodingOptions = {
-    sampleSize: 1,
-    editable: true,
-    desiredSize: { width: 198, height: 202 },
-    rotate: 0,
-    desiredPixelFormat: 3,
-    index: 0,
+  sampleSize: 1,
+  editable: true,
+  desiredSize: { width: 198, height: 202 },
+  rotate: 0,
+  desiredPixelFormat: 3,
+  index: 0,
 };
 imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.PixelMap>) => {
-    console.info('Succeeded in creating pixelMapList object.');
+  console.info('Succeeded in creating pixelMapList object.');
 }).catch((err: BusinessError) => {
-    console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
+  console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -3654,7 +3670,7 @@ imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.Pi
 
 createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
-通过默认参数创建PixelMap数组，使用callback形式返回结果。
+通过默认参数创建PixelMap数组，使用callback形式返回结果。针对动图如Gif、Webp，此接口返回每帧图片数据；针对静态图，此接口返回唯一的一帧图片数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3692,14 +3708,14 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
-    if (err) {
-        console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in creating pixelMapList object.');
-    }
+  if (err) {
+    console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in creating pixelMapList object.');
+  }
 })
 ```
 
@@ -3707,7 +3723,7 @@ imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image
 
 createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<PixelMap>>): void
 
-通过图片解码参数创建PixelMap数组，使用callback形式返回结果。
+通过图片解码参数创建PixelMap数组，使用callback形式返回结果。针对动图如Gif、Webp，此接口返回每帧图片数据；针对静态图，此接口返回唯一的一帧图片数据。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3746,22 +3762,22 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let decodeOpts: image.DecodingOptions = {
-    sampleSize: 1,
-    editable: true,
-    desiredSize: { width: 198, height: 202 },
-    rotate: 0,
-    desiredPixelFormat: 3,
-    index: 0,
+  sampleSize: 1,
+  editable: true,
+  desiredSize: { width: 198, height: 202 },
+  rotate: 0,
+  desiredPixelFormat: 3,
+  index: 0,
 };
 imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
-    if (err) {
-        console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in creating pixelMapList object.');
-    }
+  if (err) {
+    console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in creating pixelMapList object.');
+  }
 })
 ```
 
@@ -3801,14 +3817,14 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
-    if (err) {
-        console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in getting delayTimes object.');
-    }
+  if (err) {
+    console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in getting delayTimes object.');
+  }
 })
 ```
 
@@ -3848,12 +3864,12 @@ getDelayTimeList(): Promise<Array\<number>>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.getDelayTimeList().then((delayTimes: Array<number>) => {
-    console.info('Succeeded in getting delayTimes object.');
+  console.info('Succeeded in getting delayTimes object.');
 }).catch((err: BusinessError) => {
-    console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
+  console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -3892,14 +3908,14 @@ getFrameCount(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
-    if (err) {
-        console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in getting frame count.');
-    }
+  if (err) {
+    console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in getting frame count.');
+  }
 })
 ```
 
@@ -3938,12 +3954,12 @@ getFrameCount(): Promise\<number>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.getFrameCount().then((frameCount: number) => {
-    console.info('Succeeded in getting frame count.');
+  console.info('Succeeded in getting frame count.');
 }).catch((err: BusinessError) => {
-    console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
+  console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -3976,11 +3992,11 @@ getDisposalTypeList(): Promise\<Array\<number>>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 imageSourceApi.getDisposalTypeList().then((disposalTypes: Array<number>) => {
-    console.info('Succeeded in getting disposalTypes object.');
+  console.info('Succeeded in getting disposalTypes object.');
 }).catch((err: BusinessError) => {
-    console.error(`Failed to get disposalTypes object.code ${err.code},message is ${err.message}`);
+  console.error(`Failed to get disposalTypes object.code ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -4003,14 +4019,14 @@ ArkTS有内存回收机制，ImageSource对象不调用release方法，内存最
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.release((err: BusinessError) => { 
-    if (err) {
-        console.error(`Failed to release the image source instance.code ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in releasing the image source instance.');
-    }
+imageSourceApi.release((err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to release the image source instance.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in releasing the image source instance.');
+  }
 })
 ```
 
@@ -4033,12 +4049,12 @@ ArkTS有内存回收机制，ImageSource对象不调用release方法，内存最
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imageSourceApi.release().then(() => {
-    console.info('Succeeded in releasing the image source instance.');
+  console.info('Succeeded in releasing the image source instance.');
 }).catch((error: BusinessError) => {
-    console.error('Failed to release the image source instance.');
+  console.error(`Failed to release the image source instance.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4048,7 +4064,7 @@ createImagePacker(): ImagePacker
 
 创建ImagePacker实例。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -4082,7 +4098,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 图片压缩或重新打包，使用callback形式返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -4097,16 +4113,19 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const imageSourceApi: image.ImageSource = image.createImageSource(0);
+const context: Context = getContext(this);
+//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+let filePath: string = context.filesDir + "/test.jpg";
+const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
 imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: ArrayBuffer) => {
-    if (err) {
-        console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in packing the image.');
-    }
+  if (err) {
+    console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in packing the image.');
+  }
 })
 ```
 
@@ -4116,7 +4135,7 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -4136,16 +4155,19 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const imageSourceApi: image.ImageSource = image.createImageSource(0);
+const context: Context = getContext(this);
+//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+let filePath: string = context.filesDir + "/test.jpg";
+const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
 imagePackerApi.packing(imageSourceApi, packOpts)
-    .then((data: ArrayBuffer) => {
-        console.info('Succeeded in packing the image.');
-	}).catch((error: BusinessError) => {
-        console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
-	})
+  .then((data: ArrayBuffer) => {
+    console.info('Succeeded in packing the image.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+  })
 ```
 
 ### packing<sup>8+</sup>
@@ -4154,7 +4176,7 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 
 图片压缩或重新打包，使用callback形式返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -4169,17 +4191,21 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
-    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-    imagePackerApi.packing(pixelMap, packOpts, (err: BusinessError, data: ArrayBuffer) => { 
-        console.info('Succeeded in packing the image.');
-    })
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  imagePackerApi.packing(pixelMap, packOpts, (err: BusinessError, data: ArrayBuffer) => {
+    if (err) {
+      console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in packing the image.');
+    }
+  })
 }).catch((error: BusinessError) => {
-	console.error('createPixelMap failed.');
+  console.error(`Failed to create the PixelMap.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4189,7 +4215,7 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -4209,20 +4235,20 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
-    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-    imagePackerApi.packing(pixelMap, packOpts)
-        .then((data: ArrayBuffer) => {
-            console.info('Succeeded in packing the image.');
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
-        })
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  imagePackerApi.packing(pixelMap, packOpts)
+    .then((data: ArrayBuffer) => {
+      console.info('Succeeded in packing the image.');
+    }).catch((error: BusinessError) => {
+    console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+  })
 }).catch((error: BusinessError) => {
-	console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
+  console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4245,14 +4271,14 @@ ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-imagePackerApi.release((err: BusinessError)=>{ 
-    if (err) {
-        console.error('Failed to release image packaging.'); 
-    } else {
-        console.info('Succeeded in releasing image packaging.');
-    }
+imagePackerApi.release((err: BusinessError)=>{
+  if (err) {
+    console.error(`Failed to release image packaging.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in releasing image packaging.');
+  }
 })
 ```
 
@@ -4275,12 +4301,12 @@ ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 imagePackerApi.release().then(() => {
-    console.info('Succeeded in releasing image packaging.');
-}).catch((error: BusinessError) => { 
-    console.error('Failed to release image packaging.'); 
+  console.info('Succeeded in releasing image packaging.');
+}).catch((error: BusinessError) => {
+  console.error(`Failed to release image packaging.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4304,22 +4330,23 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import fs from '@ohos.file.fs'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 const context: Context = getContext(this);
+//此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 const path: string = context.filesDir + "/test.png";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
-const filePath: string = context.cacheDir + "/image_source.jpg";
-let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+const filePath: string = context.filesDir + "/image_source.jpg";
+let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
 const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err: BusinessError) => {
-    if (err) {
-        console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in packing the image to file.');
-    }
+  if (err) {
+    console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in packing the image to file.');
+  }
 })
 ```
 
@@ -4348,20 +4375,21 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import fs from '@ohos.file.fs'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 const context: Context = getContext(this);
+//此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 const path: string = context.filesDir + "/test.png";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
-const filePath: string = context.cacheDir + "/image_source.jpg";
-let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+const filePath: string = context.filesDir + "/image_source.jpg";
+let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
 const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {
-    console.info('Succeeded in packing the image to file.');
+  console.info('Succeeded in packing the image to file.');
 }).catch((error: BusinessError) => { 
-    console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
+  console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
 }) 
 ```
 
@@ -4385,24 +4413,24 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import fs from '@ohos.file.fs'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 const context: Context = getContext(this);
-const path: string = context.cacheDir + "/pixel_map.jpg";
+const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
-    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-    const imagePackerApi: image.ImagePacker = image.createImagePacker();
-    imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err: BusinessError) => {
-        if (err) {
-            console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
-        } else {
-            console.info('Succeeded in packing the image to file.');
-        }
-    })
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+  const imagePackerApi: image.ImagePacker = image.createImagePacker();
+  imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in packing the image to file.');
+    }
+  })
 })
 ```
 
@@ -4431,23 +4459,23 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import fs from '@ohos.file.fs'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 const context: Context = getContext(this);
-const path: string = context.cacheDir + "/pixel_map.jpg";
+const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
-    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-    const imagePackerApi: image.ImagePacker = image.createImagePacker();
-    imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
-        .then(() => {
-            console.info('Succeeded in packing the image to file.');
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
-        })
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+  const imagePackerApi: image.ImagePacker = image.createImagePacker();
+  imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
+    .then(() => {
+      console.info('Succeeded in packing the image to file.');
+    }).catch((error: BusinessError) => {
+    console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
+  })
 })
 ```
 
@@ -4485,9 +4513,9 @@ createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageRec
 
 ```ts
 let size: image.Size = {
-    height: 8192,
-    width: 8
-} 
+  height: 8192,
+  width: 8
+}
 let receiver: image.ImageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
 ```
 
@@ -4557,14 +4585,14 @@ getReceivingSurfaceId(callback: AsyncCallback\<string>): void
 **示例:**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-receiver.getReceivingSurfaceId((err: BusinessError, id: string) => { 
-    if (err) {
-        console.error(`Failed to get the ReceivingSurfaceId.code ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in getting the ReceivingSurfaceId.');
-    }
+receiver.getReceivingSurfaceId((err: BusinessError, id: string) => {
+  if (err) {
+    console.error(`Failed to get the ReceivingSurfaceId.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in getting the ReceivingSurfaceId.');
+  }
 });
 ```
 
@@ -4585,12 +4613,12 @@ getReceivingSurfaceId(): Promise\<string>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 receiver.getReceivingSurfaceId().then((id: string) => { 
-    console.info('Succeeded in getting the ReceivingSurfaceId.');
+  console.info('Succeeded in getting the ReceivingSurfaceId.');
 }).catch((error: BusinessError) => {
-    console.error(`Failed to get the ReceivingSurfaceId.code ${error.code},message is ${error.message}`);
+  console.error(`Failed to get the ReceivingSurfaceId.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4611,14 +4639,14 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-receiver.readLatestImage((err: BusinessError, img: image.Image) => { 
-    if (err) {
-        console.error(`Failed to read the latest Image.code ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in reading the latest Image.');
-    }
+receiver.readLatestImage((err: BusinessError, img: image.Image) => {
+  if (err) {
+    console.error(`Failed to read the latest Image.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in reading the latest Image.');
+  }
 });
 ```
 
@@ -4639,12 +4667,12 @@ readLatestImage(): Promise\<Image>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 receiver.readLatestImage().then((img: image.Image) => {
-    console.info('Succeeded in reading the latest Image.');
+  console.info('Succeeded in reading the latest Image.');
 }).catch((error: BusinessError) => {
-    console.error(`Failed to read the latest Image.code ${error.code},message is ${error.message}`);
+  console.error(`Failed to read the latest Image.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4665,14 +4693,14 @@ readNextImage(callback: AsyncCallback\<Image>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-receiver.readNextImage((err: BusinessError, img: image.Image) => { 
-    if (err) {
-        console.error(`Failed to read the next Image.code ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in reading the next Image.');
-    }
+receiver.readNextImage((err: BusinessError, img: image.Image) => {
+  if (err) {
+    console.error(`Failed to read the next Image.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in reading the next Image.');
+  }
 });
 ```
 
@@ -4693,12 +4721,12 @@ readNextImage(): Promise\<Image>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 receiver.readNextImage().then((img: image.Image) => {
-    console.info('Succeeded in reading the next Image.');
+  console.info('Succeeded in reading the next Image.');
 }).catch((error: BusinessError) => {
-    console.error(`Failed to read the next Image.code ${error.code},message is ${error.message}`);
+  console.error(`Failed to read the next Image.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4721,7 +4749,7 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 
 ```ts
 receiver.on('imageArrival', () => {
-    // image arrival, do something.
+  // image arrival, do something.
 })
 ```
 
@@ -4744,14 +4772,14 @@ ArkTS有内存回收机制，ImageReceiver对象不调用release方法，内存�
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 receiver.release((err: BusinessError) => {
-    if (err) {
-        console.error(`Failed to release the receiver.code ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in releaseing the receiver.');
-    }
+  if (err) {
+    console.error(`Failed to release the receiver.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in releaseing the receiver.');
+  }
 })
 ```
 
@@ -4774,12 +4802,12 @@ ArkTS有内存回收机制，ImageReceiver对象不调用release方法，内存�
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 receiver.release().then(() => {
-    console.info('Succeeded in releaseing the receiver.');
+  console.info('Succeeded in releaseing the receiver.');
 }).catch((error: BusinessError) => {
-    console.error(`Failed to release the receiver.code ${error.code},message is ${error.message}`);
+  console.error(`Failed to release the receiver.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4818,9 +4846,9 @@ createImageCreator(size: Size, format: ImageFormat, capacity: number): ImageCrea
 
 ```ts
 let size: image.Size = {
-    height: 8192,
-    width: 8
-} 
+  height: 8192,
+  width: 8
+}
 let creator: image.ImageCreator = image.createImageCreator(size, image.ImageFormat.JPEG, 8);
 ```
 
@@ -4888,14 +4916,14 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 creator.dequeueImage((err: BusinessError, img: image.Image) => {
-    if (err) {
-        console.error(`Failed to dequeue the Image.code ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in dequeuing the Image.');
-    }
+  if (err) {
+    console.error(`Failed to dequeue the Image.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in dequeuing the Image.');
+  }
 });
 ```
 
@@ -4916,12 +4944,12 @@ dequeueImage(): Promise\<Image>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 creator.dequeueImage().then((img: image.Image) => {
-    console.info('Succeeded in dequeuing the Image.');
+  console.info('Succeeded in dequeuing the Image.');
 }).catch((error: BusinessError) => {
-    console.error(`Failed to dequeue the Image.code ${error.code},message is ${error.message}`);
+  console.error(`Failed to dequeue the Image.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4943,26 +4971,26 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 creator.dequeueImage().then((img: image.Image) => {
-    //绘制图片
-    img.getComponent(4).then((component : image.Component) => {
-        let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
-        for (let i = 0; i < bufferArr.length; i += 4) {
-            bufferArr[i] = 0; //B
-            bufferArr[i + 1] = 0; //G
-            bufferArr[i + 2] = 255; //R
-            bufferArr[i + 3] = 255; //A
-        }
-    })
-    creator.queueImage(img, (err: BusinessError) => {
-        if (err) {
-            console.error(`Failed to queue the Image.code ${err.code},message is ${err.message}`);
-        } else {
-            console.info('Succeeded in queuing the Image.');
-        }
-    })
+  //绘制图片
+  img.getComponent(4).then((component : image.Component) => {
+    let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+      bufferArr[i] = 0; //B
+      bufferArr[i + 1] = 0; //G
+      bufferArr[i + 2] = 255; //R
+      bufferArr[i + 3] = 255; //A
+    }
+  })
+  creator.queueImage(img, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to queue the Image.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in queuing the Image.');
+    }
+  })
 })
 
 ```
@@ -4990,24 +5018,24 @@ queueImage(interface: Image): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 creator.dequeueImage().then((img: image.Image) => {
-    //绘制图片
-    img.getComponent(4).then((component: image.Component) => {
-        let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
-        for (let i = 0; i < bufferArr.length; i += 4) {
-            bufferArr[i] = 0; //B
-            bufferArr[i + 1] = 0; //G
-            bufferArr[i + 2] = 255; //R
-            bufferArr[i + 3] = 255; //A
-        }
-    })
-    creator.queueImage(img).then(() => {
-        console.info('Succeeded in queuing the Image.');
-    }).catch((error: BusinessError) => {
-        console.error(`Failed to queue the Image.code ${error.code},message is ${error.message}`);
-    })
+  //绘制图片
+  img.getComponent(4).then((component: image.Component) => {
+    let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+      bufferArr[i] = 0; //B
+      bufferArr[i + 1] = 0; //G
+      bufferArr[i + 2] = 255; //R
+      bufferArr[i + 3] = 255; //A
+    }
+  })
+  creator.queueImage(img).then(() => {
+    console.info('Succeeded in queuing the Image.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to queue the Image.code ${error.code},message is ${error.message}`);
+  })
 })
 
 ```
@@ -5030,14 +5058,14 @@ on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 creator.on('imageRelease', (err: BusinessError) => {
-    if (err) {
-        console.error(`Failed to get the imageRelease callback.code ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in getting imageRelease callback.');
-    }
+  if (err) {
+    console.error(`Failed to get the imageRelease callback.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in getting imageRelease callback.');
+  }
 })
 ```
 
@@ -5060,14 +5088,14 @@ ArkTS有内存回收机制，ImageCreator对象不调用release方法，内存�
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 creator.release((err: BusinessError) => {
-    if (err) {
-        console.error(`Failed to release the creator.code ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in releasing creator.');
-    }
+  if (err) {
+    console.error(`Failed to release the creator.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in releasing creator.');
+  }
 });
 ```
 ### release<sup>9+</sup>
@@ -5089,12 +5117,12 @@ ArkTS有内存回收机制，ImageCreator对象不调用release方法，内存�
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 creator.release().then(() => {
-    console.info('Succeeded in releasing creator.');
+  console.info('Succeeded in releasing creator.');
 }).catch((error: BusinessError) => {
-    console.error(`Failed to release the creator.code ${error.code},message is ${error.message}`);
+  console.error(`Failed to release the creator.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -5131,14 +5159,14 @@ getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>):
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 img.getComponent(4, (err: BusinessError, component: image.Component) => {
-    if (err) {
-        console.error(`Failed to get the component.code ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in getting component.');
-    }
+  if (err) {
+    console.error(`Failed to get the component.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in getting component.');
+  }
 })
 ```
 
@@ -5165,12 +5193,12 @@ getComponent(componentType: ComponentType): Promise\<Component>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 img.getComponent(4).then((component: image.Component) => {
-    console.info('Succeeded in getting component.');
+  console.info('Succeeded in getting component.');
 }).catch((error: BusinessError) => {
-    console.error(`Failed to get the component.code ${error.code},message is ${error.message}`);
+  console.error(`Failed to get the component.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -5195,14 +5223,14 @@ ArkTS有内存回收机制，Image对象不调用release方法，内存最终也
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 img.release((err: BusinessError) => {
-    if (err) {
-        console.error(`Failed to release the image instance.code ${err.code},message is ${err.message}`);
-    } else {
-        console.info('Succeeded in releasing the image instance.');
-    }
+  if (err) {
+    console.error(`Failed to release the image instance.code ${err.code},message is ${err.message}`);
+  } else {
+    console.info('Succeeded in releasing the image instance.');
+  }
 })
 ```
 
@@ -5227,12 +5255,12 @@ ArkTS有内存回收机制，Image对象不调用release方法，内存最终也
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 img.release().then(() => {
-    console.info('Succeeded in releasing the image instance.');
+  console.info('Succeeded in releasing the image instance.');
 }).catch((error: BusinessError) => {
-    console.error(`Failed to release the image instance.code ${error.code},message is ${error.message}`);
+  console.error(`Failed to release the image instance.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -5242,7 +5270,7 @@ img.release().then(() => {
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -5261,11 +5289,11 @@ img.release().then(() => {
 
 | 名称 | 类型          | 只读 | 可选 | 说明       |
 | ---- | ------------- | --- |-----|---------- |
-| size<sup>6+</sup> | [Size](#size) | 否 |  否  |图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| density<sup>9+</sup> | number | 否  | 否 |像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| stride<sup>11+</sup> | number | 否  | 否  | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 否  |  否 | 像素格式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 否  |  否  |透明度。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| size<sup>6+</sup> | [Size](#size) | 否 |  否  |图片大小。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| density<sup>9+</sup> | number | 否  | 否 |像素密度，单位为ppi。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| stride<sup>11+</sup> | number | 否  | 否  | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 否  |  否 | 像素格式。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 否  |  否  |透明度。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | mimeType<sup>12+</sup> | string  |  否  |   否  |图片真实格式（MIME type）。  |
 | isHdr<sup>12+</sup> | boolean  |  否  | 否  | 图片是否为高动态范围（HDR）。对于[ImageSource](#imagesource)，代表源图片是否为HDR；对于[PixelMap](#pixelmap7)，代表解码后的pixelmap是否为HDR。 |
 
@@ -5275,7 +5303,7 @@ img.release().then(() => {
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -5290,7 +5318,7 @@ img.release().then(() => {
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -5312,7 +5340,7 @@ img.release().then(() => {
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -5329,7 +5357,7 @@ img.release().then(() => {
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -5344,7 +5372,7 @@ ImageSource的初始化选项。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -5363,12 +5391,12 @@ PixelMap的初始化选项。
 
 | 名称                     | 类型                               | 只读 |可选 |  说明           |
 | ------------------------ | ---------------------------------- | ----| -----|  -------------- |
-| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 否   | 是| 透明度。默认值为IMAGE_ALPHA_TYPE_PREMUL。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
-| editable                 | boolean                            | 否   | 是| 是否可编辑。默认值为false。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
+| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 否   | 是| 透明度。默认值为IMAGE_ALPHA_TYPE_PREMUL。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
+| editable                 | boolean                            | 否   | 是| 是否可编辑。默认值为false。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
 | srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | 否 | 是 | 传入的buffer数据的像素格式。默认值为BGRA_8888。|
-| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 否 | 是| 生成的pixelMap的像素格式。默认值为RGBA_8888。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
-| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 否  | 是 | 缩略值。默认值为0。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
-| size                     | [Size](#size)                      | 否  | 否|创建图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 否 | 是| 生成的pixelMap的像素格式。默认值为RGBA_8888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
+| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 否  | 是 | 缩略值。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| size                     | [Size](#size)                      | 否  | 否|创建图片大小。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 
 ## DecodingOptions<sup>7+</sup>
 
@@ -5378,16 +5406,16 @@ PixelMap的初始化选项。
 
 | 名称               | 类型                               | 只读 | 可选 | 说明             |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
-| sampleSize         | number                             | 否   | 是   | 缩略图采样大小，默认值为1。当前只能取1。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| rotate             | number                             | 否   | 是   | 旋转角度。默认值为0。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
-| editable           | boolean                            | 否   | 是   | 是否可编辑。默认值为false。当取值为false时，图片不可二次编辑，如crop等操作将失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
-| desiredSize        | [Size](#size)                      | 否   | 是   | 期望输出大小。默认值为空。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
-| desiredRegion      | [Region](#region7)                 | 否   | 是   | 解码区域。默认值为空。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
-| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 解码的像素格式。默认值为RGBA_8888。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| index              | number                             | 否   | 是   | 解码图片序号。默认值为0。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
-| fitDensity<sup>9+</sup> | number                        | 否   | 是   | 图像像素密度，单位为ppi。默认值为0。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
-| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 否   | 是   | 目标色彩空间。 |
-| desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 否   | 是   | 目标动态范围。通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource不支持该操作，默认解码为SDR内容。默认值为SDR。 |
+| sampleSize         | number                             | 否   | 是   | 缩略图采样大小，默认值为1。当前只能取1。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| rotate             | number                             | 否   | 是   | 旋转角度。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| editable           | boolean                            | 否   | 是   | 是否可编辑。默认值为false。当取值为false时，图片不可二次编辑，如writepixels操作将失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
+| desiredSize        | [Size](#size)                      | 否   | 是   | 期望输出大小。默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| desiredRegion      | [Region](#region7)                 | 否   | 是   | 解码区域。默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 解码的像素格式。默认值为RGBA_8888。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| index              | number                             | 否   | 是   | 解码图片序号。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| fitDensity<sup>9+</sup> | number                        | 否   | 是   | 图像像素密度，单位为ppi。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 否   | 是   | 目标色彩空间。默认值为UNKNOWN。 |
+| desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 否   | 是   | 目标动态范围，默认值为SDR。<br>通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource不支持设置此属性，默认解码为SDR内容。<br>如果平台不支持HDR，设置无效，默认解码为SDR内容。 |
 
 ## Region<sup>7+</sup>
 
@@ -5395,7 +5423,7 @@ PixelMap的初始化选项。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -5409,7 +5437,7 @@ PixelMap的初始化选项。
 
 表示图片打包选项。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -5625,7 +5653,7 @@ PixelMap的初始化选项。
 | FRONT_CAMERA <sup>12+</sup> | "HwMnoteFrontCamera" | 是否是前置相机自拍。 |
 | SCENE_POINTER <sup>12+</sup> | "HwMnoteScenePointer" | 场景指针。 |
 | SCENE_VERSION <sup>12+</sup> | "HwMnoteSceneVersion" | 场景算法版本信息。 |
-| GIF_LOOP_COUNT <sup>12+</sup> | "GIFLoopCount" | GIF图片循环次数。 |
+| GIF_LOOP_COUNT <sup>12+</sup> | "GIFLoopCount" | GIF图片循环次数。0表示无限循环，其他值表示循环次数。 |
 
 ## ImageFormat<sup>9+</sup>
 

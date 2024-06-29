@@ -1,9 +1,9 @@
 # 入门
-
+<!--Del-->
 - 快速入门
   - [开发准备](start-overview.md)
   - [构建第一个ArkTS应用（Stage模型）](start-with-ets-stage.md)
-
+<!--DelEnd-->
 - 开发基础知识
   - 应用程序包基础知识
     - [应用程序包概述](application-package-overview.md)
@@ -110,6 +110,10 @@
       - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](arkts-new-Provider-and-Consumer.md)
       - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
       - [!!语法：双向绑定](arkts-new-binding.md)
+      - [自定义组件冻结功能](arkts-custom-components-freezeV2.md)
+      - [AppStorageV2: 应用全局UI状态存储](arkts-new-appstoragev2.md)
+      - [PersistenceV2: 持久化存储UI状态](arkts-new-persistencev2.md)
+      - [\@Type装饰器: 标记类属性的类型](arkts-new-type.md)
 
   - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)

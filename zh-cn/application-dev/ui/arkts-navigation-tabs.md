@@ -351,7 +351,7 @@ Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.cu
   **图13** 支持开发者自定义页面切换拦截事件 
 
 ![TabsChange3](figures/TabsChange3.gif)
-
+<!--Del-->
 ## 支持适老化
 
 在适老化大字体场景下，底部页签提供大字体弹窗显示内容。当组件识别到大字体时，基于设置的文字和图标等内容，构建长按提示弹窗。当用户长按弹窗后，滑动到下一个页签位置时，使用新页签的弹窗提示内容替换上一个页签提示内容，抬手关闭弹窗并切换到对应TabContent内容页。
@@ -365,11 +365,9 @@ Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.cu
 ![适老化弹窗](figures/tabs11.png)
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { Configuration } from '@ohos.app.ability.Configuration';
-import { BusinessError } from '@ohos.base';
-import promptAction from '@ohos.promptAction';
-import uiAppearance from '@ohos.uiAppearance';
+import { abilityManager, Configuration } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { promptAction, uiAppearance } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -515,6 +513,7 @@ struct Demo {
   }
 }
 ```
+<!--DelEnd-->
 
 ## 相关实例
 

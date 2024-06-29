@@ -47,6 +47,7 @@ You can use the JAR package of the packing tool to generate an HAP file for a mo
 | --dir-list       | No        | NA            | List of directories (folders) to be packed into the HAP file.                     | NA              |
 | --compress-level | No        | number        | Compression level, ranging from 1 to 9. The default value is **1**. This parameter is valid only when **compressNativeLibs** is set to **true**. A larger value indicates a higher compression rate and a slower compression speed.| NA  |
 | --pkg-context-path      | No        | NA            | Path of the **pkgContextInfo.json** file, which contains the context information.| This parameter is valid only in the stage model.             |
+| --hnp-path | No| NA | Path of the native software package to be packed into the HAP file.| NA |
 
 ## HSP Packing Command
 
@@ -80,8 +81,11 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 
 You can use the JAR package of the packing tool to generate an APP file for an application by passing in packing options and file paths. The APP file is used to release the application to the application market.
 
-**HAP validity check**: When packing the HAP files in a project to generate an APP file, ensure that the values of **bundleName**, **versionCode**, **versionName**, **minCompatibleVersionCode**, **debug**, **minAPIVersion**, **targetAPIVersion**, and **apiReleaseType** configured in each JSON file of the HAP are the same, and the value of **moduleName** is unique in all the JSON files. For the FA model, you must also ensure that the value of **package** is unique in all the JSON files.
+**HAP validity check**: When packing the HAP files in a project to generate an APP file, ensure that the values of **bundleName**, **versionCode**, **minCompatibleVersionCode**, **debug**, **minAPIVersion**, **targetAPIVersion**, and **apiReleaseType** configured in each JSON file of the HAP are the same, and the value of **moduleName** is unique in all the JSON files. For the FA model, you must also ensure that the value of **package** is unique in all the JSON files.
 
+>**NOTE**
+>
+>Since API version 12, **versionName** is not verified during application packing.
 
 Packing command example:
 
@@ -108,7 +112,11 @@ java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option
 
 If multiple teams develop the same application but it is inconvenient to share code, you can use multi-project packing, which packs the packed HAP, HSP, and APP files into a final APP file and releases it to the application market.
 
-**HAP validity check**: Ensure that the values of **bundleName**, **versionCode**, **versionName**, **minCompatibleVersionCode**, **debug**, **minAPIVersion**, **targetAPIVersion**, **apiReleaseType**, **compileSdkVersion**, and **compileSdkType** configured in each JSON file of the HAP are the same, the value of **moduleName** is unique in all the JSON files, and the value of **entry** is unique for the same device. For the FA model, you must also ensure that the value of **package** is unique in all the JSON files.
+**HAP validity check**: Ensure that the values of **bundleName**, **versionCode**, **minCompatibleVersionCode**, **debug**, **minAPIVersion**, **targetAPIVersion**, **apiReleaseType**, **compileSdkVersion**, and **compileSdkType** configured in each JSON file of the HAP are the same, the value of **moduleName** is unique in all the JSON files, and the value of **entry** is unique for the same device. For the FA model, you must also ensure that the value of **package** is unique in all the JSON files.
+
+>**NOTE**
+>
+>Since API version 12, **versionName** is not verified during multi-project packing.
 
 Packing command example:
 
@@ -136,7 +144,7 @@ If you find detects in the application and want to rectify the defects quickly, 
 Packing command example:
 
 ```
-java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <option> --ets-path <option> --out-path <option>
+java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <option> --ets-path <option> --resources-path <option> --out-path <option>
 ```
 
 **Table 5** Parameters of the HQF packing command
@@ -147,6 +155,7 @@ java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <optio
 | --json-path | Yes    | NA          | Path of the JSON file. The file name must be **patch.json**.       |
 | --lib-path  | No    | NA          | Path of the library file.                        |
 | --ets-path  | No    | NA          | Path of the ETS file.                      |
+| --resources-path  | No    | NA          | Path of the resources file.                      |
 | --out-path  | Yes    | NA          | Path of the target file. The file name extension must be .hqf.             |
 | --force     | No    | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing.|
 

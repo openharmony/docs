@@ -17,13 +17,13 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_audio_common.h](native__audio__common_8h.md) | 声明音频公共基础数据结构。<br/>**引用文件**：&lt;ohaudio/native_audio_common.h&gt;<br/>**库**：libohaudio.so | 
-| [native_audio_device_base.h](native__audio__device__base_8h.md) | 定义音频设备参数的类型以及获取每个设备参数的接口。<br/>**引用文件**：&lt;ohaudio/native_audio_device_base.h&gt;<br/>**库**：libohaudio.so | 
-| [native_audio_routing_manager.h](native__audio__routing__manager_8h.md) | 声明与音频路由管理器相关的接口。<br/>**引用文件**：&lt;ohaudio/native_audio_routing_manager.h&gt;<br/>**库**：libohaudio.so | 
-| [native_audiocapturer.h](native__audiocapturer_8h.md) | 声明输入类型的音频流相关接口。<br/>**引用文件**：&lt;ohaudio/native_audiocapturer.h&gt;<br/>**库**：libohaudio.so | 
-| [native_audiorenderer.h](native__audiorenderer_8h.md) | 声明输出类型的音频流相关接口。<br/>**引用文件**：&lt;ohaudio/native_audiorenderer.h&gt;<br/>**库**：libohaudio.so | 
-| [native_audiostream_base.h](native__audiostream__base_8h.md) | 声明OHAudio基础的数据结构。<br/>**引用文件**：&lt;ohaudio/native_audiostream_base.h&gt;<br/>**库**：libohaudio.so | 
-| [native_audiostreambuilder.h](native__audiostreambuilder_8h.md) | 声明音频流构造器相关接口。<br/>**引用文件**：&lt;ohaudio/native_audiostreambuilder.h&gt;<br/>**库**：libohaudio.so | 
+| [native_audio_common.h](native__audio__common_8h.md) | 声明音频公共基础数据结构。 | 
+| [native_audio_device_base.h](native__audio__device__base_8h.md) | 定义音频设备参数的类型以及获取每个设备参数的接口。<br/> | 
+| [native_audio_routing_manager.h](native__audio__routing__manager_8h.md) | 声明与音频路由管理器相关的接口。 | 
+| [native_audiocapturer.h](native__audiocapturer_8h.md) | 声明输入类型的音频流相关接口。 | 
+| [native_audiorenderer.h](native__audiorenderer_8h.md) | 声明输出类型的音频流相关接口。 | 
+| [native_audiostream_base.h](native__audiostream__base_8h.md) | 声明OHAudio基础的数据结构。 | 
+| [native_audiostreambuilder.h](native__audiostreambuilder_8h.md) | 声明音频流构造器相关接口。 | 
 
 
 ### 结构体
@@ -811,17 +811,18 @@ enum OH_AudioStream_Usage
 | -------- | -------- |
 | AUDIOSTREAM_USAGE_UNKNOWN  | 未定义。   | 
 | AUDIOSTREAM_USAGE_MUSIC  | 音乐。   | 
-| AUDIOSTREAM_USAGE_COMMUNICATION  | 通话。   | 
-| AUDIOSTREAM_USAGE_VOICE_ASSISTANT  | 语音助手。   | 
+| AUDIOSTREAM_USAGE_COMMUNICATION  | VOIP通话。   | 
+| AUDIOSTREAM_USAGE_VOICE_ASSISTANT  | 语音播报。   | 
 | AUDIOSTREAM_USAGE_ALARM  | 闹钟。   | 
 | AUDIOSTREAM_USAGE_VOICE_MESSAGE  | 语音消息。   | 
 | AUDIOSTREAM_USAGE_RINGTONE  | 铃声。   | 
 | AUDIOSTREAM_USAGE_NOTIFICATION  | 通知。   | 
 | AUDIOSTREAM_USAGE_ACCESSIBILITY  | 无障碍。   | 
-| AUDIOSTREAM_USAGE_MOVIE  | 视频。   | 
-| AUDIOSTREAM_USAGE_GAME  | 游戏。   | 
-| AUDIOSTREAM_USAGE_AUDIOBOOK  | 有声读物。   | 
+| AUDIOSTREAM_USAGE_MOVIE  | 电影或视频。   | 
+| AUDIOSTREAM_USAGE_GAME  | 游戏音效。   | 
+| AUDIOSTREAM_USAGE_AUDIOBOOK  | 有声读物（包括听书、相声、评书）、听新闻、播客等。   | 
 | AUDIOSTREAM_USAGE_NAVIGATION  | 导航。   | 
+| AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION | 视频通话。<br>**起始版本：** 12 | 
 
 
 ## 函数说明
@@ -847,7 +848,7 @@ OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer *capturer)
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -877,7 +878,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetCapturerInfo(OH_AudioCapturer *capture
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -905,7 +906,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetChannelCount(OH_AudioCapturer *capture
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -933,7 +934,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetCurrentState(OH_AudioCapturer *capture
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -961,7 +962,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetEncodingType(OH_AudioCapturer *capture
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -989,7 +990,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback(OH_AudioCapturer *
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1019,7 +1020,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetFramesRead (OH_AudioCapturer *capturer
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1047,7 +1048,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode(OH_AudioCapturer *capturer
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1073,7 +1074,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount (OH_AudioCapturer *captu
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1101,7 +1102,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetSampleFormat(OH_AudioCapturer *capture
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1129,7 +1130,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate(OH_AudioCapturer *capture
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1157,7 +1158,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetStreamId(OH_AudioCapturer *capturer, u
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1187,7 +1188,7 @@ OH_AudioStream_Result OH_AudioCapturer_GetTimestamp(OH_AudioCapturer *capturer, 
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1223,7 +1224,7 @@ ohos.permission.MICROPHONE
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1256,7 +1257,7 @@ ohos.permission.MICROPHONE
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1289,7 +1290,7 @@ ohos.permission.MICROPHONE
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1322,7 +1323,7 @@ ohos.permission.MICROPHONE
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1575,7 +1576,7 @@ OH_AudioStream_Result OH_AudioRenderer_CancelMark (OH_AudioRenderer *renderer)
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1602,7 +1603,7 @@ OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer *renderer)
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1632,7 +1633,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelCount(OH_AudioRenderer *rendere
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1660,7 +1661,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelLayout (OH_AudioRenderer *rende
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1688,7 +1689,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetCurrentState(OH_AudioRenderer *rendere
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1716,7 +1717,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetEffectMode (OH_AudioRenderer *renderer
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1744,7 +1745,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetEncodingType(OH_AudioRenderer *rendere
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1772,7 +1773,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetFrameSizeInCallback(OH_AudioRenderer *
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1800,7 +1801,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten(OH_AudioRenderer *render
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1828,7 +1829,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode(OH_AudioRenderer *renderer
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1856,7 +1857,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo(OH_AudioRenderer *rendere
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1884,7 +1885,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetRendererPrivacy (OH_AudioRenderer *ren
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1912,7 +1913,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat(OH_AudioRenderer *rendere
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1940,7 +1941,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate(OH_AudioRenderer *rendere
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -1968,7 +1969,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetSilentModeAndMixWithOthers(OH_AudioRen
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOSTREAM_SUCCESS 函数执行成功。 
 
@@ -1997,7 +1998,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetSpeed (OH_AudioRenderer * renderer, fl
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2025,7 +2026,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetStreamId(OH_AudioRenderer *renderer, u
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2055,7 +2056,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer *renderer, 
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2086,7 +2087,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetUnderflowCount (OH_AudioRenderer *rend
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2113,11 +2114,11 @@ OH_AudioStream_Result OH_AudioRenderer_GetVolume (OH_AudioRenderer *renderer, fl
 | 名称 | 描述 | 
 | -------- | -------- |
 | renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。  | 
-| volume | 指向一个获取当前音频流音量值的指针。  | 
+| volume | 指向一个获取当前音频流音量值的指针。音量值的范围是[0.0, 1.0]。  |
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2147,7 +2148,7 @@ OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer *renderer)
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2176,7 +2177,7 @@ OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer *renderer)
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2206,7 +2207,7 @@ OH_AudioStream_Result OH_AudioRenderer_SetEffectMode (OH_AudioRenderer *renderer
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2236,7 +2237,7 @@ OH_AudioStream_Result OH_AudioRenderer_SetMarkPosition (OH_AudioRenderer *render
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2271,7 +2272,7 @@ OH_AudioStream_Result OH_AudioRenderer_SetSilentModeAndMixWithOthers (OH_AudioRe
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOSTREAM_SUCCESS：函数执行成功。 
 
@@ -2299,7 +2300,7 @@ OH_AudioStream_Result OH_AudioRenderer_SetSpeed (OH_AudioRenderer *renderer, flo
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2323,11 +2324,11 @@ OH_AudioStream_Result OH_AudioRenderer_SetVolume (OH_AudioRenderer *renderer, fl
 | 名称 | 描述 | 
 | -------- | -------- |
 | renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。  | 
-| volume | 设置当前音频流音量，音量值范围[0.0, 1.0]。  | 
+| volume | 设置当前音频流音量，音量值的范围是[0.0, 1.0]。  |
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2363,7 +2364,7 @@ OH_AudioStream_Result OH_AudioRenderer_SetVolumeWithRamp (OH_AudioRenderer *rend
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2397,7 +2398,7 @@ OH_AudioStream_Result OH_AudioRenderer_Start(OH_AudioRenderer *renderer)
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOSTREAM_SUCCESS：函数执行成功。 
 
@@ -2426,7 +2427,7 @@ OH_AudioStream_Result OH_AudioRenderer_Stop(OH_AudioRenderer *renderer)
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2579,7 +2580,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Create(OH_AudioStreamBuilder **build
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2606,7 +2607,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Destroy(OH_AudioStreamBuilder *build
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2636,7 +2637,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer(OH_AudioStreamBuild
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2668,7 +2669,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer(OH_AudioStreamBuild
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2701,7 +2702,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBu
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2732,7 +2733,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInfo(OH_AudioStreamBuilde
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2763,7 +2764,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelCount(OH_AudioStreamBuilde
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2794,7 +2795,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelLayout (OH_AudioStreamBuil
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2822,7 +2823,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetEncodingType(OH_AudioStreamBuilde
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2852,7 +2853,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetFrameSizeInCallback(OH_AudioStrea
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2880,7 +2881,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetLatencyMode(OH_AudioStreamBuilder
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2909,7 +2910,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererCallback(OH_AudioStreamBu
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2940,7 +2941,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInfo(OH_AudioStreamBuilde
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -2971,7 +2972,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptMode (OH_AudioSt
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -3004,7 +3005,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallbac
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -3035,7 +3036,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererPrivacy (OH_AudioStreamBu
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -3069,7 +3070,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererWriteDataCallback (OH_Aud
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOSTREAM_SUCCESS：函数执行成功。 
 
@@ -3100,7 +3101,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSampleFormat(OH_AudioStreamBuilde
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -3128,7 +3129,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSamplingRate(OH_AudioStreamBuilde
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
@@ -3160,7 +3161,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback (OH
 
 **返回：**
 
-函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
