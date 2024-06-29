@@ -13,7 +13,8 @@ FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeC
 ## 导入模块
 
 ```ts
-import { FrameNode, LayoutConstraint, typeNode } from "@ohos.arkui.node";
+import { typeNode } from "@ohos.arkui.node";
+import { FrameNode, LayoutConstraint } from "@kit.ArkUI";
 ```
 
 ## FrameNode
@@ -53,7 +54,7 @@ getRenderNode(): RenderNode | null
 **示例：**
 
 ```ts
-import { NodeController, FrameNode } from '@ohos.arkui.node';
+import { NodeController, FrameNode } from '@kit.ArkUI';
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
@@ -771,7 +772,7 @@ dispose(): void
 **示例：**
 
 ```ts
-import { FrameNode, NodeController, BuilderNode } from "@ohos.arkui.node"
+import { NodeController, FrameNode, BuilderNode } from '@kit.ArkUI';
 
 @Component
 struct TestComponent {
@@ -1098,7 +1099,8 @@ addComponentContent\<T>(content: ComponentContent\<T>): void
 | content | [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent)\<T> | 是   | FrameNode节点中显示的组件内容。 |
 
 ```ts
-import { typeNode, NodeController, FrameNode, ComponentContent } from '@ohos.arkui.node';
+import { NodeController, FrameNode, ComponentContent } from '@kit.ArkUI';
+import { typeNode } from '@ohos.arkui.node';
 
 @Builder
 function buildText() {
@@ -1154,7 +1156,7 @@ disposeTree(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { FrameNode, NodeController, BuilderNode } from "@kit.ArkUI"
+import { FrameNode, NodeController, BuilderNode } from '@kit.ArkUI';
 
 @Component
 struct TestComponent {
@@ -1975,7 +1977,8 @@ typeNode.createNode(uiContext, 'ListItem');
 以Text节点为例，创建Text类型节点。
 
 ```ts
-import { typeNode, NodeController, FrameNode } from '@ohos.arkui.node';
+import { NodeController, FrameNode } from '@kit.ArkUI';
+import { typeNode } from '@ohos.arkui.node';
 
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
@@ -2013,9 +2016,9 @@ struct FrameNodeTypeTest {
 
 ## 节点操作示例
 ```ts
-import { FrameNode, NodeController } from "@ohos.arkui.node";
-import { UIContext } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 const TEST_TAG : string = "FrameNode"
 class MyNodeController extends NodeController {
   public frameNode: FrameNode | null = null;
@@ -2425,7 +2428,7 @@ struct Index {
 ```
 ## 基础事件示例
 ```ts
-import { FrameNode, NodeController } from '@ohos.arkui.node'
+import { NodeController, FrameNode } from '@kit.ArkUI';
 
 class MyNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
@@ -2855,9 +2858,8 @@ export class TrackManager {
 ## 节点自定义示例
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { DrawContext, FrameNode, NodeController, LayoutConstraint, Size, Position } from '@ohos.arkui.node';
-import drawing from '@ohos.graphics.drawing';
+import { UIContext, DrawContext, FrameNode, NodeController, LayoutConstraint, Size, Position } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 
 function GetChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode): LayoutConstraint {
   const size = child.getUserConfigSize();

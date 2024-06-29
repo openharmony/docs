@@ -127,7 +127,7 @@ transform(value: Matrix4Transit)
 
 ```ts
 // xxx.ets
-import matrix4 from '@ohos.matrix4'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component

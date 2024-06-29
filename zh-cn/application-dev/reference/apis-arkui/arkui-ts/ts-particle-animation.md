@@ -402,7 +402,6 @@ enum ParticleUpdater {
 
 ```ts
 // xxx.ets
-// xxx.ets
 @Entry
 @Component
 struct ParticleExample {
