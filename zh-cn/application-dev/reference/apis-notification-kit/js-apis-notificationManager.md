@@ -1418,7 +1418,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## notificationManager.isDistributedEnabled
+## notificationManager.isDistributedEnabled   
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
