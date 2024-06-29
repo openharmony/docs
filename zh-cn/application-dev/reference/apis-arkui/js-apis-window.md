@@ -5612,7 +5612,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowDecorHeight(height: number): void
 
-设置主窗口标题栏高度或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。
+设置主窗口或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
