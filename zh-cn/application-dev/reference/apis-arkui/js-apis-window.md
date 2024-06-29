@@ -4255,7 +4255,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowDecorHeight(height: number): void
 
-设置窗口标题栏高度。
+设置主窗口或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4288,7 +4288,7 @@ try {
 
 getWindowDecorHeight(): number
 
-获取窗口标题栏高度。
+获取主窗口或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4320,7 +4320,7 @@ try {
 
 getTitleButtonRect(): TitleButtonRect
 
-获取标题栏上的最小化、最大化、关闭按钮矩形区域。
+获取主窗口或启用装饰的子窗口的标题栏上的最小化、最大化、关闭按钮矩形区域，此接口仅可在2in1设备上使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
