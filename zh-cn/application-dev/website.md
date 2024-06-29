@@ -1054,7 +1054,6 @@
           - [hitrace](dfx/hitrace.md)
           - [hiperf](dfx/hiperf.md)
           - [hisysevent](dfx/hisysevent.md)
-          - [toybox](tools/toybox.md)
         <!--Del-->
           - [uinput](dfx/uinput.md)
         <!--DelEnd-->
@@ -1072,8 +1071,12 @@
         - [cem工具](tools/cem-tool.md)
         - [anm工具](tools/anm-tool.md)
         - [restool工具](tools/restool.md)
+        <!--Del-->
         - [LLDB工具](tools/lldb-tool.md)
+        <!--DelEnd-->
         - [param工具](tools/param-tool.md)
+        - 命令行工具
+          - [toybox工具](tools/toybox.md)
   - 媒体<!--media-->
     - Audio Kit（音频服务）
       - [Audio Kit简介](media/audio/audio-kit-intro.md)
