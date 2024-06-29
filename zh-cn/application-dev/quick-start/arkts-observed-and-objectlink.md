@@ -259,7 +259,7 @@ struct ViewA {
 
   build() {
     Column() {
-      Text(`ViewC [${this.label}] this.bag.size = ${this.bag.size}`)
+      Text(`ViewA [${this.label}] this.bag.size = ${this.bag.size}`)
         .fontColor('#ffffffff')
         .backgroundColor('#ff3d9dba')
         .width(320)
@@ -320,7 +320,7 @@ struct ViewB {
         .width(320)
       ViewC({ label: 'ViewC #3', bookName: this.child.bookName })
         .width(320)
-      Button(`ViewC: this.child.bookName.size add 10`)
+      Button(`ViewB: this.child.bookName.size add 10`)
         .width(320)
         .backgroundColor('#ff17a98d')
         .margin(10)
