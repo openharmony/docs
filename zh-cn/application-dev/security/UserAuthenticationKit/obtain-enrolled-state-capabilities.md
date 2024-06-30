@@ -22,8 +22,8 @@
 以查询用户人脸注册凭据的状态为例：
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
