@@ -9186,7 +9186,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    const callback = (windowStageEventType：window.WindowStageEventType) => {
+    const callback = (windowStageEventType: window.WindowStageEventType) => {
       // ...
     }
     try {
