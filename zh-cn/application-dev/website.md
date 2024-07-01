@@ -1621,7 +1621,7 @@
       - [广告服务框架错误码](reference/apis-ads-kit/errorcode-ads.md)
       - [广告标识服务错误码](reference/apis-ads-kit/errorcode-oaid.md)
   <!--DelEnd-->
-  - ArkData（方舟编程语言）<!--arkdata-api-->
+  - ArkData（方舟数据管理）<!--arkdata-api-->
     - ArkTS API<!--arkdata-arkts-->
       - [@ohos.data.commonType (数据通用类型)](reference/apis-arkdata/js-apis-data-commonType.md)
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis-arkdata/js-apis-data-ability.md)
