@@ -2412,8 +2412,7 @@ openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
+import { ServiceExtensionAbility, Want, OpenLinkOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function log(info: string) {

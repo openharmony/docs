@@ -2076,8 +2076,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 **示例：**
 
 ```ts
-import { UIAbility, common } from '@kit.AbilityKit';
-import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
+import { UIAbility, common, AtomicServiceOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -2168,9 +2167,8 @@ openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Ab
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
+import { common, OpenLinkOptions } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const DOMAIN = 0xeeee;
