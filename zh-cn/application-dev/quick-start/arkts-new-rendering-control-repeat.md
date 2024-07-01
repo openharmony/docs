@@ -1,4 +1,6 @@
-# Repeat：循环渲染(推荐)
+# Repeat：子组件复用
+
+Repeat从API version 12开始支持。 当前状态管理（V2试用版）仍在逐步开发中，相关功能尚未成熟，建议开发者尝鲜试用。
 
 Repeat组件基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件。例如，ListItem组件要求Repeat的父容器组件必须为[List组件](../reference/apis-arkui/arkui-ts/ts-container-list.md)。
 

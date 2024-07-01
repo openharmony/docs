@@ -87,10 +87,10 @@
       - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](arkts-new-Provider-and-Consumer.md)
       - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
       - [!!语法：双向绑定](arkts-new-binding.md)
+      - [Repeat：子组件复用](arkts-new-rendering-control-repeat.md)
   - 渲染控制
     - [渲染控制概述](arkts-rendering-control-overview.md)
     - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
     - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
     - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
-    - [Repeat：循环渲染(推荐)](arkts-rendering-control-repeat.md)
     - [ContentSlot：混合开发](arkts-rendering-control-contentslot.md)
