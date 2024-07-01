@@ -93,7 +93,7 @@ export default class EntryAbility extends UIAbility {
 
 setSupportedProcessCache(isSupported : boolean): void
 
-应用设置自身是否支持缓存后快速启动。
+应用设置自身是否支持缓存后快速启动。仅支持主线程调用。
 
 > **说明：**
 >
