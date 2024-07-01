@@ -194,6 +194,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 
 ```ts
 import { TipsDialog } from '@ohos.arkui.advanced.Dialog'
+
 @Entry
 @Component
 struct Index {
@@ -246,6 +247,7 @@ struct Index {
 
 ```ts
 import { SelectDialog } from '@ohos.arkui.advanced.Dialog'
+
 @Entry
 @Component
 struct Index {
@@ -309,6 +311,7 @@ struct Index {
 
 ```ts
 import { ConfirmDialog } from '@ohos.arkui.advanced.Dialog'
+
 @Entry
 @Component
 struct Index {
@@ -416,6 +419,7 @@ struct Index {
 
 ```ts
 import { LoadingDialog } from '@ohos.arkui.advanced.Dialog'
+
 @Entry
 @Component
 struct Index {
