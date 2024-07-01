@@ -260,7 +260,7 @@ struct ViewA {
 
   build() {
     Column() {
-      Text(`ViewC [${this.label}] this.bag.size = ${this.bag.size}`)
+      Text(`ViewA [${this.label}] this.bag.size = ${this.bag.size}`)
         .fontColor('#ffffffff')
         .backgroundColor('#ff3d9dba')
         .width(320)
@@ -321,7 +321,7 @@ struct ViewB {
         .width(320)
       ViewC({ label: 'ViewC #3', bookName: this.child.bookName })
         .width(320)
-      Button(`ViewC: this.child.bookName.size add 10`)
+      Button(`ViewB: this.child.bookName.size add 10`)
         .width(320)
         .backgroundColor('#ff17a98d')
         .margin(10)
@@ -356,15 +356,15 @@ The @Observed decorated **BookName** class can observe changes in the attributes
 Event handles in **ViewB**:
 
 
-- **this.user.bag = new Bag(10)** and **this.user = new User(new Bag(20))**: Change to the \@State decorated variable **b** and its attributes.
+- **this.user.bag = new Bag(10)** and **this.user = new User(new Bag(20))**: Change to the \@State decorated variable **size** and its attributes.
 
-- **this.child.bookName.size += ...**: Change at the second layer. Though \@State cannot observe changes at the second layer, the change of an attribute of \@Observed decorated ClassA, which is attribute **c** in this example, can be observed by \@ObjectLink.
+- **this.child.bookName.size += ...**: Change at the second layer. Though \@State cannot observe changes at the second layer, the change of an attribute of \@Observed decorated **Bag**, which is attribute **size** in this example, can be observed by \@ObjectLink.
 
 
 Event handle in **ViewC**:
 
 
-- **this.bookName.size += 1**: A change to the \@ObjectLink decorated variable **a** causes the button label to be updated. Unlike \@Prop, \@ObjectLink does not have a copy of its source. Instead, \@ObjectLink creates a reference to its source.
+- **this.bookName.size += 1**: A change to the \@ObjectLink decorated variable **size** causes the button label to be updated. Unlike \@Prop, \@ObjectLink does not have a copy of its source. Instead, \@ObjectLink creates a reference to its source.
 
 - The \@ObjectLink decorated variable is read-only. Assigning **this.bookName = new bookName(...)** is not allowed. Once value assignment occurs, the reference to the data source is reset and the synchronization is interrupted.
 
@@ -713,7 +713,7 @@ struct SetSampleNestedChild {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.mySet.entries()), (item: number) => {
+        ForEach(Array.from(this.mySet.entries()), (item: [number, number]) => {
           Text(`${item}`).fontSize(30)
           Divider()
         })
@@ -834,7 +834,7 @@ struct Child {
 
 It is not allowed to assign a value to an @ObjectLink decorated variable in the child component.
 
-[Nonexample]
+[Incorrect Usage]
 
 ```ts
 @Observed
@@ -885,7 +885,7 @@ this.testNum = new ClassA(47);
 
 This is not allowed. For @ObjectLink that implements two-way data synchronization, assigning a value is equivalent to updating the array item or class attribute in the parent component, which is not supported in TypeScript/JavaScript and will result in a runtime error.
 
-[Example]
+[Correct Usage]
 
 ```ts
 @Observed
@@ -934,7 +934,7 @@ If you find your application UI not updating after an attribute in a nested obje
 
 Each decorator has its scope of observable changes, and only those observed changes can cause the UI to update. The \@Observed decorator can observe the attribute changes of nested objects, while other decorators can observe only the changes at the first layer.
 
-[Nonexample]
+[Incorrect Usage]
 
 In the following example, some UI components are not updated.
 
@@ -1036,7 +1036,7 @@ struct MyView {
   - Construct a child component for separate rendering of the **ClassC** instance. Then, in this child component, you can use \@ObjectLink or \@Prop to decorate **c : ClassC**. In general cases, use \@ObjectLink, unless local changes to the **ClassC** object are required.
   - The nested **ClassC** object must be decorated by \@Observed. When a **ClassC** object is created in **ClassB** (**ClassB(10, 20, 30)** in this example), it is wrapped in the ES6 proxy. When the **ClassC** attribute changes (this.b.c.c += 1), the \@ObjectLink decorated variable is notified of the change.
 
-[Example]
+[Correct Usage]
 
 The following example uses \@Observed/\@ObjectLink to observe property changes for nested objects.
 
@@ -1148,7 +1148,7 @@ struct MyView {
 
 ### UI Not Updated on Attribute Changes in Complex Nested Objects
 
-[Nonexample]
+[Incorrect Usage]
 
 The following example creates a child component with an \@ObjectLink decorated variable to render **ParentCounter** with nested attributes. Specifically, **SubCounter** nested in **ParentCounter** is decorated with \@Observed.
 
@@ -1252,7 +1252,7 @@ However, when **this.counter[0].setSubCounter(10)** is called in **onClick** of 
 
 However, when **this.counter[0].incrCounter()** is called for the first click event, it marks **\@ObjectLink value: ParentCounter** in the **CounterComp** component as changed. In this case, an update of **Text('${this.value.subCounter.counter}')** is triggered. If **this.counter[0].incrCounter()** is deleted from the first click event, the UI cannot be updated.
 
-[Example]
+[Correct Usage]
 
 To solve the preceding problem, you can use the following method to directly observe the attributes in **SubCounter** so that the **this.counter[0].setSubCounter(10)** API works:
 
@@ -1489,7 +1489,7 @@ The following figure shows how \@ObjectLink works.
 
 ![en-us_image_0000001651665921](figures/en-us_image_0000001651665921.png)
 
-[Nonexample]
+[Incorrect Usage]
 
 If \@Prop is used instead of \@ObjectLink, then: When the first click handler is clicked, the UI is updated properly; However, when the second **onClick** event occurs, the first **Text** component of **CounterComp** is not re-rendered, because \@Prop makes a local copy of the variable.
 
@@ -1524,7 +1524,7 @@ The following figure shows how \@Prop works.
 
 ![en-us_image_0000001602146116](figures/en-us_image_0000001602146116.png)
 
-[Example]
+[Correct Usage]
 
 Make only one copy of \@Prop value: ParentCounter from **ParentComp** to **CounterComp**. Do not make another copy of **SubCounter**.
 
@@ -1652,7 +1652,7 @@ In state management, @Observed decorated classes are wrapped with a proxy. When 
 
 If the value change of a member variable occurs in the class constructor, the change does not pass through the proxy (because the change occurs in the data source). Therefore, even if the change is successful with a timer in the class constructor, the UI cannot be re-rendered.
 
-[Nonexample]
+[Incorrect Usage]
 
 ```ts
 @Observed
@@ -1698,7 +1698,7 @@ struct Index {
 
 In the preceding example, a timer is used in the constructor of **RenderClass**. Though the value of **waitToRender** changes 1 second later, the UI is not re-rendered. After the button is clicked to forcibly refresh the **\<Text>** component, you can see that the value of **waitToRender** is changed to **true**.
 
-[Example]
+[Correct Usage]
 
 ```ts
 @Observed
