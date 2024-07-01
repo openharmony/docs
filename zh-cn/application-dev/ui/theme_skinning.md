@@ -140,12 +140,7 @@
 - 在Ability中设置[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)，需要在onWindowStageCreate()方法中[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme)。
 
   ```ts
-    import AbilityConstant from '@kit.ArkUI';
-    import hilog from '@kit.ArkUI';
-    import UIAbility from '@kit.ArkUI';
-    import Want from '@kit.ArkUI';
-    import window from '@kit.ArkUI';
-    import { CustomColors, ThemeControl } from '@kit.ArkUI';
+    import { AbilityConstant, hilog, UIAbility, Want, window, CustomColors, ThemeControl } from '@kit.ArkUI';
 
     class AppColors implements CustomColors {
       fontPrimary = 0xFFD53032
