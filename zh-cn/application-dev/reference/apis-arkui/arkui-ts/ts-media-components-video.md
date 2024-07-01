@@ -26,7 +26,7 @@ Video(value: VideoOptions)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | value | [VideoOptions](#videooptions对象说明) | 是 | 视频信息。 |
 

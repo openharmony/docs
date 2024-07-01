@@ -1217,7 +1217,7 @@ uiContext.CursorController();
 
 getContextMenuController(): ContextMenuController
 
-获取[ContextMenuController](js-apis-arkui-UIContext.md#contextmenucontroller12)对象，可通过该对象控制菜单。
+获取[ContextMenuController](#contextmenucontroller12)对象，可通过该对象控制菜单。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1227,7 +1227,7 @@ getContextMenuController(): ContextMenuController
 
 |类型|说明|
 |----|----|
-|[ContextMenuController](js-apis-arkui-UIContext.md#contextmenucontroller12)| 获取ContextMenuController对象。|
+|[ContextMenuController](#contextmenucontroller12)| 获取ContextMenuController对象。|
 
 **示例：**
 
@@ -5042,9 +5042,7 @@ addComponentContent(content: ComponentContent, index?: number): void
 **示例：**
 
 ```ts
-import { OverlayManager } from '@ohos.arkui.UIContext';
-import { ComponentContent } from '@ohos.arkui.node';
-import router from '@ohos.router';
+import { ComponentContent, OverlayManager, router } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
