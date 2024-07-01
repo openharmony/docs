@@ -71,12 +71,12 @@ import { window } from '@kit.ArkUI';
 
 | 名称                                   | 类型 |  必填 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#0x66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`'#0xE5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#0x66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`'#0xE5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | enableStatusBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能状态栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 | enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 
@@ -88,7 +88,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型 | 只读 | 可选 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| statusBarContentColor   | string   | 是   | 是   | 状态栏文字颜色。默认值：'#0xE5FFFFFF'。|
+| statusBarContentColor   | string   | 是   | 是   | 状态栏文字颜色。默认值：`'#0xE5FFFFFF'`。|
 
 ## Orientation<sup>9+</sup>
 
@@ -3150,7 +3150,7 @@ export default class EntryAbility extends UIAbility {
 
 on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
-开启主窗口固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+开启固定态软键盘高度变化的监听，软键盘与窗口存在重叠区域时通知键盘高度变化。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3204,7 +3204,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
-关闭主窗口固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+关闭固定态软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4342,7 +4342,7 @@ setWindowBackgroundColor(color: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| color | string | 是 | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color | string | 是 | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。 |
 
 **错误码：**
 
@@ -5725,7 +5725,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowDecorHeight(height: number): void
 
-设置主窗口标题栏高度。
+设置主窗口或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5781,7 +5781,7 @@ export default class EntryAbility extends UIAbility {
 
 getWindowDecorHeight(): number
 
-获取主窗口标题栏高度。
+获取主窗口或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5835,7 +5835,7 @@ export default class EntryAbility extends UIAbility {
 
 getTitleButtonRect(): TitleButtonRect
 
-获取主窗口标题栏上的最小化、最大化、关闭按钮矩形区域。
+获取主窗口或启用装饰的子窗口的标题栏上的最小化、最大化、关闭按钮矩形区域，此接口仅可在2in1设备上使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7429,7 +7429,7 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| color    | string                    | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color    | string                    | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -7472,7 +7472,7 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color  | string | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。 |
 
 **返回值：**
 

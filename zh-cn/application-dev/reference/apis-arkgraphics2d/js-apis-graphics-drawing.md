@@ -1642,6 +1642,52 @@ let typeface = font.getTypeface();
 let familyName = typeface.getFamilyName();
 ```
 
+### makeFromFile<sup>12+</sup>
+
+static makeFromFile(filePath: string): Typeface
+
+从指定字体文件，构造字体。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名         | 类型                                       | 必填   | 说明                  |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| filePath | string           | 是   | 表示字体资源存放的路径。 |
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| [Typeface](#typeface) | 返回Typeface对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class TextRenderNode extends RenderNode {
+  async draw(context: DrawContext) {
+    const canvas = context.canvas;
+    let font = new drawing.Font();
+    let str = "/system/fonts/HarmonyOS_Sans_Italic.ttf";
+    const mytypeface = drawing.Typeface.makeFromFile(str);
+    font.setTypeface(mytypeface);
+    const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.drawTextBlob(textBlob, 60, 100);
+  }
+}
+```
+
 ## Font
 
 描述字形绘制时所使用的属性，如大小、字体等。
@@ -1871,7 +1917,7 @@ measureText(text: string, encoding: TextEncoding): number
 
 > **说明：**
 >
-> 此接口用于测量原始字符串的文本宽度，若想测量排版后的文本宽度，建议使用[measure.measureText](../apis-arkui/js-apis-measure.md#measuremeasuretext)替代。
+> 此接口用于测量原始字符串的文本宽度，若想测量排版后的文本宽度，建议使用[measure.measureText](../apis-arkui/js-apis-measure.md#measuretextmeasuretext)替代。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 

@@ -20,7 +20,7 @@ animateTo(value: AnimateParam, event: () => void): void
 
 
 ```ts
-import curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -85,7 +85,7 @@ struct AnimateToDemo {
 
 
 ```ts
-import curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
