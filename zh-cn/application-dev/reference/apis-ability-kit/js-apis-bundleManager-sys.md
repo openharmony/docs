@@ -881,7 +881,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: Asy
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -943,7 +943,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let want: Want = {
     bundleName : "com.example.myapplication",
@@ -1011,7 +1011,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Arr
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -1035,7 +1035,7 @@ try {
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let want: Want = {
     bundleName : "com.example.myapplication",
@@ -1101,7 +1101,7 @@ queryAbilityInfoSync(want: Want, abilityFlags: number, userId?: number): Array\<
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -1123,7 +1123,7 @@ try {
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let want: Want = {
     bundleName : "com.example.myapplication",
@@ -1186,7 +1186,7 @@ queryAbilityInfo(wants: Array\<Want>, abilityFlags: number, userId?: number): Pr
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -1252,7 +1252,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let userId = 100;
@@ -1315,7 +1315,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let want: Want = {
@@ -1384,7 +1384,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
@@ -1410,7 +1410,7 @@ try {
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let want: Want = {
@@ -1477,7 +1477,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbility
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
@@ -1500,7 +1500,7 @@ try {
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let extensionAbilityType = bundleManager.ExtensionAbilityType.FORM;
 let extensionFlags = bundleManager.ExtensionAbilityFlag.GET_EXTENSION_ABILITY_INFO_DEFAULT;
 let want: Want = {
@@ -2141,7 +2141,7 @@ setAbilityEnabled(info: AbilityInfo, isEnabled: boolean, callback: AsyncCallback
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -2213,7 +2213,7 @@ setAbilityEnabled(info: AbilityInfo, isEnabled: boolean): Promise\<void>
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -2277,7 +2277,7 @@ setAbilityEnabledSync(info: AbilityInfo, isEnabled: boolean): void
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -2490,7 +2490,7 @@ isAbilityEnabled(info: AbilityInfo, callback: AsyncCallback\<boolean>): void
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -2558,7 +2558,7 @@ isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -2624,7 +2624,7 @@ isAbilityEnabledSync(info: AbilityInfo): boolean
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
 let userId = 100;
 let want: Want = {
@@ -2866,7 +2866,7 @@ getLaunchWantForBundleSync(bundleName: string, userId?: number): Want
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let bundleName = 'com.example.myapplication';
 let userId = 100;
 
@@ -2883,7 +2883,7 @@ try {
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let bundleName = 'com.example.myapplication';
 let userId = 100;
 
@@ -4060,7 +4060,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensio
 // 示例接口带userId参数查询
 import { bundleManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let extensionAbilityType = "form";
@@ -4084,7 +4084,7 @@ try {
 // 示例接口不带userId参数查询
 import { bundleManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let extensionAbilityType = "form";
@@ -4342,7 +4342,7 @@ getAllPreinstalledApplicationInfo(): Promise\<Array\<PreinstalledApplicationInfo
 
 ```ts
 import { bundleManager } from '@kit.AbilityKit';
-import Base from '@ohos.base';
+import { Base } from '@ohos.base';
 
 bundleManager.getAllPreinstalledApplicationInfo().then((data: Array<bundleManager.PreinstalledApplicationInfo>) => {
     console.info("GetAllPreinstalledApplicationInfo success, data is :" + JSON.stringify(data));
