@@ -240,6 +240,7 @@ struct SizeExample {
         .backgroundColor(0xFFFAF0)
         .textAlign(TextAlign.Center)
         .margin('calc(25vp*2)')
+        // width和height设置百分比时，以父容器的width和height作为基础值。
         .size({ width: 'calc(90%)', height: 'calc(50vp + 10%)' })
     }.width('100%').margin({ top: 5 })
   }
