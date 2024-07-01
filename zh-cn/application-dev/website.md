@@ -87,7 +87,7 @@
         - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
         - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
         - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
-        - [Repeat：子组件复用](quick-start/arkts-rendering-control-repeat.md)
+        - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
     - 渲染控制
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
       - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
@@ -1621,7 +1621,7 @@
       - [广告服务框架错误码](reference/apis-ads-kit/errorcode-ads.md)
       - [广告标识服务错误码](reference/apis-ads-kit/errorcode-oaid.md)
   <!--DelEnd-->
-  - ArkData（方舟编程语言）<!--arkdata-api-->
+  - ArkData（方舟数据管理）<!--arkdata-api-->
     - ArkTS API<!--arkdata-arkts-->
       - [@ohos.data.commonType (数据通用类型)](reference/apis-arkdata/js-apis-data-commonType.md)
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis-arkdata/js-apis-data-ability.md)
