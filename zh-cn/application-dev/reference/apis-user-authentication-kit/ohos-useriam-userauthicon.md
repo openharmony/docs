@@ -15,8 +15,7 @@
 ## 导入模块
 
 ```ts
-import { userAuth } from '@kit.UserAuthenticationKit';
-import { UserAuthIcon } from '@kit.UserAuthenticationKit';
+import { userAuth, UserAuthIcon } from '@kit.UserAuthenticationKit';
 ```
 
 
@@ -63,8 +62,7 @@ UserAuthIcon({
 ## 示例
 
 ```ts
-import { userAuth } from '@kit.UserAuthenticationKit';
-import { UserAuthIcon } from '@kit.UserAuthenticationKit';
+import { userAuth, UserAuthIcon } from '@kit.UserAuthenticationKit';
 
 @Entry
 @Component
