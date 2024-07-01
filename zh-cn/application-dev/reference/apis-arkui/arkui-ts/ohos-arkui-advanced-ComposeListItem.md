@@ -114,8 +114,6 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## 示例
 
-### 示例1
-
 ```ts
 // 该示例主要演示该组件的基础功能使用，包含左侧右侧元素的情况
 import { IconType, ComposeListItem, promptAction } from '@kit.ArkUI';
