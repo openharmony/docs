@@ -18,7 +18,7 @@ Sendable容器TypedArray提供map方法。该方法对TypedArray中的每个元�
 
 该变更为非兼容性变更。
 
-变更前:
+**变更前**
 
 - 情况一： map函数中的callbackFn无返回值，能通过编译，但是无法实现map功能
 - 情况二： map函数中的callbackFn有返回值，但是返回类型不是number，能通过编译，能实现map功能
@@ -41,7 +41,7 @@ let normalMapped: collections.Uint8Array = uint8.map((value: number) => value * 
 console.info(normalMappedArray); // 输出: collections.Uint8Array [2, 4, 6, 8, 10]
 ```
 
-变更后:
+**变更后**
 
 - 情况一： map函数中的callbackFn无返回值，不能通过编译（不兼容变更）
 - 情况二： map函数中的callbackFn有返回值，但是返回类型不是number，不能通过编译（不兼容变更）
@@ -80,3 +80,39 @@ API12
 接口使用的示例代码可参考:
 
 [ArkTS容器集 - TypedArray](../../../application-dev/reference/apis-arkts/js-apis-arkts-collections.md#collectionstypedarray)
+
+## cl.arkcompiler.2 collections中删除@crossplatform注解
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+跨平台场景不支持Sendable
+
+**变更影响**
+
+该变更为兼容性变更。
+
+- **变更前** 在跨平台场景使用相关的Sendable API，应用能正常编译，但是运行时报错
+- **变更后** 在跨平台场景使用相关的Sendable API，应用编译失败
+
+**起始API Level**
+
+API12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.31 版本开始。
+
+**变更的接口/组件**
+下面文件中所有标记@crossplatform的接口
+1. /interface/sdk-js/arkts/@arkts.collections.d.ets
+2. /interface/sdk-js/arkts/@arkts.lang.d.ets
+3. /interface/sdk-js/arkts/@arkts.Decimal.d.ets
+4. /interface/sdk-js/arkts/@arkts.utils.d.ets
+
+**适配指导**
+
+不支持跨平台场景
