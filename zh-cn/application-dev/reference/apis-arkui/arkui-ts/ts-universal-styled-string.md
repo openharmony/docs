@@ -755,6 +755,16 @@ constructor(value?: ParagraphStyleInterface)
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。 |
 | leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。 |
 
+## UserDataSpan
+
+支持存储自定义扩展信息，用于存储和获取用户数据，仅提供基类，具体实现由开发者定义。
+
+扩展信息不影响实际显示效果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ## 示例
 
 ### 示例1
