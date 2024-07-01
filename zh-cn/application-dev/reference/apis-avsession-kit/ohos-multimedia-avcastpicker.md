@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import AVCastPicker from '@ohos.multimedia.avCastPicker';
+import { AVCastPicker } from '@kit.AVSessionKit';
 ```
 
 ## AVCastPicker
@@ -48,8 +48,7 @@ AVCastPicker()
 投播功能的示例说明参考如下。
 
 ```ts
-import AVCastPicker from '@ohos.multimedia.avCastPicker'
-import { AVCastPickerState } from '@ohos.multimedia.avCastPickerParam'
+import { avSession, AVCastPickerState, AVCastPicker } from '@kit.AVSessionKit';
 
 @Entry
 @Component
