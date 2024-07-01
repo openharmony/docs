@@ -3259,7 +3259,7 @@
 
 ### ohos.permission.QUERY_SECURITY_POLICY_FROM_CLOUD
 
-允许应用云查安全策略。
+允许应用从云侧查询安全策略。
 
 **权限级别**：system_basic
 
