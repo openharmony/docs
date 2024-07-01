@@ -45,6 +45,7 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 
 ```ts
 import { ProgressButton } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
