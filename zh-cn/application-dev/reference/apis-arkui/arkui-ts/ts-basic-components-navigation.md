@@ -1307,13 +1307,13 @@ navigation单双栏显示状态发生变更时的拦截回调。
 
 ## NavigationTitleOptions<sup>11+</sup>类型说明
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。 |
-| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 标题栏布局方式设置。<br/>默认值：BarStyle.STANDARD<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| paddingStart<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏起始端内间距。<br/>仅支持以下任一场景:<br/>1. 显示返回图标，即[hideBackButton](#hidebackbutton)为false；<br/>2. 使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_left')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| paddingEnd<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏结束端内间距。<br/>仅支持以下任一场景:<br/>1. 使用非自定义菜单，即[菜单value](#menus)为Array&lt;NavigationMenuItem&gt;；<br/>2. 没有右上角菜单，且使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_right')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## NavigationToolbarOptions<sup>11+</sup>类型说明
 
@@ -2958,3 +2958,115 @@ export struct NavigationMenu{
 }
 ```
 ![navigation_symbol.gif](figures/navigation_symbol.gif)
+
+### 示例12
+```ts
+// 该示例主要演示Navigation和NavDestination如何自定义设置标题栏边距。
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct NavigationExample {
+  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
+  // 初始化标题栏起始端内间距
+  @State paddingStart: LengthMetrics = LengthMetrics.vp(0);
+  // 初始化标题栏结束端内间距
+  @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
+  @State menuItems: Array<NavigationMenuItem> = [
+    {
+      value: 'menuItem1',
+      icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
+      action: () => {
+      }
+    }
+  ]
+
+  @Builder
+  myRouter(name: string, param?: Object) {
+    if (name === 'NavDestinationExample') {
+      NavDestinationExample();
+    }
+  }
+
+  build() {
+    Navigation(this.navPathStack) {
+      Column() {
+        // 标题栏内间距切换
+        Button('切换标题栏内间距为16vp')
+          .onClick(() => {
+            this.paddingStart = LengthMetrics.vp(16);
+            this.paddingEnd = LengthMetrics.vp(16);
+          })
+          .margin({ top: 5 })
+
+        Button('切换标题栏内间距为24vp')
+          .onClick(() => {
+            this.paddingStart = LengthMetrics.vp(24);
+            this.paddingEnd = LengthMetrics.vp(24);
+          })
+          .margin({ top: 5 })
+
+        Button('跳转')
+          .onClick(() => {
+            this.navPathStack.pushPathByName('NavDestinationExample', null);
+          })
+          .margin({ top: 5 })
+      }
+    }
+    .titleMode(NavigationTitleMode.Mini)
+    .title('一级页面', {
+      paddingStart: this.paddingStart,
+      paddingEnd: this.paddingEnd,
+    })
+    .menus(this.menuItems)
+    .navDestination(this.myRouter)
+  }
+}
+
+@Component
+export struct NavDestinationExample {
+  @Consume('navPathStack') navPathStack: NavPathStack;
+  @State menuItems: Array<NavigationMenuItem> = [
+    {
+      value: 'menuItem1',
+      icon: 'resources/base/media/ic_public_ok.svg', // 图标资源路径
+      action: () => {
+      }
+    }
+  ]
+  @State paddingStart: LengthMetrics = LengthMetrics.vp(0);
+  @State paddingEnd: LengthMetrics = LengthMetrics.vp(0);
+
+  build() {
+    NavDestination() {
+      Row() {
+        Column() {
+          // 标题栏内间距切换
+          Button('切换标题栏内间距为32vp')
+            .onClick(() => {
+              this.paddingStart = LengthMetrics.vp(32);
+              this.paddingEnd = LengthMetrics.vp(32);
+            })
+            .margin({ top: 5 })
+
+          Button('切换标题栏内间距为20vp')
+            .onClick(() => {
+              this.paddingStart = LengthMetrics.vp(20);
+              this.paddingEnd = LengthMetrics.vp(20);
+            })
+            .margin({ top: 5 })
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+    .hideTitleBar(false)
+    .title('NavDestination title', {
+      paddingStart: this.paddingStart,
+      paddingEnd: this.paddingEnd,
+    })
+    .menus(this.menuItems)
+  }
+}
+```
+![titlebarPaddingDemo.gif](figures/titlebarPaddingDemo.gif)
