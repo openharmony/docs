@@ -1502,14 +1502,14 @@ struct TextInputExample {
 
 ### 示例6
 本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX
+
 ```ts
 @Entry
 @Component
 struct phone_example {
   @State submitValue: string = ''
-  @State text : string = ''
-
-  public readonly NUM_TEXT_MAXSIZE_LENGTH = 14;
+  @State text: string = ''
+  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
 
   isEmpty(str?: string): boolean {
     return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str);
@@ -1539,40 +1539,35 @@ struct phone_example {
 
   build() {
     Column() {
-        Row() {
-          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
-            .onChange((number: string) => {
-              let teleNumberNoSpace: string = this.removeSpace(number);
-              if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+      Row() {
+        TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
+          .onChange((number: string) => {
+            let teleNumberNoSpace: string = this.removeSpace(number);
+            if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+              this.text = teleNumberNoSpace;
+            } else if (this.checkNeedNumberSpace(number)) {
+              if (teleNumberNoSpace.length <= 3) {
                 this.text = teleNumberNoSpace;
-              } else if (this.checkNeedNumberSpace(number)) {
-                if (teleNumberNoSpace.length <= 3) {
-                  this.text = teleNumberNoSpace;
-                } else {
-                  let split1: string = teleNumberNoSpace.substring(0, 3);
-                  let split2: string = teleNumberNoSpace.substring(3);
-                  this.text = split1 + ' ' + split2;
-                  if (teleNumberNoSpace.length > 7) {
-                    split2 = teleNumberNoSpace.substring(3, 7);
-                    let split3: string = teleNumberNoSpace.substring(7);
-                    this.text = split1 + ' ' + split2 + ' ' + split3;
-                  }
-                }
-              } else if (teleNumberNoSpace.length > 8) {
-                let split4 = teleNumberNoSpace.substring(0, 8);
-                let split5 = teleNumberNoSpace.substring(8);
-                this.text = split4 + ' ' + split5;
               } else {
-                this.text = number;
+                let split1: string = teleNumberNoSpace.substring(0, 3);
+                let split2: string = teleNumberNoSpace.substring(3);
+                this.text = split1 + ' ' + split2;
+                if (teleNumberNoSpace.length > 7) {
+                  split2 = teleNumberNoSpace.substring(3, 7);
+                  let split3: string = teleNumberNoSpace.substring(7);
+                  this.text = split1 + ' ' + split2 + ' ' + split3;
+                }
               }
-            })
-        }
+            } else {
+              this.text = number;
+            }
+          })
+      }
     }
     .width('100%')
     .height("100%")
   }
 }
-
 ```
 ![phone_example](figures/phone_number.PNG)
 
