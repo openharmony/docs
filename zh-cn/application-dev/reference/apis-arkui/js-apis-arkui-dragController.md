@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import dragController from "@ohos.arkui.dragController";
+import { dragController } from "@kit.ArkUI";
 ```
 
 ## dragController.executeDrag
@@ -43,8 +43,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 **示例：**
 
 ```ts
-import dragController from "@ohos.arkui.dragController"
-import UDC from '@ohos.data.unifiedDataChannel';
+import { dragController } from "@kit.ArkUI";
+import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
@@ -69,10 +69,10 @@ struct DragControllerPage {
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDC.PlainText()
+              let text = new unifiedDataChannel.PlainText()
               text.textContent = 'drag text'
               text.abstract = 'abstract'
-              let unifiedData = new UDC.UnifiedData(text)
+              let unifiedData = new unifiedDataChannel.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
@@ -103,8 +103,8 @@ struct DragControllerPage {
         .border({color:Color.Black,width:1})
         .onDrop((dragEvent?:DragEvent)=>{
           if(dragEvent){
-            let records: Array<UDC.UnifiedRecord> = dragEvent.getData().getRecords();
-            let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+            let records: Array<unifiedDataChannel.UnifiedRecord> = dragEvent.getData().getRecords();
+            let plainText: unifiedDataChannel.PlainText = records[0] as unifiedDataChannel.PlainText;
             this.text = plainText.textContent;
           }
         })
@@ -146,10 +146,9 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 **示例：**
 
 ```ts
-import dragController from "@ohos.arkui.dragController"
-import componentSnapshot from '@ohos.arkui.componentSnapshot';
-import image from '@ohos.multimedia.image';
-import UDC from '@ohos.data.unifiedDataChannel';
+import { dragController, componentSnapshot } from "@kit.ArkUI"
+import { image } from '@kit.ImageKit';
+import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
@@ -194,10 +193,10 @@ struct DragControllerPage {
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDC.PlainText()
+              let text = new unifiedDataChannel.PlainText()
               text.textContent = 'drag text'
               text.abstract = 'abstract'
-              let unifiedData = new UDC.UnifiedData(text)
+              let unifiedData = new unifiedDataChannel.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
@@ -235,8 +234,8 @@ struct DragControllerPage {
         .border({color:Color.Black,width:1})
         .onDrop((dragEvent?:DragEvent)=>{
           if(dragEvent){
-            let records: Array<UDC.UnifiedRecord> = dragEvent.getData().getRecords();
-            let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+            let records: Array<unifiedDataChannel.UnifiedRecord> = dragEvent.getData().getRecords();
+            let plainText: unifiedDataChannel.PlainText = records[0] as unifiedDataChannel.PlainText;
             this.text = plainText.textContent;
           }
         })
@@ -297,10 +296,9 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 **示例：**
 
 ```ts
-import dragController from "@ohos.arkui.dragController"
-import componentSnapshot from '@ohos.arkui.componentSnapshot';
-import image from '@ohos.multimedia.image';
-import UDC from '@ohos.data.unifiedDataChannel';
+import { dragController, componentSnapshot } from "@kit.ArkUI";
+import { image } from '@kit.ImageKit';
+import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
@@ -331,8 +329,8 @@ struct DragControllerPage {
           .fontSize(18)
           .onDrop((dragEvent?:DragEvent)=>{
             if(dragEvent){
-              let records: Array<UDC.UnifiedRecord> = dragEvent.getData().getRecords();
-              let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+              let records: Array<unifiedDataChannel.UnifiedRecord> = dragEvent.getData().getRecords();
+              let plainText: unifiedDataChannel.PlainText = records[0] as unifiedDataChannel.PlainText;
               this.text = plainText.textContent;
             }
           })
@@ -350,9 +348,9 @@ struct DragControllerPage {
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
-            let text = new UDC.PlainText()
+            let text = new unifiedDataChannel.PlainText()
             text.textContent = 'drag text'
-            let unifiedData = new UDC.UnifiedData(text)
+            let unifiedData = new unifiedDataChannel.UnifiedData(text)
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
@@ -415,8 +413,8 @@ startDrag(): Promise&lt;void&gt;
 
 **示例：**
 ```ts
-import dragController from "@ohos.arkui.dragController"
-import UDC from '@ohos.data.unifiedDataChannel';
+import { dragController } from "@kit.ArkUI"
+import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
@@ -426,8 +424,8 @@ struct DragControllerPage {
       Button('touch to execute drag')
         .onTouch((event?:TouchEvent) => {
           let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-          let text = new UDC.Text()
-          let unifiedData = new UDC.UnifiedData(text)
+          let text = new unifiedDataChannel.Text()
+          let unifiedData = new unifiedDataChannel.UnifiedData(text)
           let dragInfo: dragController.DragInfo = {
             pointerId: 0,
             data: unifiedData,
@@ -470,8 +468,8 @@ on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinf
 
 **示例：**
 ```ts
-import dragController from "@ohos.arkui.dragController"
-import UDC from '@ohos.data.unifiedDataChannel';
+import { dragController } from "@kit.ArkUI";
+import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
@@ -481,8 +479,8 @@ struct DragControllerPage {
       Button('touch to execute drag')
         .onTouch((event?:TouchEvent) => {
           let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-          let text = new UDC.Text()
-          let unifiedData = new UDC.UnifiedData(text)
+          let text = new unifiedDataChannel.Text()
+          let unifiedData = new unifiedDataChannel.UnifiedData(text)
           let dragInfo: dragController.DragInfo = {
             pointerId: 0,
             data: unifiedData,
@@ -524,8 +522,8 @@ struct DragControllerPage {
 
 **示例：**
 ```ts
-import dragController from "@ohos.arkui.dragController"
-import UDC from '@ohos.data.unifiedDataChannel';
+import { dragController } from "@kit.ArkUI"
+import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
@@ -535,8 +533,8 @@ struct DragControllerPage {
       Button('touch to execute drag')
         .onTouch((event?:TouchEvent) => {
           let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-          let text = new UDC.Text()
-          let unifiedData = new UDC.UnifiedData(text)
+          let text = new unifiedDataChannel.Text()
+          let unifiedData = new unifiedDataChannel.UnifiedData(text)
           let dragInfo: dragController.DragInfo = {
             pointerId: 0,
             data: unifiedData,
@@ -669,12 +667,9 @@ animate(options: AnimationOptions, handler: () => void): void
 
 1.在EntryAbility.ets中获取UI上下文并保存至LocalStorage中。
   ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import { UIContext } from '@ohos.arkui.UIContext';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window, UIContext } from '@kit.ArkUI';
 
 let uiContext: UIContext;
 let localStorage: LocalStorage = new LocalStorage('uiContext');
@@ -715,15 +710,11 @@ export default class EntryAbility extends UIAbility {
 2.在Index.ets中通过LocalStorage.getShared()获取UI上下文，进而获取DragController对象实施后续操作。
   ```ts
 
-import UDC from '@ohos.data.unifiedDataChannel';
-import hilog from '@ohos.hilog';
-import dragController from "@ohos.arkui.dragController";
-import image from '@ohos.multimedia.image';
-import curves from '@ohos.curves';
-import { BusinessError } from '@ohos.base';
-import { UIContext } from '@ohos.arkui.UIContext';
-import promptAction from '@ohos.promptAction';
-
+import { unifiedDataChannel } from '@kit.ArkData';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { dragController, curves, promptAction, UIContext } from "@kit.ArkUI";
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let storages = LocalStorage.getShared();
 
@@ -780,8 +771,8 @@ struct DragControllerPage {
       Button('拖起').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
-            let text = new UDC.Text()
-            let unifiedData = new UDC.UnifiedData(text)
+            let text = new unifiedDataChannel.Text()
+            let unifiedData = new unifiedDataChannel.UnifiedData(text)
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
