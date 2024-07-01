@@ -226,12 +226,18 @@ In addition, **accessibility_config** is the specific configuration of the acces
   ]
 }
 ```
-## Enabling or Disabling a Custom Accessibility Extension Service
+## Enabling a Custom Accessibility Extension Service
 
 You can enable or disable a custom accessibility extension service through the device settings. 
 
-1. From the device settings screen, access the list of installed extension services under accessibility. If an extension service is not installed, it is grayed out, and "No service" is displayed.
+1. From the device settings screen, access the list of installed extended services under accessibility. If an extended service is not installed, it is grayed out, and "No service" is displayed.
 
 2. Locate the target extension service, and toggle on or off the switch to enable or disable it.
 
-3. If you opt to enable the service, a security reminder is displayed. Wait until the countdown ends and then select the check box indicating that you are aware of and willing to assume the listed risks.  
+3. If you opt to enable a service, a security reminder is displayed. Wait until the countdown ends and then select the check box indicating that you are aware of and willing to assume the listed risks. After that, you can toggle off the switch to the extended service.
+
+## Samples
+
+The following sample is provided to help you better understand how to develop AccessibilityExtensionAbility:
+
+- [AccessibilityExtensionAbility](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
