@@ -69,7 +69,7 @@ hideTitleBar(value: boolean)
 
 mode(value: NavDestinationMode)
 
-设置NavDestination类型，不支持动态设置NavDestination类型。
+设置NavDestination类型，不支持动态修改。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
