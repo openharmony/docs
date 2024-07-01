@@ -198,7 +198,7 @@ struct Index {
 ### 示例2
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component

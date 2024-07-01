@@ -1170,8 +1170,7 @@ struct TabBarStyleExample {
 该示例实现了通过ComponentContent设置SubTabBarStyle。
 ```ts
 // xxx.ets
-import { ComponentContent } from "@ohos.arkui.node";
-import { UIContext } from '@ohos.arkui.UIContext';
+import { ComponentContent, UIContext } from "@kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -1248,7 +1247,7 @@ struct Index {
 该示例实现了BottomTabBarStyle图片传入Symbol。
 ```ts
 // xxx.ets
-import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+import { SymbolGlyphModifier } from '@kit.ArkUI'
 
 @Entry
 @Component

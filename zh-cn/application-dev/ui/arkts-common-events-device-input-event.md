@@ -478,7 +478,7 @@ struct KeyEventExample {
 
 使用OnKeyPreIme屏蔽在输入框中使用方向左键。
 ```ts
-import { KeyCode } from '@ohos.multimodalInput.keyCode';
+import { KeyCode } from '@kit.InputKit';
 
 @Entry
 @Component

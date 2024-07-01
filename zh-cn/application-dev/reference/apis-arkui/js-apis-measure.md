@@ -10,11 +10,11 @@
 
 ## 导入模块
 
-```
-import measure from '@ohos.measure'
+```ts
+import { MeasureText } from '@kit.ArkUI'
 ```
 
-## measure.measureText
+## MeasureText.measureText
 
 measureText(options: MeasureOptions): number
 
@@ -40,12 +40,12 @@ measureText(options: MeasureOptions): number
 **示例：**
 
 ```ts
-import measure from '@ohos.measure'
+import { MeasureText } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
-  @State textWidth: number = measure.measureText({
+  @State textWidth: number = MeasureText.measureText({
     textContent: "Hello word",
     fontSize: '50px'
   })
@@ -62,7 +62,7 @@ struct Index {
 }
 ```
 
-## measure.measureTextSize<sup>10+</sup>
+## MeasureText.measureTextSize<sup>10+</sup>
 
 measureTextSize(options: MeasureOptions): SizeOptions
 
@@ -88,11 +88,12 @@ measureTextSize(options: MeasureOptions): SizeOptions
 **示例：**
 
 ```ts
-import measure from '@ohos.measure'
+import { MeasureText } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
-  textSize : SizeOptions = measure.measureTextSize({
+  textSize : SizeOptions = MeasureText.measureTextSize({
     textContent: "Hello word",
     fontSize: '50px'
   })
@@ -112,8 +113,6 @@ struct Index {
 ## MeasureOptions
 
 被计算文本属性。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 ```
 
 ## router.pushUrl<sup>9+</sup>
@@ -56,7 +56,7 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
   data3:number[]
@@ -183,7 +183,7 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
   data3:number[]
@@ -310,7 +310,7 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
   data1:string
@@ -417,7 +417,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
   data1:string
@@ -525,7 +525,7 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 **示例：** 
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
   data3:number[]
@@ -654,7 +654,7 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
   data3:number[]
@@ -781,7 +781,7 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
   data1:string
@@ -888,7 +888,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
   data1:string
@@ -1174,7 +1174,7 @@ showAlertBeforeBackPage(options: EnableAlertOptions): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   router.showAlertBeforeBackPage({
@@ -1313,8 +1313,8 @@ export default {
 
 ```ts
 // 通过router.pushUrl跳转至目标页携带params参数
-import router from '@ohos.router'
-import { BusinessError } from '@ohos.base'
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 // 定义传递参数的类
 class innerParams {
@@ -1374,7 +1374,7 @@ struct Index {
 
 ```ts
 // 在second页面中接收传递过来的参数
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 
 class innerParams {
   array:number[]

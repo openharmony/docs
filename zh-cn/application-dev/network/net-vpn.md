@@ -5,7 +5,7 @@
 VPN 即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专用网络的技术。整个 VPN 网络的任意两个节点之间的连接并没有传统专网所需的端到端的物理链路，而是架构在公用网络服务商所提供的网络平台（如 Internet）之上的逻辑网络，用户数据在逻辑链路中传输。
 
 > **说明：**
-> 为了保证应用的运行效率，大部分 API 调用都是异步的，对于异步调用的 API 均提供了 callback 和 Promise 两种方式，以下示例均采用 callback 函数，更多方式可以查阅[API 参考](../reference/apis-network-kit/js-apis-net-vpn-sys.md)。
+> 为了保证应用的运行效率，大部分 API 调用都是异步的，对于异步调用的 API 均提供了 callback 和 Promise 两种方式，以下示例均采用 promise 函数，更多方式可以查阅[API 参考](../reference/apis-network-kit/js-apis-net-vpn-sys.md)。
 
 以下分别介绍具体开发方式。
 
@@ -75,16 +75,14 @@ struct Index {
     config.mtu = 1400;
     config.dnsAddresses = ["114.114.114.114"];
 
-    try {
-      //3. 建立一个VPN网络。
-      this.VpnConnection.setUp(config, (error: BusinessError, data: number) => {
-        console.info("tunfd: " + JSON.stringify(data));
-        //4. 处理虚拟网卡的数据，如：读写操作。
-        vpn_client.startVpn(data, TunnelFd)
-      })
-    } catch (error) {
-      console.info("vpn setUp fail " + JSON.stringify(error));
-    }
+    //3. 建立一个VPN网络。
+    this.VpnConnection.setUp(config).then((data: number) => {
+      console.info("tunfd: " + JSON.stringify(data));
+      //4. 处理虚拟网卡的数据，如：读写操作。
+      vpn_client.startVpn(data, TunnelFd)
+    }).catch((err: BusinessError) => {
+      console.info("setUp fail" + JSON.stringify(err));
+    });
   }
 
   //5.销毁VPN网络。

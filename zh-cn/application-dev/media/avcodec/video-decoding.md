@@ -26,18 +26,19 @@
 2. Flush，Reset，Stop之后，重新Start时，需要重新传XPS。具体示例请参考[Surface模式](#surface模式)步骤14调用OH_VideoDecoder_Flush()。
 3. 由于硬件解码器资源有限，每个解码器在使用完毕后都必须调用OH_VideoDecoder_Destroy()函数来销毁实例并释放资源。
 4. 视频解码输入码流仅支持AnnexB格式，且支持的AnnexB格式不支持多层次切片。
+5. 在调用Flush，Reset，Stop的过程中，开发者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
 
 ## Surface输出与Buffer输出
 
 1. 两者数据的输出方式不同。
-2. 两者的适用场景不同
+2. 两者的适用场景不同。
 - Surface输出是指用OHNativeWindow来传递输出数据，可以与其他模块对接，例如XComponent。
 - Buffer输出是指经过解码的数据会以共享内存的方式输出。
 
 3. 在接口调用的过程中，两种方式的接口调用方式基本一致，但存在以下差异点：
 
 - 在Surface模式下，可选择调用OH_VideoDecoder_FreeOutputBuffer()接口丢弃输出帧（不送显）；在Buffer模式下，应用必须调用OH_VideoDecoder_FreeOutputBuffer()释放数据。
-- Surface模式下，应用在解码器就绪前，必须调用OH_VideoDecoder_SetSurface()设置OHNativeWindow，启动后，调用OH_VideoDecoder_RenderOutputBuffer()将解码数据送显；
+- Surface模式下，应用在解码器就绪前，必须调用OH_VideoDecoder_SetSurface()设置OHNativeWindow，启动后，调用OH_VideoDecoder_RenderOutputBuffer()将解码数据送显。
 - 输出回调传出的buffer，在Buffer模式下，可以获取共享内存的地址和数据信息；在Surface模式下，只能获取buffer的数据信息。
 
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
@@ -96,7 +97,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <multimedia/player_framework/native_avbuffer.h>
     #include <fstream>
     ```
-2. 全局变量
+2. 全局变量。
 
     ```c++
     // 配置视频帧宽度（必须）
@@ -135,11 +136,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 4. 调用OH_VideoDecoder_RegisterCallback()设置回调函数。
 
-    > **说明：**
-    >
-    > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
-    >
-
     注册回调函数指针集合OH_AVCodecCallback，包括：
 
     - OH_AVCodecOnError 解码器运行错误；
@@ -176,7 +172,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 输入帧buffer对应的index，送入InIndexQueue队列
         // 输入帧的数据buffer送入InBufferQueue队列
         // 数据处理
-        // - 写入解码码流
+        // 写入解码码流
     }
 
     // 解码输出回调OH_AVCodecOnNewOutputBuffer实现
@@ -185,13 +181,20 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 完成帧buffer对应的index，送入outIndexQueue队列
         // 完成帧的数据buffer送入outBufferQueue队列
         // 数据处理
-        // - 显示并释放解码帧
+        // 显示并释放解码帧
     }
     // 配置异步回调，调用 OH_VideoDecoder_RegisterCallback 接口
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
     // 配置异步回调
     int32_t ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, NULL); // NULL:用户特定数据userData为空 
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
     ```
+    > **说明：**
+    >
+    > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
+    >
 
 5. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
 
@@ -270,6 +273,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```c++
     // 配置送显窗口参数
     int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);    // 从 XComponent 获取 window
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
     ```
 
 8. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
@@ -447,6 +453,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > **注意：**
     > Flush之后，重新Start时，需要重新传XPS。
     >
+    重传XPS示例：
 
     ```c++
     // 配置帧数据XPS信息
@@ -552,11 +559,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 3. 调用OH_VideoDecoder_RegisterCallback()设置回调函数。
 
-    > **说明：**
-    >
-    > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
-    >
-
     注册回调函数指针集合OH_AVCodecCallback，包括：
 
     - OH_AVCodecOnError 解码器运行错误；
@@ -605,7 +607,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 输入帧buffer对应的index，送入InIndexQueue队列
         // 输入帧的数据buffer送入InBufferQueue队列
         // 数据处理
-        // - 写入解码码流
+        // 写入解码码流
     }
     
     // 解码输出回调OH_AVCodecOnNewOutputBuffer实现
@@ -630,13 +632,20 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
             isFirstFrame = false;
         }
         // 数据处理
-        // - 释放解码帧
+        // 释放解码帧
     }
     // 配置异步回调，调用OH_VideoDecoder_RegisterCallback接口
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
     // 配置异步回调
     int32_t ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, NULL); // NULL:用户特定数据userData为空 
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
     ```
+    > **说明：**
+    >
+    > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
+    >
 
 4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
 

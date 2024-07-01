@@ -1,6 +1,6 @@
 # 自定义组件冻结功能
 
-自定义组件处于非激活状态时，状态变量将不响应更新，即@Watch不会调用，状态变量关联的节点不会刷新。通过freezeWhenInactive属性来决定是否使用冻结功能，不传参数时默认不使用。支持的场景有：页面路由，TabContent，LazyforEach，Navigation。
+自定义组件处于非激活状态时，状态变量将不响应更新，即@Watch不会调用，状态变量关联的节点不会刷新。通过freezeWhenInactive属性来决定是否使用冻结功能，不传参数时默认不使用。支持的场景有：页面路由，TabContent，LazyForEach，Navigation。
 
 
 > **说明：**
@@ -18,7 +18,7 @@
 页面A：
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component({ freezeWhenInactive: true })
@@ -48,7 +48,7 @@ struct FirstTest {
 页面B：
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component({ freezeWhenInactive: true })
@@ -155,9 +155,9 @@ struct FreezeChild {
 ![TabContent.gif](figures/TabContent.gif)
 
 
-### LazyforEach
+### LazyForEach
 
-- 对LazyforEach中缓存的自定义组件进行冻结，不会触发组件的更新。
+- 对LazyForEach中缓存的自定义组件进行冻结，不会触发组件的更新。
 
 ```ts
 // Basic implementation of IDataSource to handle data listener

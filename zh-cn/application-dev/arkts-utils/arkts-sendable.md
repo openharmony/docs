@@ -67,6 +67,8 @@ Sendable interface需同时满足以下两个规则：
 > - JS内置对象在并发实例间的传递遵循结构化克隆算法，语义为拷贝传递。因此JS内置对象的实例不是Sendable类型。
 >
 > - 对象字面量、数组字面量在并发实例间的传递遵循结构化克隆算法，语义为拷贝传递。因此，对象字面量和数组字面量不是Sendable类型。
+>
+> - ArkTS容器集与原生API行为差异具体参考[行为差异汇总](arkts-collections-vs-native-api-comparison.md)。
 
 
 ### ISendable

@@ -150,9 +150,7 @@ onHoverStatusChange事件处理。
 ### 示例1
 
 ```ts
-import {
-  FoldSplitContainer,
-} from '@ohos.arkui.advanced.FoldSplitContainer';
+import { FoldSplitContainer } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -202,7 +200,7 @@ struct TwoColumns {
 ### 示例2
 
 ```ts
-import { FoldSplitContainer, } from '@ohos.arkui.advanced.FoldSplitContainer';
+import { FoldSplitContainer } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -271,7 +269,7 @@ import {
   ExpandedRegionLayoutOptions,
   HoverModeRegionLayoutOptions,
   FoldedRegionLayoutOptions
-} from '@ohos.arkui.advanced.FoldSplitContainer';
+} from '@kit.ArkUI';
 
 @Component
 struct Region {

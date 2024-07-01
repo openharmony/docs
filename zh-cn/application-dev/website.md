@@ -1,8 +1,10 @@
 # OpenHarmony应用开发文档
 - 入门
+  <!--Del-->
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
     - [构建第一个ArkTS应用（Stage模型）](quick-start/start-with-ets-stage.md)
+  <!--DelEnd-->
   - 开发基础知识
     - 应用程序包基础知识
       - [应用程序包概述](quick-start/application-package-overview.md)
@@ -241,7 +243,9 @@
             - [声明权限](security/AccessToken/declare-permissions.md)
             - [向用户申请授权](security/AccessToken/request-user-authorization.md)
             - [向用户申请单次授权](security/AccessToken/one-time-authorization.md)
+            <!--Del-->
             - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
+            <!--DelEnd-->
           - 应用权限列表
             - [对所有应用开放](security/AccessToken/permissions-for-all.md)
             <!--Del-->
@@ -313,6 +317,7 @@
           - [Sendable开发指导](arkts-utils/arkts-sendable.md)
           - [已接入Sendable的系统对象](arkts-utils/arkts-sendable-system-object-list.md)
           - [共享模块开发指导](arkts-utils/arkts-sendable-module.md)
+          - [ArkTS Collections与原生API方法的行为差异对比](arkts-utils/arkts-collections-vs-native-api-comparison.md)
       - 容器类库
         - [容器类库概述](arkts-utils/container-overview.md)
         - [线性容器](arkts-utils/linear-container.md)
@@ -414,6 +419,7 @@
             - [FrameNode](ui/arkts-user-defined-arktsNode-frameNode.md)
             - [RenderNode](ui/arkts-user-defined-arktsNode-renderNode.md)
             - [BuilderNode](ui/arkts-user-defined-arktsNode-builderNode.md)
+        - [使用镜像能力](ui/arkts-mirroring-display.md)
         - 使用NDK接口构建UI
           - [NDK接口概述](ui/ndk-build-ui-overview.md)
           - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
@@ -1048,7 +1054,6 @@
           - [hitrace](dfx/hitrace.md)
           - [hiperf](dfx/hiperf.md)
           - [hisysevent](dfx/hisysevent.md)
-          - [toybox](dfx/toybox.md)
         <!--Del-->
           - [uinput](dfx/uinput.md)
         <!--DelEnd-->
@@ -1066,8 +1071,12 @@
         - [cem工具](tools/cem-tool.md)
         - [anm工具](tools/anm-tool.md)
         - [restool工具](tools/restool.md)
+        <!--Del-->
         - [LLDB工具](tools/lldb-tool.md)
+        <!--DelEnd-->
         - [param工具](tools/param-tool.md)
+        - 命令行工具
+          - [toybox工具](tools/toybox.md)
   - 媒体<!--media-->
     - Audio Kit（音频服务）
       - [Audio Kit简介](media/audio/audio-kit-intro.md)
@@ -1144,6 +1153,7 @@
         <!--Del-->
         - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
         <!--DelEnd-->
+        - [分段式拍照(ArkTS)](media/camera/camera-deferred-capture.md)
         - [动态照片(ArkTS)](media/camera/camera-moving-photo.md)
       - 相机最佳实践(ArkTS)
         - [拍照实现方案(ArkTS)](media/camera/camera-shooting-case.md)
@@ -1152,6 +1162,7 @@
         <!--Del-->
         - [性能提升方案(仅对系统应用开放)(ArkTS)](media/camera/camera-performance-improvement.md)
         - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
+        - [分段式拍照实现方案(ArkTS)](media/camera/camera-deferred-capture-case.md)
         <!--DelEnd-->
       - 相机开发指导(C/C++)
         - [设备输入(C/C++)](media/camera/native-camera-device-input.md)
@@ -1187,7 +1198,7 @@
         - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
         - [使用Image_NativeModule完成图片接收器](media/image/image-receiver-c.md)
         - [使用Image_NativeModule完成位图操作](media/image/pixelmap-c.md)
-        - [使用Image_NativeModule处理图像信息](media/image/image-c.md)
+        - [使用Image_NativeModule处理图像信息](media/image/image-info-c.md)
         - [使用Image_NativeModule完成图片编码](media/image/image-packer-c.md)
         - [使用ImageEffect编辑图片](media/image/image-effect-guidelines.md)
       - 图片开发指导(依赖JS对象)(C/C++)
@@ -1376,7 +1387,7 @@
 - API参考
   - API参考概述<!--ref-overview-api-->
     - [系统能力SystemCapability使用指南](reference/syscap.md)
-       [系统能力SystemCapability列表](reference/syscap-list.md)
+    - [系统能力SystemCapability列表](reference/syscap-list.md)
     - [通用错误码](reference/errorcode-universal.md)
   - 应用框架<!--app-framework-api-->
     - Ability Kit（程序框架服务）<!--ability-api-->
@@ -3120,7 +3131,7 @@
           - [系统事件错误码](reference/apis-performance-analysis-kit/errorcode-hisysevent-sys.md)
           - [维测日志错误码](reference/apis-performance-analysis-kit/errorcode-loglibrary-sys.md)
           <!--DelEnd-->
-  - 媒体<!--media-api-->
+  - 媒体<!--media-reference-->
     - Audio Kit（音频服务）<!--audio-api-->
       - ArkTS API<!--audio-arkts-->
         - [@ohos.multimedia.audio (音频管理)](reference/apis-audio-kit/js-apis-audio.md)
@@ -3305,10 +3316,10 @@
           - [image_effect_errors.h](reference/apis-image-kit/image__effect__errors_8h.md)
           - [image_effect_filter.h](reference/apis-image-kit/image__effect__filter_8h.md)
         - 结构体<!--image-struct-->
-          - [ImagePacker_Opts_](reference/apis-image-kit/_image_packer___opts__.md)
+          - [ImagePacker_Opts](reference/apis-image-kit/_image_packer___opts__.md)
           - [OhosImageComponent](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
           - [OhosImageRect](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
-          - [OHOS::Media::OhosPixelMapInfo](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
+          - [OhosPixelMapInfo](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
           - [OhosImageDecodingOps](reference/apis-image-kit/_ohos_image_decoding_ops.md)
           - [OhosImageReceiverInfo](reference/apis-image-kit/_ohos_image_receiver_info.md)
           - [OhosImageRegion](reference/apis-image-kit/_ohos_image_region.md)

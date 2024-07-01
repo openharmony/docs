@@ -189,7 +189,7 @@ struct BorderImage {
 // xxx.ets
 // borderImage属性的slice、width、outset属性值使用LocalizedEdgeWidths类型
 
-import { LengthMetrics } from '@ohos.arkui.node'
+import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component
