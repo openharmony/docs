@@ -138,7 +138,7 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 ### getInstance
 
-static getInstance(): [TreeListenerManager](#treelistenermanager)
+static getInstance(): TreeListenerManager
 
 获取监听管理器单例对象。
 
@@ -148,12 +148,12 @@ static getInstance(): [TreeListenerManager](#treelistenermanager)
 
 | 类型              | 说明               |
 | --------------- |------------------|
-| TreeListenerManager | 返回获取到的监听管理器单例对象。 |
+| [TreeListenerManager](#treelistenermanager) | 返回获取到的监听管理器单例对象。 |
 
 
 ### getTreeListener
 
-getTreeListener(): [TreeListener](#treelistener)
+getTreeListener(): TreeListener
 
 获取监听器。
 
@@ -163,7 +163,7 @@ getTreeListener(): [TreeListener](#treelistener)
 
 | 类型           | 说明         |
 | ------------ |------------|
-| TreeListener | 返回获取到的监听器。 |
+| [TreeListener](#treelistener) | 返回获取到的监听器。 |
 
 
 ## TreeListener
