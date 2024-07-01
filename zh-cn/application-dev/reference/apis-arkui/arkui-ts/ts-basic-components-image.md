@@ -402,7 +402,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12-1) | 是   | 图像显示的动态范围。 |
+| value  | [DynamicRangeMode](#dynamicrangemode12-1) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
 
 ## ImageInterpolation
 
