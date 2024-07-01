@@ -125,7 +125,7 @@ bm dump -a
 # Display the details of a bundle.
 bm dump -n com.ohos.app -u 100
 # Display the shortcut information of a bundle.
-bm dump -s com.ohos.app -u 100
+bm dump -s -n com.ohos.app -u 100
 # Display cross-device bundle information.
 bm dump -n com.ohos.app -d xxxxx
 ```
