@@ -154,7 +154,7 @@ promise.then((data : PiPWindow.PiPController) => {
 | templateType        | [PiPTemplateType](#piptemplatetype)                                        | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。                                                                                                                                                                                                                                                                                                                  |
 | contentWidth        | number                                                                     | 否   | 原始内容宽度，单位为px。用于确定画中画窗口比例。                                                                                                                                                                                                                                                                                                                 |
 | contentHeight       | number                                                                     | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。                                                                                                                                                                                                                                                                                                                 |
-| controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否   | 画中画控制面板的可选控件组列表，应用可以配置是否显示可选控件。应用不配置，则显示模板的基础控件（如视频播放控件组的播放/暂停控件），应用配置，则最多选择三个控件。从API version 12开始支持此参数。                                                                                                                                                                                                                                                 |
+| controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否   | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。如果应用没有配置，面板将显示基础控件（如视频播放控件组的播放/暂停控件），如果应用选择配置，则最多可以选择三个控件。从API version 12开始支持此参数。                                                                                                                                                                                                                                                 |
 | customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | 否   | 用于实现在画中画界面内容上方展示自定义UI功能。从API version 12开始支持此参数。                                                                                                                                                                                                                                                                                           |
 
 ## PiPTemplateType
@@ -240,7 +240,7 @@ type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeet
 
 ## VideoLiveControlGroup<sup>12+</sup>
 
-视频会议控件组枚举。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_LIVE时使用。
+视频直播控件组枚举。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_LIVE时使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
