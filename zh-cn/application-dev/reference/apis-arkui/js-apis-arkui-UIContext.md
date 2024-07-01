@@ -4639,8 +4639,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 **示例：**
 
 ```ts
-import dragController from "@ohos.arkui.dragController"
-import UDC from '@ohos.data.unifiedDataChannel';
+import { dragController } from "@kit.ArkUI"
+import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
@@ -4660,8 +4660,8 @@ struct DragControllerPage {
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDC.Text()
-              let unifiedData = new UDC.UnifiedData(text)
+              let text = new unifiedDataChannel.Text()
+              let unifiedData = new unifiedDataChannel.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
@@ -4724,10 +4724,9 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 **示例：**
 
 ```ts
-import dragController from "@ohos.arkui.dragController"
-import componentSnapshot from '@ohos.arkui.componentSnapshot';
-import image from '@ohos.multimedia.image';
-import UDC from '@ohos.data.unifiedDataChannel';
+import { dragController, componentSnapshot } from "@kit.ArkUI"
+import { image } from '@kit.ImageKit';
+import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
@@ -4758,8 +4757,8 @@ struct DragControllerPage {
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDC.Text()
-              let unifiedData = new UDC.UnifiedData(text)
+              let text = new unifiedDataChannel.Text()
+              let unifiedData = new unifiedDataChannel.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
@@ -4837,12 +4836,9 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 **示例：**
 1.在EntryAbility.ets中获取UI上下文并保存至LocalStorage中。
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import { UIContext } from '@ohos.arkui.UIContext';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window, UIContext } from '@kit.ArkUI';
 
 let uiContext: UIContext;
 let localStorage: LocalStorage = new LocalStorage('uiContext');
@@ -4900,11 +4896,9 @@ export default class EntryAbility extends UIAbility {
 ```
 2.通过LocalStorage.getShared()获取上下文，进而获取DragController对象实施后续操作。
 ```ts
-import dragController from "@ohos.arkui.dragController"
-import componentSnapshot from '@ohos.arkui.componentSnapshot';
-import image from '@ohos.multimedia.image';
-import UDC from '@ohos.data.unifiedDataChannel';
-import { UIContext, DragController } from '@ohos.arkui.UIContext'
+import { dragController, componentSnapshot, UIContext, DragController } from "@kit.ArkUI"
+import { image } from '@kit.ImageKit';
+import { unifiedDataChannel } from '@kit.ArkData';
 
 let storages = LocalStorage.getShared();
 
@@ -4940,8 +4934,8 @@ struct DragControllerPage {
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
-            let text = new UDC.Text()
-            let unifiedData = new UDC.UnifiedData(text)
+            let text = new unifiedDataChannel.Text()
+            let unifiedData = new unifiedDataChannel.UnifiedData(text)
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
@@ -4997,9 +4991,9 @@ setDragEventStrictReportingEnabled(enable: boolean): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { UIContext } from '@ohos.arkui.UIContext';
+import { UIAbility } from '@kit.AbilityKit';
+import { window, UIContext } from '@kit.ArkUI';
+
  export default class EntryAbility extends UIAbility {
    onWindowStageCreate(windowStage: window.WindowStage): void {
        windowStage.loadContent('pages/Index', (err, data) => {
