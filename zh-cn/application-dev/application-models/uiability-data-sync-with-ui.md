@@ -24,8 +24,6 @@
 
     export default class EntryAbility extends UIAbility {
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        // 获取UIAbility实例的上下文
-        let context = this.context;
         // 获取eventHub
         let eventhub = this.context.eventHub;
         // 执行订阅操作
