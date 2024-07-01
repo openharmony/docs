@@ -96,3 +96,65 @@ struct testTmp {
 **适配指导**
 
 如果开发者不按规范使用对应范式，则需按日志提示信息进行修改。
+
+## cl.arkui.2 @ohos.arkui.advanced.SubHeader删除SymbolRenderingStrategy和SymbolEffectStrategy。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+该变更为非兼容性变更。
+
+1.无法引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy。
+
+简化示例如下：
+
+```ts
+import { promptAction, OperationType, SubHeader, SymbolEffectStrategy, SymbolRenderingStrategy } from '@ohos.arkui.advanced.SubHeader'
+
+@Entry
+@Component
+struct SubHeaderExample {
+  build() {
+    Column() {
+      SubHeader({
+        icon: $r('sys.symbol.ohos_wifi'),
+        iconSymbolOptions: {
+          effectStrategy: SymbolEffectStrategy.HIERARCHICAL,
+          renderingStrategy: SymbolRenderingStrategy.MULTIPLE_COLOR,
+          fontColor: [Color.Blue, Color.Grey, Color.Green],
+        },
+        secondaryTitle: '标题',
+        operationType: OperationType.BUTTON,
+        operationItem: [{ value: '操作',
+          action: () => {
+            promptAction.showToast({ message: 'demo' })
+          }
+        }]
+      })
+    }
+  }
+}
+```
+
+**变更影响**
+
+变更前引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy无报错。
+
+变更后报错：
+
+1.Eerror message:the requested module '@ohos.arkui.advanced.SubHeader' does not provide an export name 'SymbolRenderingStrategy' and 'SymbolEffectStrategy'.
+
+**起始API Level**
+
+不涉及API变更
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.31开始。
+
+**适配指导**
+
+如果开发者不按规范使用对应范式，则需按编译提示信息进行修改。参考API文档，删除引用SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy，自动引用SymbolGlyph中SymbolRenderingStrategy和SymbolEffectStrategy。
