@@ -3,7 +3,7 @@
 
 > **NOTE**
 >
-> In this document, DevEco Studio 4.1 Beta1 is used. You can download it [here](../../release-notes/OpenHarmony-v4.1-beta1.md#version-mapping).
+> In this document, DevEco Studio 4.1 Beta1 is used.<!--Del--> You can download it [here](../../release-notes/OpenHarmony-v4.1-beta1.md#version-mapping).<!--DelEnd-->
 
 ## Creating an ArkTS Project
 
@@ -26,7 +26,7 @@
 
 ![project](figures/project.png)
 
-- **AppScope > app.json5**: application-level configuration information.
+- **AppScope &gt; app.json5**: application-level configuration information. For details, see [app.json5 Configuration File](app-configuration-file.md).
 
 - **entry**: OpenHarmony project module, which can be built into an ability package (HAP).
   - **src > main > ets**: a collection of ArkTS source code.
@@ -194,8 +194,8 @@ To deliver better transition effects, use [Navigation](../ui/arkts-navigation-na
    ```ts
    // Index.ets
    // Import the router module.
-   import router from '@ohos.router';
-   import { BusinessError } from '@ohos.base';
+   import { router } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
    @Component
@@ -246,8 +246,8 @@ To deliver better transition effects, use [Navigation](../ui/arkts-navigation-na
    ```ts
    // Second.ets
    // Import the router module.
-   import router from '@ohos.router';
-   import { BusinessError } from '@ohos.base';
+   import { router } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
    @Component
@@ -310,5 +310,4 @@ To deliver better transition effects, use [Navigation](../ui/arkts-navigation-na
 
    ![en-us_image_0000001364254729](figures/en-us_image_0000001364254729.png)
 
-Congratulations! You have finished developing your OpenHarmony application in ArkTS in the stage model. To learn more about OpenHarmony application development, see [Application Development Overview](../application-dev-guide.md).
-<!--no_check-->
+Congratulations! You have finished developing your OpenHarmony application in ArkTS in the stage model.
