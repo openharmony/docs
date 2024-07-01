@@ -23,7 +23,7 @@
    >
    > - 若您使用的是Ubuntu20及以上版本，由于gcc-multilib和gcc-arm-linux-gnueabi互斥，请勿安装gcc-arm-linux-gnueabi。
    > 
-   > - 执行过程中需要多次点击回车以确认安装所需的库和工具
+   > - 执行过程中需要多次点击回车以确认安装所需的库和工具。
 
 2. 将Python 3.8设置为默认Python版本。
    
