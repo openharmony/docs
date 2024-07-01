@@ -29,9 +29,9 @@ toybox的执行方式有两种
 
 | 选项 | 参数 | 说明 |
 | :- | :- | :- |
-| --help | NA | 显示命令帮助 |
-| --long | NA | 显示支持的所有命令的路径 |
-| NA | NA | 显示所有支持的命令 |
+| --help | NA | 显示命令帮助。 |
+| --long | NA | 显示支持的所有命令的路径。 |
+| NA | NA | 显示所有支持的命令。 |
 
 ### 帮助命令
 
@@ -39,12 +39,12 @@ toybox的执行方式有两种
 
 | 参数 | 说明 |
 | :- | :- |
-| command | 显示command的帮助 |
+| command | 显示command的帮助。 |
 
 | 选项 | 说明 |
 | :- | :- |
-| -a | 显示所有命令的帮助 |
-| -h | 以html格式显示帮助 |
+| -a | 显示所有命令的帮助。 |
+| -h | 以html格式显示帮助。 |
 
 ### 数学计算与随机数
 
@@ -60,7 +60,7 @@ toybox的执行方式有两种
 | :- | :- |
 | nohup | 运行一个独立于终端的命令。<br />usage: nohup [COMMAND [ARGS...]] |
 | reset | 复位终端。<br />usage: reset |
-| clear | 清空终端 <br />usage: clear |
+| clear | 清空终端。<br />usage: clear |
 
 ### sh逻辑命令
 
