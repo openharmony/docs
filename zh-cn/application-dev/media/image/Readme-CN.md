@@ -8,6 +8,7 @@
   - [使用ImagePacker完成图片编码](image-encoding.md)
   - [编辑图片EXIF信息](image-tool.md)
 - 图片开发指导(C/C++)
+  - [介绍Image_NativeModule结构体信息](image-structure-c.md)
   - [使用Image_NativeModule完成图片解码](image-source-c.md)
   - [使用Image_NativeModule完成图片接收器](image-receiver-c.md)
   - [使用Image_NativeModule完成位图操作](pixelmap-c.md)
