@@ -1102,6 +1102,8 @@
         - [运行时动态加载页面提升性能](performance/performance-dynamic-import.md)
         - [合理运行后台任务](performance/reasonable-running-backgroundTask.md)
         - [Web组件开发性能提升指导](performance/performance-web-import.md)
+        - [合理处理高负载组件的渲染](performance/reasonably-dispose-highly-loaded-component-render.md)
+        - [全局自定义组件复用实现](performance/node_custom_component_reusable_pool.md)
       - [减小应用包大小](performance/reduce-package-size.md)
       - 性能工具
         - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
