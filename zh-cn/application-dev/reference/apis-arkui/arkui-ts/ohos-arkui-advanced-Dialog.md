@@ -272,6 +272,7 @@ struct Index {
 
 ```ts
 import { SelectDialog } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
@@ -335,6 +336,7 @@ struct Index {
 
 ```ts
 import { ConfirmDialog } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
@@ -444,6 +446,7 @@ struct Index {
 
 ```ts
 import { LoadingDialog } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
