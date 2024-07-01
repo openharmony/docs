@@ -508,6 +508,7 @@ struct RequestFocusExample {
 @Component
 struct RequestExample {
   @State btColor: Color = Color.Blue
+  @State btColor2: Color = Color.Blue
 
   build() {
     Column({ space: 20 }) {
@@ -531,12 +532,12 @@ struct RequestExample {
           .height(70)
           .fontColor(Color.White)
           .focusOnTouch(true)
-          .backgroundColor(this.btColor)
+          .backgroundColor(this.btColor2)
           .onFocus(() => {
-            this.btColor = Color.Red
+            this.btColor2 = Color.Red
           })
           .onBlur(() => {
-            this.btColor = Color.Blue
+            this.btColor2 = Color.Blue
           })
           .id("testButton2")
 
