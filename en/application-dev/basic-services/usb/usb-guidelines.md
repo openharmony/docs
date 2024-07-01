@@ -1,7 +1,5 @@
 # USB Service Development
 
-
-
 ## When to Use
 
 In Host mode, you can obtain the list of connected USB devices, enable or disable the devices, manage device access permissions, and perform data transfer or control transfer.
@@ -42,9 +40,9 @@ You can set a USB device as a host to connect to a device for data transfer. The
 
    ```ts
    // Import the USB API package.
-   import usb from '@ohos.usbManager';
+   import { usbManager } from '@kit.BasicServicesKit';
    // Obtain the USB device list.
-   let deviceList : Array<usb.USBDevice> = usb.getDevices();
+   let deviceList : Array<usbManager.USBDevice> = usbManager.getDevices();
    /*
    Example deviceList structure:
    [
@@ -101,12 +99,12 @@ You can set a USB device as a host to connect to a device for data transfer. The
 2. Obtain the device operation permissions.
 
    ```ts
-   import usb from '@ohos.usbManager';
-   import { BusinessError } from '@ohos.base';
+   import { usbManager } from '@kit.BasicServicesKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let deviceName : string = deviceList[0].name;
    // Request the permissions to operate a specified device.
-   usb.requestRight(deviceName).then((hasRight : boolean) => {
+   usbManager.requestRight(deviceName).then((hasRight : boolean) => {
      console.info("usb device request right result: " + hasRight);
    }).catch((error : BusinessError)=> {
      console.info("usb device request right failed : " + error);
@@ -117,28 +115,28 @@ You can set a USB device as a host to connect to a device for data transfer. The
 
    ```ts
    // Open the device, and obtain the USB device pipe for data transfer.
-   let pipe : usb.USBDevicePipe = usb.connectDevice(deviceList[0]);
-   let interface1 : usb.USBInterface = deviceList[0].configs[0].interfaces[0];
+   let pipe : usbManager.USBDevicePipe = usbManager.connectDevice(deviceList[0]);
+   let interface1 : usbManager.USBInterface = deviceList[0].configs[0].interfaces[0];
    /*
     Claim the corresponding interface from **deviceList**.
    interface1 must be one present in the device configuration.
    */
-   usb.claimInterface(pipe, interface1, true);
+   usbManager.claimInterface(pipe, interface1, true);
    ```
 
 4. Perform data transfer.
 
    ```ts
-   import usb from '@ohos.usbManager';
-   import { BusinessError } from '@ohos.base';
+   import { usbManager } from '@kit.BasicServicesKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    /*
     Read data. Select the corresponding RX endpoint from deviceList for data transfer.
    (endpoint.direction == 0x80); dataUint8Array indicates the data to read. The data type is Uint8Array.
    */
-   let inEndpoint : usb.USBEndpoint = interface1.endpoints[2];
-   let outEndpoint : usb.USBEndpoint = interface1.endpoints[1];
+   let inEndpoint : usbManager.USBEndpoint = interface1.endpoints[2];
+   let outEndpoint : usbManager.USBEndpoint = interface1.endpoints[1];
    let dataUint8Array : Uint8Array = new Uint8Array(1024);
-   usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
+   usbManager.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
    if (dataLength >= 0) {
      console.info("usb readData result Length : " + dataLength);
    } else {
@@ -148,7 +146,7 @@ You can set a USB device as a host to connect to a device for data transfer. The
    console.info("usb readData error : " + JSON.stringify(error));
    });
    // Send data. Select the corresponding TX endpoint from deviceList for data transfer. (endpoint.direction == 0)
-   usb.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
+   usbManager.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
      if (dataLength >= 0) {
        console.info("usb writeData result write length : " + dataLength);
      } else {
@@ -162,6 +160,6 @@ You can set a USB device as a host to connect to a device for data transfer. The
 5. Release the USB interface, and close the USB device.
 
    ```ts
-   usb.releaseInterface(pipe, interface1);
-   usb.closePipe(pipe);
+   usbManager.releaseInterface(pipe, interface1);
+   usbManager.closePipe(pipe);
    ```

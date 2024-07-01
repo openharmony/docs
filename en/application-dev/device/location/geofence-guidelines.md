@@ -21,7 +21,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
 
 ## How to Develop
 
-1. Declare the **ohos.permission.APPROXIMATELY_LOCATION** permission. For details, see [Applying for Location Permissions](#location-permission-guidelines.md).
+1. Declare the **ohos.permission.APPROXIMATELY_LOCATION** permission. For details, see [Applying for Location Permissions](#applying-for-location-permissions).
 
 2. Import the **geoLocationManager**, **wantAgent**, and **BusinessError** modules.
    
@@ -36,8 +36,6 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
    Scenario 1: Create a **WantAgentInfo** object for starting an ability. 
 
    ```ts
-   let wantAgentObj:_wantAgent|null = null; // Save the created WantAgent object for completing the trigger operations at a later time.
-   
    // Set the action type through operationType of WantAgentInfo.
    let wantAgentInfo:wantAgent.WantAgentInfo = {
        wants: [
@@ -60,8 +58,6 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
    Scenario 2: Create a **WantAgentInfo** object for releasing a public event.
 
    ```ts
-   let wantAgentObj:_wantAgent|null = null; // Save the created WantAgent object for completing the trigger operations at a later time.
-   
    // Set the action type through operationType of WantAgentInfo.
    let wantAgentInfo:wantAgent.WantAgentInfo = {
        wants: [

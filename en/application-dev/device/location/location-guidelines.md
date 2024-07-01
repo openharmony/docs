@@ -67,7 +67,7 @@ The following table lists the APIs used to obtain the device location informatio
          geoLocationManager.getCurrentLocation(request).then((result) => { // Call getCurrentLocation to obtain the current device location by using a promise.
             console.log('current location: ' + JSON.stringify(result));
          })
-         .catch((error:BusinessError.BusinessError) => { // Receive the reported error code.
+         .catch((error:BusinessError) => { // Receive the reported error code.
             console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
          });
        } catch (err) {
