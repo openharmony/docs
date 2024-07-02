@@ -242,7 +242,7 @@ let preferences: dataPreferences.Preferences | null = null;
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
                 if (err) {
                     console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
@@ -329,7 +329,7 @@ let preferences: dataPreferences.Preferences | null = null;
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options =  { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options =  { name: 'myStore' };
             let promise = dataPreferences.getPreferences(this.context, options);
             promise.then((object: dataPreferences.Preferences) => {
                 preferences = object;
@@ -410,7 +410,7 @@ let preferences: dataPreferences.Preferences | null = null;
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             preferences = dataPreferences.getPreferencesSync(this.context, options);
         } catch (err) {
             let code = (err as BusinessError).code;
@@ -645,7 +645,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
                 if (err) {
                     console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
@@ -732,7 +732,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try{
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             let promise = dataPreferences.deletePreferences(this.context, options);
             promise.then(() => {
                 console.info("Succeeded in deleting preferences.");
@@ -1015,7 +1015,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
                 if (err) {
                     console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
@@ -1100,7 +1100,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             let promise = dataPreferences.removePreferencesFromCache(this.context, options);
             promise.then(() => {
                 console.info("Succeeded in removing preferences.");
@@ -1171,7 +1171,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let options: dataPreferences.Options = { name: 'myStore' };
             dataPreferences.removePreferencesFromCacheSync(this.context, options);
         } catch (err) {
             let code = (err as BusinessError).code;
@@ -1191,7 +1191,7 @@ Preferences实例配置选项。
 | 名称        | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | 是   | Preferences实例的名称。                                      |
-| dataGroupId | string | 否   | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例，当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。 |
+| dataGroupId | string | 否   | 应用组ID，需要向应用市场获取，暂不支持。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例，当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。 |
 
 ## Preferences
 
