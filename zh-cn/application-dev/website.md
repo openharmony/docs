@@ -89,7 +89,6 @@
         - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
         - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
         - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
-        - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
         - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
     - 渲染控制
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
