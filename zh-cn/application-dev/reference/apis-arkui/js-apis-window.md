@@ -1484,7 +1484,7 @@ try {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置主窗口或子窗口的布局是否为沉浸式布局，使用callback异步回调。
+设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。
 沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
 非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
@@ -4827,7 +4827,7 @@ windowClass.setFullScreen(isFullScreen, (err: BusinessError) => {
 
 setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
-设置主窗口或子窗口的布局是否为沉浸式布局，使用callback异步回调。
+设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。
 沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
 非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
@@ -4904,7 +4904,7 @@ windowClass.setLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
 
 setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置主窗口或子窗口的布局是否为沉浸式布局，使用callback异步回调。
+设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。
 沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
 非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
