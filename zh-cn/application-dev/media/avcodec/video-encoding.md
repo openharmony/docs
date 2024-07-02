@@ -25,7 +25,7 @@
 
 ## 限制约束
 1. buffer模式不支持10bit的图像数据。
-2. 由于硬件编码器资源有限，每个编码器在使用完毕后都必须调用OH_VideoDecoder_Destroy()函数来销毁实例并释放资源。
+2. 由于硬件编码器资源有限，每个编码器在使用完毕后都必须调用OH_VideoEncoder_Destroy()函数来销毁实例并释放资源。
 3. 在调用Flush，Reset，Stop的过程中，开发者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
 
 
@@ -66,7 +66,7 @@
    - 对于处于Executing状态的编码器，可以调用OH_VideoEncoder_Flush()方法返回到Flushed子状态。
    - 当待处理数据全部传递给编码器后，可以在input buffers队列中为最后一个入队的input buffer中添加AVCODEC_BUFFER_FLAGS_EOS标记，遇到这个标记时，编码器会转换为End-of-Stream子状态。在此状态下，编码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
 
-7. 使用完编码器后，必须调用OH_VideoEncoder_Destroy()方法销毁解码器实例。使编码器进入Released 状态。
+7. 使用完编码器后，必须调用OH_VideoEncoder_Destroy()方法销毁编码器实例。使编码器进入Released 状态。
 
 ## 开发指导
 
@@ -129,8 +129,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```
 
     ```c++
-    // 通过MIME TYPE创建解码器，只能创建系统推荐的特定编解码器
-    // 涉及创建多路编解码器时，优先创建硬件解码器实例，硬件资源不够时再创建软件解码器实例
+    // 通过MIME TYPE创建编码器，只能创建系统推荐的特定编解码器
+    // 涉及创建多路编解码器时，优先创建硬件编码器实例，硬件资源不够时再创建软件编码器实例
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
     ```
 
@@ -202,7 +202,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 5. （可选）调用OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调。
 
     ```c++
-    // 4.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现
+    // 5.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现
     static void OnNeedInputParameter(OH_AVCodec *codec, uint32_t index, OH_AVFormat *parameter, void *userData)
     {
         // 输入帧parameter对应的index，送入InParameterIndexQueue队列
@@ -214,7 +214,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MIN, 20);
     }
 
-    // 4.2 注册随帧参数回调
+    // 5.2 注册随帧参数回调
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
     OH_VideoEncoder_RegisterParameterCallback(codec, inParaCb, nullptr); // NULL:用户特定数据userData为空 
     ```
@@ -327,7 +327,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 10. （可选）OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数。
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
-   ```c++
+    ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
     // 支持动态请求IDR帧
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true);
@@ -352,7 +352,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     在之前的第7步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputBuffer回调函数进行处理，也无需使用OH_VideoEncoder_PushInputBuffer接口输入数据。
 
 12. （可选）调用OH_VideoEncoder_PushInputParameter()通知编码器随帧参数配置输入完成。
-    在之前的第4步中，开发者已经注册随帧通路回调
+    在之前的第5步中，开发者已经注册随帧通路回调
 
     以下示例中：
 
@@ -490,8 +490,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```
 
     ```c++
-    // 通过MIME TYPE创建解码器，只能创建系统推荐的特定编解码器
-    // 涉及创建多路编解码器时，优先创建硬件解码器实例，硬件资源不够时再创建软件解码器实例
+    // 通过MIME TYPE创建编码器，只能创建系统推荐的特定编解码器
+    // 涉及创建多路编解码器时，优先创建硬件编码器实例，硬件资源不够时再创建软件编码器实例
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
     ```
 
@@ -727,7 +727,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     硬件编码在处理buffer数据时（推送数据前），需要用户拷贝宽高对齐后的图像数据到输入回调的AVbuffer中。
     一般需要获取数据的宽高、跨距、像素格式来保证编码输入数据被正确的处理。
     
-    具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽高、跨距、像素格式。
+    具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoEncoder_RegisterCallback()设置回调函数来获取数据的宽高、跨距、像素格式。
    
 
 9. 通知编码器结束。
