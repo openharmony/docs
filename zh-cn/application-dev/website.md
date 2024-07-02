@@ -365,7 +365,7 @@
             - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
             - [菜单 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
           - 使用文本
-            - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
+            - [属性字符串 (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
         - 设置组件导航和页面路由
           - [组件导航 (Navigation) (推荐)](ui/arkts-navigation-navigation.md)
           - [页面路由 (@ohos.router)](ui/arkts-routing.md)
@@ -911,7 +911,7 @@
         - [电话服务开发概述](telephony/telephony-overview.md)
         - [拨打电话](telephony/telephony-call.md)
         - [短信服务](telephony/telephony-sms.md)
-    - 基本功能<!--system-basicfun-->
+    - 基础功能<!--system-basicfun-->
       - Basics Service Kit（基础服务）
         - [Basic Services Kit简介](basic-services/basic-services-kit-overview.md)
         - 应用事件
@@ -1159,10 +1159,10 @@
         - [拍照实现方案(ArkTS)](media/camera/camera-shooting-case.md)
         - [录像实现方案(ArkTS)](media/camera/camera-recording-case.md)
         - [双路预览(ArkTS)](media/camera/camera-dual-channel-preview.md)
+        - [分段式拍照实现方案(ArkTS)](media/camera/camera-deferred-capture-case.md)
         <!--Del-->
         - [性能提升方案(仅对系统应用开放)(ArkTS)](media/camera/camera-performance-improvement.md)
         - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
-        - [分段式拍照实现方案(ArkTS)](media/camera/camera-deferred-capture-case.md)
         <!--DelEnd-->
       - 相机开发指导(C/C++)
         - [设备输入(C/C++)](media/camera/native-camera-device-input.md)
@@ -1713,6 +1713,7 @@
         - [分布式数据对象错误码](reference/apis-arkdata/errorcode-distributed-dataObject.md)
         - [分布式键值数据库错误码](reference/apis-arkdata/errorcode-distributedKVStore.md)
         - [用户首选项错误码](reference/apis-arkdata/errorcode-preferences.md)
+        - [统一数据管理框架错误码](reference/apis-arkdata/errorcode-udmf.md)
     - ArkTS（方舟编程语言）<!--arkts-api-->
       - ArkTS API<!--arkts-arkts--> 
         - [@arkts.collections (ArkTS容器集)](reference/apis-arkts/js-apis-arkts-collections.md)
@@ -2769,7 +2770,7 @@
           <!--DelEnd-->
         - 错误码<!--telephony-arkts-errcode-->
           - [电话子系统错误码](reference/apis-telephony-kit/errorcode-telephony.md)
-    - 基本功能<!--system-basicfun-api-->
+    - 基础功能<!--system-basicfun-api-->
       - Basic Services Kit（基础服务）<!--basic-services-api-->
         - ArkTS API<!--basic-services-arkts-->
           - 帐号管理
