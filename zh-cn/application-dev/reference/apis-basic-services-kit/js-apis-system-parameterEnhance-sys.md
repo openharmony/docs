@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import systemparameter from '@ohos.systemParameterEnhance';
+import {systemParameter} from '@kit.systemParameterEnhance';
 ```
 
 ## systemparameter.getSync
@@ -87,7 +87,7 @@ get(key: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     systemparameter.get("const.ohos.apiversion", (err: BusinessError, data: string) => {
@@ -131,7 +131,7 @@ get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     systemparameter.get("const.ohos.apiversion", "default", (err: BusinessError, data: string) => {
@@ -181,7 +181,7 @@ get(key: string, def?: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let p: Promise<string> = systemparameter.get("const.ohos.apiversion");
@@ -224,7 +224,7 @@ setSync(key: string, value: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     systemparameter.setSync("test.parameter.key", "default");
@@ -263,7 +263,7 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     systemparameter.set("test.parameter.key", "testValue", (err: BusinessError, data: void) => {
@@ -312,7 +312,7 @@ set(key: string, value: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let p: Promise<void>  = systemparameter.set("test.parameter.key", "testValue");
