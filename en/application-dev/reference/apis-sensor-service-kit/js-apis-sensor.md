@@ -4236,9 +4236,9 @@ Describes the sensor data reporting frequency.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name    | Type                                                       | Readable| Writable| Description                                                        |
-| -------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| interval | number/[SensorFrequency](#sensorfrequency11+)<sup>11+</sup> | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. This attribute has restrictions on the minimum and maximum values, determined by the reporting frequency supported by the hardware.|
+| Name    | Type                                                      | Readable| Writable| Description                                                        |
+| -------- | ---------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| interval | number/[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. This attribute has restrictions on the minimum and maximum values, determined by the reporting frequency supported by the hardware.|
 
 ## SensorFrequency<sup>11+</sup>
 
@@ -4290,7 +4290,7 @@ Describes a geomagnetic response object.
 | geomagneticDip  | number | Yes  | Yes  | Magnetic dip, also called magnetic inclination, which is the angle measured from the horizontal plane to the magnetic field vector.            |
 | deflectionAngle | number | Yes  | Yes  | Magnetic declination, which is the angle between true north (geographic north) and the magnetic north (the horizontal component of the field).|
 | levelIntensity  | number | Yes  | Yes  | Horizontal intensity of the magnetic field vector field.                                |
-| totalIntensity  | number | Yes  | Yes  | Total intensity of the magnetic field vector.                                  |
+| totalIntensity  | number | Yes  | Yes  | Total intensity of the magnetic field vector.                           |
 
 ## LocationOptions
 
@@ -6654,7 +6654,7 @@ Obtains the angle change between two rotation matrices. This API uses an asynchr
 | Name               | Type                                    | Mandatory| Description                                 |
 | --------------------- | ---------------------------------------- | ---- | ------------------------------------- |
 | currentRotationMatrix | Array&lt;number&gt;                      | Yes  | Current rotation matrix.                   |
-| preRotationMatrix     | Array&lt;number&gt;                      | Yes  | The other rotation matrix.                       |
+| preRotationMatrix     | Array&lt;number&gt;                      | Yes  | Peer rotation matrix.                       |
 | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the angle change around the z, x, and y axes.|
 
 **Example**
@@ -6692,7 +6692,7 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 | Name                  | Type                 | Mandatory  | Description       |
 | --------------------- | ------------------- | ---- | --------- |
 | currentRotationMatrix | Array&lt;number&gt; | Yes   | Current rotation matrix.|
-| preRotationMatrix     | Array&lt;number&gt; | Yes   | The other rotation matrix.  |
+| preRotationMatrix     | Array&lt;number&gt; | Yes   | Peer rotation matrix.  |
 
 **Return value**
 
@@ -6890,7 +6890,7 @@ Obtains the device direction based on the rotation matrix. This API uses an asyn
 
 | Name        | Type                                    | Mandatory| Description                                 |
 | -------------- | ---------------------------------------- | ---- | ------------------------------------- |
-| rotationMatrix | Array&lt;number&gt;                      | Yes  | The other rotation matrix.                       |
+| rotationMatrix | Array&lt;number&gt;                      | Yes  | Peer rotation matrix.                       |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation angle around the z, x, and y axes.|
 
 **Example**
@@ -6927,7 +6927,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 | Name           | Type                 | Mandatory  | Description     |
 | -------------- | ------------------- | ---- | ------- |
-| rotationMatrix | Array&lt;number&gt; | Yes   | The other rotation matrix.|
+| rotationMatrix | Array&lt;number&gt; | Yes   | Peer rotation matrix.|
 
 **Return value**
 
