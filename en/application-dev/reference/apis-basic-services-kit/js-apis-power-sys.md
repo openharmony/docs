@@ -11,7 +11,7 @@ The **power** module provides APIs for rebooting and shutting down the system, a
 ## Modules to Import
 
 ```js
-import power from '@kit.BasicServicesKit';
+import {power} from '@kit.BasicServicesKit';
 ```
 
 ## power.shutdown

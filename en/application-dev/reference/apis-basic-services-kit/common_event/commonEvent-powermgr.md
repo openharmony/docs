@@ -111,4 +111,4 @@ Indicates that the device's thermal level has changed.
 - Value: usual.event.THERMAL_LEVEL_CHANGED
 - Required subscriber permissions: none
 
-When the device's thermal level changes, the event notification service is triggered to publish this event. For details about how to configure the thermal level, see [Thermal Level Customization](../../../../device-dev/subsystems/subsys-thermal_level.md).
+When the device's thermal level changes, the event notification service is triggered to publish this event. <!--Del-->For details about how to configure the thermal level, see [Thermal Level Customization](../../../../device-dev/subsystems/subsys-thermal_level.md).<!--DelEnd-->

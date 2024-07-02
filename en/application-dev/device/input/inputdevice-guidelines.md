@@ -15,7 +15,7 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
 The following table lists the common APIs for input device management. For details about the APIs, see [ohos.multimodalInput.inputDevice](../../reference/apis-input-kit/js-apis-inputdevice.md).
 
 | API | Description|
-| ----------- | ------------------------------------------------------------ | -------------------------- |
+| ----------- | ------------------------------------------------------------ | 
 | getDeviceList(): Promise\<Array\<number>> | Obtains the list of input devices.|
 | getKeyboardType(deviceId: number): Promise\<KeyboardType> | Obtains the keyboard type of the input device.|
 | on(type: "change", listener: Callback\<DeviceListener>): void | Enables listening for device hot swap events.|

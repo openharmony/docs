@@ -12,7 +12,7 @@ The **request** module provides applications with basic upload, download, and ba
 
 
 ```js
-import request from '@ohos.request';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 ## Constants
@@ -833,7 +833,7 @@ For details about the following error codes, see [Upload and Download Error Code
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // Replace the URL with the HTTP address of the real server.
@@ -886,7 +886,7 @@ For details about the following error codes, see [Upload and Download Error Code
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // Replace the URL with the HTTP address of the real server.
@@ -1032,7 +1032,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // Replace the URL with the HTTP address of the real server.
@@ -1079,7 +1079,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1134,7 +1134,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1191,7 +1191,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1279,7 +1279,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1326,7 +1326,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1379,7 +1379,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1430,7 +1430,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1483,7 +1483,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1534,7 +1534,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1587,7 +1587,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1638,7 +1638,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1691,7 +1691,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1742,7 +1742,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1795,7 +1795,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -1846,7 +1846,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Replace the URL with the HTTP address of the real server.
@@ -4274,7 +4274,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
     task.start();
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -4624,7 +4624,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   ```ts
   let filter: request.agent.Filter = {
-    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }
@@ -4670,7 +4669,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
   ```ts
   let filter: request.agent.Filter = {
-    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }
