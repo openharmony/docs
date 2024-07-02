@@ -442,11 +442,8 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 ```ts
 // used in UIAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { UIContext } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
-import { window } from '@kit.ArkUI';
-
-import { uiObserver as observer } from '@kit.ArkUI';
+import { UIContext, window, uiObserver } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   private uiContext: UIContext | null = null;
@@ -499,7 +496,7 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 ```ts
 // used in UIAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { uiObserver as observer, UIContext } from '@kit.ArkUI';
+import { uiObserver, UIContext } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // 实际使用前uiContext需要被赋值。参见示例observer.on('routerPageUpdate')
