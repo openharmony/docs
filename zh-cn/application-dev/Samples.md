@@ -2867,7 +2867,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/TaskManagement/TransientTask)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/TaskManagement/TransientTask)
 
 #### 任务延时调度
 
