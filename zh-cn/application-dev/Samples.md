@@ -2751,7 +2751,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 使用
 
-1. 安装[WindowRatio](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowRatio)工程hap包(即本示例)和[WindowManage](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowManage)工程hap包
+1. 安装[WindowRatio](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/WindowManagement/WindowRatio)工程hap包(即本示例)和[WindowManage](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/WindowManagement/WindowManage)工程hap包
 2. 打开WindowManage应用sample，点击**窗口预览**进入视频播放页面，点击主窗口后拉起子窗口。
 3. 点击**拉起悬浮应用**按钮后，将以悬浮窗模式拉起应用WindowRatio 。
 4. 点击悬浮应用中的下拉框，选择窗口缩放比例，点击**确定**按钮，以新的宽度/比例计算得到窗口宽高，监听到窗口缩放比例发生变化，窗口以设置的比例改变大小，窗口监听到大小发生变化，在页面上显示当前窗口的宽度和高度。另外，窗口不具备记忆之前位置大小的能力，当前sample所调用的接口展示结果不居中，若要使得窗口居中，则需调用resize接口指定成想要的大小。
@@ -3315,7 +3315,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 * 该示例分为两个模块：
   * 键盘布局
     * 在Index中完成键盘的总体布局。在components中自定不同的按键组件。
-    * 参考接口：[ArkTs声明式开发范式](https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/arkui-ts)
+    * 参考接口：[ArkTs声明式开发范式](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/Readme-CN.md)
   * 输入法控制
     * 使用[@ohos.request](reference/apis/js-apis-request.md)中API 10接口agent.create创建上传任务，调用@ohos.request中的Task相关接口实现上传任务的创建、取消、进度加载，前台任务只支持单文件下载，后台任务支持多文件下载。使用[@ohos.file.fs](reference/apis/js-apis-file-fs.md)完成指定路径的创建和查询已下载的文件。
     * 参考接口：[@ohos.inputMethodEngine](reference/apis/js-apis-inputmethodengine.md)
