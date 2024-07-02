@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```
-import { usageStatistics } from '@kit.BackgroundTasKit'
+import { usageStatistics } from '@kit.BackgroundTasksKit'
 ```
 
 ## usageStatistics.isIdleState
