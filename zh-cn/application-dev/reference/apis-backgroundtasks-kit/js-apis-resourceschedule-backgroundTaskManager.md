@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 ```
 
 ## backgroundTaskManager.requestSuspendDelay
@@ -55,7 +55,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let myReason = 'test requestSuspendDelay';
 try {
@@ -105,7 +105,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let id = 1;
 backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: number) => {
@@ -155,7 +155,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 **示例**：
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let id = 1;
 backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
@@ -197,7 +197,7 @@ cancelSuspendDelay(requestId: number): void
 **示例**：
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let id = 1;
   try {
@@ -246,12 +246,10 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 function callback(error: BusinessError, data: void) {
     if (error) {
@@ -340,12 +338,10 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -420,11 +416,9 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 function callback(error: BusinessError, data: void) {
     if (error) {
@@ -484,11 +478,9 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -548,12 +540,11 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
 import { notificationManager } from '@kit.NotificationKit';
 
 export default class EntryAbility extends UIAbility {
@@ -676,12 +667,9 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 **示例**：
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
