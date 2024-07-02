@@ -140,12 +140,9 @@
 - 在Ability中设置[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)，需要在onWindowStageCreate()方法中[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme)。
 
   ```ts
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import hilog from '@ohos.hilog';
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import Want from '@ohos.app.ability.Want';
-    import window from '@ohos.window';
-    import { CustomColors, ThemeControl } from '@kit.ArkUI';
+    import {AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { window, CustomColors, ThemeControl } from '@kit.ArkUI';
 
     class AppColors implements CustomColors {
       fontPrimary = 0xFFD53032
