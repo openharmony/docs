@@ -3,13 +3,13 @@
 
 1. 进入源码根目录，执行如下命令进行版本编译。
    
-   >编译32位系统：
+   >编译x86系统：
    
    ```
    ./build.sh --product-name {product_name} --ccache 
    ```
 
-   >编译64位ARM系统：
+   >编译ARM系统：
    
    ```
    ./build.sh --product-name {product_name} --ccache --target-cpu arm64 
