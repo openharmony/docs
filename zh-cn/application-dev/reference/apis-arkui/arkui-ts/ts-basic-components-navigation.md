@@ -1538,276 +1538,6 @@ export struct PageTwo {
 ![navigation.gif](figures/navigation.gif)
 
 ### 示例3
-
-该示例主要演示设置每个NavDestination子页面的自定义转场动画。
-
-```ts
-// Index.ets
-import { CustomTransition, AnimateCallback } from './CustomNavigationUtils'
-
-@Entry
-@Component
-struct NavigationExample {
-  pageInfos: NavPathStack = new NavPathStack()
-
-  aboutToAppear() {
-    if (this.pageInfos === undefined) {
-      this.pageInfos = new NavPathStack();
-    }
-    this.pageInfos.pushPath({name: 'pageOne'}, false)
-  }
-
-  build() {
-    Navigation(this.pageInfos) {
-    }.title('NavIndex')
-    .hideNavBar(true)
-    .customNavContentTransition((from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => {
-      if (from.mode == NavDestinationMode.DIALOG || to.mode == NavDestinationMode.DIALOG) {
-        return undefined;
-      }
-      console.log(`current info: ${to.name}, index: ${to.index}, mode: ${to.mode}`);
-      console.log(`pre info: ${from.name}, index: ${from.index}, mode: ${from.mode}`);
-      console.log(`operation: ${operation}`)
-      if (from.index === -1 || to.index === -1) {
-        return undefined;
-      }
-      let customAnimation: NavigationAnimatedTransition = {
-        onTransitionEnd: (isSuccess: boolean)=>{
-          console.log(`current transition result is ${isSuccess}`);
-        },
-        timeout: 700,
-        // 转场开始时系统调用该方法，并传入转场上下文代理对象
-        transition: (transitionProxy: NavigationTransitionProxy)=>{
-          console.log("trigger transition callback");
-          // 从封装类CustomTransition中根据子页面的序列获取对应的转场动画回调
-          let fromParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(from.index);
-          let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.index);
-          if (fromParam.start != undefined) {
-            fromParam.start(operation == NavigationOperation.PUSH, true);
-          }
-          if (toParam.start != undefined) {
-            toParam.start(operation == NavigationOperation.PUSH, false);
-          }
-          animateTo({duration: 400, onFinish: ()=>{
-            if (fromParam.onFinish != undefined) {
-              fromParam.onFinish(operation === NavigationOperation.PUSH, true);
-            }
-            if (toParam.onFinish != undefined) {
-              toParam.onFinish(operation === NavigationOperation.PUSH, true);
-            }
-            transitionProxy.finishTransition();
-          }}, ()=>{
-            if (fromParam.finish != undefined) {
-              fromParam.finish(operation === NavigationOperation.PUSH, true);
-            }
-            if (toParam.finish != undefined) {
-              toParam.finish(operation === NavigationOperation.PUSH, false);
-            }
-          })
-        }
-      };
-      return customAnimation;
-    })
-  }
-}
-```
-
-```ts
-// PageOne.ets
-import {CustomTransition} from './CustomNavigationUtils'
-
-@Builder
-export function PageOneBuilder(name: string, param: Object) {
-  PageOne()
-}
-
-@Component
-export struct PageOne {
-  pageInfos: NavPathStack = new NavPathStack()
-  @State x: number = 0
-  @State scaleVal: number = 1
-  pageId: number = 0;
-
-  aboutToAppear() {
-    this.pageId = this.pageInfos.getAllPathName().length - 1;
-    CustomTransition.getInstance().registerNavParam(this.pageId, (isPush: boolean, isExit: boolean) => {
-      this.x = isExit ? 0 : 300;
-    }, (isPush: boolean, isExit: boolean)=> {
-      this.x = isExit ? -300 : 0;
-    }, (isPush: boolean, isExit: boolean) => {
-      this.x = 0;
-    }, 200);
-  }
-
-  build() {
-    NavDestination() {
-      Column() {
-        Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            this.pageInfos.pushPathByName('pageTwo', null) //将name指定的NavDestination页面信息入栈，传递的数据为param
-          })
-      }.width('100%').height('100%')
-    }.title('pageOne')
-    .mode(NavDestinationMode.STANDARD)
-    .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
-      return true
-    })
-    .onDisAppear(()=>{
-      CustomTransition.getInstance().unRegisterNavParam(this.pageId)
-    })
-    .onReady((context: NavDestinationContext) => {
-      this.pageInfos = context.pathStack
-    })
-    .translate({x: this.x, y: 0, z: 0})
-    .backgroundColor(Color.White)
-  }
-}
-```
-```ts
-// PageTwo.ets
-import {CustomTransition} from './CustomNavigationUtils'
-
-@Builder
-export function PageTwoBuilder(name: string, param: Object) {
-  PageTwo()
-}
-
-@Component
-export struct PageTwo {
-  pageInfos: NavPathStack = new NavPathStack()
-  @State x: number = 300
-  pageId: number = 0
-
-  aboutToAppear() {
-    this.pageId = this.pageInfos.getAllPathName().length - 1;
-    CustomTransition.getInstance().registerNavParam(this.pageId, (isPush: boolean, isExit: boolean)=>{
-      console.log("current page is pageOne")
-      this.x = isExit ? 0 : isPush ? 300 : -300;
-    }, (isPush: boolean, isExit: boolean)=>{
-      this.x = isExit ? isPush ? -300 : 300 : 0;
-    }, (isPush: boolean, isExit: boolean) => {
-      this.x = 0;
-    }, 2000)
-  }
-
-  build() {
-    NavDestination() {
-      Column() {
-        Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            this.pageInfos.pushPathByName('pageOne', null) //将name指定的NavDestination页面信息入栈，传递的数据为param
-          })
-      }.width('100%').height('100%')
-    }.title('pageTwo')
-    .onBackPressed(() => {
-      const popDestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
-      return true
-    })
-    .onDisAppear(()=>{
-      CustomTransition.getInstance().unRegisterNavParam(this.pageId)
-    })
-    .onReady((context: NavDestinationContext) => {
-      this.pageInfos = context.pathStack;
-    })
-    .opacity(0.5)
-    .translate({x: this.x})
-    .backgroundColor(Color.White)
-  }
-}
-```
-```ts
-// CustomNavigationUtils.ts
-// 自定义接口，用来保存某个页面相关的转场动画回调和参数
-export interface AnimateCallback {
-  finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
-  start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
-  onFinish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
-  timeout: (number | undefined) | undefined;
-}
-const customTransitionMap: Map<number, AnimateCallback> = new Map()
-export class CustomTransition {
-  private constructor() {
-
-  }
-
-  static delegate = new CustomTransition();
-
-  static getInstance() {
-    return CustomTransition.delegate;
-  }
-
-  // 注册某个页面的动画回调
-  // startCallback：用来设置动画开始时页面的状态
-  // endCallback：用来设置动画结束时页面的状态
-  // onFinish：用来执行动画结束后页面的其他操作
-  // timeout：转场结束的超时时间
-  registerNavParam(name: number, startCallback: (operation: boolean, isExit: boolean) => void,
-                   endCallback:(operation: boolean, isExit: boolean) => void,
-                   onFinish: (operation: boolean, isExit: boolean) => void, timeout: number): void {
-
-    if (customTransitionMap.has(name)) {
-      let param = customTransitionMap.get(name);
-      if (param != undefined) {
-        param.start = startCallback;
-        param.finish = endCallback;
-        param.timeout = timeout;
-        param.onFinish = onFinish;
-        return;
-      }
-    }
-    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish};
-    customTransitionMap.set(name, params);
-  }
-
-  unRegisterNavParam(name: number): void {
-    customTransitionMap.delete(name);
-  }
-
-  getAnimateParam(name: number): AnimateCallback {
-    let result: AnimateCallback = {
-      start: customTransitionMap.get(name)?.start,
-      finish: customTransitionMap.get(name)?.finish,
-      timeout: customTransitionMap.get(name)?.timeout,
-      onFinish: customTransitionMap.get(name)?.onFinish
-    };
-    return result;
-  }
-}
-```
-```json
-// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
-// route_map.json
-{
-  "routerMap": [
-    {
-      "name": "pageOne",
-      "pageSourceFile": "src/main/ets/pages/PageOne.ets",
-      "buildFunction": "PageOneBuilder",
-      "data": {
-        "description": "this is pageOne"
-      }
-    },
-    {
-      "name": "pageTwo",
-      "pageSourceFile": "src/main/ets/pages/PageTwo.ets",
-      "buildFunction": "PageTwoBuilder"
-    }
-  ]
-}
-```
-
-![customNavigation.gif](figures/customNavigation.gif)
-
-### 示例4
 ```ts
 // Index.ets
 
@@ -2083,7 +1813,7 @@ export struct PageTwo {
 ```
 ![navigationWithOnPop.gif](figures/navigationWithOnPop.gif)
 
-### 示例5
+### 示例4
 
 ```ts
 // 该示例主要演示设置Navigation主页的标题栏、工具栏和
@@ -2232,7 +1962,7 @@ struct Index {
 ```
 ![navigationColorBlur.gif](figures/navigationColorBlur.gif)
 
-### 示例6
+### 示例5
 
 ```ts
 // 该示例主要演示在嵌套Navigation场景下，如何获取父NavPathStack。
@@ -2299,7 +2029,7 @@ struct NavigationExample1 {
 ```
 ![navPathStackGetParent.gif](figures/navPathStackGetParent.gif)
 
-### 示例7
+### 示例6
 
 ```ts
 // 该示例主要演示如下两点功能：
@@ -2406,7 +2136,7 @@ struct NavigationExample2 {
 ```
 ![navigationOnReady1.gif](figures/navigationOnReady1.gif)
 
-### 示例8
+### 示例7
 
 ```ts
 // 该示例演示NavDestination的生命周期时序。
