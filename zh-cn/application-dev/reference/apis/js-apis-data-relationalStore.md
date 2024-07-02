@@ -504,7 +504,7 @@ class EntryAbility extends UIAbility {
 | name          | string        | 是   | 数据库文件名，也是数据库唯一标识符。|
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。 |
-| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建relationalStore实例，当此参数不填时，默认在本应用沙箱目录下创建relationalStore实例。 |
+| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取，暂不支持。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建relationalStore实例，当此参数不填时，默认在本应用沙箱目录下创建relationalStore实例。 |
 
 ## SecurityLevel
 
