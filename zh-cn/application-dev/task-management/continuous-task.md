@@ -108,14 +108,12 @@
    长时任务相关的模块为@ohos.resourceschedule.backgroundTaskManager和@ohos.app.ability.wantAgent，其余模块按实际需要导入。
 
    ```ts
-    import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import window from '@ohos.window';
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import Want from '@ohos.app.ability.Want';
-    import rpc from '@ohos.rpc';
-    import { BusinessError } from '@ohos.base';
-    import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+    import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { window } from '@kit.ArkUI';
+    import { rpc } from '@kit.IPCKit'
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { wantAgent, WantAgent } from '@kit.AbilityKit';
    ```
 
 4. 申请和取消长时任务。
@@ -374,12 +372,12 @@
 3. 导入模块。
    
    ```js
-    import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
-    import featureAbility from '@ohos.ability.featureAbility';
-    import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
-    import rpc from "@ohos.rpc";
-    import { BusinessError } from '@ohos.base';
-    import Want from '@ohos.app.ability.Want';
+    import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { window } from '@kit.ArkUI';
+    import { rpc } from '@kit.IPCKit'
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { wantAgent, WantAgent } from '@kit.AbilityKit';
    ```
 
 4. 申请和取消长时任务。在 ServiceAbility 中，调用 startBackgroundRunning() 接口和 stopBackgroundRunning() 接口实现长时任务的申请和取消，通过js代码实现。
