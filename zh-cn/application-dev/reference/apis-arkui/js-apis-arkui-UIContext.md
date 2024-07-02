@@ -5771,7 +5771,7 @@ measureText(options: MeasureOptions): number
 通过MeasureUtils的measureText方法获取"Hello World"文字的宽度。
 
 ```ts
-import { MeasureUtils } from '@ohos.arkui.UIContext';
+import { MeasureUtils } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5822,7 +5822,7 @@ measureTextSize(options: MeasureOptions): SizeOptions
 通过MeasureUtils的measureTextSize方法获取"Hello World"文字的宽度和高度
 
 ```ts
-import { MeasureUtils } from '@ohos.arkui.UIContext';
+import { MeasureUtils } from '@kit.ArkUI';
 
 @Entry
 @Component
