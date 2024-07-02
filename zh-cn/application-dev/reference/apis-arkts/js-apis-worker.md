@@ -36,9 +36,9 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | 是   | 否 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| name | string   | 是   | 否 | Worker的名称，默认值为 undefined 。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| shared | boolean | 是   | 否 | 表示Worker共享功能，此接口暂不支持。 |
+| type | "classic" \| "module" | 是   | 否 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
+| name | string   | 是   | 否 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
+| shared | boolean | 是   | 否 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## ThreadWorker<sup>9+</sup>
 
@@ -236,6 +236,8 @@ on(type: string, listener: WorkerEventListener): void
 
 向Worker添加一个事件监听，该接口与[addEventListener<sup>9+</sup>](#addeventlistener9)接口功能一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -270,6 +272,8 @@ workerInstance.on("alert", (e)=>{
 once(type: string, listener: WorkerEventListener): void
 
 向Worker添加一个事件监听，事件监听只执行一次便自动删除。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -306,6 +310,8 @@ off(type: string, listener?: WorkerEventListener): void
 
 删除类型为type的事件监听，该接口与[removeEventListener<sup>9+</sup>](#removeeventlistener9)接口功能一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -338,6 +344,8 @@ workerInstance.off("alert");
 registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 
 在宿主线程的ThreadWorker实例上注册一个对象，该对象上的方法可以在Worker线程中被调用，详细介绍请参见[callGlobalCallObjectMethod](#callglobalcallobjectmethod11)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -380,6 +388,8 @@ workerInstance.postMessage("start worker")
 unregisterGlobalCallObject(instanceName?: string): void
 
 取消在宿主线程ThreadWorker实例上注册的对象，该方法会释放ThreadWorker实例中与该键相匹配对象的强引用，没有匹配对象时不会报错。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -585,6 +595,8 @@ addEventListener(type: string, listener: WorkerEventListener): void
 
 向Worker添加一个事件监听，该接口与[on<sup>9+</sup>](#on9)接口功能一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -620,6 +632,8 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 删除Worker的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -654,6 +668,8 @@ workerInstance.removeEventListener("alert");
 dispatchEvent(event: Event): boolean
 
 分发定义在Worker的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -737,6 +753,8 @@ removeAllListener(): void
 
 删除Worker所有的事件监听。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -766,6 +784,8 @@ workerInstance.removeAllListener();
 addEventListener(type: string, listener: WorkerEventListener): void
 
 向Worker添加一个事件监听，该接口与[on<sup>9+</sup>](#on9)接口功能一致。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -802,6 +822,8 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 删除Worker的事件监听，该接口与[off<sup>9+</sup>](#off9)接口功能一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -836,6 +858,8 @@ workerInstance.removeEventListener("alert");
 dispatchEvent(event: Event): boolean
 
 分发定义在Worker的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -918,6 +942,8 @@ workerInstance.dispatchEvent({type:"message", timeStamp:0});
 removeAllListener(): void
 
 删除Worker所有的事件监听。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1122,6 +1148,8 @@ callGlobalCallObjectMethod(instanceName: string, methodName: string, timeout: nu
 
 Worker线程调用注册在宿主线程上某个对象的指定方法，调用对于Worker线程是同步的，对于宿主线程是异步的，返回值通过序列化传递。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1303,6 +1331,8 @@ workerPort.onmessageerror = (err: MessageEvents) => {
 
 事件监听类。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1402,6 +1432,8 @@ RestrictedWorker主要作用是提供受限的Worker线程运行环境，该线�
 constructor(scriptURL: string, options?: WorkerOptions)
 
 RestrictedWorker构造函数。使用以下方法前，均需先构造RestrictedWorker实例。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2187,6 +2219,8 @@ workerInstance.addEventListener("alert", (e)=>{
 ## MessageEvent\<T\>
 
 消息类，持有Worker线程间传递的数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
