@@ -1108,6 +1108,7 @@
         - [常用trace使用指导](performance/common-trace-using-instructions.md)
         - [状态变量组件定位工具实践](performance/state_variable_dfx_pratice.md)
         - [应用滑动场景帧率问题分析实践](performance/long-frame-optimization.md)
+        - [时延类性能问题分析实践](performance/delay_related_performance.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
