@@ -198,7 +198,7 @@ onAbilityContinue(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onAbilityWillCreate
+## AbilityLifecycleCallback.onAbilityWillCreate<sup>12+</sup>
 
 onAbilityWillCreate?(ability: UIAbility): void
 
@@ -216,7 +216,7 @@ onAbilityWillCreate?(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onWindowStageWillCreate
+## AbilityLifecycleCallback.onWindowStageWillCreate<sup>12+</sup>
 
 onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): void
 
@@ -235,7 +235,7 @@ onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): v
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onWindowStageWillDestroy
+## AbilityLifecycleCallback.onWindowStageWillDestroy<sup>12+</sup>
 
 onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): void
 
@@ -254,7 +254,7 @@ onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): 
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onAbilityWillForeground
+## AbilityLifecycleCallback.onAbilityWillForeground<sup>12+</sup>
 
 onAbilityWillForeground?(ability: UIAbility): void
 
@@ -272,7 +272,7 @@ onAbilityWillForeground?(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onAbilityWillDestroy
+## AbilityLifecycleCallback.onAbilityWillDestroy<sup>12+</sup>
 
 onAbilityWillDestroy?(ability: UIAbility): void
 
@@ -290,7 +290,7 @@ onAbilityWillDestroy?(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onAbilityWillBackground
+## AbilityLifecycleCallback.onAbilityWillBackground<sup>12+</sup>
 
 onAbilityWillBackground?(ability: UIAbility): void
 
@@ -308,7 +308,7 @@ onAbilityWillBackground?(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onWillNewWant
+## AbilityLifecycleCallback.onWillNewWant<sup>12+</sup>
 
 onWillNewWant?(ability: UIAbility): void
 
@@ -326,7 +326,7 @@ onWillNewWant?(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onNewWant
+## AbilityLifecycleCallback.onNewWant<sup>12+</sup>
 
 onNewWant?(ability: UIAbility): void
 
@@ -338,6 +338,108 @@ onNewWant?(ability: UIAbility): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onAbilityWillContinue<sup>12+</sup>
+
+onAbilityWillContinue?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的[onContinue](js-apis-app-ability-uiAbility.md#uiabilityoncontinue)触发前回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ------ | ------ | ------ | ------ |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onWindowStageWillRestore<sup>12+</sup>
+
+onWindowStageWillRestore?(ability: UIAbility, windowStage: window.WindowStage): void
+
+注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageRestore](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)触发前回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ------ | ------ | ------ | ------ |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onWindowStageRestore<sup>12+</sup>
+
+onWindowStageRestore?(ability: UIAbility, windowStage: window.WindowStage): void
+
+注册监听应用上下文的生命周期后，在UIAbility的[onWindowStageRestore](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)触发后回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ------ | ------ | ------ | ------ |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+  | windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onAbilityWillSaveState<sup>12+</sup>
+
+onAbilityWillSaveState?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的[onSaveState](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)触发前回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ------ | ------ | ------ | ------ |
+  | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
+
+**示例：**
+
+参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
+
+## AbilityLifecycleCallback.onAbilitySaveState<sup>12+</sup>
+
+onAbilitySaveState?(ability: UIAbility): void
+
+注册监听应用上下文的生命周期后，在UIAbility的[onSaveState](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)触发后回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ------ | ------ | ------ | ------ |
   | ability | [UIAbility](js-apis-app-ability-uiAbility.md) | 是 | 当前Ability对象 |
 
 **示例：**
@@ -433,6 +535,21 @@ let abilityLifecycleCallback: AbilityLifecycleCallback = {
   },
   onAbilityWillBackground(ability) {
     console.log('AbilityLifecycleCallback onAbilityWillBackground');
+  },
+  onAbilityWillContinue(ability: UIAbility) {
+    console.log('AbilityLifecycleCallback onAbilityWillContinue.');
+  },
+  onWindowStageWillRestore(ability: UIAbility, windowStage: window.WindowStage) {
+    console.log('AbilityLifecycleCallback onWindowStageWillRestore.');
+  },
+  onWindowStageRestore(ability: UIAbility, windowStage: window.WindowStage) {
+    console.log('AbilityLifecycleCallback onWindowStageRestore.');
+  },
+  onAbilityWillSaveState(ability: UIAbility) {
+    console.log('AbilityLifecycleCallback onAbilityWillSaveState.');
+  },
+  onAbilitySaveState(ability: UIAbility) {
+    console.log('AbilityLifecycleCallback onAbilitySaveState.');
   }
 };
 

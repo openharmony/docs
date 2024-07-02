@@ -669,6 +669,7 @@ type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => v
 | ParagraphStyle | 文本段落样式。 |
 | ImageAttachment | 图片样式。 |
 | CustomSpan | 自定义绘制Span样式。 |
+| UserDataSpan | UserDataSpan样式。 |
 
 ## SubmitEvent<sup>11+</sup>
 

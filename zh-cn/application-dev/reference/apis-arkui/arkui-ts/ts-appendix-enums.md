@@ -712,7 +712,7 @@
 | 名称    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
 | DEFAULT | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。 |
-| INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>不支持showError属性。 |
+| INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。 |
 
 ## MenuPreviewMode<sup>11+</sup>
 
@@ -986,6 +986,7 @@ Nullable\<T> {
 | PARAGRAPH_STYLE | 段落样式键。[ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle)所属键。|
 | IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|
 | CUSTOM_SPAN | 自定义绘制Span键。[CustomSpan](./ts-universal-styled-string.md#customspan)所属键。|
+| USER_DATA | UserDataSpan键。[UserDataSpan](./ts-universal-styled-string.md#userdataspan)所属键。|
 
 ## TextDecorationStyle<sup>12+</sup>
 

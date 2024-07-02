@@ -632,8 +632,8 @@ Start options check failed.
 
 **可能原因**
 
-1. 调用startAbility时，processMode设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM，但是应用在状态栏没有图标，则返回该错误码。
-2. 调用showAbility/hideAbility时，如果调用方不是以NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM模式启动，则返回该错误码。
+1. 调用startAbility时，processMode设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM，但是应用在状态栏没有图标，则返回该错误码。
+2. 调用showAbility/hideAbility时，如果调用方不是以NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM模式启动，则返回该错误码。
 
 **处理步骤**
 
