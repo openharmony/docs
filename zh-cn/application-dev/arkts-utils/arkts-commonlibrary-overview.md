@@ -39,4 +39,4 @@ ArkTS提供了标准内置对象，例如`Array`、`Map`、`TypedArray`、`Math`
 
 针对语言基础类库的开发，有以下相关实例可供参考：
 
-- [语言基础类库（ArkTS）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary)
+- [语言基础类库（ArkTS）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary)

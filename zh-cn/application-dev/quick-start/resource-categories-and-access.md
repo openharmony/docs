@@ -610,4 +610,4 @@ overylay是一种资源替换机制，针对不同品牌、产品的显示风格
 
 针对访问应用资源，有以下相关实例可供参考：
 
-- [资源管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Resource/ResourceManager)
+- [资源管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Resource/ResourceManager)

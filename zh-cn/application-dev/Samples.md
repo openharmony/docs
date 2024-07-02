@@ -40,7 +40,7 @@
 
 配套版本：API10版本SDK，版本号：4.0.10.1
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/UI/ArkTsComponentCollection/ComponentCollection)
 
 #### 横竖屏切换
 ##### 介绍
@@ -57,7 +57,7 @@
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/MediaQuery)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/UI/ArkTsComponentCollection/MediaQuery)
 
 #### 状态管理
 ##### 介绍
@@ -77,7 +77,7 @@ Grid布局：通过展示食物分类信息，创建Tabs页签展示不同分类
 
 配套版本：API9版本SDK，版本号：4.0.5.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/StateManagement)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/UI/ArkTsComponentCollection/StateManagement)
 
 #### 页面布局和连接
 ##### 介绍
@@ -103,7 +103,7 @@ Grid布局：通过展示食物分类信息，创建Tabs页签展示不同分类
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)
 
 ### 类Web开发范式
 
@@ -138,7 +138,7 @@ js-components-container-list-item.md) 中使用 [循环渲染](quick-start/arkts
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/UI/JsComponentCollection/JsComponentCollection)
 
 ## 基础特性
 
@@ -183,7 +183,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/AbilityStartMode)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/ApplicationModels/AbilityStartMode)
 
 #### 自定义分享
 ##### 介绍
@@ -213,7 +213,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API10版本SDK，版本号：4.0.10.1
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/CustomShare)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/ApplicationModels/CustomShare)
 
 #### Stage模型
 ##### 介绍
@@ -240,7 +240,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/StageModel)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/ApplicationModels/StageModel)
 
 ### 网络与连接
 
@@ -261,7 +261,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API9版本SDK，版本号：3.2.12.1
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Bluetooth)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Connectivity/Bluetooth)
 
 #### Http
 ##### 介绍
@@ -282,7 +282,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Connectivity/Http)
 
 #### RPC连接
 ##### 介绍
@@ -302,7 +302,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/RPC)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Connectivity/RPC)
 
 #### 网络管理-Socket连接（UDP）
 ##### 介绍
@@ -324,7 +324,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Connectivity/Socket)
 
 #### 网络管理-Socket连接
 ##### 介绍
@@ -351,7 +351,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API9版本SDK，版本号：3.2.11.10
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/StageSocket)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Connectivity/StageSocket)
 
 #### 上传和下载
 
@@ -360,7 +360,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 本示例使用[@ohos.request](reference/apis-basic-services-kit/js-apis-request.md)接口创建上传和下载任务，实现上传、下载功能，hfs作为服务器，实现了文件的上传和下载和任务的查询功能。
 
 ##### 使用
-1.本示例功能需要先配置服务器环境后使用，具体配置见[上传下载服务配置](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad/environment)。
+1.本示例功能需要先配置服务器环境后使用，具体配置见[上传下载服务配置](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Connectivity/UploadAndDownLoad/environment)。
 
 2.首页展示上传和下载两个入口组件，点击进入对应的页面，如果要使用后台下载任务，请开启后台任务开关。
 
@@ -399,7 +399,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API10版本SDK，版本号：4.0.8.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Connectivity/UploadAndDownLoad)
 
 #### WebSocket
 
@@ -436,7 +436,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API9版本SDK，版本号：3.2.12.1
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/WebSocket)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Connectivity/WebSocket)
 
 #### VPN连接
 
@@ -446,7 +446,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 ##### 使用
 
-1. 进入应用前请先安装[VPNFoundation](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/VPN/lib)。
+1. 进入应用前请先安装[VPNFoundation](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Connectivity/VPN/lib)。
 
 2. 进入应用后，主界面有启用VPN和停用VPN的选项,分别对应开启和关闭VPN功能。
 
@@ -474,7 +474,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API11版本SDK，版本号：4.1.6.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/VPN)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Connectivity/VPN)
 
 ### DFX
 
@@ -536,7 +536,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API10版本SDK，版本号：4.0.8.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/AppRecovery)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DFX/AppRecovery)
 
 #### Debug
 
@@ -561,7 +561,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/Debug)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DFX/Debug)
 
 #### 测试打点
 
@@ -588,7 +588,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/DotTest)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DFX/DotTest)
 
 #### 故障日志获取
 
@@ -616,7 +616,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/FaultLogger)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DFX/FaultLogger)
 
 #### 日志打印
 
@@ -642,7 +642,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/Logger)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DFX/Logger)
 
 ### 数据管理
 
@@ -670,7 +670,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/Preferences)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DataManagement/Preferences)
 
 #### 标准化数据定义与描述
 
@@ -722,7 +722,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API1版本SDK，版本号：4.1.6.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType)
 
 ### 设备管理
 
@@ -804,7 +804,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/DeviceManagementCollection)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DeviceManagement/DeviceManagementCollection)
 
 #### 位置信息
 
@@ -827,7 +827,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Location)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DeviceManagement/Location)
 
 #### 屏幕探测
 
@@ -861,7 +861,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/ScreenDetector)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DeviceManagement/ScreenDetector)
 
 #### 振动
 
@@ -891,7 +891,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/BasicVibration)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DeviceManagement/Vibrator/BasicVibration)
 
 #### 自定义振动
 
@@ -919,7 +919,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.10.7
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic)
 
 ### 设备信息统计
 
@@ -948,7 +948,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics)
 
 ### 文件管理
 
@@ -977,7 +977,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.8.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileBackupExtension)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/FileManagement/FileBackupExtension)
 
 #### 文件管理
 
@@ -1010,7 +1010,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileManager)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/FileManagement/FileManager)
 
 #### 选择并查看文档与媒体文件
 
@@ -1046,7 +1046,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.10.7
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/Picker)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/FileManagement/FileShare/Picker)
 
 #### 为应用之间分享和文件访问提供统一的入口能力
 
@@ -1056,7 +1056,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 使用
 
-1. 因本应用的功能依赖Picker应用，在使用本应用之前首先应安装[Picker](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/Picker)应用;
+1. 因本应用的功能依赖Picker应用，在使用本应用之前首先应安装[Picker](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/FileManagement/FileShare/Picker)应用;
 2. 在主界面，可以点击沙箱文件夹列出文件夹中的文件，同时也可以直接点击沙箱目录下的文件进入文件分享界面；
 3. 点击沙箱文件，进入文件分享界面，点击分享图标，文件将以picker方式打开文件，点击编辑图标，文件进入可编辑模式，在textArea中输入内容，然后点击保存，文件内容更新，返回沙箱应用首页，文件修改成功。
 
@@ -1079,7 +1079,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.12.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/SandboxShare)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/FileManagement/FileShare/SandboxShare)
 
 #### 媒体管理合集
 
@@ -1115,7 +1115,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/FileManagement/MediaCollections)
 
 #### 相册
 
@@ -1157,7 +1157,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.9.1
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/Photos)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/FileManagement/Photos)
 
 ### IDL
 
@@ -1186,7 +1186,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/IDL/AbilityConnectServiceExtension)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/IDL/AbilityConnectServiceExtension)
 
 ### 国际化
 
@@ -1214,7 +1214,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.10
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/International/International)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/International/International)
 
 ### 媒体
 
@@ -1243,7 +1243,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.10.8
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVRecorder)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/AVRecorder)
 
 #### 媒体会话——控制方（仅对系统应用开放）
 
@@ -1304,7 +1304,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/MediaController)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/AVSession/MediaController)
 
 #### 媒体会话——提供方
 
@@ -1360,7 +1360,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/MediaProvider)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/AVSession/MediaProvider)
 
 #### 音频管理
 
@@ -1422,7 +1422,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/Audio)
 
 #### 拼图
 
@@ -1450,7 +1450,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/GamePuzzle)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/GamePuzzle)
 
 #### 图片编辑
 
@@ -1485,7 +1485,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Image)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/Image)
 
 #### 图片显示
 
@@ -1526,7 +1526,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/ImageShow)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/ImageShow)
 
 #### 二维码扫描
 
@@ -1559,7 +1559,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/QRCodeScan)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/QRCodeScan)
 
 #### 录音机
 
@@ -1598,7 +1598,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Recorder)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/Recorder)
 
 #### 视频播放
 
@@ -1635,7 +1635,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.10
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VideoPlay)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/VideoPlay)
 
 #### 媒体库视频
 
@@ -1663,7 +1663,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VideoShow)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/VideoShow)
 
 #### 音频通话示例
 
@@ -1682,7 +1682,7 @@ Preferences.flush()保存并刷新文件内容。
 
 3.仅体验语音通话功能时，可以两台设备都手动启动语音通话应用，分别点击接听按钮进入通话页面
 
-4.体验场景所有功能时，需要两台设备启动[聊天应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/StageSocket),通过左下方语音按钮发起语音通话
+4.体验场景所有功能时，需要两台设备启动[聊天应用](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Connectivity/StageSocket),通过左下方语音按钮发起语音通话
 
 5.一方发起语音通话请求，对方选择同意或拒绝
 
@@ -1713,7 +1713,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.10
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VoiceCallDemo)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/VoiceCallDemo)
 
 #### 相机示例
 
@@ -1777,7 +1777,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.10.15
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Camera)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/Camera)
 
 #### 音振协同
 
@@ -1825,7 +1825,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API11版本SDK，版本号：4.1.6.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AudioHaptic)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/AudioHaptic)
 
 #### 视频播放
 
@@ -1915,7 +1915,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API11版本SDK，版本号：4.1.6.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/VideoPlayer)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Media/AVSession/VideoPlayer)
 
 ### Native
 
@@ -1941,7 +1941,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.10.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkRawfile)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Native/NdkRawfile)
 
 #### Native XComponent
 
@@ -1969,7 +1969,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.8.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkXComponent)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Native/NdkXComponent)
 
 #### OpenGL三棱椎
 
@@ -1993,7 +1993,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Native/NdkOpenGL)
 
 #### 音频管理
 
@@ -2035,7 +2035,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.10.13
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/Audio)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Native/Audio)
 
 #### Native Drawing
 
@@ -2063,7 +2063,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.10.13
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkDrawing)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Native/NdkDrawing)
 
 #### Native Window
 
@@ -2093,7 +2093,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API11版本SDK，版本号：4.1.3.3
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeWindow)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Native/NdkNativeWindow)
 
 #### XComponent3D
 
@@ -2129,7 +2129,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.10.13
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent3D)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Native/XComponent3D)
 
 ### 通知
 
@@ -2189,7 +2189,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomCommonEvent)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Notification/CustomCommonEvent)
 
 #### 自定义Emitter
 
@@ -2219,7 +2219,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomEmitter)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Notification/CustomEmitter)
 
 #### 自定义通知
 
@@ -2237,7 +2237,7 @@ Preferences.flush()保存并刷新文件内容。
 
 4.点击消息列表Tab页，可以查看到刚才发送的消息，消息右边会显示数量，点击相应的消息可进行消息读取，取消相应通知；
 
-5.回到仿桌面，可以看到角标数量，对应消息数量（使用前需安装并启动[仿桌面应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/Launcher)）；
+5.回到仿桌面，可以看到角标数量，对应消息数量（使用前需安装并启动[仿桌面应用](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/ApplicationModels/Launcher)）；
 
 6.点击取消所有通知，可以取消本应用发布的所有通知；
 
@@ -2281,7 +2281,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.7.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomNotification)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Notification/CustomNotification)
 
 #### 自定义通知角标
 
@@ -2291,7 +2291,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 使用
 
-1. 在使用本应用时，需安装并启动[仿桌面应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/Launcher)；
+1. 在使用本应用时，需安装并启动[仿桌面应用](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/ApplicationModels/Launcher)；
 2. 在主界面，可以看到当前应用的所有消息通知；
 3. 点击右下角Tab页签进入通知发送页面，点击对应的通知即可发送相应类型的通知，点击几次发送几条；
 4. 点击左下角Tab页签进入消息列表，可以查看刚才发送的消息，消息右边会显示消息数量，点击相应的消息可进行消息读取，取消相应通知；
@@ -2321,7 +2321,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.7.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomNotificationBadge)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Notification/CustomNotificationBadge)
 
 #### 自定义通知推送
 
@@ -2331,7 +2331,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 使用
 
-1. 在使用本应用时，需安装[自定义通知角标应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomNotificationBadge)；
+1. 在使用本应用时，需安装[自定义通知角标应用](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Notification/CustomNotificationBadge)；
 2. 在主界面，进行通知过滤的开启及关闭；
 3. 开启通知过滤后，可以选择允许通知的类型，去勾选后，相应类型的通知将不会发送出现通知栏；
 4. 打开自定义通知角标应用应用，进行通知的发送，查看是否发送成功；
@@ -2351,7 +2351,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.7.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomNotificationPush)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Notification/CustomNotificationPush)
 
 ### 资源
 
@@ -2385,7 +2385,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Resource/ResourceManager)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Resource/ResourceManager)
 
 ### 安全
 
@@ -2428,7 +2428,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/AppAccountManager)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Security/AppAccountManager)
 
 #### 证书算法库框架
 
@@ -2468,7 +2468,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.12.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/CertificateFramework)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/Security/CertificateFramework)
 
 #### 加解密
 
@@ -2505,7 +2505,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Cipher)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Security/Cipher)
 
 #### 通用密钥库系统（cryptoFramework）
 
@@ -2578,7 +2578,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.12.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/CryptoFramework)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Security/CryptoFramework)
 
 #### 通用密钥库系统（huks）
 
@@ -2622,7 +2622,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API10版本SDK，版本号：4.0.10.1
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Huks)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Security/Huks)
 
 #### 支付
 
@@ -2655,7 +2655,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.10
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/PaySecurely)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Security/PaySecurely)
 
 #### 证书管理
 
@@ -2687,7 +2687,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API11版本SDK，版本号：4.1.5.3
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/CertManager)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Security/CertManager)
 
 #### DLPManager
 
@@ -2715,7 +2715,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API11版本SDK，版本号：4.1.3.3
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/DLPManager)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Security/DLPManager)
 
 ### 任务管理
 
@@ -2744,7 +2744,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/TaskManagement/ContinuousTask)
 
 #### 小鸟避障游戏
 
@@ -2778,7 +2778,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/Flybird)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/TaskManagement/Flybird)
 
 #### 后台代理提醒
 
@@ -2835,7 +2835,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ReminderAgentManager)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/TaskManagement/ReminderAgentManager)
 
 #### 短时任务
 
@@ -2867,7 +2867,7 @@ Preferences.flush()保存并刷新文件内容。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/TransientTask)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/TaskManagement/TransientTask)
 
 #### 任务延时调度
 
@@ -2905,7 +2905,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/TaskManagement/WorkScheduler)
 
 ### 电话服务
 
@@ -2932,7 +2932,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/Call)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Telephony/Call)
 
 #### 联系人
 
@@ -2961,7 +2961,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/Contact)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Telephony/Contact)
 
 #### 短信服务
 
@@ -2988,7 +2988,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Telephony/Message)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/Telephony/Message)
 
 #### 蜂窝数据
 
@@ -3014,7 +3014,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/MobileNetwork)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Telephony/MobileNetwork)
 
 #### 事件订阅
 
@@ -3041,7 +3041,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/Observer)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Telephony/Observer)
 
 #### 网络搜索
 
@@ -3072,7 +3072,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/RadioTech)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Telephony/RadioTech)
 
 #### SIM卡管理
 
@@ -3098,7 +3098,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Telephony/SimManager)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Telephony/SimManager)
 
 ### Web
 
@@ -3127,7 +3127,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Web/Browser)
 
 #### JS注入与执行
 
@@ -3152,7 +3152,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/RunJsInWeb)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Web/RunJsInWeb)
 
 ### 窗口管理
 
@@ -3190,7 +3190,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowManage)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/WindowManagement/WindowManage)
 
 #### 悬浮窗
 
@@ -3200,7 +3200,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 ##### 使用
 
-1. 安装[WindowRatio](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowRatio)工程hap包(即本示例)和[WindowManage](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowManage)工程hap包
+1. 安装[WindowRatio](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/WindowManagement/WindowRatio)工程hap包(即本示例)和[WindowManage](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/WindowManagement/WindowManage)工程hap包
 2. 打开WindowManage应用sample，点击**窗口预览**进入视频播放页面，点击主窗口后拉起子窗口。
 3. 点击**拉起悬浮应用**按钮后，将以悬浮窗模式拉起应用WindowRatio 。
 4. 点击悬浮应用中的下拉框，选择窗口缩放比例，点击**确定**按钮，以新的宽度/比例计算得到窗口宽高，监听到窗口缩放比例发生变化，窗口以设置的比例改变大小，窗口监听到大小发生变化，在页面上显示当前窗口的宽度和高度。另外，窗口不具备记忆之前位置大小的能力，当前sample所调用的接口展示结果不居中，若要使得窗口居中，则需调用resize接口指定成想要的大小。
@@ -3219,7 +3219,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.8.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowRatio)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/WindowManagement/WindowRatio)
 
 
 
@@ -3288,7 +3288,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.12.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LaunguageBaseClassLibrary/ConcurrentModule)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/LaunguageBaseClassLibrary/ConcurrentModule)
 
 #### 语言基础类库
 
@@ -3381,7 +3381,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.8.3
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/LaunguageBaseClassLibrary/LanguageBaseClassLibrary)
 
 #### 压缩与解压
 
@@ -3409,7 +3409,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/LaunguageBaseClassLibrary/ZipLib)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/LaunguageBaseClassLibrary/ZipLib)
 
 
 
@@ -3448,7 +3448,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/ArkRuntime/NBody)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Performance/ArkRuntime/NBody)
 
 #### 性能示例
 
@@ -3493,7 +3493,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Performance/PerformanceLibrary)
 
 #### 性能示例（renderGroup接口）
 
@@ -3526,7 +3526,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/renderGroup)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Performance/renderGroup)
 
 ## 工程
 
@@ -3564,7 +3564,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Project/ApplicationHap/MultiHap)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Project/ApplicationHap/MultiHap)
 
 ### 资源配置
 
@@ -3594,7 +3594,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Project/ResourceAllocation/ApplicationThemeSwitch)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Project/ResourceAllocation/ApplicationThemeSwitch)
 
 ### 测试框架
 
@@ -3619,7 +3619,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Project/Test)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Project/Test)
 
 ### 流水线预测试工具
 
@@ -3647,7 +3647,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 开发语言：TypeScript
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Project/HapBuild)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Project/HapBuild)
 
 ## 行业解决方案
 
@@ -3688,7 +3688,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/DistributedDataGobang)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Solutions/Game/DistributedDataGobang)
 
 #### 游戏2048
 
@@ -3725,7 +3725,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Game2048)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Solutions/Game/Game2048)
 
 #### Lottie动画
 
@@ -3751,7 +3751,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Solutions/Game/Lottie)
 
 ### 即时通信
 
@@ -3783,7 +3783,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Solutions/IM/Chat)
 
 ### 输入法
 
@@ -3817,7 +3817,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.7.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/CustomInputText)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Solutions/InputMethod/CustomInputText)
 
 #### 轻量级输入法
 
@@ -3839,7 +3839,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Solutions/InputMethod/KikaInput)
 
 #### Kika输入法应用
 
@@ -3876,7 +3876,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.7.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInputMethod)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Solutions/InputMethod/KikaInputMethod)
 
 ### 媒体
 
@@ -3916,7 +3916,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Media/MultiMedia)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Solutions/Media/MultiMedia)
 
 ### 电商
 
@@ -3960,7 +3960,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/OrangeShopping)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Solutions/Shopping/OrangeShopping)
 
 ### 工具
 
@@ -3988,7 +3988,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Solutions/Tools/ArkTSClock)
 
 #### 翻页时钟
 
@@ -4038,7 +4038,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/FlipClock)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Solutions/Tools/FlipClock)
 
 #### JS时钟
 
@@ -4071,7 +4071,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/JsClock)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Solutions/Tools/JsClock)
 
 #### 图案密码锁组件
 
@@ -4103,7 +4103,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/PatternLock)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/Solutions/Tools/PatternLock)
 
 
 
@@ -4151,7 +4151,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API10版本SDK，版本号：4.0.10.7
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc)
 
 #### ArkTS分布式音乐播放
 
@@ -4189,7 +4189,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/DistributedAppDev/ArkTSDistributedMusicPlayer)
 
 #### JS分布式计算器
 
@@ -4231,7 +4231,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributeCalc)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/DistributedAppDev/DistributeCalc)
 
 #### 分布式帐号
 
@@ -4260,7 +4260,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API10版本SDK，版本号：4.0.7.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAccount)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/DistributedAppDev/DistributedAccount)
 
 #### 设备管理
 
@@ -4295,7 +4295,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DistributedAppDev/DistributedAuthentication)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/DistributedAppDev/DistributedAuthentication)
 
 #### 分布式备忘录
 
@@ -4347,7 +4347,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API10版本SDK，版本号：4.0.9.1
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedNote)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/DistributedAppDev/DistributedNote)
 
 #### 分布式关系型数据库
 
@@ -4378,7 +4378,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedRdb)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/DistributedAppDev/DistributedRdb)
 
 #### JS分布式音乐播放
 
@@ -4409,7 +4409,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/DistributedAppDev/JsDistributedMusicPlayer)
 
 #### 分布式数据管理
 
@@ -4448,7 +4448,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/Kvstore)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/DistributedAppDev/Kvstore)
 
 #### 分布式文件管理
 
@@ -4480,7 +4480,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API11版本SDK，版本号：4.1.3.3
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedFilemanager)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/DistributedAppDev/DistributedFilemanager)
 
 #### 跨端迁移随手记
 
@@ -4526,7 +4526,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API11版本SDK，版本号：4.1.5.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedJotNote)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/DistributedAppDev/DistributedJotNote)
 
 ### 一次开发多端部署
 
@@ -4566,7 +4566,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities)
 
 #### 一多应用市场首页
 
@@ -4599,7 +4599,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/MultiDeviceAppDev/AppMarket)
 
 #### 健康饮食
 
@@ -4625,7 +4625,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/HealthyDiet)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/MultiDeviceAppDev/HealthyDiet)
 
 #### JS多设备自适应能力
 
@@ -4661,7 +4661,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities)
 
 #### 一多分栏控件
 
@@ -4698,7 +4698,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API10版本SDK，版本号：4.0.9.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MultiColumns)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/MultiDeviceAppDev/MultiColumns)
 
 #### 一多导航栏
 
@@ -4753,7 +4753,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API10版本SDK，版本号：4.0.8.2
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MultiNavBar)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/MultiDeviceAppDev/MultiNavBar)
 
 #### 一多音乐专辑主页
 
@@ -4799,7 +4799,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MusicAlbum)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/MultiDeviceAppDev/MusicAlbum)
 
 #### 一多设置典型页面
 
@@ -4847,7 +4847,7 @@ Navigation组件支持自动切换单栏和双栏的显示效果，同时可以�
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/MultiDeviceAppDev/Settings)
 
 #### 一多天气
 
@@ -4882,7 +4882,7 @@ Navigation组件支持自动切换单栏和双栏的显示效果，同时可以�
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Weather)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/MultiDeviceAppDev/Weather)
 
 #### 一多音乐典型场景
 
@@ -4922,7 +4922,7 @@ Navigation组件支持自动切换单栏和双栏的显示效果，同时可以�
 
 配套版本：API10版本SDK，版本号：4.0.10.10
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Weather)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/MultiDeviceAppDev/Weather)
 
 ### 卡片
 
@@ -4954,7 +4954,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/AdaptiveServiceWidget)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/Widget/AdaptiveServiceWidget)
 
 #### ArkTS卡片
 
@@ -4978,7 +4978,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/Calculator)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/Widget/ArkTSCard/Calculator)
 
 ##### ArkTS卡片Canvas小游戏
 
@@ -5013,7 +5013,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/CanvasGame)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/Widget/ArkTSCard/CanvasGame)
 
 ##### ArkTS音乐卡片
 
@@ -5039,7 +5039,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/MusicControl)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/Widget/ArkTSCard/MusicControl)
 
 #### Stage模型卡片
 
@@ -5053,7 +5053,7 @@ return formInfo.FormState.READY }。
 
 2.卡片的样式如"添加卡片"所示。当卡片更新时，卡片上的温度和时间会产生变化。
 
-3.安装[卡片应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility/processProxyForm)或[formProvider应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility/persistentProxyForm)，长按卡片应用图标或formProvider应用图标弹出菜单，点击"服务卡片"选项可以添加服务卡片至桌面（第3张，第4张卡片为formProvider应用卡片；第5张，第6张为卡片应用卡片）；
+3.安装[卡片应用](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/Widget/FormExtAbility/processProxyForm)或[formProvider应用](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/Widget/FormExtAbility/persistentProxyForm)，长按卡片应用图标或formProvider应用图标弹出菜单，点击"服务卡片"选项可以添加服务卡片至桌面（第3张，第4张卡片为formProvider应用卡片；第5张，第6张为卡片应用卡片）；
 
 4.长按数据卡片弹出菜单，点击"移除"可以将已添加至桌面的数据卡片从桌面上移除；
 
@@ -5072,7 +5072,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.10.7
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/Widget/FormExtAbility)
 
 #### Stage模型卡片小游戏
 
@@ -5107,7 +5107,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/Widget/FormGame)
 
 #### 应用主动添加数据代理卡片到桌面
 
@@ -5136,7 +5136,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.8.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/RequestAddForm)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SuperFeature/Widget/RequestAddForm)
 
 
 
@@ -5173,7 +5173,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
 
 #### EnterpriseAdminExtensionAbility的创建与使用
 
@@ -5202,7 +5202,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/ApplicationModels/EnterpriseAdminExtensionAbility)
 
 #### 仿桌面应用
 
@@ -5266,7 +5266,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/Launcher)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/ApplicationModels/Launcher)
 
 #### 系统任务管理
 
@@ -5300,7 +5300,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/MissionManager)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/ApplicationModels/MissionManager)
 
 #### 静态订阅
 
@@ -5338,7 +5338,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/StaticSubscriber)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/ApplicationModels/StaticSubscriber)
 
 #### 测试依赖
 
@@ -5374,7 +5374,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/TestRely/LauncherTest/CrossChainBack)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/ApplicationModels/TestRely/LauncherTest/CrossChainBack)
 
 ##### 启动上一次的组件实例
 
@@ -5407,7 +5407,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/TestRely/LauncherTest/StartRecentAbility)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/ApplicationModels/TestRely/LauncherTest/StartRecentAbility)
 
 ### 网络与连接
 
@@ -5440,7 +5440,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.12.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Connectivity/Bluetooth)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/Connectivity/Bluetooth)
 
 #### WLAN
 
@@ -5473,7 +5473,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Connectivity/Wlan)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/Connectivity/Wlan)
 
 ### 数据管理
 
@@ -5502,7 +5502,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DataManagement/CrossAppDataShare)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/DataManagement/CrossAppDataShare)
 
 ### 设备管理
 
@@ -5606,7 +5606,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DeviceManagement/DeviceManagementCollection)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/DeviceManagement/DeviceManagementCollection)
 
 #### 屏幕属性
 
@@ -5637,7 +5637,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DeviceManagement/Screen)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/DeviceManagement/Screen)
 
 #### 存储空间统计
 
@@ -5664,7 +5664,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.9.6
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DeviceManagement/StorageStatistic)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/DeviceManagement/StorageStatistic)
 
 #### 多模输入
 
@@ -5699,7 +5699,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.11.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DeviceManagement/Mouse)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/DeviceManagement/Mouse)
 
 ### 国际化
 
@@ -5738,7 +5738,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.7.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Internationalnation/International)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/Internationalnation/International)
 
 ### 媒体
 
@@ -5776,7 +5776,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.9.1
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/Camera)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/Media/Camera)
 
 #### 录屏示例
 
@@ -5807,7 +5807,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/ScreenRecorder)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/Media/ScreenRecorder)
 
 #### 截屏
 
@@ -5831,7 +5831,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/Screenshot)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/Media/Screenshot)
 
 #### 音频管理（仅对系统应用开放）
 
@@ -5865,7 +5865,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API11版本SDK，版本号：4.1.6.5
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/Audio)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/Media/Audio)
 
 ### 安全
 
@@ -5898,7 +5898,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/AbilityAccessCtrl)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/Security/AbilityAccessCtrl)
 
 #### 安全控件类型的UI控件（仅对系统应用开放）
 
@@ -5939,7 +5939,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.10.15
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/AuthorizedButton)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/Security/AuthorizedButton)
 
 #### DLP
 
@@ -5975,7 +5975,7 @@ return formInfo.FormState.READY }。
 
 配套版本：API10版本SDK，版本号：4.0.10.10
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Security/DLP)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/Security/DLP)
 
 ### 窗口管理
 
@@ -6002,4 +6002,4 @@ return formInfo.FormState.READY }。
 
 配套版本：API9版本SDK，版本号：3.2.11.9
 
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowExtAbility)
+[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/WindowManagement/WindowExtAbility)

@@ -231,4 +231,4 @@ OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback(builder, metadataCallback
 
 针对音频通话开发，有以下相关实例可供参考：
 
-- [录制和播放（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/Audio)
+- [录制和播放（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/Native/Audio)

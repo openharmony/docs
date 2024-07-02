@@ -483,4 +483,4 @@ struct formHostSample {
 
 针对卡片使用方开发，有以下实例可供参考：
 
-- [卡片使用方（Stage）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Form/FormHost)
+- [卡片使用方（Stage）（API12）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/DocsSample/Form/FormHost)
