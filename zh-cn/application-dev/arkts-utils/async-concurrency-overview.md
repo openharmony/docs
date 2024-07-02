@@ -57,16 +57,36 @@ async函数是一个返回Promise对象的函数，用于表示一个异步操�
 
 
 ```ts
-async function myAsyncFunction(): Promise<void> {
+async function myAsyncFunction(): Promise<string> {
   const result: string = await new Promise((resolve: Function) => {
     setTimeout(() => {
       resolve('Hello, world!');
     }, 3000);
   });
   console.info(result); // 输出： Hello, world!
+  return result
 }
 
-myAsyncFunction();
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(async () => {
+            let res = await myAsyncFunction();
+            console.info("res is: " + res);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
 
 在上述示例代码中，使用了await关键字来等待Promise对象的解析，并将其解析值存储在result变量中。
