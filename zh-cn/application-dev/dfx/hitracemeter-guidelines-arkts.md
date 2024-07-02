@@ -35,7 +35,7 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
 1. 新建一个ArkTS应用工程，在“Project”窗口点击“entry &gt; src &gt; main &gt; ets &gt; pages &gt; index”，打开工程中的“index.ets”文件；在页面执行加载后，在自己的业务中调用hiTraceMeter的接口，进行性能打点跟踪，以任务名name为HITRACE_TAG_APP为例， 示例代码如下：
 
    ```ts
-   import hitrace from '@ohos.hiTraceMeter';
+   import { hitrace } from '@kit.PerformanceAnalysisKit';
    
    @Entry
    @Component
