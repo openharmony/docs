@@ -42,7 +42,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 
 1. 获取设备使用信息之前，需要检查是否已经配置请求相应的权限。
     系统提供的设备使用信息统计的权限是ohos.permission.BUNDLE_ACTIVE_INFO
-    具体配置方式请参考[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+    具体配置方式请参考[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
 2. 通过指定起始和结束时间查询所有应用的事件集合，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
@@ -426,6 +426,6 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 
 针对设备使用信息统计，有以下相关实例可供参考：
 
-- [存储空间统计（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DeviceManagement/StorageStatistic)
+- [存储空间统计（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/SystemFeature/DeviceManagement/StorageStatistic)
 
-- [设备使用信息统计（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics)
+- [设备使用信息统计（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-5.0-Beta1/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics)
