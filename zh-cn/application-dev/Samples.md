@@ -1618,7 +1618,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了音频通话相关的功能，使用[@ohos.multimedia.audio](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-audio.md%2F) 、[@ohos.net.socket](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-socket.md%2F) 等接口，实现音频录制和渲染，音频数据网络传输等功能。
+本示例主要展示了音频通话相关的功能，使用[@ohos.multimedia.audio](reference/apis/js-apis-audio.md) 、[@ohos.net.socket](reference/apis/js-apis-socket.md) 等接口，实现音频录制和渲染，音频数据网络传输等功能。
 
 ##### 使用
 
