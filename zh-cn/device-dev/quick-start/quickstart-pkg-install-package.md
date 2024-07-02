@@ -29,14 +29,38 @@
    
    查看Python 3.8的位置：
 
-   
    ```
    which python3.8
    ```
 
-   将Python和Python3切换为Python 3.8：
+   如果无输出请在环境中安装python3.8或以上版本，以下安装命令可作为python3安装的参考：
    
    ```
-   sudo update-alternatives --install /usr/bin/python python {Python 3.8 路径} 1    #{Python 3.8 路径}为上一步查看的Python 3.8的位置
-   sudo update-alternatives --install /usr/bin/python3 python3 {Python 3.8 路径} 1   #{Python 3.8 路径}为上一步查看的Python 3.8的位置
+   sudo apt-get install python3
+   sudo apt-get install python-is-python3
+   ```
+   查询python是否可用符合版本要求
+
+   ```
+   python --version
+   ```
+   如果输出高于3.8，则版本符合要求，若低于3.8可用以下方式安装Python3.8：
+   
+   ```
+   cd
+   mkdir python_install     #新建路径，存储python的安装包
+   cd python_install
+   
+   wget https://mirrors.huaweicloud.com/python/3.8.10/Python-3.8.10.tgz    #从官网获取Python3.8安装包，此处以3.8.10版本为例
+   tar -xzf Python-3.8.10.tgz 
+   cd Python-3.8.10
+   
+   ./configure --enable-optimizations --prefix=/usr/local/python3.8    #编译和安装python3.8
+   make -j$(nproc)
+   sudo make install
+
+   /usr/local/python3.8/bin/python3.8 --version    #确认python3.8是否安装成功
+   
+   sudo update-alternatives --install /usr/bin/python python /usr/local/python3.8/bin/python3.8 1     #将Python和Python3切换为Python 3.8：
+   sudo update-alternatives --install /usr/bin/python3 python3 /usr/local/python3.8/bin/python3.8 1
    ```
