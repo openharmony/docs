@@ -25,7 +25,7 @@ import { avSession } from '@kit.AVSessionKit';
 
 getAllSessionDescriptors(): Promise\<Array\<Readonly\<AVSessionDescriptor>>>
 
-获取所有会话的相关描述。结果通过Promise异步回调方式返回。
+获取所有设置过媒体信息且注册控制回调的会话的相关描述。结果通过Promise异步回调方式返回。
 
 **需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES，仅系统应用可用。
 
@@ -69,7 +69,7 @@ avSession.getAllSessionDescriptors().then((descriptors: avSession.AVSessionDescr
 
 getAllSessionDescriptors(callback: AsyncCallback\<Array\<Readonly\<AVSessionDescriptor>>>): void
 
-获取所有会话的相关描述。结果通过callback异步回调方式返回。
+获取所有设置过媒体信息且注册控制回调的会话的相关描述。结果通过callback异步回调方式返回。
 
 **需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
 
