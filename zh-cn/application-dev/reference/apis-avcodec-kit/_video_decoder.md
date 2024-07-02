@@ -69,9 +69,9 @@ OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 | -----------------------------------------------------------------------------| -------- | -------- | ------ |
 | OH_MD_KEY_WIDTH                                                              | √        | ×        | ×      |
 | OH_MD_KEY_HEIGHT                                                             | √        | ×        | ×      |
-| OH_MD_KEY_PIXEL_FORMAT 请参见[OH_AVPixelFormat](_core.md#oh_avpixelformat)    | √        | ×        | √      |
+| OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat)    | √        | ×        | √      |
 | OH_MD_KEY_FRAME_RATE                                                         | √        | ×        | √      |
-| OH_MD_KEY_ROTATION 请参见[OH_MD_KEY_ROTATION](_codec_base.md#oh_md_key_rotation)| √        | ×        | √      |
+| OH_MD_KEY_ROTATION 请参阅[OH_MD_KEY_ROTATION](_codec_base.md#oh_md_key_rotation)| √        | ×        | √      |
 
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
