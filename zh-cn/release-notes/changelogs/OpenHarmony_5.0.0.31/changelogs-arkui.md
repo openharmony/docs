@@ -139,14 +139,33 @@ bindContentCover组件
 
 **变更原因**
 
+SymbolGlyph中已定义SymbolRenderingStrategy和SymbolEffectStrategy，避免重复枚举定义。减少开发者引用工作量。
+
+**变更影响**
+
 该变更为非兼容性变更。
 
-1.无法引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy。
+变更前引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy无报错。
 
-简化示例如下：
+变更后报错：
+
+1.Eerror message:the requested module '@ohos.arkui.advanced.SubHeader' does not provide an export name 'SymbolRenderingStrategy' and 'SymbolEffectStrategy'.
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.31开始。
+
+**适配指导**
+
+如果开发者不按规范使用对应范式，则需按编译提示信息进行修改。参考API文档，删除引用SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy，自动引用SymbolGlyph中SymbolRenderingStrategy和SymbolEffectStrategy。
+适配示例：
 
 ```ts
-import { promptAction, OperationType, SubHeader, SymbolEffectStrategy, SymbolRenderingStrategy } from '@ohos.arkui.advanced.SubHeader'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -172,23 +191,3 @@ struct SubHeaderExample {
   }
 }
 ```
-
-**变更影响**
-
-变更前引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy无报错。
-
-变更后报错：
-
-1.Eerror message:the requested module '@ohos.arkui.advanced.SubHeader' does not provide an export name 'SymbolRenderingStrategy' and 'SymbolEffectStrategy'.
-
-**起始API Level**
-
-不涉及API变更
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.31开始。
-
-**适配指导**
-
-如果开发者不按规范使用对应范式，则需按编译提示信息进行修改。参考API文档，删除引用SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy，自动引用SymbolGlyph中SymbolRenderingStrategy和SymbolEffectStrategy。
