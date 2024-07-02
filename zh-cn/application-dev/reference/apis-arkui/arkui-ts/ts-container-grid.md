@@ -84,6 +84,8 @@ columnsTemplate('repeat(auto-stretch, track-size)')是设置固定列宽值为tr
 其中repeat、auto-fit、auto-fill、auto-stretch为关键字。track-size为列宽，支持的单位包括px、vp、%或有效数字，默认单位为vp，track-size至少包括一个有效列宽。<br/>
 auto-stretch模式只支持track-size为一个有效列宽值，并且track-size只支持px、vp和有效数字，不支持%。
 
+使用效果可以参考示[示例8](#示例8)。
+
 设置为'0fr'时，该列的列宽为0，不显示GridItem。设置为其他非法值时，GridItem显示为固定1列。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -1395,3 +1397,72 @@ struct GridExample {
 ```
 
 ![pinch](figures/grid-pinch.gif)
+
+### 示例8
+属性[columnsTemplate](#columnstemplate)中auto-fill、auto-fit和auto-stretch的使用示例
+
+```ts
+@Entry
+@Component
+struct GridColumnsTemplate {
+  data: number[] = [0, 1, 2, 3, 4, 5]
+  data1: number[] = [0, 1, 2, 3, 4, 5]
+  data2: number[] = [0, 1, 2, 3, 4, 5]
+
+  build() {
+    Column({ space: 10 }) {
+      Text('auto-fill 根据设定的列宽自动计算列数').width('90%')
+      Grid() {
+        ForEach(this.data, (item: number) => {
+          GridItem() {
+            Text('N' + item).height(80)
+          }
+          .backgroundColor(Color.Orange)
+        })
+      }
+      .width('90%')
+      .border({ width: 1, color: Color.Black })
+      .columnsTemplate('repeat(auto-fill, 70)')
+      .columnsGap(10)
+      .rowsGap(10)
+      .height(150)
+
+      Text('auto-fit 先根据设定的列宽计算列数，余下的空间会均分到每一列中').width('90%')
+      Grid() {
+        ForEach(this.data1, (item: number) => {
+          GridItem() {
+            Text('N' + item).height(80)
+          }
+          .backgroundColor(Color.Orange)
+        })
+      }
+      .width('90%')
+      .border({ width: 1, color: Color.Black })
+      .columnsTemplate('repeat(auto-fit, 70)')
+      .columnsGap(10)
+      .rowsGap(10)
+      .height(150)
+
+      Text('auto-stretch 先根据设定的列宽计算列数，余下的空间会均分到每个列间距中').width('90%')
+      Grid() {
+        ForEach(this.data2, (item: number) => {
+          GridItem() {
+            Text('N' + item).height(80)
+          }
+          .backgroundColor(Color.Orange)
+        })
+      }
+      .width('90%')
+      .border({ width: 1, color: Color.Black })
+      .columnsTemplate('repeat(auto-stretch, 70)')
+      .columnsGap(10)
+      .rowsGap(10)
+      .height(150)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![gridColumnsTemplate](figures/gridColumnsTemplate.png)
