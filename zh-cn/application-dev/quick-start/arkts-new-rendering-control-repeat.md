@@ -71,7 +71,7 @@ interface VirtualScrollOptions {
 
 | 属性名     | 类型   | 是否必填 | 描述                                                         |
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
-| totalCount | number | 否       | 当前数据总数，数据长度判断规则：totalCount ? max(totalCount, 数据源长度) : 数据源长度。<br/>用户可以不同步请求所有数据，从而实现正确的滚动条样式。 |
+| totalCount | number | 否       | 当前数据总数，数据长度判断规则：totalCount ? max(totalCount, 数据源长度) : 数据源长度。<br/>这样用户可以不同步请求所有数据，也能实现正确的滚动条样式。 |
 
 ### RepeatItemBuilder类型
 
@@ -97,7 +97,7 @@ interface TemplateOptions {
 
 | 属性名      | 类型   | 是否必填 | 描述                                                         |
 | ----------- | ------ | -------- | ------------------------------------------------------------ |
-| cachedCount | number | 否       | 当前模板在Repeat的缓存池中可缓存子节点的最大数量，默认值为1，仅在开启virtualScroll后生效。<br/>each方法的cache默认为1，不能修改。 |
+| cachedCount | number | 否       | 当前模板在Repeat的缓存池中可缓存子节点的最大数量，默认值为1，仅在开启virtualScroll后生效。<br/>将cachedCount设置为当前模板的节点在屏上可能出现的最大数量时，Repeat可以做到尽可能多的复用。但后果是当屏上没有当前模板的节点时，缓存池也不会释放，应用内存会增大。需要开发者依据具体情况自行把控。<br/>each方法的cachedCount默认为1，目前不能修改。 |
 
 ### TemplateTypedFunc类型
 
@@ -195,9 +195,9 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 
 ```ts
 @Entry
-@Component
+@ComponentV2
 struct Parent {
-  @State simpleList: Array<string> = ['one', 'two', 'three'];
+  @Local simpleList: Array<string> = ['one', 'two', 'three'];
 
   build() {
     Row() {
@@ -225,9 +225,9 @@ struct Parent {
   }
 }
 
-@Component
+@ComponentV2
 struct ChildItem {
-  @Prop item: string;
+  @Param @Require item: string;
 
   build() {
     Text(this.item)
@@ -236,7 +236,6 @@ struct ChildItem {
 }
 ```
 
-Repeat非首次渲染案例运行效果图  
 ![ForEach-Non-Initial-Render-Case-Effect](./figures/ForEach-Non-Initial-Render-Case-Effect.gif)
 
 第三个数组项重新渲染时会复用之前的第三项的组件，仅对数据做了刷新。
@@ -247,9 +246,9 @@ Repeat非首次渲染案例运行效果图
 
 ```ts
 @Entry
-@Component
+@ComponentV2
 struct Parent {
-  @State simpleList: Array<string> = ['one', 'two', 'three'];
+  @Local simpleList: Array<string> = ['one', 'two', 'three'];
 
   build() {
     Row() {
@@ -282,9 +281,9 @@ struct Parent {
   }
 }
 
-@Component
+@ComponentV2
 struct ChildItem {
-  @Prop item: string;
+  @Param @Require item: string;
 
   build() {
     Text(this.item)
@@ -293,5 +292,208 @@ struct ChildItem {
 }
 ```
 
-Repeat交换数据更新index运行效果图  
 ![Repeat-Non-Initial-Render-Case-Exchange-Effect](./figures/Repeat-Non-Initial-Render-Case-Exchange-Effect.gif)
+
+### virtualScroll
+
+#### 数据源变化
+
+```ts
+@ObservedV2
+class Wrap1 {
+    @Trace message: string = '';
+    
+    constructor(message: string) {
+        this.message = message;
+    }
+}
+
+@Entry
+@ComponentV2
+struct Parent {
+    @Local simpleList: Array<Wrap1> = [];
+    @Local start: number = 0;
+    
+    aboutToAppear(): void {
+        for (let i=0; i<100; i++) {
+            this.simpleList.push(new Wrap1('Hello' + i));
+        }
+    }
+    
+    build() {
+        Column() {
+            Text('点击修改当前屏上第一个数据的值')
+            	.fontSize(40)
+            	.fontColor(Color.Red)
+            	.onClick(()=>{
+                	this.simpleList[this.start] = new Wrap1(this.simpleList[this.start].message + ' new');
+            	})
+            
+            List() {
+                Repeat<Wrap1>(this.simpleList)
+                	.each((obj: RepeatItem<Wrap1>)=>{
+                    	ListItem() {
+                            Text(obj.item.message)
+                            	.fontSize(30)
+                        }
+                	})
+            }
+            .onScrollIndex((start: number)=>{
+                this.start = start;
+            })
+            .cachedCount(5)
+            .width('100%')
+            .height('100%')
+        }
+        .height(700)
+    }
+}
+```
+
+![Repeat-VirtualScroll-DataChange](./figures/Repeat-VirtualScroll-DataChange.gif)
+
+#### 索引值变化
+
+```ts
+@ObservedV2
+class Wrap1 {
+    @Trace message: string = '';
+    
+    constructor(message: string) {
+        this.message = message;
+    }
+}
+
+@Entry
+@ComponentV2
+struct Parent {
+    @Local simpleList: Array<Wrap1> = [];
+    @Local start: number = 0;
+    @Local center: number = 0;
+    
+    aboutToAppear(): void {
+        for (let i=0; i<100; i++) {
+            this.simpleList.push(new Wrap1('Hello' + i));
+        }
+    }
+    
+    build() {
+        Column() {
+            Text('点击交换屏上第一个数据和中间数据的值')
+            	.fontSize(40)
+            	.fontColor(Color.Red)
+            	.onClick(()=>{
+                	let temp: number = this.simpleList[this.start];
+                	this.simpleList[this.start] = this.simpleList[this.center];
+                	this.simpleList[this.center] = temp;
+            	})
+            
+            List() {
+                Repeat<Wrap1>(this.simpleList)
+                	.each((obj: RepeatItem<Wrap1>)=>{
+                    	ListItem() {
+                            Text('index ' + obj.index + ': ')
+                            	.fontSize(30)
+                            Text(obj.item.message)
+                            	.fontSize(30)
+                        }
+                	})
+            }
+            .onScrollIndex((start: number, end: number, center: number)=>{
+                this.start = start;
+                this.center = center;
+            })
+            .cachedCount(5)
+            .width('100%')
+            .height('100%')
+        }
+        .height(700)
+    }
+}
+```
+
+![Repeat-VirtualScroll-DataChange](./figures/Repeat-VirtualScroll-IndexChange.gif)
+
+当key值不变时，组件会直接复用并更新index的值。
+
+#### 使用template
+
+```
+@ObservedV2
+class Wrap1 {
+    @Trace message: string = '';
+    
+    constructor(message: string) {
+        this.message = message;
+    }
+}
+
+@Entry
+@ComponentV2
+struct Parent {
+    @Local simpleList: Array<Wrap1> = [];
+    
+    aboutToAppear(): void {
+        for (let i=0; i<100; i++) {
+            this.simpleList.push(new Wrap1('Hello' + i));
+        }
+    }
+    
+    build() {
+        Column() {
+            List() {
+                Repeat<Wrap1>(this.simpleList)
+                	.each((obj: RepeatItem<Wrap1>)=>{
+                    	ListItem() {
+                    		Row() {
+                    			Text('default index ' + obj.index + ': ')
+                            		.fontSize(30)
+                            	Text(obj.item.message)
+                            		.fontSize(30)
+                    		}
+                        }
+                        .margin(20)
+                	})
+                	.template('odd', (obj: RepeatItem<Wrap1>)=>{
+                    	ListItem() {
+                    		Row() {
+                    			Text('odd index ' + obj.index + ': ')
+                            		.fontSize(30)
+                            		.fontColor(Color.Blue)
+                            	Text(obj.item.message)
+                            		.fontSize(30)
+                            		.fontColor(Color.Blue)
+                    		}
+                        }
+                        .margin(20)
+                	})
+                	.template('even', (obj: RepeatItem<Wrap1>)=>{
+                    	ListItem() {
+                    		Row() {
+                    			Text('even index ' + obj.index + ': ')
+                            		.fontSize(30)
+                            		.fontColor(Color.Green)
+                            	Text(obj.item.message)
+                            		.fontSize(30)
+                            		.fontColor(Color.Green)
+                    		}
+                        }
+                        .margin(20)
+                	})
+                	.templateId((item: Wrap1, index: number) => {
+                		return index%2 ? 'odd' : 'even';
+                	})
+                	.key((item: Wrap1, index: number) => {
+                		return item.message;
+                	})
+            }
+            .cachedCount(5)
+            .width('100%')
+            .height('100%')
+        }
+        .height('100%')
+    }
+}
+```
+
+![Repeat-VirtualScroll-DataChange](./figures/Repeat-VirtualScroll-Template.gif)
