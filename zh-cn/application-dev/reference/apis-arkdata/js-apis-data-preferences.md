@@ -242,7 +242,7 @@ let dataPreferences: preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let options: preferences.Options = { name: 'myStore' };
     preferences.getPreferences(this.context, options, (err: BusinessError, val: preferences.Preferences) => {
       if (err) {
         console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
@@ -324,7 +324,7 @@ let dataPreferences: preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let options: preferences.Options = { name: 'myStore' };
     let promise = preferences.getPreferences(this.context, options);
     promise.then((object: preferences.Preferences) => {
       dataPreferences = object;
@@ -397,7 +397,7 @@ let dataPreferences: preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let options: preferences.Options = { name: 'myStore' };
     dataPreferences = preferences.getPreferencesSync(this.context, options);
   }
 }
@@ -612,7 +612,7 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let options: preferences.Options = { name: 'myStore' };
     preferences.deletePreferences(this.context, options, (err: BusinessError) => {
       if (err) {
         console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
@@ -693,7 +693,7 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let options: preferences.Options = { name: 'myStore' };
     let promise = preferences.deletePreferences(this.context, options);
     promise.then(() => {
       console.info("Succeeded in deleting preferences.");
@@ -969,7 +969,7 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let options: preferences.Options = { name: 'myStore' };
     preferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
       if (err) {
         console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
@@ -1049,7 +1049,7 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let options: preferences.Options = { name: 'myStore' };
     let promise = preferences.removePreferencesFromCache(this.context, options);
     promise.then(() => {
       console.info("Succeeded in removing preferences.");
@@ -1114,7 +1114,7 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let options: preferences.Options = { name: 'myStore' };
     preferences.removePreferencesFromCacheSync(this.context, options);
   }
 }
@@ -1131,7 +1131,7 @@ Preferences实例配置选项。
 | 名称        | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | 是   | Preferences实例的名称。                                      |
-| dataGroupId | string\|null\|undefined | 否   | 应用组ID，需要向应用市场获取。<br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。|
+| dataGroupId | string\|null\|undefined | 否   | 应用组ID，需要向应用市场获取，暂不支持。<br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。|
 
 
 ## Preferences
