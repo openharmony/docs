@@ -7572,7 +7572,7 @@ if(resultSet != undefined) {
 
 getValue(columnIndex: number): ValueType
 
-获取当前指定列的值，值类型如果是ValueType指定的任意类型，则会以对应类型返回指定类的值，否则返回14800000。
+获取当前行中指定列的值，值类型如果是ValueType指定的任意类型，则会以对应类型返回指定类的值，否则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
