@@ -1018,8 +1018,7 @@ struct styled_string_demo2 {
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
-import { LengthUnit } from '@ohos.arkui.node'
+import { LengthMetrics, LengthUnit } from '@kit.ArkUI'
 
 @Entry
 @Component
