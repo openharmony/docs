@@ -84,7 +84,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
         // 加载自动填充处理界面
         session.loadContent('pages/AccountPage', storage_fill);
       } else {
-        // 拉起生物认证界面
+        // 拉起模态页面
         session.loadContent('pages/ReloadInModal', storage_fill);
       }
     } catch (err) {
