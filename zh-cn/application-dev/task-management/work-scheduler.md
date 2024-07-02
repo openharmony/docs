@@ -123,8 +123,8 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 2. 导入模块。
    
    ```ts
-   import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
-   import workScheduler from '@ohos.resourceschedule.workScheduler';
+   import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
+   import { workScheduler } from '@kit.BackgroundTasksKit';
    ```
 
 3. 实现WorkSchedulerExtension生命周期接口。
@@ -173,8 +173,8 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 1. 导入模块。
    
    ```ts
-   import workScheduler from '@ohos.resourceschedule.workScheduler';
-   import { BusinessError } from '@ohos.base';
+   import { workScheduler } from '@kit.BackgroundTasksKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 申请延迟任务。
