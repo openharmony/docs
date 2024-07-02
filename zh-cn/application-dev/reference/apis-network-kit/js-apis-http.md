@@ -102,6 +102,8 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
 
 > **说明：**
 > console.info()输出的数据中包含换行符会导致数据出现截断现象。
+>
+> 自API 12开始支持接收经过brotli算法压缩的HTTP响应。
 
 ## http.createHttp
 
