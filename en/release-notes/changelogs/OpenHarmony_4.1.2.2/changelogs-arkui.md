@@ -171,7 +171,7 @@ struct RefreshExample {
       Row()
       {
         LoadingProgress().height(32)
-        Text("Refreshing..").fontSize(16).margin({left:20})
+        Text("Refreshing...").fontSize(16).margin({left:20})
       }
       .alignItems(VerticalAlign.Center)
     }.width("100%").align(Alignment.Center)
