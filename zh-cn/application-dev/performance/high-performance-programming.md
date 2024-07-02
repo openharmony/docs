@@ -4,7 +4,7 @@
 
 本文参考业界标准，并结合应用TS&JS部分的性能优化实践经验，从应用编程指南、高性能编程实践、性能优化调试工具等维度，为应用开发者提供参考指导，助力开发者开发出高性能的应用。
 
-本文主要提供高性能编程实践的相关建议，应用开发的具体编程指导可见[《OpenHarmony应用TS&JS编程指南》](../../contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md)。
+本文主要提供高性能编程实践的相关建议，应用开发的具体编程指导可见[OpenHarmony应用TS&JS编程指南](../../contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md)。
 
 ## 应用TS&JS高性能编程实践
 
@@ -206,38 +206,6 @@ delete result[0];
 ```
 
 ### 对象初始化
-
-#### 使用字面量进行对象创建
-
-通常在代码中，进行一些对象创建的时候，大家会采用动态添加属性方式，这种方式，在前端解析时，不能获取到更多的信息，因此不能为运行时提供优化信息。
-
-【反例】
-
-``` TypeScript
-let arr = new Array();  // 创建一个array
-
-let obj = new Object();  // 创建一个普通对象
-
-let oFruit = new Object();
-oFruit.color = "red";
-oFruit.name = "apple"; // 创建一个对象，并设置属性
-```
-
-在要求性能的场合，可以使用字面量进行对象创建，这样在运行时可以获得指令级别的优化。
-
-【正例】
-
-``` TypeScript
-let arr = [];  // 创建一个array
-
-let obj = {}; // 创建一个普通对象
-
-class O1 {
-  color: string = "";
-  name: string = "";
-}
-let oFruit: O1 = {color: "red", name: "apple"};  // 创建一个对象，并设置属性
-```
 
 #### 对象构造初始化
 
@@ -568,8 +536,6 @@ hiTraceMeter.startTrace("fillText1", 100);
 ... ...
 hiTraceMeter.finishTrace("fillText1", 100);
 ```
-
-在应用层或Native层增加trace点，具体可见 [性能打点跟踪开发指导](../dfx/hitracemeter-guidelines.md)。
 
 ### hiperf工具使用指导
 
