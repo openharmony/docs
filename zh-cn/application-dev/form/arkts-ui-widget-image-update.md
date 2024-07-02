@@ -24,26 +24,25 @@
         // 假设在当前卡片应用的tmp目录下有一个本地图片：head.PNG
         let tempDir = this.context.getApplicationContext().tempDir;
         hilog.info(DOMAIN_NUMBER, TAG, `tempDir: ${tempDir}`);
-        let imgBear: Record<string, number>;
+        let imgMap: Record<string, number> = {};
         try {
           // 打开本地图片并获取其打开后的fd
           let file = fileIo.openSync(tempDir + '/' + 'head.PNG');
-          imgBear = {
-            'imgBear': file.fd
-          };
+          imgMap['imgBear'] = file.fd;
         } catch (e) {
           hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
         }
 
         class FormDataClass {
           text: string = 'Image: Bear';
-          imgName: string = 'imgBear';
           loaded: boolean = true;
-          formImages: Record<string, number> = imgBear;
+          // 卡片需要显示图片场景, 必须和下列字段formImages 中的key 'imgBear' 相同。
+          imgName: string = 'imgBear';
+          // 卡片需要显示图片场景, 必填字段(formImages 不可缺省或改名), 'imgBear' 对应 fd
+          formImages: Record<string, number> = imgMap;
         }
-   
+
         let formData = new FormDataClass();
-   
         // 将fd封装在formData中并返回至卡片页面
         return formBindingData.createFormBindingData(formData);
       }
@@ -91,19 +90,21 @@
             });
 
             hilog.info(DOMAIN_NUMBER, TAG, 'ArkTSCard download complete: %{public}s', tmpFile);
-            let fileInfo: Record<string, string | number> = {};
+            let imgMap: Record<string, number> = {};
             try {
               let file = fileIo.openSync(tmpFile);
-              fileInfo[fileName] = file.fd;
+              imgMap[fileName] = file.fd;
             } catch (e) {
               hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
             }
 
             class FormDataClass {
               text: string = 'Image: Bear' + fileName;
-              imgName: string = fileName;
               loaded: boolean = true;
-              formImages: object = fileInfo;
+              // 卡片需要显示图片场景, 必须和下列字段formImages 中的key fileName 相同。
+              imgName: string = fileName;
+              // 卡片需要显示图片场景, 必填字段(formImages 不可缺省或改名), fileName 对应 fd
+              formImages: Record<string, number> = imgMap;
             }
 
             let formData = new FormDataClass();
@@ -130,95 +131,57 @@
 
 4. 在卡片页面通过backgroundImage属性展示EntryFormAbility传递过来的卡片内容。
 
-   ```ts
-   let storageWidgetImageUpdate = new LocalStorage();
-   
-   @Entry(storageWidgetImageUpdate)
-   @Component
-   struct WidgetImageUpdateCard {
-     @LocalStorageProp('text') text: ResourceStr = $r('app.string.loading');
-     @LocalStorageProp('loaded') loaded: boolean = false;
-     @LocalStorageProp('imgName') imgName: ResourceStr = $r('app.string.imgName');
-   
-     build() {
-       if (this.loaded) {
-         Column() {
-           Column() {
-             Text(this.text)
-               .fontColor('#FFFFFF')
-               .opacity(0.9)
-               .fontSize(12)
-               .textOverflow({ overflow: TextOverflow.Ellipsis })
-               .maxLines(1)
-               .margin({ top: '8%', left: '10%' })
-           }.width('100%').height('50%')
-           .alignItems(HorizontalAlign.Start)
-   
-           Row() {
-             Button() {
-               Text($r('app.string.update'))
-                 .fontColor('#45A6F4')
-                 .fontSize(12)
-             }
-             .width(120)
-             .height(32)
-             .margin({ top: '30%', bottom: '10%' })
-             .backgroundColor('#FFFFFF')
-             .borderRadius(16)
-             .onClick(() => {
-               postCardAction(this, {
-                 action: 'message',
-                 params: {
-                   info: 'refreshImage'
-                 }
-               });
-             })
-           }.width('100%').height('40%')
-           .justifyContent(FlexAlign.Center)
-         }.width('100%').height('100%')
-         .backgroundImage('memory://' + this.imgName)
-         .backgroundImageSize(ImageSize.Cover)
-       } else {
-         Column() {
-           Column() {
-             Text(this.text)
-               .fontColor('#FFFFFF')
-               .opacity(0.9)
-               .fontSize(12)
-               .textOverflow({ overflow: TextOverflow.Ellipsis })
-               .maxLines(1)
-               .margin({ top: '8%', left: '10%' })
-           }.width('100%').height('50%')
-           .alignItems(HorizontalAlign.Start)
-   
-           Row() {
-             Button() {
-               Text($r('app.string.update'))
-                 .fontColor('#45A6F4')
-                 .fontSize(12)
-             }
-             .width(120)
-             .height(32)
-             .margin({ top: '30%', bottom: '10%' })
-             .backgroundColor('#FFFFFF')
-             .borderRadius(16)
-             .onClick(() => {
-               postCardAction(this, {
-                 action: 'message',
-                 params: {
-                   info: 'refreshImage'
-                 }
-               });
-             })
-           }.width('100%').height('40%')
-           .justifyContent(FlexAlign.Center)
-         }.width('100%').height('100%')
-         .backgroundImage($r('app.media.ImageDisp'))
-         .backgroundImageSize(ImageSize.Cover)
-       }
-     }
-   }
-   ```
+    ```ts
+    let storageWidgetImageUpdate = new LocalStorage();
+    
+    @Entry(storageWidgetImageUpdate)
+    @Component
+    struct WidgetImageUpdateCard {
+      @LocalStorageProp('text') text: ResourceStr = $r('app.string.loading');
+      @LocalStorageProp('loaded') loaded: boolean = false;
+      @LocalStorageProp('imgName') imgName: ResourceStr = $r('app.string.imgName');
+    
+      build() {
+        Column() {
+          Column() {
+            Text(this.text)
+              .fontColor('#FFFFFF')
+              .opacity(0.9)
+              .fontSize(12)
+              .textOverflow({ overflow: TextOverflow.Ellipsis })
+              .maxLines(1)
+              .margin({ top: '8%', left: '10%' })
+          }.width('100%').height('50%')
+          .alignItems(HorizontalAlign.Start)
+
+          Row() {
+            Button() {
+              Text($r('app.string.update'))
+                .fontColor('#45A6F4')
+                .fontSize(12)
+            }
+            .width(120)
+            .height(32)
+            .margin({ top: '30%', bottom: '10%' })
+            .backgroundColor('#FFFFFF')
+            .borderRadius(16)
+            .onClick(() => {
+              postCardAction(this, {
+                action: 'message',
+                params: {
+                  info: 'refreshImage'
+                }
+              });
+            })
+          }.width('100%').height('40%')
+          .justifyContent(FlexAlign.Center)
+        }
+        .width('100%').height('100%')
+        .backgroundImage(this.loaded ? 'memory://' + this.imgName : $r('app.media.ImageDisp'))
+        .backgroundImageSize(ImageSize.Cover)
+      }
+    }
+    ```
 
 > **说明：**
 >
