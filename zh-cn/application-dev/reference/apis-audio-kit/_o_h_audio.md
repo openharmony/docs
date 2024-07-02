@@ -73,7 +73,7 @@
 | [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) {<br/>AUDIOSTREAM_SOURCE_TYPE_INVALID = -1,<br/>AUDIOSTREAM_SOURCE_TYPE_MIC = 0,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION = 1,<br/>AUDIOSTREAM_SOURCE_TYPE_PLAYBACK_CAPTURE = 2,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7<br/>} | 定义音频流使用场景。 | 
 | [OH_AudioStream_Event](#oh_audiostream_event) {<br/>AUDIOSTREAM_EVENT_ROUTING_CHANGED = 0<br/>} | 定义音频事件。 | 
 | [OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype) {<br/>AUDIOSTREAM_INTERRUPT_FORCE = 0,<br/>AUDIOSTREAM_INTERRUPT_SHARE = 1<br/>} | 定义音频中断类型。 | 
-| [OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint) {<br/>AUDIOSTREAM_INTERRUPT_HINT_NONE = 0,<br/>AUDIOSTREAM_INTERRUPT_HINT_RESUME = 1,<br/>AUDIOSTREAM_INTERRUPT_HINT_PAUSE = 2,<br/>AUDIOSTREAM_INTERRUPT_HINT_STOP = 3,<br/>AUDIOSTREAM_INTERRUPT_HINT_DUCK = 4,<br/>AUDIOSTREAM_INTERRUPT_HINT_UNDUCK = 5<br/>} | 定义音频中断类型。 | 
+| [OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint) {<br/>AUDIOSTREAM_INTERRUPT_HINT_NONE = 0,<br/>AUDIOSTREAM_INTERRUPT_HINT_RESUME = 1,<br/>AUDIOSTREAM_INTERRUPT_HINT_PAUSE = 2,<br/>AUDIOSTREAM_INTERRUPT_HINT_STOP = 3,<br/>AUDIOSTREAM_INTERRUPT_HINT_DUCK = 4,<br/>AUDIOSTREAM_INTERRUPT_HINT_UNDUCK = 5<br/>} | 定义音频中断提示类型。 | 
 | [OH_AudioInterrupt_Mode](#oh_audiointerrupt_mode) {<br/> AUDIOSTREAM_INTERRUPT_MODE_SHARE = 0, <br/>AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT = 1 <br/>} | 定义音频中断模式。  | 
 | [OH_AudioStream_AudioEffectMode](#oh_audiostream_audioeffectmode) { <br/>EFFECT_NONE = 0, <br/>EFFECT_DEFAULT = 1 <br/>} | 定义音效模式。  | 
 | [OH_AudioStream_DeviceChangeReason](#oh_audiostream_devicechangereason) {<br/>REASON_UNKNOWN = 0,<br/>REASON_NEW_DEVICE_AVAILABLE = 1,<br/>REASON_OLD_DEVICE_UNAVAILABLE = 2,<br/>REASON_OVERRODE = 3<br/>} | 流设备变更原因。 | 
@@ -522,7 +522,9 @@ enum OH_AudioInterrupt_ForceType
 **描述**
 定义音频中断类型。
 
-通常用来描述音频中断事件。
+当用户监听到音频中断时，将获取此信息。
+
+此类型表示本次音频打断的操作是否已由系统强制执行，具体操作信息（如音频暂停、停止等）可通过[OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint)获取。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -530,8 +532,8 @@ enum OH_AudioInterrupt_ForceType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AUDIOSTREAM_INTERRUPT_FORCE  | 强制类型，系统更改音频状态。   | 
-| AUDIOSTREAM_INTERRUPT_SHAR  | 共享类型，应用程序更改音频状态。   | 
+| AUDIOSTREAM_INTERRUPT_FORCE  | 强制打断类型，即具体操作已由系统强制执行。   | 
+| AUDIOSTREAM_INTERRUPT_SHARE  | 共享打断类型，即系统不执行具体操作，通过[OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint)提示并建议应用操作，应用可自行决策下一步处理方式。  | 
 
 
 ### OH_AudioInterrupt_Hint
@@ -539,10 +541,12 @@ enum OH_AudioInterrupt_ForceType
 ```
 enum OH_AudioInterrupt_Hint
 ```
-**描述**
-定义音频中断类型。
+**描述**+
+定义音频中断提示类型。
 
-通常用来描述音频中断事件。
+当用户监听到音频中断时，将获取此信息。
+
+此类型表示根据焦点策略，当前需要对音频流的具体操作（如暂停、调整音量等）。可以结合[OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype)信息，判断该操作是否已由系统强制执行。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -551,11 +555,11 @@ enum OH_AudioInterrupt_Hint
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | AUDIOSTREAM_INTERRUPT_HINT_NONE  | 不提示。   | 
-| AUDIOSTREAM_INTERRUPT_HINT_RESUME  | 恢复流提示。   | 
-| AUDIOSTREAM_INTERRUPT_HINT_PAUSE  | 暂停流提示。   | 
-| AUDIOSTREAM_INTERRUPT_HINT_STOP  | 停止流提示。   | 
-| AUDIOSTREAM_INTERRUPT_HINT_DUCK  | 短暂降低音量。   | 
-| AUDIOSTREAM_INTERRUPT_HINT_UNDUCK  | 恢复音量。   | 
+| AUDIOSTREAM_INTERRUPT_HINT_RESUME  | 提示音频恢复，应用可主动触发开始渲染或开始采集的相关操作。<br>此操作无法由系统强制执行，其对应的[OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype)一定为AUDIOSTREAM_INTERRUPT_SHARE类型。   | 
+| AUDIOSTREAM_INTERRUPT_HINT_PAUSE  | 提示音频暂停，暂时失去音频焦点。<br>后续待焦点可用时，会出现AUDIOSTREAM_INTERRUPT_HINT_RESUME事件。   | 
+| AUDIOSTREAM_INTERRUPT_HINT_STOP  | 提示音频停止，彻底失去音频焦点。   | 
+| AUDIOSTREAM_INTERRUPT_HINT_DUCK  | 提示音频躲避开始，音频降低音量播放，而不会停止。   | 
+| AUDIOSTREAM_INTERRUPT_HINT_UNDUCK  | 提示音量躲避结束，音频恢复正常音量。   | 
 
 
 ### OH_AudioInterrupt_Mode
