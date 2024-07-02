@@ -816,6 +816,8 @@ onScrollVisibleContentChange(handler: OnScrollVisibleContentChangeCallback)
 
 有子组件划入或划出List显示区域时触发。计算触发条件时，每一个ListItem/ListItemGroup中的header/ListItemGroup中的footer都算一个子组件。
 
+List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松手回弹过程不会触发onScrollVisibleContentChange事件。
+
 触发该事件的条件：列表初始化时会触发一次，List显示区域内第一个子组件的索引值或最后一个子组件的索引值有变化时会触发。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
