@@ -48,6 +48,7 @@ matchMediaSync(condition: string): MediaQueryListener
 
 ```ts
 import mediaquery from '@ohos.mediaquery'
+
 let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
 ```
 
