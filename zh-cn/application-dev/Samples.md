@@ -671,7 +671,7 @@ Preferences.flush()保存并刷新文件内容。
 
 本示例集合设备管理相关（非系统特性）不需要复杂功能展示的模块，展示了各个模块的基础功能，包含：
 
-- [@ohos.batteryInfo (电量信息)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-battery-info.md%2F)
+- [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)
 - [@ohos.charger (充电类型)](reference/apis/js-apis-charger.md)
 - [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
 - [@ohos.power (系统电源管理)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-power.md%2F)
