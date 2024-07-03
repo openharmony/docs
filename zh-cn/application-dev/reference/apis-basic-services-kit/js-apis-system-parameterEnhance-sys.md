@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import {systemParameter} from '@kit.systemParameterEnhance';
+import { systemParameter } from '@kit.systemParameterEnhance';
 ```
 
 ## systemparameter.getSync
