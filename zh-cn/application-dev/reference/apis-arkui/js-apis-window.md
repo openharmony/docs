@@ -4064,7 +4064,7 @@ windowClass.off('windowRectChange');
 
 on(type:  'subWindowClose', callback: Callback&lt;void&gt;): void
 
-开启子窗口关闭回调函数的监听。此回调函数仅在点击系统提供的右上角关闭按钮关闭子窗时触发，其余关闭方式不触发回调。
+开启子窗口关闭事件的监听。此监听仅在点击系统提供的右上角关闭按钮关闭子窗时触发，其余关闭方式不触发回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4073,7 +4073,7 @@ on(type:  'subWindowClose', callback: Callback&lt;void&gt;): void
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                         | 是   | 监听事件，固定为'subWindowClose'，即子窗口关闭事件。 |
-| callback | Callback&lt;void&gt; | 是   | 回调函数。系统根据回调函数返回值决定当前是否继续关闭，true表示不关闭子窗，false表示关闭子窗。                           |
+| callback | Callback&lt;void&gt; | 是   | 回调函数。当点击子窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前子窗是否继续关闭，true表示不关闭子窗，false表示关闭子窗。   |
 
 **错误码：**
 
@@ -4104,7 +4104,7 @@ try {
 
 off(type: 'subWindowClose', callback?: Callback&lt;void&gt;): void
 
-关闭子窗口关闭回调函数的监听。
+关闭子窗口关闭事件的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4113,7 +4113,7 @@ off(type: 'subWindowClose', callback?: Callback&lt;void&gt;): void
 | 参数名   | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                         | 是   | 监听事件，固定为'subWindowClose'，即子窗口关闭事件。     |
-| callback | Callback&lt;void&gt; | 否   | 回调函数。系统根据回调函数返回值决定当前是否继续关闭，true表示不关闭子窗，false表示关闭子窗。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有子窗口关闭的监听。 |
+| callback | Callback&lt;void&gt; | 否   | 回调函数。当点击子窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前子窗是否继续关闭，true表示不关闭子窗，false表示关闭子窗。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有子窗口关闭的监听。 |
 
 **错误码：**
 
