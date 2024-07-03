@@ -1,5 +1,5 @@
-# Common Events of the Resource Scheduler Subsystem
-This document lists the common system events provided by the resource scheduler subsystem to applications. Applications can use [APIs](../js-apis-commonEventManager.md) to subscribe to common system events.
+# Common Events of the Resource Scheduling Subsystem
+This document lists the common system events provided by the resource scheduling subsystem to applications. Applications can use [APIs](../js-apis-commonEventManager.md) to subscribe to common system events.
 
 ## COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
 Indicates that the system idle mode has changed.
@@ -21,4 +21,4 @@ When the exemption list for resource usage restrictions is updated, the event no
 Resources include application network access, Timer usage, and WorkScheduler task usage.
 System applications can call JavaScript APIs to apply for removing resource usage restrictions.
 
-<!--Del-->APIs related to this event: **deviceStandby**. For details, see [@ohos.resourceschedule.deviceStandby (Device Standby)](../../apis-backgroundtasks-kit/Readme-EN.md).<!--DelEnd-->
+<!--Del-->APIs related to this event: **deviceStandby**. For details, see [@ohos.power (Power Management)](../../apis-backgroundtasks-kit/Readme-EN.md).<!--DelEnd-->
