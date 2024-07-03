@@ -155,7 +155,7 @@ injectMouseEvent(mouseEvent: MouseEventData): void;
 **示例：**
 
 ```js
-import { mouseEvent } from '@kit.InputKit';
+import { MouseEvent } from '@kit.InputKit';
 
 try {
   let mouseButtonUpData: mouseEvent.MouseEvent = {
@@ -255,7 +255,7 @@ injectTouchEvent(touchEvent: TouchEventData): void
 **示例：**
 
 ```js
-import { touchEvent } from '@kit.InputKit';
+import { TouchEvent } from '@kit.InputKit';
 
 try {
   let touchEvent: touchEvent.Touch = {
