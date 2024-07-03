@@ -1088,6 +1088,7 @@
         - [合理使用自定义组件冻结功能](performance/custom_component_freeze.md)
         - [避免在滑动场景的高频回调接口中处理耗时操作](performance/avoid_high_frequency_callback_execute_lengthy_operation.md)
         - [合理使用系统接口](performance/reasonable_using_system_interfaces.md)
+        - [避免在主线程中执行耗时操作](performance/avoid_time_consuming_operations_in_mainthread.md)
       - 提升应用启动和响应速度
         - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
         - [提升应用响应速度](performance/improve-application-response.md)
@@ -1113,6 +1114,7 @@
         - [常用trace使用指导](performance/common-trace-using-instructions.md)
         - [状态变量组件定位工具实践](performance/state_variable_dfx_pratice.md)
         - [应用滑动场景帧率问题分析实践](performance/long-frame-optimization.md)
+        - [时延类性能问题分析实践](performance/delay_related_performance.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具

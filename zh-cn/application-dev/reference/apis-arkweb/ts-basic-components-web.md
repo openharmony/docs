@@ -4455,25 +4455,39 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
   struct WebComponent {
-    @State embedStatus: string = ''
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State embedStatus: string = '';
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-        .onNativeEmbedLifecycleChange((event) => {
+        // 点击按钮跳转页面，关闭index页面，使Embed标签销毁。
+        Button('Destroy')
+        .onClick(() => {
+          try {
+            this.controller.loadUrl("www.example.com");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
+          .onNativeEmbedLifecycleChange((event) => {
+            // 当加载页面中有Embed标签会触发Create。
             if (event.status == NativeEmbedStatus.CREATE) {
-              this.embedStatus = 'Create'
+              this.embedStatus = 'Create';
             }
+            // 当页面中Embed标签移动或者缩放时会触发Update。
             if (event.status == NativeEmbedStatus.UPDATE) {
-              this.embedStatus = 'Update'
+              this.embedStatus = 'Update';
             }
+            // 退出页面时会触发Destroy。
             if (event.status == NativeEmbedStatus.DESTROY) {
-              this.embedStatus = 'Destroy'
+              this.embedStatus = 'Destroy';
             }
             console.log("status = " + this.embedStatus);
             console.log("surfaceId = " + event.surfaceId);
@@ -4490,6 +4504,25 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
       }
     }
   }
+  ```
+
+  加载的html文件
+  ```
+  <!-- index.html -->
+  <!Document>
+  <html>
+  <head>
+      <title>同层渲染测试html</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+      </div>
+  </div>
+  </body>
+  </html>
   ```
 
 ### onNativeEmbedGestureEvent<sup>11+</sup>
