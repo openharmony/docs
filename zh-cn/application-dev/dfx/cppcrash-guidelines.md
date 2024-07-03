@@ -89,13 +89,12 @@ SIGSEGV是一种信号，它表示进程试图访问一个不属于它的内存�
 
     DevEco Studio会收集设备`/data/log/faultlog/faultlogger/`路径下的进程崩溃故障日志到FaultLog下，根据进程名和故障和时间分类显示。获取日志的方法参见：<!--RP1-->[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-0000001659706366-V5)<!--RP1End-->。
 
-- 方式二：通过faultlogger接口获取
+- 方式二：通过hiAppEvent接口订阅
 
-    FaultLogger对外提供了面向应用的故障查询接口，可以查询应用自己的故障记录，以结构化的数据返回。接口的使用以及获取的故障信息规格详见[@ohos.faultLogger (故障日志获取)](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)。
-- 方式三：通过hiAppEvent接口订阅
-    hiAppEvent对外提供了故障订阅接口，可以订阅各类故障打点，详见[HiAppEvent介绍](hiappevent-intro.md)。
+    hiAppEvent 提供了故障订阅接口，可以订阅各类故障打点，详见[HiAppEvent介绍](hiappevent-intro.md)。
+
 <!--Del-->
-- 方式四：设备ROOT模式下通过shell获取日志
+- 方式三：设备ROOT模式下通过shell获取日志
 
     1. 进程崩溃后，系统会在设备`/data/log/faultlog/temp/`路径下的故障日志，其文件名格式为`cppcrash-进程PID-系统毫秒级时间戳`，日志内容包含进程崩溃调用栈，进程崩溃现场寄存器、栈内存、maps，进程文件句柄列表等信息。
 
