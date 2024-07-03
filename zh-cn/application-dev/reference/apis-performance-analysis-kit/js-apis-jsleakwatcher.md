@@ -1,0 +1,103 @@
+# @ohos.hiviewdfx.jsLeakWatcher (js泄露检测)
+
+本模块提供了监控js对象是否发生泄露的能力
+
+> **说明：**
+>
+> 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+## 导入模块
+
+```js
+import { jsLeakWatcher } from '@kit.PerformanceAnalysisKit';
+```
+
+
+## jsLeakWatcher.enable
+
+enable(isEnable: boolean): void;
+
+使能js对象泄露检测
+
+**系统能力：** SystemCapability.HiviewDFX.HiChecker
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| isEnable | boolean | 是 | 是否使能jsLeakWatcher |
+
+**示例：**
+
+```js
+jsLeakWatcher.enable(true);
+```
+
+
+## jsLeakWatcher.watch
+
+watch(obj: object, msg: string): void;
+
+注册需要检测是否发生泄露的对象
+
+**系统能力：** SystemCapability.HiviewDFX.HiChecker
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| obj | object | 是 | 需要检测的对象名 |
+| msg | string | 是 | 自定义对象信息 |
+
+**示例：**
+
+```js
+jsLeakWatcher.watch("myTestFunc", 1);//待补充
+```
+
+
+## jsLeakWatcher.check
+
+check(): string;
+
+检测可能发生泄露的对象
+
+**系统能力：** SystemCapability.HiviewDFX.HiChecker
+
+**返回值：**
+
+| 类型    | 说明                                                       |
+| ------- | ---------------------------------------------------------- |
+| string | JSON格式的疑似泄漏对象列表 |
+
+**示例：**
+```js
+jsLeakWatcher.check();//待补充
+```
+
+
+## jsLeakWatcher.dump
+
+dump(filePath: string): Array<string>;
+
+导出泄漏列表和堆快照
+
+**系统能力：** SystemCapability.HiviewDFX.HiChecker
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| filePath | string | 是 | 导出信息存放的文件名 |
+
+**返回值：**
+
+| 类型    | 说明                                                       |
+| ------- | ---------------------------------------------------------- |
+| Array<string> | 导出结果的数组，索引0为leakListFileName，索引1为heapSnapShotFileName |
+
+**示例：**
+
+```js
+jsLeakWatcher.dump("/data/local/tmp/leakinfo.txt");//待补充
+```
