@@ -233,6 +233,17 @@ import { text } from '@kit.ArkGraphics2D';
 | name      | string                                               | 是  |  否   | 字体特征键值对中关键字所标识的字符串。       |
 | value     | number                                               | 是  |  否   | 字体特征键值对的值。                        |
 
+## FontVariation
+
+可变字体属性。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称      | 类型                                                 | 只读 | 可选 | 说明                                       |
+| --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
+| axis      | string                                               | 是  |  否   | 可变字体属性键值对中关键字所标识的字符串。       |
+| value     | number                                               | 是  |  否   | 可变字体属性键值对的值。                        |
+
 ## TextStyle
 
 文本样式。
@@ -258,6 +269,7 @@ import { text } from '@kit.ArkGraphics2D';
 | locale        | string                                               | 是 | 是 | 语言类型，如'en'，具体请参照ISO 639-1规范，默认为空字符串。|
 | baselineShift | number                                               | 是 | 是 | 文本下划线的偏移距离，浮点数，默认为0.0。                 |
 | fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 是 | 是 | 文本字体特征数组。|
+| fontVariations| Array\<[FontVariation](#fontvariation)>              | 是 | 是 | 可变字体属性数组。|
 | textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 是 | 文本字体阴影数组。|
 | backgroundRect| [RectStyle](#rectstyle)                              | 是 | 是 | 文本矩形框样式。|
 
