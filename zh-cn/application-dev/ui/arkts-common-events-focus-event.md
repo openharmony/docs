@@ -444,7 +444,7 @@ focusBox(style: FocusBoxStyle)
 设置当前组件系统焦点框样式。
 
 ```ts
-import { ColorMetrics, LengthMetrics } from '@ohos.arkui.node'
+import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component
