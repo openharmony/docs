@@ -1,4 +1,4 @@
-# Hidebug开发指导（ArkTS）
+# 使用Hidebug获取调试信息（ArkTS）
 
 Hidebug对外提供系统调试相关功能的接口，包括应用进程的静态堆内存（native heap）信息、应用进程内存占用PSS（Proportional Set Size）信息的获取等，也可完成虚拟机内存切片导出，虚拟机CPU Profiling采集等操作。
 

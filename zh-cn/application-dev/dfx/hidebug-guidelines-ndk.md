@@ -1,4 +1,4 @@
-# Hidebug开发指导（C/C++）
+# 使用Hidebug获取调试信息（C/C++）
 
 HiDebug模块对外提供应用调试功能。
 
