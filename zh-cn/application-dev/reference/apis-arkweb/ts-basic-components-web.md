@@ -251,13 +251,15 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否开启应用中文件系统的访问。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+
+从API version 12开始，fileAccess默认不启用。同时，当fileAccess为false的时候，仅只读资源目录/data/storage/el1/bundle/entry/resources/resfile里面的file协议资源依然可以访问，不受fileAccess管控。
 
 **参数：**
 
 | 参数名        | 参数类型    | 必填   | 默认值  | 参数描述                   |
 | ---------- | ------- | ---- | ---- | ---------------------- |
-| fileAccess | boolean | 是    | true | 设置是否开启应用中文件系统的访问，默认启用。 |
+| fileAccess | boolean | 是    | false | API version 11及以前：默认为true，启动应用中文件系统的访问。API version 12及以后：默认为false，不启用应用中文件系统的访问。 |
 
 **示例：**
 
