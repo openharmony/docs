@@ -209,14 +209,18 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 5. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
 
    ```c++
-   // 从文件 source 信息获取文件轨道数，用户可通过该接口获取文件级别属性，具体支持信息参考附录 1
+   // 从文件 source 信息获取文件轨道数，用户可通过该接口获取文件级别属性，具体支持信息参考附表 1
    OH_AVFormat *sourceFormat = OH_AVSource_GetSourceFormat(source);
    if (sourceFormat == nullptr) {
       printf("get source format failed");
       return;
    }
    int32_t trackCount = 0;
-   OH_AVFormat_GetIntValue(sourceFormat, OH_MD_KEY_TRACK_COUNT, &trackCount);
+   bool gotSourceFormat = OH_AVFormat_GetIntValue(sourceFormat, OH_MD_KEY_TRACK_COUNT, &trackCount);
+   if (!gotSourceFormat) {
+      printf("get track count from source format failed");
+      return;
+   }
    OH_AVFormat_Destroy(sourceFormat);
    ```
 
@@ -229,18 +233,30 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    int32_t h = 0;
    int32_t trackType;
    for (uint32_t index = 0; index < (static_cast<uint32_t>(trackCount)); index++) {
-      // 获取轨道信息，用户可通过该接口获取对应轨道级别属性，具体支持信息参考附录 2
+      // 获取轨道信息，用户可通过该接口获取对应轨道级别属性，具体支持信息参考附表 2
       OH_AVFormat *trackFormat = OH_AVSource_GetTrackFormat(source, index);
       if (trackFormat == nullptr) {
          printf("get track format failed");
          return;
       }
-      OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_TRACK_TYPE, &trackType);
+      bool gotTrackFormat = OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_TRACK_TYPE, &trackType);
+      if (!gotTrackFormat) {
+         printf("get track type from track format failed");
+         return;
+      }
       static_cast<OH_MediaType>(trackType) == OH_MediaType::MEDIA_TYPE_AUD ? audioTrackIndex = index : videoTrackIndex = index;
       // 获取视频轨宽高
       if (trackType == OH_MediaType::MEDIA_TYPE_VID) {
-         OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_WIDTH, &w);
-         OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_HEIGHT, &h);
+         gotTrackFormat = OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_WIDTH, &w);
+         if (!gotTrackFormat) {
+            printf("get track width from track format failed");
+            return;
+         }
+         gotTrackFormat = OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_HEIGHT, &h);
+         if (!gotTrackFormat) {
+            printf("get track height from track format failed");
+            return;
+         }
       }
       OH_AVFormat_Destroy(trackFormat);
    }
@@ -328,50 +344,53 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       close(fd);
       ```
 
-# 注释
-## 注释1：文件级别属性支持范围
+# 附表
+## 附表1：文件级别属性支持范围
 | 名称 | 描述 |
 | -- | -- |
-|OH_MD_KEY_TITLE|源格式标题的键，值类型为string|
-|OH_MD_KEY_ARTIST|艺术家的源格式键，值类型为string|
-|OH_MD_KEY_ALBUM|相册的源格式键，值类型为string|
-|OH_MD_KEY_ALBUM_ARTIST|相册艺术家的键，值类型为string|
-|OH_MD_KEY_DATE|源格式日期的键，值类型为string|
-|OH_MD_KEY_COMMENT|源格式注释的键，值类型为string|
-|OH_MD_KEY_GENRE|源格式类型的键，值类型为string|
-|OH_MD_KEY_COPYRIGHT|源格式版权的键，值类型为string|
-|OH_MD_KEY_LANGUAGE|源格式语言的键，值类型为string|
-|OH_MD_KEY_DESCRIPTION|源格式描述的键，值类型为string|
-|OH_MD_KEY_LYRICS|源格式歌词的键，值类型为string|
-|OH_MD_KEY_TRACK_COUNT|源格式轨道数量的键，值类型为uint32_t|
-|OH_MD_KEY_DURATION|持续时间键，值类型为int64_t|
-|OH_MD_KEY_START_TIME|文件开始时间的键，值类型为int64_t|
+|OH_MD_KEY_TITLE|文件标题的键|
+|OH_MD_KEY_ARTIST|文件艺术家的键|
+|OH_MD_KEY_ALBUM|文件专辑的键|
+|OH_MD_KEY_ALBUM_ARTIST|文件专辑艺术家的键|
+|OH_MD_KEY_DATE|文件日期的键|
+|OH_MD_KEY_COMMENT|文件注释的键|
+|OH_MD_KEY_GENRE|文件流派的键|
+|OH_MD_KEY_COPYRIGHT|文件版权的键|
+|OH_MD_KEY_LANGUAGE|文件语言的键|
+|OH_MD_KEY_DESCRIPTION|文件描述的键|
+|OH_MD_KEY_LYRICS|文件歌词的键|
+|OH_MD_KEY_TRACK_COUNT|文件轨道数量的键|
+|OH_MD_KEY_DURATION|文件时长的键|
+|OH_MD_KEY_START_TIME|文件起始时间的键|
 
-> 注：正常解析时才可以获取对应数据，解析异常时无法获取
+> 正常解析时才可以获取对应属性数据，文件信息错误或缺失，导致解析异常时无法获取；
+> 数据类型及详细取值范围参考[媒体数据键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)；
 
-
-## 注释2：轨道级别属性支持范围
-| 名称 | 描述 | 音频轨支持 | 视频轨支持 | 字幕轨支持 |
+## 附表2：轨道级别属性支持范围
+| 名称 | 描述 | 视频轨支持 | 音频轨支持 | 字幕轨支持 |
 | -- | -- | -- | -- | -- |
-|OH_MD_KEY_CODEC_MIME|编解码器mime类型的键，值类型为string，在支持范围内时才能获取|√|√|√|
-|OH_MD_KEY_TRACK_TYPE|码流媒体类型的键，值类型为uint8_t，在支持范围内时才能获取|√|√|√|
-|OH_MD_KEY_BITRATE|码流比特率的键，值类型为int64_t，正常解析时才可以获取对应数据|√|√||
-|OH_MD_KEY_LANGUAGE|码流语言类型的键，值类型为string，正常解析时才可以获取对应数据|√|√||
-|OH_MD_KEY_CODEC_CONFIG|编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData，值类型为uint8_t*，正常解析时才可以获取对应数据|√|√||
-|OH_MD_KEY_WIDTH|视频宽度的键，值类型为uint32_t|√|||
-|OH_MD_KEY_HEIGHT|视频高度键，值类型为uint32_t|√|||
-|OH_MD_KEY_FRAME_RATE|视频帧率的键，值类型为double，正常解析时才可以获取对应数据|√|||
-|OH_MD_KEY_ROTATION|旋转角度的键，值类型为int32_t，正常解析时才可以获取对应数据|√|||
-|OH_MD_KEY_VIDEO_SAR|样本长宽比的键，值类型为double，正常解析时才可以获取对应数据|√|||
-|OH_MD_KEY_PROFILE|编码档次，值类型为int32_t，只针对 hevc 码流使用，正常解析时才可以获取对应数据|√|||
-|OH_MD_KEY_RANGE_FLAG|视频YUV值域标志的键，值类型为bool，true表示full range，false表示limited range，只针对 hevc 码流使用|√|||
-|OH_MD_KEY_COLOR_PRIMARIES|视频色域的键, 值类型为int32_t，只针对 hevc 码流使用|√|||
-|OH_MD_KEY_TRANSFER_CHARACTERISTICS|视频传递函数的键，值类型为int32_t，只针对 hevc 码流使用|√|||
-|OH_MD_KEY_MATRIX_COEFFICIENTS|视频矩阵系数的键，值类型为int32_t，只针对 hevc 码流使用|√|||
-|OH_MD_KEY_VIDEO_IS_HDR_VIVID|是否是hdr vivid的键，值类型为bool，只针对 HDRVivid 码流，该值为true|√|||
-|OH_MD_KEY_AUD_SAMPLE_RATE|音频采样率键，值类型为uint32_t，正常解析时才可以获取对应数据||√||
-|OH_MD_KEY_AUD_CHANNEL_COUNT|音频通道计数键，值类型为uint32_t，正常解析时才可以获取对应数据||√||
-|OH_MD_KEY_CHANNEL_LAYOUT|所需编码通道布局的键。值类型为int64_t||√||
-|OH_MD_KEY_AUDIO_SAMPLE_FORMAT|音频原始格式的键，值类型为uint32_t||√||
-|OH_MD_KEY_AAC_IS_ADTS|aac格式的键，值类型为uint32_t，只针对 aac 码流使用||√||
-|OH_MD_KEY_BITS_PER_CODED_SAMPLE|每个编码样本位数的键，值类型为uint32_t||√||
+|OH_MD_KEY_CODEC_MIME|码流编解码器类型的键|√|√|√|
+|OH_MD_KEY_TRACK_TYPE|码流媒体类型的键|√|√|√|
+|OH_MD_KEY_BITRATE|码流比特率的键|√|√||
+|OH_MD_KEY_LANGUAGE|码流语言类型的键|√|√||
+|OH_MD_KEY_CODEC_CONFIG|编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData|√|√||
+|OH_MD_KEY_WIDTH|视频流宽度的键|√|||
+|OH_MD_KEY_HEIGHT|视频流高度的键|√|||
+|OH_MD_KEY_FRAME_RATE|视频流帧率的键|√|||
+|OH_MD_KEY_ROTATION|视频流旋转角度的键|√|||
+|OH_MD_KEY_VIDEO_SAR|视频流样本长宽比的键|√|||
+|OH_MD_KEY_PROFILE|视频流编码档次，只针对 hevc 码流使用|√|||
+|OH_MD_KEY_RANGE_FLAG|视频流视频YUV值域标志的键，只针对 hevc 码流使用|√|||
+|OH_MD_KEY_COLOR_PRIMARIES|视频流视频色域的键，只针对 hevc 码流使用|√|||
+|OH_MD_KEY_TRANSFER_CHARACTERISTICS|视频流视频传递函数的键，只针对 hevc 码流使用|√|||
+|OH_MD_KEY_MATRIX_COEFFICIENTS|视频矩阵系数的键，只针对 hevc 码流使用|√|||
+|OH_MD_KEY_VIDEO_IS_HDR_VIVID|视频流标记是否为 HDRVivid 的键，只针对 HDRVivid 码流使用|√|||
+|OH_MD_KEY_AUD_SAMPLE_RATE|音频流采样率的键||√||
+|OH_MD_KEY_AUD_CHANNEL_COUNT|音频流通道数的键||√||
+|OH_MD_KEY_CHANNEL_LAYOUT|音频流所需编码通道布局的键||√||
+|OH_MD_KEY_AUDIO_SAMPLE_FORMAT|音频流样本格式的键||√||
+|OH_MD_KEY_AAC_IS_ADTS|aac格式的键，只针对 aac 码流使用||√||
+|OH_MD_KEY_BITS_PER_CODED_SAMPLE|音频流每个编码样本位数的键||√||
+
+> 正常解析时才可以获取对应属性数据，文件信息错误或缺失，导致解析异常时无法获取；
+> 数据类型及详细取值范围参考[媒体数据键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)；
