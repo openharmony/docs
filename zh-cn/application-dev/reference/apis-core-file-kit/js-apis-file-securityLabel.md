@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import securityLabel from '@ohos.file.securityLabel';
+import { securityLabel } from '@kit.CoreFileKit';
 ```
 
 ## 使用说明
@@ -18,8 +18,8 @@ import securityLabel from '@ohos.file.securityLabel';
 
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+  import { UIAbility } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
 
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
