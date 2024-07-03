@@ -10,7 +10,12 @@
 ## 导入模块
 
 ```ts
-import { PhotoPickerComponent, PickerController, PickerOptions, DataType } from '@ohos.file.PhotoPickerComponent'
+import {
+  PhotoPickerComponent, PickerController, PickerOptions,
+  DataType, ItemInfo, PhotoBrowserInfo, AnimatorParams,
+  MaxSelected, ItemType, ClickType, PickerOrientation,
+  SelectMode, PickerColorMode, ReminderMode, MaxCountType
+} from from '@kit.MediaLibraryKit';
 ```
 
 ## 属性
@@ -27,12 +32,16 @@ import { PhotoPickerComponent, PickerController, PickerOptions, DataType } from 
 
 **参数：**
 
-| 参数名                      | 参数类型                                  | 必填  | 装饰器说明      |参数描述                         |
-|--------------------------|---------------------------------------|-----|------------|-----------------------------|
-| pickerOptions            | [PickerOptions](#pickeroptions)       | 否   | - | picker参数信息。                 |
-| onSelect:(uri： string)   | void                                  | 否   | - | 用户在picker组件中勾选图片是产生的回调事件，将图片uri给到应用。 |
-| onDeselect:(uri： string) | void                                  | 否   | - | 用户在picker组件中取消勾选图片是产生的回调事件，同时也会将图片uri给到应用。 |
-| pickerController         | [PickerController](#pickercontroller) | 否   | @ObjectLink | 应用可通过PickerController向picker组件发送数据 |
+| 参数名                      | 参数类型                                  | 必填  | 装饰器说明      | 参数描述                                                                                  |
+|--------------------------|---------------------------------------|-----|------------|---------------------------------------------------------------------------------------|
+| pickerOptions            | [PickerOptions](#pickeroptions)       | 否   | - | picker参数信息。                                                                           |
+| onSelect:(uri： string)   | void                                  | 否   | - | 用户在picker组件中勾选图片时产生的回调事件，将图片uri给到应用。                                                  |
+| onDeselect:(uri： string) | void                                  | 否   | - | 用户在picker组件中取消勾选图片是产生的回调事件，同时也会将图片uri给到应用。                                            |
+| onItemClicked:(itemInfo: ItemInfo, clickType: ClickType) | boolean  | 否   | - | 用户在picker组件中点击item产生的回调事件（点击图片时，返回值为true则勾选，否则不勾选；点击相机item，返回值为true则拉起系统相机，否则应用自行处理）。 |
+| onEnterPhotoBrowser:(photoBrowserInfo: PhotoBrowserInfo) | boolean   | 否   | - | 进入大图的回调并将大图相关信息回调给应用。                                                                 |
+| onExitPhotoBrowser:(photoBrowserInfo: PhotoBrowserInfo) | boolean   | 否   | - | 退出大图的回调并将大图相关信息回调给应用。                                                                 |
+| onPickerControllerReady:() | void   | 否   | - | 调用pickerController相关接口需在该回调后才能生效。                                                     |
+| pickerController         | [PickerController](#pickercontroller) | 否   | @ObjectLink | 应用可通过PickerController向picker组件发送数据。                                                   |
 
 ## PickerOptions
 
@@ -44,11 +53,18 @@ Picker配置选项。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名                     | 参数类型    | 必填  | 参数描述                 |
-|-------------------------|---------|-----|----------------------|
-| checkBoxColor           | string  | 否   | 勾选框的背景色。格式为8位十六进制颜色代码。        |
-| backgroundColor         | string  | 否   | picker宫格页面背景色。格式为8位十六进制颜色代码。 |
-| isRepeatSelectSupported | boolean | 否   | 是否支持单张图片重复选择。true表示支持。 |
+| 参数名                     | 参数类型                                    | 必填  | 参数描述                                                 |
+|-------------------------|-----------------------------------------|-----|------------------------------------------------------|
+| checkBoxColor           | string                                  | 否   | 勾选框的背景色。格式为8位十六进制颜色代码。                               |
+| backgroundColor         | string                                  | 否   | picker宫格页面背景色。格式为8位十六进制颜色代码。                         |
+| isRepeatSelectSupported | boolean                                 | 否   | 是否支持单张图片重复选择。true表示支持。                               |
+| checkboxTextColor | string                                  | 否   | 勾选框内文本颜色。格式为8位十六进制颜色代码。                              |
+| photoBrowserBackgroundColorMode | [PickerColorMode](#pickercolormode)     | 否   | 支持配置大图背景颜色。包括跟随系统、浅色模式以及深色模式，默认为跟随系统。                |
+| maxSelectedReminderMode | [ReminderMode](#remindmode)             | 否   | 支持配置 选择数量达到最大时的提示方式。包括弹toast提示、不提示以及蒙层提示，默认为弹toast提示 |
+| orientation | [PickerOrientation](#pickerorientation) | 否   | 支持配置宫格页面滑动预览方向，包括水平和竖直两个方向，默认为竖直方向。                  |
+| selectMode | [SelectMode](#selectmode)               | 否   | 支持配置选择模式。包括多选和单选，默认为多选。                              |
+| maxPhotoSelectNumber | number                                  | 否   | 支持设置图片最大的选择数量。最大值为500，受到最大选择总数的限制。                   |
+| maxVideoSelectNumber | number                                 | 否   | 支持设置视频最大的选择数量。最大值为500，受到最大选择总数的限制。                             |
 
 ## PickerController
 
@@ -61,7 +77,62 @@ Picker配置选项。
 | 参数名                                   | 参数类型 | 必填  | 参数描述                                                          |
 |---------------------------------------|------|-----|---------------------------------------------------------------|
 | setData(type: DataType, data: Object) | void | 否   | 应用可通过该接口向picker组件发送数据，并通过[DataType](#datatype)来区分具体发送什么类型的数据。 |
+| setMaxSelected(maxSelected: MaxSelected) | void | 否   | 应用可通过该接口去实时的设置图片的最大选择数量、视频的最大选择数量以及总的最大选择数量。                  |
 
+## ItemInfo
+
+图片、视频相关信息。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+| 参数名      | 参数类型                  | 必填  | 参数描述                                        |
+|----------|-----------------------|-----|---------------------------------------------|
+| itemType | [ItemType](#itemtype) | 否   | 被点击的item类型。包括缩略图item和相机item。                |
+| uri      | string                | 否   | 图片、视频的uri（itemType为ThUMBNAIL时支持，否则为空）。      |
+| mimeType | string                | 否   | 图片、视频的mimeType（itemType为ThUMBNAIL时支持，否则为空）。 |
+| width    | number                | 否   | 图片、视频的宽（itemType为ThUMBNAIL时支持，否则为空）。        |
+| height   | number                | 否   | 图片、视频的高（itemType为ThUMBNAIL时支持，否则为空）。        |
+| size     | number                | 否   | 图片、视频的大小（itemType为ThUMBNAIL时支持，否则为空）。       |
+| duration   | number                | 否   | 视频的时长，图片时返回-1（itemType为ThUMBNAIL时支持，否则为空）。  |
+
+## PhotoBrowserInfo
+
+大图相关信息。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+| 参数名      | 参数类型                              | 必填  | 参数描述    |
+|----------|-----------------------------------|-----|---------|
+| animatorParams | [AnimatorParams](#animatorparams) | 否   | 大图动效参数。 |
+
+## AnimatorParams
+
+进退大图动效参数。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+| 参数名      | 参数类型                | 必填            | 参数描述                                       |
+|----------|---------------------|---------------|--------------------------------------------|
+| duration | number              | 否             | 动效时长。                                      |
+| curve      | Curve、ICurve、string | 否   | 动效曲线。      |
+
+## MaxSelected
+
+最大选择数量。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+| 参数名      | 参数类型                                             | 必填            | 参数描述       |
+|----------|--------------------------------------------------|---------------|------------|
+| data | Map&lt;[MaxCountType](#maxcounttype), number&gt; | 否             | 最大选择数量（包含图片的最大选择数量、视频的最大选择数量以及总的最大选择数量） |
 
 ## DataType
 
@@ -71,16 +142,115 @@ Picker配置选项。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称                | 值      | 说明                                                                                                                        |
-|-------------------|--------|---------------------------------------------------------------------------------------------------------------------------|
-| SET_SELECTED_URIS | 1      | 发送已选择的数据列表，通知picker组件勾选状态刷新，需要传入string数组类型。<br>例如：应用在自己的页面中删除某张图片后，需要把剩下的已选择的数据列表通过setData接口通知到picker组件，从而触发picker组件勾选框状态刷新正确。 |
+| 名称                | 值   | 说明                                                                                                                 |
+|-------------------|-----|--------------------------------------------------------------------------------------------------------------------|
+| SET_SELECTED_URIS | 1   | 发送已选择的数据列表，通知picker组件勾选状态刷新，需要传入string数组类型。<br>例如：应用在自己的页面中删除某张图片后，需要把剩下的已选择的数据列表通过setData接口通知到picker组件，从而触发picker组件勾选框状态刷新正确。 |
+| SET_ALBUM_URI | 2   | 应用按需设置图片的最大选择数量、视频的最大选择数量以及总的最大选择数量。 |
+
+## ItemType
+
+被点击item的类型
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称                | 值   | 说明         |
+|-------------------|-----|------------|
+| THUMBNAIL | 0   | 图片、视频item。 |
+| CAMERA | 1   | 相机item。    |
+
+## ClickType
+
+点击操作的类型
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称                | 值   | 说明      |
+|-------------------|-----|---------|
+| SELECTED | 0   | 选择操作。   |
+| DESELECTED | 1   | 取消选择操作。 |
+
+## PickerOrientation
+
+Picker宫格页面滑动预览的方向
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称                | 值   | 说明    |
+|-------------------|-----|-------|
+| VERTICAL | 0   | 竖直方向。 |
+| HORIZONTAL | 1   | 水平方向。 |
+
+## SelectMode
+
+选择模式。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称                | 值   | 说明    |
+|-------------------|-----|-------|
+| SINGLE_SELECT | 0   | 单选模式。 |
+| MULTI_SELECT | 1   | 多选模式。 |
+
+## PickerColorMode
+
+Picker的颜色模式。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称                | 值   | 说明    |
+|-------------------|-----|-------|
+| AUTO | 0   | 跟随系统。 |
+| LIGHT | 1   | 浅色模式。 |
+| DARK | 2   | 深色模式。 |
+
+## ReminderMode
+
+最大选择数量提示方式。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称                | 值   | 说明        |
+|-------------------|-----|-----------|
+| NONE | 0   | 不提示。      |
+| TOAST | 1   | 弹toast提示。 |
+| MASK | 2   | 蒙灰提示。     |
+
+## MaxCountType
+
+最大选择数量的类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称                | 值   | 说明                        |
+|-------------------|-----|---------------------------|
+| TOTAL_MAX_COUNT | 0   | 总的最大选择数量。                 |
+| PHOTO_MAX_COUNT | 1   | 图片的最大选择数量（受到总的最大选择数量的限制）。 |
+| VIDEO_MAX_COUNT | 2   | 视频的最大选择数量（受到总的最大选择数量的限制）。 |
 
 ## 示例
 
 ```ts
 // xxx.ets
-import { PhotoPickerComponent, PickerController, PickerOptions, DataType } from '@ohos.file.PhotoPickerComponent'
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import {
+  photoAccessHelper, PhotoPickerComponent, PickerController, PickerOptions,
+  DataType, ItemInfo, PhotoBrowserInfo, AnimatorParams,
+  MaxSelected, ItemType, ClickType, PickerOrientation,
+  SelectMode, PickerColorMode, ReminderMode, MaxCountType
+} from from '@kit.MediaLibraryKit';
 
 @Entry
 @Component
@@ -112,13 +282,47 @@ struct PickerDemo {
       })
     }
   }
+  
+  private onItemClicked(itemInfo: ItemInfo, clickType: ClickType): boolean {
+    if (!itemInfo) {
+       return false;
+    }
+    let type: ItemType | undefined = itemInfo.itemType;
+    if (type === ItemType.CAMARA) {
+      // 点击相机item
+      return true; // 返回true则拉起系统相机，若应用需要自行处理则返回false。
+    } else {
+      if (clickType === ClickType.SELECTED) {
+        // 应用做自己的业务处理
+        return true; // 返回true则勾选，否则则不响应勾选。
+      }
+    }
+  }
+  
+  private onEnterPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean {
+    // 进入大图的回调
+    return true;
+  }
+  
+  private onExitPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean {
+    // 退出大图的回调
+    return true;
+  }
+  
+  private onPickerControllerReady(): void {
+    // 接收到该回调后，便可通过pickerController相关接口向picker发送数据，在此之前不生效。
+  }
 
   build() {
     Stack() {
       PhotoPickerComponent({
         pickerOptions: this.pickerOptions,
-        onSelect:(uri: string): void => this.onSelect(uri),
-        onDeselect:(uri: string): void => this.onDeselect(uri),
+        // onSelect:(uri: string): void => this.onSelect(uri),
+        // onDeselect:(uri: string): void => this.onDeselect(uri), 
+        onItemClicked(itemInfo: ItemInfo, clickType: ClickType): boolean => this.onItemClicked(itemInfo, clickType), // 该接口可替代上面两个接口
+        onEnterPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean => this.onEnterPhotoBrowser(photoBrowserInfo),
+        onExitPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean => this.onExitPhotoBrowser(photoBrowserInfo),
+        onPickerControllerReady(): void => this.onPickerControllerReady(),
         pickerController: this.pickerController,
       }).height('100%').width('100%')
 

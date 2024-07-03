@@ -13,6 +13,7 @@
 - ArkTS组件
   - [@ohos.multimedia.movingphotoview (动态照片)](ohos-multimedia-movingphotoview.md)
   - [@ohos.file.PhotoPickerComponent (photo picker组件)](ohos-file-PhotoPickerComponent.md)
+  - [@ohos.file.AlbumPickerComponent (album picker组件)](ohos-file-AlbumPickerComponent.md)
 - C API
   - 模块
     - [MediaAssetManager](_media_asset_manager.md)
