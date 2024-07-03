@@ -293,7 +293,7 @@ type PiPCallActionEvent = 'hangUp' | 'micStateChanged' | 'videoStateChanged' | '
 | 'hangUp'             | 挂断视频通话。     |
 | 'micStateChanged'   | 打开或关闭麦克风。 |
 | 'videoStateChanged' | 打开或关闭摄像头。 |
-| 'voiceStateChanged' | 静音或解除静音。   |
+| 'voiceStateChanged'<sup>12+</sup> | 静音或解除静音。   |
 
 
 ## PiPMeetingActionEvent
@@ -309,7 +309,7 @@ type PiPMeetingActionEvent = 'hangUp' | 'voiceStateChanged' | 'videoStateChanged
 | 'hangUp'            | 挂断视频会议。     |
 | 'voiceStateChanged' | 静音或解除静音。   |
 | 'videoStateChanged' | 打开或关闭摄像头。 |
-| 'micStateChanged'   | 打开或关闭麦克风。 |
+| 'micStateChanged'<sup>12+</sup>   | 打开或关闭麦克风。 |
 
 
 ## PiPLiveActionEvent
@@ -323,7 +323,7 @@ type PiPLiveActionEvent = 'playbackStateChanged' | 'voiceStateChanged'
 | 类型                   | 说明             |
 | ---------------------- | ---------------- |
 | 'playbackStateChanged' | 播放或暂停直播。 |
-| 'voiceStateChanged' | 静音或解除静音。   |
+| 'voiceStateChanged'<sup>12+</sup> | 静音或解除静音。   |
 
 
 ## ControlPanelActionEventCallback<sup>12+</sup>
