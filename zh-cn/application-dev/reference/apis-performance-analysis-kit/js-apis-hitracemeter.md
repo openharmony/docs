@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import hiTraceMeter from '@ohos.hiTraceMeter';
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 ```
 
 
