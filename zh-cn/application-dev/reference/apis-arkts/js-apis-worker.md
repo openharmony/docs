@@ -68,8 +68,8 @@ ThreadWorker构造函数。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failure. |
-| 10200007 | The worker file patch is invalid path. |
+| 10200003 | Worker initialization failed. |
+| 10200007 | The worker file path is invalid. |
 
 **示例：**
 
@@ -112,7 +112,7 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
 **示例：**
@@ -148,7 +148,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
 **示例：**
@@ -187,7 +187,7 @@ postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
 **示例：**
@@ -254,8 +254,8 @@ on(type: string, listener: WorkerEventListener): void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -291,8 +291,8 @@ once(type: string, listener: WorkerEventListener): void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -328,8 +328,8 @@ off(type: string, listener?: WorkerEventListener): void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -363,7 +363,7 @@ registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 
 **示例：**
 ```ts
@@ -406,7 +406,7 @@ unregisterGlobalCallObject(instanceName?: string): void
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 ```ts
@@ -445,7 +445,7 @@ terminate(): void
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 
@@ -472,8 +472,8 @@ onexit?: (code: number) =&gt; void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -509,8 +509,8 @@ onerror?: (err: ErrorEvent) =&gt; void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -541,8 +541,8 @@ onmessage?: (event: MessageEvents) =&gt; void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -575,8 +575,8 @@ onmessageerror?: (event: MessageEvents) =&gt; void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -613,8 +613,8 @@ addEventListener(type: string, listener: WorkerEventListener): void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -650,7 +650,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 
@@ -692,7 +692,7 @@ dispatchEvent(event: Event): boolean
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 
@@ -763,7 +763,7 @@ removeAllListener(): void
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 
@@ -803,8 +803,8 @@ addEventListener(type: string, listener: WorkerEventListener): void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -840,7 +840,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 
@@ -882,7 +882,7 @@ dispatchEvent(event: Event): boolean
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 
@@ -953,7 +953,7 @@ removeAllListener(): void
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 
@@ -994,7 +994,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
 **示例：**
@@ -1045,7 +1045,7 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
 **示例：**
@@ -1096,7 +1096,7 @@ Worker线程向宿主线程发送消息，消息中的Sendable对象通过引用
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
 **示例：**
@@ -1174,11 +1174,11 @@ Worker线程调用注册在宿主线程上某个对象的指定方法，调用�
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.           |
+| 10200004 | The Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 | 10200019 | The globalCallObject is not registered. |
 | 10200020 | The method to be called is not callable or is an async method or a generator. |
-| 10200021 | The global call exceeds the timeout. |
+| 10200021 | Waiting for a global call timed out. |
 
 **示例：**
 ```ts
@@ -1222,7 +1222,7 @@ close(): void
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
-| 10200004 | Worker instance is not running. |
+| 10200004 | The Worker instance is not running. |
 
 **示例：**
 
@@ -1261,8 +1261,8 @@ onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -1302,8 +1302,8 @@ onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -1354,8 +1354,8 @@ workerPort.onmessageerror = (err: MessageEvents) => {
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | Worker instance is not running.              |
-| 10200005 | The invoked API is not supported in workers. |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
 
 **示例：**
 
@@ -1451,8 +1451,8 @@ RestrictedWorker构造函数。使用以下方法前，均需先构造Restricted
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failure. |
-| 10200007 | The worker file patch is invalid path. |
+| 10200003 | Worker initialization failed. |
+| 10200007 | The worker file path is invalid. |
 
 **示例：**
 
