@@ -634,6 +634,10 @@ setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 
 设置恢复此功能时是否唤醒屏幕。使用callback异步回调。
 
+**说明：**
+>
+> 从API version 12开始不再支持。建议使用window.setWakeUpScreen替代，新接口为系统接口。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -660,6 +664,10 @@ context.setWakeUpScreen(wakeUp, (error) => {
 setWakeUpScreen(wakeUp: boolean): Promise\<void>
 
 设置恢复此功能时是否唤醒屏幕。使用Promise异步回调。
+
+**说明：**
+>
+> 从API version 12开始不再支持。建议使用window.setWakeUpScreen替代，新接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
