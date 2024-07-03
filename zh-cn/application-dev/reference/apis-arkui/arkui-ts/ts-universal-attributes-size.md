@@ -26,6 +26,12 @@ width(value: Length)
 | ----- | ---------------------------- | ---- | ------------------- |
 | value | [Length](ts-types.md#length) | 是    | 要设置的组件宽度。<br/>单位：vp |
 
+>  **说明：**
+>
+>  - 在TextInput组件中，width设置auto表示自适应文本宽度。
+>  
+>  - 在AlphabetIndexer组件中，width设置auto表示自适应宽度最大索引项的宽度。
+
 ## height
 
 height(value: Length)
@@ -48,7 +54,7 @@ height(value: Length)
 
 >  **说明：**
 >
->  在Row、Column、RelativeContainer组件中，width、height设置auto表示自适应子组件。在TextInput组件中，width设置auto表示自适应文本宽度。在AlphabetIndexer组件中，width设置auto表示自适应宽度最大索引项的宽度。
+>  在Row、Column、RelativeContainer组件中，width、height设置auto表示自适应子组件。
 
 ## size
 
