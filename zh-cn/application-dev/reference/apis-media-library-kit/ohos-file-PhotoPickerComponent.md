@@ -117,10 +117,10 @@ Picker配置选项。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名      | 参数类型                | 必填            | 参数描述                                       |
-|----------|---------------------|---------------|--------------------------------------------|
-| duration | number              | 否             | 动效时长。                                      |
-| curve      | Curve、ICurve、string | 否   | 动效曲线。      |
+| 参数名      | 参数类型                                  | 必填           | 参数描述         |
+|----------|---------------------------------------|--------------|--------------|
+| duration | number                                | 否            | 动效时长。        |
+| curve      | Curve &verbar; ICurve &verbar; string | 否   | 动效曲线。      |
 
 ## MaxSelected
 
@@ -175,7 +175,7 @@ Picker配置选项。
 
 ## PickerOrientation
 
-Picker宫格页面滑动预览的方向
+Picker宫格页面滑动预览的方向。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
