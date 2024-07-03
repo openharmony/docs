@@ -1043,6 +1043,7 @@ struct TextExample6 {
   @State url: string = 'www.********.com';
   @State email: string = '***@example.com';
   @State address: string = 'XX省XX市XX区XXXX';
+  @State datetime: string = 'XX年XX月XX日XXXX';
   @State enableDataDetector: boolean = true;
   @State types: TextDataDetectorType[] = [];
 
@@ -1053,7 +1054,8 @@ struct TextExample6 {
           '电话号码：' + this.phoneNumber + '\n' +
           '链接：' + this.url + '\n' +
           '邮箱：' + this.email + '\n' +
-          '地址：' + this.address
+          '地址：' + this.address + '\n' +
+          '时间：' + this.datetime
         )
           .fontSize(16)
           .copyOption(CopyOptions.InApp)
@@ -1070,7 +1072,6 @@ struct TextExample6 {
   }
 }
 ```
-![](figures/text7.png)
 
 ### 示例7
 
