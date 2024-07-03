@@ -1612,9 +1612,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口的布局是否为沉浸式布局，使用callback异步回调。
-沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
-非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
+设置主窗口或子窗口的布局是否为沉浸式布局，使用callback异步回调。
+沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1678,9 +1678,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置主窗口的布局是否为沉浸式布局，使用Promise异步回调。
-沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
-非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
+设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。
+沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2052,7 +2052,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2123,7 +2123,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -6441,9 +6441,9 @@ export default class EntryAbility extends UIAbility {
 
 setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口的布局是否为全屏布局，使用callback异步回调。
-全屏布局是指窗口大小为全屏幕，状态栏与导航栏不显示。
-非全屏布局是指状态栏与导航栏显示，窗口大小避让状态栏与导航栏位置。
+设置主窗口或子窗口的布局是否为全屏布局，使用callback异步回调。
+全屏布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非全屏布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -6503,9 +6503,9 @@ export default class EntryAbility extends UIAbility {
 
 setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
-设置主窗口的布局是否为全屏布局，使用Promise异步回调。
-全屏布局是指窗口大小为全屏幕，状态栏与导航栏不显示。
-非全屏布局是指状态栏与导航栏显示，窗口大小避让状态栏与导航栏位置。
+设置主窗口或子窗口的布局是否为全屏布局，使用Promise异步回调。
+全屏布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非全屏布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -6568,9 +6568,9 @@ export default class EntryAbility extends UIAbility {
 
 setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口的布局是否为沉浸式布局，使用callback异步回调。
-沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
-非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
+设置主窗口或子窗口的布局是否为沉浸式布局，使用callback异步回调。
+沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -6630,9 +6630,9 @@ export default class EntryAbility extends UIAbility {
 
 setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置主窗口的布局是否为沉浸式布局，使用Promise异步回调。
-沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
-非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
+设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。
+沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -6820,7 +6820,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
 
 > **说明：**
 >
@@ -6886,7 +6886,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
 
 > **说明：**
 >
