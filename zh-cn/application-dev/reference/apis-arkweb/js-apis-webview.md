@@ -12877,7 +12877,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct WebComponent {
-  controller: _webview.WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
   download: webview.WebDownloadItem = new webview.WebDownloadItem();
   failedData: Uint8Array = new Uint8Array();
@@ -14142,7 +14142,7 @@ struct WebComponent {
                 return false;
               }
 
-              let response = new web_webview.WebSchemeHandlerResponse();
+              let response = new webview.WebSchemeHandlerResponse();
               try {
                 response.setNetErrorCode(WebNetErrorList.NET_OK);
                 response.setStatus(200);
