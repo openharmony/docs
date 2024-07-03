@@ -48,3 +48,4 @@
     - [状态变量组件定位工具实践](state_variable_dfx_pratice.md)
     - [应用滑动场景帧率问题分析实践](long-frame-optimization.md)
     - [时延类性能问题分析实践](delay_related_performance.md)
+    - [Web性能问题分析案例](web-analyse.md)

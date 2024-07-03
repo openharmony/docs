@@ -31,7 +31,7 @@
 
 ## 开发准备
 
-1. 申请权限，申请流程请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+1. 申请权限，申请流程请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
    - ohos.permission.MANAGE_USER_IDM
    - ohos.permission.ACCESS_PIN_AUTH
 
