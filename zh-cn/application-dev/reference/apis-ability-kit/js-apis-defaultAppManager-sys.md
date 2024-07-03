@@ -20,7 +20,7 @@ import { defaultAppManager } from '@kit.AbilityKit';
 | --------------------------------------- | ----------- | ---------------- |
 | ohos.permission.GET_DEFAULT_APPLICATION | system_core | 默认应用相关权限。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## defaultAppManager.getDefaultApplication
 
@@ -228,7 +228,7 @@ defaultAppManager.getDefaultApplication(uniformTypeDescriptor.UniformDataType.AV
 
 getDefaultApplicationSync(type: string, userId?: number): BundleInfo
 
-以同步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型获取默认应用信息，使用BundleInfo返回结果。
+以同步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型获取默认应用信息，使用BundleInfo返回结果。
 
 **需要权限：** ohos.permission.GET_DEFAULT_APPLICATION
 
@@ -541,7 +541,7 @@ defaultAppManager.setDefaultApplication(uniformTypeDescriptor.UniformDataType.AV
 
 setDefaultApplicationSync(type: string, elementName: ElementName, userId?: number): void
 
-以同步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用。
+以同步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型设置默认应用。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -821,7 +821,7 @@ defaultAppManager.resetDefaultApplication(uniformTypeDescriptor.UniformDataType.
 
 resetDefaultApplicationSync(type: string, userId?: number): void
 
-以同步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用。
+以同步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型或者[UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型重置默认应用。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 

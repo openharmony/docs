@@ -755,6 +755,16 @@ constructor(value?: ParagraphStyleInterface)
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。 |
 | leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。 |
 
+## UserDataSpan
+
+支持存储自定义扩展信息，用于存储和获取用户数据，仅提供基类，具体实现由开发者定义。
+
+扩展信息不影响实际显示效果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 ## 示例
 
 ### 示例1
@@ -930,7 +940,7 @@ struct styled_string_demo1 {
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -1018,7 +1028,7 @@ struct styled_string_demo2 {
 
 ```ts
 // xxx.ets
-import { LengthMetrics, LengthUnit } from '@ohos.arkui.node'
+import { LengthMetrics, LengthUnit } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -1204,8 +1214,8 @@ struct styled_string_demo3 {
 
 ```ts
 // xxx.ets
-import image from '@ohos.multimedia.image'
-import { LengthMetrics } from '@ohos.arkui.node'
+import { image } from '@kit.ImageKit'
+import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -1333,7 +1343,7 @@ struct styled_string_demo4 {
 属性字符串LineHeightStyle、ParagraphStyle使用示例
 
 ```ts
-import { LengthMetrics } from '@ohos.arkui.node'
+import { LengthMetrics } from '@kit.ArkUI'
 const canvasWidth = 1000
 const canvasHeight = 100
 class LeadingMarginCreator {
@@ -1480,9 +1490,9 @@ struct Index {
 
 ```ts
 // xxx.ets
-import drawing from '@ohos.graphics.drawing';
-import image from '@ohos.multimedia.image'
-import { LengthMetrics } from '@ohos.arkui.node';
+import { drawing } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
+import { LengthMetrics } from '@kit.ArkUI'
 
 class MyCustomSpan extends CustomSpan {
   constructor(word: string, width: number, height: number) {

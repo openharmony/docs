@@ -262,6 +262,126 @@ try {
 }
 ```
 
+## systemManager.notifyUpdatePackages
+
+notifyUpdatePackages(admin: Want, packageInfo: UpdatePackageInfo): Promise&lt;void&gt;
+
+通知系统更新包信息。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名 | 类型                                | 必填 | 说明           |
+| ------ | ----------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| packageInfo  | [UpdatePackageInfo](#updatepackageinfo) | 是   | 系统更新包信息。 |
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当通知系统更新包失败时会抛出错误对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device.       |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9201004  | The update packages do not exist or analyzing failed. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { systemManager } from '@kit.MDMKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let notify: systemManager.NotifyDescription = {
+  "installTips": "installTips",
+  "installTipsDetail": "installTips detail"
+}
+let description: systemManager.PackageDescription = {
+  "notify": notify,
+}
+let updatePackages: Array<systemManager.Package> = [{
+  "type": systemManager.PackageType.FIRMWARE,
+  "path": "path",
+  "fd": 60,
+}]
+let updatePackageInfo: systemManager.UpdatePackageInfo = {
+  "version" : "1.0",
+  "packages" : updatePackages,
+  "description" : description,
+};
+systemManager.notifyUpdatePackages(wantTemp, updatePackageInfo).then(() => {
+  console.info('Succeeded in notifying update packages.');
+}).catch ((error: BusinessError) => {
+  console.error(`Failed to notify update packages. Code is ${error.code},message is ${error.message}`);
+});
+```
+
+## systemManager.getUpdateResult
+
+getUpdateResult(admin: Want, version: string): Promise&lt;UpdateResult&gt;
+
+获取系统更新结果。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名 | 类型                                | 必填 | 说明           |
+| ------ | ----------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| version  | string | 是   | 更新包版本号。 |
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;[UpdateResult](#updateresult)&gt; | Promise对象，返回系统更新结果。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device.       |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { systemManager } from '@kit.MDMKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+systemManager.getUpdateResult(wantTemp, "1.0").then((result:systemManager.UpdateResult) => {
+    console.info(`Succeeded in getting update result: ${JSON.stringify(result)}`);
+  }).catch((error: BusinessError) => {
+    console.error(`Get update result failed. Code is ${error.code},message is ${error.message}`);
+  });
+```
+
 ## SystemUpdateInfo
 
 待更新的系统版本信息。
@@ -302,3 +422,95 @@ try {
 | UPDATE_TO_SPECIFIC_VERSION | 2 | 强制升级策略。需指定最晚升级时间（latestUpdateTime）参数。 |
 | WINDOWS | 3 | 指定时间窗口升级策略。需指定时间窗口参数（installStartTime、installEndTime）。 |
 | POSTPONE | 4 | 延迟升级策略。延迟指定时间（delayUpdateTime）后进入DEFAULT模式，周期提示用户升级。 |
+
+## UpdatePackageInfo
+
+系统更新包信息。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称                | 类型     | 必填  | 说明            |
+| ----------------- | ------ | --- | ------------- |
+| version       | string | 是   | 系统更新包版本号。   |
+| packages | Array&lt;[Package](#package)&gt; | 是   | 系统更新包详情。 |
+| description       | [PackageDescription](#packagedescription) | 否   | 系统更新包描述信息。  |
+
+## Package
+
+系统更新包详情。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称                | 类型     | 必填  | 说明            |
+| ----------------- | ------ | --- | ------------- |
+| type       | [PackageType](#packagetype) | 是   | 系统更新包类型。   |
+| path | string | 是   | 系统更新包文件路径。 |
+| fd       | number | 否   | 系统更新包文件句柄。  |
+
+## PackageDescription
+
+系统更新包描述信息。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称                | 类型     | 必填  | 说明            |
+| ----------------- | ------ | --- | ------------- |
+| notify       | [NotifyDescription](#notifydescription) | 否   | 企业自定义更新通知说明。   |
+
+## NotifyDescription
+
+企业自定义更新通知说明。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称                | 类型     | 必填  | 说明            |
+| ----------------- | ------ | --- | ------------- |
+| installTips       | string | 否   | 企业自定义更新提示。   |
+| installTipsDetail       | string | 否   | 企业自定义更新提示详情。   |
+
+## UpdateResult
+
+系统更新结果信息。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称                | 类型   | 可读  | 可写   | 说明            |
+| ----------------- | ------ | ------ | ------ | ------------- |
+| version       | string |  是 | 否 |系统当前版本号。   |
+| status       | [UpdateStatus](#updatestatus) | 是 | 否 | 系统更新状态。   |
+| errorInfo       | [ErrorInfo](#errorinfo) | 是 | 否 | 系统更新错误信息。   |
+
+## ErrorInfo
+
+系统更新错误信息。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称                | 类型     | 可读  | 可写 | 说明            |
+| ----------------- | ------ | ------ | ------ | ------------- |
+| code       | number | 是 | 否 | 错误码。   |
+| message       | string | 是 | 否 | 错误描述信息。   |
+
+## PackageType
+
+系统更新包类型。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称                | 值  | 说明    |
+| ----------------- | ---- | ----- |
+| FIRMWARE | 1 | 固件。 |
+
+## UpdateStatus
+
+系统更新状态。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称               | 值  | 说明    |
+| -----------------  | ---- | ----- |
+| NO_UPDATE_PACKAGE  | -4 | 指定版本系统更新包不存在。 |
+| UPDATE_WAITING     | -3 | 系统更新包等待安装中。 |
+| UPDATING           | -2 | 正在更新。 |
+| UPDATE_FAILURE     | -1 | 更新失败。 |
+| UPDATE_SUCCESS     | 0 | 更新成功。 |

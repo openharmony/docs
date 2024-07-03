@@ -20,7 +20,7 @@ import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } 
 > - 当前不支持动态属性设置。
 > - 当前不支持ArkUI通用属性ComponentOptions中expandSafeArea属性设置。
 > - 该组件长按触发播放时组件区域放大为1.1倍。
-> - 该组件使用[AVPlayer](../../reference/apis-media-kit/_a_v_player.md#avplayer)进行播放，同时开启的[AVPlayer](../../reference/apis-media-kit/_a_v_player.md#avplayer)个数不建议超过3个，超过3个可能会出现视频播放卡顿现象。
+> - 该组件使用[AVPlayer](../apis-media-kit/_a_v_player.md#avplayer)进行播放，同时开启的[AVPlayer](../apis-media-kit/_a_v_player.md#avplayer)个数不建议超过3个，超过3个可能会出现视频播放卡顿现象。
 
 MovingPhotoView(options: MovingPhotoViewOptions)
 
@@ -36,12 +36,12 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 
 | 参数名      | 参数类型                                                                                         | 必填 | 参数描述                                                                                                                                        |
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| movingPhoto | [MovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#movingphoto12) | 是   | 支持媒体库MovingPhoto数据源，具体信息详见[MovingPhoto说明](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#movingphoto12)。 |
+| movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | 是   | 支持媒体库MovingPhoto数据源，具体信息详见[MovingPhoto说明](js-apis-photoAccessHelper.md#movingphoto12)。 |
 | controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | 否   | 设置动态照片控制器，可以控制动态照片的播放状态。                                                                                                |
 
 ## 属性
 
-除支持[通用属性](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
 
 ### muted
 
@@ -71,11 +71,11 @@ objectFit(value: ImageFit)
 
 | 参数名 | 类型                                                                          | 必填 | 说明                             |
 | ------ | ----------------------------------------------------------------------------- | ---- | -------------------------------- |
-| value  | [ImageFit](../../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) | 是   | 视频显示模式。<br/>默认值：Cover |
+| value  | [ImageFit](../apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) | 是   | 视频显示模式。<br/>默认值：Cover |
 
 ## 事件
 
-除支持[通用事件](../../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)外，还支持以下事件：
 
 ### onStart
 
@@ -160,7 +160,7 @@ declare type MovingPhotoViewEventCallback = () => void
 
 ## MovingPhotoViewController
 
-一个MovingPhotoViewController对象可以控制一个MovingPhotoView，可用视频播放实例请参考[@ohos.multimedia.media](../../reference/apis-media-kit/js-apis-media.md)。
+一个MovingPhotoViewController对象可以控制一个MovingPhotoView，可用视频播放实例请参考[@ohos.multimedia.media](../apis-media-kit/js-apis-media.md)。
 
 ### startPlayback
 
@@ -178,8 +178,8 @@ stopPlayback(): void
 
 ```ts
 // xxx.ets
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
-import emitter from '@ohos.events.emitter'
+import { photoAccessHelper } from '@kit.MediaLibraryKit'
+import { emitter } from '@kit.BasicServicesKit'
 import { dataSharePredicates } from '@kit.ArkData'
 import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@ohos.multimedia.movingphotoview'
 

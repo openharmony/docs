@@ -35,8 +35,8 @@
 
 - \@ComponentV2装饰的自定义组件里的常规变量(没有任何装饰器修饰的，不涉及更新的普通变量)被\@Component或者\@CompoentV2修饰的父组件构造传参赋值。
 
-- 将\@State、\@Prop、\@Link、\@ObjectLink、\@Provide、\@Consume、\@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp等装饰的对象变量(除了string、number、boolean、枚举、null、undefined以外)传递给\@ComponentV2装饰的自定义组件。
+- 将\@State、\@Prop、\@Link、\@ObjectLink、\@Provide、\@Consume、\@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp等装饰的对象变量(除了string、number、boolean、枚举、null、undefined以外)传递给\@ComponentV2装饰的自定义组件里的\@Param、\@Event等装饰的变量。
 
-- 将\@Local、\@Param、\@Event、\@Provider、\@Consumer等装饰的变量并且类型为(Set、Map、Date、数组)传递给\@Component装饰的自定义组件。
+- 将\@Local、\@Param、\@Event、\@Provider、\@Consumer等装饰的变量并且类型为(Set、Map、Date、数组)传递给\@Component装饰的自定义组件里的@State、\@Prop、\@ObjectLink、\@Provide等装饰的变量。
 
 - 在\@Component装饰的自定义组件里的@Link修饰的变量被\@ComponentV2修饰的父组件构造传参赋值。

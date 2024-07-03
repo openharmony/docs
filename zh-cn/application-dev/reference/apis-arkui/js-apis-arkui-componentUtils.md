@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import componentUtils from '@ohos.arkui.componentUtils'
+import { componentUtils } from '@kit.ArkUI';
 ```
 ## componentUtils.getRectangleById
 
@@ -40,7 +40,7 @@ getRectangleById(id: string): ComponentInfo
 **示例：**
 
 ```ts
-import componentUtils from '@ohos.arkui.componentUtils';
+import { componentUtils } from '@kit.ArkUI';
 let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("onClick");
 ```
 
@@ -160,8 +160,7 @@ type Matrix4Result = [number,number,number,number,number,number,number,number,nu
 **示例：**
 
   ```ts
-import matrix4 from '@ohos.matrix4';
-import componentUtils from '@ohos.arkui.componentUtils';
+import { matrix4, componentUtils } from '@kit.ArkUI';
 
 @Entry
 @Component

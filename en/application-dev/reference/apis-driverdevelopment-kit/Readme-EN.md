@@ -3,6 +3,9 @@
 - ArkTS APIs
   - [@ohos.app.ability.DriverExtensionAbility (Driver Extension Ability)](js-apis-app-ability-driverExtensionAbility.md)
   - [@ohos.driver.deviceManager (Peripheral Management)](js-apis-driver-deviceManager.md)
+  <!--Del-->
+  - [@ohos.driver.deviceManager (Peripheral Management) (System API)](js-apis-driver-deviceManager-sys.md)
+  <!--DelEnd-->
   - application
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
 - C APIs

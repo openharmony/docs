@@ -33,10 +33,10 @@
 | [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md) | 定义图像矩形信息。 | 
 | [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) | 定义图像组成信息。 | 
 | [OhosImageSize](_ohos_image_size.md) | 定义图像大小。 | 
-| [ImagePacker_Opts_](_image_packer___opts__.md) | 定义图像编码选项信息。 | 
+| [ImagePacker_Opts](_image_packer___opts__.md) | 定义图像编码选项信息。 | 
 | [OhosPixelMapInfos](_ohos_pixel_map_infos.md) | 用于定义PixelMap的相关信息。 | 
 | [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) | 用于定义创建PixelMap设置选项的相关信息。 | 
-| [OHOS::Media::OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | 用于定义PixelMap的相关信息。 | 
+| [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | 用于定义PixelMap的相关信息。 | 
 | [OhosImageReceiverInfo](_ohos_image_receiver_info.md) | 定义**ImageReceiver**的相关信息。 | 
 | [OhosImageRegion](_ohos_image_region.md) | 定义图像源解码的范围选项。 | 
 | [OhosImageSourceOps](_ohos_image_source_ops.md) | 定义图像源选项信息。 | 
@@ -240,7 +240,7 @@ typedef struct ImagePacker_Native_ ImagePacker_Native
 ### ImagePacker_Opts
 
 ```
-typedef struct ImagePacker_Opts_ImagePacker_Opts
+typedef struct ImagePacker_Opts_ ImagePacker_Opts
 ```
 
 **描述**

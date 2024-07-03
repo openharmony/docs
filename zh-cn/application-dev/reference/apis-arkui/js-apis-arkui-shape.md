@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { CircleShape, EllipseShape, PathShape, RectShape } from "@ohos.arkui.shape";
+import { CircleShape, EllipseShape, PathShape, RectShape } from "@kit.ArkUI";
 ```
 
 ## CircleShape
@@ -313,7 +313,7 @@ position(position: Position): T
 ## **示例**
 
 ```ts
-import { CircleShape, EllipseShape, PathShape, RectShape } from "@ohos.arkui.shape"
+import { CircleShape, EllipseShape, PathShape, RectShape } from "@kit.ArkUI";
 
 @Entry
 @Component

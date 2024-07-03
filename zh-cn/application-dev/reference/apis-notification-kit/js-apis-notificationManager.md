@@ -854,7 +854,7 @@ notificationManager.isNotificationEnabled().then((data: boolean) => {
 });
 ```
 
-## notificationManager.isNotificationEnabled
+## notificationManager.isNotificationEnabledSync<sup>12+</sup>
 
 isNotificationEnabledSync(): boolean
 
@@ -881,8 +881,6 @@ isNotificationEnabledSync(): boolean
 **示例：**
 
 ```ts
-import notificationManager from '@ohos.notificationManager';
-
 let enabled = notificationManager.isNotificationEnabledSync();
 ```
 
@@ -1124,9 +1122,9 @@ getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-no
 import Base from '@ohos.base';
 
 notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
-	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
+	console.info("getActiveNotifications success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
-    console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
+    console.error(`getActiveNotifications fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1304,11 +1302,15 @@ notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
 });
 ```
 
-## notificationManager.requestEnableNotification
+## notificationManager.requestEnableNotification<sup>(deprecated)</sup>
 
 requestEnableNotification(callback: AsyncCallback\<void\>): void
 
 应用请求通知使能。使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始不再维护，建议使用有context入参的[requestEnableNotification](#notificationmanagerrequestenablenotification10)代替。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1346,11 +1348,15 @@ let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
 notificationManager.requestEnableNotification(requestEnableNotificationCallback);
 ```
 
-## notificationManager.requestEnableNotification
+## notificationManager.requestEnableNotification<sup>(deprecated)</sup>
 
 requestEnableNotification(): Promise\<void\>
 
 应用请求通知使能。使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始不再维护，建议使用有context入参的[requestEnableNotification](#notificationmanagerrequestenablenotification10-1)代替。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1421,17 +1427,27 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 import Base from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import hilog from '@ohos.hilog';
 
 class MyAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
-      if (err) {
-        console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
-      } else {
-        console.info("requestEnableNotification success");
+    onWindowStageCreate(windowStage: window.WindowStage) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
       }
-    };
-    notificationManager.requestEnableNotification(this.context, requestEnableNotificationCallback);
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
+        if (err) {
+            console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+        } else {
+            console.info("requestEnableNotification success");
+        }
+      };
+      notificationManager.requestEnableNotification(this.context, requestEnableNotificationCallback);
+    });
   }
 }
 ```
@@ -1477,19 +1493,29 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 import Base from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import hilog from '@ohos.hilog';
 
 class MyAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    notificationManager.requestEnableNotification(this.context).then(() => {
-      console.info("requestEnableNotification success");
-    }).catch((err: Base.BusinessError) => {
-      console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+    onWindowStageCreate(windowStage: window.WindowStage) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      notificationManager.requestEnableNotification(this.context).then(() => {
+        console.info("requestEnableNotification success");
+      }).catch((err: Base.BusinessError) => {
+        console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+      });
     });
   }
 }
 ```
 
-## notificationManager.isDistributedEnabled
+## notificationManager.isDistributedEnabled   
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 

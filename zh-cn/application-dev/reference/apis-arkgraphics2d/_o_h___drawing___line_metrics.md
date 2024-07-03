@@ -27,7 +27,7 @@
 | double [y](#y) | 文字上端到容器上端高度，第一行为0，第二行为第一行高度。 | 
 | size_t [startIndex](#startindex) | 行起始位置字符索引。 | 
 | size_t [endIndex](#endindex) | 行结束位置字符索引。 | 
-| [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md)[firstCharMetrics](#firstcharmetrics) | 第一个字的度量信息。 | 
+| [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) [firstCharMetrics](#firstcharmetrics) | 第一个字的度量信息。 | 
 
 
 ## 结构体成员变量说明

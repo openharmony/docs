@@ -32,6 +32,8 @@ TreeView({ treeController: TreeController })
 
 **装饰器类型：**\@Component
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
@@ -136,20 +138,32 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 ### getInstance
 
-getInstance(): [TreeListenerManager](#treelistenermanager)
+static getInstance(): TreeListenerManager
 
 获取监听管理器单例对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**返回值**:
+
+| 类型              | 说明               |
+| --------------- |------------------|
+| [TreeListenerManager](#treelistenermanager) | 返回获取到的监听管理器单例对象。 |
+
 
 ### getTreeListener
 
-getTreeListener(): [TreeListener](#treelistener)
+getTreeListener(): TreeListener
 
 获取监听器。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**返回值**:
+
+| 类型           | 说明         |
+| ------------ |------------|
+| [TreeListener](#treelistener) | 返回获取到的监听器。 |
 
 
 ## TreeListener

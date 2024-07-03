@@ -48,5 +48,5 @@ import {
   Matrix4,
   Rotation,
   Frame
-} from "@ohos.arkui.node";
+} from '@kit.ArkUI';
 ```

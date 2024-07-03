@@ -84,9 +84,9 @@ ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属
 
 ## ContextConstant.StartupVisibility<sup>12+</sup>
 
-Ability在新进程中启动后的可见性。该功能仅在平板类设备上生效。
+Ability启动后的可见性。该功能仅在平板类设备上生效。
 
-StartupVisibility作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效，用来指定目标Ability在新进程中启动后的可见性。
+StartupVisibility作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属性，仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效，用来指定目标Ability启动后的可见性。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

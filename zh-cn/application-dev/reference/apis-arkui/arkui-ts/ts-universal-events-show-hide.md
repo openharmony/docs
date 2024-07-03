@@ -87,7 +87,7 @@ onDisAppear(event: () => void): T
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction'
+import { promptAction } from '@kit.ArkUI'
 
 @Entry
 @Component
