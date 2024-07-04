@@ -371,6 +371,8 @@ setAutoStartEnabled(enable: boolean): void
 |----------|-----------|-------|---------------------------------|
 | enable   | boolean   | 是     | 如返回桌面时需自动启动画中画，则该参数配置为true，否则为false。若设置中自动启动画中画开关为关闭状态，就算该参数配置为true，应用返回桌面时也不会自动启动画中画窗口。  |
 
+**示例：**
+
 ```ts
 let enable: boolean = true;
 pipController.setAutoStartEnabled(enable);
@@ -399,6 +401,8 @@ updateContentSize(width: number, height: number): void
 |-------|-------------------------------------------------------------------------------------------------------------|
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
+**示例：**
+
 ```ts
 let width: number = 540; // 假设当前内容宽度变为540px。
 let height: number = 960; // 假设当前内容高度变为960px。
@@ -419,6 +423,8 @@ on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): vo
 |------------|-----------|------|---------------------------------------------------------------------------------------------------|
 | type       | string    | 是    | 监听事件，固定为'stateChange'，即画中画生命周期状态变化事件。                                                             |
 | callback   | function  | 是    | 回调生命周期状态变化事件以及原因：<br/>state：[PiPState](#pipstate)，表示当前画中画生命周期状态；<br/>reason：string，表示当前生命周期的切换原因。 |
+
+**示例：**
 
 ```ts
 pipController.on('stateChange', (state: PiPWindow.PiPState, reason: string) => {
@@ -483,6 +489,8 @@ on(type: 'controlPanelActionEvent', callback: ControlPanelActionEventCallback): 
 |----------|------------|-------|--------------------------------------------------------------------------------------------------------------------------------|
 | type     | string     | 是     | 监听事件，固定为'controlPanelActionEvent'，即画中画控制事件。                                                                                    |
 | callback | [ControlPanelActionEventCallback](#controlpanelactioneventcallback12)  | 是     | 描述画中画控制面板动作事件回调。 |
+
+**示例：**
 
 ```ts
 pipController.on('controlPanelActionEvent', (event: PiPWindow.PiPActionEventType, status?: number) => {
