@@ -389,7 +389,7 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 
 用于UIAbility/UIExtensionAbility二次拉起权限设置弹框。
 
-在调用此接口前，应用需要先调用[requestPermissionsFromUser](#requestpermissionsfromuser)，如果用户在首次弹窗授权时已授权，调用当前接口将无法拉起弹窗。
+在调用此接口前，应用需要先调用[requestPermissionsFromUser](#requestpermissionsfromuser9)，如果用户在首次弹窗授权时已授权，调用当前接口将无法拉起弹窗。
 
 > **说明：**
 >
