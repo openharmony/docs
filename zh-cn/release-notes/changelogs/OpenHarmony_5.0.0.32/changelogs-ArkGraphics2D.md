@@ -128,3 +128,34 @@ OH_NativeWindow_GetLastFlushedBuffer接口废弃，建议通过OH_NativeWindow_G
 
 将OH_NativeWindow_GetLastFlushedBuffer接口替换为OH_NativeWindow_GetLastFlushedBufferV2
 
+## cl.ArkGraphics2D.5 OH_Drawing_RegisterFont()、OH_Drawing_RegisterFontBuffer()接口增加报错码
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+OH_Drawing_RegisterFont()、OH_Drawing_RegisterFontBuffer()接口缺少对文件内容校验的报错。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+开发者若对报错码有判断，需要注意该种情况。
+
+**API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32 版本开始。
+
+**变更的接口/组件**
+
+OH_Drawing_RegisterFont()、OH_Drawing_RegisterFontBuffer()接口增加报错码：9 文件损坏。
+
+**适配指导**
+
+全局搜索OH_Drawing_RegisterFont和OH_Drawing_RegisterFontBuffer接口，适配新增的错误码。
