@@ -1,5 +1,6 @@
 - 性能
   - [性能优化概览](performance-overview.md)
+  - [应用开发性能优化入门引导](application-performance-optimization-guidance.md)
   - ArkTS高性能编程
     - [高性能编程规范](high-performance-programming.md)
     - [高效并发编程](efficient-concurrent-programming.md)
