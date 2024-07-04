@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import { abilityAccessCtrl } from '@kit.AbilityKit'
 ```
 
 ## abilityAccessCtrl.createAtManager
