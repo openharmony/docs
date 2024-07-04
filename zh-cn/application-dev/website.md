@@ -2235,7 +2235,7 @@
           - 画布组件
             - [canvas组件](reference/apis-arkui/arkui-js-lite/js-lite-components-canvas-canvas.md)
             - [CanvasRenderingContext2D对象](reference/apis-arkui/arkui-js-lite/js-lite-components-canvas-canvasrenderingcontext2d.md)
-        - JS服务卡片UI组件参考<!--arkui-card-comp-->
+        - JS服务卡片UI组件<!--arkui-card-comp-->
           - 框架说明
             - [文件组织](reference/apis-arkui/js-service-widget-ui/js-service-widget-file.md)
             - 语法
