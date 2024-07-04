@@ -1,4 +1,4 @@
-# 组件复用性能优化指导
+#  组件复用性能优化指导
 
 ## 概述
 
@@ -104,6 +104,10 @@ export struct InteractiveButton {
 
 上述反例的操作中，在复用的自定义组件中嵌套了新的自定义组件。ArkUI中使用自定义组件时，在build阶段将在在后端FrameNode树创建一个相应的CustomNode节点，在渲染阶段时也会创建对应的RenderNode节点。会造成组件复用下，CustomNode创建和和RenderNod渲染的耗时。且嵌套的自定义组件InteractiveButton，也需要实现aboutToReuse来进行数据的刷新。
 
+优化前，以11号列表项复用过程为例，观察Trace信息，看到该过程中需要逐个实现所有嵌套组件InteractiveButton中aboutToReuse回调，导致复用时间较长，BuildLazyItem耗时7ms。
+
+![noBuilder](./figures/component_recycle_case/noBuilder.png)
+
 正例：
 
 ```ts
@@ -165,7 +169,7 @@ class Temp {
 @Builder
 export function interactiveButton($$: Temp) {
   Row() {
-    // 此处使用`${}`来进行按引用传递，让@Builder感知到数据变化，进行UI刷新
+    // 此处使用$$来进行按引用传递，让@Builder感知到数据变化，进行UI刷新
     Image($$.imageStr)
     Text($$.text)
   }
@@ -178,19 +182,15 @@ export function interactiveButton($$: Temp) {
 
 在正反例中，针对列表滑动场景中单个列表项中的三个交互按钮，反例中采用了自定义组件方式实现，正例中采用了自定义构建函数方式实现。
 
-优化前，以11号列表项复用过程为例，观察Trace信息，看到该过程中需要逐个实现所有嵌套组件InteractiveButton中aboutToReuse回调，导致复用时间较长，BuildLazyItem耗时7ms。
-
-![noBuilder](./figures/noBuilder.png)
-
 优化后，11号列表项复用时，不再需要需要逐个实现所有嵌套组件中aboutToReuse回调，BuildLazyItem耗时3ms。可见该示例中，BuildLazyItem优化大约4ms。
 
-![useBuilder](./figures/useBuilder.png)
+![useBuilder](./figures/component_recycle_case/useBuilder.png)
 
 所以，Trace数据证明，优先使用@Builder替代自定义组件，减少嵌套层级，可以利于维护切能提升页面加载速度。
 
 ## 优化状态管理，精准控制组件刷新范围使用
 
-### 1.使用attributeModifier精准控制组件属性的刷新，避免组件不必要的属性刷新
+### 使用attributeModifier精准控制组件属性的刷新，避免组件不必要的属性刷新
 
 复用场景常用在高频的刷新场景，精准控制组件的刷新范围可以有效减少主线程渲染负载，提升滑动性能。正反例如下：
 
@@ -259,6 +259,16 @@ export struct OneMomentNoModifier {
 ```
 
 上述反例的操作中，通过aboutToReuse对fontSize状态变量更新，进而导致组件的全部属性进行刷新，造成不必要的耗时。可以考虑对需要更新的组件的属性，进行精准刷新，避免不必要的重绘和渲染。
+
+优化前，由`viewPropertyHasChanged OneMomentNoModifier fontSize 1`标签可知，OneMomentNoModifier自定义组件下的状态变量fontSize发生变化，与之相关联的子控件数量为1，即有一个子控件发生了标脏，之后Text全部属性会进行了刷新。
+
+![noModifier1](./figures/component_recycle_case/noModifier1.png)
+
+此时，aboutToReuse的耗时，为336μs，Create[Text]耗时为8μs。
+
+![noModifier2](./figures/component_recycle_case/noModifier2.png)
+
+![noModifier3](./figures/component_recycle_case/noModifier3.png)
 
 正例：
 
@@ -358,31 +368,23 @@ export struct OneMomentNoModifier {
 
 在正反例中，针对列表滑动场景中，单个列表项中Text组件字体大小属性的修改，反例中采用了普通组件属性刷新方式实现，正例中采用了attributeModifier动态属性设置方式实现。
 
-优化前，由`viewPropertyHasChanged OneMomentNoModifier fontSize 1`标签可知，OneMomentNoModifier自定义组件下的状态变量fontSize发生变化，与之相关联的子控件数量为1，即有一个子控件发生了标脏，之后Text全部属性会进行了刷新。
-
-![noModifier1](./figures/noModifier1.png)
-
-此时，aboutToReuse的耗时，为336μs，Create[Text]耗时为8μs。
-
-![noModifier2](./figures/noModifier2.png)
-
-![noModifier3](./figures/noModifier3.png)
-
 在优化后，由`viewPropertyHasChanged OneMomentNoModifier fontSize 0`标签可知，OneMomentNoModifier自定义组件下的状态变量fontSize发生变化，与之相关联的子控件数量为0，即Text没有走常规的标脏，不会刷新全部属性。
 
-![modifer1](./figures/modifer1.png)
+![modifer1](./figures/component_recycle_case/modifer1.png)
 
 优化后的aboutToReuse的耗时，缩短到了257μs，Create[Text]耗时缩短为4μs。
 
-![modifer2](./figures/modifer2.png)
+![modifer2](./figures/component_recycle_case/modifer2.png)
 
-![modifer3](./figures/modifer3.png)
+![modifer3](./figures/component_recycle_case/modifer3.png)
 
 所以，Trace数据证明，精准控制组件的刷新范围可以有效减少主线程渲染负载，提升滑动性能。
 
-说明：因为示例中仅涉及一个Text组件的属性更新，所以优化时间绝对值较小。如果涉及组件较多，性能提升会更明显。
+> **说明：**
+>
+> 因为示例中仅涉及一个Text组件的属性更新，所以优化时间绝对值较小。如果涉及组件较多，性能提升会更明显。
 
-### 2.使用@Link/@ObjectLink替代@Prop减少深拷贝，提升组件创建速度
+### 使用@Link/@ObjectLink替代@Prop减少深拷贝，提升组件创建速度
 
 在父子组件数据同步时，如果仅仅是需要父组件向子组件同步数据，不存在修改子组件的数据变化不同步给父组件的需求。建议使用@Link/@ObjectLink替代@Prop，@Prop在装饰变量时会进行深拷贝，在拷贝的过程中除了基本类型、Map、Set、Date、Array外，都会丢失类型。正反例如下：
 
@@ -449,6 +451,10 @@ export class FriendMoment {
 ```
 
 上述反例的操作中，父子组件之间的数据同步用了@Prop来进行，各@Prop装饰的变量在初始化时都在本地拷贝了一份数据。会增加创建时间及内存的消耗，造成性能问题。
+
+优化前，子组件在初始化时都在本地拷贝了一份数据，BuildItem耗时7ms175μs。
+
+![useProp](./figures/component_recycle_case/useProp.png)
 
 正例：
 
@@ -518,19 +524,175 @@ export class FriendMoment {
 
 在正反例中，针对列表滑动场景，单个列表项中Text组件字体大小属性的修改，反例中采用了普通组件属性刷新方式实现，正例中采用了attributeModifier动态属性设置方式实现。
 
-优化前，子组件在初始化时都在本地拷贝了一份数据，BuildItem耗时7ms175μs。
-
-![useProp](./figures/useProp.png)
-
-
-
 优化后，子组件直接同步父组件数据，无需深拷贝，BuildItem耗时缩短为7ms1μs。
 
-![useLink](./figures/useLink.png)
+![useLink](./figures/component_recycle_case/useLink.png)
 
 所以，Trace数据证明，使用@Link/@ObjectLink替代@Prop减少深拷贝，可以提升组件创建速度。
 
-说明：因为示例中仅涉及一个简单对象FriendMoment的深拷贝，所以优化时间绝对值较小。如果涉及变量较多、对象较复杂，性能提升会更明显。
+> **说明：**
+>
+> 因为示例中仅涉及一个简单对象FriendMoment的深拷贝，所以优化时间绝对值较小。如果涉及变量较多、对象较复杂，性能提升会更明显。
+
+### 避免对@Link/@ObjectLink/@Prop等自动更新的状态变量，在aboutToReuse方法中再进行更新
+
+在父子组件数据同步时，如果子组件已经使用@Link/@ObjectLink/@Prop等会自动同步父子组件数据、且驱动组件刷新的状态变量。不需要再在boutToReuse方法中再进行数据更新，此操作会造成不必要的方法执行和变量更新的耗时。正反例如下：
+
+反例：
+
+```ts
+@Entry
+@Component
+struct LessEmbeddedComponent {
+  @State momentData: FriendMomentsData = new FriendMomentsData();
+  aboutToAppear(): void {
+    getFriendMomentFromRawfile();
+  }
+
+  build() {
+    Column() {
+      TopBar()
+      List({ space: ListConstants.LIST_SPACE }) {
+        LazyForEach(momentData, (moment: FriendMoment) => {
+          ListItem() {
+            OneMoment({moment: moment})
+          }
+        }, (moment: FriendMoment) => moment.id)
+      }
+      .cachedCount(Constants.CACHED_COUNT)
+    }
+  }
+}
+
+@Reusable
+@Component
+export struct OneMoment {
+  // 该类型的状态变量已包含自动刷新功能，不需要再重复进行刷新
+  @ObjectLink moment: FriendMoment;
+
+    // 此处aboutToReuse为多余刷新
+    aboutToReuse(params: Record<string, Object>): void {
+    this.moment.id = (params.moment as FriendMoment).id
+    this.moment.userName = (params.moment as FriendMoment).userName
+    this.moment.avatar = (params.moment as FriendMoment).avatar
+    this.moment.text = (params.moment as FriendMoment).text
+    this.moment.image = (params.moment as FriendMoment).image
+  }
+    
+  build() {
+    Column() {
+      ...
+      Text(`${this.moment.userName}`)
+      ...
+    }
+  }
+}
+    
+@Observed
+export class FriendMoment {
+  id: string; 
+  userName: string; 
+  avatar: string; 
+  text: string; 
+  size: number; 
+  image?: string; 
+
+  constructor(id: string, userName: string, avatar: string, text: string, size: number, image?: string) {
+    this.id = id;
+    this.userName = userName;
+    this.avatar = avatar;
+    this.text = text;
+    this.size = size;
+    if (image !== undefined) {
+      this.image = image;
+    }
+  }
+}
+```
+
+上述反例的操作中，子组件中moment变量被@ObjectLink修饰，把当前this指针注册给父组件，会直接将父组件的数据同步给子组件，实现数据刷新。重新在aboutToReuse中刷新，如果刷新涉及的变量较多、变量中成员变量复杂，可能会造成较大性能开销。
+
+优化前，由于在复用组件OneMoment的aboutToReuse方法中，对moment变量的各个成员变量进行了刷新，aboutToReuse耗时168μs。
+
+![refresh_auto_fresh_variable](./figures/component_recycle_case/avoid_auto_variable_false_trace.png)
+
+正例：
+
+```ts
+@Entry
+@Component
+struct LessEmbeddedComponent {
+  @State momentData: FriendMomentsData = new FriendMomentsData();
+  aboutToAppear(): void {
+    getFriendMomentFromRawfile();
+  }
+
+  build() {
+    Column() {
+      TopBar()
+      List({ space: ListConstants.LIST_SPACE }) {
+        LazyForEach(momentData, (moment: FriendMoment) => {
+          ListItem() {
+            OneMoment({moment: moment})
+          }
+        }, (moment: FriendMoment) => moment.id)
+      }
+      .cachedCount(Constants.CACHED_COUNT)
+    }
+  }
+}
+
+@Reusable
+@Component
+export struct OneMoment {
+  @ObjectLink moment: FriendMoment;
+    
+  build() {
+    Column() {
+      ...
+      Text(`${this.moment.userName}`)
+      ...
+    }
+  }
+}
+    
+@Observed
+export class FriendMoment {
+  id: string; 
+  userName: string; 
+  avatar: string; 
+  text: string; 
+  size: number; 
+  image?: string; 
+
+  constructor(id: string, userName: string, avatar: string, text: string, size: number, image?: string) {
+    this.id = id;
+    this.userName = userName;
+    this.avatar = avatar;
+    this.text = text;
+    this.size = size;
+    if (image !== undefined) {
+      this.image = image;
+    }
+  }
+}
+```
+
+上述正例的操作中，子组件中moment变量被@ObjectLink修饰，把当前this指针注册给父组件，会直接将父组件的数据同步给子组件，实现数据刷新。
+
+**优化效果**
+
+在正反例中，针对列表滑动场景，反例中在aboutToReuse方法中，冗余刷新了自动刷新的变量moment中的各个成员变量。正例中，利用@ObjectLink修饰的变量moment自动同步数据的特性，直接进行刷新，不在aboutToReuse方法再进行刷新。
+
+优化后，避免在复用组件OneMoment的aboutToReuse方法中，重复刷新变量moment的各个成员变量，aboutToReuse耗时110μs。
+
+![aovid_refresh_auto_fresh_variable](./figures/component_recycle_case/avoid_auto_vaiable_true_trace.png)
+
+所以，通过上述Trace数据证明，避免在复用组件中，对@Link/@ObjectLink/@Prop等自动更新的状态变量，在aboutToReuse方法中再进行更新。会减少aboutToReuse方法的时间，进而减少复用组件的创建时间。
+
+> **说明：**
+>
+> 因为示例中仅涉及一个简单变量moment的各成员变量的冗余刷新，所以优化时间绝对值不大。如果涉及变量较多、变量中成员变量复杂，性能提升会更明显。
 
 ## 复用组件嵌套结构会变更的场景，使用reuseId标记不同结构的组件构成
 
@@ -591,6 +753,10 @@ export struct OneMoment {
 
 上述反例的操作中，通过if来控制组件树走不同的分支，分别选择是否创建Flex组件。导致更新if分支时仍然可能走删除重创的逻辑。考虑采用根据不同的分支设置不同的reuseId来提高复用的性能。
 
+优化前，2号列表项复用时长为3ms。
+
+![noReuseId](./figures/component_recycle_case/noReuseId.png)
+
 正例：
 
 ```ts
@@ -616,7 +782,7 @@ struct withoutReuseId {
       .cachedCount(Constants.CACHED_COUNT) 
     }
   }
-}re
+}
 
 @Reusable
 @Component
@@ -648,13 +814,9 @@ export struct OneMoment {
 
 针对列表滑动场景中单个列表项中的一个包含4个Image组件的Flex容器组件，通过if进行条件渲染，存在不同逻辑创建不同布局结构嵌套的组件的情况，反例中没有使用复用标识reuseId，正例中采用复用标识reuseId区分不同结构的组件。
 
-优化前，2号列表项复用时长为3ms。
-
-![noReuseId](./figures/noReuseId.png)
-
 优化后，2号列表项复用时长缩短为2ms。
 
-![ReuseId](./figures/ReuseId.png)
+![ReuseId](./figures/component_recycle_case/ReuseId.png)
 
 所以，Trace数据证明，针对不同逻辑创建不同布局结构嵌套的组件的情况，通过使用reuseId来区分不同结构的组件，能减少删除重创的逻辑，提高组件复用的效率和性能。
 
@@ -662,7 +824,7 @@ export struct OneMoment {
 
 由于在组件复用的场景下，每次复用都需要重新创建组件关联的数据对象，导致重复执行入参中的函数来获取入参结果。如果函数中存在耗时操作，会严重影响性能。正反例如下：
 
-【反例】
+反例：
 
 ```ts
 @Entry
@@ -720,7 +882,11 @@ export struct OneMoment {
 
 上述反例的操作中，复用的子组件参数sum是通过耗时函数生成。该函数在每次组件复用时都需要执行，会造成性能问题，甚至是列表滑动过程中的卡顿丢帧现象。
 
-【正例】
+优化前，aboutToReuse中需要重复执行入参中的函数来获取入参结果，导致耗时较长为4ms。
+
+![FuncParam](./figures/component_recycle_case/FuncParam.png)
+
+正例：
 
 ```ts
 @Entry
@@ -788,12 +954,8 @@ export struct OneMoment {
 
 针对列表滑动场景，单个列表项中的一个Text组件，需要依赖复用组件创建时的入参，反例中入参直接传入函数，正例中入参通过状态变量传递。
 
-优化前，aboutToReuse中需要重复执行入参中的函数来获取入参结果，导致耗时较长为4ms。
-
-![FuncParam](./figures/FuncParam.png)
-
 优化后，aboutToReuse中只是通过变量传参，无需重复执行计算函数，耗时缩短为2ms。
 
-![noFuncParam](./figures/noFuncParam.png)
+![noFuncParam](./figures/component_recycle_case/noFuncParam.png)
 
 所以，Trace数据证明，避免使用函数/方法作为复用组件创建时的入参，可以减少重复执行入参中的函数所带来的性能消耗。
