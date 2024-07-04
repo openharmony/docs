@@ -13,7 +13,8 @@ FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeC
 ## 导入模块
 
 ```ts
-import { FrameNode, LayoutConstraint, typeNode } from "@kit.ArkUI";
+import { typeNode } from "@ohos.arkui.node";
+import { FrameNode, LayoutConstraint } from "@kit.ArkUI";
 ```
 
 ## FrameNode
@@ -1098,7 +1099,8 @@ addComponentContent\<T>(content: ComponentContent\<T>): void
 | content | [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent)\<T> | 是   | FrameNode节点中显示的组件内容。 |
 
 ```ts
-import { NodeController, FrameNode, ComponentContent, typeNode } from '@kit.ArkUI';
+import { NodeController, FrameNode, ComponentContent } from '@kit.ArkUI';
+import { typeNode } from '@ohos.arkui.node';
 
 @Builder
 function buildText() {
@@ -2040,152 +2042,13 @@ createNode(context: UIContext, nodeType: 'Button'): Button
 typeNode.createNode(uiContext, 'Button');
 ```
 
-### ListItemGroup<sup>12+</sup>
-type ListItemGroup = TypedFrameNode&lt;ListItemGroupInterface, ListItemGroupAttribute&gt;
-
-ListItemGroup类型的FrameNode节点类型。
-
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ListItemGroupInterface, ListItemGroupAttribute&gt; | 提供ListItemGroup类型FrameNode节点。<br/>**说明：**<br/> ListItemGroupInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为ListItemGroup组件的构造函数类型。 <br/> ListItemGroupAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回ListItemGroup组件的属性设置对象。 |
-
-### createNode('ListItemGroup')<sup>12+</sup>
-createNode(context: UIContext, nodeType: 'ListItemGroup'): ListItemGroup
-
-创建ListItemGroup类型的FrameNode节点。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
-| nodeType | 'ListItemGroup' | 是 | 创建ListItemGroup类型的节点。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| [ListItemGroup](#listitemgroup12) | ListItemGroup类型的FrameNode节点。 |
-
-**示例：**
-
-```ts
-typeNode.createNode(uiContext, 'ListItemGroup');
-```
-
-### WaterFlow<sup>12+</sup>
-type WaterFlow = TypedFrameNode&lt;WaterFlowInterface, WaterFlowAttribute&gt;
-
-WaterFlow类型的FrameNode节点类型。
-
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;WaterFlowInterface, WaterFlowAttribute&gt; | 提供WaterFlow类型FrameNode节点。<br/>**说明：**<br/> WaterFlowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为WaterFlow组件的构造函数类型。 <br/> WaterFlowAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回WaterFlow组件的属性设置对象。 |
-
-### createNode('WaterFlow')<sup>12+</sup>
-createNode(context: UIContext, nodeType: 'WaterFlow'): WaterFlow
-
-创建WaterFlow类型的FrameNode节点。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
-| nodeType | 'WaterFlow' | 是 | 创建WaterFlow类型的节点。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| [WaterFlow](#waterflow12) | WaterFlow类型的FrameNode节点。 |
-
-**示例：**
-
-```ts
-typeNode.createNode(uiContext, 'WaterFlow');
-```
-
-### FlowItem<sup>12+</sup>
-type FlowItem = TypedFrameNode&lt;FlowItemInterface, FlowItemAttribute&gt;
-
-FlowItem类型的FrameNode节点类型。
-
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;FlowItemInterface, FlowItemAttribute&gt; | 提供FlowItem类型FrameNode节点。<br/>**说明：**<br/> FlowItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为FlowItem组件的构造函数类型。 <br/> FlowItemAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回FlowItem组件的属性设置对象。 |
-
-### createNode('FlowItem')<sup>12+</sup>
-createNode(context: UIContext, nodeType: 'FlowItem'): FlowItem
-
-创建FlowItem类型的FrameNode节点。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
-| nodeType | 'FlowItem' | 是 | 创建FlowItem类型的节点。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| [FlowItem](#flowitem12) | FlowItem类型的FrameNode节点。 |
-
-**示例：**
-
-```ts
-typeNode.createNode(uiContext, 'FlowItem');
-```
-
-### XComponent<sup>12+</sup>
-type XComponent = TypedFrameNode&lt;XComponentInterface, XComponentAttribute&gt;
-
-XComponent类型的FrameNode节点类型。
-
-| 类型                            | 说明                   |
-| ----------------------------- | -------------------- |
-| TypedFrameNode&lt;XComponentInterface, XComponentAttribute&gt; | 提供XComponent类型FrameNode节点。<br/>**说明：**<br/> XComponentInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为XComponent组件的构造函数类型。 <br/> XComponentAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回XComponent组件的属性设置对象。 |
-
-### createNode('XComponent')<sup>12+</sup>
-createNode(context: UIContext, nodeType: 'XComponent'): XComponent
-
-创建XComponent类型的FrameNode节点。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
-| nodeType | 'XComponent' | 是 | 创建XComponent类型的节点。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| [XComponent](#xcomponent12) | XComponent类型的FrameNode节点。 |
-
-**示例：**
-
-```ts
-typeNode.createNode(uiContext, 'XComponent');
-```
-
 ## 自定义具体类型节点示例
 
 以Text节点为例，创建Text类型节点。
 
 ```ts
-import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+import { NodeController, FrameNode } from '@kit.ArkUI';
+import { typeNode } from '@ohos.arkui.node';
 
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
