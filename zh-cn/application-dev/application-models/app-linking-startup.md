@@ -65,8 +65,6 @@
                 "scheme": "https",
                 // host须配置关联的域名
                 "host": "www.example.com",
-                // port可选
-                "port": "443",
                 // path可选，为了避免匹配到多个应用，建议配置该字段
                 "path": "path1"
               }
