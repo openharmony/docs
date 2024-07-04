@@ -354,7 +354,7 @@
 - JS组件
   - [兼容JS的类Web开发范式（ArkUI.Full）](arkui-js/Readme-CN.md)    
   - [兼容JS的类Web开发范式（ArkUI.Lite）](arkui-js-lite/Readme-CN.md)
-  - [JS服务卡片UI组件参考）](js-service-widget-ui/Readme-CN.md)
+  - [JS服务卡片UI组件参考](js-service-widget-ui/Readme-CN.md)
 - C API
   - 模块
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
