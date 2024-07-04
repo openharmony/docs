@@ -371,21 +371,21 @@
 
     2.3 从want.parameters中获取发起端放入的sessionId，调用setSessionId接口设置同步的sessionId。
 
-> **说明**
+> **说明：**
 >
-> 跨端迁移时，在迁移发起端调用setsessionId接口设置同步的sessionId后，必须再调用save接口保存数据到接收端。
+> - 跨端迁移时，在迁移发起端调用setsessionId接口设置同步的sessionId后，必须再调用save接口保存数据到接收端。
 >
-> 跨端迁移需要配置`continuable`标签，详见[跨端迁移开发步骤](../application-models/hop-cross-device-migration.md#开发步骤)。
+> - 跨端迁移需要配置`continuable`标签，<!--RP1-->详见[跨端迁移开发步骤](../application-models/hop-cross-device-migration.md#开发步骤)。<!--RP1End-->
 >
-> wantParam中的"sessionId"字段可能被其他服务占用，建议自定义一个key存取sessionId。
+> - wantParam中的"sessionId"字段可能被其他服务占用，建议自定义一个key存取sessionId。
 >
-> 可以使用资产类型记录资产附件（文件、图片、视频等类型文件）的相关信息，迁移资产类型数据时，对应的资产附件会一起迁移到对端。
+> - 可以使用资产类型记录资产附件（文件、图片、视频等类型文件）的相关信息，迁移资产类型数据时，对应的资产附件会一起迁移到对端。
 >
-> 接收端需要将业务数据的初始值设置为undefined，才能恢复发起端保存的数据，否则接收端的数据会覆盖同步到发起端。如果是资产数据，需要将资产数据的各个属性设置为undefined而不是将整个资产数据设置为undefined。
+> - 接收端需要将业务数据的初始值设置为undefined，才能恢复发起端保存的数据，否则接收端的数据会覆盖同步到发起端。如果是资产数据，需要将资产数据的各个属性设置为undefined而不是将整个资产数据设置为undefined。
 >
-> 暂不支持资产类型数组，如果要迁移多个文件，在业务数据中定义多条资产数据来记录。
+> - 暂不支持资产类型数组，如果要迁移多个文件，在业务数据中定义多条资产数据来记录。
 >
-> 目前仅支持迁移分布式文件目录下的文件，非分布式文件目录下的文件可以复制或移动到分布式文件目录下再进行迁移。文件的操作和URI的获取详见[文件管理](../reference/apis-core-file-kit/js-apis-file-fs.md)和[文件URI](../reference/apis-core-file-kit/js-apis-file-fileuri.md)。
+> - 目前仅支持迁移分布式文件目录下的文件，非分布式文件目录下的文件可以复制或移动到分布式文件目录下再进行迁移。文件的操作和URI的获取详见[文件管理](../reference/apis-core-file-kit/js-apis-file-fs.md)和[文件URI](../reference/apis-core-file-kit/js-apis-file-fileuri.md)。
 
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
