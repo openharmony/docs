@@ -29,3 +29,37 @@ UIExtensionComponent以及CreateModalUIExtension
 使用UIExtensionComponent的必须为系统应用
 
 CreateModalUIExtension禁止其他组件遮挡
+
+## cl.arkui.2 DatePickerDialog显示时间时分割线延长
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+修正视觉效果以获得更好的用户体验。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/DatePickerDialogDivider_Before.jpg) | ![](figures/DatePickerDialogDivider_After.jpg) |
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32 版本开始。
+
+**变更的接口/组件**
+
+涉及的组件：DatePickerDialog。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
