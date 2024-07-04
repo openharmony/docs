@@ -129,7 +129,7 @@ queryNavigationInfo(): NavigationInfo | undefined
 
 | 类型                                                                       | 说明      |
 | -------------------------------------------------------------------------- | --------- |
-| [NavigationInfo](../js-apis-arkui-observer.md#navigationinfo) \| undefined | 返回NavigationInfo实例对象。 |
+| [NavigationInfo](../js-apis-arkui-observer.md#navigationinfo12) \| undefined | 返回NavigationInfo实例对象。 |
 
 **示例：**
 
