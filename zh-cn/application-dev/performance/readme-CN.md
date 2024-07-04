@@ -37,7 +37,8 @@
     - [合理运行后台任务](reasonable-running-backgroundTask.md)
     - [Web组件开发性能提升指导](performance-web-import.md)
     - [使用同层渲染在Webview上渲染原生组件](webview-render-app-components.md)
-  - [减小应用包大小](reduce-package-size.md)
+    - [减小应用包大小](reduce-package-size.md)
+    - [全局自定义组件复用实现](node_custom_component_reusable_pool.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
@@ -45,3 +46,5 @@
     - [常用trace使用指导](common-trace-using-instructions.md)
     - [状态变量组件定位工具实践](state_variable_dfx_pratice.md)
     - [应用滑动场景帧率问题分析实践](long-frame-optimization.md)
+    - [时延类性能问题分析实践](delay_related_performance.md)
+    - [Web性能问题分析案例](web-analyse.md)

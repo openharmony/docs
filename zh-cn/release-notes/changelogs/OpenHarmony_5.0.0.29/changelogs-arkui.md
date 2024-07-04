@@ -106,7 +106,7 @@ API version 12及以后：Badge组件前后状态相同时不缩放，显隐时�
 
 该变更为非兼容性变更。
 
-在@ComponentV2修饰的自定义组件中使用常规变量(没有任何装饰器修饰的，不涉及更新的普通变量)，在构造的时候传参赋值，进行校验并输出错误信息。
+在@ComponentV2修饰的自定义组件中使用@Local、@Provider()、@Consumer()、常规变量(没有任何装饰器修饰的，不涉及更新的普通变量)，在构造的时候传参赋值，进行校验并输出错误信息。
 
 **变更影响**
 
@@ -119,7 +119,10 @@ struct v2DecoratorInitFromParent {
   build() {
     Column() {
       testChild({
-        regular_value: "hello"
+        regular_value: "hello",
+        local_value: "hello",
+        provider_value: "hello",
+        consumer_value: "hello"
       })
     }
   }
@@ -128,6 +131,9 @@ struct v2DecoratorInitFromParent {
 @ComponentV2
 struct testChild {
   regular_value: string = "hello";
+  @Local local_value: string = "hello";
+  @Provider() provider_value: string = "hello";
+  @Consumer() consumer_value: string = "hello";
   build() {}
 }
 ```
@@ -137,6 +143,9 @@ struct testChild {
 变更后报错信息为：
 
 Property 'regular_value' in the custom component 'testChild' cannot initialize here (forbidden to specify).
+Property 'local_value' in the custom component 'testChild' cannot initialize here (forbidden to specify).
+Property 'provider_value' in the custom component 'testChild' cannot initialize here (forbidden to specify).
+Property 'consumer_value' in the custom component 'testChild' cannot initialize here (forbidden to specify).
 
 **起始API Level**
 

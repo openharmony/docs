@@ -409,7 +409,7 @@ privacySensitive(supported: boolean)
 
 | 参数名    | 类型    | 必填 | 说明                     |
 | --------- | ------- | ---- | ------------------------ |
-| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值：false |
+| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值为false，当设置为true时，隐私模式下图片将显示为半透明底板样式。<br/>**说明：** <br/>设置null则不敏感。<br/>进入隐私模式需要[卡片框架支持](./ts-universal-attributes-obscured.md)。 |
 
 ### dynamicRangeMode<sup>12+</sup>
 
@@ -417,7 +417,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 设置期望展示的图像动态范围。
 
-该属性仅在手机设备上生效。
+<!--RP1--><!--RP1End-->
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -425,7 +425,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12-1) | 是   | 图像显示的动态范围。 |
+| value  | [DynamicRangeMode](#dynamicrangemode12-1) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
 
 ## ImageInterpolation
 

@@ -68,8 +68,55 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { BuilderNode, FrameNode, NodeController, Size, UIContext } from '@kit.ArkUI';
+
+class Params {
+  text: string = '';
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+// 开发者可以通过@Builder装饰器实现布局构建
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(20)
+      .fontColor(Color.Red)
+  }
+  .width('100%') // 宽度方向充满画中画窗口
+  .height('100%') // 高度方向充满画中画窗口
+}
+
+// 开发者可通过继承NodeController实现自定义UI控制器
+class TextNodeController extends NodeController {
+  private message: string;
+  private textNode: BuilderNode<[Params]> | null = null;
+  constructor(message: string) {
+    super();
+    this.message = message;
+  }
+
+  // 通过BuilderNode加载自定义布局
+  makeNode(context: UIContext): FrameNode | null {
+    this.textNode = new BuilderNode(context);
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
+    return this.textNode.getFrameNode();
+  }
+
+  // 开发者可自定义该方法实现布局更新
+  update(message: string) {
+    console.log(`update message: ${message}`);
+    if (this.textNode !== null) {
+      this.textNode.update(new Params(message));
+    }
+  }
+}
+
 let pipController: PiPWindow.PiPController | undefined = undefined;
 let mXComponentController: XComponentController = new XComponentController(); // 开发者应使用该mXComponentController初始化XComponent: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} )，保证XComponent的内容可以被迁移到画中画窗口。
+let nodeController: TextNodeController = new TextNodeController('this is custom UI');
 let navId: string = "page_1"; // 假设当前页面的导航id为page_1，详见PiPConfiguration定义，具体导航名称由开发者自行定义。
 let contentWidth: number = 800; // 假设当前内容宽度800px。
 let contentHeight: number = 600; // 假设当前内容高度600px。
@@ -81,6 +128,7 @@ let config: PiPWindow.PiPConfiguration = {
   contentWidth: contentWidth,
   contentHeight: contentHeight,
   controlGroups: [PiPWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
+  customUIController: nodeController, // 可选，如果需要在画中画显示内容上方展示自定义UI，可设置该参数。
 };
 
 let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(config);
@@ -98,15 +146,16 @@ promise.then((data : PiPWindow.PiPController) => {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                  | 类型                                                                    | 必填  | 说明                                                                                                                                                                                                                                                                                                                                           |
-|---------------------|-----------------------------------------------------------------------|-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| context             | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)               | 是   | 表示上下文环境。                                                                                                                                                                                                                                                                                                                                     |
-| componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md) | 是   | 表示原始[XComponent](../../ui/arkts-common-components-xcomponent.md)控制器。                                                                                                                                                                                                                                                                         |
-| navigationId        | string                                                                | 否   | 当前page导航id。<br/>1、UIAbility使用[Navigation](arkui-ts/ts-basic-components-navigation.md)管理页面，需要设置Navigation控件的id属性，并将该id设置给画中画控制器，确保还原场景下能够从画中画窗口恢复到原页面。<br/>2、UIAbility使用[Router](js-apis-router.md)管理页面时（画中画场景不推荐该导航方式），无需设置navigationId。注意：该场景下启动画中画后，不要进行页面切换，否则还原场景可能出现异常。<br/>3、UIAbility只有单页面时，无需设置navigationId，还原场景下也能够从画中画窗口恢复到原页面。 |
-| templateType        | [PiPTemplateType](#piptemplatetype)                                   | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。                                                                                                                                                                                                                                                                                                                     |
-| contentWidth        | number                                                                | 否   | 原始内容宽度，单位为px。用于确定画中画窗口比例。                                                                                                                                                                                                                                                                                                                    |
-| contentHeight       | number                                                                | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。                                                                                                                                                                                                                                                                                                                    |
-| controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                                                                | 否   | 画中画控制面板的可选控件组列表，应用可以配置是否显示可选控件。应用不配置，则显示模板的基础控件（如视频播放控件组的播放/暂停控件）。从API version 12开始支持此参数。 |
+| 名称                  | 类型                                                                         | 必填  | 说明                                                                                                                                                                                                                                                                                                                                        |
+|---------------------|----------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| context             | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 表示上下文环境。                                                                                                                                                                                                                                                                                                                                  |
+| componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md)         | 是   | 表示原始[XComponent](../../ui/arkts-common-components-xcomponent.md)控制器。                                                                                                                                                                                                                                                                      |
+| navigationId        | string                                                                     | 否   | 当前page导航id。<br/>1、UIAbility使用[Navigation](arkui-ts/ts-basic-components-navigation.md)管理页面，需要设置Navigation控件的id属性，并将该id设置给画中画控制器，确保还原场景下能够从画中画窗口恢复到原页面。<br/>2、UIAbility使用[Router](js-apis-router.md)管理页面时（画中画场景不推荐该导航方式），无需设置navigationId。注意：该场景下启动画中画后，不要进行页面切换，否则还原场景可能出现异常。<br/>3、UIAbility只有单页面时，无需设置navigationId，还原场景下也能够从画中画窗口恢复到原页面。 |
+| templateType        | [PiPTemplateType](#piptemplatetype)                                        | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。                                                                                                                                                                                                                                                                                                                  |
+| contentWidth        | number                                                                     | 否   | 原始内容宽度，单位为px。用于确定画中画窗口比例。                                                                                                                                                                                                                                                                                                                 |
+| contentHeight       | number                                                                     | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。                                                                                                                                                                                                                                                                                                                 |
+| controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否   | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。如果应用没有配置，面板将显示基础控件（如视频播放控件组的播放/暂停控件）；如果应用选择配置，则最多可以选择三个控件。从API version 12开始支持此参数。                                                                                                                                                                                                                                                 |
+| customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | 否   | 用于实现在画中画界面内容上方展示自定义UI功能。从API version 12开始支持此参数。                                                                                                                                                                                                                                                                                           |
 
 ## PiPTemplateType
 
@@ -138,7 +187,7 @@ promise.then((data : PiPWindow.PiPController) => {
 
 ## PiPControlGroup<sup>12+</sup>
 
-type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeetingControlGroup
+type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeetingControlGroup | VideoLiveControlGroup
 
 画中画控制面板的可选控件组列表，应用可以配置是否显示可选控件。默认情况下控制面板只显示基础控件（如视频播放控件组的播放/暂停控件）。
 
@@ -149,6 +198,7 @@ type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeet
 | [VideoPlayControlGroup](#videoplaycontrolgroup12)     | 视频播放控件组。 |
 | [VideoCallControlGroup](#videocallcontrolgroup12)       | 视频通话控件组。 |
 | [VideoMeetingControlGroup](#videomeetingcontrolgroup12) | 视频会议控件组。 |
+| [VideoLiveControlGroup](#videolivecontrolgroup12)     | 视频直播控件组。 |
 
 
 ## VideoPlayControlGroup<sup>12+</sup>
@@ -173,6 +223,7 @@ type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeet
 | MICROPHONE_SWITCH       | 201   | 打开/关闭麦克风控件组。            |
 | HANG_UP_BUTTON    | 202   | 挂断控件组。           |
 | CAMERA_SWITCH    | 203   | 打开/关闭摄像头控件组。            |
+| MUTE_SWITCH    | 204   | 静音控件组。            |
 
 ## VideoMeetingControlGroup<sup>12+</sup>
 
@@ -185,6 +236,18 @@ type PiPControlGroup = VideoPlayControlGroup | VideoCallControlGroup | VideoMeet
 | HANG_UP_BUTTON       | 301   | 挂断控件组。          |
 | CAMERA_SWITCH    | 302   | 打开/关闭摄像头控件组。           |
 | MUTE_SWITCH    | 303   | 静音控件组。            |
+| MICROPHONE_SWITCH       | 304   | 打开/关闭麦克风控件组。            |
+
+## VideoLiveControlGroup<sup>12+</sup>
+
+视频直播控件组枚举。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_LIVE时使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                   | 值   | 说明                    |
+|----------------------|-----|-----------------------|
+| VIDEO_PLAY_PAUSE     | 401   |   播放/暂停直播控件组   |
+| MUTE_SWITCH         | 402   | 静音控件组。            |
 
 ## PiPActionEventType
 
@@ -219,7 +282,7 @@ type PiPVideoActionEvent = 'playbackStateChanged' | 'nextVideo' | 'previousVideo
 
 ## PiPCallActionEvent
 
-type PiPCallActionEvent = 'hangUp' | 'micStateChanged' | 'videoStateChanged'
+type PiPCallActionEvent = 'hangUp' | 'micStateChanged' | 'videoStateChanged' | 'voiceStateChanged'
 
 视频通话控制事件类型。
 
@@ -227,15 +290,15 @@ type PiPCallActionEvent = 'hangUp' | 'micStateChanged' | 'videoStateChanged'
 
 | 类型                | 说明               |
 | ------------------- | ------------------ |
-| 'hangUp             | 挂断视频通话。     |
+| 'hangUp'             | 挂断视频通话。     |
 | 'micStateChanged'   | 打开或关闭麦克风。 |
 | 'videoStateChanged' | 打开或关闭摄像头。 |
-
+| 'voiceStateChanged'<sup>12+</sup> | 静音或解除静音。   |
 
 
 ## PiPMeetingActionEvent
 
-type PiPMeetingActionEvent = 'hangUp' | 'voiceStateChanged' | 'videoStateChanged'
+type PiPMeetingActionEvent = 'hangUp' | 'voiceStateChanged' | 'videoStateChanged' | 'micStateChanged'
 
 视频会议控制事件类型。
 
@@ -246,12 +309,12 @@ type PiPMeetingActionEvent = 'hangUp' | 'voiceStateChanged' | 'videoStateChanged
 | 'hangUp'            | 挂断视频会议。     |
 | 'voiceStateChanged' | 静音或解除静音。   |
 | 'videoStateChanged' | 打开或关闭摄像头。 |
-
+| 'micStateChanged'<sup>12+</sup>   | 打开或关闭麦克风。 |
 
 
 ## PiPLiveActionEvent
 
-type PiPLiveActionEvent = 'playbackStateChanged'
+type PiPLiveActionEvent = 'playbackStateChanged' | 'voiceStateChanged'
 
 直播控制事件类型。
 
@@ -260,7 +323,7 @@ type PiPLiveActionEvent = 'playbackStateChanged'
 | 类型                   | 说明             |
 | ---------------------- | ---------------- |
 | 'playbackStateChanged' | 播放或暂停直播。 |
-
+| 'voiceStateChanged'<sup>12+</sup> | 静音或解除静音。   |
 
 
 ## ControlPanelActionEventCallback<sup>12+</sup>

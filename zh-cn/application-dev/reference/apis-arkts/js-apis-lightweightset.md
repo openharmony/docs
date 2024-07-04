@@ -28,6 +28,8 @@ import { LightWeightSet } from '@kit.ArkTS';
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -40,6 +42,8 @@ import { LightWeightSet } from '@kit.ArkTS';
 constructor()
 
 LightWeightSet的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -63,6 +67,8 @@ let lightWeightSet: LightWeightSet<number | string> = new LightWeightSet();
 isEmpty(): boolean
 
 判断该容器是否为空。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -92,6 +98,8 @@ let result = lightWeightSet.isEmpty();
 add(obj: T): boolean
 
 向此容器中添加数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -128,6 +136,8 @@ let result = lightWeightSet.add("squirrel");
 addAll(set: LightWeightSet&lt;T&gt;): boolean
 
 将另一个容器中的所有元素组添加到当前容器中。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -170,6 +180,8 @@ hasAll(set: LightWeightSet&lt;T&gt;): boolean
 
 判断此容器中是否含有该指定set中的所有元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -211,6 +223,8 @@ has(key: T): boolean
 
 判断此容器中是否含有该指定key。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -247,6 +261,8 @@ let result = lightWeightSet.has(123);
 equal(obj: Object): boolean
 
 判断此容器中是否含有该指定obj同类型的对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -287,6 +303,8 @@ increaseCapacityTo(minimumCapacity: number): void
 
 将当前容器扩容至可以容纳指定数量元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -318,6 +336,8 @@ lightWeightSet.increaseCapacityTo(10);
 getIndexOf(key: T): number
 
 获取指定key所对应的下标。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -357,6 +377,8 @@ remove(key: T): T
 
 删除并返回指定key对应的元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -394,6 +416,8 @@ let result = lightWeightSet.remove("sparrow");
 removeAt(index: number): boolean
 
 删除指定下标所对应的元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -434,6 +458,8 @@ getValueAt(index: number): T
 
 获取此容器中指定下标对应的元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -473,6 +499,8 @@ clear(): void
 
 清除容器中的所有元素，并把length置为0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -499,6 +527,8 @@ toString(): String
 
 获取包含容器中所有键和值的字符串。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -522,6 +552,8 @@ let result = lightWeightSet.toString();
 toArray(): Array&lt;T&gt;
 
 获取包含此容器中所有对象的数组。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -554,6 +586,8 @@ let result = lightWeightSet.toArray();
 values(): IterableIterator&lt;T&gt;
 
 返回包含此映射中包含的键值的新迭代器对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -591,6 +625,8 @@ while(index < lightWeightSet.length) {
 forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void, thisArg?: Object): void
 
 通过回调函数来遍历LightWeightSet实例对象上的元素以及元素对应的下标。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -635,6 +671,8 @@ entries(): IterableIterator<[T, T]>
 
 返回包含此映射中包含的键值对的新迭代器对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -675,6 +713,8 @@ while(index < lightWeightSet.length) {
 > **说明：**
 >
 > 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

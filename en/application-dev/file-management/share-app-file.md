@@ -42,7 +42,7 @@ Before sharing an application file, you need to [obtain the application file pat
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        // Obtain the application sandbox path of the file.
-       let pathInSandbox = this.context.filesDir + "/test.txt";
+       let pathInSandbox = this.context.filesDir + "/test1.txt";
        // Convert the application sandbox path into a URI.
        let uri = fileUri.getUriFromPath(pathInSandbox);
        // The obtained URI is file://com.example.demo/data/storage/el2/base/files/test.txt.
@@ -51,7 +51,7 @@ Before sharing an application file, you need to [obtain the application file pat
    ```
 
 2. Set the target application and grant permissions on the file.<br>
-   Use [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start the target application. You need to pass in the obtained URI in **uri** of the **want** parameter, set the type of the file to share, set **action** to **ohos.want.action.sendData**, and set the granted permission on the file in **flags**. For details, see [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md#attributes).
+   Use [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start the target application. You need to pass in the obtained URI in **uri** of the **want** parameter, set the type of the file to share, set **action** to **ohos.want.action.sendData**, and set the granted permission on the file in **flags**. For details, see [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md#properties).
 
    > **NOTE**
    >
@@ -68,7 +68,7 @@ Before sharing an application file, you need to [obtain the application file pat
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        // Obtain the application sandbox path of the file.
-       let filePath = this.context.filesDir + '/test.txt';
+       let filePath = this.context.filesDir + '/test1.txt';
        // Convert the application sandbox path into a URI.
        let uri = fileUri.getUriFromPath(filePath);
        let want: Want  = {
@@ -126,7 +126,7 @@ In the [**module.json5** file](../quick-start/module-configuration-file.md) of t
 
 After the UIAbility starts, the target application obtains want information via [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant).
 
-After obtaining the URI of the shared file from **want**, the target application can call **fs.open** to open the file and then read or write the file.
+After obtaining the URI of the shared file from **want**, the target application can call **fs.open** to open the file and then read and write the file.
 
 ```ts
 // xxx.ets
@@ -136,7 +136,7 @@ import { BusinessError } from '@ohos.base';
 
 function getShareFile() {
   try {
-    let want: Want = {}; // The value should be the want information passed by the application that shares the file.
+    let want: Want = {}; // Change the value to the want information passed by the application that shares the file.
 
     // Obtain the uri field from the want information.
     let uri = want.uri;
@@ -158,3 +158,7 @@ function getShareFile() {
   }
 }
 ```
+
+
+ 
+

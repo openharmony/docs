@@ -1,14 +1,14 @@
-# Using MindSpore Lite Native APIs to Develop AI Applications
+# Using MindSpore Lite to Develop AI Applications (C/C++)
 
-## Scenarios
+## Use Scenarios
 
-You can use the Native APIs provided by [MindSpore Lite](../../reference/apis-mindspore-lite-kit/_mind_spore.md) to deploy AI algorithms and provides APIs for the UI layer to invoke the algorithms for model inference. A typical scenario is the AI SDK development.
+You can use the native APIs provided by MindSpore Lite to deploy AI algorithms and provides APIs for the UI layer to invoke the algorithms for model inference. A typical scenario is the AI SDK development.
 
 ## Basic Concepts
 
-- [N-API](../reference/native-lib/third_party_napi/napi.md): a set of Native APIs used to build JavaScript components. N-APIs can be used to encapsulate C/C++ libraries into JavaScript modules.
+- N-API: a set of native APIs used to build JavaScript components. N-APIs can be used to encapsulate C/C++ libraries into JavaScript modules.
 
-## Setting Up the Environment
+## Environment Preparation
 
 - Install DevEco Studio 3.1.0.500 or later, and update the SDK to API version 10 or later.
 
@@ -20,7 +20,7 @@ Open DevEco Studio, choose **File** > **New** > **Create Project** to create a N
 
 ### 2. Write the inference code in C++.
 
-Assume that you have prepared a model in the **.ms** format.
+Assume that you have prepared a model in the .ms format.
 
 Before using the Native APIs provided by MindSpore Lite for development, you need to reference the corresponding header files.
 
@@ -127,7 +127,7 @@ void FillTensorWithRandom(OH_AI_TensorHandle msTensor) {
     }
 }
 
-// Fill data to input tensors.
+// fill data to inputs tensor
 int FillInputTensors(OH_AI_TensorHandleArray &inputs) {
     for (size_t i = 0; i < inputs.handle_num; i++) {
         FillTensorWithRandom(inputs.handle_list[i]);
@@ -227,7 +227,7 @@ target_link_libraries(mslite_napi PUBLIC ace_napi.z)
 ### 3. Use N-APIs to encapsulate the C++ dynamic library into a JavaScript module.
 
 
-Create the **libmslite_api/** subdirectory in **entry/src/main/cpp/types/**, and create the **index.d.ts** file in the subdirectory. The file content is as follows:
+Create the libmslite_api/ subdirectory in `entry/src/main/cpp/types/` and create `index.d.ts` in the subdirectory. The content is as follows:
 
 ```ts
 export const runDemo: (a:String, b:Object) => number;
@@ -235,7 +235,7 @@ export const runDemo: (a:String, b:Object) => number;
 
 Use the preceding code to define the JavaScript API `runDemo()`.
 
-In addition, add the **oh-package.json5** file to associate the API with the **.so** file to form a complete JavaScript module.
+In addition, add the `oh-package.json5` file to associate the API with the `.so` file to form a complete JavaScript module.
 
 ```json
 {
@@ -246,12 +246,12 @@ In addition, add the **oh-package.json5** file to associate the API with the **.
 
 ### 4. Invoke the encapsulated MindSpore module in the UI code.
 
-In **entry/src/ets/MainAbility/pages/index.ets**, define the **onClick()** event and call the encapsulated **runDemo()** API in the event callback.
+In `entry/src/ets/MainAbility/pages/index.ets`, define the `onClick()` event and call the encapsulated `runDemo()` API in the event callback.
 
 ```ts
-import hilog from '@ohos.hilog'
+import { hilog } from '@kit.PerformanceAnalysisKit'
 import msliteNapi from'libmslite_napi.so' // Import the msliteNapi module.
-import resManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit'
 
 const TAG = 'MSLiteNativeDemo'
 
@@ -298,4 +298,3 @@ On DevEco Studio, connect to the device and click **Run entry**. The following l
 08-08 16:55:33.826 1513-1529/com.mslite.native_demo I A00000/[MSLiteNapi]: Exit runDemo()
 08-08 16:55:33.827 1513-1529/com.mslite.native_demo I A00000/MSLiteNativeDemo: *** Finished MSLite Demo ***
 ```
-<!--no_check-->

@@ -9,7 +9,7 @@ The **geoLocationManager** module provides basic location services such as Globa
 
 ## Applying for Permissions
 
-For details, see For details, see [Applying for Location Permissions](../../device/location/location-guidelines.md#applying-for-location-permissions).
+For details, see [Applying for Location Permissions](../../device/location/location-guidelines.md#applying-for-location-permissions).
 
 
 ## Modules to Import
@@ -46,7 +46,7 @@ Defines a reverse geocoding request.
 | country<sup>12+</sup> | string | Yes| Yes| Country information. The country code complies with the ISO 3166-1 alpha-2 standard. **CN** indicates China. The default language is obtained from **Language and region** in **Settings**.|
 | description | string | Yes| Yes| Location description, for example, **No. xx, xx Road, Pudong New District, Shanghai**.|
 | maxItems | number | Yes| Yes| Maximum number of location records to be returned. The specified value must be greater than or equal to **0**. A value smaller than **10** is recommended. The default value is **1**.|
-| minLatitude | number | Yes| Yes| Minimum latitude. This parameter is used with **minLongitude**, **maxLatitude**, and **maxLongitude** to specify the latitude and longitude ranges. The value ranges from **-90** to **90**. Only the WGS84 coordinate system is supported.|
+| minLatitude | number | Yes| Yes| Minimum latitude. This parameter is used with **minLongitude**, **maxLatitude**, and **maxLongitude** to specify the latitude and longitude ranges. The value ranges from **-90** to **90**. Only the WGS84 coordinate system is supported. The following three parameters are mandatory is this parameter is specified.|
 | minLongitude | number | Yes| Yes| Minimum longitude. The value ranges from **-180** to **180**. Only the WGS84 coordinate system is supported.|
 | maxLatitude | number | Yes| Yes| Maximum latitude. The value ranges from **-90** to **90**. Only the WGS84 coordinate system is supported.|
 | maxLongitude | number | Yes| Yes| Maximum longitude. The value ranges from **-180** to **180**. Only the WGS84 coordinate system is supported.|
@@ -653,7 +653,7 @@ Unregisters the listener for error codes generated during continuous location.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. To unsubscribe from error codes generated during continuous location, set the value to **locationError**.|
+  | type | string | Yes| Event type. To subscribe to error codes generated during continuous location, set the value to **locationError**.|
   | callback | Callback&lt;[LocationError](#locationerror12)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**

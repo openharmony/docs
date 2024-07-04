@@ -69,7 +69,7 @@ hideTitleBar(value: boolean)
 
 mode(value: NavDestinationMode)
 
-设置NavDestination类型。
+设置NavDestination类型，不支持动态修改。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -147,7 +147,7 @@ ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;L
 
 systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
-当Navigation中显示当前NavDestiantion时，设置对应系统状态栏的样式。
+当Navigation中显示当前NavDestination时，设置对应系统状态栏的样式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

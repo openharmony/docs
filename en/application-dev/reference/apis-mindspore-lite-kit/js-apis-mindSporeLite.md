@@ -498,7 +498,7 @@ Represents an NNRt device. Neural Network Runtime (NNRt) is a bridge that connec
 | deviceID<sup>12+</sup>        | bigint                              | No | NNRt device ID.            |
 | performanceMode<sup>12+</sup> | [PerformanceMode](#performancemode12) | No  | NNRt device performance mode.|
 | priority<sup>12+</sup>        | [Priority](#priority12)               | No  | NNRt inference task priority.   |
-| extensions<sup>12+</sup>      | [Extension](#extension12)             | No  | Extended NNRt device configuration.   |
+| extensions<sup>12+</sup>      | [Extension](#extension12)[]            | No  | Extended NNRt device configuration.   |
 
 ## PerformanceMode<sup>12+</sup>
 

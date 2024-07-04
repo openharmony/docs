@@ -49,7 +49,7 @@ export struct ShowNonFullScreenAd {
   // 广告展示参数
   private adDisplayOptions: advertising.AdDisplayOptions = {
     // 是否静音，默认不静音
-    mute: false,
+    mute: false
   }
 
   build() {

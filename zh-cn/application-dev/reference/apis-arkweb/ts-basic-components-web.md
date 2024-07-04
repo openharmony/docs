@@ -251,13 +251,15 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否开启应用中文件系统的访问。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+
+从API version 12开始，fileAccess默认不启用。同时，当fileAccess为false的时候，仅只读资源目录/data/storage/el1/bundle/entry/resources/resfile里面的file协议资源依然可以访问，不受fileAccess管控。
 
 **参数：**
 
 | 参数名        | 参数类型    | 必填   | 默认值  | 参数描述                   |
 | ---------- | ------- | ---- | ---- | ---------------------- |
-| fileAccess | boolean | 是    | true | 设置是否开启应用中文件系统的访问，默认启用。 |
+| fileAccess | boolean | 是    | false | API version 11及以前：默认为true，启动应用中文件系统的访问。API version 12及以后：默认为false，不启用应用中文件系统的访问。 |
 
 **示例：**
 
@@ -1599,7 +1601,7 @@ allowWindowOpenMethod(flag: boolean)
             }
             let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({ webviewController1: popController });
+              builder: NewWebViewComp({ webviewController1: popController })
             })
             this.dialogController.open();
             //将新窗口对应WebviewController返回给Web内核。
@@ -1983,7 +1985,7 @@ defaultTextEncodingFormat(textEncodingFormat: string)
 
 metaViewport(enable: boolean)
 
-设置mete标签的viewport属性是否可用。
+设置meta标签的viewport属性是否可用。
 
 > **说明：**
 >
@@ -1996,7 +1998,7 @@ metaViewport(enable: boolean)
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                         |
 | ------ | -------- | ---- | ------ | -------------------------------- |
-| enable | boolean  | 是   | true   | 是否支持mete标签的viewport属性。 |
+| enable | boolean  | 是   | true   | 是否支持meta标签的viewport属性。 |
 
 **示例：**
 
@@ -4969,6 +4971,7 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
@@ -4978,14 +4981,27 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        // 点击按钮跳转页面，关闭index页面，使Embed标签销毁。
+        Button('Destroy')
+        .onClick(() => {
+          try {
+            this.controller.loadUrl("www.example.com");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
           .onNativeEmbedLifecycleChange((event) => {
+            // 当加载页面中有Embed标签会触发Create。
             if (event.status == NativeEmbedStatus.CREATE) {
               this.embedStatus = 'Create';
             }
+            // 当页面中Embed标签移动或者缩放时会触发Update。
             if (event.status == NativeEmbedStatus.UPDATE) {
               this.embedStatus = 'Update';
             }
+            // 退出页面时会触发Destroy。
             if (event.status == NativeEmbedStatus.DESTROY) {
               this.embedStatus = 'Destroy';
             }
@@ -5004,6 +5020,25 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
       }
     }
   }
+  ```
+
+  加载的html文件
+  ```
+  <!-- index.html -->
+  <!Document>
+  <html>
+  <head>
+      <title>同层渲染测试html</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+      </div>
+  </div>
+  </body>
+  </html>
   ```
 
 ### onNativeEmbedGestureEvent<sup>11+</sup>
@@ -5099,7 +5134,7 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
       Column() {
         Stack() {
           NodeContainer(this.nodeController)
-          Web({ src: $rawfile("test.html"), controller: this.controller })
+          Web({ src: $rawfile("index.html"), controller: this.controller })
             .enableNativeEmbedMode(true)
             .onNativeEmbedLifecycleChange((embed) => {
               if (embed.status == NativeEmbedStatus.CREATE) {
@@ -5146,6 +5181,7 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
   ```
 加载的html文件
   ```
+  <!-- index.html -->
   <!Document>
 <html>
 <head>
@@ -5360,7 +5396,37 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
        */
       @Builder
       customKeyboardBuilder() {
-		// 这里实现自定义键盘组件，对接WebKeyboardController实现输入、删除、关闭等操作。
+		  // 这里实现自定义键盘组件，对接WebKeyboardController实现输入、删除、关闭等操作。
+        Row() {
+          Text("完成")
+            .fontSize(20)
+            .fontColor(Color.Blue)
+            .onClick(() => {
+              this.webKeyboardController.close();
+            })
+          // 插入字符。
+          Button("insertText").onClick(() => {
+            this.webKeyboardController.insertText('insert ');
+          }).margin({
+            bottom: 200,
+          })
+          // 从后往前删除length参数指定长度的字符。
+          Button("deleteForward").onClick(() => {
+            this.webKeyboardController.deleteForward(1);
+          }).margin({
+            bottom: 200,
+          })
+          // 从前往后删除length参数指定长度的字符。
+          Button("deleteBackward").onClick(() => {
+            this.webKeyboardController.deleteBackward(1);
+          }).margin({
+            left: -220,
+          })
+          // 插入功能按键。
+          Button("sendFunctionKey").onClick(() => {
+            this.webKeyboardController.sendFunctionKey(6);
+          })
+        }
       }
 
     build() {

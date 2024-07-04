@@ -64,21 +64,158 @@ LazyForEach懒加载的原理如下：
 
 ![](figures/list-perf-lazyforeach.png)
 
+4. LazyForEach懒加载中的键值生成函数keyGenerator用于给数据源中的每一个数据项生成唯一且固定的键值。键值生成器必须针对每个数据生成唯一的值，如果键值相同，将导致键值相同的UI组件渲染出现问题。
+
 LazyForEach实现了按需加载，针对列表数据量大、列表组件复杂的场景，减少了页面首次启动时一次性加载数据的时间消耗，减少了内存峰值。可以显著提升页面的能效比和用户体验。
 
 ### 使用场景和限制
 
-如果列表数据较长，一次性加载所有的列表数据创建、渲染页面产生性能瓶颈时，开发者应该考虑使用数据LazyForEach懒加载。
+- 如果列表数据较长，一次性加载所有的列表数据创建、渲染页面产生性能瓶颈时，开发者应该考虑使用数据LazyForEach懒加载。
 
-如果列表数据较少，数据一次性全量加载不是性能瓶颈时，可以直接使用ForEach。
+- 如果列表数据较少，数据一次性全量加载不是性能瓶颈时，可以直接使用ForEach。
 
-限制：ForEach、LazyForEach必须在List、Grid以及Swiper等容器组件内使用，用于循环渲染具有相同布局的子组件。更多懒加载的信息，请参考官方资料[LazyForEach：数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)。
+- 如果使用LazyForEach懒加载，建议在使用LazyForEach进行组件复用的key生成器函数里，不要使用stringify。
+
+限制：ForEach、LazyForEach必须在List、Grid以及Swiper等容器组件内使用，用于循环渲染具有相同布局的子组件。更多懒加载的信息，请参考官方资料[LazyForEach：数据懒加载](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md)。
 
 LazyForEach懒加载API提供了cachedCount属性，用于配置可缓存列表项数量。除默认加载界面可视部分外，还可以加载屏幕可视区外指定数量（cachedCount）的缓存数据，详见下面“缓存列表项”章节。
 
 ### 实现示例
 
-在List、Grid等容器组件下使用LazyForEach懒加载的示意代码如下：
+在介绍List、Grid等容器组件下使用LazyForEach懒加载的示例代码之前，首先针对前面介绍的第三点使用场景，给出以下反例来进行说明，帮助开发者更好的理解和使用LazyForEach。
+
+**反例：在使用LazyForEach进行组件复用的key生成器函数里，使用stringify**
+
+```ts
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): string {
+    return this.originDataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+// 此处为复用的自定义组件
+@Reusable
+@Component
+struct ChildComponent {
+  @State desc: string = '';
+  @State sum: number = 0;
+  @State avg: number = 0;
+
+  aboutToReuse(params: Record<string, Object>): void {
+    this.desc = params.desc as string;
+    this.sum = params.sum as number;
+    this.avg = params.avg as number;
+  }
+
+  build() {
+    Column() {
+      // 这里仅用于ux展示。实际业务会更复杂。
+      Text(this.desc).fontSize(16).textAlign(TextAlign.Center)
+    }.width('100%')
+  }
+}
+
+@Entry
+@Component
+struct ReusableKeyGeneratorUseStringify {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear(): void {
+    for (let index = 0; index < 200; index++) {
+      this.data.pushData(index.toString())
+    }
+  }
+
+  build() {
+    Column() {
+      List() {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            ChildComponent({ desc: item, sum: 0, avg: 0 })
+          }
+          .width('100%')
+          .height(100)
+        }, (item: string) => JSON.stringify(item))
+      }
+      .height('100%')
+      .width('100%')
+    }
+  }
+}
+```
+
+在反例中，在使用LazyForEach进行组件复用的key生成器函数里使用了stringify。在实际复杂的业务场景中，懒加载的item数据较大，item数量较多，使用stringify会对整个item对象进行序列化操作最终把item转换成字符串，需要消耗大量的时间和计算资源，从而导致页面性能降低。因此，为了减少页面渲染耗时，提升页面性能，应避免在LazyForEach组件复用的key生成器函数里使用stringify。建议使用简洁的短字符串，如使用item.id，这里假设每个item都有一个唯一的id属性。
+
+
+以上使用场景的反例介绍是为了帮忙开发者更好的理解和正确使用LazyForEach懒加载。下面将给出正例的基本写法，在List、Grid等容器组件下使用LazyForEach懒加载的示例代码如下：
 
 ```ts
 // LazyForEach要遍历的数据源，为实现接口IDataSource的实例   

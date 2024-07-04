@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 ```
 
 ## promptAction.showToast
@@ -46,8 +46,8 @@ showToast(options: ShowToastOptions): void
 **示例：**
 
 ```ts
-import promptAction from '@ohos.promptAction'
-import { BusinessError } from '@ohos.base';
+import { promptAction } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct toastExample {
@@ -113,8 +113,8 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 **示例：**
 
 ```ts
-import promptAction from '@ohos.promptAction'
-import { BusinessError } from '@ohos.base';
+import { promptAction } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   promptAction.showDialog({
     title: 'Title Info',
@@ -174,8 +174,8 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 **示例：**
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -209,8 +209,8 @@ try {
 当弹窗的showInSubWindow属性为true时，弹窗可显示在窗口外。
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -274,8 +274,8 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 **示例：**
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   promptAction.showActionMenu({
     title: 'Title Info',
@@ -339,8 +339,8 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 **示例：**
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   promptAction.showActionMenu({
     title: 'showActionMenu Title Info',
@@ -410,7 +410,7 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import promptAction from '@ohos.promptAction'
+import { promptAction } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -465,7 +465,7 @@ struct Index {
 ```
 该示例定义了弹窗样式，如宽度、高度、背景色、阴影等等。
 ```ts
-import promptAction from '@ohos.promptAction'
+import { promptAction } from '@kit.ArkUI'
 
 let customDialogId: number = 0
 
@@ -712,4 +712,4 @@ Dialog关闭的信息。
 | ----- | ---------------------------------------- | ---- | ------- |
 | text  | string&nbsp;\|&nbsp; [Resource](arkui-ts/ts-types.md#resource类型) | 是    | 按钮文本内容。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | color | string&nbsp;\| &nbsp;[Resource](arkui-ts/ts-types.md#resource类型) | 是    | 按钮文本颜色。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| primary<sup>12+</sup> | boolean | 否    | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。 |
+| primary<sup>12+</sup> | boolean | 否    | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |

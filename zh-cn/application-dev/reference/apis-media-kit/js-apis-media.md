@@ -503,10 +503,10 @@ Codec MIME类型枚举。
 
 | 名称              | 值   | 说明                             |
 | ----------------- | ---- | -------------------------------- |
-| BUFFERING_START   | 1    | 表示开始缓存。                   |
-| BUFFERING_END     | 2    | 表示结束缓存。                   |
-| BUFFERING_PERCENT | 3    | 表示缓存百分比。                 |
-| CACHED_DURATION   | 4    | 表示缓存时长，单位为毫秒（ms）。 |
+| BUFFERING_START   | 1    | 表示开始缓存。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| BUFFERING_END     | 2    | 表示结束缓存。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| BUFFERING_PERCENT | 3    | 表示缓存百分比。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
+| CACHED_DURATION   | 4    | 表示缓存时长，单位为毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## StateChangeReason<sup>9+</sup>
 
@@ -533,7 +533,7 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/us
 
 | 名称                                                | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>9+</sup>                                    | string                                                       | 否   | 是   | 媒体URL，只允许在**idle**状态下设置。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。<br>**说明：**<br>- 设置网络播放路径，需声明权限：[ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet)，相关错误码: [201](../errorcode-universal.md)。<br>- 从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| url<sup>9+</sup>                                    | string                                                       | 否   | 是   | 媒体URL，只允许在**idle**状态下设置。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。<br>**说明：**<br>- 设置网络播放路径，需[声明权限](../../security/AccessToken/declare-permissions.md)：[ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet)，相关错误码: [201](../errorcode-universal.md)。<br>- 从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 否   | 是   | 媒体文件描述，只允许在**idle**状态下设置。<br/>使用场景：应用中的媒体资源被连续存储在同一个文件中。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**使用示例**：<br/>假设一个连续存储的媒体文件: <br/>视频1(地址偏移:0，字节长度:100)；<br/>视频2(地址偏移:101，字节长度:50)；<br/>视频3(地址偏移:151，字节长度:150)；<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }。<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }。<br/>假设是一个独立的媒体文件: 请使用src=fd://xx。<br>**说明：**<br>从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 否   | 是   | 流式媒体资源描述，只允许在**idle**状态下设置。<br/>使用场景：应用播放从远端下载到本地的文件，在应用未下载完整音视频资源时，提前播放已获取的资源文件。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**使用示例**：<br/>假设用户正在从远端服务器获取音视频媒体文件，希望下载到本地的同时播放已经下载好的部分: <br/>1.用户需要获取媒体文件的总大小size（单位为字节），获取不到时设置为-1。<br/>2.用户需要实现回调函数func用于填写数据，如果size = -1，则func形式为：func(buffer: ArrayBuffer, length: number)，此时播放器只会按照顺序获取数据；否则func形式为：func(buffer: ArrayBuffer, length: number, pos: number)，播放器会按需跳转并获取数据。<br/>3.用户设置AVDataSrcDescriptor {fileSize = size, callback = func}。<br/>**注意事项**：<br/>如果播放的是mp4/m4a格式用户需要保证moov字段（媒体信息字段）在mdat字段（媒体数据字段）之前，或者moov之前的字段小于10M，否则会导致解析失败无法播放。<br>**说明：**<br>从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | surfaceId<sup>9+</sup>                              | string                                                       | 否   | 是   | 视频窗口ID，默认无窗口。<br/>支持在**initialized**状态下设置。<br/>支持在**prepared**/**playing**/**paused**/**completed**/**stopped**状态下重新设置，重新设置时确保已经在**initialized**状态下进行设置，否则重新设置失败，重新设置后视频播放在新的窗口渲染。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过Xcomponent创建surfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -1417,7 +1417,7 @@ setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boole
 
 关于drm模块的示例具体可见[js-apis-drm.md](../apis-drm-kit/js-apis-drm.md)。
 ```ts
-import drm from '@ohos.multimedia.drm'
+import { drm } from '@kit.DrmKit';
 
 // 创建MediaKeySystem系统
 let keySystem:drm.MediaKeySystem = drm.createMediaKeySystem('com.clearplay.drm');
@@ -1449,7 +1449,7 @@ getMediaKeySystemInfos(): Array\<drm.MediaKeySystemInfo>
 **示例：**
 
 ```ts
-import drm from '@ohos.multimedia.drm'
+import { drm } from '@kit.DrmKit';
 
 const infos = avPlayer.getMediaKeySystemInfos();
 console.info('GetMediaKeySystemInfos count: ' + infos.length);
@@ -1585,6 +1585,8 @@ off(type: 'speedDone'): void
 
 取消监听setSpeed生效的事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1653,6 +1655,8 @@ off(type: 'bitrateDone'): void
 
 取消监听setBitrate生效的事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1698,6 +1702,8 @@ off(type: 'availableBitrates'): void
 
 取消监听HLS协议流可用的比特率列表，调用[prepare](#prepare9)后，上报此事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1733,8 +1739,7 @@ on(type: 'mediaKeySystemInfoUpdate', callback: (mediaKeySystemInfo: Array\<drm.M
 **示例：**
 
 ```ts
-
-import drm from './@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
 avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => {
     for (let i = 0; i < mediaKeySystemInfo.length; i++) {
@@ -1821,6 +1826,8 @@ off(type: 'volumeChange'): void
 
 取消监听setVolume生效的事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1865,6 +1872,8 @@ avPlayer.on('endOfStream', () => {
 off(type: 'endOfStream'): void
 
 取消监听资源播放至结尾的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1962,6 +1971,8 @@ off(type: 'durationUpdate'): void
 
 取消监听资源播放资源的时长。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -2006,6 +2017,8 @@ avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number
 off(type: 'bufferingUpdate'): void
 
 取消监听音视频缓存更新事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2052,6 +2065,8 @@ off(type: 'startRenderFrame'): void
 
 取消监听视频播放开始首帧渲染的更新事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -2096,6 +2111,8 @@ avPlayer.on('videoSizeChange', (width: number, height: number) => {
 off(type: 'videoSizeChange'): void
 
 取消监听视频播放宽高变化事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2143,6 +2160,8 @@ avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
 off(type: 'audioInterrupt'): void
 
 取消监听音频焦点变化事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2226,6 +2245,8 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 
 依据fd为视频添加外挂字幕，当前仅支持与视频资源同时设置（在avplayer设置fdSrc视频资源后设置外挂字幕）。使用Promise方式返回结果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -2265,6 +2286,8 @@ avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescrip
 addSubtitleFromUrl(url: string): Promise\<void>
 
 依据url为视频添加外挂字幕，当前仅支持与视频资源同时设置（在avplayer设置fdSrc视频资源后设置外挂字幕）。使用Promise方式返回结果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2310,6 +2333,8 @@ on(type: 'subtitleUpdate', callback: Callback\<SubtitleInfo>): void
 
 订阅获取外挂字幕的事件，当有外挂字幕时，会通过订阅的回调方法通知用户。用户只能订阅一个外挂字幕事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -2339,6 +2364,8 @@ avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
 off(type: 'subtitleUpdate', callback?: Callback\<SubtitleInfo>): void
 
 取消订阅获取外挂字幕的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2438,13 +2465,13 @@ type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' 
 
 | 名称                 | 值   | 说明                           |
 | -------------------- | ---- | ------------------------------ |
-| SPEED_FORWARD_0_75_X | 0    | 表示视频播放正常播速的0.75倍。 |
-| SPEED_FORWARD_1_00_X | 1    | 表示视频播放正常播速。         |
-| SPEED_FORWARD_1_25_X | 2    | 表示视频播放正常播速的1.25倍。 |
-| SPEED_FORWARD_1_75_X | 3    | 表示视频播放正常播速的1.75倍。 |
-| SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。 |
-| SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | 表示视频播放正常播速的0.50倍。 |
-| SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | 表示视频播放正常播速的1.50倍。 |
+| SPEED_FORWARD_0_75_X | 0    | 表示视频播放正常播速的0.75倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SPEED_FORWARD_1_00_X | 1    | 表示视频播放正常播速。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| SPEED_FORWARD_1_25_X | 2    | 表示视频播放正常播速的1.25倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SPEED_FORWARD_1_75_X | 3    | 表示视频播放正常播速的1.75倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | 表示视频播放正常播速的0.50倍。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | 表示视频播放正常播速的1.50倍。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | SPEED_FORWARD_0_25_X<sup>12+</sup> | 8    | 表示视频播放正常播速的0.25倍。 |
 | SPEED_FORWARD_0_125_X<sup>12+</sup> | 9    | 表示视频播放正常播速的0.125倍。 |
 
@@ -6476,10 +6503,13 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 
 ```ts
 import { media } from '@kit.MediaKit';
+import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
 
-private mgr: resourceManager.ResourceManager | null = null;
-mrg = ctx.resourceManager;
+let mgr: resourceManager.ResourceManager | null = null;
+let moduleContext: common.Context;
+moduleContext = this.context.createModuleContext('entry');
+mgr = moduleContext.resourceManager;
 this.fileDescriptor = await this.mgr.getRawFd("xxx.m3u8");
 
 let fd:string = this.fileDescriptor.fd.toString();

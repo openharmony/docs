@@ -9,13 +9,13 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 1. 导入相关接口，导入方法如下。
 
    ```ts
-   import drm from '@ohos.multimedia.drm';
+   import { drm } from '@kit.DrmKit';
    ```
 
 2. 导入BusinessError模块，用于获取drm模块相关接口抛出的错误码。
 
    ```ts
-   import {BusinessError} from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 3. 调用MediaKeySystem类中的setConfigurationString方法，设置当前设备支持的字符串类型的属性值。接口调用失败时，会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。

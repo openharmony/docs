@@ -649,7 +649,7 @@ textOverflow(value: TextOverflow)
 
 设置文本超长时的显示方式。仅在内联模式的编辑态、非编辑态下支持。
 
-文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断。
+文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，wordBreak属性可设置为WordBreak.BREAK_ALL。
 
 当overflow设置TextOverflow.None与TextOverflow.Clip效果一样。
 
@@ -817,6 +817,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 | NEW_PASSWORD<sup>11+</sup>    | 新密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER_PASSWORD<sup>11+</sup> | 纯数字密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NUMBER_DECIMAL<sup>11+</sup>  | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| URL<sup>12+</sup>  | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## ContentType<sup>12+</sup>枚举说明
 
@@ -840,9 +841,9 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 | PERSON_FULL_NAME           | 9    | 【姓名】在已启用情景化自动填充的情况下，支持姓名的自动保存和自动填充。 |
 | PERSON_LAST_NAME           | 10   | 【姓氏】在已启用情景化自动填充的情况下，支持姓氏的自动保存和自动填充。 |
 | PERSON_FIRST_NAME          | 11   | 【名字】在已启用情景化自动填充的情况下，支持名字的自动保存和自动填充。 |
-| PHONE_NUMBER               | 12   | 【手机号】在已启用情景化自动填充的情况下，支持手机号的自动保存和自动填充。 |
+| PHONE_NUMBER               | 12   | 【手机号码】在已启用情景化自动填充的情况下，支持手机号码的自动保存和自动填充。 |
 | PHONE_COUNTRY_CODE         | 13   | 【国家代码】在已启用情景化自动填充的情况下，支持国家代码的自动保存和自动填充。 |
-| FULL_PHONE_NUMBER          | 14   | 【包含国家代码的手机号】在已启用情景化自动填充的情况下，支持包含国家代码的手机号的自动保存和自动填充。 |
+| FULL_PHONE_NUMBER          | 14   | 【包含国家代码的手机号码】在已启用情景化自动填充的情况下，支持包含国家代码的手机号码的自动保存和自动填充。 |
 | EMAIL_ADDRESS              | 15   | 【邮箱地址】在已启用情景化自动填充的情况下，支持邮箱地址的自动保存和自动填充。 |
 | BANK_CARD_NUMBER           | 16   | 【银行卡号】在已启用情景化自动填充的情况下，支持银行卡号的自动保存和自动填充。 |
 | ID_CARD_NUMBER             | 17   | 【身份证号】在已启用情景化自动填充的情况下，支持身份证号的自动保存和自动填充。 |
@@ -1501,14 +1502,14 @@ struct TextInputExample {
 
 ### 示例6
 本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX
+
 ```ts
 @Entry
 @Component
 struct phone_example {
   @State submitValue: string = ''
-  @State text : string = ''
-
-  public readonly NUM_TEXT_MAXSIZE_LENGTH = 14;
+  @State text: string = ''
+  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
 
   isEmpty(str?: string): boolean {
     return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str);
@@ -1538,40 +1539,35 @@ struct phone_example {
 
   build() {
     Column() {
-        Row() {
-          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
-            .onChange((number: string) => {
-              let teleNumberNoSpace: string = this.removeSpace(number);
-              if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+      Row() {
+        TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
+          .onChange((number: string) => {
+            let teleNumberNoSpace: string = this.removeSpace(number);
+            if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+              this.text = teleNumberNoSpace;
+            } else if (this.checkNeedNumberSpace(number)) {
+              if (teleNumberNoSpace.length <= 3) {
                 this.text = teleNumberNoSpace;
-              } else if (this.checkNeedNumberSpace(number)) {
-                if (teleNumberNoSpace.length <= 3) {
-                  this.text = teleNumberNoSpace;
-                } else {
-                  let split1: string = teleNumberNoSpace.substring(0, 3);
-                  let split2: string = teleNumberNoSpace.substring(3);
-                  this.text = split1 + ' ' + split2;
-                  if (teleNumberNoSpace.length > 7) {
-                    split2 = teleNumberNoSpace.substring(3, 7);
-                    let split3: string = teleNumberNoSpace.substring(7);
-                    this.text = split1 + ' ' + split2 + ' ' + split3;
-                  }
-                }
-              } else if (teleNumberNoSpace.length > 8) {
-                let split4 = teleNumberNoSpace.substring(0, 8);
-                let split5 = teleNumberNoSpace.substring(8);
-                this.text = split4 + ' ' + split5;
               } else {
-                this.text = number;
+                let split1: string = teleNumberNoSpace.substring(0, 3);
+                let split2: string = teleNumberNoSpace.substring(3);
+                this.text = split1 + ' ' + split2;
+                if (teleNumberNoSpace.length > 7) {
+                  split2 = teleNumberNoSpace.substring(3, 7);
+                  let split3: string = teleNumberNoSpace.substring(7);
+                  this.text = split1 + ' ' + split2 + ' ' + split3;
+                }
               }
-            })
-        }
+            } else {
+              this.text = number;
+            }
+          })
+      }
     }
     .width('100%')
     .height("100%")
   }
 }
-
 ```
 ![phone_example](figures/phone_number.PNG)
 

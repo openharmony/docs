@@ -1834,7 +1834,7 @@ runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessa
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| script   | string \| ArrayBuffer         | 是   | JavaScript脚本，ArrayBuffer类型从API　version12开始支持。                                             |
+| script   | string \| ArrayBuffer<sup>12+</sup>         | 是   | JavaScript脚本。 |
 | callback | AsyncCallback\<[JsMessageExt](#jsmessageext10)\> | 是   | 回调执行JavaScript脚本结果。 |
 
 **错误码：**
@@ -2043,7 +2043,7 @@ runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 | 参数名 | 类型 | 必填 | 说明         |
 | ------ | -------- | ---- | ---------------- |
-| script | string \| ArrayBuffer | 是   | JavaScript脚本，ArrayBuffer类型从API　version12开始支持。 |
+| script | string \| ArrayBuffer<sup>12+</sup> | 是   | JavaScript脚本。 |
 
 **返回值：**
 
@@ -2653,7 +2653,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------|
-| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口，默认false不使用。 从API version 10开始，该接口支持此参数。|
+| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口，默认false不使用。 |
 
 **返回值：**
 
@@ -5056,12 +5056,15 @@ export default class EntryAbility extends UIAbility {
 
 setCustomUserAgent(userAgent: string): void
 
-设置自定义用户代理，会覆盖系统的用户代理，推荐设置的位置是onControllerAttached回调事件，不建议放在onLoadIntercept。
+设置自定义用户代理，会覆盖系统的用户代理。
+
+当Web组件src设置了url时，建议在onControllerAttached回调事件中设置UserAgent，设置方式请参考示例。不建议将UserAgent设置在onLoadIntercept回调事件中，会概率性出现设置失败。
+
+当Web组件src设置为空字符串时，建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
 
 > **说明：**
 >
->setCustomUserAgent设置后与web页面的跳转时序是web跳转后才设置UserAgent，这就导致页面跳转了但新agent关联的页面堆栈数仍只有一个,webviewController.accessBackward()总是返回false。
->若需要setCustomUserAgent，在setCustomUserAgent方法后添加this.controller.loadUrl(this.webUrl)，webUrl为要加载的web页面，在原始的Web组件的src可以设置一个空字符串。
+>当Web组件src设置了url，且未在onControllerAttached回调事件中设置UserAgent。再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置UserAgent不符的异常现象。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -5094,16 +5097,16 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('setCustomUserAgent')
-        .onClick(() => {
-          try {
-            let userAgent = this.controller.getUserAgent() + this.customUserAgent;
-            this.controller.setCustomUserAgent(userAgent);
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
       Web({ src: 'www.example.com', controller: this.controller })
+      .onControllerAttached(() => {
+        console.log("onControllerAttached");
+        try {
+          let userAgent = this.controller.getUserAgent() + this.customUserAgent;
+          this.controller.setCustomUserAgent(userAgent);
+        } catch (error) {
+          console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+        }
+      })
     }
   }
 }
@@ -5715,7 +5718,7 @@ enableAdsBlock(enable: boolean): void
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -7975,7 +7978,7 @@ setUrlTrustList(urlTrustList: string): void
 
 | 参数名  | 类型    | 必填 | 说明                  |
 | ------- | ------ | ---- | :-------------------- |
-| urlTrustList | string | 是   | url白名单列表，使用json格式配置，最大支持10MB。<br/>白名单设置接口为覆盖方式，多次调用接口时，以最后一次设置为准。<br/>当本参数为空字符串时，表示取消白名单，放行所有url的访问。<br/>json格式示例： &nbsp;<br/>{<br>&emsp;"UrlPermissionList":[{<br/>&emsp;&emsp;"scheme":"https",<br/>&emsp;&emsp;"host":"www\.example1.com",<br/>&emsp;&emsp;"port":443,<br/>&emsp;&emsp;"path":"pathA/pathB"<br/>&emsp;},<br/>&emsp;{<br/>&emsp;&emsp;"scheme":"http",<br/>&emsp;&emsp;"host":"www\.example2.com"<br/>&emsp;&emsp;"port":80,<br/>&emsp;&emsp;"path":"test1/test2/test3"<br/>&emsp;}]<br/>}      |
+| urlTrustList | string | 是   | url白名单列表，使用json格式配置，最大支持10MB。<br/>白名单设置接口为覆盖方式，多次调用接口时，以最后一次设置为准。<br/>当本参数为空字符串时，表示取消白名单，放行所有url的访问。<br/>json格式示例：<br/>{<br>&nbsp;&nbsp;"UrlPermissionList":&nbsp;[<br/>&nbsp;&nbsp;&nbsp;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"scheme":&nbsp;"https",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"host":&nbsp;"www\.example1.com",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"port":&nbsp;443,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path":&nbsp;"pathA/pathB"<br/>&nbsp;&nbsp;&nbsp;&nbsp;},<br/>&nbsp;&nbsp;&nbsp;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"scheme":&nbsp;"http",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"host":&nbsp;"www\.example2.com",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"port":&nbsp;80,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"path":&nbsp;"test1/test2/test3"<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;]<br/>} |
 
 **白名单json格式参数**
 | 字段   | 参数类型 | 必填 | 参数描述                  |
@@ -10089,7 +10092,7 @@ static deleteGeolocation(origin: string, incognito?: boolean): void
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
 | origin | string | 是   | 指定源的字符串索引 |
-| incognito<sup>11+</sup>    | boolean | 否   | true表示隐私模式下清除指定来源的地理位置权限状态，false表示正常非隐私模式下清除指定来源的地理位置权限状态。 |
+| incognito<sup>11+</sup>   | boolean | 否   | true表示隐私模式下清除指定来源的地理位置权限状态，false表示正常非隐私模式下清除指定来源的地理位置权限状态。 |
 
 **错误码：**
 
@@ -10312,7 +10315,7 @@ static getStoredGeolocation(incognito?: boolean): Promise\<Array\<string>>
 
 | 参数名   | 类型                         | 必填 | 说明                                     |
 | -------- | ---------------------------- | ---- | ---------------------------------------- |
-| incognito<sup>11+</sup>    | boolean | 否   | true表示获取隐私模式下以Promise方式异步获取已存储地理位置权限状态的所有源信息，false表示正常非隐私模式下以Promise方式异步获取已存储地理位置权限状态的所有源信息。 |
+| incognito<sup>11+</sup>   | boolean | 否   | true表示获取隐私模式下以Promise方式异步获取已存储地理位置权限状态的所有源信息，false表示正常非隐私模式下以Promise方式异步获取已存储地理位置权限状态的所有源信息。 |
 
 **返回值：**
 
@@ -12877,7 +12880,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct WebComponent {
-  controller: _webview.WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
   download: webview.WebDownloadItem = new webview.WebDownloadItem();
   failedData: Uint8Array = new Uint8Array();
@@ -13766,7 +13769,7 @@ setMimeType(type: string): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  text | string | 是   | 媒体类型。 |
+|  type | string | 是   | 媒体类型。 |
 
 **错误码：**
 
@@ -14142,7 +14145,7 @@ struct WebComponent {
                 return false;
               }
 
-              let response = new web_webview.WebSchemeHandlerResponse();
+              let response = new webview.WebSchemeHandlerResponse();
               try {
                 response.setNetErrorCode(WebNetErrorList.NET_OK);
                 response.setStatus(200);
@@ -14719,9 +14722,9 @@ exitFullscreen(): void
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 |------|------|------|------|------|
-| type | [SourceType](#sourcetype12) | 否 | N/A | 媒体源的类型。 |
-| source | string | 否 | N/A | 媒体源地址。 |
-| format | string | 否 | N/A | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
+| type | [SourceType](#sourcetype12) | 否 | 是 | 媒体源的类型。 |
+| source | string | 否 | 是 | 媒体源地址。 |
+| format | string | 否 | 是 | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
 
 ## NativeMediaPlayerSurfaceInfo<sup>12+<sup>
 
@@ -14731,8 +14734,8 @@ exitFullscreen(): void
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 |------|------|------|------|------|
-| id | string | 否 | N/A | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
-| rect | [RectEvent](#rectevent12) | 否 | N/A | surface 的位置信息。 |
+| id | string | 否 | 是 | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
+| rect | [RectEvent](#rectevent12) | 否 | 是 | surface 的位置信息。 |
 
 ## Preload<sup>12+<sup>
 
@@ -14755,17 +14758,17 @@ exitFullscreen(): void
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 |------|------|------|------|------|
-| embedID | string | 否 | N/A | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
-| mediaType | [MediaType](#mediatype12) | 否 | N/A | 媒体的类型。 |
-| mediaSrcList | Array\<[MediaSourceInfo](#mediasourceinfo12)\> | 否 | N/A | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
-| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 否 | N/A | 用于同层渲染的 surface 信息。 |
-| controlsShown | boolean | 否 | N/A | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
-| controlList | Array\<string\> | 否 | N/A | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
-| muted | boolean | 否 | N/A | 是否要求静音播放。 |
-| posterUrl | string | 否 | N/A | 海报的地址。 |
-| preload | [Preload](#preload12) | 否 | N/A | 是否需要预加载。 |
-| headers | Record\<string, string\> | 否 | N/A | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
-| attributes | Record\<string, string\> | 否 | N/A | `<video>` 或 `<audio>` 标签中的属性。 |
+| embedID | string | 否 | 是 | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| mediaType | [MediaType](#mediatype12) | 否 | 是 | 媒体的类型。 |
+| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | 否 | 是 | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 否 | 是 | 用于同层渲染的 surface 信息。 |
+| controlsShown | boolean | 否 | 是 | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
+| controlList | string[] | 否 | 是 | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
+| muted | boolean | 否 | 是 | 是否要求静音播放。 |
+| posterUrl | string | 否 | 是 | 海报的地址。 |
+| preload | [Preload](#preload12) | 否 | 是 | 是否需要预加载。 |
+| headers | Record\<string, string\> | 否 | 是 | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
+| attributes | Record\<string, string\> | 否 | 是 | `<video>` 或 `<audio>` 标签中的属性。 |
 
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>
@@ -14885,6 +14888,14 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 | rulesFile | string | 是   | 指定了符合 easylist 通用语法的规则文件路径，应用需要有此文件的读权限。 |
 | replace   | boolean | 是   | true表示强制替换掉内置的默认规则，false表示设置的自定义规则将与内置规则共同工作。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -14944,6 +14955,14 @@ static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
 | domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -15013,6 +15032,14 @@ static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
 | domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -15140,6 +15167,14 @@ static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 | ---------- | ------ | ---- | -------------------------------- |
 | domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -15211,6 +15246,14 @@ static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 | 参数名     | 类型   | 必填 | 说明                               |
 | ---------- | ------ | ---- | -------------------------------- |
 | domainSuffixes | Array\<string\> | 是   | 一组域名列表，例如['example.com', 'abcd.efg.com'] |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -15367,7 +15410,7 @@ webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): v
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
 | info        | [SnapshotInfo](#snapshotinfo12)| 是   | 全量绘制结果入参。 |
-| callback        | [SnapshotResult](#snapshotresult12)| 是   | 全量绘制回调结果。 
+| callback        | [SnapshotResult](#snapshotresult12)| 是   | 全量绘制回调结果。 |
 
 **示例：**
 

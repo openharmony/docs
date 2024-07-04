@@ -125,7 +125,7 @@ Column() {
     })
   ```
 
-- 使用组件的成员函数配置组件的事件方法，需要bind this。
+- 使用组件的成员函数配置组件的事件方法，需要bind this。ArkTS语法不推荐使用成员函数配合bind this去配置组件的事件方法。
 
   ```ts
   myClickHandler(): void {

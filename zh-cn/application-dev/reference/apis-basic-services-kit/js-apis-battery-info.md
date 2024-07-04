@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```js
-import batteryInfo from '@kit.BasicServicesKit';
+import {batteryInfo} from '@kit.BasicServicesKit';
 ```
 
 ## 属性
@@ -35,7 +35,7 @@ import batteryInfo from '@kit.BasicServicesKit';
 **示例**：
 
   ```ts
-  import batteryInfo from '@kit.BasicServicesKit';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let batterySOCInfo: number = batteryInfo.batterySOC;
   console.info("The batterySOCInfo is: " + batterySOCInfo);

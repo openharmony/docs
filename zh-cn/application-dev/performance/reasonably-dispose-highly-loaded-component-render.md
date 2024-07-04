@@ -209,6 +209,36 @@ aboutToReuse(params: Record<string, Object>): void {
 
 ![image-20240507200236522](figures/highly_loaded_component_render_7.png)
 
+### 不建议锁定最高帧率运行
+
+不建议将ExpectedFrameRateRange中的expected、min、max都设置为120，否则会干扰系统的可变帧率机制运行，产生不必要的负载，进而影响到整机的性能和功耗。
+
+**反例**
+
+```ts
+let sync = displaySync.create();
+sync.setExpectedFrameRateRange({
+  expected: 120,
+  min: 120,
+  max: 120
+})
+```
+**正例**
+```ts
+let sync = displaySync.create();
+sync.setExpectedFrameRateRange({
+  expected: 60,
+  min: 0,
+  max: 60
+})
+```
+
+主要原因有以下三点：
+
+1. ExpectedFrameRateRange中关键参数是expected（期望帧率），系统会优先按照expected设置的帧率执行。当系统难以满足expected帧率诉求时，会在min和max之间选一个更合适的帧率给到应用。
+2. 如果应用锁定120HZ，系统会优先满足应用的显式设置，按照120帧运行。此时手机功耗会显著增加，长时间运行会引起手机过热等严重影响用户体验的问题。同时也由于不必要的高帧率，会额外占据更多的算力，可能导致其他场景的响应受到不必要的延迟。
+3. 如果系统持续按照120HZ运行，从某种意义上来说此时系统的可变帧率能力已失效，这显然与可变帧率的设计原则不相符。
+
 ## 总结
 
 通过上面的示例代码和优化过程，可以看到在列表中使用组件复用时，一次性全部加载时可能会引起掉帧。虽然在数据量较少时，单帧绘制的延长并不会引起掉帧，但是数据量变多后，这种延长帧的影响就会比较明显。合理进行数据拆分后，可以有效减少延长帧的发生，从而减少掉帧引起的性能问题。

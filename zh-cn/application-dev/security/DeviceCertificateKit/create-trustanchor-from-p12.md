@@ -172,7 +172,7 @@
   try {
     cert.createTrustAnchorsWithKeyStore(p12Data, '123456').then((data) => {
       console.log('createTrustAnchorsWithKeyStore sucess, the num of result is :' + JSON.stringify(data.length))
-    }).cache((err) => {
+    }).catch((err: BusinessError) => {
       console.error('createTrustAnchorsWithKeyStore failed, error :' + JSON.stringify(err))
     })
   } catch(error) {
