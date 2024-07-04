@@ -152,7 +152,7 @@ enableHapticFeedback(enable: boolean)
 
 | 参数名 | 类型                                          | 必填 | 说明                  |
 | ------ | --------------------------------------------- |---|---------------------|
-| enableHapticFeedback  | boolean | 否 | true, 默认开启, 支持触控反馈。 |
+| enableHapticFeedback  | boolean | 否 | 是否支持触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。 |
 
 ## 事件
 
