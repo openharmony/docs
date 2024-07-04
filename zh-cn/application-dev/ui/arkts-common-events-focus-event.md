@@ -489,7 +489,7 @@ struct RequestFocusExample {
 
 - 使用FocusController中的方法
 
-  需先使用UIContext中的[getFocusController()](https://gitee.com/yihao-lin/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
+  需先使用UIContext中的[getFocusController()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
 
   ```ts
   requestFocus(key: string): void
