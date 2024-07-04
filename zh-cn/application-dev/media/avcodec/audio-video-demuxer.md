@@ -216,8 +216,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return;
    }
    int32_t trackCount = 0;
-   bool gotSourceFormat = OH_AVFormat_GetIntValue(sourceFormat, OH_MD_KEY_TRACK_COUNT, &trackCount);
-   if (!gotSourceFormat) {
+   if (!OH_AVFormat_GetIntValue(sourceFormat, OH_MD_KEY_TRACK_COUNT, &trackCount)) {
       printf("get track count from source format failed");
       return;
    }
@@ -239,21 +238,18 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
          printf("get track format failed");
          return;
       }
-      bool gotTrackFormat = OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_TRACK_TYPE, &trackType);
-      if (!gotTrackFormat) {
+      if (!OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_TRACK_TYPE, &trackType)) {
          printf("get track type from track format failed");
          return;
       }
       static_cast<OH_MediaType>(trackType) == OH_MediaType::MEDIA_TYPE_AUD ? audioTrackIndex = index : videoTrackIndex = index;
       // 获取视频轨宽高
       if (trackType == OH_MediaType::MEDIA_TYPE_VID) {
-         gotTrackFormat = OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_WIDTH, &w);
-         if (!gotTrackFormat) {
+         if (!OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_WIDTH, &w)) {
             printf("get track width from track format failed");
             return;
          }
-         gotTrackFormat = OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_HEIGHT, &h);
-         if (!gotTrackFormat) {
+         if (!OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_HEIGHT, &h)) {
             printf("get track height from track format failed");
             return;
          }

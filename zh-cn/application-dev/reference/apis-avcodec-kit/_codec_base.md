@@ -1530,7 +1530,7 @@ aac格式的键，值类型为uint32_t,aac解码器支持。
 const char* OH_MD_KEY_ALBUM
 ```
 **描述**
-相册的源格式键，值类型为string。
+专辑的源格式键，值类型为string。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1543,7 +1543,7 @@ const char* OH_MD_KEY_ALBUM
 const char* OH_MD_KEY_ALBUM_ARTIST
 ```
 **描述**
-相册艺术家的键，值类型为string。
+专辑艺术家的键，值类型为string。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
