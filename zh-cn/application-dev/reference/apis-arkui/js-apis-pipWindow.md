@@ -594,7 +594,7 @@ pipController.on('stateChange', (state: PiPWindow.PiPState, reason: string) => {
     case PiPWindow.PiPState.STOPPED:
       curState = 'STOPPED';
       break;
-    case PiPWindow.PiPState.ABOUT_TO_RESTORE:
+    case PiPWindow.PiPState.ABOUT_TO_RESTORE:  
       curState = 'ABOUT_TO_RESTORE';
       break;
     case PiPWindow.PiPState.ERROR:
@@ -691,12 +691,12 @@ on(type: 'controlEvent', callback: CallBack&lt;ControlEventParam&gt;): void
 **示例：**
 
 ```ts
-pipController.on('controlEvent', (control: PiPWindow.PiPControlType, status?: PiPWindow.PiPControlStatus) => {
-  switch (control) {
+pipController.on('controlEvent', (control) => {
+  switch (control.controlType) {
     case PiPWindow.PiPControlType.VIDEO_PLAY_PAUSE:
-      if (status === PiPWindow.PiPControlStatus.PAUSE) {
+      if (control.status === PiPWindow.PiPControlStatus.PAUSE) {
         //停止视频
-      } else if (status === PiPWindow.PiPControlStatus.PLAY) {
+      } else if (control.status === PiPWindow.PiPControlStatus.PLAY) {
         //播放视频
       }
       break;
@@ -715,7 +715,7 @@ pipController.on('controlEvent', (control: PiPWindow.PiPControlType, status?: Pi
     default:
       break;
   }
-  console.info('registerControlEventCallback, control:' + control);
+  console.info('registerControlEventCallback, controlType:' + controlType + ', status' + control.status);
 });
 ```
 
@@ -757,5 +757,5 @@ off(type: 'controlEvent', callback?: CallBack&lt;ControlEventParam&gt;): void
 **示例：**
 
 ```ts
-pipController.off('controlEvent', (control: PiPWindow.PiPControlType, status?: PiPWindow.PiPControlStatus) => {});
+pipController.off('controlEvent', () => {});
 ```
