@@ -871,7 +871,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 
 ## RdbPredicates
 
-表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。不支持Sendable跨线程传递。 
+表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。谓词间支持多语句拼接，拼接时默认使用and()连接。不支持Sendable跨线程传递。 
 
 ### constructor
 
@@ -962,7 +962,6 @@ predicates.inDevices(deviceIds);
 
 inAllDevices(): RdbPredicates
 
-
 同步分布式数据库时连接到组网内所有的远程设备。
 
 
@@ -984,7 +983,6 @@ predicates.inAllDevices();
 ### equalTo
 
 equalTo(field: string, value: ValueType): RdbPredicates
-
 
 配置谓词以匹配数据表的field列中值为value的字段。
 
@@ -1024,7 +1022,6 @@ predicates.equalTo("NAME", "Lisa");
 
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
-
 配置谓词以匹配数据表的field列中值不为value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -1062,7 +1059,6 @@ predicates.notEqualTo("NAME", "Lisa");
 ### beginWrap
 
 beginWrap(): RdbPredicates
-
 
 向谓词添加左括号。
 
@@ -7848,7 +7844,7 @@ if(resultSet != undefined) {
 
 getAsset(columnIndex: number): Asset
 
-以[Asset](#asset10)形式获取当前行中指定列的值，如果当前列中的值为null时，会返回null，如果为其他类型时，则会返回14800000。
+以[Asset](#asset10)形式获取当前行中指定列的值，如果当前列的数据类型为Asset类型，会以Asset类型返回指定值，如果当前列中的值为null时，会返回null，其他类型则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7903,7 +7899,7 @@ if(resultSet != undefined) {
 
 getAssets(columnIndex: number): Assets
 
-以[Assets](#assets10)形式获取当前行中指定列的值，如果当前列中的值为null时，会返回null，如果为其他类型时，则会返回14800000。
+以[Assets](#assets10)形式获取当前行中指定列的值，如果当前列的数据类型为Assets类型，会以Assets类型返回指定值，如果当前列中的值为null时，会返回null，其他类型则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
