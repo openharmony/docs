@@ -52,3 +52,4 @@
     - [应用滑动场景帧率问题分析实践](long-frame-optimization.md)
     - [时延类性能问题分析实践](delay_related_performance.md)
     - [Web性能问题分析案例](web-analyse.md)
+    - [应用性能问题分析指导](application-performance-guide.md)
