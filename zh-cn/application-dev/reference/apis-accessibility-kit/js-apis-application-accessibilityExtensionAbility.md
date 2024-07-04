@@ -9,7 +9,7 @@ AccessibilityExtensionAbility基于ExtensionAbility框架，提供辅助功能�
 ## 导入模块
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 ```
 
 ### 属性
@@ -46,7 +46,7 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
 
 let accessibilityElement: AccessibilityElement;
 ```
@@ -60,7 +60,7 @@ let accessibilityElement: AccessibilityElement;
 **示例：**
 
 ```ts
-import { ElementAttributeValues } from '@ohos.application.AccessibilityExtensionAbility';
+import { ElementAttributeValues } from '@kit.AccessibilityKit';
 
 let elementAttributeValues: ElementAttributeValues;
 ```
@@ -74,7 +74,7 @@ let elementAttributeValues: ElementAttributeValues;
 **示例：**
 
 ```ts
-import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
+import { FocusDirection } from '@kit.AccessibilityKit';
 
 let focusDirection: FocusDirection;
 ```
@@ -91,7 +91,7 @@ let focusDirection: FocusDirection;
 **示例：**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
 
 let elementAttributeKeys: ElementAttributeKeys;
 ```
@@ -105,7 +105,7 @@ let elementAttributeKeys: ElementAttributeKeys;
 **示例：**
 
 ```ts
-import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
+import { FocusType } from '@kit.AccessibilityKit';
 
 let focusType: FocusType;
 ```
@@ -119,7 +119,7 @@ let focusType: FocusType;
 **示例：**
 
 ```ts
-import { WindowType } from '@ohos.application.AccessibilityExtensionAbility';
+import { WindowType } from '@kit.AccessibilityKit';
 
 let windowType: WindowType;
 ```
@@ -133,7 +133,7 @@ let windowType: WindowType;
 **示例：**
 
 ```ts
-import { Rect } from '@ohos.application.AccessibilityExtensionAbility';
+import { Rect } from '@kit.AccessibilityKit';
 
 let rect: Rect;
 ```
@@ -219,7 +219,7 @@ onConnect(): void;
 **示例：**
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
   onConnect(): void {
@@ -239,7 +239,7 @@ onDisconnect(): void;
 **示例：**
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
   onDisconnect(): void {
@@ -265,7 +265,7 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 **示例：**
 
 ```ts
-import AccessibilityExtensionAbility , { AccessibilityEvent } from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility, AccessibilityEvent } from '@kit.AccessibilityKit';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
   onAccessibilityEvent(event: AccessibilityEvent): void {
@@ -294,8 +294,8 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 **示例：**
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
-import { KeyEvent } from '@ohos.multimodalInput.keyEvent';
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+import { KeyEvent } from '@kit.InputKit';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
   onKeyEvent(keyEvent: KeyEvent): boolean {
