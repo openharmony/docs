@@ -94,10 +94,6 @@
 
 在分布式对象中，可以使用[资产类型](../reference/apis-arkdata/js-apis-data-commonType.md#asset)来描述本地实体资产文件，分布式对象跨设备同步时，该文件会和数据一起同步到其他设备上。当前只支持资产类型，不支持[资产类型数组](../reference/apis-arkdata/js-apis-data-commonType.md#assets)。如需同步多个资产，可将每个资产作为分布式对象的一个根属性实现。
 
-### 融合资产冲突解决机制
-
-当分布式对象中包含的资产和关系型数据库中包含的资产指向同一个实体资产文件，即两个资产的Uri相同时，就会存在冲突，我们把这种资产称为融合资产。若想解决融合资产的冲突，需要先进行资产的绑定。当应用退出session后，绑定关系随之消失。
-
 ## 约束限制
 
 - 不同设备间只有相同bundleName的应用才能直接同步。
@@ -357,93 +353,170 @@
     });
     ```
 
-### 跨设备资产同步
+### 在跨端迁移中使用分布式数据对象迁移数据
 
-分布式对象中加入资产类型属性，可以触发资产同步机制，将资产类型属性所描述的文件同步到其他设备。持有资产文件的设备为发起端，得到资产文件的设备为接收端。
+1. 迁移发起端在onContinue接口中创建分布式数据对象并保存数据到接收端：
 
-1. 导入distributedDataObject和commonType模块。
+    1.1 调用create接口创建并得到一个分布式数据对象实例。
 
-   ```ts
-   import { distributedDataObject, commonType } from '@kit.ArkData';
-   ```
+    1.2 调用genSessionId接口创建一个sessionId，调用setSessionId接口设置同步的sessionId，并将这个sessionId放入wantParam。
 
-2. 请求权限。
+    1.3 从wantParam获取接收端设备networkId，使用这个networkId调用save接口保存数据到接收端。
 
-   1. 需要申请ohos.permission.DISTRIBUTED_DATASYNC权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
-   2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
+2. 接收端在onCreate和onNewWant接口中创建分布式数据对象并注册恢复状态监听：
 
-3. 发起端创建包含资产的分布式对象并加入组网。
+    2.1 调用create接口创建并得到一个分布式数据对象实例。
 
-    ```ts
-    import { UIAbility } from '@kit.AbilityKit';
-    import { window } from '@kit.ArkUI';
-    import { BusinessError } from '@kit.BasicServicesKit';
+    2.2 注册恢复状态监听。收到状态为'restored'的回调通知时，表示接收端分布式数据对象已恢复发起端保存过来的数据。
 
-    class Note {
-      title: string | undefined
-      text: string | undefined
-      attachment: commonType.Asset | undefined
+    2.3 从want.parameters中获取发起端放入的sessionId，调用setSessionId接口设置同步的sessionId。
 
-      constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset | undefined) {
-        this.title = title;
-        this.text = text;
-        this.attachment = attachment;
+> **说明**
+>
+> 跨端迁移时，在迁移发起端调用setsessionId接口设置同步的sessionId后，必须再调用save接口保存数据到接收端。
+>
+> 跨端迁移需要配置`continuable`标签，详见[跨端迁移开发步骤](../application-models/hop-cross-device-migration.md#开发步骤)。
+>
+> wantParam中的"sessionId"字段可能被其他服务占用，建议自定义一个key存取sessionId。
+>
+> 可以使用资产类型记录资产附件（文件、图片、视频等类型文件）的相关信息，迁移资产类型数据时，对应的资产附件会一起迁移到对端。
+>
+> 接收端需要将业务数据的初始值设置为undefined，才能恢复发起端保存的数据，否则接收端的数据会覆盖同步到发起端。如果是资产数据，需要将资产数据的各个属性设置为空字符串而不是将整个资产数据设置为undefined。
+>
+> 暂不支持资产类型数组，如果要迁移多个文件，在业务数据中定义多条资产数据来记录。
+>
+> 目前仅支持迁移分布式文件目录下的文件，非分布式文件目录下的文件可以复制或移动到分布式文件目录下再进行迁移。文件的操作和URI的获取详见[文件管理](../reference/apis-core-file-kit/js-apis-file-fs.md)和[文件URI](../reference/apis-core-file-kit/js-apis-file-fileuri.md)。
+
+```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { commonType, distributedDataObject } from '@kit.ArkData';
+import { fileIo, fileUri } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 业务数据定义
+class Data {
+  title: string | undefined;
+  text: string | undefined;
+  attachment: commonType.Asset; // 可以使用资产类型记录分布式目录下的文件，迁移资产数据时，对应的文件会一起迁移到接收端。（不迁移文件时不需要此字段，下方代码中的createAttachment、createEmptyAttachment方法也都不需要。）
+  // attachment2: commonType.Asset; // 暂不支持资产类型数组，如果要迁移多个文件，在业务数据中定义多条资产数据来记录
+
+  constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset) {
+    this.title = title;
+    this.text = text;
+    this.attachment = attachment;
+  }
+}
+
+const TAG = '[DistributedDataObject]';
+let dataObject: distributedDataObject.DataObject;
+
+export default class EntryAbility extends UIAbility {
+  // 1. 迁移发起端在onContinue接口中创建分布式数据对象并保存数据到接收端
+  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult | Promise<AbilityConstant.OnContinueResult> {
+    // 1.1 调用create接口创建并得到一个分布式数据对象实例
+    let attachment = this.createAttachment();
+    let data = new Data('The title', 'The text', attachment);
+    dataObject = distributedDataObject.create(this.context, data);
+
+    // 1.2 调用genSessionId接口创建一个sessionId，调用setSessionId接口设置同步的sessionId，并将这个sessionId放入wantParam
+    let sessionId = distributedDataObject.genSessionId();
+    console.log(TAG + `gen sessionId: ${sessionId}`);
+    dataObject.setSessionId(sessionId);
+    wantParam.distributedSessionId = sessionId;
+
+    // 1.3 从wantParam获取接收端设备networkId，使用这个networkId调用save接口保存数据到接收端
+    let deviceId = wantParam.targetDevice as string;
+    console.log(TAG + `get deviceId: ${deviceId}`);
+    dataObject.save(deviceId);
+    return AbilityConstant.OnContinueResult.AGREE;
+  }
+
+  // 2. 接收端在onCreate和onNewWant接口中创建分布式数据对象并加入组网进行数据恢复
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+      if (want.parameters && want.parameters.distributedSessionId) {
+        this.restoreDistributedDataObject(want);
       }
     }
+  }
 
-    class EntryAbility extends UIAbility {
-      onWindowStageCreate(windowStage: window.WindowStage) {
-        let attachment: commonType.Asset = {
-          name: 'test_img.jpg',
-          uri: 'file://com.example.myapplication/data/storage/el2/distributedfiles/dir/test_img.jpg',
-          path: '/dir/test_img.jpg',
-          createTime: '2024-01-02 10:00:00',
-          modifyTime: '2024-01-02 10:00:00',
-          size: '5',
-          status: commonType.AssetStatus.ASSET_NORMAL
-        }
-        // 创建一个自定义笔记类型，其中包含一张图片资产
-        let note: Note = new Note('test', "test", attachment);
-        let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
-        localObject.setSessionId('123456');
+  // 2. 接收端在onCreate和onNewWant接口中创建分布式数据对象并加入组网进行数据恢复
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+      if (want.parameters && want.parameters.distributedSessionId) {
+        this.restoreDistributedDataObject(want);
       }
     }
-    ```
+  }
 
-4. 接收端创建分布式对象并加入组网
+  restoreDistributedDataObject(want: Want) {
+    if (!want.parameters || !want.parameters.distributedSessionId) {
+      console.error(TAG + 'missing sessionId');
+      return;
+    }
 
-    ```ts
-    let note: Note = new Note(undefined, undefined, undefined);
-    let receiverObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
-    receiverObject.on('change', (sessionId: string, fields: Array<string>) => {
-      if (fields.includes('attachment')) {
-        // 接收端监听到资产类型属性的数据变更时，代表其所描述的资产文件同步完成
-        console.info('attachment synchronization completed');
+    // 2.1 调用create接口创建并得到一个分布式数据对象实例
+    let attachment = this.createEmptyAttachment(); // 接收端需要将资产数据的各个属性设置为空字符串，才能恢复发起端保存的资产数据
+    let data = new Data(undefined, undefined, attachment);
+    dataObject = distributedDataObject.create(this.context, data);
+
+    // 2.2 注册恢复状态监听。收到状态为'restored'的回调通知时，表示接收端分布式数据对象已恢复发起端保存过来的数据（有资产数据时，对应的文件也迁移过来了）
+    dataObject.on('status', (sessionId: string, networkId: string, status: string) => {
+      if (status == 'restored') { // 收到'restored'的状态通知表示已恢复发起端保存的数据
+        console.log(TAG + `title: ${dataObject['title']}, text: ${dataObject['text']}`);
       }
     });
-    receiverObject.setSessionId('123456');
-    ```
 
-5. 若资产为融合资产，可以创建绑定信息，绑定融合资产，以解决融合资产的冲突。
+    // 2.3 从want.parameters中获取发起端放入的sessionId，调用setSessionId接口设置同步的sessionId
+    let sessionId = want.parameters.distributedSessionId as string;
+    console.log(TAG + `get sessionId: ${sessionId}`);
+    dataObject.setSessionId(sessionId);
+  }
 
-    ```ts
-    const bindInfo: distributedDataObject.BindInfo = {
-      storeName: 'notepad',
-      tableName: 'note_t',
-      primaryKey: {
-        'uuid': '00000000-0000-0000-0000-000000000000'
-      },
-      field: 'attachment',
-      assetName: attachment.name
-    }
+  // 在分布式文件目录下创建一个文件并使用资产类型记录（也可以记录分布式文件目录下已有文件，非分布式文件目录下的文件可以复制或移动到分布式文件目录下再进行记录）
+  createAttachment() {
+    let attachment = this.createEmptyAttachment();
+    try {
+      let distributedDir: string = this.context.distributedFilesDir; // 分布式文件目录
+      let fileName: string = 'text_attachment.txt'; // 文件名
+      let filePath: string = distributedDir + '/' + fileName; // 文件路径
+      let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+      fileIo.writeSync(file.fd, 'The text in attachment');
+      fileIo.closeSync(file.fd);
+      let uri: string = fileUri.getUriFromPath(filePath); // 获取文件URI
+      let stat = fileIo.statSync(filePath); // 获取文件详细属性信息
 
-    localObject.bindAssetStore('attachment', bindInfo, (err: BusinessError) => {
-      if (err) {
-        console.error('bindAssetStore failed.');
+      // 写入资产数据
+      attachment = {
+        name: fileName,
+        uri: uri,
+        path: filePath,
+        createTime: stat.ctime.toString(),
+        modifyTime: stat.mtime.toString(),
+        size: stat.size.toString()
       }
-      console.info('bindAssetStore success.');
-    });
-    ```
+    } catch (e) {
+      let err = e as BusinessError;
+      console.error(TAG + `file error, error code: ${err.code}, error message: ${err.message}`);
+    }
+    return attachment;
+  }
+
+  createEmptyAttachment() {
+    let attachment: commonType.Asset = {
+      name: '',
+      uri: '',
+      path: '',
+      createTime: '',
+      modifyTime: '',
+      size: ''
+    }
+    return attachment;
+  }
+}
+```
 
 ## 相关实例
 
