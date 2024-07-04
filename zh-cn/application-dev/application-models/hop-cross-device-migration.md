@@ -415,10 +415,10 @@ export default class MigrationAbility extends UIAbility {
   >
   > 如果涉及分布式数据对象迁移时应注意：
   >
-  > 1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
+  > API 11及以前版本涉及分布式数据对象迁移前，需要执行如下操作。
+  > 1. 申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
   >
-  > 2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
-  > 3. 从api12开始，分布式数据对象在迁移场景中不再做以上两点限制。
+  > 2. 在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
 ### 使用wantParam迁移数据
 
@@ -757,7 +757,7 @@ export default class MigrationAbility extends UIAbility {
 
 > **注意**
 >
-> 对端创建分布式数据对象时，`SourceObject`对象中的资产不能直接使用`undefined`初始化，需要创建一个各属性为初始值`''`的`Asset`资产对象，以使分布式对象可以识别出资产类型。
+> 对端创建分布式数据对象时，`SourceObject`对象中的资产不能直接使用`undefined`初始化，需要创建一个所有属性初始值为空的Asset资产对象，使分布式对象可以识别出资产类型。
 
 ```ts
 import { UIAbility, Want } from '@kit.AbilityKit';
