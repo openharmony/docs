@@ -389,7 +389,7 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 
 用于UIAbility/UIExtensionAbility二次拉起权限设置弹框。
 
-在调用此接口前，应用需要先调用[requestPermissionsFromUser](#requestpermissionsfromuser9)，如果用户在首次弹窗授权时已授权，调用当前接口将无法拉起弹窗。
+在调用此接口前，应用需要先调用[requestPermissionsFromUser](#requestpermissionsfromuser)，如果用户在首次弹窗授权时已授权，调用当前接口将无法拉起弹窗。
 
 > **说明：**
 >
@@ -406,7 +406,7 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | context | [Context](js-apis-inner-application-context.md) | 是 | 请求权限的<!--RP1-->UIAbility<!--RP1End-->的Context。 |
-| permissionList | Array&lt;Permissions&gt; | 是 | 权限名列表，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
+| permissionList | Array&lt;Permissions&gt; | 是 | 权限名列表，合法的权限名取值可在[应用权限组列表](../../security/AccessToken/app-permission-group-list.md)中查询。 |
 
 **返回值：**
 
@@ -465,7 +465,7 @@ requestGlobalSwitch(context: Context, type: SwitchType): Promise&lt;boolean&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | context | [Context](js-apis-inner-application-context.md) | 是 | 请求权限的<!--RP1-->UIAbility<!--RP1End-->的Context。 |
-| type | [SwitchType](#switchtype) | 是 | 权限名列表，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
+| type | [SwitchType](#switchtype) | 是 | 全局开发类型。 |
 
 **返回值：**
 
