@@ -715,7 +715,7 @@ pipController.on('controlEvent', (control) => {
     default:
       break;
   }
-  console.info('registerControlEventCallback, controlType:' + controlType + ', status' + control.status);
+  console.info('registerControlEventCallback, controlType:' + control.controlType + ', status' + control.status);
 });
 ```
 
