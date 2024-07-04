@@ -419,7 +419,7 @@ connectToNetwork(networkId: number): void
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **示例：**
 
@@ -464,7 +464,7 @@ connectToDevice(config: WifiDeviceConfig): void
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **示例：**
 ```ts
@@ -644,7 +644,7 @@ getDeviceMacAddress(): string[]
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **示例：**
 ```ts
@@ -681,7 +681,7 @@ reassociate(): void
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **示例：**
 ```ts
@@ -716,7 +716,7 @@ reconnect(): void
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **示例：**
 ```ts
@@ -1181,7 +1181,7 @@ enableHotspot(): void
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 **示例：**
 ```ts
@@ -1215,7 +1215,7 @@ disableHotspot(): void
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 **示例：**
 ```ts
@@ -1255,7 +1255,7 @@ isHotspotDualBandSupported(): boolean
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 **示例：**
 ```ts
@@ -1296,7 +1296,7 @@ isHotspotActive(): boolean
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 **示例：**
 ```ts
@@ -1338,7 +1338,7 @@ setHotspotConfig(config: HotspotConfig): void
 | 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 **示例：**
 ```ts
@@ -1404,7 +1404,7 @@ getHotspotConfig(): HotspotConfig
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 **示例：**
 ```ts
@@ -1449,7 +1449,7 @@ API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPO
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 **示例：**
 ```ts
@@ -1506,7 +1506,7 @@ addHotspotBlockList(stationInfo: StationInfo)
 | 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 **示例：**
 
@@ -1554,7 +1554,7 @@ delHotspotBlockList(stationInfo: StationInfo)
 | 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 **示例：**
 
@@ -1600,7 +1600,7 @@ getHotspotBlockList(): Array&lt;StationInfo&gt;
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 **示例：**
 
@@ -1644,7 +1644,7 @@ deletePersistentGroup(netId: number): void
 | 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1689,7 +1689,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1742,7 +1742,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 ## wifiManager.setDeviceName<sup>9+</sup>
 
@@ -1772,7 +1772,7 @@ setDeviceName(devName: string): void
 | 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed.|
+| 2801000  | P2P module error. |
 
 **示例：**
 ```ts
@@ -1971,7 +1971,7 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 | 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 ## wifiManager.off('hotspotStaJoin')<sup>9+</sup>
 
@@ -2002,7 +2002,7 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 | 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 **示例：**
 ```ts
@@ -2049,7 +2049,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
 | 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 ## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
 
@@ -2080,7 +2080,7 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 | 202 | System API is not allowed called by Non-system application. |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
-| 2601000  | Operation failed.|
+| 2601000  | Hotspot module error.|
 
 **示例：**
 ```ts
