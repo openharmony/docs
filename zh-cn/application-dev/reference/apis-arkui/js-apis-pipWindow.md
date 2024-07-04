@@ -631,16 +631,16 @@ pipController.off('stateChange');
 
 on(type: 'controlPanelActionEvent', callback: ControlPanelActionEventCallback): void
 
-开启画中画控制面板控件动作事件的监听。推荐使用[on('controlEvent')](#oncontrolevent12)来开启画中画控制面板动作事件的监听。
+开启画中画控制面板控件动作事件的监听。推荐使用[on('controlEvent')](#oncontrolevent12)来开启画中画控制面板控件动作事件的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
 
-| 参数名      | 类型         | 必填    | 说明                                                                                                                             |
-|----------|------------|-------|--------------------------------------------------------------------------------------------------------------------------------|
-| type     | string     | 是     | 监听事件，固定为'controlPanelActionEvent'，即画中画控制面板动作事件。                                                                                    |
-| callback | [ControlPanelActionEventCallback](#controlpanelactioneventcallback12)  | 是     | 描述画中画控制面板动作事件回调。 |
+| 参数名      | 类型         | 必填    | 说明                                                |
+|----------|------------|-------|---------------------------------------------------|
+| type     | string     | 是     | 监听事件，固定为'controlPanelActionEvent'，即画中画控制面板控件动作事件。 |
+| callback | [ControlPanelActionEventCallback](#controlpanelactioneventcallback12)  | 是     | 描述画中画控制面板控件动作事件回调。                                |
 
 **示例：**
 
@@ -677,7 +677,7 @@ pipController.on('controlPanelActionEvent', (event: PiPWindow.PiPActionEventType
 
 on(type: 'controlEvent', callback: CallBack&lt;ControlEventParam&gt;): void
 
-开启画中画控制面板动作事件的监听。
+开启画中画控制面板控件动作事件的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -723,7 +723,7 @@ pipController.on('controlEvent', (control: PiPWindow.PiPControlType, status?: Pi
 
 off(type: 'controlPanelActionEvent'): void
 
-关闭画中画控制面板控件动作事件的监听。推荐使用[off('controlEvent')](#offcontrolevent12)来解除画中画控制面板控件动作事件回调的注册。
+关闭画中画控制面板控件动作事件的监听。推荐使用[off('controlEvent')](#offcontrolevent12)来关闭画中画控制面板控件动作事件的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
