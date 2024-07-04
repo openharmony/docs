@@ -1636,6 +1636,7 @@ registerFont(options: font.FontOptions): void
 
 ```ts
 import { Font } from '@kit.ArkUI';
+
 let font:Font = uiContext.getFont();
 font.registerFont({
   familyName: 'medium',
@@ -1662,6 +1663,7 @@ getSystemFontList(): Array\<string>
 
 ```ts
 import { Font } from '@kit.ArkUI';
+
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getSystemFontList()
@@ -1694,6 +1696,7 @@ getFontByName(fontName: string): font.FontInfo
 
 ```ts
 import { Font } from '@kit.ArkUI';
+
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getFontByName('Sans Italic')
@@ -1767,7 +1770,6 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 ```ts
 import { UIInspector } from '@kit.ArkUI';
-
 
 let inspector: UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
@@ -2790,7 +2792,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { MediaQuery } from '@kit.ArkUI';
 
 let mediaquery: MediaQuery = uiContext.getMediaQuery();
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
@@ -3739,12 +3741,14 @@ back(index: number, params?: Object): void;
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.back(1);
 ```
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.back(1, {info:'来自Home页'}); //携带参数返回
 ```
@@ -3763,6 +3767,7 @@ clear(): void
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.clear();    
 ```
@@ -3787,6 +3792,7 @@ getLength(): string
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
 console.info('pages stack size = ' + size);    
@@ -3812,6 +3818,7 @@ getState(): router.RouterState
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let page = router.getState();
 console.info('current index = ' + page.index);
@@ -3842,6 +3849,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let options: router.RouterState | undefined = router.getStateByIndex(1);
 if (options != undefined) {
@@ -5693,7 +5701,7 @@ close(): void
 通过定时器触发，调用ContextMenuController的close方法关闭菜单
 
 ```ts
-import uiContext, { ContextMenuController } from '@ohos.arkui.UIContext';
+import { ContextMenuController } from '@kit.ArkUI';
 
 @Entry
 @Component
