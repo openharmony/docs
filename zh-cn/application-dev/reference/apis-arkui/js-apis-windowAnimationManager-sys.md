@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import windowAnimationManager from '@ohos.animation.windowAnimationManager'
+import { windowAnimationManager } from '@kit.ArkUI';
 ```
 
 ## windowAnimationManager.setController
@@ -90,7 +90,7 @@ minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget, callback: Async
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let target: windowAnimationManager.WindowAnimationTarget | null = null;
 let controller: windowAnimationManager.WindowAnimationController = {
@@ -175,7 +175,7 @@ minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget): Promise&lt;Win
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let target: windowAnimationManager.WindowAnimationTarget | null  = null;
 let controller: windowAnimationManager.WindowAnimationController = {
