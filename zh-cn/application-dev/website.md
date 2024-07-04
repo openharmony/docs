@@ -2680,7 +2680,7 @@
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
           - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
-          - [@ohos.cooperate (键鼠穿越)（系统接口）](reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md)
+          - [@ohos.cooperate (键鼠穿越)（系统接口）](reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate-sys.md)
           - 已停止维护的接口<!--distributed-service-dep-->
             - [@ohos.distributedHardware.deviceManager (设备管理)(系统接口)(待删除)](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)
           <!--DelEnd-->
@@ -2942,7 +2942,7 @@
           <!--Del-->
           - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](reference/apis-input-kit/js-apis-pointer-sys.md)
           - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](reference/apis-input-kit/js-apis-shortKey-sys.md)
-          - [@ohos.multimodalInput.infraredEmitter (红外管理)(系统接口)](reference/apis-input-kit/js-apis-infraredemitter-sys.md)
+          - [@ohos.multimodalInput.infraredEmitter (红外管理)(系统接口)](reference/apis-input-kit/js-apis-infraredemitter.md)
           - [@ohos.multimodalInput.inputConsumer (组合按键)(系统接口)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
           - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](reference/apis-input-kit/js-apis-inputdevice-sys.md)
           - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
