@@ -6,7 +6,6 @@ request部件主要给应用提供上传下载文件、后台传输代理的基�
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ## 导入模块
 
@@ -2448,6 +2447,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ## HttpResponse<sup>12+</sup> 
 任务响应头的数据结构。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -2462,6 +2463,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 ### 属性
 包括任务id和任务的配置信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2920,6 +2923,8 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
 订阅任务响应头，异步方法，使用callback形式返回结果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -3484,6 +3489,8 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
 off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
 取消订阅任务响应头。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
