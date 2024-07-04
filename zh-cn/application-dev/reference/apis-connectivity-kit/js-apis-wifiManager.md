@@ -445,7 +445,7 @@ WLAN配置信息。
 | isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 |
 | securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 否 | 加密类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | 是 | 否 | 可扩展身份验证协议配置。只有securityType为WIFI_SEC_TYPE_EAP时需要填写。 |
-| WifiWapiConfig<sup>12+</sup> | [WifiWapiConfig](#wifiwapiconfig12) | 是 | 否 | WAPI身份验证协议配置。只有securityType为WIFI_SEC_TYPE_WAPI_CERT或WIFI_SEC_TYPE_WAPI_PSK时需要填写。 |
+| wapiConfig<sup>12+</sup> | [WifiWapiConfig](#wifiwapiconfig12) | 是 | 否 | WAPI身份验证协议配置。只有securityType为WIFI_SEC_TYPE_WAPI_CERT或WIFI_SEC_TYPE_WAPI_PSK时需要填写。 |
 
 ## WifiEapConfig<sup>10+</sup>
 
@@ -492,8 +492,8 @@ WAPI认证方式的枚举。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| WAPI_PSK_ASCII  | 0 | ASCII类型。 |
-| WAPI_PSK_HEX  | 1 | HEX类型。 |
+| WAPI_PSK_ASCII | 0 | ASCII类型。 |
+| WAPI_PSK_HEX | 1 | HEX类型。 |
 
 ## EapMethod<sup>10+</sup>
 
