@@ -353,10 +353,10 @@ startPiP(): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
 
-| 错误码ID    | 错误信息                                                 |
+| 错误码ID    | 错误信息                                                |
 |------------|--------------------------------------------------------|
-| 1300012    | The PiP window state is abnormal.                       |
-| 1300013    | Failed to create PiP window.                           |
+| 1300012    | The PiP window state is abnormal.                      |
+| 1300013    | Failed to create the PiP window.                       |
 | 1300014    | PiP internal error.                                    |
 | 1300015    | Repeated PiP operation.                                |
 
@@ -389,9 +389,9 @@ stopPiP(): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
 
-| 错误码ID   | 错误信息                             |
-|---------|----------------------------------|
-| 1300011 | Failed to destroy the PiP Window. |
+| 错误码ID   | 错误信息                          |
+|---------|-----------------------------------|
+| 1300011 | Failed to destroy the PiP window. |
 | 1300012 | The PiP window state is abnormal. |
 | 1300015 | Repeated PiP operation.           |
 
