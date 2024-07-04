@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 ```
 
 ## pointer.setPointerVisible
@@ -239,8 +239,8 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 **示例**：
 
 ```js
-import { BusinessError }  from '@ohos.base';
-import window from '@ohos.window';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 let context = getContext(this);
 window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
@@ -294,8 +294,8 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 **示例**：
 
 ```js
-import window from '@ohos.window';
-import { BusinessError }  from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 let context = getContext(this);
 window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
@@ -384,8 +384,8 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 **示例**：
 
 ```js
-import window from '@ohos.window';
-import { BusinessError }  from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -438,8 +438,8 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 **示例**：
 
 ```js
-import window from '@ohos.window';
-import { BusinessError }  from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -486,8 +486,8 @@ setPointerStyleSync(windowId: number, pointerStyle: PointerStyle): void
 
 **示例**：
 ```js
-import window from '@ohos.window';
-import { BusinessError }  from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -618,9 +618,9 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 **示例**：
 
 ```js
-import image from '@ohos.multimedia.image';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
@@ -668,9 +668,9 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 **示例**：
 
 ```js
-import image from '@ohos.multimedia.image';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
