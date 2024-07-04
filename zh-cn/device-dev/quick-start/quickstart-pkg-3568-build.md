@@ -17,7 +17,7 @@
 
 ## 操作步骤
 
-方法一：hb编译(请先安装hb编译工具)
+方法一：hb编译(请先[安装编译工具](quickstart-pkg-install-tool.md))
 
 在Ubuntu环境下进入源码根目录，执行如下命令进行编译：
 
