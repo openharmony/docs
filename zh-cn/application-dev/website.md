@@ -2095,8 +2095,8 @@
           - [Panel](reference/apis-arkui/arkui-ts/ts-container-panel.md)
         - 已停止维护的接口
           - [点击控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md)
-      - JS组件
-        - 兼容JS的类Web开发范式（ArkUI.Full）<!--arkui-web-like-comp-->
+      - JS组件<!--arkui-js-comp-->
+        - 兼容JS的类Web开发范式（ArkUI.Full）<!--arkui-js-full-comp-->
           - 组件通用信息
             - [通用属性](reference/apis-arkui/arkui-js/js-components-common-attributes.md)
             - [通用样式](reference/apis-arkui/arkui-js/js-components-common-styles.md)
@@ -2197,7 +2197,7 @@
             - [生命周期定义](reference/apis-arkui/arkui-js/js-components-custom-lifecycle.md)
           - [动态创建组件](reference/apis-arkui/arkui-js/js-components-create-elements.md)
           - [数据类型说明](reference/apis-arkui/arkui-js/js-appendix-types.md)
-        - 兼容JS的类Web开发范式（ArkUI.Lite）<!--arkui-web-like-lite-comp-->
+        - 兼容JS的类Web开发范式（ArkUI.Lite）<!--arkui-js-lite-comp-->
           - 框架说明
             - [文件组织](reference/apis-arkui/arkui-js-lite/js-lite-framework-file.md)
             - [js标签配置](reference/apis-arkui/arkui-js-lite/js-lite-framework-js-tag.md)
