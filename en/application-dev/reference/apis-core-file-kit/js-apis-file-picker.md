@@ -133,7 +133,7 @@ Starts a **photoPicker** page for the user to select one or more images/videos. 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | option | [PhotoSelectOptions](#photoselectoptions) | Yes  | Options for selecting images/videos.|
-| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return a **PhotoSelectResult** object.|
+| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback used to return a **PhotoSelectResult** object.|
 
 **Example**
 
@@ -177,7 +177,7 @@ Starts a **photoPicker** page for the user to select one or more images/videos. 
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return a **PhotoSelectResult** object.|
+| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback used to return a **PhotoSelectResult** object.|
 
 **Example**
 
@@ -262,7 +262,7 @@ Starts a **photoPicker** page for the user to save one or more images/videos. Th
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | option | [PhotoSaveOptions](#photosaveoptions) | Yes  | Options for saving images/videos.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback invoked to return the URIs of the files saved.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback used to return the URIs of the files saved.|
 
 **Example**
 
@@ -303,7 +303,7 @@ Starts a **photoPicker** page for the user to save one or more images/videos. Th
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback invoked to return the URIs of the files saved.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback used to return the URIs of the files saved.|
 
 **Example**
 
@@ -447,7 +447,7 @@ Starts a **documentPicker** page for the user to select one or more documents. T
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | option | [DocumentSelectOptions](#documentselectoptions) | Yes  | Options for selecting documents.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback invoked to return the URIs of the documents selected.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback used to return the URIs of the documents selected.|
 
 **Example**
 
@@ -489,7 +489,7 @@ Starts a **documentPicker** page for the user to select one or more documents. T
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback invoked to return the URIs of the documents selected.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback used to return the URIs of the documents selected.|
 
 **Example**
 
@@ -578,7 +578,7 @@ Starts a **documentPicker** page for the user to save one or more documents. Thi
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | option | [DocumentSaveOptions](#documentsaveoptions) | Yes  | Options for saving the documents.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback invoked to return the URIs of the documents saved.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback used to return the URIs of the documents saved.|
 
 **Example**
 
@@ -621,7 +621,7 @@ Starts a **documentPicker** page for the user to save one or more documents. Thi
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback invoked to return the URIs of the documents saved.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback used to return the URIs of the documents saved.|
 
 **Example**
 
@@ -760,7 +760,7 @@ Starts an **audioPicker** page (currently, a **documentPicker** page is displaye
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | option | [AudioSelectOptions](#audioselectoptions) | Yes  | Options for selecting audio clips.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback invoked to return the URIs of the audio clips selected.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback used to return the URIs of the audio clips selected.|
 
 **Example**
 
@@ -800,7 +800,7 @@ Starts an **audioPicker** page (currently, a **documentPicker** page is displaye
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback invoked to return the URIs of the audio clips selected.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback used to return the URIs of the audio clips selected.|
 
 **Example**
 
@@ -885,7 +885,7 @@ Starts an **audioPicker** page (currently, a **documentPicker** page is displaye
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | option | [AudioSaveOptions](#audiosaveoptions) | Yes  | Options for saving audio clips.|
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback invoked to return the URIs of the audio clips saved.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback used to return the URIs of the audio clips saved.|
 
 **Example**
 
@@ -926,7 +926,7 @@ Starts an **audioPicker** page (currently, a **documentPicker** page is displaye
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback invoked to return the URIs of the audio clips saved.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;      | Yes  | Callback used to return the URIs of the audio clips saved.|
 
 **Example**
 
