@@ -138,7 +138,7 @@ Enumerates the font styles.
 
 | Name   | Value| Description                                                |
 | ------- | - | ---------------------------------------------------- |
-| NORMAL  | 0 | Normal style.                                           |
+| NORMAL  | 0 | Normal.                                           |
 | ITALIC  | 1 | Italic. If no italic version is available for the current font, the oblique version will be used instead. |
 | OBLIQUE | 2 | Oblique. If no oblique version is available for the current font, the italic version will be used instead.|
 
@@ -193,6 +193,44 @@ Describes a text style.
 
 Implements a font manager.
 
+### getGlobalInstance
+
+static getGlobalInstance(): FontCollection
+
+Obtains a global **FontCollection** instance.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type  | Description               |
+| ------ | ------------------ |
+| [FontCollection](#fontcollection) | **FontCollection** instance.|
+
+**Example**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function Text() {
+  let fontCollection = text.FontCollection.getGlobalInstance();
+  fontCollection.loadFontSync('test', 'File://');
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
 ### loadFontSync
 
 loadFontSync(name: string, path: string | Resource): void
@@ -238,14 +276,14 @@ Describes a paragraph style.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
-| Name         | Type              | Read Only| Mandatory| Description                                 |
-| ------------- | ----------------- | ---- | ---- | ------------------------------------ |
-| textStyle     | [TextStyle](#textstyle)         | Yes  | No  | Text style applied to the paragraph. The default value is the initial text style.|
-| textDirection | [TextDirection](#textdirection) | Yes  | No  | Text direction. The default value is **LTR**.              |
-| align         | [TextAlign](#textalign)         | Yes  | No  | Text alignment mode. The default value is **START**.          |
-| wordBreak     | [WordBreak](#wordbreak)         | Yes  | No  | Word break type. The default value is **BREAK_WORD**.              |
-| maxLines      | number                          | Yes  | No  | Maximum number of lines. The value is an integer. The default value is **1e9**.          |
-| breakStrategy | [BreakStrategy](#breakstrategy) | Yes  | No  | Text break strategy. The default value is **GREEDY**.              |
+| Name                | Type                                       | Read Only| Mandatory| Description                                         |
+| -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
+| textStyle            | [TextStyle](#textstyle)                    | Yes  | No  | Text style applied to the paragraph. The default value is the initial text style.|
+| textDirection        | [TextDirection](#textdirection)            | Yes  | No  | Text direction. The default value is **LTR**.                         |
+| align                | [TextAlign](#textalign)                    | Yes  | No  | Text alignment mode. The default value is **START**.                    |
+| wordBreak            | [WordBreak](#wordbreak)                    | Yes  | No  | Word break type. The default value is **BREAK_WORD**.                   |
+| maxLines             | number                                     | Yes  | No  | Maximum number of lines. The value is an integer. The default value is **1e9**.                 |
+| breakStrategy        | [BreakStrategy](#breakstrategy)            | Yes  | No  | Text break strategy. The default value is **GREEDY**.                       |
 
 ## PlaceholderAlignment
 
@@ -1136,7 +1174,7 @@ Pushes a text style.
 
 | Name   | Type      | Mandatory| Description                                                                                                  |
 | --------- | --------- | ---- | ------------------------------------------------------------------------------------------------------ |
-| textStyle | [TextStyle](textstyle) | Yes  | Text style, which describes various visual attributes of text, such as font, font size, color, font weight, word spacing, line spacing, decoration (such as underline and strikethrough), and text shadow.|
+| textStyle | [TextStyle](#textstyle) | Yes  | Text style, which describes various visual attributes of text, such as font, font size, color, font weight, word spacing, line spacing, decoration (such as underline and strikethrough), and text shadow.|
 
 **Example**
 
