@@ -377,6 +377,7 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
@@ -427,6 +428,7 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
@@ -462,6 +464,14 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 |       类型        |         说明          |
 | ----------------- | -------------------- |
 | Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | 排序后的时区城市组合信息数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **示例：**
   ```ts
