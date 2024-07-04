@@ -926,7 +926,7 @@
             - [卡片数据交互说明](form/arkts-ui-widget-interaction-overview.md)
             - [卡片定时刷新和定点刷新](form/arkts-ui-widget-update-by-time.md)
             <!--Del-->
-            - [卡片代理刷新](arkts-ui-widget-update-by-proxy.md)
+            - [卡片代理刷新](form/arkts-ui-widget-update-by-proxy.md)
             <!--DelEnd-->
             - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
             - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
