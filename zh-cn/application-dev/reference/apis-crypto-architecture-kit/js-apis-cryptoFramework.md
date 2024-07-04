@@ -2863,7 +2863,7 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 | 参数名     | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| data     | [DataBlob](#datablob)                 | 是   | 加密或者解密的数据。data不能为null，也不允许传入{data: Uint8Array(空) }。           |
+| data     | [DataBlob](#datablob)                 | 是   | 加密或者解密的数据。data不能为null。           |
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。当更新加/解密数据成功，err为undefined，data为此次更新的加/解密结果DataBlob；否则为错误对象。 |
 
 **错误码：**
@@ -2901,7 +2901,7 @@ update(data: DataBlob): Promise\<DataBlob>
 
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
-| data | [DataBlob](#datablob) | 是   | 加密或者解密的数据。data不能为null，也不允许传入{data: Uint8Array(空) }。 |
+| data | [DataBlob](#datablob) | 是   | 加密或者解密的数据。data不能为null。 |
 
 **返回值：**
 
@@ -2937,7 +2937,7 @@ updateSync(data: DataBlob): DataBlob
 
 | 参数名 | 类型                  | 必填 | 说明                                                         |
 | ------ | --------------------- | ---- | ------------------------------------------------------------ |
-| data   | [DataBlob](#datablob) | 是   | 加密或者解密的数据。data不能为null，也不允许传入{data: Uint8Array(空) }。 |
+| data   | [DataBlob](#datablob) | 是   | 加密或者解密的数据。data不能为null。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
