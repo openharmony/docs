@@ -30,7 +30,7 @@ struct testTmp {
 }
 ```
 
-2.在@ComponentV2修饰的自定义组件中通过@Param、@Local、@Event、@Provide()、@Consumer()修饰并使用@Observed修饰的类时，进行校验并输出错误信息。
+2.在@ComponentV2修饰的自定义组件中通过@Param、@Local、@Event、@Provider()、@Consumer()修饰并使用@Observed修饰的类时，进行校验并输出错误信息。
 
 简化示例如下：
 
