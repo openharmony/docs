@@ -271,6 +271,8 @@ setAutoStartEnabled(enable: boolean): void
 |----------|-----------|-------|---------------------------------|
 | enable   | boolean   | 是     | true表示设置返回桌面时自动启动画中画，否则为false。  |
 
+**示例：**
+
 ```ts
 let enable: boolean = true;
 pipController.setAutoStartEnabled(enable);
@@ -290,6 +292,8 @@ updateContentSize(width: number, height: number): void
 |--------|--------|-----|------------------------------|
 | width  | number | 是   | 表示媒体内容宽度，单位为px。用于更新画中画窗口比例。   |
 | height | number | 是   | 表示媒体内容高度，单位为px。用于更新画中画窗口比例。   |
+
+**示例：**
 
 ```ts
 let width: number = 540; // 假设当前内容宽度变为540px。
@@ -311,6 +315,8 @@ on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): vo
 |------------|-----------|------|---------------------------------------------------------------------------------------------------|
 | type       | string    | 是    | 监听事件，固定为'stateChange'，即画中画生命周期状态变化事件。                                                             |
 | callback   | function  | 是    | 回调生命周期状态变化事件以及原因：<br/>state：[PiPState](#pipstate)，表示当前画中画生命周期状态；<br/>reason：string，表示当前生命周期的切换原因。 |
+
+**示例：**
 
 ```ts
 pipController.on('stateChange', (state: pipWindow.PiPState, reason: string) => {
@@ -375,6 +381,8 @@ on(type: 'controlPanelActionEvent', callback: (event: PiPActionEventType) => voi
 |----------|------------|-------|--------------------------------------------------------------------------------------------------------------------------------|
 | type     | string     | 是     | 监听事件，固定为'controlPanelActionEvent'，即画中画控制事件。                                                                                    |
 | callback | function   | 是     | 回调画中画控制事件:<br/>event: [PiPActionEventType](#pipactioneventtype)，表示控制事件类型。应用依据控制事件做相应处理，如触发'playbackStateChanged'事件时，需要开始或停止视频。 |
+
+**示例：**
 
 ```ts
 pipController.on('controlPanelActionEvent', (event: pipWindow.PiPActionEventType) => {
