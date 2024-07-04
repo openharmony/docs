@@ -5612,7 +5612,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowDecorHeight(height: number): void
 
-设置主窗口或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。
+<!--RP1-->设置主窗口或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。<!--RP1End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5668,7 +5668,7 @@ export default class EntryAbility extends UIAbility {
 
 getWindowDecorHeight(): number
 
-获取主窗口或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。
+<!--RP2-->获取主窗口或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。<!--RP2End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5722,7 +5722,7 @@ export default class EntryAbility extends UIAbility {
 
 getTitleButtonRect(): TitleButtonRect
 
-获取主窗口或启用装饰的子窗口的标题栏上的最小化、最大化、关闭按钮矩形区域，此接口仅可在2in1设备上使用。
+<!--RP3-->获取主窗口或启用装饰的子窗口的标题栏上的最小化、最大化、关闭按钮矩形区域，此接口仅可在2in1设备上使用。<!--RP3End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
