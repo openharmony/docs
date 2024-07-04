@@ -381,7 +381,7 @@
 >
 > 可以使用资产类型记录资产附件（文件、图片、视频等类型文件）的相关信息，迁移资产类型数据时，对应的资产附件会一起迁移到对端。
 >
-> 接收端需要将业务数据的初始值设置为undefined，才能恢复发起端保存的数据，否则接收端的数据会覆盖同步到发起端。如果是资产数据，需要将资产数据的各个属性置空而不是将整个资产数据设置为undefined。
+> 接收端需要将业务数据的初始值设置为undefined，才能恢复发起端保存的数据，否则接收端的数据会覆盖同步到发起端。如果是资产数据，需要将资产数据的各个属性设置为空字符串而不是将整个资产数据设置为undefined。
 >
 > 暂不支持资产类型数组，如果要迁移多个文件，在业务数据中定义多条资产数据来记录。
 >
@@ -458,7 +458,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     // 2.1 调用create接口创建并得到一个分布式数据对象实例
-    let attachment = this.createEmptyAttachment(); // 接收端需要将资产数据的各个属性置为空，才能恢复发起端保存的资产数据
+    let attachment = this.createEmptyAttachment(); // 接收端需要将资产数据的各个属性设置为空字符串，才能恢复发起端保存的资产数据
     let data = new Data(undefined, undefined, attachment);
     dataObject = distributedDataObject.create(this.context, data);
 
