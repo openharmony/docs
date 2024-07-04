@@ -355,7 +355,7 @@ struct Index {
 
 constructor(value: number, unit?: LengthUnit)
 
-LengthMetrics的构造函数。
+LengthMetrics的构造函数。若参数unit不传入值或传入undefined，返回值使用默认单位VP；若unit传入非LengthUnit类型的值，返回默认值0VP。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
