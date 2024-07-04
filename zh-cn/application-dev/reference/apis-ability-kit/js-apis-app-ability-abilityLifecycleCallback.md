@@ -198,7 +198,7 @@ onAbilityContinue(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onAbilityWillCreate
+## AbilityLifecycleCallback.onAbilityWillCreate<sup>12+</sup>
 
 onAbilityWillCreate?(ability: UIAbility): void
 
@@ -216,7 +216,7 @@ onAbilityWillCreate?(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onWindowStageWillCreate
+## AbilityLifecycleCallback.onWindowStageWillCreate<sup>12+</sup>
 
 onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): void
 
@@ -235,7 +235,7 @@ onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): v
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onWindowStageWillDestroy
+## AbilityLifecycleCallback.onWindowStageWillDestroy<sup>12+</sup>
 
 onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): void
 
@@ -254,7 +254,7 @@ onWindowStageWillDestroy?(ability: UIAbility, windowStage: window.WindowStage): 
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onAbilityWillForeground
+## AbilityLifecycleCallback.onAbilityWillForeground<sup>12+</sup>
 
 onAbilityWillForeground?(ability: UIAbility): void
 
@@ -272,7 +272,7 @@ onAbilityWillForeground?(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onAbilityWillDestroy
+## AbilityLifecycleCallback.onAbilityWillDestroy<sup>12+</sup>
 
 onAbilityWillDestroy?(ability: UIAbility): void
 
@@ -290,7 +290,7 @@ onAbilityWillDestroy?(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onAbilityWillBackground
+## AbilityLifecycleCallback.onAbilityWillBackground<sup>12+</sup>
 
 onAbilityWillBackground?(ability: UIAbility): void
 
@@ -308,7 +308,7 @@ onAbilityWillBackground?(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onWillNewWant
+## AbilityLifecycleCallback.onWillNewWant<sup>12+</sup>
 
 onWillNewWant?(ability: UIAbility): void
 
@@ -326,7 +326,7 @@ onWillNewWant?(ability: UIAbility): void
 
 参见[AbilityLifecycleCallback使用](#abilitylifecyclecallback使用)。
 
-## AbilityLifecycleCallback.onNewWant
+## AbilityLifecycleCallback.onNewWant<sup>12+</sup>
 
 onNewWant?(ability: UIAbility): void
 
