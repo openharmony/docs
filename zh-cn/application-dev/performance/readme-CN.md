@@ -1,5 +1,6 @@
 - 性能
   - [性能优化概览](performance-overview.md)
+  - [应用开发性能优化入门引导](application-performance-optimization-guidance.md)
   - ArkTS高性能编程
     - [高效并发编程](efficient-concurrent-programming.md)
     - [N-API高效开发指导](develop-Native-modules-using-NAPI-safely-and-efficiently.md)
