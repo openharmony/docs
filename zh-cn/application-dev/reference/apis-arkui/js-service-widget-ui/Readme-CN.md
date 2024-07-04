@@ -1,4 +1,4 @@
-# 组件（JS服务卡片UI组件参考）
+# JS服务卡片UI组件参考
 
 - 框架说明
   - [文件组织](js-service-widget-file.md)

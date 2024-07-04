@@ -1813,7 +1813,7 @@
           - [@system.mediaquery (媒体查询)](reference/apis-arkui/js-apis-system-mediaquery.md)
           - [@system.prompt (弹窗)](reference/apis-arkui/js-apis-system-prompt.md)
           - [@system.router (页面路由)](reference/apis-arkui/js-apis-system-router.md)
-      - 组件（基于ArkTS的声明式开发范式）<!--arkui-declarative-comp-->
+      - ArkTS组件<!--arkui-declarative-comp-->
         - [组件导读](reference/apis-arkui/arkui-ts/ts-components-summary.md)
         - 组件通用信息
           - 通用事件
@@ -2095,7 +2095,8 @@
           - [Panel](reference/apis-arkui/arkui-ts/ts-container-panel.md)
         - 已停止维护的接口
           - [点击控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md)
-      - 组件（兼容JS的类Web开发范式-ArkUI.Full）<!--arkui-web-like-comp-->
+      - JS组件
+        - 兼容JS的类Web开发范式（ArkUI.Full）<!--arkui-web-like-comp-->
         - 组件通用信息
           - [通用属性](reference/apis-arkui/arkui-js/js-components-common-attributes.md)
           - [通用样式](reference/apis-arkui/arkui-js/js-components-common-styles.md)
@@ -2196,7 +2197,7 @@
           - [生命周期定义](reference/apis-arkui/arkui-js/js-components-custom-lifecycle.md)
         - [动态创建组件](reference/apis-arkui/arkui-js/js-components-create-elements.md)
         - [数据类型说明](reference/apis-arkui/arkui-js/js-appendix-types.md)
-      - 组件（兼容JS的类Web开发范式-ArkUI.Lite）<!--arkui-web-like-lite-comp-->
+        - 兼容JS的类Web开发范式（ArkUI.Lite）<!--arkui-web-like-lite-comp-->
         - 框架说明
           - [文件组织](reference/apis-arkui/arkui-js-lite/js-lite-framework-file.md)
           - [js标签配置](reference/apis-arkui/arkui-js-lite/js-lite-framework-js-tag.md)
@@ -2234,7 +2235,7 @@
         - 画布组件
           - [canvas组件](reference/apis-arkui/arkui-js-lite/js-lite-components-canvas-canvas.md)
           - [CanvasRenderingContext2D对象](reference/apis-arkui/arkui-js-lite/js-lite-components-canvas-canvasrenderingcontext2d.md)
-      - 组件（JS服务卡片UI组件参考）<!--arkui-card-comp-->
+        - JS服务卡片UI组件参考<!--arkui-card-comp-->
         - 框架说明
           - [文件组织](reference/apis-arkui/js-service-widget-ui/js-service-widget-file.md)
           - 语法

@@ -66,7 +66,7 @@
     - [@system.mediaquery (媒体查询)](js-apis-system-mediaquery.md)
     - [@system.prompt (弹窗)](js-apis-system-prompt.md)
     - [@system.router (页面路由)](js-apis-system-router.md)
-- 组件（基于ArkTS的声明式开发范式）
+- ArkTS组件
   - [组件导读](arkui-ts/ts-components-summary.md)
   - 组件通用信息
     - 通用事件
@@ -351,9 +351,10 @@
     - [Panel](arkui-ts/ts-container-panel.md)
   - 已停止维护的接口
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
-- [组件（兼容JS的类Web开发范式-ArkUI.Full）](arkui-js/Readme-CN.md)    
-- [组件（兼容JS的类Web开发范式-ArkUI.Lite）](arkui-js-lite/Readme-CN.md)
-- [组件（JS服务卡片UI组件参考）](js-service-widget-ui/Readme-CN.md)
+- JS组件
+  - [兼容JS的类Web开发范式（ArkUI.Full）](arkui-js/Readme-CN.md)    
+  - [兼容JS的类Web开发范式（ArkUI.Lite）](arkui-js-lite/Readme-CN.md)
+  - [JS服务卡片UI组件参考）](js-service-widget-ui/Readme-CN.md)
 - C API
   - 模块
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
