@@ -675,7 +675,7 @@ pipController.on('controlPanelActionEvent', (event: PiPWindow.PiPActionEventType
 
 ### on('controlEvent')<sup>12+</sup>
 
-on(type: 'controlEvent', callback: CallBack&lt;ControlEventParam&gt;): void
+on(type: 'controlEvent', callback: Callback&lt;ControlEventParam&gt;): void
 
 开启画中画控制面板控件动作事件的监听。
 
@@ -741,7 +741,7 @@ pipController.off('controlPanelActionEvent');
 
 ### off('controlEvent')<sup>12+</sup>
 
-off(type: 'controlEvent', callback?: CallBack&lt;ControlEventParam&gt;): void
+off(type: 'controlEvent', callback?: Callback&lt;ControlEventParam&gt;): void
 
 关闭画中画控制面板控件动作事件的监听。
 
