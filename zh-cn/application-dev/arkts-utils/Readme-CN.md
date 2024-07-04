@@ -35,3 +35,5 @@
 - [代码混淆](source-obfuscation.md)
 - 内存管理
   - [GC介绍](gc-introduction.md)
+- 模块加载
+  - [同步方式动态加载native模块](js-apis-load-native-module.md)
