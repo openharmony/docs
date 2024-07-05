@@ -2146,6 +2146,8 @@ openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Ab
 | 16000013 | The application is controlled by EDM.       |
 | 16000019 | Can not match any component. |
 | 16200001 | The caller has been released. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000054 | Installation-free service is busy.Try again later. |
 
 **示例：**
 
