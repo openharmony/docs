@@ -255,6 +255,22 @@ barGridAlign(value: BarGridColumnOptions)
 | ------ | ------------------------------------------------------- | ---- | ---------------------------------- |
 | value  | [BarGridColumnOptions](#bargridcolumnoptions10对象说明) | 是   | 以栅格化方式设置TabBar的可见区域。 |
 
+### edgeEffect<sup>12+</sup>
+
+edgeEffect(value: EdgeEffect)
+
+设置边缘回弹效果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                         |
+| ------ | --------------------------------------------- | ---- | -------------------------------------------- |
+| value  | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
+
 ## DividerStyle<sup>10+</sup>对象说明
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
