@@ -8,11 +8,11 @@
 
 **Error Message**
 
-The application is not an administrator of the device.
+The application is not a administrator of the device.
 
 **Description**
 
-This error code is reported when the caller is not an enabled device administrator application.
+This error code is generated when the caller is not an enabled device administrator application.
 
 **Possible Causes**
 
@@ -20,7 +20,7 @@ The enterprise device management APIs can be called only by a device administrat
 
 **Solution**
 
-Check that the caller is an enabled device administrator application.
+Check whether the caller is a device administrator application enabled.
 
 ## 9200002 Permission Denied
 
@@ -30,11 +30,11 @@ The administrator application does not have permission to manage the device.
 
 **Description**
 
-This error code is reported when the device administrator application does not have the permission to call the API.
+This error code is generated when the device administrator application does not have the permission to invoke the API.
 
 **Possible Causes**
 
-The device administrator application cannot call the APIs that are accessible only by a super device administrator application.
+A device administrator application calls an API that is accessible only by a super administrator application.
 
 **Solution**
 
@@ -48,10 +48,11 @@ The administrator ability component is invalid.
 
 **Description**
 
-This error code is reported when the specified device administrator ability component is invalid.
+This error code is generated when the specified device manager ability component is invalid.
 
 **Possible Causes**
 
+The specified administrator ability component is invalid due to any of the following causes:
 1. The administrator ability component does not exist when the device administrator application is enabled.
 2. The administrator ability component is not a valid enterprise administrator ability component.
 
@@ -72,8 +73,9 @@ This error code is reported when an application fails to be enabled as a device 
 
 **Possible Causes**
 
+The possible causes are as follows:
 1. Multiple applications are enabled as the super device administrator application.
-2. The application has been enabled as a device administrator application with a different administrator type.
+2. The application has been enabled as a device administrator application, but the administrator type has changed.
 3. Multiple device administrator ability components are enabled for the same application.
 
 **Solution**
@@ -94,7 +96,8 @@ This error code is reported when the operation for disabling a device administra
 
 **Possible Causes**
 
-1. The application to be disabled is not an enabled device administrator application.
+The possible causes are as follows:
+1. The application to be disabled is not a device administrator application.
 2. The caller cannot disable other device administrator applications.
 
 **Solution**
@@ -115,8 +118,9 @@ This error code is reported when the specified user ID does not exist or the spe
 
 **Possible Causes**
 
+The possible causes are as follows:
 1. The user ID specified for setting a user policy does not exist.
-2. The specified user ID is different from the caller's user ID when the application is not a super device administrator application.
+2. The specified user ID is different from the caller user ID, the application is not a super device administrator application.
 
 **Solution**
 
@@ -135,10 +139,11 @@ This error code is reported when the enterprise device management ability is not
 
 **Possible Causes**
 
-- The EnterpriseAdminAbility is not started.
-- The RPC object for enterprise device management cannot be obtained.
-- Other abilities, on which the EnterpriseAdminAbility depends, are not started, or the RPC object cannot be obtained.
-- A system exception occurs during the running of EnterpriseAdminAbility.
+The possible causes are as follows:
+1. The EnterpriseAdminAbility is not started.
+2. The RPC object for enterprise device management cannot be obtained.
+3. Other abilities, on which the EnterpriseAdminAbility depends, are not started, or the RPC object cannot be obtained.
+4. A system exception occurs during the running of EnterpriseAdminAbility.
 
 **Solution**
 
@@ -162,7 +167,7 @@ The enterprise device management module does not support subscription to the spe
 
 Check that the specified event is valid and supported by the enterprise device management module.
 
-## 9200009 Failed to Grant Permissions to the Application
+## 9200009 Failed to Grant Permissions to an Application
 
 **Error Message**
 
@@ -188,7 +193,7 @@ a conflicting policy has been configured.
 
 **Description**
 
-This error code is reported when a conflict policy is being delivered.
+This error code is generated when a conflict policy is being delivered.
 
 **Possible Causes**
 
@@ -220,14 +225,15 @@ Check that the user certificate is correct.
 
 **Error Message**
 
-The application installation failed.
+the application install failed.
 
 **Description**
 
-This error code is reported when a device administrator application fails to install an enterprise application.
+This error code is reported when a device administrator application fails to install an enterprise app.
 
 **Possible Causes**
 
+The possible causes are as follows:
 1. The application installation path is empty or invalid, or does not exist.
 2. The operation attempts to install multiple apps with different bundle names.
 3. The application to be installed already exists when the installation parameter flag is 0.

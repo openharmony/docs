@@ -329,7 +329,6 @@ struct PageTransitionExample {
         .fontSize(36)
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
-}
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
   pageTransition() {
@@ -341,7 +340,9 @@ struct PageTransitionExample {
       .slide(SlideEffect.START) //Left
   }
 }
+```
 
+```ts
 // page1.ets
 import { router } from '@kit.ArkUI'
 
@@ -363,7 +364,6 @@ struct PageTransitionExample {
         .fontSize(36)
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
-}
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
   pageTransition() {
@@ -403,7 +403,9 @@ struct PageTransitionExample {
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
 }
+```
 
+```ts
 // page1.ets
 import { router } from '@kit.ArkUI'
 
@@ -426,7 +428,6 @@ struct PageTransitionExample {
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
 }
-
 ```
 
 ![pageTransition1](figures/pageRTL2.gif)

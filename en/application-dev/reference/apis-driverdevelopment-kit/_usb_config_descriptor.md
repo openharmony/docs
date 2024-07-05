@@ -11,7 +11,7 @@ Defines standard configuration descriptors, which correspond to **Standard Confi
 
 **Related Modules**
 
-[UsbDdk](_usb_ddk.md)
+[USB DDK](_usb_ddk.md)
 
 
 ## Summary
