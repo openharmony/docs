@@ -119,7 +119,7 @@
 
 为了简化描述：
 
-- 称调用方传入的want参数中的uri参数为w_uri；待匹配应用组件的skills配置中uri为s_uris，其中每个元素为s_uri。
+- 称调用方传入的want参数中的uri参数为w_uri；待匹配应用组件的skills配置中uris为s_uris，其中每个元素为s_uri。
 - 称调用方传入的want参数的type参数为w_type，待匹配应用组件的skills数组中uris的type数据为s_type。
 
 **图4** want参数中uri和type的具体匹配规则

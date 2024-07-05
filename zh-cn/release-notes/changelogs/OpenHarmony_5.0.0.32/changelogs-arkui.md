@@ -165,7 +165,41 @@ List组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeav
 
 默认行为变更，无需适配。
 
-## cl.arkui.6 hideNonSecureWindows接口行为变更
+## cl.arkui.6 List的ConstraintSize设置生效
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+List的布局行为和当前通用的布局约束优先的规格不一致。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，List不设置Height时，Constraint的minHeight设置不生效。
+
+变更后，List不设置Height时，Constraint的minHeight设置会生效。
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+List组件的ConstraintSize接口。
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.arkui.7 hideNonSecureWindows接口行为变更
 
 **访问级别**
 
@@ -189,7 +223,7 @@ List组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeav
 CreateModalUIExtension防不安全遮挡行为变更，变更前后行为如下表所示
 | 变更前 | 变更后 |
 | --- | --- |
-|CreateModalUIExtension默认行为为不防不安全窗口遮挡，允许系统应用设置防不安全窗口遮挡|CreateModalUIExtension默认行为为防不安全窗口遮挡，且不允许取消防遮挡|
+| CreateModalUIExtension默认行为为不防不安全窗口遮挡，允许系统应用设置防不安全窗口遮挡 | CreateModalUIExtension默认行为为防不安全窗口遮挡，且不允许取消防遮挡 |
 
 **起始API Level**
 
