@@ -11,7 +11,7 @@ Setup data for control transfer. It corresponds to <b>Setup Data</b> in the USB 
 
 **Related Modules**
 
-[UsbDdk](_usb_ddk.md)
+[USB DDK](_usb_ddk.md)
 
 
 ## Summary

@@ -12,7 +12,7 @@ For details about the system parameter design principles and definitions, see [P
 ## Modules to Import
 
 ```ts
-import systemparameter from '@ohos.systemParameterEnhance';
+import { systemParameter } from '@kit.systemParameterEnhance';
 ```
 
 ## systemparameter.getSync
@@ -87,7 +87,7 @@ For details about the error codes, see [System Parameter Error Codes](errorcode-
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     systemparameter.get("const.ohos.apiversion", (err: BusinessError, data: string) => {
@@ -131,7 +131,7 @@ For details about the error codes, see [System Parameter Error Codes](errorcode-
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     systemparameter.get("const.ohos.apiversion", "default", (err: BusinessError, data: string) => {
@@ -181,7 +181,7 @@ For details about the error codes, see [System Parameter Error Codes](errorcode-
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let p: Promise<string> = systemparameter.get("const.ohos.apiversion");
@@ -224,7 +224,7 @@ For details about the error codes, see [System Parameter Error Codes](errorcode-
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     systemparameter.setSync("test.parameter.key", "default");
@@ -263,7 +263,7 @@ For details about the error codes, see [System Parameter Error Codes](errorcode-
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     systemparameter.set("test.parameter.key", "testValue", (err: BusinessError, data: void) => {
@@ -312,7 +312,7 @@ For details about the error codes, see [System Parameter Error Codes](errorcode-
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let p: Promise<void>  = systemparameter.set("test.parameter.key", "testValue");

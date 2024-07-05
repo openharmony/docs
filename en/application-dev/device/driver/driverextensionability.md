@@ -1,4 +1,4 @@
-# DriverExtensionAbility
+# DriverExtensionAbility Development
 
 [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) is an **ExtensionAbility** of the driver type that provides driver-related extension framework. If the capabilities of a device can be expanded by inserting an external hardware module, you can install the driver of the hardware module through an application. **DriverExtensionAbility** can be used to develop such applications.
 
