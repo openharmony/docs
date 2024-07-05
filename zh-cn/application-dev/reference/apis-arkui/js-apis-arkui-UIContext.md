@@ -1512,7 +1512,7 @@ struct Index {
 **示例：**
 
 ```ts
-import { FrameCallback } from '@ohos.arkui.UIContext';
+import {FrameCallback } from '@kit.ArkUI';
 
 class MyFrameCallback extends FrameCallback {
   private tag: string;
@@ -1559,7 +1559,7 @@ struct Index {
 **示例：**
 
 ```ts
-import { FrameCallback } from '@ohos.arkui.UIContext';
+import {FrameCallback } from '@kit.ArkUI';
 
 class MyFrameCallback extends FrameCallback {
   private tag: string;
@@ -1612,6 +1612,396 @@ requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
 ```ts
 uiContext.DynamicSyncScene("dynamicSyncScene")
 ```
+
+### openBindSheet<sup>12+</sup>
+
+openBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOptions?: SheetOptions, targetId?: number): Promise&lt;void&gt;
+
+创建并弹出以bindSheetContent作为内容的半模态页面，使用Promise异步回调。通过该接口弹出的半模态页面样式完全按照bindSheetContent中设置的样式显示。
+
+> **说明：**
+>
+> 1. 使用该接口时，若未传入有效的targetId，则不支持设置SheetOptions.preferType为POPUP模式、不支持设置SheetOptions.mode为EMBEDDED模式。
+>
+> 2. 由于[updateBindSheet](#updatebindsheet12)和[closeBindSheet](#closebindsheet12)依赖bindSheetContent去更新或者关闭指定的半模态页面，开发者需自行维护传入的bindSheetContent。
+>
+> 3. 不支持设置SheetOptions.UIContext。
+>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 半模态页面中显示的组件内容。 |
+| sheetOptions | [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) | 否    |   半模态页面样式。<br/>**说明：** <br/>1. 不支持设置SheetOptions.uiContext，该属性的值固定为当前实例的UIContext。<br/>2. 若不传递targetId，则不支持设置SheetOptions.preferType为POPUP样式，若设置了POPUP样式则使用CENTER样式替代。<br/>3. 若不传递targetId，则不支持设置SheetOptions.mode为EMBEDDED模式，默认为OVERLAY模式。<br/>4. 其余属性的默认值参考[SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)文档。 |
+| targetId | number | 否    |   需要绑定组件的ID，若不指定则不绑定任何组件。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[半模态错误码](errorcode-bindSheet.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 120001 | The bindSheetContent is incorrect. |
+| 120002 | The bindSheetContent already exists. |
+| 120004 | The targetld does not exist. |
+| 120005 | The node of targetId is not in the component tree. |
+| 120006 | The node of targetId is not a child of the page node or NavDestination node. |
+
+**示例：**
+
+```ts
+import { FrameNode, ComponentContent } from "@kit.ArkUI";
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class Params {
+  text: string = ""
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+let contentNode: ComponentContent<Params>;
+let gUIContext: UIContext;
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+    Button('Update BindSheet')
+      .fontSize(20)
+      .onClick(() => {
+        gUIContext.updateBindSheet(contentNode, {
+          backgroundColor: Color.Pink,
+        }, true)
+          .then(() => {
+            console.info('updateBindSheet success');
+          })
+          .catch((err: BusinessError) => {
+            console.info('updateBindSheet error: ' + err.code + ' ' + err.message);
+          })
+      })
+
+    Button('Close BindSheet')
+      .fontSize(20)
+      .onClick(() => {
+        gUIContext.closeBindSheet(contentNode)
+          .then(() => {
+            console.info('closeBindSheet success');
+          })
+          .catch((err: BusinessError) => {
+            console.info('closeBindSheet error: ' + err.code + ' ' + err.message);
+          })
+      })
+  }
+}
+
+@Entry
+@Component
+struct UIContextBindSheet {
+  @State message: string = 'BindSheet';
+
+  aboutToAppear() {
+    gUIContext = this.getUIContext();
+    contentNode = new ComponentContent(this.getUIContext(), wrapBuilder(buildText), new Params(this.message));
+  }
+
+  build() {
+    RelativeContainer() {
+      Column() {
+        Button('Open BindSheet')
+          .fontSize(20)
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let uniqueId = this.getUniqueId();
+            let frameNode: FrameNode | null = uiContext.getFrameNodeByUniqueId(uniqueId);
+            let targetId = frameNode?.getFirstChild()?.getUniqueId();
+            uiContext.openBindSheet(contentNode, {
+              height: SheetSize.MEDIUM,
+              backgroundColor: Color.Green,
+              title: { title: "Title", subtitle: "subtitle" }
+            }, targetId)
+              .then(() => {
+                console.info('openBindSheet success');
+              })
+              .catch((err: BusinessError) => {
+                console.info('openBindSheet error: ' + err.code + ' ' + err.message);
+              })
+          })
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+### updateBindSheet<sup>12+</sup>
+
+updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, SheetOptions: SheetOptions，partialUpdate?: boolean ): Promise&lt;void&gt;
+
+更新bindSheetContent对应的半模态页面的样式，使用Promise异步回调。
+
+> **说明：**
+>
+> 不支持更新SheetOptions.UIContext、SheetOptions.mode、回调函数。
+>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 半模态页面中显示的组件内容。 |
+| SheetOptions | [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) | 是    |   半模态页面样式。<br/>**说明：** <br/>不支持更新SheetOptions.uiContext、SheetOptions.mode、回调函数。 |
+| partialUpdate | boolean | 否    |   半模态页面更新方式, 默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新SheetOptions中的指定属性。 <br/>2. false为全量更新，除SheetOptions中的指定属性，其他属性恢复默认值。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[半模态错误码](errorcode-bindSheet.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 120001 | The bindSheetContent is incorrect. |
+| 120003 | The bindSheetContent cannot be found. |
+
+**示例：**
+
+```ts
+import { FrameNode, ComponentContent } from "@kit.ArkUI";
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class Params {
+  text: string = ""
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+let contentNode: ComponentContent<Params>;
+let gUIContext: UIContext;
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+    Button('Update BindSheet')
+      .fontSize(20)
+      .onClick(() => {
+        gUIContext.updateBindSheet(contentNode, {
+          backgroundColor: Color.Pink,
+        }, true)
+          .then(() => {
+            console.info('updateBindSheet success');
+          })
+          .catch((err: BusinessError) => {
+            console.info('updateBindSheet error: ' + err.code + ' ' + err.message);
+          })
+      })
+
+    Button('Close BindSheet')
+      .fontSize(20)
+      .onClick(() => {
+        gUIContext.closeBindSheet(contentNode)
+          .then(() => {
+            console.info('closeBindSheet success');
+          })
+          .catch((err: BusinessError) => {
+            console.info('closeBindSheet error: ' + err.code + ' ' + err.message);
+          })
+      })
+  }
+}
+
+@Entry
+@Component
+struct UIContextBindSheet {
+  @State message: string = 'BindSheet';
+
+  aboutToAppear() {
+    gUIContext = this.getUIContext();
+    contentNode = new ComponentContent(this.getUIContext(), wrapBuilder(buildText), new Params(this.message));
+  }
+
+  build() {
+    RelativeContainer() {
+      Column() {
+        Button('Open BindSheet')
+          .fontSize(20)
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let uniqueId = this.getUniqueId();
+            let frameNode: FrameNode | null = uiContext.getFrameNodeByUniqueId(uniqueId);
+            let targetId = frameNode?.getFirstChild()?.getUniqueId();
+            uiContext.openBindSheet(contentNode, {
+              height: SheetSize.MEDIUM,
+              backgroundColor: Color.Green,
+              title: { title: "Title", subtitle: "subtitle" }
+            }, targetId)
+              .then(() => {
+                console.info('openBindSheet success');
+              })
+              .catch((err: BusinessError) => {
+                console.info('openBindSheet error: ' + err.code + ' ' + err.message);
+              })
+          })
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+### closeBindSheet<sup>12+</sup>
+
+closeBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>): Promise&lt;void&gt;
+
+关闭bindSheetContent对应的半模态页面，使用Promise异步回调。
+
+> **说明：**
+>
+> 使用此接口关闭半模态页面时，不会触发shouldDismiss回调。
+>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| bindSheetContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 半模态页面中显示的组件内容。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[半模态错误码](errorcode-bindSheet.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 120001 | The bindSheetContent is incorrect. |
+| 120003 | The bindSheetContent cannot be found. |
+
+**示例：**
+
+```ts
+import { FrameNode, ComponentContent } from "@kit.ArkUI";
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class Params {
+  text: string = ""
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+let contentNode: ComponentContent<Params>;
+let gUIContext: UIContext;
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+    Button('Update BindSheet')
+      .fontSize(20)
+      .onClick(() => {
+        gUIContext.updateBindSheet(contentNode, {
+          backgroundColor: Color.Pink,
+        }, true)
+          .then(() => {
+            console.info('updateBindSheet success');
+          })
+          .catch((err: BusinessError) => {
+            console.info('updateBindSheet error: ' + err.code + ' ' + err.message);
+          })
+      })
+
+    Button('Close BindSheet')
+      .fontSize(20)
+      .onClick(() => {
+        gUIContext.closeBindSheet(contentNode)
+          .then(() => {
+            console.info('closeBindSheet success');
+          })
+          .catch((err: BusinessError) => {
+            console.info('closeBindSheet error: ' + err.code + ' ' + err.message);
+          })
+      })
+  }
+}
+
+@Entry
+@Component
+struct UIContextBindSheet {
+  @State message: string = 'BindSheet';
+
+  aboutToAppear() {
+    gUIContext = this.getUIContext();
+    contentNode = new ComponentContent(this.getUIContext(), wrapBuilder(buildText), new Params(this.message));
+  }
+
+  build() {
+    RelativeContainer() {
+      Column() {
+        Button('Open BindSheet')
+          .fontSize(20)
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let uniqueId = this.getUniqueId();
+            let frameNode: FrameNode | null = uiContext.getFrameNodeByUniqueId(uniqueId);
+            let targetId = frameNode?.getFirstChild()?.getUniqueId();
+            uiContext.openBindSheet(contentNode, {
+              height: SheetSize.MEDIUM,
+              backgroundColor: Color.Green,
+              title: { title: "Title", subtitle: "subtitle" }
+            }, targetId)
+              .then(() => {
+                console.info('openBindSheet success');
+              })
+              .catch((err: BusinessError) => {
+                console.info('openBindSheet error: ' + err.code + ' ' + err.message);
+              })
+          })
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
@@ -1636,6 +2026,7 @@ registerFont(options: font.FontOptions): void
 
 ```ts
 import { Font } from '@kit.ArkUI';
+
 let font:Font = uiContext.getFont();
 font.registerFont({
   familyName: 'medium',
@@ -1662,6 +2053,7 @@ getSystemFontList(): Array\<string>
 
 ```ts
 import { Font } from '@kit.ArkUI';
+
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getSystemFontList()
@@ -1694,6 +2086,7 @@ getFontByName(fontName: string): font.FontInfo
 
 ```ts
 import { Font } from '@kit.ArkUI';
+
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getFontByName('Sans Italic')
@@ -1767,7 +2160,6 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 ```ts
 import { UIInspector } from '@kit.ArkUI';
-
 
 let inspector: UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
@@ -2110,7 +2502,7 @@ on(type: 'densityUpdate', callback: Callback\<observer.DensityInfo\>): void
 | callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 是   | 回调函数。携带densityInfo，返回变化后的屏幕像素密度。                 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2118,7 +2510,7 @@ struct Index {
   @State density: number = 0;
   @State message: string = '未注册监听'
 
-  densityUpdateCallback = (info: observer.DensityInfo) => {
+  densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
     this.message = '变化后的DPI：' + this.density.toString();
   }
@@ -2154,7 +2546,7 @@ off(type: 'densityUpdate', callback?: Callback\<observer.DensityInfo\>): void
 | callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\> | 否   | 需要被注销的回调函数。若不指定具体的回调函数，则注销该UIContext下所有densityUpdate事件监听。 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2162,7 +2554,7 @@ struct Index {
   @State density: number = 0;
   @State message: string = '未注册监听'
 
-  densityUpdateCallback = (info: observer.DensityInfo) => {
+  densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
     this.message = '变化后的DPI：' + this.density.toString();
   }
@@ -2203,7 +2595,7 @@ on(type: 'willDraw', callback: Callback\<void\>): void
 | callback | Callback\<void\>        | 是   | 回调函数。                 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2238,7 +2630,7 @@ off(type: 'willDraw', callback?: Callback\<void\>): void
 | callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2278,7 +2670,7 @@ on(type: 'didLayout', callback: Callback\<void\>): void
 | callback | Callback\<void\>        | 是   | 回调函数。                 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2313,7 +2705,7 @@ off(type: 'didLayout', callback?: Callback\<void\>): void
 | callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2790,7 +3182,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { MediaQuery } from '@kit.ArkUI';
 
 let mediaquery: MediaQuery = uiContext.getMediaQuery();
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
@@ -3739,12 +4131,14 @@ back(index: number, params?: Object): void;
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.back(1);
 ```
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.back(1, {info:'来自Home页'}); //携带参数返回
 ```
@@ -3763,6 +4157,7 @@ clear(): void
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.clear();    
 ```
@@ -3787,6 +4182,7 @@ getLength(): string
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
 console.info('pages stack size = ' + size);    
@@ -3812,6 +4208,7 @@ getState(): router.RouterState
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let page = router.getState();
 console.info('current index = ' + page.index);
@@ -3843,6 +4240,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let options: router.RouterState | undefined = router.getStateByIndex(1);
 if (options != undefined) {
@@ -5246,9 +5644,8 @@ setVisible(visible: boolean): void
 **示例：**
 
 ```ts
-import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -5288,9 +5685,8 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 **示例：**
 
 ```ts
-import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, AtomicServiceBar,window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
@@ -5329,9 +5725,8 @@ setTitleContent(content:string): void
 **示例：**
 
 ```ts
-import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, AtomicServiceBar,window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -5371,9 +5766,8 @@ setTitleFontStyle(font:FontStyle):void
 **示例：**
 
 ```ts
-import { UIContext, Font, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, Font, AtomicServiceBar } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -5414,9 +5808,8 @@ setIconColor(color:Nullable<Color | number | string>): void
 **示例：**
 
 ```ts
-import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, Font, window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -5694,7 +6087,7 @@ close(): void
 通过定时器触发，调用ContextMenuController的close方法关闭菜单
 
 ```ts
-import uiContext, { ContextMenuController } from '@ohos.arkui.UIContext';
+import { ContextMenuController } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -6149,7 +6542,7 @@ struct ComponentSnapshotExample {
 **示例：**
 
 ```ts
-import { FrameCallback } from '@ohos.arkui.UIContext';
+import {FrameCallback } from '@kit.ArkUI';
 
 class MyFrameCallback extends FrameCallback {
   private tag: string;

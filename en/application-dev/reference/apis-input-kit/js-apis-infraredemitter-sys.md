@@ -11,7 +11,7 @@ The **infraredEmitter** module generates IR signals of the specified frequency a
 ## Modules to Import
 
 ```js
-import infraredEmitter from '@ohos.multimodalInput.infraredEmitter';
+import { infraredEmitter } from '@kit.InputKit';
 ```
 
 ## infraredEmitter.transmitInfrared 

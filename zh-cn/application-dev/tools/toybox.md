@@ -159,7 +159,7 @@ hdc shell运行时，仅支持pidof/ps/watch/xargs。<br />
 | expand    | 根据制表符展开制表符为空格。<br />usage: expand [-t TABLIST] [FILE...] |
 | fgrep     | 显示匹配正则表达式的行。如果没有-e，则第一个参数为要匹配的正则表达式。没有文件（或“-”文件名）读取标准输入设备。如果匹配，则返回0；如果找不到匹配，则返回1；如果命令错误，则返回2。<br />usage: fgrep [-EFrivwcloqsHbhn] [-ABC NUM] [-m MAX] [-e REGEX]... [-MS  PATTERN]... [-f REGFILE] [FILE]... |
 | file      | 检查给定的文件并描述其内容类型。<br />usage: file [-bhLs] [file...] |
-| find      | 在目录中搜索匹配的文件。默认：搜索“.”，匹配所有，-print匹配。<br />usage: find [-HL] [DIR...] [<options>] |
+| find      | 在目录中搜索匹配的文件。默认：搜索“.”，匹配所有，-print匹配。<br />usage: find [-HL] [DIR...] [&lt;options&gt;] |
 | fmt       | 将输入重新格式化为给定行长的换行，保留现有的缩进级别，写入标准输出设备。<br />usage: fmt [-w WIDTH] [FILE...] |
 | grep      | 显示与正则表达式匹配的行。<br />usage: grep [-EFrivwcloqsHbhn] [-ABC NUM] [-m MAX] [-e REGEX]... [-MS  PATTERN]... [-f REGFILE] [FILE]... |
 | gunzip    | 解压文件。如果没有文件，则将标准输入设备解压为标准输出设备。成功后，输入文件将被删除并替换为新的没有.gz后缀的文件。<br />usage: gunzip [-cfkt] [FILE...] |

@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import {Action, Key, KeyEvent} from '@ohos.multimodalInput.keyEvent';
+import { Action, Key, KeyEvent } from '@kit.InputKit';
 ```
 
 ## Action

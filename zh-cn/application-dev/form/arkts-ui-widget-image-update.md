@@ -188,5 +188,3 @@
 > - Image组件通过入参(**memory://fileName**)中的**memory://**标识来进行远端内存图片显示，其中**fileName**需要和EntryFormAbility传递对象(**'formImages': {key: fd})**中的**key**相对应。
 >
 > - Image组件通过传入的参数是否有变化来决定是否刷新图片，因此EntryFormAbility每次传递过来的**imgName**都需要不同，连续传递两个相同的**imgName**时，图片不会刷新。
->
-> - 文件使用完成后必须关闭，否则会出现内存泄漏问题。系统不会自动关闭文件，开发者可以使用[fs.closeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsclosesync)来关闭文件。

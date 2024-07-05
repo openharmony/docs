@@ -333,7 +333,7 @@ Compared with the use of @StorageLink, the use of **emit** implements event noti
 
 ```ts
 // xxx.ets
-import emitter from '@ohos.events.emitter';
+import { emitter } from '@kit.BasicServicesKit';
 
 let NextID: number = 0;
 
@@ -715,5 +715,5 @@ When using AppStorage together with [PersistentStorage](arkts-persiststorage.md)
 
 - After an attribute is created in AppStorage, a call to **Environment.envProp()** with the same attribute name will fail. This is because environment variables will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable names in AppStorage.
 
-- Changes to the variables decorated by state decorators will cause UI re-rendering. If the changes are for message communication, rather than for UI re-rendering, the emitter mode is recommended. For the example, see <!--Del-->[<!--DelEnd-->**Unrecommended: Using @StorageLink to Implement Event Notification**<!--Del-->](#unrecommended-using-storagelink-to-implement-event-notification)<!--DelEnd-->.
+- Changes to the variables decorated by state decorators will cause UI re-rendering. If the changes are for message communication, rather than for UI re-rendering, the emitter mode is recommended. For the example, see [Unrecommended: Using @StorageLink to Implement Event Notification](#unrecommended-using-storagelink-to-implement-event-notification).
 <!--no_check-->

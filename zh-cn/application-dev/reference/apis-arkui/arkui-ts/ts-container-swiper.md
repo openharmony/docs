@@ -13,7 +13,7 @@
 
 >  **说明：** 
 >
->  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)）。
+>  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)）。
 >
 >  - Swiper子组件的visibility属性设置为None，Swiper的displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数。
 >
@@ -600,7 +600,7 @@ finishAnimation(callback?: () => void)
 | mask                          | boolean                                    | 是     | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false |
 | color                         | [ResourceColor](ts-types.md#resourcecolor) | 是     | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
 | selectedColor                 | [ResourceColor](ts-types.md#resourcecolor) | 是     | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
-| maxDisplayCount<sup>12+</sup> | number                                     | 否     | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值或者没有传值那等同于没有超长显示效果<br/>取值范围：6-9 |
+| maxDisplayCount<sup>12+</sup> | number                                     | 是     | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。|
 
 ### constructor
 

@@ -1,13 +1,13 @@
-# Using Picker to Select Media Assets
+# Selecting Media Assets Using Picker
 
 When a user needs to share files such as images and videos, use Picker to start **Gallery** for the user to select the files to share. No permission is required when Picker is used. Currently, a UIAbility is used to start **Gallery** with the window component. The procedure is as follows:
 
 1. Import modules.
 
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+   import { fileIo } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Create a **PhotoSelectOptions** instance.
@@ -45,21 +45,21 @@ When a user needs to share files such as images and videos, use Picker to start 
 
 ## Reading File Data by URI
 
-1. After the application UI is returned from **Gallery**, use a button to trigger the application's API. Use [fs.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an image based on the URI. After the image is opened, the FD is returned. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_ONLY**.
+1. After the application UI is returned from **Gallery**, use a button to trigger the application's API. Use [fileIo.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an image based on the URI. After the image is opened, the FD is returned. Note that the **mode** parameter of **fileIo.openSync()** must be **fileIo.OpenMode.READ_ONLY**.
 
    ```ts
    let uri: string = '';
-   let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
+   let file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
    console.info('file fd: ' + file.fd);
    ```
 
-2. Use [fs.readSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#readsync) to read the file based on the FD, and use **closeSync** to close the file.
+2. Use [fileIo.readSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#readsync) to read the file based on the FD, and close the FD after the data is read.
 
    ```ts
    let buffer = new ArrayBuffer(4096);
-   let readLen = fs.readSync(file.fd, buffer);
+   let readLen = fileIo.readSync(file.fd, buffer);
    console.info('readSync data to file succeed and buffer size is:' + readLen);
-   fs.closeSync(file);
+   fileIo.closeSync(file);
    ```
 
 ## Obtaining an Image or Video by URI
@@ -67,7 +67,7 @@ When a user needs to share files such as images and videos, use Picker to start 
 After an image or video is selected by Picker, the URI of the image or video is returned. You can obtain the image or video based on the URI. The following example demonstrates how to obtain the image based on the URI **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);

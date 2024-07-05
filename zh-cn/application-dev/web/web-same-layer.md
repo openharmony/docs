@@ -2,8 +2,6 @@
 
 同层渲染是ArkWeb组件为应用提供原生组件和Web元素渲染在同一层级的能力。支持的组件范围请参考[NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype)说明。 
 
-同层标签对应的元素区域的背景为白色，对于Web嵌套Web组件的形式只提供一层嵌套的支持。
-
 - 使用前请在module.json5中添加网络权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
   
    ```
@@ -14,11 +12,33 @@
     ]
    ```
 
+## 约束限制
+使用同层渲染的功能时会有如下限制。
+
+- 不支持W3C规格标准标签定义为同层标签。
+
+- 不支持同时配置Object标签和Embed标签作为同层渲染标签。
+
+- 一个页面内同层标签的个数建议不超过五个，超过这个范围性能体验可能得不到保障。
+
+- 同层标签最大高度不超过8192px，最大纹理大小为8192px。
+
+- Web组件嵌套Web只支持一层嵌套，不支持多层嵌套。如果多层嵌套，会显示 “该插件不受支持”。
+
+- 同层渲染区域支持的触屏事件包括：滑动、点击、缩放、长按，不支持拖拽。
+
+- 开启同层渲染后，Web组件打开的所有Web页面将不支持手势缩放和[initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale)、[zoom](../reference/apis-arkweb/js-apis-webview.md#zoom)、[zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout)等缩放接口。
+
+- 同层渲染区域不支持鼠标、键盘、触摸板事件
+
+- 开启同层渲染后，Web组件打开的所有Web页面将不支持统一渲染模式[RenderMode](../reference/apis-arkweb/ts-basic-components-web.md#rendermode)。
+
+
 ## 绘制XComponent+AVPlayer和Button组件
 
 ### 使能同层渲染模式
 
-开发者可通过[enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)控制同层渲染开关。Html文件中需要显式使用embed标签，并且embed标签内type必须以“native/”开头。同层渲染不支持选中拖拽。一个应用建议不超过五个存活的同层标签（embed或object），超过这个范围需要关注体验和性能。
+开发者可通过[enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)控制同层渲染开关。Html文件中需要显式使用embed标签，并且embed标签内type必须以“native/”开头。同层标签对应的元素区域的背景为透明。
 
 - 应用侧代码组件使用示例。
 
