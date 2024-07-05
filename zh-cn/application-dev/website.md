@@ -89,6 +89,7 @@
         - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
         - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
         - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
+        - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
         - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
     - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
@@ -258,7 +259,7 @@
           - [使用粘贴控件](security/AccessToken/pastebutton.md)
           - [使用保存控件](security/AccessToken/savebutton.md)
           - [使用位置控件](security/AccessToken/locationbutton.md)
-      - [Native子进程开发指导（C/C++)](application-models/capi_nativechildprocess_development_guideline.md) 
+      - [Native子进程开发指导（C/C++）](application-models/capi_nativechildprocess_development_guideline.md) 
     - Accessibility Kit（无障碍开发服务）<!--accessibility-kit-->
       - [Accessibility Kit简介](accessibility/accessibilityKit.md)
       - [AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)
@@ -328,7 +329,7 @@
         - [XML解析](arkts-utils/xml-parsing.md)
         - [XML转换](arkts-utils/xml-conversion.md)
       - [代码混淆](arkts-utils/source-obfuscation.md)
-      - 内存管理<!--memory-management-->
+      - 内存管理<!--(arkts-memory-management-->
         - [GC介绍](arkts-utils/gc-introduction.md)
     - ArkUI（方舟UI框架）<!--arkui-->
       - [ArkUI简介](ui/arkui-overview.md)
@@ -1049,7 +1050,7 @@
           - [分析JS Crash（进程崩溃）](dfx/jscrash-guidelines.md)
           - [分析CppCrash（进程崩溃）](dfx/cppcrash-guidelines.md)
           - [分析AppFreeze（应用无响应）](dfx/appfreeze-guidelines.md)
-        - 命令行工具<!--command-line-utilities-->
+        - 命令行工具<!--perform-command-line-utilities-->
           - [hdc](dfx/hdc.md)
           - [hilog](dfx/hilog.md)
           - [hidumper](dfx/hidumper.md)
@@ -1181,7 +1182,7 @@
         - [录像流二次处理的实现方案(C/C++)](media/camera/native-camera-recording-case-imageReceiver.md)
     - DRM Kit（数字版权保护服务）<!--drm-kit-->
       - [DRM Kit 简介](media/drm/drm-overview.md)
-      - 数字版权保护开发指导(ArkTS)<!--drm-arkts-->
+      - 数字版权保护开发指导(ArkTS)<!--drm-arkts-dev-->
         - [插件管理(ArkTS)](media/drm/drm-plugin-management.md)
         - [系统管理(ArkTS)](media/drm/drm-mediakeysystem-management.md)
         - [会话管理(ArkTS)](media/drm/drm-mediakeysession-management.md)
@@ -1190,7 +1191,7 @@
         - [会话管理(C/C++)](media/drm/native-drm-mediakeysession-management.md)
     - Image Kit（图片处理服务）<!--image-kit-->
       - [Image Kit简介](media/image/image-overview.md)
-      - 图片开发指导(ArkTS)<!--image-arkts-->
+      - 图片开发指导(ArkTS)<!--image-arkts-dev-->
         - [使用ImageSource完成图片解码](media/image/image-decoding.md)
         - [使用PixelMap完成图像变换](media/image/image-transformation.md)
         - [使用PixelMap完成位图操作](media/image/image-pixelmap-operation.md)
@@ -2635,7 +2636,6 @@
           - [@ohos.bluetooth.socket(蓝牙socket模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-socket.md)
           - [@ohos.bluetooth.pbap(蓝牙pbap模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-pbap.md)
           - [@ohos.bluetooth.map(蓝牙map模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-map.md)
-          - [@ohos.bluetoothManager (蓝牙)(待停用)](reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
           - [@ohos.connectedTag (有源标签)](reference/apis-connectivity-kit/js-apis-connectedTag.md)
           - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](reference/apis-connectivity-kit/js-apis-cardEmulation.md)
           - [@ohos.nfc.controller (标准NFC)](reference/apis-connectivity-kit/js-apis-nfcController.md)
@@ -2670,6 +2670,7 @@
           - [SE(secureElement)错误码](reference/apis-connectivity-kit/errorcode-se.md)
         - 已停止维护的接口<!--connectivity-arkts-dep-->
           - [@ohos.bluetooth (蓝牙)(待停用)](reference/apis-connectivity-kit/js-apis-bluetooth.md)
+          - [@ohos.bluetoothManager (蓝牙)(待停用)](reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
           - [@ohos.wifi (WLAN)(待停用)](reference/apis-connectivity-kit/js-apis-wifi.md)
           - [@ohos.wifiext (WLAN扩展接口)(待停用)](reference/apis-connectivity-kit/js-apis-wifiext.md)
           - [@system.bluetooth (蓝牙)](reference/apis-connectivity-kit/js-apis-system-bluetooth.md)
