@@ -188,3 +188,34 @@ Property 'consumer_value' in the custom component 'testChild' cannot initialize 
 **适配指导**
 
 如果应用中使用了Video组件中的previewUri属性，且存在视频源切换行为，开发者需按照预览图是否展示的最新逻辑进行适配。
+
+## cl.arkui.6 BindSheet半模态组件横屏支持设置档位与高度
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+手机横屏时，BindSheet支持开发者设置挡位和高度
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+API version 11及以前：bindSheet在手机横屏时不支持设置挡位和高度，默认高度距离横屏窗口顶部8vp。
+
+API version 12及以后：bindSheet在手机横屏时支持开发者设置挡位和高度，最大高度距离横屏窗口顶部8vp。
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.29开始。
+
+**适配指导**
+
+默认行为变更，需应用适配。适配规则与竖屏下设置挡位保持一致。
+横屏与竖屏挡位参考detents属性的设置：请查阅[半模态组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)文档进行适配。
