@@ -83,13 +83,14 @@ struct PickerDemo {
     if (albumInfo?.uri) {
       // 通过pickerController向PhotoPickerComponent发送消息，通知其刷新
     }
+    return true;
   }
 
   build() {
     Stack() {
       AlbumPickerComponent({
         albumPickerOptions: this.albumPickerOptions,
-        onAlbumClick:(albumInfo: AlbumInfo): void => this.onAlbumClick(albumInfo),
+        onAlbumClick:(albumInfo: AlbumInfo): boolean => this.onAlbumClick(albumInfo),
       }).height('100%').width('100%')
     }
   }

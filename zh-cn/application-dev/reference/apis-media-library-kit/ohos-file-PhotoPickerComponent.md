@@ -293,7 +293,7 @@ import {
   DataType, ItemInfo, PhotoBrowserInfo, AnimatorParams,
   MaxSelected, ItemType, ClickType, PickerOrientation,
   SelectMode, PickerColorMode, ReminderMode, MaxCountType
-} from from '@kit.MediaLibraryKit';
+} from '@kit.MediaLibraryKit';
 
 @Entry
 @Component
@@ -331,7 +331,7 @@ struct PickerDemo {
        return false;
     }
     let type: ItemType | undefined = itemInfo.itemType;
-    if (type === ItemType.CAMARA) {
+    if (type === ItemType.CAMERA) {
       // 点击相机item
       return true; // 返回true则拉起系统相机，若应用需要自行处理则返回false。
     } else {
@@ -340,6 +340,7 @@ struct PickerDemo {
         return true; // 返回true则勾选，否则则不响应勾选。
       }
     }
+    return true;
   }
   
   private onEnterPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean {
@@ -360,12 +361,12 @@ struct PickerDemo {
     Stack() {
       PhotoPickerComponent({
         pickerOptions: this.pickerOptions,
-        // onSelect:(uri: string): void => this.onSelect(uri),
-        // onDeselect:(uri: string): void => this.onDeselect(uri), 
-        onItemClicked(itemInfo: ItemInfo, clickType: ClickType): boolean => this.onItemClicked(itemInfo, clickType), // 该接口可替代上面两个接口
-        onEnterPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean => this.onEnterPhotoBrowser(photoBrowserInfo),
-        onExitPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean => this.onExitPhotoBrowser(photoBrowserInfo),
-        onPickerControllerReady(): void => this.onPickerControllerReady(),
+        // onSelect: (uri: string): void => this.onSelect(uri),
+        // onDeselect: (uri: string): void => this.onDeselect(uri), 
+        onItemClicked: (itemInfo: ItemInfo, clickType: ClickType): boolean => this.onItemClicked(itemInfo, clickType), // 该接口可替代上面两个接口
+        onEnterPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onEnterPhotoBrowser(photoBrowserInfo),
+        onExitPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onExitPhotoBrowser(photoBrowserInfo),
+        onPickerControllerReady: (): void => this.onPickerControllerReady(),
         pickerController: this.pickerController,
       }).height('100%').width('100%')
 
