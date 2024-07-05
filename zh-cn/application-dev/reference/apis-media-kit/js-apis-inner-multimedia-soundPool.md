@@ -11,8 +11,8 @@ SoundPool需要和@ohos.multimedia.media配合使用，需要先通过[media.cre
 ## 导入模块
 
 ```js
-import media from '@ohos.multimedia.media';
-import audio from '@ohos.multimedia.audio';
+import { media } from '@kit.MediaKit';
+import { audio } from '@kit.AudioKit';
 ```
 
 ## PlayParameters
@@ -51,6 +51,10 @@ load(uri: string, callback: AsyncCallback\<number>): void
 | uri   | string | 是   | 音频文件的加载路径描述，一般以"fd://"开头的文件描述。 |
 | callback | AsyncCallback\<number>                   | 是   | 异步音频资源加载返回的资源id，有效值大于0。 |
 
+**说明：**
+
+将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
+
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
@@ -64,8 +68,8 @@ load(uri: string, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -114,6 +118,10 @@ load(uri: string): Promise\<number>
 | ------ | -------------------------------------- | ---- | -------------------------- |
 | uri | string | 是   | 音频文件的加载路径描述，一般以"fd://"开头的文件描述。 |
 
+**说明：**
+
+将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
+
 **返回值：**
 
 | 类型           | 说明                                       |
@@ -133,8 +141,8 @@ load(uri: string): Promise\<number>
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -186,6 +194,10 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 | length | number | 是   | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | callback | AsyncCallback\<number> | 是   | 获取回调的soundID，有效值大于0。 |
 
+**说明：**
+
+将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
+
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
@@ -199,8 +211,8 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -254,6 +266,10 @@ load(fd: number, offset: number, length: number): Promise\<number>
 | offset | number | 是   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | length | number | 是   | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 
+**说明：**
+
+将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
+
 **返回值：**
 
 | 类型             | 说明                             |
@@ -273,8 +289,8 @@ load(fd: number, offset: number, length: number): Promise\<number>
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -339,7 +355,7 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -404,7 +420,7 @@ play(soundID: number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -468,7 +484,7 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -532,7 +548,7 @@ stop(streamID: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -594,7 +610,7 @@ stop(streamID: number): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -649,7 +665,7 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -713,7 +729,7 @@ setLoop(streamID: number, loop: number): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -770,7 +786,7 @@ setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>):
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -834,7 +850,7 @@ setPriority(streamID: number, priority: number): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -896,7 +912,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -965,7 +981,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1023,7 +1039,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1088,7 +1104,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<v
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1144,7 +1160,7 @@ unload(soundID: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1206,7 +1222,7 @@ unload(soundID: number): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1259,7 +1275,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1312,7 +1328,7 @@ release(): Promise\<void>
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1355,7 +1371,7 @@ on(type: 'loadComplete', callback: Callback\<number>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1395,7 +1411,7 @@ off(type: 'loadComplete'): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1434,7 +1450,7 @@ on(type: 'playFinished', callback: Callback\<void>): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1474,7 +1490,7 @@ off(type: 'playFinished'): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1524,7 +1540,7 @@ SoundPool回调的**错误分类**<a name = error_info></a>可以分为以下几
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
@@ -1565,7 +1581,7 @@ off(type: 'error'): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
 let soundPool: media.SoundPool;
