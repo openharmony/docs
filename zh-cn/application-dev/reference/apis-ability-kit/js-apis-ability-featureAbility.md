@@ -40,6 +40,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -98,6 +99,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -151,6 +153,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -186,6 +189,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -244,6 +248,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -297,6 +302,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -356,6 +362,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility, wantConstant } from '@kit.AbilityKit';
 
@@ -408,6 +415,7 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -436,6 +444,7 @@ hasWindowFocus(): Promise\<boolean>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -462,6 +471,7 @@ getWant(callback: AsyncCallback\<Want>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -492,6 +502,7 @@ getWant(): Promise\<Want>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -518,6 +529,7 @@ getContext(): Context
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -549,6 +561,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -577,6 +590,7 @@ terminateSelf(): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -616,6 +630,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -659,6 +674,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -714,6 +730,7 @@ disconnectAbility(connection: number): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
@@ -763,6 +780,7 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
@@ -795,6 +813,7 @@ getWindow(): Promise\<window.Window>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
