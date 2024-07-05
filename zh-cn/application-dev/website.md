@@ -124,8 +124,6 @@
             - [Want概述](application-models/want-overview.md)
             - [显式Want与隐式Want匹配规则](application-models/explicit-implicit-want-mappings.md)
             - [使用显式Want启动应用组件](application-models/ability-startup-with-explicit-want.md)
-            - [使用隐式Want打开网址](application-models/ability-startup-with-implicit-want.md)
-            - [应用间使用Want分享数据](application-models/data-share-via-want.md)
           - [组件启动规则（Stage模型）](application-models/component-startup-rules.md)
           - [应用启动框架AppStartup](application-models/app-startup.md)
           <!--Del-->
@@ -1259,11 +1257,11 @@
       - [ArkGraphics 3D资源创建以及使用](graphics3d/arkgraphics3D-resource.md)
       - [ArkGraphics 3D场景动画控制以及管理](graphics3d/arkgraphics3D-animation.md)
   - 应用服务<!--gapp-service-->
-    <!--Del-->
     - Ads Kit（广告服务）<!--ads-kit-->
       - [广告标识服务](ads-service/oaid/oaid-service.md)   
+      <!--Del-->
       - [重置OAID信息（仅对系统应用开放）](ads-service/oaid/oaid-service-sys.md)
-    <!--DelEnd-->
+      <!--DelEnd-->
 
     - Calendar Kit（日历服务）<!--calendar-kit-->
       - [Calendar Kit简介](calendarmanager/calendarmanager-overview.md)
