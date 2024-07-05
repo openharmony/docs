@@ -12,7 +12,7 @@
 
 ## 解决思路
 
-由于一次性加载大量数据、刷新大量组件会导致卡顿丢帧，那么减少一次性加载的数据量就是一种解决方法。但是由于业务需求，需要加载的数据总量和绘制的组件数量是不能减少的，那么只能想办法将数据进行拆分，将和数据相关的组件分成多次进行绘制。ArkTS中提供了[DisplaySync（可变帧率）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-graphics-displaysync-0000001813575980)，支持开发者设置回调监听，可以在回调里做一些数据的处理，在每一帧中加载少量的数据，减少卡顿或者滑动动画的掉帧现象。
+由于一次性加载大量数据、刷新大量组件会导致卡顿丢帧，那么减少一次性加载的数据量就是一种解决方法。但是由于业务需求，需要加载的数据总量和绘制的组件数量是不能减少的，那么只能想办法将数据进行拆分，将和数据相关的组件分成多次进行绘制。ArkTS中提供了[DisplaySync（可变帧率）](../reference/apis-arkgraphics2d/js-apis-graphics-displaySync.md)，支持开发者设置回调监听，可以在回调里做一些数据的处理，在每一帧中加载少量的数据，减少卡顿或者滑动动画的掉帧现象。
 
 ## 优化示例
 
@@ -246,7 +246,7 @@ sync.setExpectedFrameRateRange({
 ## 参考链接
 
 [使用SmartPerf-Host分析应用性能](performance-optimization-using-smartperf-host.md)
-[DisplaySync 文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkgraphics2d/js-apis-graphics-displaySync.md)
+[DisplaySync 文档](../reference/apis-arkgraphics2d/js-apis-graphics-displaySync.md)
 
 
 ## FAQ
