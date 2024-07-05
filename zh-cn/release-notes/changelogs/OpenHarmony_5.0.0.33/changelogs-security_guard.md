@@ -1,6 +1,6 @@
 # 安全子系统变更说明
 
-## cl.ability.1 securityGuard接口权限变更
+## cl.security_guard.1 securityGuard接口权限变更
 
 ** 访问级别 **
 
