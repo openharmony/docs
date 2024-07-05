@@ -1,36 +1,37 @@
-# Applying for Location Permissions
+# 申请位置权限开发指导
 
-## Scenario
+## 场景概述
 
-Before using the capabilities provided by [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md), check whether your application has been granted the permission to access the device location information. If not, your application needs to obtain the permission from the user.
+应用在使用[Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md)系统能力前，需要检查是否已经获取用户授权访问设备位置信息。如未获得授权，可以向用户申请需要的位置权限。
 
-The system provides the following location permission:
+系统提供的定位权限有：
 
-- **ohos.permission.LOCATION**: used to obtain location accurate to meters.
+- ohos.permission.LOCATION：用于获取精准位置，精准度在米级别。
 
-- **ohos.permission.APPROXIMATELY\_LOCATION**: used to obtain location accurate to 5 kilometers.
+- ohos.permission.APPROXIMATELY_LOCATION：用于获取模糊位置，精确度为5公里。
 
-- **ohos.permission.LOCATION_IN_BACKGROUND**: used to obtain location while the application is running at the background.
+- ohos.permission.LOCATION_IN_BACKGROUND：用于应用切换到后台仍然需要获取定位信息的场景。
 
-For details about the permissions required for each API of Location Kit, see [Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md).
+Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md)。
 
-## How to Develop
+## 开发步骤
 
-1. Declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+1. 开发者可以在应用配置文件中声明所需要的权限并向用户申请授权，具体可参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
-2. If your application needs to access the device location when running in the foreground, declare the location permission as described in the following table.
+2. 当APP运行在前台，且访问设备位置信息时，申请位置权限的方式如下：
 
-**Table 1** Description of location permissions
+**表1** 位置权限申请方式介绍
 
-| Permission| Declarable or Not| Location Accuracy|
+| 申请位置权限的方式 | 是否允许申请 | 申请成功后获取的位置的精确度 |
 | -------- | -------- | -------- |
-| ohos.permission.APPROXIMATELY_LOCATION| Yes| Location accurate to 5 kilometers.|
-| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Yes| Location accurate to meters.|
+| 申请ohos.permission.APPROXIMATELY_LOCATION | 是 | 获取到模糊位置，精确度为5公里。 |
+| 同时申请ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION | 是 | 获取到精准位置，精准度在米级别。 |
 
-3. If your application needs to access the device location when running in the background, declare the location permission as follows:
+3. 当APP运行在后台时，申请位置权限的方式如下：
 
-If your application needs to access the device location when running in the background, also request for the **ohos.permission.LOCATION_IN_BACKGROUND** permission or a continuous task of the LOCATION type in addition to the permission declared in step 2.
+如果应用在后台运行时也需要访问设备位置，除了按照步骤2申请权限外，还需要申请ohos.permission.LOCATION_IN_BACKGROUND权限或申请LOCATION类型的长时任务。
 
-- A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the **Settings** page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
+（1）应用如需使用ohos.permission.LOCATION_IN_BACKGROUND权限，需要在设置界面由用户手动授予，具体授权方式可参考[ohos.permission.LOCATION_IN_BACKGROUND权限说明](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background)。
 
-- For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md)<!--Del--> and [Continuous Task Development Example](../../performance/reasonable-running-backgroundTask.md#continuous-task)<!--DelEnd-->.
+（2）长时任务申请可参考：[长时任务介绍](../../task-management/continuous-task.md)<!--Del-->，[长时任务开发示例](../../performance/reasonable-running-backgroundTask.md#长时任务)<!--DelEnd-->。
+
