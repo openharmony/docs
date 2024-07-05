@@ -1,11 +1,11 @@
-# 应用间显式跳转切换link跳转适配指导
+# 显式Want跳转切换应用链接跳转适配指导
 
 
 ## 概述
 
 在API12及以后版本，系统框架增加了应用间显式跳转的限制，应用间的跳转需要通过link跳转的方式实现。
 
-### 启动其他应用的UIAbility
+## 启动其他应用的UIAbility
 
 1. 将待跳转的应用安装到设备，在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中配置skills标签的entities字段、actions字段和uri字段：
 - "actions"列表中包含"ohos.want.action.viewData"。
@@ -109,7 +109,7 @@ struct Index {
 }
 ```
 
-### 启动其他应用的UIAbility并获取返回结果
+## 启动其他应用的UIAbility并获取返回结果
 
 1. 将待跳转的应用安装到设备，在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中配置skills标签的entities字段、actions字段和uri字段：
 - "actions"列表中包含"ohos.want.action.viewData"。

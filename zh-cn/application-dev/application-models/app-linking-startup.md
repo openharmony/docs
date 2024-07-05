@@ -36,7 +36,7 @@
 * "uris"列表中包含"scheme"为"https"且"host"为域名地址的元素。
 * "domainVerify"：设置为true，表示开启域名校验开关。
 
-例如，声明应用关联在域名是www.test.com，则需进行如下配置：
+例如，声明应用关联在域名是www.example.com，则需进行如下配置：
 
 ```json
 {
@@ -64,7 +64,7 @@
                 // scheme须配置为https
                 "scheme": "https",
                 // host须配置关联的域名
-                "host": "www.test.com",
+                "host": "www.example.com",
                 // port可选
                 "port": "443",
                 // path可选，为了避免匹配到多个应用，建议配置该字段
@@ -107,8 +107,8 @@
    固定目录为：
    > https://*your.domain.name*/.well-known/applinking.json
 
-   例如开发者的域名为www.test.com，则需将applinking.json文件放在如下位置：
-   `https://www.test.com/.well-known/applinking.json`
+   例如开发者的域名为www.example.com，则需将applinking.json文件放在如下位置：
+   `https://www.example.com/.well-known/applinking.json`
 
 
 ### 添加代码到应用的Ability中以处理传入的链接
@@ -122,7 +122,7 @@ import { url } from '@kit.ArkTS';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 从want中获取传入的链接信息。
-    // 如传入的url为：https://www.test.com/programs?action=showall
+    // 如传入的url为：https://www.example.com/programs?action=showall
     let uri = want?.uri 
     if (uri) {
       // 从链接中解析query参数，拿到参数后，开发者可根据自己的的务需求进行后续的处理。
@@ -168,7 +168,7 @@ struct Index {
       .margin({ bottom: '12vp' })
       .onClick(() => {
         let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-        let link: string = "https://www.test.com/programs?action=showall";
+        let link: string = "https://www.example.com/programs?action=showall";
         // 仅以App Linking的方式打开应用
         context.openLink(link, { appLinkingOnly: true })
           .then(() => {
@@ -207,5 +207,5 @@ struct Index {
 1. 如果同一域名关联了多个应用，那么该域名的链接将拉起哪个应用呢？
 
    开发者可以通过配置applinking.json以关联多个应用。如果每个应用的module.json5的uris字段配置的都是一样的，那么系统将弹出列表框供用户选择要拉起的目标应用。
-   为了更好的体验，开发者也可以通过链接的path去区分拉起的目标应用，如链接<https://www.test.com/path1>拉起目标应用1，链接<https://www.test.com/path2>拉起目标应用2。
+   为了更好的体验，开发者也可以通过链接的path去区分拉起的目标应用，如链接`https://www.example.com/path1`拉起目标应用1，链接`https://www.example.com/path2`拉起目标应用2。
   
