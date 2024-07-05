@@ -271,8 +271,8 @@ async function Demo() {
     const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
-    let sendablePixelMap : sendableImage.PixelMap = sendableImage.convertFromPixelmap(pixelMap);
-    return pixelMap;
+    let sendablePixelMap : sendableImage.PixelMap = sendableImage.convertFromPixelMap(pixelMap);
+    return sendablePixelMap;
 }
 ```
 
