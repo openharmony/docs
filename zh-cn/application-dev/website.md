@@ -330,7 +330,7 @@
         - [XML解析](arkts-utils/xml-parsing.md)
         - [XML转换](arkts-utils/xml-conversion.md)
       - [代码混淆](arkts-utils/source-obfuscation.md)
-      - 内存管理<!--memory-management-->
+      - 内存管理<!--(arkts-memory-management-->
         - [GC介绍](arkts-utils/gc-introduction.md)
     - ArkUI（方舟UI框架）<!--arkui-->
       - [ArkUI简介](ui/arkui-overview.md)
@@ -1051,7 +1051,7 @@
           - [分析JS Crash（进程崩溃）](dfx/jscrash-guidelines.md)
           - [分析CppCrash（进程崩溃）](dfx/cppcrash-guidelines.md)
           - [分析AppFreeze（应用无响应）](dfx/appfreeze-guidelines.md)
-        - 命令行工具<!--command-line-utilities-->
+        - 命令行工具<!--perform-command-line-utilities-->
           - [hdc](dfx/hdc.md)
           - [hilog](dfx/hilog.md)
           - [hidumper](dfx/hidumper.md)
@@ -1183,7 +1183,7 @@
         - [录像流二次处理的实现方案(C/C++)](media/camera/native-camera-recording-case-imageReceiver.md)
     - DRM Kit（数字版权保护服务）<!--drm-kit-->
       - [DRM Kit 简介](media/drm/drm-overview.md)
-      - 数字版权保护开发指导(ArkTS)<!--drm-arkts-->
+      - 数字版权保护开发指导(ArkTS)<!--drm-arkts-dev-->
         - [插件管理(ArkTS)](media/drm/drm-plugin-management.md)
         - [系统管理(ArkTS)](media/drm/drm-mediakeysystem-management.md)
         - [会话管理(ArkTS)](media/drm/drm-mediakeysession-management.md)
@@ -1192,7 +1192,7 @@
         - [会话管理(C/C++)](media/drm/native-drm-mediakeysession-management.md)
     - Image Kit（图片处理服务）<!--image-kit-->
       - [Image Kit简介](media/image/image-overview.md)
-      - 图片开发指导(ArkTS)<!--image-arkts-->
+      - 图片开发指导(ArkTS)<!--image-arkts-dev-->
         - [使用ImageSource完成图片解码](media/image/image-decoding.md)
         - [使用PixelMap完成图像变换](media/image/image-transformation.md)
         - [使用PixelMap完成位图操作](media/image/image-pixelmap-operation.md)
