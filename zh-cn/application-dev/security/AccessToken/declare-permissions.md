@@ -14,6 +14,9 @@
 
 ## 声明样例
 
+> **说明：**
+> 以下"ohos.permission.PERMISSION1"、"ohos.permission.PERMISSION2"仅为样例示意，不存在该权限。请开发者根据实际需要，参照上表要求填写对应属性。
+
 ```json
 {
   "module" : {
