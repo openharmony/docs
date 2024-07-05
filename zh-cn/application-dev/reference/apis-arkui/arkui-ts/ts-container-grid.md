@@ -1385,3 +1385,55 @@ struct GridExample {
 ```
 
 ![pinch](figures/grid-pinch.gif)
+
+### 示例8
+属性[columnsTemplate](#columnstemplate)中auto-fill和auto-fit的使用示例
+
+```ts
+@Entry
+@Component
+struct GridColumnsTemplate {
+  data: number[] = [0, 1, 2, 3, 4, 5]
+  data1: number[] = [0, 1, 2, 3, 4, 5]
+
+  build() {
+    Column({ space: 10 }) {
+      Text('auto-fill 根据设定的列宽自动计算列数').width('90%')
+      Grid() {
+        ForEach(this.data, (item: number) => {
+          GridItem() {
+            Text('N' + item).height(80)
+          }
+          .backgroundColor(Color.Orange)
+        })
+      }
+      .width('90%')
+      .border({ width: 1, color: Color.Black })
+      .columnsTemplate('repeat(auto-fill, 70)')
+      .columnsGap(10)
+      .rowsGap(10)
+      .height(150)
+
+      Text('auto-fit 先根据设定的列宽计算列数，余下的空间会均分到每一列中').width('90%')
+      Grid() {
+        ForEach(this.data1, (item: number) => {
+          GridItem() {
+            Text('N' + item).height(80)
+          }
+          .backgroundColor(Color.Orange)
+        })
+      }
+      .width('90%')
+      .border({ width: 1, color: Color.Black })
+      .columnsTemplate('repeat(auto-fit, 70)')
+      .columnsGap(10)
+      .rowsGap(10)
+      .height(150)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![gridColumnsTemplate](figures/gridColumnsTemplate.png)
