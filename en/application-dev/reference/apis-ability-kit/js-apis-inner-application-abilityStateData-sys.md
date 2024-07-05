@@ -13,7 +13,7 @@ The **AbilityStateData** module defines the ability state information, which can
 import appManager from '@ohos.application.appManager';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -25,10 +25,11 @@ import appManager from '@ohos.application.appManager';
 | bundleName              | string   | Yes  | No | Bundle name.         |
 | abilityName            | string   | Yes  | No  | Ability name.              |
 | uid                    | number   | Yes  | No  | User ID.                 |
-| state                   | number   | Yes  | No  | [Ability state](../apis/#ability-states).               |
+| state                   | number   | Yes  | No  | [Ability state](#ability-states).               |
 | moduleName<sup>9+</sup> | string   | Yes  | No  | Name of the HAP file to which the ability belongs.   |
-| abilityType | number | Yes  | No  | [Ability type](../apis/#ability-types), which can be **page** or **service**.|
+| abilityType | number | Yes  | No  | [Ability type](#ability-types), which can be **page** or **service**.|
 | isAtomicService<sup>12+</sup>| boolean   | Yes | No | Whether the ability belongs to an atomic service.<br>**true**: The ability belongs to an atomic service.<br>**false**: The ability does not belong to an atomic service.    |
+| appCloneIndex          | number   | Yes  | No  | Index of an application clone.                 |
 
 #### Ability States
 

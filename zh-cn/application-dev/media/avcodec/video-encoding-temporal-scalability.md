@@ -52,13 +52,11 @@
 
   由于底层实现归一，全局时域可分层特性和长期参考帧特性不能同时开启。
 
-- 叠加强制IDR配置时，请使用随帧通路。
+- 叠加强制IDR配置时，请使用随帧通路配置。
 
-  参考帧仅在GOP内有效，刷新I帧后，DPB随之清空, 参考帧随之也会被清空。
+  参考帧仅在GOP内有效，刷新I帧后，DPB随之清空，参考帧也会被清空，因此参考关系的指定受I帧刷新位置影响很大。
 
-  因此参考关系的指定受I帧刷新位置影响很大，使能时域分层能力后若需要通过`OH_MD_KEY_REQUEST_I_FRAME`临时请求I帧，**应避免使用生效时`OH_VideoEncoder_SetParameter`方式。**
-
-  应使用随帧配置方式，参考随帧配置通路相关指导。
+  使能时域分层能力后，若需要通过`OH_MD_KEY_REQUEST_I_FRAME`临时请求I帧，应使用生效时机确定的随帧通路配置方式准确告知框架I帧刷新位置以避免参考关系错乱，参考随帧通路配置相关指导，避免使用生效时机不确定的`OH_VideoEncoder_SetParameter`方式。
 
 - 支持`OH_AVBuffer`回调通路，不支持`OH_AVMemory`回调通路。
 
@@ -80,7 +78,7 @@
 | OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE  | 全局时域分层编码TGOP大小参数 |
 | OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE  | 全局时域分层编码TGOP参考模式  |
 
-- **全局时域分层编码使能参数：** 在configure阶段配置，仅特性支持才会真正使能成功。
+- **全局时域分层编码使能参数：** 在配置阶段配置，仅特性支持才会真正使能成功。
 
 - **全局时域分层编码TGOP大小参数：** 可选配置，影响时域关键帧之间的间隔，用户需要基于自身业务场景下抽帧需求自定义关键帧密度，可在[2, GopSize)范围内配置，若不配置则使用默认值
 
@@ -120,7 +118,7 @@
     // 2.3 (可选)填充TGOP大小和TGOP内参考模式键值对
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE, TGOP_SIZE);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE, ADJACENT_REFERENCE);
-    // 2.4 Configure配置
+    // 2.4 参数配置
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理
@@ -144,7 +142,7 @@
         struct OH_AVCodecBufferAttr attr;
         (void)buffer->GetBufferAttr(attr);
         // 刷新I帧后poc归零
-        if (attr.flags | AVCODEC_BUFFER_FLAG_KEY_FRAME) {
+        if (attr.flags & AVCODEC_BUFFER_FLAG_KEY_FRAME) {
             outPoc = 0;
         }
         // 没有帧码流只有XPS的输出需要跳过
@@ -176,7 +174,7 @@
 | OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR  | 当前帧标记为LTR帧 |
 | OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR   | 当前帧参考的LTR帧号  |
 
-- **长期参考帧个数参数：** 在configure阶段配置，应小于等于查询到的最大支持数目，查询方式详见开发指导。
+- **长期参考帧个数参数：** 在配置阶段配置，应小于等于查询到的最大支持数目，查询方式详见开发指导。
 - **当前帧标记为LTR帧：** BL层标记为LTR，被跳跃参考的EL层也标记为LTR。
 - **当前帧参考的LTR帧号：** 如当前帧需要跳跃参考前面已被标记为LTR的帧号。
 
@@ -301,7 +299,7 @@
     OH_AVFormat *format = OH_AVFormat_Create();
     // 3.2 填充使能LTR个数键值对
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_COUNT);
-    // 3.3 Configure配置
+    // 3.3 参数配置
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理

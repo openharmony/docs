@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';  
 ```
 
 ## backgroundTaskManager.applyEfficiencyResources
@@ -42,14 +42,14 @@ applyEfficiencyResources(request: EfficiencyResourcesRequest): void
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed. |
+| 18700001 | Caller information verification failed for an energy resource request. |
 
 **示例**：
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let request: backgroundTaskManager.EfficiencyResourcesRequest = {
     resourceTypes: backgroundTaskManager.ResourceType.CPU,
@@ -88,14 +88,14 @@ resetAllEfficiencyResources(): void
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed. |
+| 18700001 | Caller information verification failed for an energy resource request. |
 
 **示例**：
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     backgroundTaskManager.resetAllEfficiencyResources();

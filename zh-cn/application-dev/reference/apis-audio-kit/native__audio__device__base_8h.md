@@ -5,7 +5,9 @@
 
 定义音频设备参数的类型以及获取每个设备参数的接口。
 
-**库：** libohaudio.so
+**库**：libohaudio.so
+
+**引用文件**：&lt;ohaudio/native_audio_device_base.h&gt;
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 

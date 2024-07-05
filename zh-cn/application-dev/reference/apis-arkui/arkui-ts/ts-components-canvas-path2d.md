@@ -2,9 +2,15 @@
 
 路径对象，支持通过对象的接口进行路径的描述，并通过Canvas的stroke接口或者fill接口进行绘制。
 
+>  **说明：**
+>
+>  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 ## 接口
 
 Path2D(unit?: LengthMetricsUnit)
+
+构造一个空的Path2D对象。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -12,11 +18,20 @@ Path2D(unit?: LengthMetricsUnit)
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
 | ------ | -------- | ---- | ------ | ----- |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](ts-canvasrenderingcontext2d.md#lengthmetricsunit12) | 否 | DEFAULT | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同CanvasRenderingContext2D。<br> DEFAULT: vp模式 <br> PX: px模式|
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | DEFAULT | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。|
 
->  **说明：**
->
->  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+Path2D(description: string, unit?: LengthMetricsUnit)
+
+使用符合SVG路径描述规范的路径字符串构造一个Path2D对象。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+| ------ | -------- | ---- | ------ | ----- |
+| description | string | 是 | - | 符合 SVG 路径描述规范的路径字符串 |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | DEFAULT | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。|
 
 ## addPath
 

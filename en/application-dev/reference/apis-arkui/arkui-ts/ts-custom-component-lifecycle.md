@@ -14,7 +14,7 @@ aboutToAppear?(): void
 
 Invoked after a new instance of the custom component is created and before its **build** function is executed. You can change state variables in the **aboutToAppear** function. The change will take effect when you execute the **build** function next time.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 ## aboutToDisappear
 
@@ -22,7 +22,7 @@ aboutToDisappear?(): void
 
 Invoked before the destructor of the custom component is consumed. Do not change state variables in the **aboutToDisappear** function as doing this can cause unexpected errors. For example, the modification of the **@Link** decorated variable may cause unstable application running.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 ## onPageShow
 
@@ -100,7 +100,7 @@ onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;
 
 Invoked when the custom component lays out its child components. Through this callback the component receives its child component size constraint from the ArkUI framework. The state variable cannot be changed in the **onPlaceChildren** callback.
 
-Since API version 10, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 10.
 
 **Parameters**
 
@@ -131,7 +131,7 @@ onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt;, 
 
 Invoked when the custom component needs to determine its size. Through this callback the component receives its child component layout information and size constraint from the ArkUI framework. The state variable cannot be changed in the **onMeasureSize** callback.
 
-Since API version 10, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 10.
 
 **Parameters**
 
@@ -147,7 +147,7 @@ aboutToReuse?(params: { [key: string]: unknown }): void
 
 Invoked when a reusable custom component is re-added to the node tree from the reuse cache to receive construction parameters of the component.
 
-Since API version 10, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 10.
 
 **Parameters**
 
@@ -221,7 +221,7 @@ This API is supported since API version 9 and deprecated since API version 10. I
 | id         | string                                                             | ID of the child component.             |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)         | Constraint size of the child component.           |
 | borderInfo | [LayoutBorderInfo](#layoutborderinfodeprecated)                             | Provides the border information of the child component.       |
-| position   | [Position](ts-types.md#position8)                                   | Position coordinates of the child component.           |
+| position   | [Position](ts-types.md#position)                                   | Position coordinates of the child component.           |
 | measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)) =&gt; void                            | Method called to apply the size constraint to the child component.|
 | layout     | (LayoutInfo: [LayoutInfo](#layoutinfodeprecated)) =&gt; void | Method called to apply the layout information to the child component.|
 
@@ -245,7 +245,7 @@ This API is supported since API version 9 and deprecated since API version 10. I
 
 | Name        | Type                                                      | Description      |
 |------------|------------------------------------------------------------|----------|
-| position   | [Position](ts-types.md#position8)                           | Position coordinates of the child component.|
+| position   | [Position](ts-types.md#position)                           | Position coordinates of the child component.|
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Constraint size of the child component.|
 
 ```ts
@@ -323,7 +323,7 @@ This API is supported since API version 10 and is supported in ArkTS widgets.
 | Name        | Type                                                   | Description                 |
 |------------|---------------------------------------------------------|---------------------|
 | measureResult| [MeasureResult](#measureresult10)      | Measurement result of the child component.<br>Unit: vp    |
-| layout     | (position: [Position](ts-types.md#position8)) =&gt; void | Method called to apply the layout information to the child component.|
+| layout     | (position: [Position](ts-types.md#position)) =&gt; void | Method called to apply the layout information to the child component.|
 
 ## Measurable<sup>10+</sup>
 
@@ -339,7 +339,7 @@ This API is supported since API version 10 and is supported in ArkTS widgets.
 
 Provides the measurement result of the component.
 
-Since API version 10, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 10.
 
 | Name    | Type  | Description   |
 |--------|--------|-------|
@@ -351,7 +351,7 @@ Since API version 10, this API is supported in ArkTS widgets.
 
 Provides the component size information.
 
-Since API version 10, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 10.
 
 | Name    | Type  | Description   |
 |--------|--------|-------|

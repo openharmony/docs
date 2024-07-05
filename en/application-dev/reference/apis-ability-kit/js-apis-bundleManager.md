@@ -18,24 +18,22 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 Enumerates the bundle flags, which indicate the type of bundle information to obtain.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
-
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                                     | Value        | Description                                                        |
-| ----------------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_BUNDLE_INFO_DEFAULT                   | 0x00000000 | Used to obtain the default bundle information. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.|
-| GET_BUNDLE_INFO_WITH_APPLICATION          | 0x00000001 | Used to obtain the bundle information with application information. The obtained information does not contain information about the signature, HAP module, ability, ExtensionAbility, or permission.|
-| GET_BUNDLE_INFO_WITH_HAP_MODULE           | 0x00000002 | Used to obtain the bundle information with HAP module information. The obtained information does not contain information about the signature, application, ability, ExtensionAbility, or permission.|
-| GET_BUNDLE_INFO_WITH_ABILITY              | 0x00000004 | Used to obtain the bundle information with ability information. The obtained information does not contain information about the signature, application, ExtensionAbility, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
-| GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY    | 0x00000008 | Used to obtain the bundle information with ExtensionAbility information. The obtained information does not contain information about the signature, application, ability, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
-| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION | 0x00000010 | Used to obtain the bundle information with permission information. The obtained information does not contain information about the signature, application, HAP module, ability, or ExtensionAbility.|
-| GET_BUNDLE_INFO_WITH_METADATA             | 0x00000020 | Used to obtain the metadata contained in the application, HAP module, ability, or ExtensionAbility information. It must be used together with **GET_BUNDLE_INFO_WITH_APPLICATION**, **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.|
-| GET_BUNDLE_INFO_WITH_DISABLE              | 0x00000040 | Used to obtain the information about disabled bundles and abilities of a bundle. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.|
-| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | Used to obtain the bundle information with signature information. The obtained information does not contain information about the application, HAP module, ability, ExtensionAbility, or permission.|
-| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>   | 0x00000100 | Used to obtain the bundle information with the file context menu configuration. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
-| GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup>   | 0x00000200 | Used to obtain the bundle information with the router map. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
-| GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>   | 0x00000800 | Used to obtain the bundle information with the skills. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.|
+| Name                                         | Value        | Description                                                        |
+| --------------------------------------------- | ---------- | ------------------------------------------------------------ |
+| GET_BUNDLE_INFO_DEFAULT                       | 0x00000000 | Used to obtain the default bundle information. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_APPLICATION              | 0x00000001 | Used to obtain the bundle information with application information. The obtained information does not contain information about the signature, HAP module, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_HAP_MODULE               | 0x00000002 | Used to obtain the bundle information with HAP module information. The obtained information does not contain information about the signature, application, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_ABILITY                  | 0x00000004 | Used to obtain the bundle information with ability information. The obtained information does not contain information about the signature, application, ExtensionAbility, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY        | 0x00000008 | Used to obtain the bundle information with ExtensionAbility information. The obtained information does not contain information about the signature, application, ability, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION     | 0x00000010 | Used to obtain the bundle information with permission information. The obtained information does not contain information about the signature, application, HAP module, ability, or ExtensionAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_METADATA                 | 0x00000020 | Used to obtain the metadata contained in the application, HAP module, ability, or ExtensionAbility information. It must be used together with **GET_BUNDLE_INFO_WITH_APPLICATION**, **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_DISABLE                  | 0x00000040 | Used to obtain the information about disabled bundles and abilities of a bundle. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO           | 0x00000080 | Used to obtain the bundle information with signature information. The obtained information does not contain information about the application, HAP module, ability, ExtensionAbility, or permission.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>       | 0x00000100 | Used to obtain the bundle information with the file context menu configuration. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | Used to obtain the bundle information with the router map. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | Used to obtain the bundle information with the skills. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ### ExtensionAbilityType
 
@@ -48,15 +46,15 @@ Enumerates the types of ExtensionAbilities.
 | FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md): enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
-| SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md): enables applications to run in the background and provide services.|
+| SERVICE          | 3   | <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->: enables applications to run in the background and provide services.|
 | ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md): provides accessibility for access to and operations on the UI.|
-| DATA_SHARE       | 5   | [DataShareExtensionAbility](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md): enables applications to read and write data.|
+| DATA_SHARE       | 5   | <!--Del-->[<!--DelEnd-->DataShareExtensionAbility <!--Del-->](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)<!--DelEnd-->: enables applications to read and write data.|
 | FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved.|
-| STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md): provides APIs for processing static events, such as the startup event.|
+| STATIC_SUBSCRIBER| 7   | <!--Del-->[<!--DelEnd-->StaticSubscriberExtensionAbility <!--Del-->](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)<!--DelEnd-->: provides APIs for processing static events, such as the startup event.|
 | WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved.|
 | BACKUP           |  9  | [BackupExtensionAbility](../apis-core-file-kit/js-apis-application-backupExtensionAbility.md): provides APIs to implement application data backup and restore.|
-| WINDOW           |  10 | [WindowExtensionAbility](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md): allows system applications to display UIs of other applications.|
-| ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility-sys.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
+| WINDOW           |  10 | <!--Del-->[<!--DelEnd-->WindowExtensionAbility<!--Del-->](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md)<!--DelEnd-->: allows system applications to display UIs of other applications.|
+| ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved.|
 | PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved.|
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. Printing documents is not supported yet.|
@@ -66,6 +64,7 @@ Enumerates the types of ExtensionAbilities.
 | ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md): provides custom action service templates based on UIExtensionAbilities.|
 | ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility: provides background customized ad services for external systems. This type of ability is not supported yet.|
 | EMBEDDED_UI<sup>12+</sup> | 21 | [EmbeddedUIExtensionAbility](js-apis-app-ability-embeddedUIExtensionAbility.md): provides ExtensionAbilities for the embeddable UI across process.|
+| INSIGHT_INTENT_UI<sup>12+</sup> | 22 | **InsightIntentUIExtensionAbility**: provides APIs that enable applications to be called by Celia intents so as to be displayed in windows.|
 | UNSPECIFIED      | 255 | No type is specified. It is used together with **queryExtensionAbilityInfo** to query all types of ExtensionAbilities.|
 
 
@@ -126,27 +125,27 @@ Enumerates the types of abilities.
 
 ### DisplayOrientation
 
-Enumerates the display orientations of the ability. This attribute applies only to the ability using the Page template.
-
- **Atomic service API**: This API can be used in atomic services since API version 11.
+Enumerates the display orientations of the ability. This property applies only to the ability using the Page template.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                              |Value|Description|
 |:----------------------------------|---|---|
-| UNSPECIFIED                        |0 |Unspecified. The orientation is determined by the system.|
-| LANDSCAPE                          |1 |Landscape.|
-| PORTRAIT                           |2 |Portrait.|
-| FOLLOW_RECENT                      |3 |The last display orientation is used.|
-| LANDSCAPE_INVERTED                 |4 |Reverse landscape.|
-| PORTRAIT_INVERTED                  |5 |Reverse portrait.|
-| AUTO_ROTATION                      |6 |Auto rotation.|
-| AUTO_ROTATION_LANDSCAPE            |7 |Auto rotation in the horizontal direction.|
-| AUTO_ROTATION_PORTRAIT             |8 |Auto rotation in the vertical direction.|
-| AUTO_ROTATION_RESTRICTED           |9 |Switched-determined auto rotation.|
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|Switched-determined auto rotation in the horizontal direction.|
-| AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|Switched-determined auto rotation in the vertical direction.|
-| LOCKED                             |12|Locked.|
+| UNSPECIFIED                        |0 |Unspecified. The orientation is determined by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| LANDSCAPE                          |1 |Landscape.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| PORTRAIT                           |2 |Portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| FOLLOW_RECENT                      |3 |The last display orientation is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| LANDSCAPE_INVERTED                 |4 |Reverse landscape.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| PORTRAIT_INVERTED                  |5 |Reverse portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION                      |6 |Auto rotation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION_LANDSCAPE            |7 |Auto rotation in the horizontal direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION_PORTRAIT             |8 |Auto rotation in the vertical direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION_RESTRICTED           |9 |Switched-determined auto rotation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|Switched-determined auto rotation in the horizontal direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|Switched-determined auto rotation in the vertical direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| LOCKED                             |12|Locked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup> |13|Auto rotation controlled by the switch and determined by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLLOW_DESKTOP<sup>12+</sup> |14|Following the orientation of the home screen.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ### CompatiblePolicy<sup>10+</sup>
 
@@ -187,6 +186,18 @@ Enumerates the bundle types.
 | APP            | 0    | The bundle is an application.   |
 | ATOMIC_SERVICE | 1    | The bundle is an atomic service.|
 
+### MultiAppModeType<sup>12+</sup>
+
+Enumerates the types of the multi-app mode.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name| Value| Description|
+|:----------------:|:---:|:---:|
+| UNSPECIFIED|  0 | Unspecified type.|
+| MULTI_INSTANCE |  1  | Multiton mode. |
+| APP_CLONE |  2  |  App clone mode. |
+
 ## APIs
 
 ### bundleManager.getBundleInfoForSelf
@@ -213,7 +224,7 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -258,7 +269,7 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -312,7 +323,7 @@ Obtains the JSON string array of the current application's configuration file in
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -377,7 +388,7 @@ Obtains the JSON string array of the current application's configuration file in
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -458,7 +469,7 @@ Obtains the JSON string array of the current application's configuration file in
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -528,7 +539,7 @@ Obtains the JSON string array of the current application's configuration file in
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -592,7 +603,7 @@ Obtains the JSON string array of the current application's configuration file in
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -665,7 +676,7 @@ Obtains the JSON string array of the current application's configuration file in
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -726,7 +737,7 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -768,13 +779,13 @@ Verifies an .abc file. This API uses an asynchronous callback to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | verifyAbc failed. |
+| 17700201 | Failed to verify the abc file. |
 
 **Example**
 
@@ -823,13 +834,13 @@ Verifies an .abc file. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                           |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | verifyAbc failed. |
+| 17700201 | Failed to verify the abc file. |
 
 **Example**
 
@@ -875,13 +886,13 @@ Deletes an .abc file based on the specified file path. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                           |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700202 | deleteAbc failed. |
+| 17700202 | Failed to delete the abc file. |
 
 **Example**
 
@@ -903,234 +914,13 @@ try {
 }
 ```
 
-### bundleManager.getExtResource<sup>12+</sup>
-
-getExtResource(bundleName: string): Promise\<Array\<string>>;
-
-Obtains the module names corresponding to the extended resources based on the given bundle name. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**Parameters**
-
-| Name    | Type  | Mandatory| Description                      |
-| ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | Yes  | Bundle name based on which the extended resources are to be queried.|
-
-**Return value**
-
-| Type                                                       | Description                       |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<Array\<string>> | Promise used to return the API call result and the module names corresponding to the extended resources.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
-
-| ID| Error Message                           |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700001 | The specified bundleName is not found. |
-| 17700303 | GetExtResource failed due to no extend resource. |
-
-**Example**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-let bundleName : string = 'com.ohos.demo';
-
-try {
-    bundleManager.getExtResource(bundleName).then((modules : Array<string>) => {
-        for (let i = 0; i < modules.length; i++) {
-            hilog.info(0x0000, 'testTag', 'getExtResource item: %s', modules[i]);
-        }
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'getExtResource failed. Cause: %{public}s', err.message);
-    });
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getExtResource failed. Cause: %{public}s', message);
-}
-```
-
-### bundleManager.enableDynamicIcon<sup>12+</sup>
-
-enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
-
-Enables the dynamic icon based on the given bundle name and module name. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.ACCESS_DYNAMIC_ICON
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**Parameters**
-
-| Name    | Type  | Mandatory| Description                      |
-| ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | Yes  | Bundle name based on which the dynamic icon is to be enabled.|
-| moduleName  | string | Yes  | Module name based on which the dynamic icon is to be enabled.|
-
-**Return value**
-
-| Type                                                       | Description                       |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
-
-| ID| Error Message                           |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700001 | The specified bundleName is not found. |
-| 17700002 | The specified moduleName is not found. |
-| 17700304 | EnableDynamicIcon failed due to parse dynamic icon failed. |
-
-**Example**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-let bundleName : string = 'com.ohos.demo';
-let moduleName : string = 'moduleTest';
-
-try {
-    bundleManager.enableDynamicIcon(bundleName, moduleName).then((data) => {
-        hilog.info(0x0000, 'testTag', 'enableDynamicIcon successfully');
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'enableDynamicIcon failed. Cause: %{public}s', err.message);
-    });
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'enableDynamicIcon failed. Cause: %{public}s', message);
-}
-```
-
-### bundleManager.disableDynamicIcon<sup>12+</sup>
-
-disableDynamicIcon(bundleName: string): Promise\<void>;
-
-Disables the dynamic icon based on the given bundle name. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.ACCESS_DYNAMIC_ICON
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**Parameters**
-
-| Name    | Type  | Mandatory| Description                      |
-| ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | Yes  | Bundle name based on which the dynamic icon is to be disabled.|
-
-**Return value**
-
-| Type                                                       | Description                       |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
-
-| ID| Error Message                           |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700001 | The specified bundleName is not found. |
-| 17700305 | DisableDynamicIcon failed due to no dynamic icon. |
-
-**Example**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-let bundleName : string = 'com.ohos.demo';
-
-try {
-    bundleManager.disableDynamicIcon(bundleName).then((data) => {
-        hilog.info(0x0000, 'testTag', 'disableDynamicIcon successfully');
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'disableDynamicIcon failed. Cause: %{public}s', err.message);
-    });
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'disableDynamicIcon failed. Cause: %{public}s', message);
-}
-```
-
-### bundleManager.getDynamicIcon<sup>12+</sup>
-
-getDynamicIcon(bundleName: string): Promise\<string>;
-
-Obtains the module name corresponding to the dynamic icon based on the specified bundle name. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**Parameters**
-
-| Name    | Type  | Mandatory| Description                      |
-| ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | Yes  | Bundle name based on which the dynamic icon is to be queried.|
-
-**Return value**
-
-| Type                                                       | Description                       |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<string> | Promise used to return the API call result and module name corresponding to the dynamic icon.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
-
-| ID| Error Message                           |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700001 | The specified bundleName is not found. |
-| 17700306 | No dynamic icon. |
-
-**Example**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-let bundleName : string = 'com.ohos.demo';
-
-try {
-    bundleManager.getDynamicIcon(bundleName).then((data) => {
-        hilog.info(0x0000, 'testTag', 'getDynamicIcon successfully %s', JSON.stringify(data));
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'getDynamicIcon failed. Cause: %{public}s', err.message);
-    });
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getDynamicIcon failed. Cause: %{public}s', message);
-}
-```
-
 ### bundleManager.canOpenLink<sup>12+</sup>
 
 canOpenLink(link: string): boolean
 
 Checks whether a link can be opened. The scheme of the specified link must be configured in the **querySchemes** field of the **module.json** file.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -1148,7 +938,7 @@ Checks whether a link can be opened. The scheme of the specified link must be co
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |

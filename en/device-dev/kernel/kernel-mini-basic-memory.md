@@ -177,7 +177,7 @@ The dynamic memory of the OpenHarmony LiteOS-M has optimized the memory space pa
 
 Multiple free lists are used for management based on the size of the free memory block. The free memory blocks are divided into two parts: [4, 127] and [2<sup>7</sup>, 2<sup>31</sup>], as indicated by the size class in the above figure.
 
-1. The memory in the range of [4, 127] (lower part in the figure) is equally divided into 31 parts. The size of the memory block corresponding to each part is a multiple of 4 bytes. Each part corresponds to a free list and a bit that indicates whether the free list is empty. The value **1** indicates that the free list is not empty.  There are 31 bits corresponding to the 31 memory parts in the range of [4, 127].
+1. The memory in the range of [4, 127](lower part in the figure) is equally divided into 31 parts. The size of the memory block corresponding to each part is a multiple of 4 bytes. Each part corresponds to a free list and a bit that indicates whether the free list is empty. The value **1** indicates that the free list is not empty.  There are 31 bits corresponding to the 31 memory parts in the range of [4, 127].
 
 2. The memory greater than 127 bytes is managed in power of two increments. The size of each range is [2^n, 2^(n+1) -1], where n is an integer in [7, 30]. This range is divided into 24 parts, each of which is further divided into 8 second-level (L2) ranges, as shown in Size Class and Size SubClass in the upper part of the figure. Each L2 range corresponds to a free list and a bit that indicates whether the free list is empty. There are a total of 192 (24 x 8) L2 ranges, corresponding to 192 free lists and 192 bits.
 

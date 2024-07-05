@@ -126,7 +126,7 @@
       - [CanvasRenderingContext2D](ui-js-components-canvasrenderingcontext2d.md)
       - [Path2D](ui-js-components-path2d.md)
       - [OffscreenCanvasRenderingContext2D](ui-js-components-offscreencanvas.md)
-    - [Grid Container Layout](ui-js-components-grid.md)
+    - [Grid Container Development](ui-js-components-grid.md)
     - SVG Development
       - [Basics](ui-js-components-svg-overview.md)
       - [Graph Drawing](ui-js-components-svg-graphics.md)

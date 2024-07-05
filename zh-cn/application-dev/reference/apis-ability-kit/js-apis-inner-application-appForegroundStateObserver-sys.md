@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -25,12 +25,12 @@ import appManager from '@ohos.app.ability.appManager';
 
 **示例：**
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 let observer: appManager.AppForegroundStateObserver = {
-    onAppStateChanged(appStateData) {
-        console.log(`onAppStateChanged appStateData: ${JSON.stringify(appStateData)}`);
-    },
+  onAppStateChanged(appStateData) {
+    console.log(`onAppStateChanged appStateData: ${JSON.stringify(appStateData)}`);
+  },
 };
 appManager.on('appForegroundState', observer);
 ```

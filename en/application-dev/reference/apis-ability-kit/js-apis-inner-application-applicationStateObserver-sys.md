@@ -13,7 +13,7 @@ The **ApplicationStateObserver** module defines an observer to listen for applic
 import appManager from '@ohos.app.ability.appManager';
 ```
 
-## Attributes
+## Properties
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -26,6 +26,8 @@ import appManager from '@ohos.app.ability.appManager';
 | onProcessCreated                 | AsyncCallback\<void>   | Yes  | No  | Callback invoked when a process is created. The parameter type passed in is [ProcessData](js-apis-inner-application-processData-sys.md).         |
 | onProcessDied                     | AsyncCallback\<void>   | Yes  | No  | Callback invoked when a process is destroyed. The parameter type passed in is [ProcessData](js-apis-inner-application-processData-sys.md).         |
 | onProcessStateChanged<sup>9+</sup> | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the process state is changed. The parameter type passed in is [ProcessData](js-apis-inner-application-processData-sys.md).       |
+| onAppStarted<sup>12+</sup>       | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the first process of the application is created. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData-sys.md).    |
+| onAppStopped<sup>12+</sup>       | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the last process of the application is destroyed. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData-sys.md).    |
 
 **Example**
 ```ts
@@ -46,6 +48,12 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     },
     onProcessStateChanged(processData) {
         console.log(`onProcessStateChanged onProcessStateChanged: ${JSON.stringify(processData)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`onAppStarted appStateData: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`onAppStopped appStateData: ${JSON.stringify(appStateData)}`);
     }
 };
 let observerCode = appManager.on('applicationState', applicationStateObserver);

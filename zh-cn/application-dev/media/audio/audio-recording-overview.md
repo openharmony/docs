@@ -8,7 +8,7 @@
 
 - [OpenSL ES](using-opensl-es-for-recording.md)：一套跨平台标准化的音频Native API，同样提供音频输入原子能力，仅支持PCM格式，适用于从其他嵌入式平台移植，或依赖在Native层实现音频输入功能的录音应用使用。
 
-- [OHAudio](using-ohaudio-for-recording.md)：用于音频输入的Native API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。适用于依赖Native层实现音频输入功能的场景。
+- [OHAudio](using-ohaudio-for-recording.md)：用于音频输入的Native API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。仅支持PCM格式，适用于依赖Native层实现音频输入功能的场景。
 
 除上述方式为，也可以通过Media Kit实现音频播放。
 

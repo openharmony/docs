@@ -13,7 +13,7 @@ dialogSession模块用于支持系统应用弹框功能。
 ## 导入模块
 
 ```ts
-import dialogSession from '@ohos.app.ability.dialogSession';
+import { dialogSession } from '@kit.AbilityKit';
 ```
 
 ## DialogAbilityInfo
@@ -81,8 +81,7 @@ getDialogSessionInfo(dialogSessionId: string): [DialogSessionInfo](#dialogsessio
 **示例：**
 
 ```ts
-import dialogSession from '@ohos.app.ability.dialogSession';
-import Want from '@ohos.app.ability.Want';
+import { dialogSession, Want } from '@kit.AbilityKit';
 
 // want由系统内部指定，dialogSessionId为内置参数
 let dialogSessionId: string = want?.parameters?.dialogSessionId;
@@ -125,8 +124,8 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean, 
 **示例：**
 
 ```ts
-import dialogSession from '@ohos.app.ability.dialogSession';
-import Want from '@ohos.app.ability.Want';
+import { dialogSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // want由系统内部指定，dialogSessionId为内置参数
 let dialogSessionId: string = want?.parameters?.dialogSessionId;
@@ -134,7 +133,7 @@ let dialogSessionId: string = want?.parameters?.dialogSessionId;
 // 查询DialogSessionInfo
 let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
 
-let isAllow: Boolean = true;
+let isAllow: boolean = true;
 
 // isAllow为true时，用户请求结果targetWant为dialogSessionInfo.targetAbilityInfos之一
 let targetWant: Want = {
@@ -144,14 +143,14 @@ let targetWant: Want = {
 
 try {
   dialogSession.sendDialogResult(dialogSessionId, targetWant, isAllow, (err, data) => {
-    if (data) {
-      console.log(`sendDialogResult success, data: ${data}`);
-    } else {
+    if (err) {
       console.error(`sendDialogResult error, errorCode: ${err.code}`);
+    } else {
+      console.log(`sendDialogResult success`);
     }
   });
 } catch (err) {
-  console.error(`sendDialogResult error, errorCode: ${err.code}`);
+  console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
 }
 ```
 
@@ -194,8 +193,8 @@ sendDialogResult(dialogSessionId: string, targetWant: Want, isAllowed: boolean):
 **示例：**
 
 ```ts
-import dialogSession from '@ohos.app.ability.dialogSession';
-import Want from '@ohos.app.ability.Want';
+import { dialogSession, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // want由系统内部指定，dialogSessionId为内置参数
 let dialogSessionId: string = want?.parameters?.dialogSessionId;
@@ -203,7 +202,7 @@ let dialogSessionId: string = want?.parameters?.dialogSessionId;
 // 查询DialogSessionInfo
 let dialogSessionInfo: dialogSession.DialogSessionInfo = dialogSession.getDialogSessionInfo(dialogSessionId);
 
-let isAllow: Boolean = true;
+let isAllow: boolean = true;
 
 // isAllow为true时，用户请求结果targetWant为dialogSessionInfo.targetAbilityInfos之一
 let targetWant: Want = {
@@ -219,6 +218,6 @@ try {
       console.error(`startChildProcess error, errorCode: ${err.code}`);
     })
 } catch (err) {
-  console.error(`sendDialogResult error, errorCode: ${err.code}`);
+  console.error(`sendDialogResult error, errorCode: ${(err as BusinessError).code}`);
 }
 ```

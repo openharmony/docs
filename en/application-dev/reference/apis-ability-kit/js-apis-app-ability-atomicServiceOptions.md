@@ -14,7 +14,7 @@
 import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
 ```
 
-## Attributes
+## Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -22,8 +22,8 @@ import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
 
 | Name| Type| Read Only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| [flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | number | No| No| By default, a number is passed in.<br>For example, **wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION** indicates the action of granting the permission to read the URI.|
-| parameters | Record\<string, Object> | No| No| Want parameters in the form of custom key-value (KV) pairs. By default, the following keys are carried:<br>- **ohos.aafwk.callerPid**: PID of the caller.<br>- **ohos.aafwk.param.callerBundleName**: bundle name of the caller.<br>- **ohos.aafwk.param.callerToken**: token of the caller.<br>- **ohos.aafwk.param.callerUid**: UID in [BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1), that is, the application UID in the bundle information.<br>- **component.startup.newRules**: enabled status of the new control rule.<br>- **moduleName**: module name of the caller. No matter what this field is set to, the correct module name will be sent to the peer.<br>- **ohos.dlp.params.sandbox**: available only for DLP files.<br>- **ability.params.backToOtherMissionStack**: support for redirection back across mission stacks.|
+| [flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | number | No|  No| Mode in which the system processes the startup.<br>For example, **wantConstant.Flags.FLAG_INSTALL_ON_DEMAND** indicates that the installation-free capability is used.|
+| parameters | Record\<string, Object> | No|  No| Additional parameters. For details, see the **parameters** field in [Want](js-apis-app-ability-want.md).|
 
 **Example**
 

@@ -30,7 +30,7 @@
 - 以使用Promise方式生成RSA密钥对为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   let priKeyPkcs1Str1024: string  =
     "-----BEGIN RSA PRIVATE KEY-----\n"
@@ -56,12 +56,7 @@
     + "-----END RSA PUBLIC KEY-----\n";
   async function TestPkcs1ToPkcs8ByPromise() {
     let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
-    let keyGenPromise = await asyKeyGenerator.convertPemKey(publicPkcs1Str1024,priKeyPkcs1Str1024);
-    keyGenPromise.then(keyPair => {
-      console.info('convertPemKey success.');
-    }).catch((error: BusinessError) => {
-      console.error("convertPemKey error.");
-    });
+    let keyPair = await asyKeyGenerator.convertPemKey(publicPkcs1Str1024, priKeyPkcs1Str1024);
     let priPemKey = keyPair.priKey;
     let pubPemKey = keyPair.pubKey;
     let priString = priPemKey.getEncodedPem('PKCS8');
@@ -71,10 +66,10 @@
   }
   ```
 
-- 同步返回结果（调用方法[convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkeysync12)）：
+- 同步返回结果（调用方法[convertPemKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkeysync12)）：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   let priKeyPkcs1Str1024: string  =
     "-----BEGIN RSA PRIVATE KEY-----\n"
@@ -101,7 +96,7 @@
   function TestPkcs1ToPkcs8BySync() {
     let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
     try {
-      let keyPairData = asyKeyGenerator.convertPemKeySync(publicPkcs1Str1024,priKeyPkcs1Str1024);
+      let keyPairData = asyKeyGenerator.convertPemKeySync(publicPkcs1Str1024, priKeyPkcs1Str1024);
       if (keyPairData != null) {
         console.info('[Sync]: convert pem key pair success');
       } else {

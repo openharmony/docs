@@ -25,7 +25,7 @@ getContext(component?: Object):Context
 Load a page by calling **windowStage.loadContent** in the UIAbility.
 
 ```ts
-// EntryAbility.ts
+// EntryAbility.ets
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';

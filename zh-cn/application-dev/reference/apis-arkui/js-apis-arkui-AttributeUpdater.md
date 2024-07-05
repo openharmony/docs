@@ -27,7 +27,7 @@ import { AttributeUpdater } from '@ohos.arkui.modifier'
 >  4. 开发者需要自行保障AttributeUpdater中T和C的类型匹配。比如T为ImageAttribute，C要对应为ImageInterface，否则可能导致
 >  使用updateConstructorParams时功能异常。
 >  
->  5. updateConstructorParams当前只支持Image，Text和Span组件。
+>  5. updateConstructorParams当前只支持Button，Image，Text和Span组件。
 
 ## Initializer
 type Initializer\<T> = () => T
@@ -36,9 +36,7 @@ type Initializer\<T> = () => T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## AttributeUpdater
-AttributeUpdater<T, C = Initializer\<T>>
-
+## AttributeUpdater<T, C = Initializer\<T>>
 为[AttributeModifier](arkui-ts/ts-universal-attributes-attribute-modifier.md#AttributeModifier)的实现类，开发者需要自定义class继承AttributeUpdater。
 
 其中C代表组件的构造函数类型，比如Text组件的TextInterface，Image组件的ImageInterface等，需要使用updateConstructorParams时才需要传递C类型。

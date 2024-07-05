@@ -12,7 +12,7 @@ systemTonePlayer需要和[@ohos.multimedia.systemSoundManager](js-apis-systemSou
 ## 导入模块
 
 ```ts
-import systemSoundManager from '@ohos.multimedia.systemSoundManager';
+import { systemSoundManager } from '@kit.AudioKit';
 ```
 
 ## SystemToneOptions
@@ -54,12 +54,13 @@ getTitle(): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
 | 5400103 | I/O error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.getTitle().then((value: string) => {
   console.info(`Promise returned to indicate that the value of the system tone player title is obtained ${value}.`);
@@ -90,13 +91,14 @@ prepare(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
 | 5400102 | Operation not allowed. |
 | 5400103 | I/O error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.prepare().then(() => {
   console.info(`Promise returned to indicate a successful prepareing of system tone player.`);
@@ -135,13 +137,15 @@ start(toneOptions?: SystemToneOptions): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Caller is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class SystemToneOptions {
   muteAudio: boolean = false;
@@ -184,13 +188,14 @@ stop(id: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let streamID: number = 0; //streamID为start方法返回的streamID,此处只做初始化。
 systemTonePlayer.stop(streamID).then(() => {
@@ -216,10 +221,18 @@ release(): Promise&lt;void&gt;
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise回调返回释放成功或失败。   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 systemTonePlayer.release().then(() => {
   console.info(`Promise returned to indicate a successful releasing of system tone player.`);

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import deviceInfo from '@ohos.deviceInfo';
+import { deviceInfo } from '@kit.deviceInfo';
 ```
 
 ## 属性
@@ -24,23 +24,23 @@ import deviceInfo from '@ohos.deviceInfo';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceType | string | 是 | 否 | 设备类型，只允许查询，结果不能用于业务代码开发。详细请参考[deviceTypes标签](../../quick-start/module-configuration-file.md#devicetypes标签)。<br/>**元服务API**：从API version 11开始，该接口支持在元服务中使用。 |
+| deviceType | string | 是 | 否 | 设备类型，只允许查询，结果不能用于业务代码开发。详细请参考[deviceTypes标签](../../quick-start/module-configuration-file.md#devicetypes标签)。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | manufacture | string | 是 | 否 | 设备厂家名称。 |
-| brand | string | 是 | 否 | 设备品牌名称。<br/>**元服务API**：从API version 11开始，该接口支持在元服务中使用。 |
+| brand | string | 是 | 否 | 设备品牌名称。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | marketName | string | 是 | 否 | 外部产品系列。 |
 | productSeries | string | 是 | 否 | 产品系列。 |
-| productModel | string | 是 | 否 | 认证型号。<br/>**元服务API**：从API version 11开始，该接口支持在元服务中使用。 |
+| productModel | string | 是 | 否 | 认证型号。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | softwareModel | string | 是 | 否 | 内部软件子型号。 |
 | hardwareModel | string | 是 | 否 | 硬件版本号。 |
 | hardwareProfile<sup>(deprecated) </sup> | string | 是 | 否 | 硬件Profile。<br/>**说明**：<br/>从API version 6 开始支持，从API version 9 开始废弃。 |
-| serial | string | 是 | 否 | 设备序列号,仅限系统应用使用。<br/>**说明**：可作为设备唯一识别码。<br/>**使用权限**：ohos.permission.sec.ACCESS_UDID |
+| serial | string | 是 | 否 | 设备序列号,仅限系统应用使用。<br/>**说明**：可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID |
 | bootloaderVersion | string | 是 | 否 | Bootloader版本号。 |
 | abiList | string | 是 | 否 | 应用二进制接口（Abi）。 |
 | securityPatchTag | string | 是 | 否 | 安全补丁级别。 |
 | displayVersion | string | 是 | 否 | 产品版本。 |
 | incrementalVersion | string | 是 | 否 | 差异版本号。 |
 | osReleaseType | string | 是 | 否 | 系统的发布类型，取值为：<br/>-&nbsp;Canary：面向特定开发者发布的早期预览版本，不承诺API稳定性。<br/>-&nbsp;Beta：面向开发者公开发布的Beta版本，不承诺API稳定性。<br/>-&nbsp;Release：面向开发者公开发布的正式版本，承诺API稳定性。 |
-| osFullName | string | 是 | 否 | 系统版本。<br/>**元服务API**：从API version 11开始，该接口支持在元服务中使用。 |
+| osFullName | string | 是 | 否 | 系统版本。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | majorVersion | number | 是 | 否 | Major版本号，随主版本更新增加。 |
 | seniorVersion | number | 是 | 否 | Senior版本号，随局部架构、重大特性增加。 |
 | featureVersion | number | 是 | 否 | Feature版本号，标识规划的新特性版本。 |
@@ -53,7 +53,7 @@ import deviceInfo from '@ohos.deviceInfo';
 | buildHost | string | 是 | 否 | 构建主机。 |
 | buildTime | string | 是 | 否 | 构建时间。 |
 | buildRootHash | string | 是 | 否 | 构建版本Hash。 |
-| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid,仅限系统应用使用。<br/>**说明**：数据长度为65字节。可作为设备唯一识别码。<br/>**使用权限**：ohos.permission.sec.ACCESS_UDID |
+| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid,仅限系统应用使用。<br/>**说明**：数据长度为65字节。可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID |
 | distributionOSName<sup>10+</sup> | String | 是 | 否 | 发行版系统名称。 |
 | distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号。 |
 | distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本。 |
@@ -63,7 +63,7 @@ import deviceInfo from '@ohos.deviceInfo';
 **示例**
 
 ```ts
-    import deviceinfo from '@ohos.deviceInfo';
+    import { deviceInfo } from '@kit.deviceInfo';
 
     let deviceTypeInfo: string = deviceinfo.deviceType;
     console.info('the value of the deviceType is :' + deviceTypeInfo);
@@ -88,9 +88,6 @@ import deviceInfo from '@ohos.deviceInfo';
 
     let hardwareModelInfo: string = deviceinfo.hardwareModel;
     console.info('the value of the deviceinfo hardwareModel is :' + hardwareModelInfo);
-
-    let hardwareProfileInfo: string = deviceinfo.hardwareProfile;
-    console.info('the value of the deviceinfo hardwareProfile is :' + hardwareProfileInfo);
 
     let serialInfo: string = deviceinfo.serial;
     console.info('the value of the deviceinfo serial is :' + serialInfo);

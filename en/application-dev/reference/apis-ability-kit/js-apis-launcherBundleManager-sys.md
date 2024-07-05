@@ -37,7 +37,7 @@ Obtains the launcher ability information based on the given bundle name and user
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -97,7 +97,7 @@ Obtains the launcher ability information based on the given bundle name and user
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -155,7 +155,7 @@ Obtains the launcher ability information based on the given bundle name and user
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
@@ -203,7 +203,7 @@ Obtains the launcher ability information of all applications based on the given 
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
@@ -260,7 +260,7 @@ Obtains the launcher ability information of all applications based on the given 
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
@@ -311,7 +311,7 @@ Obtains the shortcut information of the current user based on the given bundle n
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
@@ -369,7 +369,7 @@ Obtains the shortcut information of the current user based on the given bundle n
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
@@ -425,7 +425,7 @@ Obtains the shortcut information of the current user based on the given bundle n
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
@@ -472,7 +472,7 @@ Starts the ability in the specified [ShortcutInfo](js-apis-bundleManager-shortcu
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
@@ -480,7 +480,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
-| 17700065 | The specified shortcut want in shortcut info is not supported to be started.  |
+| 17700065 | The ability specified by want in the ShortcutInfo struct cannot be started.  |
 
 **Example**
 

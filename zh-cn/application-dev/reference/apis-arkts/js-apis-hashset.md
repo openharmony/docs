@@ -24,6 +24,8 @@ import { HashSet } from '@kit.ArkTS';
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -48,6 +50,8 @@ constructor()
 
 HashSet的构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -70,6 +74,8 @@ let hashSet: HashSet<number> = new HashSet();
 isEmpty(): boolean
 
 判断该HashSet是否为空。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -101,6 +107,8 @@ has(value: T): boolean
 
 判断此HashSet中是否含有该指定元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -117,10 +125,11 @@ has(value: T): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The has method cannot be bound. |
 
 **示例：**
@@ -138,6 +147,8 @@ add(value: T): boolean
 
 向HashSet中添加数据。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -154,10 +165,11 @@ add(value: T): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The add method cannot be bound. |
 
 **示例：**
@@ -173,6 +185,8 @@ let result = hashSet.add("squirrel");
 remove(value: T): boolean
 
 删除指定的元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -190,10 +204,11 @@ remove(value: T): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200011 | The remove method cannot be bound. |
 
 **示例：**
@@ -211,6 +226,8 @@ let result = hashSet.remove("sparrow");
 clear(): void
 
 清除HashSet中的所有元素，并把length置为0。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -237,6 +254,8 @@ hashSet.clear();
 values(): IterableIterator&lt;T&gt;
 
 返回包含此映射中包含的键值的新迭代器对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -275,6 +294,8 @@ forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisAr
 
 通过回调函数来遍历实例对象上的元素以及元素对应的下标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -293,10 +314,11 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **示例：**
@@ -315,6 +337,8 @@ hashSet.forEach((value?: string, key?: string): void => {
 entries(): IterableIterator<[T, T]>
 
 返回包含此映射中包含的键值对的新迭代器对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -353,6 +377,8 @@ while(!temp.done) {
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

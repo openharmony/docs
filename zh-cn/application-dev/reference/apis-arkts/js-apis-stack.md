@@ -24,6 +24,8 @@ import { Stack } from '@kit.ArkTS';
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -36,6 +38,8 @@ import { Stack } from '@kit.ArkTS';
 constructor()
 
 Stack的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -59,6 +63,8 @@ let stack : Stack<number | string | Object> = new Stack();
 push(item: T): T
 
 在栈顶插入元素，并返回该元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -102,6 +108,8 @@ pop(): T
 
 删除栈顶元素并返回该元素，栈为空时返回undefined。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -136,6 +144,8 @@ peek(): T
 
 获取并返回栈顶元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -168,6 +178,8 @@ let result = stack.peek();
 locate(element: T): number
 
 返回指定元素第一次出现时的下标值，查找失败返回-1。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -209,6 +221,8 @@ thisArg?: Object): void
 
 通过回调函数来遍历Stack实例对象上的元素以及元素对应的下标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -228,10 +242,11 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **示例：**
@@ -252,6 +267,8 @@ stack.forEach((value : number, index ?: number) :void => {
 isEmpty(): boolean
 
 判断该栈是否为空。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -289,6 +306,8 @@ let result = stack.isEmpty();
 > **说明：**
 >
 > 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

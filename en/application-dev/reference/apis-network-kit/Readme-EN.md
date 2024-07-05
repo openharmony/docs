@@ -11,13 +11,15 @@
   - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
   - [@ohos.app.ability.VpnExtensionAbility (Enhanced VPN Management)](js-apis-VpnExtensionAbility.md)
   - [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md)
+  <!--Del-->
   - [@ohos.net.connection (Network Connection Management) (System API)](js-apis-net-connection-sys.md)
   - [@ohos.net.ethernet (Ethernet Connection Management) (System API)](js-apis-net-ethernet-sys.md)
   - [@ohos.net.policy (Network Policy Management) (System API)](js-apis-net-policy-sys.md)
   - [@ohos.net.sharing (Network Sharing Management) (System API)](js-apis-net-sharing-sys.md)
   - [@ohos.net.statistics (Traffic Management) (System API)](js-apis-net-statistics-sys.md)
-  - [@ohos.net.vpn (VPN Management) (System API)] (js-apis-net-vpn-sys.md)
+  - [@ohos.net.vpn (VPN Management) (System API)](js-apis-net-vpn-sys.md)
   - [@ohos.net.vpnExtension (Enhanced VPN Management) (System API)](js-apis-net-vpnExtension-sys.md)
+  <!--DelEnd-->
 - C API
   - Module
     - [Netstack](netstack.md)

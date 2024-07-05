@@ -40,7 +40,7 @@ OpenHarmony JSVM-API是基于标准JS引擎提供的一套稳定的ABI，为开�
 
 - VM Information：JSVM_VM的信息。
 
-- Standerd JS Engine：标准JS引擎。
+- Standard JS Engine：标准JS引擎。
 
 ## JSVM-API的关键交互流程
 

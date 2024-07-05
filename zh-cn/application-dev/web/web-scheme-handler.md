@@ -86,6 +86,10 @@ scheme注册完毕后，通过[initializeWebEngine](../reference/apis-arkweb/js-
     OH_ArkWeb_ReleaseString(method);
 
     int32_t resourceType = OH_ArkWebResourceRequest_GetResourceType(resourceRequest_);
+
+    char* frameUrl;
+    OH_ArkWebResourceRequest_GetFrameUrl(resourceRequest_, &frameUrl);
+    OH_ArkWeb_ReleaseString(frameUrl);
     ...
   ```
 
@@ -133,8 +137,8 @@ Web组件的网络拦截支持在worker线程以流的方式为被拦截的请�
 main/ets/pages/index.ets
 ```ts
 import testNapi from 'libentry.so';
-import web_webview from '@ohos.web.webview';
-import resource_manager from '@ohos.resourceManager';
+import { webview } from '@kit.ArkWeb';
+import { resourceManager } from '@kit.LocalizationKit';
 
 @Entry
 @Component
@@ -173,7 +177,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import testNapi from 'libentry.so';
-import webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {

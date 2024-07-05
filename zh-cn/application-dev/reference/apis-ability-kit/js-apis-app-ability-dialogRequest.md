@@ -11,7 +11,7 @@ dialogRequest模块用于处理模态弹框的能力，包括获取RequestInfo�
 ## 导入模块
 
 ```ts
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { dialogRequest } from '@kit.AbilityKit';
 ```
 
 ## dialogRequest.getRequestInfo
@@ -49,10 +49,7 @@ getRequestInfo(want: Want): RequestInfo
 **示例：**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { AbilityConstant, UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -100,10 +97,7 @@ getRequestCallback(want: Want): RequestCallback
 **示例：**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { AbilityConstant, UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -146,10 +140,7 @@ export default class EntryAbility extends UIAbility {
 **示例：**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { AbilityConstant, UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -186,7 +177,7 @@ export default class EntryAbility extends UIAbility {
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | result | [ResultCode](#resultcode) | 否 | 是 | 表示结果码。 |
-| want<sup>10+</sup> | [ResultWant](js-apis-app-ability-want.md)  | 否 | 否 | 表示Want类型信息，如ability名称，包名等。 |
+| want<sup>10+</sup> | [Want](js-apis-app-ability-want.md)  | 否 | 否 | 表示Want类型信息，如ability名称，包名等。 |
 
 ## RequestCallback
 
@@ -221,10 +212,7 @@ setRequestResult(result: RequestResult): void
 **示例：**
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
+import { AbilityConstant, UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {

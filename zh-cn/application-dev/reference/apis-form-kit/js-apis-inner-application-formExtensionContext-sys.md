@@ -33,8 +33,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -104,8 +104,8 @@ startAbility(want: Want): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -166,6 +166,8 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | Permissions denied.             |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -246,6 +248,7 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
@@ -311,6 +314,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 

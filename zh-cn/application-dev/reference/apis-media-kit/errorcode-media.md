@@ -101,7 +101,7 @@ Service died.
 
 **错误信息**
 
-Unsupport format.
+Unsupported format.
 
 **错误描述**
 
@@ -119,7 +119,7 @@ Unsupport format.
 
 **错误信息**
 
-Audio interrupted
+Audio interrupted.
 
 **错误描述**
 

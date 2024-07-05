@@ -14,10 +14,10 @@ UIAbility is an application component that has the UI. The UIAbility module, inh
 ## Modules to Import
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -47,17 +47,15 @@ Called to initialize the service logic when a UIAbility instance in the complete
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
+```ts
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          console.log(`onCreate, want: ${want.abilityName}`);
-      }
+class MyUIAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log(`onCreate, want: ${want.abilityName}`);
   }
-  ```
+}
+```
 
 
 ## UIAbility.onWindowStageCreate
@@ -78,16 +76,46 @@ Called when a **WindowStage** is created for this UIAbility.
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
-  class MyUIAbility extends UIAbility {
-      onWindowStageCreate(windowStage: window.WindowStage) {
-          console.log('onWindowStageCreate');
-      }
+class MyUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
   }
-  ```
+}
+```
+
+
+## UIAbility.onWindowStageWillDestroy<sup>12+</sup>
+
+onWindowStageWillDestroy(windowStage: window.WindowStage): void
+
+Called when the **WindowStage** is about to be destroyed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | Yes| **WindowStage** information.|
+
+**Example**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+class MyUIAbility extends UIAbility {
+  onWindowStageWillDestroy(windowStage: window.WindowStage) {
+    console.log('onWindowStageWillDestroy');
+  }
+}
+```
 
 
 ## UIAbility.onWindowStageDestroy
@@ -102,15 +130,15 @@ Called when the **WindowStage** is destroyed for this UIAbility.
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
-      onWindowStageDestroy() {
-          console.log('onWindowStageDestroy');
-      }
+class MyUIAbility extends UIAbility {
+  onWindowStageDestroy() {
+    console.log('onWindowStageDestroy');
   }
-  ```
+}
+```
 
 
 ## UIAbility.onWindowStageRestore
@@ -131,16 +159,16 @@ Called when the **WindowStage** is restored during the migration of this UIAbili
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
-  class MyUIAbility extends UIAbility {
-      onWindowStageRestore(windowStage: window.WindowStage) {
-          console.log('onWindowStageRestore');
-      }
+class MyUIAbility extends UIAbility {
+  onWindowStageRestore(windowStage: window.WindowStage) {
+    console.log('onWindowStageRestore');
   }
-  ```
+}
+```
 
 
 ## UIAbility.onDestroy
@@ -161,29 +189,28 @@ Called to clear resources when this UIAbility is destroyed. This API returns the
 
 **Example**
 
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-
-  class MyUIAbility extends UIAbility {
-      onDestroy() {
-          console.log('onDestroy');
-      }
+class MyUIAbility extends UIAbility {
+  onDestroy() {
+    console.log('onDestroy');
   }
-  ```
+}
+```
 
 After the **onDestroy()** lifecycle callback is executed, the application may exit. Consequently, the asynchronous function (for example, asynchronously writing data to the database) in **onDestroy()** may fail to be executed. You can use the asynchronous lifecycle to ensure that the subsequent lifecycle continues only after the asynchronous function in **onDestroy()** finishes the execution.
 
-  ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
-    async onDestroy() {
-        console.log('onDestroy');
-        // Call the asynchronous function.
-    }
+  async onDestroy() {
+    console.log('onDestroy');
+    // Call the asynchronous function.
+  }
 }
-  ```
+```
 
 ## UIAbility.onForeground
 
@@ -197,15 +224,15 @@ Called when this UIAbility is switched from the background to the foreground. Th
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
-      onForeground() {
-          console.log('onForeground');
-      }
+class MyUIAbility extends UIAbility {
+  onForeground() {
+    console.log('onForeground');
   }
-  ```
+}
+```
 
 
 ## UIAbility.onBackground
@@ -220,15 +247,15 @@ Called when this UIAbility is switched from the foreground to the background. Th
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
-      onBackground() {
-          console.log('onBackground');
-      }
+class MyUIAbility extends UIAbility {
+  onBackground() {
+    console.log('onBackground');
   }
-  ```
+}
+```
 
 
 ## UIAbility.onContinue
@@ -260,8 +287,7 @@ Called to save data during the UIAbility migration preparation process.
 **Example**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   class MyUIAbility extends UIAbility {
       onContinue(wantParams: Record<string, Object>) {
@@ -275,8 +301,7 @@ Called to save data during the UIAbility migration preparation process.
 An asynchronous API can be used to save data during ability continuation.
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   class MyUIAbility extends UIAbility {
     async setWant(wantParams: Record<string, Object>) {
@@ -316,18 +341,16 @@ Called when a UIAbility instance that has undergone the following states is star
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
+```ts
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
-      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          console.log(`onNewWant, want: ${want.abilityName}`);
-          console.log(`onNewWant, launchParam: ${JSON.stringify(launchParam)}`);
-      }
+class MyUIAbility extends UIAbility {
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log(`onNewWant, want: ${want.abilityName}`);
+    console.log(`onNewWant, launchParam: ${JSON.stringify(launchParam)}`);
   }
-  ```
+}
+```
 
 ## UIAbility.onDump
 
@@ -353,16 +376,16 @@ Called to dump the client information. This API can be used to dump non-sensitiv
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
-  class MyUIAbility extends UIAbility {
-      onDump(params: Array<string>) {
-          console.log(`dump, params: ${JSON.stringify(params)}`);
-          return ['params'];
-      }
+class MyUIAbility extends UIAbility {
+  onDump(params: Array<string>) {
+    console.log(`dump, params: ${JSON.stringify(params)}`);
+    return ['params'];
   }
-  ```
+}
+```
 
 
 ## UIAbility.onSaveState
@@ -390,18 +413,17 @@ Called when the framework automatically saves the UIAbility state in the case of
 
 **Example**
 
-  ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+```ts
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
-    onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
-        console.log('onSaveState');
-        wantParam['myData'] = 'my1234567';
-        return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
-    }
+  onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
+    console.log('onSaveState');
+    wantParam['myData'] = 'my1234567';
+    return AbilityConstant.OnSaveResult.RECOVERY_AGREE;
+  }
 }
-  ```
+```
 
 ## UIAbility.onShare<sup>10+</sup>
 
@@ -421,17 +443,16 @@ Called by this UIAbility to set data to share in the cross-device sharing scenar
 
 **Example**
 
-  ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
-    onShare(wantParams: Record<string, Object>) {
-        console.log('onShare');
-        wantParams['ohos.extra.param.key.shareUrl'] = 'example.com';
-    }
+  onShare(wantParams: Record<string, Object>) {
+    console.log('onShare');
+    wantParams['ohos.extra.param.key.shareUrl'] = 'example.com';
+  }
 }
-  ```
+```
 
 ## UIAbility.onPrepareToTerminate<sup>10+</sup>
 
@@ -453,37 +474,36 @@ Called when this UIAbility is about to terminate in case that the system paramet
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+```ts
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  export default class EntryAbility extends UIAbility {
-    onPrepareToTerminate() {
-      // Define a pre-termination operation,
-      // for example, starting another UIAbility and performing asynchronous termination based on the startup result.
-      let want: Want = {
-        bundleName: "com.example.myapplication",
-        moduleName: "entry",
-        abilityName: "SecondAbility"
-      }
-      this.context.startAbilityForResult(want)
-        .then((result)=>{
-          // Obtain the startup result and terminate the current UIAbility when resultCode in the return value is 0.
-          console.log('startAbilityForResult success, resultCode is ' + result.resultCode);
-          if (result.resultCode === 0) {
-            this.context.terminateSelf();
-          }
-        }).catch((err: BusinessError)=>{
-          // Exception handling.
-          console.error('startAbilityForResult failed, err:' + JSON.stringify(err));
-          this.context.terminateSelf();
-        })
-
-      return true; // The pre-termination operation is defined. The value true means that the UIAbility termination process is canceled.
+export default class EntryAbility extends UIAbility {
+  onPrepareToTerminate() {
+    // Define a pre-termination operation,
+    // for example, starting another UIAbility and performing asynchronous termination based on the startup result.
+    let want: Want = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      abilityName: "SecondAbility"
     }
+    this.context.startAbilityForResult(want)
+      .then((result)=>{
+        // Obtain the startup result and terminate the current UIAbility when resultCode in the return value is 0.
+        console.log('startAbilityForResult success, resultCode is ' + result.resultCode);
+        if (result.resultCode === 0) {
+          this.context.terminateSelf();
+        }
+      }).catch((err: BusinessError)=>{
+      // Exception handling.
+      console.error('startAbilityForResult failed, err:' + JSON.stringify(err));
+      this.context.terminateSelf();
+    })
+
+    return true; // The pre-termination operation is defined. The value true means that the UIAbility termination process is canceled.
   }
-  ```
+}
+```
 
 ## UIAbility.onBackPressed<sup>10+</sup>
 
@@ -506,15 +526,15 @@ Called when an operation of going back to the previous page is triggered on this
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
 
-  export default class EntryAbility extends UIAbility {
-    onBackPressed() {
-      return true;
-    }
+export default class EntryAbility extends UIAbility {
+  onBackPressed() {
+    return true;
   }
-  ```
+}
+```
 
 ## Caller
 
@@ -543,68 +563,69 @@ Sends parcelable data to the target UIAbility. This API uses a promise to return
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
 | 16000050 | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
-  import rpc from '@ohos.rpc';
+```ts
+import { UIAbility, Caller } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  class MyMessageAble implements rpc.Parcelable { // Custom parcelable data structure.
-    name: string
-    str: string
-    num: number = 1
-    constructor(name: string, str: string) {
-      this.name = name;
-      this.str = str;
-    }
-    marshalling(messageSequence: rpc.MessageSequence) {
-      messageSequence.writeInt(this.num);
-      messageSequence.writeString(this.str);
-      console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
-      return true;
-    }
-    unmarshalling(messageSequence: rpc.MessageSequence) {
-      this.num = messageSequence.readInt();
-      this.str = messageSequence.readString();
-      console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
-      return true;
-    }
-  };
-  let method = 'call_Function'; // Notification message string negotiated by the two UIAbilities.
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-        caller = obj;
-        let msg = new MyMessageAble('msg', 'world'); // See the definition of Parcelable.
-        caller.call(method, msg)
-          .then(() => {
-            console.log('Caller call() called');
-          })
-          .catch((callErr: BusinessError) => {
-            console.error(`Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
-          });
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+class MyMessageAble implements rpc.Parcelable { // Custom parcelable data structure.
+  name: string
+  str: string
+  num: number = 1
+  constructor(name: string, str: string) {
+    this.name = name;
+    this.str = str;
   }
-  ```
+  marshalling(messageSequence: rpc.MessageSequence) {
+    messageSequence.writeInt(this.num);
+    messageSequence.writeString(this.str);
+    console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
+    return true;
+  }
+  unmarshalling(messageSequence: rpc.MessageSequence) {
+    this.num = messageSequence.readInt();
+    this.str = messageSequence.readString();
+    console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
+    return true;
+  }
+};
+let method = 'call_Function'; // Notification message string negotiated by the two UIAbilities.
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      let msg = new MyMessageAble('msg', 'world'); // See the definition of Parcelable.
+      caller.call(method, msg)
+        .then(() => {
+          console.log('Caller call() called');
+        })
+        .catch((callErr: BusinessError) => {
+          console.error(`Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
+        });
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
+  }
+}
+```
 
 
 ### Caller.callWithResult
@@ -630,70 +651,71 @@ Sends parcelable data to the target UIAbility and obtains the parcelable data re
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
 | 16000050 | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
-  import rpc from '@ohos.rpc';
+```ts
+import { UIAbility, Caller } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  class MyMessageAble implements rpc.Parcelable {
-    name: string
-    str: string
-    num: number = 1
-    constructor(name: string, str: string) {
-      this.name = name;
-      this.str = str;
-    }
-    marshalling(messageSequence: rpc.MessageSequence) {
-      messageSequence.writeInt(this.num);
-      messageSequence.writeString(this.str);
-      console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
-      return true;
-    }
-    unmarshalling(messageSequence: rpc.MessageSequence) {
-      this.num = messageSequence.readInt();
-      this.str = messageSequence.readString();
-      console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
-      return true;
-    }
-  };
-  let method = 'call_Function';
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-        caller = obj;
-        let msg = new MyMessageAble('msg', 'world');
-        caller.callWithResult(method, msg)
-          .then((data) => {
-            console.log('Caller callWithResult() called');
-            let retmsg = new MyMessageAble('msg', 'world');
-            data.readParcelable(retmsg);
-          })
-          .catch((callErr: BusinessError) => {
-            console.error(`Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
-          });
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+class MyMessageAble implements rpc.Parcelable {
+  name: string
+  str: string
+  num: number = 1
+  constructor(name: string, str: string) {
+    this.name = name;
+    this.str = str;
   }
-  ```
+  marshalling(messageSequence: rpc.MessageSequence) {
+    messageSequence.writeInt(this.num);
+    messageSequence.writeString(this.str);
+    console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
+    return true;
+  }
+  unmarshalling(messageSequence: rpc.MessageSequence) {
+    this.num = messageSequence.readInt();
+    this.str = messageSequence.readString();
+    console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
+    return true;
+  }
+};
+let method = 'call_Function';
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      let msg = new MyMessageAble('msg', 'world');
+      caller.callWithResult(method, msg)
+        .then((data) => {
+          console.log('Caller callWithResult() called');
+          let retmsg = new MyMessageAble('msg', 'world');
+          data.readParcelable(retmsg);
+        })
+        .catch((callErr: BusinessError) => {
+          console.error(`Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
+        });
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
+  }
+}
+```
 
 
 ### Caller.release
@@ -706,41 +728,41 @@ Releases the caller interface of the target UIAbility.
 
 **Error codes**
 
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
+```ts
+import { UIAbility, Caller } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-        caller = obj;
-        try {
-          caller.release();
-        } catch (releaseErr) {
-          console.error(`Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}`);
-        }
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      try {
+        caller.release();
+      } catch (releaseErr) {
+        console.error(`Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}`);
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
   }
-  ```
+}
+```
 
 ### Caller.onRelease
 
@@ -758,42 +780,43 @@ Called when the stub on the target UIAbility is disconnected. This API uses an a
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
+```ts
+import { UIAbility, Caller } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-          caller = obj;
-          try {
-            caller.onRelease((str) => {
-                console.log(`Caller OnRelease CallBack is called ${str}`);
-            });
-          } catch (error) {
-            console.error(`Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}`);
-          }
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      try {
+        caller.onRelease((str) => {
+          console.log(`Caller OnRelease CallBack is called ${str}`);
+        });
+      } catch (error) {
+        console.error(`Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}`);
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
   }
-  ```
+}
+```
 
 ### Caller.onRemoteStateChange<sup>10+</sup>
 
@@ -811,43 +834,44 @@ Called when the remote UIAbility state changes in the collaboration scenario. Th
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
+```ts
+import { UIAbility, Caller } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let caller: Caller;
-  let dstDeviceId: string;
-  export default class MainAbility extends UIAbility {
-      onWindowStageCreate(windowStage: window.WindowStage) {
-          this.context.startAbilityByCall({
-              bundleName: 'com.example.myservice',
-              abilityName: 'MainUIAbility',
-              deviceId: dstDeviceId
-          }).then((obj) => {
-              caller = obj;
-              try {
-                  caller.onRemoteStateChange((str) => {
-                      console.log('Remote state changed ' + str);
-                  });
-              } catch (error) {
-                  console.error(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
-              }
-          }).catch((err: BusinessError) => {
-              console.error(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
-          })
+let caller: Caller;
+let dstDeviceId: string;
+
+export default class MainAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: dstDeviceId
+    }).then((obj) => {
+      caller = obj;
+      try {
+        caller.onRemoteStateChange((str) => {
+          console.log('Remote state changed ' + str);
+        });
+      } catch (error) {
+        console.error(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
       }
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}`);
+    })
   }
-  ```
+}
+```
 
 ### Caller.on
 
@@ -866,42 +890,43 @@ Called when the stub on the target UIAbility is disconnected. This API uses an a
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16200001 | Caller released. The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
+```ts
+import { UIAbility, Caller } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-          caller = obj;
-          try {
-            caller.on('release', (str) => {
-                console.log(`Caller OnRelease CallBack is called ${str}`);
-            });
-          } catch (error) {
-            console.error(`Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
-          }
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      try {
+        caller.on('release', (str) => {
+          console.log(`Caller OnRelease CallBack is called ${str}`);
+        });
+      } catch (error) {
+        console.error(`Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
   }
-  ```
+}
+```
 
 ### Caller.off
 
@@ -918,38 +943,46 @@ Deregisters a callback that is invoked when the stub on the target UIAbility is 
 | type | string | Yes| Event type. The value is fixed at **'release'**.|
 | callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
-  ```ts
-  import UIAbility, { OnReleaseCallback } from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
+```ts
+import { UIAbility, Caller, OnReleaseCallback } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-          caller = obj;
-          try {
-            let onReleaseCallBack: OnReleaseCallback = (str) => {
-                console.log(`Caller OnRelease CallBack is called ${str}`);
-            };
-            caller.on('release', onReleaseCallBack);
-            caller.off('release', onReleaseCallBack);
-          } catch (error) {
-            console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
-          }
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      try {
+        let onReleaseCallBack: OnReleaseCallback = (str) => {
+          console.log(`Caller OnRelease CallBack is called ${str}`);
+        };
+        caller.on('release', onReleaseCallBack);
+        caller.off('release', onReleaseCallBack);
+      } catch (error) {
+        console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
   }
-  ```
+}
+```
 
 ### Caller.off
 
@@ -965,38 +998,46 @@ Deregisters a callback that is invoked when the stub on the target UIAbility is 
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is fixed at **'release'**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
-  ```ts
-  import UIAbility, { OnReleaseCallback } from '@ohos.app.ability.UIAbility';
-  import { Caller } from '@ohos.app.ability.UIAbility';
-  import { BusinessError } from '@ohos.base';
-  import window from '@ohos.window';
+```ts
+import { UIAbility, Caller, OnReleaseCallback } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let caller: Caller;
-  export default class MainUIAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      this.context.startAbilityByCall({
-        bundleName: 'com.example.myservice',
-        abilityName: 'MainUIAbility',
-        deviceId: ''
-      }).then((obj) => {
-          caller = obj;
-          try {
-            let onReleaseCallBack: OnReleaseCallback = (str) => {
-                console.log(`Caller OnRelease CallBack is called ${str}`);
-            };
-            caller.on('release', onReleaseCallBack);
-            caller.off('release');
-          } catch (error) {
-            console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
-          }
-      }).catch((err: BusinessError) => {
-        console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
-      });
-    }
+let caller: Caller;
+
+export default class MainUIAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    this.context.startAbilityByCall({
+      bundleName: 'com.example.myservice',
+      abilityName: 'MainUIAbility',
+      deviceId: ''
+    }).then((obj) => {
+      caller = obj;
+      try {
+        let onReleaseCallBack: OnReleaseCallback = (str) => {
+          console.log(`Caller OnRelease CallBack is called ${str}`);
+        };
+        caller.on('release', onReleaseCallBack);
+        caller.off('release');
+      } catch (error) {
+        console.error(`Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
+      }
+    }).catch((err: BusinessError) => {
+      console.error(`Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}`);
+    });
   }
-  ```
+}
+```
 
 ## Callee
 
@@ -1019,60 +1060,60 @@ Registers a caller notification callback, which is invoked when the target UIAbi
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16200004 | Method registered. The method has registered. |
 | 16000050 | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  import rpc from '@ohos.rpc';
+```ts
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
-  class MyMessageAble implements rpc.Parcelable {
-      name: string
-      str: string
-      num: number = 1
-      constructor(name: string, str: string) {
-        this.name = name;
-        this.str = str;
-      }
-      marshalling(messageSequence: rpc.MessageSequence) {
-          messageSequence.writeInt(this.num);
-          messageSequence.writeString(this.str);
-          console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
-          return true;
-      }
-      unmarshalling(messageSequence: rpc.MessageSequence) {
-          this.num = messageSequence.readInt();
-          this.str = messageSequence.readString();
-          console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
-          return true;
-      }
-  };
-  let method = 'call_Function';
-  function funcCallBack(pdata: rpc.MessageSequence) {
-      console.log(`Callee funcCallBack is called ${pdata}`);
-      let msg = new MyMessageAble('test', '');
-      pdata.readParcelable(msg);
-      return new MyMessageAble('test1', 'Callee test');
+class MyMessageAble implements rpc.Parcelable {
+  name: string
+  str: string
+  num: number = 1
+  constructor(name: string, str: string) {
+    this.name = name;
+    this.str = str;
   }
-  export default class MainUIAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      console.log('Callee onCreate is called');
-      try {
-        this.callee.on(method, funcCallBack);
-      } catch (error) {
-        console.error(`Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
-      }
+  marshalling(messageSequence: rpc.MessageSequence) {
+    messageSequence.writeInt(this.num);
+    messageSequence.writeString(this.str);
+    console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
+    return true;
+  }
+  unmarshalling(messageSequence: rpc.MessageSequence) {
+    this.num = messageSequence.readInt();
+    this.str = messageSequence.readString();
+    console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
+    return true;
+  }
+};
+let method = 'call_Function';
+
+function funcCallBack(pdata: rpc.MessageSequence) {
+  console.log(`Callee funcCallBack is called ${pdata}`);
+  let msg = new MyMessageAble('test', '');
+  pdata.readParcelable(msg);
+  return new MyMessageAble('test1', 'Callee test');
+}
+export default class MainUIAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log('Callee onCreate is called');
+    try {
+      this.callee.on(method, funcCallBack);
+    } catch (error) {
+      console.error(`Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
-  ```
+}
+```
 
 ### Callee.off
 
@@ -1090,40 +1131,41 @@ Deregisters a caller notification callback, which is invoked when the target UIA
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16200005 | Method not registered. The method has not registered. |
 | 16000050 | Internal error. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
-
 **Example**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
+```ts
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
 
-  let method = 'call_Function';
-  export default class MainUIAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      console.log('Callee onCreate is called');
-      try {
-        this.callee.off(method);
-      } catch (error) {
-        console.error(`Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
-      }
+let method = 'call_Function';
+
+export default class MainUIAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log('Callee onCreate is called');
+    try {
+      this.callee.off(method);
+    } catch (error) {
+      console.error(`Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
-  ```
+}
+```
 
 ## OnReleaseCallback
 
+### (msg: string)
+
+(msg: string): void
 
 Defines the callback that is invoked when the stub on the target UIAbility is disconnected.
 
-
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -1131,14 +1173,15 @@ Defines the callback that is invoked when the stub on the target UIAbility is di
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
-
-
+ 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
+### (msg: string)
+
+(msg: string): void
 
 Defines the callback that is invoked when the remote UIAbility state changes in the collaboration scenario.
 
-
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -1146,13 +1189,14 @@ Defines the callback that is invoked when the remote UIAbility state changes in 
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
-
-
+ 
 ## CalleeCallback
 
+### (indata: rpc.MessageSequence)
+
+(indata: rpc.MessageSequence): rpc.Parcelable
 
 Defines the callback of the registration message notification of the UIAbility.
-
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 

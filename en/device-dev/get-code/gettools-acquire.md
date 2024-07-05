@@ -28,7 +28,7 @@ Before using the Docker environment, you need to make necessary preparations. Th
       ```
       sudo apt install docker.io
       ```
-   - For details about how to install Docker on other types of OS, see [Docker Guide] (https://docs.docker.com/engine/install/).
+   - For details about how to install Docker on other types of OS, see [Docker Guide](https://docs.docker.com/engine/install/).
 
 2. Obtain the OpenHarmony source code.
 

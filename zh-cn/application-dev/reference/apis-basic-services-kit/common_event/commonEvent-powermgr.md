@@ -111,4 +111,4 @@
 - 值： usual.event.THERMAL_LEVEL_CHANGED
 - 订阅者所需权限： 无
 
-当设备热等级变化时，将会触发事件通知服务发布该系统公共事件。设备热等级配置请参考[热等级定制开发指导](../../../../device-dev/subsystems/subsys-thermal_level.md)。
+当设备热等级变化时，将会触发事件通知服务发布该系统公共事件。<!--Del-->设备热等级配置请参考[热等级定制开发指导](../../../../device-dev/subsystems/subsys-thermal_level.md)。<!--DelEnd-->

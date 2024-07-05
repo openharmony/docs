@@ -18,7 +18,7 @@
 
 
 ```ts
-import mediaquery from '@ohos.mediaquery';
+import { mediaquery } from '@kit.ArkUI';
 ```
 
 通过matchMediaSync接口设置媒体查询条件，保存返回的条件监听句柄listener。例如监听横屏事件：
@@ -68,6 +68,8 @@ listener.on('change', onPortrait);
 
 - screen and (device-type: tv) or (resolution &lt; 2) ：表示包含多个媒体特征的多条件复杂语句查询，当设备类型为tv或设备分辨率小于2时条件成立。
 
+- (dark-mode: true) : 表示当系统为深色模式时成立。
+
 
 ### 媒体类型（media-type）
 
@@ -108,6 +110,8 @@ listener.on('change', onPortrait);
 
   **表3** 媒体特征说明表
 
+比较height、width等宽高尺寸时，支持vp和px单位，无单位默认为px。
+
 | 类型                | 说明                                       |
 | ----------------- | ---------------------------------------- |
 | height            | 应用页面可绘制区域的高度。                            |
@@ -128,7 +132,7 @@ listener.on('change', onPortrait);
 | min-device-width  | 设备的最小宽度。                                 |
 | max-device-width  | 设备的最大宽度。                                 |
 | round-screen      | 屏幕类型，圆形屏幕为true，非圆形屏幕为false。              |
-| dark-mode         | 系统为深色模式时为true，否则为false。                  |
+| dark-mode         | 系统当前的深浅模式。可选值：true、false。 <br/> 深色模式为true，浅色模式为false。          |
 
 >**说明：** 
 >
@@ -142,9 +146,8 @@ Stage模型下的示例：
 
 
 ```ts
-import mediaquery from '@ohos.mediaquery';
-import window from '@ohos.window';
-import common from '@ohos.app.ability.common';
+import { mediaquery, window } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -203,8 +206,8 @@ FA模型下的示例：
 
 
 ```ts
-import mediaquery from '@ohos.mediaquery';
-import featureAbility from '@ohos.ability.featureAbility';
+import { mediaquery } from '@kit.ArkUI';
+import { featureAbility } from '@kit.AbilityKit';
 
 @Entry
 @Component

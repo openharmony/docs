@@ -8,7 +8,7 @@
 
 **错误信息**
 
-There is an generic error occurred when calling the API.
+Internal error.
 
 **可能原因**
 
@@ -22,7 +22,7 @@ There is an generic error occurred when calling the API.
 
 **错误信息**
 
-The certificate do not exist
+The certificate does not exist.
 
 **可能原因**
 
@@ -36,7 +36,7 @@ The certificate do not exist
 
 **错误信息**
 
-The keystore is not valid format or keystorePwd is not correct.
+The keystore is in an invalid format or the keystore password is incorrect.
 
 **可能原因**
 
@@ -50,7 +50,7 @@ The keystore is not valid format or keystorePwd is not correct.
 
 **错误信息**
 
-The count of certificates or credentials reach the max.
+The number of certificates or credentials reaches the maximum allowed.
 
 **可能原因**
 
@@ -64,7 +64,7 @@ The count of certificates or credentials reach the max.
 
 **错误信息**
 
-The application is not authorized by user.
+The application is not authorized by the user.
 
 **可能原因**
 

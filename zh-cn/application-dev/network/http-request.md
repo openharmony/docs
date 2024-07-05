@@ -34,7 +34,7 @@ HTTP数据请求功能主要由http模块提供。
 
 ## request接口开发步骤
 
-1. 从@ohos.net.http.d.ts中导入http命名空间。
+1. 从@kit.NetworkKit中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
 3. 调用该对象的on()方法，订阅http响应头事件，此接口会比request请求先返回。可以根据业务需要订阅此消息。
 4. 调用该对象的request()方法，传入http请求的url地址和可选参数，发起网络请求。
@@ -44,8 +44,8 @@ HTTP数据请求功能主要由http模块提供。
 
 ```ts
 // 引入包名
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
@@ -116,7 +116,7 @@ httpRequest.request(
 
 ## requestInStream接口开发步骤
 
-1. 从@ohos.net.http.d.ts中导入http命名空间。
+1. 从@kit.NetworkKit中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
 3. 调用该对象的on()方法，可以根据业务需要订阅HTTP响应头事件、HTTP流式响应数据接收事件、HTTP流式响应数据接收进度事件和HTTP流式响应数据接收完毕事件。
 4. 调用该对象的requestInStream()方法，传入http请求的url地址和可选参数，发起网络请求。
@@ -126,8 +126,8 @@ httpRequest.request(
 
 ```ts
 // 引入包名
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
@@ -174,11 +174,9 @@ let streamInfo: http.HttpRequestOptions = {
   usingProtocol: http.HttpProtocol.HTTP1_1 // 可选，协议类型默认值由系统自动指定
 }
 
-httpRequest.requestInStream(
-  // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
-  "EXAMPLE_URL",
-  streamInfo, (err: BusinessError, data: number) => {
-  console.error('error:' + JSON.stringify(err));
+// 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
+httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
+  console.info("requestInStream OK!");
   console.info('ResponseCode :' + JSON.stringify(data));
   // 取消订阅HTTP响应头事件
   httpRequest.off('headersReceive');
@@ -190,8 +188,9 @@ httpRequest.requestInStream(
   httpRequest.off('dataEnd');
   // 当该请求使用完毕时，调用destroy方法主动销毁
   httpRequest.destroy();
-}
-);
+}).catch((err: Error) => {
+  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+});
 ```
 
 ## 相关实例

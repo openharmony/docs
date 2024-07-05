@@ -17,7 +17,7 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import List from '@ohos.util.List';
+import { List } from '@kit.ArkTS';
 ```
 
 
@@ -117,12 +117,13 @@ Inserts an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The insert method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The insert method cannot be bound. |
 
 **Example**
 
@@ -191,10 +192,11 @@ Obtains the element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The get method cannot be bound. |
 
 **Example**
@@ -359,12 +361,13 @@ Searches for an element based on its index and then removes it.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeByIndex method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The removeByIndex method cannot be bound. |
 
 **Example**
 
@@ -443,10 +446,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The replaceAllElements method cannot be bound. |
 
 **Example**
@@ -489,10 +493,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**
@@ -531,10 +536,11 @@ comparator
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The sort method cannot be bound. |
 
 **Example**
@@ -572,12 +578,13 @@ Obtains elements within a range in this container, including the element at the 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The getSubList method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range. |
+| 10200011 | The getSubList method cannot be bound. |
 
 **Example**
 
@@ -640,12 +647,13 @@ Replaces an element at the specified position in this container with a given ele
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The set method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The set method cannot be bound. |
 
 **Example**
 

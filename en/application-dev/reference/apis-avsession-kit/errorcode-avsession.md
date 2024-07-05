@@ -138,7 +138,7 @@ Control the frequency of sending commands or events.
 
 **Error Message**
 
-Device connecting failed.
+Device connection failed.
 
 **Description**
 

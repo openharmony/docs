@@ -11,7 +11,7 @@ The **AbilityLifecycleCallback** module defines the callbacks to receive lifecyc
 ## Modules to Import
 
 ```ts
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+import { AbilityLifecycleCallback } from '@kit.AbilityKit';
 ```
 
 ## AbilityLifecycleCallback.onAbilityCreate
@@ -230,80 +230,84 @@ export class GlobalContext {
 MyFirstAbility.ts
 First ability of the application
 ```ts
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { AbilityLifecycleCallback, UIAbility } from '@kit.AbilityKit';
 
 // Import GlobalContext. Use the actual path declared.
 import { GlobalContext } from '../GlobalContext'
 
 // Declare the ability lifecycle callbacks. A listener can be registered in applicationContext only after all the callbacks are configured.
 let abilityLifecycleCallback: AbilityLifecycleCallback = {
-    onAbilityCreate(ability){
-        console.log('AbilityLifecycleCallback onAbilityCreate.');
-    },
-    onWindowStageCreate(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageCreate.');
-    },
-    onWindowStageActive(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageActive.');
-    },
-    onWindowStageInactive(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageInactive.');
-    },
-    onWindowStageDestroy(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageDestroy.');
-    },
-    onAbilityDestroy(ability){
-        console.log('AbilityLifecycleCallback onAbilityDestroy.');
-    },
-    onAbilityForeground(ability){
-        console.log('AbilityLifecycleCallback onAbilityForeground.');
-    },
-    onAbilityBackground(ability){
-        console.log('AbilityLifecycleCallback onAbilityBackground.');
-    },
-    onAbilityContinue(ability){
-        console.log('AbilityLifecycleCallback onAbilityContinue.');
-    }
+  onAbilityCreate(ability){
+    console.log('AbilityLifecycleCallback onAbilityCreate.');
+  },
+  onWindowStageCreate(ability, windowStage){
+    console.log('AbilityLifecycleCallback onWindowStageCreate.');
+  },
+  onWindowStageActive(ability, windowStage){
+    console.log('AbilityLifecycleCallback onWindowStageActive.');
+  },
+  onWindowStageInactive(ability, windowStage){
+    console.log('AbilityLifecycleCallback onWindowStageInactive.');
+  },
+  onWindowStageDestroy(ability, windowStage){
+    console.log('AbilityLifecycleCallback onWindowStageDestroy.');
+  },
+  onAbilityDestroy(ability){
+    console.log('AbilityLifecycleCallback onAbilityDestroy.');
+  },
+  onAbilityForeground(ability){
+    console.log('AbilityLifecycleCallback onAbilityForeground.');
+  },
+  onAbilityBackground(ability){
+    console.log('AbilityLifecycleCallback onAbilityBackground.');
+  },
+  onAbilityContinue(ability){
+    console.log('AbilityLifecycleCallback onAbilityContinue.');
+  }
 };
 
 export default class MyFirstAbility extends UIAbility {
-    onCreate() {
-        console.log('MyAbilityStage onCreate');
-        // 1. Obtain applicationContext through the context attribute.
-        let applicationContext = this.context.getApplicationContext();
-        // 2. Register the listener for the ability lifecycle changes through the applicationContext object.
-        try {
-            let lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
-            GlobalContext.getContext().setObject("lifecycleId", lifecycleId);
-            console.log(`registerAbilityLifecycleCallback lifecycleId: ${GlobalContext.getContext().getObject('lifecycleId')}`);
-        } catch (paramError) {
-            console.error(`error: ${paramError.code}, ${paramError.message}`);
-        }
+  onCreate() {
+    console.log('MyAbilityStage onCreate');
+    // 1. Obtain applicationContext through the context property.
+    let applicationContext = this.context.getApplicationContext();
+    // 2. Register the listener for the ability lifecycle changes through the applicationContext object.
+    try {
+      let lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+      GlobalContext.getContext().setObject("lifecycleId", lifecycleId);
+      console.log(`registerAbilityLifecycleCallback lifecycleId: ${GlobalContext.getContext().getObject('lifecycleId')}`);
+    } catch (paramError) {
+      console.error(`error: ${paramError.code}, ${paramError.message}`);
     }
+  }
 }
 ```
 
 MySecondAbility.ts
 Second ability of the application
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 
 // Import GlobalContext. Use the actual path declared.
 import { GlobalContext } from '../GlobalContext'
+import { BusinessError } from '@ohos.base';
 
 export default class MySecondAbility extends UIAbility {
-    onDestroy() {
-        let applicationContext = this.context.getApplicationContext();
-        let lifecycleId = GlobalContext.getContext().getObject("lifecycleId") as number;
-        // 3. Deregister the listener for the ability lifecycle changes through the applicationContext object.
-        applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
-            if (error && error.code !== 0) {
-                console.error(`unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}`);
-            } else {
-                console.log('unregisterAbilityLifecycleCallback success.');
-            }
-        });
+  onDestroy() {
+    let applicationContext = this.context.getApplicationContext();
+    let lifecycleId = GlobalContext.getContext().getObject("lifecycleId") as number;
+    try {
+    // 3. Deregister the listener for the ability lifecycle changes through the applicationContext object.
+      applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
+        if (error && error.code !== 0) {
+          console.error(`unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}`);
+        } else {
+          console.log('unregisterAbilityLifecycleCallback success.');
+        }
+      });
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
+  }
 }
 ```

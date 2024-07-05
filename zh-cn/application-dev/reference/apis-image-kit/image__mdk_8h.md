@@ -5,6 +5,10 @@
 
 声明访问图像剪辑矩形、大小、格式和组件数据的方法。
 
+**库**：libimage_ndk.z.so
+
+**引用文件**：&lt;multimedia/image_framework/image_mdk.h&gt;
+
 **起始版本：** 10
 
 **相关模块：** [Image](image.md)

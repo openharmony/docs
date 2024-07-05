@@ -18,8 +18,8 @@ Contacts Kit可以帮助开发者轻松实现联系人的增删改查等功能�
 1. 导入相关的联系人模块。
 
    ```ts
-   import contact from '@ohos.contact';
-   import { BusinessError } from '@ohos.base';
+   import { contact } from '@kit.ContactsKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 调用联系人接口，拉起联系人列表，用户点击对应的联系人后返回。
@@ -46,7 +46,7 @@ Contacts Kit可以帮助开发者轻松实现联系人的增删改查等功能�
    - 删除联系人，调用deleteContact接口，需要配置ohos.permission.WRITE_CONTACTS权限，权限级别为system_basic。
    - 更新联系人，调用updateContact接口，需要配置ohos.permission.WRITE_CONTACTS权限，权限级别为system_basic。
    - 查询联系人，调用queryContact接口，需要配置ohos.permission.READ_CONTACTS权限，权限级别为system_basic。
-   在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)声明对应权限。
+   在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)声明对应权限。
 
 2.设置一个需要的Permissions数组变量。
 
@@ -78,9 +78,8 @@ abilityAccessCtrl.createAtManager().requestPermissionsFromUser(context, permissi
 
 ```ts
 // 示例代码
-import common from '@ohos.app.ability.common';
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import contact from '@ohos.contact';
+import { common, abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+import { contact } from '@kit.ContactsKit';
 
 @Entry
 @Component

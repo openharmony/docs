@@ -32,7 +32,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -67,7 +67,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 

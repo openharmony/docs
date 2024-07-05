@@ -35,6 +35,12 @@ The table below lists the media codec formats. The type is a constant string.
 
 The table below lists the key-value pairs used to describe media data. The key type is a constant string, and the value type can be int32_t, int64_t, float, double, char *, or uint8_t *.
 
+Key-value pairs dedicated for capability query:
+
+| Name                                                        | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT](#oh_feature_property_key_video_encoder_max_ltr_frame_count)     | Pointer to the key that describes the maximum number of long-term reference frames obtained during video encoding. The value type is int32_t.|
+
 Common key-value pairs of audio and video:
 
 | Name                                                        | Description                                                        |
@@ -67,9 +73,9 @@ The table below lists the video-dedicated key-value pairs.
 | [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame)      | Request for immediate encoding of I-frames. The value type is Boolean. This key is optional.           |
 | [OH_MD_KEY_QUALITY](#oh_md_key_quality)                      | Required encoding quality. The value type is uint32_t. This key applies only to encoders configured in constant quality mode. This key is optional.|
 | [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | Video surface scale mode. The value type is int32_t. For details, see [OH_ScalingMode](#oh_scalingmode). This key is optional.|
-| [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability)          | Enabled status of layered encoding. The value type is int32_t. The value **1** means layered encoding is enabled, and **0** means the opposite. This key is optional and used only in the configuration phase of video encoding.|
-| [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size)       | Size of a temporal image group. The value type is int32_t. This key is valid only when layered encoding is enabled. This key is optional and used only in the configuration phase of video encoding.|
-| [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode)         | Reference mode in a temporal image group. The value type is int32_t. For details, see [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1). This key is valid only when layered encoding is enabled. This key is optional and used only in the configuration phase of video encoding.|
+| [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability)          | Enabled status of temporal scalability. The value type is int32_t. The value **1** means temporal scalability is enabled, and **0** means the opposite. This key is optional and used only in the configuration phase of video encoding.|
+| [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size)       | Size of a temporal image group. The value type is int32_t. This key is valid only when temporal scalability is enabled. This key is optional and used only in the configuration phase of video encoding.|
+| [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode)         | Reference mode in a temporal image group. The value type is int32_t. For details, see [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1). This key is valid only when temporal scalability is enabled. This key is optional and used only in the configuration phase of video encoding.|
 | [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top)       | Top coordinate (y) of the cropped rectangle. The value type is int32_t. This key is optional.|
 | [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom)        | Bottom coordinate (y) of the cropped rectangle. The value type is int32_t. This key is optional.|
 | [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left)     | Left coordinate (x) of the cropped rectangle. The value type is int32_t. This key is optional.|
@@ -79,6 +85,11 @@ The table below lists the video-dedicated key-value pairs.
 | [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | Enabled status of low-latency video codec. The value type is int32_t. The value **1** means that low-latency video codec is enabled, and **0** means the opposite. This key is optional and used only in the configuration phase of video encoding.|
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](#oh_md_key_video_encoder_qp_max)       | Maximum quantization parameter allowed by the video encoder. The value type is int32_t. This key is optional.|
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min)      | Minimum quantization parameter allowed by the video encoder. The value type is int32_t. This key is optional.|
+| [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count)        | Pointer to the key that describes the number of long-term reference frames. The value type is int32_t. The value must be within the supported value range.|
+| [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR](#oh_md_key_video_encoder_per_frame_mark_ltr)  | Pointer to the key that describes the key that marks the current frame as a long-term reference frame. The value type is int32_t. The value **1** means that the frame is marked as a long-term reference frame, and **0** means the opposite.|
+| [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr)    | 	Pointer to the key that describes the long-term reference frame referenced by the current frame. The value type is int32_t.|
+| [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr)      | Pointer to the key that describes the key that specifies whether the current frame is a long-term reference frame. The value type is int32_t. The value **1** means that the frame is a long-term reference frame, and **0** means the opposite.|
+| [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc)            | Pointer to the key that describes the POC of the frame. The value type is int32_t.|
 
 The table below lists the audio-dedicated key-value pairs.
 
@@ -176,7 +187,7 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | [AudioChannelSet](#audiochannelset) : uint64_t {<br>FRONT_LEFT = 1ULL &lt;&lt; 0U,<br>FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br>FRONT_CENTER = 1ULL &lt;&lt; 2U,<br>LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br>BACK_LEFT = 1ULL &lt;&lt; 4U,<br>BACK_RIGHT = 1ULL &lt;&lt; 5U,<br>FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br>FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br>BACK_CENTER = 1ULL &lt;&lt; 8U,<br>SIDE_LEFT = 1ULL &lt;&lt; 9U,<br>SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br>TOP_CENTER = 1ULL &lt;&lt; 11U,<br>TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br>TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br>TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br>TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br>TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br>TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br>STEREO_LEFT = 1ULL &lt;&lt; 29U,<br>STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br>WIDE_LEFT = 1ULL &lt;&lt; 31U,<br>WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br>SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br>SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br>LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br>TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br>TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br>BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br>BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br>BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U,<br>AMBISONICS_ACN0 = 1ULL &lt;&lt; 41U,<br>AMBISONICS_ACN1 = 1ULL &lt;&lt; 42U,<br>AMBISONICS_ACN2 = 1ULL &lt;&lt; 43U,<br>AMBISONICS_ACN3 = 1ULL &lt;&lt; 44U,<br>AMBISONICS_W = AMBISONICS_ACN0,<br>AMBISONICS_Y = AMBISONICS_ACN1,<br>AMBISONICS_Z = AMBISONICS_ACN2,<br>AMBISONICS_X = AMBISONICS_ACN3,<br>AMBISONICS_ACN4 = 1ULL &lt;&lt; 45U,<br>AMBISONICS_ACN5 = 1ULL &lt;&lt; 46U,<br>AMBISONICS_ACN6 = 1ULL &lt;&lt; 47U,<br>AMBISONICS_ACN7 = 1ULL &lt;&lt; 48U,<br>AMBISONICS_ACN8 = 1ULL &lt;&lt; 49U,<br>AMBISONICS_ACN9 = 1ULL &lt;&lt; 50U,<br>AMBISONICS_ACN10 = 1ULL &lt;&lt; 51U,<br>AMBISONICS_ACN11 = 1ULL &lt;&lt; 52U,<br>AMBISONICS_ACN12 = 1ULL &lt;&lt; 53U,<br>AMBISONICS_ACN13 = 1ULL &lt;&lt; 54U,<br>AMBISONICS_ACN14 = 1ULL &lt;&lt; 55U,<br>AMBISONICS_ACN15 = 1ULL &lt;&lt; 56U<br>} | Enumerates the audio channel sets. Each channel number is mapped to a variable of int64.| 
 | [AudioChannelLayout](#audiochannellayout) : uint64_t {<br>UNKNOWN_CHANNEL_LAYOUT = 0,<br>MONO = (AudioChannelSet::FRONT_CENTER),<br>STEREO = (AudioChannelSet::FRONT_LEFT \| AudioChannelSet::FRONT_RIGHT),<br>CH_2POINT1 = (STEREO \| AudioChannelSet::LOW_FREQUENCY),<br>CH_2_1 = (STEREO \| AudioChannelSet::BACK_CENTER),<br>SURROUND = (STEREO \| AudioChannelSet::FRONT_CENTER),<br>CH_3POINT1 = (SURROUND \| AudioChannelSet::LOW_FREQUENCY),<br>CH_4POINT0 = (SURROUND \| AudioChannelSet::BACK_CENTER),<br>CH_4POINT1 = (CH_4POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br>CH_2_2 = (STEREO \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br>QUAD = (STEREO \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_5POINT0 = (SURROUND \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br>CH_5POINT1 = (CH_5POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br>CH_5POINT0_BACK = (SURROUND \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_5POINT1_BACK = (CH_5POINT0_BACK \| AudioChannelSet::LOW_FREQUENCY),<br>CH_6POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT0_FRONT = (CH_2_2 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>HEXAGONAL = (CH_5POINT0_BACK \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1_BACK = (CH_5POINT1_BACK \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1_FRONT = (CH_6POINT0_FRONT \| AudioChannelSet::LOW_FREQUENCY),<br>CH_7POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_7POINT0_FRONT = (CH_5POINT0 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>CH_7POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_7POINT1_WIDE = (CH_5POINT1 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>CH_7POINT1_WIDE_BACK, CH_3POINT1POINT2 = (CH_3POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT),<br>CH_5POINT1POINT2 = (CH_5POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_5POINT1POINT4, CH_7POINT1POINT2 = (CH_7POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_7POINT1POINT4, CH_9POINT1POINT4 = (CH_7POINT1POINT4 \| AudioChannelSet::WIDE_LEFT \| AudioChannelSet::WIDE_RIGHT),<br>CH_9POINT1POINT6 = (CH_9POINT1POINT4 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_10POINT2, CH_22POINT2, OCTAGONAL = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_CENTER \| AudioChannelSet::BACK_RIGHT),<br>HEXADECAGONAL, STEREO_DOWNMIX = (AudioChannelSet::STEREO_LEFT \| AudioChannelSet::STEREO_RIGHT),<br>HOA_FIRST,<br>HOA_SECOND,<br>HOA_THIRD<br>} | Enumerates the types of the audio channel sets. The output format of the decoder is represented as the channel type of the codec.| 
 | [OH_MediaType](#oh_mediatype-1) {<br>MEDIA_TYPE_AUD = 0,<br>MEDIA_TYPE_VID = 1<br>} | Enumerates the media types.| 
-| [OH_AACProfile](#oh_aacprofile-1) { AAC_PROFILE_LC = 0 } | Enumerates the Advanced Audio Coding (AAC) profiles.| 
+| [OH_AACProfile](#oh_aacprofile-1) { AAC_PROFILE_LC = 0 } | Enumerates the AAC profiles.| 
 | [OH_AVCProfile](#oh_avcprofile-1) {<br>AVC_PROFILE_BASELINE = 0,<br>AVC_PROFILE_HIGH = 4,<br>AVC_PROFILE_MAIN = 8<br>} | Enumerates the AVC profiles.| 
 | [OH_HEVCProfile](#oh_hevcprofile-1) {<br>HEVC_PROFILE_MAIN = 0,<br>HEVC_PROFILE_MAIN_10 = 1,<br>HEVC_PROFILE_MAIN_STILL = 2,<br>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br>} | Enumerates the HEVC profiles.| 
 | [OH_AVOutputFormat](#oh_avoutputformat-1) {<br>AV_OUTPUT_FORMAT_DEFAULT = 0,<br>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br>AV_OUTPUT_FORMAT_M4A = 6<br>} | Enumerates the output file formats of a muxer.| 
@@ -186,7 +197,7 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | [OH_ColorPrimary](#oh_colorprimary-1) {<br>COLOR_PRIMARY_BT709 = 1,<br>COLOR_PRIMARY_UNSPECIFIED = 2,<br>COLOR_PRIMARY_BT470_M = 4,<br>COLOR_PRIMARY_BT601_625 = 5,<br>COLOR_PRIMARY_BT601_525 = 6,<br>COLOR_PRIMARY_SMPTE_ST240 = 7,<br>COLOR_PRIMARY_GENERIC_FILM = 8,<br>COLOR_PRIMARY_BT2020 = 9,<br>COLOR_PRIMARY_SMPTE_ST428 = 10,<br>COLOR_PRIMARY_P3DCI = 11,<br>COLOR_PRIMARY_P3D65 = 12<br>} | Enumerates the primary colors.| 
 | [OH_TransferCharacteristic](#oh_transfercharacteristic-1) {<br>TRANSFER_CHARACTERISTIC_BT709 = 1,<br>TRANSFER_CHARACTERISTIC_UNSPECIFIED = 2,<br>TRANSFER_CHARACTERISTIC_GAMMA_2_2 = 4,<br>TRANSFER_CHARACTERISTIC_GAMMA_2_8 = 5,<br>TRANSFER_CHARACTERISTIC_BT601 = 6,<br>TRANSFER_CHARACTERISTIC_SMPTE_ST240 = 7,<br>TRANSFER_CHARACTERISTIC_LINEAR = 8,<br>TRANSFER_CHARACTERISTIC_LOG = 9,<br>TRANSFER_CHARACTERISTIC_LOG_SQRT = 10,<br>TRANSFER_CHARACTERISTIC_IEC_61966_2_4 = 11,<br>TRANSFER_CHARACTERISTIC_BT1361 = 12,<br>TRANSFER_CHARACTERISTIC_IEC_61966_2_1 = 13,<br>TRANSFER_CHARACTERISTIC_BT2020_10BIT = 14,<br>TRANSFER_CHARACTERISTIC_BT2020_12BIT = 15,<br>TRANSFER_CHARACTERISTIC_PQ = 16,<br>TRANSFER_CHARACTERISTIC_SMPTE_ST428 = 17,<br>TRANSFER_CHARACTERISTIC_HLG = 18<br>} | Enumerates the transfer characteristics.| 
 | [OH_MatrixCoefficient](#oh_matrixcoefficient-1) {<br>MATRIX_COEFFICIENT_IDENTITY = 0,<br>MATRIX_COEFFICIENT_BT709 = 1,<br>MATRIX_COEFFICIENT_UNSPECIFIED = 2,<br>MATRIX_COEFFICIENT_FCC = 4,<br>MATRIX_COEFFICIENT_BT601_625 = 5,<br>MATRIX_COEFFICIENT_BT601_525 = 6, MATRIX_COEFFICIENT_SMPTE_ST240 = 7,<br>MATRIX_COEFFICIENT_YCGCO = 8,<br>MATRIX_COEFFICIENT_BT2020_NCL = 9,<br>MATRIX_COEFFICIENT_BT2020_CL = 10,<br>MATRIX_COEFFICIENT_SMPTE_ST2085 = 11,<br>MATRIX_COEFFICIENT_CHROMATICITY_NCL = 12,<br>MATRIX_COEFFICIENT_CHROMATICITY_CL = 13,<br>MATRIX_COEFFICIENT_ICTCP = 14<br>} | Enumerates the matrix coefficients.| 
-| [OH_AVCLevel](#oh_avclevel-1) {<br>AVC_LEVEL_1 = 0, <br>AVC_LEVEL_1b = 1, <br>AVC_LEVEL_11 = 2, <br>AVC_LEVEL_12 = 3,<br>AVC_LEVEL_13 = 4, <br>AVC_LEVEL_2 = 5, <br>AVC_LEVEL_21 = 6, <br>AVC_LEVEL_22 = 7,<br>AVC_LEVEL_3 = 8, <br>AVC_LEVEL_31 = 9, <br>AVC_LEVEL_32 = 10, <br>AVC_LEVEL_4 = 11,<br>AVC_LEVEL_41 = 12, <br>AVC_LEVEL_42 = 13, <br>AVC_LEVEL_5 = 14, <br>AVC_LEVEL_51 = 15<br>} | Enumerates the AVC levels. | 
+| [OH_AVCLevel](#oh_avclevel-1) {<br>AVC_LEVEL_1 = 0, <br>AVC_LEVEL_1b = 1, <br>AVC_LEVEL_11 = 2, <br>AVC_LEVEL_12 = 3,<br>AVC_LEVEL_13 = 4, <br>AVC_LEVEL_2 = 5, <br>AVC_LEVEL_21 = 6, <br>AVC_LEVEL_22 = 7,<br>AVC_LEVEL_3 = 8, <br>AVC_LEVEL_31 = 9, <br>AVC_LEVEL_32 = 10, <br>AVC_LEVEL_4 = 11,<br>AVC_LEVEL_41 = 12, <br>AVC_LEVEL_42 = 13, <br>AVC_LEVEL_5 = 14, <br>AVC_LEVEL_51 = 15, <br>AVC_LEVEL_52 = 16, <br>AVC_LEVEL_6 = 17, <br>AVC_LEVEL_61 = 18, <br>AVC_LEVEL_62 = 19<br>} | Enumerates the AVC levels. | 
 | [OH_HEVCLevel](#oh_hevclevel-1) {<br>HEVC_LEVEL_1 = 0, <br>HEVC_LEVEL_2 = 1, <br>HEVC_LEVEL_21 = 2, <br>HEVC_LEVEL_3 = 3,<br>HEVC_LEVEL_31 = 4, <br>HEVC_LEVEL_4 = 5, <br>HEVC_LEVEL_41 = 6, <br>HEVC_LEVEL_5 = 7,<br>HEVC_LEVEL_51 = 8, <br>HEVC_LEVEL_52 = 9, <br>HEVC_LEVEL_6 = 10, <br>HEVC_LEVEL_61 = 11,<br>HEVC_LEVEL_62 = 12<br>} | Enumerates the HEVC levels. | 
 | [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) { <br>ADJACENT_REFERENCE = 0, <br>JUMP_REFERENCE = 1 <br>} | Enumerates the reference modes of temporal image groups. | 
 
@@ -262,9 +273,9 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | Pointer to the key that describes the number of audio objects. The value type is int32_t.|
 | const char \* [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | Pointer to the key that describes the Audio Vivid metadata. The value type is uint8_t.|
 | const char \* [OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT](#oh_feature_property_key_video_encoder_max_ltr_frame_count) | Pointer to the key that describes the maximum number of long-term reference frames obtained during video encoding. The value type is int32_t. | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability) | Pointer to the key that describes the enabled status of layered encoding. The value type is int32_t. The value **1** means layered encoding is enabled, and **0** means the opposite. | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size) | Pointer to the key that describes the size of a temporal image group. The value type is int32_t. This key is valid only when layered encoding is enabled. | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode) | Pointer to the key that describes the reference mode in a temporal image group. The value type is int32_t. For details, see [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode). This key is valid only when layered encoding is enabled. | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability) | Pointer to the key that describes the enabled status of temporal scalability. The value type is int32_t. The value **1** means temporal scalability is enabled, and **0** means the opposite. | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size) | Pointer to the key that describes the size of a temporal image group. The value type is int32_t. This key is valid only when temporal scalability is enabled. | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode) | Pointer to the key that describes the reference mode in a temporal image group. The value type is int32_t. For details, see [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode). This key is valid only when temporal scalability is enabled. | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count) | Pointer to the key that describes the number of long-term reference frames. The value type is int32_t. The value must be within the supported value range. | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR](#oh_md_key_video_encoder_per_frame_mark_ltr) | Pointer to the key that describes the key that marks the current frame as a long-term reference frame. The value type is int32_t. The value **1** means that the frame is marked as a long-term reference frame, and **0** means the opposite. | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr) | Pointer to the key that describes the long-term reference frame referenced by the current frame. The value type is int32_t. | 
@@ -913,7 +924,7 @@ Enumerates the AAC profiles.
 
 | Value| Description| 
 | -------- | -------- |
-| AAC_PROFILE_LC | Low complexity level.| 
+| AAC_PROFILE_LC | AAV profile of the low complexity level.| 
 
 
 ### OH_AVCLevel
@@ -948,6 +959,10 @@ Enumerates the AVC levels.
 | AVC_LEVEL_42  | Level 4.2.  | 
 | AVC_LEVEL_5  | Level 5.  | 
 | AVC_LEVEL_51  | Level 5.1.  | 
+| AVC_LEVEL_52  | Level 5.2.  | 
+| AVC_LEVEL_6  | Level 6.  | 
+| AVC_LEVEL_61  | Level 6.1.  | 
+| AVC_LEVEL_62  | Level 6.2.  | 
 
 
 ### OH_AVCProfile
@@ -966,9 +981,9 @@ Enumerates the AVC profiles.
 
 | Value| Description| 
 | -------- | -------- |
-| AVC_PROFILE_BASELINE | Baseline.| 
-| AVC_PROFILE_HIGH | High.| 
-| AVC_PROFILE_MAIN | Main.| 
+| AVC_PROFILE_BASELINE | AVC baseline profile.| 
+| AVC_PROFILE_HIGH | AVC high profile.| 
+| AVC_PROFILE_MAIN | AVC main profile.| 
 
 
 ### OH_AVOutputFormat
@@ -1117,11 +1132,11 @@ Enumerates the HEVC profiles.
 
 | Value| Description| 
 | -------- | -------- |
-| HEVC_PROFILE_MAIN | Main.| 
-| HEVC_PROFILE_MAIN_10 | Main 10.| 
-| HEVC_PROFILE_MAIN_STILL | Main Still Picture.| 
-| HEVC_PROFILE_MAIN_10_HDR10 | Main 10 HDR10.| 
-| HEVC_PROFILE_MAIN_10_HDR10_PLUS | Main 10 HDR10+.| 
+| HEVC_PROFILE_MAIN | HEVC profile of the main level.| 
+| HEVC_PROFILE_MAIN_10 | HEVC profile of the 10-bit main level.| 
+| HEVC_PROFILE_MAIN_STILL | HEVC profile of the main still picture level.| 
+| HEVC_PROFILE_MAIN_10_HDR10 | HEVC profile of the main 10 HDR10 level.| 
+| HEVC_PROFILE_MAIN_10_HDR10_PLUS | HEVC profile of the main 10 HDR10+ level.| 
 
 
 ### OH_MatrixCoefficient
@@ -1521,7 +1536,7 @@ const char* OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT
 
 Pointer to the key that describes the maximum number of long-term reference frames obtained during video encoding. The value type is int32_t.
 
-You can use the **OH_AVCapability_GetFeatureProperties** API and the enumerated value **VIDEO_ENCODER_LONG_TERM_REFERENCE** to query the maximum number.
+You can use the API [OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties) and the enum [VIDEO_ENCODER_LONG_TERM_REFERENCE](_a_v_capability.md#oh_avcapabilityfeature) to query the maximum number.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1851,7 +1866,7 @@ const char* OH_MD_KEY_DURATION
 
 **Description**
 
-Pointer to the key that describes the duration. The value type is int64_t.
+Pointer to the key that describes the duration, in microseconds. The value type is int64_t.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1866,7 +1881,7 @@ const char* OH_MD_KEY_FRAME_RATE
 
 **Description**
 
-Pointer to the key that describes the video frame rate. The value type is double.
+Pointer to the key that describes the video frame rate. The value type is double. The value must be greater than **0**.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2290,9 +2305,9 @@ const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY
 
 **Description**
 
-Pointer to the key that describes the enabled status of layered encoding. The value type is int32_t. The value **1** means layered encoding is enabled, and **0** means the opposite.
+Pointer to the key that describes the enabled status of temporal scalability. The value type is int32_t. The value **1** means temporal scalability is enabled, and **0** means the opposite.
 
-Before using this key, you can call **OH_AVCapability_IsFeatureSupported** to check whether the video encoder supports layered encoding.
+Before using this key, you can call [OH_AVCapability_IsFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported) to check whether the video encoder supports temporal scalability.
 
 This key is optional and used only in the configuration phase of video encoding.
 
@@ -2310,7 +2325,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT
 
 Pointer to the key that describes the number of long-term reference frames. The value type is int32_t. The value must be within the supported value range.
 
-Before using this key, you can use the **OH_AVCapability_GetFeatureProperties** API and enumerated value **VIDEO_ENCODER_LONG_TERM_REFERENCE** to query the number of supported long-term reference frames.
+Before using this key, you can use the API [OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties) and the enum [VIDEO_ENCODER_LONG_TERM_REFERENCE](_a_v_capability.md#oh_avcapabilityfeature) to query the number of supported long-term reference frames.
 
 This key is optional and used only in the configuration phase of video encoding.
 
@@ -2395,7 +2410,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE
 
 **Description**
 
-Pointer to the key that describes the reference mode in a temporal image group. The value type is int32_t. For details, see [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode). This key is valid only when layered encoding is enabled.
+Pointer to the key that describes the reference mode in a temporal image group. The value type is int32_t. For details, see [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode). This key is valid only when temporal scalability is enabled.
 
 This key is optional and used only in the configuration phase of video encoding.
 
@@ -2412,7 +2427,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE
 
 **Description**
 
-Pointer to the key that describes the size of a temporal image group. The value type is int32_t. This key is valid only when layered encoding is enabled.
+Pointer to the key that describes the size of a temporal image group. The value type is int32_t. This key is valid only when temporal scalability is enabled.
 
 This key is optional and used only in the configuration phase of video encoding.
 

@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```ts
-import componentSnapshot from "@ohos.arkui.componentSnapshot";
+import { componentSnapshot } from '@kit.ArkUI';
 ```
 
 ## componentSnapshot.get
@@ -43,13 +43,13 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001   | if id is not valid. |
+| 100001   | Invalid ID. |
 
 **示例：**
 
 ```ts
-import componentSnapshot from '@ohos.arkui.componentSnapshot'
-import image from '@ohos.multimedia.image'
+import { componentSnapshot } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
@@ -113,13 +113,13 @@ get(id: string): Promise<image.PixelMap>
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if id is not valid. |
+| 100001 | Invalid ID. |
 
 **示例：**
 
 ```ts
-import componentSnapshot from '@ohos.arkui.componentSnapshot'
-import image from '@ohos.multimedia.image'
+import { componentSnapshot } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
@@ -180,14 +180,13 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001   | if builder is not a valid build function. |
+| 100001   | The builder is not a valid build function. |
 
 **示例：**
 
 ```ts
-import componentSnapshot from '@ohos.arkui.componentSnapshot'
-import image from '@ohos.multimedia.image'
-import componentUtils from '@ohos.arkui.componentUtils'
+import { componentSnapshot, componentUtils } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
@@ -275,14 +274,13 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if builder is not a valid build function. |
+| 100001 | The builder is not a valid build function. |
 
 **示例：**
 
 ```ts
-import componentSnapshot from '@ohos.arkui.componentSnapshot'
-import image from '@ohos.multimedia.image'
-import componentUtils from '@ohos.arkui.componentUtils'
+import { componentSnapshot, componentUtils } from '@kit.ArkUI'
+import { image } from '@kit.ImageKit'
 
 @Entry
 @Component

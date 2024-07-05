@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 从API Version 7 开始不再维护。建议使用[@ohos.brightness](js-apis-brightness-sys.md)替代，替代接口能力仅对系统应用开放。
+> - 从API Version 7 开始不再维护<!--Del-->。建议使用[@ohos.brightness](js-apis-brightness-sys.md)替代<!--DelEnd-->，替代接口能力仅对系统应用开放。
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 

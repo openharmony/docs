@@ -112,7 +112,7 @@ Authentication service is busy.
 
 **错误信息**
 
-Authentication is lockout.
+Authentication is locked out.
 
 **可能原因**
 
@@ -137,11 +137,11 @@ The type of credential has not been enrolled.
 
 检查是否录入该类型的凭据，如果没有录入，则需要成功录入该类型凭据后再调用相关接口。
 
-## 12500011 认证被控件取消
+## 12500011 提示/通知切换自定义认证
 
 **错误信息**
 
-Indicates that this operation is canceled from widget's navigation button.
+Switched to the custom authentication process.
 
 **可能原因**
 
@@ -155,7 +155,7 @@ Indicates that this operation is canceled from widget's navigation button.
 
 **错误信息**
 
-Indicates that current operation failed because of PIN expired.
+Operation failed because of PIN expired.
 
 **可能原因**
 
@@ -169,7 +169,7 @@ Indicates that current operation failed because of PIN expired.
 
 **错误信息**
 
-The operation is failed.
+Operation failed.
 
 **可能原因**
 

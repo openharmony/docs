@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import screenshot from '@ohos.screenshot';
+import { screenshot } from '@kit.ArkUI';
 ```
 
 ## Rect
@@ -35,7 +35,7 @@ import screenshot from '@ohos.screenshot';
 | 名称                 | 类型          | 必填 | 说明                                                         |
 | -------------------- | ------------- | ---- | ------------------------------------------------------------ |
 | pickRect             | [Rect](#rect) | 是   | 表示截取图像的区域。                       |
-| pixelMap             | &lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;  | 是   | 表示截取的图像PixelMap对象 |
+| pixelMap             | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是   | 表示截取的图像PixelMap对象 |
 
 ## screenshot.pick
 
@@ -51,10 +51,19 @@ pick(): Promise&lt;PickInfo&gt;
 | ----------------------------- | ----------------------------------------------- |
 | Promise&lt;[PickInfo](#pickinfo)&gt; | Promise对象。返回一个PickInfo对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = screenshot.pick();

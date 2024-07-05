@@ -27,6 +27,14 @@ on(type: 'systemLoadChange', callback: Callback\<SystemLoadLevel>): void
 | type | string                      | 是    | 固定取值'systemLoadChange'，系统负载变化类型。                               |
 | callback  | AsyncCallback&lt;[SystemLoadLevel](#systemloadlevel)&gt; | 是    | 回调函数，返回本次注册系统负载时的系统负载融合档位。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401 | Parameter error. Possible cause: 1. Callback parameter error; 2. Register a exist callback type; 3. Parameter verification failed. |
+
 **示例**：
 
 ```ts
@@ -58,6 +66,13 @@ off(type: 'systemLoadChange', callback?: Callback\<SystemLoadLevel>): void
 | --------- | --------------------------- | ---- | ---------------------------------------- |
 | type | string                      | 是    | 固定取值'systemLoadChange'，系统负载变化类型。                               |
 | callback  | AsyncCallback&lt;[SystemLoadLevel](#systemloadlevel)&gt; | 否    | 回调函数，返回本次取消注册系统负载时的系统负载融合档位。 |
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401 | Parameter error. Possible cause: 1. Callback parameter error; 2. Register a exist callback type; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -107,7 +122,7 @@ systemLoad.getLevel().then((res: systemLoad.SystemLoadLevel) => {
 
 系统负载融合档位。
 
-**系统能力:** SystemCapability.ResourceSchedule.Systemload
+**系统能力:** SystemCapability.ResourceSchedule.SystemLoad
 
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |

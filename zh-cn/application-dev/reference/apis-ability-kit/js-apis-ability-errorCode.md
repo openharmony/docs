@@ -9,7 +9,7 @@ ErrorCode定义启动Ability时返回的错误码，包括无效的参数、权�
 ## 导入模块
 
 ```ts
-import errorCode from '@ohos.ability.errorCode';
+import { ErrorCode } from '@kit.AbilityKit';
 ```
 
 ## ErrorCode

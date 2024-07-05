@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import power from '@ohos.power';
+import {power} from '@kit.BasicServicesKit';
 ```
 
 ## power.isActive<sup>9+</sup>
@@ -37,6 +37,31 @@ try {
 } catch(err) {
     console.error('check active status failed, err: ' + err);
 }
+```
+
+## power.rebootDevice<sup>(deprecated)</sup>
+
+rebootDevice(reason: string): void
+
+> **说明：**<br>从API version 7开始支持，从API version 9开始不再维护。替代接口能力仅对系统应用开放。
+
+重启设备。
+
+**需要权限：** ohos.permission.REBOOT,该权限仅系统应用可申请。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| reason | string | 是    | 重启原因。 |
+
+**示例：**
+
+```js
+power.rebootDevice('reboot_test');
 ```
 
 ## power.getPowerMode<sup>9+</sup>

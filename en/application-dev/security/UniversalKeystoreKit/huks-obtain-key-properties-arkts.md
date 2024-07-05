@@ -14,7 +14,7 @@ This topic describes how to obtain properties of a key. Before the operation, en
 3. You can find the key properties in the **properties** field in the [HuksReturnResult](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksreturnresult9) object.
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from "@kit.UniversalKeystoreKit";
 /* 1. Set the key alias. */
 let keyAlias = 'keyAlias';
 /* Leave options empty. */

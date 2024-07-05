@@ -17,8 +17,7 @@ The **WindowExtensionContext** module provides the capabilities of the [WindowEx
 Before using the **WindowExtensionContext** module, you must define a child class that inherits from **WindowExtensionAbility**.
 
 ```ts
-import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
-import WindowExtensionContext from 'application/WindowExtensionContext';
+import WindowExtensionAbility, { WindowExtensionContext } from '@ohos.application.WindowExtensionAbility';
 
 let context: WindowExtensionContext | null = null;
 
@@ -44,6 +43,14 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | want | [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
@@ -106,6 +113,14 @@ Starts an ability. This API uses a promise to return the result.
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 

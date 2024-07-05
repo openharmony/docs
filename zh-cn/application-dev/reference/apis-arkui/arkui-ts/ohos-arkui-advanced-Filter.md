@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { Filter } from '@ohos.arkui.advanced.Filter'
+import { Filter } from '@kit.ArkUI'
 ```
 
 
@@ -29,7 +29,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 **装饰器类型：**\@Component
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -41,12 +41,12 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 | multiFilters | Array&lt;[FilterParams](#filterparams)&gt; | 是   | \@Prop | 多条件筛选列表。 |
 | additionFilters | [FilterParams](#filterparams) | 否   | \@Prop | 附加快捷筛选项。 |
 | filterType | [FilterType](#filtertype) | 否   | \@Prop | 筛选器的样式类型。 |
-| onFilterChanged | (Array&lt;[FilterResult](#filterresult)&gt;)&nbsp;=&gt;&nbsp;void | 是   | - | 用户点击后的回调事件。回调函数的参数为选中的筛选项结果列表。 |
+| onFilterChanged | (filterResults: Array&lt;[FilterResult](#filterresult)&gt;)&nbsp;=&gt;&nbsp;void | 是   | - | 用户点击后的回调事件。回调函数的参数为选中的筛选项结果列表。 |
 | container | ()=&gt;void | 是   | \@BuilderParam | 筛选结果展示区域自定义内容，通过尾随闭包形式传入。 |
 
 ## FilterParams
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -55,7 +55,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 ## FilterType
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -64,7 +64,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 ## FilterResult
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -78,7 +78,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 ## 示例
 
 ```ts
-import { Filter, FilterParams, FilterResult, FilterType } from '@ohos.arkui.advanced.Filter'
+import { Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'
 
 @Entry
 @Component

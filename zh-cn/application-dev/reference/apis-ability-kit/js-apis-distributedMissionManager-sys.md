@@ -32,6 +32,15 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
 | options   | [MissionCallback](#missioncallback)     | 是    | 注册的回调方法。 |
 | callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，注册监听成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
   ```ts
@@ -93,6 +102,15 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
   ```ts
@@ -146,6 +164,15 @@ unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 注册监听时的设备信息。    |
 | callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，取消监听成功，err为undefined，否则为错误对象。|
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
   ```ts
@@ -189,6 +216,15 @@ unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; |无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
   ```ts
@@ -222,6 +258,15 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
 | --------- | ------------------------------------- | ---- | --------- |
 | parameter | [MissionParameter](#missionparameter) | 是    | 同步信息。     |
 | callback  | AsyncCallback&lt;void&gt;             | 是    | 回调函数，同步远端任务列表成功时，err为undefined，否则返回错误对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -270,6 +315,15 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
   ```ts
@@ -309,6 +363,15 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;
 | --------- | --------------------------------------- | ---- | --------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是    | 同步信息。     |
 | callback  | AsyncCallback&lt;void&gt;               | 是    | 回调函数，停止同步远端任务列表成功时，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -355,6 +418,15 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的promise对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
   ```ts
@@ -395,10 +467,12 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](./errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](./errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300502 | Failed to get the missionInfo of the specified missionId. |
 | 16300503 | The application is not installed on the remote end and installation-free is not supported. |
@@ -463,10 +537,12 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](./errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](./errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300502 | Failed to get the missionInfo of the specified missionId. |
 | 16300503 | The application is not installed on the remote end and installation-free is not supported. |
@@ -522,10 +598,12 @@ continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](./errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](./errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300503 | The application is not installed on the remote end and installation-free is not supported. |
 | 16300504 | The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag. |
@@ -583,10 +661,12 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式调度错误码](./errorcode-DistributedSchedule.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[分布式调度错误码](./errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16300501 | The system ability work abnormally. |
 | 16300503 | The application is not installed on the remote end and installation-free is not supported. |
 | 16300504 | The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag. |
@@ -635,6 +715,15 @@ on(type: 'continueStateChange',  callback: Callback&lt;ContinueCallbackInfo&gt;)
 | type | string  | 是    | 当前任务流转状态，取值为'continueStateChange'。    |
 | callback | Callback&lt;[ContinueCallbackInfo](#continuecallbackinfo11)&gt; | 是    | 回调函数，返回当前任务的流转状态和流转信息。    |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```js
@@ -665,6 +754,15 @@ off(type: 'continueStateChange',  callback?: Callback&lt;ContinueCallbackInfo&gt
 | --------- | ---------------------------------------- | ---- | -------- |
 | type | string  | 是    | 当前任务流转状态，取值为'continueStateChange'。    |
 | callback | Callback&lt;[ContinueCallbackInfo](#continuecallbackinfo11)&gt; | 否    | 需要取消的回调函数。<br>参数不填写，取消type对应的所有回调监听。    |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | Permission denied.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 

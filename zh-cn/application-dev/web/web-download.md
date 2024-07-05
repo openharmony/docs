@@ -8,27 +8,27 @@
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               // 如果传入一个不存在的路径，则会下载到默认/data/storage/el2/base/cache/web/目录。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               // 下载任务的唯一标识。
               console.log("download update guid: " + webDownloadItem.getGuid());
               // 下载的进度。
@@ -36,18 +36,17 @@ struct WebComponent {
               // 当前的下载速度。
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 下载任务失败的错误码。
               console.log("download failed guid: " + webDownloadItem.getLastErrorCode());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -87,38 +86,37 @@ Web组件发起的下载会根据当前显示的url以及Web组件默认的Refer
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview'
-import business_error from '@ohos.base'
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  controller: webview.WebviewController = new webview.WebviewController();
+  delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
 
   build() {
     Column() {
       Button('setDownloadDelegate')
         .onClick(() => {
           try {
-            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
-            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download update guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
             })
-            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+            this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Button('startDownload')
@@ -128,8 +126,7 @@ struct WebComponent {
             // 开发者需要替换为自己想要下载的内容的地址。
             this.controller.startDownload('https://www.example.com/');
           } catch (error) {
-            let e:business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })

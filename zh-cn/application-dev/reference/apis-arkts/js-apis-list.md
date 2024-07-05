@@ -25,6 +25,8 @@ import { List } from '@kit.ArkTS';
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -37,6 +39,8 @@ import { List } from '@kit.ArkTS';
 constructor()
 
 List的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -60,6 +64,8 @@ let list: List<string | number | boolean | object> = new List();
 add(element: T): boolean
 
 在List尾部插入元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -106,6 +112,8 @@ insert(element: T, index: number): void
 
 在长度范围内任意位置插入指定元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -117,12 +125,13 @@ insert(element: T, index: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The insert method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The insert method cannot be bound. |
 
 **示例：**
 
@@ -138,6 +147,8 @@ list.insert(true, 2);
 has(element: T): boolean
 
 判断此List中是否含有该指定元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -175,6 +186,8 @@ get(index: number): T
 
 根据下标获取List中的元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -191,10 +204,11 @@ get(index: number): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The get method cannot be bound. |
 
 **示例：**
@@ -216,6 +230,8 @@ let result = list.get(2);
 getLastIndexOf(element: T): number
 
 查找指定元素最后一次出现的下标值，查找失败返回-1。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -259,6 +275,8 @@ getIndexOf(element: T): number
 
 查找指定元素第一次出现的下标值，查找失败返回-1。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -300,6 +318,8 @@ let result = list.getIndexOf(2);
 equal(obj: Object): boolean
 
 比较指定对象与此List是否相等。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -343,6 +363,8 @@ removeByIndex(index: number): T
 
 根据元素的下标值查找元素，并将其删除。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -359,12 +381,13 @@ removeByIndex(index: number): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The removeByIndex method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The removeByIndex method cannot be bound. |
 
 **示例：**
 
@@ -383,6 +406,8 @@ let result = list.removeByIndex(2);
 remove(element: T): boolean
 
 删除查找到的第一个指定的元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -424,6 +449,8 @@ thisArg?: Object): void
 
 用户操作List中的元素,用操作后的元素替换原元素并返回操作后的元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -443,10 +470,11 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The replaceAllElements method cannot be bound. |
 
 **示例：**
@@ -470,6 +498,8 @@ thisArg?: Object): void
 
 通过回调函数来遍历List实例对象上的元素以及元素对应的下标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -489,10 +519,11 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **示例：**
@@ -514,6 +545,8 @@ sort(comparator: (firstValue: T, secondValue: T) => number): void
 
 对List中的元素进行一个排序操作。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -531,10 +564,11 @@ comparator的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The sort method cannot be bound. |
 
 **示例：**
@@ -555,6 +589,8 @@ getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 
 根据下标截取List中的一段元素，并返回这一段List实例，包括起始值但不包括终止值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -572,12 +608,13 @@ getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The getSubList method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range. |
+| 10200011 | The getSubList method cannot be bound. |
 
 **示例：**
 
@@ -595,6 +632,8 @@ let result = list.getSubList(1, 3);
 clear(): void
 
 清除List中的所有元素，并把length置为0。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -623,6 +662,8 @@ set(index: number, element: T): T
 
 将此 List 中指定位置的元素替换为指定元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -640,12 +681,13 @@ set(index: number, element: T): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The set method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The set method cannot be bound. |
 
 **示例：**
 
@@ -663,6 +705,8 @@ let result = list.set(2, "b");
 convertToArray(): Array&lt;T&gt;
 
 把当前List实例转换成数组，并返回转换后的数组。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -697,6 +741,8 @@ isEmpty(): boolean
 
 判断该List是否为空。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -730,6 +776,8 @@ getFirst(): T
 
 获取List实例中的第一个元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -762,6 +810,8 @@ let result = list.getFirst();
 getLast(): T
 
 获取List实例中的最后一个元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -799,6 +849,8 @@ let result = list.getLast();
 > **说明：**
 >
 > 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

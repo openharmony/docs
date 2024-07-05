@@ -18,7 +18,7 @@ Not supported
 
 DataPanel(options: DataPanelOptions)
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -37,7 +37,7 @@ DataPanel(options: DataPanelOptions)
 
 ## DataPanelType<sup>8+</sup>
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 | Name| Description|
 | -------| ------------ |
@@ -55,7 +55,7 @@ closeEffect(value: boolean)
 
 Sets whether to disable the rotation and shadow effects for the component. This attribute enables or disables the shadow effect only when [trackShadow](#trackshadow10) is not set. The shadow effect enabled through this attribute is in the default style.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

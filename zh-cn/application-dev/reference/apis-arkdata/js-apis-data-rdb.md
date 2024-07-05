@@ -252,6 +252,8 @@ promise.then(()=>{
 
 ## ValueType
 
+type ValueType = number | string | boolean
+
 用于表示允许的数据字段类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -264,6 +266,8 @@ promise.then(()=>{
 
 
 ## ValuesBucket
+
+type ValuesBucket = { [key: string]: ValueType | Uint8Array | null }
 
 用于存储键值对的类型。
 
@@ -338,7 +342,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 > **说明：**
 >
-> <!--RP2-->其中devices通过调用[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)方法得到。<!--RP2End-->deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中devices通过调用<!--RP2-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)方法得到。<!--RP2End-->deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1934,7 +1938,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 > **说明：**
 >
-> <!--RP1-->其中device通过调用[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)方法得到。<!--RP1End-->deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用<!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)方法得到。<!--RP1End-->deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1982,7 +1986,7 @@ rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", (err: BusinessError, t
 
 > **说明：**
 >
-> <!--RP1-->其中device通过调用[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)方法得到。<!--RP1End-->deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用<!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)方法得到。<!--RP1End-->deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 

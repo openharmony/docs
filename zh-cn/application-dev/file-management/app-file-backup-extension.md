@@ -81,17 +81,17 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
     ```ts
     import BackupExtensionAbility, {BundleVersion} from '@ohos.application.BackupExtensionAbility';
-    import {hilog} from '@Kit.PerformanceAnalysisKit';
+    import {hilog} from '@kit.PerformanceAnalysisKit';
     
     const TAG = `FileBackupExtensionAbility`;
     export default class BackupExtension extends  BackupExtensionAbility {
       async onBackup ()   {
-        hilog.info(TAG, `onBackup ok`);
+        hilog.info(0x0000, TAG, `onBackup ok`);
       }
 
       async onRestore (bundleVersion : BundleVersion) {
-        hilog.info(TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
-        hilog.info(TAG, `onRestore end`);
+        hilog.info(0x0000, TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
+        hilog.info(0x0000, TAG, `onRestore end`);
       }
     }
     ```
@@ -103,7 +103,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 | allowToBackupRestore | 布尔值     | 是   | 是否允许备份恢复，默认为false。                                                                                                                                                                 |
 | includes             | 字符串数组 | 否   | 应用沙箱中需要备份的文件和目录。<br>当模式串以非/开始时，表示一个相对于根路径的相对路径。<br>当`includes`已配置时，备份恢复框架会采用开发者配置的模式串，否则将会采用下述代码段内容作为默认值。 |
 | excludes             | 字符串数组 | 否   | `includes`中无需备份的例外项。格式同`includes`。<br>当`excludes`已配置时，备份恢复框架会采用开发者配置的模式串，否则将会采用**空数组**作为默认值。                                              |
-| fullBackupOnly       | 布尔值     | 否   | 是否使用应用默认恢复目录，默认值为false。当值为true时，恢复数据会以 **/data/storage/el2/backup/restore/** 为根目录解压数据。<br>当值为false或者不配置该字段时，恢复数据会以/为根目录解压数据。   |
+| fullBackupOnly       | 布尔值     | 否   | 是否使用应用默认恢复目录，默认值为false。当值为true时，恢复数据时会通过[backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md)获取临时路径来进行缓存，该路径只允许在备份恢复过程中作为临时路径使用，不允许应用将该路径作为其他用途来使用。<br>当值为false或者不配置该字段时，恢复数据会以'/'为根目录解压数据。   |
 | restoreDeps          | 字符串     | 否   | 应用恢复时依赖其他应用数据，默认值为""，需要配置的依赖应用名称，多个应用以 **,** 分隔。                                                                                                           |
 
 > **说明：**

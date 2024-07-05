@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 ```
 
 ## pointer.setPointerVisible
@@ -239,8 +239,8 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 **示例**：
 
 ```js
-import { BusinessError }  from '@ohos.base';
-import window from '@ohos.window';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 let context = getContext(this);
 window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
@@ -294,8 +294,8 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 **示例**：
 
 ```js
-import window from '@ohos.window';
-import { BusinessError }  from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 let context = getContext(this);
 window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
@@ -384,8 +384,8 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 **示例**：
 
 ```js
-import window from '@ohos.window';
-import { BusinessError }  from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -420,7 +420,12 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | 是    | 窗口id。       |
 | pointerStyle        | [PointerStyle](#pointerstyle) | 是    | 鼠标样式。          |
-| Promise&lt;void&gt; | void                           | 是    | Promise对象。 |
+
+**返回值**：
+
+| 参数                  | 说明                  |
+| ------------------- | ------------------- |
+| Promise&lt;void&gt; | Promise对象。 |
 
 **错误码**：
 
@@ -433,8 +438,8 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 **示例**：
 
 ```js
-import window from '@ohos.window';
-import { BusinessError }  from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -481,8 +486,8 @@ setPointerStyleSync(windowId: number, pointerStyle: PointerStyle): void
 
 **示例**：
 ```js
-import window from '@ohos.window';
-import { BusinessError }  from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -576,8 +581,8 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
 | HORIZONTAL_TEXT_CURSOR<sup>10+</sup> | 39 | 垂直文本选择 |![Horizontal_Text_Cursor.png](./figures/Horizontal_Text_Cursor.png)|
 | CURSOR_CROSS<sup>10+</sup> | 40 | 十字光标 |![Cursor_Cross.png](./figures/Cursor_Cross.png)|
 | CURSOR_CIRCLE<sup>10+</sup> | 41 | 圆形光标 |![Cursor_Circle.png](./figures/Cursor_Circle.png)|
-| LOADING<sup>10+</sup> | 42 | 正在载入动画光标 |![Loading.png](./figures/Loading.png)|
-| RUNNING<sup>10+</sup> | 43 | 后台运行中动画光标 |![Running.png](./figures/Running.png)|
+| LOADING<sup>10+</sup> | 42 | 正在载入动画光标 |![Loading.png](./figures/Loading.png)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| RUNNING<sup>10+</sup> | 43 | 后台运行中动画光标 |![Running.png](./figures/Running.png)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## pointer.setCustomCursor<sup>11+</sup>
 
@@ -613,23 +618,24 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 **示例**：
 
 ```js
-import image from '@ohos.multimedia.image';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
-const svgBuffer: image.Buffer = svgFileData.buffer;
-let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
-let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-  window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
-    let windowId = win.getWindowProperties().id;
-      try {
-        pointer.setCustomCursor(windowId, pixelMap).then(() => {
-          console.log(`setCustomCursor success`);
-        });
-      } catch (error) {
-        console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      }
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+  const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+  let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+  let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+  svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+    window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+      let windowId = win.getWindowProperties().id;
+        try {
+          pointer.setCustomCursor(windowId, pixelMap).then(() => {
+            console.log(`setCustomCursor success`);
+          });
+        } catch (error) {
+          console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+        }
+      });
   });
 });
 ```
@@ -662,22 +668,23 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 **示例**：
 
 ```js
-import image from '@ohos.multimedia.image';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
-const svgBuffer: image.Buffer = svgFileData.buffer;
-let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
-let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-  window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
-    let windowId = win.getWindowProperties().id;
-      try {
-        pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
-        console.log(`setCustomCursorSync success`);
-      } catch (error) {
-        console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      }
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+  const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+  let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+  let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+  svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+    window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+      let windowId = win.getWindowProperties().id;
+        try {
+          pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
+          console.log(`setCustomCursorSync success`);
+        } catch (error) {
+          console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+        }
+    });
   });
 });
 ```

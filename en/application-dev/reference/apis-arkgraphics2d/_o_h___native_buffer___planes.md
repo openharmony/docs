@@ -20,7 +20,7 @@ The OH_NativeBuffer_Planes struct describes the plane information of images in a
 | Name| Description| 
 | -------- | -------- |
 | uint32_t [planeCount](#planecount) | Number of planes.| 
-| [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md)[planes](#planes) [4] | Array holding the plane information of each image.| 
+| [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md) [planes](#planes) [4] | Array holding the plane information of each image.| 
 
 
 ## Member Variable Description

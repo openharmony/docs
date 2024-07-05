@@ -94,7 +94,7 @@ ArrayList和LinkedList相比，ArrayList的随机访问效率更高。但由于A
 >
 > ```js
 >    import ability_featureAbility from '@ohos.ability.featureAbility';
->    var context = ability_featureAbility.getContext();
+>    let context = ability_featureAbility.getContext();
 > ```
 
 ```js
@@ -146,9 +146,17 @@ import call from '@ohos.telephony.call';
 >    示例： sim.getSimIccId
 >    订阅方法：sim.on('exampleEvent')
 >
-> 3. **方法具体调用形式**：和d.ts保持一致，需要包括参数类型、参数名、返回值类型。
->    示例：getNetworkState(slotId: number, callback: AsyncCallback\<NetworkState>): void
->    注意：尖括号<>可能会被识别为标签，导致界面显示失效，可增加一个\，以保证界面正常显示，如“\\<>”或使用转义字符\&lt; \&gt; 。
+> 3. **方法具体调用形式**：和d.ts保持一致，需要包括关键字（static、abstract、set、get等）、参数类型、参数名、返回值类型。
+>
+>    示例：
+>    
+>    getNetworkState(slotId: number, callback: AsyncCallback\<NetworkState>): void
+>
+>       abstract makeNode(uiContext: UIContext): FrameNode | null
+>
+>    注意1：尖括号<>可能会被识别为标签，导致界面显示失效，可增加一个\，以保证界面正常显示，如“\\<>”或使用转义字符\&lt; \&gt; 。
+>
+>    注意2：如果set和get关键字声明的方法成对出现，名称相同。则共用同一标题，顺序描述方法具体调用形式、标签、参数、返回值等说明。建议set方法在前，get方法在后。请参考[backgroundColor](../../application-dev/reference/apis-arkui/js-apis-arkui-renderNode.md#backgroundcolor)。
 >
 > 4. **方法描述**：对方法实现的功能进行描述，包括其使用的前提条件（*如：在xx方法调用后才能调用、需要确保网络已连接……*）、使用之后的影响（*如：调用该接口后再进行xx将不起效*）、**权限限制**、**系统能力**等。
 >
@@ -156,7 +164,7 @@ import call from '@ohos.telephony.call';
 >
 > 6. **表格内换行**：markdown语法中，换行采用特殊标记\<br>
 
-*（在此处给出方法的具体调用形式。如果是静态方法需说明）* 方法名称(参数1名称：参数1类型，参数2名称：参数2类型，……)：返回值类型
+*（在此处给出方法的具体调用形式。如果存在关键字需说明）* 方法名称(参数1名称：参数1类型，参数2名称：参数2类型，……)：返回值类型
 
 在此处给出方法描述。说明请参考上述写作说明第4、5点。
 
@@ -201,7 +209,7 @@ import call from '@ohos.telephony.call';
 // 所有使用到的变量要进行声明。
 
 // 不允许直接写参数名，必须是可使用、易替代的实际用例。如果非用户自定义填写，需通过注释进行说明。
-// 例如：var result = xxx.createExample(parameterOne); // parameterOne由扫描自动获取
+// 例如：let result = xxx.createExample(parameterOne); // parameterOne由扫描自动获取
 
 // 注释要精简、突出要点。需提供注释的典型场景还有：
 // 1. 当代码不能说明变量命名的具体含义，或不能说明代码逻辑时，必须提供注释。
@@ -256,7 +264,7 @@ import call from '@ohos.telephony.call';
 // 所有使用到的变量要进行声明。
 
 // 不允许直接写参数名，必须是可使用、易替代的实际用例。如果非用户自定义填写，需通过注释进行说明。
-// 例如：var result = xxx.createExample(parameterOne); // parameterOne由扫描自动获取
+// 例如：let result = xxx.createExample(parameterOne); // parameterOne由扫描自动获取
 
 // 注释要精简、突出要点。需提供注释的典型场景还有：
 // 1. 当代码不能说明变量命名的具体含义，或不能说明代码逻辑时，必须提供注释。
@@ -363,6 +371,7 @@ type Xxx = number | string | 'xxx'
 ## 变更日志
 | 变更说明                                                                 | 日期         |
 | ----------------------------------------------------------------------- | ------------ |
+| 1. 修改方法模板，增加static等关键字声明的方法描述说明。 |  2024/05/16  |
 | 1. 修改Type模板，除原来的联合类型外，增加交叉类型，以及type作为函数、interface等别名的情况。<br/>2. 修改属性模板，仅针对interface和接口定义而言，明确规则，如果有?，则判定为“可选”。 |  2024/05/10  |
 | 1. 修改属性的模板，将“可读”、“可写”、“必填”，统一为“只读”、“必填”。<br/>2. 修改Type的模板，模板修改为“取值范围/说明”，并增加相关说明。<br/>3. 删除自定义类型，合并进class和interface的模板中。 |  2023/02/01  |
 | 1. 总体写作说明整理为表格。<br/>2. “图片路径”中，增加图片的引用方式说明。<br/>3. 增加“文档结构”，对文档各节点顺序进行说明。<br/>4. “权限说明”中，增加多权限的描述方式。<br/>5. 增加@FAModelOnly/@StageModelOnly标记在文档的描述方式。<br/>6. 增加异步接口说明（callback、Promise）。<br/>7. 增加示例代码语言的标准和规范。<br/>8. 增加文档链接的标准写法。<br/>9. 增加模块描述的固定句式、示例。<br/>10. 增加“on/off”等订阅方法的说明。<br/>11. 修改@syscap的描述方式，除表格内的差异项，其余保持一致。 <br/>12. 修改@systemapi的描述方式，仅保留“该系统为系统接口。”。<br/>13. 删除MR版本说明。                                                                 |  2022/6/24  |

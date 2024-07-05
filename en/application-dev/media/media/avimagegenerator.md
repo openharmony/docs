@@ -24,8 +24,8 @@ Read [AVImageGenerator](../../reference/apis-media-kit/js-apis-media.md#avimageg
 Refer to the sample code below to set the file descriptor and obtain the thumbnail of a video at the specified time.
 
 ```ts
-import media from '@ohos.multimedia.media'
-import image from '@ohos.multimedia.image'
+import { media } from '@kit.MediaKit';
+import { image } from '@kit.ImageKit';
 
 const TAG = 'MetadataDemo'
 @Entry

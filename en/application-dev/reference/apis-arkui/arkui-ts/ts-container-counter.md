@@ -16,7 +16,7 @@ Supported
 
 Counter()
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 ## Attributes
 
@@ -33,8 +33,8 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name| Description|
 | -------- | -------- |
-| onInc(event: () =&gt; void) | Invoked when the number of monitored objects is increased.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| onDec(event: () =&gt; void) | Invoked when the number of monitored objects is decreased.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onInc(event: () =&gt; void) | Invoked when the number of monitored objects is increased.<br>This API can be used in ArkTS widgets since API version 9.|
+| onDec(event: () =&gt; void) | Invoked when the number of monitored objects is decreased.<br>This API can be used in ArkTS widgets since API version 9.|
 
 
 ## Example

@@ -1,4 +1,4 @@
-# Media Library Kit API参考
+# Media Library Kit（媒体文件管理服务）
 
 - ArkTS API
   - [@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)
@@ -12,6 +12,7 @@
     <!--DelEnd-->
 - ArkTS组件
   - [@ohos.multimedia.movingphotoview (动态照片)](ohos-multimedia-movingphotoview.md)
+  - [@ohos.file.PhotoPickerComponent (photo picker组件)](ohos-file-PhotoPickerComponent.md)
 - C API
   - 模块
     - [MediaAssetManager](_media_asset_manager.md)

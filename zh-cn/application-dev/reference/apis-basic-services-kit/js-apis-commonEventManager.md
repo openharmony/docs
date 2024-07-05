@@ -24,7 +24,7 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 发布公共事件，并在发布后执行相应的回调函数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -37,10 +37,11 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
+| -------- | ----------------------------------- | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1500004  | not System services.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -75,7 +76,7 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 
 以回调的形式发布公共事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -89,10 +90,11 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1500004  | not System services.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -134,7 +136,7 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 
 以回调形式创建订阅者。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -144,6 +146,14 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------- |
 | subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)        | 是   | 表示订阅信息。             |
 | callback      | AsyncCallback\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 是   | 表示创建订阅者的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **示例：**
 
@@ -182,7 +192,7 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 
 以Promise形式创建订阅者。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -196,6 +206,14 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 | 类型                                                      | 说明             |
 | --------------------------------------------------------- | ---------------- |
 | Promise\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 返回订阅者对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **示例：**
 
@@ -225,7 +243,7 @@ createSubscriberSync(subscribeInfo: CommonEventSubscribeInfo): CommonEventSubscr
 
 createSubscriber的同步接口。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -239,6 +257,14 @@ createSubscriber的同步接口。
 | 类型                                                      | 说明             |
 | --------------------------------------------------------- | ---------------- |
 | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | 返回订阅者对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 
 **示例：**
 
@@ -268,7 +294,7 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 
 以回调形式订阅公共事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -281,10 +307,11 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 801  | capability not supported.               |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -342,7 +369,7 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 
 以回调形式取消订阅公共事件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -355,10 +382,11 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 801  | capability not supported.               |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |

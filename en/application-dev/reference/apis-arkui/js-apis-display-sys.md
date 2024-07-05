@@ -28,7 +28,7 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 | Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- |----------|
-| id     | number                    | Yes  | ID of the display. The value must be an integer.|
+| id     | number                    | Yes  | ID of the display. The value must be an integer greater than or equal to 0.|
 
 **Return value**
 
@@ -38,10 +38,11 @@ Checks whether there is a visible privacy window on a display. The privacy windo
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
@@ -89,6 +90,14 @@ Subscribes to privacy mode changes of this display. When there is a privacy wind
 | type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes.|
 | callback | Callback&lt;boolean&gt; | Yes  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **Example**
 
 ```ts
@@ -121,6 +130,14 @@ Unsubscribes from privacy mode changes of this display. When there is a privacy 
 | type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes.|
 | callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **Example**
 
 ```ts
@@ -148,10 +165,12 @@ Sets the display mode of the foldable device.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 202     | Permission verification failed, non-system application uses system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
@@ -185,10 +204,12 @@ Sets whether to lock the current fold status of the foldable device.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 202     | Permission verification failed, non-system application uses system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
@@ -226,10 +247,11 @@ Checks whether this screen contains an immersive window. This API uses an asynch
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -240,24 +262,15 @@ import { BusinessError } from '@ohos.base';
 import display from '@ohos.display'
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
-
-try {
-  displayClass.hasImmersiveWindow((err: BusinessError, data) => {
+displayClass = display.getDefaultDisplaySync();
+displayClass.hasImmersiveWindow((err: BusinessError, data) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(err));
       return;
     }
     console.info('Succeeded in checking whether there is immersive window. data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(exception));
-}
+});
 ```
 ### hasImmersiveWindow<sup>11+</sup>
 hasImmersiveWindow(): Promise&lt;boolean&gt;
@@ -276,10 +289,11 @@ Checks whether this screen contains an immersive window. This API uses a promise
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -290,12 +304,7 @@ import { BusinessError } from '@ohos.base';
 import display from '@ohos.display'
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
-
+displayClass = display.getDefaultDisplaySync();
 let promise = displayClass.hasImmersiveWindow();
 promise.then((data) => {
   console.info('Succeeded in checking whether there is immersive window. data: ' + JSON.stringify(data));
@@ -321,10 +330,12 @@ Obtains the available area of the current screen. This API uses a promise to ret
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 202     | Permission verification failed, non-system application uses system API.|
+| 801 | Capability not supported on this device. |
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -365,10 +376,13 @@ Subscribes to changes of the available area on the current screen. This API uses
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 202     | Permission verification failed, non-system application uses system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
@@ -408,10 +422,13 @@ Unsubscribes from changes of the available area on the current screen.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 202     | Permission verification failed, non-system application uses system API.|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **Example**

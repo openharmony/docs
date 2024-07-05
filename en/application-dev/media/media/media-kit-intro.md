@@ -99,7 +99,9 @@ The table below lists the supported audio playback formats.
 | mp3 | Audio format: MP3| 
 | ogg | Audio format: VORBIS | 
 | wav | Audio format: PCM| 
+| amr | Audio format: AMR| 
 
+<!--Del-->
 > **NOTE**
 > 
 > The supported video formats are further classified into mandatory and optional ones. All vendors must support mandatory ones and can determine whether to implement optional ones based on their service requirements. You are advised to perform compatibility processing to ensure that all the application functions are compatible on different platforms.
@@ -108,6 +110,7 @@ The table below lists the supported audio playback formats.
 | -------- | -------- |
 | H265<sup>10+</sup>      | Yes|
 | H264      | Yes|
+<!--DelEnd-->
 
 The table below lists the supported playback formats and mainstream resolutions.
 

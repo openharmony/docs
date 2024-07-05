@@ -178,6 +178,14 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 <!--DelEnd-->
 ### **ArkTS侧开发步骤**
 
+> **说明：**
+>
+> - 此文档中的示例代码描述的是系统应用跨进程通信。
+>
+> - 当前不支持三方应用实现ServiceExtensionAbility，三方应用的UIAbility组件可以通过Context连接系统提供的ServiceExtensionAbility。
+>
+> - 当前使用场景： 仅限客户端是三方应用，服务端是系统应用。
+
 1. 添加依赖
 
    ```ts

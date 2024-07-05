@@ -11,7 +11,7 @@ This module provides lifecycle callbacks for third-party VPNs, including VPN cre
 ## Modules to Import
 
 ```ts
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
+import { VpnExtensionAbility } from '@kit.NetworkKit';
 ```
 
 ## Attributes
@@ -39,8 +39,8 @@ Called when the third-party VPN is initialized upon startup.
 **Example**
 
   ```ts
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { VpnExtensionAbility } from '@kit.NetworkKit';
+import { Want } from '@kit.AbilityKit';
 
 class MyVpnExtAbility extends VpnExtensionAbility {
     onCreate(want: Want) {
@@ -60,7 +60,7 @@ Called when the third-party VPN is destroyed to clear resources.
 **Example**
 
   ```ts
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
+import { VpnExtensionAbility } from '@kit.NetworkKit';
 
 class MyVpnExtAbility extends VpnExtensionAbility {
     onDestroy() {
@@ -68,4 +68,3 @@ class MyVpnExtAbility extends VpnExtensionAbility {
     }
 }
   ```
-<!--no_check-->

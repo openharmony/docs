@@ -1,6 +1,6 @@
 # TaskPool和Worker支持的序列化类型
 
-TaskPool和Worker的底层模型为Actor模型，基于Actor模型的内存隔离特性，执行多线程任务和取得结果需要通过跨线程序列化传输。目前支持传输的数据对象可以分为[普通对象](#普通对象)、[可转移对象](#可转移对象)、[可共享对象](#可共享对象)、[Native绑定对象](#native绑定对象)四种。
+TaskPool和Worker的底层模型为Actor模型，基于Actor模型的内存隔离特性，执行多线程任务和取得结果需要通过跨线程序列化传输。目前支持传输的数据对象可以分为[普通对象](#普通对象)、[可转移对象](#可转移对象)、[可共享对象](#可共享对象)、[Native绑定对象](#native绑定对象)、[Sendable对象](#sendable对象)五种。
 
 
 ## 普通对象
@@ -31,7 +31,7 @@ SharedArrayBuffer对象存储的数据在同时被修改时，需要通过原子
 
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function transferAtomics(arg1: Int32Array) {
@@ -69,7 +69,7 @@ PixelMap对象可以读取或写入图像数据以及获取图像信息，常用
 
 ## Sendable对象
 
-Sendable是ArkTS上拓展的在线程间可传递的类型，使用[@Sendable装饰器](../arkts-utils/arkts-sendable.md)装饰。Sendable类型在线程间传递有两种行为：引用传递（暂未支持）和序列化拷贝传递。当前支持传递的Sendable类型：boolean、number、string、Bigint、[SendableClass](../arkts-utils/arkts-sendable.md#sendable-class)。
+Sendable是ArkTS上拓展的在线程间可传递的类型，使用[@Sendable装饰器](arkts-sendable.md)装饰。Sendable类型在线程间传递有两种行为：引用传递和序列化拷贝传递。当前支持传递的Sendable类型详查[Sendable支持的数据类型](arkts-sendable.md#sendable支持的数据类型)。
 
 
 ```ts

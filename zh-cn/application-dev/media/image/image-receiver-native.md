@@ -1,4 +1,4 @@
-# 图片接收器(C/C++)
+# 使用Image完成图片接收器
 
 图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。
 
@@ -32,33 +32,25 @@ EXTERN_C_END
 
 ### 添加权限申请
 
-开启调试功能需要在DevEco Studio应用工程的src\main\module.json5文件中增加权限, 配置文件各字段含义详见[module.json5配置文件](../../quick-start/module-configuration-file.md)：
-
-   ```
-   "requestPermissions":[
-      {
-        "name" : "ohos.permission.CAMERA"
-      }
-    ]
-   ```
+此处通过camera图片获取输入数据，需要申请权限ohos.permission.CAMERA，申请方式请参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
 ### JS侧调用
 
 1. 打开src\main\cpp\types\libentry\index.d.ts（其中libentry根据工程名生成），导入如下引用文件:
 
     ```js
-    import image from '@ohos.multimedia.image'
+    import { image } from '@kit.ImageKit';
 
     export const createFromReceiver: (a: image.ImageReceiver) => image.Image;
     ```
-    
+
 2. 打开src\main\ets\pages\index.ets，导入"libentry.so（根据工程名生成）"，调用Native接口，传入JS的资源对象。示例如下:
 
     ```js
     import testNapi from 'libentry.so'
-    import image from '@ohos.multimedia.image'
-    import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-    import camera from '@ohos.multimedia.camera'
+    import { image } from '@kit.ImageKit';
+    import { abilityAccessCtrl } from '@kit.AbilityKit';
+    import { camera } from '@kit.CameraKit';
 
     @Entry
     @Component
@@ -93,7 +85,7 @@ EXTERN_C_END
             captureSession.beginConfig();
             // 把cameraInput加入到会话
             captureSession.addInput(cameraInput);
-            // 吧预览流加入到会话
+            // 把预览流加入到会话
             captureSession.addOutput(previewOutput);
             // 提交配置信息
             await captureSession.commitConfig();
@@ -127,7 +119,6 @@ EXTERN_C_END
       }
    }
     ```
-
 
 ### Native接口调用
 

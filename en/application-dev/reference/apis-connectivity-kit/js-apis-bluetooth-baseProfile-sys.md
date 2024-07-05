@@ -49,7 +49,7 @@ Sets the profile connection strategy for this device. This API uses an asynchron
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX. |
 | strategy | [ConnectionStrategy](#connectionstrategy)   | Yes   |Profile connection strategy to set.|
-| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -147,7 +147,7 @@ Obtains the profile connection strategy. This API uses an asynchronous callback 
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX. |
-| callback | AsyncCallback&lt;[ConnectionStrategy](#connectionstrategy)&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[ConnectionStrategy](#connectionstrategy)&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 

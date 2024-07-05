@@ -93,7 +93,7 @@ DevEco Studio会根据创建的工程所支持的设置自动配置联想能力�
 
 ### 判断 API 是否可以使用
 
-当前提供了ArtTS API和Native API用于帮助判断某个API是否可以使用。
+当前提供了ArkTS API和Native API用于帮助判断某个API是否可以使用。
 
 - ArkTS API
 

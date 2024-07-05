@@ -11,7 +11,7 @@ app.ability.WantAgent模块提供了创建WantAgent实例、获取实例的用�
 ## 导入模块
 
 ```ts
-import WantAgent from '@ohos.app.ability.wantAgent';
+import { WantAgent } from '@kit.AbilityKit';
 ```
 
 ## WantAgent.getWant
@@ -45,65 +45,65 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 **示例：**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, WantAgent as _WantAgent, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //wantAgent对象
-let wantAgent: _WantAgent;
+let wantAgentData: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err) {
-        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  if (err) {
+    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgentData = data;
+  }
+  //getWant回调
+  let getWantCallback = (err: BusinessError, data: Want) => {
+    if(err) {
+      console.error(`getWant failed! ${err.code} ${err.message}`);
     } else {
-        wantAgent = data;
+      console.info(`getWant ok! ${JSON.stringify(data)}`);
     }
-    //getWant回调
-    let getWantCallback = (err: BusinessError, data: Want) => {
-        if(err) {
-            console.error(`getWant failed! ${err.code} ${err.message}`);
-        } else {
-            console.info(`getWant ok! ${JSON.stringify(data)}`);
-        }
-    }
-    try {
-        WantAgent.getWant(wantAgent, getWantCallback);
-    } catch(err) {
-        console.error(`getWant failed! ${err.code} ${err.message}`);
-    }
+  }
+  try {
+    wantAgent.getWant(wantAgentData, getWantCallback);
+  } catch(err) {
+    console.error(`getWant failed! ${err.code} ${err.message}`);
+  }
 }
+
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -147,60 +147,60 @@ getWant(agent: WantAgent): Promise\<Want\>
 **示例：**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { wantAgent, WantAgent as _WantAgent, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 //wantAgent对象
-let wantAgent: _WantAgent;
+let wantAgentData: _WantAgent;
 //WantAgentInfo对象
-let wantAgentInfo: WantAgent.WantAgentInfo = {
-    wants: [
-        {
-            deviceId: 'deviceId',
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility',
-            action: 'action1',
-            entities: ['entity1'],
-            type: 'MIMETYPE',
-            uri: 'key={true,true,false}',
-            parameters:
-            {
-                mykey0: 2222,
-                mykey1: [1, 2, 3],
-                mykey2: '[1, 2, 3]',
-                mykey3: 'ssssssssssssssssssssssssss',
-                mykey4: [false, true, false],
-                mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
-                mykey6: true,
-            }
-        } as Want
-    ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
-    requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err) {
-        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
-    } else {
-        wantAgent = data;
-    }
-    try {
-        WantAgent.getUid(wantAgent).then((data)=>{
-            console.info(`getUid ok! ${JSON.stringify(data)}`);
-        }).catch((err: BusinessError)=>{
-            console.error(`getUid failed! ${err.code} ${err.message}`);
-        });
-    } catch(err){
-        console.error(`getUid failed! ${err.code} ${err.message}`);
-    }
+  if (err) {
+    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+  } else {
+    wantAgentData = data;
+  }
+  try {
+    wantAgent.getUid(wantAgentData).then((data)=>{
+      console.info(`getUid ok! ${JSON.stringify(data)}`);
+    }).catch((err: BusinessError)=>{
+      console.error(`getUid failed! ${err.code} ${err.message}`);
+    });
+  } catch(err){
+    console.error(`getUid failed! ${err.code} ${err.message}`);
+  }
 }
+
 try {
-    WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error(`getWantAgent failed! ${err.code} ${err.message}}`);
+  console.error(`getWantAgent failed! ${err.code} ${err.message}}`);
 }
 ```

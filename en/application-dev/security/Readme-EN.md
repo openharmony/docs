@@ -6,8 +6,8 @@
 - [HUKS](UniversalKeystoreKit/Readme-EN.md)
 - [Crypto Framework](CryptoArchitectureKit/Readme-EN.md)
 - [Certificate](DeviceCertificateKit/Readme-EN.md)
+- [Asset Store Service](AssetStoreKit/Readme-EN.md)
 - hapsigner
   - [hapsigner Overview](hapsigntool-overview.md)
   - [hapsigner Guide](hapsigntool-guidelines.md)
   - [HarmonyAppProvision File](app-provision-structure.md)
-- [Asset Store Service](AssetStoreKit/Readme-EN.md)

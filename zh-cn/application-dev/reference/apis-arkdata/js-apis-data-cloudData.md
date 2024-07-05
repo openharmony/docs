@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 ```
 
 ## StrategyType
@@ -39,7 +39,8 @@ import cloudData from '@ohos.data.cloudData';
 ## cloudData.setCloudStrategy
 setCloudStrategy(strategy: StrategyType, param?: Array&lt;commonType.ValueType&gt;): Promise&lt;void&gt;
 
-<!--RP1-->设置应用自身的云同步策略，若未设置，则执行全局策略[setGlobalCloudStrategy<sup>12+</sup>](js-apis-data-cloudData-sys.md#setglobalcloudstrategy12)，全局策略若未设置，默认使用WIFI和蜂窝策略。使用Promise异步回调。<!--RP1End-->
+<!--RP1-->
+设置应用自身的云同步策略，若未设置，则执行全局策略[setGlobalCloudStrategy<sup>12+</sup>](js-apis-data-cloudData-sys.md#setglobalcloudstrategy12)，全局策略若未设置，默认使用WIFI和蜂窝策略。使用Promise异步回调。<!--RP1End-->
  
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -66,7 +67,7 @@ setCloudStrategy(strategy: StrategyType, param?: Array&lt;commonType.ValueType&g
 **样例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 仅WIFI同步
 cloudData.setCloudStrategy(cloudData.StrategyType.NETWORK, [cloudData.NetWorkStrategy.WIFI]).then(() => {

@@ -35,7 +35,7 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
 1. 新建一个ArkTS应用工程，在“Project”窗口点击“entry &gt; src &gt; main &gt; ets &gt; pages &gt; index”，打开工程中的“index.ets”文件；在页面执行加载后，在自己的业务中调用hiTraceMeter的接口，进行性能打点跟踪，以任务名name为HITRACE_TAG_APP为例， 示例代码如下：
 
    ```ts
-   import hitrace from '@ohos.hiTraceMeter';
+   import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
    
    @Entry
    @Component
@@ -52,39 +52,39 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
                this.message = 'Hello ArkUI';
    
                // 跟踪并行执行的同名任务
-               hitrace.startTrace("HITRACE_TAG_APP", 1001);
+               hiTraceMeter.startTrace("HITRACE_TAG_APP", 1001);
                // 业务流程
                console.log(`HITRACE_TAG_APP running`);
    
                // 第二个跟踪任务开始，同时第一个跟踪的同名任务还没结束，出现了并行执行，对应接口的taskId需要不同。
-               hitrace.startTrace("HITRACE_TAG_APP", 1002);
+               hiTraceMeter.startTrace("HITRACE_TAG_APP", 1002);
                // 业务流程
                console.log(`HITRACE_TAG_APP running`);
    
-               hitrace.finishTrace("HITRACE_TAG_APP", 1001);
-               hitrace.finishTrace("HITRACE_TAG_APP", 1002);
+               hiTraceMeter.finishTrace("HITRACE_TAG_APP", 1001);
+               hiTraceMeter.finishTrace("HITRACE_TAG_APP", 1002);
    
                // 跟踪串行执行的同名任务，taskId可以不同，也可以相同
-               hitrace.startTrace("HITRACE_TAG_APP", 1003);
+               hiTraceMeter.startTrace("HITRACE_TAG_APP", 1003);
                // 业务流程
                console.log(`HITRACE_TAG_APP running`);
                //第一个跟踪的任务结束
-               hitrace.finishTrace("HITRACE_TAG_APP", 1003);
+               hiTraceMeter.finishTrace("HITRACE_TAG_APP", 1003);
    
                // 第二个跟踪任务开始，同名的待跟踪任务串行执行，且taskId不同
-               hitrace.startTrace("HITRACE_TAG_APP", 1004);
+               hiTraceMeter.startTrace("HITRACE_TAG_APP", 1004);
                // 业务流程
                console.log(`HITRACE_TAG_APP running`);
                let traceCount = 3;
-               hitrace.traceByValue("myTestCount", traceCount);
-               hitrace.finishTrace("HITRACE_TAG_APP", 1004);
+               hiTraceMeter.traceByValue("myTestCount", traceCount);
+               hiTraceMeter.finishTrace("HITRACE_TAG_APP", 1004);
    
                // 第三个跟踪任务开始，同名的待跟踪任务串行执行，且taskId与上一个相同
-               hitrace.startTrace("HITRACE_TAG_APP", 1004);
+               hiTraceMeter.startTrace("HITRACE_TAG_APP", 1004);
                // 业务流程
                console.log(`HITRACE_TAG_APP running`);
                //第三个跟踪的任务结束
-               hitrace.finishTrace("HITRACE_TAG_APP", 1004);
+               hiTraceMeter.finishTrace("HITRACE_TAG_APP", 1004);
    
              })
           }

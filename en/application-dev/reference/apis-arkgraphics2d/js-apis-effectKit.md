@@ -10,20 +10,22 @@ This module provides the following classes:
 
 > **NOTE**
 > 
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> - Since API version 12, the APIs of this module are supported in ArkTS widgets.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```ts
-import effectKit from '@ohos.effectKit';
+import { effectKit } from "@kit.ArkGraphics2D";
 ```
 
 ## effectKit.createEffect
 createEffect(source: image.PixelMap): Filter
 
 Creates a **Filter** instance based on a pixel map.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -42,8 +44,8 @@ Creates a **Filter** instance based on a pixel map.
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -65,6 +67,10 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
 Creates a **ColorPicker** instance based on a pixel map. This API uses a promise to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -79,12 +85,20 @@ Creates a **ColorPicker** instance based on a pixel map. This API uses a promise
 | ---------------------- | -------------- |
 | Promise\<[ColorPicker](#colorpicker)>  | Promise used to return the **ColorPicker** instance created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 401      | Input parameter error.             |
+
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
-import { BusinessError } from "@ohos.base";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
+import { BusinessError } from "@kit.BasicServicesKit";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -111,6 +125,10 @@ createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<Colo
 
 Creates a **ColorPicker** instance for the selected region based on a pixel map. This API uses a promise to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -126,12 +144,20 @@ Creates a **ColorPicker** instance for the selected region based on a pixel map.
 | ---------------------- | -------------- |
 | Promise\<[ColorPicker](#colorpicker)>  | Promise used to return the **ColorPicker** instance created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 401      | Input parameter error.             |
+
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
-import { BusinessError } from "@ohos.base";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
+import { BusinessError } from "@kit.BasicServicesKit";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -158,6 +184,10 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 
 Creates a **ColorPicker** instance based on a pixel map. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -167,11 +197,19 @@ Creates a **ColorPicker** instance based on a pixel map. This API uses an asynch
 | source   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes |**PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image/image-overview.md). |
 | callback | AsyncCallback\<[ColorPicker](#colorpicker)> | Yes | Callback used to return the **ColorPicker** instance created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 401      | Input parameter error.             |
+
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -199,6 +237,10 @@ createColorPicker(source: image.PixelMap, region:Array\<number>, callback: Async
 
 Creates a **ColorPicker** instance for the selected region based on a pixel map. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -209,11 +251,19 @@ Creates a **ColorPicker** instance for the selected region based on a pixel map.
 | region   | Array\<number> | Yes  |  Region of the image from which the color is picked.<br>The array consists of four elements, representing the left, top, right, and bottom positions of the image, respectively. The value of each element must be in the range [0, 1]. The leftmost and topmost positions of the image correspond to 0, and the rightmost and bottom positions correspond to 1. In the array, the third element must be greater than the first element, and the fourth element must be greater than the second element.|
 | callback | AsyncCallback\<[ColorPicker](#colorpicker)> | Yes | Callback used to return the **ColorPicker** instance created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 401      | Input parameter error.             |
+
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -239,6 +289,10 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 
 A class that stores the color picked.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 | Name  | Type  | Readable| Writable| Description             |
@@ -258,6 +312,10 @@ getMainColor(): Promise\<Color>
 
 Obtains the main color from the image and writes the result to a [Color](#color) instance. This API uses a promise to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Return value**
@@ -269,40 +327,42 @@ Obtains the main color from the image and writes the result to a [Color](#color)
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
-export function test06(): void {
-  const color = new ArrayBuffer(96);
-  let opts: image.InitializationOptions = {
-    editable: true,
-    pixelFormat: 3,
-    size: {
-      height: 4,
-      width: 6
-    }
+const color = new ArrayBuffer(96);
+let opts: image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
   }
-  image.createPixelMap(color, opts).then((pixelMap) => {
-    effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
-      if (error) {
-        console.error('Failed to create color picker.');
-      } else {
-        console.info('Succeeded in creating color picker.');
-        colorPicker.getMainColor().then(color => {
-          console.info('Succeeded in getting main color.');
-          console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
-        })
-      }
-    })
-  })
 }
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.error('Failed to create color picker.');
+     } else {
+       console.info('Succeeded in creating color picker.');
+       colorPicker.getMainColor().then(color => {
+        console.info('Succeeded in getting main color.');
+         console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
+      })
+    }
+  })
+})
 ```
 
 ### getMainColorSync
 
 getMainColorSync(): Color
 
-Obtains the main color from the image and writes the result to a [Color](#color) instance. This API returns the result in synchronous mode.
+Obtains the main color from the image and writes the result to a [Color](#color) instance. This API returns the result synchronously.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -315,8 +375,8 @@ Obtains the main color from the image and writes the result to a [Color](#color)
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -339,13 +399,17 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   })
 })
 ```
-![en-us_image_Main_Color.png](figures/en-us_image_Main_Color.png)
+![image_Main_Color.png](figures/image_Main_Color.png)
 
 ### getLargestProportionColor<sup>10+</sup>
 
 getLargestProportionColor(): Color
 
-Obtains the color with the largest proportion from the image and writes the result to a [Color](#color) instance. This API returns the result in synchronous mode.
+Obtains the color with the largest proportion from the image and writes the result to a [Color](#color) instance. This API returns the result synchronously.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -358,8 +422,8 @@ Obtains the color with the largest proportion from the image and writes the resu
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -382,13 +446,73 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   })
 })
 ```
-![en-us_image_Largest_Proportion_Color.png](figures/en-us_image_Largest_Proportion_Color.png)
+![image_Largest_Proportion_Color.png](figures/image_Largest_Proportion_Color.png)
+
+### getTopProportionColors<sup>12+</sup>
+
+getTopProportionColors(colorCount: number): Array<Color | null>
+
+Obtains a given number of colors with the top proportions in the image. This API returns the result synchronously.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+| Name     | Type  | Mandatory| Description             |
+| ---------- | ------ | ---- | ------------------------------------------- |
+| colorCount | number | Yes  | Number of colors to obtain. The value range is [1, 10]. If a non-integer is passed in, the value will be rounded down.  |
+
+**Return value**
+
+| Type                                    | Description                                           |
+| :--------------------------------------- | :---------------------------------------------- |
+| Array<[Color](#color) \| null> | Array of colors, sorted by proportion.<br>- If the number of colors obtained is less than the value of **colorCount**, the array size is the actual number obtained.<br>- If the color fails to be obtained, an empty array is returned.<br>- If the value of **colorCount** is less than 1, **[null]** is returned.<br>- If the value of **colorCount** is greater than 10, an array holding the first 10 colors with the top proportions is returned.|
+
+**Example**
+
+```js
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+}
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.error('Failed to create color picker.');
+    } else {
+      console.info('Succeeded in creating color picker.');
+      let colors = colorPicker.getTopProportionColors(2);
+      for(let index = 0; index < colors.length; index++) {
+        if (colors[index]) {
+          console.info('get top proportion colors: index ' + index + ', color ' + colors[index]);
+        }
+      }
+    }
+  })
+})
+```
+![image_Largest_Proportion_Color.png](figures/image_Top_Proportion_Colors.png)
 
 ### getHighestSaturationColor<sup>10+</sup>
 
 getHighestSaturationColor(): Color
 
-Obtains the color with the highest saturation from the image and writes the result to a [Color](#color) instance. This API returns the result in synchronous mode.
+Obtains the color with the highest saturation from the image and writes the result to a [Color](#color) instance. This API returns the result synchronously.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -401,8 +525,8 @@ Obtains the color with the highest saturation from the image and writes the resu
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts: image.InitializationOptions = {
@@ -425,13 +549,17 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   })
 })
 ```
-![en-us_image_Highest_Saturation_Color.png](figures/en-us_image_Highest_Saturation_Color.png)
+![image_Highest_Saturation_Color.png](figures/image_Highest_Saturation_Color.png)
 
 ### getAverageColor<sup>10+</sup>
 
 getAverageColor(): Color
 
-Obtains the average color from the image and writes the result to a [Color](#color) instance. This API returns the result in synchronous mode.
+Obtains the average color from the image and writes the result to a [Color](#color) instance. This API returns the result synchronously.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -444,8 +572,8 @@ Obtains the average color from the image and writes the result to a [Color](#col
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts: image.InitializationOptions = {
@@ -468,13 +596,17 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   })
 })
 ```
-![en-us_image_Average_Color.png](figures/en-us_image_Average_Color.png)
+![image_Average_Color.png](figures/image_Average_Color.png)
 
 ### isBlackOrWhiteOrGrayColor<sup>10+</sup>
 
 isBlackOrWhiteOrGrayColor(color: number): boolean
 
 Checks whether a color is black, white, and gray.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -493,8 +625,8 @@ Checks whether a color is black, white, and gray.
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts: image.InitializationOptions = {
@@ -528,6 +660,10 @@ blur(radius: number): Filter
 
 Adds the blur effect to the filter linked list, and returns the head node of the linked list.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -545,8 +681,8 @@ Adds the blur effect to the filter linked list, and returns the head node of the
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -565,13 +701,112 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   }
 })
 ```
-![en-us_image_Add_Blur.png](figures/en-us_image_Add_Blur.png)
+![image_Add_Blur.png](figures/image_Add_Blur.png)
+
+### invert<sup>12+</sup>
+
+invert(): Filter
+
+Adds the inversion effect to the filter linked list, and returns the head node of the linked list.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type          | Description                                           |
+| :------------- | :---------------------------------------------- |
+| [Filter](#filter) | Final image effect.|
+
+**Example**
+
+```ts
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.invert();
+  }
+})
+```
+![image_Add_Invert.png](figures/image_Add_Invert.png)
+
+### setColorMatrix<sup>12+</sup>
+
+setColorMatrix(colorMatrix: Array\<number>): Filter
+
+Adds a custom effect to the filter linked list, and returns the head node of the linked list.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name| Type       | Mandatory| Description                                                        |
+| ------ | ----------- | ---- | ------------------------------------------------------------ |
+|  colorMatrix  |   Array\<number> | Yes  | Custom color matrix.<br>A 5 x 4 matrix can be created. The value range of the matrix element is [0, 1], where **0** indicates that the color channel is not involved in the calculation, and **1** indicates that the color channel is involved in the calculation and retains the original weight.|
+
+**Return value**
+
+| Type          | Description                                           |
+| :------------- | :---------------------------------------------- |
+| [Filter](#filter) | Final image effect.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 401      | Input parameter error.             |
+
+**Example**
+
+```ts
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let colorMatrix:Array<number> = [
+    0.2126,0.7152,0.0722,0,0,
+    0.2126,0.7152,0.0722,0,0,
+    0.2126,0.7152,0.0722,0,0,
+    0,0,0,1,0
+  ];
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.setColorMatrix(colorMatrix);
+  }
+})
+```
 
 ### brightness
 
 brightness(bright: number): Filter
 
 Adds the brightness effect to the filter linked list, and returns the head node of the linked list.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -590,8 +825,8 @@ Adds the brightness effect to the filter linked list, and returns the head node 
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -610,13 +845,17 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   }
 })
 ```
-![en-us_image_Add_Brightness.png](figures/en-us_image_Add_Brightness.png)
+![image_Add_Brightness.png](figures/image_Add_Brightness.png)
 
 ### grayscale
 
 grayscale(): Filter
 
 Adds the grayscale effect to the filter linked list, and returns the head node of the linked list.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -629,8 +868,8 @@ Adds the grayscale effect to the filter linked list, and returns the head node o
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -648,7 +887,48 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   }
 })
 ```
-![en-us_image_Add_Grayscale.png](figures/en-us_image_Add_Grayscale.png)
+![image_Add_Grayscale.png](figures/image_Add_Grayscale.png)
+
+### getEffectPixelMap<sup>11+</sup>
+
+getEffectPixelMap(): Promise<image.PixelMap>
+
+Obtains **image.PixelMap** of the source image to which the filter linked list is added. This API uses a promise to return the result.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type                  | Description          |
+| ---------------------- | -------------- |
+| Promise\<image.PixelMap>  | Promise used to return **image.PixelMap** of the source image.|
+
+
+**Example**
+
+```ts
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createEffect(pixelMap).grayscale().getEffectPixelMap().then(data => {
+    console.info('getPixelBytesNumber = ', data.getPixelBytesNumber());
+  })
+})
+```
 
 ### getPixelMap<sup>(deprecated)</sup>
 
@@ -671,8 +951,8 @@ Obtains **image.PixelMap** of the source image to which the filter linked list i
 **Example**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -686,42 +966,5 @@ let opts : image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   let pixel = effectKit.createEffect(pixelMap).grayscale().getPixelMap();
   console.info('getPixelBytesNumber = ', pixel.getPixelBytesNumber());
-})
-```
-
-### getEffectPixelMap<sup>11+</sup>
-
-getEffectPixelMap(): Promise<image.PixelMap>
-
-Obtains **image.PixelMap** of the source image to which the filter linked list is added. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Image.Core
-
-**Return value**
-
-| Type                  | Description          |
-| ---------------------- | -------------- |
-| Promise\<image.PixelMap>  | Promise used to return **image.PixelMap** of the source image.|
-
-
-**Example**
-
-```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
-
-const color = new ArrayBuffer(96);
-let opts : image.InitializationOptions = {
-  editable: true,
-  pixelFormat: 3,
-  size: {
-    height: 4,
-    width: 6
-  }
-};
-image.createPixelMap(color, opts).then((pixelMap) => {
-  effectKit.createEffect(pixelMap).grayscale().getEffectPixelMap().then(data => {
-    console.info('getPixelBytesNumber = ', data.getPixelBytesNumber());
-  })
 })
 ```

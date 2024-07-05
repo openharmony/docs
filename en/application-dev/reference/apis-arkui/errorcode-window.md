@@ -110,7 +110,7 @@ Before operating the window context, check whether it exists.
 
 **Error Message**
 
-Start ability failed.
+Failed to start the ability.
 
 **Description**
 
@@ -128,7 +128,7 @@ Pass in the correct parameters.
 
 **Error Message**
 
-The operation is on invalid display.
+**Error Message**<br>The display device is abnormal.
 
 **Description**
 
@@ -168,7 +168,7 @@ This error code is reported when the parent window is invalid.
 
 **Error Message**
 
-This operation is not support in fullscreen.
+The operation is not supported in full-screen mode.
 
 **Description**
 
@@ -188,7 +188,7 @@ This error code is reported when you perform an invalid operation in the full-sc
 
 **Error Message**
 
-Destroy pip window failed.
+Failed to destroy the PiP window.
 
 **Description**
 
@@ -206,7 +206,7 @@ No action is required.
 
 **Error Message**
 
-Abnormal state of pip window.
+The PiP window state is abnormal.
 
 **Description**
 
@@ -224,7 +224,7 @@ No action is required.
 
 **Error Message**
 
-Create pip window failed.
+Failed to create the PiP window.
 
 **Description**
 
@@ -262,7 +262,7 @@ No action is required.
 
 **Error Message**
 
-Repeat operation of pip.
+Repeated PiP operation.
 
 **Description**
 
@@ -279,7 +279,7 @@ Do not start or stop PiP repeatedly.
 ## 1001 Window Null Pointer Exception<sup>(deprecated)</sup>
 **Error Message**
 
-This window nullptr occurs.
+A window null pointer occurs.
 
 **Description**
 
@@ -364,7 +364,7 @@ Before operating a window, ensure that the client and server services in the win
 ## 1007 Application Startup Failure by WindowExtensionAbility<sup>(deprecated)</sup>
 **Error Message**
 
-Start ability failed.
+Failed to start the ability.
 
 **Description**
 

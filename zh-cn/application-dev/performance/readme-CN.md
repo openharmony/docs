@@ -1,5 +1,6 @@
 - 性能
   - [性能优化概览](performance-overview.md)
+  - [应用开发性能优化入门引导](application-performance-optimization-guidance.md)
   - ArkTS高性能编程
     - [高效并发编程](efficient-concurrent-programming.md)
     - [N-API高效开发指导](develop-Native-modules-using-NAPI-safely-and-efficiently.md)
@@ -10,6 +11,7 @@
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
     - [组件复用使用指导](component-recycle.md)
     - [组件复用性能优化指导](component_recycle_case.md)
+    - [组件复用总览](component-reuse-overview.md)
     - [WaterFlow高性能开发指导](waterflow_optimization.md)
     - [Swiper高性能开发指导](swiper_optimization.md)
     - [合理进行状态管理](proper_state_management.md)
@@ -35,7 +37,9 @@
     - [运行时动态加载页面提升性能](performance-dynamic-import.md)
     - [合理运行后台任务](reasonable-running-backgroundTask.md)
     - [Web组件开发性能提升指导](performance-web-import.md)
-  - [减小应用包大小](reduce-package-size.md)
+    - [使用同层渲染在Webview上渲染原生组件](webview-render-app-components.md)
+    - [减小应用包大小](reduce-package-size.md)
+    - [全局自定义组件复用实现](node_custom_component_reusable_pool.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
@@ -43,3 +47,5 @@
     - [常用trace使用指导](common-trace-using-instructions.md)
     - [状态变量组件定位工具实践](state_variable_dfx_pratice.md)
     - [应用滑动场景帧率问题分析实践](long-frame-optimization.md)
+    - [时延类性能问题分析实践](delay_related_performance.md)
+    - [Web性能问题分析案例](web-analyse.md)

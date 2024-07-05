@@ -25,6 +25,8 @@ import { Queue } from '@kit.ArkTS';
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -37,6 +39,8 @@ import { Queue } from '@kit.ArkTS';
 constructor()
 
 Queue的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -60,6 +64,8 @@ let queue : Queue<number | string | Object> = new Queue();
 add(element: T): boolean
 
 在队列尾部插入元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -105,6 +111,8 @@ pop(): T
 
 删除头元素并返回该删除元素。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -138,6 +146,8 @@ let result = queue.pop();
 getFirst(): T
 
 获取队列的头元素。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -173,6 +183,8 @@ thisArg?: Object): void
 
 通过回调函数来遍历Queue实例对象上的元素以及元素对应的下标。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -192,10 +204,11 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **示例：**
@@ -220,6 +233,8 @@ queue.forEach((value : number, index ?: number) : void => {
 > **说明：**
 >
 > 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

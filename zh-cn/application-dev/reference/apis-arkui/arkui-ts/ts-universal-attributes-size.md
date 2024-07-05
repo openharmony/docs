@@ -16,7 +16,7 @@ width(value: Length)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -25,6 +25,12 @@ width(value: Length)
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
 | value | [Length](ts-types.md#length) | 是    | 要设置的组件宽度。<br/>单位：vp |
+
+>  **说明：**
+>
+>  - 在TextInput组件中，width设置auto表示自适应文本宽度。
+>  
+>  - 在AlphabetIndexer组件中，width设置auto表示自适应宽度最大索引项的宽度。
 
 ## height
 
@@ -36,7 +42,7 @@ height(value: Length)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -48,7 +54,7 @@ height(value: Length)
 
 >  **说明：**
 >
->  在Row、Column、RelativeContainer组件中，width、height设置auto表示自适应子组件。在TextInput组件中，width设置auto表示自适应文本宽度。在AlphabetIndexer组件中，width设置auto表示自适应宽度最大索引项的宽度。
+>  在Row、Column、RelativeContainer组件中，width、height设置auto表示自适应子组件。
 
 ## size
 
@@ -60,7 +66,7 @@ size(value: SizeOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -80,7 +86,7 @@ padding(value: Padding | Length | LocalizedPadding)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -100,7 +106,7 @@ margin(value: margin | Length | LocalizedMargin)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -118,7 +124,7 @@ layoutWeight(value: number | string)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -138,7 +144,7 @@ constraintSize(value: ConstraintSizeOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -165,6 +171,8 @@ constraintSize(value: ConstraintSizeOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | width  | [Length](ts-types.md#length) | &nbsp;否 | 设置组件宽度。 |
@@ -173,6 +181,8 @@ constraintSize(value: ConstraintSizeOptions)
 ## ConstraintSizeOptions对象说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -236,6 +246,7 @@ struct SizeExample {
         .backgroundColor(0xFFFAF0)
         .textAlign(TextAlign.Center)
         .margin('calc(25vp*2)')
+        // width和height设置百分比时，以父容器的width和height作为基础值。
         .size({ width: 'calc(90%)', height: 'calc(50vp + 10%)' })
     }.width('100%').margin({ top: 5 })
   }
@@ -249,7 +260,7 @@ struct SizeExample {
 // xxx.ets
 // padding和margin属性使用LocalizedPadding类型和LocalizedMargin类型
 
-import { LengthMetrics } from '@ohos.arkui.node'
+import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component

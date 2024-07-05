@@ -1,6 +1,6 @@
 # @ohos.telephony.sms (短信服务)
 
-短信服务提供了管理短信的一些基础能力，包括创建、发送短信，获取、设置发送短信的默认SIM卡槽ID，获取、设置短信服务中心（SMSC）地址，以及检查当前设备是否具备短信发送和接收能力等。
+短信服务提供了管理短信的一些基础能力，包括创建、发送短信，获取发送短信的默认SIM卡槽ID，以及检查当前设备是否具备短信发送和接收能力等。
 
 >**说明：**
 >
@@ -34,7 +34,7 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncC
 
 | 错误码ID |                  错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -82,7 +82,7 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise\<Short
 
 | 错误码ID |                  错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -131,7 +131,7 @@ sendMessage\(options: SendMessageOptions\): void
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -185,7 +185,7 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -246,7 +246,7 @@ sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -377,7 +377,7 @@ getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |

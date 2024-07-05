@@ -18,7 +18,7 @@ import { VpnExtensionAbility } from '@kit.NetworkKit';
 通过VpnExtensionAbility子类实例来获取。
 
 ```ts
-import { VpnExtensionAbility, vpnExt } from '@kit.NetworkKit';
+import { VpnExtensionAbility, vpnExtension } from '@kit.NetworkKit';
 import { Want } from '@kit.AbilityKit';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
@@ -27,7 +27,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   private blockedAppName: string = 'xxxx';
 
   onCreate(want: Want) {
-    let VpnConnection: vpnExt.VpnConnection = vpnExt.createVpnConnection(this.context);
+    let VpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(this.context);
     console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
   }
 }
@@ -72,11 +72,6 @@ onDestroy(): void
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**参数：**
-
-| 参数名 | 类型                                | 必填 | 说明        |
-| ------ | ----------------------------------- | ---- |-----------|
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 指示要启动的信息。 |
 
 
 

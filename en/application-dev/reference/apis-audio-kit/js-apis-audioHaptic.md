@@ -79,6 +79,14 @@ Registers an audio-haptic source. This API uses a promise to return the result.
 | ------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the source ID.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID| Error Message                             |
+| ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
@@ -109,6 +117,14 @@ Unregisters an audio-haptic source. This API uses a promise to return the result
 | Name  | Type                                     | Mandatory| Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id       | number                                   | Yes  | Source ID.   |
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID| Error Message                             |
+| ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
@@ -143,6 +159,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed.            |
 
 **Example**
@@ -174,6 +191,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed.            |
 
 **Example**
@@ -217,6 +235,8 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message                             |
 | ------- |-----------------------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed. |
 | 5400103 | I/O error. |
 | 5400106 | Unsupport format. |
@@ -271,6 +291,14 @@ Checks whether an audio-haptic type is muted.
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
 | boolean             | Whether the audio-haptic type is muted.       |
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID| Error Message                             |
+| ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
@@ -448,6 +476,8 @@ Subscribes to audio interruption events. This API uses a callback to obtain the 
 **Example**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
+
 let isPlaying: boolean; // An identifier specifying whether rendering is in progress.
 let isDucked: boolean; // An identifier specifying whether the audio volume is reduced.
 

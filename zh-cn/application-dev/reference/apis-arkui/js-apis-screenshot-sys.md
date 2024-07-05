@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import screenshot from '@ohos.screenshot';
+import { screenshot } from '@kit.ArkUI';
 ```
 
 ## ScreenshotOptions
@@ -74,8 +74,8 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import  { image } from '@kit.ImageKit';
 
 let screenshotOptions: screenshot.ScreenshotOptions = {
   "screenRect": {
@@ -133,8 +133,8 @@ save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 try {
   screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
@@ -187,8 +187,8 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let screenshotOptions: screenshot.ScreenshotOptions = {
   "screenRect": {

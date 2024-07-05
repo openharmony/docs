@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 ```
 
 ## WindowModeType<sup>10+</sup>
@@ -75,13 +75,13 @@ sendNotice(noticeType: NoticeType, eventData: string): void
 | -------- | --------------------------------------- |
 | 201      | Permission verification failed.         |
 | 202      | The caller is not a system application. |
-| 401      | Incorrect parameters.                   |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.    |
 | 12500002 | General operation error.                |
 
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 interface  EventData {
   widgetContextId: number;
@@ -137,13 +137,13 @@ on(type: 'command', callback: IAuthWidgetCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters.    |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {
@@ -183,13 +183,13 @@ off(type: 'command', callback?: IAuthWidgetCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters.    |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {
@@ -241,13 +241,13 @@ getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr
 | -------- | --------------------------------------- |
 | 201      | Permission verification failed.         |
 | 202      | The caller is not a system application. |
-| 401      | Incorrect parameters.                   |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.                                     |
 | 12500002 | General operation error.                |
 
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let userAuthWidgetMgrVersion = 1;
 try {
@@ -281,7 +281,7 @@ sendCommand(cmdData: string): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {

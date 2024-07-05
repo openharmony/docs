@@ -14,6 +14,7 @@ Currently, the following decoding capabilities are supported:
 | mp3      | MPEG (MP3)                    |
 | amr      | AMR (AMR-NB and AMR-WB)           |
 | raw      | G711mu                       |
+<!--RP1--><!--RP1End-->
 
 **Usage Scenario**
 
@@ -250,6 +251,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    
 8. Call **OH_AudioCodec_FreeOutputBuffer()** to output decoded PCM streams.
 
+    <!--RP2-->
     ```c++
     uint32_t index = signal_->outQueue_.front();
     OH_AVBuffer *data = signal_->outBufferQueue_.front();
@@ -269,6 +271,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // End
     }
     ```
+    <!--RP2End-->
 
 9. (Optional) Call **OH_AudioCodec_Flush()** to refresh the decoder.
 
