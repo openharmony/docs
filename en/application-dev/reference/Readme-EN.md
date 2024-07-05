@@ -8,7 +8,8 @@
 - [Ads Kit API Reference](apis-ads-kit/Readme-EN.md)
 - [ArkData API Reference](apis-arkdata/Readme-EN.md)
 - [ArkGraphics 2D API Reference](apis-arkgraphics2d/Readme-EN.md)
-- [ArkTS API Reference](apis/Readme-EN.md)
+- [ArkGraphics 3D API Reference](apis-arkgraphics3d/Readme-EN.md)
+- [ArkTS API Reference](apis-arkts/Readme-EN.md)
 - [ArkUI API Reference](apis-arkui/Readme-EN.md)
 - [ArkWeb API Reference](apis-arkweb/Readme-EN.md)
 - [Asset Store Kit API Reference](apis-asset-store-kit/Readme-EN.md)
@@ -52,4 +53,3 @@
 - [User Authentication Kit API Reference](apis-user-authentication-kit/Readme-EN.md)
 - [Common Capabilities](common/Readme-EN.md)
 - [Native API Standard Libraries](native-lib/Readme-EN.md)
-<!--no_check-->
