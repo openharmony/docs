@@ -532,6 +532,14 @@ getAbilityState(ability: UIAbility): number
 | ------ | ------------------------------------------------------------ |
 | number | 指定ability的生命周期状态。状态枚举值使用AbilityLifecycleState。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -615,7 +623,6 @@ getCurrentTopAbility(): Promise\<UIAbility>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | GetCurrentTopAbility failed. |
 
 **示例：**
@@ -965,6 +972,14 @@ printSync(msg: string): void
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
 | msg    | string | 是   | 日志字符串。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1486,7 +1501,7 @@ removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 16000100 | removeAbilityStageMonitorSync failed. |
+| 16000100 | RemoveAbilityStageMonitorSync failed. |
 
 
 **示例：**
