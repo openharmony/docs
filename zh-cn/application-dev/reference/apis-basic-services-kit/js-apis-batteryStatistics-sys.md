@@ -119,6 +119,7 @@ getAppPowerValue(uid: number): number
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
 | 202     | If the system permission is denied.  |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **示例：**
 
@@ -161,6 +162,7 @@ getAppPowerPercent(uid: number): number
 |---------|---------|
 | 4600101 | If connecting to the service failed. |
 | 202     | If the system permission is denied.  |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **示例：**
 
