@@ -11427,7 +11427,7 @@ uint32_t OH_Drawing_RegisterFont (OH_Drawing_FontCollection* , const char* fontF
 
 **返回：**
 
-返回错误代码，0为成功，1为文件不存在，2为打开文件失败，3为读取文件失败，4为寻找文件失败，5为获取大小失败。
+返回错误代码，0为成功，1为文件不存在，2为打开文件失败，3为读取文件失败，4为寻找文件失败，5为获取大小失败，9文件损坏。
 
 
 ### OH_Drawing_RegisterFontBuffer()
@@ -11455,7 +11455,7 @@ uint32_t OH_Drawing_RegisterFontBuffer (OH_Drawing_FontCollection* , const char*
 
 **返回：**
 
-返回错误代码，0为成功，6为缓冲区大小为零，7为字体集合为空。
+返回错误代码，0为成功，6为缓冲区大小为零，7为字体集合为空，9文件损坏。
 
 
 ### OH_Drawing_RoundRectCreate()
