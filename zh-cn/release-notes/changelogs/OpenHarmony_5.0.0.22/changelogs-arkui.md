@@ -428,3 +428,69 @@ nodeAPI->registerNodeEventReceiver(onclick);
 **适配指导**
 
 异常值处理逻辑变更，不涉及适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
+
+## cl.arkui.10 矩阵变换接口transform行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+接口功能完善。
+
+**变更影响**
+
+变更前：传入矩阵中的透视投影变换不进行处理，即不支持透视投影变换。
+
+变更后：处理传入矩阵中的透视投影变换，即支持透视投影变换。
+
+**起始API Level**
+
+该特性版本为API 7,变更版本为API 12。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.22开始。
+
+**适配指导**
+
+若传入的矩阵中若是涉及到透视投影变换，即矩阵最后一列的前三个参数不为0，则会出现变更前后不一致的现象。
+
+若适配前代码如下：
+```
+const matrixArr = [
+    1, 0, 0, 2, 
+    0, 2, 0, 1, 
+    0, 0, 3, 1, 
+    0, 0, 0, 1];
+
+let matrix = matrix4.init(matrixArr);
+
+@Entry
+@Component
+struct Tests {
+    build() {
+        Column() {
+            Image($r("app.media.startIcon"))
+                .width("40%")
+                .height(100)
+                .transform(matrix)
+        }
+    }
+}
+```
+
+适配方法：传入的矩阵中若是涉及到透视投影变换，处理透视投影相关的变换，因此变换效果会发生变化，若是想保持原样，将Matrix4Transit的最后一列的前三个参数（即第4,8,12个参数）置为0即可。
+```
+const matrixArr = [
+    1, 0, 0, 2, 
+    0, 2, 0, 1, 
+    0, 0, 3, 1, 
+    0, 0, 0, 1];
+for (let i = 3;i < 12;i += 4) {
+    matrixArr[i] = 0;
+}
+
+let matrix = matrix4.init(matrixArr);
+```
