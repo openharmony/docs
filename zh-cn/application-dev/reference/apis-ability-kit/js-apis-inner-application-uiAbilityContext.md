@@ -1650,7 +1650,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 显示拉起的UIExtensionAbility类型<!--Del-->，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../../application-dev/application-models/start-intent-panel.md#接口说明)<!--DelEnd-->。 |
+| type | string | 是 | 显示拉起的UIExtensionAbility类型<!--Del-->，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../application-models/start-intent-panel.md#接口说明)<!--DelEnd-->。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 执行结果回调函数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
@@ -1709,7 +1709,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 显示拉起的UIExtensionAbility类型<!--Del-->，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../../application-dev/application-models/start-intent-panel.md#接口说明)<!--DelEnd-->。 |
+| type | string | 是 | 显示拉起的UIExtensionAbility类型<!--Del-->，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../application-models/start-intent-panel.md#接口说明)<!--DelEnd-->。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 执行结果回调函数。 |
 
@@ -2061,8 +2061,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 **示例：**
 
 ```ts
-import { UIAbility, common } from '@kit.AbilityKit';
-import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
+import { UIAbility, common, AtomicServiceOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -2152,9 +2151,8 @@ openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Ab
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
+import { common, OpenLinkOptions } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const DOMAIN = 0xeeee;

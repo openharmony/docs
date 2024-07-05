@@ -854,7 +854,7 @@ notificationManager.isNotificationEnabled().then((data: boolean) => {
 });
 ```
 
-## notificationManager.isNotificationEnabled
+## notificationManager.isNotificationEnabledSync<sup>12+</sup>
 
 isNotificationEnabledSync(): boolean
 
@@ -881,8 +881,6 @@ isNotificationEnabledSync(): boolean
 **示例：**
 
 ```ts
-import notificationManager from '@ohos.notificationManager';
-
 let enabled = notificationManager.isNotificationEnabledSync();
 ```
 
@@ -1124,9 +1122,9 @@ getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-no
 import Base from '@ohos.base';
 
 notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
-	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
+	console.info("getActiveNotifications success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
-    console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
+    console.error(`getActiveNotifications fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1489,7 +1487,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## notificationManager.isDistributedEnabled
+## notificationManager.isDistributedEnabled   
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 

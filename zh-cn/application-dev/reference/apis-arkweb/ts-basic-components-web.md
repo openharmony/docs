@@ -251,13 +251,15 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否开启应用中文件系统的访问。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+
+从API version 12开始，fileAccess默认不启用。同时，当fileAccess为false的时候，仅只读资源目录/data/storage/el1/bundle/entry/resources/resfile里面的file协议资源依然可以访问，不受fileAccess管控。
 
 **参数：**
 
 | 参数名        | 参数类型    | 必填   | 默认值  | 参数描述                   |
 | ---------- | ------- | ---- | ---- | ---------------------- |
-| fileAccess | boolean | 是    | true | 设置是否开启应用中文件系统的访问，默认启用。 |
+| fileAccess | boolean | 是    | false | API version 11及以前：默认为true，启动应用中文件系统的访问。API version 12及以后：默认为false，不启用应用中文件系统的访问。 |
 
 **示例：**
 
@@ -404,17 +406,13 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式，默认关闭。过滚动模式开启后，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
-
-> **说明：**
->
-> 从API version 12开始默认改为开启。
+设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
 
 **参数：**
 
 | 参数名  | 参数类型                                    | 必填   | 默认值                  | 参数描述               |
 | ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
-| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER，从API version 12开始：OverScrollMode.ALWAYS | 设置Web的过滚动模式为关闭或开启。 |
+| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER | 设置Web的过滚动模式为关闭或开启。 |
 
 **示例：**
 
@@ -1599,7 +1597,7 @@ allowWindowOpenMethod(flag: boolean)
             }
             let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({ webviewController1: popController });
+              builder: NewWebViewComp({ webviewController1: popController })
             })
             this.dialogController.open();
             //将新窗口对应WebviewController返回给Web内核。
@@ -1797,7 +1795,7 @@ layoutMode(mode: WebLayoutMode)
 > - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
 > - Web组件创建后不支持动态切换layoutMode模式，且支持规格不超过50万px(屏幕像素点) 物理像素。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
-> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
+> - 由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
@@ -1839,7 +1837,7 @@ nestedScroll(value: NestedScrollOptions)
 > - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
 > - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
-> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
+> - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
@@ -1983,7 +1981,7 @@ defaultTextEncodingFormat(textEncodingFormat: string)
 
 metaViewport(enable: boolean)
 
-设置mete标签的viewport属性是否可用。
+设置meta标签的viewport属性是否可用。
 
 > **说明：**
 >
@@ -1996,7 +1994,7 @@ metaViewport(enable: boolean)
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                         |
 | ------ | -------- | ---- | ------ | -------------------------------- |
-| enable | boolean  | 是   | true   | 是否支持mete标签的viewport属性。 |
+| enable | boolean  | 是   | true   | 是否支持meta标签的viewport属性。 |
 
 **示例：**
 
@@ -4969,6 +4967,7 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
@@ -4978,14 +4977,27 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        // 点击按钮跳转页面，关闭index页面，使Embed标签销毁。
+        Button('Destroy')
+        .onClick(() => {
+          try {
+            this.controller.loadUrl("www.example.com");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
           .onNativeEmbedLifecycleChange((event) => {
+            // 当加载页面中有Embed标签会触发Create。
             if (event.status == NativeEmbedStatus.CREATE) {
               this.embedStatus = 'Create';
             }
+            // 当页面中Embed标签移动或者缩放时会触发Update。
             if (event.status == NativeEmbedStatus.UPDATE) {
               this.embedStatus = 'Update';
             }
+            // 退出页面时会触发Destroy。
             if (event.status == NativeEmbedStatus.DESTROY) {
               this.embedStatus = 'Destroy';
             }
@@ -5004,6 +5016,25 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
       }
     }
   }
+  ```
+
+  加载的html文件
+  ```
+  <!-- index.html -->
+  <!Document>
+  <html>
+  <head>
+      <title>同层渲染测试html</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+      </div>
+  </div>
+  </body>
+  </html>
   ```
 
 ### onNativeEmbedGestureEvent<sup>11+</sup>
@@ -5099,7 +5130,7 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
       Column() {
         Stack() {
           NodeContainer(this.nodeController)
-          Web({ src: $rawfile("test.html"), controller: this.controller })
+          Web({ src: $rawfile("index.html"), controller: this.controller })
             .enableNativeEmbedMode(true)
             .onNativeEmbedLifecycleChange((embed) => {
               if (embed.status == NativeEmbedStatus.CREATE) {
@@ -5146,6 +5177,7 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
   ```
 加载的html文件
   ```
+  <!-- index.html -->
   <!Document>
 <html>
 <head>

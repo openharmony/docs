@@ -163,7 +163,7 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
 
 ```ts
 // index.ets
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -205,7 +205,7 @@ struct Index {
 
 ```ts
 // page1.ets
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component

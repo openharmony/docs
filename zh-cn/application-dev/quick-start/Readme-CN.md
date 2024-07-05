@@ -1,9 +1,9 @@
 # 入门
-
+<!--Del-->
 - 快速入门
   - [开发准备](start-overview.md)
   - [构建第一个ArkTS应用（Stage模型）](start-with-ets-stage.md)
-
+<!--DelEnd-->
 - 开发基础知识
   - 应用程序包基础知识
     - [应用程序包概述](application-package-overview.md)
@@ -110,11 +110,12 @@
       - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](arkts-new-Provider-and-Consumer.md)
       - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
       - [!!语法：双向绑定](arkts-new-binding.md)
+      - [自定义组件冻结功能](arkts-custom-components-freezeV2.md)
+      - [Repeat：子组件复用](arkts-new-rendering-control-repeat.md)
 
   - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
-      - [Repeat：循环渲染(推荐)](arkts-rendering-control-repeat.md)
       - [ContentSlot：混合开发](arkts-rendering-control-contentslot.md)

@@ -13,7 +13,8 @@ FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeC
 ## 导入模块
 
 ```ts
-import { FrameNode, LayoutConstraint, typeNode } from "@ohos.arkui.node";
+import { typeNode } from "@ohos.arkui.node";
+import { FrameNode, LayoutConstraint } from "@kit.ArkUI";
 ```
 
 ## FrameNode
@@ -32,7 +33,7 @@ FrameNode的构造函数。
 
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 
 ### getRenderNode
 
@@ -53,7 +54,7 @@ getRenderNode(): RenderNode | null
 **示例：**
 
 ```ts
-import { NodeController, FrameNode } from '@ohos.arkui.node';
+import { NodeController, FrameNode } from '@kit.ArkUI';
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
@@ -771,7 +772,7 @@ dispose(): void
 **示例：**
 
 ```ts
-import { FrameNode, NodeController, BuilderNode } from "@ohos.arkui.node"
+import { NodeController, FrameNode, BuilderNode } from '@kit.ArkUI';
 
 @Component
 struct TestComponent {
@@ -1098,7 +1099,8 @@ addComponentContent\<T>(content: ComponentContent\<T>): void
 | content | [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent)\<T> | 是   | FrameNode节点中显示的组件内容。 |
 
 ```ts
-import { typeNode, NodeController, FrameNode, ComponentContent } from '@ohos.arkui.node';
+import { NodeController, FrameNode, ComponentContent } from '@kit.ArkUI';
+import { typeNode } from '@ohos.arkui.node';
 
 @Builder
 function buildText() {
@@ -1154,7 +1156,7 @@ disposeTree(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { FrameNode, NodeController, BuilderNode } from "@kit.ArkUI"
+import { FrameNode, NodeController, BuilderNode } from '@kit.ArkUI';
 
 @Component
 struct TestComponent {
@@ -1376,7 +1378,7 @@ createNode(context: UIContext, nodeType: 'Text'): Text
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Text' | 是 | 创建Text类型的FrameNode节点。 |
 
 **返回值：**
@@ -1411,7 +1413,7 @@ createNode(context: UIContext, nodeType: 'Column'): Column
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Column' | 是 | 创建Column类型的FrameNode节点。 |
 
 **返回值：**
@@ -1445,7 +1447,7 @@ createNode(context: UIContext, nodeType: 'Row'): Row
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Row' | 是 | 创建Row类型的FrameNode节点。 |
 
 **返回值：**
@@ -1479,7 +1481,7 @@ createNode(context: UIContext, nodeType: 'Stack'): Stack
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Stack' | 是 | 创建Stack类型的FrameNode节点。 |
 
 **返回值：**
@@ -1513,7 +1515,7 @@ createNode(context: UIContext, nodeType: 'GridRow'): GridRow
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'GridRow' | 是 | 创建GridRow类型的FrameNode节点。 |
 
 **返回值：**
@@ -1547,7 +1549,7 @@ createNode(context: UIContext, nodeType: 'GridCol'): GridCol
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'GridCol' | 是 | 创建GridCol类型的FrameNode节点。 |
 
 **返回值：**
@@ -1581,7 +1583,7 @@ createNode(context: UIContext, nodeType: 'Flex'): Flex
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Flex' | 是 | 创建Flex类型的FrameNode节点。 |
 
 **返回值：**
@@ -1615,7 +1617,7 @@ createNode(context: UIContext, nodeType: 'Swiper'): Swiper
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Swiper' | 是 | 创建Swiper类型的FrameNode节点。 |
 
 **返回值：**
@@ -1649,7 +1651,7 @@ createNode(context: UIContext, nodeType: 'Progress'): Progress
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Progress' | 是 | 创建Progress类型的FrameNode节点。 |
 
 **返回值：**
@@ -1683,7 +1685,7 @@ createNode(context: UIContext, nodeType: 'Scroll'): Scroll
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Scroll' | 是 | 创建Scroll类型的FrameNode节点。 |
 
 **返回值：**
@@ -1717,7 +1719,7 @@ createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'RelativeContainer' | 是 | 创建RelativeContainer类型的FrameNode节点。 |
 
 **返回值：**
@@ -1751,7 +1753,7 @@ createNode(context: UIContext, nodeType: 'Divider'): Divider
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Divider' | 是 | 创建Divider类型的FrameNode节点。 |
 
 **返回值：**
@@ -1785,7 +1787,7 @@ createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'LoadingProgress' | 是 | 创建LoadingProgress类型的FrameNode节点。 |
 
 **返回值：**
@@ -1819,7 +1821,7 @@ createNode(context: UIContext, nodeType: 'Search'): Search
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Search' | 是 | 创建Search类型的FrameNode节点。 |
 
 **返回值：**
@@ -1853,7 +1855,7 @@ createNode(context: UIContext, nodeType: 'Blank'): Blank;
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Blank' | 是 | 创建Blank类型的FrameNode节点。 |
 
 **返回值：**
@@ -1887,7 +1889,7 @@ createNode(context: UIContext, nodeType: 'Image'): Image
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'Image' | 是 | 创建Image类型的节点。 |
 
 **返回值：**
@@ -1921,7 +1923,7 @@ createNode(context: UIContext, nodeType: 'List'): List
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'List' | 是 | 创建List类型的节点。 |
 
 **返回值：**
@@ -1955,7 +1957,7 @@ createNode(context: UIContext, nodeType: 'ListItem'): ListItem
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'ListItem' | 是 | 创建ListItem类型的节点。 |
 
 **返回值：**
@@ -1970,12 +1972,83 @@ createNode(context: UIContext, nodeType: 'ListItem'): ListItem
 typeNode.createNode(uiContext, 'ListItem');
 ```
 
+### TextInput<sup>12+</sup>
+type TextInput = TypedFrameNode&lt;TextInputInterface, TextInputAttribute&gt;
+
+TextInput类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;TextInputInterface, TextInputAttribute&gt; | 提供TextInput类型FrameNode节点。<br/>**说明：**<br/> TextInputInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为TextInput组件的构造函数类型。 <br/> TextInputAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回TextInput组件的属性设置对象。 |
+
+### createNode('TextInput')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'TextInput'): TextInput
+
+创建TextInput类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'TextInput' | 是 | 创建TextInput类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [TextInput](#textinput12) | TextInput类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'TextInput');
+```
+
+### Button<sup>12+</sup>
+type Button = TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt;
+
+Button类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ButtonInterface, ButtonAttribute&gt; | 提供Button类型FrameNode节点。<br/>**说明：**<br/> ButtonInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Button组件的构造函数类型。 <br/> ButtonAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Button组件的属性设置对象。<br/> 接口入参label不为空时，以label模式创建Button组件，以此模式创建无法包含子组件。且label模式和子组件模式在第一次initialize创建之后无法在后续的initialize进行动态修改，如需要包含子组件，第一次initialize时不要设置label参数。 |
+
+### createNode('Button')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'Button'): Button
+
+创建Button类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Button' | 是 | 创建Button类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Button](#button12) | Button类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Button');
+```
+
 ## 自定义具体类型节点示例
 
 以Text节点为例，创建Text类型节点。
 
 ```ts
-import { typeNode, NodeController, FrameNode } from '@ohos.arkui.node';
+import { NodeController, FrameNode } from '@kit.ArkUI';
+import { typeNode } from '@ohos.arkui.node';
 
 class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
@@ -2013,9 +2086,9 @@ struct FrameNodeTypeTest {
 
 ## 节点操作示例
 ```ts
-import { FrameNode, NodeController } from "@ohos.arkui.node";
-import { UIContext } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 const TEST_TAG : string = "FrameNode"
 class MyNodeController extends NodeController {
   public frameNode: FrameNode | null = null;
@@ -2425,7 +2498,7 @@ struct Index {
 ```
 ## 基础事件示例
 ```ts
-import { FrameNode, NodeController } from '@ohos.arkui.node'
+import { NodeController, FrameNode } from '@kit.ArkUI';
 
 class MyNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
@@ -2855,9 +2928,8 @@ export class TrackManager {
 ## 节点自定义示例
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { DrawContext, FrameNode, NodeController, LayoutConstraint, Size, Position } from '@ohos.arkui.node';
-import drawing from '@ohos.graphics.drawing';
+import { UIContext, DrawContext, FrameNode, NodeController, LayoutConstraint, Size, Position } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
 
 function GetChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode): LayoutConstraint {
   const size = child.getUserConfigSize();

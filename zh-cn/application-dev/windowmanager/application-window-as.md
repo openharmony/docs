@@ -36,7 +36,7 @@
 
 ### 开发步骤
 
-**前提条件：** `setWindowPrivacyMode` 即设置窗口隐私模式，适用于禁止截屏/录屏的场景。该接口使用时需要申请`ohos.permission.PRIVACY_WINDOW`权限，配置方式请参见[申请应用权限](../../application-dev/quick-start/module-configuration-file.md#requestpermissions标签)。
+**前提条件：** `setWindowPrivacyMode` 即设置窗口隐私模式，适用于禁止截屏/录屏的场景。该接口使用时需要申请`ohos.permission.PRIVACY_WINDOW`权限，配置方式请参见[申请应用权限](../quick-start/module-configuration-file.md#requestpermissions标签)。
 
 1. 获取应用主窗口。
 
@@ -51,9 +51,9 @@
    通过`loadContent`接口加载主窗口的目标页面。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -120,9 +120,9 @@ export default class EntryAbility extends UIAbility {
    当不再需要某些子窗口时，可根据具体实现逻辑，使用`destroyWindow`接口销毁子窗口。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowStage_: window.WindowStage | null = null;
 let sub_windowClass: window.Window | null = null;
@@ -215,8 +215,8 @@ export default class EntryAbility extends UIAbility {
 在创建WindowStage对象后可通过监听`'windowStageEvent'`事件类型，监听到窗口进入前台、后台、前台可交互、前台不可交互等事件，应用可根据这些上报的事件状态进行相应的业务处理。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {

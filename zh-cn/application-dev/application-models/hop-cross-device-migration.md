@@ -350,12 +350,68 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
+### 支持同应用中不同Ability跨端迁移
+一般情况下，跨端迁移的双端是同Ability之间，但有些应用在不同设备类型下的同一个业务Ability名称不同（即异Ability），为了支持该场景下的两个Ability之间能够完成迁移，可以通过在module.json5文件的abilities标签中配置迁移类型continueType进行关联。
+需要迁移的两个Ability的continueType字段取值必须保持一致，示例如下：
+   > **说明：**
+   >
+   > continueType在本应用中要保证唯一，字符串以字母、数字和下划线组成，最大长度127个字节，不支持中文。
+   > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
+
+```json
+   // 设备A
+   {
+     "module": {
+       // ...
+       "abilities": [
+         {
+           // ...
+           "name": "Ability-deviceA",
+           "continueType": ['continueType1'], // continueType标签配置
+         }
+       ]
+     }
+   }
+
+   // 设备B
+   {
+     "module": {
+       // ...
+       "abilities": [
+         {
+           // ...
+           "name": "Ability-deviceB",
+           "continueType": ['continueType1'], // 与设备A相同的continueType标签
+         }
+       ]
+     }
+   }
+   ```
+
+### 支持快速拉起目标应用
+默认情况下，发起迁移后不会立即拉起对端的目标应用，而是等待迁移数据从源端同步到对端后，才会拉起。为了发起迁移后能够立即拉起目标应用，做到及时响应，可以通过在continueType标签中添加“_ContinueQuickStart”后缀进行生效，这样待迁移数据从源端同步到对端后只恢复迁移数据即可，提升应用迁移体验。
+
+   ```json
+   {
+     "module": {
+       // ...
+       "abilities": [
+         {
+           // ...
+           "name": "EntryAbility"
+           "continueType": ['EntryAbility_ContinueQuickStart'], // 如果已经配置了continueType标签，可以在该标签值后添加'_ContinueQuickStart'后缀；如果没有配置continueType标签，可以使用AbilityName + '_ContinueQuickStart'作为continueType标签实现快速拉起目标应用
+         }
+       ]
+     }
+   }
+   ```
+
 ## 跨端迁移中的数据迁移
 
 当前推荐两种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
   > **说明：**
   >
-  > 部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)。
+  > 部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](../reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)。
   >
   > 如果涉及分布式数据对象迁移时应注意：
   >
@@ -415,21 +471,21 @@ export default class MigrationAbility extends UIAbility {
 
 ### 使用分布式数据对象迁移数据
 
-当需要迁移的数据较大（100KB以上）或需要迁移文件时，可以使用[分布式数据对象](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md)。原理与接口说明详见[分布式数据对象跨设备数据同步](../../application-dev/database/data-sync-of-distributed-data-object.md)。
+当需要迁移的数据较大（100KB以上）或需要迁移文件时，可以使用[分布式数据对象](../reference/apis-arkdata/js-apis-data-distributedobject.md)。原理与接口说明详见[分布式数据对象跨设备数据同步](../database/data-sync-of-distributed-data-object.md)。
 
   > **说明：**
   >
-  > 自API 12起，由于直接使用[跨设备文件访问](../../application-dev/file-management/file-access-across-devices.md)实现文件的迁移难以获取文件同步完成的时间，为了保证更高的成功率，文件数据的迁移不建议继续通过该方式实现，推荐使用分布式数据对象携带资产的方式进行。开发者此前通过跨设备文件访问实现的文件迁移依然生效。
+  > 自API 12起，由于直接使用[跨设备文件访问](../file-management/file-access-across-devices.md)实现文件的迁移难以获取文件同步完成的时间，为了保证更高的成功率，文件数据的迁移不建议继续通过该方式实现，推荐使用分布式数据对象携带资产的方式进行。开发者此前通过跨设备文件访问实现的文件迁移依然生效。
 
 #### 基础数据的迁移
 
 使用分布式数据对象，需要在源端`onContinue()`接口中进行数据保存，并在对端的`onCreate()`/`onNewWant()`接口中进行数据恢复。
 
-在源端，将需要迁移的数据保存到分布式数据对象[`DataObject`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject)中。
+在源端，将需要迁移的数据保存到分布式数据对象[`DataObject`](../reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject)中。
 
-- 在`onContinue()`接口中使用[`create()`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectcreate9)接口创建分布式数据对象，将所要迁移的数据填充到分布式数据对象数据中。
-- 调用[`genSessionId()`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectgensessionid)接口生成数据对象组网id，并使用该id调用[`setSessionId()`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#setsessionid9)加入组网，激活分布式数据对象。
-- 使用[`save()`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#save9)接口将已激活的分布式数据对象持久化，确保源端退出后对端依然可以获取到数据。
+- 在`onContinue()`接口中使用[`create()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectcreate9)接口创建分布式数据对象，将所要迁移的数据填充到分布式数据对象数据中。
+- 调用[`genSessionId()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectgensessionid)接口生成数据对象组网id，并使用该id调用[`setSessionId()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#setsessionid9)加入组网，激活分布式数据对象。
+- 使用[`save()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#save9)接口将已激活的分布式数据对象持久化，确保源端退出后对端依然可以获取到数据。
 - 将生成的`sessionId`通过`want`传递到对端，供对端激活同步使用。
 
 > **注意**
@@ -513,7 +569,7 @@ export default class MigrationAbility extends UIAbility {
 
 - 创建空的分布式数据对象，用于接收恢复的数据。
 - 从want中读取分布式数据对象组网id。
-- 注册[`on()`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#onstatus9)接口监听数据变更。在收到`status`为`restore`的事件的回调中，实现数据恢复完毕时需要进行的业务操作。
+- 注册[`on()`](../reference/apis-arkdata/js-apis-data-distributedobject.md#onstatus9)接口监听数据变更。在收到`status`为`restore`的事件的回调中，实现数据恢复完毕时需要进行的业务操作。
 - 调用`setSessionId()`加入组网，激活分布式数据对象。
 
 > **注意**
@@ -585,11 +641,11 @@ export default class MigrationAbility extends UIAbility {
 
 #### 文件资产的迁移
 
-对于图片、文档等文件类数据，需要先将其转换为[资产`commonType.Asset`](../../application-dev/reference/apis-arkdata/js-apis-data-commonType.md#asset)类型，再封装到分布式数据对象中进行迁移。迁移实现方式与普通的分布式数据对象类似，下例中仅针对区别部分进行说明。
+对于图片、文档等文件类数据，需要先将其转换为[资产`commonType.Asset`](../reference/apis-arkdata/js-apis-data-commonType.md#asset)类型，再封装到分布式数据对象中进行迁移。迁移实现方式与普通的分布式数据对象类似，下例中仅针对区别部分进行说明。
 
 在源端，将需要迁移的文件资产保存到分布式数据对象`DataObject`中。
 
-- 将文件资产拷贝到[分布式文件目录](../../application-dev/application-models/application-context-stage.md#获取应用文件路径)下，相关接口与用法详见[基础文件接口](../../application-dev/file-management/app-file-access.md)。
+- 将文件资产拷贝到[分布式文件目录](../application-models/application-context-stage.md#获取应用文件路径)下，相关接口与用法详见[基础文件接口](../file-management/app-file-access.md)。
 - 使用分布式文件目录下的文件创建`Asset`资产对象。
 - 将`Asset`资产对象作为分布式数据对象的根属性保存。
 
@@ -667,7 +723,7 @@ export default class MigrationAbility extends UIAbility {
     let ctime: string = '';
     let mtime: string = '';
     let size: string = '';
-    await fileIo.stat(distributedUri).then((stat: fileIo.Stat) => {
+    await fileIo.stat(filePath).then((stat: fileIo.Stat) => {
       ctime = stat.ctime.toString(); // 创建时间
       mtime = stat.mtime.toString(); // 修改时间
       size = stat.size.toString(); // 文件大小
@@ -815,7 +871,7 @@ export default class MigrationAbility extends UIAbility {
 
 1. 编译安装全局任务中心
 
-   1. 为了正确编译安装全局任务中心，开发者需要替换Full-SDK，具体操作可参见[替换指南](../../application-dev/faqs/full-sdk-switch-guide.md)。
+   1. 为了正确编译安装全局任务中心，开发者需要替换Full-SDK，具体操作可参见[替换指南](../faqs/full-sdk-switch-guide.md)。
 
    2. 下载[MissionCenter_Demo](https://gitee.com/openharmony/ability_dmsfwk/tree/master/services/dtbschedmgr/test/missionCenterDemo/dmsDemo/entry/src/main)示例代码
 

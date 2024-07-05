@@ -167,7 +167,7 @@ static query(name: string): AsyncLockState
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 10200030 | No such lock. |
+| 10200030 | The lock does not exist. |
 
 **示例：**
 
@@ -235,7 +235,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 10200030 | No such lock. |
+| 10200030 | The lock does not exist. |
 
 **示例：**
 
@@ -275,7 +275,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode): Promise\<T>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 10200030 | No such lock. |
+| 10200030 | The lock does not exist. |
 
 **示例：**
 
@@ -316,7 +316,7 @@ lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: 
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 10200030 | No such lock.     |
+| 10200030 | The lock does not exist.     |
 | 10200031 | Timeout exceeded. |
 
 **示例：**

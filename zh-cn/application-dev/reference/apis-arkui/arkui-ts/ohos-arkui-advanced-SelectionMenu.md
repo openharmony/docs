@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@ohos.arkui.advanced.SelectionMenu'
+import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI'
 ```
 
 ## 子组件
@@ -107,7 +107,7 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 ## 示例
 
 ```ts
-import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@ohos.arkui.advanced.SelectionMenu'
+import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI'
 
 @Entry
 @Component

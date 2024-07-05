@@ -9,7 +9,7 @@
 ## 导入模块
 
 ``` ts
-import overlay from '@ohos.bundle.overlay';
+import { overlay } from '@kit.AbilityKit';
 ```
 
 ## overlay.setOverlayEnabled
@@ -46,8 +46,8 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let moduleName = "feature";
 let isEnabled = false;
@@ -95,8 +95,8 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let moduleName = "feature";
 let isEnabled = false;
@@ -150,8 +150,8 @@ getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let moduleName = "feature";
 
@@ -196,8 +196,8 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let moduleName = "feature";
 
@@ -249,8 +249,8 @@ getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayMo
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let targetModuleName = "feature";
 
@@ -294,8 +294,8 @@ getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<A
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let targetModuleName = "feature";
 

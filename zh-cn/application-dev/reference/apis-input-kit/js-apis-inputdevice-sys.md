@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```js
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import { inputDevice } from '@kit.InputKit';
 ```
 
 ## inputDevice.setKeyboardRepeatDelay<sup>10+</sup>

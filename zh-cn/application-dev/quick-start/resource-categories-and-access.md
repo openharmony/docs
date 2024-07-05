@@ -4,7 +4,7 @@
 
 - 应用资源：借助资源文件能力，开发者在应用中自定义资源，自行管理这些资源在不同的设备或配置中的表现。
 
-- 系统资源：开发者直接使用系统预置的资源定义（即[分层参数](https://docs.openharmony.cn/pages/v4.0/zh-cn/design/ux-design/design-resources.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）。
+- 系统资源：开发者直接使用系统预置的资源定义<!--Del-->（即[分层参数](../../design/ux-design/design-resources.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）<!--DelEnd-->。
 
 ## 资源分类
 
@@ -369,7 +369,7 @@ string资源配置attr属性示例如下：
 
 ### 系统资源
 
-除了自定义资源，开发者也可以使用系统中预定义的资源，统一应用的视觉风格。可以查看[应用UX设计中关于资源的介绍](https://docs.openharmony.cn/pages/v4.0/zh-cn/design/ux-design/design-resources.md)，获取支持的系统资源ID及其在不同配置下的取值。
+除了自定义资源，开发者也可以使用系统中预定义的资源，统一应用的视觉风格。<!--Del-->可以查看[应用UX设计中关于资源的介绍](../../design/ux-design/design-resources.md)，获取支持的系统资源ID及其在不同配置下的取值。<!--DelEnd-->
 
 在开发过程中，分层参数的用法与资源限定词基本一致。对于系统资源，可以通过```“$r('sys.type.resource_id')”```的形式引用。其中，sys为系统资源；type为资源类型，取值包括“color”、“float”、“string”、“media”；resource_id为资源id。
 
@@ -377,7 +377,7 @@ string资源配置attr属性示例如下：
 >
 > - 仅声明式开发范式支持使用系统资源。
 >
-> - 对于系统预置应用，建议使用系统资源；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源。
+> - 对于系统预置应用，建议使用系统资源<!--Del-->；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源<!--DelEnd-->。
 >
 > - 界面加载的系统资源字体进行显示时，可以在配置中system/etc/fontconfig.json文件查看。默认字体为HarmonyOS Sans。
 
@@ -590,13 +590,13 @@ overylay是一种资源替换机制，针对不同品牌、产品的显示风格
 <!--DelEnd-->
 
 > **说明：**
-> - targetBundleName: 字符串类型，指定要overlay的bundleName
+> - targetBundleName: 字符串类型，指定要overlay的bundleName。
 >
-> - targetModuleName: 字符串类型，指定要overlay的应用中的目标module
+> - targetModuleName: 字符串类型，指定要overlay的应用中的目标module。
 >
-> - targetPriority： 整数类型，指定overlay优先级
+> - targetPriority： 整数类型，指定overlay优先级。
 >
-> - 不支持Ability、ExtensionAbility、Permission等其他字段的配置
+> - 不支持Ability、ExtensionAbility、Permission等其他字段的配置。
 >
 > - overlay不支持json类型的图片配置。
 

@@ -600,7 +600,7 @@ try {
 
 off(type: 'securityModeChange', callback?: Callback< SecurityMode>): void
 
-取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+取消订阅输入法安全模式改变类型事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -655,7 +655,7 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
     console.log(`private command key: ${key}, value: ${record[key]}`);
   }
@@ -698,7 +698,7 @@ off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
-let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
+let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
     console.log(`private command key: ${key}, value: ${record[key]}`);
   }
@@ -1479,7 +1479,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
-  panel.setUiContent('pages/page2/page2').then(() => {
+  panel.setUiContent('pages/page2/page2', storage).then(() => {
     console.log('Succeeded in setting the content.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);

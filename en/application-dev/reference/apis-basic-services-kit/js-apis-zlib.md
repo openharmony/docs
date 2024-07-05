@@ -9,7 +9,7 @@ The **Zip** module provides APIs for file compression and decompression.
 ## Modules to Import
 
 ```javascript
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 ```
 
 ## zlib.zipFile<sup>(deprecated)</sup>
@@ -41,8 +41,8 @@ Zips a file. This API uses a promise to return the result.
 
 ```typescript
 // The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -89,8 +89,8 @@ Unzips a file. This API uses a promise to return the result.
 
 ```typescript
 // The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xx/xxx.zip';
 let outFile = '/xxx';
@@ -137,8 +137,8 @@ For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
 ```typescript
 // The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -196,8 +196,8 @@ For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
 ```typescript
 // The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -251,8 +251,8 @@ For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
 ```typescript
 // The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
@@ -309,8 +309,8 @@ For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
 ```typescript
 // The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
@@ -361,8 +361,8 @@ For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
 ```typescript
 // The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
 

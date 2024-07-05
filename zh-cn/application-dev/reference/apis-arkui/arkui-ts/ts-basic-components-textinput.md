@@ -649,7 +649,7 @@ textOverflow(value: TextOverflow)
 
 设置文本超长时的显示方式。仅在内联模式的编辑态、非编辑态下支持。
 
-文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断。
+文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，wordBreak属性可设置为WordBreak.BREAK_ALL。
 
 当overflow设置TextOverflow.None与TextOverflow.Clip效果一样。
 
@@ -718,14 +718,19 @@ maxFontSize(value: number | string | Resource)
 
 heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 
-设置文本自适应高度的方式。
+组件设置为内联输入风格时，设置文本自适应高度的方式。
 
-当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines10)属性(组件设置为内联输入风格且编辑态时使用)来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize12)和[maxFontSize](#maxfontsize12)的范围内缩小字体以显示更多文本。
-组件设置为内联输入风格，编辑态与非编辑态存在字体大小不一致情况。
+当设置为TextHeightAdaptivePolicy.MAX_LINES_FIRST时，优先使用[maxLines](#maxlines10)属性来调整文本高度。如果使用maxLines属性的布局大小超过了布局约束，则尝试在[minFontSize](#minfontsize12)和[maxFontSize](#maxfontsize12)的范围内缩小字体以显示更多文本。
 
 当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用minFontSize属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和maxFontSize的范围内增大字体并使用最大可能的字体大小。
 
-当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在minFontSize和maxFontSize的范围内缩小字体以满足布局约束。
+当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，与TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST效果一样。
+
+组件设置为非内联输入风格时，设置文本自适应高度(TextHeightAdaptivePolicy)的三种方式效果一样，即在minFontSize和maxFontSize的范围内缩小字体以显示更多文本。
+
+>  **说明：**
+>
+>  组件设置为内联输入风格，编辑态与非编辑态存在字体大小不一致情况。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1501,14 +1506,14 @@ struct TextInputExample {
 
 ### 示例6
 本示例展示如何在TextInput上将电话号码格式化为XXX XXXX XXXX
+
 ```ts
 @Entry
 @Component
 struct phone_example {
   @State submitValue: string = ''
-  @State text : string = ''
-
-  public readonly NUM_TEXT_MAXSIZE_LENGTH = 14;
+  @State text: string = ''
+  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
 
   isEmpty(str?: string): boolean {
     return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str);
@@ -1538,40 +1543,35 @@ struct phone_example {
 
   build() {
     Column() {
-        Row() {
-          TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
-            .onChange((number: string) => {
-              let teleNumberNoSpace: string = this.removeSpace(number);
-              if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+      Row() {
+        TextInput({ text: `${this.text}` }).type(InputType.PhoneNumber).height('48vp')
+          .onChange((number: string) => {
+            let teleNumberNoSpace: string = this.removeSpace(number);
+            if (teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+              this.text = teleNumberNoSpace;
+            } else if (this.checkNeedNumberSpace(number)) {
+              if (teleNumberNoSpace.length <= 3) {
                 this.text = teleNumberNoSpace;
-              } else if (this.checkNeedNumberSpace(number)) {
-                if (teleNumberNoSpace.length <= 3) {
-                  this.text = teleNumberNoSpace;
-                } else {
-                  let split1: string = teleNumberNoSpace.substring(0, 3);
-                  let split2: string = teleNumberNoSpace.substring(3);
-                  this.text = split1 + ' ' + split2;
-                  if (teleNumberNoSpace.length > 7) {
-                    split2 = teleNumberNoSpace.substring(3, 7);
-                    let split3: string = teleNumberNoSpace.substring(7);
-                    this.text = split1 + ' ' + split2 + ' ' + split3;
-                  }
-                }
-              } else if (teleNumberNoSpace.length > 8) {
-                let split4 = teleNumberNoSpace.substring(0, 8);
-                let split5 = teleNumberNoSpace.substring(8);
-                this.text = split4 + ' ' + split5;
               } else {
-                this.text = number;
+                let split1: string = teleNumberNoSpace.substring(0, 3);
+                let split2: string = teleNumberNoSpace.substring(3);
+                this.text = split1 + ' ' + split2;
+                if (teleNumberNoSpace.length > 7) {
+                  split2 = teleNumberNoSpace.substring(3, 7);
+                  let split3: string = teleNumberNoSpace.substring(7);
+                  this.text = split1 + ' ' + split2 + ' ' + split3;
+                }
               }
-            })
-        }
+            } else {
+              this.text = number;
+            }
+          })
+      }
     }
     .width('100%')
     .height("100%")
   }
 }
-
 ```
 ![phone_example](figures/phone_number.PNG)
 

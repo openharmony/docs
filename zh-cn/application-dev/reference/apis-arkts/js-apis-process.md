@@ -455,7 +455,7 @@ getUidForName(v: string): number
 
 | 类型   | 说明          |
 | ------ | ------------- |
-| number | 返回用户uid。 |
+| number | 返回用户uid，当获取的用户不存在时，返回-1。|
 
 **错误码：**
 
@@ -532,7 +532,7 @@ getSystemConfig(name: number): number
 
 | 类型   | 说明               |
 | ------ | ------------------ |
-| number | 返回系统配置信息。 |
+| number | 返回系统配置信息，当获取的系统配置不存在时，返回-1。 |
 
 **错误码：**
 
@@ -637,7 +637,7 @@ kill(signal: number, pid: number): boolean
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| signal | number | 是   | 发送的信号。 |
+| signal | number | 是   | 发送特定的信号给目标进程。 |
 | pid    | number | 是   | 进程的id。   |
 
 **返回值：**

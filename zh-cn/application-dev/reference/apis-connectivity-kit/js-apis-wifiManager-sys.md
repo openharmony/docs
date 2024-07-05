@@ -83,6 +83,42 @@ disableWifi(): void
 	}
 ```
 
+## wifiManager.enableSemiWifi<sup>12+</sup>
+
+enableSemiWifi(): void
+
+使能WLAN半关闭，异步接口，需要通过注册"wifiStateChange"事件的回调来监听是否使能成功。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION  仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          | 
+| 2501000  | Operation failed.|
+| 2501004  | Failed for wifi is opening.|
+
+**示例：**
+
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		wifiManager.enableSemiWifi();
+	} catch(error) {
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
 ## wifiManager.startScan<sup>10+</sup>
 
 startScan(): void
@@ -658,6 +694,67 @@ getDeviceMacAddress(): string[]
 	}
 
 ```
+
+## wifiManager.getWifiDetailState<sup>12+</sup>
+
+getWifiDetailState(): WifiDetailState
+
+获取Wifi开关详细状态。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | WifiDetailState | Wifi枚举状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+
+**示例：**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		let ret = wifiManager.getWifiDetailState();
+		console.info("wifiDetailState:" + ret);
+	} catch(error) {
+		console.error("failed:" + JSON.stringify(error));
+	}
+
+```
+
+## WifiDetailState<sup>12+</sup>
+
+表示Wifi开关状态的枚举。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| UNKNOWN | -1 | 未指定。 |
+| INACTIVE | 0 | 已关闭。 |
+| ACTIVATED | 1 | 已激活。 |
+| ACTIVATING | 2 | 激活中。 |
+| DEACTIVATING | 3 | 关闭中。 |
+| SEMI_ACTIVATING | 4 | 半关闭中。 |
+| SEMI_ACTIVE | 5 | 已半关闭。 |
+
 
 ## wifiManager.reassociate<sup>9+</sup>
 

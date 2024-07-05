@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import infraredEmitter from '@ohos.multimodalInput.infraredEmitter';
+import { infraredEmitter } from '@kit.InputKit';
 ```
 
 ## infraredEmitter.transmitInfrared 

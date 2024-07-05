@@ -27,10 +27,10 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
       #include <linux/kd.h>
       #include <string>
 
-      #include "hilog/log.h"
-      #include "multimedia/image_framework/image/image_packer_native.h"
-      #include "multimedia/image_framework/image/pixelmap_native.h"
-      #include "multimedia/image_framework/image/image_source_native.h"
+      #include <hilog/log.h>
+      #include <multimedia/image_framework/image/image_packer_native.h>
+      #include <multimedia/image_framework/image/pixelmap_native.h>
+      #include <multimedia/image_framework/image/image_source_native.h>
 
       #undef LOG_DOMAIN
       #undef LOG_TAG

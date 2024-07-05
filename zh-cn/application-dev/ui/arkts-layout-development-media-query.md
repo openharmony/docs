@@ -18,7 +18,7 @@
 
 
 ```ts
-import mediaquery from '@ohos.mediaquery';
+import { mediaquery } from '@kit.ArkUI';
 ```
 
 通过matchMediaSync接口设置媒体查询条件，保存返回的条件监听句柄listener。例如监听横屏事件：
@@ -146,9 +146,8 @@ Stage模型下的示例：
 
 
 ```ts
-import mediaquery from '@ohos.mediaquery';
-import window from '@ohos.window';
-import common from '@ohos.app.ability.common';
+import { mediaquery, window } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -207,8 +206,8 @@ FA模型下的示例：
 
 
 ```ts
-import mediaquery from '@ohos.mediaquery';
-import featureAbility from '@ohos.ability.featureAbility';
+import { mediaquery } from '@kit.ArkUI';
+import { featureAbility } from '@kit.AbilityKit';
 
 @Entry
 @Component

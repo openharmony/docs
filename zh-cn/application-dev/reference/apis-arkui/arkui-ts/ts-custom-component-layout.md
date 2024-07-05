@@ -84,6 +84,10 @@ layout(position: Position)
 
 调用此方法对子组件的位置信息进行限制。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名         | 类型                                                    | 必填                 |说明         |
@@ -98,9 +102,9 @@ getMargin() : DirectionalEdgesT\<number>
 
 **返回值：**
 
- | 类型                          | 说明                                        |
- |------------------------------------|---------------------------------------------|
- | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的margin信息。   |
+| 类型                          | 说明                                        |
+|------------------------------------|---------------------------------------------|
+| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的margin信息。   |
 
  ### getPadding<sup>12+</sup>
 
@@ -110,9 +114,9 @@ getPadding() : DirectionalEdgesT\<number>
 
  **返回值：**
 
- | 类型                          | 说明                                        |
- |------------------------------------|---------------------------------------------|
- | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的padding信息。  |
+| 类型                          | 说明                                        |
+|------------------------------------|---------------------------------------------|
+| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的padding信息。  |
 
 ### getBorderWidth<sup>12+</sup>
 
@@ -122,9 +126,9 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
 **返回值：**
 
- | 类型                          | 说明                                        |
- |------------------------------------|---------------------------------------------|
- | [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的boderWidth信息。  |
+| 类型                          | 说明                                        |
+|------------------------------------|---------------------------------------------|
+| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的boderWidth信息。  |
 
 ## Measurable<sup>10+</sup>
 
@@ -134,12 +138,76 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 属性         | 类型                                                                             | 说明                                    |
-|------------|----------------------------------------------------------------------------------|---------------------------------------|
-| measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions))&nbsp;=&gt;&nbsp;[MeasureResult](#measureresult10) | 调用此方法对子组件的尺寸范围进行限制。<br/>返回值：子组件测量后的尺寸。 |
-| getMargin<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的margin信息。<br/>单位：vp<br/> **说明：** <br/>如果子组件的margin以百分比形式指定，需要调用完子组件的measure后再调用此方法才能正确的获取margin。如果以具体的数值指定，measure前也可正确获取。 |
-| getPadding<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的padding信息。<br/>单位：vp<br/> **说明：** <br/>如果子组件的padding以百分比形式指定，需要调用完子组件的measure后再调用此方法才能正确的获取padding。如果以具体的数值指定，measure前也可正确获取。|
-| getBorderWidth<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的boderWidth信息。<br/>单位：vp<br/> **说明：** <br/>子组件borderWidth本身不支持百分比形式指定。|
+### measure
+
+ measure(constraint: ConstraintSizeOptions) : MeasureResult
+
+ 调用此方法对子组件的尺寸范围进行限制。
+
+ **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名         | 类型                                                    | 必填                 |说明         |
+|-----------------|---------------------------------------------------------|---------------------|-------------|
+|   constraint    | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)  | 是            |   约束尺寸。  |
+
+**返回值：**
+
+ | 类型                               | 说明                     |
+ |------------------------------------|-------------------------|
+ |[MeasureResult](#measureresult10)   | 测量后的组件布局信息。   |
+
+ ### getMargin<sup>12+</sup>
+
+ getMargin() : DirectionalEdgesT\<number\>
+
+ 获取子组件的padding信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+ | 类型                               | 说明                     |
+ |------------------------------------|-------------------------|
+ |[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  | 子组件的margin信息。   |
+
+### getPadding<sup>12+</sup>
+
+getPadding() : DirectionalEdgesT\<number\>
+
+获取子组件的padding信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+ | 类型                               | 说明                     |
+ |------------------------------------|-------------------------|
+ |[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  | 子组件的padding信息。   |
+
+ ### getBorderWidth<sup>12+</sup>
+
+getBorderWidth() : DirectionalEdgesT\<number\>
+
+获取子组件的borderWidth信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+ | 类型                               | 说明                     |
+ |------------------------------------|-------------------------|
+ |[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  | 子组件的borderWidth信息。|
+
 
 ## MeasureResult<sup>10+</sup>
 
@@ -192,6 +260,7 @@ getBorderWidth() : DirectionalEdgesT\<number>
 >- 使用自定义布局方法时，需要同时调用onMeasureSize和onPlaceChildren方法，否则可能出现布局异常。
 
 **示例一：**
+自定义布局代码示例。
 ```
 // xxx.ets
 @Entry
@@ -258,6 +327,7 @@ struct CustomLayout {
 ![custom_layout10.png](figures/custom_layout10.png)
 
 **示例二：**
+通过组件的位置灵活判断是否参与布局计算。
 ```
 // xxx.ets
 @Entry
@@ -427,6 +497,7 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节
 | position   | [Position](ts-types.md#position)                           | 子组件位置坐标。 |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 子组件约束尺寸。 |
 
+通过layout修改布局。
 ```ts
 // xxx.ets
 @Entry
