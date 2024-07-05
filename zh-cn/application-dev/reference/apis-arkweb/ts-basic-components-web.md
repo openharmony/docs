@@ -406,17 +406,13 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式，默认关闭。过滚动模式开启后，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
-
-> **说明：**
->
-> 从API version 12开始默认改为开启。
+设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
 
 **参数：**
 
 | 参数名  | 参数类型                                    | 必填   | 默认值                  | 参数描述               |
 | ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
-| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER，从API version 12开始：OverScrollMode.ALWAYS | 设置Web的过滚动模式为关闭或开启。 |
+| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER | 设置Web的过滚动模式为关闭或开启。 |
 
 **示例：**
 
@@ -1799,7 +1795,7 @@ layoutMode(mode: WebLayoutMode)
 > - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
 > - Web组件创建后不支持动态切换layoutMode模式，且支持规格不超过50万px(屏幕像素点) 物理像素。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
-> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
+> - 由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
@@ -1841,7 +1837,7 @@ nestedScroll(value: NestedScrollOptions)
 > - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
 > - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
-> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
+> - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
