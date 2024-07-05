@@ -1512,7 +1512,7 @@ struct Index {
 **示例：**
 
 ```ts
-import { FrameCallback } from '@ohos.arkui.UIContext';
+import {FrameCallback } from '@kit.ArkUI';
 
 class MyFrameCallback extends FrameCallback {
   private tag: string;
@@ -1559,7 +1559,7 @@ struct Index {
 **示例：**
 
 ```ts
-import { FrameCallback } from '@ohos.arkui.UIContext';
+import {FrameCallback } from '@kit.ArkUI';
 
 class MyFrameCallback extends FrameCallback {
   private tag: string;
@@ -1636,6 +1636,7 @@ registerFont(options: font.FontOptions): void
 
 ```ts
 import { Font } from '@kit.ArkUI';
+
 let font:Font = uiContext.getFont();
 font.registerFont({
   familyName: 'medium',
@@ -1662,6 +1663,7 @@ getSystemFontList(): Array\<string>
 
 ```ts
 import { Font } from '@kit.ArkUI';
+
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getSystemFontList()
@@ -1694,6 +1696,7 @@ getFontByName(fontName: string): font.FontInfo
 
 ```ts
 import { Font } from '@kit.ArkUI';
+
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getFontByName('Sans Italic')
@@ -1767,7 +1770,6 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 ```ts
 import { UIInspector } from '@kit.ArkUI';
-
 
 let inspector: UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
@@ -2110,7 +2112,7 @@ on(type: 'densityUpdate', callback: Callback\<observer.DensityInfo\>): void
 | callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 是   | 回调函数。携带densityInfo，返回变化后的屏幕像素密度。                 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2118,7 +2120,7 @@ struct Index {
   @State density: number = 0;
   @State message: string = '未注册监听'
 
-  densityUpdateCallback = (info: observer.DensityInfo) => {
+  densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
     this.message = '变化后的DPI：' + this.density.toString();
   }
@@ -2154,7 +2156,7 @@ off(type: 'densityUpdate', callback?: Callback\<observer.DensityInfo\>): void
 | callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\> | 否   | 需要被注销的回调函数。若不指定具体的回调函数，则注销该UIContext下所有densityUpdate事件监听。 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2162,7 +2164,7 @@ struct Index {
   @State density: number = 0;
   @State message: string = '未注册监听'
 
-  densityUpdateCallback = (info: observer.DensityInfo) => {
+  densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
     this.message = '变化后的DPI：' + this.density.toString();
   }
@@ -2203,7 +2205,7 @@ on(type: 'willDraw', callback: Callback\<void\>): void
 | callback | Callback\<void\>        | 是   | 回调函数。                 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2238,7 +2240,7 @@ off(type: 'willDraw', callback?: Callback\<void\>): void
 | callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2278,7 +2280,7 @@ on(type: 'didLayout', callback: Callback\<void\>): void
 | callback | Callback\<void\>        | 是   | 回调函数。                 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2313,7 +2315,7 @@ off(type: 'didLayout', callback?: Callback\<void\>): void
 | callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2790,7 +2792,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { MediaQuery } from '@kit.ArkUI';
 
 let mediaquery: MediaQuery = uiContext.getMediaQuery();
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
@@ -3739,12 +3741,14 @@ back(index: number, params?: Object): void;
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.back(1);
 ```
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.back(1, {info:'来自Home页'}); //携带参数返回
 ```
@@ -3763,6 +3767,7 @@ clear(): void
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.clear();    
 ```
@@ -3787,6 +3792,7 @@ getLength(): string
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
 console.info('pages stack size = ' + size);    
@@ -3812,6 +3818,7 @@ getState(): router.RouterState
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let page = router.getState();
 console.info('current index = ' + page.index);
@@ -3843,6 +3850,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 ```ts
 import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let options: router.RouterState | undefined = router.getStateByIndex(1);
 if (options != undefined) {
@@ -5246,9 +5254,8 @@ setVisible(visible: boolean): void
 **示例：**
 
 ```ts
-import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -5288,9 +5295,8 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 **示例：**
 
 ```ts
-import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, AtomicServiceBar,window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
@@ -5329,9 +5335,8 @@ setTitleContent(content:string): void
 **示例：**
 
 ```ts
-import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, AtomicServiceBar,window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -5371,9 +5376,8 @@ setTitleFontStyle(font:FontStyle):void
 **示例：**
 
 ```ts
-import { UIContext, Font, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, Font, AtomicServiceBar } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -5414,9 +5418,8 @@ setIconColor(color:Nullable<Color | number | string>): void
 **示例：**
 
 ```ts
-import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, Font, window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -5694,7 +5697,7 @@ close(): void
 通过定时器触发，调用ContextMenuController的close方法关闭菜单
 
 ```ts
-import uiContext, { ContextMenuController } from '@ohos.arkui.UIContext';
+import { ContextMenuController } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -6149,7 +6152,7 @@ struct ComponentSnapshotExample {
 **示例：**
 
 ```ts
-import { FrameCallback } from '@ohos.arkui.UIContext';
+import {FrameCallback } from '@kit.ArkUI';
 
 class MyFrameCallback extends FrameCallback {
   private tag: string;

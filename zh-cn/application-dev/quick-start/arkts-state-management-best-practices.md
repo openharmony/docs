@@ -370,3 +370,107 @@ struct Index {
   }
 }
 ```
+
+## 建议使用临时变量替换状态变量
+
+在应用开发中，应尽量减少对状态变量的直接赋值，通过临时变量完成数据计算操作。
+
+状态变量发生变化时，ArkUI会查询依赖该状态变量的组件并执行依赖该状态变量的组件的更新方法，完成组件渲染的行为。通过使用临时变量的计算代替直接操作状态变量，可以使ArkUI仅在最后一次状态变量变更时查询并渲染组件，减少不必要的行为，从而提高应用性能。状态变量行为可参考[@State装饰器：组件内状态](arkts-state.md)。
+
+【反例】
+
+```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '';
+
+  appendMsg(newMsg: string) {
+    // 性能打点
+    hiTraceMeter.startTrace('StateVariable', 1);
+    this.message += newMsg;
+    this.message += ';';
+    this.message += '<br/>';
+    hiTraceMeter.finishTrace('StateVariable', 1);
+  }
+
+  build() {
+    Column() {
+      Button('点击打印日志')
+        .onClick(() => {
+          this.appendMsg('操作状态变量');
+        })
+        .width('90%')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .margin({
+          top: 10
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
+    .margin({
+      top: 15
+    })
+  }
+}
+```
+
+直接操作状态变量，三次触发计算函数，运行耗时结果如下
+
+![](figures/hp_arkui_use_state_var.png)
+
+【正例】
+
+```ts
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '';
+
+  appendMsg(newMsg: string) {
+    // 性能打点
+    hiTraceMeter.startTrace('TemporaryVariable', 2);
+    let message = this.message;
+    message += newMsg;
+    message += ';';
+    message += '<br/>';
+    this.message = message;
+    hiTraceMeter.finishTrace('TemporaryVariable', 2);
+  }
+
+  build() {
+    Column() {
+      Button('点击打印日志')
+        .onClick(() => {
+          this.appendMsg('操作临时变量');
+        })
+        .width('90%')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .margin({
+          top: 10
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
+    .margin({
+      top: 15
+    })
+  }
+}
+```
+
+使用临时变量取代状态变量的计算，三次触发计算函数，运行耗时结果如下
+
+![](figures/hp_arkui_use_local_var.png)
+
+【总结】
+| **计算方式** | **耗时(局限不同设备和场景，数据仅供参考)**  | **说明** |
+| ------ | ------- | ------------------------------------- |
+| 直接操作状态变量  | 1.01ms | 增加了ArkUI不必要的查询和渲染行为，导致性能劣化 |
+| 使用临时变量计算  | 0.63ms | 减少了ArkUI不必要的行为，优化性能 |

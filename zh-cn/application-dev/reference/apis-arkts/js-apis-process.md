@@ -455,7 +455,7 @@ getUidForName(v: string): number
 
 | 类型   | 说明          |
 | ------ | ------------- |
-| number | 返回用户uid。 |
+| number | 返回用户uid，当获取的用户不存在时，返回-1。|
 
 **错误码：**
 
@@ -532,7 +532,7 @@ getSystemConfig(name: number): number
 
 | 类型   | 说明               |
 | ------ | ------------------ |
-| number | 返回系统配置信息。 |
+| number | 返回系统配置信息，当获取的系统配置不存在时，返回-1。 |
 
 **错误码：**
 

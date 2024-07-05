@@ -74,17 +74,17 @@ LazyForEach实现了按需加载，针对列表数据量大、列表组件复杂
 
 - 如果列表数据较少，数据一次性全量加载不是性能瓶颈时，可以直接使用ForEach。
 
-- 如果使用LazyForEach懒加载，建议在LazyForEach参数中设置keyGenerator。同时在使用LazyForEach进行组件复用的key生成器函数里，不要使用stringify。
+- 如果使用LazyForEach懒加载，建议在使用LazyForEach进行组件复用的key生成器函数里，不要使用stringify。
 
-限制：ForEach、LazyForEach必须在List、Grid以及Swiper等容器组件内使用，用于循环渲染具有相同布局的子组件。更多懒加载的信息，请参考官方资料[LazyForEach：数据懒加载](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md)。
+限制：ForEach、LazyForEach必须在List、Grid以及Swiper等容器组件内使用，用于循环渲染具有相同布局的子组件。更多懒加载的信息，请参考官方资料[LazyForEach：数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)。
 
 LazyForEach懒加载API提供了cachedCount属性，用于配置可缓存列表项数量。除默认加载界面可视部分外，还可以加载屏幕可视区外指定数量（cachedCount）的缓存数据，详见下面“缓存列表项”章节。
 
 ### 实现示例
 
-在介绍List、Grid等容器组件下使用LazyForEach懒加载的示例代码之前，首先针对前面介绍的第三点使用场景，分别给出以下两个反例来进行说明，帮助开发者更好的理解和使用LazyForEach。
+在介绍List、Grid等容器组件下使用LazyForEach懒加载的示例代码之前，首先针对前面介绍的第三点使用场景，给出以下反例来进行说明，帮助开发者更好的理解和使用LazyForEach。
 
-**反例：在LazyForEach参数中不设置keyGenerator**
+**反例：在使用LazyForEach进行组件复用的key生成器函数里，使用stringify**
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -161,44 +161,6 @@ class MyDataSource extends BasicDataSource {
   }
 }
 
-@Entry
-@Component
-struct NotSetKeyGenerator {
-  private data: MyDataSource = new MyDataSource();
-
-  aboutToAppear() {
-    for (let i = 0; i <= 200; i++) {
-      this.data.pushData(`Hello ${i}`)
-    }
-  }
-
-  build() {
-    Column({ space: 5 }) {
-      Grid() {
-        LazyForEach(this.data, (item: string) => {
-          GridItem() {
-            // 这里仅用于ux展示。实际业务开发时，建议使用可复用的自定义组件
-            Text(item).fontSize(16).textAlign(TextAlign.Center)
-          }
-        })
-      }
-      .cachedCount(2)
-      .columnsTemplate('1fr 1fr 1fr')
-      .columnsGap(10)
-      .rowsGap(10)
-      .margin(10)
-      .height(500)
-      .backgroundColor(0xFAEEE0)
-    }
-  }
-}
-```
-
-在反例中，LazyForEach参数里未设置keyGenerator。虽然键值生成器keyGenerator的功能是可选的，并且开发者如果没有定义keyGenerator函数，框架也会使用默认的键值生成函数(item: Object, index: number) => { return viewId + '-' + index.toString(); }。但是在一些复杂的业务场景中，不设置keyGenerator可能会出现重复的键值，从而导致组件复用失败。甚至引起一些问题，如将数据源里的数组反向时，如果没有提供键值生成器，则LazyForEach中的所有节点都将重建，这会导致页面重新渲染耗时增加，严重影响页面性能。所以，为了使开发框架能够更好地识别数据源里的数组更改，提升页面性能，建议设置keyGenerator。
-
-**反例：在使用LazyForEach进行组件复用的key生成器函数里，使用stringify**
-
-```ts
 // 此处为复用的自定义组件
 @Reusable
 @Component
@@ -224,7 +186,6 @@ struct ChildComponent {
 @Entry
 @Component
 struct ReusableKeyGeneratorUseStringify {
-  // MyDataSource类同前面反例：在LazyForEach参数中不设置keyGenerator
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear(): void {

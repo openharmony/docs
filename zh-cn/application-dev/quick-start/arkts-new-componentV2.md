@@ -40,3 +40,7 @@
 - 将\@Local、\@Param、\@Event、\@Provider、\@Consumer等装饰的变量并且类型为(Set、Map、Date、数组)传递给\@Component装饰的自定义组件里的@State、\@Prop、\@ObjectLink、\@Provide等装饰的变量。
 
 - 在\@Component装饰的自定义组件里的@Link修饰的变量被\@ComponentV2修饰的父组件构造传参赋值。
+
+- 在\@Component装饰的自定义组件中通过\@State、\@Prop、\@Link、\@Provide、\@Consume、\@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp装饰的变量并且该变量的类型为\@ObservedV2装饰的类。
+
+- 在\@ComponentV2装饰的自定义组件中通过\@Param、\@Local、\@Event、\@Provider()、\@Consumer()装饰的变量并且该变量的类型为\@Observed装饰的类。

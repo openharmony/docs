@@ -49,9 +49,9 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failure.               |
+| 10200003 | Worker initialization failed.               |
 | 10200006 | An exception occurred during serialization.  |
-| 10200014 | The function is not mark as concurrent.      |
+| 10200014 | The function is not marked as concurrent.      |
 
 **示例：**
 
@@ -97,9 +97,9 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 | 错误码ID | 错误信息                                     |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failure.              |
+| 10200003 | Worker initialization failed.             |
 | 10200006 | An exception occurred during serialization. |
-| 10200014 | The function is not mark as concurrent.     |
+| 10200014 | The function is not marked as concurrent.     |
 | 10200051 | The periodic task cannot be executed again. |
 
 **示例：**
@@ -340,8 +340,8 @@ cancel(task: Task): void
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200015 | The task does not exist when it is canceled. |
-| 10200016 | The task is executing when it is canceled.   |
+| 10200015 | The task to cancel does not exist. |
+| 10200016 | The task to cancel is being executed.   |
 
 从API version10开始，此接口调用时不再涉及上报错误码10200016。
 
@@ -419,7 +419,7 @@ cancel(group: TaskGroup): void
 | 错误码ID | 错误信息                                                 |
 | -------- | ------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200018 | The task group does not exist when it is canceled.      |
+| 10200018 | The task group to cancel does not exist.      |
 
 **示例：**
 
@@ -661,7 +661,7 @@ Task的构造函数。
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
 | 401      | The input parameters are invalid. |
-| 10200014 | The function is not mark as concurrent. |
+| 10200014 | The function is not marked as concurrent. |
 
 **示例：**
 
@@ -700,7 +700,7 @@ Task的构造函数，可以指定任务名称。
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
 | 401      | The input parameters are invalid. |
-| 10200014 | The function is not mark as concurrent. |
+| 10200014 | The function is not marked as concurrent. |
 
 **示例：**
 
@@ -811,7 +811,7 @@ setTransferList(transfer?: ArrayBuffer[]): void
 | 错误码ID | 错误信息                                                        |
 | -------- | -------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
-| 10200029 | Can not set an arraybuffer to both transferList and cloneList. |
+| 10200029 | An ArrayBuffer cannot be set as both a transfer list and a clone list. |
 
 **示例：**
 
@@ -876,7 +876,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 | 错误码ID | 错误信息                                                        |
 | -------- | -------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200029 | Can not set an arraybuffer to both transferList and cloneList. |
+| 10200029 | An ArrayBuffer cannot be set as both a transfer list and a clone list. |
 
 **示例：**
 
@@ -1039,7 +1039,7 @@ static sendData(...args: Object[]): void
 | -------- | --------------------------------------- |
 | 401       | The input parameters are invalid. |
 | 10200006  | An exception occurred during serialization. |
-| 10200022  | The function is not called in the taskpool thread. |
+| 10200022  | The function is not called in the TaskPool thread. |
 | 10200023  | The function is not called in the concurrent function. |
 | 10200024  | The callback is not registered on the host side. |
 
@@ -1618,7 +1618,7 @@ addTask(func: Function, ...args: Object[]): void
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200014 | The function is not mark as concurrent. |
+| 10200014 | The function is not marked as concurrent. |
 
 **示例：**
 
@@ -1656,7 +1656,7 @@ addTask(task: Task): void
 | 错误码ID | 错误信息                                 |
 | -------- | --------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200014 | The function is not mark as concurrent. |
+| 10200014 | The function is not marked as concurrent. |
 | 10200051 | The periodic task cannot be executed again.  |
 
 **示例：**
@@ -1787,9 +1787,9 @@ execute(task: Task): Promise\<Object>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 10200003 | Worker initialization failure.              |
+| 10200003 | Worker initialization failed.              |
 | 10200006 | An exception occurred during serialization. |
-| 10200025 | Add dependent task to SequenceRunner.       |
+| 10200025 | The task to be added to SequenceRunner has dependent tasks.  |
 | 10200051 | The periodic task cannot be executed again.  |
 
 **示例：**

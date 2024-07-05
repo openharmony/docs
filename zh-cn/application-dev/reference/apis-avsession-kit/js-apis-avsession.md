@@ -50,6 +50,8 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
+| 6600110  | Session is existed. |
+| 401      | Invalid param. |
 
 **示例：**
 
@@ -95,6 +97,8 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
+| 6600110  | Session is existed. |
+| 401      | Invalid param. |
 
 **示例：**
 
@@ -2099,7 +2103,7 @@ currentAVSession.on('skipToQueueItem', (itemId: number) => {
 
 on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 
-设置按键事件的监听
+设置蓝牙/有线等外设接入的按键输入事件的监听，监听多媒体按键事件中播放、暂停、上下一首、快进、快退的指令。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2135,7 +2139,7 @@ currentAVSession.on('handleKeyEvent', (event: keyEvent.KeyEvent) => {
 
 on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
-设置播放设备变化的监听事件。
+设置播放设备变化的监听事件。应用接入[系统投播组件](ohos-multimedia-avcastpicker.md)，当用户通过组件切换设备时，会收到设备切换的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

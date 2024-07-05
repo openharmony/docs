@@ -30,7 +30,7 @@ struct testTmp {
 }
 ```
 
-2.在@ComponentV2修饰的自定义组件中通过@Param、@Local、@Event、@Provide()、@Consumer()修饰并使用@Observed修饰的类时，进行校验并输出错误信息。
+2.在@ComponentV2修饰的自定义组件中通过@Param、@Local、@Event、@Provider()、@Consumer()修饰并使用@Observed修饰的类时，进行校验并输出错误信息。
 
 简化示例如下：
 
@@ -130,3 +130,64 @@ bindContentCover组件
 **适配指导**
 
 默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
+
+## cl.arkui.3 @ohos.arkui.advanced.SubHeader删除SymbolRenderingStrategy和SymbolEffectStrategy。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+SymbolGlyph中已定义SymbolRenderingStrategy和SymbolEffectStrategy，避免重复枚举定义。减少开发者引用工作量。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy无报错。
+
+变更后报错：
+
+1.Eerror message:the requested module '@ohos.arkui.advanced.SubHeader' does not provide an export name 'SymbolRenderingStrategy' and 'SymbolEffectStrategy'.
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.31开始。
+
+**适配指导**
+
+如果开发者不按规范使用对应范式，则需按编译提示信息进行修改。参考API文档，删除引用SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy，自动引用SymbolGlyph中SymbolRenderingStrategy和SymbolEffectStrategy。
+适配示例：
+
+```ts
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct SubHeaderExample {
+  build() {
+    Column() {
+      SubHeader({
+        icon: $r('sys.symbol.ohos_wifi'),
+        iconSymbolOptions: {
+          effectStrategy: SymbolEffectStrategy.HIERARCHICAL,
+          renderingStrategy: SymbolRenderingStrategy.MULTIPLE_COLOR,
+          fontColor: [Color.Blue, Color.Grey, Color.Green],
+        },
+        secondaryTitle: '标题',
+        operationType: OperationType.BUTTON,
+        operationItem: [{ value: '操作',
+          action: () => {
+            promptAction.showToast({ message: 'demo' })
+          }
+        }]
+      })
+    }
+  }
+}
+```

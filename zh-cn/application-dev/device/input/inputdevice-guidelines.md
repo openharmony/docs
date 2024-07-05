@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```js
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import { inputDevice } from '@kit.InputKit';
 ```
 
 ## 接口说明
@@ -32,7 +32,7 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
 
 
 ```js
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import { inputDevice } from '@kit.InputKit';
 
 let isPhysicalKeyboardExist = true;
 try {
