@@ -89,6 +89,7 @@
         - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
         - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
         - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
+        - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
         - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
     - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
@@ -142,6 +143,7 @@
             <!--Del-->
             - [使用App Linking实现应用间跳转](application-models/app-linking-startup.md)
             <!--DelEnd-->
+            - [应用间显式跳转切换link跳转适配指导](application-models/uiability-startup-adjust.md)
           - 通用意图跳转<!--common-intent-redirection-->
             - [通过startAbilityByType拉起垂类应用](application-models/start-intent-panel.md)
             - [通过startAbility拉起文件处理类应用](application-models/file-processing-apps-startup.md)
@@ -258,7 +260,7 @@
           - [使用粘贴控件](security/AccessToken/pastebutton.md)
           - [使用保存控件](security/AccessToken/savebutton.md)
           - [使用位置控件](security/AccessToken/locationbutton.md)
-      - [Native子进程开发指导（C/C++)](application-models/capi_nativechildprocess_development_guideline.md) 
+      - [Native子进程开发指导（C/C++）](application-models/capi_nativechildprocess_development_guideline.md) 
     - Accessibility Kit（无障碍开发服务）<!--accessibility-kit-->
       - [Accessibility Kit简介](accessibility/accessibilityKit.md)
       - [AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)
@@ -2635,7 +2637,6 @@
           - [@ohos.bluetooth.socket(蓝牙socket模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-socket.md)
           - [@ohos.bluetooth.pbap(蓝牙pbap模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-pbap.md)
           - [@ohos.bluetooth.map(蓝牙map模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-map.md)
-          - [@ohos.bluetoothManager (蓝牙)(待停用)](reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
           - [@ohos.connectedTag (有源标签)](reference/apis-connectivity-kit/js-apis-connectedTag.md)
           - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](reference/apis-connectivity-kit/js-apis-cardEmulation.md)
           - [@ohos.nfc.controller (标准NFC)](reference/apis-connectivity-kit/js-apis-nfcController.md)
@@ -2670,6 +2671,7 @@
           - [SE(secureElement)错误码](reference/apis-connectivity-kit/errorcode-se.md)
         - 已停止维护的接口<!--connectivity-arkts-dep-->
           - [@ohos.bluetooth (蓝牙)(待停用)](reference/apis-connectivity-kit/js-apis-bluetooth.md)
+          - [@ohos.bluetoothManager (蓝牙)(待停用)](reference/apis-connectivity-kit/js-apis-bluetoothManager.md)
           - [@ohos.wifi (WLAN)(待停用)](reference/apis-connectivity-kit/js-apis-wifi.md)
           - [@ohos.wifiext (WLAN扩展接口)(待停用)](reference/apis-connectivity-kit/js-apis-wifiext.md)
           - [@system.bluetooth (蓝牙)](reference/apis-connectivity-kit/js-apis-system-bluetooth.md)
