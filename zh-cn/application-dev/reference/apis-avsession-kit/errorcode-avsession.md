@@ -169,21 +169,3 @@ The remote connection is not established.
 **处理步骤**
 
 重新查询会话状态，判断是否存在远端会话。
-
-## 6600110 会话已创建
-
-**错误信息**
-
-session is existed.
-
-**错误描述**
-
-创建的session已存在。
-
-**可能原因**
-
-一个Ability只能存在一个会话，重复创建会失败。
-
-**处理步骤**
-
-可以销毁当前session，重新创建。

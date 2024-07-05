@@ -50,8 +50,6 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
-| 6600110  | Session is existed. |
-| 401      | Invalid param. |
 
 **示例：**
 
@@ -97,8 +95,6 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
-| 6600110  | Session is existed. |
-| 401      | Invalid param. |
 
 **示例：**
 
