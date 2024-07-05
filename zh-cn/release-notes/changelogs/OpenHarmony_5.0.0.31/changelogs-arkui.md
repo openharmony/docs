@@ -377,3 +377,34 @@ struct FrictionExample {
   }
 }
 ```
+## cl.arkui.7 ListItem卡片样式行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+原本ListItem在LazyForEach下使用时，ListItem设置卡片样式不生效，需要整该为能够生效。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：ListItem在LazyForEach下使用时，卡片样式设置不生效。变更后：ListItem在LazyForEach下使用时，卡片样式设置可以生效。
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.31 版本开始。
+
+**变更的接口/组件**
+
+涉及的组件：ListItem。
+
+**适配指导**
+
+如果ListItem在LazyForEach下使用，设置了卡片样式没有生效，变更后生效卡片样式导致显示界面变化，可以删除卡片样式的设置。
