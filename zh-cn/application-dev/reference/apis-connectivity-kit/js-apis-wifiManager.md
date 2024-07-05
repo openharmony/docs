@@ -472,7 +472,7 @@ WLAN配置信息。
 | eapSubId | number | 是 | 否 | SIM卡的子ID。 |
 
 
-## WifiWapiConfig <sup>12+</sup>
+## WifiWapiConfig<sup>12+</sup>
 
 WAPI身份验证协议配置。
 
@@ -484,7 +484,7 @@ WAPI身份验证协议配置。
 | wapiAsCert | string | 否 | 是 | As证书。 |
 | wapiUserCert | string | 否 | 是 | 用户证书。 |
 
-## WapiPskType <sup>12+</sup>
+## WapiPskType<sup>12+</sup>
 
 WAPI认证方式的枚举。
 
