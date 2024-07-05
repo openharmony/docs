@@ -500,3 +500,145 @@ struct Parent {
 ```
 
 ![Repeat-VirtualScroll-DataChange](./figures/Repeat-VirtualScroll-Template.gif)
+
+## 常见问题
+
+### 屏幕外的列表数据发生变化时，保证滚动条位置不变
+
+在List组件中声明Repeat组件，实现key值生成逻辑和each逻辑（如下示例代码），点击按钮“insert”，在屏幕显示的第一个元素前面插入一个元素，屏幕出现向下滚动。
+
+```ts
+// 定义一个类，标记为可观察的
+// 类中自定义一个数组，标记为可追踪的
+@ObservedV2
+class ArrayHolder {
+  @Trace arr: Array<number> = [];
+
+  // constructor，用于初始化数组个数
+  constructor(count: number) {
+    for (let i = 0; i < count; i++) {
+      this.arr.push(i);
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+export struct RepeatTemplateSingle {
+  @Local arrayHolder: ArrayHolder = new ArrayHolder(100);
+  @Local totalCount: number = this.arrayHolder.arr.length;
+  scroller: Scroller = new Scroller();
+
+  build() {
+    Column({ space: 5 }) {
+      List({ space: 20, initialIndex: 19, scroller: this.scroller }) {
+        Repeat(this.arrayHolder.arr)
+          .virtualScroll({ totalCount: this.totalCount })
+          .templateId((item, index) => {
+            return 'number';
+          })
+          .template('number', (r) => {
+            ListItem() {
+              Text(r.index! + ":" + r.item + "Reuse");
+            }
+          })
+          .each((r) => {
+            ListItem() {
+              Text(r.index! + ":" + r.item + "eachMessage");
+            }
+          })
+      }
+      .height('30%')
+
+      Button(`insert totalCount ${this.totalCount}`)
+        .height(60)
+        .onClick(() => {
+          // 插入元素，元素位置为屏幕显示的前一个元素
+          this.arrayHolder.arr.splice(18, 0, this.totalCount);
+          this.totalCount = this.arrayHolder.arr.length;
+        })
+    }
+    .width('100%')
+    .margin({ top: 5 })
+  }
+}
+```
+
+运行效果：
+
+![Repeat-case1-Error](./figures/Repeat-Case1-Error.gif)
+
+在一些场景中，我们不希望屏幕外的数据源变化影响屏幕中List列表Scroller停留的位置，可以通过List组件的[onScrollIndex](../ui/arkts-layout-development-create-list.md#响应滚动位置)事件对列表滚动动作进行监听，当列表发生滚动时，获取列表滚动位置。使用Scroller组件的[scrollToIndex](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex)特性，滑动到指定index位置，实现屏幕外的数据源增加/删除数据时，Scroller停留的位置不变的效果。
+
+示例代码仅对增加数据的情况进行展示。
+
+```ts
+// 定义一个类，标记为可观察的
+// 类中自定义一个数组，标记为可追踪的
+@ObservedV2
+class ArrayHolder {
+  @Trace arr: Array<number> = [];
+
+  // constructor，用于初始化数组个数
+  constructor(count: number) {
+    for (let i = 0; i < count; i++) {
+      this.arr.push(i);
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+export struct RepeatTemplateSingle {
+  @Local arrayHolder: ArrayHolder = new ArrayHolder(100);
+  @Local totalCount: number = this.arrayHolder.arr.length;
+  scroller: Scroller = new Scroller();
+
+  private start: number = 1;
+  private end: number = 1;
+
+  build() {
+    Column({ space: 5 }) {
+      List({ space: 20, initialIndex: 19, scroller: this.scroller }) {
+        Repeat(this.arrayHolder.arr)
+          .virtualScroll({ totalCount: this.totalCount })
+          .templateId((item, index) => {
+            return 'number';
+          })
+          .template('number', (r) => {
+            ListItem() {
+              Text(r.index! + ":" + r.item + "Reuse");
+            }
+          })
+          .each((r) => {
+            ListItem() {
+              Text(r.index! + ":" + r.item + "eachMessage");
+            }
+          })
+      }
+      .onScrollIndex((start, end) => {
+        this.start = start;
+        this.end = end;
+      })
+      .height('30%')
+
+      Button(`insert totalCount ${this.totalCount}`)
+        .height(60)
+        .onClick(() => {
+          // 插入元素，元素位置为屏幕显示的前一个元素
+          this.arrayHolder.arr.splice(18, 0, this.totalCount);
+          let rect = this.scroller.getItemRect(this.start); // 获取子组件的大小位置
+          this.scroller.scrollToIndex(this.start + 1); // 滑动到指定index
+          this.scroller.scrollBy(0, -rect.y); // 滑动指定距离
+          this.totalCount = this.arrayHolder.arr.length;
+        })
+    }
+    .width('100%')
+    .margin({ top: 5 })
+  }
+}
+```
+
+运行效果：
+
+![Repeat-case1-Succ](./figures/Repeat-Case1-Succ.gif)
