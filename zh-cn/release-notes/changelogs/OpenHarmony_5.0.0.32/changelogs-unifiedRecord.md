@@ -36,4 +36,4 @@ type ValueType = number | string | image.PixelMap | Want | ArrayBuffer | boolean
 
 **适配指导**
 
-getValue接口使用的示例代码可参考[getValue](../../../application-dev/reference/apis-arkdata/js-apis-data-unifiedDataChannel.md#getvalue12)。
+getValue接口的使用可参考[getValue示例代码](../../../application-dev/reference/apis-arkdata/js-apis-data-unifiedDataChannel.md#getvalue12)。
