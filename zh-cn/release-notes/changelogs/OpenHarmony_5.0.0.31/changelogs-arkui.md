@@ -256,3 +256,53 @@ myBuilder() {
   }
 }
 ```
+
+## cl.arkui.5 滚动类组件（List、Grid、WaterFlow、Scroll）Friction接口默认值变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+该变更为非兼容性变更。
+
+将滚动类组件（List、Grid、WaterFlow、Scroll）Friction接口默认值改为0.75。
+
+**变更影响**
+
+List、Grid、WaterFlow、Scroll等组件的默认抛滑效果改变。相较变更之前，用同样力度抛滑，抛滑时间更短、抛滑距离更近。
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.31开始。
+
+**变更的接口/组件**
+
+List、Grid、WaterFlow、Scroll等组件的Friction接口
+
+**适配指导**
+如开发者需改回变更之前的抛滑效果，可以用friction设置成变更前的默认参数0.7。
+```ts
+@Entry
+@Component
+struct FrictionExample {
+  build() {
+    List() {
+      ForEach([1, 2, 3, 4, 5], (item: number) => {
+        ListItem() {
+          Text('' + item)
+            .width('100%').height(200).fontSize(16)
+            .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+        }
+      }, (item: string) => item)
+    }
+    .height(500)
+    .friction(0.7)
+  }
+}
+```
