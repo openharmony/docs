@@ -1,4 +1,4 @@
-# JSVM调试调优能力简介
+# JSVM-API调试&定位
 
 JSVM，既标准JS引擎，是严格遵守Ecmascript规范的JavaScript代码执行引擎。 详情参考：[JSVM](../reference/common/_j_s_v_m.md)。
 基于JSVM的JS代码调试调优能力包括：Debugger、CPU Profiler、Heap Snapshot、Heap Statistics。涉及以下接口：

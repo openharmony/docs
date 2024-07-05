@@ -15,7 +15,7 @@ import { PhotoPickerComponent, PickerController, PickerOptions, DataType } from 
 
 ## 属性
 
-支持[通用属性](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)。
+支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)。
 
 ## PhotoPickerComponent
 
@@ -36,7 +36,7 @@ import { PhotoPickerComponent, PickerController, PickerOptions, DataType } from 
 
 ## PickerOptions
 
-继承自[BaseSelectOptions](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#baseselectoptions12)。
+继承自[BaseSelectOptions](js-apis-photoAccessHelper.md#baseselectoptions12)。
 
 Picker配置选项。
 
@@ -80,7 +80,7 @@ Picker配置选项。
 ```ts
 // xxx.ets
 import { PhotoPickerComponent, PickerController, PickerOptions, DataType } from '@ohos.file.PhotoPickerComponent'
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 @Entry
 @Component

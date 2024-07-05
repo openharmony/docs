@@ -78,3 +78,33 @@ onIMEInputComplete回调 ：{RichEditorTextSpanResult.value = "", RichEditorText
 基于回调的使用方式不同，输入内容的状态可能会出现不符合开发者预期的情况,开发者可以通过设置预上屏开关，将预上屏功能关闭。
 RichEditor({ controller: this.controller })
     .enablePreviewText(false)
+
+## cl.arkui.3 按下鼠标按键（任意按键）移动鼠标情况下不再上报鼠标事件的行为变更。
+
+**访问级别**
+ 
+公开接口
+
+**变更原因**
+
+优化鼠标按压态下拖移的执行效率。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：按压鼠标按键拖移过程中，中途经过的控件会收到鼠标事件。
+
+变更后：按压鼠标按键拖移过程中，中途经过的控件不再会收到鼠标事件。
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.27开始。
+
+**适配指导**
+
+如果开发者需要在按住鼠标按键移动情况下，中间经过的控件也要有hover效果，则需要整改为通过点击开始时命中的控件接收鼠标事件，自行处理。如果当前鼠标移动为拖拽场景，则不要使用[onHover](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)而是通过[onDragMove](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)去处理鼠标移动事件。

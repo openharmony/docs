@@ -66,7 +66,7 @@ compositingFilter(filter: Filter): T
 ## 示例
 ```ts
 // xxx.ets
-import uiEffect from '@ohos.graphics.uiEffect'
+import { uiEffect } from '@kit.ArkGraphics2D';
 
 @Entry
 @Component

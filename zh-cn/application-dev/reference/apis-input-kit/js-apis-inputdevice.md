@@ -13,7 +13,7 @@
 
 
 ```js
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import { inputDevice } from '@kit.InputKit';
 ```
 
 ## inputDevice.getDeviceList<sup>9+</sup>

@@ -26,7 +26,7 @@ getUIContext(): UIContext
 **示例：**
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -90,7 +90,7 @@ queryNavDestinationInfo(): NavDestinationInfo | undefined;
 **示例：**
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI'
 
 @Component
 export struct NavDestinationExample {
@@ -103,7 +103,7 @@ export struct NavDestinationExample {
 
 @Component
 struct MyComponent {
-  navDesInfo: observer.NavDestinationInfo | undefined
+  navDesInfo: uiObserver.NavDestinationInfo | undefined
 
   aboutToAppear() {
     // this指代MyComponent自定义节点，并从该节点向上查找其最近的一个类型为NavDestination的父亲节点
@@ -129,13 +129,13 @@ queryNavigationInfo(): NavigationInfo | undefined
 
 | 类型                                                                       | 说明      |
 | -------------------------------------------------------------------------- | --------- |
-| [NavigationInfo](../js-apis-arkui-observer.md#navigationinfo) \| undefined | 返回NavigationInfo实例对象。 |
+| [NavigationInfo](../js-apis-arkui-observer.md#navigationinfo12) \| undefined | 返回NavigationInfo实例对象。 |
 
 **示例：**
 
 ```ts
 // index.ets
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -156,7 +156,7 @@ export struct PageOne {
 
   aboutToAppear() {
     // this指代PageOne自定义节点，并从该节点向上查找其最近的一个类型为Navigation的父亲节点
-    let navigationInfo: observer.NavigationInfo | undefined = this.queryNavigationInfo()
+    let navigationInfo: uiObserver.NavigationInfo | undefined = this.queryNavigationInfo()
     console.log('get navigationInfo: ' + JSON.stringify(navigationInfo))
     if (navigationInfo !== undefined) {
       this.pathStack = navigationInfo.pathStack
@@ -188,13 +188,13 @@ queryRouterPageInfo(): RouterPageInfo | undefined;
 **示例：**
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct MyComponent {
   aboutToAppear() {
-    let info: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
+    let info: uiObserver.RouterPageInfo | undefined = this.queryRouterPageInfo();
   }
 
   build() {

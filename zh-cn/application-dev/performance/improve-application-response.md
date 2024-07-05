@@ -198,69 +198,101 @@ struct Index {
 
 应用刷新页面时需要尽可能减少刷新的组件数量，如果数量过多会导致主线程执行测量、布局的耗时过长，还会在自定义组件新建和销毁过程中，多次调用aboutToAppear()、aboutToDisappear()方法，增加主线程负载。
 
-### 使用容器限制刷新范围
+### 使用指定宽高的容器限制刷新范围
 
-反例：如果容器内有组件被if条件包含，if条件结果变更会触发创建和销毁该组件，如果此时影响到容器的布局，该容器内所有组件都会刷新，导致主线程UI刷新耗时过长。
+反例：如果一个容器没有同时指定宽高，此时改变容器内部的布局，那么该容器外同级的所有组件都会重新做布局计算和测量更新，导致主线程UI刷新耗时过长。
 
-以下代码的Text('New Page')组件被状态变量isVisible控制，isVisible为true时创建，false时销毁。当isVisible发生变化时，Stack容器内的所有组件都会刷新：
+以下代码的Text('New Page')组件被状态变量isVisible控制，isVisible为true时创建，false时销毁。当isVisible发生变化时，由于其外包裹的Stack容器没有同时指定宽高，
+因此会扩散影响到容器外ForEach中的Text渲染：
 
 ```typescript
 @Entry
 @Component
-struct StackExample5 {
-  @State isVisible : boolean = false;
+struct StackExample {
+  @State isVisible: boolean = true;
+  private data: number[] = [];
 
+  aboutToAppear() {
+    for (let i: number = 0; i < Constants.IMAGE_TOTAL_NUM; i++) {
+      this.data.push(i);
+    }
+  }
+  
   build() {
     Column() {
-      Stack({alignContent: Alignment.Top}) {
-        Text().width('100%').height('70%').backgroundColor(0xd2cab3)
-          .align(Alignment.Center).textAlign(TextAlign.Center);
+      Button('Switch Hidden and Show').onClick(() => {
+        this.isVisible = !(this.isVisible);
+      })
 
-        // 此处省略100个相同的背景Text组件
-
+      Stack() {
         if (this.isVisible) {
-          Text('New Page').height("100%").height("70%").backgroundColor(0xd2cab3)
-            .align(Alignment.Center).textAlign(TextAlign.Center);
+          Text('New Page').width(100).height(30).backgroundColor(0xd2cab3)
         }
-      }
-      Button("press").onClick(() => {
-        this.isVisible = !(this.isVisible);
-      })
+      }.width(100) // 本案例以Stack容器为例，只指定了宽，会触发父容器组件重新布局计算，引起ForEach中文本测量。
+
+      ForEach(this.data, (item: number) => { // 由于Stack容器没有同时指定宽高，会扩散影响到这一层，引起Text的测量更新。
+        Text(`Item value: ${item}`)
+          .fontSize($r('app.integer.font_size_20'))
+          .width($r('app.string.layout_100_percent'))
+          .textAlign(TextAlign.Center)
+      }, (item: number) => item.toString())
     }
   }
 }
 ```
 
-建议：对于这种受状态变量控制的组件，在if外套一层容器，减少刷新范围。
+
+建议：指定Stack宽高，此时Stack组件作为布局计算的边界，内部的变化不会扩散到父容器，进而减少兄弟节点的刷新。
 
 ```typescript
 @Entry
 @Component
-struct StackExample6 {
-  @State isVisible : boolean = false;
+struct StackExample2 {
+  @State isVisible: boolean = true;
+  private data: number[] = [];
 
-  build() {
-    Column() {
-      Stack({alignContent: Alignment.Top}) {
-        Text().width('100%').height('70%').backgroundColor(0xd2cab3)
-          .align(Alignment.Center).textAlign(TextAlign.Center);
-
-        // 此处省略100个相同的背景Text组件
-
-        Stack() {
-          if (this.isVisible) {
-            Text('New Page').height("100%").height("70%").backgroundColor(0xd2cab3)
-              .align(Alignment.Center).textAlign(TextAlign.Center);
-          }
-        }.width('100%').height('70%')
-      }
-      Button("press").onClick(() => {
-        this.isVisible = !(this.isVisible);
-      })
+  aboutToAppear() {
+    for (let i: number = 0; i < Constants.IMAGE_TOTAL_NUM; i++) {
+      this.data.push(i);
     }
   }
-}
+
+  build() {
+    Column() { // 父容器
+      Button('Switch Hidden and Show').onClick(() => {
+        this.isVisible = !(this.isVisible);
+      })
+
+      Stack() {
+        if (this.isVisible) {
+          Text('New Page').width(100).height(30).backgroundColor(0xd2cab3)
+        }
+      }.width(100).height(30) // 在指定宽高的Stack容器内，内部的Text组件变化只会在容器内部做布局和测量更新，不会影响到容器外ForEach中的Text组件。
+
+      ForEach(this.data, (item: number) => { // Stack容器指定了宽高，不会影响到这一层兄弟节点
+        Text(`Item value: ${item}`)
+          .fontSize($r('app.integer.font_size_20'))
+          .width($r('app.string.layout_100_percent'))
+          .textAlign(TextAlign.Center)
+      }, (item: number) => item.toString())
+    }
+  }
 ```
+**效果对比**
+
+正反例相同的操作步骤：通过点击按钮，将初始状态为显示的Text('New Page')组件切换为隐藏状态，此时开始抓取耗时，再次点击按钮，将隐藏状态切换为显示状态，此时结束抓取，两次切换间的时间间隔长度，需保证页面渲染完成。
+
+反例：父容器Column内有被只指定了宽的Stack容器包裹的Text组件，其中if条件结果变更会触发创建和销毁该组件，此时会触发父组件兄弟节点重新布局计算，引起ForEach中的文本测量，因此导致主线程UI刷新耗时过长。
+
+当Text('New Page')隐藏状态时开始抓取耗时，此时点击按钮显示Text('New Page')组件时结束抓取，此时引起了兄弟节点中ForEach中的文本测量，Text总共创建个数为stack容器1个Text+兄弟节点中ForEach中的100个Text，共101个，Text总耗时为3ms。
+
+![img](./figures/improve_application_responese_1.png)
+
+基于上例，将Stack容器指定宽高，相同操作抓取耗时，此时没有引起父组件兄弟节点的布局计算和测量更新，仅有Stack容器中的1个Text创建耗时，Text总耗时为255μs。
+
+![img](./figures/improve_application_responses_2.png)
+
+可见，对于可以指定宽高的容器可以限制刷新范围。
 
 ### 按需加载列表组件的元素
 
@@ -822,3 +854,109 @@ struct ArticleSkeletonView { // 自定义骨架图
 使用了骨架图后，响应时间变为10.3ms。
 
 ![骨架图占位](./figures/improve-application-response-skeleton-duration.png)
+
+## 延迟执行相机的资源释放操作
+
+将相机的关闭和释放操作放在setTimeout函数中执行，使其延迟到系统相对空闲的时刻进行，可以避免在程序忙碌时段占用关键资源，提升整体性能及响应能力；确保相机资源在系统任务负载减轻时得以释放，维护了应用的稳定性和效率。
+### 反例
+
+这段代码定义了在相机页面隐藏时触发的函数，用于释放相机相关资源。通过“停止拍摄进程 > 暂停并释放相机会话 > 关闭和释放预览及拍照的输入输出对象 > 清空相机管理对象”的过程，确保应用程序在不再使用相机时能够有效管理并回收所有相机资源。但是直接调用的release方法中captureSession、cameraInput、previewOutput、cameraOutput都用了await,使相机关闭和释放顺序执行可能会导致应用程序的响应性下降，造成用户界面卡顿。
+```ts
+// 相机页面每次隐藏时触发一次
+onPageHide() {
+  this.service.release()
+}
+
+// 释放资源
+public async release() {
+  this.stopCapture();
+  if (this.isSessionStart) {
+    try {
+      // 拍照模式会话类暂停
+      await this.captureSession?.stop();
+      // 拍照模式会话类释放
+      await this.captureSession?.release();
+    } catch (e) {
+      logger.error("release session error:",JSON.stringify(e))
+    }
+    this.isSessionStart = false;
+    this.isSessionCapture = false;
+    try {
+      // 拍照输入对象类关闭
+      await this.cameraInput?.close()
+      // 预览输出对象类释放
+      await this.previewOutput?.release()
+      // 拍照输出对象类释放
+      await this.cameraOutput?.release()
+    } catch (e) {
+     logger.error('release input output error:',JSON.stringify(e))
+    }
+    // 相机管理对象置空
+    this.cameraManager = null
+  }
+}
+```
+
+反例trace图
+
+利用Smart-Perf工具分析得到反例trace图，追踪流程从应用侧的`DispatchTouchEvent`（type=1，标识手指离开屏幕）标签开始，到render_service直至RSHardwareThread硬件提交vsync，最终定位到首帧渲染的变化。在直接于`onPageHide`中执行相机关闭与释放操作时，该过程耗时457.5ms。
+
+![](./figures/camera_release.PNG)
+
+### 正例
+
+这个代码片段启动setTimeout异步延迟操作，在200ms后调用release释放关闭相机。其通过“停止拍摄进程 >  并发执行：（暂停并释放相机会话 > 关闭和释放预览及拍照的输入输出对象 > 清空相机管理对象）”的过程，确保应用程序在不再使用相机时能够有效管理并回收所有相机资源。移除await关键字应用于相机资源释放操作，允许异步并发执行，显著减少了主线程阻塞，从而提升了应用性能和响应速度。
+
+```ts
+// 相机页面每次隐藏时触发一次
+onPageHide() {
+  setTimeout(this.service.release, 200)
+}
+
+// 释放资源
+public async release() {
+  // 摄像机在停止拍摄时的生命周期
+  this.stopCapture();
+  if (this.isSessionStart) {
+    try {
+      // 拍照模式会话类暂停
+      await this.captureSession?.stop();
+      // 拍照模式会话类释放
+      this.captureSession?.release();
+    } catch (e) {
+      logger.error("release session error:",JSON.stringify(e))
+    }
+    this.isSessionStart = false;
+    this.isSessionCapture = false;
+    try {
+      // 拍照输入对象类关闭
+      await this.cameraInput?.close()
+      // 预览输出对象类释放
+      this.previewOutput?.release()
+      // 拍照输出对象类释放
+      this.cameraOutput?.release()
+    } catch (e) {
+     logger.error('release input output error:',JSON.stringify(e))
+    }
+    // 相机管理对象置空
+    this.cameraManager = null
+  }
+}
+```
+
+正例trace图
+
+而利用Smart-Perf工具分析得到正例trace图，追踪流程从应用侧的`DispatchTouchEvent`（type=1，标识手指离开屏幕）标签开始，到render_service直至RSHardwareThread硬件提交vsync，最终定位到首帧渲染的变化。而通过在`onPageHide`中引入200ms的`setTimeout`延迟机制，执行时间减少至85.6ms。
+
+![](./figures/camera_release_use_settimeout.PNG)
+
+### 性能比对 
+
+（注：不同设备特性和具体应用场景的多样性，所获得的性能数据存在差异，提供的数值仅供参考。）
+
+| 操作类型        | 执行时间    | 备注                                            |
+| ----------- | ------- | --------------------------------------------- |
+| 直接关闭与释放（反例） | 457.5ms | 在`onPageHide`中直接执行相机关闭与释放操作                   |
+| 延时关闭与释放（正例） | 85.6ms  | 在`onPageHide`中使用`setTimeout`延迟200ms后执行关闭与释放操作 |
+
+正反例数据表明，合理运用延时策略能显著提升函数执行效率，是优化相机资源管理与关闭操作性能的有效手段，对提升整体用户体验具有重要价值。

@@ -11,7 +11,7 @@
 ##  导入模块
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 ```
 
 ##  shortKey.setKeyDownDuration
@@ -42,7 +42,7 @@ setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&l
 **示例**：
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("screenshot", 500, (error) => {
     if (error) {
@@ -89,7 +89,7 @@ setKeyDownDuration(businessKey: string, delay: number): Promise&lt;void&gt;
 **示例**：
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("screenshot", 500).then(() => {
     console.log(`Set key down duration success`);

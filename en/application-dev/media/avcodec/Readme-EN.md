@@ -6,6 +6,7 @@
   - [Audio Encoding](audio-encoding.md)
   - [Audio Decoding](audio-decoding.md)
   - [Video Encoding](video-encoding.md)
+  - [Temporally Scalable Video Encoding](video-encoding-temporal-scalability.md)
   - [Video Decoding](video-decoding.md)
 - File Muxing and Demuxing
   - [Audio and Video Muxing](audio-video-muxer.md)

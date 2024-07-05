@@ -50,7 +50,7 @@ motionBlur(value: MotionBlurOptions)
 属性动画状态下添加运动模糊效果。
 ```ts
 // xxx.ets
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component

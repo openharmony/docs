@@ -48,7 +48,7 @@ RenderingContextSettings(antialias?: boolean)
 
 ```ts
 // xxx.ets
-import { LengthMetricsUnit, LengthMetrics} from '@ohos.arkui.node'
+import { LengthMetricsUnit } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -3287,7 +3287,7 @@ stopImageAnalyzer(): void
 
 ```ts
 // xxx.ets
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component

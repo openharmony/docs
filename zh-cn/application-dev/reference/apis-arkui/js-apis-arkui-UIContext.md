@@ -284,8 +284,7 @@ getSharedLocalStorage(): LocalStorage | undefined
 
 | 类型                             | 描述                |
 | ------------------------------ | ----------------- |
-| [LocalStorage](arkui-ts/ts-state-management.md#localstorage9) | 返回LocalStorage实例。 |
-| undefined | 共享的LocalStorage实例不存在时返回undefined。|
+| [LocalStorage](arkui-ts/ts-state-management.md#localstorage9)&nbsp;\|&nbsp;undefined | 返回LocalStorage实例。共享的LocalStorage实例不存在时返回undefined。 |
 
 **示例：**
 
@@ -323,7 +322,7 @@ struct SharedLocalStorage {
 }
 
 // GetSharedLocalStorage.ets
-import { router } from '@kit.ArkUI';
+import {router} from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -523,8 +522,8 @@ struct MyComponent {
         const uiContext: UIContext = this.getUIContext();
         const uniqueId: number = this.getUniqueId();
         const pageInfo: PageInfo = uiContext.getPageInfoByUniqueId(uniqueId);
-        console.log('pageInfo: ' + JSON.stringify(pageInfo));
-        console.log('navigationInfo: ' + JSON.stringify(uiContext.getNavigationInfoByUniqueId(uniqueId)));
+        console.info('pageInfo: ' + JSON.stringify(pageInfo));
+        console.info('navigationInfo: ' + JSON.stringify(uiContext.getNavigationInfoByUniqueId(uniqueId)));
       })
       TextArea({
         text: this.content
@@ -866,7 +865,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：**
 
 ```ts
-import { AnimatorOptions } from '@ohos.animator';
+import { AnimatorOptions } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -939,7 +938,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 **示例：**
 
 ```ts
-import { KeyboardAvoidMode, UIContext } from '@ohos.arkui.UIContext';
+import {KeyboardAvoidMode, UIContext} from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -977,7 +976,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 **示例：**
 
 ```ts
-import { KeyboardAvoidMode, UIContext } from '@ohos.arkui.UIContext';
+import {KeyboardAvoidMode, UIContext} from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -987,7 +986,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
       let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
       let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
-      console.info("KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
+      hilog.info("KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -1017,9 +1016,8 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 **示例：**
 
 ```ts
-import {UIContext, AtomicServiceBar} from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
@@ -1219,7 +1217,7 @@ uiContext.CursorController();
 
 getContextMenuController(): ContextMenuController
 
-获取[ContextMenuController](js-apis-arkui-UIContext.md#contextmenucontroller12)对象，可通过该对象控制菜单。
+获取[ContextMenuController](#contextmenucontroller12)对象，可通过该对象控制菜单。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1229,7 +1227,7 @@ getContextMenuController(): ContextMenuController
 
 |类型|说明|
 |----|----|
-|[ContextMenuController](js-apis-arkui-UIContext.md#contextmenucontroller12)| 获取ContextMenuController对象。|
+|[ContextMenuController](#contextmenucontroller12)| 获取ContextMenuController对象。|
 
 **示例：**
 
@@ -1468,7 +1466,7 @@ getWindowName(): string | undefined
 **示例：**
 
 ```ts
-import window from '@ohos.window';
+import { window } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -1514,7 +1512,7 @@ struct Index {
 **示例：**
 
 ```ts
-import { FrameCallback } from '@ohos.arkui.UIContext';
+import {FrameCallback } from '@kit.ArkUI';
 
 class MyFrameCallback extends FrameCallback {
   private tag: string;
@@ -1561,7 +1559,7 @@ struct Index {
 **示例：**
 
 ```ts
-import { FrameCallback } from '@ohos.arkui.UIContext';
+import {FrameCallback } from '@kit.ArkUI';
 
 class MyFrameCallback extends FrameCallback {
   private tag: string;
@@ -1592,6 +1590,8 @@ struct Index {
 
 ### requireDynamicSyncScene<sup>12+</sup>
 
+requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
+
 请求组件的动态帧率场景，用于自定义场景相关帧率配置。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1601,6 +1601,12 @@ struct Index {
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
 | id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)
+
+**返回值：** 
+
+| 类型   | 说明                                         |
+| ------ | -------------------------------------------- |
+| Array&lt;DynamicSyncScene&gt; | 获取DynamicSyncScene对象数组。 |
 
 **示例：**
 ```ts
@@ -1629,7 +1635,8 @@ registerFont(options: font.FontOptions): void
 **示例：**
 
 ```ts
-import { Font } from '@ohos.arkui.UIContext';
+import { Font } from '@kit.ArkUI';
+
 let font:Font = uiContext.getFont();
 font.registerFont({
   familyName: 'medium',
@@ -1655,7 +1662,8 @@ getSystemFontList(): Array\<string>
 **示例：** 
 
 ```ts
-import { Font } from '@ohos.arkui.UIContext';
+import { Font } from '@kit.ArkUI';
+
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getSystemFontList()
@@ -1687,7 +1695,8 @@ getFontByName(fontName: string): font.FontInfo
 **示例：** 
 
 ```ts
-import { Font } from '@ohos.arkui.UIContext';
+import { Font } from '@kit.ArkUI';
+
 let font:Font|undefined = uiContext.getFont();
 if(font){
   font.getFontByName('Sans Italic')
@@ -1723,7 +1732,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { ComponentUtils } from '@kit.ArkUI';
 
 let componentUtils:ComponentUtils = uiContext.getComponentUtils();
 let modePosition = componentUtils.getRectangleById("onClick");
@@ -1775,8 +1784,8 @@ Router和NavDestination等页面信息，若无对应的Router或NavDestination�
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| routerPageInfo | observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo) | 否 | Router信息。 | 
-| navDestinationInfo | observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo) | 否 | NavDestination信息。 | 
+| routerPageInfo | observer.[RouterPageInfo](js-apis-arkui-observer.md#routerpageinfo) | 否 | Router信息。 |
+| navDestinationInfo | observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo) | 否 | NavDestination信息。 |
 
 ## UIObserver<sup>11+</sup>
 
@@ -1969,13 +1978,13 @@ off(type: 'scrollEvent', options: observer.ObserverOptions, callback?: Callback\
 **示例：**
 
 ```ts
-import uiContext, { UIObserver } from '@ohos.arkui.UIContext';
+import { UIObserver } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
-  scroller: Scroller = new Scroller();
-  observer: uiContext.UIObserver = new UIObserver();
+  scroller: Scroller = new Scroller()
+  observer: UIObserver = new UIObserver()
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   build() {
@@ -2103,7 +2112,7 @@ on(type: 'densityUpdate', callback: Callback\<observer.DensityInfo\>): void
 | callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\>        | 是   | 回调函数。携带densityInfo，返回变化后的屏幕像素密度。                 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2111,7 +2120,7 @@ struct Index {
   @State density: number = 0;
   @State message: string = '未注册监听'
 
-  densityUpdateCallback = (info: observer.DensityInfo) => {
+  densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
     this.message = '变化后的DPI：' + this.density.toString();
   }
@@ -2147,7 +2156,7 @@ off(type: 'densityUpdate', callback?: Callback\<observer.DensityInfo\>): void
 | callback | Callback\<observer.[DensityInfo](./js-apis-arkui-observer.md#densityinfo12)\> | 否   | 需要被注销的回调函数。若不指定具体的回调函数，则注销该UIContext下所有densityUpdate事件监听。 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2155,7 +2164,7 @@ struct Index {
   @State density: number = 0;
   @State message: string = '未注册监听'
 
-  densityUpdateCallback = (info: observer.DensityInfo) => {
+  densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
     this.message = '变化后的DPI：' + this.density.toString();
   }
@@ -2196,7 +2205,7 @@ on(type: 'willDraw', callback: Callback\<void\>): void
 | callback | Callback\<void\>        | 是   | 回调函数。                 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2231,7 +2240,7 @@ off(type: 'willDraw', callback?: Callback\<void\>): void
 | callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2271,7 +2280,7 @@ on(type: 'didLayout', callback: Callback\<void\>): void
 | callback | Callback\<void\>        | 是   | 回调函数。                 |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2306,7 +2315,7 @@ off(type: 'didLayout', callback?: Callback\<void\>): void
 | callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2529,7 +2538,7 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2556,7 +2565,7 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2583,7 +2592,7 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2610,7 +2619,7 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
@@ -2637,7 +2646,7 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -2664,7 +2673,7 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -2691,7 +2700,7 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -2718,7 +2727,7 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
 ```ts
 // 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
+import { UIContext, UIObserver } from '@kit.ArkUI';
 
 // callback是开发者定义的监听回调函数
 let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
@@ -2733,8 +2742,6 @@ ArkTS GestureEvent事件监听函数类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **参数：**
 
 | 参数名  | 类型   | 必填 | 说明                          |
@@ -2748,8 +2755,6 @@ type ClickEventListenerCallback = (event: ClickEvent, node?: FrameNode) => void
 ArkTS GestureEvent事件监听函数类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2787,7 +2792,7 @@ matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { MediaQuery } from '@kit.ArkUI';
 
 let mediaquery: MediaQuery = uiContext.getMediaQuery();
 let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
@@ -2833,7 +2838,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let router:Router = uiContext.getRouter();
@@ -2885,7 +2890,7 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let router:Router = uiContext.getRouter();
@@ -2945,9 +2950,9 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3002,9 +3007,9 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3064,8 +3069,9 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router:Router = uiContext.getRouter();
 try {
   router.replaceUrl({
@@ -3111,8 +3117,9 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router:Router = uiContext.getRouter();
 router.replaceUrl({
   url: 'pages/detail',
@@ -3166,9 +3173,9 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3219,9 +3226,9 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector,  MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3279,8 +3286,9 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router:Router = uiContext.getRouter();
 try {
   router.pushNamedRoute({
@@ -3330,8 +3338,9 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router:Router = uiContext.getRouter();
 router.pushNamedRoute({
   name: 'myPage',
@@ -3388,9 +3397,9 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3445,9 +3454,9 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3507,8 +3516,9 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router:Router = uiContext.getRouter();
 try {
   router.replaceNamedRoute({
@@ -3554,8 +3564,9 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router:Router = uiContext.getRouter();
 router.replaceNamedRoute({
   name: 'myPage',
@@ -3610,9 +3621,9 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3663,9 +3674,9 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router, router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { router } from '@kit.ArkUI';
+
 let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
@@ -3706,8 +3717,7 @@ back(options?: router.RouterOptions ): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
 router.back({url:'pages/detail'});    
 ```
@@ -3730,15 +3740,15 @@ back(index: number, params?: Object): void;
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.back(1);
 ```
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.back(1, {info:'来自Home页'}); //携带参数返回
 ```
@@ -3756,8 +3766,8 @@ clear(): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.clear();    
 ```
@@ -3781,8 +3791,8 @@ getLength(): string
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
 console.info('pages stack size = ' + size);    
@@ -3807,8 +3817,8 @@ getState(): router.RouterState
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 let page = router.getState();
 console.info('current index = ' + page.index);
@@ -3839,14 +3849,16 @@ getStateByIndex(index: number): router.RouterState | undefined
 **示例：** 
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
-let options:router.RouterState = router.getStateByIndex(1);
-console.info('index = ' + options.index);
-console.info('name = ' + options.name);
-console.info('path = ' + options.path);
-console.info('params = ' + options.params);
+let options: router.RouterState | undefined = router.getStateByIndex(1);
+if (options != undefined) {
+  console.info('index = ' + options.index);
+  console.info('name = ' + options.name);
+  console.info('path = ' + options.path);
+  console.info('params = ' + options.params);
+}
 ```
 ### getStateByUrl<sup>12+</sup>
 
@@ -3871,8 +3883,7 @@ getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerst
 **示例：** 
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
 let router: Router = uiContext.getRouter();
 let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
@@ -3911,8 +3922,9 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
+import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let router: Router = uiContext.getRouter();
 try {
   router.showAlertBeforeBackPage({            
@@ -3938,8 +3950,8 @@ hideAlertBeforeBackPage(): void
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.hideAlertBeforeBackPage();    
 ```
@@ -3963,8 +3975,8 @@ getParams(): Object
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { Router } from '@kit.ArkUI';
+
 let router: Router = uiContext.getRouter();
 router.getParams();
 ```
@@ -4070,7 +4082,7 @@ try {
     ]
   }, (err, data) => {
     if (err) {
-      console.info('showDialog err: ' + err);
+      console.error('showDialog err: ' + err);
       return;
     }
     console.info('showDialog success callback, click button: ' + data.index);
@@ -4139,7 +4151,7 @@ try {
       console.info('showDialog success, click button: ' + data.index);
     })
     .catch((err:Error) => {
-      console.info('showDialog error: ' + err);
+      console.error('showDialog error: ' + err);
     })
 } catch (error) {
   let message = (error as BusinessError).message;
@@ -4196,7 +4208,7 @@ try {
     ]
   }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
     if (err) {
-      console.info('showDialog err: ' + err);
+      console.error('showDialog err: ' + err);
       return;
     }
     console.info('showDialog success callback, click button: ' + data.index);
@@ -4318,7 +4330,7 @@ try {
       console.info('showActionMenu success, click button: ' + data.index);
     })
     .catch((err:Error) => {
-      console.info('showActionMenu error: ' + err);
+      console.error('showActionMenu error: ' + err);
     })
 } catch (error) {
   let message = (error as BusinessError).message;
@@ -4636,8 +4648,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 **示例：**
 
 ```ts
-import dragController from "@ohos.arkui.dragController"
-import UDC from '@ohos.data.unifiedDataChannel';
+import { dragController } from "@kit.ArkUI"
+import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
@@ -4657,8 +4669,8 @@ struct DragControllerPage {
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDC.Text()
-              let unifiedData = new UDC.UnifiedData(text)
+              let text = new unifiedDataChannel.Text()
+              let unifiedData = new unifiedDataChannel.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
@@ -4721,10 +4733,9 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 **示例：**
 
 ```ts
-import dragController from "@ohos.arkui.dragController"
-import componentSnapshot from '@ohos.arkui.componentSnapshot';
-import image from '@ohos.multimedia.image';
-import UDC from '@ohos.data.unifiedDataChannel';
+import { dragController, componentSnapshot } from "@kit.ArkUI"
+import { image } from '@kit.ImageKit';
+import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
@@ -4755,8 +4766,8 @@ struct DragControllerPage {
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDC.Text()
-              let unifiedData = new UDC.UnifiedData(text)
+              let text = new unifiedDataChannel.Text()
+              let unifiedData = new unifiedDataChannel.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
@@ -4834,12 +4845,9 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 **示例：**
 1.在EntryAbility.ets中获取UI上下文并保存至LocalStorage中。
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import { UIContext } from '@ohos.arkui.UIContext';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window, UIContext } from '@kit.ArkUI';
 
 let uiContext: UIContext;
 let localStorage: LocalStorage = new LocalStorage('uiContext');
@@ -4868,7 +4876,7 @@ export default class EntryAbility extends UIAbility {
       windowStage.getMainWindow((err, data) =>
       {
         if (err.code) {
-          console.info('Failed to abtain the main window. Cause:' + err.message);
+          console.error('Failed to abtain the main window. Cause:' + err.message);
           return;
         }
         let windowClass: window.Window = data;
@@ -4897,11 +4905,9 @@ export default class EntryAbility extends UIAbility {
 ```
 2.通过LocalStorage.getShared()获取上下文，进而获取DragController对象实施后续操作。
 ```ts
-import dragController from "@ohos.arkui.dragController"
-import componentSnapshot from '@ohos.arkui.componentSnapshot';
-import image from '@ohos.multimedia.image';
-import UDC from '@ohos.data.unifiedDataChannel';
-import { UIContext, DragController } from '@ohos.arkui.UIContext'
+import { dragController, componentSnapshot, UIContext, DragController } from "@kit.ArkUI"
+import { image } from '@kit.ImageKit';
+import { unifiedDataChannel } from '@kit.ArkData';
 
 let storages = LocalStorage.getShared();
 
@@ -4937,8 +4943,8 @@ struct DragControllerPage {
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
-            let text = new UDC.Text()
-            let unifiedData = new UDC.UnifiedData(text)
+            let text = new unifiedDataChannel.Text()
+            let unifiedData = new unifiedDataChannel.UnifiedData(text)
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
@@ -4964,10 +4970,10 @@ struct DragControllerPage {
                 }
               })
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.info("start drag Error:" + err.message);
+                console.error("start drag Error:" + err.message);
               })
             } catch(err) {
-              console.info("create dragAction Error:" + err.message);
+              console.error("create dragAction Error:" + err.message);
             }
           }
         }
@@ -4994,9 +5000,9 @@ setDragEventStrictReportingEnabled(enable: boolean): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { UIContext } from '@ohos.arkui.UIContext';
+import { UIAbility } from '@kit.AbilityKit';
+import { window, UIContext } from '@kit.ArkUI';
+
  export default class EntryAbility extends UIAbility {
    onWindowStageCreate(windowStage: window.WindowStage): void {
        windowStage.loadContent('pages/Index', (err, data) => {
@@ -5045,9 +5051,7 @@ addComponentContent(content: ComponentContent, index?: number): void
 **示例：**
 
 ```ts
-import { OverlayManager } from '@ohos.arkui.UIContext';
-import { ComponentContent } from '@ohos.arkui.node';
-import router from '@ohos.router';
+import { ComponentContent, OverlayManager, router } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
@@ -5250,9 +5254,8 @@ setVisible(visible: boolean): void
 **示例：**
 
 ```ts
-import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -5292,9 +5295,8 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 **示例：**
 
 ```ts
-import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, AtomicServiceBar,window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
@@ -5333,9 +5335,8 @@ setTitleContent(content:string): void
 **示例：**
 
 ```ts
-import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, AtomicServiceBar,window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -5375,9 +5376,8 @@ setTitleFontStyle(font:FontStyle):void
 **示例：**
 
 ```ts
-import { UIContext, Font, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, Font, AtomicServiceBar } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -5418,9 +5418,8 @@ setIconColor(color:Nullable<Color | number | string>): void
 **示例：**
 
 ```ts
-import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
-import hilog from '@ohos.hilog';
-import window from "@ohos.window";
+import {UIContext, Font, window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -5610,8 +5609,8 @@ restoreDefault(): void
 当光标移出绿框时，通过CursorController的restoreDefault方法恢复默认光标样式
 
 ```ts
-import pointer from '@ohos.multimodalInput.pointer';
-import uiContext, { CursorController } from '@ohos.arkui.UIContext';
+import { pointer } from '@kit.InputKit';
+import { UIContext, CursorController } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5650,14 +5649,14 @@ setCursor(value: PointerStyle): void
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| value | [PointerStyle](../../reference/apis-input-kit/js-apis-pointer.md#pointerstyle) | 是    | 光标样式 |
+| value | [PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) | 是    | 光标样式 |
 
 **示例：**
 当光标进入蓝框时，通过CursorController的setCursor方法修改光标样式为PointerStyle.WEST
 
 ```ts
-import pointer from '@ohos.multimodalInput.pointer';
-import uiContext, { CursorController } from '@ohos.arkui.UIContext';
+import { pointer } from '@kit.InputKit';
+import { UIContext, CursorController } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5698,7 +5697,7 @@ close(): void
 通过定时器触发，调用ContextMenuController的close方法关闭菜单
 
 ```ts
-import uiContext, { ContextMenuController } from '@ohos.arkui.UIContext';
+import { ContextMenuController } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5775,7 +5774,7 @@ measureText(options: MeasureOptions): number
 通过MeasureUtils的measureText方法获取"Hello World"文字的宽度。
 
 ```ts
-import { MeasureUtils } from '@ohos.arkui.UIContext';
+import { MeasureUtils } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5826,7 +5825,7 @@ measureTextSize(options: MeasureOptions): SizeOptions
 通过MeasureUtils的measureTextSize方法获取"Hello World"文字的宽度和高度
 
 ```ts
-import { MeasureUtils } from '@ohos.arkui.UIContext';
+import { MeasureUtils } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5878,8 +5877,8 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import { UIContext } from '@ohos.arkui.UIContext';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5896,7 +5895,7 @@ struct SnapshotExample {
         .onClick(() => {
           this.uiContext.getComponentSnapshot().get("root", (error: Error, pixmap: image.PixelMap) => {
             if (error) {
-              console.info("error: " + JSON.stringify(error))
+              console.error("error: " + JSON.stringify(error))
               return;
             }
             this.pixmap = pixmap
@@ -5939,8 +5938,8 @@ get(id: string): Promise<image.PixelMap>
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import { UIContext } from '@ohos.arkui.UIContext';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -5962,7 +5961,7 @@ struct SnapshotExample {
               this.pixmap = pixmap
             })
             .catch((err: Error) => {
-              console.info("error: " + err)
+              console.error("error: " + err)
             })
         }).margin(10)
     }
@@ -5998,8 +5997,8 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import { UIContext } from '@ohos.arkui.UIContext';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -6034,7 +6033,7 @@ struct ComponentSnapshotExample {
           },
             (error: Error, pixmap: image.PixelMap) => {
               if (error) {
-                console.info("error: " + JSON.stringify(error))
+                console.error("error: " + JSON.stringify(error))
                 return;
               }
               this.pixmap = pixmap
@@ -6081,8 +6080,8 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'
-import { UIContext } from '@ohos.arkui.UIContext';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -6119,7 +6118,7 @@ struct ComponentSnapshotExample {
               this.pixmap = pixmap
             })
             .catch((err: Error) => {
-              console.info("error: " + err)
+              console.error("error: " + err)
             })
         })
       Image(this.pixmap)
@@ -6153,7 +6152,7 @@ struct ComponentSnapshotExample {
 **示例：**
 
 ```ts
-import { FrameCallback } from '@ohos.arkui.UIContext';
+import {FrameCallback } from '@kit.ArkUI';
 
 class MyFrameCallback extends FrameCallback {
   private tag: string;
@@ -6200,6 +6199,8 @@ setFrameRateRange(range: ExpectedFrameRateRange): void
 
 设置期望帧率范围。
 
+一个页面有两个Swiper组件，其中一个设置期望帧率范围，另一个也会受到期望帧率范围影响。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
@@ -6208,12 +6209,12 @@ setFrameRateRange(range: ExpectedFrameRateRange): void
 
 | 参数名      | 类型         | 必填   | 说明   |
 | -------- | ---------- | ---- | ---- |
-| ExpectedFrameRateRange | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| 是    | 设置期望的帧率范围。<br />默认值:{min:0, max:120, expected: 120} |
+| range | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| 是    | 设置期望的帧率范围。<br />默认值:{min:0, max:120, expected: 120} |
 
 **示例：**
 
 ```ts
-import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@ohos.arkui.UIContext';
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -6279,7 +6280,7 @@ getFrameRateRange(): ExpectedFrameRateRange
 **示例：**
 
 ```ts
-import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@ohos.arkui.UIContext';
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -6329,9 +6330,13 @@ struct Frame {
 ```
 ## SwiperDynamicSyncScene<sup>12+</sup>
 
-DynamicSyncScene的子类, 对应Swiper的动态帧率场景。
+SwiperDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应Swiper的动态帧率场景。
 
-### SwiperDynamicSyncSceneType<sup>12+</sup>
+| 名称       | 类型                                                      | 只读 | 可选 | 说明                                |
+| --------- | --------------------------------------------------------- | ---- | ---- | ---------------------------------- |
+| type      | [SwiperDynamicSyncSceneType](#swiperdynamicsyncscenetype12) | 是   | 否   | Swiper的动态帧率场景。             |
+
+## SwiperDynamicSyncSceneType<sup>12+</sup>
 
 枚举值，表示动态帧率场景的类型
 

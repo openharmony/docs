@@ -58,10 +58,15 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
       certType: http.CertType.PEM, // 可选，默认使用PEM，自API 11开始支持该属性
       keyPassword: "passwordToKey" // 可选，输入key文件的密码，自API 11开始支持该属性
     },
-    certificatePinning:{ // 可选，支持证书锁定配置信息的动态设置，自API 12开始支持该属性
-      publicKeyHash: '', // 由应用传入的证书PIN码，自API 12开始支持该属性
-      hashAlgorithm: 'SHA-256', // 加密算法，当前仅支持sha256，自API 12开始支持该属性
-    },
+    certificatePinning: [ // 可选，支持证书锁定配置信息的动态设置，自API 12开始支持该属性
+      {
+        publicKeyHash: 'Pin1', // 由应用传入的证书PIN码，自API 12开始支持该属性
+        hashAlgorithm: 'SHA-256' // 加密算法，当前仅支持SHA-256，自API 12开始支持该属性
+      }, {
+        publicKeyHash: 'Pin2', // 由应用传入的证书PIN码，自API 12开始支持该属性
+        hashAlgorithm: 'SHA-256' // 加密算法，当前仅支持SHA-256，自API 12开始支持该属性
+      }
+    ]
     multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性
       {
         name: "Part1", // 数据名，自API 11开始支持该属性
@@ -102,6 +107,8 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
 
 > **说明：**
 > console.info()输出的数据中包含换行符会导致数据出现截断现象。
+>
+> 自API 12开始支持接收经过brotli算法压缩的HTTP响应。
 
 ## http.createHttp
 

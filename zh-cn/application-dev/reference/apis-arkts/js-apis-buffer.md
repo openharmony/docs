@@ -617,7 +617,7 @@ console.log(newBuf.toString('ascii'));
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200013 | Cannot set property ${propertyName} of Buffer which has only a getter. |
+| 10200013 | ${propertyName} cannot be set for the buffer that has only a getter. |
 
 **示例：**
 
@@ -2032,7 +2032,7 @@ swap16(): Buffer
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200009 | Buffer size must be a multiple of 16-bits |
+| 10200009 | The buffer size must be a multiple of 16-bits. |
 
 **示例：**
 
@@ -2069,7 +2069,7 @@ swap32(): Buffer
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200009 | Buffer size must be a multiple of 32-bits |
+| 10200009 | The buffer size must be a multiple of 32-bits. |
 
 **示例：**
 
@@ -2106,7 +2106,7 @@ swap64(): Buffer
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200009 | Buffer size must be a multiple of 64-bits |
+| 10200009 | The buffer size must be a multiple of 64-bits. |
 
 **示例：**
 

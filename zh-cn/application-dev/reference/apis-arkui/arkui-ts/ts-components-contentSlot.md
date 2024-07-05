@@ -26,7 +26,7 @@ ContentSlot(content: Content)
 
 ```ts
 import { nativeNode } from 'libNativeNode.so' // 开发者自己实现的so
-import { NodeContent } from '@ohos.arkui.node'
+import { NodeContent } from '@kit.ArkUI'
 
 @Entry
 @Component

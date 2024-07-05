@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import Curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI';
 ```
 
 
@@ -63,8 +63,8 @@ initCurve(curve?: Curve): ICurve
 **示例：**
 
 ```ts
-import Curves from '@ohos.curves'
-Curves.initCurve(Curve.EaseIn) // 创建一个默认先慢后快插值曲线
+import { curves } from '@kit.ArkUI';
+curves.initCurve(Curve.EaseIn) // 创建一个默认先慢后快插值曲线
 ```
 
 
@@ -94,8 +94,8 @@ stepsCurve(count: number, end: boolean): ICurve
 **示例：**
 
 ```ts
-import Curves from '@ohos.curves'
-Curves.stepsCurve(9, true)  //创建一个阶梯曲线
+import { curves } from '@kit.ArkUI';
+curves.stepsCurve(9, true)  //创建一个阶梯曲线
 ```
 
 
@@ -128,8 +128,8 @@ cubicBezierCurve(x1: number, y1: number, x2: number, y2: number): ICurve
 **示例：**
 
 ```ts
-import Curves from '@ohos.curves'
-Curves.cubicBezierCurve(0.1, 0.0, 0.1, 1.0) // 创建一个三阶贝塞尔曲线
+import { curves } from '@kit.ArkUI';
+curves.cubicBezierCurve(0.1, 0.0, 0.1, 1.0) // 创建一个三阶贝塞尔曲线
 ```
 
 
@@ -162,8 +162,8 @@ springCurve(velocity: number, mass: number, stiffness: number, damping: number):
 **示例：**
 
 ```ts
-import Curves from '@ohos.curves'
-Curves.springCurve(10, 1, 228, 30) // 创建一个弹簧插值曲线
+import { curves } from '@kit.ArkUI';
+curves.springCurve(10, 1, 228, 30) // 创建一个弹簧插值曲线
 ```
 
 
@@ -195,11 +195,11 @@ springMotion(response?: number, dampingFraction?: number, overlapDuration?: numb
 **示例：**
 
 ```ts
-import Curves from '@ohos.curves'
-Curves.springMotion() // 创建一个默认弹性动画曲线
-Curves.springMotion(0.5) // 创建指定response、其余参数默认的弹性动画曲线
-Curves.springMotion(0.5, 0.6) // 创建指定response和dampingFraction、其余参数默认的弹性动画曲线
-Curves.springMotion(0.5, 0.6, 0) // 创建三个参数均自定义的弹性动画曲线
+import { curves } from '@kit.ArkUI'
+curves.springMotion() // 创建一个默认弹性动画曲线
+curves.springMotion(0.5) // 创建指定response、其余参数默认的弹性动画曲线
+curves.springMotion(0.5, 0.6) // 创建指定response和dampingFraction、其余参数默认的弹性动画曲线
+curves.springMotion(0.5, 0.6, 0) // 创建三个参数均自定义的弹性动画曲线
 ```
 
 
@@ -230,8 +230,8 @@ responsiveSpringMotion(response?: number, dampingFraction?: number, overlapDurat
 **示例：**
 
 ```ts
-import Curves from '@ohos.curves'
-Curves.responsiveSpringMotion() // 创建一个默认弹性跟手动画曲线
+import { curves } from '@kit.ArkUI'
+curves.responsiveSpringMotion() // 创建一个默认弹性跟手动画曲线
 ```
 
 
@@ -262,8 +262,8 @@ interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: 
 **示例：**
 
 ```ts
-import Curves from '@ohos.curves'
-Curves.interpolatingSpring(10, 1, 228, 30) // 创建一个时长由弹簧参数决定的弹簧插值曲线
+import { curves } from '@kit.ArkUI'
+curves.interpolatingSpring(10, 1, 228, 30) // 创建一个时长由弹簧参数决定的弹簧插值曲线
 ```
 
 ## Curves.customCurve<sup>10+</sup>
@@ -291,11 +291,11 @@ customCurve(interpolate: (fraction: number) => number): ICurve
 **示例：**
 
 ```ts
-import Curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI'
 let interpolate = (fraction:number):number => {
   return Math.sqrt(fraction)
 }
-let curve = Curves.customCurve(interpolate) // 创建一个用户自定义插值曲线
+let curve = curves.customCurve(interpolate) // 创建一个用户自定义插值曲线
 ```
 
 ## ICurve<sup>9+</sup>
@@ -328,8 +328,8 @@ interpolate(fraction:&nbsp;number): number
 **示例：**
 
 ```ts
-import Curves from '@ohos.curves'
-let curveValue = Curves.initCurve(Curve.EaseIn) // 创建一个默认先慢后快插值曲线
+import { curves } from '@kit.ArkUI'
+let curveValue = curves.initCurve(Curve.EaseIn) // 创建一个默认先慢后快插值曲线
 let value: number = curveValue.interpolate(0.5) // 计算得到时间到一半时的插值
 ```
 
@@ -407,7 +407,7 @@ spring(velocity: number, mass: number, stiffness: number, damping: number): stri
 
 ```ts
 // xxx.ets
-import Curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -423,11 +423,11 @@ struct ImageComponent {
         .height(this.heightSize)
         .backgroundColor(Color.Red)
         .onClick(() => {
-          let curve = Curves.cubicBezierCurve(0.25, 0.1, 0.25, 1.0);
+          let curve = curves.cubicBezierCurve(0.25, 0.1, 0.25, 1.0);
           this.widthSize = curve.interpolate(0.5) * this.widthSize;
           this.heightSize = curve.interpolate(0.5) * this.heightSize;
         })
-        .animation({ duration: 2000, curve: Curves.stepsCurve(9, true) })
+        .animation({ duration: 2000, curve: curves.stepsCurve(9, true) })
     }.width("100%").height("100%")
   }
 }
