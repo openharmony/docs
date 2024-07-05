@@ -1257,11 +1257,11 @@
       - [ArkGraphics 3D资源创建以及使用](graphics3d/arkgraphics3D-resource.md)
       - [ArkGraphics 3D场景动画控制以及管理](graphics3d/arkgraphics3D-animation.md)
   - 应用服务<!--gapp-service-->
-    <!--Del-->
     - Ads Kit（广告服务）<!--ads-kit-->
       - [广告标识服务](ads-service/oaid/oaid-service.md)   
+      <!--Del-->
       - [重置OAID信息（仅对系统应用开放）](ads-service/oaid/oaid-service-sys.md)
-    <!--DelEnd-->
+      <!--DelEnd-->
 
     - Calendar Kit（日历服务）<!--calendar-kit-->
       - [Calendar Kit简介](calendarmanager/calendarmanager-overview.md)
