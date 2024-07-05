@@ -127,3 +127,38 @@ Menu组件。
 **适配指导**
 
 菜单关闭行为变更，应用无需适配。
+
+## cl.arkui.5 Grid和List组件onItemDrag接口拖拽出窗口外行为变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+由于窗口提供的拖拽窗口类型变更，新的窗口类型无法超出父窗口，导致onItemDrag拖拽窗口无法拖出应用窗口外。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+API version 12之前，onItemDrag拖起的拖拽窗口可以拖出当前应用窗口外。
+
+API version 12及以后，onItemDrag拖起的拖拽窗口不可以拖出当前应用窗口外。
+
+**起始API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+Grid组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeave和onItemDrop方法
+
+List组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeave和onItemDrop方法
+
+**适配指导**
+
+默认行为变更，无需适配。
