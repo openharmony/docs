@@ -31,6 +31,14 @@ Before using the APIs provided by this module to perform operations on a file or
 
 For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
 
+## DataLevel
+
+type DataLevel = 's0' | 's1' | 's2' | 's3' | 's4' |
+
+Defines the data security level.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 ## securityLabel.setSecurityLabel
 
 setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
@@ -44,7 +52,7 @@ Sets a security label for a file. This API uses a promise to return the result.
 | Name   | Type      | Mandatory| Description                                        |
 | --------- | ------    | ---- | -------------------------------------------- |
 | path      | string    | Yes  | Path of the target file.                                    |
-| type      | DataLevel | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
+| type      | [DataLevel](#datalevel) | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
 
 **Return value**
 
@@ -93,7 +101,7 @@ Sets a security label for a file. This API uses an asynchronous callback to retu
 | --------- | ------------------------- | ---- | -------------------------------------------- |
 | path      | string                    | Yes  | Path of the target file.                                    |
 | type      | DataLevel                 | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
-| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                  |
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                  |
 
 **Error codes**
 
@@ -204,7 +212,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   securityLabel.getSecurityLabel(filePath).then((type: string) => {
     console.log("getSecurityLabel successfully, Label: " + type);
   }).catch((err: BusinessError) => {
-    console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -221,7 +229,7 @@ Obtains the security label of a file. This API uses an asynchronous callback to 
   | Name  | Type                       | Mandatory| Description                      |
   | -------- | --------------------------- | ---- | -------------------------- |
   | path     | string                      | Yes  | Path of the target file.                  |
-  | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the security label obtained.|
+  | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the security label obtained.|
 
 **Error codes**
 
@@ -245,7 +253,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   let filePath = pathDir + '/test.txt';
   securityLabel.getSecurityLabel(filePath, (err: BusinessError, type: string) => {
     if (err) {
-      console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.log("getSecurityLabel successfully, Label: " + type);
     }

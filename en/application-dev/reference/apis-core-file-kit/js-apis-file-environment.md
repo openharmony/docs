@@ -16,9 +16,11 @@ import environment from '@ohos.file.environment';
 
 getUserDownloadDir(): string
 
-Obtains the sandbox path of the pre-authorized **Download** directory of the current user. This API is available only to certain devices.
+Obtains the sandbox path of the pre-authorized **Download** directory of the current user.
 
-**Required permissions**: ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+> **NOTE**
+>
+> This API cannot be used currently. In the current version, use **/storage/Users/currentUser/Download** as the sandbox path of the **Download** directory. The API will be supported in later versions.
 
 **System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -56,9 +58,11 @@ function getUserDownloadDirExample() {
 
 getUserDesktopDir(): string
 
-Obtains the sandbox path of the pre-authorized **Desktop** directory of the current user. This API is available only to certain devices.
+Obtains the sandbox path of the pre-authorized **Desktop** directory of the current user.
 
-**Required permissions**: ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
+> **NOTE**
+>
+> This API cannot be used currently. In the current version, use **/storage/Users/currentUser/Desktop** as the sandbox path of the **Desktop** directory. The API will be supported in later versions.
 
 **System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -96,9 +100,11 @@ function getUserDesktopDirExample() {
 
 getUserDocumentDir(): string
 
-Obtains the sandbox path of the pre-authorized **Documents** directory of the current user. This API is available only to certain devices.
+Obtains the sandbox path of the pre-authorized **Documents** directory of the current user.
 
-**Required permissions**: ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+> **NOTE**
+>
+> This API cannot be used currently. In the current version, use **/storage/Users/currentUser/Documents** as the sandbox path of the **Documents** directory. The API will be supported in later versions.
 
 **System capability**: SystemCapability.FileManagement.File.Environment.FolderObtain
 
