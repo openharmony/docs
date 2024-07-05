@@ -68,7 +68,7 @@ let getDelayData: unifiedDataChannel.GetDelayData = ((type: string) => {
 
 ## ValueType<sup>12+</sup>
 
-type ValueType = number | string | image.PixelMap | Want | ArrayBuffer
+type ValueType = number | string | image.PixelMap | Want | ArrayBuffer | boolean | object | null | undefined
 
 用于表示统一数据记录允许的数据字段类型。
 
@@ -83,6 +83,10 @@ type ValueType = number | string | image.PixelMap | Want | ArrayBuffer
 | image.PixelMap | 表示[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)的类型。 |
 | Want | 表示[Want](../apis-ability-kit/js-apis-app-ability-want.md)的类型。 |
 | ArrayBuffer | 表示ArrayBuffer的类型。 |
+| boolean | 表示boolean的类型。 |
+| object | 表示object的类型。 |
+| null | 表示null。 |
+| undefined | 表示undefined。 |
 
 ## UnifiedDataProperties<sup>12+</sup>
 
@@ -378,9 +382,9 @@ let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
 
 ### constructor<sup>12+</sup>
 
-constructor(type: string, value: ValueType | object)
+constructor(type: string, value: ValueType)
 
-用于创建指定类型和值的数据记录。<br />当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值;<br />当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。<br />当参数value为object类型时，只支持数字、字符串的组合及嵌套对象。
+用于创建指定类型和值的数据记录。<br />当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值;<br />当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -406,7 +410,6 @@ constructor(type: string, value: ValueType | object)
 ```ts
 import { image } from '@kit.ImageKit';
 import { uniformTypeDescriptor } from '@kit.ArkData';
-import { uniformDataStruct } from '@kit.ArkData';
 import { Want } from '@kit.AbilityKit';
 
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, 'this is value of text');
@@ -483,14 +486,6 @@ getValue(): ValueType
 | ------ |------------------------------------------------------|
 | [ValueType](#valuetype12) | 当前数据记录对应的值。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[统一数据管理框架错误码](errorcode-data-udmf.md)。
-
-| **错误码ID** | **错误信息**                                |
-| ------------ | ------------------------------------------- |
-| 20400002     | The store data does not support parsing.  |
-
 **示例：**
 
 ```ts
@@ -498,37 +493,6 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, 'this is value of text');
 let value = text.getValue();
-```
-
-### getObject<sup>12+</sup>
-
-getObject(): Object
-
-获取当前数据记录的值。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力** ：SystemCapability.DistributedDataManager.UDMF.Core
-
-**返回值：**
-
-| 类型   | 说明                                                   |
-| ------ |------------------------------------------------------|
-| Object | 当前数据记录对应的值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[统一数据管理框架错误码](errorcode-data-udmf.md)。
-
-| **错误码ID** | **错误信息**                                |
-| ------------ | ------------------------------------------- |
-| 20400002     | The store data does not support parsing.  |
-
-**示例：**
-
-```ts
-import { uniformTypeDescriptor } from '@kit.ArkData';
-import { uniformDataStruct } from '@kit.ArkData';
 
 let plainTextDetails : Record<string, string> = {
   'key1': 'value1',
@@ -541,7 +505,7 @@ let plainText : uniformDataStruct.PlainText = {
   details: plainTextDetails
 }
 let plainTextRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
-let value = plainTextRecord.getObject();
+let plainTextvalue = plainTextRecord.getValue();
 ```
 
 ## Text
@@ -890,13 +854,11 @@ let unifiedData = new unifiedDataChannel.UnifiedData(record);
 
 UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF数据通路所面向的不同业务场景。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称       | 值         | 说明      |
 |----------|-----------|---------|
-| DATA_HUB | 'DataHub' | 公共数据通路。 |
+| DATA_HUB | 'DataHub' | 公共数据通路。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
 ## Options
 
