@@ -43,3 +43,4 @@
     - [常用trace使用指导](common-trace-using-instructions.md)
     - [状态变量组件定位工具实践](state_variable_dfx_pratice.md)
     - [Web性能问题分析案例](web-analyse.md)
+    - [应用性能问题分析指导](application-performance-guide.md)
