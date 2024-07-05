@@ -95,7 +95,7 @@
 ### ArkUI_UIInputEvent
 
 ```
-typedef struct ArkUI_UIInputEventArkUI_UIInputEvent
+typedef struct ArkUI_UIInputEvent ArkUI_UIInputEvent
 ```
 **描述：**
 
@@ -626,6 +626,7 @@ float OH_ArkUI_PointerEvent_GetHistoryTiltX (const ArkUI_UIInputEvent * event, u
 
 返回当前带有指向性的输入事件中相对YZ平面的角度。
 
+
 ### OH_ArkUI_PointerEvent_GetHistoryTiltY()
 
 ```
@@ -648,7 +649,6 @@ float OH_ArkUI_PointerEvent_GetHistoryTiltY (const ArkUI_UIInputEvent * event, u
 **返回：**
 
 返回当前带有指向性的输入事件中相对XZ平面的角度。
-
 
 ### OH_ArkUI_PointerEvent_GetHistoryTouchAreaHeight()
 
