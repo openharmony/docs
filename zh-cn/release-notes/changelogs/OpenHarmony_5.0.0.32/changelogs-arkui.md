@@ -63,3 +63,33 @@ CreateModalUIExtension禁止其他组件遮挡
 **适配指导**
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.5 List的ConstraintSize设置生效
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+List的布局行为和当前通用的布局约束优先的规格不一致。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，List不设置Height时，Constraint的minHeight设置不生效。
+
+变更后，List不设置Height时，Constraint的minHeight设置会生效。
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**适配指导**
+
+默认效果变更，不涉及。
