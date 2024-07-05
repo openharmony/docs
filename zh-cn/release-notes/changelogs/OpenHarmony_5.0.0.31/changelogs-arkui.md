@@ -191,3 +191,68 @@ struct SubHeaderExample {
   }
 }
 ```
+
+## cl.arkui.4 bindSheet支持嵌套滚动
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+为满足应用诉求，半模态面板嵌套滚动组件，且在滚动组件上设置嵌套模式时，需要实现联动效果。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，半模态面板嵌套滚动组件，且在滚动组件上设置嵌套模式时，无法实现联动。具体现象为内容位于顶部时，多档位场景，上下滑动无法切换挡位；单挡位场景，下滑无法关闭半模态。
+
+变更后，半模态面板嵌套滚动组件，且在滚动组件上设置嵌套模式时，可以实现联动。具体现象为内容位于顶部时，多档位场景，上下滑动可以切换挡位，在最低一档下滑可以关闭半模态；单挡位场景，下滑可以关闭半模态。
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.31开始。
+
+**变更的接口/组件**
+
+bindSheet组件
+
+**适配指导**
+
+需要开发者主动适配。例如，在半模态面板中嵌套list组件场景，Builder内容可以参考如下示例。
+适配示例：
+
+```ts
+@Builder
+myBuilder() {
+  Column() {
+    List({ space: 20, initialIndex: 0 }) {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .listDirection(Axis.Vertical) // 排列方向
+      .edgeEffect(EdgeEffect.None)
+      .nestedScroll({
+        scrollForward: NestedScrollMode.PARENT_FIRST,
+        scrollBackward: NestedScrollMode.SELF_FIRST
+      }) // 嵌套模式
+      .backgroundColor(Color.Gray)
+      .width('90%')
+      .height('100%')
+  }
+}
+```
