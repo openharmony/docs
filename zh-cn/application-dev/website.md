@@ -124,8 +124,6 @@
             - [Want概述](application-models/want-overview.md)
             - [显式Want与隐式Want匹配规则](application-models/explicit-implicit-want-mappings.md)
             - [使用显式Want启动应用组件](application-models/ability-startup-with-explicit-want.md)
-            - [使用隐式Want打开网址](application-models/ability-startup-with-implicit-want.md)
-            - [应用间使用Want分享数据](application-models/data-share-via-want.md)
           - [组件启动规则（Stage模型）](application-models/component-startup-rules.md)
           - [应用启动框架AppStartup](application-models/app-startup.md)
           <!--Del-->
