@@ -795,6 +795,52 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### drawSingleCharacter<sup>12+</sup>
+
+drawSingleCharacter(text: string, font: Font, x: number, y: number): void
+
+用于绘制单个字符。当前字型中的字体不支持待绘制字符时，退化到使用系统字体绘制字符。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                | 必填 | 说明        |
+| ------ | ------------------- | ---- | ----------- |
+| text   | string | 是   | 待绘制的单个字符，字符串的长度必须为1。  |
+| font   | [Font](#font) | 是   | 字型对象。  |
+| x      | number | 是   | 所绘制出的字符基线（下图蓝线）的左端点（下图红点）的横坐标，该参数为浮点数。 |
+| y      | number | 是   | 所绘制出的字符基线（下图蓝线）的左端点（下图红点）的纵坐标，该参数为浮点数。 |
+
+![zh-ch_image_Text_Blob.png](figures/zh-ch_image_Text_Blob.png)
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const brush = new drawing.Brush();
+    brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
+    const font = new drawing.Font();
+    font.setSize(20);
+    canvas.attachBrush(brush);
+    canvas.drawSingleCharacter("你", font, 100, 100);
+    canvas.drawSingleCharacter("好", font, 120, 100);
+    canvas.detachBrush();
+  }
+}
+```
+
 ### drawRegion<sup>12+</sup>
 
 drawRegion(region: Region): void
@@ -1497,7 +1543,7 @@ static makeFromString(text: string, font: Font, encoding?: TextEncoding): TextBl
 | 参数名   | 类型                          | 必填 | 说明                                   |
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string                        | 是   | 绘制字形的文本内容。                   |
-| font     | [Font](#font)                 | 是   | 文本大小、字体、文本比例等。           |
+| font     | [Font](#font)                 | 是   | 字型对象。           |
 | encoding | [TextEncoding](#textencoding) | 否   | 编码类型，默认值为TEXT_ENCODING_UTF8。 |
 
 **返回值：**
@@ -1547,7 +1593,7 @@ static makeFromRunBuffer(pos: Array\<TextBlobRunBuffer>, font: Font, bounds?: co
 | 参数名 | 类型                                               | 必填 | 说明                           |
 | ------ | -------------------------------------------------- | ---- | ------------------------------ |
 | pos    | Array\<[TextBlobRunBuffer](#textblobrunbuffer)>    | 是   | TextBlobRunBuffer数组。        |
-| font   | [Font](#font)                                      | 是   | 文本大小、字体、文本比例等。   |
+| font   | [Font](#font)                                      | 是   | 字型对象。   |
 | bounds | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 否   | 可选，如果不设置，则无边界框。 |
 
 **返回值：**
@@ -1948,6 +1994,48 @@ measureText(text: string, encoding: TextEncoding): number
 import { drawing } from '@kit.ArkGraphics2D';
 let font = new drawing.Font();
 font.measureText("drawing", drawing.TextEncoding.TEXT_ENCODING_UTF8);
+```
+
+### measureSingleCharacter<sup>12+</sup>
+
+measureSingleCharacter(text: string): number
+
+用于测量单个字符的宽度。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                | 必填 | 说明        |
+| ------ | ------------------- | ---- | ----------- |
+| text   | string | 是   | 待测量的单个字符，字符串的长度必须为1。  |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| number | 字符的宽度，浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const font = new drawing.Font();
+    font.setSize(20);
+    let width = font.measureSingleCharacter("你");
+  }
+}
 ```
 
 ### setScaleX<sup>12+</sup>
