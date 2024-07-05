@@ -1,6 +1,6 @@
-# UDMF数据记录变更说明
+# ArkData方舟数据管理变更说明
 
-## cl.unifiedRecord.1 getValue返回值类型变更
+## cl.ArkData.1 ValueType增加类型
 
 **访问级别**
 
@@ -8,11 +8,11 @@
 
 **变更原因**
 
-由于接口能力增强，需要返回值变更。
+由于接口能力增强，ValueType需要增加类型。
 
 **变更影响**
 
-该变更为非兼容性变更，getValue的返回值类型ValueType增加boolean、object、undefined、null数据类型。
+该变更为非兼容性变更，ValueType增加类型，导致getValue的返回值类型增加。
 
 **起始 API Level**
 
@@ -24,16 +24,16 @@
 
 **变更的接口/组件**
 
-变更之前，getValue接口的返回值类型ValueType如下：
+变更之前，ValueType类型如下：
 ```
 type ValueType = number | string | image.PixelMap | Want | ArrayBuffer
 ```
 
-变更之前，getValue接口的返回值类型ValueType如下：
+变更之后，ValueType类型如下：
 ```
 type ValueType = number | string | image.PixelMap | Want | ArrayBuffer | boolean | object | undefined | null
 ```
 
 **适配指导**
 
-使用ValueType类型作为getValue接口的返回值。
+getValue接口使用的示例代码可参考[getValue](../../../application-dev/reference/apis-arkdata/js-apis-data-unifiedDataChannel.md#getvalue12)。
