@@ -1,0 +1,35 @@
+# 安全子系统变更说明
+
+## cl.ability.1 securityGuard接口权限变更
+
+** 访问级别 **
+
+系统接口。
+
+** 变更原因 **
+
+由于架构调整，权限重新定义并日落旧权限，进行权限变更。
+
+** 变更影响 **
+
+该变更为非兼容性变更，接口权限变更后，接口仍能编译成功，但是接口原本的功能无法正常使用，调用接口会抛出201错误码。
+
+** 变更发生的版本 **
+
+从OpenHarmony SDK 5.0.0.33开始。
+
+**变更的接口**
+
+| 接口声明 | 变更前 | 变更后 |
+| ------- | ----- | ------ |
+| reportSecurityEvent(securityEvent: SecurityEvent): void | 需要ohos.permission.securityguard.REPORT_SECURITY_INFO权限 | 需要ohos.permission.REPORT_SECURITY_EVENT权限 |
+| querySecurityEvent(rules: Array<SecurityEventRule>, querier: Querier): void | 需要ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO权限 | 需要ohos.permission.QUERY_SECURITY_EVENT权限 |
+| startSecurityEventCollector(rule: CollectorRule): void | 需要ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO权限 | 需要ohos.permission.QUERY_SECURITY_EVENT权限 |
+| stopSecurityEventCollector(rule: CollectorRule): void | 需要ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO权限 | 需要ohos.permission.QUERY_SECURITY_EVENT权限 |
+| getModelResult(rule: ModelRule): Promise<ModelResult> | 需要ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT权限 | 需要ohos.permission.QUERY_SECURITY_MODEL_RESULT权限 |
+| on(type: 'securityEventOccur', securityEventInfo: SecurityEventInfo, callback: Callback<SecurityEvent>): void | 需要ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO权限 | 需要ohos.permission.QUERY_SECURITY_EVENT权限 |
+| off(type: 'securityEventOccur', securityEventInfo: SecurityEventInfo, callback?: Callback<SecurityEvent>): void | 需要ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO权限 | 需要ohos.permission.QUERY_SECURITY_EVENT权限 |
+
+**适配指导**
+
+业务申请并配置ohos.permission.REPORT_SECURITY_EVENT/ohos.permission.QUERY_SECURITY_EVENT/ohos.permission.QUERY_SECURITY_MODEL_RESULT等权限，仅用于迁移场景使用。
