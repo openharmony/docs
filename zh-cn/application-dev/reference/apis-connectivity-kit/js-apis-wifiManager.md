@@ -488,7 +488,7 @@ WAPI身份验证协议配置。
 
 WAPI认证方式的枚举。
 
-**系统能力：** SystemCapability.Communication.WiFi.STA
+**系统能力：** SystemCapability.Communication.WiFi.Core
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
