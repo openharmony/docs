@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import { abilityAccessCtrl } from '@kit.AbilityKit'
 ```
 
 ## AtManager
@@ -61,8 +61,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
@@ -113,8 +113,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
@@ -172,8 +172,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
@@ -224,8 +224,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
@@ -282,8 +282,8 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
@@ -335,8 +335,8 @@ setPermissionRequestToggleStatus(permissionName: Permissions, status: Permission
 **示例：**
 
 ```ts
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let permission: Permissions = 'ohos.permission.CAMERA';
@@ -388,8 +388,8 @@ getPermissionRequestToggleStatus(permissionName: Permissions): Promise&lt;Permis
 **示例：**
 
 ```ts
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let permission: Permissions = 'ohos.permission.CAMERA';
@@ -428,7 +428,7 @@ getVersion(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let promise = atManager.getVersion();
@@ -478,8 +478,8 @@ getPermissionsStatus(tokenID: number, permissionList: Array&lt;Permissions&gt;):
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
@@ -533,8 +533,7 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 **示例：**
 
 ```ts
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import bundleManager from '@ohos.bundle.bundleManager';
+import { abilityAccessCtrl, Permissions, bundleManager } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let appInfo: bundleManager.ApplicationInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
@@ -589,8 +588,7 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 **示例：**
 
 ```ts
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import bundleManager from '@ohos.bundle.bundleManager';
+import { abilityAccessCtrl, Permissions, bundleManager } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let appInfo: bundleManager.ApplicationInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
