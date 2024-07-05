@@ -142,15 +142,15 @@ OH_Drawing_RegisterFont()、OH_Drawing_RegisterFontBuffer()接口缺少对文件
 
 该变更为非兼容性变更。
 
-开发者若对报错码有判断，需要注意该种情况。
+开发者若对报错码有判断，需要注意适配新增报错码：9文件损坏。
 
 **API Level**
 
-12
+11
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.0.0.32 版本开始。
+从OpenHarmony API 12开始。
 
 **变更的接口/组件**
 
