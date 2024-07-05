@@ -43,7 +43,7 @@
       <!--Del-->
       - [使用App Linking实现应用间跳转](app-linking-startup.md)
       <!--DelEnd-->
-      - [应用间显式跳转切换link跳转适配指导](uiability-startup-adjust.md)
+      - [显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)
     - 通用意图跳转
       - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
       - [通过startAbility拉起文件处理类应用](file-processing-apps-startup.md)
