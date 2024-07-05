@@ -2434,6 +2434,8 @@ static getThreeLetterLanguage(locale: string): string
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
     let language : string = i18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
   } catch(error) {
@@ -2469,6 +2471,8 @@ static getThreeLetterRegion(locale: string): string
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
     let region : string = I18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
   } catch(error) {
