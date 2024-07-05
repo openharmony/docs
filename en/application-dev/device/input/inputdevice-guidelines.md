@@ -7,7 +7,7 @@ Input device management provides functions such as listening for device hot swap
 ## Modules to Import
 
 ```js
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import { inputDevice } from '@kit.InputKit';
 ```
 
 ## Available APIs
@@ -32,7 +32,7 @@ When a user enters text, the input method determines whether to launch the virtu
 
 
 ```js
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import { inputDevice } from '@kit.InputKit';
 
 let isPhysicalKeyboardExist = true;
 try {

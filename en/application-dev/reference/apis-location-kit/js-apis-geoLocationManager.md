@@ -465,7 +465,7 @@ Defines the source of the location result.
 | GNSS   | 1 |  GNSS positioning technology.|
 | NETWORK    | 2 | Network positioning technology.|
 | INDOOR     | 3 | Indoor high-precision positioning technology.|
-| RTK     | 4 | Outdoor high-precision positioning technology.<br>The system uses the real time kinematic (RTK) technology to process the difference between the carrier phase measurements of two base stations in real time. Specifically, it sends the carrier phase collected by the reference base station to the user's receiver to calculate the differential correction to obtain the coordinates.|
+| RTK     | 4 | Outdoor high-precision positioning technology.|
 
 
 ## geoLocationManager.on('locationChange')

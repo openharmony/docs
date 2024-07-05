@@ -12,7 +12,7 @@ The **request** module provides applications with basic upload, download, and ba
 
 
 ```js
-import request from '@ohos.request';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 
