@@ -2922,9 +2922,9 @@ let castDisplay: avSession.CastDisplayInfo;
 currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) => {
     if (display.state === avSession.CastDisplayState.STATE_ON) {
         castDisplay = display;
-        console.info('castDisplayChange display : ${display.id} ON');
+        console.info(`Succeeded in castDisplayChange display : ${display.id} ON`);
     } else if (display.state === avSession.CastDisplayState.STATE_OFF){
-        console.info('castDisplayChange display : ${display.id} OFF');
+        console.info(`Succeeded in castDisplayChange display : ${display.id} OFF`);
     }
 });
 ```
@@ -3098,13 +3098,11 @@ let castDisplay: avSession.CastDisplayInfo;
 currentAVSession.getAllCastDisplays()
   .then((data: Array< avSession.CastDisplayInfo >) => {
     if (data.length >= 1) {
-       castDisplay =  data[0];
-     } else {
-       console.info('There is not a cast display');
+       castDisplay = data[0];
      }
    })
    .catch((err: BusinessError) => {
-     console.info(`getAllCastDisplays BusinessError: code: ${err.code}, message: ${err.message}`);
+     console.error(`Failed to getAllCastDisplay. Code: ${err.code}, message: ${err.message}`);
    });
 ```
 
@@ -3738,41 +3736,89 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { http } from '@kit.NetworkKit';
 
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
-   let licenseRequestStr: string = TypeConversion.byteToString(requestData);
-   //get media key from DRM server
-   let licenseResponseStr: string = 'defaultStr';
-   let httpRequest = http.createHttp();
-   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
-   try {
-     let response: http.HttpResponse = await httpRequest.request(drmUrl, {
-        method: http.RequestMethod.POST,
-        header: {
-           'Content-Type': 'application/json',
-           'Accept-Encoding': 'gzip, deflate',
-        },
-        extraData: licenseRequestStr,
-        expectDataType: http.HttpDataType.STRING
-      });
-      if (response?.responseCode == http.ResponseCode.OK) {
-        if (typeof response.result == 'string') {
-          licenseResponseStr = response.result;
-        }
+  let licenseRequestStr: string = byteToString(requestData);
+  //get media key from DRM server
+  let licenseResponseStr: string = 'defaultStr';
+  let httpRequest = http.createHttp();
+  let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
+  let response: http.HttpResponse = await httpRequest.request(drmUrl, {
+      method: http.RequestMethod.POST,
+      header: {
+          'Content-Type': 'application/json',
+          'Accept-Encoding': 'gzip, deflate'
+      },
+      extraData: licenseRequestStr,
+      expectDataType: http.HttpDataType.STRING
+    });
+    if (response?.responseCode == http.ResponseCode.OK) {
+      if (typeof response.result == 'string') {
+        licenseResponseStr = response.result;
       }
-      httpRequest.destroy();
-   } catch (e) {
-     console.error(`HttpRequest error, error message: [` + JSON.stringify(e) + ']');
-     return;
-   }
+    }
+    httpRequest.destroy();
 
-   let licenseResponseData: Uint8Array = TypeConversion.stringToByte(licenseResponseStr);
-   try {
-    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponseData);
-   } catch (err) {
-    let error = err as BusinessError;
-    console.error(`processMediaKeyResponse error, error code: ${error.code}, error message: ${error.message}`);
-   }
+  let licenseResponseData: Uint8Array = stringToByte(licenseResponseStr);
+  aVCastController.processMediaKeyResponse(assetId, licenseResponseData);
 }
 
+/**
+ * Uint8Array to string
+ * @param arr Uint8Array
+ * @returns string
+ */
+static byteToString(arr: Uint8Array): string {
+  let str: string = ''
+  let _arr: Uint8Array = arr
+
+  for (let i = 0; i < _arr.length; i++) {
+    // 将数值转为二进制字符串
+    let binaryStr: string = _arr[i].toString(2)
+    let matchArray = binaryStr.match(new RegExp('/^1+?(?=0)/'))
+    if (matchArray && binaryStr.length == 8) {
+      let bytesLength: number = matchArray[0].length
+      let store: string = _arr[i].toString(2).slice(7 - bytesLength)
+
+      for (let j = 1; j < bytesLength; j++) {
+        store += _arr[j + i].toString(2).slice(2)
+      }
+      str += String.fromCharCode(Number.parseInt(store, 2))
+      i += bytesLength - 1
+    } else {
+      str += String.fromCharCode(_arr[i])
+    }
+  }
+  return str
+}
+
+/**
+ * string 转 Uint8Array
+ * @param str string
+ * @returns Uint8Array
+ */
+static stringToByte(str: string): Uint8Array {
+  let bytes: number[] = new Array()
+  let unicode: number
+
+  for (let i = 0; i < str.length; i++) {
+    unicode = str.charCodeAt(i)
+    if (unicode >= 0x010000 && unicode <= 0x10FFFF) {
+      bytes.push(((unicode >> 18) & 0x07) | 0xf0)
+      bytes.push(((unicode >> 12) & 0x3F) | 0x80)
+      bytes.push(((unicode >> 6) & 0x3F) | 0x80)
+      bytes.push((unicode & 0x3F) | 0x80)
+    } else if (unicode >= 0x000800 && unicode <= 0x00FFF) {
+      bytes.push(((unicode >> 12) & 0x07) | 0xf0)
+      bytes.push(((unicode >> 6) & 0x3F) | 0x80)
+      bytes.push((unicode & 0x3F) | 0x80)
+    } else if (unicode >= 0x000800 && unicode <= 0x0007FF) {
+      bytes.push(((unicode >> 6) & 0x3F) | 0x80)
+      bytes.push((unicode & 0x3F) | 0x80)
+    } else {
+      bytes.push(unicode & 0xFF)
+    }
+  }
+  return new Uint8Array(bytes)
+}
 ```
 
 ### release<sup>11+</sup>
@@ -4480,8 +4526,7 @@ on(type: 'keyRequest', callback: KeyRequestCallback): void
 
 ```ts
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
-  console.info(`keyRequestCallback : assetId : ${assetId}`);
-  console.info(`keyRequestCallback : requestData : ${requestData}`);
+  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
 }
 aVCastController.on('keyRequest', keyRequestCallback);
 ```
@@ -4536,8 +4581,7 @@ type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 
 ```ts
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
-  console.info(`keyRequestCallback : assetId : ${assetId}`);
-  console.info(`keyRequestCallback : requestData : ${requestData}`);
+  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
 }
 ```
 
