@@ -9167,7 +9167,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setDefaultDensityEnabled()<sup>12+</sup>
+### setDefaultDensityEnabled<sup>12+</sup>
 
 setDefaultDensityEnabled(enabled: boolean): void
 
