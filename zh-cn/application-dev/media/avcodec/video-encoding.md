@@ -141,7 +141,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - OH_AVCodecOnError 编码器运行错误；
     - OH_AVCodecOnStreamChanged  码流信息变化，如格式变化等；
     - OH_AVCodecOnNeedInputBuffer 输入回调无作用，用户通过获取的surface输入数据；
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。数据处理请参考 : [OnNewOutputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNewOutputBuffer)。
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成；
 
     示例如下所示
     ```c++
@@ -500,8 +500,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     注册回调函数指针集合OH_AVCodecCallback，包括：
     - OH_AVCodecOnError 编码器运行错误；
     - OH_AVCodecOnStreamChanged 码流信息变化，如格式变化等；
-    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即编码器已准备好，可以输入YUV/RGB数据。数据处理，请参考: [OnNeedInputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNeedInputBuffer)；
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。 数据处理，请参考: [OnNewOutputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNewOutputBuffer)
+    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即编码器已准备好，可以输入YUV/RGB数据；
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成；
 
     开发者可以通过处理该回调报告的信息，确保编码器正常运转。
 
