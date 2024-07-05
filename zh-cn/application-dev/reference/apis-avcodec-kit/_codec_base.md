@@ -130,7 +130,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist)            | 专辑艺术家的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_DATE](#oh_md_key_date)                            | 源格式日期的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_COMMENT](#oh_md_key_comment)                      | 源格式注释的键，值类型为string。该键是可选的。               |
-| [OH_MD_KEY_GENRE](#oh_md_key_genre)                          | 源格式类型的键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_GENRE](#oh_md_key_genre)                          | 源格式流派的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright)                  | 源格式版权的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_LANGUAGE](#oh_md_key_language)                    | 源格式语言的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_DESCRIPTION](#oh_md_key_description)              | 源格式描述的键，值类型为string。该键是可选的。               |
@@ -272,7 +272,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist) | 专辑艺术家的键，值类型为string。 |
 | const char \* [OH_MD_KEY_DATE](#oh_md_key_date) | 源格式日期的键，值类型为string。 |
 | const char \* [OH_MD_KEY_COMMENT](#oh_md_key_comment) | 源格式注释的键，值类型为string。 |
-| const char \* [OH_MD_KEY_GENRE](#oh_md_key_genre) | 源格式类型的键，值类型为string。 |
+| const char \* [OH_MD_KEY_GENRE](#oh_md_key_genre) | 源格式流派的键，值类型为string。 |
 | const char \* [OH_MD_KEY_COPYRIGHT](#oh_md_key_copyright) | 源格式版权的键，值类型为string。 |
 | const char \* [OH_MD_KEY_LANGUAGE](#oh_md_key_language) | 源格式语言的键，值类型为string。 |
 | const char \* [OH_MD_KEY_DESCRIPTION](#oh_md_key_description) | 源格式描述的键，值类型为string。 |
@@ -1817,7 +1817,7 @@ const char* OH_MD_KEY_FRAME_RATE
 const char* OH_MD_KEY_GENRE
 ```
 **描述**
-源格式类型的键，值类型为string。
+源格式流派的键，值类型为string。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
