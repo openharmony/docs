@@ -49,8 +49,6 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
-| 6600110  | Session is existed. |
-| 401      | Invalid param. |
 
 **示例：**
 
@@ -95,8 +93,6 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
-| 6600110  | Session is existed. |
-| 401      | Invalid param. |
 
 **示例：**
 
