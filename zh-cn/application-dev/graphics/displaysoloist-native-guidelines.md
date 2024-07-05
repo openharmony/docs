@@ -5,13 +5,13 @@
 
 ## 接口说明
 
-| 函数名称  | 说明     |
-|-----|--------|
-| OH_DisplaySoloist* OH_DisplaySoloist_Create (bool useExclusiveThread) |创建一个OH_DisplaySoloist实例。 |
-| OH_DisplaySoloist_Destroy (OH_DisplaySoloist * displaySoloist) | 销毁一个OH_DisplaySoloist实例。 |
-| OH_DisplaySoloist_Start (OH_DisplaySoloist * displaySoloist, OH_DisplaySoloist_FrameCallback callback, void * data ) | 设置每帧回调函数，每次VSync信号到来时启动每帧回调。 |
-| OH_DisplaySoloist_Stop (OH_DisplaySoloist * displaySoloist) | 停止请求下一次VSync信号，并停止调用回调函数callback。 |
-| OH_DisplaySoloist_SetExpectedFrameRateRange (OH_DisplaySoloist* displaySoloist, DisplaySoloist_ExpectedRateRange* range) | 设置期望帧率范围。 |
+| 函数名称                                                     | 说明                                                  |
+| ------------------------------------------------------------ | ----------------------------------------------------- |
+| OH_DisplaySoloist* OH_DisplaySoloist_Create (bool useExclusiveThread) | 创建一个OH_DisplaySoloist实例。                       |
+| OH_DisplaySoloist_Destroy (OH_DisplaySoloist * displaySoloist) | 销毁一个OH_DisplaySoloist实例。                       |
+| OH_DisplaySoloist_Start (OH_DisplaySoloist * displaySoloist, OH_DisplaySoloist_FrameCallback callback, void * data ) | 设置每帧回调函数，每次VSync信号到来时启动每帧回调。   |
+| OH_DisplaySoloist_Stop (OH_DisplaySoloist * displaySoloist)  | 停止请求下一次VSync信号，并停止调用回调函数callback。 |
+| OH_DisplaySoloist_SetExpectedFrameRateRange (OH_DisplaySoloist* displaySoloist, DisplaySoloist_ExpectedRateRange* range) | 设置期望帧率范围。                                    |
 
 ## 开发步骤
 
@@ -83,6 +83,7 @@ libnative_display_soloist.so
       }.height('40%')
    }
    ```
+   
 3. 在 Native C++层获取NativeXComponent。建议使用单例模式保存XComponent。此步骤需要在napi_init的过程中处理。
 
     创建一个PluginManger单例类，用于管理NativeXComponent。
@@ -149,6 +150,7 @@ libnative_display_soloist.so
 4. Native层配置帧率和注册回调函数。
 
    定义每帧回调函数内容。
+
    ```c++
    static void TestCallback(long long timestamp, long long targetTimestamp, void *data) 
    {
@@ -189,6 +191,7 @@ libnative_display_soloist.so
        }
    }
    ```
+
    使用DisplaySoloist接口配置帧率和注册每帧回调函数。
 
    > **说明：**
@@ -198,7 +201,7 @@ libnative_display_soloist.so
 
    ```c++
    static std::unordered_map<std::string, OH_DisplaySoloist *> g_displaySync;
-
+   
    napi_value SampleXComponent::NapiRegister(napi_env env, napi_callback_info info)
    {
        // ...
@@ -208,19 +211,19 @@ libnative_display_soloist.so
           SAMPLE_LOGE("NapiRegister: napi_get_cb_info fail");
           return nullptr;
        }
-
+   
        napi_value exportInstance;
        if (napi_get_named_property(env, thisArg, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok) {
           SAMPLE_LOGE("NapiRegister: napi_get_named_property fail");
           return nullptr;
        }
-
+   
        OH_NativeXComponent *nativeXComponent = nullptr;
        if (napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent)) != napi_ok) {
           SAMPLE_LOGE("NapiRegister: napi_unwrap fail");
           return nullptr;
        }
-
+   
        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
        if (OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
@@ -263,7 +266,7 @@ libnative_display_soloist.so
        OH_DisplaySoloist_Stop(g_displaySync[id]);; 
        // ...
    }
-
+   
    napi_value SampleXComponent::NapiDestroy(napi_env env, napi_callback_info info)
    {
        // ...
@@ -272,7 +275,7 @@ libnative_display_soloist.so
        g_displaySync.erase(id);       
        // ...
    }
-
+   
    // 实现XComponentContext.ts中ArkTS接口与C++接口的绑定和映射。
    void SampleXComponent::Export(napi_env env, napi_value exports) {
     if ((env == nullptr) || (exports == nullptr)) {
@@ -283,18 +286,17 @@ libnative_display_soloist.so
         {"register", nullptr, SampleXComponent::NapiRegister, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"unregister", nullptr, SampleXComponent::NapiUnregister, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"destroy", nullptr, SampleXComponent::NapiDestroy, nullptr, nullptr, nullptr, napi_default, nullptr}};
-
+   
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         SAMPLE_LOGE("Export: napi_define_properties failed");
     }
-  }
+   }
    ```
 
 5. TS层注册和取消注册每帧回调，销毁OH_DisplaySoloist实例。
 
-   ```ts
-
+   ```c++
    // 离开页面时，取消回调注册与销毁OH_DisplaySoloist实例
    aboutToDisappear(): void {
      Logger.info(TAG, "aboutToDisappear");
@@ -309,7 +311,7 @@ libnative_display_soloist.so
        this.xComponentContext2.destroy();
      }
    }
-
+   
    Row() {
        Button('Start')
          .id('Start')

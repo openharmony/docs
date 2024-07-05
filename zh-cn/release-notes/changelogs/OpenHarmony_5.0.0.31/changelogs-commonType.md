@@ -14,6 +14,10 @@ Asset的属性增加undefined类型破坏了Asset的通用性。
 
 该变更为非兼容性变更。Asset的属性去掉undefined类型支持。由于类型不匹配，可能导致代码编译失败。
 
+**起始 API Level**
+
+11
+
 **变更发生版本**
 
 从OpenHarmony SDK 5.0.0.31开始。

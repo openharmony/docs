@@ -3341,6 +3341,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_SCAN_SERVICE
+
+允许系统应用调用扫码直达服务提供的码值分发能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_FACTORY_OTA_DIR
 
 允许系统应用访问无线升级目录。

@@ -34,7 +34,7 @@ The following table provides only a simple description of the related APIs. For 
 
 ## How to Develop request APIs
 
-1. Import the **http** namespace from **@ohos.net.http.d.ts**.
+1. Import the **http** namespace from **@kit.NetworkKit**.
 2. Call **createHttp()** to create an **HttpRequest** object.
 3. Call **httpRequest.on()** to subscribe to HTTP response header events. This API returns a response earlier than the request. You can subscribe to HTTP response header events based on service requirements.
 4. Call **httpRequest.request()** to initiate a network request. You need to pass in the URL and optional parameters of the HTTP request.
@@ -44,8 +44,8 @@ The following table provides only a simple description of the related APIs. For 
 
 ```ts
 // Import the http namespace.
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
@@ -63,7 +63,7 @@ httpRequest.request(
     header: {
       'Content-Type': 'application/json'
     },
-    // This field is used to transfer data when the POST request is used.
+    // This field is used to transfer the request body when a POST request is used. Its format needs to be negotiated with the server.
     extraData: "data to send",
     expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
     usingCache: true, // Optional. The default value is true.
@@ -116,7 +116,7 @@ httpRequest.request(
 
 ## How to Develop requestInStream APIs
 
-1. Import the **http** namespace from **@ohos.net.http.d.ts**.
+1. Import the **http** namespace from **@kit.NetworkKit**.
 2. Call **createHttp()** to create an **HttpRequest** object.
 3. Depending on your need, call **on()** of the **HttpRequest** object to subscribe to HTTP response header events as well as events indicating receiving of HTTP streaming responses, progress of receiving HTTP streaming responses, and completion of receiving HTTP streaming responses.
 4. Call **requestInStream()** to initiate a network request. You need to pass in the URL and optional parameters of the HTTP request.
@@ -126,8 +126,8 @@ httpRequest.request(
 
 ```ts
 // Import the http namespace.
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
@@ -136,10 +136,14 @@ httpRequest.on('headersReceive', (header: Object) => {
   console.info('header: ' + JSON.stringify(header));
 });
 // Subscribe to events indicating receiving of HTTP streaming responses.
-let res = '';
+let res = new ArrayBuffer(0);
 httpRequest.on('dataReceive', (data: ArrayBuffer) => {
-  res += data;
-  console.info('res: ' + res);
+   const newRes = new ArrayBuffer(res.byteLength + data.byteLength);
+   const resView = new Uint8Array(newRes);
+   resView.set(new Uint8Array(res));
+   resView.set(new Uint8Array(data), res.byteLength);
+   res = newRes;
+   console.info('res length: ' + res.byteLength);
 });
 // Subscribe to events indicating completion of receiving HTTP streaming responses.
 httpRequest.on('dataEnd', () => {
@@ -160,7 +164,7 @@ let streamInfo: http.HttpRequestOptions = {
   header: {
     'Content-Type': 'application/json'
   },
-  // This field is used to transfer data when the POST request is used.
+  // This field is used to transfer the request body when a POST request is used. Its format needs to be negotiated with the server.
   extraData: "data to send",
   expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
   usingCache: true, // Optional. The default value is true.
@@ -170,11 +174,9 @@ let streamInfo: http.HttpRequestOptions = {
   usingProtocol: http.HttpProtocol.HTTP1_1 // Optional. The default protocol type is automatically specified by the system.
 }
 
-httpRequest.requestInStream(
-  // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
-  "EXAMPLE_URL",
-  streamInfo, (err: BusinessError, data: number) => {
-  console.error('error:' + JSON.stringify(err));
+// Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
+httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
+  console.info("requestInStream OK!");
   console.info('ResponseCode :' + JSON.stringify(data));
   // Unsubscribe from HTTP Response Header events.
   httpRequest.off('headersReceive');
@@ -186,6 +188,8 @@ httpRequest.requestInStream(
   httpRequest.off('dataEnd');
   // Call the destroy() method to release resources after HttpRequest is complete.
   httpRequest.destroy();
-}
-);
+}).catch((err: Error) => {
+  console.info("requestInStream ERROR : err = " + JSON.stringify(err));
+});
 ```
+

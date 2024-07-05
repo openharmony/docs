@@ -4,36 +4,37 @@ The **photoAccessHelper** module provides APIs for listening for media asset (im
 
 > **NOTE**
 >
-> Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
-> Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
+> - Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
+> - Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
 
-The APIs related to media asset change notifications can be called asynchronously only in callback mode. This topic covers only some of these APIs. For details about all available APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md). 
+The APIs related to media asset change notifications can be called asynchronously only in callback mode. This topic covers only some of these APIs. For details about all available APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
+
 Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
 
 ## Listening for a URI
 
 Use [registerChange](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#registerchange) to listen for a URI. When the observed object changes, the registered callback will be invoked to return the value.
 
-### Listening for a PhotoAsset
+### Listening for a Media Asset
 
 Register a listener for a **PhotoAsset** instance. When the observed **PhotoAsset** changes, the registered callback will be invoked to return the change.
 
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
-- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
+- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
-Example: Listen for changes of an image. When the image is favorited, the registered callback will be invoked.
+The following example describes how to register a listener for an image and then delete the image. A callback will be invoked when the image is deleted.
 
 **How to Develop**
 
-1. [Obtain the target media asset](photoAccessHelper-resource-guidelines.md#obtaining-media-assets).
-2. Register a listener for a **PhotoAsset**.
-3. Add the **PhotoAsset** to **Favorites**.
+1. [Obtain a media asset](photoAccessHelper-resource-guidelines.md#obtaining-media-assets).
+2. Register a listener for the media asset.
+3. Delete the media asset.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -52,7 +53,7 @@ async function example() {
       console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
     }
     phAccessHelper.registerChange(photoAsset.uri, false, onCallback);
-    await photoAsset.setFavorite(true);
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
     fetchResult.close();
   } catch (err) {
     console.error('onCallback failed with err: ' + err);
@@ -67,20 +68,20 @@ Register a listener for an album. When the observed album changes, the registere
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
-- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
+- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
-Example: Listen for a user album. When the album is renamed, the registered callback will be invoked.
+The following example describes how to register a listener for a user album and then rename the album. A callback will be invoked when the album is renamed.
 
 **How to Develop**
 
-1. [Obtain the target user album](photoAccessHelper-userAlbum-guidelines.md#obtaining-a-user-album).
+1. [Obtain a user album](photoAccessHelper-userAlbum-guidelines.md#obtaining-a-user-album).
 2. Register a listener for the user album.
 3. Rename the user album.
 
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -115,26 +116,26 @@ async function example() {
 
 You can set **forChildUris** to **true** to enable fuzzy listening.<br>If **uri** is an album URI, the value **true** of **forChildUris** enables listening for the changes of the files in the album, and the value **false** enables listening for only the changes of the album itself. <br>If **uri** is the URI of a **photoAsset**, there is no difference between **true** and **false** for **forChildUris**.<br>If **uri** is **DefaultChangeUri**, **forChildUris** must be set to **true**. If **forChildUris** is **false**, the URI cannot be found and no notification can be received.
 
-### Listening for All PhotoAssets
+### Listening for All Media Assets
 
-Register a listener for all **PhotoAssets**. When a **PhotoAsset** object changes, the registered callback will be invoked.
+Register a listener for all media assets. When a media asset changes, the registered callback will be invoked.
 
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
-- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
+- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
-Example: Register a listener for all **PhotoAssets**. When a **PhotoAsset** is favorited, the registered callback will be invoked.
+The following example describes how to register a listener for all media assets and then delete a media asset. A callback will be invoked when the media asset is deleted.
 
 **How to Develop**
 
-1. Register a listener for all **PhotoAssets**.
+1. Register a listener for all media assets.
 2. [Obtain a media asset](photoAccessHelper-resource-guidelines.md#obtaining-media-assets).
-3. Add the **PhotoAsset** to **Favorites**.
+3. Delete the media asset.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -152,7 +153,7 @@ async function example() {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
-    await photoAsset.setFavorite(true);
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
     fetchResult.close();
   } catch (err) {
     console.error('onCallback failed with err: ' + err);
@@ -167,19 +168,19 @@ Use [unRegisterChange](../../reference/apis-media-library-kit/js-apis-photoAcces
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
-- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
+- The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions. For details, see [Requesting Permissions](photoAccessHelper-preparation.md#requesting-permissions).
 
-Example: Unregister listening for an image. The unregistered listener callback will not be invoked when the image favorite status is changed.
+The following example describes how to unregister the listening for an image and then delete the image. The unregistered listener callback will not be invoked when the image is deleted.
 
 **How to Develop**
 
 1. [Obtain a media asset](photoAccessHelper-resource-guidelines.md#obtaining-media-assets).
-2. Unregister the listener for the URI of the media asset obtained.
-3. Add the **PhotoAsset** to **Favorites**.
+2. Unregister listening for the URI of the media asset obtained.
+3. Delete the media asset.
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -203,7 +204,7 @@ async function example() {
     phAccessHelper.registerChange(photoAsset.uri, false, onCallback1);
     phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
     phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
-    await photoAsset.setFavorite(true);
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
     fetchResult.close();
   } catch (err) {
     console.error('onCallback failed with err: ' + err);

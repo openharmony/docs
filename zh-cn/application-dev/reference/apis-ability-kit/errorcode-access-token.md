@@ -17,6 +17,10 @@ Invalid Parameter. Error message: ${messageInfo}.
 2. 指定的权限名为空或者权限名长度大于256。
 3. 请求授权/撤销权限的flag取值非法。
 4. 注册监听的参数检查错误。
+5. 指定的Context不属于当前应用。
+6. 请求的权限不属于同一个权限组。
+7. 请求的权限中存在应用未声明的权限；
+8. 请求的全局开关类型非法。
 
 **处理步骤**
 
@@ -151,3 +155,62 @@ Common inner error.
 **处理步骤**
 
 系统内部逻辑错误，需要结合故障日志进一步分析。
+
+## 12100010 存在未被处理的请求
+
+**错误信息**
+
+The request already exists.
+
+**可能原因**
+
+上一次请求未被处理。
+
+**处理步骤**
+
+请处理完上次请求。
+
+
+## 12100011 输入的所有权限均已被授权
+
+**错误信息**
+
+All permissions in the permission list have been granted.
+
+**可能原因**
+
+所有权限均已被授权。
+
+**处理步骤**
+
+无。
+
+
+## 12100012 输入的权限中存在未被用户拒绝过的权限
+
+**错误信息**
+
+The permission list contains the permission that has not been revoked by the user.
+
+**可能原因**
+
+存在未被用户拒绝过的权限。
+
+**处理步骤**
+
+请先调用requestPermissionFromUser向用户申请权限。
+
+
+## 12100013 全局开关已开启
+
+**错误信息**
+
+The specific global switch is already open.
+
+**可能原因**
+
+全局开关已开启。
+
+**处理步骤**
+
+无。

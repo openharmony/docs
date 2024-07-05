@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```ts
-import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
+import { Animator as animator, AnimatorOptions,AnimatorResult } from '@kit.ArkUI';
 ```
 ## create<sup>9+</sup>
 
@@ -52,7 +52,8 @@ create(options: AnimatorOptions): AnimatorResult
 **示例：** 
 
   ```ts
-import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
+import {Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let options: AnimatorOptions = {
    duration: 1500,
    easing: "friction",
@@ -99,8 +100,8 @@ reset(options: AnimatorOptions): void
 **示例：**
 
 ```ts
-import animator, { AnimatorOptions,AnimatorResult } from '@ohos.animator';
-import { BusinessError } from '@ohos.base';
+import {Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 let options: AnimatorOptions = {
   duration: 1500,
   easing: "friction",
@@ -228,9 +229,9 @@ onFrame: (progress: number) => void
 **示例：**
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import {Animator as animator, AnimatorResult } from '@kit.ArkUI';
 let animatorResult:AnimatorResult|undefined = animator.create(options)
-animatorResult.onFrame = (value)=> {
+animatorResult.onFrame = (value:number)=> {
   console.info("onFrame callback")
 }
 ```
@@ -246,7 +247,7 @@ onFinish: () => void
 **示例：**
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import {Animator as animator, AnimatorResult } from '@kit.ArkUI';
 let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.onFinish = ()=> {
   console.info("onFinish callback")
@@ -264,7 +265,7 @@ onCancel: () => void
 **示例：**
 
 ```ts
-import animator, { AnimatorResult } from '@ohos.animator';
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.onCancel = ()=> {
   console.info("onCancel callback")
@@ -282,8 +283,8 @@ onRepeat: () => void
 **示例：**
 
 ```ts
-import {Animator, AnimatorResult} from '@kit.ArkUI';
-let animatorResult:AnimatorResult|undefined = Animator.create(options)
+import {Animator as animator, AnimatorResult} from '@kit.ArkUI';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.onRepeat = ()=> {
   console.info("onRepeat callback")
 }
@@ -310,8 +311,8 @@ onframe: (progress: number) => void
 **示例：**
 
 ```ts
-import  { Animator, AnimatorResult } from '@kit.ArkUI';
-let animatorResult:AnimatorResult|undefined = Animator.create(options)
+import  { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.onframe = (value)=> {
   console.info("onframe callback")
 }
@@ -332,8 +333,8 @@ onfinish: () => void
 **示例：**
 
 ```ts
-import { Animator, AnimatorResult } from '@kit.ArkUI';
-let animatorResult:AnimatorResult|undefined = Animator.create(options)
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.onfinish = ()=> {
   console.info("onfinish callback")
 }
@@ -355,8 +356,8 @@ oncancel: () => void
 **示例：**
 
 ```ts
-import { Animator, AnimatorResult } from '@kit.ArkUI';
-let animatorResult:AnimatorResult|undefined = Animator.create(options)
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.oncancel = ()=> {
   console.info("oncancel callback")
 }
@@ -377,8 +378,8 @@ onrepeat: () => void
 **示例：**
 
 ```ts
-import { Animator, AnimatorResult } from '@kit.ArkUI';
-let animatorResult:AnimatorResult|undefined = Animator.create(options)
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+let animatorResult:AnimatorResult|undefined = animator.create(options)
 animatorResult.onrepeat = ()=> {
   console.info("onrepeat callback")
 }
@@ -401,8 +402,8 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange): void
 **示例：**
 
 ```ts
-import { Animator, AnimatorResult } from '@kit.ArkUI';
-let animatorResult: AnimatorResult | undefined = Animator.create({
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+let animatorResult: AnimatorResult | undefined = animator.create({
   duration: 2000,
   easing: "ease",
   delay: 0,
@@ -452,7 +453,7 @@ animatorResult.setExpectedFrameRateRange(expectedFrameRate);
 ```
 
 ```ts
-import { Animator, AnimatorResult } from '@kit.ArkUI';
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 let DataTmp:Record<string,Animator> = {
   'divWidth': 200,
@@ -487,7 +488,7 @@ class DateT{
       divHeight: 200,
       animator: null
     }
-    DataTmp.animator = Animator.create(options);
+    DataTmp.animator = animator.create(options);
   },
   Show() {
     let options1:AnimatorOptions = {
@@ -506,7 +507,7 @@ class DateT{
       animator: null
     }
     try {
-      DataTmp.animator = Animator.create(options1);
+      DataTmp.animator = animator.create(options1);
       DataTmp.animator.reset(options1);
     } catch(error) {
       let message = (error as BusinessError).message
@@ -530,7 +531,7 @@ class DateT{
 ### 基于ArkTS扩展的声明式开发范式
 
 ```ts
-import { Animator, AnimatorResult } from '@kit.ArkUI';
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 
 
 @Entry
@@ -544,7 +545,7 @@ struct AnimatorTest {
 
   create() {
     let _this = this
-    this.backAnimator = Animator.create({
+    this.backAnimator = animator.create({
       duration: 2000,
       easing: "ease",
       delay: 0,
@@ -711,7 +712,7 @@ update(options: AnimatorOptions): void
 **示例：**
 
 ```ts
-Animator.update(options);
+animator.update(options);
 ```
 
 ## createAnimator<sup>(deprecated)</sup>
@@ -739,7 +740,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **示例：** 
 
 ```ts
-import { Animator, AnimatorResult } from '@kit.ArkUI';
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 
 let options: AnimatorOptions = { // xxx.js文件中不需要强调显式类型AnimatorOptions
   duration: 1500,
@@ -751,5 +752,5 @@ let options: AnimatorOptions = { // xxx.js文件中不需要强调显式类型An
   begin: 200.0,
   end: 400.0,
 };
-this.animator = Animator.createAnimator(options);
+this.animator = animator.createAnimator(options);
 ```

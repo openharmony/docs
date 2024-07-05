@@ -356,8 +356,6 @@ wordBreak(value: WordBreak)
 
 设置断行规则。WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，maxLines组合使用可实现英文单词按字母截断，超出部分以省略号显示
 
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -382,8 +380,6 @@ selection(selectionStart: number, selectionEnd: number)
 
 当selectionStart或selectionEnd在截断不可见区域时不选中。截断为false时超出父组件的文本选中区域生效。
 
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -402,8 +398,6 @@ ellipsisMode(value: EllipsisMode)
 设置省略位置。ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis以及maxLines使用，单独设置ellipsisMode属性不生效。
 
 EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。
-
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -529,8 +523,6 @@ lineSpacing(value: LengthMetrics)
 
 设置文本的行间距，设置值不大于0时，取默认值0。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -622,8 +614,6 @@ onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按文本内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。目前文本复制仅支持文本。
 
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -639,8 +629,6 @@ onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
 文本选择的位置发生变化时，触发该回调。
-
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1044,6 +1032,7 @@ struct TextExample6 {
   @State url: string = 'www.********.com';
   @State email: string = '***@example.com';
   @State address: string = 'XX省XX市XX区XXXX';
+  @State datetime: string = 'XX年XX月XX日XXXX';
   @State enableDataDetector: boolean = true;
   @State types: TextDataDetectorType[] = [];
 
@@ -1054,7 +1043,8 @@ struct TextExample6 {
           '电话号码：' + this.phoneNumber + '\n' +
           '链接：' + this.url + '\n' +
           '邮箱：' + this.email + '\n' +
-          '地址：' + this.address
+          '地址：' + this.address + '\n' +
+          '时间：' + this.datetime
         )
           .fontSize(16)
           .copyOption(CopyOptions.InApp)
@@ -1071,7 +1061,6 @@ struct TextExample6 {
   }
 }
 ```
-![](figures/text7.png)
 
 ### 示例7
 

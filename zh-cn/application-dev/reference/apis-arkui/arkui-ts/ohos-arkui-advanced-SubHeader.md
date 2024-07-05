@@ -330,8 +330,7 @@ struct SubHeaderExample {
 
 ```ts
 // 该示例主要演示SubHeader设置标题和副标题字体样式以及标题内外边距的效果。
-import { promptAction, OperationType, SubHeader, LengthMetrics } from '@kit.ArkUI';
-import { TextModifier } from '@ohos.arkui.modifier';
+import { promptAction, OperationType, SubHeader, LengthMetrics, TextModifier } from '@kit.ArkUI';
 
 @Entry
 @Component

@@ -7,7 +7,7 @@ The **inputConsumer** module provides capabilities such as subscribing to combin
 ## Modules to Import
 
 ```js
-import inputConsumer from '@ohos.multimodalInput.inputConsumer';
+import { inputConsumer } from '@kit.InputKit';
 ```
 
 ## Available APIs
