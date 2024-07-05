@@ -23,12 +23,12 @@
 | 接口声明 | 变更前 | 变更后 |
 | ------- | ----- | ------ |
 | reportSecurityEvent(securityEvent: SecurityEvent): void | 需要ohos.permission.securityguard.REPORT_SECURITY_INFO权限 | 需要ohos.permission.REPORT_SECURITY_EVENT权限 |
-| querySecurityEvent(rules: Array<SecurityEventRule>, querier: Querier): void | 需要ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO权限 | 需要ohos.permission.QUERY_SECURITY_EVENT权限 |
+| querySecurityEvent(rules: Array&lt;SecurityEventRule&gt;, querier: Querier): void | 需要ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO权限 | 需要ohos.permission.QUERY_SECURITY_EVENT权限 |
 | startSecurityEventCollector(rule: CollectorRule): void | 需要ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO权限 | 需要ohos.permission.QUERY_SECURITY_EVENT权限 |
 | stopSecurityEventCollector(rule: CollectorRule): void | 需要ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO权限 | 需要ohos.permission.QUERY_SECURITY_EVENT权限 |
-| getModelResult(rule: ModelRule): Promise<ModelResult> | 需要ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT权限 | 需要ohos.permission.QUERY_SECURITY_MODEL_RESULT权限 |
-| on(type: 'securityEventOccur', securityEventInfo: SecurityEventInfo, callback: Callback<SecurityEvent>): void | 需要ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO权限 | 需要ohos.permission.QUERY_SECURITY_EVENT权限 |
-| off(type: 'securityEventOccur', securityEventInfo: SecurityEventInfo, callback?: Callback<SecurityEvent>): void | 需要ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO权限 | 需要ohos.permission.QUERY_SECURITY_EVENT权限 |
+| getModelResult(rule: ModelRule): Promise&lt;ModelResult&gt; | 需要ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT权限 | 需要ohos.permission.QUERY_SECURITY_MODEL_RESULT权限 |
+| on(type: 'securityEventOccur', securityEventInfo: SecurityEventInfo, callback: Callback&lt;SecurityEvent&gt;): void | 需要ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO权限 | 需要ohos.permission.QUERY_SECURITY_EVENT权限 |
+| off(type: 'securityEventOccur', securityEventInfo: SecurityEventInfo, callback?: Callback&lt;SecurityEvent&gt;): void | 需要ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO权限 | 需要ohos.permission.QUERY_SECURITY_EVENT权限 |
 
 **适配指导**
 
