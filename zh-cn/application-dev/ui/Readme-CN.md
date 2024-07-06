@@ -87,6 +87,10 @@
       - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
       - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
       - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+    - 自定义扩展
+      - [自定义扩展概述](arkts-user-defined-modifier.md)
+      - [AttributeModifier](arkts-user-defined-extension-attributeModifier.md)
+      - [AttributeUpdater](arkts-user-defined-extension-attributeUpdater.md)
   - [使用镜像能力](arkts-mirroring-display.md)
   - 使用NDK接口构建UI
     - [NDK接口概述](ndk-build-ui-overview.md)
