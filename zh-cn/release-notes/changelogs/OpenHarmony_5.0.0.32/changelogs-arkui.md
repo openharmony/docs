@@ -240,3 +240,123 @@ hideNonSecureWindows接口。
 **适配指导**
 
 接口行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.8 文本测算接口MeasureOptions入参对象fontSize参数默认单位实现修正
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+fontSize参数在文档描述中number类型默认单位是fp,实际实现是vp。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+系统设置显示和亮度下字体大小使用默认的标准档，变更前后文本测算接口返回结果相同。
+
+调整系统设置显示和亮度下字体大小标准档为特大档，文本测算接口变更前后行为如下表所示
+| 变更前 | 变更后 |
+| --- | --- |
+| measureText接口fontSize传入number类型值获取到的文本测算宽度结果小于实际fp单位fontSize文本测算宽度。 measureTextSize接口fontSize传入number类型值获取到的文本测算宽度高度结果均小于实际fp单位fontSize文本测算宽度高度。| measureText接口fontSize传入number类型值获取到的文本测算宽度结果等于实际fp单位fontSize文本测算宽度。 measureTextSize接口fontSize传入number类型值获取到的文本测算宽度高度结果等于实际fp单位fontSize文本测算宽度高度。 |
+
+**起始API Level**
+
+measureText:9，measureTextSize:10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+measureText和measureTextSize接口。
+
+**适配指导**
+
+变更前测算接口fontSize参数number类型默认单位实现为vp,调整系统设置显示和亮度下字体大小后测算接口的返回值无变化。
+
+若Text组件上fontSize设置的是vp类型字号，则在测算接口把number类型fontSize参数改为string类型显式传入vp类型字号参数即可。
+
+若Text组件上fontSize设置的是number类型值，则无需适配，此次变更后fontSize参数number类型默认单位实现修正为文档说明的fp，得到的测算结果就是字体大小调整后文本显示实际所需宽高。
+
+## cl.arkui.9 光标默认样式变更
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+默认样式变更。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：光标小圆圈默认直径为20vp。
+
+变更后：光标小圆圈默认直径为16vp。
+
+变更前后对比效果，如下表所示
+| 变更前 | 变更后 |
+| --- | --- |
+|![caretsquare_before](figures/caretsquareradius_before.PNG) |![caretsquare_after](figures/caretsquareradius_after.PNG)  |
+
+**起始API Level**
+
+不涉及公开接口。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+涉及光标的组件：TextInput、TextArea、Search、RichEditor。
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.10 高级组件SelectionMenu默认样式变更
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+默认样式变更。
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+变更前：自定义文本选择菜单点击“更多”后展开菜单会显示内置的置灰项分享翻译搜索。
+
+变更后：自定义文本选择菜单点击“更多”后展开菜单去除内置的置灰项分享翻译搜索。
+
+使用[示例](../../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md#示例)，变更前后对比效果，如下表所示：
+
+| 变更前 | 变更后 |
+| --- | --- |
+|![selectionmenu_before](figures/selectionmenumoreclicked_before.png) |![selectionmenu_after](figures/selectionmenumoreclecked_after.png)  |
+
+**起始API Level**
+
+不涉及公开接口。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+高级组件SelectionMenu。
+
+**适配指导**
+
+默认效果变更，无需适配。
