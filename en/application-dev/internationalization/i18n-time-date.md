@@ -216,3 +216,4 @@ let relativeTimeFormat6 = new intl.RelativeTimeFormat('en-GB', {numeric: 'auto'}
 let options = relativeTimeFormat6.resolvedOptions();
 let numeric = options.numeric; // numeric: auto
 ```
+<!--no_check-->

@@ -1,6 +1,6 @@
 # Contacts Kit Development
 
-The **contacts** module provide contact management capabilities, including adding, deleting, and updating contacts.
+The Contacts Kit allows users to add, delete, modify, and query contacts easily. It provides a series of APIs for you to quickly integrate contact management functions into your applications.
 
 For details, see [@ohos.contact](../reference/apis-contacts-kit/js-apis-contact.md).
 
@@ -11,18 +11,49 @@ To read contacts, you need to declare the **ohos.permission.READ_CONTACTS** perm
 
 To add, delete, or update contacts, you need to declare the **ohos.permission.WRITE_CONTACTS** permission. This permission is of the **system_basic** level.
 
-## How to Develop
+## Contact Selection
 
-1. Before requesting permissions, ensure that the [basic principles for using permissions](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
+When you select a contact, the contact list is displayed in Picker mode to facilitate selection. You do not need to apply for permissions for using the API.
 
-2. Generally, third-party applications is not accessible to the permissions. To manage contacts in an application, call the **permissions** API to obtain the contact editing permission.
+1. Import the related modules.
 
-3. Set a **Permissions** array containing required variables.
+   ```ts
+   import { contact } from '@kit.ContactsKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   ```
 
-4. Perform the permission operation of the corresponding contact.
+2. Call the contact API to display the contact list, and click the desired contact.
+
+   ```ts
+   contact.selectContacts({
+     isMultiSelect:false
+   },(err: BusinessError, data) => {
+       if (err) {
+         console.error(`selectContact callback: err->${JSON.stringify(err)}`);
+           return;
+       }
+       console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+   });
+
+   ```
+
+3. View the returned contact data.
+
+<!--Del-->
+## Contact Management (for System Applications Only)
+
+1. Declare the required permission:
+   - To delete a contact, you need to declare the **ohos.permission.WRITE_CONTACTS** permission to call the **deleteContact** API. This permission is of the **system_basic** level.
+   - To update a contact, you need to declare the **ohos.permission.WRITE_CONTACTS** permission to call the **updateContact** API. This permission is of the **system_basic** level.
+   - To query a contact, you need to declare the **ohos.permission.READ_CONTACTS** permission to call the **queryContact** API. This permission is of the **system_basic** level.
+   Before declaring the required permission, ensure that the [basic principles for using permissions](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Then, declare the requried permission by referring to [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+
+2. Include an array of required permissions in **Permissions**.
+
+3. Perform the corresponding operation on the contact.
 
 ```ts
-// Sample code 1
+// Sample code
 let context = getContext(this) as common.UIAbilityContext;
 const permissions: Array<Permissions> = ['ohos.permission.WRITE_CONTACTS'];
 
@@ -34,10 +65,21 @@ abilityAccessCtrl.createAtManager().requestPermissionsFromUser(context, permissi
     }
 })
 
-// Sample code 2
-import common from '@ohos.app.ability.common';
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import contact from '@ohos.contact';
+```
+<!--DelEnd-->
+
+## Contact Management
+
+To implement contact management for an application, use the **permissions** API to request for the contact editing permission.
+
+1. Include an array of required permissions in **Permissions**.
+
+2. Perform the corresponding operation on the contact.
+
+```ts
+// Sample code
+import { common, abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+import { contact } from '@kit.ContactsKit';
 
 @Entry
 @Component
