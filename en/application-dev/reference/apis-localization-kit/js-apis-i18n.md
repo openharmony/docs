@@ -1152,13 +1152,14 @@ getLocationName(number: string, locale: string): string
 Obtains the home location of a phone number.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
 
 | Name   | Type    | Mandatory  | Description  |
 | ------ | ------ | ---- | ---- |
-| number | string | Yes   | Phone number.|
+| number | string | Yes   | Phone number. To obtain the home location of a number in other countries/regions, you need to prefix the number with **00** and the country code.|
 | locale | string | Yes   | Locale ID.|
 
 **Return value**
@@ -1171,12 +1172,13 @@ Obtains the home location of a phone number.
   ```ts
   let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
   let locationName: string = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "Zhanjiang, Guangdong Province"
+  let locName: string = phonenumberfmt.getLocationName("0039312****789", "zh-CN"); // locName = "Italy"
   ```
 
 
 ## PhoneNumberFormatOptions<sup>8+</sup>
 
-Defines the options for this PhoneNumberFormat object.
+Defines the options for this **PhoneNumberFormat** object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2422,7 +2424,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
   ```ts
   try {
-    let language : string = I18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
+    let language : string = i18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
   } catch(error) {
     console.error(`call I18NUtil.getThreeLetterLanguage failed, error code: ${error.code}, message: ${error.message}.`);
   }
@@ -2457,7 +2459,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
   ```ts
   try {
-    this.message = I18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
+    let region : string = i18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
   } catch(error) {
     console.error(`call I18NUtil.getThreeLetterRegion failed, error code: ${error.code}, message: ${error.message}.`);
   }
