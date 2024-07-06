@@ -80,39 +80,3 @@ API12
 接口使用的示例代码可参考:
 
 [ArkTS容器集 - TypedArray](../../../application-dev/reference/apis-arkts/js-apis-arkts-collections.md#collectionstypedarray)
-
-## cl.arkcompiler.2 collections中删除@crossplatform注解
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-跨平台场景不支持Sendable
-
-**变更影响**
-
-该变更为兼容性变更。
-
-- **变更前** 在跨平台场景使用相关的Sendable API，应用能正常编译，但是运行时报错
-- **变更后** 在跨平台场景使用相关的Sendable API，应用编译失败
-
-**起始API Level**
-
-API12
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.31 版本开始。
-
-**变更的接口/组件**
-下面文件中所有标记@crossplatform的接口
-1. /interface/sdk-js/arkts/@arkts.collections.d.ets
-2. /interface/sdk-js/arkts/@arkts.lang.d.ets
-3. /interface/sdk-js/arkts/@arkts.Decimal.d.ets
-4. /interface/sdk-js/arkts/@arkts.utils.d.ets
-
-**适配指导**
-
-不支持跨平台场景
