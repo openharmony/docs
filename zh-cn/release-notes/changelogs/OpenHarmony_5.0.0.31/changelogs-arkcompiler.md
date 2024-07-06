@@ -12,11 +12,11 @@ Sendable容器TypedArray提供map方法。该方法对TypedArray中的每个元�
 
 以Uint8Array为例，变更前，map函数的callbackFn声明无返回值，导致转换后的数据丢失，引起开发者使用上的困惑。
 - map方法的回调函数声明为`map(callbackFn: TypedArrayForEachCallback<number, Uint8Array>): Uint8Array;`
-- 而TypedArrayForEachCallback 的定义为无返回值的：`  type TypedArrayForEachCallback<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => void;`
+- 而TypedArrayForEachCallback 的定义为无返回值的：`type TypedArrayForEachCallback<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => void;`
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
 **变更前**
 
@@ -77,6 +77,10 @@ API12
 
 **适配指导**
 
-接口使用的示例代码可参考:
+- 举例：上述场景二的例子，可以做如下修改：
+```
+let wrongTypeMapped: collections.Uint8Array = uint8.map((value: number) => parseInt(value + "1")); // 通过parseInt进行字符串到number的转换
+```
 
+- 详细说明参见：接口使用的示例代码:
 [ArkTS容器集 - TypedArray](../../../application-dev/reference/apis-arkts/js-apis-arkts-collections.md#collectionstypedarray)
