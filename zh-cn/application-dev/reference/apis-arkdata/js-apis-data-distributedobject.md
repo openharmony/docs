@@ -147,13 +147,13 @@ let sessionId: string = distributedDataObject.genSessionId();
 
 **参数：**
 
-  | 名称       | 类型                                                                 | 必填 | 说明                                 |
-  | ---------- | -------------------------------------------------------------------- | ---- | ------------------------------------ |
-  | storeName  | string                                                               | 是   | 待绑定资产在所属的数据库中的库名。   |
-  | tableName  | string                                                               | 是   | 待绑定资产在所属的数据库中的表名。   |
-  | primaryKey | [CommonType.ValuesBucket](js-apis-data-commonType.md#valuesbucket) | 是   | 待绑定资产在所属的数据库中的主键。   |
-  | field      | string                                                               | 是   | 待绑定资产在所属的数据库中的列名。   |
-  | assetName  | string                                                               | 是   | 待绑定资产在所属的数据库中的资产名。 |
+  | 名称       | 类型                                                               | 必填 | 说明                                 |
+  | ---------- | ------------------------------------------------------------------ | ---- | ------------------------------------ |
+  | storeName  | string                                                             | 是   | 待绑定资产在所属的数据库中的库名。   |
+  | tableName  | string                                                             | 是   | 待绑定资产在所属的数据库中的表名。   |
+  | primaryKey | [commonType.ValuesBucket](js-apis-data-commonType.md#valuesbucket) | 是   | 待绑定资产在所属的数据库中的主键。   |
+  | field      | string                                                             | 是   | 待绑定资产在所属的数据库中的列名。   |
+  | assetName  | string                                                             | 是   | 待绑定资产在所属的数据库中的资产名。 |
 
 ## DataObject
 
@@ -700,7 +700,7 @@ class EntryAbility extends UIAbility {
         'uuid': '00000000-0000-0000-0000-000000000000'
       },
       field: 'attachment',
-      assetName: attachment.name
+      assetName: attachment.name as string
     }
 
     g_object.bindAssetStore('attachment', bindInfo, (err: BusinessError) => {
@@ -787,7 +787,7 @@ class EntryAbility extends UIAbility {
         'uuid': '00000000-0000-0000-0000-000000000000'
       },
       field: 'attachment',
-      assetName: attachment.name
+      assetName: attachment.name as string
     }
 
     g_object.bindAssetStore("attachment", bindInfo).then(() => {

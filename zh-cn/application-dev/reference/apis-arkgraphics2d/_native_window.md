@@ -59,7 +59,7 @@
 | -------- | -------- |
 | [OHNativeWindow](#ohnativewindow) \* [OH_NativeWindow_CreateNativeWindow](#oh_nativewindow_createnativewindow) (void \*pSurface) | 创建OHNativeWindow实例，每次调用都会产生一个新的OHNativeWindow实例。 说明：此接口不可用，可通过**OH_NativeImage_AcquireNativeWindow**创建，或通过XComponent创建。 | 
 | void [OH_NativeWindow_DestroyNativeWindow](#oh_nativewindow_destroynativewindow) ([OHNativeWindow](#ohnativewindow) \*window) | 将OHNativeWindow对象的引用计数减1，当引用计数为0的时候，该OHNativeWindow对象会被析构掉。 | 
-| [OHNativeWindowBuffer](#ohnativewindowbuffer) \* [OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer](#oh_nativewindow_createnativewindowbufferfromsurfacebuffer) (void \*pSurfaceBuffer) | 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。 说明：此接口不可用，使用[OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer)替代。 | 
+| [OHNativeWindowBuffer](#ohnativewindowbuffer) \* [OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer](#oh_nativewindow_createnativewindowbufferfromsurfacebuffer) (void \*pSurfaceBuffer) | 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。 此接口从API version 12开始废弃，使用[OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer)替代。 | 
 | [OHNativeWindowBuffer](#ohnativewindowbuffer) \* [OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer) (OH_NativeBuffer \*nativeBuffer) | 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。 | 
 | void [OH_NativeWindow_DestroyNativeWindowBuffer](#oh_nativewindow_destroynativewindowbuffer) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | 将OHNativeWindowBuffer对象的引用计数减1，当引用计数为0的时候，该OHNativeWindowBuffer对象会被析构掉。 | 
 | int32_t [OH_NativeWindow_NativeWindowRequestBuffer](#oh_nativewindow_nativewindowrequestbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd) | 通过OHNativeWindow对象申请一块OHNativeWindowBuffer，用以内容生产。 | 
@@ -229,8 +229,8 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | GET_BUFFER_GEOMETRY | 获取本地窗口缓冲区几何图形， 函数中的可变参数是 [输出] int32_t \*height， [输出] int32_t \*width。 | 
 | GET_FORMAT | 获取本地窗口缓冲区格式， 函数中的可变参数是 [输出] int32_t \*format。 | 
 | SET_FORMAT | 设置本地窗口缓冲区格式， 函数中的可变参数是 [输入] int32_t format。 | 
-| GET_USAGE | 获取本地窗口读写方式， 函数中的可变参数是 [输出] int32_t \*usage。 | 
-| SET_USAGE | 设置本地窗口缓冲区读写方式， 函数中的可变参数是 [输入] int32_t usage。 | 
+| GET_USAGE | 获取本地窗口读写方式， 函数中的可变参数是 [输出] uint64_t \*usage。 | 
+| SET_USAGE | 设置本地窗口缓冲区读写方式， 函数中的可变参数是 [输入] uint64_t usage。 | 
 | SET_STRIDE | 设置本地窗口缓冲区步幅， 函数中的可变参数是 [输入] int32_t stride。 | 
 | GET_STRIDE | 获取本地窗口缓冲区步幅， 函数中的可变参数是 [输出] int32_t \*stride。 | 
 | SET_SWAP_INTERVAL | 设置本地窗口缓冲区交换间隔， 函数中的可变参数是 [输入] int32_t interval。 | 
@@ -316,7 +316,7 @@ enum OHScalingModeV2
 | OH_SCALING_MODE_SCALE_TO_WINDOW_V2  | 缓冲区进行拉伸缩放以匹配窗口大小。| 
 | OH_SCALING_MODE_SCALE_CROP_V2  | 缓冲区按原比例缩放，使得缓冲区的较小边与窗口匹配， 较长边超出窗口部分被视为透明。 | 
 | OH_SCALING_MODE_NO_SCALE_CROP_V2  | 按窗口大小将缓冲区裁剪，裁剪矩形之外的像素被视为完全透明。 | 
-| OH_SCALING_MODE_SCALE_FIT_V2  | 缓冲区按原比例缩放。优先显示所有缓冲区内容。 如果比例与窗口比例不同，用背景颜色填充窗口的未填充区域。开发板和模拟器不支持该模式。| 
+| OH_SCALING_MODE_SCALE_FIT_V2  | 缓冲区按原比例缩放。优先显示所有缓冲区内容。 如果比例与窗口比例不同，用背景颜色填充窗口的未填充区域。<!--Del-->开发板和<!--DelEnd-->模拟器不支持该模式。| 
 
 
 ## 函数说明
@@ -540,6 +540,10 @@ OHNativeWindow* OH_NativeWindow_CreateNativeWindow (void* pSurface)
 
 创建OHNativeWindow实例，每次调用都会产生一个新的OHNativeWindow实例。 说明：此接口不可用，可通过**OH_NativeImage_AcquireNativeWindow**创建，或通过XComponent创建。
 
+**废弃版本：** 12
+
+**替代接口：** 不再提供替代接口。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
 **起始版本：** 8
@@ -590,7 +594,9 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer 
 
 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。
 
-说明：此接口不可用，使用[OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer)替代。
+**废弃版本：** 12
+
+**替代接口：** [OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -709,6 +715,10 @@ int32_t OH_NativeWindow_GetLastFlushedBuffer (OHNativeWindow *window, OHNativeWi
 **描述**
 
 从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer。
+
+**废弃版本：** 12
+
+**替代接口：** [OH_NativeWindow_GetLastFlushedBufferV2](#oh_nativewindow_getlastflushedbufferv2)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 

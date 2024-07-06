@@ -85,8 +85,8 @@ async function demo() {
 
 | 名称           | 类型                               | 必填   | 说明         |
 | -------------- | --------------------------------- | ----- | ------------ |
-| cameraPosition       | [CameraPosition](js-apis-camera.md#cameraposition) | 是    | 相机的位置。   |
-| saveUri        | string                            | 否    | 保存配置信息的uri。|
+| cameraPosition       | [camera.CameraPosition](js-apis-camera.md#cameraposition) | 是    | 相机的位置。   |
+| saveUri        | string                            | 否    | 保存配置信息的uri（录像暂不支持传入自定义的uri）。|
 | videoDuration  | number                            | 否    | 录制的最大时长。|
 
 

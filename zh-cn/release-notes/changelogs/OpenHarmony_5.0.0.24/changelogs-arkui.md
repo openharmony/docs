@@ -456,3 +456,44 @@ Menu组件中的radius接口
 
 若预期是使用菜单默认圆角，则无需给Menu组件设置radius属性；
 若预期使用自定义圆角，可通过radius接口设置为自定义值，且自定义值不超出边界值。
+
+## cl.arkui.8 RichEditor的onWillChange、onDidChange接口规格变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+接口能力增强
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：
+
+OnWillChange回调函数的参数RichEditorChangeValue，是被替换的Span与新Span的信息。
+OnDidChange回调函数的返回值是新Span的信息。
+
+变更后：
+
+OnWillChange回调函数的参数RichEditorChangeValue，是被替换内容的索引范围与新Span的信息。
+OnDidChange回调函数的返回值，是被替换内容的索引范围与新内容的索引范围。
+
+
+**API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.24 版本开始。
+
+**变更的接口/组件**
+
+RichEditor的OnWillChange、OnDidChange接口。
+
+**适配指导**
+
+增强后的接口使用见[接口文档](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#示例17)

@@ -178,7 +178,7 @@ sendMouseEvent(event: MouseEvent): boolean
 
 ```ts
 // xxx.ets
-import { IntentionCode } from '@ohos.multimodalInput.intentionCode'
+import { IntentionCode } from '@kit.InputKit'
 
 class Utils {
   static rect_left: number

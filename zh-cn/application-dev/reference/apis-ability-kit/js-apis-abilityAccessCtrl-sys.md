@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import { abilityAccessCtrl } from '@kit.AbilityKit'
 ```
 
 ## AtManager
@@ -33,7 +33,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。            |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 64表示当次用户若选择仅本次允许，权限仅本次授权，应用切换后台状态或退出后取消授权。 |
 
@@ -61,8 +61,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
@@ -90,7 +90,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。|
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 64表示当次用户若选择仅本次允许，权限仅本次授权，应用切换后台状态或退出后取消授权。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 授予应用user_grant权限。当授予权限成功时，err为undefined；否则为错误对象。 |
@@ -113,8 +113,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
@@ -144,7 +144,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。           |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 64表示当次用户若选择仅本次允许，权限仅本次授权，应用切换后台状态或退出后取消授权。 |
 
@@ -172,8 +172,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
@@ -201,7 +201,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。           |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 64表示当次用户若选择仅本次允许，权限仅本次授权，应用切换后台状态或退出后取消授权。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 撤销应用user_grant权限。当撤销权限成功时，err为undefined；否则为错误对象。 |
@@ -224,8 +224,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
@@ -255,7 +255,7 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。            |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions              | 是   | 查询的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 
 **返回值：**
@@ -282,8 +282,8 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
@@ -335,8 +335,8 @@ setPermissionRequestToggleStatus(permissionName: Permissions, status: Permission
 **示例：**
 
 ```ts
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let permission: Permissions = 'ohos.permission.CAMERA';
@@ -388,8 +388,8 @@ getPermissionRequestToggleStatus(permissionName: Permissions): Promise&lt;Permis
 **示例：**
 
 ```ts
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let permission: Permissions = 'ohos.permission.CAMERA';
@@ -428,7 +428,7 @@ getVersion(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let promise = atManager.getVersion();
@@ -453,7 +453,7 @@ getPermissionsStatus(tokenID: number, permissionList: Array&lt;Permissions&gt;):
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。            |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionList | Array&lt;Permissions&gt;   | 是   | 待获取权限状态的权限名列表，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 
 **返回值：**
@@ -478,8 +478,8 @@ getPermissionsStatus(tokenID: number, permissionList: Array&lt;Permissions&gt;):
 **示例：**
 
 ```ts
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import { BusinessError } from '@ohos.base';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
@@ -533,8 +533,7 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 **示例：**
 
 ```ts
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import bundleManager from '@ohos.bundle.bundleManager';
+import { abilityAccessCtrl, Permissions, bundleManager } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let appInfo: bundleManager.ApplicationInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
@@ -589,8 +588,7 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 **示例：**
 
 ```ts
-import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import bundleManager from '@ohos.bundle.bundleManager';
+import { abilityAccessCtrl, Permissions, bundleManager } from '@kit.AbilityKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let appInfo: bundleManager.ApplicationInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
@@ -638,7 +636,7 @@ try {
 | 名称           | 类型                       | 只读 | 必填 | 说明                |
 | -------------- | ------------------------- | ---- | ---- | ------------------ |
 | change         | [PermissionStateChangeType](#permissionstatechangetype9) | 是   | 是   | 权限授权状态变化类型。        |
-| tokenID        | number                    | 是   | 是   | 被订阅的应用身份标识。 |
+| tokenID        | number                    | 是   | 是   | 被订阅的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions                    | 是   | 是   | 当前授权状态发生变化的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 
 ### PermissionStatus<sup>12+</sup>

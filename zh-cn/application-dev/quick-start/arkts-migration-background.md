@@ -99,7 +99,7 @@ notify('Jack', 'You look great today')
 ```
 
 在大多数情况下，函数`notify`会接受两个`string`类型的变量作为输入，产生一个新的字符串。但是，如果将一些特殊值作为输入，例如`notify(null, undefined)`，情况会怎么样呢？
-程序仍会正常运行，输出预期值：`Dear undefined, a message for you: null`。一切看起来正常，但是请注意，为了保证该场景下程序的正确性，引擎总是在运行时进行类型检查，执行类似以下的伪代码。
+程序仍会正常运行，输出预期值：`Dear null, a message for you: undefined`。一切看起来正常，但是请注意，为了保证该场景下程序的正确性，引擎总是在运行时进行类型检查，执行类似以下的伪代码。
 
 ```typescript
 function __internal_tostring(s: any): string {

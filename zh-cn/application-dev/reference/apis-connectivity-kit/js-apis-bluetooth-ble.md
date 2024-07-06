@@ -3291,7 +3291,7 @@ try {
 
 setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-向服务端发送设置通知此特征值请求。使用Callback异步回调。
+向服务端发送设置通知此特征值请求，需要对端设备的回复。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3349,7 +3349,7 @@ try {
 
 setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boolean): Promise&lt;void&gt;
 
-向服务端发送设置通知此特征值请求。使用Promise异步回调。
+向服务端发送设置通知此特征值请求，需要对端设备的回复。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 

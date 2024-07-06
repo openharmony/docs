@@ -39,7 +39,7 @@ EXTERN_C_END
 1. 打开src\main\cpp\types\libentry\index.d.ts（其中libentry根据工程名生成），导入如下引用文件:
 
     ```js
-    import image from '@ohos.multimedia.image'
+    import { image } from '@kit.ImageKit';
 
     export const createFromReceiver: (a: image.ImageReceiver) => image.Image;
     ```
@@ -48,9 +48,9 @@ EXTERN_C_END
 
     ```js
     import testNapi from 'libentry.so'
-    import image from '@ohos.multimedia.image'
-    import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-    import camera from '@ohos.multimedia.camera'
+    import { image } from '@kit.ImageKit';
+    import { abilityAccessCtrl } from '@kit.AbilityKit';
+    import { camera } from '@kit.CameraKit';
 
     @Entry
     @Component

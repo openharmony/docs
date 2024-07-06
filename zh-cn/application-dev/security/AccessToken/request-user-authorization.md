@@ -49,7 +49,7 @@
    
    const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
    
-   async function checkAccessToken(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
+   async function checkPermissionGrant(permission: Permissions): Promise<abilityAccessCtrl.GrantStatus> {
      let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
      let grantStatus: abilityAccessCtrl.GrantStatus = abilityAccessCtrl.GrantStatus.PERMISSION_DENIED;
    
@@ -76,7 +76,7 @@
    }
    
    async function checkPermissions(): Promise<void> {
-     let grantStatus: abilityAccessCtrl.GrantStatus = await checkAccessToken(permissions[0]);
+     let grantStatus: abilityAccessCtrl.GrantStatus = await checkPermissionGrant(permissions[0]);
    
      if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
        // 已经授权，可以继续访问目标操作

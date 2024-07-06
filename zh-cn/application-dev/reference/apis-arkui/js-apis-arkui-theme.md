@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.arkui.theme';
+import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@kit.ArkUI';
 ```
 
 ## Theme
@@ -34,7 +34,7 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 
 | 名称                           | 类型                                                 | 只读  | 可选  | 说明               |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------------|
-| brand                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 品牌色。           |
+| brand                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 品牌色。             |
 | warning                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级警示色。           |
 | alert                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级提示色。           |
 | confirm                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 确认色。             |
@@ -68,7 +68,7 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 | compBackgroundPrimaryContrary | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 常亮背景。            |
 | compBackgroundGray            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 灰色背景。            |
 | compBackgroundSecondary       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级背景。            |
-| compBackgroundTertiary        | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级背景。            |
+| compBackgroundTertiary        | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级背景。            |
 | compBackgroundEmphasize       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 高亮背景。            |
 | compBackgroundNeutral         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 黑色中性高亮背景颜色。      |
 | compEmphasizeSecondary        | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 20%高亮背景颜色。       |
@@ -137,7 +137,7 @@ setDefaultTheme(theme: [CustomTheme](#customtheme)): void
 **示例**
 
 ```ts
-import { CustomTheme, CustomColors, ThemeControl } from '@ohos.arkui.theme';
+import { CustomTheme, CustomColors, ThemeControl } from '@kit.ArkUI';
 // 自定义主题颜色
 class BlueColors implements CustomColors {
   fontPrimary = Color.White;

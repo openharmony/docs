@@ -1,33 +1,36 @@
 # LocationButton
 
-
 安全控件的位置控件，用户通过点击该位置按钮，可以临时获取精准定位权限，而不需要权限弹框授权确认。
-
 
 > **说明：**
 >
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
 ## 子组件
 
 不支持。
 
-
 ## 接口
+
 ### LocationButton
+
 LocationButton()
 
 默认创建带有图标、文本、背景的位置按钮。
+
+为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### LocationButton
+
 LocationButton(option:LocationButtonOptions)
 
 创建包含指定元素的位置按钮。
+
+为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -51,7 +54,6 @@ LocationButton(option:LocationButtonOptions)
 | text | [LocationDescription](#locationdescription枚举说明) | 否 | 设置位置按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
 | buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置位置按钮的背景样式<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
-
 ## LocationIconStyle枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -62,7 +64,6 @@ LocationButton(option:LocationButtonOptions)
 | -------- | -------- | -------- |
 | FULL_FILLED |  0 | 位置按钮展示填充样式图标。 |
 | LINES | 1 | 位置按钮展示线条样式图标。 |
-
 
 ## LocationDescription枚举说明
 
@@ -84,7 +85,6 @@ LocationButton(option:LocationButtonOptions)
 | PUNCH_IN | 9 | 位置按钮的文字描述为“打卡定位”。 |
 | CURRENT_POSITION | 10 | 位置按钮的文字描述为“所在位置”。 |
 
-
 ## LocationButtonOnClickResult枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -96,11 +96,9 @@ LocationButton(option:LocationButtonOptions)
 | SUCCESS | 0 | 位置按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 位置按钮点击后位置权限授权失败。 |
 
-
 ## 属性
 
 不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md#属性)。
-
 
 ## 事件
 
@@ -123,10 +121,9 @@ onClick(event: (event: ClickEvent, result: LocationButtonOnClickResult) =&gt; vo
 | event  | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明|
 | result | [LocationButtonOnClickResult](#locationbuttononclickresult枚举说明)| 是 | 位置权限的授权结果。|
 
-
 ## 示例
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component

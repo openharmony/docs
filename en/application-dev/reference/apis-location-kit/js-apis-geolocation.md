@@ -5,6 +5,7 @@ The **geolocation** module provides a wide array of location services, including
 > **NOTE**
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs provided by this module are no longer maintained since API version 9. You are advised to use [geoLocationManager](js-apis-geoLocationManager.md).
+> This module supports only the WGS-84 coordinate system.
 
 ## Applying for Permissions
 
@@ -49,7 +50,7 @@ import geolocation from '@ohos.geolocation';
 
 on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
 
-Registers a listener for location changes with a location request initiated.
+Registers a listener for location changes with a location request initiated. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.on('locationChange')](js-apis-geoLocationManager.md#geolocationmanageronlocationchange).
@@ -64,7 +65,7 @@ Registers a listener for location changes with a location request initiated.
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationChange** indicates a location change event.|
   | request |  [LocationRequest](#locationrequestdeprecated) | Yes| Location request.|
-  | callback | Callback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to receive the location change event.|
+  | callback | Callback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to return the result.|
 
 
 
@@ -118,7 +119,7 @@ Unregisters the listener for location changes with the corresponding location re
 
 on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
 
-Registers a listener for location service status change events.
+Registers a listener for location service status change events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.on('locationEnabledChange')](js-apis-geoLocationManager.md#geolocationmanageronlocationenabledchange).
@@ -132,7 +133,7 @@ Registers a listener for location service status change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationServiceState** indicates a location service status change event.|
-  | callback | Callback&lt;boolean&gt; | Yes| Callback used to receive the location service status change event.|
+  | callback | Callback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the location service is enabled, and the value **false** indicates the opposite.|
 
 
 **Example**
@@ -183,7 +184,7 @@ Unregisters the listener for location service status change events.
 
 on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
-Registers a listener for cached GNSS location reports.
+Registers a listener for cached GNSS location reports. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
@@ -199,7 +200,7 @@ Registers a listener for cached GNSS location reports.
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **cachedGnssLocationsReporting** indicates reporting of cached GNSS locations.|
   | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequestdeprecated) | Yes| Request for reporting cached GNSS location.|
-  | callback | Callback&lt;Array&lt;[Location](#locationdeprecated)&gt;&gt; | Yes| Callback used to receive the cached GNSS locations.|
+  | callback | Callback&lt;Array&lt;[Location](#locationdeprecated)&gt;&gt; | Yes| Callback used to return the result.|
 
 
 **Example**
@@ -253,7 +254,7 @@ Unregisters the listener for cached GNSS location reports.
 
 on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void;
 
-Registers a listener for GNSS satellite status change events.
+Registers a listener for GNSS satellite status change events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
@@ -268,7 +269,7 @@ Registers a listener for GNSS satellite status change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **gnssStatusChange** indicates a GNSS satellite status change.|
-  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfodeprecated)&gt; | Yes| Callback used to receive GNSS satellite status changes.|
+  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfodeprecated)&gt; | Yes| Callback used to return the result.|
 
 
 **Example**
@@ -319,7 +320,7 @@ Unregisters the listener for GNSS satellite status change events.
 
 on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
 
-Registers a listener for GNSS NMEA message change events.
+Registers a listener for GNSS NMEA message change events. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
@@ -334,7 +335,7 @@ Registers a listener for GNSS NMEA message change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **nmeaMessageChange** indicates a GNSS NMEA message change.|
-  | callback | Callback&lt;string&gt; | Yes| Callback used to receive GNSS NMEA message changes.|
+  | callback | Callback&lt;string&gt; | Yes| Callback used to return the result.|
 
 
 **Example**
@@ -386,7 +387,7 @@ Unregisters the listener for GNSS NMEA message change events.
 
 on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
-Registers a listener for status change events of the specified geofence.
+Registers a listener for status change events of the specified geofence. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
@@ -424,7 +425,7 @@ Registers a listener for status change events of the specified geofence.
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
   });
   ```
@@ -472,7 +473,7 @@ Unregisters the listener for status change events of the specified geofence.
   };
   
   wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+    let requestInfo:geolocation.GeofenceRequest = {'priority': 0x201, 'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};
     geolocation.on('fenceStatusChange', requestInfo, wantAgentObj);
     geolocation.off('fenceStatusChange', requestInfo, wantAgentObj);
   });
@@ -483,7 +484,7 @@ Unregisters the listener for status change events of the specified geofence.
 
 getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;): void
 
-Obtains the current location. This API uses an asynchronous callback to return the result. 
+Obtains the current position. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation).
@@ -497,7 +498,7 @@ Obtains the current location. This API uses an asynchronous callback to return t
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [CurrentLocationRequest](#currentlocationrequestdeprecated) | Yes| Location request.|
-  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to receive the current location.|
+  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -522,7 +523,7 @@ Obtains the current location. This API uses an asynchronous callback to return t
 getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void
 
 
-Obtains the current location. This API uses an asynchronous callback to return the result. 
+Obtains the current position. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation).
@@ -535,7 +536,7 @@ Obtains the current location. This API uses an asynchronous callback to return t
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to receive the current location.|
+  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -558,7 +559,7 @@ Obtains the current location. This API uses an asynchronous callback to return t
 
 getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
-Obtains the current location. This API uses a promise to return the result. 
+Obtains the current position. This API uses a promise to return the result.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation-2).
@@ -577,7 +578,7 @@ Obtains the current location. This API uses a promise to return the result.
 
   | Type| Description|
   | -------- | -------- |
-  |[Location](#locationdeprecated)| Promise used to return the current location.|
+  | Promise&lt;[Location](#locationdeprecated)&gt; | Promise used to return the result.|
 
 
 **Example**
@@ -595,7 +596,7 @@ Obtains the current location. This API uses a promise to return the result.
 
 getLastLocation(callback: AsyncCallback&lt;Location&gt;): void
 
-Obtains the previous location. This API uses an asynchronous callback to return the result.
+Obtains the previous location. This API uses an asynchronous callback to return the result. 
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.getLastLocation](js-apis-geoLocationManager.md#geolocationmanagergetlastlocation).
@@ -608,7 +609,7 @@ Obtains the previous location. This API uses an asynchronous callback to return 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to receive the previous location.|
+  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | Yes| Callback used to return the result.|
 
 
 **Example**
@@ -643,7 +644,7 @@ Obtains the previous location. This API uses a promise to return the result.
 
   | Type| Description|
   | -------- | -------- |
-  |  [Location](#locationdeprecated)|Promise used to return the previous location.|
+  | Promise&lt;[Location](#locationdeprecated)&gt; | Promise used to return the result.|
 
 
 **Example**
@@ -660,7 +661,7 @@ Obtains the previous location. This API uses a promise to return the result.
 
 isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether the location service is enabled. This API uses an asynchronous callback to return the result.
+Checks whether the location service is enabled. This API uses an asynchronous callback to return the result. 
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.isLocationEnabled](js-apis-geoLocationManager.md#geolocationmanagerislocationenabled).
@@ -673,7 +674,7 @@ Checks whether the location service is enabled. This API uses an asynchronous ca
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to receive the location service status.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the location service is enabled, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -694,7 +695,7 @@ Checks whether the location service is enabled. This API uses an asynchronous ca
 
 isLocationEnabled(): Promise&lt;boolean&gt;
 
-Checks whether the location service is enabled. This API uses a promise to return the result.
+Checks whether the location service is enabled. This API uses a promise to return the result. 
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.isLocationEnabled](js-apis-geoLocationManager.md#geolocationmanagerislocationenabled).
@@ -707,7 +708,7 @@ Checks whether the location service is enabled. This API uses a promise to retur
 
   | Type| Description|
   | -------- | -------- |
-  | boolean|Promise used to return the location service status.|
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the location service is enabled, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -723,7 +724,7 @@ Checks whether the location service is enabled. This API uses a promise to retur
 
 requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
 
-Requests to enable the location service. This API uses an asynchronous callback to return the result.
+Sends a request for enabling the location service. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > This API has been discarded since API version 9. It is recommended that a dialog box be displayed in the application to request the user to go to Settings to enable the location function and specify the scenarios in which the location information will be used in the dialog box.
@@ -736,7 +737,7 @@ Requests to enable the location service. This API uses an asynchronous callback 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to receive the location service status.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the location service is enabled, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -757,7 +758,7 @@ Requests to enable the location service. This API uses an asynchronous callback 
 
 requestEnableLocation(): Promise&lt;boolean&gt;
 
-Requests to enable the location service. This API uses a promise to return the result.
+Sends a request for enabling the location service. This API uses a promise to return the result.
 
 > **NOTE**<br>
 > This API has been discarded since API version 9. It is recommended that a dialog box be displayed in the application to request the user to go to Settings to enable the location function and specify the scenarios in which the location information will be used in the dialog box.
@@ -770,7 +771,7 @@ Requests to enable the location service. This API uses a promise to return the r
 
   | Type| Description|
   | -------- | -------- |
-  | boolean|Promise used to return the location service status.|
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the location service is enabled, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -799,7 +800,7 @@ Checks whether the (reverse) geocoding service is available. This API uses an as
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to receive the (reverse) geocoding service status.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the (reverse) geocoding service is available, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -833,7 +834,7 @@ Checks whether the (reverse) geocoding service is available. This API uses a pro
 
   | Type| Description|
   | -------- | -------- |
-  |boolean| Promise used to return the (reverse) geocoding service status.|
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the (reverse) geocoding service is available, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -863,7 +864,7 @@ Converts coordinates into geographic descriptions through reverse geocoding. Thi
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [ReverseGeoCodeRequest](#reversegeocoderequestdeprecated) | Yes| Reverse geocoding request.|
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Yes| Callback used to receive the reverse geocoding result.|
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -904,7 +905,7 @@ Converts coordinates into geographic descriptions through reverse geocoding. Thi
 
   | Type| Description|
   | -------- | -------- |
-  | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|Promise used to return the reverse geocoding result.|
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -935,7 +936,7 @@ Converts geographic descriptions into coordinates through geocoding. This API us
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [GeoCodeRequest](#geocoderequestdeprecated) | Yes| Geocoding request.|
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Yes| Callback used to receive the geocoding result.|
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -976,7 +977,7 @@ Converts geographic descriptions into coordinates through geocoding. This API us
 
   | Type| Description|
   | -------- | -------- |
-  | Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;|Callback used to receive the geocoding result.|
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -993,7 +994,7 @@ Converts geographic descriptions into coordinates through geocoding. This API us
 
 getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
-Obtains the number of cached GNSS locations. 
+Obtains the number of cached GNSS locations. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
@@ -1007,7 +1008,7 @@ Obtains the number of cached GNSS locations.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to receive the number of cached GNSS locations. |
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1028,7 +1029,7 @@ Obtains the number of cached GNSS locations.
 
 getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
-Obtains the number of cached GNSS locations. 
+Obtains the number of cached GNSS locations. This API uses a promise to return the result.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
@@ -1042,7 +1043,7 @@ Obtains the number of cached GNSS locations.
 
   | Type| Description|
   | -------- | -------- |
-  | number|Promise used to return the number of cached GNSS locations.|
+  | Promise&lt;number&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1058,7 +1059,7 @@ Obtains the number of cached GNSS locations.
 
 flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
 
-Obtains all cached GNSS locations and clears the GNSS cache queue. 
+Obtains all cached GNSS locations and clears the GNSS cache queue. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
@@ -1072,7 +1073,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to receive the operation result.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -1093,7 +1094,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
 flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 
-Obtains all cached GNSS locations and clears the GNSS cache queue. 
+Obtains all cached GNSS locations and clears the GNSS cache queue. This API uses a promise to return the result.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
@@ -1107,7 +1108,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
   | Type| Description|
   | -------- | -------- |
-  |boolean| Promise used to indicate whether the cached GNSS locations are cleared successfully.|
+  | Promise&lt;boolean&gt;| Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -1123,7 +1124,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
 sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): void;
 
-Sends an extended command to the location subsystem. 
+Sends an extended command to the location subsystem. This API uses an asynchronous callback to return the result.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
@@ -1138,7 +1139,7 @@ Sends an extended command to the location subsystem.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | command |  [LocationCommand](#locationcommanddeprecated) | Yes| Extended command (string) to be sent.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to receive the operation result.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -1160,7 +1161,7 @@ Sends an extended command to the location subsystem.
 
 sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
-Sends an extended command to the location subsystem. 
+Sends an extended command to the location subsystem. This API uses a promise to return the result.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
@@ -1180,7 +1181,7 @@ Sends an extended command to the location subsystem.
 
   | Type| Description|
   | -------- | -------- |
-  |boolean| Callback used to return the operation result.|
+  | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -1214,7 +1215,7 @@ Defines a reverse geocoding request.
 
 ## GeoCodeRequest<sup>(deprecated)</sup>
 
-Defines a geocoding request.
+Defines a reverse geocoding request.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.GeoCodeRequest](js-apis-geoLocationManager.md#geocoderequest).
@@ -1223,7 +1224,7 @@ Defines a geocoding request.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | locale | string | Yes| Yes| Language used for the location description. **zh** indicates Chinese, and **en** indicates English.|
 | description | string | Yes| Yes| Location description, for example, **No. xx, xx Road, Pudong New District, Shanghai**.|
@@ -1236,7 +1237,7 @@ Defines a geocoding request.
 
 ## GeoAddress<sup>(deprecated)</sup>
 
-Defines a geographic location.
+Geocoding address information.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.GeoAddress](js-apis-geoLocationManager.md#geoaddress).
@@ -1245,7 +1246,7 @@ Defines a geographic location.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | latitude<sup>7+</sup> | number | Yes| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
 | longitude<sup>7+</sup> | number | Yes| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
@@ -1278,18 +1279,18 @@ Defines a location request.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | Yes| Yes| Priority of the location request. For details about the value range, see [LocationRequestPriority](#locationrequestprioritydeprecated).|
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | Yes| Yes| Scenario of the location request. For details about the value range, see [LocationRequestScenario](#locationrequestscenariodeprecated).|
 | timeInterval | number | Yes| Yes| Time interval at which location information is reported, in seconds. The value must be greater than **0**.|
 | distanceInterval | number | Yes| Yes| Distance interval at which location information is reported. The value must be greater than **0**, in meters.|
-| maxAccuracy | number | Yes| Yes| Location accuracy. This parameter is valid only when the precise location function is enabled, and is invalid when the approximate location function is enabled. The value must be greater than **0**.|
+| maxAccuracy | number | Yes| Yes| Location accuracy, in meters.<br>This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION** permissions are granted), and is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY\_LOCATION** permission is enabled).<br>The specified value must be greater than or equal to **0**. The default value is **0**.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY\_TRACKING**, or **CAR\_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY\_LIFE_SERVICE** or **NO\_POWER** or **priority** is set to **LOW\_POWER** or **FIRST\_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.|
 
 
 ## CurrentLocationRequest<sup>(deprecated)</sup>
 
-Defines the current location request.
+Defines a location request.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#currentlocationrequest).
@@ -1298,11 +1299,11 @@ Defines the current location request.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | Yes| Yes| Priority of the location request. For details about the value range, see [LocationRequestPriority](#locationrequestprioritydeprecated).|
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | Yes| Yes| Scenario of the location request. For details about the value range, see [LocationRequestScenario](#locationrequestscenariodeprecated).|
-| maxAccuracy | number | Yes| Yes| Location accuracy, in meters. This parameter is valid only when the precise location function is enabled, and is invalid when the approximate location function is enabled. The value must be greater than **0**.|
+| maxAccuracy | number | Yes| Yes| Location accuracy, in meters.<br>This parameter is valid only when the precise location function is enabled (both the **ohos.permission.APPROXIMATELY\_LOCATION** and **ohos.permission.LOCATION** permissions are granted), and is invalid when the approximate location function is enabled (only the **ohos.permission.APPROXIMATELY\_LOCATION** permission is enabled).<br>The specified value must be greater than or equal to **0**. The default value is **0**.<br>If **scenario** is set to **NAVIGATION**, **TRAJECTORY\_TRACKING**, or **CAR\_HAILING** or **priority** is set to **ACCURACY**, you are advised to set **maxAccuracy** to a value greater than **10**.<br>If scenario is set to **DAILY\_LIFE_SERVICE** or **NO\_POWER** or **priority** is set to **LOW\_POWER** or **FIRST\_FIX**, you are advised to set **maxAccuracy** to a value greater than **100**.|
 | timeoutMs | number | Yes| Yes| Timeout duration, in milliseconds. The minimum value is **1000**. The value must be greater than or equal to **1000**.|
 
 
@@ -1318,7 +1319,7 @@ Defines the satellite status information.
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | satellitesNumber | number | Yes| No| Number of satellites. The value must be greater than or equal to **0**.|
 | satelliteIds | Array&lt;number&gt; | Yes| No| Array of satellite IDs. The value must be greater than or equal to **0**.|
@@ -1340,7 +1341,7 @@ Represents a request for reporting cached GNSS locations.
 
 **System capability**: SystemCapability.Location.Location.Gnss
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | reportingPeriodSec | number | Yes| Yes| Interval for reporting the cached GNSS locations, in milliseconds. The value must be greater than **0**.|
 | wakeUpCacheQueueFull | boolean | Yes| Yes | **true**: reports the cached GNSS locations to the application when the cache queue is full.<br>**false**: discards the cached GNSS locations when the cache queue is full.|
@@ -1358,7 +1359,7 @@ Defines a GNSS geofence. Currently, only circular geofences are supported.
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | latitude | number | Yes| Yes|Latitude information. The value ranges from **-90** to **90**.|
 | longitude | number | Yes|Yes| Longitude information. The value ranges from **-180** to **180**.|
@@ -1368,7 +1369,7 @@ Defines a GNSS geofence. Currently, only circular geofences are supported.
 
 ## GeofenceRequest<sup>(deprecated)</sup>
 
-Represents a GNSS geofencing request.
+Defines a geofence request.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
@@ -1378,7 +1379,7 @@ Represents a GNSS geofencing request.
 
 **System capability**: SystemCapability.Location.Location.Geofence
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | Yes| Yes | Priority of the location information.|
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | Yes| Yes | Location scenario.|
@@ -1387,7 +1388,7 @@ Represents a GNSS geofencing request.
 
 ## LocationCommand<sup>(deprecated)</sup>
 
-Defines an extended command.
+Defines a location command.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
@@ -1397,7 +1398,7 @@ Defines an extended command.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated)  | Yes| Yes | Location scenario.|
 | command | string | Yes| Yes | Extended command, in the string format.|
@@ -1405,7 +1406,7 @@ Defines an extended command.
 
 ## Location<sup>(deprecated)</sup>
 
-Defines a location.
+Defines location information.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.Location](js-apis-geoLocationManager.md#location).
@@ -1414,7 +1415,7 @@ Defines a location.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Readable|Writable| Description|
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | latitude<sup>7+</sup> | number | Yes| No| Latitude information. A positive value indicates north latitude, and a negative value indicates south latitude. The value ranges from **-90** to **90**.|
 | longitude<sup>7+</sup> | number | Yes| No| Longitude information. A positive value indicates east longitude , and a negative value indicates west longitude . The value ranges from **-180** to **180**.|
@@ -1434,8 +1435,8 @@ Defines the privacy statement type.
 
 > **NOTE**<br>
 > This API is supported since API version 8.
-> This API is deprecated since API version 9. You are advised to use **geoLocationManager.LocationPrivacyType**, which applies only to system APIs.
-**
+> This API is deprecated since API version 9. You are advised to use **geoLocationManager.LocationPrivacyType**, which is available only for system applications.
+
 **Required permissions**: ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Location.Location.Core
@@ -1449,7 +1450,7 @@ Defines the privacy statement type.
 
 ## LocationRequestPriority<sup>(deprecated)</sup>
 
-Sets the priority of the location request.
+Sets the priority of a location request.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.LocationRequestPriority](js-apis-geoLocationManager.md#locationrequestpriority).
@@ -1468,7 +1469,7 @@ Sets the priority of the location request.
 
 ## LocationRequestScenario<sup>(deprecated)</sup>
 
-  Sets the scenario of the location request.
+  Defines the location scenario in a location request.
 
 > **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.LocationRequestScenario](js-apis-geoLocationManager.md#locationrequestscenario).

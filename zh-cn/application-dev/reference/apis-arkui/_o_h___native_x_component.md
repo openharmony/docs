@@ -1027,6 +1027,114 @@ int32_t OH_NativeXComponent_GetTouchPointTiltY (OH_NativeXComponent * component,
 9
 
 
+### OH_NativeXComponent_GetTouchPointWindowX()
+
+```
+int32_t OH_NativeXComponent_GetTouchPointWindowX(OH_NativeXComponent * component, uint32_t pointIndex, float * windowX )
+```
+
+**描述:**
+
+获取ArkUI XComponent触摸点相对于应用窗口左上角的X坐标。
+
+**参数:**
+
+| 名称         | 描述                            |
+| ---------- | ----------------------------- |
+| component  | 表示指向OH_NativeXComponent实例的指针。        |
+| pointIndex | 表示触摸点的指针索引。                          |
+| windowX    | 表示指向触摸点相对于应用窗口左上角的X坐标的指针。  |
+
+**返回:**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+12
+
+
+### OH_NativeXComponent_GetTouchPointWindowY()
+
+```
+int32_t OH_NativeXComponent_GetTouchPointWindowY(OH_NativeXComponent * component, uint32_t pointIndex, float * windowY )
+```
+
+**描述:**
+
+获取ArkUI XComponent触摸点相对于应用窗口左上角的Y坐标。
+
+**参数:**
+
+| 名称         | 描述                            |
+| ---------- | ----------------------------- |
+| component  | 表示指向OH_NativeXComponent实例的指针。        |
+| pointIndex | 表示触摸点的指针索引。                          |
+| windowY    | 表示指向触摸点相对于应用窗口左上角的Y坐标的指针。  |
+
+**返回:**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+12
+
+
+### OH_NativeXComponent_GetTouchPointDisplayX()
+
+```
+int32_t OH_NativeXComponent_GetTouchPointDisplayX(OH_NativeXComponent * component, uint32_t pointIndex, float * displayX )
+```
+
+**描述:**
+
+获取ArkUI XComponent触摸点相对于应用所在屏幕左上角的X坐标。
+
+**参数:**
+
+| 名称         | 描述                            |
+| ---------- | ----------------------------- |
+| component  | 表示指向OH_NativeXComponent实例的指针。        |
+| pointIndex | 表示触摸点的指针索引。                          |
+| displayX    | 表示指向触摸点相对于应用所在屏幕左上角的X坐标的指针。  |
+
+**返回:**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+12
+
+
+### OH_NativeXComponent_GetTouchPointDisplayY()
+
+```
+int32_t OH_NativeXComponent_GetTouchPointDisplayY(OH_NativeXComponent * component, uint32_t pointIndex, float * displayY )
+```
+
+**描述:**
+
+获取ArkUI XComponent触摸点相对于应用所在屏幕左上角的Y坐标。
+
+**参数:**
+
+| 名称         | 描述                            |
+| ---------- | ----------------------------- |
+| component  | 表示指向OH_NativeXComponent实例的指针。        |
+| pointIndex | 表示触摸点的指针索引。                          |
+| displayY    | 表示指向触摸点相对于应用所在屏幕左上角的Y坐标的指针。  |
+
+**返回:**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+12
+
+
 ### OH_NativeXComponent_GetTouchPointToolType()
 
 ```

@@ -84,8 +84,8 @@ invalidate(): void
 ## 示例
 ```ts
 // xxx.ets
-import drawing from '@ohos.graphics.drawing';
-import animator, { AnimatorResult } from '@ohos.animator';
+import { drawing } from '@kit.ArkGraphics2D';
+import { Animator, AnimatorResult } from '@kit.ArkUI';
 
 class MyFullDrawModifier extends DrawModifier {
   public scaleX: number = 1;
@@ -180,7 +180,7 @@ struct DrawModifierExample {
 
   create() {
     let self = this;
-    this.drawAnimator = animator.create({
+    this.drawAnimator = Animator.create({
       duration: 1000,
       easing: 'ease',
       delay: 0,

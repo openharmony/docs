@@ -41,7 +41,7 @@ rowStart(value: number)
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | 是   | 当前元素起始行号。 |
+| value  | number | 是   | 当前元素起始行号。<br/>需要指定GridItem起始行列号和所占行列数的场景推荐使用[Grid的layoutOptions参数](ts-container-grid.md#gridlayoutoptions10)，详细可参考[Grid的示例1](ts-container-grid.md#示例1)和[Grid的示例3](ts-container-grid.md#示例3)。 |
 
 ### rowEnd
 
@@ -57,7 +57,7 @@ rowEnd(value: number)
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | 是   | 当前元素终点行号。 |
+| value  | number | 是   | 当前元素终点行号。<br/>需要指定GridItem起始行列号和所占行列数的场景推荐使用[Grid的layoutOptions参数](ts-container-grid.md#gridlayoutoptions10)，详细可参考[Grid的示例1](ts-container-grid.md#示例1)和[Grid的示例3](ts-container-grid.md#示例3)。 |
 
 ### columnStart
 
@@ -73,7 +73,7 @@ columnStart(value: number)
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | 是   | 当前元素起始列号。 |
+| value  | number | 是   | 当前元素起始列号。<br/>需要指定GridItem起始行列号和所占行列数的场景推荐使用[Grid的layoutOptions参数](ts-container-grid.md#gridlayoutoptions10)，详细可参考[Grid的示例1](ts-container-grid.md#示例1)和[Grid的示例3](ts-container-grid.md#示例3)。 |
 
 ### columnEnd
 
@@ -89,11 +89,11 @@ columnEnd(value: number)
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| value  | number | 是   | 当前元素终点列号。 |
+| value  | number | 是   | 当前元素终点列号。<br/>需要指定GridItem起始行列号和所占行列数的场景推荐使用[Grid的layoutOptions参数](ts-container-grid.md#gridlayoutoptions10)，详细可参考[Grid的示例1](ts-container-grid.md#示例1)和[Grid的示例3](ts-container-grid.md#示例3)。 |
 
 >  **说明：**
 >
->  当Grid配合[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)使用时，最后一个GridItem需要限定布局推荐使用[Grid的layoutOptions参数](ts-container-grid.md)，详细可参考[Grid的示例3](ts-container-grid.md#示例3)。
+>  需要指定GridItem起始行列号和所占行列数的场景推荐使用[Grid的layoutOptions参数](ts-container-grid.md#gridlayoutoptions10)，详细可参考[Grid的示例1](ts-container-grid.md#示例1)和[Grid的示例3](ts-container-grid.md#示例3)。
 >
 >  起始行号、终点行号、起始列号、终点列号生效规则如下：
 >

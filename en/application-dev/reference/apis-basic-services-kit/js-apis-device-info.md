@@ -11,7 +11,7 @@ The **deviceInfo** module provides terminal device information query, which cann
 ## Modules to Import
 
 ```ts
-import deviceInfo from '@ohos.deviceInfo';
+import { deviceInfo } from '@kit.deviceInfo';
 ```
 
 ## Attributes
@@ -63,7 +63,7 @@ import deviceInfo from '@ohos.deviceInfo';
 **Example**
 
 ```ts
-    import deviceinfo from '@ohos.deviceInfo';
+    import { deviceInfo } from '@kit.deviceInfo';
 
     let deviceTypeInfo: string = deviceinfo.deviceType;
     console.info('the value of the deviceType is :' + deviceTypeInfo);
@@ -88,9 +88,6 @@ import deviceInfo from '@ohos.deviceInfo';
 
     let hardwareModelInfo: string = deviceinfo.hardwareModel;
     console.info('the value of the deviceinfo hardwareModel is :' + hardwareModelInfo);
-
-    let hardwareProfileInfo: string = deviceinfo.hardwareProfile;
-    console.info('the value of the deviceinfo hardwareProfile is :' + hardwareProfileInfo);
 
     let serialInfo: string = deviceinfo.serial;
     console.info('the value of the deviceinfo serial is :' + serialInfo);

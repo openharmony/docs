@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 ```
 
 ## 常量
@@ -97,7 +97,7 @@ getEnrolledState(authType : UserAuthType): EnrolledState
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
@@ -165,7 +165,7 @@ onResult(result: UserAuthResult): void
 **示例1：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -193,7 +193,7 @@ try {
 **示例2：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let reuseUnlockResult: userAuth.ReuseUnlockResult = {
   reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
@@ -255,7 +255,7 @@ on(type: 'result', callback: IAuthCallback): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -311,7 +311,7 @@ off(type: 'result', callback?: IAuthCallback): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -371,7 +371,7 @@ start(): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -416,7 +416,7 @@ cancel(): void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -475,7 +475,7 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -586,7 +586,7 @@ callback(result : EventInfo) : void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -669,7 +669,7 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -734,7 +734,7 @@ off : (name : AuthEventKey) => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -794,7 +794,7 @@ start : () => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -837,7 +837,7 @@ cancel : () => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -894,7 +894,7 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
 let authType = userAuth.UserAuthType.FACE;
@@ -949,7 +949,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
@@ -998,7 +998,7 @@ constructor()
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 ```
@@ -1025,7 +1025,7 @@ getVersion() : number
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let version = auth.getVersion();
@@ -1061,7 +1061,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let checkCode = auth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
@@ -1103,7 +1103,7 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
@@ -1152,7 +1152,7 @@ cancelAuth(contextID : Uint8Array) : number
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 // contextId可通过auth接口获取，此处直接定义
 let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
@@ -1193,7 +1193,7 @@ onResult: (result : number, extraInfo : AuthResult) => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
@@ -1236,7 +1236,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
@@ -1391,7 +1391,7 @@ getAuthenticator(): Authenticator
 
 **示例：**
   ```ts
-  import userAuth from '@ohos.userIAM.userAuth';
+  import { userAuth } from '@kit.UserAuthenticationKit';
   
   let authenticator = userAuth.getAuthenticator();
   ```
@@ -1427,7 +1427,7 @@ execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let authenticator = userAuth.getAuthenticator();
 authenticator.execute('FACE_ONLY', 'S2', (error, code)=>{
@@ -1469,7 +1469,7 @@ execute(type : AuthType, level : SecureLevel): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
   let authenticator = userAuth.getAuthenticator();

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import workScheduler from '@ohos.resourceschedule.workScheduler';
+import { workScheduler } from '@kit.BackgroundTasksKit';
 ```
 
 ## workScheduler.startWork
@@ -44,7 +44,7 @@ startWork(work: WorkInfo): void
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   let workInfo: workScheduler.WorkInfo = {
       workId: 1,
@@ -98,7 +98,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let workInfo: workScheduler.WorkInfo = {
       workId: 1,
@@ -152,7 +152,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.getWorkStatus(50, (error: BusinessError, res: workScheduler.WorkInfo) => {
     if (error) {
@@ -198,7 +198,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.getWorkStatus(50).then((res: workScheduler.WorkInfo) => {
     console.info(`workschedulerLog getWorkStatus success, ${JSON.stringify(res)}`);
@@ -261,7 +261,7 @@ obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.obtainAllWorks((error: BusinessError, res: Array<workScheduler.WorkInfo>) =>{
     if (error) {
@@ -300,7 +300,7 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.obtainAllWorks().then((res: Array<workScheduler.WorkInfo>) => {
     console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
@@ -331,7 +331,7 @@ stopAndClearWorks(): void
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try{
     workScheduler.stopAndClearWorks();
@@ -400,7 +400,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.isLastWorkTimeOut(500, (error: BusinessError, res: boolean) =>{
     if (error) {
@@ -446,7 +446,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 **示例**：
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.isLastWorkTimeOut(500)
     .then((res: boolean) => {

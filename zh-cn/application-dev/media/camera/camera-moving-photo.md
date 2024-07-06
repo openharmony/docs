@@ -10,7 +10,7 @@
 
 > **说明：**
 > 
-> 使能动态照片前需要使能**分段式拍照能力**。
+> 使能动态照片前需要使能[分段式拍照](camera-deferred-capture.md)能力。
 
 ## 开发步骤
 
@@ -94,7 +94,6 @@
        }
        console.info('photoOutPutCallBack photoAssetAvailable');
        // 保存或使用照片，需开发者实现
-       photoAsset.saveCameraPhoto();
      });
    }
    ```

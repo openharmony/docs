@@ -16,25 +16,7 @@
 
 - 在DevEco Studio中**New &gt; Create Project**，选择**Native C++**模板，点击**Next**，选择API版本，设置好工程名称，点击**Finish**，创建得到新工程。
 
-- 创建工程后工程结构可以分两部分，cpp部分和ets部分，具体可见下文的工程目录介绍。
-
-**主要工程目录介绍**
-
-![cProject](figures/cProject.png)
-
-- **entry &gt; src &gt; main &gt; cpp &gt; types**：用于存放C++的API接口描述文件。
-
-- **entry &gt; src &gt; main &gt; cpp &gt; types &gt; libentry &gt; index.d.ts**：描述C++ API接口行为，如接口名、入参、返回参数等。
-
-- **entry &gt; src &gt; main &gt; cpp &gt; types &gt; libentry &gt; oh-package.json5**：配置.so三方包声明文件的入口及包名。
-
-- **entry &gt; src &gt; main &gt; cpp &gt; CMakeLists.txt**：C++源码编译配置文件，提供CMake构建脚本。
-
-- **entry &gt; src &gt; main &gt; cpp &gt; hello.cpp**：定义C++ API接口的文件。
-
-- **entry &gt; src &gt; main &gt; ets**：用于存放ArkTS源码。
-
-更多工程介绍，请见<!--RP1-->[C++工程目录结构](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/project_overview-0000001053822398-V3#section3732132312179)<!--RP1End-->。
+- 创建工程后工程结构可以分两部分，cpp部分和ets部分，工程结构具体介绍可见<!--RP1-->[C++工程目录结构](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-project-structure-0000001546098578-V5#section181711599584)<!--RP1End-->。
 
 
 ## Native侧方法的实现

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+import { inputEventClient } from '@kit.InputKit';
 ```
 
 ## inputEventClient.injectEvent
@@ -155,7 +155,7 @@ injectMouseEvent(mouseEvent: MouseEventData): void;
 **示例：**
 
 ```js
-import mouseEvent from '@ohos.multimodalInput.mouseEvent'
+import { MouseEvent } from '@kit.InputKit';
 
 try {
   let mouseButtonUpData: mouseEvent.MouseEvent = {
@@ -255,7 +255,7 @@ injectTouchEvent(touchEvent: TouchEventData): void
 **示例：**
 
 ```js
-import touchEvent from '@ohos.multimodalInput.touchEvent'
+import { TouchEvent } from '@kit.InputKit';
 
 try {
   let touchEvent: touchEvent.Touch = {
@@ -342,7 +342,7 @@ permitInjection(result: boolean): void
 
 
 ```ts
-import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+import { inputEventClient } from '@kit.InputKit';
 
 try {
   let result = true;

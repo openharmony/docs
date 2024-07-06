@@ -6,7 +6,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
 开发用户文件管理器的相关API详细介绍请参见[API参考](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)。
 
 1. 权限配置和导入模块。
-   申请ohos.permission.FILE_ACCESS_MANAGER和ohos.permission.GET_BUNDLE_INFO_PRIVILEGED权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+   申请ohos.permission.FILE_ACCESS_MANAGER和ohos.permission.GET_BUNDLE_INFO_PRIVILEGED权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
    > **说明：**
    >

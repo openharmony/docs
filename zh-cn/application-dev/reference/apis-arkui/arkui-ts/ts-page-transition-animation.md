@@ -81,9 +81,9 @@ onEnter(event: (type: RouteType, progress: number) => void): PageTransitionEnter
 
 逐帧回调，直到入场动画结束，progress从0变化到1。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -133,6 +133,11 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
 
  ## RouteType枚举说明
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+
 | 名称 | 描述                                                         |
 | ---- | ------------------------------------------------------------ |
 | Pop  | 重定向指定页面。从PageB回退到之前的页面PageA。对于PageB，指定RouteType为None或者Pop的PageTransitionExit组件样式生效，对于PageA，指定RouteType为None或者Pop的PageTransitionEnter组件样式生效。 |
@@ -158,7 +163,7 @@ onExit(event: (type: RouteType, progress: number) => void): PageTransitionExitIn
 
 ```ts
 // index.ets
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -200,7 +205,7 @@ struct Index {
 
 ```ts
 // page1.ets
-import router from '@ohos.router'
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -324,7 +329,6 @@ struct PageTransitionExample {
         .fontSize(36)
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
-}
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
   pageTransition() {
@@ -336,7 +340,9 @@ struct PageTransitionExample {
       .slide(SlideEffect.START) //Left
   }
 }
+```
 
+```ts
 // page1.ets
 import { router } from '@kit.ArkUI'
 
@@ -358,7 +364,6 @@ struct PageTransitionExample {
         .fontSize(36)
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
-}
 
   // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
   pageTransition() {
@@ -398,7 +403,9 @@ struct PageTransitionExample {
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
 }
+```
 
+```ts
 // page1.ets
 import { router } from '@kit.ArkUI'
 
@@ -421,7 +428,6 @@ struct PageTransitionExample {
     }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
   }
 }
-
 ```
 
 ![pageTransition1](figures/pageRTL2.gif)

@@ -71,12 +71,12 @@ import { window } from '@kit.ArkUI';
 
 | 名称                                   | 类型 |  必填 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#0x66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`'#0xE5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#0x66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`'#0xE5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | enableStatusBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能状态栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 | enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 
@@ -88,7 +88,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称   | 类型 | 只读 | 可选 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| statusBarContentColor   | string   | 是   | 是   | 状态栏文字颜色。默认值：'#0xE5FFFFFF'。|
+| statusBarContentColor   | string   | 是   | 是   | 状态栏文字颜色。默认值：`'#0xE5FFFFFF'`。|
 
 ## Orientation<sup>9+</sup>
 
@@ -1612,9 +1612,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口的布局是否为沉浸式布局，使用callback异步回调。
-沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
-非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
+设置主窗口或子窗口的布局是否为沉浸式布局，使用callback异步回调。
+沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1678,9 +1678,9 @@ export default class EntryAbility extends UIAbility {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置主窗口的布局是否为沉浸式布局，使用Promise异步回调。
-沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
-非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
+设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。
+沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2052,7 +2052,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2123,7 +2123,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3150,7 +3150,7 @@ export default class EntryAbility extends UIAbility {
 
 on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
-开启主窗口固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+开启固定态软键盘高度变化的监听，软键盘与窗口存在重叠区域时通知键盘高度变化。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3204,7 +3204,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
-关闭主窗口固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+关闭固定态软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3755,7 +3755,7 @@ try {
 
 on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): void
 
-开启主窗口模式变化的监听。
+开启窗口模式变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3778,31 +3778,12 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      try {
-        windowClass.on('windowStatusChange', (WindowStatusType) => {
-          console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
-        });
-      } catch (exception) {
-        console.error(`Failed to enable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
+try {
+    windowClass.on('windowStatusChange', (WindowStatusType) => {
+        console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
     });
-  }
+} catch (exception) {
+    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -3810,7 +3791,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): void
 
-关闭主窗口模式变化的监听。
+关闭窗口模式变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3833,39 +3814,20 @@ off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): vo
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    windowStage.getMainWindow((err: BusinessError, data) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      windowClass = data;
-      const callback = (windowStatusType: window.WindowStatusType) => {
-        // ...
-      }
-      try {
-        windowClass.on('windowStatusChange', callback);
-      } catch (exception) {
-        console.error(`Failed to enable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-      try {
-        windowClass.off('windowStatusChange', callback);
-        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-        windowClass.off('windowStatusChange');
-      } catch (exception) {
-        console.error(`Failed to disable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
-      }
-    });
-  }
+const callback = (windowStatusType: window.WindowStatusType) => {
+    // ...
+}
+try {
+    windowClass.on('windowStatusChange', callback);
+} catch (exception) {
+    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+try {
+    windowClass.off('windowStatusChange', callback);
+    // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+    windowClass.off('windowStatusChange');
+} catch (exception) {
+    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -4129,6 +4091,93 @@ windowClass.off('windowRectChange', callback);
 windowClass.off('windowRectChange');
 ```
 
+### on('subWindowClose')<sup>12+</sup>
+
+on(type:  'subWindowClose', callback: Callback&lt;void&gt;): void
+
+开启子窗口关闭事件的监听。此监听仅在点击系统提供的右上角关闭按钮关闭子窗时触发，其余关闭方式不触发回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'subWindowClose'，即子窗口关闭事件。 |
+| callback | Callback&lt;void&gt; | 是   | 回调函数。当点击子窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前子窗是否继续关闭，true表示不关闭子窗，false表示关闭子窗。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+const callback = () => {
+  // ...
+  return true;
+}
+try {
+  windowClass.on('subWindowClose', callback);
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('subWindowClose')<sup>12+</sup>
+
+off(type: 'subWindowClose', callback?: Callback&lt;void&gt;): void
+
+关闭子窗口关闭事件的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                         |
+| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                         | 是   | 监听事件，固定为'subWindowClose'，即子窗口关闭事件。     |
+| callback | Callback&lt;void&gt; | 否   | 回调函数。当点击子窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前子窗是否继续关闭，true表示不关闭子窗，false表示关闭子窗。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有子窗口关闭的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+const callback = () => {
+  // ...
+  return true;
+}
+try {
+  windowClass.on('subWindowClose', callback);
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+try {
+  windowClass.off('subWindowClose', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('subWindowClose');
+} catch (exception) {
+  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### isWindowSupportWideGamut<sup>9+</sup>
 
 isWindowSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
@@ -4342,7 +4391,7 @@ setWindowBackgroundColor(color: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| color | string | 是 | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color | string | 是 | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。 |
 
 **错误码：**
 
@@ -4954,7 +5003,7 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 设置窗口内容布局的比例，使用Promise异步回调。
 
-仅应用主窗口支持此接口功能，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
+仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5019,7 +5068,7 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置窗口内容布局的比例，使用callback异步回调。
 
-仅应用主窗口支持此接口功能，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
+仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5082,7 +5131,7 @@ resetAspectRatio(): Promise&lt;void&gt;
 
 取消设置窗口内容布局的比例，使用Promise异步回调。
 
-仅应用主窗口支持此接口功能，调用后将清除持久化储存的比例信息。
+仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，调用后将清除持久化储存的比例信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5139,7 +5188,7 @@ resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 
 取消设置窗口内容布局的比例，使用callback异步回调。
 
-仅应用主窗口支持此接口功能，调用后将清除持久化储存的比例信息。
+仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，调用后将清除持久化储存的比例信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5725,7 +5774,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowDecorHeight(height: number): void
 
-设置主窗口标题栏高度。
+<!--RP1-->设置主窗口或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。<!--RP1End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5781,7 +5830,7 @@ export default class EntryAbility extends UIAbility {
 
 getWindowDecorHeight(): number
 
-获取主窗口标题栏高度。
+<!--RP2-->获取主窗口或启用装饰的子窗口的标题栏高度，此接口仅可在2in1设备上使用。<!--RP2End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5835,7 +5884,7 @@ export default class EntryAbility extends UIAbility {
 
 getTitleButtonRect(): TitleButtonRect
 
-获取主窗口标题栏上的最小化、最大化、关闭按钮矩形区域。
+<!--RP3-->获取主窗口或启用装饰的子窗口的标题栏上的最小化、最大化、关闭按钮矩形区域，此接口仅可在2in1设备上使用。<!--RP3End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5890,7 +5939,7 @@ export default class EntryAbility extends UIAbility {
 
 enableLandscapeMultiWindow(): Promise&lt;void&gt;
 
-在开启多窗动态布局下，配置支持横向悬浮窗。
+应用部分界面支持横向布局时，在进入该界面时使能，使能后可支持进入横向多窗。不建议竖向布局界面使用。
 
 此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
 
@@ -5930,7 +5979,7 @@ promise.then(() => {
 
 disableLandscapeMultiWindow(): Promise&lt;void&gt;
 
-在开启多窗动态布局下，配置支持竖向悬浮窗。
+应用部分界面支持横向布局时，在退出该界面时去使能，去使能后不支持进入横向多窗。
 
 此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
 
@@ -6441,9 +6490,9 @@ export default class EntryAbility extends UIAbility {
 
 setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口的布局是否为全屏布局，使用callback异步回调。
-全屏布局是指窗口大小为全屏幕，状态栏与导航栏不显示。
-非全屏布局是指状态栏与导航栏显示，窗口大小避让状态栏与导航栏位置。
+设置主窗口或子窗口的布局是否为全屏布局，使用callback异步回调。
+全屏布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非全屏布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -6503,9 +6552,9 @@ export default class EntryAbility extends UIAbility {
 
 setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
-设置主窗口的布局是否为全屏布局，使用Promise异步回调。
-全屏布局是指窗口大小为全屏幕，状态栏与导航栏不显示。
-非全屏布局是指状态栏与导航栏显示，窗口大小避让状态栏与导航栏位置。
+设置主窗口或子窗口的布局是否为全屏布局，使用Promise异步回调。
+全屏布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非全屏布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -6568,9 +6617,9 @@ export default class EntryAbility extends UIAbility {
 
 setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口的布局是否为沉浸式布局，使用callback异步回调。
-沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
-非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
+设置主窗口或子窗口的布局是否为沉浸式布局，使用callback异步回调。
+沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -6630,9 +6679,9 @@ export default class EntryAbility extends UIAbility {
 
 setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置主窗口的布局是否为沉浸式布局，使用Promise异步回调。
-沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
-非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
+设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。
+沉浸式布局生效时，布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
+非沉浸式布局生效时，布局避让状态栏与导航栏，组件不会与其重叠。
 
 > **说明：**
 >
@@ -6820,7 +6869,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调，2in1设备不生效。
 
 > **说明：**
 >
@@ -6886,7 +6935,7 @@ export default class EntryAbility extends UIAbility {
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调，2in1设备不生效。
 
 > **说明：**
 >
@@ -7429,7 +7478,7 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| color    | string                    | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color    | string                    | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -7472,7 +7521,7 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| color  | string | 是   | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。 |
 
 **返回值：**
 
@@ -9099,7 +9148,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    const callback = (windowStageEventType：window.WindowStageEventType) => {
+    const callback = (windowStageEventType: window.WindowStageEventType) => {
       // ...
     }
     try {
@@ -9118,7 +9167,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-### setDefaultDensityEnabled()<sup>12+</sup>
+### setDefaultDensityEnabled<sup>12+</sup>
 
 setDefaultDensityEnabled(enabled: boolean): void
 

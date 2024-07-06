@@ -173,7 +173,7 @@ friction(value: number | Resource)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                      |
 | ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。 |
+| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。<br/>从API version 12开始，非可穿戴设备默认值为0.75。 |
 
 ### enablePaging<sup>11+</sup>
 
@@ -502,6 +502,7 @@ scrollEdge(value: Edge, options?: ScrollEdgeOptions)
 
 
 滚动到容器边缘，不区分滚动轴方向，Edge.Top和Edge.Start表现相同，Edge.Bottom和Edge.End表现相同。
+Scroll组件默认有动画，Grid、List、WaterFlow组件默认无动画。
 
 **参数：**
 
@@ -573,9 +574,9 @@ currentOffset(): OffsetResult
 
 ### scrollToIndex
 
-scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign)
+scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign, options?: ScrollToIndexOptions)
 
-滑动到指定Index。
+滑动到指定Index，支持设置滑动额外偏移量。
 
 开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。
 
@@ -593,6 +594,7 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign)
 | value | number   | 是   | 要滑动到的目标元素在当前容器中的索引值。      <br/>**说明：** <br/>value值设置成负值或者大于当前容器子组件的最大索引值，视为异常值，本次跳转不生效。                     |
 | smooth | boolean  | 否   | 设置滑动到列表项在列表中的索引值时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。|
 | align | [ScrollAlign](#scrollalign10枚举说明)  | 否   | 指定滑动到的元素与当前容器的对齐方式。<br/>List中的默认值为：ScrollAlign.START。Grid中默认值为：ScrollAlign.AUTO。WaterFlow中的默认值为：ScrollAlign.START。<br/>**说明：** <br/>仅List、Grid、WaterFlow组件支持该参数。 |
+| options<sup>12+</sup> | [ScrollToIndexOptions](#scrolltoindexoptions12对象说明)  | 否   | 设置滑动到指定Index的选项，如额外偏移量。 |
 
 ### scrollBy<sup>9+</sup>
 
@@ -701,6 +703,14 @@ getItemRect(index: number): RectResult
 | END  | 尾部对齐。指定item尾部与List尾部对齐。 |
 | AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于List,使指定item完全处于显示区。|
 
+## ScrollToIndexOptions<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+| 名称   | 类型  | 必填 | 描述              |
+| ----- | ------ | ------ | ----------------- |
+| extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 滑动到指定Index的额外偏移量。 |
+
 ## NestedScrollOptions<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -754,7 +764,7 @@ getItemRect(index: number): RectResult
 
 ```ts
 // xxx.ets
-import Curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -810,7 +820,7 @@ struct ScrollExample {
       Button('scroll 100')
         .height('5%')
         .onClick(() => { // 点击后滑动到指定位置，即下滑100.0vp的距离，滑动过程配置有动画
-          let curve = Curves.interpolatingSpring(10, 1, 228, 30) //创建一个阶梯曲线
+          let curve = curves.interpolatingSpring(10, 1, 228, 30) //创建一个阶梯曲线
           const yOffset: number = this.scroller.currentOffset().yOffset;
           this.scroller.scrollTo({ xOffset: 0, yOffset: yOffset + 100, animation: { duration: 1000, curve: curve } })
         })
@@ -1052,8 +1062,6 @@ struct ListExample {
 
 ```ts
 // xxx.ets
-import Curves from '@ohos.curves'
-
 @Entry
 @Component
 struct ScrollExample {

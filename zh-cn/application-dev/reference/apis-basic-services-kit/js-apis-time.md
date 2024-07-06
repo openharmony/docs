@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import systemTime from '@ohos.systemTime';
+import { systemTime } from '@kit.BasicServicesKit';
 ```
 
 ## systemTime.getCurrentTime<sup>8+</sup> <sup>(deprecated)</sup>
@@ -39,7 +39,7 @@ getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.getCurrentTime(true, (error: BusinessError, time: number) => {
@@ -80,7 +80,7 @@ getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.getCurrentTime((error: BusinessError, time: number) => {
@@ -127,7 +127,7 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.getCurrentTime().then((time: number) => {
@@ -167,7 +167,7 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.getRealActiveTime(true, (error: BusinessError, time: number) => {
@@ -208,7 +208,7 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.getRealActiveTime((error: BusinessError, time: number) => {
@@ -255,7 +255,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.getRealActiveTime().then((time: number) => {
@@ -295,7 +295,7 @@ getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.getRealTime(true, (error: BusinessError, time: number) => {
@@ -336,7 +336,7 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.getRealTime((error: BusinessError, time: number) => {
@@ -383,7 +383,7 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.getRealTime().then((time: number) => {
@@ -422,7 +422,7 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.getDate((error: BusinessError, date: Date) => {
@@ -463,7 +463,7 @@ getDate(): Promise&lt;Date&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.getDate().then((date: Date) => {
@@ -502,7 +502,7 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.getTimezone((error: BusinessError, data: string) => {
@@ -543,7 +543,7 @@ getTimezone(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   systemTime.getTimezone().then((data: string) => {

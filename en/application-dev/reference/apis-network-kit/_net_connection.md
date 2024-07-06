@@ -66,7 +66,7 @@ Provides the C APIs of the network connection module for network management.
 | Name| Description| 
 | -------- | -------- |
 | [NetConn_NetCap](#netconn_netcap) {<br>NETCONN_NET_CAPABILITY_MMS = 0,<br>NETCONN_NET_CAPABILITY_NOT_METERED = 11,<br>NETCONN_NET_CAPABILITY_INTERNET = 12,<br>NETCONN_NET_CAPABILITY_NOT_VPN = 15,<br>NETCONN_NET_CAPABILITY_VALIDATED = 16<br>} | Network capability set.| 
-| [NetConn_NetBearerType](#netconn_netbearertype) {<br>NETCONN_BEARER_CELLULAR = 0,<br>NETCONN_BEARER_WIFI = 1,<br>NETCONN_BEARER_ETHERNET = 3<br>} | Network carrier type.| 
+| [NetConn_NetBearerType](#netconn_netbearertype) {<br>NETCONN_BEARER_CELLULAR = 0,<br>NETCONN_BEARER_WIFI = 1,<br>NETCONN_BEARER_ETHERNET = 3<br>NETCONN_BEARER_VPN = 4<br>} | Network carrier type.|
 
 
 ### Functions
@@ -244,11 +244,12 @@ Network carrier type.
 
 **Since**: 11
 
-| Value| Description| 
-| -------- | -------- |
-| NETCONN_BEARER_CELLULAR | Cellular network.| 
-| NETCONN_BEARER_WIFI | Wi-Fi.| 
-| NETCONN_BEARER_ETHERNET | Ethernet.| 
+|         Value         |         Description           |
+| ------------------------| ----------------------- |
+| NETCONN_BEARER_CELLULAR | Cellular network.             |
+| NETCONN_BEARER_WIFI     | Wi-Fi.                 |
+| NETCONN_BEARER_ETHERNET | Ethernet.             |
+| NETCONN_BEARER_VPN      | Virtual private network.<br>**Since**: 12|
 
 
 ### NetConn_NetCap

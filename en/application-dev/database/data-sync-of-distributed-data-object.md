@@ -145,10 +145,10 @@ Most of the APIs for cross-device sync of distributed data objects are executed 
 
 The following example demonstrates how to implement sync of distributed data objects.
 
-1. Import the **@ohos.data.distributedDataObject** module.
+1. Import the **distributedDataObject** module.
 
    ```ts
-   import distributedDataObject from '@ohos.data.distributedDataObject';
+   import { distributedDataObject } from '@kit.ArkData';
    ```
 
 2. Apply for permissions.
@@ -162,10 +162,9 @@ The following example demonstrates how to implement sync of distributed data obj
    
    ```ts
    // Import the module.
-   import distributedDataObject from '@ohos.data.distributedDataObject';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
-   import window from '@ohos.window';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { window } from '@kit.ArkUI';
 
    class ParentObject {
      mother: string
@@ -203,8 +202,7 @@ The following example demonstrates how to implement sync of distributed data obj
 
    ```ts
    // Import the module.
-   import distributedDataObject from '@ohos.data.distributedDataObject';
-   import featureAbility from '@ohos.ability.featureAbility';
+   import { featureAbility } from '@kit.AbilityKit';
    // Obtain the context.
    let context = featureAbility.getContext();
    class ParentObject {
@@ -250,7 +248,7 @@ The following example demonstrates how to implement sync of distributed data obj
    // Create a distributed data object, which has properties of the string, number, boolean, and object types.
    let remoteSource: SourceObject = new SourceObject(undefined, undefined, undefined, undefined);
    let remoteObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, remoteSource);
-   // After receiving the message indicating the device goes online, the remote object synchronizes data. That is, name is changed to jack and age is changed to 18.
+   // After receiving the message indicating the device goes online, the remoteObject synchronizes data. That is, the name is changed to jack and the age is changed to 18.
    remoteObject.setSessionId(sessionId);
    ```
 
@@ -363,11 +361,10 @@ The following example demonstrates how to implement sync of distributed data obj
 
 The asset type allows the file described by **asset** to be synced across devices with its distributed data object. The device that holds the asset file is the source device, and the device that obtains the asset file is the destination device.
 
-1. Import the **@ohos.data.distributedDataObject** and **@ohos.data.commonType** modules.
+1. Import the **distributedDataObject** and **commonType** modules.
 
    ```ts
-   import distributedDataObject from '@ohos.data.distributedDataObject';
-   import commonType from '@ohos.data.commonType';
+   import { distributedDataObject, commonType } from '@kit.ArkData';
    ```
 
 2. Apply for permissions.
@@ -378,11 +375,9 @@ The asset type allows the file described by **asset** to be synced across device
 3. Create a distributed data object that contains the asset for the source device and add the device to the network.
 
     ```ts
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import type window from '@ohos.window';
-    import distributedDataObject from '@ohos.data.distributedDataObject';
-    import commonType from '@ohos.data.commonType';
-    import type { BusinessError } from '@ohos.base';
+    import { UIAbility } from '@kit.AbilityKit';
+    import { window } from '@kit.ArkUI';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     class Note {
       title: string | undefined

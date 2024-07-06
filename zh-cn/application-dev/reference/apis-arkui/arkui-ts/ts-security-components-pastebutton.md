@@ -1,33 +1,36 @@
 # PasteButton
 
-
 安全控件的粘贴按钮，用户通过点击该粘贴按钮，可以临时获取读取剪贴板权限。
-
 
 > **说明：**
 >
 > 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
 ## 子组件
 
 不支持。
 
-
 ## 接口
+
 ### PasteButton
+
 PasteButton()
 
 默认创建带有图标、文本、背景的粘贴按钮。
+
+为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### PasteButton
+
 PasteButton(option:PasteButtonOptions)
 
 创建包含指定元素的粘贴按钮。
+
+为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -51,11 +54,9 @@ PasteButton(option:PasteButtonOptions)
 | text | [PasteDescription](#pastedescription枚举说明) | 否 | 设置粘贴按钮的文本描述。<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
 | buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置粘贴按钮的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
-
 ## 属性
 
 不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md#属性)。
-
 
 ## PasteIconStyle枚举说明
 
@@ -67,7 +68,6 @@ PasteButton(option:PasteButtonOptions)
 | -------- | -------- | -------- |
 | LINES | 0 | 粘贴按钮展示线条样式图标。 |
 
-
 ## PasteDescription枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -77,7 +77,6 @@ PasteButton(option:PasteButtonOptions)
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
 | PASTE | 0 | 粘贴按钮的文字描述为“粘贴”。 |
-
 
 ## PasteButtonOnClickResult枚举说明
 
@@ -89,7 +88,6 @@ PasteButton(option:PasteButtonOptions)
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 粘贴按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 粘贴按钮点击后权限授权失败。 |
-
 
 ## 事件
 
@@ -112,10 +110,9 @@ onClick(event: (event: ClickEvent, result: PasteButtonOnClickResult) =&gt; void)
 | event  | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明|
 | result | [PasteButtonOnClickResult](#pastebuttononclickresult枚举说明)| 是 | 剪贴板权限的授权结果，授权后可以读取当前剪贴板内容。|
 
-
 ## 示例
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component

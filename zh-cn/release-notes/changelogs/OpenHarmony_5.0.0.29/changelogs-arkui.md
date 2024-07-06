@@ -106,7 +106,7 @@ API version 12及以后：Badge组件前后状态相同时不缩放，显隐时�
 
 该变更为非兼容性变更。
 
-在@ComponentV2修饰的自定义组件中使用常规变量(没有任何装饰器修饰的，不涉及更新的普通变量)，在构造的时候传参赋值，进行校验并输出错误信息。
+在@ComponentV2修饰的自定义组件中使用@Local、@Provider()、@Consumer()、常规变量(没有任何装饰器修饰的，不涉及更新的普通变量)，在构造的时候传参赋值，进行校验并输出错误信息。
 
 **变更影响**
 
@@ -119,7 +119,10 @@ struct v2DecoratorInitFromParent {
   build() {
     Column() {
       testChild({
-        regular_value: "hello"
+        regular_value: "hello",
+        local_value: "hello",
+        provider_value: "hello",
+        consumer_value: "hello"
       })
     }
   }
@@ -128,6 +131,9 @@ struct v2DecoratorInitFromParent {
 @ComponentV2
 struct testChild {
   regular_value: string = "hello";
+  @Local local_value: string = "hello";
+  @Provider() provider_value: string = "hello";
+  @Consumer() consumer_value: string = "hello";
   build() {}
 }
 ```
@@ -137,6 +143,9 @@ struct testChild {
 变更后报错信息为：
 
 Property 'regular_value' in the custom component 'testChild' cannot initialize here (forbidden to specify).
+Property 'local_value' in the custom component 'testChild' cannot initialize here (forbidden to specify).
+Property 'provider_value' in the custom component 'testChild' cannot initialize here (forbidden to specify).
+Property 'consumer_value' in the custom component 'testChild' cannot initialize here (forbidden to specify).
 
 **起始API Level**
 
@@ -149,3 +158,64 @@ Property 'regular_value' in the custom component 'testChild' cannot initialize h
 **适配指导**
 
 如果开发者不按规范使用对应范式，则需按日志提示信息进行修改。
+
+## cl.arkui.5 Video切换视频源时显示预览图
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+视频源切换时预览图规格表现不一致。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：视频播放后执行视频源切换时不显示预览图，再次执行视频源切换时显示预览图。
+
+变更后：每次执行视频源切换都会显示预览图。
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.29开始。
+
+**适配指导**
+
+如果应用中使用了Video组件中的previewUri属性，且存在视频源切换行为，开发者需按照预览图是否展示的最新逻辑进行适配。
+
+## cl.arkui.6 BindSheet半模态组件横屏支持设置档位与高度
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+手机横屏时，BindSheet支持开发者设置挡位和高度
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+API version 11及以前：bindSheet在手机横屏时不支持设置挡位和高度，默认高度距离横屏窗口顶部8vp。
+
+API version 12及以后：bindSheet在手机横屏时支持开发者设置挡位和高度，最大高度距离横屏窗口顶部8vp。
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.29开始。
+
+**适配指导**
+
+默认行为变更，需应用适配。适配规则与竖屏下设置挡位保持一致。
+横屏与竖屏挡位参考detents属性的设置：请查阅[半模态组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)文档进行适配。

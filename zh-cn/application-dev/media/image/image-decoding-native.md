@@ -37,8 +37,8 @@ EXTERN_C_END
 1. 打开src\main\cpp\types\libentry\index.d.ts（其中libentry根据工程名生成），导入如下引用文件:
 
     ```js
-    import image from '@ohos.multimedia.image'
-    import resourceManager from '@ohos.resourceManager'
+    import { image } from '@kit.ImageKit';
+    import { resourceManager } from '@kit.LocalizationKit';
 
     export const getSyncPixelMap: (resMgr: resourceManager.ResourceManager, src: string) => image.PixelMap;
     ```
@@ -49,7 +49,7 @@ EXTERN_C_END
 
     ```js
     import testNapi from 'libentry.so'
-    import image from '@ohos.multimedia.image'
+    import { image } from '@kit.ImageKit';
 
     @Entry
     @Component

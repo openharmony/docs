@@ -6,13 +6,12 @@ request部件主要给应用提供上传下载文件、后台传输代理的基�
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ## 导入模块
 
 
 ```js
-import request from '@ohos.request';
+import { request } from '@kit.BasicServicesKit';
 ```
 
 ## 常量
@@ -833,7 +832,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -886,7 +885,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1032,7 +1031,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1079,7 +1078,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1134,7 +1133,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1191,7 +1190,7 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1279,7 +1278,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1326,7 +1325,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1379,7 +1378,7 @@ delete(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1430,7 +1429,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1483,7 +1482,7 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1534,7 +1533,7 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1587,7 +1586,7 @@ getTaskMimeType(): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1638,7 +1637,7 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1691,7 +1690,7 @@ suspend(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1742,7 +1741,7 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1795,7 +1794,7 @@ restore(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -1846,7 +1845,7 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -2302,7 +2301,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | path | string | 是 | 文件路径：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，支持"internal://"及其子路径，如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>-用户公共文件，如"file://media/Photo/path/to/file.img"。仅支持前端任务。 |
 | mimeType | string | 否 | 文件的mimetype通过文件名获取。 |
 | filename | string | 否 | 文件名，默认值通过路径获取。 |
-| extras | Object | 否 | 文件信息的附加内容。 |
+| extras | object | 否 | 文件信息的附加内容。 |
 
 
 ## FormItem<sup>10+</sup> 
@@ -2432,7 +2431,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | description | string | 是 | 任务描述。 |
 | action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
 | mode | [Mode](#mode10) | 是 | 指定任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。 |
-| priority<sup>11+</sup> | number | 否 | 任务配置中的优先级。前端任务的优先级比后台任务高。相同模式的任务，数字越小优先级越高。 |
+| priority<sup>11+</sup> | number | 是 | 任务配置中的优先级。前端任务的优先级比后台任务高。相同模式的任务，数字越小优先级越高。 |
 | mimeType | string | 是 | 任务配置中的mimetype。 |
 | progress | [Progress](#progress10) | 是 | 任务的过程进度。 |
 | gauge | boolean | 是 | 后台任务的进度通知策略。 |
@@ -2442,11 +2441,13 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | tries | number | 是 | 任务的尝试次数。 |
 | faults | [Faults](#faults10) | 是 | 任务的失败原因。<br/>-OTHERS表示其他故障。<br/>-DISCONNECT表示网络断开连接。<br/>-TIMEOUT表示任务超时。<br/>-PROTOCOL表示协议错误。<br/>-FSIO表示文件系统io错误。|
 | reason | string | 是 | 等待/失败/停止/暂停任务的原因。|
-| extras | string | 否 | 任务的额外部分。|
+| extras | object | 否 | 任务的额外部分。|
 
 
 ## HttpResponse<sup>12+</sup> 
 任务响应头的数据结构。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2462,6 +2463,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 ### 属性
 包括任务id和任务的配置信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2494,7 +2497,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -2570,7 +2573,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -2646,7 +2649,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -2720,7 +2723,7 @@ on(event: 'pause', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -2792,7 +2795,7 @@ on(event: 'resume', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -2864,7 +2867,7 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -2921,6 +2924,8 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
 订阅任务响应头，异步方法，使用callback形式返回结果。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 **参数：**
@@ -2936,7 +2941,7 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -3010,7 +3015,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -3094,7 +3099,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -3178,7 +3183,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -3260,7 +3265,7 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -3340,7 +3345,7 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -3420,7 +3425,7 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -3485,6 +3490,8 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
 取消订阅任务响应头。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
 **参数：**
@@ -3500,7 +3507,7 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -4145,7 +4152,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | permission denied. |
   | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400001 | file operation error. |
   | 13400003 | task service ability error. |
@@ -4231,7 +4238,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 201 | the permissions check fails |
+  | 201 | permission denied. |
   | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400001 | file operation error. |
   | 13400003 | task service ability error. |
@@ -4274,7 +4281,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
     task.start();
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
@@ -4624,7 +4631,6 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
   ```ts
   let filter: request.agent.Filter = {
-    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }
@@ -4670,7 +4676,6 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 
   ```ts
   let filter: request.agent.Filter = {
-    bundle: "com.example.myapplication",
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
   }

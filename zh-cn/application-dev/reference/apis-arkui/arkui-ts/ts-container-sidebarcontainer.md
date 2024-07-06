@@ -24,6 +24,8 @@ SideBarContainer( type?: SideBarContainerType )
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -33,6 +35,8 @@ SideBarContainer( type?: SideBarContainerType )
 ## SideBarContainerType枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -229,6 +233,8 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 参数类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | left | number | 否 | 设置侧边栏控制按钮距离容器左界限的间距。<br/>默认值：16vp<br>单位：vp |
@@ -239,7 +245,11 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 
 ## SideBarPosition<sup>9+</sup>枚举说明
 
+侧边栏显示位置。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -249,6 +259,8 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 ## DividerStyle<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 参数类型      | 必填 | 描述                                     |
 | ----------- | ------------- | ---- | ---------------------------------------- |

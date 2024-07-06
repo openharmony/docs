@@ -155,10 +155,10 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                          | 只读 | 必填 | 说明            |
-| -------- | ----------------------------- |----- | ---- | -------------- |
-| min      | number                        |  是  |  N/A  | 最小帧率。      |
-| max      | number                        |  是  |  N/A  | 最大帧率。      |
+| 名称      | 类型                          | 只读 | 可选 | 说明            |
+| -------- | ----------------------------- |----- |---| -------------- |
+| min      | number                        |  是  | 否 | 最小帧率。      |
+| max      | number                        |  是  | 否 | 最大帧率。      |
 
 ## VideoProfile
 
@@ -176,12 +176,12 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                           | 类型                                                | 只读 | 必填 | 说明                |
+| 名称                           | 类型                                                | 只读 | 可选 | 说明                |
 | ----------------------------- | --------------------------------------------------- | ---- | ---- | ------------------- |
-| previewProfiles               | Array\<[Profile](#profile)\>                        |  是  | N/A | 支持的预览配置信息。    |
-| photoProfiles                 | Array\<[Profile](#profile)\>                        |  是  | N/A | 支持的拍照配置信息。    |
-| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              |  是  | N/A | 支持的录像配置信息。    |
-| supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  |  是  | N/A | 支持的metadata流类型信息。|
+| previewProfiles               | Array\<[Profile](#profile)\>                        |  是  | 否 | 支持的预览配置信息。    |
+| photoProfiles                 | Array\<[Profile](#profile)\>                        |  是  | 否 | 支持的拍照配置信息。    |
+| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              |  是  | 否 | 支持的录像配置信息。    |
+| supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  |  是  | 否 | 支持的metadata流类型信息。|
 
 ## SceneMode<sup>11+</sup>
 
@@ -1758,7 +1758,7 @@ function unregisterPreviewOutputError(previewOutput: camera.PreviewOutput): void
 **示例：**
 
 ```ts
-function getSupportedFrameRates(previewOutput: camera.PreviewOutput): Array<FrameRateRange> {
+function getSupportedFrameRates(previewOutput: camera.PreviewOutput): Array<camera.FrameRateRange> {
   let supportedFrameRatesArray: Array<camera.FrameRateRange> = previewOutput.getSupportedFrameRates();
   return supportedFrameRatesArray;
 }
@@ -1819,7 +1819,7 @@ getActiveFrameRate(): FrameRateRange
 **示例：**
 
 ```ts
-function getActiveFrameRate(previewOutput: camera.PreviewOutput): FrameRateRange {
+function getActiveFrameRate(previewOutput: camera.PreviewOutput): camera.FrameRateRange {
   let activeFrameRate: camera.FrameRateRange = previewOutput.getActiveFrameRate();
   return activeFrameRate;
 }
@@ -2338,10 +2338,10 @@ off(type: 'photoAssetAvailable', callback?: AsyncCallback\<PhotoAsset\>): void
 
 **参数：**
 
-| 参数名     | 类型      | 可选  | 说明                                                                         |
+| 参数名     | 类型      | 必填  | 说明                                                                         |
 | -------- | ---------- |-----|----------------------------------------------------------------------------|
-| type     | string     | 否   | 监听事件，固定为'photoAssetAvailable'，photoOutput创建成功后可监听。                         |
-| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 是   | 需要解监听的回调方法。如果callback不为空且与此对应的监听方法一致，不为匿名方法，则解注册该方法；如果callback为空，则解监听所有回调。 |
+| type     | string     | 是   | 监听事件，固定为'photoAssetAvailable'，photoOutput创建成功后可监听。                         |
+| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 否   | 需要解监听的回调方法。如果callback不为空且与此对应的监听方法一致，不为匿名方法，则解注册该方法；如果callback为空，则解监听所有回调。 |
 
 **示例：**
 
@@ -2614,7 +2614,7 @@ function callback(): void {
   console.info(`photo capture ready`);
 }
 
-function registerPhotoOutputcaptureReady(photoOutput: camera.PhotoOutput): void {
+function registerPhotoOutputCaptureReady(photoOutput: camera.PhotoOutput): void {
   photoOutput.on('captureReady', callback);
 }
 ```
@@ -2637,7 +2637,7 @@ off(type: 'captureReady', callback?: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-function unregisterPhotoOutputcaptureReady(photoOutput: camera.PhotoOutput): void {
+function unregisterPhotoOutputCaptureReady(photoOutput: camera.PhotoOutput): void {
   photoOutput.off('captureReady');
 }
 ```
@@ -3097,7 +3097,7 @@ getSupportedFrameRates(): Array\<FrameRateRange\>
 **示例：**
 
 ```ts
-function getSupportedFrameRates(videoOutput: camera.VideoOutput): Array<FrameRateRange> {
+function getSupportedFrameRates(videoOutput: camera.VideoOutput): Array<camera.FrameRateRange> {
   let supportedFrameRatesArray: Array<camera.FrameRateRange> = videoOutput.getSupportedFrameRates();
   return supportedFrameRatesArray;
 }
@@ -3159,7 +3159,7 @@ getActiveFrameRate(): FrameRateRange
 **示例：**
 
 ```ts
-function getActiveFrameRate(videoOutput: camera.VideoOutput): FrameRateRange {
+function getActiveFrameRate(videoOutput: camera.VideoOutput): camera.FrameRateRange {
   let activeFrameRate: camera.FrameRateRange = videoOutput.getActiveFrameRate();
   return activeFrameRate;
 }
@@ -4186,7 +4186,7 @@ hasFlash(): boolean
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400103                |  Session not config.                                   |
+| 7400103                |  Session not config, only throw in session usage.       |
 
 **示例：**
 
@@ -4232,7 +4232,7 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400103                |  Session not config.                                   |
+| 7400103                |  Session not config, only throw in session usage.             |
 
 **示例：**
 
@@ -4530,7 +4530,7 @@ isExposureModeSupported(aeMode: ExposureMode): boolean
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400103                |  Session not config.                                   |
+| 7400103                |  Session not config, only throw in session usage.          |
 
 **示例：**
 
@@ -4570,7 +4570,7 @@ getExposureBiasRange(): Array\<number\>
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400103                |  Session not config.                                   |
+| 7400103                |  Session not config, only throw in session usage.               |
 
 **示例：**
 
@@ -4826,7 +4826,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400103                |  Session not config.                                   |
+| 7400103                |  Session not config, only throw in session usage.          |
 
 **示例：**
 
@@ -5019,7 +5019,7 @@ getZoomRatioRange(): Array\<number\>
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400103                |  Session not config.                                   |
+| 7400103                |  Session not config, only throw in session usage.            |
 
 **示例：**
 
@@ -5158,7 +5158,7 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400103                |  Session not config.                                   |
+| 7400103                |  Session not config, only throw in session usage.             |
 
 **示例：**
 
@@ -6173,9 +6173,9 @@ setExposureBias(exposureBias: number): void
 
 **参数：**
 
-| 参数名     | 类型                            | 可选  | 说明                                                                                                                                                                                    |
+| 参数名     | 类型                            | 必填  | 说明                                                                                                                                                                                    |
 | -------- | -------------------------------|-----|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| exposureBias   | number                   | 否   | 曝光补偿，[getExposureBiasRange](#getexposurebiasrange11)查询支持的范围，如果设置超过支持范围的值，自动匹配到就近临界点。曝光补偿存在步长，如步长为0.5。则设置1.2时，获取到实际生效曝光补偿为1.0。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| exposureBias   | number                   | 是  | 曝光补偿，[getExposureBiasRange](#getexposurebiasrange11)查询支持的范围，如果设置超过支持范围的值，自动匹配到就近临界点。曝光补偿存在步长，如步长为0.5。则设置1.2时，获取到实际生效曝光补偿为1.0。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -6399,9 +6399,9 @@ setFocusPoint(point: Point): void
 
 **参数：**
 
-| 参数名      | 类型                     | 必填 | 说明                 |
-| -------- | ----------------------- | ---- | ------------------- |
-| Point    | [Point](#point)         | 是   | 焦点。x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。   |
+| 参数名   | 类型                     | 必填  | 说明                 |
+|-------| ----------------------- |-----| ------------------- |
+| point | [Point](#point)         | 是  | 焦点。x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。   |
 
 **错误码：**
 
@@ -6571,9 +6571,9 @@ setZoomRatio(zoomRatio: number): void
 
 **参数：**
 
-| 参数名       | 类型                  | 可选  | 说明                 |
+| 参数名       | 类型                  | 必填  | 说明                 |
 | --------- | -------------------- |-----| ------------------- |
-| zoomRatio | number               | 否   | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。 |
+| zoomRatio | number               | 是  | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。 |
 
 **错误码：**
 
@@ -6895,7 +6895,7 @@ function unregisterCaptureSessionError(captureSession: camera.CaptureSession): v
 
 色彩管理类，用于查询色彩空间参数。
 
-### getSupportedColorSpaces<sup>11+</sup>
+### getSupportedColorSpaces<sup>12+</sup>
 
 getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
 
@@ -6944,7 +6944,7 @@ ColorManagement extends [ColorManagementQuery](#colormanagementquery12)
 
 setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
-设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces11)获取当前设备所支持的ColorSpaces。
+设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces12)获取当前设备所支持的ColorSpaces。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6952,7 +6952,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
 | 参数名         | 类型                 | 必填 | 说明                      |
 | ------------ |---------------------- | -- | -------------------------- |
-| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces11)接口获取。   |
+| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces12)接口获取。   |
 
 **错误码：**
 

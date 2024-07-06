@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import { EditableTitleBar } from "@ohos.arkui.advanced.EditableTitleBar"
+import { EditableTitleBar } from '@kit.ArkUI'
 ```
 
 
@@ -45,7 +45,7 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 | onSave | ()&nbsp;=&gt;&nbsp;void | 否 | - | 保存时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | - | 当左侧按钮类型为&nbsp;Cancel，触发取消时的动作闭包。<br />从API version 12开始，当左侧按钮类型为&nbsp;Back，触发返回时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | options<sup>12+</sup> | [EditableTitleBarOptions](#editabletitlebaroptions12) | 否 | - | 标题样式。 |
-| contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 标题栏外边距，不支持设置负数。<br />默认值：<br />页面断点<600vp:<br /> {start: LengthMetrics.vp(16), end: LengthMetrics.vp(16)};<br />600vp<=页面断点<840vp:<br /> {start: LengthMetrics.vp(24), end: LengthMetrics.vp(24)};<br />页面断点>=840vp:<br /> {start: LengthMetrics.vp(32), end: LengthMetrics.vp(32)}。 |
+| contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 标题栏外边距，不支持设置负数。<br />默认值：<br /> {start: LengthMetrics.resource(`$r('sys.float.margin_left')`), end: LengthMetrics.resource(`$r('sys.float.margin_right')`)}。 |
 
 ## EditableLeftIconType
 
@@ -69,9 +69,9 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 
 ## EditableTitleBarItem<sup>12+</sup>
 
-| 名称 | 类型 | 说明 |
-| -------- | -------- | -------- |
-| EditableTitleBarItem | [EditableTitleBarMenuItem](#editabletitlebarmenuitem) | 左侧头像的单个菜单类型。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| [EditableTitleBarMenuItem](#editabletitlebarmenuitem) | 左侧头像的单个菜单类型。 |
 
 ## EditableTitleBarOptions<sup>12+</sup>
 

@@ -10,6 +10,7 @@
   - [@ohos.multimodalInput.gestureEvent (Gesture Input Event)](js-apis-multimodalinput-gestureevent.md)
   - [@ohos.multimodalInput.pointer (Mouse Pointer)](js-apis-pointer.md)
   - [@ohos.multimodalInput.touchEvent (Touch Event)](js-apis-touchevent.md)
+  <!--Del-->
   - [@ohos.multimodalInput.pointer (mouse pointer) (system interface)](js-apis-pointer-sys.md)
   - [@ohos.multimodalInput.shortKey (Shortcut Key) (System API)](js-apis-shortKey-sys.md)
   - [@ohos.multimodalInput.inputConsumer (Input Consumer) (System API)](js-apis-inputconsumer-sys.md)
@@ -18,6 +19,7 @@
   - [@ohos.multimodalInput.inputMonitor (Input Monitor) (System API)](js-apis-inputmonitor-sys.md)
   - APIs No Longer Maintained
     - [@ohos.multimodalInput.inputDeviceCooperate (Screen Hopping) (System API)](js-apis-cooperate-sys.md)
+  <!--DelEnd-->
 - C API
   - Modules
     - [Input](input.md)

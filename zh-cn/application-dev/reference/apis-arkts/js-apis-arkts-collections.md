@@ -265,8 +265,15 @@ static from\<T>(arrayLike: ArrayLike\<T>): Array\<T>
 **示例：**
 
 ```ts
-let arrayLike = [1, 3, 5];
-let array = collections.Array.from<number>(arrayLike);
+// 正例
+let array : Array<string> = ['str1', 'str2', 'str3']; // 原生Array<T>，T是Sendable数据类型。
+let sendableArray = collections.Array.from<string>(array); // 返回Sendable Array<T>
+```
+
+```ts
+// 反例
+let array : Array<Array<string>> = [['str1', 'str2', 'str3'], ['str4', 'str5', 'str6'], ['str7', 'str8', 'str9']]; // 原生Array<T>，T是非Sendable数据类型。
+let sendableArray = collections.Array.from<Array<string>>(array); // 打印异常信息：Parameter error.Only accept sendable value
 ```
 
 ### pop
@@ -519,7 +526,7 @@ sort(compareFn?: (a: T, b: T) => number): Array\<T>
 **示例：**
 
 ```ts
-let array = new collections.Array<number>(1, 3, 5, 4, 1);
+let array = new collections.Array<number>(1, 3, 5, 4, 2);
 array.sort((a: number, b: number) => a - b); // [1, 2, 3, 4, 5]
 array.sort((a: number, b: number) => b - a); // [5, 4, 3, 2, 1]
 ```
@@ -2120,7 +2127,7 @@ constructor(byteLength: number)
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------|
-| byteLength  | number | 是   | buffer大小。         |
+| byteLength  | number | 是   | buffer所占的字节数。     |
 
 **错误码：**
 
@@ -2360,7 +2367,7 @@ constructor(array: ArrayLike\<number> | ArrayBuffer)
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| array |  ArrayLike\<number> \| ArrayBuffer | 是 | 用于构造ArkTS TypedArray的对象。 |
+| array |  ArrayLike\<number> \| ArrayBuffer | 是 | 用于构造ArkTS TypedArray的对象。当参数类型是ArrayBuffer时buffer所占的字节数须是4的整数倍。 |
 
 **错误码：**
 
@@ -2380,7 +2387,7 @@ let array: collections.Uint32Array = new collections.Uint32Array(arrayLike);
 
 ```ts
 // 例2 从一个ArrayBuffer构造对象
-let arrayBuffer: collections.ArrayBuffer = new collections.ArrayBuffer(10);
+let arrayBuffer: collections.ArrayBuffer = new collections.ArrayBuffer(12);
 let array: collections.Uint32Array = new collections.Uint32Array(arrayBuffer);
 ```
 
@@ -2406,7 +2413,7 @@ constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 
 | 参数名  | 类型   | 必填 | 说明                                         |
 | ------- | ------ | ---- | ------------------------------------------ |
-| buffer | ArrayBuffer | 是 | 用于构造ArkTS TypedArray的ArrayBuffer对象。|
+| buffer | ArrayBuffer | 是 | 用于构造ArkTS TypedArray的ArrayBuffer对象。buffer所占的字节数须是4的整数倍。|
 | byteOffset | number | 否 | 指定buffer的字节偏移，默认为0。 |
 | length | number | 否 | 指定ArkTS TypedArray的长度，默认为0。 |
 
@@ -2483,7 +2490,7 @@ static from\<T>(arrayLike: ArrayLike\<T>, mapFn: TypedArrayFromMapFn\<T, number>
 // 例1 从一个对象创建
 let array: collections.Uint32Array = collections.Uint32Array.from<number>(
   { length: 5 }, (v: Object, k: number) => k);
-// Uint32Array [0, 1, 2, 3, 4, 5]
+// Uint32Array [0, 1, 2, 3, 4]
 ```
 
 ```ts
@@ -2512,7 +2519,7 @@ static from(iterable: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, nu
 **参数：**
 | 参数名  | 类型   | 必填 | 说明                                |
 | ------- | ------ | ---- | -----------------------------------|
-| iterable | Iterable\<number> | 是 | 用用于构造的可迭代对象。   |
+| iterable | Iterable\<number> | 是 | 用于构造的可迭代对象。   |
 | mapFn | [TypedArrayFromMapFn](#typedarrayfrommapfn)\<number, number> | 否 | 映射函数。如果省略，则不对元素进行加工处理。|
 
 **返回值：**
@@ -3473,7 +3480,7 @@ BitVector的构造函数。
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 ```
 
 
@@ -3512,7 +3519,7 @@ push(element:number): boolean
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3548,7 +3555,7 @@ pop(): number
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3596,7 +3603,7 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3638,7 +3645,7 @@ setBitsByRange(element: number, fromIndex: number, toIndex: number): void
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3676,7 +3683,7 @@ setAllBits(element: number): void
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3722,7 +3729,7 @@ getBitsByRange(fromIndex: number, toIndex: number): BitVector
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3765,7 +3772,7 @@ resize(size: number): void
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3815,7 +3822,7 @@ getBitCountByRange(element: number, fromIndex: number, toIndex: number): number
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3863,7 +3870,7 @@ getIndexOf(element: number, fromIndex: number, toIndex: number): number
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3911,7 +3918,7 @@ getLastIndexOf(element: number, fromIndex: number, toIndex: number): number
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3951,7 +3958,7 @@ flipBitByIndex(index: number): void
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3991,7 +3998,7 @@ flipBitsByRange(fromIndex: number, toIndex: number): void
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -4028,10 +4035,16 @@ values(): IterableIterator\<number>
 **示例：**
 
 ```ts
-let iter = bitVector.values();
+let bitVector: collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+let iter: IterableIterator<number> = bitVector.values();
 let temp: IteratorResult<number> = iter.next();
 while (!temp.done) {
-    console.info("bitVector value" + temp.value);
-    temp = iter.next();
+  console.info(JSON.stringify(temp.value));
+  temp = iter.next();
 } // 依次输出 0,1,0,1,0
 ```

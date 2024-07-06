@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import AVCastPicker from '@ohos.multimedia.avCastPicker';
+import { AVCastPicker } from '@kit.AVSessionKit';
 ```
 
 ## AVCastPicker
@@ -22,9 +22,9 @@ AVCastPicker()
 
 该组件为自定义组件，开发者在使用前需要先了解[@Component](../../quick-start/arkts-create-custom-components.md)。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 ## 属性
 
@@ -49,8 +49,7 @@ AVCastPicker()
 投播功能的示例说明参考如下。
 
 ```ts
-import AVCastPicker from '@ohos.multimedia.avCastPicker'
-import { AVCastPickerState } from '@ohos.multimedia.avCastPickerParam'
+import { avSession, AVCastPickerState, AVCastPicker } from '@kit.AVSessionKit';
 
 @Entry
 @Component

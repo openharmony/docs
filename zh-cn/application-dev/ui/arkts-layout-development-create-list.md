@@ -42,6 +42,8 @@ List除了提供垂直和水平布局能力、超出屏幕时可以滚动的自�
 ![zh-cn_image_0000001511421344](figures/zh-cn_image_0000001511421344.png)
 
 
+Grid和WaterFlow也可以实现单列、多列布局，如果布局每列等宽，且不需要跨行跨列布局，相比Gird和WaterFlow，则更推荐使用List。
+
 ### 约束
 
 列表的主轴方向是指子组件列的排列方向，也是列表的滚动方向。垂直于主轴的轴称为交叉轴，其方向与主轴方向相互垂直。
@@ -217,7 +219,7 @@ ArkTS通过[ForEach](../quick-start/arkts-rendering-control-foreach.md)提供了
 
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS'
 
 class Contact {
   key: string = util.generateRandomUUID(true);
@@ -406,7 +408,7 @@ List组件的sticky属性配合ListItemGroup组件使用，用于设置ListItemG
 
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS'
 class Contact {
   key: string = util.generateRandomUUID(true);
   name: string;
@@ -669,7 +671,7 @@ ListItem() {
 
    ```ts
    //ToDo.ets
-   import util from '@ohos.util';
+   import { util } from '@kit.ArkTS'
 
    export class ToDo {
      key: string = util.generateRandomUUID(true);
@@ -827,7 +829,7 @@ ListItem() {
 
     ```ts
    // 结构参考
-   import util from '@ohos.util';
+   import { util } from '@kit.ArkTS'
    export class ToDo {
      key: string = util.generateRandomUUID(true);
      name: string;
@@ -859,7 +861,7 @@ ListItem() {
 
     ```ts
     // 结构参考
-    import util from '@ohos.util';
+    import { util } from '@kit.ArkTS'
     export class ToDo {
       key: string = util.generateRandomUUID(true);
       name: string;
