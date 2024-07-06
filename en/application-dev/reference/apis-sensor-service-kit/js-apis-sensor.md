@@ -2717,7 +2717,7 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denie.                                            |
+| 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
 | 14500101 | Service exception.                                           |
 
@@ -2771,7 +2771,7 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denie.                                            |
+| 201      | Permission denied.                                           |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
 | 14500101 | Service exception.                                           |
 
@@ -4630,6 +4630,8 @@ Describes the sensor data reporting frequency.
 | interval | number/[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. This attribute has restrictions on the minimum and maximum values, determined by the reporting frequency supported by the hardware.|
 
 ## SensorFrequency<sup>11+</sup>
+
+type SensorFrequency = 'game'|'ui'|'nornal'
 
 Defines the reporting frequency mode of the sensor.
 

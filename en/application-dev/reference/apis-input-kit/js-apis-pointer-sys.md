@@ -31,6 +31,7 @@ Sets the moving speed of the mouse pointer. This API uses an asynchronous callba
 | speed    | number                    | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **7**.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -159,6 +160,7 @@ Obtains the moving speed of the mouse pointer. This API uses an asynchronous cal
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 
 **Example**
 
