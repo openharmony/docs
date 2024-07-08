@@ -341,7 +341,7 @@ struct TextTimerExample {
         .format('mm:ss.SS')
         .fontSize(50)
         .onTimer((utc: number, elapsedTime: number) => {
-          // 开发者需改回变更前的效果，可以将utc、elapsedTime乘10后使用
+          // 如果开发者需改回变更前的效果，可以将utc、elapsedTime乘10
           console.info('textTimer countDown utc is:' + utc * 10 + ',elapsedTime is:' + elapsedTime * 10)
         })
 
@@ -349,7 +349,7 @@ struct TextTimerExample {
         .format('mm:ss.S')
         .fontSize(50)
         .onTimer((utc: number, elapsedTime: number) => {
-          // 开发者需改回变更前的效果，可以将utc、elapsedTime乘100后使用
+          // 如果开发者需改回变更前的效果，可以将utc、elapsedTime乘100
           console.info('textTimer countDown utc is:' + utc * 100 + ',elapsedTime is:' + elapsedTime * 100)
         })
     }
