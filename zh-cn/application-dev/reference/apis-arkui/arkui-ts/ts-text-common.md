@@ -89,16 +89,4 @@ getLineMetrics(lineNumber: number): LineMetrics
 | 名称      | 类型                   | 只读 | 必填 | 说明                      |
 | --------- | --------------------- | ---- | ---- | ------------------------ |
 | position  | number                | 是   | 是   | 字形相对于组件内容的索引，整数。  |
-| affinity  | [Affinity](../../apis-arkgraphics2d/js-apis-graphics-text.md#affinity) | 是   | 是   | 位置亲和度。             |
-
-## ExpandedMenuItemOptions<sup>12+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名 | 参数类型                                   | 必填 | 参数描述 |
-| ------ | ------------------------------------------ | ---- | -------- |
-| content   | [ResourceStr](ts-types.md#resourcestr)  | 是     | 显示内容。     |
-| startIcon | [ResourceStr](ts-types.md#resourcestr)  | 否     | 显示图标，不支持引用SymbolSpan和网络图片。     |
-| action    | Callback\<[TextRange](ts-universal-attributes-text-style.md#textrange12)>  | 是     | 选中的文本信息。|    
+| affinity  | [Affinity](../../apis-arkgraphics2d/js-apis-graphics-text.md#affinity) | 是   | 是   | 位置亲和度。             |   
