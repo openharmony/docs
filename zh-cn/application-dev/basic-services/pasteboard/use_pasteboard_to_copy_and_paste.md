@@ -12,7 +12,7 @@
 - 剪贴板当前支持的数据类型有文本、HTML、URI、Want、PixelMap。
 - API version 12及之后，系统为提升用户隐私安全保护能力，剪贴板读取接口增加[权限管控](get-pastedata-permission-guidelines.md)。
 
-## 1.使用统一数据类型进行复制粘贴
+## 使用统一数据类型进行复制粘贴
 
 为了方便剪贴板与其他应用间进行数据交互，减少数据类型适配的工作量，剪贴板支持使用统一数据对象进行复制粘贴。详细的统一数据对象请见[标准化数据通路](../../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md)文档介绍。
 
@@ -78,7 +78,7 @@ globalThis.GetPlainTextUnifiedData = (() => {
 })
 ```
 
-## 2.使用基础类型进行复制粘贴
+## 使用基础类型进行复制粘贴
 
 ### 接口说明
 
