@@ -5406,7 +5406,7 @@ ImageSource的初始化选项。
 
 | 名称              | 类型                               | 只读 | 可选 | 说明               |
 | ----------------- | ---------------------------------- | ---- | ---- | ------------------ |
-| sourceDensity     | number                             | 否   | 否   | ImageSource的密度。|
+| sourceDensity     | number                             | 否   | 否   | 图片资源像素密度，单位DPI。<br>在解码参数[DecodingOptions](#decodingoptions7)未设置desiredSize的前提下，当前参数SourceOptions.sourceDensity与DecodingOptions.fitDensity非零时将对解码输出的pixelmap进行缩放。<br>缩放后宽计算公式如下(高同理)：(width * fitDensity + (sourceDensity >> 1)) / sourceDensity。|
 | sourcePixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 图片像素格式，默认值为UNKNOWN。     |
 | sourceSize        | [Size](#size)                      | 否   | 是   | 图像像素大小，默认值为空。     |
 
