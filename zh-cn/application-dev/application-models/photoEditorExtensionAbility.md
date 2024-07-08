@@ -212,7 +212,7 @@ struct Index {
   @State editedImage: PixelMap | null = null;
   private filePath: string = "";
 
-    async readImage(uri: string): Promise < PixelMap | null > {
+  async readImage(uri: string): Promise < PixelMap | null > {
     hilog.info(0x0000, TAG, "image uri: " + uri);
     let file: fs.File | undefined;
     try {
