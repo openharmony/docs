@@ -10043,7 +10043,7 @@ setProtectionType(protectionType: number): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401      | check param failed |
-  | 1900002  | call os ioctl function failed |
+  | 1900002  | os ioctl function failed |
 
 **示例：**
 
