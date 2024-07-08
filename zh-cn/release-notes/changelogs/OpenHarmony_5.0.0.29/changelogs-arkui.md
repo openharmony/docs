@@ -78,11 +78,21 @@ API version 12及以后：Badge组件前后状态相同时不缩放，显隐时�
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更，只影响TimePickerDialog、DatePickerDialog组件的默认样式。
 
-1. 根据开发者的配置动态控制TimePickerDialog中的TimePicker小时选项是否需要前导零：当且仅当TimePickerDialog 是12小时制的且开发者设置需要前导零，TimePickerDialog 的小时选项中小于10的选项数值前才需要补零，否则不补零。24小时制小于10的选项数值默认有前导零，可以单独设置没有前导零。
+- 变更前： TimePickerDialog、DatePickerDialog组件12小时制小时默认有前置零。
+  
+- 变更后： TimePickerDialog、DatePickerDialog组件12小时制小时默认没有前置零。
 
-2. 根据开发者的配置动态控制DatePickerDialog中的TimePicker小时选项是否需要前导零：当且仅当DatePickerDialog中的TimePicker是12小时制的且开发者设置需要前导零，DatePickerDialog中的TimePicker的小时选项中小于10的选项数值前才需要补零，否则不补零。24小时制小于10的选项数值默认有前导零，可以单独设置没有前导零。
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/TimePickerDialog_Before.png)  |  ![](figures/TimePickerDialog_After.png)  |
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/DatePickerDialog_Before.png)  |  ![](figures/DatePickerDialog_After.png)  |
 
 **起始API Level**
 
