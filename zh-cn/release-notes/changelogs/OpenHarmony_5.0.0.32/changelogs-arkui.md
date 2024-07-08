@@ -137,15 +137,19 @@ Menu组件。
 
 **变更原因**
 
-由于窗口提供的拖拽窗口类型变更，新的窗口类型无法超出父窗口，导致onItemDrag拖拽窗口无法拖出应用窗口外。
+onItemDrag接口无法与其他应用产生交互，但生成的拖拽窗口能拖拽出当前应用。
+
+现在限制其能拖出当前应用的行为，与使用范围保持一致。
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为兼容性变更。
 
 API version 12之前，onItemDrag拖起的拖拽窗口可以拖出当前应用窗口外。
+![](figures/OnItemDragBefore.gif)
 
 API version 12及以后，onItemDrag拖起的拖拽窗口不可以拖出当前应用窗口外。
+![](figures/OnItemDragNow.gif)
 
 **起始API Level**
 
@@ -163,7 +167,7 @@ List组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeav
 
 **适配指导**
 
-默认行为变更，无需适配。
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
 ## cl.arkui.6 List的ConstraintSize设置生效
 
