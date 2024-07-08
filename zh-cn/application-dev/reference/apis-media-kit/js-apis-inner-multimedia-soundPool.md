@@ -42,6 +42,11 @@ load(uri: string, callback: AsyncCallback\<number>): void
 加载音频资源。使用callback方式异步获取资源ID，入参uri通过获取文件fd生成以"fd://"开头的文件描述字符串。
 该方法不支持加载rawfile目录资源，需要通过[load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void](#load-2)或者[load(fd: number, offset: number, length: number): Promise\<number>](#load-3)实现。
 
+>**说明：**
+>
+>将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。
+>同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
+
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
 **参数：**
@@ -50,10 +55,6 @@ load(uri: string, callback: AsyncCallback\<number>): void
 | -------- | -------------------------------------- | ---- | ------------------------------------- |
 | uri   | string | 是   | 音频文件的加载路径描述，一般以"fd://"开头的文件描述。 |
 | callback | AsyncCallback\<number>                   | 是   | 异步音频资源加载返回的资源id，有效值大于0。 |
-
-**说明：**
-
-将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
 
 **错误码：**
 
@@ -68,7 +69,7 @@ load(uri: string, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import { fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
@@ -85,9 +86,9 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
     let uri:string = "";
-    let file: fs.File;
+    let file: fileIo.File;
     //获取fd的uri路径
-    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+    fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
       uri = 'fd://' + (file.fd).toString()
@@ -110,6 +111,11 @@ load(uri: string): Promise\<number>
 加载音频资源。使用Promise方式异步获取资源ID，入参uri通过获取文件fd生成以"fd://"开头的文件描述字符串。
 该方法不支持加载rawfile目录资源，需要通过[load(fd: number, offset: number, length: number, callback: AsyncCallback\<number>): void](#load-2)或者[load(fd: number, offset: number, length: number): Promise\<number>](#load-3)实现。
 
+>**说明：**
+>
+>将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。
+>同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
+
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
 **参数：**
@@ -117,10 +123,6 @@ load(uri: string): Promise\<number>
 | 参数名 | 类型                                   | 必填 | 说明                       |
 | ------ | -------------------------------------- | ---- | -------------------------- |
 | uri | string | 是   | 音频文件的加载路径描述，一般以"fd://"开头的文件描述。 |
-
-**说明：**
-
-将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
 
 **返回值：**
 
@@ -141,7 +143,7 @@ load(uri: string): Promise\<number>
 **示例：**
 
 ```ts
-import { fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
@@ -159,9 +161,9 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     console.info(`Succeeded in createSoundPool`)
     let uri:string = "";
     let soundID: number = 0;
-    let file: fs.File;
+    let file: fileIo.File;
     //获取fd的uri路径
-    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+    fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
       uri = 'fd://' + (file.fd).toString()
@@ -183,6 +185,11 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 
 加载音频资源。使用callback方式异步获取资源ID，入参可手动传入资源信息或通过读取应用内置资源自动获取。
 
+>**说明：**
+>
+>将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。
+>同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
+
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
 **参数：**
@@ -193,10 +200,6 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 | offset | number | 是   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | length | number | 是   | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | callback | AsyncCallback\<number> | 是   | 获取回调的soundID，有效值大于0。 |
-
-**说明：**
-
-将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
 
 **错误码：**
 
@@ -211,7 +214,7 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 **示例：**
 
 ```ts
-import { fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
@@ -227,12 +230,12 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
   } else {
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
-    let file: fs.File;
+    let file: fileIo.File;
     let soundID: number = 0;
     let fileSize: number = 1; //通过fs.stat()获取size值
     let uri: string = "";
     //获取fd的描述信息
-    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+    fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
       uri = 'fd://' + (file.fd).toString()
@@ -256,6 +259,11 @@ load(fd: number, offset: number, length: number): Promise\<number>
 
 加载音频资源。使用Promise方式异步获取资源ID，入参可手动传入资源信息或通过读取应用内置资源自动获取。
 
+>**说明：**
+>
+>将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。
+>同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
+
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
 **参数：**
@@ -265,10 +273,6 @@ load(fd: number, offset: number, length: number): Promise\<number>
 | fd     | number | 是   | 资源句柄，通过resourceManager.getRawFileDescriptor获取。     |
 | offset | number | 是   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
 | length | number | 是   | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误。 |
-
-**说明：**
-
-将资源句柄（fd）或加载路径描述（uri）传递给音频池播放器之后，请不要通过该资源句柄或加载路径描述做其他读写操作，包括但不限于将同一个资源句柄或加载路径描述传递给多个音频池播放器。同一时间通过同一个资源句柄或加载路径描述读写文件时存在竞争关系，将导致播放异常。
 
 **返回值：**
 
@@ -289,7 +293,7 @@ load(fd: number, offset: number, length: number): Promise\<number>
 **示例：**
 
 ```ts
-import { fs } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
@@ -305,12 +309,12 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
   } else {
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
-    let file: fs.File;
+    let file: fileIo.File;
     let soundID: number = 0;
     let fileSize: number = 1; //通过fs.stat()获取size值
     let uri: string = "";
     //获取fd的描述信息
-    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+    fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
       uri = 'fd://' + (file.fd).toString()
