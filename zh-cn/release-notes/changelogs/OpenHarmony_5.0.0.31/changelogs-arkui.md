@@ -109,11 +109,11 @@ struct testTmp {
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容性变更。
 
-变更前，全模态动效参数为interpolatingSpring(velocity:n, mass:1, stiffness:100, damping:20)。
+变更前，全模态动效参数为interpolatingSpring(velocity:n, mass:1, stiffness:100, damping:20)，动效时长约为1200ms。
 
-变更后，全模态动效参数为interpolatingSpring(velocity:n, mass:1, stiffness:328, damping:36)。
+变更后，全模态动效参数为interpolatingSpring(velocity:n, mass:1, stiffness:328, damping:36)，动效时长约为800ms。
 
 **起始API Level**
 
@@ -129,7 +129,7 @@ bindContentCover组件
 
 **适配指导**
 
-默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
+默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期，可通过transition接口自定义动效。
 
 ## cl.arkui.3 @ohos.arkui.advanced.SubHeader删除SymbolRenderingStrategy和SymbolEffectStrategy。
 
@@ -143,13 +143,15 @@ SymbolGlyph中已定义SymbolRenderingStrategy和SymbolEffectStrategy，避免�
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
-变更前引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy无报错。
-
-变更后报错：
+变更前，引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy，运行时报错：
 
 1.Eerror message:the requested module '@ohos.arkui.advanced.SubHeader' does not provide an export name 'SymbolRenderingStrategy' and 'SymbolEffectStrategy'.
+
+变更后，引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy，编译期报错：
+
+1.Module '@ohos.arkui.advanced.SubHeader' has no exported member 'SymbolRenderingStrategy' and 'SymbolEffectStrategy'.
 
 **起始API Level**
 
@@ -269,7 +271,7 @@ myBuilder() {
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容性变更。
 
 变更前，长按文本内容，直接触发选词，展示选中背板、手柄以及文本选择菜单。
 
@@ -294,7 +296,7 @@ RichEditor组件
 
 默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改事件效果以达到预期。
 
-## cl.arkui.6 textTimer的onTimer回调频率与参数调整
+## cl.arkui.6 TextTimer的onTimer回调频率与参数单位调整
 
 **访问级别**
 
@@ -302,15 +304,17 @@ RichEditor组件
 
 **变更原因**
 
-调整onTimer回调频率与参数调整使其符合文档描述。
+调整onTimer回调频率与参数的单位，使其符合文档描述。
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容性变更。
 
-变更前，当textTimer的format包含S（毫秒）时，时间的变化就会触发onTimer（几毫秒一次），且回调参数的单位为ms（毫秒）。
+TextTimer的format属性用于自定义时间格式。其中，毫秒可使用S、SS和SSS关键字表示，分别代表100ms、10ms和1ms。
 
-变更后，textTimer的文本发生变化时回调onTimer，且回调参数的单位随format变化。format为mm:ss.S时，100ms回调一次，回调参数的单位为0.1秒；为mm:ss.SS时10ms回调一次，回调参数的单位为0.01秒。
+变更前，当TextTimer的format属性包含毫秒时，TextTimer的文本发生变化，便会几毫秒触发一次onTimer事件，且回调参数utc和elapsedTime的单位为毫秒。
+
+变更后，TextTimer的文本发生变化时，onTimer事件的触发时间与回调参数utc和elapsedTime的单位随format属性的自定义时间格式变化。format为mm:ss.S时，100ms回调一次onTimer事件，回调参数的单位为100ms。format为mm:ss.SS时，10ms回调一次onTimer事件，回调参数的单位为10ms。format为mm:ss.SSS时，与变更前保持一致。
 
 **起始API Level**
 
@@ -322,13 +326,40 @@ RichEditor组件
 
 **变更的接口/组件**
 
-textTimer组件
+textTimer组件的onTimer接口
 
 **适配指导**
 
 需要开发者主动适配，调整回调参数的数量级。
 
-## cl.arkui.7 滚动类组件（List、Grid、WaterFlow、Scroll）friction接口默认值变更
+```ts
+@Entry
+@Component
+struct TextTimerExample {
+  textTimerController: TextTimerController = new TextTimerController();
+  build() {
+    Column(){
+      TextTimer({isCountDown: true, count: 30000, controller: this.textTimerController})
+        .format('mm:ss.SS')
+        .fontSize(50)
+        .onTimer((utc: number, elapsedTime: number) => {
+          // 如果开发者需改回变更前的效果，可以将utc、elapsedTime乘10
+          console.info('textTimer countDown utc is:' + utc * 10 + ',elapsedTime is:' + elapsedTime * 10)
+        })
+
+      TextTimer({isCountDown: true, count: 30000, controller: this.textTimerController})
+        .format('mm:ss.S')
+        .fontSize(50)
+        .onTimer((utc: number, elapsedTime: number) => {
+          // 如果开发者需改回变更前的效果，可以将utc、elapsedTime乘100
+          console.info('textTimer countDown utc is:' + utc * 100 + ',elapsedTime is:' + elapsedTime * 100)
+        })
+    }
+  }
+}
+```
+
+## cl.arkui.7 滚动类组件（List、Grid、WaterFlow、Scroll）Friction接口默认值变更
 
 **访问级别**
 
@@ -379,5 +410,87 @@ struct FrictionExample {
     .height(500)
     .friction(0.7)
   }
+}
+```
+## cl.arkui.8 ListItem卡片样式行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+原本ListItem在LazyForEach下使用时，ListItem设置卡片样式不生效，需要整该为能够生效。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：ListItem在LazyForEach下使用时，卡片样式设置不生效。<br>变更后：ListItem在LazyForEach下使用时，卡片样式设置可以生效。
+
+```ts
+build() {
+  List() {
+    ListItemGroup({ style: ListItemGroupStyle.CARD }) {
+      LazyForEach(this.arr, (item: number) => {
+        ListItem({ style: ListItemStyle.CARD }) {
+          Text("item" + item.toString())
+        }
+      })
+    }
+  }.backgroundColor("#DCDCDC")
+  .height("100%")
+}
+```
+| 变更前效果 | 变更后效果 |
+| ---- | ---- |
+| ![](./figures/list_item_card_style_before.png) | ![](./figures/list_item_card_style_after.png) |
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.31 版本开始。
+
+**变更的接口/组件**
+
+涉及的组件：ListItem组件ListItemStyle接口。
+
+**适配指导**
+
+如果ListItem在LazyForEach下使用，设置了卡片样式没有生效，变更后生效卡片样式导致显示界面变化，可以删除卡片样式的设置。
+
+如下代码变更前设置卡片样式不生效，变更后生效卡片样式导致显示界面变化。
+```ts
+build() {
+  List() {
+    ListItemGroup({ style: ListItemGroupStyle.CARD }) {
+      LazyForEach(this.arr, (item: number) => {
+        ListItem({ style: ListItemStyle.CARD }) {
+          Text("item" + item.toString())
+            .height(64)
+        }
+      })
+    }
+  }.backgroundColor("#DCDCDC")
+  .height("100%")
+}
+```
+删除ListItem卡片样式可以恢复变更前效果。
+```ts
+build() {
+  List() {
+    ListItemGroup({ style: ListItemGroupStyle.CARD }) {
+      LazyForEach(this.arr, (item: number) => {
+        ListItem() {
+          Text("item" + item.toString())
+            .height(64)
+        }
+      })
+    }
+  }.backgroundColor("#DCDCDC")
+  .height("100%")
 }
 ```

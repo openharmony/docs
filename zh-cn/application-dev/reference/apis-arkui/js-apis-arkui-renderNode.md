@@ -1502,7 +1502,7 @@ struct Index {
 
 set label(label: string)
 
-设置当前RenderNode的标签。
+设置当前RenderNode的标签。若当前节点是通过new创建的RenderNode，则设置的标签信息会在节点Inspector信息的属性中。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2474,6 +2474,8 @@ renderNode.frame = { x: 100, y: 100, width: 200, height: 200 };
 renderNode.backgroundColor = 0xff0000ff;
 renderNode.markNodeGroup = true;
 renderNode.opacity = 0.5;
+
+const isNodeGroup = renderNode.markNodeGroup;
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
