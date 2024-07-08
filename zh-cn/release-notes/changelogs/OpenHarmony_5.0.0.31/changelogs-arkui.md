@@ -145,15 +145,13 @@ SymbolGlyph中已定义SymbolRenderingStrategy和SymbolEffectStrategy，避免�
 
 该变更为不兼容变更。
 
-变更前引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy无报错。
-
-变更后，编译期报错：
-
-1.Module '@ohos.arkui.advanced.SubHeader' has no exported member 'SymbolRenderingStrategy' and 'SymbolEffectStrategy'.
-
-变更后，运行时报错：
+变更前，引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy，运行时报错：
 
 1.Eerror message:the requested module '@ohos.arkui.advanced.SubHeader' does not provide an export name 'SymbolRenderingStrategy' and 'SymbolEffectStrategy'.
+
+变更后，引用@ohos.arkui.advanced.SubHeader中SymbolRenderingStrategy和SymbolEffectStrategy，编译期报错：
+
+1.Module '@ohos.arkui.advanced.SubHeader' has no exported member 'SymbolRenderingStrategy' and 'SymbolEffectStrategy'.
 
 **起始API Level**
 
