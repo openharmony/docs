@@ -55,19 +55,24 @@ struct Index {
             imagePackerApi.packing(this.originalImage, packOpts).then((data: ArrayBuffer) => {
               let context = getContext(this) as common.PhotoEditorExtensionContext;
               let filePath = context.filesDir + "/edited.jpg";
-              let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE
+              let file: fs.File | undefined;
+              try{
+                file = fs.openSync(filePath, fs.OpenMode.READ_WRITE
                 | fs.OpenMode.CREATE | fs.OpenMode.TRUNC);
-              let writeLen = fs.writeSync(file.fd, data);
-              hilog.info(0x0000, TAG, "write data to file succeed and size is:"
-                + writeLen);
-              fs.closeSync(file);
-
-              context.saveEditedContentWithUri(filePath).then
-                (data => {
-                  hilog.info(0x0000, TAG,
-                    `saveContentEditingWithUri result: ${JSON.stringify(data)}`);
-                });
-
+                let writeLen = fs.writeSync(file.fd, data);
+                hilog.info(0x0000, TAG, "write data to file succeed and size is:"
+                  + writeLen);
+                fs.closeSync(file);
+                context.saveEditedContentWithUri(filePath).then
+                  (data => {
+                    hilog.info(0x0000, TAG,
+                      `saveContentEditingWithUri result: ${JSON.stringify(data)}`);
+                  });
+              } catch (e) {
+                hilog.info(0x0000, TAG, `writeImage failed:${e}`);
+              } finally {
+                fs.close(file);
+              }
             }).catch((error: BusinessError) => {
               hilog.error(0x0000, TAG,
                 'Failed to pack the image. And the error is: ' + String(error));
