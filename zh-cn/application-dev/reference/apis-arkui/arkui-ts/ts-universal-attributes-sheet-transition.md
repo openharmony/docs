@@ -327,7 +327,7 @@ struct SheetTransitionExample {
 
 @Entry
 @Component
-struct index {
+struct bindSheetExample {
   @State isShow: Boolean = false;
 
   @Builder
