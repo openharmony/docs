@@ -278,3 +278,60 @@ AlphabetIndexer组件
 **适配指导**
 
 默认行为变更，默认开启自适应折叠模式，若要关闭自适应折叠模式，可通过设置[autoCollapse](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md#autocollapse11)属性进行适配。
+
+## cl.arkui.9 RichEditor组件builderSpan支持绑定自定义菜单
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+富文本支持builderSpan绑定自定义菜单。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：右击或长按builderSpan会弹出对RichEditorSpanType.IMAGE类型绑定的自定义菜单。
+
+变更后：新增自定义菜单绑定类型RichEditorSpanType.BUILDER，builderSpan和imageSpan分开绑定和弹出自定义菜单。右击或长按builderSpan不再弹出对RichEditorSpanType.IMAGE类型绑定的自定义菜单，而是弹出对RichEditorSpanType.BUILDER类型绑定的自定义菜单。
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+RichEditor组件的RichEditorSpanType接口。
+
+**适配指导**
+
+若开发者需要右击或长按builderSpan时弹出RichEditorSpanType.IMAGE类型的自定义菜单，需要对该自定义菜单绑定RichEditorSpanType.BUILDER类型。
+```ts
+@Entry
+@Component
+struct Example {
+    @Builder
+    menu() {
+        Column() {
+            Text("自定义菜单");
+        }
+    }
+    build() {
+        Column() {
+            RichEditor({controller： new RichEditorController()})
+                // 变更前
+                .bindSelectionMenu(RichEditorSpanType.IMAGE, this.menu(), ResponseType.LongPress)
+
+                // 变更后
+                .bindSelectionMenu(RichEditorSpanType.IMAGE, this.menu(), ResponseType.LongPress)
+                // 绑定RichEditorSpanType.BUILDER类型
+                .bindSelectionMenu(RichEditorSpanType.BUILDER, this.menu(), ResponseType.LongPress)
+        }
+    }
+}
