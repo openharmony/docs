@@ -75,7 +75,7 @@ const TAG = '[ExamplePhotoEditorAbility]';
 @Entry
 @Component
 struct Index {
-  @State message: string = '编辑图片';
+  @State message: string = 'editImg';
   @State originalImage: PixelMap | null = null;
   @State editedImage: PixelMap | null = null;
   private newWant ?: Want;
@@ -123,7 +123,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
 
-        Button("旋转90度并保存").onClick(event => {
+        Button("RotateAndSaveImg").onClick(event => {
           hilog.info(0x0000, TAG, `Start to edit image and save.`);
 
           this.originalImage?.rotate(90).then(() => {
@@ -149,7 +149,7 @@ struct Index {
           })
         }).margin({ top: 10 })
 
-        Button("结束本次编辑").onClick((event => {
+        Button("terminateSelfWithResult").onClick((event => {
           hilog.info(0x0000, TAG, `Finish the current editing.`);
 
           let session = storage.get('session') as UIExtensionContentSession;
@@ -207,7 +207,7 @@ const TAG = 'PhotoEditorCaller';
 @Entry
 @Component
 struct Index {
-  @State message: string = '选择原图';
+  @State message: string = 'selectImg';
   @State originalImage: ResourceStr = "";
   @State editedImage: PixelMap | null = null;
   private filePath: string = "";
@@ -263,7 +263,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
 
-        Button("选择原图").onClick(event => {
+        Button("selectImg").onClick(event => {
           this.photoPickerGetUri().then(uri => {
             hilog.info(0x0000, TAG, "uri: " + uri);
 
@@ -288,7 +288,7 @@ struct Index {
 
         }).width('200').margin({ top: 20 })
 
-        Button("编辑图片").onClick(event => {
+        Button("editImg").onClick(event => {
           let context = getContext(this) as common.UIAbilityContext;
           let abilityStartCallback: common.AbilityStartCallback = {
             onError: (code, name, message) => {

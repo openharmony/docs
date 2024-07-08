@@ -50,7 +50,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button("旋转90度并保存").onClick(event => {
+        Button("RotateAndSaveImg").onClick(event => {
           hilog.info(0x0000, TAG, `Start to edit image and save.`);
 
           this.originalImage?.rotate(90).then(() => {
@@ -108,9 +108,9 @@ saveEditedContentWithImage(image: image.PixelMap, option: image.PackingOption): 
 |  错误码ID | 错误信息  |
 | ------------ | ------------ |
 | 401  | Invalid input parameter.  |
-| 29600002  | Internal error. |
-| 29600003  |  Image input error. |
-| 29600004  |  Image too big error. |
+| 29600001  | Internal error. |
+| 29600002  |  Image input error. |
+| 29600003  |  Image too big error. |
 
 **示例：**
 ```ts
@@ -130,11 +130,10 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button("旋转90度并保存").onClick(event => {
+        Button("RotateAndSaveImg").onClick(event => {
           hilog.info(0x0000, TAG, `Start to edit image and save.`);
 
           this.originalImage?.rotate(90).then(() => {
-            const imagePackerApi: image.ImagePacker = image.createImagePacker();
             let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
             try {
               let context = getContext(this) as common.PhotoEditorExtensionContext;
