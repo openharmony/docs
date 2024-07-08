@@ -89,7 +89,7 @@ struct Index {
 }
 ```
 ## PhotoEditorExtensionContext.saveEditedContentWithImage
-saveEditedContentWithImage(image: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>
+saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>
 传入编辑过的图片的PixMap对象并保存。
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
 
