@@ -12,7 +12,7 @@
 
 **变更影响**
 
-该变更为非兼容性变更，ValueType增加类型，导致getValue的返回值类型增加。
+该变更为不兼容变更，ValueType增加类型，会导致getValue的返回值类型增加。当高低版本设备互通时，当高版本设备设置的数据类型为本次新增的类型时，由于低版本设备不支持新增的类型，会导致低版本设备上getValue失败。
 
 **起始 API Level**
 
@@ -31,7 +31,7 @@ type ValueType = number | string | image.PixelMap | Want | ArrayBuffer
 
 变更之后，ValueType类型如下：
 ```
-type ValueType = number | string | image.PixelMap | Want | ArrayBuffer | boolean | object | undefined | null
+type ValueType = number | string  | boolean | image.PixelMap | Want | ArrayBuffer | object | null | undefined
 ```
 
 **适配指导**
