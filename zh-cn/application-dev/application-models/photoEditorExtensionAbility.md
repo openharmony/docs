@@ -78,7 +78,7 @@ struct Index {
   @State message: string = '编辑图片';
   @State originalImage: PixelMap | null = null;
   @State editedImage: PixelMap | null = null;
-    private newWant ?: Want;
+  private newWant ?: Want;
 
   aboutToAppear(): void {
     let originalImageUri = storage?.get<string>("uri") ?? "";
@@ -89,7 +89,7 @@ struct Index {
     })
   }
 
-    async readImageByUri(uri: string): Promise < PixelMap | null > {
+  async readImageByUri(uri: string): Promise < PixelMap | null > {
     hilog.info(0x0000, TAG, "uri: " + uri);
     try {
       const file: fs.File = await fs.open(uri, fs.OpenMode.READ_ONLY);
@@ -100,17 +100,17 @@ struct Index {
         hilog.info(0x0000, TAG, "ImageSourceApi failed");
         return null;
       }
-            let pixmap: image.PixelMap = await imageSourceApi.createPixelMap();
+      let pixmap: image.PixelMap = await imageSourceApi.createPixelMap();
       if(!pixmap) {
         hilog.info(0x0000, TAG, "createPixelMap failed");
         return null;
       }
-            fs.closeSync(file);
+      fs.closeSync(file);
       return pixmap;
     } catch(e) {
       hilog.info(0x0000, TAG, `ReadImage failed:${e}`);
     }
-        return null;
+    return null;
   }
 
   build() {
@@ -128,17 +128,17 @@ struct Index {
             try {
               (getContext(this) as common.PhotoEditorExtensionContext).saveEditedContentWithImage(this.originalImage as image.PixelMap,
                 packOpts).then(data => {
-                  if (data.resultCode == 0) {
-                    hilog.info(0x0000, TAG, `Save succeed.`);
-                  }
-                  hilog.info(0x0000, TAG,
+                if (data.resultCode == 0) {
+                  hilog.info(0x0000, TAG, `Save succeed.`);
+                }
+                hilog.info(0x0000, TAG,
                     `saveContentEditingWithImage result: ${JSON.stringify(data)}`);
-                  this.newWant = data.want;
-                  // data.want.uri存有编辑过图片的uri
-                  this.readImageByUri(this.newWant?.uri ?? "").then(imagePixMap => {
-                    this.editedImage = imagePixMap;
-                  })
+                this.newWant = data.want;
+                // data.want.uri存有编辑过图片的uri
+                this.readImageByUri(this.newWant?.uri ?? "").then(imagePixMap => {
+                  this.editedImage = imagePixMap;
                 })
+              })
             } catch (e) {
               hilog.error(0x0000, TAG, `saveContentEditingWithImage failed:${e}`);
               return;
@@ -161,8 +161,8 @@ struct Index {
             .width('100%')
     }
         .height('100%')
-      .backgroundColor(Color.Pink)
-      .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
+    .backgroundColor(Color.Pink)
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
   }
 }}
 
@@ -207,7 +207,7 @@ struct Index {
   @State message: string = '选择原图';
   @State originalImage: ResourceStr = "";
   @State editedImage: PixelMap | null = null;
-    private filePath: string = "";
+  private filePath: string = "";
 
     async readImage(uri: string): Promise < PixelMap | null > {
     hilog.info(0x0000, TAG, "image uri: " + uri);
@@ -220,20 +220,20 @@ struct Index {
         hilog.info(0x0000, TAG, "imageSourceApi failed");
         return null;
       }
-            let pixmap: image.PixelMap = await imageSourceApi.createPixelMap();
+      let pixmap: image.PixelMap = await imageSourceApi.createPixelMap();
       if(!pixmap) {
         hilog.info(0x0000, TAG, "createPixelMap failed");
         return null;
       }
-            fs.closeSync(file);
+      fs.closeSync(file);
       return pixmap;
     } catch(e) {
       hilog.info(0x0000, TAG, `readImage failed:${e}`);
     }
-        return null;
+    return null;
   }
 
-    async photoPickerGetUri(): Promise < string > {
+  async photoPickerGetUri(): Promise < string > {
     try {
       let PhotoSelectOptions = new picker.PhotoSelectOptions();
       PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -247,7 +247,7 @@ struct Index {
       let err: BusinessError = error as BusinessError;
       hilog.info(0x0000, TAG, 'PhotoViewPicker failed with err: ' + JSON.stringify(err));
     }
-        return "";
+    return "";
   }
 
   build() {
@@ -319,7 +319,7 @@ struct Index {
       }
             .width('100%')
     }
-        .height('100%')
+      .height('100%')
       .backgroundColor(Color.Orange)
       .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
   }
