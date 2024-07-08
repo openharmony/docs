@@ -217,7 +217,7 @@ API version 12及以后，半模态面板嵌套滚动组件，且在滚动组件
 在滚动组件上设置嵌套的情况下：
 | 多挡位变更前 | 多挡位变更后 |
 |---------|---------|
-| 无法通过上下滑动切换挡位，在最低档下滑无法关闭半模态<br>![Alt text](figures/NestedScroll_detents_Before.gif) |可以通过上下滑动切换挡位，在最低档下滑可以关闭半模态<br>![Alt text](figures/NestedScroll_After.gif)|
+| 无法通过上下滑动切换挡位，在最低档下滑无法关闭半模态<br>![Alt text](figures/NestedScroll_detents_Before.gif) |可以通过上下滑动切换挡位，在最低档下滑可以关闭半模态<br>![Alt text](figures/NestedScroll_detents_After.gif)|
 
 | 单挡位变更前 | 单挡位变更后 |
 |---------|---------|
