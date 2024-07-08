@@ -269,7 +269,7 @@ OnInfo类型
 | 枚举值 | 描述 | 对应附加信息 |
 | -------- | -------- | -------- |
 | AV_INFO_TYPE_SEEKDONE | 跳转到对应播放位置时返回消息。 | extra表示seek到的位置。 |
-| AV_INFO_TYPE_SPEEDDONE | 播放倍速设置完成时返回消息。 | extra表示播放倍速信息，具体请参考[AVPlaybackSpeed](#avplayerseekmode-1)。 |
+| AV_INFO_TYPE_SPEEDDONE | 播放倍速设置完成时返回消息。 | extra表示播放倍速信息，具体请参考[AVPlaybackSpeed](#avplaybackspeed-1)。 |
 | AV_INFO_TYPE_BITRATEDONE | 比特率设置完成时返回消息。 | extra表示比特率信息。 |
 | AV_INFO_TYPE_EOS | 播放完成时返回消息。 | extra表示是否设置循环播放，0表示设置循环，1表示未设置循环。|
 | AV_INFO_TYPE_STATE_CHANGE | 状态改变时返回消息。 | extra表示当前播放状态，具体请参见[AVPlayerState](#avplayerstate-1)。 |
