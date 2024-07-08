@@ -1,4 +1,4 @@
-# @ohos.multimedia.movingphotoview（动态照片）
+# @ohos.multimedia.movingphotoview (动态照片)
 
 用于播放动态照片文件并控制其播放状态的组件。
 
