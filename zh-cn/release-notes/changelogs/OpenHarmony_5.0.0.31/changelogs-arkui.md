@@ -377,7 +377,7 @@ struct FrictionExample {
   }
 }
 ```
-## cl.arkui.7 ListItem卡片样式行为变更
+## cl.arkui.8 ListItem卡片样式行为变更
 
 **访问级别**
 
@@ -389,9 +389,27 @@ struct FrictionExample {
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
-变更前：ListItem在LazyForEach下使用时，卡片样式设置不生效。变更后：ListItem在LazyForEach下使用时，卡片样式设置可以生效。
+变更前：ListItem在LazyForEach下使用时，卡片样式设置不生效。<br>变更后：ListItem在LazyForEach下使用时，卡片样式设置可以生效。
+
+```ts
+build() {
+  List() {
+    ListItemGroup({ style: ListItemGroupStyle.CARD }) {
+      LazyForEach(this.arr, (item: number) => {
+        ListItem({ style: ListItemStyle.CARD }) {
+          Text("item" + item.toString())
+        }
+      })
+    }
+  }.backgroundColor("#DCDCDC")
+  .height("100%")
+}
+```
+| 变更前效果 | 变更后效果 |
+| ---- | ---- |
+| ![](./figures/list_item_card_style_before.png) | ![](./figures/list_item_card_style_after.png) |
 
 **起始API Level**
 
@@ -403,8 +421,41 @@ struct FrictionExample {
 
 **变更的接口/组件**
 
-涉及的组件：ListItem。
+涉及的组件：ListItem组件ListItemStyle接口。
 
 **适配指导**
 
 如果ListItem在LazyForEach下使用，设置了卡片样式没有生效，变更后生效卡片样式导致显示界面变化，可以删除卡片样式的设置。
+
+如下代码变更前设置卡片样式不生效，变更后生效卡片样式导致显示界面变化。
+```ts
+build() {
+  List() {
+    ListItemGroup({ style: ListItemGroupStyle.CARD }) {
+      LazyForEach(this.arr, (item: number) => {
+        ListItem({ style: ListItemStyle.CARD }) {
+          Text("item" + item.toString())
+            .height(64)
+        }
+      })
+    }
+  }.backgroundColor("#DCDCDC")
+  .height("100%")
+}
+```
+删除ListItem卡片样式可以恢复变更前效果。
+```ts
+build() {
+  List() {
+    ListItemGroup({ style: ListItemGroupStyle.CARD }) {
+      LazyForEach(this.arr, (item: number) => {
+        ListItem() {
+          Text("item" + item.toString())
+            .height(64)
+        }
+      })
+    }
+  }.backgroundColor("#DCDCDC")
+  .height("100%")
+}
+```
