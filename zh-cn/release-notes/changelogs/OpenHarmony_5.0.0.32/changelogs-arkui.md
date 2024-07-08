@@ -78,9 +78,9 @@ CreateModalUIExtension禁止其他组件和非安全窗口遮挡。
 
 **变更影响**
 
-API12变更之前：箭头离宿主节点16vp。
-
-API12变更之后：箭头离宿主节点8vp。
+| 变更前箭头离宿主节点16vp | 变更后箭头离宿主节点8vp |
+|---------|---------|
+|  ![变更前箭头离宿主节点16vp](figures/menu-with-arrow-16vp.png)       |  ![变更后箭头离宿主节点8vp](figures/menu-with-arrow-8vp.png)       |
 
 **起始API Level**
 
@@ -98,39 +98,7 @@ Menu组件。
 
 带箭头菜单离宿主节点的默认安全距离变小，若需要更大的间距，可设置菜单的offset进行调整。
 
-## cl.arkui.4 Menu组件上下文菜单点击关闭行为变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-当前上下文菜单手指按下即关闭，为了更好支持后续交互体验，变更为抬手时关闭。
-
-**变更影响**
-
-API12变更之前：手指按下时，上下文菜单关闭。
-
-API12变更之后：手指按下并抬手，上下文菜单关闭。
-
-**起始API Level**
-
-不涉及API变更
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.32 版本开始。
-
-**变更的接口/组件**
-
-Menu组件。
-
-**适配指导**
-
-菜单关闭行为变更，应用无需适配。
-
-## cl.arkui.5 Grid和List组件onItemDrag接口拖拽出窗口外行为变更
+## cl.arkui.4 Grid和List组件onItemDrag接口拖拽出窗口外行为变更
 **访问级别**
 
 公开接口
@@ -169,7 +137,7 @@ List组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeav
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.6 List的constraintSize设置生效
+## cl.arkui.5 List的constraintSize设置生效
 
 **访问级别**
 
@@ -273,7 +241,7 @@ struct ListExample {
 }
 ```
 
-## cl.arkui.7 hideNonSecureWindows接口行为变更
+## cl.arkui.6 hideNonSecureWindows接口行为变更
 
 **访问级别**
 
@@ -315,7 +283,7 @@ hideNonSecureWindows接口。
 
 接口行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.8 AlphabetIndexer组件autoCollapse属性默认值由false改为true
+## cl.arkui.7 AlphabetIndexer组件autoCollapse属性默认值由false改为true
 
 **访问级别**
 
