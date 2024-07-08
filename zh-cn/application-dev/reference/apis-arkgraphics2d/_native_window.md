@@ -367,7 +367,7 @@ int32_t OH_NativeWindow_SetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 | -------- | -------- |
 | window | 一个指向[OHNativeWindow](#ohnativewindow)的结构体实例的指针。 | 
 | metadataKey | OHNativeWindow的元数据类型，其值从[OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey)获取。 | 
-| size | uint8_t向量的大小。 | 
+| size | uint8_t向量的大小，其取值范围为1-3000。 | 
 | metaDate | 指向uint8_t向量的指针。 | 
 
 **返回：**
@@ -393,7 +393,7 @@ int32_t OH_NativeWindow_GetColorSpace (OHNativeWindow *window, OH_NativeBuffer_C
 | 名称 | 描述 | 
 | -------- | -------- |
 | window | 一个指向[OHNativeWindow](#ohnativewindow)的结构体实例的指针。 | 
-| colorSpace | 为OHNativeWindow设置的颜色空间，其值从[OH_NativeBuffer_ColorSpace](_o_h___native_buffer.md#oh_nativebuffer_colorspace)获取, 默认值为OH_COLORSPACE_BT709_LIMIT。 | 
+| colorSpace | 为OHNativeWindow设置的颜色空间，其值从[OH_NativeBuffer_ColorSpace](_o_h___native_buffer.md#oh_nativebuffer_colorspace)获取。 | 
 
 **返回：**
 
@@ -420,7 +420,7 @@ int32_t OH_NativeWindow_GetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 | -------- | -------- |
 | window | 一个指向[OHNativeWindow](#ohnativewindow)的结构体实例的指针。 | 
 | metadataKey | OHNativeWindow的元数据类型，其值从[OH_NativeBuffer_MetadataKey](_o_h___native_buffer.md#oh_nativebuffer_metadatakey)获取。 | 
-| size | uint8_t向量的大小。 | 
+| size | uint8_t向量的大小，其值范围为1-3000。 | 
 | metaDate | 指向uint8_t向量的二级指针。 | 
 
 **返回：**
