@@ -169,7 +169,7 @@ List组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeav
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.6 List的ConstraintSize设置生效
+## cl.arkui.6 List的constraintSize设置生效
 
 **访问级别**
 
@@ -181,11 +181,38 @@ List的布局行为和当前通用的布局约束优先的规格不一致。
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
-变更前，List不设置Height时，Constraint的minHeight设置不生效。
+变更前，List不设置Height时，constraintSize的minHeight设置不生效。
 
-变更后，List不设置Height时，Constraint的minHeight设置会生效。
+变更后，List不设置Height时，constraintSize的minHeight设置会生效。
+
+```ts
+@Entry
+@Component
+struct ListExample {
+  build() {
+    List({ space: 5 }) {
+      ForEach([1, 2, 3, 4, 5], (item: number) => {
+        ListItem() {
+          Text('' + item)
+            .width('100%').height(50)
+            .textAlign(TextAlign.Center).backgroundColor(0xFFFFFF)
+        }
+      }, (item: string) => item)
+    }
+    .padding(5)
+    .constraintSize({ minHeight: 500 })
+    .backgroundColor(0xDCDCDC)
+  }
+}
+```
+
+如下是以上示例代码变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/ListConstraintSize_Before.jpg)  |  ![](figures/ListConstraintSize_After.jpg)  |
 
 **起始API Level**
 
@@ -197,11 +224,54 @@ List的布局行为和当前通用的布局约束优先的规格不一致。
 
 **变更的接口/组件**
 
-List组件的ConstraintSize接口。
+List组件的constraintSize接口。
 
 **适配指导**
 
-默认行为变更，无需适配。
+如果List没有设置height属性，且设置了constraintSize的minHeight属性。变更后minHeight属性生效，导致布局界面变化，如果需要保持之前的布局界面，可以删除constraintSize的minHeight属性。
+
+如下代码，变更前constraintSize的minHeight属性不生效，变更后constraintSize的minHeight属性生效导致显示界面变化。
+```ts
+@Entry
+@Component
+struct ListExample {
+  build() {
+    List({ space: 5 }) {
+      ForEach([1, 2, 3, 4, 5], (item: number) => {
+        ListItem() {
+          Text('' + item)
+            .width('100%').height(50)
+            .textAlign(TextAlign.Center).backgroundColor(0xFFFFFF)
+        }
+      }, (item: string) => item)
+    }
+    .padding(5)
+    .constraintSize({ minHeight: 500, maxHeight: 1000 })
+    .backgroundColor(0xDCDCDC)
+  }
+}
+```
+删除constraintSize接口minHeight设置可以恢复之前的效果。
+```ts
+@Entry
+@Component
+struct ListExample {
+  build() {
+    List({ space: 5 }) {
+      ForEach([1, 2, 3, 4, 5], (item: number) => {
+        ListItem() {
+          Text('' + item)
+            .width('100%').height(50)
+            .textAlign(TextAlign.Center).backgroundColor(0xFFFFFF)
+        }
+      }, (item: string) => item)
+    }
+    .padding(5)
+    .constraintSize({ maxHeight: 1000 })
+    .backgroundColor(0xDCDCDC)
+  }
+}
+```
 
 ## cl.arkui.7 hideNonSecureWindows接口行为变更
 
