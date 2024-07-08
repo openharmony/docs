@@ -83,11 +83,12 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
   ```
   ### onRestoreEx
 
-onRestoreEx(bundleVersion: BundleVersion, bundleInfo: string): string | Promise<string>;
+onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string | Promise<string>;
 
 Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作，支持异步操作。
 onRestoreEx与onRestore互斥，如果重写onRestoreEx，则优先调用onRestoreEx。
 onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符串，则会尝试调用onRestore。
+onRestoreEx的返回值可以是应用自定义的错误信息，也可是应用恢复各种数据类型的明细信息，推荐Json格式。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -96,7 +97,7 @@ onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符�
 | 参数名        | 类型                            | 必填 | 说明                           |
 | ------------- | ------------------------------- | ---- | ------------------------------ |
 | bundleVersion | [BundleVersion](#bundleversion) | 是   | 恢复时应用数据所在的版本信息。 |
-| bundleInfo |string | 否   | 其他需要传递的包信息。 |
+| restoreInfo |string | 否   | 应用恢复时需要除版本号等参数之外需要的扩展参数信息，比如设备类型等 |
 
 **示例：**
 
@@ -107,14 +108,60 @@ onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符�
     // 异步实现
     async onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): Promise<string> {
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
-      let info = "app diy info";
+      let info: string = `{
+        "resultInfo": [{
+            "type": "ErrorInfo",
+            "errorCode": "0",
+            "errorInfo": "app diy error info"
+        },
+        {
+            "type": "CountInfo",
+            "infos": [{
+                    "backupInfo": "photo".
+                    "details": "",
+                    "failedCount": 0,
+                    "successCount": 0
+                },
+                {
+                    "backupInfo": "video".
+                    "details": "",
+                    "failedCount": 0,
+                    "successCount": 0
+                }
+            ]
+        }
+      ]
+      }`;
       return info;
     }
 
     // 同步实现
     onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): string {
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
-      let info = "app diy info";
+      let info = `{
+        "resultInfo": [{
+            "type": "ErrorInfo",
+            "errorCode": "0",
+            "errorInfo": "app diy error info"
+        },
+        {
+            "type": "CountInfo",
+            "infos": [{
+                    "backupInfo": "photo".
+                    "details": "",
+                    "failedCount": 0,
+                    "successCount": 0
+                },
+                {
+                    "backupInfo": "video".
+                    "details": "",
+                    "failedCount": 0,
+                    "successCount": 0
+                }
+            ]
+        }
+      ]
+      }`;
       return info;
     }
   }
