@@ -367,13 +367,15 @@ struct TextTimerExample {
 
 **变更原因**
 
-该变更为非兼容性变更。
-
-将滚动类组件（List、Grid、WaterFlow、Scroll）Friction接口默认值改为0.75。
+为了优化功耗，将滚动类组件（List、Grid、WaterFlow、Scroll）friction接口默认值改为0.75。
 
 **变更影响**
 
-List、Grid、WaterFlow、Scroll等组件的默认抛滑效果改变。相较变更之前，用同样力度抛滑，抛滑时间更短、抛滑距离更近。
+该变更为不兼容变更。
+
+变更前，滚动类组件（List、Grid、WaterFlow、Scroll）的friction接口默认值为0.7。
+
+变更后，滚动类组件（List、Grid、WaterFlow、Scroll）的friction接口默认值为0.75。相较变更之前，用同样力度抛滑，抛滑时间更短、抛滑距离更近。
 
 **起始API Level**
 
@@ -385,10 +387,12 @@ List、Grid、WaterFlow、Scroll等组件的默认抛滑效果改变。相较变
 
 **变更的接口/组件**
 
-List、Grid、WaterFlow、Scroll等组件的Friction接口
+滚动类组件（List、Grid、WaterFlow、Scroll）的friction接口。
 
 **适配指导**
-如开发者需改回变更之前的抛滑效果，可以用friction设置成变更前的默认参数0.7。
+
+开发者如果需要使用变更之前的抛滑效果，可以将friction接口的参数设置为0.7。
+
 ```ts
 @Entry
 @Component
