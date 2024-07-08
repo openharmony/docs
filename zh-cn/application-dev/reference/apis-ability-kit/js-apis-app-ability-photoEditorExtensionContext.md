@@ -27,10 +27,10 @@ saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
 **错误码：**
 |  错误码ID | 错误信息  |
 | ------------ | ------------ |
-| 401  | Invalid input parameter.  |
+| 401  | Params error. Possible causes: 1.Mandatory parameters are left unspecified.2.Incorrect parameter types.  |
 | 29600001  | Internal error. |
 | 29600002  |  Image input error. |
-| 29600003  |  Image too big error. |
+| 29600003  |  Image too big. |
 
 **示例：**
 ```ts
@@ -96,7 +96,7 @@ saveEditedContentWithImage(image: image.PixelMap, option: image.PackingOption): 
 **参数：**
 | 参数名  | 类型  | 必填  | 说明  |
 | ------------ | ------------ | ------------ | ------------ |
-| image | image.PixelMap  | 是  | 编辑过的图片image.PixelMap。  |
+| pixeMap | image.PixelMap  | 是  | 编辑过的图片image.PixelMap。  |
 | option  | image.PackingOption  |  是 | 设置打包参数。  |
 
 **返回值：**
@@ -107,10 +107,10 @@ saveEditedContentWithImage(image: image.PixelMap, option: image.PackingOption): 
 **错误码：**
 |  错误码ID | 错误信息  |
 | ------------ | ------------ |
-| 401  | Invalid input parameter.  |
+| 401  | Params error. Possible causes: 1.Mandatory parameters are left unspecified.2.Incorrect parameter types.  |
 | 29600001  | Internal error. |
 | 29600002  |  Image input error. |
-| 29600003  |  Image too big error. |
+| 29600003  |  Image too big. |
 
 **示例：**
 ```ts
