@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import { deviceInfo } from '@kit.deviceInfo';
+import deviceInfo from '@ohos.deviceInfo';
 ```
 
 ## 属性
@@ -62,7 +62,7 @@ import { deviceInfo } from '@kit.deviceInfo';
 **示例**
 
 ```ts
-    import { deviceInfo } from '@kit.deviceInfo';
+    import deviceinfo from '@ohos.deviceInfo';
 
     let deviceTypeInfo: string = deviceinfo.deviceType;
     console.info('the value of the deviceType is :' + deviceTypeInfo);
