@@ -82,7 +82,7 @@ globalThis.GetPlainTextUnifiedData = (() => {
 
 ### 接口说明
 
-详细接口见[接口文档](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getData9)。
+详细接口见[接口文档](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getdata9)。
 
 | 名称 | 说明                                                                                                                                        |
 | -------- |----------------------------------------------------------------------------------------------------------------------------------------|
