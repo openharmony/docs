@@ -4,7 +4,7 @@
 
 常见的应用性能问题，开发者可以从丢帧问题（如滑动列表时的丢帧、窗口动画不连贯）和响应速度问题（如应用启动白屏过长、滑动不跟手）两个角度去分析。在分析性能问题之前、验证性能优化方案之时，开发者会需要对应用的性能指标做检测。本文会先说明丢帧和响应速度问题相关的性能指标检测方法，然后再阐述两个角度下，略有不同的问题分析思路。 
   
-本文主要是以Trace数据为切入点进行分析，相应的工具可以使用SmartPerf Host或DevEco Studio内置的Frame等。若开发者需要补充SmartPerf Host工具和Trace相关知识，可以分别参考《[性能优化工具SmartPerf-Host](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/performance/performance-optimization-using-smartperf-host.md)》和《[常用trace使用指导](https://docs.openharmony.cn/pages/v4.1/zh-cn/application-dev/performance/common-trace-using-instructions.md)》等应用开发文档。
+本文主要是以Trace数据为切入点进行分析，相应的工具可以使用SmartPerf Host或DevEco Studio内置的Frame等。若开发者需要补充SmartPerf Host工具和Trace相关知识，可以分别参考《[性能优化工具SmartPerf-Host](performance-optimization-using-smartperf-host.md)》和《[常用trace使用指导](common-trace-using-instructions.md)》等应用开发文档。
 
 ## 应用性能指标
 
@@ -179,7 +179,7 @@ HiTrace、HiPerf、cpuProfiler、常规log等各类可观测性数据。
 | 创建窗口	| AbilityMonitor::OnWindowStageCreate()| 
 | 绘制应用UI界面首诊	| JsRuntime::RunScript() RSMainThread::SendCommands()| 
  
-而实际分析时，开发者可以借助SmartPerf Host提供的AppStartup模板，将各启动阶段自动拆解出来，如图14所示。关于AppStartup模板详细使用方法，请参考《使用SmartPerf-Host分析应用性能》中相关章节。
+而实际分析时，开发者可以借助SmartPerf Host提供的AppStartup模板，将各启动阶段自动拆解出来，如图14所示。关于AppStartup模板详细使用方法，请参考《[性能优化工具SmartPerf-Host](performance-optimization-using-smartperf-host.md)》中相关章节。
 
 **图14 AppStartup泳道图展示**
 
@@ -206,7 +206,7 @@ HiTrace、HiPerf、cpuProfiler、常规log等各类可观测性数据。
 如果判断是系统的原因，首先看应用自身是否可以规避，否则转由系统来处理。  
 如果判断是应用自身的原因，可以结合cpuProfiler查看函数调用信息，审查源码，摸索解决之道。  
 应用的响应速度优化大多集中在：UI界面、视觉动效、指令逻辑等方面，开发者可以尝试从如下几个方面入手：  
-- I优化：从UI布局渲染角度，加快应用绘制性能，比如减少布局嵌套，减少元素渲染，缓存UI动效等。
+- UI优化：从UI布局渲染角度，加快应用绘制性能，比如减少布局嵌套，减少元素渲染，缓存UI动效等。
 - 按需加载优化：根据界面展示或模块加载的需要，延迟加载相关内容，从而减少对首帧页面的性能消耗。
 - 并发优化：使用系统并发执行多个任务的能力，减少响应过程中任务执行的整体时间。
 - 代码逻辑优化：在相关生命周期中减少冗余、避免耗时，提升执行效率，包括善用数据结构、缓存、优化调整时序等。
