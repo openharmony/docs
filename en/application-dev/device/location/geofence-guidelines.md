@@ -21,7 +21,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
 
 ## How to Develop
 
-1. Declare the **ohos.permission.APPROXIMATELY_LOCATION** permission. For details, see [Applying for Location Permissions](#location-permission-guidelines.md).
+1. Declare the **ohos.permission.APPROXIMATELY_LOCATION** permission. For details, see [Applying for Location Permissions](#applying-for-location-permissions).
 
 2. Import the **geoLocationManager**, **wantAgent**, and **BusinessError** modules.
    
@@ -77,6 +77,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
    Call the geofencing API to add a geofence after obtaining the **WantAgent** object, and have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
 
    ```ts
+   let wantAgentObj : object | undefined = undefined;
    // Create a WantAgent object.
    wantAgent.getWantAgent(wantAgentInfo, (err, data) => {
        if (err) {
