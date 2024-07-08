@@ -126,7 +126,7 @@ typedef struct AVPlayerCallback AVPlayerCallback
 
 **描述**
 
-OH_AVPlayer中所有回调函数指针的集合，包含[AVPlayerCallback::onError](#onError)和[AVPlayerCallback::onInfo](#oninfo)两个成员。应用需注册此实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
+OH_AVPlayer中所有回调函数指针的集合，包含[onError](#onError)和[onInfo](#oninfo)两个成员。应用需注册此实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -271,21 +271,21 @@ OnInfo类型
 | AV_INFO_TYPE_SEEKDONE | 跳转到对应播放位置时返回消息 | extra表示seek到的位置 |
 | AV_INFO_TYPE_SPEEDDONE | 播放倍速设置完成时返回消息 | extra表示播放倍速信息 |
 | AV_INFO_TYPE_BITRATEDONE | 比特率设置完成时返回消息 | extra表示比特率信息 |
-| AV_INFO_TYPE_EOS | 播放完成时返回消息 | |
-| AV_INFO_TYPE_STATE_CHANGE | 状态改变时返回消息。 | |
-| AV_INFO_TYPE_POSITION_UPDATE | 返回当前播放位置。 | |
-| AV_INFO_TYPE_MESSAGE | 返回播放消息。 | |
-| AV_INFO_TYPE_VOLUME_CHANGE | 音量改变时返回消息。 | |
-| AV_INFO_TYPE_RESOLUTION_CHANGE | 首次获取视频大小或视频大小更新时返回消息。 | |
-| AV_INFO_TYPE_BUFFERING_UPDATE | 返回多队列缓冲时间。 | |
-| AV_INFO_TYPE_BITRATE_COLLECT | 返回hls比特率。 | |
-| AV_INFO_TYPE_INTERRUPT_EVENT | 音频焦点改变时返回消息。 | |
-| AV_INFO_TYPE_DURATION_UPDATE | 返回播放时长。 | |
-| AV_INFO_TYPE_IS_LIVE_STREAM | 播放为直播流时返回消息。 | |
-| AV_INFO_TYPE_TRACKCHANGE | 轨道改变时返回消息。 | |
-| AV_INFO_TYPE_TRACK_INFO_UPDATE | 字幕轨信息更新时返回消息。 | |
-| AV_INFO_TYPE_SUBTITLE_UPDATE | 返回字幕信息。 | |
-| AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE | 音频输出设备改变时返回消息。 | |
+| AV_INFO_TYPE_EOS | 播放完成时返回消息 | extra表示是否设置循环播放，0表示设置循环，1表示未设置循环|
+| AV_INFO_TYPE_STATE_CHANGE | 状态改变时返回消息。 | extra表示[AVPlayerState](#avplayerstate)信息 |
+| AV_INFO_TYPE_POSITION_UPDATE | 返回当前播放位置。 | extra表示当前位置 |
+| AV_INFO_TYPE_MESSAGE | 返回播放消息。 | extra默认为1，表示视频首帧渲染 |
+| AV_INFO_TYPE_VOLUME_CHANGE | 音量改变时返回消息。 | extra默认为0，无明显含义 |
+| AV_INFO_TYPE_RESOLUTION_CHANGE | 首次获取视频大小或视频大小更新时返回消息 | extra默认为0，无明显含义 |
+| AV_INFO_TYPE_BUFFERING_UPDATE | 返回多队列缓冲时间 | extra表示视频时长 |
+| AV_INFO_TYPE_BITRATE_COLLECT | 返回hls比特率 | extra默认为0，无明显含义 |
+| AV_INFO_TYPE_INTERRUPT_EVENT | 音频焦点改变时返回消息 | extra表示音频打断提示hintType，应用决定是否进一步处理 |
+| AV_INFO_TYPE_DURATION_UPDATE | 返回播放时长。 | extra表示视频时长 |
+| AV_INFO_TYPE_IS_LIVE_STREAM | 播放为直播流时返回消息。 | extra表示是否为直播流，0表示非直播流，1表示直播流 |
+| AV_INFO_TYPE_TRACKCHANGE | 轨道改变时返回消息。 | extra默认为0，无明显含义 |
+| AV_INFO_TYPE_TRACK_INFO_UPDATE | 字幕轨信息更新时返回消息。 | extra无明显含义 |
+| AV_INFO_TYPE_SUBTITLE_UPDATE | 返回字幕信息。 | extra默认为0，无明显含义 |
+| AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE | 音频输出设备改变时返回消息。 | extra表示设备改变原因 |
 
 
 ### AVPlayerSeekMode
