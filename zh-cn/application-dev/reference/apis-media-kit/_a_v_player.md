@@ -126,7 +126,7 @@ typedef struct AVPlayerCallback AVPlayerCallback
 
 **描述**
 
-OH_AVPlayer中所有回调函数指针的集合，包含[AVPlayerCallback::onInfo](#oninfo)和[AVPlayerCallback::onError](#onError)两个成员。应用需注册此实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
+OH_AVPlayer中所有回调函数指针的集合，包含[AVPlayerCallback::onError](#onError)和[AVPlayerCallback::onInfo](#oninfo)两个成员。应用需注册此实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
