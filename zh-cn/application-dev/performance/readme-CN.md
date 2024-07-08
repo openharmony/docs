@@ -20,6 +20,7 @@
     - [Grid高性能开发指导](grid_optimization.md)
     - [合理使用自定义组件冻结功能](custom_component_freeze.md)
     - [避免在滑动场景的高频回调接口中处理耗时操作](avoid_high_frequency_callback_execute_lengthy_operation.md)
+    - [合理使用系统接口](reasonable_using_system_interfaces.md)
   - 提升应用启动和响应速度
     - [提升应用冷启动速度](improve-application-cold-start-speed.md)
     - [提升应用响应速度](improve-application-response.md)
@@ -37,7 +38,7 @@
     - [Web组件开发性能提升指导](performance-web-import.md)
     - [合理处理高负载组件的渲染](reasonably-dispose-highly-loaded-component-render.md)
     - [全局自定义组件复用实现](node_custom_component_reusable_pool.md)
-  - [减小应用包大小](reduce-package-size.md)
+    - [减小应用包大小](reduce-package-size.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
