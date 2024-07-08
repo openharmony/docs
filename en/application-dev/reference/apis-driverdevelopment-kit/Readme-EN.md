@@ -3,18 +3,25 @@
 - ArkTS APIs
   - [@ohos.app.ability.DriverExtensionAbility (Driver Extension Ability)](js-apis-app-ability-driverExtensionAbility.md)
   - [@ohos.driver.deviceManager (Peripheral Management)](js-apis-driver-deviceManager.md)
+  <!--Del-->
+  - [@ohos.driver.deviceManager (Peripheral Management) (System API)](js-apis-driver-deviceManager-sys.md)
+  <!--DelEnd-->
   - application
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
 - C APIs
   - Modules
+    - [BASE DDK](_base_ddk.md)
     - [HID DDK](_hid_ddk.md)
     - [USB DDK](_usb_ddk.md)
   - Header Files
+    - [ddk_api.h](ddk_api.md)
+    - [ddk_types.h](ddk_types.md)
     - [usb_ddk_api.h](usb__ddk__api_8h.md)
     - [usb_ddk_types.h](usb__ddk__types_8h.md)
     - [hid_ddk_api.h](hid__ddk__api_8h.md)
     - [hid_ddk_types.h](hid__ddk__types_8h.md)
   - Structs
+    - [DDK_Ashmem](_ddk_ashmem.md)
     - [UsbConfigDescriptor](_usb_config_descriptor.md)
     - [UsbControlRequestSetup](_usb_control_request_setup.md)
     - [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md)

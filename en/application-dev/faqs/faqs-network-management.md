@@ -224,7 +224,7 @@ Use **getAddressByName** to resolve the host name to obtain the IP address.
 **Solution**
 
 Currently, the following modules provide C APIs: 
-Custom DNS resolver, certificate verification, and WebSocket 
+- Custom DNS resolver<br>- Certificate verification<br>- WebSocket 
 
 If the C APIs are not provided, use the AKI mechanism to call ArkTS APIs.
 

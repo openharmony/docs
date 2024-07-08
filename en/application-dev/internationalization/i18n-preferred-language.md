@@ -10,7 +10,7 @@ For details about how to use related APIs, see [getAppPreferredLanguage](../refe
 
 The following uses date and time formatting as an example to illustrate how the preferred language works.
 
-1. Import the **i18n** and **intl** modules.
+1. Import the **intl** module.
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    import { BusinessError } from '@kit.BasicServicesKit';

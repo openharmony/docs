@@ -24,7 +24,6 @@ import { intl } from '@kit.LocalizationKit';
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
-
 **System capability**: SystemCapability.Global.I18n
 
 | Name             | Type     | Mandatory  | Description                                      |
@@ -473,10 +472,10 @@ Since API version 9, the attributes in **NumberOptions** are optional.
 | ------------------------ | ------- | ---- |  ---------------------------------------- |
 | locale                   | string  | No   | Locale, for example, **zh-Hans-CN**. The default value is the system locale.              |
 | currency                 | string  | No   | Currency unit, for example, **EUR**, **CNY**, or **USD**.        |
-| currencySign             | string  | No   | Currency unit symbol. The options are "standard" and "accounting**. The default value is **standard**.|
+| currencySign             | string  | No   | Currency unit symbol. The value can be **standard** or **accounting**. The default value is **symbol**.|
 | currencyDisplay          | string  | No   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**. The default value is **symbol**.|
 | unit                     | string  | No   | Unit name, for example, **meter**, **inch**, or **hectare**.       |
-| unitDisplay              | string  | No   | Display format of units. The value can be **long**, **short**, or **narrow**. The default value is **short**.|
+| unitDisplay              | string  | No   | Unit display format. The value can be **long**, **short**, or **narrow**. The default value is **short**.|
 | unitUsage<sup>8+</sup>   | string  | No   | Application scenario of units. The value can be "default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel",&nbsp;"elapsed-time-second",&nbsp;"size-file-byte", or &nbsp;"size-shortfile-byte". The default value is **default**.|
 | signDisplay              | string  | No   | Number sign display format. The value can be **auto**, **never**, **always**, or **expectZero**. The default value is **auto**.|
 | compactDisplay           | string  | No   | Compact display format. The value can be **long** or **short**. The default value is **short**.     |
@@ -679,7 +678,6 @@ Obtains a string that represents the singular-plural type of the specified numbe
 ## PluralRulesOptions<sup>8+</sup>
 
 Represents the properties of a **PluralRules** object.
-
 Since API version 9, the attributes in **PluralRulesOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
