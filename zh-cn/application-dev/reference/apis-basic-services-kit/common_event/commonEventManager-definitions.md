@@ -777,3 +777,6 @@ Wi-Fi P2P群组信息已更改。
 
 * [COMMON_EVENT_MINORSMODE_OFF<sup>12+<sup> ](../common_event/commonEvent-accountkit.md#common_event_minorsmode_off12)
 表示未成年人模式关闭。
+
+* [COMMON_EVENT_PRIVACY_POLICY_STATE_CHANGED<sup>11+<sup> ](../common_event/commonEvent-storekit.md)
+表示隐私签署结果的公共事件。
