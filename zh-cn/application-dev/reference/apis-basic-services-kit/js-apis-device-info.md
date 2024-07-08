@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import deviceInfo from '@ohos.deviceInfo';
+import deviceinfo from '@ohos.deviceInfo';
 ```
 
 ## 属性
