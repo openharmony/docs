@@ -125,7 +125,7 @@ bm dump -a
 # Display the details of a bundle.
 bm dump -n com.ohos.app -u 100
 # Display the shortcut information of a bundle.
-bm dump -s com.ohos.app -u 100
+bm dump -s -n com.ohos.app -u 100
 # Display cross-device bundle information.
 bm dump -n com.ohos.app -d xxxxx
 ```
@@ -263,7 +263,7 @@ bm quickfix [-h] [-a -f filePath] [-q -b bundleName]
 | -------- | -------- |
 | -h | Used to display the commands supported by **quickfix**.|
 | -a -f | Used to run the quick fix patch installation command. **file-path** corresponds to the .hqf file. You can pass in one or more .hqf files or the directory where the .hqf file is located.|
-| -q -b | Used to display the patch information based on the bundle name. **bundleName** indicates the bundle name.|
+| -q -b | Used to display the patch information based on the bundle name. **bundle-name** indicates the bundle name.|
 
 
 Example

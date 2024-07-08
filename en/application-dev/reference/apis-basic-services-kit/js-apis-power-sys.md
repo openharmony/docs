@@ -11,7 +11,7 @@ The **power** module provides APIs for rebooting and shutting down the system, a
 ## Modules to Import
 
 ```js
-import power from '@ohos.power';
+import {power} from '@kit.BasicServicesKit';
 ```
 
 ## power.shutdown
@@ -30,7 +30,7 @@ Shuts down the system.
 
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| reason | string | Yes   | Reason for system shutdown.|
+| reason | string | Yes   | Shutdown reason. The value must be a string.|
 
 **Error codes**
 
@@ -39,6 +39,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 | ID  | Error Message   |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example:**
 
@@ -48,6 +49,33 @@ try {
 } catch(err) {
     console.error('shutdown failed, err: ' + err);
 }
+```
+
+## power.rebootDevice<sup>(deprecated)</sup>
+
+rebootDevice(reason: string): void
+
+> **NOTE**<br>This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [power.reboot](#powerreboot9). The substitute API is available only for system applications.
+
+The device is restarted.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.REBOOT
+
+**System capability:** SystemCapability.PowerManager.PowerManager.Core
+
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description   |
+| ------ | ------ | ---- | ----- |
+| reason | string | Yes   | Reason for system reboot.|
+
+**Example:**
+
+```js
+power.rebootDevice('reboot_test');
 ```
 
 ## power.reboot<sup>9+</sup>
@@ -66,7 +94,7 @@ The device is restarted.
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| reason | string | Yes  | Reason for system reboot.|
+| reason | string | Yes  | Restart reason. The value must be a string.|
 
 **Error codes**
 
@@ -75,6 +103,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 | ID  | Error Message   |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example:**
 
@@ -100,7 +129,7 @@ Wakes up a device.
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| detail | string | Yes  | Reason for wakeup.|
+| detail | string | Yes  | Wakeup reason. The value must be a string.|
 
 **Error codes**
 
@@ -109,6 +138,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 | ID  | Error Message   |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example:**
 
@@ -171,7 +201,7 @@ Sets the power mode of this device. This API uses an asynchronous callback to re
 
 | Name  | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| mode     | DevicePowerMode | Yes  | Power mode.                                                  |
+| mode     | DevicePowerMode | Yes  | Power mode. The value must be an enum.                                                  |
 | callback | AsyncCallback&lt;void&gt;            | Yes  | Callback invoked to return the result.<br> If the power mode is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -181,6 +211,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 | ID  | Error Message   |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **Example:**
 
@@ -210,7 +241,7 @@ Sets the power mode of this device. This API uses a promise to return the result
 
 | Name| Type                                | Mandatory| Description      |
 | ------ | ------------------------------------ | ---- | ---------- |
-| mode   | DevicePowerMode | Yes  | Power mode.|
+| mode   | DevicePowerMode | Yes  | Power mode. The value must be an enum.|
 
 **Return value**
 
@@ -225,6 +256,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 | ID  | Error Message   |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 
 **Example:**
 
@@ -261,7 +293,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 | ID  | Error Message   |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
-| 201 | If the permission is denied. |
+| 401 | Parameter error. Possible causes: 1. Parameter verification failed. |
 | 202 | If the system permission is denied. |
 | 1 | Other unknown reason. |
 

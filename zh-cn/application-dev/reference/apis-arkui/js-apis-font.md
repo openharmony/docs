@@ -303,6 +303,7 @@ getUIFontConfig() : UIFontConfig
 ```ts
 // xxx.ets
 import font from '@ohos.font';
+
 @Entry
 @Component
 struct FontExample {

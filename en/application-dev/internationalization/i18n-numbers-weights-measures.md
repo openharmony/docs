@@ -194,7 +194,7 @@ let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,92
 
 Units of measurement conversion and formatting are implemented by the [unitConvert](../reference/apis-localization-kit/js-apis-i18n.md#unitconvert9) API of the [I18NUtil](../reference/apis-localization-kit/js-apis-i18n.md#i18nutil9) class. The development procedure is as follows:
 
-1. Import the **i18n** module.
+1. Import the **intl** module.
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    ```
@@ -221,7 +221,7 @@ Assume that **fromUnit** is **cup** (US unit), **toUnit** is **liter** (SI unit)
 **Development Example**
 
 ```ts
-// Import the i18n module.
+// Import the intl module.
 import { i18n } from '@kit.LocalizationKit';
 
 // Set the fromUnit and toUnit.

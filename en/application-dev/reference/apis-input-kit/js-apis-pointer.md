@@ -420,7 +420,12 @@ Sets the mouse pointer style. This API uses a promise to return the result.
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | Yes   | Window ID.      |
 | pointerStyle        | [PointerStyle](#pointerstyle) | Yes   | Pointer style.         |
-| Promise&lt;void&gt; | void                           | Yes   | Promise used to return the result.|
+
+**Return value**
+
+| Name                 | Description                 |
+| ------------------- | ------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 

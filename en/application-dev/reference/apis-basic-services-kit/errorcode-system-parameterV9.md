@@ -8,7 +8,7 @@
 
 **Error Message**
 
-System parameter can not be found.
+System parameter not found.
 
 **Description**
 
@@ -26,7 +26,7 @@ Set the parameter correctly.
 
 **Error Message**
 
-System parameter value is invalid.
+Invalid system parameter value.
 
 **Description**
 
@@ -44,7 +44,7 @@ Set the value to a valid string.
 
 **Error Message**
 
-System permission operation permission denied.
+The operation on the system permission is denied.
 
 **Description**
 
@@ -62,7 +62,7 @@ Add the DAC or MAC permission as needed.
 
 **Error Message**
 
-System internal error including out of memory, deadlock etc.
+System internal error such as out memory or deadlock.
 
 **Description**
 

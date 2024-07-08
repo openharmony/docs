@@ -13,7 +13,7 @@ The **inputDevice** module allows you to listen for hot swap events of input dev
 
 
 ```js
-import { inputDevice } from '@kit.InputKit';
+import inputDevice from '@ohos.multimodalInput.inputDevice';
 ```
 
 ## inputDevice.getDeviceList<sup>9+</sup>
@@ -416,7 +416,7 @@ inputDevice.getDevice(1).then((deviceData: inputDevice.InputDeviceData) => {
 
 supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallback &lt;Array&lt;boolean&gt;&gt;): void
 
-Obtains the keycodes supported by the input device. This API uses an asynchronous callback to return the result.
+Obtains the key codes supported by the input device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -425,7 +425,7 @@ Obtains the keycodes supported by the input device. This API uses an asynchronou
 | Name    | Type                                     | Mandatory| Description                                                  |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number                                    | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)  | Yes  | Keycodes to be queried. A maximum of five keycodes can be specified.               |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)  | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
 | callback | AsyncCallback&lt;Array&lt;boolean&gt;&gt; | Yes  | Callback used to return the result.                          |
 
 **Error codes**
@@ -439,7 +439,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-// Check whether the input device whose ID is 1 supports keycodes 17, 22, and 2055.
+// Check whether the input device whose ID is 1 supports key codes 17, 22, and 2055.
 try {
   inputDevice.supportKeys(1, [17, 22, 2055], (error: Error, supportResult: Array<Boolean>) => {
     console.log(`Query result: ${JSON.stringify(supportResult)}`);
@@ -453,7 +453,7 @@ try {
 
 supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;boolean&gt;&gt;
 
-Obtains the keycodes supported by the input device. This API uses a promise to return the result.
+Obtains the key codes supported by the input device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -462,7 +462,7 @@ Obtains the keycodes supported by the input device. This API uses a promise to r
 | Name    | Type                | Mandatory| Description                                                  |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number               | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode) | Yes  | Keycodes to be queried. A maximum of five keycodes can be specified.               |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode) | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
 
 **Return value**
 
@@ -481,7 +481,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-// Check whether the input device whose ID is 1 supports keycodes 17, 22, and 2055.
+// Check whether the input device whose ID is 1 supports key codes 17, 22, and 2055.
 try {
   inputDevice.supportKeys(1, [17, 22, 2055]).then((supportResult: Array<Boolean>) => {
     console.log(`Query result: ${JSON.stringify(supportResult)}`);
@@ -504,7 +504,7 @@ Checks whether the input device supports the specified keycode value.
 | Name    | Type                | Mandatory| Description                                                  |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number               | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode) | Yes  | Keycodes to be queried. A maximum of five keycodes can be specified.               |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode) | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
 
 **Return value**
 
@@ -523,7 +523,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-// Check whether the input device whose ID is 1 supports keycodes 17, 22, and 2055.
+// Check whether the input device whose ID is 1 supports key codes 17, 22, and 2055.
 try {
   let supportResult: Array<Boolean> = inputDevice.supportKeysSync(1, [17, 22, 2055])
   console.log(`Query result: ${JSON.stringify(supportResult)}`)
@@ -685,6 +685,8 @@ Defines the information about an input device.
 
 ## AxisType<sup>9+</sup>
 
+type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'pressure' | 'toolminor' | 'toolmajor' | 'null'
+
 Defines the axis type of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
@@ -719,6 +721,8 @@ Defines the axis range of an input device.
 
 ## SourceType<sup>9+</sup>
 
+type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick' | 'trackball'
+
 Input source type of the axis. For example, if a mouse reports an x-axis event, the input source of the x-axis is the mouse.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
@@ -733,6 +737,8 @@ Input source type of the axis. For example, if a mouse reports an x-axis event, 
 | joystick    | string | Yes| No| The input device is a joystick.|
 
 ## ChangedType<sup>9+</sup>
+
+type ChangedType = 'add' | 'remove'
 
 Defines the change type for the hot swap event of an input device.
 

@@ -24,9 +24,9 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[Region](_region.md) | Describes the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.| 
-| struct&nbsp;&nbsp;[OHHDRMetaData](_o_h_h_d_r_meta_data.md) | Describes the HDR metadata.<br>**Deprecated**: This struct is deprecated since API version 10. No substitute is provided.| 
-| struct&nbsp;&nbsp;[OHExtDataHandle](_o_h_ext_data_handle.md) | Describes the extended data handle.<br>**Deprecated**: This struct is deprecated since API version 10. No substitute is provided.| 
+| struct  [Region](_region.md) | Describes the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.| 
+| struct  [OHHDRMetaData](_o_h_h_d_r_meta_data.md) | Describes the HDR metadata.<br>**Deprecated**: This struct is deprecated since API version 10. No substitute is provided.| 
+| struct  [OHExtDataHandle](_o_h_ext_data_handle.md) | Describes the extended data handle.<br>**Deprecated**: This struct is deprecated since API version 10. No substitute is provided.| 
 
 
 ### Types
@@ -35,7 +35,9 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 | -------- | -------- |
 | typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | Provides the capability of accessing the **OHNativeWindow**.| 
 | typedef struct NativeWindowBuffer [OHNativeWindowBuffer](#ohnativewindowbuffer) | Provides the capability of accessing the **OHNativeWindowBuffer**.| 
-| typedef struct [Region](_region.md)[Region](#region) | Defines a struct for the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.| 
+| typedef struct [Region](_region.md)  [Region](#region) | Defines a struct for the rectangle (dirty region) where the content is to be updated in the local **OHNativeWindow**.| 
+| typedef enum [OHNativeErrorCode](#ohnativeerrorcode)  [OHNativeErrorCode](#ohnativeerrorcode) | Defines an enum for the error codes. | 
+| typedef enum [NativeWindowOperation](#nativewindowoperation)  [NativeWindowOperation](#nativewindowoperation) | Defines an enum for the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** function. | 
 | typedef enum [OHScalingModeV2](#ohscalingmodev2)  [OHScalingModeV2](#ohscalingmodev2) | Defines an enum for the rendering scaling modes. | 
 
 
@@ -43,10 +45,11 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 
 | Name| Description| 
 | -------- | -------- |
-| [NativeWindowOperation](#nativewindowoperation) {<br>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br>} | Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** function.|
+| [NativeWindowOperation](#nativewindowoperation-1) {<br>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br>} | Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** function.|
 | [OHScalingMode](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | Enumerates the scaling modes.<br>**Deprecated**: This enum is deprecated since API version 10. No substitute is provided.| 
-| [OHScalingModeV2](#ohscalingmodev2) {<br>OH_SCALING_MODE_FREEZE_V2 = 0, OH_SCALING_MODE_SCALE_TO_WINDOW_V2, OH_SCALING_MODE_SCALE_CROP_V2, OH_SCALING_MODE_NO_SCALE_CROP_V2,<br>OH_SCALING_MODE_SCALE_FIT_V2<br>} | Enumerates the rendering scaling modes. | 
+| [OHScalingModeV2](#ohscalingmodev2-1) {<br>OH_SCALING_MODE_FREEZE_V2 = 0, OH_SCALING_MODE_SCALE_TO_WINDOW_V2, OH_SCALING_MODE_SCALE_CROP_V2, OH_SCALING_MODE_NO_SCALE_CROP_V2,<br>OH_SCALING_MODE_SCALE_FIT_V2<br>} | Enumerates the rendering scaling modes. | 
 | [OHHDRMetadataKey](#ohhdrmetadatakey) {<br>OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,<br>OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,<br>OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,<br>OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13<br>} | Enumerates the HDR metadata keys.<br>**Deprecated**: This enum is deprecated since API version 10. No substitute is provided.| 
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
 
 
 ### Functions
@@ -76,8 +79,35 @@ The **NativeWindow** module provides the **NativeWindow** capability for connect
 | int32_t [OH_NativeWindow_GetSurfaceId](#oh_nativewindow_getsurfaceid) ([OHNativeWindow](#ohnativewindow) \*window, uint64_t \*surfaceId) | Obtains a surface ID through an **OHNativeWindow**.| 
 | int32_t [OH_NativeWindow_CreateNativeWindowFromSurfaceId](#oh_nativewindow_createnativewindowfromsurfaceid) (uint64_t surfaceId, [OHNativeWindow](#ohnativewindow) \*\*window) | Creates an **OHNativeWindow** instance based on a surface ID.| 
 | int32_t [OH_NativeWindow_NativeWindowSetScalingModeV2](#oh_nativewindow_nativewindowsetscalingmodev2)  ([OHNativeWindow](#ohnativewindow) \*window, [OHScalingModeV2](#ohscalingmodev2) scalingMode) | Sets a rendering scaling mode for an **OHNativeWindow** instance. |
+| int32_t [OH_NativeWindow_GetLastFlushedBufferV2](#oh_nativewindow_getlastflushedbufferv2) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd, float matrix[16]) | Obtains the **OHNativeWindowBuffer** that was flushed to the buffer queue last time through an **OHNativeWindow** instance. The difference between this function and **OH_NativeWindow_GetLastFlushedBuffer** lies in the matrix. | 
+| void [OH_NativeWindow_SetBufferHold](#oh_nativewindow_setbufferhold) ([OHNativeWindow](#ohnativewindow) \*window) | Buffers a frame in advance and holds it for the interval of a frame to offset the possible loss of subsequent oversized frames. | 
 
 ## Type Description
+
+
+### NativeWindowOperation
+
+```
+typedef enum NativeWindowOperation NativeWindowOperation
+```
+
+**Description**
+
+Defines an enum for the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** function.
+
+**Since**: 8
+
+### OHNativeErrorCode
+
+```
+typedef enum OHNativeErrorCode OHNativeErrorCode
+```
+
+**Description**
+
+Defines an enum for the error codes.
+
+**Since**: 12
 
 
 ### OHNativeWindow
@@ -133,6 +163,34 @@ Defines the rectangle (dirty region) where the content is to be updated in the l
 
 ## Enum Description
 
+### OHNativeErrorCode
+
+```
+enum OHNativeErrorCode
+```
+**Description**
+
+Enumerates the error codes.
+
+**Since**: 12
+
+| Value| Description| 
+| -------- | -------- |
+| NATIVE_ERROR_OK  | The operation is successful.  | 
+| NATIVE_ERROR_INVALID_ARGUMENTS  | An input parameter is invalid.  | 
+| NATIVE_ERROR_NO_PERMISSION  | You do not have the permission to perform the operation.  | 
+| NATIVE_ERROR_NO_BUFFER  | No buffer is available.  | 
+| NATIVE_ERROR_NO_CONSUMER  | The consumer does not exist.  | 
+| NATIVE_ERROR_NOT_INIT  | Not initialized.  | 
+| NATIVE_ERROR_CONSUMER_CONNECTED  | The consumer is connected.  | 
+| NATIVE_ERROR_BUFFER_STATE_INVALID  | The buffer status does not meet the expectation.  | 
+| NATIVE_ERROR_BUFFER_IN_CACHE  | The buffer is already in the buffer queue.  | 
+| NATIVE_ERROR_BUFFER_QUEUE_FULL  | The queue is full.  | 
+| NATIVE_ERROR_BUFFER_NOT_IN_CACHE  | The buffer is not in the buffer queue.  | 
+| NATIVE_ERROR_UNSUPPORT  | The device or platform does not support the operation.  | 
+| NATIVE_ERROR_UNKNOWN  | Unknown error. Check the log.  | 
+| NATIVE_ERROR_EGL_STATE_UNKNOWN  | The EGL environment is abnormal.  | 
+| NATIVE_ERROR_EGL_API_FAILED  | Failed to call the EGL APIs.  | 
 
 ### NativeWindowOperation
 
@@ -228,10 +286,10 @@ Enumerates the scaling modes.
 enum OHScalingModeV2
 ```
 **Description**
+
 Enumerates the rendering scaling modes.
 
 **Since**: 12
-
 | Value| Description| 
 | -------- | -------- |
 | OH_SCALING_MODE_FREEZE_V2  | Freezes the window. The window content is not updated until a buffer with the same size as the window is received.| 
@@ -241,7 +299,56 @@ Enumerates the rendering scaling modes.
 | OH_SCALING_MODE_SCALE_FIT_V2  | Scales the buffer at the original aspect ratio to fully display the buffer content, while filling the unfilled area of the window with the background color. This mode is not available for the development board and emulator.| 
 
 
+
 ## Function Description
+
+### OH_NativeWindow_GetLastFlushedBufferV2()
+
+```
+int32_t OH_NativeWindow_GetLastFlushedBufferV2 (OHNativeWindow *window, OHNativeWindowBuffer **buffer, int *fenceFd, float matrix[16] )
+```
+
+**Description**
+
+Obtains the **OHNativeWindowBuffer** that was flushed to the buffer queue last time through an **OHNativeWindow** instance. The difference between this function and **OH_NativeWindow_GetLastFlushedBuffer** lies in the matrix.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| window | Pointer to an **OHNativeWindow** instance. | 
+| buffer | Double pointer to an **OHNativeWindowBuffer** instance. | 
+| fenceFd | Pointer to a file descriptor. | 
+| matrix | Retrieved 4*4 transformation matrix. | 
+
+**Returns**
+
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
+
+
+
+### OH_NativeWindow_SetBufferHold()
+
+```
+void OH_NativeWindow_SetBufferHold (OHNativeWindow *window)
+```
+**Description**
+Buffers a frame in advance and holds it for the interval of a frame to offset the possible loss of subsequent oversized frames.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| window | Pointer to an [OHNativeWindow](_o_h___native_image.md#ohnativewindow) instance. | 
+
 
 
 ### OH_NativeWindow_CreateNativeWindow()
@@ -344,7 +451,7 @@ Creates an **OHNativeWindow** instance based on a surface ID.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeWindow_DestroyNativeWindow()
@@ -439,7 +546,7 @@ Obtains the **OHNativeWindowBuffer** that was flushed to the buffer queue last t
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeWindow_GetNativeObjectMagic()
@@ -490,7 +597,7 @@ Obtains a surface ID through an **OHNativeWindow**.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeWindow_NativeObjectReference()
@@ -515,7 +622,7 @@ Adds the reference count of a native object.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeWindow_NativeObjectUnreference()
@@ -540,7 +647,7 @@ Decreases the reference count of a native object and when the reference count re
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeWindow_NativeWindowAbortBuffer()
@@ -566,7 +673,7 @@ Returns the **OHNativeWindowBuffer** to the buffer queue through an **OHNativeWi
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 ### OH_NativeWindow_NativeWindowAttachBuffer()
 
@@ -591,7 +698,7 @@ Attaches an **OHNativeWindowBuffer** to an **OHNativeWindow** instance.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeWindow_NativeWindowDetachBuffer()
@@ -617,7 +724,7 @@ Detaches an **OHNativeWindowBuffer** from an **OHNativeWindow** instance.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeWindow_NativeWindowFlushBuffer()
@@ -645,7 +752,7 @@ Flushes the **OHNativeWindowBuffer** filled with the produced content to the buf
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeWindow_NativeWindowHandleOpt()
@@ -672,7 +779,7 @@ Sets or obtains the attributes of an **OHNativeWindow** instance, including the 
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeWindow_NativeWindowRequestBuffer()
@@ -699,7 +806,7 @@ Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for 
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeWindow_NativeWindowSetMetaData()
@@ -729,7 +836,7 @@ Sets metadata for an **OHNativeWindow**.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeWindow_NativeWindowSetMetaDataSet()
@@ -760,7 +867,7 @@ Sets a metadata set for an **OHNativeWindow**.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeWindow_NativeWindowSetScalingMode()
@@ -789,7 +896,7 @@ Sets a scaling mode for an **OHNativeWindow**.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 
 ### OH_NativeWindow_NativeWindowSetScalingModeV2()
@@ -813,7 +920,7 @@ Sets a rendering scaling mode for an **OHNativeWindow** instance.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.
 
 ### OH_NativeWindow_NativeWindowSetTunnelHandle()
 
@@ -840,4 +947,4 @@ Sets a tunnel handle to an **OHNativeWindow**.
 
 **Returns**
 
-Returns **0** if the operation is successful.
+Returns **0** if the operation is successful; returns an error code defined in [OHNativeErrorCode](#ohnativeerrorcode) otherwise.

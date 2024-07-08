@@ -1,5 +1,6 @@
 - 性能
   - [性能优化概览](performance-overview.md)
+  - [应用开发性能优化入门引导](application-performance-optimization-guidance.md)
   - ArkTS高性能编程
     - [高效并发编程](efficient-concurrent-programming.md)
     - [N-API高效开发指导](develop-Native-modules-using-NAPI-safely-and-efficiently.md)
@@ -35,6 +36,8 @@
     - [运行时动态加载页面提升性能](performance-dynamic-import.md)
     - [合理运行后台任务](reasonable-running-backgroundTask.md)
     - [Web组件开发性能提升指导](performance-web-import.md)
+    - [合理处理高负载组件的渲染](reasonably-dispose-highly-loaded-component-render.md)
+    - [全局自定义组件复用实现](node_custom_component_reusable_pool.md)
     - [减小应用包大小](reduce-package-size.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
@@ -42,3 +45,5 @@
     - [性能优化工具SmartPerf-Host](performance-optimization-using-smartperf-host.md)
     - [常用trace使用指导](common-trace-using-instructions.md)
     - [状态变量组件定位工具实践](state_variable_dfx_pratice.md)
+    - [Web性能问题分析案例](web-analyse.md)
+    - [应用性能问题分析指导](application-performance-guide.md)

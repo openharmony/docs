@@ -13,18 +13,18 @@ Provides the capability of obtaining the root directory of user files.
 
 ### Files
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| [oh_environment.h](oh__environment_8h.md) | Defines the native APIs used to obtain the sandbox paths of the user files. | 
+| [oh_environment.h](oh__environment_8h.md) | Defines the native APIs used to obtain the sandbox paths of the user files. |
 
 
 ### Functions
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDownloadDir](#oh_environment_getuserdownloaddir) (char \*\*result) | Obtains the sandbox path of the **Download** root directory. | 
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDesktopDir](#oh_environment_getuserdesktopdir) (char \*\*result) | Obtains the sandbox path of the **Desktop** root directory. | 
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDocumentDir](#oh_environment_getuserdocumentdir) (char \*\*result) | Obtains the sandbox path of the **Documents** root directory. | 
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDownloadDir](#oh_environment_getuserdownloaddir) (char \*\*result) | Obtains the sandbox path of the **Download** root directory. |
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDesktopDir](#oh_environment_getuserdesktopdir) (char \*\*result) | Obtains the sandbox path of the **Desktop** root directory. |
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDocumentDir](#oh_environment_getuserdocumentdir) (char \*\*result) | Obtains the sandbox path of the **Documents** root directory. |
 
 
 ## Function Description
@@ -36,19 +36,19 @@ Provides the capability of obtaining the root directory of user files.
 FileManagement_ErrCode OH_Environment_GetUserDesktopDir (char ** result)
 ```
 **Description**
+
 Obtains the sandbox path of the **Desktop** root directory.
+
+> **NOTE**
+>
+> This API cannot be used currently. In the current version, use **/storage/Users/currentUser/Desktop** as the sandbox path of the **Desktop** directory. The API will be supported in later versions.
 
 **Since**: 12
 
 **Parameters**
-
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| result | Pointer to the sandbox path of the **Desktop** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. | 
-
-**Required permissions**
-
-ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
+| result | Pointer to the sandbox path of the **Desktop** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
 
 **Returns**
 
@@ -61,19 +61,20 @@ Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode).
 FileManagement_ErrCode OH_Environment_GetUserDocumentDir (char ** result)
 ```
 **Description**
+
 Obtains the sandbox path of the **Documents** root directory.
+
+> **NOTE**
+>
+> This API cannot be used currently. In the current version, use **/storage/Users/currentUser/Documents** as the sandbox path of the **Documents** directory. The API will be supported in later versions.
 
 **Since**: 12
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| result | Pointer to the sandbox path of the **Documents** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. | 
-
-**Required permissions**
-
-ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+| result | Pointer to the sandbox path of the **Documents** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
 
 **Returns**
 
@@ -86,19 +87,19 @@ Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode).
 FileManagement_ErrCode OH_Environment_GetUserDownloadDir (char ** result)
 ```
 **Description**
+
 Obtains the sandbox path of the **Download** root directory.
+
+> **NOTE**
+>
+> This API cannot be used currently. In the current version, use **/storage/Users/currentUser/Download** as the sandbox path of the **Download** directory. The API will be supported in later versions.
 
 **Since**: 12
 
 **Parameters**
-
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| result | Pointer to the path of the **Download** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. | 
-
-**Required permissions**
-
-ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+| result | Pointer to the path of the **Download** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
 
 **Returns**
 

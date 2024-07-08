@@ -210,8 +210,8 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | GET_BUFFER_GEOMETRY | 获取本地窗口缓冲区几何图形， 函数中的可变参数是 [输出] int32_t \*height， [输出] int32_t \*width。 | 
 | GET_FORMAT | 获取本地窗口缓冲区格式， 函数中的可变参数是 [输出] int32_t \*format。 | 
 | SET_FORMAT | 设置本地窗口缓冲区格式， 函数中的可变参数是 [输入] int32_t format。 | 
-| GET_USAGE | 获取本地窗口读写方式， 函数中的可变参数是 [输出] int32_t \*usage。 | 
-| SET_USAGE | 设置本地窗口缓冲区读写方式， 函数中的可变参数是 [输入] int32_t usage。 | 
+| GET_USAGE | 获取本地窗口读写方式， 函数中的可变参数是 [输出] uint64_t \*usage。 | 
+| SET_USAGE | 设置本地窗口缓冲区读写方式， 函数中的可变参数是 [输入] uint64_t usage。 | 
 | SET_STRIDE | 设置本地窗口缓冲区步幅， 函数中的可变参数是 [输入] int32_t stride。 | 
 | GET_STRIDE | 获取本地窗口缓冲区步幅， 函数中的可变参数是 [输出] int32_t \*stride。 | 
 | SET_SWAP_INTERVAL | 设置本地窗口缓冲区交换间隔， 函数中的可变参数是 [输入] int32_t interval。 | 
@@ -296,7 +296,7 @@ enum OHScalingModeV2
 | OH_SCALING_MODE_SCALE_TO_WINDOW_V2  | 缓冲区进行拉伸缩放以匹配窗口大小。| 
 | OH_SCALING_MODE_SCALE_CROP_V2  | 缓冲区按原比例缩放，使得缓冲区的较小边与窗口匹配， 较长边超出窗口部分被视为透明。 | 
 | OH_SCALING_MODE_NO_SCALE_CROP_V2  | 按窗口大小将缓冲区裁剪，裁剪矩形之外的像素被视为完全透明。 | 
-| OH_SCALING_MODE_SCALE_FIT_V2  | 缓冲区按原比例缩放。优先显示所有缓冲区内容。 如果比例与窗口比例不同，用背景颜色填充窗口的未填充区域。开发板和模拟器不支持该模式。| 
+| OH_SCALING_MODE_SCALE_FIT_V2  | 缓冲区按原比例缩放。优先显示所有缓冲区内容。 如果比例与窗口比例不同，用背景颜色填充窗口的未填充区域。<!--Del-->开发板和<!--DelEnd-->模拟器不支持该模式。| 
 
 
 ## 函数说明

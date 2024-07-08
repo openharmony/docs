@@ -1,9 +1,9 @@
 # OpenHarmony应用开发文档
 
+<!--Del-->
+- [应用开发导读](application-dev-guide.md)
+<!--DelEnd-->
 - 入门
-  <!--Del-->
-  - [应用开发导读](application-dev-guide.md)
-  <!--DelEnd-->
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
     - [构建第一个ArkTS应用（Stage模型）](quick-start/start-with-ets-stage.md)
@@ -123,8 +123,6 @@
           - [Want概述](application-models/want-overview.md)
           - [显式Want与隐式Want匹配规则](application-models/explicit-implicit-want-mappings.md)
           - [使用显式Want启动应用组件](application-models/ability-startup-with-explicit-want.md)
-          - [使用隐式Want打开网址](application-models/ability-startup-with-implicit-want.md)
-          - [应用间使用Want分享数据](application-models/data-share-via-want.md)
         - [组件启动规则（Stage模型）](application-models/component-startup-rules.md)
         - [AppStartup开发指南](application-models/app-startup.md)
         <!--Del-->
@@ -925,7 +923,9 @@
           - 卡片数据交互
             - [卡片数据交互说明](form/arkts-ui-widget-interaction-overview.md)
             - [卡片定时刷新和定点刷新](form/arkts-ui-widget-update-by-time.md)
+            <!--Del-->
             - [卡片代理刷新](form/arkts-ui-widget-update-by-proxy.md)
+            <!--DelEnd-->
             - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
             - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
         <!--Del-->
@@ -3266,8 +3266,9 @@
         - [@ohos.multimedia.medialibrary (媒体库管理)(系统接口)](reference/apis-media-library-kit/js-apis-medialibrary-sys.md)
         <!--DelEnd-->
     - ArkTS组件<!--media-library-comp-->
+      - [@ohos.file.AlbumPickerComponent (Album Picker组件)](reference/apis-media-library-kit/ohos-file-AlbumPickerComponent.md)
+      - [@ohos.file.PhotoPickerComponent (Photo Picker组件)](reference/apis-media-library-kit/ohos-file-PhotoPickerComponent.md)
       - [@ohos.multimedia.movingphotoview (动态照片)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md)
-      - [@ohos.file.PhotoPickerComponent (photo picker组件)](reference/apis-media-library-kit/ohos-file-PhotoPickerComponent.md)
     - C API<!--media-library-c-->
       - 模块<!--media-library-module-->
         - [MediaAssetManager](reference/apis-media-library-kit/_media_asset_manager.md)

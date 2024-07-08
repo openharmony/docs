@@ -48,6 +48,7 @@ showToast(options: ShowToastOptions): void
 ```ts
 import promptAction from '@ohos.promptAction'
 import { BusinessError } from '@ohos.base';
+
 @Entry
 @Component
 struct toastExample {
@@ -110,6 +111,7 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 ```ts
 import promptAction from '@ohos.promptAction'
 import { BusinessError } from '@ohos.base';
+
 try {
   promptAction.showDialog({
     title: 'Title Info',
@@ -171,6 +173,7 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 ```ts
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
+
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -206,6 +209,7 @@ try {
 ```ts
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
+
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -271,6 +275,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 ```ts
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
+
 try {
   promptAction.showActionMenu({
     title: 'Title Info',
@@ -336,6 +341,7 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 ```ts
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
+
 try {
   promptAction.showActionMenu({
     title: 'showActionMenu Title Info',
