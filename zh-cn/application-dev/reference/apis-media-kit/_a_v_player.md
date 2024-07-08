@@ -197,7 +197,7 @@ typedef void(* OH_AVPlayerOnError) (OH_AVPlayer *player, int32_t errorCode, cons
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针 | 
-| errorCode | 错误码 | 
+| errorCode | 错误码，具体请参考[Media错误码](https://gitee.com/fanpingan/docs/blob/docs/zh-cn/application-dev/reference/apis-media-kit/errorcode-media.md) | 
 | errorMsg | 错误消息 | 
 
 
