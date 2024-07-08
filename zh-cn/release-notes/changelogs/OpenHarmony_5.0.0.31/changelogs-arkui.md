@@ -306,7 +306,7 @@ RichEditor组件
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容性变更。
 
 变更前，当textTimer的format包含S（毫秒）时，时间的变化就会触发onTimer（几毫秒一次），且回调参数的单位为ms（毫秒）。
 
@@ -322,11 +322,11 @@ RichEditor组件
 
 **变更的接口/组件**
 
-textTimer组件
+textTimer组件的omTimer接口
 
 **适配指导**
 
-需要开发者主动适配，调整回调参数的数量级。
+需要开发者主动适配，调整回调参数的数量级。format为mm:ss.S时，utc、elapsedTime修改后为修改前的百分之一；format为mm:ss.SS时，utc、elapsedTime修改后为修改前的十分之一
 
 ## cl.arkui.7 滚动类组件（List、Grid、WaterFlow、Scroll）Friction接口默认值变更
 
