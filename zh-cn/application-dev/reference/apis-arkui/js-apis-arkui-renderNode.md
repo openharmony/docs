@@ -2475,6 +2475,8 @@ renderNode.backgroundColor = 0xff0000ff;
 renderNode.markNodeGroup = true;
 renderNode.opacity = 0.5;
 
+const isNodeGroup = renderNode.markNodeGroup;
+
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
