@@ -91,8 +91,9 @@ struct Index {
 
   async readImageByUri(uri: string): Promise < PixelMap | null > {
     hilog.info(0x0000, TAG, "uri: " + uri);
+    let file: fs.File | undefined;
     try {
-      const file: fs.File = await fs.open(uri, fs.OpenMode.READ_ONLY);
+      file = await fs.open(uri, fs.OpenMode.READ_ONLY);
       hilog.info(0x0000, TAG, "Original image file id: " + file.fd);
 
       let imageSourceApi: image.ImageSource = image.createImageSource(file.fd);
@@ -109,6 +110,8 @@ struct Index {
       return pixmap;
     } catch(e) {
       hilog.info(0x0000, TAG, `ReadImage failed:${e}`);
+    } finally {
+      fs.close(file);
     }
     return null;
   }
@@ -211,8 +214,9 @@ struct Index {
 
     async readImage(uri: string): Promise < PixelMap | null > {
     hilog.info(0x0000, TAG, "image uri: " + uri);
+    let file: fs.File | undefined;
     try {
-      const file: fs.File = await fs.open(uri, fs.OpenMode.READ_ONLY);
+      file = await fs.open(uri, fs.OpenMode.READ_ONLY);
       hilog.info(0x0000, TAG, "file: " + file.fd);
 
       let imageSourceApi: image.ImageSource = image.createImageSource(file.fd);
@@ -229,6 +233,8 @@ struct Index {
       return pixmap;
     } catch(e) {
       hilog.info(0x0000, TAG, `readImage failed:${e}`);
+    } finally {
+      fs.close(file);
     }
     return null;
   }
@@ -262,8 +268,9 @@ struct Index {
             hilog.info(0x0000, TAG, "uri: " + uri);
 
             let context = getContext(this) as common.UIAbilityContext;
+            let file: fs.File | undefined;
             try {
-              const file: fs.File = fs.openSync(uri, fs.OpenMode.READ_ONLY);
+              file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
               hilog.info(0x0000, TAG, "file: " + file.fd);
 
               let timeStamp = Date.now();
@@ -274,6 +281,8 @@ struct Index {
               this.originalImage = fileUri.getUriFromPath(this.filePath);
             } catch (e) {
               hilog.info(0x0000, TAG, `readImage failed:${e}`);
+            } finally {
+              fs.close(file);
             }
           })
 
