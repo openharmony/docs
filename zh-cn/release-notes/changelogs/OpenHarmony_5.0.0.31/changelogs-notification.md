@@ -42,7 +42,7 @@ notificationManager模块废弃接口。
 import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//请求通知弹窗，不跟随应用窗口
+// 请求通知弹窗，不跟随应用窗口
 notificationManager.requestEnableNotification().then(() => {
     console.info("requestEnableNotification success");
 }).catch((err: BusinessError) => {
@@ -57,7 +57,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 
 let context = getContext(this) as common.UIAbilityContext;
-//请求通知弹窗，传入UIAbilityContext，弹窗跟随应用窗口
+
+// 请求通知弹窗，传入UIAbilityContext，弹窗跟随应用窗口
 notificationManager.requestEnableNotification(context).then(() => {
     console.info("requestEnableNotification success");
 }).catch((err: BusinessError) => {
