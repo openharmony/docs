@@ -78,13 +78,9 @@ CreateModalUIExtension禁止其他组件和非安全窗口遮挡。
 
 **变更影响**
 
-API12变更之前：箭头离宿主节点16vp。
-
-![变更前箭头离宿主节点16vp](figures/menu-with-arrow-16vp.png)
-
-API12变更之后：箭头离宿主节点8vp。
-
-![变更后箭头离宿主节点8vp](figures/menu-with-arrow-8vp.png)
+| 变更前箭头离宿主节点16vp | 变更后箭头离宿主节点8vp |
+|---------|---------|
+|  ![变更前箭头离宿主节点16vp](figures/menu-with-arrow-16vp.png)       |  ![变更后箭头离宿主节点8vp](figures/menu-with-arrow-8vp.png)       |
 
 **起始API Level**
 
