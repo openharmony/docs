@@ -27,6 +27,7 @@
     - [@ohos.app.ability.UIAbility (UIAbility)](js-apis-app-ability-uiAbility.md)
     - [@ohos.app.ability.UIExtensionAbility (带界面扩展能力基类)](js-apis-app-ability-uiExtensionAbility.md)
     - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)](js-apis-app-ability-uiExtensionContentSession.md)
+    - [@ohos.app.ability.sendableContextManager](js-apis-app-ability-sendableContextManager.md)
     - [@ohos.app.appstartup.StartupConfig](js-apis-app-appstartup-startupConfig.md)
     - [@ohos.app.appstartup.StartupConfigEntry](js-apis-app-appstartup-startupConfigEntry.md)
     - [@ohos.app.appstartup.StartupListener](js-apis-app-appstartup-startupListener.md)
@@ -119,6 +120,7 @@
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
+      - [SendableContext](js-apis-inner-application-sendableContext.md)
       <!--Del-->
       - [AbilityFirstFrameStateData(系统接口)](js-apis-inner-application-abilityFirstFrameStateData-sys.md)
       - [AbilityFirstFrameStateObserver(系统接口)](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
