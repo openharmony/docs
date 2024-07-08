@@ -119,7 +119,7 @@ class Tmp {
 
 @Component
 struct HelloComponent {
-  @Link message: string;
+  @Prop message: string;
 
   build() {
     Row() {
@@ -217,7 +217,7 @@ struct HelloChildComponent {
 
 @Component
 struct HelloGrandsonComponent {
-  @Link message: string;
+  @Prop message: string;
   build() {
     Row() {
       Text(`HelloGrandsonComponent===${this.message}`)
