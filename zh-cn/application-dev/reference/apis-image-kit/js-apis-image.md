@@ -2819,8 +2819,23 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 **示例：**
 
 ```ts
-const buf: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(buf);
+const context: Context = getContext(this)
+let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // 获取图像资源
+// 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
+let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2)  // 分片
+let splitBuff2 = imageArray.slice(imageArray.byteLength / 2)
+const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength));
+imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
+  imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
+    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync()
+    let imageInfo = pixelMap.getImageInfoSync()
+    console.info('Succeeded in creating pixelMap')
+  }).catch((error : BusinessError) => {
+    console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`)
+  })
+}).catch((error : BusinessError) => {
+  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`)
+})
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -2847,9 +2862,25 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 **示例：**
 
 ```ts
-const buf: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
-let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(buf, sourceOptions);
+const context: Context = getContext(this)
+let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon')) // 获取图像资源
+// 此处'app.media.startIcon'仅作示例，请开发者自行替换，否则imageArray创建失败会导致后续无法正常执行。
+let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2)  // 分片
+let splitBuff2 = imageArray.slice(imageArray.byteLength / 2)
+let sourceOptions: image.SourceOptions = { sourceDensity: 120};
+
+const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength), sourceOptions);
+imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
+  imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
+    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync()
+    let imageInfo = pixelMap.getImageInfoSync()
+    console.info('Succeeded in creating pixelMap')
+  }).catch((error : BusinessError) => {
+    console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`)
+  })
+}).catch((error : BusinessError) => {
+  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`)
+})
 ```
 
 ## ImageSource
