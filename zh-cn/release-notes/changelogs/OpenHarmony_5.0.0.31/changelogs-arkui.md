@@ -294,7 +294,7 @@ RichEditor组件
 
 默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改事件效果以达到预期。
 
-## cl.arkui.6 textTimer的onTimer回调频率与参数调整
+## cl.arkui.6 TextTimer的onTimer回调频率与参数单位调整
 
 **访问级别**
 
@@ -302,15 +302,17 @@ RichEditor组件
 
 **变更原因**
 
-调整onTimer回调频率与参数调整使其符合文档描述。
+调整onTimer回调频率与参数的单位，使其符合文档描述。
 
 **变更影响**
 
 该变更为不兼容性变更。
 
-变更前，当textTimer的format包含S（毫秒）时，时间的变化就会触发onTimer（几毫秒一次），且回调参数的单位为ms（毫秒）。
+TextTimer的format属性用于自定义时间格式。其中，毫秒可使用S、SS和SSS关键字表示，分别代表100ms、10ms和1ms。
 
-变更后，textTimer的文本发生变化时回调onTimer，且回调参数的单位随format变化。format为mm:ss.S时，100ms回调一次，回调参数的单位为0.1秒；为mm:ss.SS时10ms回调一次，回调参数的单位为0.01秒。
+变更前，当TextTimer的format属性包含毫秒时，TextTimer的文本发生变化，便会几毫秒触发一次onTimer事件，且回调参数utc和elapsedTime的单位为毫秒。
+
+变更后，TextTimer的文本发生变化时，onTimer事件的触发时间与回调参数utc和elapsedTime的单位随format属性的自定义时间格式变化。format为mm:ss.S时，100ms回调一次onTimer事件，回调参数的单位为100ms。format为mm:ss.SS时，10ms回调一次onTimer事件，回调参数的单位为10ms。format为mm:ss.SSS时，与变更前保持一致。
 
 **起始API Level**
 
@@ -322,13 +324,38 @@ RichEditor组件
 
 **变更的接口/组件**
 
-textTimer组件的omTimer接口
+textTimer组件的onTimer接口
 
 **适配指导**
 
 需要开发者主动适配，调整回调参数的数量级。
 
-format为mm:ss.S时，修改后的utc、elapsedTime的值是修改前的百分之一；format为mm:ss.SS时，修改后的utc、elapsedTime的值是修改前的十分之一。
+```ts
+@Entry
+@Component
+struct TextTimerExample {
+  textTimerController: TextTimerController = new TextTimerController();
+  build() {
+    Column(){
+      TextTimer({isCountDown: true, count: 30000, controller: this.textTimerController})
+        .format('mm:ss.SS')
+        .fontSize(50)
+        .onTimer((utc: number, elapsedTime: number) => {
+          // 开发者需改回变更前的效果，可以将utc、elapsedTime乘10后使用
+          console.info('textTimer countDown utc is:' + utc * 10 + ',elapsedTime is:' + elapsedTime * 10)
+        })
+
+      TextTimer({isCountDown: true, count: 30000, controller: this.textTimerController})
+        .format('mm:ss.S')
+        .fontSize(50)
+        .onTimer((utc: number, elapsedTime: number) => {
+          // 开发者需改回变更前的效果，可以将utc、elapsedTime乘100后使用
+          console.info('textTimer countDown utc is:' + utc * 100 + ',elapsedTime is:' + elapsedTime * 100)
+        })
+    }
+  }
+}
+```
 
 ## cl.arkui.7 滚动类组件（List、Grid、WaterFlow、Scroll）Friction接口默认值变更
 
