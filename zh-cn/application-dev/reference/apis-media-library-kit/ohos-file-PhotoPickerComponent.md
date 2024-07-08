@@ -1,4 +1,4 @@
-# @ohos.file.PhotoPickerComponent（Photo Picker组件）
+# @ohos.file.PhotoPickerComponent (Photo Picker组件)
 
 应用可以在布局中嵌入Photo Picker组件，通过此组件，应用无需申请权限，即可访问公共目录中的图片或视频文件。
 应用嵌入组件后，用户可直接在Photo Picker组件中选择图片或视频文件。
