@@ -145,6 +145,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetHeight](#oh_pixelmapinitializationoptions_setheight) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, uint32_t height) | 设置图片高。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetPixelFormat](#oh_pixelmapinitializationoptions_getpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*pixelFormat) | 获取像素格式。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetPixelFormat](#oh_pixelmapinitializationoptions_setpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t pixelFormat) | 设置像素格式。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetSrcPixelFormat](#oh_pixelmapinitializationoptions_getsrcpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*srcpixelFormat) | 获取源像素格式。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t srcpixelFormat) | 设置源像素格式。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_GetAlphaType](#oh_pixelmapinitializationoptions_getalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t \*alphaType) | 获取透明度类型。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_SetAlphaType](#oh_pixelmapinitializationoptions_setalphatype) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, int32_t alphaType) | 设置透明度类型。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapInitializationOptions_Release](#oh_pixelmapinitializationoptions_release) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options) | 释放OH_Pixelmap_InitializationOptions指针。 | 
@@ -2732,6 +2734,51 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetWidth (OH_Pixelmap_Initializ
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
+### OH_PixelmapInitializationOptions_SetSrcPixelFormat()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_SetSrcPixelFormat(OH_Pixelmap_InitializationOptions *options, int32_t srcpixelFormat)
+```
+
+**描述**
+
+设置源像素格式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| srcpixelFormat | 源像素格式[PIXEL_FORMAT](#pixel_format)。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+### OH_PixelmapInitializationOptions_GetSrcPixelFormat()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_GetSrcPixelFormat(OH_Pixelmap_InitializationOptions *ops, int32_t *srcpixelFormat)
+```
+
+**描述**
+
+获取源像素格式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| srcpixelFormat | 源像素格式[PIXEL_FORMAT](#pixel_format)。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 ### OH_PixelmapNative_CreatePixelmap()
 
