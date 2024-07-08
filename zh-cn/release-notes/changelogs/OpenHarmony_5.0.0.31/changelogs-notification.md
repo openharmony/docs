@@ -26,10 +26,10 @@ notificationManager模块废弃接口。
 
 **废弃的接口/组件**
 
-|接口声明|废弃说明|替代接口|
-|-------|--------|-------|
-|requestEnableNotification(callback: AsyncCallback\<void\>): void|应用请求通知使能。|requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void|
-|requestEnableNotification(): Promise\<void\>|应用请求通知使能。|requestEnableNotification(context: UIAbilityContext): Promise\<void\>|
+|接口声明|替代接口|
+|-------|-------|
+|requestEnableNotification(callback: AsyncCallback\<void\>): void|requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void|
+|requestEnableNotification(): Promise\<void\>|requestEnableNotification(context: UIAbilityContext): Promise\<void\>|
 
 
 **适配指导**
@@ -42,6 +42,7 @@ notificationManager模块废弃接口。
 import { notificationManager } from '@kit.NotificationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 请求通知弹窗，不跟随应用窗口
 notificationManager.requestEnableNotification().then(() => {
     console.info("requestEnableNotification success");
 }).catch((err: BusinessError) => {
@@ -56,6 +57,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
 
 let context = getContext(this) as common.UIAbilityContext;
+// 请求通知弹窗，传入UIAbilityContext，弹窗跟随应用窗口
 notificationManager.requestEnableNotification(context).then(() => {
     console.info("requestEnableNotification success");
 }).catch((err: BusinessError) => {
