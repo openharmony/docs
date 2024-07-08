@@ -2394,21 +2394,20 @@ get shapeClip(): ShapeClip
 **示例：**
 
 ```ts
-import { RenderNode, FrameNode, NodeController,ShapeMask, ShapeClip } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController, ShapeMask, ShapeClip } from '@kit.ArkUI';
 
 const clip = new ShapeClip();
 clip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
 
-const mask = new ShapeMask();
-mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
-mask.fillColor = 0X55FF0000;
-mask.strokeColor = 0XFFFF0000;
-mask.strokeWidth = 24;
 const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
+renderNode.frame = {
+  x: 0,
+  y: 0,
+  width: 150,
+  height: 150
+};
 renderNode.backgroundColor = 0XFF00FF00;
 renderNode.shapeClip = clip;
-renderNode.shapeMask = mask;
 const shapeClip = renderNode.shapeClip;
 
 class MyNodeController extends NodeController {
@@ -2436,35 +2435,51 @@ struct Index {
       NodeContainer(this.myNodeController)
         .borderWidth(1)
       Button("setRectShape")
-        .onClick(()=>{
-          shapeClip.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
+        .onClick(() => {
+          shapeClip.setRectShape({
+            left: 0,
+            right: 150,
+            top: 0,
+            bottom: 150
+          });
           renderNode.shapeClip = shapeClip;
         })
       Button("setRoundRectShape")
-        .onClick(()=>{
+        .onClick(() => {
           renderNode.shapeClip.setRoundRectShape({
-            rect: { left: 0, top: 0, right: vp2px(150), bottom: vp2px(150) },
+            rect: {
+              left: 0,
+              top: 0,
+              right: vp2px(150),
+              bottom: vp2px(150)
+            },
             corners: {
               topLeft: { x: 32, y: 32 },
               topRight: { x: 32, y: 32 },
               bottomLeft: { x: 32, y: 32 },
               bottomRight: { x: 32, y: 32 }
-            }});
+            }
+          });
           renderNode.shapeClip = renderNode.shapeClip;
         })
       Button("setCircleShape")
-        .onClick(()=>{
+        .onClick(() => {
           renderNode.shapeClip.setCircleShape({ centerY: 75, centerX: 75, radius: 75 });
           renderNode.shapeClip = renderNode.shapeClip;
 
         })
       Button("setOvalShape")
-        .onClick(()=>{
-          renderNode.shapeClip.setOvalShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(100) });
+        .onClick(() => {
+          renderNode.shapeClip.setOvalShape({
+            left: 0,
+            right: vp2px(150),
+            top: 0,
+            bottom: vp2px(100)
+          });
           renderNode.shapeClip = renderNode.shapeClip;
         })
       Button("setCommandPath")
-        .onClick(()=>{
+        .onClick(() => {
           renderNode.shapeClip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
           renderNode.shapeClip = renderNode.shapeClip;
         })
