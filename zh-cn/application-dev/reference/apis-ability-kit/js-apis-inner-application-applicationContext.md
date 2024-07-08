@@ -808,7 +808,7 @@ export default class MyAbility extends UIAbility {
 
 restartApp(want: Want): void
 
-应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。仅支持主线程调用。
+应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。仅支持主线程调用，且待重启的应用需要处于获焦状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -836,7 +836,7 @@ restartApp(want: Want): void
 import { UIAbility, Want } from '@kit.AbilityKit';
 
 export default class MyAbility extends UIAbility {
-  onBackground() {
+  onForeground() {
     let applicationContext = this.context.getApplicationContext();
     let want: Want = {
       bundleName: 'com.example.myapp',

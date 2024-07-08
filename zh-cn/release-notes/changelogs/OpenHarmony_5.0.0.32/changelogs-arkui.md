@@ -44,7 +44,7 @@ CreateModalUIExtension禁止其他组件和非安全窗口遮挡。
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
 | 变更前 | 变更后 |
 |---------|---------|
@@ -64,7 +64,7 @@ CreateModalUIExtension禁止其他组件和非安全窗口遮挡。
 
 **适配指导**
 
-默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+默认行为变更，无需适配。
 
 ## cl.arkui.3 Menu组件箭头离宿主节点默认安全边距变更
 
@@ -137,15 +137,19 @@ Menu组件。
 
 **变更原因**
 
-由于窗口提供的拖拽窗口类型变更，新的窗口类型无法超出父窗口，导致onItemDrag拖拽窗口无法拖出应用窗口外。
+onItemDrag接口无法与其他应用产生交互，但生成的拖拽窗口能拖拽出当前应用。
+
+现在限制其能拖出当前应用的行为，与使用范围保持一致。
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为兼容性变更。
 
 API version 12之前，onItemDrag拖起的拖拽窗口可以拖出当前应用窗口外。
+![](figures/OnItemDragBefore.gif)
 
 API version 12及以后，onItemDrag拖起的拖拽窗口不可以拖出当前应用窗口外。
+![](figures/OnItemDragNow.gif)
 
 **起始API Level**
 
@@ -163,9 +167,9 @@ List组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeav
 
 **适配指导**
 
-默认行为变更，无需适配。
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.6 List的ConstraintSize设置生效
+## cl.arkui.6 List的constraintSize设置生效
 
 **访问级别**
 
@@ -177,11 +181,38 @@ List的布局行为和当前通用的布局约束优先的规格不一致。
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
-变更前，List不设置Height时，Constraint的minHeight设置不生效。
+变更前，List不设置Height时，constraintSize的minHeight设置不生效。
 
-变更后，List不设置Height时，Constraint的minHeight设置会生效。
+变更后，List不设置Height时，constraintSize的minHeight设置会生效。
+
+```ts
+@Entry
+@Component
+struct ListExample {
+  build() {
+    List({ space: 5 }) {
+      ForEach([1, 2, 3, 4, 5], (item: number) => {
+        ListItem() {
+          Text('' + item)
+            .width('100%').height(50)
+            .textAlign(TextAlign.Center).backgroundColor(0xFFFFFF)
+        }
+      }, (item: string) => item)
+    }
+    .padding(5)
+    .constraintSize({ minHeight: 500 })
+    .backgroundColor(0xDCDCDC)
+  }
+}
+```
+
+如下是以上示例代码变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/ListConstraintSize_Before.jpg)  |  ![](figures/ListConstraintSize_After.jpg)  |
 
 **起始API Level**
 
@@ -193,11 +224,54 @@ List的布局行为和当前通用的布局约束优先的规格不一致。
 
 **变更的接口/组件**
 
-List组件的ConstraintSize接口。
+List组件的constraintSize接口。
 
 **适配指导**
 
-默认行为变更，无需适配。
+如果List没有设置height属性，且设置了constraintSize的minHeight属性。变更后minHeight属性生效，导致布局界面变化，如果需要保持之前的布局界面，可以删除constraintSize的minHeight属性。
+
+如下代码，变更前constraintSize的minHeight属性不生效，变更后constraintSize的minHeight属性生效导致显示界面变化。
+```ts
+@Entry
+@Component
+struct ListExample {
+  build() {
+    List({ space: 5 }) {
+      ForEach([1, 2, 3, 4, 5], (item: number) => {
+        ListItem() {
+          Text('' + item)
+            .width('100%').height(50)
+            .textAlign(TextAlign.Center).backgroundColor(0xFFFFFF)
+        }
+      }, (item: string) => item)
+    }
+    .padding(5)
+    .constraintSize({ minHeight: 500, maxHeight: 1000 })
+    .backgroundColor(0xDCDCDC)
+  }
+}
+```
+删除constraintSize接口minHeight设置可以恢复之前的效果。
+```ts
+@Entry
+@Component
+struct ListExample {
+  build() {
+    List({ space: 5 }) {
+      ForEach([1, 2, 3, 4, 5], (item: number) => {
+        ListItem() {
+          Text('' + item)
+            .width('100%').height(50)
+            .textAlign(TextAlign.Center).backgroundColor(0xFFFFFF)
+        }
+      }, (item: string) => item)
+    }
+    .padding(5)
+    .constraintSize({ maxHeight: 1000 })
+    .backgroundColor(0xDCDCDC)
+  }
+}
+```
 
 ## cl.arkui.7 hideNonSecureWindows接口行为变更
 
@@ -241,7 +315,45 @@ hideNonSecureWindows接口。
 
 接口行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.8 文本测算接口MeasureOptions入参对象fontSize参数默认单位实现修正
+## cl.arkui.8 AlphabetIndexer组件autoCollapse属性默认值由false改为true
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+自适应折叠模式使用场景更广，显示效果更加灵活，默认开启自适应折叠模式更符合开发者期望。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+API version 12之前：autoCollapse属性默认值为false，当AlphabetIndexer组件高度不足时，不会折叠显示。
+
+![AlphabetIndexer_Before](figures/AlphabetIndexer_Before.png)
+
+API version 12及之后：autoCollapse属性默认值为true，当AlphabetIndexer组件高度不足时，会折叠显示。
+
+![AlphabetIndexer_After](figures/AlphabetIndexer_After.png)
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+AlphabetIndexer组件
+
+**适配指导**
+
+默认行为变更，默认开启自适应折叠模式，若要关闭自适应折叠模式，可通过设置[autoCollapse](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md#autocollapse11)属性进行适配。
+
+## cl.arkui.9 文本测算接口MeasureOptions入参对象fontSize参数默认单位实现修正
 
 **访问级别**
 
@@ -282,7 +394,7 @@ measureText和measureTextSize接口。
 
 若Text组件上fontSize设置的是number类型值，则无需适配，此次变更后fontSize参数number类型默认单位实现修正为文档说明的fp，得到的测算结果就是字体大小调整后文本显示实际所需宽高。
 
-## cl.arkui.9 光标默认样式变更
+## cl.arkui.10 光标默认样式变更
 
 **访问级别**
 
@@ -321,7 +433,7 @@ measureText和measureTextSize接口。
 
 默认效果变更，无需适配。
 
-## cl.arkui.10 高级组件SelectionMenu默认样式变更
+## cl.arkui.11 高级组件SelectionMenu默认样式变更
 
 **访问级别**
 
@@ -333,7 +445,7 @@ measureText和measureTextSize接口。
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更为不兼容变更。
 
 变更前：自定义文本选择菜单点击“更多”后展开菜单会显示内置的置灰项分享翻译搜索。
 

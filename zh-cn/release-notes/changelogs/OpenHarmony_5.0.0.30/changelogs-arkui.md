@@ -12,7 +12,7 @@ popupPosition属性设置为undefined时应该重置为默认值，但当前实�
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
 API version 12之前，popupPosition属性设置为undefined时会保持现有状态，提示弹窗位置不发生变化。
 

@@ -201,7 +201,7 @@ Property 'consumer_value' in the custom component 'testChild' cannot initialize 
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容性变更。
 
 API version 11及以前：bindSheet在手机横屏时不支持设置挡位和高度，默认高度距离横屏窗口顶部8vp。
 
@@ -217,5 +217,4 @@ API version 12及以后：bindSheet在手机横屏时支持开发者设置挡位
 
 **适配指导**
 
-默认行为变更，需应用适配。适配规则与竖屏下设置挡位保持一致。
-横屏与竖屏挡位参考detents属性的设置：请查阅[半模态组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)文档进行适配。
+默认行为变更，需应用适配。横竖屏设置挡位规则保持一致，参考detents属性的设置请查阅[半模态组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)文档进行适配。

@@ -106,6 +106,8 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -161,6 +163,8 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -320,6 +324,7 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   let upProgressCallback = (uploadedSize: number, totalSize: number) => {
     console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
@@ -361,6 +366,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   let headerCallback = (headers: object) => {
     console.info("upOnHeader headers:" + JSON.stringify(headers));
@@ -402,6 +408,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   let upCompleteCallback = (taskStates: Array<request.TaskState>) => {
     for (let i = 0; i < taskStates.length; i++) {
@@ -446,6 +453,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   let upProgressCallback1 = (uploadedSize: number, totalSize: number) => {
     console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
@@ -489,6 +497,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   let headerCallback1 = (header: object) => {
     console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
@@ -531,6 +540,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   let upCompleteCallback1 = (taskStates: Array<request.TaskState>) => {
     console.info('Upload delete complete notification.');
@@ -596,6 +606,7 @@ delete(): Promise&lt;boolean&gt;
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   uploadTask.delete().then((result: boolean) => {
     console.info('Succeeded in deleting the upload task.');
@@ -635,6 +646,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
+<!--code_no_check-->
   ```ts
   uploadTask.delete((err: BusinessError, result: boolean) => {
     if (err) {
@@ -2503,6 +2515,8 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2579,6 +2593,8 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2655,6 +2671,8 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2728,6 +2746,8 @@ on(event: 'pause', callback: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2800,6 +2820,8 @@ on(event: 'resume', callback: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2872,6 +2894,8 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -2946,6 +2970,8 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOnTest",
     value: {
@@ -3021,6 +3047,8 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3105,6 +3133,8 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3189,6 +3219,8 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3270,6 +3302,8 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3350,6 +3384,8 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3430,6 +3466,8 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3512,6 +3550,8 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "taskOffTest",
     value: {
@@ -3599,6 +3639,8 @@ start(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -3672,6 +3714,8 @@ start(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -3737,6 +3781,8 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -3806,6 +3852,8 @@ pause(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -3876,6 +3924,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -3951,6 +4001,8 @@ resume(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -4022,6 +4074,8 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -4089,6 +4143,8 @@ stop(): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
@@ -4162,6 +4218,8 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
@@ -4248,6 +4306,8 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let attachments: Array<request.agent.FormItem> = [{
     name: "createTest",
     value: {
@@ -4325,7 +4385,9 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 **示例：**
 
   ```ts
-  request.agent.getTask(context, "123456").then((task: request.agent.Task) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  request.agent.getTask(getContext(), "123456").then((task: request.agent.Task) => {
     console.info(`Succeeded in querying a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4362,6 +4424,8 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.remove("123456", (err: BusinessError) => {
     if (err) {
       console.error(`Failed to removing a download task, Code: ${err.code}, message: ${err.message}`);
@@ -4407,6 +4471,8 @@ remove(id: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.remove("123456").then(() => {
     console.info(`Succeeded in removing a download task. `);
   }).catch((err: BusinessError) => {
@@ -4442,6 +4508,8 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.show("123456", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4484,6 +4552,8 @@ show(id: string): Promise&lt;TaskInfo&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.show("123456").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in showing a upload task.`);
   }).catch((err: BusinessError) => {
@@ -4520,6 +4590,8 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.touch("123456", "token", (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
     if (err) {
       console.error(`Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4563,6 +4635,8 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.touch("123456", "token").then((taskInfo: request.agent.TaskInfo) => {
     console.info(`Succeeded in touching a upload task. `);
   }).catch((err: BusinessError) => {
@@ -4595,6 +4669,8 @@ search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   request.agent.search((err: BusinessError, data: Array<string>) => {
     if (err) {
       console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -4630,6 +4706,8 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let filter: request.agent.Filter = {
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
@@ -4675,6 +4753,8 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let filter: request.agent.Filter = {
     action: request.agent.Action.UPLOAD,
     mode: request.agent.Mode.BACKGROUND
