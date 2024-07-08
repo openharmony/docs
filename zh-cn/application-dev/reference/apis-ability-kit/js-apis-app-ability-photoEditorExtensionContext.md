@@ -40,45 +40,44 @@ const TAG = '[ExamplePhotoEditorAbility]';
 @Entry
 @Component
 struct Index {
-    // 原始图片
-    @State originalImage: PixelMap | null = null;
+  // 原始图片
+  @State originalImage: PixelMap | null = null;
 
-    build() {
-        Row() {
-            Column() {
-                Button("旋转90度并保存").onClick(event => {
-                    hilog.info(0x0000, TAG, `Start to edit image and save.`);
+  build() {
+    Row() {
+      Column() {
+        Button("旋转90度并保存").onClick(event => {
+          hilog.info(0x0000, TAG, `Start to edit image and save.`);
 
-                    this.originalImage?.rotate(90).then(() => {
-                        const imagePackerApi: image.ImagePacker = image.createImagePacker();
-                        let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
-                        imagePackerApi.packing(this.originalImage, packOpts).then((data: ArrayBuffer) => {
-                            let context = getContext(this) as common.PhotoEditorExtensionContext;                            
-                            let filePath = context.filesDir + "/edited.jpg";
-                            let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE 
-                            | fs.OpenMode.CREATE | fs.OpenMode.TRUNC);
-                            let writeLen = fs.writeSync(file.fd, data);
-                            hilog.info(0x0000, TAG, "write data to file succeed and size is:" 
-                            + writeLen);
-                            fs.closeSync(file);
+          this.originalImage?.rotate(90).then(() => {
+            const imagePackerApi: image.ImagePacker = image.createImagePacker();
+            let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+            imagePackerApi.packing(this.originalImage, packOpts).then((data: ArrayBuffer) => {
+              let context = getContext(this) as common.PhotoEditorExtensionContext;
+              let filePath = context.filesDir + "/edited.jpg";
+              let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE
+                | fs.OpenMode.CREATE | fs.OpenMode.TRUNC);
+              let writeLen = fs.writeSync(file.fd, data);
+              hilog.info(0x0000, TAG, "write data to file succeed and size is:"
+                + writeLen);
+              fs.closeSync(file);
 
-                            context.saveEditedContentWithUri(filePath).then
-                                (data => {
-                                    hilog.info(0x0000, TAG,
-                                        `saveContentEditingWithUri result: ${JSON.stringify(data)}`);
-                                });
+              context.saveEditedContentWithUri(filePath).then
+                (data => {
+                  hilog.info(0x0000, TAG,
+                    `saveContentEditingWithUri result: ${JSON.stringify(data)}`);
+                });
 
-                        }).catch((error: BusinessError) => {
-                            hilog.error(0x0000, TAG,
-                                'Failed to pack the image. And the error is: ' + String(error));
-                        })
-                    })
-                }).margin({ top: 10 })
-            }
-        }
+            }).catch((error: BusinessError) => {
+              hilog.error(0x0000, TAG,
+                'Failed to pack the image. And the error is: ' + String(error));
+            })
+          })
+        }).margin({ top: 10 })
+      }
     }
+  }
 }
-
 ```
 ## PhotoEditorExtensionContext.saveEditedContentWithImage
 saveEditedContentWithImage(image: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>
@@ -113,34 +112,33 @@ const TAG = '[ExamplePhotoEditorAbility]';
 @Entry
 @Component
 struct Index {
-    // 原始图片
-    @State originalImage: PixelMap | null = null;
+  // 原始图片
+  @State originalImage: PixelMap | null = null;
 
-    build() {
-        Row() {
-            Column() {
-                Button("旋转90度并保存").onClick(event => {
-                    hilog.info(0x0000, TAG, `Start to edit image and save.`);
+  build() {
+    Row() {
+      Column() {
+        Button("旋转90度并保存").onClick(event => {
+          hilog.info(0x0000, TAG, `Start to edit image and save.`);
 
-                    this.originalImage?.rotate(90).then(() => {
-                        const imagePackerApi: image.ImagePacker = image.createImagePacker();
-                        let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
-                        try {
-                            let context = getContext(this) as common.PhotoEditorExtensionContext; 
-                            context.saveEditedContentWithImage(this.originalImage as image.PixelMap,
-                                    packOpts).then(data => {
-                                        hilog.info(0x0000, TAG,
-                                            `saveContentEditingWithImage result: ${JSON.stringify(data)}`);
-                                    });
-                        } catch (e) {
-                            hilog.error(0x0000, TAG, `saveContentEditingWithImage failed:${e}`);
-                            return;
-                        }
-                    })
-                }).margin({ top: 10 })
+          this.originalImage?.rotate(90).then(() => {
+            const imagePackerApi: image.ImagePacker = image.createImagePacker();
+            let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+            try {
+              let context = getContext(this) as common.PhotoEditorExtensionContext;
+              context.saveEditedContentWithImage(this.originalImage as image.PixelMap,
+                packOpts).then(data => {
+                  hilog.info(0x0000, TAG,
+                    `saveContentEditingWithImage result: ${JSON.stringify(data)}`);
+                });
+            } catch (e) {
+              hilog.error(0x0000, TAG, `saveContentEditingWithImage failed:${e}`);
+              return;
             }
-        }
+          })
+        }).margin({ top: 10 })
+      }
     }
+  }
 }
-
 ```
