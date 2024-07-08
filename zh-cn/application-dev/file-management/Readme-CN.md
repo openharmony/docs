@@ -34,7 +34,6 @@
   - [开发用户文件管理器（仅对系统应用开放）](dev-user-file-manager.md)
   - [管理外置存储设备（仅对系统应用开放）](manage-external-storage.md)
   <!--DelEnd-->
-  - [获取或导出用户文件](send-recv-file.md)
 - 分布式文件系统
   - [分布式文件系统概述](distributed-fs-overview.md)
   - [设置分布式文件数据等级](set-security-label.md)
