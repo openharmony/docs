@@ -1,27 +1,27 @@
 # PhotoEditorExtensionAbility
 ## 概述
-[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)是PhotoEditor类型的ExtensionAbility组件，提供了在应用中图片编辑的能力。
+[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)是PhotoEditor类型的ExtensionAbility组件，提供了在应用中图片编辑的能力。
 
-[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)需要与StartAbilityByType一起配合使用，开发者可以通过StartAbilityByType拉起图片编辑面板，面板上将展示基于[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)实现的应用。[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)会在独立于拉起方的进程中运行，完成其页面的布局和渲染。流程示意图如下：
+[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)需要与StartAbilityByType一起配合使用，开发者可以通过StartAbilityByType拉起图片编辑面板，面板上将展示基于[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)实现的应用。[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)会在独立于拉起方的进程中运行，完成其页面的布局和渲染。流程示意图如下：
 
 ![](figures/photoEditorExtensionAbility.png)
 
-[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)通过[PhotoEditorExtensionContext](./PhotoEditorExtensionContext.md)和UIExtensionContentSession提供相关能力。本文描述中称被启动的[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)为目标方，称通过StartAbilityByType启动[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)的为调用方。
+[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)通过[PhotoEditorExtensionContext](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionContext.md)和UIExtensionContentSession提供相关能力。本文描述中称被启动的[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)为目标方，称通过StartAbilityByType启动[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的为调用方。
 ## 开发PhotoEditorExtensionAbility目标方
 ### 生命周期
-[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)提供了onCreate、onForeground、onBackground、onDestroy、onStartContentEditing生命周期回调，根据需要重写对应的回调方法。
+[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)提供了onCreate、onForeground、onBackground、onDestroy、onStartContentEditing生命周期回调，根据需要重写对应的回调方法。
 
-- onCreate：当[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)创建时回调，执行初始化业务逻辑操作。
-- onForeground：当[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)从后台转到前台时触发。
-- onBackground：当[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)从前台转到后台时触发。
-- onDestroy：当[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)销毁时回调，可以执行资源清理等操作。
-- onStartContentEditing：当[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)界面内容对象创建后调用，可以执行读取原始图片、加载page等操作。
+- onCreate：当[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)创建时回调，执行初始化业务逻辑操作。
+- onForeground：当[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)从后台转到前台时触发。
+- onBackground：当[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)从前台转到后台时触发。
+- onDestroy：当[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)销毁时回调，可以执行资源清理等操作。
+- onStartContentEditing：当[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)界面内容对象创建后调用，可以执行读取原始图片、加载page等操作。
 
 ### 开发步骤
-开发者在实现一个[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)目标方时，需要在DevEco Studio工程中手动新建一个[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)，具体步骤如下：
-1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录并可命名为[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)。
+开发者在实现一个[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)目标方时，需要在DevEco Studio工程中手动新建一个[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)，具体步骤如下：
+1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录并可命名为[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)。
 2. 在PhotoEditorUIExtAbility目录，右键选择“New > File”，新建一个.ets文件并可命名为PhotoEditorUIExtAbility.ets。
-3. 打开PhotoEditorUIExtAbility.ets文件，导入[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)的依赖包，自定义类继承[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)并实现onCreate、onForeground、onBackground、onDestroy和onStartContentEditing生命周期回调。
+3. 打开PhotoEditorUIExtAbility.ets文件，导入[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的依赖包，自定义类继承[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)并实现onCreate、onForeground、onBackground、onDestroy和onStartContentEditing生命周期回调。
 
 ```
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
@@ -60,7 +60,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 }
 
 ```
-4. [PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)的onStartContentEditing中加载了入口页面文件pages/Index.ets，并将session、uri、实例对象等保存在LocalStorage中。
+4. [PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的onStartContentEditing中加载了入口页面文件pages/Index.ets，并将session、uri、实例对象等保存在LocalStorage中。
 
 ```
 import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
@@ -167,7 +167,7 @@ struct Index {
 }}
 
 ```
-5. 在工程Module对应的module.json5配置文件中注册[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)，type标签需要设置为"photoEditor"，srcEntry标签表示当前[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)组件所对应的代码路径。
+1. 在工程Module对应的module.json5配置文件中注册[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)，type标签需要设置为"photoEditor"，srcEntry标签表示当前[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)组件所对应的代码路径。
 
 ```
 {
@@ -188,7 +188,7 @@ struct Index {
 }
 ```
 ## 开发PhotoEditorExtensionAbility调用方
-开发者可以在UIAbility或者UIExtensionAbility的页面中通过接口startAbilityByType拉起图片编辑面板，系统将自动查找并在面板上展示基于[PhotoEditorExtensionAbility](./@ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力).md)实现的图片编辑应用，并由用户选择某个应用来完成图片编辑的功能，并最终将编辑的结果返回给到调用方。
+开发者可以在UIAbility或者UIExtensionAbility的页面中通过接口startAbilityByType拉起图片编辑面板，系统将自动查找并在面板上展示基于[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)实现的图片编辑应用，并由用户选择某个应用来完成图片编辑的功能，并最终将编辑的结果返回给到调用方。
 
 ```
 import { common, wantConstant } from '@kit.AbilityKit';
