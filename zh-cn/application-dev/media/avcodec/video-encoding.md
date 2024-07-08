@@ -139,7 +139,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - OH_AVCodecOnError 编码器运行错误；
     - OH_AVCodecOnStreamChanged  码流信息变化，如格式变化等；
     - OH_AVCodecOnNeedInputBuffer 输入回调无作用，用户通过获取的surface输入数据；
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成；
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。
     示例如下所示
     ```c++
     // 设置OH_AVCodecOnError 回调函数，编码异常
@@ -490,7 +490,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - OH_AVCodecOnError 编码器运行错误；
     - OH_AVCodecOnStreamChanged 码流信息变化，如格式变化等；
     - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即编码器已准备好，可以输入YUV/RGB数据；
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成；
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。
 
     开发者可以通过处理该回调报告的信息，确保编码器正常运转。
 
