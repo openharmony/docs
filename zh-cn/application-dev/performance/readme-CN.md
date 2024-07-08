@@ -50,3 +50,4 @@
     - [时延类性能问题分析实践](delay_related_performance.md)
     - [Web性能问题分析案例](web-analyse.md)
     - [应用性能问题分析指导](application-performance-guide.md)
+    - [页面布局检查器ArkUI Inspector](arkUI-inspector.md)
