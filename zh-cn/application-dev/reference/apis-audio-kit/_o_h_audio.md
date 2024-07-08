@@ -813,9 +813,9 @@ enum OH_AudioStream_Usage
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AUDIOSTREAM_USAGE_UNKNOWN  | 未定义。   | 
+| AUDIOSTREAM_USAGE_UNKNOWN  | 未知类型。   | 
 | AUDIOSTREAM_USAGE_MUSIC  | 音乐。   | 
-| AUDIOSTREAM_USAGE_COMMUNICATION  | VOIP通话。   | 
+| AUDIOSTREAM_USAGE_COMMUNICATION  | VoIP语音通话。   | 
 | AUDIOSTREAM_USAGE_VOICE_ASSISTANT  | 语音播报。   | 
 | AUDIOSTREAM_USAGE_ALARM  | 闹钟。   | 
 | AUDIOSTREAM_USAGE_VOICE_MESSAGE  | 语音消息。   | 
@@ -823,10 +823,10 @@ enum OH_AudioStream_Usage
 | AUDIOSTREAM_USAGE_NOTIFICATION  | 通知。   | 
 | AUDIOSTREAM_USAGE_ACCESSIBILITY  | 无障碍。   | 
 | AUDIOSTREAM_USAGE_MOVIE  | 电影或视频。   | 
-| AUDIOSTREAM_USAGE_GAME  | 游戏音效。   | 
+| AUDIOSTREAM_USAGE_GAME  | 游戏。   | 
 | AUDIOSTREAM_USAGE_AUDIOBOOK  | 有声读物（包括听书、相声、评书）、听新闻、播客等。   | 
 | AUDIOSTREAM_USAGE_NAVIGATION  | 导航。   | 
-| AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION | 视频通话。<br>**起始版本：** 12 | 
+| AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION | VoIP视频通话。<br>**起始版本：** 12 | 
 
 
 ## 函数说明
