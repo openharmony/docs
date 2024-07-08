@@ -8,7 +8,7 @@
 
 **变更原因**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
 1.在@Component修饰的自定义组件中通过@State、@Prop、@Link、@Provide、@Consume、@StorageLink、@StorageProp、LocalStorageLink、@LocalStorageProp修饰并使用@ObservedV2修饰的变量类型时，进行校验并输出错误信息。
 
