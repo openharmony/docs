@@ -25,8 +25,8 @@ The acceleration sensor is used as an example.
 1. Import the module.
 
    ```ts
-   import sensor from '@ohos.sensor';
-   import { BusinessError } from '@ohos.base';
+   import { sensor } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Obtain information about all sensors on the device.
@@ -46,13 +46,13 @@ The acceleration sensor is used as an example.
 
     ![](figures/001.png)
 
-    The minimum and the maximum sampling periods supported by the sensor are 5000000 ns and 200000000 ns, respectively. Therefore, the value of **interval** must be within this range.
+    The minimum and the maximum sampling periods supported by the sensor are 5000000 ns and 200000000 ns, respectively. The specified sampling interval must be within this range. A smaller value means a higher reporting frequency and a higher power consumption.
 
 3. Check whether the corresponding permission has been configured. For details, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
 4. Register a listener. You can call **on()** or **once()** to listen for sensor data changes.
 
-- The **on()** API is used to continuously listen for data changes of the sensor. The sensor reporting interval is set to 100000000 ns.
+   The **on()** API is used to continuously listen for data changes of the sensor. The sensor reporting interval is set to 100000000 ns.
 
    ```ts    
    sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
@@ -62,7 +62,7 @@ The acceleration sensor is used as an example.
 
     ![](figures/002.png)
 
-- The **once()** API is used to listen for only one data change of the sensor.
+   The **once()** API is used to listen for only one data change of the sensor.
 
    ```ts
    sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {

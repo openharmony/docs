@@ -25,7 +25,7 @@ getLocation(options?: GetLocationOption): void
 
 Obtains the geographic location.
 
-> **NOTE**
+> **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation).
 
 **Required permissions**: ohos.permission.LOCATION
@@ -62,7 +62,7 @@ getLocationType(options?: GetLocationTypeOption): void
 
 Obtains the supported location types.
 
-> **NOTE**
+> **NOTE**<br>
 > This API is deprecated since API version 9. The location subsystem supports only two location types: GNSS positioning and network positioning. No APIs will be provided to query the supported location types.
 
 **System capability**: SystemCapability.Location.Location.Lite
@@ -97,7 +97,7 @@ subscribe(options: SubscribeLocationOption): void
 
 Listens to the geographic location. If this method is called multiple times, the last call takes effect.
 
-> **NOTE**
+> **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.on('locationChange')](js-apis-geoLocationManager.md#geolocationmanageronlocationchange).
 
 **Required permissions**: ohos.permission.LOCATION
@@ -134,7 +134,7 @@ unsubscribe(): void
 
 Cancels listening to the geographic location.
 
-> **NOTE**
+> **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.off('locationChange')](js-apis-geoLocationManager.md#geolocationmanagerofflocationchange).
 
 **Required permissions**: ohos.permission.LOCATION
@@ -158,8 +158,8 @@ getSupportedCoordTypes(): Array&lt;string&gt;
 
 Obtains coordinate system types supported by the device.
 
-> **NOTE**
-> This API is deprecated since API version 9. The location subsystem supports only the wgs84 coordinate system. No APIs will be provided to query the supported coordinate system types.
+> **NOTE**<br>
+> This API is deprecated since API version 9. The location subsystem supports only the WGS-84 coordinate system. No APIs will be provided to query the supported coordinate system types.
 
 **System capability**: SystemCapability.Location.Location.Lite
 
@@ -183,7 +183,7 @@ export default {
 
 Defines the options of a single location request.
 
-> **NOTE**
+> **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#CurrentLocationRequest).
 
 **Required permissions**: ohos.permission.LOCATION
@@ -212,7 +212,7 @@ Defines the options of a single location request.
 
 Defines the location information, including the longitude, latitude, and location precision.
 
-> **NOTE**
+> **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.Location](js-apis-geoLocationManager.md#location).
 
 **System capability**: SystemCapability.Location.Location.Lite
@@ -229,7 +229,7 @@ Defines the location information, including the longitude, latitude, and locatio
 
 Defines the location type option, which holds the callback function used to return the query result.
 
-> **NOTE**
+> **NOTE**<br>
 > This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Location.Location.Lite
@@ -244,7 +244,7 @@ Defines the location type option, which holds the callback function used to retu
 
 Defines the list of location types supported by the current device
 
-> **NOTE**
+> **NOTE**<br>
 > This API is deprecated since API version 9.
 
 **System capability**: SystemCapability.Location.Location.Lite
@@ -257,7 +257,7 @@ Defines the list of location types supported by the current device
 
 Defines the options for continuous location.
 
-> **NOTE**
+> **NOTE**<br>
 > This API is deprecated since API version 9. You are advised to use [geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#locationrequest).
 
 **Required permissions**: ohos.permission.LOCATION

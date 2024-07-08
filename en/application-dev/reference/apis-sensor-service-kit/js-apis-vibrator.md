@@ -10,7 +10,7 @@ The **vibrator** module provides APIs for starting or stopping vibration.
 ## Modules to Import
 
 ```ts
-import vibrator from '@ohos.vibrator';
+import { vibrator } from '@kit.SensorServiceKit';
 ```
 
 ## vibrator.startVibration<sup>9+</sup>
@@ -20,6 +20,8 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 Starts vibration with the specified effect and attribute. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.VIBRATE
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -35,17 +37,20 @@ Starts vibration with the specified effect and attribute. This API uses an async
 
 For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
 
-| ID| Error Message                |
-| -------- | ------------------------ |
-| 14600101 | Device operation failed. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 801      | Capability not supported.                                    |
+| 14600101 | Device operation failed.                                     |
 
 **Example**
 
 Trigger vibration with the specified duration.
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   vibrator.startVibration({
@@ -70,8 +75,8 @@ try {
 Trigger vibration with a preset effect.
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   vibrator.startVibration({
@@ -97,9 +102,9 @@ try {
 Trigger vibration according to a custom vibration configuration file.
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const fileName: string = 'xxx.json';
 
@@ -135,6 +140,8 @@ Starts vibration with the specified effect and attribute. This API uses a promis
 
 **Required permissions**: ohos.permission.VIBRATE
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 **Parameters**
@@ -154,17 +161,20 @@ Starts vibration with the specified effect and attribute. This API uses a promis
 
 For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
 
-| ID| Error Message                |
-| -------- | ------------------------ |
-| 14600101 | Device operation failed. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 801      | Capability not supported.                                    |
+| 14600101 | Device operation failed.                                     |
 
 **Example**
 
 Trigger vibration with the specified duration.
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   vibrator.startVibration({
@@ -187,8 +197,8 @@ try {
 Trigger vibration with a preset effect.
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   vibrator.startVibration({
@@ -212,9 +222,9 @@ try {
 Trigger vibration according to a custom vibration configuration file.
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const fileName: string = 'xxx.json';
 
@@ -257,13 +267,23 @@ Stops vibration in the specified mode. This API uses an asynchronous callback to
 | stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration. The options are as follows:<br>- **VIBRATOR_STOP_MODE_TIME**: used to stop fixed-duration vibration.<br>- **VIBRATOR_STOP_MODE_PRESET**: used to stop preset vibration.<br>To stop custom vibration, use [vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10).                                 |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the vibration stops, **err** is **undefined**; otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14500101 | Device operation failed.                                     |
+
 **Example**
 
 Stop fixed-duration vibration.
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Start vibration at a fixed duration.
@@ -303,8 +323,8 @@ try {
 Stop preset vibration.
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Start vibration with a preset effect.
@@ -364,13 +384,23 @@ Stops vibration in the specified mode. This API uses a promise to return the res
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14500101 | Device operation failed.                                     |
+
 **Example**
 
 Stop fixed-duration vibration.
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Start vibration at a fixed duration.
@@ -406,8 +436,8 @@ try {
 Stop preset vibration.
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Start vibration with a preset effect.
@@ -449,6 +479,8 @@ Stops vibration in all modes. This API uses an asynchronous callback to return t
 
 **Required permissions**: ohos.permission.VIBRATE
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 **Parameters**
@@ -457,11 +489,19 @@ Stops vibration in all modes. This API uses an asynchronous callback to return t
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the vibration stops, **err** is **undefined**; otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+
 **Example**
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Stop vibration in all modes.
@@ -486,6 +526,8 @@ Stops vibration in all modes. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.VIBRATE
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 **Return value**
@@ -494,11 +536,19 @@ Stops vibration in all modes. This API uses a promise to return the result.
 | ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+
 **Example**
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Stop vibration in all modes.
@@ -507,6 +557,43 @@ try {
   }, (error: BusinessError) => {
     console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
   });
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+## vibrator.stopVibrationSync<sup>12+</sup>
+
+stopVibrationSync(): void
+
+Stops any form of motor vibration.
+
+**Required permissions**: ohos.permission.VIBRATE
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Error codes**
+
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+
+| ID| Error Message                |
+| -------- | ------------------------ |
+| 201      | Permission denied.       |
+| 14600101 | Device operation failed. |
+
+**Example**
+
+```ts
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  // Stop any form of motor vibration.
+    vibrator.stopVibrationSync()
+    console.info('Succeed in stopping vibration');
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
@@ -528,11 +615,20 @@ Checks whether an effect ID is supported. This API uses an asynchronous callback
 | effectId | string                       | Yes  | Vibration effect ID.                                          |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the effect ID is supported, and **false** means the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Check whether 'haptic.clock.timer' is supported.
@@ -590,11 +686,20 @@ Checks whether an effect ID is supported. This API uses a promise to return the 
 | ---------------------- | --------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise that returns the result. The value **true** means that the effect ID is supported, and **false** means the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Check whether 'haptic.clock.timer' is supported.
@@ -627,6 +732,89 @@ try {
 }
 ```
 
+## vibrator.isSupportEffectSync<sup>12+</sup>
+
+isSupportEffectSync(effectId: string): boolean
+
+Checks whether the preset vibration effect is supported.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                |
+| -------- | ------ | ---- | -------------------- |
+| effectId | string | Yes  | ID of the preset vibration effect.|
+
+**Return value**
+
+| Type   | Description                                                  |
+| ------- | ------------------------------------------------------ |
+| boolean | Returned object. The value **true** means that the effect ID is supported, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14600101 | Device operation failed.                                     |
+
+**Example**
+
+```ts
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // Check whether the preset 'haptic.clock.timer' is supported.
+    let ret = vibrator.isSupportEffectSync('haptic.clock.timer');
+    console.info(`The query result is ${ret}`);
+} catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+## vibrator.isHdHapticSupported<sup>12+</sup>
+
+isHdHapticSupported(): boolean
+
+Checks whether HD vibration is supported.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+**Return value**
+
+| Type   | Description      |
+| ------- | ---------- |
+| boolean | Returned object.|
+
+**Error codes**
+
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+
+| ID| Error Message                |
+| -------- | ------------------------ |
+| 14600101 | Device operation failed. |
+
+**Example**
+
+```ts
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // Check whether HD vibration is supported.
+    let ret = vibrator.isHdHapticSupported();
+    console.info(`The query result is ${ret}`);
+} catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 ## EffectId
 
 Enumerates the preset vibration effect IDs.
@@ -637,8 +825,19 @@ Enumerates the preset vibration effect IDs.
 | ------------------ | -------------------- | -------------------------------- |
 | EFFECT_CLOCK_TIMER | "haptic.clock.timer" | Vibration effect when a user adjusts the timer.|
 
+## HapticFeedback<sup>12+</sup>
 
-## VibratorStopMode
+Defines the vibration effect.
+
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+| Name        | Value                   | Description                        |
+| ------------ | --------------------- | ---------------------------- |
+| EFFECT_SOFT  | "haptic.effect.soft"  | Soft vibration, low frequency.|
+| EFFECT_HARD  | "haptic.effect.hard"  | Hard vibration, medium frequency.|
+| EFFECT_SHARP | "haptic.effect.sharp" | Sharp vibration, high frequency.|
+
+## VibratorStopMode 
 
 Enumerates the modes available to stop the vibration.
 
@@ -657,7 +856,7 @@ Describes the vibration effect.
 
 | Type                            | Description                          |
 | -------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime9) | Vibration with the specified duration.|
+| [VibrateTime](#vibratetime9) | Vibration with the specified duration.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | [VibratePreset](#vibratepreset9) | Vibration with a preset effect.|
 | [VibrateFromFile](#vibratefromfile10) | Vibration according to a custom vibration configuration file.|
 
@@ -665,11 +864,13 @@ Describes the vibration effect.
 
 Describes the fixed-duration vibration.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 | Name    | Type   | Mandatory| Description                          |
 | -------- | ------ | ----- | ------------------------------ |
-| type     | string |  Yes  | The value **time** means vibration with the specified duration.|
+| type     | "time" |  Yes  | The value **time** means vibration with the specified duration.|
 | duration | number |  Yes  | Vibration duration, in ms.        |
 
 ## VibratePreset<sup>9+</sup>
@@ -680,9 +881,10 @@ Describes the preset vibration.
 
 | Name    | Type     | Mandatory| Description                          |
 | -------- | -------- | ---- |------------------------------ |
-| type     | string   |  Yes | The value **preset** means vibration with the specified effect.|
+| type     | "preset" |  Yes | The value **preset** means vibration with the specified effect.|
 | effectId | string   |  Yes | Preset vibration effect ID.            |
-| count    | number   |  Yes | Number of vibrations to repeat.              |
+| count    | number   |  No | Number of vibrations to repeat.              |
+| intensity | number | No| Vibration intensity. The value ranges from 0 to 100. The default value is **100**. This parameter is optional.|
 
 ## VibrateFromFile<sup>10+</sup>
 
@@ -692,7 +894,7 @@ Describes the custom vibration type, which is supported only by certain devices.
 
 | Name    | Type      | Mandatory| Description                          |
 | -------- | --------  | ---- | ------------------------------ |
-| type     | string    |  Yes | The value **file** means vibration according to a vibration configuration file.|
+| type     | "file"                                                       |  Yes | The value **file** means vibration according to a vibration configuration file.|
 | hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | Yes| File descriptor (FD) of the vibration configuration file.|
 
 ## HapticFileDescriptor<sup>10+</sup>
@@ -711,6 +913,8 @@ Describes the FD of a custom vibration configuration file. Ensure that the file 
 
 Describes the vibration attribute.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 | Name | Type| Mandatory| Description          |
@@ -720,21 +924,25 @@ Describes the vibration attribute.
 
 ## Usage<sup>9+</sup>
 
+type Usage = 'unknown'|'alarm'|'ring'|'notification'|'communication'|'touch'|'media'|'physicalFeedback'|'simulateReality'
+
 Enumerates the vibration scenarios.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name            | Type  | Description                          |
-| ---------------- | ------ | ------------------------------ |
-| unknown          | string | Unknown scenario, with the lowest priority.|
-| alarm            | string | Vibration for alarms.          |
-| ring             | string | Vibration for incoming calls.          |
-| notification     | string | Vibration for notifications.          |
-| communication    | string | Vibration for communication.          |
-| touch            | string | Touch vibration scenario.          |
-| media            | string | Multimedia vibration scenario.        |
-| physicalFeedback | string | Physical feedback vibration scenario.      |
-| simulateReality  | string | Simulated reality vibration scenario.      |
+| Name            | Type  | Mandatory| Description                          |
+| ---------------- | ------ | ------------------------------ | ------------------------------ |
+| unknown          | string | Yes| Unknown scenario, with the lowest priority.|
+| alarm            | string | Yes| Vibration for alarms.          |
+| ring             | string | Yes| Vibration for incoming calls.          |
+| notification     | string | Yes| Vibration for notifications.          |
+| communication    | string | Yes| Vibration for communication.          |
+| touch            | string | Yes| Touch vibration scenario.          |
+| media            | string | Yes| Multimedia vibration scenario.        |
+| physicalFeedback | string | Yes| Physical feedback vibration scenario.      |
+| simulateReality  | string | Yes| Simulated reality vibration scenario.      |
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
 
@@ -763,9 +971,8 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 **Example**
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
-
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 vibrator.vibrate(1000).then(() => {
   console.info('Succeed in vibrating');
 }, (error: BusinessError) => {
@@ -795,8 +1002,8 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 **Example**
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 vibrator.vibrate(1000, (error: BusinessError) => {
   if (error) {
@@ -835,8 +1042,8 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 **Example**
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(() => {
   console.info('Succeed in vibrating');
@@ -868,8 +1075,8 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 **Example**
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
   if (error) {
@@ -907,8 +1114,8 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sto
 **Example**
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Start vibration based on the specified effect ID.
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
@@ -949,8 +1156,8 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sto
 **Example**
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Start vibration based on the specified effect ID.
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
