@@ -240,3 +240,41 @@ hideNonSecureWindows接口。
 **适配指导**
 
 接口行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.8 AlphabetIndexer组件autoCollapse属性默认值由false改为true
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+自适应折叠模式使用场景更广，显示效果更加灵活，默认开启自适应折叠模式更符合开发者期望。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+API version 12之前：autoCollapse属性默认值为false，当AlphabetIndexer组件高度不足时，不会折叠显示。
+
+![AlphabetIndexer_Before](figures/AlphabetIndexer_Before.png)
+
+API version 12及之后：autoCollapse属性默认值为true，当AlphabetIndexer组件高度不足时，会折叠显示。
+
+![AlphabetIndexer_After](figures/AlphabetIndexer_After.png)
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+AlphabetIndexer组件
+
+**适配指导**
+
+默认行为变更，默认开启自适应折叠模式，若要关闭自适应折叠模式，可通过设置[autoCollapse](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md#autocollapse11)属性进行适配。
