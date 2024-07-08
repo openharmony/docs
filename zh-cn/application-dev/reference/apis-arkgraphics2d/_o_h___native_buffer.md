@@ -682,7 +682,7 @@ int32_t OH_NativeBuffer_GetColorSpace (OH_NativeBuffer *buffer, OH_NativeBuffer_
 | 名称 | 描述 | 
 | -------- | -------- |
 | buffer | 一个指向OH_NativeBuffer实例的指针。 | 
-| colorSpace | OH_NativeBuffer的颜色空间，其值从[OH_NativeBuffer_ColorSpace](#oh_nativebuffer_colorspace)获取, 默认值为OH_COLORSPACE_BT709_LIMIT。 | 
+| colorSpace | OH_NativeBuffer的颜色空间，其值从[OH_NativeBuffer_ColorSpace](#oh_nativebuffer_colorspace)获取。 | 
 
 **返回：**
 
@@ -731,7 +731,7 @@ int32_t OH_NativeBuffer_GetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 | -------- | -------- |
 | buffer | 一个指向OH_NativeBuffer实例的指针。 | 
 | metadataKey | OH_NativeBuffer的元数据类型，其值从[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey)获取。 | 
-| size | uint8_t向量的大小。 | 
+| size | uint8_t向量的大小，其值范围为1-3000。 | 
 | metaDate | 指向uint8_t向量的二级指针。 | 
 
 **返回：**
@@ -888,7 +888,7 @@ int32_t OH_NativeBuffer_SetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 | -------- | -------- |
 | buffer | 一个指向OH_NativeBuffer实例的指针。 | 
 | metadataKey | OH_NativeBuffer的元数据类型，其值从[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey)获取。 | 
-| size | uint8_t向量的大小。 | 
+| size | uint8_t向量的大小，其取值范围为1-3000。 | 
 | metaDate | 指向uint8_t向量的指针。 | 
 
 **返回：**
