@@ -1,10 +1,12 @@
 # @ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力)
 PhotoEditorExtensionAbility为开发者提供了图片编辑的能力，继承自ExtensionAbility。目前对于非系统应用只能通过StartAbilityByType拉起图片编辑面板后，由用户在面板上选择PhotoEditorExtensionAbility的实现方并拉起应用。
-> 说明：
-> 本模块首批接口从API version 12 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 说明：<br>
+> 本模块首批接口从API version 12 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。<br>
 > 本模块接口仅可在Stage模型下使用。
 ## 导入模块
-`import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';`
+```ts
+import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
+```
 ## 属性
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
 |  名称 |类型   |只读   |必填   |说明   |
@@ -20,7 +22,7 @@ PhotoEditorExtensionAbility创建是回调，执行初始化业务逻辑操作�
 
 **示例：**
 
-```
+```ts
 import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 
 const TAG: string = '[testTag] ExamplePhotoEditorAbility';
@@ -49,7 +51,7 @@ onStartContentEditing(uri: string, want: Want, session: UIExtensionContentSessio
 
 **示例：**
 
-```
+```ts
 import { PhotoEditorExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
 
 const TAG: string = '[testTag] ExamplePhotoEditorAbility';
@@ -70,7 +72,7 @@ PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility�
 
 **示例：**
 
-```
+```ts
 import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 
 const TAG: string = '[testTag] ExamplePhotoEditorAbility';
@@ -91,7 +93,7 @@ PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility�
 
 **示例：**
 
-```
+```ts
 import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 
 const TAG: string = '[testTag] ExamplePhotoEditorAbility';
@@ -118,7 +120,7 @@ PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资�
 
 **示例：**
 
-```
+```ts
 import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 
 const TAG: string = '[testTag] ExamplePhotoEditorAbility';

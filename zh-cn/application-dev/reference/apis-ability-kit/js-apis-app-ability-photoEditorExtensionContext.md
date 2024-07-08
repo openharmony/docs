@@ -5,7 +5,9 @@ PhotoEditorExtensionContext是PhotoEditorExtensionAbility的上下文，继承�
 > - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
 
 ## 导入模块
-`import { common } from '@kit.AbilityKit';`
+```ts
+import { common } from '@kit.AbilityKit';
+```
 
 ## PhotoEditorExtensionContext.saveEditedContentWithUri
 saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
@@ -29,7 +31,7 @@ saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
 | 29600003  |  Image too big error. |
 
 **示例：**
-```
+```ts
 import { common, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import hilog from '@ohos.hilog';
 import fs from '@ohos.file.fs';
@@ -106,7 +108,7 @@ saveEditedContentWithImage(image: image.PixelMap, option: image.PackingOption): 
 | 29600004  |  Image too big error. |
 
 **示例：**
-```
+```ts
 import { common, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import hilog from '@ohos.hilog';
 import fs from '@ohos.file.fs';

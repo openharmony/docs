@@ -2,7 +2,7 @@
 ## 概述
 [PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)是PhotoEditor类型的ExtensionAbility组件，提供了在应用中图片编辑的能力。
 
-[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)需要与StartAbilityByType一起配合使用，开发者可以通过StartAbilityByType拉起图片编辑面板，面板上将展示基于[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)实现的应用。[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)会在独立于拉起方的进程中运行，完成其页面的布局和渲染。流程示意图如下：
+[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)需要与startAbilityByType一起配合使用，开发者可以通过startAbilityByType拉起图片编辑面板，面板上将展示基于[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)实现的应用。[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)会在独立于拉起方的进程中运行，完成其页面的布局和渲染。流程示意图如下：
 
 ![](figures/photoEditorExtensionAbility.png)
 
@@ -23,7 +23,7 @@
 2. 在PhotoEditorUIExtAbility目录，右键选择“New > File”，新建一个.ets文件并可命名为PhotoEditorUIExtAbility.ets。
 3. 打开PhotoEditorUIExtAbility.ets文件，导入[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的依赖包，自定义类继承[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)并实现onCreate、onForeground、onBackground、onDestroy和onStartContentEditing生命周期回调。
 
-```
+```ts
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 import Want from '@ohos.app.ability.Want';
 import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
@@ -62,7 +62,7 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 ```
 4. [PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的onStartContentEditing中加载了入口页面文件pages/Index.ets，并将session、uri、实例对象等保存在LocalStorage中。
 
-```
+```ts
 import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 import { UIExtensionContentSession, Want } from '@kit.AbilityKit';
 import hilog from '@ohos.hilog';
@@ -172,7 +172,7 @@ struct Index {
 ```
 1. 在工程Module对应的module.json5配置文件中注册[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)，type标签需要设置为"photoEditor"，srcEntry标签表示当前[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)组件所对应的代码路径。
 
-```
+```json
 {
   "module": {
     "extensionAbilities": [
@@ -193,7 +193,7 @@ struct Index {
 ## 开发PhotoEditorExtensionAbility调用方
 开发者可以在UIAbility或者UIExtensionAbility的页面中通过接口startAbilityByType拉起图片编辑面板，系统将自动查找并在面板上展示基于[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)实现的图片编辑应用，并由用户选择某个应用来完成图片编辑的功能，并最终将编辑的结果返回给到调用方。
 
-```
+```ts
 import { common, wantConstant } from '@kit.AbilityKit';
 import hilog from '@ohos.hilog';
 import { fileUri, picker } from '@kit.CoreFileKit';
