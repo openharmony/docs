@@ -326,7 +326,9 @@ textTimer组件的omTimer接口
 
 **适配指导**
 
-需要开发者主动适配，调整回调参数的数量级。format为mm:ss.S时，utc、elapsedTime修改后为修改前的百分之一；format为mm:ss.SS时，utc、elapsedTime修改后为修改前的十分之一
+需要开发者主动适配，调整回调参数的数量级。
+
+format为mm:ss.S时，utc、elapsedTime修改后为修改前的百分之一；format为mm:ss.SS时，utc、elapsedTime修改后为修改前的十分之一。
 
 ## cl.arkui.7 滚动类组件（List、Grid、WaterFlow、Scroll）Friction接口默认值变更
 
