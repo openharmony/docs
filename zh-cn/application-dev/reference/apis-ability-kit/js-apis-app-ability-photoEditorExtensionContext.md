@@ -10,7 +10,7 @@ PhotoEditorExtensionContext是PhotoEditorExtensionAbility的上下文，继承�
 ## PhotoEditorExtensionContext.saveEditedContentWithUri
 saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
 传入编辑过的图片的沙箱地址并保存。
-**系统能力：**SystemCapability.Ability.AppExtension.PhotoEditorExtension
+**系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
 **参数：**
 | 参数名  | 类型  | 必填  | 说明  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -83,7 +83,7 @@ struct Index {
 ## PhotoEditorExtensionContext.saveEditedContentWithImage
 saveEditedContentWithImage(image: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>
 传入编辑过的图片的PixMap对象并保存。
-**系统能力：**SystemCapability.Ability.AppExtension.PhotoEditorExtension
+**系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
 **参数：**
 | 参数名  | 类型  | 必填  | 说明  |
 | ------------ | ------------ | ------------ | ------------ |
