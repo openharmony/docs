@@ -83,12 +83,12 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
   ```
   ### onRestoreEx
 
-onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string | Promise\<string>\;
+onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string | Promise&lt;string&gt;
 
 Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作，支持异步操作。
 onRestoreEx与onRestore互斥，如果重写onRestoreEx，则优先调用onRestoreEx。
 onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符串，则会尝试调用onRestore。
-onRestoreEx的返回值可以是应用自定义的错误信息，推荐Json格式。
+onRestoreEx的返回值为Json格式，使用方法见示例代码。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -97,13 +97,13 @@ onRestoreEx的返回值可以是应用自定义的错误信息，推荐Json格�
 | 参数名        | 类型                            | 必填 | 说明                           |
 | ------------- | ------------------------------- | ---- | ------------------------------ |
 | bundleVersion | [BundleVersion](#bundleversion) | 是   | 恢复时应用数据所在的版本信息。 |
-| restoreInfo |string | 否   | 应用恢复时需要除版本号等参数之外需要的扩展参数信息，比如设备类型等 |
+| restoreInfo |string | 否   | 预留字段，应用恢复过程中需要的扩展参数 |
 
-> **说明：**
+**说明：**
 >
 > 异步步处理业务场景中，推荐使用示例如下。
 
->**示例：**
+**示例：**
 
   ```ts
   import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
@@ -115,7 +115,7 @@ onRestoreEx的返回值可以是应用自定义的错误信息，推荐Json格�
 
   class BackupExt extends BackupExtension {
     // 异步实现
-    async onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): Promise<string> {
+    async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -126,11 +126,12 @@ onRestoreEx的返回值可以是应用自定义的错误信息，推荐Json格�
     }
   }
   ```
-> **说明：**
+
+**说明：**
 >
 > 同步步处理业务场景中，推荐使用示例如下。
 
->**示例：**
+**示例：**
 
 ```ts
   import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
@@ -141,8 +142,8 @@ onRestoreEx的返回值可以是应用自定义的错误信息，推荐Json格�
   }
 
   class BackupExt extends BackupExtension {
-    // 异步实现
-    onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): string {
+    // 同步实现
+    onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): string {
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -152,7 +153,7 @@ onRestoreEx的返回值可以是应用自定义的错误信息，推荐Json格�
       return JSON.stringify(errorInfo);
     }
   }
-
+  ```
   ### getBackupInfo
 
 getBackupInfo(): string;

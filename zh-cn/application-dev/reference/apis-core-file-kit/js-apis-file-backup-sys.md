@@ -843,8 +843,7 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 
 添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。使用Promise异步回调。
 
-从API version 12开始, 新增可选参数infos, 可携带备份时各应用所需要的扩展信息，若某个应用实现了onBackupEx接口，则该应用的扩展
-信息会携带到该应用的onBackupEx接口的参数backupInfo上去
+从API version 12开始, 新增可选参数infos, 可携带备份时各应用所需要的扩展信息, infos和bundlesToBackup根据索引一一对应。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -855,7 +854,7 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundlesToBackup | string[] | 是   | 需要备份的应用名称的数组。 |
-| infos           | string[] | 否   | 备份时各应用所需扩展信息的数组, 需与bundlesToBackup相同索引的内容对应,从API version 12开始支持。|
+| infos           | string[] | 否   | 备份时各应用所需扩展信息的数组, 与bundlesToBackup根据索引一一对应, 从API version 12开始支持。|
 
 **返回值：**
 
@@ -929,23 +928,40 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
     try {
       let backupApps: Array<string> = [
         "com.example.hiworld",
+        "com.example.myApp"
       ];
       await sessionBackup.appendBundles(backupApps);
       console.info('appendBundles success');
-      // 携带扩展参数
+      // 携带扩展参数, 其中infos,details和外层的type节点为固定节点
       let infos: Array<string> = [
         `
          {
           "infos":[
             {
-              "details": [
+              "details": [ // 对应com.example.hiworld的info
                 {
                   "detail": [
                     {
                       "encryption_symkey": "",
                       "encryption_algname": ""
                     }
-                  ]，
+                  ],
+                  "type": "encryption_info"
+                }
+              ],
+              "type":"unicast"
+            }
+          ]
+         },
+         {
+          "details": [ // 对应com.example.myApp的info
+              {
+                "detail": [
+                    {
+                      "isSameDevice": "",
+                      "deviceType": ""
+                    }
+                  ],
                   "type": "encryption_info"
                 }
               ],
@@ -953,8 +969,10 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
             }
           ]
          }
-        `
-      ]
+        ]
+      }
+      `
+     ]
       await sessionBackup.appendBundles(backupApps, infos);
       console.info('appendBundles success');
     } catch (error) {
@@ -1128,7 +1146,7 @@ constructor(callbacks: GeneralCallbacks);
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
 
-添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次。使用callback异步回调。
+添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次，使用callback异步回调。
 
 > **说明：**
 >
@@ -1236,8 +1254,8 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 
-添加需要恢复的应用。从API version 12开始，新增可选参数infos，可携带应用恢复所需信息。当前整个流程中，
-在获取SessionRestore类的实例后只能调用一次。使用Promise异步回调。
+添加需要恢复的应用。从API version 12开始，新增可选参数infos，可携带应用恢复所需信息，infos和bundlesToBackup根据索引一一对应。
+当前整个流程中，在获取SessionRestore类的实例后只能调用一次。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1255,7 +1273,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
 | -------------------- | -------- | ---- | ---------------------------------- |
 | remoteCapabilitiesFd | number   | 是   | 用于恢复所需能力文件的文件描述符。 |
 | bundlesToBackup      | string[] | 是   | 需要恢复的应用包名称的数组。       |
-| infos<sup>12+</sup>  | string[] | 否   | 恢复时各应用所需要扩展信息的数组，需与bundlesToBackup数组相同索引的信息依次对应。从API version 12开始支持。 |
+| infos<sup>12+</sup>  | string[] | 否   | 恢复时各应用所需要扩展信息的数组，与bundlesToBackup根据索引一一对应，从API version 12开始支持。 |
 
 **返回值：**
 
