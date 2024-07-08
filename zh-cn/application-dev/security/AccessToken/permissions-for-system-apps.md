@@ -3364,6 +3364,7 @@
 **ACL使能**：true
 
 **起始版本**：12
+
 ### ohos.permission.MANAGE_MOUSE_CURSOR
 
 允许系统应用设置鼠标光标相关状态。
