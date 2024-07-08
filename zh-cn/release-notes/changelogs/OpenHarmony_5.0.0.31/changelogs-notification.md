@@ -26,10 +26,10 @@ notificationManager模块废弃接口。
 
 **废弃的接口/组件**
 
-|接口声明|废弃说明|替代接口|
-|-------|--------|-------|
-|requestEnableNotification(callback: AsyncCallback\<void\>): void|应用请求通知使能。|requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void|
-|requestEnableNotification(): Promise\<void\>|应用请求通知使能。|requestEnableNotification(context: UIAbilityContext): Promise\<void\>|
+|接口声明|替代接口|
+|-------|-------|
+|requestEnableNotification(callback: AsyncCallback\<void\>): void|requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void|
+|requestEnableNotification(): Promise\<void\>|requestEnableNotification(context: UIAbilityContext): Promise\<void\>|
 
 
 **适配指导**
