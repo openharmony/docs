@@ -240,3 +240,32 @@ hideNonSecureWindows接口。
 **适配指导**
 
 接口行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.8 元服务appbar Z序调整到弹框之上
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+元服务appbar按钮在有弹框的情况下，只需点击一次即可拉起服务面板。
+
+**变更影响**
+
+该变更为非兼容性变更，只对元服务产生影响。
+
+API version 11及以前：bindmenu，dialog，popup，bindsheet，bindcontentcover的弹框层级都在appbar之上。
+
+API version 12及以后：bindmenu，dialog，popup，bindsheet，bindcontentcover的弹框层级都在appbar之下。
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**适配指导**
+
+接口行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
