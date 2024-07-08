@@ -266,8 +266,8 @@ OnInfo类型
 
 **起始版本：** 11
 
-| 枚举值 | 描述 | 对应附加信息 |
-| -------- | -------- | -------- |
+| 枚举值 | 描述 |
+| -------- | -------- |
 | AV_INFO_TYPE_SEEKDONE | 跳转到对应播放位置时返回消息，extra表示seek到的位置。 |
 | AV_INFO_TYPE_SPEEDDONE | 播放倍速设置完成时返回消息，extra表示播放倍速信息，具体请参考[AVPlaybackSpeed](#avplaybackspeed-1)。 |
 | AV_INFO_TYPE_BITRATEDONE | 比特率设置完成时返回消息，extra表示比特率信息。 |
