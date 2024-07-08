@@ -230,7 +230,7 @@ java -jar path\app_packing_tool.jar --mode packageNormalize --hsp-list path\1.hs
 java -jar app_packing_tool.jar --mode res --entrycard-path [option] --pack-info-path [option] --out-path [option] --force [option]
 ```
 
-#### 1.2.2 参数含义及规范
+**表9** 参数含义及规范
 
 | 指令               | 是否必选项 | 选项            | 描述                                 |
 |------------------|-------|---------------|------------------------------------|
