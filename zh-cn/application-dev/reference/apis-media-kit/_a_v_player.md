@@ -220,7 +220,7 @@ typedef void(* OH_AVPlayerOnInfo) (OH_AVPlayer *player, AVPlayerOnInfoType type,
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针。 | 
-| type | 信息类型。具体请参见[AVPlayerOnInfoType](#avplayeroninfotype-1)。。 | 
+| type | 信息类型。具体请参见[AVPlayerOnInfoType](#avplayeroninfotype-1)。 | 
 | extra | 其他信息，如播放文件的开始时间位置。 | 
 
 
