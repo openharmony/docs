@@ -539,6 +539,7 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
+// 不建议在forEach函数中使用add、remove方法，会导致死循环等不可预知的风险。
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("sparrow");
 treeSet.add("gull");
@@ -573,6 +574,7 @@ entries(): IterableIterator<[T, T]>
 **示例：**
 
 ```ts
+// 不建议在entries函数中使用add、remove方法，会导致死循环等不可预知的风险。
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
@@ -614,6 +616,7 @@ while(!t.done) {
 **示例：**
 
 ```ts
+// 不建议在Symbol.iterator中使用add、remove方法，会导致死循环等不可预知的风险。
 let treeSet : TreeSet<string> = new TreeSet();
 treeSet.add("squirrel");
 treeSet.add("sparrow");
