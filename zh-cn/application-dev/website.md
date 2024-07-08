@@ -958,7 +958,7 @@
           - [示例服务器开发指导](basic-services/update/sample-server-guidelines.md)
         <!--DelEnd-->
         - 剪贴板服务<!--pasteboard-->
-          - [剪贴板使用统一数据对象进行复制粘贴](basic-services/pasteboard/pasteboard-adaptation-unified-data.md)
+          - [剪贴板使用统一数据对象进行复制粘贴](basic-services/pasteboard/use_pasteboard_to_copy_and_paste.md)
           - [使用剪贴板的延迟复制粘贴功能](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
         - 上传下载<!--upload-download-->
           - [应用文件上传下载](basic-services/request/app-file-upload-download.md)

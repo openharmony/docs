@@ -1,0 +1,124 @@
+# 使用剪贴板进行复制粘贴
+
+## 场景介绍
+
+[剪贴板](../../reference/apis-basic-services-kit/js-apis-pasteboard.md)为开发者提供数据的复制粘贴能力。
+当需要使用复制粘贴等功能时，例如：复制文字内容到备忘录中粘贴，复制图库照片到文件管理粘贴，就可以通过剪贴板来完成。
+
+## 约束限制
+
+- 剪贴板内容大小&lt;128MB。
+- 为保证剪贴板数据的准确性，同一时间只能支持一个复制操作。
+- 剪贴板当前支持的数据类型有文本、HTML、URI、Want、PixelMap。
+- API version 12及之后，系统为提升用户隐私安全保护能力，剪贴板读取接口增加[权限管控](get-pastedata-permission-guidelines.md)。
+
+## 使用统一数据类型进行复制粘贴
+
+为了方便剪贴板与其他应用间进行数据交互，减少数据类型适配的工作量，剪贴板支持使用统一数据对象进行复制粘贴。详细的统一数据对象请见[标准化数据通路](../../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md)文档介绍。
+
+新开发的应用建议使用本方案实现复制粘贴功能。
+
+### 接口说明
+
+详细接口见[接口文档](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getunifieddata12)。
+
+| 名称 | 说明                                                                                                                                        |
+| -------- |----------------------------------------------------------------------------------------------------------------------------------------|
+| setUnifiedData(data: udc.UnifiedData): Promise\<void\> | 将统一数据对象的数据写入系统剪贴板。 
+| setUnifiedDataSync(data: udc.UnifiedData): void | 将统一数据对象的数据写入系统剪贴板，此接口为同步接口。                                                                                                                          |
+| getUnifiedData(): Promise\<udc.UnifiedData\> | 从系统剪贴板中读取统一数据对象的数据。                                                                                                                          |
+| getUnifiedDataSync(): udc.UnifiedData | 从系统剪贴板中读取统一数据对象的数据，此接口为同步接口。    
+
+### 示例代码
+```ts
+import {unifiedDataChannel, uniformTypeDescriptor} from '@kit.ArkData';
+import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
+
+// 构造一条PlainText数据,并书写获取延时数据的函数。
+let plainTextData = new unifiedDataChannel.UnifiedData();
+globalThis.GetDelayPlainText = ((dataType:string) => {
+  let plainText = new unifiedDataChannel.PlainText();
+  plainText.details = {
+    Key: 'delayPlaintext',
+    Value: 'delayPlaintext',
+  };
+  plainText.textContent = 'delayTextContent';
+  plainText.abstract = 'delayTextContent';
+  plainTextData.addRecord(plainText);
+  return plainTextData;
+});
+
+// 向系统剪贴板中存入一条PlainText数据。
+globalThis.SetDelayPlainText = (() => {
+  plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
+  // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
+  plainTextData.properties.getDelayData = globalThis.GetDelayPlainText;
+  pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
+    // 存入成功，处理正常场景
+  }).catch((error: BusinessError) => {
+    // 处理异常场景
+  });
+})
+
+// 从系统剪贴板中读取这条text数据
+globalThis.GetPlainTextUnifiedData = (() => {
+  pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
+    let outputData = data;
+    let records = outputData.getRecords();
+    if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+      let record = records[0] as unifiedDataChannel.PlainText;
+      globalThis.setLog('GetPlainText success, type:' + records[0].getType + ', details:' +
+      JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
+    } else {
+      globalThis.setLog('Get Plain Text Data No Success, Type is: ' + records[0].getType());
+    }
+  }).catch((error: BusinessError) => {
+    //处理异常场景
+  })
+})
+```
+
+## 使用基础类型进行复制粘贴
+
+### 接口说明
+
+详细接口见[接口文档](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getdata9)。
+
+| 名称 | 说明                                                                                                                                        |
+| -------- |----------------------------------------------------------------------------------------------------------------------------------------|
+| setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void | 将数据写入系统剪贴板，使用callback异步回调。 |
+| setData(data: PasteData): Promise&lt;void&gt; | 将数据写入系统剪贴板，使用Promise异步回调。 |
+| getData( callback: AsyncCallback&lt;PasteData&gt;): void | 读取系统剪贴板内容，使用callback异步回调。 |
+| getData(): Promise&lt;PasteData&gt; | 读取系统剪贴板内容，使用Promise异步回调。 |   
+| getDataSync(): PasteData | 读取系统剪贴板内容, 此接口为同步接口。 |
+
+### 示例代码
+```ts
+import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
+// 获取系统剪贴板对象
+let systemPasteboard = pasteboard.getSystemPasteboard();
+let text = "test";
+// 创建一条纯文本类型的剪贴板内容对象
+let pasteData = pasteboard.CreatePlainTextData(text);
+pasteData.addRecord(text);
+// 将数据写入系统剪贴板
+systemPasteboard.setData(pasteData).then(()=>{
+  // 存入成功，处理正常场景
+}).catch((error: BusinessError) => {
+  // 处理异常场景
+});
+
+//从系统剪贴板中读取数据
+systemPasteboard.getData().then((data) => {
+  let outputData = data;
+  // 从剪贴板数据中获取条目列表
+  let records = outputData.getRecords();
+  // 从剪贴板数据中获取条目类型
+  let recordType = records[0].getType();
+  let record = records[0];
+  console.log('GetPlainText success, type:' + records[0].getType() + ', details:' +
+  JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
+}).catch((error: BusinessError) => {
+  // 处理异常场景
+})
+```     
