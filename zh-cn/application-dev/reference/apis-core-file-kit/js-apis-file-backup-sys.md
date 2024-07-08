@@ -632,7 +632,7 @@ updateTimer(bundleName: string, timeout: number): void;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName | string | 是   | 需要设置备份或恢复时长的应用名称 |
-| timeout | number | 是   | 备份或恢复的限制时长，单位:ms |
+| timeout | number | 是   | 备份或恢复的限制时长，入参范围(0,3600000]，单位:ms |
 
 **返回值：**
 
