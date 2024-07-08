@@ -3266,7 +3266,7 @@
         - [@ohos.multimedia.medialibrary (媒体库管理)(系统接口)](reference/apis-media-library-kit/js-apis-medialibrary-sys.md)
         <!--DelEnd-->
     - ArkTS组件<!--media-library-comp-->
-      - [@ohos.file.AlbumPickerComponent（Album Picker组件）](reference/apis-media-library-kit/ohos-file-AlbumPickerComponent.md)
+      - [@ohos.file.AlbumPickerComponent (Album Picker组件)](reference/apis-media-library-kit/ohos-file-AlbumPickerComponent.md)
       - [@ohos.file.PhotoPickerComponent (Photo Picker组件)](reference/apis-media-library-kit/ohos-file-PhotoPickerComponent.md)
       - [@ohos.multimedia.movingphotoview (动态照片)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md)
     - C API<!--media-library-c-->
