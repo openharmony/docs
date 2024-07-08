@@ -13,10 +13,12 @@ import { common } from '@kit.AbilityKit';
 saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
 传入编辑过的图片的沙箱地址并保存。
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
+
 **参数：**
 | 参数名  | 类型  | 必填  | 说明  |
 | ------------ | ------------ | ------------ | ------------ |
 | uri | string  | 是  | 编辑过的图片的沙箱地址。  |
+
 **返回值：**
 |  类型 | 说明  |
 | ------------ | ------------ |
@@ -90,15 +92,18 @@ struct Index {
 saveEditedContentWithImage(image: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>
 传入编辑过的图片的PixMap对象并保存。
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
+
 **参数：**
 | 参数名  | 类型  | 必填  | 说明  |
 | ------------ | ------------ | ------------ | ------------ |
 | image | image.PixelMap  | 是  | 编辑过的图片image.PixelMap。  |
 | option  | image.PackingOption  |  是 | 设置打包参数。  |
+
 **返回值：**
 |  类型 | 说明  |
 | ------------ | ------------ |
 | Promise\<AbilityResult\> | Promise对象，保存的结果，结果的want.uri存有编辑过的图片地址。  |
+
 **错误码：**
 |  错误码ID | 错误信息  |
 | ------------ | ------------ |
