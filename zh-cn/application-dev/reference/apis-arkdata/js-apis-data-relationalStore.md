@@ -64,6 +64,7 @@ getRdbStore目前不支持多线程并发操作。
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```js
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -162,6 +163,7 @@ getRdbStore目前不支持多线程并发操作。
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```js
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -240,6 +242,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```js
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -317,6 +320,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```js
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -387,6 +391,7 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```js
 import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -477,6 +482,7 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```js
 import { featureAbility } from "@kit.AbilityKit";
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -2814,7 +2820,6 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
@@ -3765,7 +3770,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let dmInstance: deviceManager.DeviceManager;
+let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceId: string | undefined = undefined;
 
 try {
@@ -4631,15 +4636,15 @@ let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
 if(store != undefined) {
-  store.beginTransaction();
+  (store as relationalStore.RdbStore).beginTransaction();
   const valueBucket: ValuesBucket = {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
     'CODES': value4,
   };
-  store.insert("test", valueBucket);
-  store.commit();
+  (store as relationalStore.RdbStore).insert("test", valueBucket);
+  (store as relationalStore.RdbStore).commit();
 }
 ```
 
@@ -4671,7 +4676,7 @@ beginTrans(): Promise&lt;number&gt;
 | 401       | Parameter error. The store must not be nullptr. |
 | 801       | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000  | Inner error. |
-| 14800011  | Failed to open database by database corrupted. |
+| 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
 | 14800015  | The database does not respond. |
 | 14800021  | SQLite: Generic error. |
@@ -4755,15 +4760,15 @@ let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
 if(store != undefined) {
-  store.beginTransaction();
+  (store as relationalStore.RdbStore).beginTransaction();
   const valueBucket: ValuesBucket = {
     'NAME': value1,
     'AGE': value2,
     'SALARY': value3,
     'CODES': value4,
   };
-  store.insert("test", valueBucket);
-  store.commit();
+  (store as relationalStore.RdbStore).insert("test", valueBucket);
+  (store as relationalStore.RdbStore).commit();
 }
 ```
 
@@ -4882,20 +4887,20 @@ let value4 = new Uint8Array([1, 2, 3]);
 
 if(store != undefined) {
   try {
-    store.beginTransaction()
+    (store as relationalStore.RdbStore).beginTransaction()
     const valueBucket: ValuesBucket = {
       'NAME': value1,
       'AGE': value2,
       'SALARY': value3,
       'CODES': value4,
     };
-    store.insert("test", valueBucket);
-    store.commit();
+    (store as relationalStore.RdbStore).insert("test", valueBucket);
+    (store as relationalStore.RdbStore).commit();
   } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message
     console.error(`Transaction failed, code is ${code},message is ${message}`);
-    store.rollBack();
+    (store as relationalStore.RdbStore).rollBack();
   }
 }
 ```
@@ -5816,7 +5821,7 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 | **错误码ID** | **错误信息**                                                                                                                                                                                                                  |
 |-----------|-------|
 | 202       | if permission verification failed, application does not have permission ohos.permission.DISTRIBUTED_DATASYNC.  |
-| 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. |
+| 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. 6.The callback must be a function.|
 | 801       | Capability not supported.   |
 | 14800014  | Already closed.   |
 
@@ -6526,7 +6531,7 @@ cleanDirtyData(table: string, callback: AsyncCallback&lt;void&gt;): void
 
 | **错误码ID** | **错误信息**       |
 |-----------|---------|
-| 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The tablesNames must be not empty string. |
+| 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s). 2. The RdbStore must be not nullptr. 3. The tablesNames must be not empty string. |
 | 801       | Capability not supported.    |
 | 14800000  | Inner error.        |
 | 14800011  | Database corrupted.   |
@@ -7094,7 +7099,7 @@ close(): Promise&lt;void&gt;
 
 | **错误码ID** | **错误信息**                                    |
 | ------------ | ----------------------------------------------- |
-| 401          | Parameter error. The store must be not nullptr. |
+| 401          | Parameter error. The store must not be nullptr. |
 | 14800000     | Inner error.                                    |
 
 **示例：**
