@@ -1497,6 +1497,8 @@ struct Index {
 
 ### postFrameCallback<sup>12+</sup>
 
+postFrameCallback(frameCallback: FrameCallback)
+
 注册一个在下一帧进行渲染时执行的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -1542,6 +1544,8 @@ struct Index {
 ```
 
 ### postDelayedFrameCallback<sup>12+</sup>
+
+postDelayedFrameCallback(frameCallback: FrameCallback, delayTime: number)
 
 注册一个回调，在延迟一段时间后的下一帧进行渲染时执行。
 
