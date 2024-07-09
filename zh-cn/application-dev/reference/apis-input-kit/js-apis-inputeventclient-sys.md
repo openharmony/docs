@@ -22,6 +22,8 @@ injectEvent({KeyEvent: KeyEvent}): void
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
+**需要权限：** ohos.permission.INJECT_INPUT_EVENT
+
 **参数：**
 
 | 参数名       | 类型                    | 必填   | 说明        |

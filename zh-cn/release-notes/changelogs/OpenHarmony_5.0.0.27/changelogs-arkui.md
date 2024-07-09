@@ -97,6 +97,10 @@ RichEditor({ controller: this.controller })
 
 变更后：按压鼠标按键拖移过程中，中途经过的控件不再会收到鼠标事件。
 
+| 变更前(按住鼠标进行拖移) | 变更后(按住鼠标进行拖移) |
+|---------|---------|
+| ![pre](premouseevent.gif)| ![current](curmouseevent.gif)|
+
 **起始API Level**
 
 12
@@ -105,6 +109,46 @@ RichEditor({ controller: this.controller })
 
 从OpenHarmony SDK 5.0.0.27开始。
 
+**变更的接口/组件**
+
+[onHover](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)
+
+[onMouse](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)
+
 **适配指导**
 
-如果开发者需要在按住鼠标按键移动情况下，中间经过的控件也要有hover效果，则需要整改为通过点击开始时命中的控件接收鼠标事件，自行处理。如果当前鼠标移动为拖拽场景，则不要使用[onHover](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)而是通过[onDragMove](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)去处理鼠标移动事件。
+如果开发者需要在按住鼠标按键移动情况下，中间经过的控件也要有hover效果，则需要整改为通过点击开始时命中的控件接收鼠标事件，自行处理。如果当前鼠标移动为拖拽场景，则不要使用[onHover](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)和[onMouse](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)而是通过[onDragMove](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)去处理鼠标移动事件。
+
+## cl.arkui.4 TextInput、TextArea 设置TextAlign.Center且显示PlaceHolder文字时，光标位置的变更。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+变更前：TextAlign.Center，显示PlaceHolder文字时，光标在文字中间，输入文字后光标在末尾
+
+变更后：TextAlign.Center，显示PlaceHolder文字时，光标在文字前面，输入文字后光标在末尾
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![alt text](textAlignCenter_before.gif)| ![alt text](textAlignCenter_after.gif)|
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.27开始。
+
+**适配指导**
+
+光标显示效果变化，无需适配。

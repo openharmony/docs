@@ -703,6 +703,7 @@ callbackFn的参数说明：
 **示例：**
 
 ```ts
+// 不建议在forEach函数中使用set、remove方法，会导致死循环等不可预知的风险。
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("sparrow", 123);
 treeMap.set("gull", 357);
@@ -739,6 +740,7 @@ entries(): IterableIterator<[K, V]>
 **示例：**
 
 ```ts
+// 不建议在entries函数中使用set、remove方法，会导致死循环等不可预知的风险。
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
@@ -781,6 +783,7 @@ while(!t.done) {
 **示例：**
 
 ```ts
+// 不建议在Symbol.iterator中使用set、remove方法，会导致死循环等不可预知的风险。
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);

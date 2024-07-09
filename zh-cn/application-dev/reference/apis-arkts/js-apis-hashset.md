@@ -324,6 +324,7 @@ callbackfn的参数说明：
 **示例：**
 
 ```ts
+// 不建议在forEach函数中使用add和remove方法，会导致死循环等不可预知的风险。
 let hashSet: HashSet<string> = new HashSet();
 hashSet.add("sparrow");
 hashSet.add("squirrel");
@@ -359,6 +360,7 @@ entries(): IterableIterator<[T, T]>
 **示例：**
 
 ```ts
+// 不建议在entries函数中使用add和remove方法，会导致死循环等不可预知的风险。
 let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
@@ -403,6 +405,7 @@ while(!temp.done) {
 **示例：**
 
 ```ts
+// 不建议在Symbol.iterator中使用add和remove方法，会导致死循环等不可预知的风险。
 let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
