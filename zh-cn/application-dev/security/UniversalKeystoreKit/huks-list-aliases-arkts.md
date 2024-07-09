@@ -14,7 +14,7 @@ HUKS提供了接口供应用查询密钥别名集。
 /*
  * 以下查询密钥别名集Promise操作使用为例
  */
-import { huks } from "@kit.UniversalKeystoreKit"
+import { huks } from '@kit.UniversalKeystoreKit'
 
 async function testListAliases() {
   /* 1.初始化密钥属性集 */
