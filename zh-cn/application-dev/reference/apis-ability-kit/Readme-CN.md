@@ -12,6 +12,8 @@
     - [@ohos.app.ability.autoFillManager (autoFillManager)](js-apis-app-ability-autoFillManager.md)
     - [@ohos.app.ability.ChildProcess](js-apis-app-ability-childProcess.md)
     - [@ohos.app.ability.childProcessManager (childProcessManager)](js-apis-app-ability-childProcessManager.md)
+    - [@ohos.app.ability.ChildProcessArgs (ChildProcessArgs)](js-apis-app-ability-childProcessArgs.md)
+    - [@ohos.app.ability.ChildProcessOptions (ChildProcessOptions)](js-apis-app-ability-childProcessOptions.md)
     - [@ohos.app.ability.common (应用上下文Context)](js-apis-app-ability-common.md)
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](js-apis-app-ability-embeddableUIAbility.md)
