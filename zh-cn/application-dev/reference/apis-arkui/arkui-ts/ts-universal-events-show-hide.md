@@ -63,13 +63,15 @@ struct AppearExample {
           .onAppear(() => {
             promptAction.showToast({
               message: 'The text is shown',
-              duration: 2000
+              duration: 2000,
+              bottom: 500
             })
           })
           .onDisAppear(() => {
             promptAction.showToast({
               message: 'The text is hidden',
-              duration: 2000
+              duration: 2000,
+              bottom: 500
             })
           })
       }
