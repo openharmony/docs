@@ -90,6 +90,9 @@
         - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
         - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
         - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
+        - [AppStorageV2: 应用全局UI状态存储](quick-start/arkts-new-appstoragev2.md)
+        - [PersistenceV2: 持久化存储UI状态](quick-start/arkts-new-persistencev2.md)
+        - [\@Type装饰器: 标记类属性的类型](quick-start/arkts-new-type.md)
         - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
     - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
@@ -141,6 +144,7 @@
             <!--Del-->
             - [使用App Linking实现应用间跳转](application-models/app-linking-startup.md)
             <!--DelEnd-->
+            - [显式Want跳转切换应用链接跳转适配指导](application-models/uiability-startup-adjust.md)
           - 通用意图跳转<!--common-intent-redirection-->
             - [通过startAbilityByType拉起垂类应用](application-models/start-intent-panel.md)
             - [通过startAbility拉起文件处理类应用](application-models/file-processing-apps-startup.md)
@@ -646,7 +650,7 @@
     - IME Kit（输入法开发服务）<!--ime-kit-->
       - [IME Kit简介](inputmethod/ime-kit-intro.md)
       - [实现一个输入法应用](inputmethod/inputmethod_application_guide.md)
-      - [实现一个自绘编辑框](inputmethod/custom_input_box_guide.md)
+      - [在自绘编辑框中使用输入法](inputmethod/custom_input_box_guide.md)
       - [切换输入法应用](inputmethod/switch_inputmehod_guide.md)
       - [输入法子类型开发指南](inputmethod/input_method_subtype_guide.md)
     - IPC Kit（进程间通信服务）<!--ipc-kit-->
@@ -986,7 +990,7 @@
         - [驱动扩展框架DriverExtensionAbility](device/driver/driverextensionability.md)
         - [扩展外设管理开发指导](device/driver/externaldevice-guidelines.md)
       - MultimodalAwareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
-        - [MultimodalAwareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
+        - [Multimodal Awareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
         - [Stationary开发指导](device/stationary/stationary-guidelines.md)
       - Sensor Service Kit（传感器服务）<!--sensor-service-kit-->
         - [Sensor Service Kit开发简介](device/sensor/sensorservice-kit-intro.md)
@@ -996,7 +1000,7 @@
         - 振动<!--vibrator-->
           - [振动开发概述](device/sensor/vibrator-overview.md)
           - [振动开发指导](device/sensor/vibrator-guidelines.md)
-          - [Capi振动开发指导](device/sensor/vibrator-guidelines-capi)
+          - [Capi振动开发指导](device/sensor/vibrator-guidelines-capi.md)
     - 调测调优<!--system-debug-optimize-->
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-kit-->
         - [Performance Analysis Kit简介](dfx/performance-analysis-kit-overview.md)
