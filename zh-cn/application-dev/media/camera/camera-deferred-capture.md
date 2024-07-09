@@ -24,7 +24,7 @@
 
    ```ts
    import { camera } from '@kit.CameraKit';
-   import { BusinessError } from '@kit.BasicServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    import { common } from '@kit.AbilityKit';
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
    ```
@@ -90,6 +90,9 @@
   ```ts
   function onPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {
     photoOutput.on('captureStartWithInfo', (err: BusinessError, captureStartInfo: camera.CaptureStartInfo) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info(`photo capture started, captureId : ${captureStartInfo.captureId}`);
     });
   }
@@ -100,6 +103,9 @@
   ```ts
   function onPhotoOutputCaptureEnd(photoOutput: camera.PhotoOutput): void {
     photoOutput.on('captureEnd', (err: BusinessError, captureEndInfo: camera.CaptureEndInfo) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info(`photo capture end, captureId : ${captureEndInfo.captureId}`);
       console.info(`frameCount : ${captureEndInfo.frameCount}`);
     });
