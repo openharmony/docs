@@ -1257,6 +1257,52 @@ let array = new collections.Array<number>(1, 2, 3, 4, 5);
 let removeArray = array.splice(2, 2, 6, 7, 8); // array内容变为[1, 2, 6, 7, 8, 5]，返回[3, 4]
 ```
 
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                      | 说明             |
+| ------------------------- | ---------------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let array= new collections.Array<number>(1, 2, 3, 4);
+let iterArray = collections.Array[Symbol.iterator]();
+let tempArray = iterArray.next().value;
+// 使用方法一：
+for (let item of array) {
+  console.log(`value : ${item}`);
+}
+
+// 使用方法二：
+while(tempArray != undefined) {
+  console.log("value:" + tempArray);
+  tempArray = iterArray.next().value;
+}
+```
+
 ## collections.Map
 
 一种非线性数据结构。
@@ -1716,6 +1762,58 @@ const myMap: collections.Map<string, Object> = new collections.Map<string, Objec
 myMap.set("foo", obj);
 ```
 
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator<[K, V]> | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let map = new collections.Map<number, string>([
+    [0, "one"],
+    [1, "two"],
+    [2, "three"],
+    [3, "four"]
+]);
+// 使用方法一：
+let keys = Array.from(map.keys());
+for (let key of keys) {
+  console.log("key:" + key);
+  console.log("value:" + map.get(key));
+}
+
+// 使用方法二：
+let iterMap = map[Symbol.iterator]();
+let tempMap = iterMap.next();
+while(!tempMap.done) {
+  console.log("key:" + tempMap.value[0]);
+  console.log("value:" + tempMap.value[1]);
+  tempMap = iterMap.next();
+}
+```
 
 ## collections.Set
 
@@ -2099,6 +2197,53 @@ let obj = new Object();
 const mySet: collections.Set<Object> = new collections.Set<Object>();
 // Type arguments of generic "Sendable" type must be a "Sendable" data type (arkts-sendable-generic-types)
 mySet.add(obj);
+```
+
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let set = new collections.Set<number>([1, 2, 3, 4, 5]);
+let iterSet = set[Symbol.iterator]();
+let tempSet = iterSet.next();
+// 使用方法一：
+let val: Array<string> = Array.from(set.values())
+for (let item of val) {
+  console.log("value: " + item);
+}
+
+// 使用方法二：
+while(!tempSet.done) {
+  console.log("value: " + tempSet.value);
+  tempSet = iterSet.next();
+}
 ```
 
 ## collections.ArrayBuffer
@@ -3443,6 +3588,52 @@ let array: collections.Uint32Array = collections.Uint32Array.from([1, 2, 3, 4, 5
 let iterator: IterableIterator<number> = array.values();
 for (const value of iterator) {
   console.info("" + value); // 依次输出 1,2,3,4,5
+}
+```
+
+### [Symbol.iterator]
+
+[Symbol.iterator]\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                      | 说明             |
+| ------------------------- | ---------------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
+
+**示例：**
+
+```ts
+let int32Array: collections.Int32Array = collections.Int32Array.from([1, 2, 3, 4, 5, 6]);
+let iterTypedArray = int32Array[Symbol.iterator]();
+let tempTypedArray = iterTypedArray.next();
+// 使用方法一：
+for (let item of int32Array) {
+  console.log(`value : ${item}`);
+}
+
+// 使用方法二：
+while(!tempTypedArray.done) {
+    console.log("value: " + tempTypedArray.value);
+    tempTypedArray = iterTypedArray.next();
 }
 ```
 
