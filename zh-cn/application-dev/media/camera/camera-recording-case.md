@@ -15,12 +15,12 @@
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
-import camera from '@ohos.multimedia.camera';
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-import common from '@ohos.app.ability.common';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import fs from '@ohos.file.fs';
+import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { common } from '@kit.AbilityKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function videoRecording(context: common.Context, surfaceId: string): Promise<void> {
   // 创建CameraManager对象
@@ -32,6 +32,10 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
 
   // 监听相机状态变化
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
+    if (err !== undefined && err.code !== 0) {
+      console.error('cameraStatus with errorCode = ' + err.code);
+      return;
+    }
     console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.info(`status: ${cameraStatusInfo.status}`);
   });
