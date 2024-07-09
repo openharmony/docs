@@ -1364,10 +1364,13 @@
       - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
         - [JSVM-API简介](napi/jsvm-introduction.md)
         - [JSVM-API支持的数据类型和接口](napi/jsvm-data-types-interfaces.md)
-        - [JSVM-API开发规范](napi/jsvm-guidelines.md)
-        - [使用JSVM-API进行JS代码的调试调优](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
+        - JSVM-API开发规范
+            - [JSVM-API使用规范](napi/jsvm-guidelines.md)
+            - [JSVM-API常见问题](napi/jsvm-frequently-questions.md)
         - JSVM-API典型使用场景<!--jsvm-scenarios-->
-          - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
+            - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
+            - JSVM-API调优&高性能使用示例
+              - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
       - 资源管理<!--resource-management-->
         - [Rawfile开发指导](napi/rawfile-guidelines.md)
       - 线程调度<!--thread-scheduling-->
