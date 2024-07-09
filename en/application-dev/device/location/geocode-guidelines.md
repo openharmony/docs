@@ -38,7 +38,6 @@ The following table lists the APIs used for mutual conversion between coordinate
      
       ```ts
       import { geoLocationManager } from '@kit.LocationKit';
-      import { BusinessError } from '@kit.BasicServicesKit'
       try {
           let isAvailable = geoLocationManager.isGeocoderAvailable();
       } catch (err) {
@@ -83,4 +82,4 @@ The following table lists the APIs used for mutual conversion between coordinate
 
       Your application can obtain the list of [GeoAddress](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geoaddress) objects that match the specified location description and then read coordinates from it.
 
-      To improve the accuracy of location results, you can set the longitude and latitude ranges in **GeoCodeRequest**.
+      If the location description contains duplicate location names, you can call [GeoCodeRequest](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geocoderequest) to specify a longitude and latitude range to narrow down the scope.

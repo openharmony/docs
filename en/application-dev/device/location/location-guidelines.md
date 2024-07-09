@@ -100,5 +100,5 @@ The following table lists the APIs used to obtain the device location informatio
    ```
    If your application no longer needs the device location, stop obtaining the device location to avoid high power consumption.
    ```ts
-   geoLocationManager.off('locationChange', locationChange);
+   geoLocationManager.off('locationChange', locationCallback);
    ```
