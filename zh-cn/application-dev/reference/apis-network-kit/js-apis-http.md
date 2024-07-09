@@ -194,10 +194,10 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -276,10 +276,10 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -386,10 +386,10 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -495,10 +495,10 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -569,10 +569,10 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -670,10 +670,10 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 | 2300063 | Maximum file size exceeded.                                    |
 | 2300070 | Remote disk full.                                              |
 | 2300073 | Remote file already exists.                                    |
-| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300999 | Unknown Error.                                                 |
+| 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -1122,7 +1122,7 @@ httpRequest.off("dataSendProgress");
 
 HTTP 请求方法。
 
-**原子化服务API：** 从API11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
