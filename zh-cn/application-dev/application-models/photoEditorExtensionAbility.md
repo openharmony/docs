@@ -160,9 +160,9 @@
 
             Image(this.editedImage).width("100%").height(200).margin({ top: 10 }).objectFit(ImageFit.Contain)
           }
-                .width('100%')
+          .width('100%')
         }
-            .height('100%')
+        .height('100%')
         .backgroundColor(Color.Pink)
         .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
       }
@@ -326,11 +326,11 @@ struct Index {
 
         Image(this.editedImage).width("100%").height(200).margin({ top: 20 }).objectFit(ImageFit.Contain)
       }
-            .width('100%')
+      .width('100%')
     }
-      .height('100%')
-      .backgroundColor(Color.Orange)
-      .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
+    .height('100%')
+    .backgroundColor(Color.Orange)
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
   }
 }
 
