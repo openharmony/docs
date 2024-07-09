@@ -30,8 +30,8 @@
    const documentSaveOptions = new picker.DocumentSaveOptions();
    // 保存文件名（可选） 
    documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"];
-   // 保存文件类型（可选） 
-   documentSaveOptions.fileSuffixChoices = ['.png', '.txt', '.mp4']; 
+   // 保存文件类型['后缀类型描述|后缀类型'],选择所有文件：'所有文件(*.*)|.*'（可选） ，如过选择项存在多个后缀，默认选择第一个。
+   documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf']; 
    ```
 
 3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-2)实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)接口拉起FilePicker界面进行文件保存。
