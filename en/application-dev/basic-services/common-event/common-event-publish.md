@@ -3,10 +3,9 @@
 
 ## When to Use
 
-You can use [publish()](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerpublish) to publish a custom common event, which can carry data for subscribers to parse and process.
+You can use [publish()](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerpublish) to publish a custom common event, which can carry data for subscribers to parse and process.
 
 > **NOTE**
->
 > Subscribers can receive sticky common events that have been sent. However, they must subscribe to common events of other types before receiving them. For details about subscription, see [Subscribing to Common Events](common-event-subscription.md).
 
 
@@ -14,10 +13,10 @@ You can use [publish()](../reference/apis/js-apis-commonEventManager.md#commonev
 
 For details about the APIs, see [API Reference](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerpublish).
 
-| API| Description|
-| -------- | -------- |
-| publish(event: string, callback: AsyncCallback) | Publishes a common event.|
-| publish(event: string, options: [CommonEventPublishData](../reference/apis/js-apis-commonEventManager.md#commoneventpublishdata), callback: AsyncCallback) | Publishes a common event with given attributes.|
+| API                                                      | Description                    |
+| ------------------------------------------------------------ | ---------------------------- |
+| publish(event:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback) | Publishes a common event.              |
+| publish(event:&nbsp;string,&nbsp;options:&nbsp;[CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md),&nbsp;callback:&nbsp;AsyncCallback) | Publishes a common event with given attributes.|
 
 
 ## Publishing a Common Event That Does Not Carry Information
@@ -29,21 +28,23 @@ Common events that do not carry information can be published only as unordered c
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
-   import Logger from '../utils/Logger';
+   import promptAction from '@ohos.promptAction';
+   import hilog from '@ohos.hilog';
 
    const TAG: string = 'ProcessModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. Pass in the common event name and callback, and publish the event.
    
    ```ts
-   // Publish a common event.
-   commonEventManager.publish('usual.event.SCREEN_OFF', (err: Base.BusinessError) => {
+   // Publish the common event. Replace the event field with the actual event name.
+   commonEventManager.publish('event', (err: Base.BusinessError) => {
      if (err) {
-       console.info(`PublishCallBack err = ${JSON.stringify(err)}`);
+       hilog.info(DOMAIN_NUMBER, TAG, `PublishCallBack err = ${JSON.stringify(err)}`);
      } else {
-       ...
-       console.info(`Publish success`);
+       //...
+       hilog.info(DOMAIN_NUMBER, TAG, `Publish success`);
      }
    });
    ```
@@ -51,19 +52,20 @@ Common events that do not carry information can be published only as unordered c
 
 ## Publishing a Common Event That Carries Information
 
-Common events that carry information can be published as unordered, ordered, and sticky common events, which are specified by the **isOrdered** and **isSticky** fields of [CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventpublishdata).
+Common events that carry information can be published as unordered, ordered, and sticky common events, which are specified by the **isOrdered** and **isSticky** fields of [CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md).
 
 1. Import the **commonEventManager** module.
    
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
-   import Logger from '../utils/Logger';
+   import hilog from '@ohos.hilog';
 
    const TAG: string = 'ProcessModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
-2. Pass in the common event name and callback, and publish the event.
+2. Create the public event information to be released.
    
    ```ts
    // Attributes of a common event.
@@ -76,14 +78,13 @@ Common events that carry information can be published as unordered, ordered, and
 3. Pass in the common event name, attributes of the common event, and callback, and publish the event.
    
    ```ts
-   // Publish a common event.
-   commonEventManager.publish('usual.event.SCREEN_OFF', options, (err: Base.BusinessError) => {
+   // Publish the common event. Replace the event field with the actual event name.
+   commonEventManager.publish('event', options, (err: Base.BusinessError) => {
      if (err) {
-       console.error('PublishCallBack err = ' + JSON.stringify(err));
+       hilog.error(DOMAIN_NUMBER, TAG, 'PublishCallBack err = ' + JSON.stringify(err));
      } else {
-       ...
-       console.info('Publish success');
+       //...
+       hilog.info(DOMAIN_NUMBER, TAG, 'Publish success');
      }
    });
    ```
- <!--no_check--> 

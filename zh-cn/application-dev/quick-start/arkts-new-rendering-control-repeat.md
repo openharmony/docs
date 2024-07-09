@@ -74,7 +74,7 @@ interface VirtualScrollOptions {
 
 | 属性名     | 类型   | 是否必填 | 描述                                                         |
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
-| totalCount | number | 否       | 当前数据总数，数据长度判断规则：totalCount ? max(totalCount, 数据源长度) : 数据源长度。<br/>用户可以不同步请求所有数据，从而实现正确的滚动条样式。 |
+| totalCount | number | 否       | 当前数据总数，数据长度判断规则：totalCount ? max(totalCount, 数据源长度) : 数据源长度。<br/>这样用户可以不同步请求所有数据，也能实现正确的滚动条样式。 |
 
 ### RepeatItemBuilder类型
 
@@ -100,7 +100,7 @@ interface TemplateOptions {
 
 | 属性名      | 类型   | 是否必填 | 描述                                                         |
 | ----------- | ------ | -------- | ------------------------------------------------------------ |
-| cachedCount | number | 否       | 当前模板在Repeat的缓存池中可缓存子节点的最大数量，默认值为1，仅在开启virtualScroll后生效。<br/>each方法的cache默认为1，不能修改。 |
+| cachedCount | number | 否       | 当前模板在Repeat的缓存池中可缓存子节点的最大数量，默认值为1，仅在开启virtualScroll后生效。<br/>将cachedCount设置为当前模板的节点在屏上可能出现的最大数量时，Repeat可以做到尽可能多的复用。但后果是当屏上没有当前模板的节点时，缓存池也不会释放，应用内存会增大。需要开发者依据具体情况自行把控。<br/>each方法的cachedCount默认为1，目前不能修改。 |
 
 ### TemplateTypedFunc类型
 
@@ -198,9 +198,9 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 
 ```ts
 @Entry
-@Component
+@ComponentV2
 struct Parent {
-  @State simpleList: Array<string> = ['one', 'two', 'three'];
+  @Local simpleList: Array<string> = ['one', 'two', 'three'];
 
   build() {
     Row() {
@@ -228,9 +228,9 @@ struct Parent {
   }
 }
 
-@Component
+@ComponentV2
 struct ChildItem {
-  @Prop item: string;
+  @Param @Require item: string;
 
   build() {
     Text(this.item)
@@ -239,7 +239,6 @@ struct ChildItem {
 }
 ```
 
-Repeat非首次渲染案例运行效果图  
 ![ForEach-Non-Initial-Render-Case-Effect](./figures/ForEach-Non-Initial-Render-Case-Effect.gif)
 
 第三个数组项重新渲染时会复用之前的第三项的组件，仅对数据做了刷新。
@@ -250,9 +249,9 @@ Repeat非首次渲染案例运行效果图
 
 ```ts
 @Entry
-@Component
+@ComponentV2
 struct Parent {
-  @State simpleList: Array<string> = ['one', 'two', 'three'];
+  @Local simpleList: Array<string> = ['one', 'two', 'three'];
 
   build() {
     Row() {
@@ -285,9 +284,9 @@ struct Parent {
   }
 }
 
-@Component
+@ComponentV2
 struct ChildItem {
-  @Prop item: string;
+  @Param @Require item: string;
 
   build() {
     Text(this.item)
@@ -296,5 +295,446 @@ struct ChildItem {
 }
 ```
 
-Repeat交换数据更新index运行效果图  
 ![Repeat-Non-Initial-Render-Case-Exchange-Effect](./figures/Repeat-Non-Initial-Render-Case-Exchange-Effect.gif)
+
+### virtualScroll
+
+#### 数据源变化
+
+```ts
+@ObservedV2
+class Wrap1 {
+    @Trace message: string = '';
+    
+    constructor(message: string) {
+        this.message = message;
+    }
+}
+
+@Entry
+@ComponentV2
+struct Parent {
+    @Local simpleList: Array<Wrap1> = [];
+    @Local start: number = 0;
+    
+    aboutToAppear(): void {
+        for (let i=0; i<100; i++) {
+            this.simpleList.push(new Wrap1('Hello' + i));
+        }
+    }
+    
+    build() {
+        Column() {
+            Text('点击修改当前屏上第一个数据的值')
+            	.fontSize(40)
+            	.fontColor(Color.Red)
+            	.onClick(()=>{
+                	this.simpleList[this.start] = new Wrap1(this.simpleList[this.start].message + ' new');
+            	})
+            
+            List() {
+                Repeat<Wrap1>(this.simpleList)
+                	.each((obj: RepeatItem<Wrap1>)=>{
+                    	ListItem() {
+                            Text(obj.item.message)
+                            	.fontSize(30)
+                        }
+                	})
+            }
+            .onScrollIndex((start: number)=>{
+                this.start = start;
+            })
+            .cachedCount(5)
+            .width('100%')
+            .height('100%')
+        }
+        .height(700)
+    }
+}
+```
+
+![Repeat-VirtualScroll-DataChange](./figures/Repeat-VirtualScroll-DataChange.gif)
+
+#### 索引值变化
+
+```ts
+@ObservedV2
+class Wrap1 {
+    @Trace message: string = '';
+    
+    constructor(message: string) {
+        this.message = message;
+    }
+}
+
+@Entry
+@ComponentV2
+struct Parent {
+    @Local simpleList: Array<Wrap1> = [];
+    @Local start: number = 0;
+    @Local center: number = 0;
+    
+    aboutToAppear(): void {
+        for (let i=0; i<100; i++) {
+            this.simpleList.push(new Wrap1('Hello' + i));
+        }
+    }
+    
+    build() {
+        Column() {
+            Text('点击交换屏上第一个数据和中间数据的值')
+            	.fontSize(40)
+            	.fontColor(Color.Red)
+            	.onClick(()=>{
+                	let temp: number = this.simpleList[this.start];
+                	this.simpleList[this.start] = this.simpleList[this.center];
+                	this.simpleList[this.center] = temp;
+            	})
+            
+            List() {
+                Repeat<Wrap1>(this.simpleList)
+                	.each((obj: RepeatItem<Wrap1>)=>{
+                    	ListItem() {
+                            Text('index ' + obj.index + ': ')
+                            	.fontSize(30)
+                            Text(obj.item.message)
+                            	.fontSize(30)
+                        }
+                	})
+            }
+            .onScrollIndex((start: number, end: number, center: number)=>{
+                this.start = start;
+                this.center = center;
+            })
+            .cachedCount(5)
+            .width('100%')
+            .height('100%')
+        }
+        .height(700)
+    }
+}
+```
+
+![Repeat-VirtualScroll-DataChange](./figures/Repeat-VirtualScroll-IndexChange.gif)
+
+当key值不变时，组件会直接复用并更新index的值。
+
+#### 使用template
+
+```
+@ObservedV2
+class Wrap1 {
+    @Trace message: string = '';
+    
+    constructor(message: string) {
+        this.message = message;
+    }
+}
+
+@Entry
+@ComponentV2
+struct Parent {
+    @Local simpleList: Array<Wrap1> = [];
+    
+    aboutToAppear(): void {
+        for (let i=0; i<100; i++) {
+            this.simpleList.push(new Wrap1('Hello' + i));
+        }
+    }
+    
+    build() {
+        Column() {
+            List() {
+                Repeat<Wrap1>(this.simpleList)
+                	.each((obj: RepeatItem<Wrap1>)=>{
+                    	ListItem() {
+                    		Row() {
+                    			Text('default index ' + obj.index + ': ')
+                            		.fontSize(30)
+                            	Text(obj.item.message)
+                            		.fontSize(30)
+                    		}
+                        }
+                        .margin(20)
+                	})
+                	.template('odd', (obj: RepeatItem<Wrap1>)=>{
+                    	ListItem() {
+                    		Row() {
+                    			Text('odd index ' + obj.index + ': ')
+                            		.fontSize(30)
+                            		.fontColor(Color.Blue)
+                            	Text(obj.item.message)
+                            		.fontSize(30)
+                            		.fontColor(Color.Blue)
+                    		}
+                        }
+                        .margin(20)
+                	})
+                	.template('even', (obj: RepeatItem<Wrap1>)=>{
+                    	ListItem() {
+                    		Row() {
+                    			Text('even index ' + obj.index + ': ')
+                            		.fontSize(30)
+                            		.fontColor(Color.Green)
+                            	Text(obj.item.message)
+                            		.fontSize(30)
+                            		.fontColor(Color.Green)
+                    		}
+                        }
+                        .margin(20)
+                	})
+                	.templateId((item: Wrap1, index: number) => {
+                		return index%2 ? 'odd' : 'even';
+                	})
+                	.key((item: Wrap1, index: number) => {
+                		return item.message;
+                	})
+            }
+            .cachedCount(5)
+            .width('100%')
+            .height('100%')
+        }
+        .height('100%')
+    }
+}
+```
+
+![Repeat-VirtualScroll-DataChange](./figures/Repeat-VirtualScroll-Template.gif)
+
+## 常见问题
+
+### 屏幕外的列表数据发生变化时，保证滚动条位置不变
+
+在List组件中声明Repeat组件，实现key值生成逻辑和each逻辑（如下示例代码），点击按钮“insert”，在屏幕显示的第一个元素前面插入一个元素，屏幕出现向下滚动。
+
+```ts
+// 定义一个类，标记为可观察的
+// 类中自定义一个数组，标记为可追踪的
+@ObservedV2
+class ArrayHolder {
+  @Trace arr: Array<number> = [];
+
+  // constructor，用于初始化数组个数
+  constructor(count: number) {
+    for (let i = 0; i < count; i++) {
+      this.arr.push(i);
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+export struct RepeatTemplateSingle {
+  @Local arrayHolder: ArrayHolder = new ArrayHolder(100);
+  @Local totalCount: number = this.arrayHolder.arr.length;
+  scroller: Scroller = new Scroller();
+
+  build() {
+    Column({ space: 5 }) {
+      List({ space: 20, initialIndex: 19, scroller: this.scroller }) {
+        Repeat(this.arrayHolder.arr)
+          .virtualScroll({ totalCount: this.totalCount })
+          .templateId((item, index) => {
+            return 'number';
+          })
+          .template('number', (r) => {
+            ListItem() {
+              Text(r.index! + ":" + r.item + "Reuse");
+            }
+          })
+          .each((r) => {
+            ListItem() {
+              Text(r.index! + ":" + r.item + "eachMessage");
+            }
+          })
+      }
+      .height('30%')
+
+      Button(`insert totalCount ${this.totalCount}`)
+        .height(60)
+        .onClick(() => {
+          // 插入元素，元素位置为屏幕显示的前一个元素
+          this.arrayHolder.arr.splice(18, 0, this.totalCount);
+          this.totalCount = this.arrayHolder.arr.length;
+        })
+    }
+    .width('100%')
+    .margin({ top: 5 })
+  }
+}
+```
+
+运行效果：
+
+![Repeat-case1-Error](./figures/Repeat-Case1-Error.gif)
+
+在一些场景中，我们不希望屏幕外的数据源变化影响屏幕中List列表Scroller停留的位置，可以通过List组件的[onScrollIndex](../ui/arkts-layout-development-create-list.md#响应滚动位置)事件对列表滚动动作进行监听，当列表发生滚动时，获取列表滚动位置。使用Scroller组件的[scrollToIndex](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#scrolltoindex)特性，滑动到指定index位置，实现屏幕外的数据源增加/删除数据时，Scroller停留的位置不变的效果。
+
+示例代码仅对增加数据的情况进行展示。
+
+```ts
+// 定义一个类，标记为可观察的
+// 类中自定义一个数组，标记为可追踪的
+@ObservedV2
+class ArrayHolder {
+  @Trace arr: Array<number> = [];
+
+  // constructor，用于初始化数组个数
+  constructor(count: number) {
+    for (let i = 0; i < count; i++) {
+      this.arr.push(i);
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+export struct RepeatTemplateSingle {
+  @Local arrayHolder: ArrayHolder = new ArrayHolder(100);
+  @Local totalCount: number = this.arrayHolder.arr.length;
+  scroller: Scroller = new Scroller();
+
+  private start: number = 1;
+  private end: number = 1;
+
+  build() {
+    Column({ space: 5 }) {
+      List({ space: 20, initialIndex: 19, scroller: this.scroller }) {
+        Repeat(this.arrayHolder.arr)
+          .virtualScroll({ totalCount: this.totalCount })
+          .templateId((item, index) => {
+            return 'number';
+          })
+          .template('number', (r) => {
+            ListItem() {
+              Text(r.index! + ":" + r.item + "Reuse");
+            }
+          })
+          .each((r) => {
+            ListItem() {
+              Text(r.index! + ":" + r.item + "eachMessage");
+            }
+          })
+      }
+      .onScrollIndex((start, end) => {
+        this.start = start;
+        this.end = end;
+      })
+      .height('30%')
+
+      Button(`insert totalCount ${this.totalCount}`)
+        .height(60)
+        .onClick(() => {
+          // 插入元素，元素位置为屏幕显示的前一个元素
+          this.arrayHolder.arr.splice(18, 0, this.totalCount);
+          let rect = this.scroller.getItemRect(this.start); // 获取子组件的大小位置
+          this.scroller.scrollToIndex(this.start + 1); // 滑动到指定index
+          this.scroller.scrollBy(0, -rect.y); // 滑动指定距离
+          this.totalCount = this.arrayHolder.arr.length;
+        })
+    }
+    .width('100%')
+    .margin({ top: 5 })
+  }
+}
+```
+
+运行效果：
+
+![Repeat-case1-Succ](./figures/Repeat-Case1-Succ.gif)
+
+### totalCount值大于页面数据源长度
+
+当数据源总长度很大时，会使用数据源懒加载的方式提高加载速度，这导致了页面上加载的数据长度很可能是小于总长度的。为了使Repeat显示正确的滚动条样式，需要将数据总长度赋值给totalCount，当totalCount大于当前页面加载的数据长度时，会出现循环滚动的异常现象。异常现象示例：
+
+![Repeat-Case2-Error](./figures/Repeat-Case2-Error.gif)
+
+为了避免这个问题，开发者需要在数据滚动的事件中加入懒加载数据的请求逻辑，保证在列表滑动的过程中不会出现空白，直到数据源全部加载完成。示例代码如下：
+
+```ts
+@ObservedV2
+class VehicleData {
+  @Trace name: string;
+  @Trace price: number;
+
+  constructor(name: string, price: number) {
+    this.name = name;
+    this.price = price;
+  }
+}
+
+@ObservedV2
+class VehicleDB {
+  public vehicleItems: VehicleData[] = [];
+
+  constructor() {
+    // init data size 20
+    for (let i = 1; i <= 20; i++) {
+      this.vehicleItems.push(new VehicleData(`Vehicle${i}`, i));
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+struct entryCompSucc {
+  @Local vehicleItems: VehicleData[] = new VehicleDB().vehicleItems;
+  @Local listChildrenSize: ChildrenMainSize = new ChildrenMainSize(60);
+  @Local totalCount: number = this.vehicleItems.length;
+  scroller: Scroller = new Scroller();
+
+  build() {
+    Column({ space: 3 }) {
+      List({ scroller: this.scroller }) {
+        Repeat(this.vehicleItems)
+          .virtualScroll({ totalCount: 50 }) // total data size 50
+          .templateId(() => 'default')
+          .template('default', (ri) => {
+            ListItem() {
+              Column() {
+                Text(`${ri.item.name} + ${ri.index}`)
+                  .width('90%')
+                  .height(this.listChildrenSize.childDefaultSize)
+                  .backgroundColor(0xFFA07A)
+                  .textAlign(TextAlign.Center)
+                  .fontSize(20)
+                  .fontWeight(FontWeight.Bold)
+              }
+            }.border({ width: 1 })
+          }, { cachedCount: 5 })
+          .each((ri) => {
+            ListItem() {
+              Text("Wrong: " + `${ri.item.name} + ${ri.index}`)
+                .width('90%')
+                .height(this.listChildrenSize.childDefaultSize)
+                .backgroundColor(0xFFA07A)
+                .textAlign(TextAlign.Center)
+                .fontSize(20)
+                .fontWeight(FontWeight.Bold)
+            }.border({ width: 1 })
+          })
+          .key((item, index) => `${index}:${item}`)
+      }
+      .height('50%')
+      .margin({ top: 20 })
+      .childrenMainSize(this.listChildrenSize)
+      .alignListItem(ListItemAlign.Center)
+      .onScrollIndex((start, end) => {
+        console.log('onScrollIndex', start, end);
+        // lazy data loading
+        if (this.vehicleItems.length < 50) {
+          for (let i = 0; i < 10; i++) {
+            if (this.vehicleItems.length < 50) {
+              this.vehicleItems.push(new VehicleData("Vehicle_loaded", i));
+            }
+          }
+        }
+      })
+    }
+  }
+}
+```
+
+示例代码运行效果：
+
+![Repeat-Case2-Succ](./figures/Repeat-Case2-Succ.gif)

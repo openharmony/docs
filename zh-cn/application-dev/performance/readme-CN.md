@@ -1,5 +1,6 @@
 - 性能
   - [性能优化概览](performance-overview.md)
+  - [应用开发性能优化入门引导](application-performance-optimization-guidance.md)
   - ArkTS高性能编程
     - [高效并发编程](efficient-concurrent-programming.md)
     - [N-API高效开发指导](develop-Native-modules-using-NAPI-safely-and-efficiently.md)
@@ -21,6 +22,7 @@
     - [Grid高性能开发指导](grid_optimization.md)
     - [合理使用自定义组件冻结功能](custom_component_freeze.md)
     - [避免在滑动场景的高频回调接口中处理耗时操作](avoid_high_frequency_callback_execute_lengthy_operation.md)
+    - [合理使用系统接口](reasonable_using_system_interfaces.md)
   - 提升应用启动和响应速度
     - [提升应用冷启动速度](improve-application-cold-start-speed.md)
     - [提升应用响应速度](improve-application-response.md)
@@ -48,3 +50,4 @@
     - [应用滑动场景帧率问题分析实践](long-frame-optimization.md)
     - [时延类性能问题分析实践](delay_related_performance.md)
     - [Web性能问题分析案例](web-analyse.md)
+    - [应用性能问题分析指导](application-performance-guide.md)

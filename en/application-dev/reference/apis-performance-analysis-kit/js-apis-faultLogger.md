@@ -163,7 +163,7 @@ querySelfFaultLog(faultType: FaultType, callback: AsyncCallback&lt;Array&lt;Faul
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. You are advised to use [FaultLogger.query](#faultloggerquery9) instead.
+> This API is deprecated since API version 9. You are advised to use [FaultLogger.query](#faultloggerquery9).
 
 Obtains the fault information about the current process. This API uses an asynchronous callback to return the fault information array obtained, which contains a maximum of 10 pieces of fault information.
 

@@ -2431,9 +2431,9 @@ export struct PageTwo {
 
 ### 示例5
 
+该示例主要演示设置Navigation主页的标题栏、工具栏和NavDestination页面的标题栏的背景颜色和背景模糊效果。
+
 ```ts
-// 该示例主要演示设置Navigation主页的标题栏、工具栏和
-// NavDestination页面的标题栏的背景颜色和背景模糊效果。
 let COLOR1: string = "#80004AAF";
 let COLOR2: string = "#802787D9";
 let BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
@@ -2580,8 +2580,9 @@ struct Index {
 
 ### 示例6
 
+该示例主要演示在嵌套Navigation场景下，如何获取父NavPathStack。
+
 ```ts
-// 该示例主要演示在嵌套Navigation场景下，如何获取父NavPathStack。
 @Entry
 @Component
 struct NavigationExample1 {
@@ -2647,10 +2648,13 @@ struct NavigationExample1 {
 
 ### 示例7
 
+该示例主要演示如下两点功能：
+
+1. NavPathStack无需声明为状态变量，也可以实现页面栈操作功能。
+
+2. NavDestination通过onReady事件能够拿到对应的NavPathInfo和所属的NavPathStack。
+
 ```ts
-// 该示例主要演示如下两点功能：
-// 1. NavPathStack无需声明为状态变量，也可以实现页面栈操作功能；
-// 2. NavDestination通过onReady事件能够拿到对应的NavPathInfo和所属的NavPathStack。
 class PageParam {
   constructor(num_: number) {
     this.num = num_;
@@ -2754,8 +2758,9 @@ struct NavigationExample2 {
 
 ### 示例8
 
+该示例演示NavDestination的生命周期时序。
+
 ```ts
-// 该示例演示NavDestination的生命周期时序。
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
   PageOneComponent()
@@ -2857,8 +2862,9 @@ struct NavigationExample3 {
 
 ### 示例9
 
+该示例演示Navigation标题栏STACK布局效果。
+
 ```ts
-// 该示例演示Navigation标题栏STACK布局效果。
 @Entry
 @Component
 struct NavigationExample {
@@ -2928,10 +2934,9 @@ struct NavigationExample {
 
 ### 示例10
 
+该示例主要演示如何定义NavPathStack的派生类和派生类在Navigation中的基本用法。
+
 ```ts
-// 该示例主要演示如下两点功能
-// 1. 如何定义NavPathStack的派生类
-// 2. 派生类在Navigation中的基本用法
 class DerivedNavPathStack extends NavPathStack {
   // usr defined property 'id'
   id: string = "__default__"
@@ -3038,8 +3043,10 @@ struct PageOne {
 ![derive_stack.gif](figures/derive_stack.gif)
 
 ### 示例11
+
+该示例主要演示Navigation和NavDestination如何使用Symbol组件。
+
 ```ts
-// 该示例主要演示Navigation和NavDestination如何使用Symbol组件
 import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
@@ -3152,8 +3159,10 @@ export struct NavigationMenu{
 ![navigation_symbol.gif](figures/navigation_symbol.gif)
 
 ### 示例12
+
+该示例主要演示Navigation和NavDestination如何自定义设置标题栏边距。
+
 ```ts
-// 该示例主要演示Navigation和NavDestination如何自定义设置标题栏边距。
 import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry

@@ -264,6 +264,8 @@ useShadowBatching(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **参数：** 
 
 | 参数名 | 类型    | 必填 | 说明                                                         |

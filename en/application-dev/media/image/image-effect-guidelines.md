@@ -414,9 +414,3 @@ You can implement the **Render** API in two scenarios.
     // Release virtual memory resources by filter names.
     OH_EffectFilter_ReleaseFilterNames();
     ```
-
-## Samples
-
-The following samples are provided to help you better understand how to use the image effect for development:
-
-- [ImageEffect (API12)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/ImageEffect)

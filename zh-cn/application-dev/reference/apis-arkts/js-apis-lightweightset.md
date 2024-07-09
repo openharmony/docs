@@ -301,7 +301,7 @@ let result = lightWeightSet.equal(obj);
 
 increaseCapacityTo(minimumCapacity: number): void
 
-将当前容器扩容至可以容纳指定数量元素。
+将当前LightWeightSet扩容至可以容纳指定数量元素。如果传入的容量值大于或等于当前LightWeightSet中的元素个数，将容量变更为新容量，小于则不会变更。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -311,7 +311,7 @@ increaseCapacityTo(minimumCapacity: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| minimumCapacity | number | 是 | 需要容纳数量。 |
+| minimumCapacity | number | 是 | 需要容纳的元素数量。 |
 
 **错误码：**
 
@@ -659,6 +659,7 @@ callbackfn的参数说明：
 let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("sparrow");
 lightWeightSet.add("gull");
+// 不建议在forEach函数中使用add、remove、removeAt方法，会导致死循环等不可预知的风险。
 lightWeightSet.forEach((value ?: string, key ?: string) => {
   console.log("value:" + value, "key:" + key);
 });
@@ -692,6 +693,7 @@ entries(): IterableIterator<[T, T]>
 **示例：**
 
 ```ts
+// 不建议在entries函数中使用add、remove、removeAt方法，会导致死循环等不可预知的风险。
 let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
@@ -735,6 +737,7 @@ while(index < lightWeightSet.length) {
 **示例：**
 
 ```ts
+// 不建议在Symbol.iterator中使用add、remove、removeAt方法，会导致死循环等不可预知的风险。
 let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");

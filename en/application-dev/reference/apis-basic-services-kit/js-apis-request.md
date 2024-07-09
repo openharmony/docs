@@ -6,7 +6,6 @@ The **request** module provides applications with basic upload, download, and ba
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
 
 ## Modules to Import
 
@@ -2448,6 +2447,8 @@ Defines the data structure of the task information for query. The fields availab
 ## HttpResponse<sup>12+</sup> 
 Data structure of the task response header.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 | Name| Type| Mandatory| Description|
@@ -2462,6 +2463,8 @@ Implements an upload or download task. Before using this API, you must obtain a 
 
 ### Attributes
 Task attributes include the task ID and task configuration.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2920,6 +2923,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
 Subscribes to task response headers. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -3484,6 +3489,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
 Unsubscribes from task response headers.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 

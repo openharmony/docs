@@ -1,5 +1,7 @@
 # @ohos.multimedia.medialibrary (Media Library Management)
 
+The APIs of this module are no longer maintained since API version 12. You are advised to use **PhotoAccessHelper**. For details, see "Scope" in [Introduction to Media Library Kit](../../media/medialibrary/photoAccessHelper-overview.md).
+
 > **NOTE**
 >
 > - The APIs of this module are supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
@@ -37,6 +39,12 @@ Obtains a **MediaLibrary** instance, which is used to access and modify personal
 | ----------------------------- | :---- |
 | [MediaLibrary](#medialibrary) | **MediaLibrary** instance obtained.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -58,6 +66,12 @@ Obtains a **MediaLibrary** instance, which is used to access and modify personal
 **Model restriction**: This API can be used only in the FA model.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Return value**
 
@@ -82,7 +96,7 @@ Obtains file assets (also called files). This API uses an asynchronous callback 
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAssets](js-apis-photoAccessHelper.md#getassets) instead.
-> - From API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**.
+> - Since API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**.
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -93,7 +107,13 @@ Obtains file assets (also called files). This API uses an asynchronous callback 
 | Name  | Type                                               | Mandatory| Description                             |
 | -------- | --------------------------------------------------- | ---- | --------------------------------- |
 | options  | [MediaFetchOptions](#mediafetchoptions7)            | Yes  | Options for fetching the files.                     |
-| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | Yes  | Callback invoked to return the file retrieval result set.|
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | Yes  | Callback used to return the file retrieval result set.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -153,7 +173,7 @@ Obtains file assets. This API uses a promise to return the result.
 > **NOTE**
 >
 > - This API is deprecated since API version 9. Use [getAssets](js-apis-photoAccessHelper.md#getassets-1) instead.
-> - From API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**.
+> - Since API version 10, the albums represented by physical directories are replaced by logical albums, which allow multiple files in an album and presence of a file in multiple albums. This design, however, makes **parent**, **albumId**, **albumUri**, and **albumName** incompatible. They cannot be used as parameters of **MediaFetchOptions** in **getFileAssets()**.
 
 **Required permissions**: ohos.permission.READ_MEDIA
 
@@ -170,6 +190,12 @@ Obtains file assets. This API uses a promise to return the result.
 | Type                                | Description          |
 | ------------------------------------ | -------------- |
 | Promise&lt;[FetchFileResult](#fetchfileresult7)&gt; | Promise used to return the file retrieval result set.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -237,6 +263,12 @@ Subscribes to the media library changes. This API uses a callback to return the 
 | type     | 'deviceChange'&#124;<br>'albumChange'&#124;<br>'imageChange'&#124;<br>'audioChange'&#124;<br>'videoChange'&#124;<br>'fileChange'&#124;<br>'remoteFileChange'               | Yes   | Event type, which can be any of the following:<br>**'deviceChange'**: device change.<br>**'albumChange'**: album change.<br>**'imageChange'**: image change.<br>**'audioChange'**: audio file change.<br>**'videoChange'**: video file change.<br>**'fileChange'**: file change.<br>**'remoteFileChange'**: change of the file on a registered device.|
 | callback | Callback&lt;void&gt; | Yes   | Callback that returns no value.                                   |
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -263,6 +295,12 @@ Unsubscribes from the media library changes. This API uses a callback to return 
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | type     | 'deviceChange'&#124;<br>'albumChange'&#124;<br>'imageChange'&#124;<br>'audioChange'&#124;<br>'videoChange'&#124;<br>'fileChange'&#124;<br>'remoteFileChange'               | Yes   | Event type, which can be any of the following:<br>**'deviceChange'**: device change.<br>**'albumChange'**: album change.<br>**'imageChange'**: image change.<br>**'audioChange'**: audio file change.<br>**'videoChange'**: video file change.<br>**'fileChange'**: file change.<br>**'remoteFileChange'**: change of the file on a registered device.|
 | callback | Callback&lt;void&gt; | No   | Callback that returns no value.                                   |
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -294,7 +332,13 @@ Creates a media asset. This API uses an asynchronous callback to return the resu
 | mediaType    | [MediaType](#mediatype8)                | Yes  | Media type.                                                    |
 | displayName  | string                                  | Yes  | File name to display.                                                  |
 | relativePath | string                                  | Yes  | Path of the file, which can be obtained by using [getPublicDirectory](#getpublicdirectory8).|
-| callback     | AsyncCallback<[FileAsset](#fileasset7)> | Yes  | Callback invoked to return the **FileAsset** instance created.                         |
+| callback     | AsyncCallback<[FileAsset](#fileasset7)> | Yes  | Callback used to return the **FileAsset** instance created.                         |
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -343,6 +387,12 @@ Creates a media asset. This API uses a promise to return the result.
 | ------------------------ | ----------------- |
 | Promise&lt;[FileAsset](#fileasset7)&gt; | Promise used to return the **FileAsset** instance created.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -378,7 +428,13 @@ Obtains a user directory. This API uses an asynchronous callback to return the r
 | Name  | Type                            | Mandatory| Description                     |
 | -------- | -------------------------------- | ---- | ------------------------- |
 | type     | [DirectoryType](#directorytype8) | Yes  | Type of the user directory.             |
-| callback | AsyncCallback&lt;string&gt;      | Yes  | Callback invoked to return the user directory obtained.|
+| callback | AsyncCallback&lt;string&gt;      | Yes  | Callback used to return the user directory obtained.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -416,6 +472,12 @@ Obtains a user directory. This API uses a promise to return the result.
 | Type            | Description            |
 | ---------------- | ---------------- |
 | Promise\<string> | Promise used to return the user directory obtained.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -456,7 +518,7 @@ Obtains albums. This API uses an asynchronous callback to return the result.
 | Name  | Type                                        | Mandatory| Description                       |
 | -------- | -------------------------------------------- | ---- | --------------------------- |
 | options  | [MediaFetchOptions](#mediafetchoptions7)     | Yes  | Options for fetching albums.               |
-| callback | AsyncCallback&lt;Array<[Album](#album7)>&gt; | Yes  | Callback invoked to return the albums.|
+| callback | AsyncCallback&lt;Array<[Album](#album7)>&gt; | Yes  | Callback used to return the albums.|
 
 **Example**
 
@@ -503,6 +565,12 @@ Obtains albums. This API uses a promise to return the result.
 | -------------------------------- | ------------- |
 | Promise<Array<[Album](#album7)>> | Promise used to return the albums.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -540,6 +608,12 @@ Call this API when you no longer need to use the APIs in the **MediaLibrary** in
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -567,6 +641,12 @@ Call this API when you no longer need to use the APIs in the **MediaLibrary** in
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -591,7 +671,13 @@ Stores a media asset. This API uses an asynchronous callback to return the URI o
 | Name     | Type                                   | Mandatory  | Description                     |
 | -------- | ------------------------------------- | ---- | ----------------------- |
 | option   | [MediaAssetOption](#mediaassetoption) | Yes   | Media asset option.                |
-| callback | AsyncCallback&lt;string&gt;           | Yes   | Callback invoked to return the URI of the media resource saved.|
+| callback | AsyncCallback&lt;string&gt;           | Yes   | Callback used to return the URI of the media resource saved.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -636,6 +722,12 @@ Stores a media asset. This API uses a promise to return the URI of the media ass
 | --------------------- | ---------------------------- |
 | Promise&lt;string&gt; | Promise used to return the URI of the media asset saved.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -671,9 +763,15 @@ Starts image preview, with the first image to preview specified. This API can be
 
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | Yes   | Images to preview. You can preview a single image (**file://**) or all online images (**https://**).|
+| images   | Array&lt;string&gt;       | Yes   | Images to preview. You can preview a local image (**file://**) or all online images (**https://**).|
 | index    | number                    | Yes   | Index of the first image to preview.                              |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                       |
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -715,8 +813,14 @@ Starts image preview. This API can be used to preview the first local image (**f
 
 | Name     | Type                       | Mandatory  | Description                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| images   | Array&lt;string&gt;       | Yes   | Images to preview. You can preview a single image (**file://**) or all online images (**https://**).|
+| images   | Array&lt;string&gt;       | Yes   | Images to preview. You can preview a local image (**file://**) or all online images (**https://**).|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                       |
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -766,6 +870,12 @@ Starts image preview, with the first image to preview specified. This API can be
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -807,7 +917,13 @@ Starts media selection. This API uses an asynchronous callback to return the URI
 | Name     | Type                                      | Mandatory  | Description                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | option   | [MediaSelectOption](#mediaselectoption)  | Yes   | Media selection option.                             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback invoked to return the URIs of the selected media assets.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the URIs of the selected media assets.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -850,6 +966,12 @@ Starts media selection. This API uses a promise to return the URIs of the select
 | Type                                | Description                                      |
 | ---------------------------------- | ---------------------------------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the selected media assets.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -924,7 +1046,13 @@ Checks whether this file asset is a directory. This API uses an asynchronous cal
 
 | Name     | Type                          | Mandatory  | Description                 |
 | -------- | ---------------------------- | ---- | ------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result. The value **true** means the file asset is a directory; the value **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means the file asset is a directory; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -969,6 +1097,12 @@ Checks whether this file asset is a directory. This API uses a promise to return
 | Type                    | Description                          |
 | ---------------------- | ---------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the file asset is a directory; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -1015,6 +1149,12 @@ Commits the modification on the file metadata to the database. This API uses an 
 | -------- | ------------------------- | ---- | ----- |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -1057,6 +1197,12 @@ Commits the modification on the file metadata to the database. This API uses a p
 | ------------------- | ---------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -1096,7 +1242,13 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the FD of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the FD of the file opened.                           |
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -1143,6 +1295,12 @@ Opens this file asset. This API uses a promise to return the result.
 | --------------------- | ------------- |
 | Promise&lt;number&gt; | Promise used to return the FD of the file opened.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -1181,6 +1339,12 @@ Closes a file. This API uses an asynchronous callback to return the result.
 | -------- | ------------------------- | ---- | ----- |
 | fd       | number                    | Yes   | FD of the file to close.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -1239,6 +1403,12 @@ Closes a file. This API uses a promise to return the result.
 | ------------------- | ---------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -1286,7 +1456,13 @@ Obtains the thumbnail of this file asset. This API uses an asynchronous callback
 
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes   | Callback invoked to return the PixelMap of the thumbnail.|
+| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes   | Callback used to return the PixelMap of the thumbnail.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -1331,7 +1507,13 @@ Obtains the file thumbnail of the given size. This API uses an asynchronous call
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
 | size     | [Size](#size8)                      | Yes   | Size of the thumbnail.           |
-| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes   | Callback invoked to return the PixelMap of the thumbnail.|
+| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes   | Callback used to return the PixelMap of the thumbnail.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -1384,6 +1566,12 @@ Obtains the file thumbnail of the given size. This API uses a promise to return 
 | ----------------------------- | --------------------- |
 | Promise&lt;image.PixelMap&gt; | Promise used to return the PixelMap of the thumbnail.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -1429,6 +1617,12 @@ Favorites or unfavorites this file asset. This API uses an asynchronous callback
 | ---------- | ------------------------- | ---- | ---------------------------------- |
 | isFavorite | boolean                   | Yes   | Operation to perform. The value **true** means to favorite the file asset, and **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                             |
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -1480,6 +1674,12 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 | ------------------- | ---------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -1522,7 +1722,13 @@ Checks whether this file asset is favorited. This API uses an asynchronous callb
 
 | Name     | Type                          | Mandatory  | Description         |
 | -------- | ---------------------------- | ---- | ----------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result. The value **true** means the file asset is favorited; the value **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means the file asset is favorited; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -1567,6 +1773,12 @@ Checks whether this file asset is favorited. This API uses a promise to return t
 | Type                    | Description                |
 | ---------------------- | ------------------ |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the file asset is favorited; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -1614,6 +1826,12 @@ Files in the trash are not actually deleted. You can set **isTrash** to **false*
 | -------- | ------------------------- | ---- | --------- |
 | isTrash  | boolean                   | Yes   | Whether to move the file asset to the trash.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.    |
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -1667,6 +1885,12 @@ Files in the trash are not actually deleted. You can set **isTrash** to **false*
 | ------------------- | ---------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -1709,7 +1933,13 @@ Checks whether this file asset is in the trash. This API uses an asynchronous ca
 
 | Name     | Type                          | Mandatory  | Description             |
 | -------- | ---------------------------- | ---- | --------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result. The value **true** means the file is in the trash; the value **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** means the file is in the trash; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -1754,6 +1984,12 @@ Checks whether this file asset is in the trash. This API uses a promise to retur
 | Type                 | Description                  |
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise used to return the result. The value **true** means the file is in the trash; the value **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -1805,6 +2041,12 @@ Obtains the total number of files in the result set.
 | ------ | -------- |
 | number | Returns the total number of files obtained.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -1840,6 +2082,12 @@ Checks whether the cursor is in the last row of the result set.
 | Type     | Description                                |
 | ------- | ---------------------------------- |
 | boolean | Returns **true** if the cursor is in the last row of the result set; returns **false** otherwise.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -1879,6 +2127,12 @@ Releases and invalidates this **FetchFileResult** instance. After this instance 
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -1911,7 +2165,13 @@ Obtains the first file asset in the result set. This API uses an asynchronous ca
 
 | Name  | Type                                         | Mandatory| Description                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------- |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes  | Callback invoked to return the first **FileAsset** object in the result set.|
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes  | Callback used to return the first **FileAsset** object in the result set.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -1954,6 +2214,12 @@ Obtains the first file asset in the result set. This API uses a promise to retur
 | --------------------------------------- | -------------------------- |
 | Promise&lt;[FileAsset](#fileasset7)&gt; | Promise used to return the first **FileAsset** object in the result set.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -1994,7 +2260,13 @@ Obtains the next file asset in the result set. This API uses an asynchronous cal
 
 | Name   | Type                                         | Mandatory| Description                                     |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callbacke | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes  | Callback invoked to return the next **FileAsset** object in the result set.|
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes  | Callback used to return the next **FileAsset** object in the result set.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -2043,6 +2315,12 @@ Obtains the next file asset in the result set. This API uses a promise to return
 | --------------------------------------- | ----------------- |
 | Promise&lt;[FileAsset](#fileasset7)&gt; | Promise used to return the next **FileAsset** object in the result set.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -2086,7 +2364,13 @@ Obtains the last file asset in the result set. This API uses an asynchronous cal
 
 | Name  | Type                                         | Mandatory| Description                       |
 | -------- | --------------------------------------------- | ---- | --------------------------- |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes  | Callback invoked to return the last **FileAsset** object in the result set.|
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes  | Callback used to return the last **FileAsset** object in the result set.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -2129,6 +2413,12 @@ Obtains the last file asset in the result set. This API uses a promise to return
 | --------------------------------------- | ----------------- |
 | Promise&lt;[FileAsset](#fileasset7)&gt; | Promise used to return the last **FileAsset** object in the result set.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -2169,7 +2459,13 @@ Obtains a file asset with the specified index in the result set. This API uses a
 | Name      | Type                                      | Mandatory  | Description                |
 | -------- | ---------------------------------------- | ---- | ------------------ |
 | index    | number                                   | Yes   | Index of the file to obtain. The value starts from 0 and must be smaller than the **count** value of the result set.    |
-| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes   | Callback invoked to return the **FileAsset** object with the specified index obtained.|
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes   | Callback used to return the **FileAsset** object with the specified index obtained.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -2218,6 +2514,12 @@ Obtains a file asset with the specified index in the result set. This API uses a
 | --------------------------------------- | ----------------- |
 | Promise&lt;[FileAsset](#fileasset7)&gt; | Promise used to return the **FileAsset** object with the specified index obtained.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -2257,7 +2559,13 @@ Obtains all the file assets in the result set. This API uses an asynchronous cal
 
 | Name      | Type                                      | Mandatory  | Description                  |
 | -------- | ---------------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback&lt;Array&lt;[FileAsset](#fileasset7)&gt;&gt; | Yes   | Callback invoked to return all the **FileAsset** objects in the result reset.|
+| callback | AsyncCallback&lt;Array&lt;[FileAsset](#fileasset7)&gt;&gt; | Yes   | Callback used to return all the **FileAsset** objects in the result reset.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -2301,6 +2609,12 @@ Obtains all the file assets in the result set. This API uses a promise to return
 | Type                                    | Description                 |
 | ---------------------------------------- | --------------------- |
 | Promise&lt;Array&lt;[FileAsset](#fileasset7)&gt;&gt; | Promise used to return all the **FileAsset** objects in the result reset.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -2369,6 +2683,12 @@ Commits the modification on the album attributes to the database.
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -2411,6 +2731,12 @@ Commits the modification on the album attributes to the database.
 | ------------------- | ------------ |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
+
 **Example**
 
 ```ts
@@ -2451,7 +2777,13 @@ Obtains the file assets in this album. This API uses an asynchronous callback to
 
 | Name  | Type                                               | Mandatory| Description                               |
 | -------- | --------------------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | Yes  | Callback invoked to return the file retrieval result set of the album.|
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | Yes  | Callback used to return the file retrieval result set of the album.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -2497,7 +2829,13 @@ Obtains the file assets in this album based on specified conditions. This API us
 | Name  | Type                                               | Mandatory| Description                               |
 | -------- | --------------------------------------------------- | ---- | ----------------------------------- |
 | options  | [MediaFetchOptions](#mediafetchoptions7)            | Yes  | Options for fetching the files.                     |
-| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | Yes  | Callback invoked to return the file retrieval result set of the album.|
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | Yes  | Callback used to return the file retrieval result set of the album.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 
@@ -2553,6 +2891,12 @@ Obtains the file assets in this album based on specified conditions. This API us
 | Type                                         | Description                     |
 | --------------------------------------------- | ------------------------- |
 | Promise<[FetchFileResult](#fetchfileresult7)> | Promise used to return the file retrieval result set of the album.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 8000001 | This API is no longer supported. | 
 
 **Example**
 

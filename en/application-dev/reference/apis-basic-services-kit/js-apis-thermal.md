@@ -32,7 +32,7 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-t
 
 | ID  | Error Message   |
 |---------|---------|
-| 4800101 | If connecting to the service failed. |
+| 4800101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example**
@@ -68,7 +68,7 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-t
 
 | ID  | Error Message   |
 |---------|---------|
-| 4800101 | If connecting to the service failed. |
+| 4800101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example**
@@ -104,7 +104,7 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-t
 
 | ID  | Error Message   |
 |---------|---------|
-| 4800101 | If connecting to the service failed. |
+| 4800101 | Failed to connect to the service. |
 
 **Example**
 
