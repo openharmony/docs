@@ -65,7 +65,7 @@
       }
       OH_Asset_FreeResultSet(&resultSet);
    }
-```
+   ```
 
 ### 查询单条关键资产属性
 
