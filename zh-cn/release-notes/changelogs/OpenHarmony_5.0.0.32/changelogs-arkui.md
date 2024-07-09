@@ -379,7 +379,7 @@ struct Example {
 }
 ```
 
-## cl.arkui.10 文本测算接口MeasureOptions入参对象fontSize参数默认单位实现修正
+## cl.arkui.10 文本计算接口fontSize参数默认单位实现修正
 
 **访问级别**
 
@@ -387,18 +387,17 @@ struct Example {
 
 **变更原因**
 
-fontSize参数在文档描述中number类型默认单位是fp,实际实现是vp。
+fontSize参数在文档描述中number类型默认单位是fp，实际实现是vp。
 
 **变更影响**
 
-该变更为不兼容变更。
+系统设置显示和亮度下字体大小使用标准字体，该变更为兼容变更，变更前后文本计算接口返回结果相同。
 
-系统设置显示和亮度下字体大小使用默认的标准档，变更前后文本测算接口返回结果相同。
+系统设置显示和亮度下字体大小使用特大字体，该变更为不兼容变更。
 
-调整系统设置显示和亮度下字体大小标准档为特大档，文本测算接口变更前后行为如下表所示
-| 变更前 | 变更后 |
-| --- | --- |
-| measureText接口fontSize传入number类型值获取到的文本测算宽度结果小于实际fp单位fontSize文本测算宽度。 measureTextSize接口fontSize传入number类型值获取到的文本测算宽度高度结果均小于实际fp单位fontSize文本测算宽度高度。| measureText接口fontSize传入number类型值获取到的文本测算宽度结果等于实际fp单位fontSize文本测算宽度。 measureTextSize接口fontSize传入number类型值获取到的文本测算宽度高度结果等于实际fp单位fontSize文本测算宽度高度。 |
+变更前：measureText接口的fontSize参数传入number类型数值，获取到的文本计算宽度小于实际文本显示所需宽度。
+
+变更后：measureText接口的fontSize参数传入number类型数值，获取到的文本计算宽度等于实际文本显示所需宽度。
 
 **起始API Level**
 
@@ -414,11 +413,41 @@ measureText和measureTextSize接口。
 
 **适配指导**
 
-变更前测算接口fontSize参数number类型默认单位实现为vp,调整系统设置显示和亮度下字体大小后测算接口的返回值无变化。
+若在Text组件上，fontSize设置的是vp类型字号，则在measureText测算接口将fontSize的number类型参数改为string类型，传入vp类型字号参数。
+```
+import { MeasureText } from '@kit.ArkUI'
 
-若Text组件上fontSize设置的是vp类型字号，则在测算接口把number类型fontSize参数改为string类型显式传入vp类型字号参数即可。
+@Entry
+@Component
+struct Index {
+  @State text: string = "Hello world"
+  //变更前
+  @State textWidth: number = MeasureText.measureText({
+    textContent: this.text,
+    fontSize: 24
+  })
+  //变更后
+  @State textWidth2: number = MeasureText.measureText({
+    textContent: this.text,
+    fontSize: '24vp'
+  })
 
-若Text组件上fontSize设置的是number类型值，则无需适配，此次变更后fontSize参数number类型默认单位实现修正为文档说明的fp，得到的测算结果就是字体大小调整后文本显示实际所需宽高。
+  build() {
+    Row() {
+      Column() {
+        //被计算文本
+        Text(this.text).fontSize('24vp')
+        Text(`The width of '24vp Hello World': ${this.textWidth}`)
+        Text(`The another width of '24vp Hello World': ${this.textWidth2}`)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+若在Text组件上，fontSize设置的是fp类型字号则无需适配，测算接口fontSize参数传入number类型数值和Text组件上使用的字号单位是一致的。
 
 ## cl.arkui.11 光标默认样式变更
 
@@ -477,7 +506,7 @@ measureText和measureTextSize接口。
 
 变更后：自定义文本选择菜单点击“更多”后展开菜单去除内置的置灰项分享翻译搜索。
 
-使用[示例](../../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectionMenu.md#示例)，变更前后对比效果，如下表所示：
+变更前后对比效果，如下表所示：
 
 | 变更前 | 变更后 |
 | --- | --- |
