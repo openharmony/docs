@@ -21,7 +21,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
 
 ## How to Develop
 
-1. Declare the **ohos.permission.APPROXIMATELY_LOCATION** permission. For details, see [Applying for Location Permissions](#applying-for-location-permissions).
+1. Declare the **ohos.permission.APPROXIMATELY_LOCATION** permission. For details, see [Applying for Location Permissions](#location-permission-guidelines).
 
 2. Import the **geoLocationManager**, **wantAgent**, and **BusinessError** modules.
    
