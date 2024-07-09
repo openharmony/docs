@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import { AttributeUpdater } from '@ohos.arkui.modifier'
+import { AttributeUpdater } from '@kit.ArkUI'
 ```
 
 >  **使用说明：**
@@ -75,7 +75,7 @@ AttributeUpdater首次设置给组件时提供的样式。
 
 ```ts
 // xxx.ets
-import { AttributeUpdater } from '@ohos.arkui.modifier'
+import { AttributeUpdater } from '@kit.ArkUI'
 
 class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
   initializeModifier(instance: ButtonAttribute): void {
@@ -124,7 +124,7 @@ get attribute(): T | undefined
 
 ```ts
 // xxx.ets
-import { AttributeUpdater } from '@ohos.arkui.modifier'
+import { AttributeUpdater } from '@kit.ArkUI'
 
 class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
   initializeModifier(instance: ButtonAttribute): void {
@@ -171,7 +171,7 @@ updateConstructorParams: C
 
 ```ts
 // xxx.ets
-import { AttributeUpdater } from '@ohos.arkui.modifier'
+import { AttributeUpdater } from '@kit.ArkUI'
 
 class MyTextModifier extends AttributeUpdater<TextAttribute, TextInterface> {
   initializeModifier(instance: TextAttribute) {
