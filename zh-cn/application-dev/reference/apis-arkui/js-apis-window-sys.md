@@ -3715,3 +3715,72 @@ try {
   console.error(`HideWindowWithCustomAnimation error code: ${error.code}, message: ${error.message}` );
 }
 ```
+
+## ExtensionWindowAttribute<sup>12+</sup>
+
+扩展窗口的属性
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 值 | 说明         |
+| ---------- | - ---- | ----------- |
+| SYSTEM_WINDOW  | 0 | 系统窗口。|
+| SUB_WINDOW  | 1 | 子窗口。|
+
+## SystemWindowOptions<sup>12+</sup>
+
+系统窗口创建参数。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 参数名 | 类型                      | 必填 | 说明       |
+| ------ | ------------------------- | ---- | ---------- |
+| windowType   | [WindowType](#windowtype7) | 是   | 窗口类型。无默认类型，不配置会导致窗口创建失败。 |
+
+## ExtensionWindowConfig<sup>12+</sup>
+
+扩展窗口创建配置。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 参数名 | 类型                      | 必填 | 说明       |
+| ------ | ------------------------- | ---- | ---------- |
+| windowName   | string | 是   | 窗口名。 |
+| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute12) | 是   | 窗口的属性。 |
+| windowRect   | [Rect](js-apis-window.md#rect7) | 是   | 窗口矩形。 |
+| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | 当windowAttribute配置为SUB_WINDOW时必填   | 创建子窗口参数。 |
+| systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions12) | 当windowAttribute配置为SYSTEM_WINDOW时必填   | 创建系统窗口参数。 |
+
+**示例：**
+```ts
+import UIServiceExtensionAbility from '@ohos.app.ability.UIServiceExtensionAbility';
+import window from '@ohos.window';
+
+export default class MyServiceExtAbility extends UIServiceExtensionAbility {
+  onWindowWillCreate(extensionWindowConfig: window.ExtensionWindowConfig) {
+    let rect: window.Rect = {left:100, top:100, width:2000, height:2000};
+    //创建子窗
+    extensionWindowConfig.windowName = 'sub_window';
+    extensionWindowConfig.windowAttribute = window.ExtensionWindowAttribute.SUB_WINDOW;
+    extensionWIndowConfig.windowRect = rect;
+    extensionWIndowConfig.subWindowOptions = {
+      title: 'sub_window_title',
+      decorEnabled: true,
+      isModel: false
+    }
+    //创建系统窗
+    extensionWindowConfig.windowName = 'system_window';
+    extensionWindowConfig.windowAttribute = window.ExtensionWindowAttribute.SYSTEM_WINDOW;
+    extensionWIndowConfig.windowRect = rect;
+    extensionWIndowConfig.systemWindowOptions = {
+      windowType: window.windowType.TYPE_GLOBAL_SEARCH
+    }
+  }
+}
+```
