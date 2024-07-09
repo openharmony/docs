@@ -271,6 +271,36 @@ path.cubicTo(10, 10, 10, 10, 15, 15);
 path.reset();
 ```
 
+### getLength<sup>12+</sup>
+
+getLength(forceClosed: boolean): number
+
+用于获取路径长度。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名| 类型  | 必填| 说明     |
+| ----- | ------ | ---- | --------- |
+| forceClosed  | boolean | 是  | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。|
+
+**返回值：**
+
+| 类型  | 说明 |
+| ------ | ---- |
+| number | 路径长度。|
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D'
+let path = new drawing.Path();
+path.arcTo(20, 20, 180, 180, 180, 90);
+let len = path.getLength(false);
+console.info("path length = " + len);
+```
+
 ## Canvas
 
 承载绘制内容与绘制状态的载体。
