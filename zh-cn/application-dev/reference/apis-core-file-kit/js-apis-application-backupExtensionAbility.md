@@ -54,7 +54,47 @@ Extension生命周期回调，在执行备份数据时回调，由开发者提�
     }
   }
   ```
+### onBackupEx
 
+onBackupEx(backupInfo: string): string | Promise<string>;
+
+备份恢复框架增加扩展参数，允许应用备份、恢复时传递参数给应用
+onBackupEx与onBackup互斥，如果重写onBackupEx，则优先调用onBackupEx。
+onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串，则会尝试调用onBackup。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名           | 类型                            | 必填 | 说明                          |
+|---------------| ------------------------------- | ---- |-----------------------------|
+| backupInfo    |string | 否   | 扩展恢复数据的特殊处理接口中三方应用需要传递的包信息。 |
+
+**示例：**
+
+  ```ts
+  import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
+
+  class BackupExt extends BackupExtension {
+    async onBackupEx(backupInfo: string): string {
+      console.log(`onBackupEx ok`);
+      let info = "app diy info";
+      return info;
+    }
+  }
+  ```
+
+```ts
+  import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
+
+  class BackupExt extends BackupExtension {
+    async onBackupEx(backupInfo: string): Promise<string> {
+      console.log(`onBackupEx ok`);
+      let info = "app diy info";
+      return Promise.resolve(info);
+    }
+  }
+  ```
 
 ### onRestore
 
