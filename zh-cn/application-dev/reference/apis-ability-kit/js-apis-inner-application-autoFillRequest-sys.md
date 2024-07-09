@@ -77,7 +77,8 @@ onSuccess(response: FillResponse): void
 
 **错误码：**
 
-  以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 202  | Permission denied, non-system app called system api. |
@@ -169,7 +170,8 @@ onFailure(): void
 
 **错误码：**
 
- 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 202 | Permission denied, non-system app called system api. |
@@ -260,7 +262,8 @@ onCancel(fillContent?: string): void
 
 **错误码：**
 
-  以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 202  | Permission denied, non-system app called system api. |
@@ -353,6 +356,7 @@ setAutoFillPopupConfig(autoFillPopupConfig: AutoFillPopupConfig ): void
 **错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 202  | Permission denied, non-system app called system api. |
@@ -472,6 +476,8 @@ onSuccess(): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 202 | Permission denied, non-system app called system api. |
@@ -554,6 +560,8 @@ onFailure(): void
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
