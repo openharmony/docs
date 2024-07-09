@@ -104,6 +104,7 @@
             hilog.info(0x0000, TAG, "createPixelMap failed");
             return null;
           }
+          this.originalImage = pixmap;
           fileIo.closeSync(file);
           return pixmap;
         } catch(e) {
@@ -227,6 +228,7 @@ struct Index {
         hilog.info(0x0000, TAG, "createPixelMap failed");
         return null;
       }
+      this.editedImage = pixmap;
       fileIo.closeSync(file);
       return pixmap;
     } catch(e) {
