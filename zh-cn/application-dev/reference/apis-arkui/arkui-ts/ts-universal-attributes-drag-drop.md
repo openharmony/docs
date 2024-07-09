@@ -400,7 +400,7 @@ struct Example {
 dragPreviewOptions属性中ImageModifier参数使用方法用例。
 ```ts
 // xxx.ets
-import { ImageModifier } from '@ohos.arkui.modifier'
+import { ImageModifier } from '@kit.ArkUI'
 
 @Entry
 @Component
