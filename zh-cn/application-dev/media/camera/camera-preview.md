@@ -9,8 +9,8 @@
 1. 导入camera接口，接口中提供了相机相关的属性和方法，导入方法如下。
      
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 创建Surface。
@@ -79,7 +79,10 @@
     
   ```ts
   function onPreviewOutputFrameStart(previewOutput: camera.PreviewOutput): void {
-    previewOutput.on('frameStart', () => {
+    previewOutput.on('frameStart', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Preview frame started');
     });
   }
@@ -89,7 +92,10 @@
     
   ```ts
   function onPreviewOutputFrameEnd(previewOutput: camera.PreviewOutput): void {
-    previewOutput.on('frameEnd', () => {
+    previewOutput.on('frameEnd', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Preview frame ended');
     });
   }
