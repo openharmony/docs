@@ -1,12 +1,13 @@
-# Image Effect Development (C/C++)
+# Using ImageEffect to Edit Images
 
 ## When to Use
+
 The **ImageEffect** class provides a series of APIs for editing an image. You can use the APIs to implement various filter effects on images of different input types (pixel map, native window, native buffer, or URI).
 With the native APIs provided by **ImageEffect**, you can:
 
-* Add a filter or filter chain, set an input image, and make the filter effective on the image.
-* Customize a filter.
-* Use a system defined filter.
+- Add a filter or filter chain, set an input image, and make the filter effective on the image.
+- Customize a filter.
+- Use a system defined filter.
 
 ## **Available APIs**
 
@@ -17,6 +18,7 @@ For details about the APIs, see [ImageEffect](../../reference/apis-image-kit/_im
 **Adding Dynamic Link Libraries**
 
 Add the following libraries to **CMakeLists.txt**.
+
 ```txt
 target_link_libraries(entry PUBLIC
     libace_ndk.z.so
@@ -45,7 +47,7 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     // Create an ImageEffect instance, with the alias set to ImageEdit.
     OH_ImageEffect *imageEffect = OH_ImageEffect_Create("ImageEdit");
     ```
-    
+
 2. Add a filter.
 
     ```c++
@@ -57,7 +59,7 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     ImageEffect_Any value = { .dataType = ImageEffect_DataType::EFFECT_DATA_TYPE_FLOAT, .dataValue.floatValue = 50.f };
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_SetValue(filter, OH_EFFECT_FILTER_INTENSITY_KEY, &value);
     ```
-    
+
 3. Set the data to be processed.
 
     **Scenario 1: Set the OH_PixelmapNative input type.**
@@ -77,7 +79,7 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     **Scenario 2: Set the OH_NativeBuffer input type.**
 
     For details about how to use OH_NativeBuffer, see [Native Buffer Development (C/C++)](../../graphics/native-buffer-guidelines.md).
-    
+
     ```c++
     // Set an input native buffer.
     errorCode = OH_ImageEffect_SetInputNativeBuffer(imageEffect, inputNativeBuffer);
@@ -89,7 +91,7 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     ```
 
     **Scenario 3: Set the URI input type.**
-    
+
     ```c++
     // Set an input URI.
     errorCode = OH_ImageEffect_SetInputUri(imageEffect, inputUri);
@@ -106,58 +108,58 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     For details about how to use the **\<XComponent>**, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
     For details about how to use the native window module, see [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md).
     For details about how to use the camera, see [Camera Preview (C/C++)](../camera/native-camera-preview.md).
-    
+
     (1) Add an **\<XComponent>** to the .ets file.
-    
-        ```ts
-        XComponent({ 
-            id: 'xcomponentId', 
-            type: 'surface',
-            controller: this.mXComponentController, 
-            libraryname: 'entry'
-        })
-        .onLoad(() => {
-            // Obtain the surface ID of the <XComponent>.
-            this.mSurfaceId = this.mXComponentController.getXComponentSurfaceId()
-    
-            // Obtain the input surface ID.
-            this.mSurfaceId = imageEffect.getSurfaceId(this.mSurfaceId)
-    
-            // Call the camera API to start preview and transfer the input surface ID to the camera framework.
-            // ...
-        })
-        .width('100%')
-        .height('100%')
-        ```
+
+     ```ts
+     XComponent({ 
+         id: 'xcomponentId', 
+         type: 'surface',
+         controller: this.mXComponentController, 
+         libraryname: 'entry'
+     })
+     .onLoad(() => {
+         // Obtain the surface ID of the <XComponent>.
+         this.mSurfaceId = this.mXComponentController.getXComponentSurfaceId()
+ 
+         // Obtain the input surface ID.
+         this.mSurfaceId = imageEffect.getSurfaceId(this.mSurfaceId)
+ 
+         // Call the camera API to start preview and transfer the input surface ID to the camera framework.
+         // ...
+     })
+     .width('100%')
+     .height('100%')
+     ```
 
     (2) Implement imageEffect.getSurfaceId at the native C++ layer.
-      
-        ```c++
-        // Create a NativeWindow instance based on the surface ID. Note that the instance must be released by calling OH_NativeWindow_DestoryNativeWindow when it is no longer needed.
-        uint64_t outputSurfaceId;
-        std::istrstream iss(outputSurfaceIdStr);
-        issue >> outputSurfaceId;
-        OHNativeWindow *outputNativeWindow = nullptr;
-        int32_t res = OH_NativeWindow_CreateNativeWindowFromSurfaceId(outputSurfaceId, &outputNativeWindow);
-        CHECK_AND_RETURN_LOG(res == 0, "OH_NativeWindow_CreateNativeWindowFromSurfaceId fail!");
-        
-        // Set an output surface.
-        ImageEffect_ErrorCode errorCode = OH_ImageEffect_SetOutputSurface(imageEffect, outputNativeWindow);
-        CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputSurface fail!");
-        
-        // Obtain the input surface. Note that the obtained inputNativeWindow instance must be released by calling OH_NativeWindow_DestoryNativeWindow when it is no longer needed.
-        OHNativeWindow *inputNativeWindow = nullptr;
-        errorCode = OH_ImageEffect_GetInputSurface(imageEffect, &inputNativeWindow);
-        CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_GetInputSurface fail!");
-        
-        // Obtain the surface ID from the inputNativeWindow instance.
-        uint64_t inputSurfaceId = 0;
-        res = OH_NativeWindow_GetSurfaceId(inputNativeWindow, &inputSurfaceId);
-        CHECK_AND_RETURN_LOG(res == 0, "OH_NativeWindow_GetSurfaceId fail!");
-        
-        // Convert the surface ID to a string and return the string.
-        std::string inputSurfaceIdStr = std::to_string(inputSurfaceId);
-        ```
+
+     ```c++
+     // Create a NativeWindow instance based on the surface ID. Note that the instance must be released by calling OH_NativeWindow_DestoryNativeWindow when it is no longer needed.
+     uint64_t outputSurfaceId;
+     std::istrstream iss(outputSurfaceIdStr);
+     issue >> outputSurfaceId;
+     OHNativeWindow *outputNativeWindow = nullptr;
+     int32_t res = OH_NativeWindow_CreateNativeWindowFromSurfaceId(outputSurfaceId, &outputNativeWindow);
+     CHECK_AND_RETURN_LOG(res == 0, "OH_NativeWindow_CreateNativeWindowFromSurfaceId fail!");
+     
+     // Set an output surface.
+     ImageEffect_ErrorCode errorCode = OH_ImageEffect_SetOutputSurface(imageEffect, outputNativeWindow);
+     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputSurface fail!");
+     
+     // Obtain the input surface. Note that the obtained inputNativeWindow instance must be released by calling OH_NativeWindow_DestoryNativeWindow when it is no longer needed.
+     OHNativeWindow *inputNativeWindow = nullptr;
+     errorCode = OH_ImageEffect_GetInputSurface(imageEffect, &inputNativeWindow);
+     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_GetInputSurface fail!");
+     
+     // Obtain the surface ID from the inputNativeWindow instance.
+     uint64_t inputSurfaceId = 0;
+     res = OH_NativeWindow_GetSurfaceId(inputNativeWindow, &inputSurfaceId);
+     CHECK_AND_RETURN_LOG(res == 0, "OH_NativeWindow_GetSurfaceId fail!");
+     
+     // Convert the surface ID to a string and return the string.
+     std::string inputSurfaceIdStr = std::to_string(inputSurfaceId);
+     ```
 
 4. Start the image effector.
 
@@ -184,7 +186,7 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     ```
 
 7. Destroy the **ImageEffect** instance.
-   
+
     ```c++
     // Release the ImageEffect instance.
     errorCode = OH_ImageEffect_Release(imageEffect);
@@ -251,7 +253,8 @@ To implement and register a custom filter, perform the following steps:
         }
     };
     ```
-You can implement the **Render** API in two scenarios.
+
+    You can implement the **Render** API in two scenarios.
 
     **Scenario 1: The custom algorithm can directly modify the pixel data in info (for example, the brightness filter).**
 
@@ -414,3 +417,4 @@ You can implement the **Render** API in two scenarios.
     // Release virtual memory resources by filter names.
     OH_EffectFilter_ReleaseFilterNames();
     ```
+
