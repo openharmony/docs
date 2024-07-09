@@ -1,5 +1,5 @@
 # PhotoEditorExtensionContext
-PhotoEditorExtensionContext是PhotoEditorExtensionAbility的上下文，继承自ExtensionContext，提供PhotoEditorExtensionAbility的相关配置信息以及保存图片等。
+PhotoEditorExtensionContext是PhotoEditorExtensionAbility的上下文，继承自ExtensionContext，提供PhotoEditorExtensionAbility的相关配置信息以及保存图片接口。
 > - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口仅可在Stage模型下使用。
 > - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
@@ -12,22 +12,24 @@ import { common } from '@kit.AbilityKit';
 ## PhotoEditorExtensionContext.saveEditedContentWithUri
 saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
 传入编辑过的图片的沙箱地址并保存。
+
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
 
 **参数：**
 | 参数名  | 类型  | 必填  | 说明  |
 | ------------ | ------------ | ------------ | ------------ |
-| uri | string  | 是  | 编辑过的图片的沙箱地址。  |
+| uri | string  | 是  | 编辑后图片的[uri](../apis-core-file-kit/js-apis-file-fileuri.md)。  |
 
 **返回值：**
 |  类型 | 说明  |
 | ------------ | ------------ |
-| Promise\<AbilityResult\> | Promise对象，保存的结果，结果的want.uri存有编辑过的图片地址。  |
+| Promise\<AbilityResult\> | Promise对象，返回编辑后的图片地址。  |
 
+以下错误码详细介绍参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)
 **错误码：**
 |  错误码ID | 错误信息  |
 | ------------ | ------------ |
-| 401  | Params error. Possible causes: 1.Mandatory parameters are left unspecified.2.Incorrect parameter types.  |
+| 401  | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.  |
 | 29600001  | Internal error. |
 | 29600002  |  Image input error. |
 | 29600003  |  Image too big. |
@@ -35,8 +37,8 @@ saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
 **示例：**
 ```ts
 import { common, UIExtensionContentSession, Want } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
-import fs from '@ohos.file.fs';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { image } from '@kit.ImageKit';
 
 const TAG = '[ExamplePhotoEditorAbility]';
@@ -59,14 +61,14 @@ struct Index {
             imagePackerApi.packing(this.originalImage, packOpts).then((data: ArrayBuffer) => {
               let context = getContext(this) as common.PhotoEditorExtensionContext;
               let filePath = context.filesDir + "/edited.jpg";
-              let file: fs.File | undefined;
+              let file: fileIo.File | undefined;
               try{
-                file = fs.openSync(filePath, fs.OpenMode.READ_WRITE
-                | fs.OpenMode.CREATE | fs.OpenMode.TRUNC);
-                let writeLen = fs.writeSync(file.fd, data);
+                file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE
+                | fileIo.OpenMode.CREATE | fileIo.OpenMode.TRUNC);
+                let writeLen = fileIo.writeSync(file.fd, data);
                 hilog.info(0x0000, TAG, "write data to file succeed and size is:"
                   + writeLen);
-                fs.closeSync(file);
+                fileIo.closeSync(file);
                 context.saveEditedContentWithUri(filePath).then
                   (data => {
                     hilog.info(0x0000, TAG,
@@ -75,7 +77,7 @@ struct Index {
               } catch (e) {
                 hilog.info(0x0000, TAG, `writeImage failed:${e}`);
               } finally {
-                fs.close(file);
+                fileIo.close(file);
               }
             }).catch((error: BusinessError) => {
               hilog.error(0x0000, TAG,
@@ -91,13 +93,14 @@ struct Index {
 ## PhotoEditorExtensionContext.saveEditedContentWithImage
 saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>
 传入编辑过的图片的PixMap对象并保存。
+
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
 
 **参数：**
 | 参数名  | 类型  | 必填  | 说明  |
 | ------------ | ------------ | ------------ | ------------ |
-| pixeMap | image.PixelMap  | 是  | 编辑过的图片image.PixelMap。  |
-| option  | image.PackingOption  |  是 | 设置打包参数。  |
+| pixeMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是  | 编辑过的图片image.PixelMap。  |
+| option  | [image.PackingOption](..//apis-image-kit/js-apis-image.md#packingoption)  |  是 | 设置打包参数。  |
 
 **返回值：**
 |  类型 | 说明  |
@@ -105,6 +108,7 @@ saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption)
 | Promise\<AbilityResult\> | Promise对象，保存的结果，结果的want.uri存有编辑过的图片地址。  |
 
 **错误码：**
+以下错误码详细介绍参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)
 |  错误码ID | 错误信息  |
 | ------------ | ------------ |
 | 401  | Params error. Possible causes: 1.Mandatory parameters are left unspecified.2.Incorrect parameter types.  |
@@ -115,8 +119,7 @@ saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption)
 **示例：**
 ```ts
 import { common, UIExtensionContentSession, Want } from '@kit.AbilityKit';
-import hilog from '@ohos.hilog';
-import fs from '@ohos.file.fs';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { image } from '@kit.ImageKit';
 
 const TAG = '[ExamplePhotoEditorAbility]';
