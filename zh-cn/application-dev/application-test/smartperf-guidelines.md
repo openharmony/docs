@@ -82,7 +82,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 | -screen |否| 采集屏幕分辨率和刷新率               |
 | -d    |否| 采集DDR                 |
 | -sections|否| 设置分段采集          |
-| -nav  |否| 采集页面导航信息，必须设置应用包名               |
 
 ### 启停采集命令参数
 
@@ -140,10 +139,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   -screen        get screen resolution
   -OUT           set csv output path
   -d             get device DDR information
-  -nav           get page navigation info
   example:
   SP_daemon -N 20 -c -g -t -p -r -net -snapshot -d
-  SP_daemon -N 20 -PKG ohos.samples.ecg -c -g -t -p -f -r -net -snapshot -d -nav
+  SP_daemon -N 20 -PKG ohos.samples.ecg -c -g -t -p -f -r -net -snapshot -d
   SP_daemon -start -c
   SP_daemon -stop
   SP_daemon -screen
@@ -305,7 +303,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入应用内
+  >- 使用该命令采集时需进入被测应用内
   >- 该命令集成了历史版本-m的数据（arktsHeapPss、gpuPss、graphicPss...）
 
   - 采集2次截图
@@ -372,7 +370,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
   >**说明**
   >
-  >- 使用该命令采集时需进入应用内，滑动或切换页面
+  >- 使用该命令采集时需进入被测应用内，滑动或切换页面
+  >- 在智能刷新率情况下，刷新率是实时变化的（一秒内可能存在多次变化），refreshrate取值是采集时刻（timestamp）的刷新率
   >
  
   - 采集10次指定图层帧率
@@ -412,31 +411,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   command exec finished!
   #
   ```
-
-  - 采集1次页面navigation信息
-
-  ```
-  # SP_daemon -N 1 -PKG ohos.samples.ecg -nav
-
-  order:0 timestamp=1719993861090
-  order:1 navPathName=about_device
-
-  command exec finished!
-  #
-  ```
-  >**说明**
-  >
-  >- 使用该命令采集必须设置应用包名
-  >
-  >- navPathName的值，是路由操作API文档中页面跳转pushPath设置的name值
-     示例：如果通过页面的name去跳转
-     this.pageStack.pushPath({name:"about_device",param:"PageOne Param"})
-     navPathName的值就是about_device
-  >
-  >- 路由操作API文档请参考：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-navigation-navigation-V5#%E9&A1%B5%E9%9D%A2%E8%B3%B7%B3%E8%BD%AC
-  >
-  >- 注意：非navigation跳转的页面navPathName的值就是No Navagation Info
-
   - 全量采集示例1，采集整机信息，包括cpu、gpu、温度、电流、电压、内存信息、DDR信息、网络速率、屏幕截图
  
   ```
@@ -477,10 +451,10 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   #
   ```
 
-  - 全量采集示例2，采集指定应用信息，包括cpu、gpu、温度、电流、电压、fps、内存信息、DDR信息、网络速率、屏幕截图、页面navigation信息
+  - 全量采集示例2，采集指定应用信息，包括cpu、gpu、温度、电流、电压、fps、内存信息、DDR信息、网络速率、屏幕截图
  
   ```
-  # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot -nav
+  # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
 
   order:0 timestamp=1705042018276
   order:1 ProcAppName=ohos.samples.ecg
@@ -534,13 +508,16 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   order:147 networkDown=7893
   order:148 networkUp=1546
   order:149 capture=data/local/tmp/capture/screenCap_1711190737580.png
-  order:150 navPathName=about_device
 
   ...
 
   command exec finished!
   #
   ```
+  >**说明**
+  >
+  >- 使用该命令采集时需进入被测应用内
+  >
 
   - 采集当前界面fps
 
@@ -597,13 +574,21 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >
   >- 该命令需单独采集，不跟随全量信息一起采集，采集结果不写入data.csv
 
-  - 启停服务（开始采集）
+  - 启停服务
 
   ```
   # SP_daemon -start -c
   SP_daemon Collection begins
   command exec finished!
   #
+  
+
+  # SP_daemon -stop
+  SP_daemon Collection ended
+  Output Path: data/local/tmp/smartperf/1/t_index_info_csv
+  command exec finished!
+  #
+
   ```
   >**说明**
   >
@@ -611,22 +596,11 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >
   >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -p -f -r -d -net -snapshot
   >
-  >- 查看与导出方式同(输出采集结果和查看采集结果)
-
-  - 启停服务（结束采集）
-
-  ```
-  # SP_daemon -stop
-  SP_daemon Collection ended
-  Output Path: data/local/tmp/smartperf/1/t_index_info_csv
-  command exec finished!
-  #
-  ```
-  >**说明**
+  >- 先执行start开始采集命令，执行完后操作设备或应用，最后执行stop结束采集命令
   >
-  >- 启停服务文件路径为：data/local/tmp/smartperf/1/t_index_info.csv
+  >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告
   >
-  >- 查看与导出方式同下
+  >- 示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D：\
 
   - 获取屏幕分辨率
 
@@ -720,4 +694,4 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     | arktsHeapPss      | 使用的arkts内存大小    |单位：KB|
     | nativeHeapPss     | 使用的native内存大小   |单位：KB|
     | stackPss          | 使用的栈内存大小       |单位：KB|
-    | timeStamp         | 当前时间戳            |对应采集时间|
+    | timeStamp         | 当前时间戳            |对应采集时间| 
