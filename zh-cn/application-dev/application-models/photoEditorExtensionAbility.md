@@ -61,7 +61,7 @@
 4. [PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的onStartContentEditing中加载了入口页面文件pages/Index.ets，并将session、uri、实例对象等保存在LocalStorage中。
 
     ```ts
-    import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
+    import { common } from '@kit.AbilityKit';
     import { UIExtensionContentSession, Want } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { fileIo } from '@kit.CoreFileKit';
@@ -165,7 +165,7 @@
         .backgroundColor(Color.Pink)
         .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
       }
-    }}
+    }
 
     ```
 1. 在工程Module对应的module.json5配置文件中注册[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)，type标签需要设置为"photoEditor"，srcEntry标签表示当前[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)组件所对应的代码路径。
