@@ -377,3 +377,153 @@ struct Example {
         }
     }
 }
+```
+
+## cl.arkui.10 文本计算接口fontSize参数默认单位实现修正
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+fontSize参数在文档描述中number类型默认单位是fp，实际实现是vp。
+
+**变更影响**
+
+系统设置显示和亮度下字体大小使用标准字体，该变更为兼容变更，变更前后文本计算接口返回结果相同。
+
+系统设置显示和亮度下字体大小使用特大字体，该变更为不兼容变更。
+
+变更前：measureText接口的fontSize参数传入number类型数值，获取到的文本计算宽度小于实际文本显示所需宽度。
+
+变更后：measureText接口的fontSize参数传入number类型数值，获取到的文本计算宽度等于实际文本显示所需宽度。
+
+**起始API Level**
+
+measureText:9，measureTextSize:10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+measureText和measureTextSize接口。
+
+**适配指导**
+
+若在Text组件上，fontSize设置的是vp类型字号，则在measureText测算接口将fontSize的number类型参数改为string类型，传入vp类型字号参数。
+```
+import { MeasureText } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  @State text: string = "Hello world"
+  //变更前
+  @State textWidth: number = MeasureText.measureText({
+    textContent: this.text,
+    fontSize: 24
+  })
+  //变更后
+  @State textWidth2: number = MeasureText.measureText({
+    textContent: this.text,
+    fontSize: '24vp'
+  })
+
+  build() {
+    Row() {
+      Column() {
+        //被计算文本
+        Text(this.text).fontSize('24vp')
+        Text(`The width of '24vp Hello World': ${this.textWidth}`)
+        Text(`The another width of '24vp Hello World': ${this.textWidth2}`)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+若在Text组件上，fontSize设置的是fp类型字号则无需适配，测算接口fontSize参数传入number类型数值和Text组件上使用的字号单位是一致的。
+
+## cl.arkui.11 光标默认样式变更
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+默认样式变更。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：光标小圆圈默认直径为20vp。
+
+变更后：光标小圆圈默认直径为16vp。
+
+变更前后对比效果，如下表所示
+| 变更前 | 变更后 |
+| --- | --- |
+|![caretsquare_before](figures/caretsquareradius_before.PNG) |![caretsquare_after](figures/caretsquareradius_after.PNG)  |
+
+**起始API Level**
+
+不涉及公开接口。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+涉及光标的组件：TextInput、TextArea、Search、RichEditor。
+
+**适配指导**
+
+默认效果变更，无需适配。
+
+## cl.arkui.12 高级组件SelectionMenu默认样式变更
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+默认样式变更。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：自定义文本选择菜单点击“更多”后展开菜单会显示内置的置灰项分享翻译搜索。
+
+变更后：自定义文本选择菜单点击“更多”后展开菜单去除内置的置灰项分享翻译搜索。
+
+变更前后对比效果，如下表所示：
+
+| 变更前 | 变更后 |
+| --- | --- |
+|![selectionmenu_before](figures/selectionmenumoreclicked_before.png) |![selectionmenu_after](figures/selectionmenumoreclecked_after.png)  |
+
+**起始API Level**
+
+不涉及公开接口。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+高级组件SelectionMenu。
+
+**适配指导**
+
+默认效果变更，无需适配。
