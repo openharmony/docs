@@ -854,7 +854,7 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundlesToBackup | string[] | 是   | 需要备份的应用名称的数组。 |
-| infos           | string[] | 否   | 备份时各应用所需扩展信息的数组, bundlesToBackup根据索引一一对应, 从API version 12开始支持。|
+| infos           | string[] | 否   | 备份时各应用所需扩展信息的数组, 与bundlesToBackup根据索引一一对应, 从API version 12开始支持。|
 
 **返回值：**
 
@@ -928,16 +928,17 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
     try {
       let backupApps: Array<string> = [
         "com.example.hiworld",
+        "com.example.myApp"
       ];
       await sessionBackup.appendBundles(backupApps);
       console.info('appendBundles success');
-      // 携带扩展参数
+      // 携带扩展参数, 其中infos,details和外层的type节点为固定节点
       let infos: Array<string> = [
         `
          {
           "infos":[
             {
-              "details": [
+              "details": [ // 对应com.example.hiworld的info
                 {
                   "detail": [
                     {
@@ -951,9 +952,27 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
               "type":"unicast"
             }
           ]
+         },
+         {
+          "details": [ // 对应com.example.myApp的info
+              {
+                "detail": [
+                    {
+                      "isSameDevice": "",
+                      "deviceType": ""
+                    }
+                  ]，
+                  "type": "encryption_info"
+                }
+              ],
+              "type":"unicast"
+            }
+          ]
          }
-        `
-      ]
+        ]
+      }
+      `
+     ]
       await sessionBackup.appendBundles(backupApps, infos);
       console.info('appendBundles success');
     } catch (error) {
