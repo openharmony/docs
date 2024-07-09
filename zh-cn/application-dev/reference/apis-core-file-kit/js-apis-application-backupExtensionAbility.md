@@ -83,11 +83,12 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
   ```
   ### onRestoreEx
 
-onRestoreEx(bundleVersion: BundleVersion, bundleInfo: string): string | Promise<string>;
+onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string | Promise\<string>\;
 
 Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作，支持异步操作。
 onRestoreEx与onRestore互斥，如果重写onRestoreEx，则优先调用onRestoreEx。
 onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符串，则会尝试调用onRestore。
+onRestoreEx的返回值为Json格式，使用方法见示例代码。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -96,26 +97,59 @@ onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符�
 | 参数名        | 类型                            | 必填 | 说明                           |
 | ------------- | ------------------------------- | ---- | ------------------------------ |
 | bundleVersion | [BundleVersion](#bundleversion) | 是   | 恢复时应用数据所在的版本信息。 |
-| bundleInfo |string | 否   | 其他需要传递的包信息。 |
+| restoreInfo |string | 否   | 预留字段，应用恢复过程中需要的扩展参数 |
+
+> **说明：**
+>
+> 异步步处理业务场景中，推荐使用示例如下。
 
 **示例：**
 
-  ```ts
+   ```ts
   import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
+  interface ErrorInfo {
+    type: string,
+    errorCode: number,
+    errorInfo: string
+  }
 
   class BackupExt extends BackupExtension {
     // 异步实现
-    async onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): Promise<string> {
+    async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
-      let info = "app diy info";
-      return info;
+      let errorInfo: ErrorInfo = {
+        type: "ErrorInfo",
+        errorCode: 0,
+        errorInfo: "app diy error info"
+      }
+      return JSON.stringify(errorInfo);
     }
+  }
+  ```
+> **说明：**
+>
+> 同步步处理业务场景中，推荐使用示例如下。
 
+>**示例：**
+
+```ts
+  import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
+  interface ErrorInfo {
+    type: string,
+    errorCode: number,
+    errorInfo: string
+  }
+
+  class BackupExt extends BackupExtension {
     // 同步实现
-    onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): string {
+    onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): string {
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
-      let info = "app diy info";
-      return info;
+      let errorInfo: ErrorInfo = {
+        type: "ErrorInfo",
+        errorCode: 0,
+        errorInfo: "app diy error info"
+      }
+      return JSON.stringify(errorInfo);
     }
   }
   ```
