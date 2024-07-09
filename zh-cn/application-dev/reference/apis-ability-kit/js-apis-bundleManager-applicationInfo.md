@@ -40,6 +40,7 @@
 | multiAppMode<sup>12+</sup> | [MultiAppMode](#multiappmode12)    | 是   | 否   | 应用多开模式。|
 | appIndex<sup>12+</sup>    | number    | 是   | 否   | 应用包的分身索引标识，仅在分身应用中生效。 |
 | installSource<sup>12+</sup>    | string    | 是   | 否   | 应用程序的安装来源。pre-installed表示应用为预置应用，格式为包名表示应用由包名对应的应用安装，unknown表示应用安装来源未知。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| releaseType<sup>12+</sup>    | string    | 是   | 否   | 标识应用打包时使用的SDK的发布类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## MultiAppMode<sup>12+</sup>
 表示应用多开模式。
