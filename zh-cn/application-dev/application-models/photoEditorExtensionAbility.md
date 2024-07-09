@@ -6,7 +6,7 @@
 
 ![](figures/photoEditorExtensionAbility.png)
 
-[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)通过[PhotoEditorExtensionContext](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionContext.md)和UIExtensionContentSession提供相关能力。本文描述中称被启动的[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)为目标方，称通过StartAbilityByType启动[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的为调用方。
+[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)通过[PhotoEditorExtensionContext](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionContext.md)和UIExtensionContentSession提供相关能力。本文描述中称被启动的[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)为目标方，称通过startAbilityByType启动[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的为调用方。
 ## 开发PhotoEditorExtensionAbility目标方
 ### 生命周期
 [PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)提供了onCreate、onForeground、onBackground、onDestroy、onStartContentEditing生命周期回调，根据需要重写对应的回调方法。
