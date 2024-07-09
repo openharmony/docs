@@ -18,6 +18,8 @@ onCreate(): void
 
 PhotoEditorExtensionAbility创建是回调，执行初始化业务逻辑操作。
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
 
 **示例：**
@@ -38,6 +40,8 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 onStartContentEditing(uri: string, want: Want, session: UIExtensionContentSession): void
 
 当PhotoEditorExtensionAbility界面内容对象创建后调用，可以执行读取原始图片、加载page等操作。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
 
@@ -68,6 +72,8 @@ onForeground(): void
 
 PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility从后台转到前台时触发。
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
 
 **示例：**
@@ -89,6 +95,8 @@ onBackground(): void
 
 PhotoEditorExtensionAbility生命周期回调，当PhotoEditorExtensionAbility从前台转到后台时触发。
 
+**模型约束：** 此接口仅可在Stage模型下使用
+
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
 
 **示例：**
@@ -109,6 +117,8 @@ export default class ExamplePhotoEditorAbility extends PhotoEditorExtensionAbili
 onDestroy(): void | Promise<void>
 
 PhotoEditorExtensionAbility生命周期回调，在销毁时回调，执行资源清理等操作。 在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
+
+**模型约束：** 此接口仅可在Stage模型下使用
 
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
 
