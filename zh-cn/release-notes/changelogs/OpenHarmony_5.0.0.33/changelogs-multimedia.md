@@ -28,4 +28,8 @@
 
 **适配指导**
 
-请停止使用@ohos.multimedia.medialibrary模块。请使用@ohos.file.photoAccessHelper模块替代，使用指南请参考 [PhotoAccessHelper模块](../../../application-dev/media/medialibrary/photoAccessHelper-overview.md)
+开发者需停止使用@ohos.multimedia.medialibrary模块，并使用@ohos.file.photoAccessHelper模块替代实现相关功能。
+
+单个接口的替代关系可参考[原medialibrary接口文档](../../../application-dev/reference/apis-media-library-kit/js-apis-medialibrary.md)。
+
+新接口使用指南请参考 [Media Library Kit使用指导](../../../application-dev/media/medialibrary/photoAccessHelper-overview.md)。
