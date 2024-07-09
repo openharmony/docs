@@ -1,38 +1,36 @@
-# Application Development
+# OpenHarmony应用开发文档
 
-- Development
-  - Audio Kit
-    - [Introduction to Audio Kit](onlyfortest/media/audio/audio-kit-intro.md)
-    - Audio Playback
-      - [Audio Playback Overview](onlyfortest/media/audio/audio-playback-overview.md)
+- 开发
+  - Audio Kit（音频服务）
+    - [Audio Kit简介](onlyfortest/media/audio/audio-kit-intro.md)
+    - 音频播放
+      - [音频播放开发概述](onlyfortest/media/audio/audio-playback-overview.md)
       <!--Del-->
-      - [Using TonePlayer for Audio Playback (for System Applications Only)](onlyfortest/media/audio/using-toneplayer-for-playback.md)
+      - [使用TonePlayer开发音频播放功能(仅对系统应用开放)](onlyfortest/media/audio/using-toneplayer-for-playback.md)
       <!--DelEnd-->
-      - [Using OHAudio for Audio Playback (C/C++)](onlyfortest/media/audio/using-ohaudio-for-playback.md)
+      - [使用OHAudio开发音频播放功能(C/C++)](onlyfortest/media/audio/using-ohaudio-for-playback.md)
       <!--Del-->
-      - [Distributed Audio Playback (for System Applications Only)](onlyfortest/media/audio/distributed-audio-playback.md)
+      - [分布式音频播放(仅对系统应用开放)](onlyfortest/media/audio/distributed-audio-playback.md)
       <!--DelEnd-->
-  - Media Kit
-    - [Introduction to Media Kit](onlyfortest/media/media/media-kit-intro.md)
-    - Video Playback and Recording
-      - [Video Playback](onlyfortest/media/media/video-playback.md)
-      - [Video Recording](onlyfortest/media/media/video-recording.md)
+  - Media Kit（媒体服务）
+    - [Media Kit简介](onlyfortest/media/media/media-kit-intro.md)
+    - 视频播放和录制
+      - [视频播放](onlyfortest/media/media/video-playback.md)
+      - [视频录制](onlyfortest/media/media/video-recording.md)
       <!--Del-->
-      - [Screen Capture (for System Applications Only) (C/C++)](onlyfortest/media/media/avscreen-capture.md)
+      - [屏幕录制(仅对系统应用开放)(C/C++)](onlyfortest/media/media/avscreen-capture.md)
       <!--DelEnd-->
-- API References
-  - Audio Kit API Reference
-    - ArkTS APIs
-      - [@ohos.multimedia.audio (Audio Management)](onlyfortest/reference/apis-audio-kit/js-apis-audio.md)
-      - [@ohos.multimedia.audioHaptic (Audio-Haptic)](onlyfortest/reference/apis-audio-kit/js-apis-audioHaptic.md)
+- API参考<!--api-h1-test>
+  - Audio Kit API参考<!--audo-kit-api-ref-->
+    - ArkTS API<!--universal-keystore-arkts-api-->
+      - [@ohos.multimedia.audio (音频管理)](onlyfortest/reference/apis-audio-kit/js-apis-audio.md)
+      - [@ohos.multimedia.audioHaptic (音振协同)](onlyfortest/reference/apis-audio-kit/js-apis-audioHaptic.md)
       <!--Del-->
-      - [@ohos.multimedia.audio (Audio Management) (System API)](onlyfortest/reference/apis-audio-kit/js-apis-audio-sys.md)
-      - [@ohos.multimedia.systemSoundManager (System Sound Management) (System API)](onlyfortest/reference/apis-audio-kit/js-apis-systemSoundManager-sys.md)
+      - [@ohos.multimedia.audio (音频管理)(系统接口)](onlyfortest/reference/apis-audio-kit/js-apis-audio-sys.md)
+      - [@ohos.multimedia.systemSoundManager (系统声音管理)(系统接口)](onlyfortest/reference/apis-audio-kit/js-apis-systemSoundManager-sys.md)
       - multimedia
-        - [ringtonePlayer (Ringtone Player) (System API)](onlyfortest/reference/apis-audio-kit/js-apis-inner-multimedia-ringtonePlayer-sys.md)
-        - [systemTonePlayer (System Alert Tone Player) (System API)](onlyfortest/reference/apis-audio-kit/js-apis-inner-multimedia-systemTonePlayer-sys.md)
+        - [ringtonePlayer (铃声播放器)(系统接口)](onlyfortest/reference/apis-audio-kit/js-apis-inner-multimedia-ringtonePlayer-sys.md)
+        - [systemTonePlayer (系统提示音播放器)(系统接口)](onlyfortest/reference/apis-audio-kit/js-apis-inner-multimedia-systemTonePlayer-sys.md)
       <!--DelEnd-->
-    - Error Codes
-      - [Media Error Codes](onlyfortest/reference/apis-media-kit/errorcode-media.md)
-
- <!--no_check--> 
+    - 错误码<!--error-code--apis>
+      - [Media错误码](onlyfortest/reference/apis-media-kit/errorcode-media.md)
