@@ -3768,18 +3768,18 @@ export default class MyServiceExtAbility extends UIServiceExtensionAbility {
     //创建子窗
     extensionWindowConfig.windowName = 'sub_window';
     extensionWindowConfig.windowAttribute = window.ExtensionWindowAttribute.SUB_WINDOW;
-    extensionWIndowConfig.windowRect = rect;
-    extensionWIndowConfig.subWindowOptions = {
+    extensionWindowConfig.windowRect = rect;
+    extensionWindowConfig.subWindowOptions = {
       title: 'sub_window_title',
       decorEnabled: true,
-      isModel: false
+      isModal: false
     }
     //创建系统窗
     extensionWindowConfig.windowName = 'system_window';
     extensionWindowConfig.windowAttribute = window.ExtensionWindowAttribute.SYSTEM_WINDOW;
-    extensionWIndowConfig.windowRect = rect;
-    extensionWIndowConfig.systemWindowOptions = {
-      windowType: window.windowType.TYPE_GLOBAL_SEARCH
+    extensionWindowConfig.windowRect = rect;
+    extensionWindowConfig.systemWindowOptions = {
+      windowType: window.WindowType.TYPE_GLOBAL_SEARCH
     }
   }
 }
