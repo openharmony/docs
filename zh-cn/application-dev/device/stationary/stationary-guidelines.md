@@ -70,7 +70,7 @@
 
    ```ts
    import { stationary } from '@kit.MultimodalAwarenessKit';
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    let reportLatencyNs = 1000000000;
    try {
       stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
@@ -86,7 +86,7 @@
 
    ```ts
    import { stationary } from '@kit.MultimodalAwarenessKit';
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    try {
       stationary.once('still', (data) => {
          console.log('data='+ JSON.stringify(data));
@@ -101,7 +101,7 @@
 
    ```ts
    import { stationary } from '@kit.MultimodalAwarenessKit';
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    try {
       stationary.off('still', stationary.ActivityEvent.ENTER, (data) => {
          console.log('data='+ JSON.stringify(data));
