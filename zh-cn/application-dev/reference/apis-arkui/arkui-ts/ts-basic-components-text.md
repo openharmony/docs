@@ -1061,6 +1061,8 @@ struct TextExample6 {
 }
 ```
 
+![](figures/text7.png)
+
 ### 示例7
 
 bindSelectionMenu，onTextSelectionChange及closeSelectionMenu使用示例
