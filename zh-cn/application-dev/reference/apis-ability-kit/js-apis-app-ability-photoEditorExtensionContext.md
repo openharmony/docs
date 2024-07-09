@@ -25,8 +25,9 @@ saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
 | ------------ | ------------ |
 | Promise\<AbilityResult\> | Promise对象，返回编辑后的图片地址。  |
 
-以下错误码详细介绍参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)
 **错误码：**
+
+以下错误码详细介绍参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)
 |  错误码ID | 错误信息  |
 | ------------ | ------------ |
 | 401  | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.  |
@@ -108,6 +109,7 @@ saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption)
 | Promise\<AbilityResult\> | Promise对象，保存的结果，结果的want.uri存有编辑过的图片地址。  |
 
 **错误码：**
+
 以下错误码详细介绍参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)
 |  错误码ID | 错误信息  |
 | ------------ | ------------ |
