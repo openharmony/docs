@@ -238,7 +238,7 @@ async function Demo() {
 
 convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
 
-通过image下的PixelMap创建出一个senableImage下的PixelMap，同步返回PixelMap结果。原PixelMap的方法均不可再调用。
+通过image下的PixelMap创建出一个sendableImage下的PixelMap，同步返回PixelMap结果。原PixelMap的方法均不可再调用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -280,7 +280,7 @@ async function Demo() {
 
 convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 
-通过senableImage下的PixelMap创建出一个image下的PixelMap，同步返回PixelMap结果。原PixelMap的方法均不可再调用。
+通过sendableImage下的PixelMap创建出一个image下的PixelMap，同步返回PixelMap结果。原PixelMap的方法均不可再调用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
