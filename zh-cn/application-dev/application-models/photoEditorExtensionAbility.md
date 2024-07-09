@@ -1,6 +1,9 @@
 # 拉起图片编辑类应用编辑图片
+## 使用场景
+开发者可以通过实现[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)来达到给其他应用提供图片编辑能力的目的。其他应用通过[startAbilityByType](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionstartabilitybytype11)拉起的图片编辑面板可以找到此应用。如用户在图库APP中点击编辑图片，图库APP可以选择通过startAbilityByType拉起图片编辑面板，由用户选择实现了PhotoEditorExtensionAbility的图片编辑应用完成图片的编辑。
+
 ## 概述
-[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)是PhotoEditor类型的ExtensionAbility组件，提供了在应用中图片编辑的能力。
+[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)是PhotoEditor类型的[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)组件，提供了在应用中图片编辑的能力。
 
 [PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)需要与startAbilityByType一起配合使用，开发者可以通过startAbilityByType拉起图片编辑面板，面板上将展示基于[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)实现的应用。[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)会在独立于拉起方的进程中运行，完成其页面的布局和渲染。流程示意图如下：
 
@@ -21,7 +24,7 @@
 开发者在实现一个[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)目标方时，需要在DevEco Studio工程中手动新建一个[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)，具体步骤如下：
 1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录并可命名为[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)。
 2. 在PhotoEditorUIExtAbility目录，右键选择“New > File”，新建一个.ets文件并可命名为PhotoEditorUIExtAbility.ets。
-3. 打开PhotoEditorUIExtAbility.ets文件，导入[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的依赖包，自定义类继承[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)并实现onCreate、onForeground、onBackground、onDestroy和onStartContentEditing生命周期回调。
+3. 打开PhotoEditorUIExtAbility.ets文件，导入[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的依赖包，自定义类继承[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)并实现onCreate、onForeground、onBackground、onDestroy和onStartContentEditing生命周期回调。在onStartContentEditing中加载入口页面文件pages/Index.ets，并将session、uri、实例对象等保存在LocalStorage中传递给页面。
 
     ```ts
     import { PhotoEditorExtensionAbility,UIExtensionContentSession,Want } from '@kit.AbilityKit';
@@ -58,7 +61,7 @@
     }
 
     ```
-4. [PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的onStartContentEditing中加载了入口页面文件pages/Index.ets，并将session、uri、实例对象等保存在LocalStorage中。
+4. 在page中实现图片编辑功能，图片编辑完成后调用saveEditedContentWithImage保存图片，并将回调结果通过terminateSelfWithResult返回给调用方。
 
     ```ts
     import { common } from '@kit.AbilityKit';
@@ -124,10 +127,11 @@
 
             Button("RotateAndSaveImg").onClick(event => {
               hilog.info(0x0000, TAG, `Start to edit image and save.`);
-
+              // 编辑图片功能实现
               this.originalImage?.rotate(90).then(() => {
                 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
                 try {
+                  // 调用saveEditedContentWithImage保存图片
                   (getContext(this) as common.PhotoEditorExtensionContext).saveEditedContentWithImage(this.originalImage as image.PixelMap,
                     packOpts).then(data => {
                     if (data.resultCode == 0) {
@@ -152,6 +156,7 @@
               hilog.info(0x0000, TAG, `Finish the current editing.`);
 
               let session = storage.get('session') as UIExtensionContentSession;
+              // 关闭并回传修改结果给调用方
               session.terminateSelfWithResult({ resultCode: 0, want: this.newWant });
 
             })).margin({ top: 10 })
@@ -169,7 +174,7 @@
     }
 
     ```
-1. 在工程Module对应的module.json5配置文件中注册[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)，type标签需要设置为"photoEditor"，srcEntry标签表示当前[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)组件所对应的代码路径。
+5. 在工程Module对应的module.json5配置文件中注册[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)，type标签需要设置为"photoEditor"，srcEntry标签表示当前[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)组件所对应的代码路径。
 
     ```json
     {
@@ -264,6 +269,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
 
         Button("selectImg").onClick(event => {
+          // 1、图库中选取图片
           this.photoPickerGetUri().then(uri => {
             hilog.info(0x0000, TAG, "uri: " + uri);
 
@@ -274,6 +280,7 @@ struct Index {
               hilog.info(0x0000, TAG, "file: " + file.fd);
 
               let timeStamp = Date.now();
+              // 2、将用户图片拷贝到应用沙箱路径
               fileIo.copyFileSync(file.fd, context.filesDir + `/original-${timeStamp}.jpg`);
               fileIo.closeSync(file);
 
@@ -296,6 +303,7 @@ struct Index {
               hilog.error(0x0000, TAG, "startAbilityByType:", tip);
             },
             onResult: (result) => {
+              // 5、获取到回调结果中编辑后的图片uri并做对应的处理
               let uri = result.want?.uri ?? "";
               hilog.info(0x0000, TAG, "PhotoEditorCaller result: " + JSON.stringify(result));
               this.readImage(uri).then(imagePixMap => {
@@ -303,9 +311,8 @@ struct Index {
               });
             }
           }
-
+          // 3、将图片转换为图片url，并调用startAbilityByType拉起图片编辑应用面板
           let uri = fileUri.getUriFromPath(this.filePath);
-
           context.startAbilityByType("photoEditor", {
             "ability.params.stream": [uri], // 原始图片的uri,只支持传入一个uri
             "ability.want.params.uriPermissionFlag": wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION // 至少需要分享读权限给到图片编辑面板
