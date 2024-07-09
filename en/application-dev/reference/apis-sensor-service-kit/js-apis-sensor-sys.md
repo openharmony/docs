@@ -184,8 +184,6 @@ Unsubscribes from data of the SAR sensor.
 | type     | [SensorId](#sensorid9).SAR                    | Yes  | Sensor type. The value is fixed at **SensorId.SAR**.                        |
 | callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
-**Error codes**
-
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
 | ID| Error Message                                                    |
