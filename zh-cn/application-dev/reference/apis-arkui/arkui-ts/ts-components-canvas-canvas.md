@@ -45,8 +45,8 @@ Canvas(context: CanvasRenderingContext2D | DrawingRenderingContext, imageAIOptio
 
 ### enableAnalyzer<sup>12+</sup>
 
-设置组件支持AI分析，需要搭配[context](ts-canvasrenderingcontext2d.md)中的[StartImageAnalyzer](ts-canvasrenderingcontext2d.md#startimageanalyzer)和[StopImageAnalyzer](ts-canvasrenderingcontext2d.md#stopimageanalyzer)一起使用。
-不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。
+设置组件支持AI分析，需要搭配[context](ts-canvasrenderingcontext2d.md)中的[StartImageAnalyzer](ts-canvasrenderingcontext2d.md#startimageanalyzer12)和[StopImageAnalyzer](ts-canvasrenderingcontext2d.md#stopimageanalyzer12)一起使用。
+不能和[overlay](ts-universal-attributes-overlay.md#overlay)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
