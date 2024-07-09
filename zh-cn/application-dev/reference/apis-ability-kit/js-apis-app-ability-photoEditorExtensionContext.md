@@ -117,7 +117,7 @@ saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption)
 以下错误码详细介绍参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)
 |  错误码ID | 错误信息  |
 | ------------ | ------------ |
-| 401  | Params error. Possible causes: 1.Mandatory parameters are left unspecified.2.Incorrect parameter types.  |
+| 401  | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.  |
 | 29600001  | Internal error. |
 | 29600002  |  Image input error. |
 | 29600003  |  Image too big. |
