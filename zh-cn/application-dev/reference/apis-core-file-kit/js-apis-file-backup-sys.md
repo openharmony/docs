@@ -945,7 +945,7 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
                       "encryption_symkey": "",
                       "encryption_algname": ""
                     }
-                  ]，
+                  ],
                   "type": "encryption_info"
                 }
               ],
@@ -961,7 +961,7 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
                       "isSameDevice": "",
                       "deviceType": ""
                     }
-                  ]，
+                  ],
                   "type": "encryption_info"
                 }
               ],
