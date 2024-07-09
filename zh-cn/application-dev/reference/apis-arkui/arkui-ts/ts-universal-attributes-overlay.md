@@ -8,7 +8,7 @@
 
 ## overlay
 
-overlay(value: string | CustomBuilder | ComponentContent, options?: { align?: Alignment; offset?: { x?: number; y?: number } })
+overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptions )
 
 在当前组件上，增加遮罩文本或者叠加自定义组件以及ComponentContent作为该组件的浮层。
 
@@ -23,11 +23,31 @@ overlay(value: string | CustomBuilder | ComponentContent, options?: { align?: Al
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value   | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>10+</sup>&nbsp;\| [ComponentContent](../js-apis-arkui-ComponentContent.md)<sup>12+</sup> | 是   | 遮罩文本内容或自定义组件构造函数。<br/>**说明：**<br/>自定义组件作为浮层时，不支持键盘走焦到自定义组件中。 |
-| options | &nbsp;{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{x?:&nbsp;number, y?:&nbsp;number}<br/>} | 否   | 浮层的定位。<br/>-&nbsp;align：设置浮层相对于组件的方位。<br/>-&nbsp;offset：设置浮层基于自身左上角的偏移量。浮层默认处于组件左上角。<br/>**说明：**<br/>两者都设置时效果重叠，浮层相对于组件方位定位后再基于当前位置的左上角进行偏移。 |
+| options | [OverlayOptions](#overlayoptions12) | 否   | 浮层的定位。<br/>**说明：**<br/>需要解析为Json格式。<br/>API version 12之前，options: <br/>{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{x?:&nbsp;number, y?:&nbsp;number}<br/>} |
 
 >  **说明：**
 >
 >  overlay节点不支持onAppear和onDisappear等和节点生命周期相关的事件。
+
+## OverlayOptions<sup>12+</sup>
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                  | 类型                                       | 只读 | 可选  | 说明                                                |
+| --------------------- | -------------------------------------------| --- | -------| --------------------------------------------------- |
+| align<sup>7+</sup>   | [Alignment](ts-appendix-enums.md#alignment) | 否  | 是      |设置浮层相对于组件的方位。<br/>默认值：TopStart         |
+| offset<sup>7+</sup>  | [OverlayOffset](#overlayoffset12)          | 否  | 是     |设置浮层基于自身左上角的偏移量。浮层默认处于组件左上角。 |
+
+> **说明：**
+> 
+> align和offset都设置时，效果重叠，浮层相对于组件方位定位后，再基于当前位置的左上角进行偏移。
+
+## OverlayOffset<sup>12+</sup>
+
+| 名称    | 类型                                                      | 只读 | 可选  | 说明                                                |
+| ------- | ---------------------------------------------------------| ---- | ------| --------------------------------------------------- |
+| x       | number                                                   | 否   | 是    | 横向偏移量                                           |
+| y       | number                                                   | 否   | 是    | 纵向偏移量                                           |
 
 ## 示例
 
