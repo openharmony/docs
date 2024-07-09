@@ -527,3 +527,47 @@ struct Index {
 **适配指导**
 
 默认效果变更，无需适配。
+
+## cl.arkui.13 Svg根节点视窗外图片内容裁剪
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+修正视觉效果以符合Svg标准。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+```
+<svg width="100" height="100" viewBox="0 0 300 300" version="1.1">
+    <defs>
+        <circle id = "circleId" cx="100" cy="50" r="40"  fill="red"/>
+    </defs>
+    <polygon points="220,100 300,210 170,250 123,234" style="fill:#cccccc;stroke:#000000;stroke-width:1"/>
+    <use href="#circleId" x = "300" y= "150" width="50" height="50"/>
+</svg>
+```
+| 变更前 | 变更后 |
+|---------|---------|
+| 绘制内容超出根节点视窗区域会显示 | 绘制内容超出根节点视窗区域不显示 |
+| ![SvgContentBefore](figures/SvgContentBefore.png) | ![SvgContentAfter](figures/SvgContentAfter.png) |
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32 版本开始。
+
+**变更的接口/组件**
+
+涉及的组件：Image、ImageSpan、Canvas。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用显示效果产生影响。
