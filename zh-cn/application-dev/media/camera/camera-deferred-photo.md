@@ -22,12 +22,10 @@
 1. 导入依赖，需要导入相机框架、媒体库、图片相关领域依赖。
 
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import image from '@ohos.multimedia.image';
-   import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-   import fs from '@ohos.file.fs';
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { image } from '@kit.ImageKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
    ```
 
 2. 确定拍照输出流。
