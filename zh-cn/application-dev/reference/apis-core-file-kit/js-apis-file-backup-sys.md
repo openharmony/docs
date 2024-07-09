@@ -327,45 +327,27 @@ onBackupServiceDied : Callback&lt;undefined&gt;
 
 ### onResultReport
 
-onResultReport : AsyncCallback&lt;string&gt;
+onResultReport (bundleName: string, result: string)
 
-回调函数。当应用恢复结束后，如果成功触发回调，返回恢复数量或应用异常信息
+回调函数。当应用备份/恢复结束后，如果成功触发回调，返回应用包名及应用备份/恢复信息（备份/恢复数量或异常信息等）。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
 **返回值：**
 
-| 参数名     | 类型          | 必填 | 说明                                                        |
-| ---------- | ------------- | ---- | ----------------------------------------------------------- |
-| result     | string        | 是   | json格式返回的应用名称及应用信息                                          |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息                        |
-| -------- | ------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
-| 13500003 | Backup or restore timed out     |
-| 13500004 | Application extension death     |
-| 13600001 | IPC error                       |
-| 13900005 | I/O error                       |
-| 13900011 | Out of memory                   |
-| 13900020 | Invalid argument                |
-| 13900025 | No space left on device         |
-| 13900042 | Unknown error                   |
+| 参数名     | 类型   | 必填 | 说明                            |
+| ---------- | ------ | ---- | ------------------------------- |
+| bundleName | string | 是   | 应用包名                        |
+| result     | string | 是   | json格式返回的应用备份/恢复信息 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import backup from '@ohos.file.backup';
 
-  onResultReport: (err: BusinessError, result: string) => {
-    if (err) {
-      console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('onResultReport success, result: ' + result);
+  onResultReport: (bundleName: string, result: string) => {
+    console.info('onResultReport bundleName : ' + bundleName);
+    console.info('onResultReport result : ' + result);
   }
   ```
 
@@ -632,7 +614,7 @@ updateTimer(bundleName: string, timeout: number): void;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName | string | 是   | 需要设置备份或恢复时长的应用名称 |
-| timeout | number | 是   | 备份或恢复的限制时长，单位:ms |
+| timeout | number | 是   | 备份或恢复的限制时长，入参范围(0,3600000]，单位:ms |
 
 **返回值：**
 

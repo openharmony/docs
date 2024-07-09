@@ -78,9 +78,9 @@ CreateModalUIExtension禁止其他组件和非安全窗口遮挡。
 
 **变更影响**
 
-API12变更之前：箭头离宿主节点16vp。
-
-API12变更之后：箭头离宿主节点8vp。
+| 变更前箭头离宿主节点16vp | 变更后箭头离宿主节点8vp |
+|---------|---------|
+|  ![变更前箭头离宿主节点16vp](figures/menu-with-arrow-16vp.png)       |  ![变更后箭头离宿主节点8vp](figures/menu-with-arrow-8vp.png)       |
 
 **起始API Level**
 
@@ -98,39 +98,7 @@ Menu组件。
 
 带箭头菜单离宿主节点的默认安全距离变小，若需要更大的间距，可设置菜单的offset进行调整。
 
-## cl.arkui.4 Menu组件上下文菜单点击关闭行为变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-当前上下文菜单手指按下即关闭，为了更好支持后续交互体验，变更为抬手时关闭。
-
-**变更影响**
-
-API12变更之前：手指按下时，上下文菜单关闭。
-
-API12变更之后：手指按下并抬手，上下文菜单关闭。
-
-**起始API Level**
-
-不涉及API变更
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.32 版本开始。
-
-**变更的接口/组件**
-
-Menu组件。
-
-**适配指导**
-
-菜单关闭行为变更，应用无需适配。
-
-## cl.arkui.5 Grid和List组件onItemDrag接口拖拽出窗口外行为变更
+## cl.arkui.4 Grid和List组件onItemDrag接口拖拽出窗口外行为变更
 **访问级别**
 
 公开接口
@@ -169,7 +137,7 @@ List组件的onItemDragStart、onItemDragMove、onItemDragEnter、onItemDragLeav
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.6 List的constraintSize设置生效
+## cl.arkui.5 List的constraintSize设置生效
 
 **访问级别**
 
@@ -273,7 +241,7 @@ struct ListExample {
 }
 ```
 
-## cl.arkui.7 hideNonSecureWindows接口行为变更
+## cl.arkui.6 hideNonSecureWindows接口行为变更
 
 **访问级别**
 
@@ -315,7 +283,7 @@ hideNonSecureWindows接口。
 
 接口行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.8 AlphabetIndexer组件autoCollapse属性默认值由false改为true
+## cl.arkui.7 AlphabetIndexer组件autoCollapse属性默认值由false改为true
 
 **访问级别**
 
@@ -353,7 +321,65 @@ AlphabetIndexer组件
 
 默认行为变更，默认开启自适应折叠模式，若要关闭自适应折叠模式，可通过设置[autoCollapse](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md#autocollapse11)属性进行适配。
 
-## cl.arkui.9 文本测算接口MeasureOptions入参对象fontSize参数默认单位实现修正
+## cl.arkui.9 RichEditor组件builderSpan支持绑定自定义菜单
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+富文本支持builderSpan绑定自定义菜单。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：右击或长按builderSpan会弹出对RichEditorSpanType.IMAGE类型绑定的自定义菜单。
+
+变更后：新增自定义菜单绑定类型RichEditorSpanType.BUILDER，builderSpan和imageSpan分开绑定和弹出自定义菜单。右击或长按builderSpan不再弹出对RichEditorSpanType.IMAGE类型绑定的自定义菜单，而是弹出对RichEditorSpanType.BUILDER类型绑定的自定义菜单。
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+**变更的接口/组件**
+
+RichEditor组件的RichEditorSpanType接口。
+
+**适配指导**
+
+若开发者需要右击或长按builderSpan时弹出RichEditorSpanType.IMAGE类型的自定义菜单，需要对该自定义菜单绑定RichEditorSpanType.BUILDER类型。
+```ts
+@Entry
+@Component
+struct Example {
+    @Builder
+    menu() {
+        Column() {
+            Text("自定义菜单");
+        }
+    }
+    build() {
+        Column() {
+            RichEditor({controller： new RichEditorController()})
+                // 变更前
+                .bindSelectionMenu(RichEditorSpanType.IMAGE, this.menu(), ResponseType.LongPress)
+
+                // 变更后
+                .bindSelectionMenu(RichEditorSpanType.IMAGE, this.menu(), ResponseType.LongPress)
+                // 绑定RichEditorSpanType.BUILDER类型
+                .bindSelectionMenu(RichEditorSpanType.BUILDER, this.menu(), ResponseType.LongPress)
+        }
+    }
+}
+```
+
+## cl.arkui.10 文本测算接口MeasureOptions入参对象fontSize参数默认单位实现修正
 
 **访问级别**
 
@@ -394,7 +420,7 @@ measureText和measureTextSize接口。
 
 若Text组件上fontSize设置的是number类型值，则无需适配，此次变更后fontSize参数number类型默认单位实现修正为文档说明的fp，得到的测算结果就是字体大小调整后文本显示实际所需宽高。
 
-## cl.arkui.10 光标默认样式变更
+## cl.arkui.11 光标默认样式变更
 
 **访问级别**
 
@@ -433,7 +459,7 @@ measureText和measureTextSize接口。
 
 默认效果变更，无需适配。
 
-## cl.arkui.11 高级组件SelectionMenu默认样式变更
+## cl.arkui.12 高级组件SelectionMenu默认样式变更
 
 **访问级别**
 

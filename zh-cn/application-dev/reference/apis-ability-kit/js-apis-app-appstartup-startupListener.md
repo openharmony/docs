@@ -1,7 +1,7 @@
 # @ohos.app.appstartup.StartupListener
 
 
-本模块提供监听组件初始化的能力。
+本模块提供监听启动任务的能力。
 
 > **说明：**
 >
@@ -19,7 +19,7 @@ import { StartupListener } from '@kit.AbilityKit';
 
 onCompleted?(error: BusinessError\<void\>): void
 
-在所有组件初始化完成时调用。
+在所有启动任务完成时调用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
 
