@@ -213,9 +213,9 @@ selectedBackgroundColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
 
-### selectionMenuOptions<sup>12+</sup>
+### editMenuOptions<sup>12+</sup>
 
-selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
+editMenuOptions(editMenu: EditMenuOptions)
 
 设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
 
@@ -227,7 +227,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 否   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 否   | 扩展菜单选项。 |
 
 ### enterKeyType<sup>12+</sup>
 
@@ -4317,45 +4317,63 @@ export struct Index {
 
 ### 示例22
 
-selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+editMenuOptions 使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct RichEditorExample {
-  richEditorController: RichEditorController = new RichEditorController()
-  @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
-    {
-      content: 'RichEditor扩展1', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'RichEditor扩展2', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'RichEditor扩展3', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'RichEditor扩展4', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    }
-  ]
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
 
-   build(){
-    Column(){
-      RichEditor({ controller: this.richEditorController })
-        .height(200)
-        .borderWidth(1)
-        .borderColor(Color.Red)
-        .selectionMenuOptions(this.menuOptionArray)
-    }
+  onCreateMenu(menuItems: Array<TextMenuItem>) {
+    console.log('menuItems size=' + menuItems.length);
+	menuItems.forEach((value, index) => {
+	  console.log('menuItem' + index + ', id=' + JSON.stringify(value));
+	  })
+	  let extensionMenuItems: Array<TextMenuItem> = [
+	  {
+      content: 'RichEditor扩展1', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension1')
+	  },
+	  {
+      content: 'RichEditor扩展2', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension2')
+	  },
+	  {
+      content: 'RichEditor扩展3', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension3')
+	  },
+	  {
+      content: 'RichEditor扩展4', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension4')
+	  }
+	 ]
+	 return menuItems.concat(extensionMenuItems)
+   }
+   onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange) {
+   if (menuItem.id.equals(TextMenuItemId.of('extension1'))) {
+     console.log('click' + menuItem.content + ', textRange=' + JSON.stringify(textRange))
+     return true;
+   }
+   return false;
+ }
+
+   build() {
+     Row() {
+      RichEditor(this.options )
+        .onReady(() => {
+		  this.controller.addTextSpan("RichEditor扩展")
+		})
+		.editMenuOptions({
+		  onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+		  return this.onCreateMenu(menuItems)
+		},
+		onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+		return this.onMenuItemClicked(menuItem, textRange)
+		}
+	  })
+	  .height(200)
+	  .borderWidth(1)
+	  .borderColor(Color.Red)
+     }
   }
 }
 ```
