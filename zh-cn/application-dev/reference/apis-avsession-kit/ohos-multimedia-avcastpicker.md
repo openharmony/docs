@@ -46,7 +46,8 @@ AVCastPicker()
 
 ## 示例
 
-投播功能的示例说明参考如下。体验完整功能请具体参考[播放类开发指南]()和[通话类开发指南](../../media/avsession/using-switch-call-devices.md)。
+投播功能的示例说明参考如下。
+<!--RP1--><!--RP1End-->
 
 ```ts
 import { AVCastPickerState, AVCastPicker } from '@kit.AVSessionKit';
