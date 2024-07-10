@@ -41,6 +41,8 @@ ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自�
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称   | 类型   | 只读 | 可选 | 说明              |
@@ -52,6 +54,8 @@ ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自�
 join(separator?: string): string
 
 将ConcatArray的所有元素连接成一个字符串，元素之间可以用指定的分隔符分隔。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -87,6 +91,8 @@ let joinedString = concatArray.join('-'); // 返回 "a-b-c"
 slice(start?: number, end?: number): ConcatArray\<T>
 
 返回一个新的ConcatArray，该ConcatArray是原始ConcatArray的切片。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1135,6 +1141,8 @@ array2.extendTo(1, 10); // array内容不变
 concat(...items: ConcatArray\<T>[]): Array\<T>
 
 拼接两个或多个数组。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2369,9 +2377,9 @@ constructor(length: number)
 
 构造函数，用于创建一个指定长度的ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2406,9 +2414,9 @@ constructor(array: ArrayLike\<number> | ArrayBuffer)
 
 构造函数，以ArrayLike或ArkTS ArrayBuffer创建一个ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2452,9 +2460,9 @@ constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 
 构造函数，以ArrayBuffer创建一个ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2487,9 +2495,9 @@ static from(arrayLike: ArrayLike\<number>): TypedArray
 
 从一个ArrayLike或者可迭代对象中创建一个ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2515,9 +2523,9 @@ static from\<T>(arrayLike: ArrayLike\<T>, mapFn: TypedArrayFromMapFn\<T, number>
 
 从一个ArrayLike中创建一个ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名  | 类型   | 必填 | 说明                                        |
@@ -2559,9 +2567,9 @@ static from(iterable: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, nu
 
 从一个可迭代对象中创建一个ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名  | 类型   | 必填 | 说明                                |
@@ -2597,9 +2605,9 @@ copyWithin(target: number, start: number, end?: number): TypedArray
 
 从ArkTS TypedArray指定范围内的元素依次拷贝到目标位置。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2637,9 +2645,9 @@ some(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 
 测试ArkTS TypedArray中的是否存在元素满足指定条件。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2678,9 +2686,9 @@ every(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 
 测试ArkTS TypedArray中的所有元素是否满足指定条件。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2719,9 +2727,9 @@ fill(value: number, start?: number, end?: number): TypedArray
 
 使用特定值填充ArkTS TypedArray指定范围的全部元素。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2760,9 +2768,9 @@ filter(predicate: TypedArrayPredicateFn\<number, TypedArray>): TypedArray
 
 返回一个新ArkTS TypedArray，其包含满足指定条件的所有元素。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2798,9 +2806,9 @@ find(predicate: TypedArrayPredicateFn\<number, TypedArray>): number | undefined
 
 返回ArkTS TypedArray中第一个满足指定条件的元素的值，如果所有元素都不满足，则返回undefined。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2836,9 +2844,9 @@ findIndex(predicate: TypedArrayPredicateFn\<number, TypedArray>): number
 
 返回ArkTS TypedArray中第一个满足指定条件的元素索引，如果所有元素都不满足，则返回-1。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2873,9 +2881,9 @@ forEach(callbackFn: TypedArrayForEachCallback\<number, TypedArray>): void
 
 对ArkTS TypedArray中的每个元素执行提供的回调函数。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2907,9 +2915,9 @@ indexOf(searchElement: number, fromIndex?: number): number
 
 返回在ArkTS TypedArray中给定元素的第一个索引，如果不存在，则返回-1。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2948,9 +2956,9 @@ join(separator?: string): string
 
 将ArkTS TypedArray的所有元素拼接成一个字符串，元素之间使用指定的分隔符分隔。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2985,9 +2993,9 @@ map(callbackFn: TypedArrayMapCallback\<number, TypedArray>): TypedArray
 
 对ArkTS TypedArray中的每个元素应用指定的回调函数，并使用结果创建一个新的ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名    | 类型   | 必填 | 说明                                                 |
@@ -3022,9 +3030,9 @@ reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>): numbe
 
 对ArkTS TypedArray中的每个元素执行归约函数，并返回最终的归约结果。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名     | 类型   | 必填 |  说明     |
@@ -3059,9 +3067,9 @@ reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>, initia
 
 对ArkTS TypedArray中的每个元素执行归约函数，且接收一个初始值作为归约函数首次调用的参数，并返回最终的归约结果。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名    | 类型   | 必填 | 说明                                                 |
@@ -3098,9 +3106,9 @@ reduce\<U>(callbackFn: TypedArrayReduceCallback\<U, number, TypedArray>, initial
 
 对ArkTS TypedArray中的每个元素执行归约函数，且接收一个初始值作为归约函数首次调用的参数，并返回最终的归约结果。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -3137,9 +3145,9 @@ reverse(): TypedArray
 
 反转ArkTS TypedArray。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -3168,9 +3176,9 @@ set(array: ArrayLike\<number>, offset?: number): void
 
 将传入的ArrayLike元素依次写入到指定的起始位置。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名    | 类型   | 必填 | 说明                                                 |
@@ -3200,9 +3208,9 @@ slice(start?: number, end?: number): TypedArray
 
 返回一个新的ArkTS TypedArray对象，其包含原ArkTS TypedArray指定范围的内容。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -3240,9 +3248,9 @@ sort(compareFn?: TypedArrayCompareFn\<number>): TypedArray
 
 对ArkTS TypedArray进行排序，并返回排序后的ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -3279,9 +3287,9 @@ subarray(begin?: number, end?: number): TypedArray
 
 返回一个新的、基于相同ArkTS ArrayBuffer的ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -3318,9 +3326,9 @@ at(index: number): number | undefined
 
 返回指定下标的元素，如果不存在，则返回undefined。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                                         |
@@ -3356,9 +3364,9 @@ includes(searchElement: number, fromIndex?: number): boolean
 
 判断ArkTS TypedArray是否包含特定元素。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                      |
@@ -3396,9 +3404,9 @@ entries(): IterableIterator\<[number, number]>
 
 返回一个新的迭代器对象，该对象包含ArkTS TypedArray中每个元素的键值对。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -3430,9 +3438,9 @@ keys(): IterableIterator\<number>
 
 返回一个新的迭代器对象，该对象包含ArkTS TypedArray中每个元素的键（下标）。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -3464,9 +3472,9 @@ values(): IterableIterator\<number>
 
 返回一个新的迭代器对象，该对象包含ArkTS TypedArray中每个元素的值。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
