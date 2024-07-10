@@ -16,7 +16,7 @@ UIExtensionComponent增加系统应用访问校验。
 
 **起始API Level**
 
-11
+10
 
 **变更发生版本**
 
@@ -253,12 +253,12 @@ CreateModalUIExtension创建的UIExtension可能被其他组件或窗口遮挡�
 
 该变更为不兼容变更。
 
-CreateModalUIExtension增加禁止其他组件遮挡的校验逻辑。
+CreateModalUIExtension增加禁止其他宿主进程组件遮挡的校验逻辑。
 
 CreateModalUIExtension防不安全窗口遮挡的默认行为变更，变更前后行为如下表所示
 | 变更前 | 变更后 |
 | --- | --- |
-| CreateModalUIExtension默认行为为不防不安全窗口遮挡，允许系统应用设置防不安全窗口遮挡 | CreateModalUIExtension默认行为为防不安全窗口遮挡，且不允许取消防遮挡 |
+| CreateModalUIExtension默认行为为不防不安全窗口遮挡，允许自行设置防不安全窗口遮挡 | CreateModalUIExtension默认行为为防不安全窗口遮挡，且不允许取消防遮挡 |
 
 hideNonSecureWindows接口中不安全窗口的定义新增宿主创建的Dialog窗口，变更前后不安全窗口包含的窗口类型如下表所示。
 
@@ -280,7 +280,7 @@ CreateModalUIExtension和hideNonSecureWindows接口。
 
 **适配指导**
 
-CreateModalUIExtension禁止其他组件和非安全窗口遮挡。
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
 ## cl.arkui.7 AlphabetIndexer组件autoCollapse属性默认值由false改为true
 
