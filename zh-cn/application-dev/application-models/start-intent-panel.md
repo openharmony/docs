@@ -88,8 +88,8 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
     });
     ```
     效果示例图：
-
-![示例效果图](./figures/start-navigation-panel.png)
+    
+    ![示例效果图](./figures/start-navigation-panel.png)
 
 ### 目标方开发步骤
 
@@ -224,8 +224,8 @@ export default class EntryAbility extends UIAbility {
     });
     ```
     效果示例图：
-
-![示例效果图](./figures/start-mail-panel.png)
+    
+    ![示例效果图](./figures/start-mail-panel.png)
 
 ### 目标方开发步骤
 1. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
