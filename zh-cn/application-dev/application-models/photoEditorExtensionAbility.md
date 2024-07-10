@@ -1,16 +1,18 @@
 # 拉起图片编辑类应用编辑图片
 ## 使用场景
-开发者可以通过实现[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)来达到给其他应用提供图片编辑能力的目的。其他应用通过[startAbilityByType](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionstartabilitybytype11)拉起的图片编辑面板可以找到此应用。如用户在图库APP中点击编辑图片，图库APP可以选择通过startAbilityByType拉起图片编辑面板，由用户选择实现了PhotoEditorExtensionAbility的图片编辑应用完成图片的编辑。
-
-## 概述
-[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)是PhotoEditor类型的[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)组件，提供了在应用中图片编辑的能力。
-
-[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)需要与startAbilityByType一起配合使用，开发者可以通过startAbilityByType拉起图片编辑面板，面板上将展示基于[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)实现的应用。[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)会在独立于拉起方的进程中运行，完成其页面的布局和渲染。流程示意图如下：
+当应用自身无图片编辑能力但有图片编辑的诉求时，可以通过startAbilityByType拉起图片编辑面板，由用户选择应用完成图片编辑操作。图片编辑类应用通过实现[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)注册到图片编辑面板达到将自身能力对外开放的目的。
+流程示意图如下：
 
 ![](figures/photoEditorExtensionAbility.png)
 
-[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)通过[PhotoEditorExtensionContext](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionContext.md)和UIExtensionContentSession提供相关能力。本文描述中称被启动的[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)为目标方，称通过startAbilityByType启动[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的为调用方。
-## 开发PhotoEditorExtensionAbility目标方
+例如：用户在图库APP中点击编辑图片，图库APP可以通过startAbilityByType拉起图片编辑面板，由用户选择实现了PhotoEditorExtensionAbility的应用完成图片的编辑。
+
+## 概述
+[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)是基于[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)界面嵌入能力，目标应用可以通过PhotoEditorExtensionAbliity构建图片编辑扩展页面。开发者通过实现onStartContentEditing可获取原图，并根据自身需要实现图片的编辑能力。
+
+[PhotoEditorExtensionContext](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionContext.md)是PhotoEditorExtensionAbility的上下文，继承自ExtensionContext，开发者通过saveEditedContentWithImage接口对编辑完成的图片进行保存。
+
+## 图片编辑类应用实现PhotoEditorExtensionAbility
 ### 生命周期
 [PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)提供了onCreate、onForeground、onBackground、onDestroy、onStartContentEditing生命周期回调，根据需要重写对应的回调方法。
 
@@ -21,10 +23,10 @@
 - onStartContentEditing：当[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)界面内容对象创建后调用，可以执行读取原始图片、加载page等操作。
 
 ### 开发步骤
-开发者在实现一个[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)目标方时，需要在DevEco Studio工程中手动新建一个[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)，具体步骤如下：
-1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录并可命名为[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)。
-2. 在PhotoEditorUIExtAbility目录，右键选择“New > File”，新建一个.ets文件并可命名为PhotoEditorUIExtAbility.ets。
-3. 打开PhotoEditorUIExtAbility.ets文件，导入[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的依赖包，自定义类继承[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)并实现onCreate、onForeground、onBackground、onDestroy和onStartContentEditing生命周期回调。在onStartContentEditing中加载入口页面文件pages/Index.ets，并将session、uri、实例对象等保存在LocalStorage中传递给页面。
+在DevEco Studio工程中手动新建一个[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)，具体步骤如下：
+1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录，如PhotoEditorExtensionAbility。
+2. 在PhotoEditorExtensionAbility目录中，右键选择“New > File”，新建一个.ets文件，如PhotoEditorUIExtAbility.ets。
+3. 打开PhotoEditorUIExtAbility.ets文件，导入[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)的依赖包，继承[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)并根据业务需要重写onCreate、onForeground、onBackground、onDestroy和onStartContentEditing生命周期回调。在onStartContentEditing中加载入口页面文件pages/Index.ets，并将session、uri、实例对象等保存在LocalStorage中传递给页面。
 
     ```ts
     import { PhotoEditorExtensionAbility,UIExtensionContentSession,Want } from '@kit.AbilityKit';
@@ -36,6 +38,7 @@
         hilog.info(0x0000, TAG, 'onCreate');
       }
 
+      // 获取图片，加载页面并将需要的参数传递给页面
       onStartContentEditing(uri: string, want: Want, session: UIExtensionContentSession): void {
         hilog.info(0x0000, TAG, `onStartContentEditing want: ${JSON.stringify(want)}, uri: ${uri}`);
 
@@ -90,6 +93,7 @@
         })
       }
 
+      // 根据uri读取图片内容
       async readImageByUri(uri: string): Promise < PixelMap | null > {
         hilog.info(0x0000, TAG, "uri: " + uri);
         let file: fileIo.File | undefined;
@@ -194,7 +198,7 @@
       }
     }
     ```
-## 开发PhotoEditorExtensionAbility调用方
+## 调用方拉起图片编辑类应用编辑图片
 开发者可以在UIAbility或者UIExtensionAbility的页面中通过接口startAbilityByType拉起图片编辑面板，系统将自动查找并在面板上展示基于[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)实现的图片编辑应用，并由用户选择某个应用来完成图片编辑的功能，并最终将编辑的结果返回给到调用方。
 
 ```ts
@@ -216,6 +220,7 @@ struct Index {
   @State editedImage: PixelMap | null = null;
   private filePath: string = "";
 
+  // 根据uri读取图片内容
   async readImage(uri: string): Promise < PixelMap | null > {
     hilog.info(0x0000, TAG, "image uri: " + uri);
     let file: fileIo.File | undefined;
@@ -244,6 +249,7 @@ struct Index {
     return null;
   }
 
+  // 图库中选取图片
   async photoPickerGetUri(): Promise < string > {
     try {
       let PhotoSelectOptions = new picker.PhotoSelectOptions();
@@ -303,7 +309,7 @@ struct Index {
               hilog.error(0x0000, TAG, "startAbilityByType:", tip);
             },
             onResult: (result) => {
-              // 5、获取到回调结果中编辑后的图片uri并做对应的处理
+              // 4、获取到回调结果中编辑后的图片uri并做对应的处理
               let uri = result.want?.uri ?? "";
               hilog.info(0x0000, TAG, "PhotoEditorCaller result: " + JSON.stringify(result));
               this.readImage(uri).then(imagePixMap => {

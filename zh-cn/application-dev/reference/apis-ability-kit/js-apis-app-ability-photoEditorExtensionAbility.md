@@ -1,5 +1,5 @@
 # @ohos.app.ability.PhotoEditorExtensionAbility(图片编辑能力)
-PhotoEditorExtensionAbility为开发者提供了图片编辑的能力，继承自ExtensionAbility。应用通过startAbilityByType拉起图片编辑面板后，由用户在面板上选择PhotoEditorExtensionAbility的实现方并拉起应用。
+PhotoEditorExtensionAbility继承自ExtensionAbility，开发者可通过PhotoEditorExtensionAbility实现图片编辑扩展页面。应用通过startAbilityByType拉起图片编辑面板后，由用户在面板上选择PhotoEditorExtensionAbility的实现方并拉起应用。
 > 说明：<br>
 > 本模块首批接口从API version 12 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。<br>
 > 本模块接口仅可在Stage模型下使用。
