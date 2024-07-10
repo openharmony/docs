@@ -32,12 +32,12 @@ AVCastPicker()
 
 | 名称 | 参数类型 | 必填 | 装饰器修饰类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| normalColor<sup>11+</sup> | Color &#124; number &#124; string | 否 | @Prop | 指正常状态下投播组件的颜色。 |
-| activeColor<sup>11+</sup> | Color &#124; number &#124; string | 否 | @Prop | 指设备切换成功状态下投播组件的颜色。 |
-| pickerStyle<sup>12+</sup> | [AVCastPickerStyle](js-apis-avCastPickerParam.md#avcastpickerstyle12) | 否 | @Prop | 投播样式。 |
-| colorMode<sup>12+</sup> | [AVCastPickerColorMode](js-apis-avCastPickerParam.md#avcastpickercolormode12) | 否 |  @Prop | 显示模式。 |
-| sessionType<sup>12+</sup> | string | 否| @Prop | 会话类型，默认值为'audio'，其余取值可参考[AVSessionType](js-apis-avsession.md#avsessiontype10)。|
-| customPicker<sup>12+</sup> | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否 | @Prop | 自定义样式。 |
+| normalColor<sup>11+</sup> | Color &#124; number &#124; string | 否 | @Prop | 指正常状态下投播组件的颜色。如果没设置，投播组件的颜色受到colorMode的影响。 |
+| activeColor<sup>11+</sup> | Color &#124; number &#124; string | 否 | @Prop | 指设备切换成功状态下投播组件的颜色。如果未设置，投播组件颜色将受到normalColor或者colorMode影响。 |
+| pickerStyle<sup>12+</sup> | [AVCastPickerStyle](js-apis-avCastPickerParam.md#avcastpickerstyle12) | 否 | @Prop | 投播样式。默认值为STYLE_PANEL。 |
+| colorMode<sup>12+</sup> | [AVCastPickerColorMode](js-apis-avCastPickerParam.md#avcastpickercolormode12) | 否 |  @Prop | 显示模式。默认值为AUTO。 |
+| sessionType<sup>12+</sup> | string | 否| @Prop | 会话类型，默认值为当前应用创建的AVSessionType，可参考[AVSessionType](js-apis-avsession.md#avsessiontype10)。|
+| customPicker<sup>12+</sup> | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否 | @Prop | 自定义样式。建议应用自定义组件样式，可有效提升组件显示速度。 |
 | onStateChange<sup>11+</sup> | (state: [AVCastPickerState](js-apis-avCastPickerParam.md)) => void | 否 | @Prop | 投播状态更改回调。 |
 
 ## 事件
@@ -46,29 +46,43 @@ AVCastPicker()
 
 ## 示例
 
-投播功能的示例说明参考如下。
+投播功能的示例说明参考如下。体验完整功能请具体参考[播放类开发指南]()和[通话类开发指南](../../media/avsession/using-switch-call-devices.md)。
 
 ```ts
-import { avSession, AVCastPickerState, AVCastPicker } from '@kit.AVSessionKit';
+import { AVCastPickerState, AVCastPicker } from '@kit.AVSessionKit';
 
 @Entry
 @Component
 struct Index {
+
+  @State pickerImage: ResourceStr = $r('app.media.castPicker'); // 自定义资源
+
   private onStateChange(state: AVCastPickerState) {
     if (state == AVCastPickerState.STATE_APPEARING) {
-      console.log('The picker starts showing.')
+      console.log('The picker starts showing.');
     } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
-      console.log('The picker finishes presenting.')
+      console.log('The picker finishes presenting.');
     }
+  }
+
+  @Builder
+  customPickerBuidler(): void {
+    Image(this.pickerImage)
+      .size({ width('100%'), height('100%') })
+      .fillColor(Color.Black)
   }
 
   build() {
     Row() {
       Column() {
-        AVCastPicker({ normalColor: Color.Red, activeColor: Color.Blue, onStateChange: this.onStateChange })
-          .width('40vp')
-          .height('40vp')
-          .border({ width: 1, color: Color.Red })
+        AVCastPicker({
+          normalColor: Color.Red,
+          customPicker: () => this.customPickerBuidler(),
+          onStateChange: this.onStateChange
+        })
+        .width('40vp')
+        .height('40vp')
+        .border({ width: 1, color: Color.Red })
       }.height('50%')
     }.width('50%')
   }
