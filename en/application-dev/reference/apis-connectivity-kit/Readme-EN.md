@@ -13,7 +13,6 @@
   - [@ohos.bluetooth.socket (Bluetooth Socket Module) (Recommended)](js-apis-bluetooth-socket.md)
   - [@ohos.bluetooth.pbap (Bluetooth PBAP Module) (Recommended)](js-apis-bluetooth-pbap.md)
   - [@ohos.bluetooth.map (Bluetooth MAP Module) (Recommended)](js-apis-bluetooth-map.md)
-  - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (Active Tags)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (Standard NFC)](js-apis-nfcController.md)
@@ -48,6 +47,7 @@
   - [SE Error Codes](errorcode-se.md)
 - APIs No Longer Maintained
   - [@ohos.bluetooth (Bluetooth) (To Be Deprecated)](js-apis-bluetooth.md)
+  - [@ohos.bluetoothManager (Bluetooth) (To Be Deprecated)](js-apis-bluetoothManager.md)
   - [@ohos.wifi (WLAN) (To Be Deprecated)](js-apis-wifi.md)
   - [@ohos.wifiext (WLAN Extension) (To Be Deprecated)](js-apis-wifiext.md)
   - [@system.bluetooth (Bluetooth)](js-apis-system-bluetooth.md)
