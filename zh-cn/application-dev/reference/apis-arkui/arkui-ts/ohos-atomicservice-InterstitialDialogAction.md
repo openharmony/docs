@@ -24,7 +24,7 @@ InterstitialDialogAction {
 }
 ```
 
-**装饰器类型：**无
+**装饰器类型：** 无
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
