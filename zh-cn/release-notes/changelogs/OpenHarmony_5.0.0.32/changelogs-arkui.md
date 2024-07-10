@@ -255,7 +255,8 @@ CreateModalUIExtension创建的UIExtension可能被其他组件或窗口遮挡�
 
 CreateModalUIExtension增加禁止其他宿主进程组件遮挡的校验逻辑。
 
-CreateModalUIExtension防不安全窗口遮挡的默认行为变更，变更前后行为如下表所示
+CreateModalUIExtension防不安全窗口遮挡的默认行为变更，变更前后行为如下表所示。
+
 | 变更前 | 变更后 |
 | --- | --- |
 | CreateModalUIExtension默认行为为不防不安全窗口遮挡，允许自行设置防不安全窗口遮挡 | CreateModalUIExtension默认行为为防不安全窗口遮挡，且不允许取消防遮挡 |
