@@ -21,7 +21,6 @@
 
    ```ts
    import { camera } from '@kit.CameraKit';
-   import { image } from '@kit.ImageKit';
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
@@ -87,6 +86,9 @@
 注册photoAsset监听回调。
 
    ```ts
+   let context = getContext(this);
+   let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
    async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
      try {
        let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest  (photoAsset);
