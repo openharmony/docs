@@ -688,7 +688,7 @@ get clipToFrame(): boolean
 
 | 类型    | 说明                                                |
 | ------- | --------------------------------------------------- |
-| boolean | 获取当前RenderNode是否需要进行剪裁，默认值为false。 |
+| boolean | 获取当前RenderNode是否需要进行剪裁，默认值为true。 |
 
 **示例：**
 ```ts
