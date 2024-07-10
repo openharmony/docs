@@ -92,8 +92,10 @@
                         ]    
                     },
                     {
-                        uris: [
-                            "scheme": "test"
+                        "uris": [
+                            {
+                                "scheme": "test"
+                            }
                         ]
                     }
                 ]
