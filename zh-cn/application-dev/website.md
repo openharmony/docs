@@ -237,30 +237,6 @@
           - [window接口切换](application-models/window-switch.md)
           - [Storage接口切换](application-models/storage-switch.md)   
       <!--DelEnd-->
-      - 程序访问控制<!--access-control-->
-        - [访问控制概述](security/AccessToken/access-token-overview.md)
-        - 应用权限管控<!--app-permission-mgmt-->
-          - [应用权限管控概述](security/AccessToken/app-permission-mgmt-overview.md)
-          - 申请应用权限<!--request-app-permissions-->
-            - [选择申请权限的方式](security/AccessToken/determine-application-mode.md)
-            - [声明权限](security/AccessToken/declare-permissions.md)
-            - [向用户申请授权](security/AccessToken/request-user-authorization.md)
-            - [向用户申请单次授权](security/AccessToken/one-time-authorization.md)
-            <!--Del-->
-            - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
-            <!--DelEnd-->
-          - 应用权限列表<!--app-permissions-->
-            - [对所有应用开放](security/AccessToken/permissions-for-all.md)
-            <!--Del-->
-            - [仅对系统应用开放](security/AccessToken/permissions-for-system-apps.md)
-            <!--DelEnd-->
-            - [仅对MDM应用开放](security/AccessToken/permissions-for-mdm-apps.md)
-          - [应用权限组列表](security/AccessToken/app-permission-group-list.md)
-        - 使用安全控件<!--security-components-->
-          - [安全控件概述](security/AccessToken/security-component-overview.md)
-          - [使用粘贴控件](security/AccessToken/pastebutton.md)
-          - [使用保存控件](security/AccessToken/savebutton.md)
-          - [使用位置控件](security/AccessToken/locationbutton.md)
       - [Native子进程开发指导（C/C++）](application-models/capi_nativechildprocess_development_guideline.md) 
     - Accessibility Kit（无障碍开发服务）<!--accessibility-kit-->
       - [Accessibility Kit简介](accessibility/accessibilityKit.md)
@@ -698,6 +674,30 @@
           - [语言测试](internationalization/linguistic-testing.md)
   - 系统<!--system-->
     - 安全<!--system-security-->
+      - 程序访问控制<!--access-control-->
+        - [访问控制概述](security/AccessToken/access-token-overview.md)
+        - 应用权限管控<!--app-permission-mgmt-->
+          - [应用权限管控概述](security/AccessToken/app-permission-mgmt-overview.md)
+          - 申请应用权限<!--request-app-permissions-->
+            - [选择申请权限的方式](security/AccessToken/determine-application-mode.md)
+            - [声明权限](security/AccessToken/declare-permissions.md)
+            - [向用户申请授权](security/AccessToken/request-user-authorization.md)
+            - [向用户申请单次授权](security/AccessToken/one-time-authorization.md)
+            <!--Del-->
+            - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
+            <!--DelEnd-->
+          - 应用权限列表<!--app-permissions-->
+            - [对所有应用开放](security/AccessToken/permissions-for-all.md)
+            <!--Del-->
+            - [仅对系统应用开放](security/AccessToken/permissions-for-system-apps.md)
+            <!--DelEnd-->
+            - [仅对MDM应用开放](security/AccessToken/permissions-for-mdm-apps.md)
+          - [应用权限组列表](security/AccessToken/app-permission-group-list.md)
+        - 使用安全控件<!--security-components-->
+          - [安全控件概述](security/AccessToken/security-component-overview.md)
+          - [使用粘贴控件](security/AccessToken/pastebutton.md)
+          - [使用保存控件](security/AccessToken/savebutton.md)
+          - [使用位置控件](security/AccessToken/locationbutton.md)
       - Asset Store Kit（关键资产存储服务）<!--asset-store-kit-->
         - [Asset Store Kit简介](security/AssetStoreKit/asset-store-kit-overview.md)
         - 常见场景<!--asset-scenarios-->
@@ -1083,6 +1083,7 @@
         - [param工具](tools/param-tool.md)
         - 命令行工具<!--command-line-utilities-->
           - [toybox工具](tools/toybox.md)
+          - [mediatool工具](tools/mediatool.md)
   - 媒体<!--media-->
     - Audio Kit（音频服务）<!--audio-kit-->
       - [Audio Kit简介](media/audio/audio-kit-intro.md)
@@ -1201,6 +1202,7 @@
         - [使用ImagePacker完成图片编码](media/image/image-encoding.md)
         - [编辑图片EXIF信息](media/image/image-tool.md)
       - 图片开发指导(C/C++)<!--image-native-->
+        - [介绍Image_NativeModule结构体信息](media/image/image-structure-c.md)
         - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
         - [使用Image_NativeModule完成图片接收器](media/image/image-receiver-c.md)
         - [使用Image_NativeModule完成位图操作](media/image/pixelmap-c.md)
