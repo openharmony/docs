@@ -1,12 +1,12 @@
 # Replace the label.
 
-* * 1. One link replacement * *
+ ** 1. One link replacement ** 
 
 The Media Kit (media service) provides <!--RP1->[AVPlayer]() and [AVRecorder]()<!--RP1End--> for playing and recording audio and video.
 
 The Media Kit development guide describes the development methods in various scenarios involving audio and video playback and recording, and guides developers how to use the audio and video APIs provided by the system to implement corresponding functions. <!--RP2--> For example, SoundPool is used to implement a simple prompt tone. When the device receives a new message, it emits a short "drip" sound. Use the AVPlayer to implement the music player and play a piece of music cyclically. <!--RP2End-->
 
-* * 2. One-sentence replacement * *
+ **2. One-sentence replacement**  
 
 One (replacement):
 1. Use the DocumentViewPicker interface to select or save a file. The URI of the selected or saved file is returned. <!--RP3-->
@@ -29,7 +29,7 @@ IV (to add listing):
 - Card management service: used to manage the resident agent service of cards added to the system.
 - Card rendering service: manages card rendering instances. Render instances are bound to card components on the card user.
 
-* * 3. Table replacement * *
+ **3. Table replacement**  
 
 | Task | Introduction | Related Guidance |
 | -------- | -------- | -------- |
@@ -38,9 +38,9 @@ IV (to add listing):
 | Understand the thread model | Several common inter-thread communication methods. | Thread Model Overview |
 <!--RP5--><!--RP5End-->
 
-* * 4. Image replacement * *
+ **4. Image replacement**  
 
-* * 5. Add a sentence or description. * *
+ **5. Add a sentence or description** 
 
 The ArkUI framework implements the default drag-and-drop capability for the following components to respond to data drag-out or drag-in. Developers only need to set draggable of these components to true to use the default drag-and-drop capability. <!--RP6--> <!--RP6End-->
 
