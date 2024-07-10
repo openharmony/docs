@@ -2825,8 +2825,8 @@ async function testListAliases() {
 
 | 名称                            | 值   | 说明                      |
 | ------------------------------- | ---- | ------------------------- |
-| HUKS_USER_AUTH_MODE_LOCAL       | 0    | 表示用户认证为本地认证模式。   |
-| HUKS_USER_AUTH_MODE_COAUTH      | 1    | 表示用户认证为跨端协同认证模式。|
+| HUKS_USER_AUTH_MODE_LOCAL       | 0    | 本地认证模式。   |
+| HUKS_USER_AUTH_MODE_COAUTH      | 1    | 跨端协同认证模式。|
 
 ## HuksAuthAccessType<sup>9+</sup>
 
