@@ -27,7 +27,7 @@ Two:
 2. Use the AudioViewPicker interface to select or save a file. The URI of the selected or saved file is returned. <!--DelEnd-->
 3. Use the PhotoViewPicker.save interface to save the file and return the URI of the saved file.
 
- **3. Delete section and subsection** 
+**3. Delete section and subsection** 
 
 # User Album Resource Usage Guide
 
