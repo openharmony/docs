@@ -9,9 +9,9 @@
 
 接口**startAbilityByType<sup>11+</sup>** 是[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybytype11)和[UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionstartabilitybytype11)提供的支持基于垂域业务类型拉起垂域面板，调用方通过指定特定的垂域业务类型即可拉起对应的垂域面板，在垂域面板上将展示目标方接入的垂域应用。
 
-### 各type对应参数说明
+### 导航类应用扩展面板参数说明
 
-**type为navigation导航对应的wantParam:**
+**startAbilityByType接口中type字段为navigation，对应的wantParam参数:**
 
 | 属性名称             | 含义                                                         | 数据类型 | 是否必填 |
 | -------------------- | ------------------------------------------------------------ | -------- | -------- |
@@ -30,7 +30,9 @@
 
 
 
-**type为mail邮件对应的wantParam:**
+### 邮件类应用扩展面板参数说明
+
+**startAbilityByType接口中type字段为mail，对应的wantParam参数:**
 
 | 属性名称                              | 含义                                   | 数据类型 | 是否必填                   |
 | ------------------------------------- | -------------------------------------- | -------- | -------------------------- |
@@ -47,11 +49,11 @@
 >
 > 参数email、cc、bcc、ability.params.stream数组中的内容需要经过url编码，参数subject、body字符串也需要经过url编码，接收方收到这些参数后需要进行url解码。
 
-## 接入步骤
 
-### 导航
 
-#### 调用方接入步骤
+## 拉起导航类应用扩展面板
+
+#### 调用方开发步骤
 
 1. 导入ohos.app.ability.common模块。 
     ```ts
@@ -60,10 +62,8 @@
 2. 构造接口参数并调用startAbilityByType接口。
 
     ```ts
-    import { common } from '@kit.AbilityKit';
-
     let context = getContext(this) as common.UIAbilityContext;
-    let wantParam: Record<string, Object> = {
+let wantParam: Record<string, Object> = {
       'sceneType': 1,
       'destinationLatitude': 32.060844,
       'destinationLongitude': 118.78315,
@@ -78,25 +78,21 @@
         console.log(`code:` + code + `name:` + name + `message:` + message);
       }
     }
-
+    
     context.startAbilityByType("navigation", wantParam, abilityStartCallback, (err) => {
-      if (err) {
+    if (err) {
         console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
       } else {
         console.log(`success`);
       }
     });
     ```
-效果示例图：
+    效果示例图：
 
 ![示例效果图](./figures/start-navigation-panel.png)
 
-#### 目标方接入步骤
+#### 目标方开发步骤
 
-1. 导入ohos.app.ability.UIAbility模块。
-    ```ts
-    import { UIAbility } from '@kit.AbilityKit';
-    ```
 2. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
 
     ~~~json
@@ -152,7 +148,7 @@
 
     应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如路线规划和导航结合接收到的参数开发不同的样式页面。
 
-**示例：**
+**完整示例：**
 
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -192,10 +188,9 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-### 邮件
+## 拉起邮件类应用扩展面板
 
-#### 调用方接入步骤
-
+#### 调用方开发步骤
 1. 导入ohos.app.ability.common模块。 
     ```ts
     import { common } from '@kit.AbilityKit';
@@ -203,10 +198,8 @@ export default class EntryAbility extends UIAbility {
 2. 构造接口参数并调用startAbilityByType接口。
 
     ```ts
-    import { common } from '@kit.AbilityKit';
-
     let context = getContext(this) as common.UIAbilityContext;
-    let wantParam: Record<string, Object> = {
+let wantParam: Record<string, Object> = {
       'sceneType': 1,
       'email': ['xxx@example.com','xxx@example.com'], // 收件人邮箱地址，多值以逗号分隔，内容需要经过url编码
       'cc': ['xxx@example.com','xxx@example.com'], // 抄收人邮箱地址，多值以逗号分隔，内容需要经过url编码
@@ -221,25 +214,20 @@ export default class EntryAbility extends UIAbility {
         console.log(`code:` + code + `name:` + name + `message:` + message);
       }
     }
-
+    
     context.startAbilityByType("mail", wantParam, abilityStartCallback, (err) => {
-      if (err) {
+    if (err) {
         console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
       } else {
         console.log(`success`);
       }
     });
     ```
-效果示例图：
+    效果示例图：
 
 ![示例效果图](./figures/start-mail-panel.png)
 
-#### 目标方接入步骤
-
-1. 导入ohos.app.ability.UIAbility模块。
-    ```ts
-    import { UIAbility } from '@kit.AbilityKit';
-    ```
+#### 目标方开发步骤
 2. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
 
     ~~~json
@@ -263,7 +251,7 @@ export default class EntryAbility extends UIAbility {
     }
     ~~~
     
-3. 解析参数并做对应处理。
+3. 解析面板传过来的参数并做对应处理。
 
     ```ts
     UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
@@ -280,10 +268,9 @@ export default class EntryAbility extends UIAbility {
     | body   | 邮件内容                             | string | 否  |
     | stream | 邮件附件（附件的uri地址列表）                  | string[] | 否  |
     
+    应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如邮件结合接收到的参数开发不同的样式页面。
 
-应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如邮件结合接收到的参数开发不同的样式页面。
-
-**示例：**
+**完整示例：**
 
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
