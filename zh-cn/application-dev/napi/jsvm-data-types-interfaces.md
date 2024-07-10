@@ -103,6 +103,24 @@ typedef enum {
 } JSVM_TypedarrayType;
 ```
 
+### JSVM_RegExpFlags
+正则表达式标志位。
+
+```c++
+typedef enum {
+    JSVM_REGEXP_NONE = 0,
+    JSVM_REGEXP_GLOBAL = 1 << 0,
+    JSVM_REGEXP_IGNORE_CASE = 1 << 1,
+    JSVM_REGEXP_MULTILINE = 1 << 2,
+    JSVM_REGEXP_STICKY = 1 << 3,
+    JSVM_REGEXP_UNICODE = 1 << 4,
+    JSVM_REGEXP_DOT_ALL = 1 << 5,
+    JSVM_REGEXP_LINEAR = 1 << 6,
+    JSVM_REGEXP_HAS_INDICES = 1 << 7,
+    JSVM_REGEXP_UNICODE_SETS = 1 << 8,
+} JSVM_RegExpFlags;
+```
+
 ### 内存管理类型
 
 JSVM-API包含以下内存管理类型：
@@ -758,6 +776,8 @@ OH_JSVM_DeleteReference(env, reference);
 |OH_JSVM_CreateStringLatin1 | 根据 Latin-1 编码的字符串创建一个 JavaScript string 对象 |
 |OH_JSVM_CreateStringUtf16 | 根据 Utf16 编码的字符串创建一个 JavaScript string 对象 |
 |OH_JSVM_CreateStringUtf8 | 根据 Utf8 编码的字符串创建一个 JavaScript string 对象 |
+|OH_JSVM_CreateMap | 创建一个新的 JavaScript Map对象 |
+|OH_JSVM_CreateRegExp | 根据输入的字符串创建一个JavaScript 正则对象 |
 
 场景示例:
 创建指定长度的数组
@@ -806,6 +826,22 @@ OH_JSVM_CreateDouble(env, 10.1, &testNumber1);
 OH_JSVM_CreateInt32(env, 10, &testNumber2);
 ```
 
+创建Map:
+
+```c++
+JSVM_Value value = nullptr;
+OH_JSVM_CreateMap(env, &value);
+```
+
+创建RegExp:
+
+```c++
+JSVM_Value value = nullptr;
+const char testStr[] = "ab+c";
+OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &value);
+JSVM_Value result = nullptr;
+OH_JSVM_CreateRegExp(env, value, JSVM_RegExpFlags::JSVM_REGEXP_GLOBAL, &result);
+```
 ### 从JS类型获取C类型&获取JS类型信息
 
 #### 场景介绍
@@ -928,6 +964,8 @@ JS值操作和抽象操作。
 |OH_JSVM_IsFunction | 此API检查传入的值是否为Function。这相当于JS中的`typeof value === 'function'`。 |
 |OH_JSVM_IsObject | 此API检查传入的值是否为Object。 |
 |OH_JSVM_IsBigInt | 此API检查传入的值是否为BigInt。这相当于JS中的`typeof value === 'bigint'`。 |
+|OH_JSVM_IsConstructor | 此API检查传入的值是否为构造函数。 |
+|OH_JSVM_IsMap | 此API检查传入的值是否为Map。 |
 |OH_JSVM_StrictEquals | 判断两个 JSVM_Value 对象是否严格相等 |
 |OH_JSVM_Equals | 判断两个 JSVM_Value 对象是否宽松相等 |
 |OH_JSVM_DetachArraybuffer | 调用 ArrayBuffer 对象的Detach操作 |
@@ -987,6 +1025,24 @@ OH_JSVM_Equals(env, lhs, rhs, &isEquals); // 这里isEquals的值是true
 OH_JSVM_CloseHandleScope(env, handleScope);
 ```
 
+判断JS值是否为构造函数
+
+```c++
+JSVM_Value value = nullptr;
+JSVM_CallbackStruct param;
+OH_JSVM_CreateFunction(env, "func", JSVM_AUTO_LENGTH, &param, &value);
+bool isEquals = false;
+OH_JSVM_IsConstructor(env, value, &isEquals);
+```
+
+判断JS值是否为map类型
+
+```c++
+JSVM_Value value = nullptr;
+OH_JSVM_CreateMap(env, &value);
+bool isEquals = false;
+OH_JSVM_IsMap(env, value, &isEquals);
+```
 ### JS属性操作
 
 #### 场景介绍
