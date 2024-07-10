@@ -1,6 +1,6 @@
 # Replace the label.
 
- ** 1. One link replacement ** 
+ **1. One link replacement** 
 
 The Media Kit (media service) provides <!--RP1->[AVPlayer]() and [AVRecorder]()<!--RP1End--> for playing and recording audio and video.
 
