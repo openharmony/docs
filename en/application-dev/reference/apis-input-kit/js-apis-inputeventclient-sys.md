@@ -11,7 +11,7 @@ The **inputEventClient** module implements the input event injection capability.
 ## Modules to Import
 
 ```js
-import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+import { inputEventClient } from '@kit.InputKit';
 ```
 
 ## inputEventClient.injectEvent
@@ -21,6 +21,8 @@ injectEvent({KeyEvent: KeyEvent}): void
 Injects keys (including single keys and combination keys).
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+Permission required: ohos.permission.INJECT_INPUT_EVENT
 
 **Parameters**
 
@@ -155,7 +157,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import mouseEvent from '@ohos.multimodalInput.mouseEvent'
+import { MouseEvent } from '@kit.InputKit';
 
 try {
   let mouseButtonUpData: mouseEvent.MouseEvent = {
@@ -255,7 +257,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import touchEvent from '@ohos.multimodalInput.touchEvent'
+import { TouchEvent } from '@kit.InputKit';
 
 try {
   let touchEvent: touchEvent.Touch = {
@@ -342,7 +344,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 
 ```ts
-import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+import { inputEventClient } from '@kit.InputKit';
 
 try {
   let result = true;

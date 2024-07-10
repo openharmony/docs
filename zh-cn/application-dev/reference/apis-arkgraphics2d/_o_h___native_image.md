@@ -48,7 +48,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [OH_NativeImage_Create](#oh_nativeimage_create) (uint32_t textureId, uint32_t textureTarget) | 创建一个**OH_NativeImage**实例，该实例与OpenGL ES的纹理ID和纹理目标相关联。 |
-| [OH_NativeImage_AcquireNativeWindow](#oh_nativeimage_acquirenativewindow) ([OH_NativeImage](#oh_nativeimage) \*image) | 获取与OH_NativeImage相关联的OHNativeWindow指针。 该OHNativeWindow后续不再需要时需要调用<br/>OH_NativeWindow_DestroyNativeWindow释放。 |
+| [OH_NativeImage_AcquireNativeWindow](#oh_nativeimage_acquirenativewindow) ([OH_NativeImage](#oh_nativeimage) \*image) | 获取与OH_NativeImage相关联的OHNativeWindow指针。 |
 | [OH_NativeImage_AttachContext](#oh_nativeimage_attachcontext) ([OH_NativeImage](#oh_nativeimage) \*image, uint32_t textureId) | 将OH_NativeImage实例附加到当前OpenGL ES上下文, 且该OpenGL ES纹理会绑定到<br/>GL_TEXTURE_EXTERNAL_OES, 并通过OH_NativeImage进行更新。 |
 | [OH_NativeImage_DetachContext](#oh_nativeimage_detachcontext) ([OH_NativeImage](#oh_nativeimage) \*image) | 将OH_NativeImage实例从当前OpenGL ES上下文分离。 |
 | [OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage) ([OH_NativeImage](#oh_nativeimage) \*image) | 通过OH_NativeImage获取最新帧更新相关联的OpenGL ES纹理。 |
@@ -179,9 +179,7 @@ OHNativeWindow* OH_NativeImage_AcquireNativeWindow (OH_NativeImage * image)
 
 **描述**
 
-获取与OH_NativeImage相关联的OHNativeWindow指针. 该OHNativeWindow后续不再需要时需要调用
-
-OH_NativeWindow_DestroyNativeWindow释放。
+获取与OH_NativeImage相关联的OHNativeWindow指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -362,6 +360,10 @@ int32_t OH_NativeImage_GetTransformMatrix (OH_NativeImage * image, float matrix[
 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
+
+**废弃版本：** 12
+
+**替代接口：** [OH_NativeImage_GetTransformMatrixV2](#oh_nativeimage_gettransformmatrixv2)
 
 **起始版本：** 9
 

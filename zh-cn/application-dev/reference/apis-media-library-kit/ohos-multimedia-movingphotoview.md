@@ -1,4 +1,4 @@
-# @ohos.multimedia.movingphotoview（动态照片）
+# @ohos.multimedia.movingphotoview (动态照片)
 
 用于播放动态照片文件并控制其播放状态的组件。
 
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@ohos.multimedia.movingphotoview'
+import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit'
 ```
 
 ## MovingPhotoView
@@ -181,7 +181,7 @@ stopPlayback(): void
 import { photoAccessHelper } from '@kit.MediaLibraryKit'
 import { emitter } from '@kit.BasicServicesKit'
 import { dataSharePredicates } from '@kit.ArkData'
-import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@ohos.multimedia.movingphotoview'
+import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit'
 
 const PHOTO_SELECT_EVENT_ID: number = 80001
 

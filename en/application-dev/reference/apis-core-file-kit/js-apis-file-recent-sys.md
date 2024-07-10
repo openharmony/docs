@@ -123,7 +123,7 @@ Represents information about the recent file list.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-| Name| Type  | Readable| Writable| Description    |
+| Name| Type  | Read-Only| Writable| Description    |
 | ------ | ------ | -------- | ------ | -------- |
 | uri | string | Yes| No| URI of the file.|
 | srcPath | string | Yes| No| File path. |

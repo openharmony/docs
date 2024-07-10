@@ -13,12 +13,12 @@
 <!--RP1--><!--RP1End-->
 
 通过视频解码，应用可以实现以下重点能力，包括：
-1. 通过调用OH_VideoDecoder_RegisterCallback()设置回调函数，实现改变分辨率。
 
-   具体可参考下文中：Surface模式或Buffer模式的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数。
-2. 在Surface模式下，实现动态切换Surface。
+|          支持的能力                       |             使用简述                                                                     |
+| --------------------------------------- | ---------------------------------------------------------------------------------- |
+| 变分辨率         | 通过调用OH_VideoDecoder_RegisterCallback()设置回调函数时配置， 具体可参考下文中：Buffer模式的步骤-3   |
+| 动态切换Surface  | 通过调用OH_VideoDecoder_SetSurface()配置，具体可参考下文中：Surface模式的步骤-7     |
 
-   具体可参考下文中：Surface模式的步骤6-设置Surface。
 
 ## 限制约束
 1. buffer模式不支持10bit的图像数据。
@@ -138,10 +138,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     - OH_AVCodecOnError 解码器运行错误；
     - OH_AVCodecOnStreamChanged 码流信息变化，如码流宽、高变化；
-    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据。数据处理，请参考: [OnNeedInputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNeedInputBuffer)；
-
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。(注：Surface模式buffer参数为空)。 
-    数据处理，请参考: [OnNewOutputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNewOutputBuffer)
+    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据；
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成(注：Surface模式buffer参数为空)。
 
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
 
@@ -264,7 +262,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
 7. 设置Surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
-   具体示例请参考： [OnSurfaceCreatedCB](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/render/plugin_render.cpp/#onSurfaceCreatedCB)
 
     Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
 
@@ -561,8 +558,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     - OH_AVCodecOnError 解码器运行错误；
     - OH_AVCodecOnStreamChanged 码流信息变化，如码流宽、高变化；
-    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据；数据处理，请参考: [OnNeedInputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNeedInputBuffer)
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。数据处理，请参考: [OnNewOutputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNewOutputBuffer)
+    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据；
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。
 
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
 
@@ -840,32 +837,29 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     {
         int32_t width;
         int32_t height;
-    }
+    };
 
     struct DstRect // 目标内存区域的宽，高跨距
     {
         int32_t wStride;
         int32_t hStride;
-    }
+    };
 
     struct SrcRect // 源内存区域的宽，高跨距
     {
         int32_t wStride;
         int32_t hStride;
-    }
+    };
 
-    unit8_t *dst; // 目标内存区域的指针
-    unit8_t *src; // 源内存区域的指针
+    uint8_t *dst; // 目标内存区域的指针
+    uint8_t *src; // 源内存区域的指针
     struct Rect rect;
     struct DstRect dstRect;
     struct SrcRect srcRect;
     // Y 将Y区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
         //将源数据的一行数据复制到目标数据的一行中
-        int32_t ret = memcpy_s(dst, dstRect.wStride, src, rect.width);
-        if (ret != AV_ERR_OK) {
-            // 复制数据失败
-        }
+        memcpy_s(dst, src, rect.width);
         // 更新源数据和目标数据的指针，进行下一行的复制。每更新一次源数据和目标数据的指针都向下移动一个wStride
         dst += dstRect.wStride;
         src += srcRect.wStride;
@@ -877,10 +871,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     rect.height >>= 1;
     // UV 将UV区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
-        int32_t ret = memcpy_s(dst, dstRect.wStride, src, rect.width);
-        if (ret != AV_ERR_OK) {
-            // 复制数据失败
-        }
+        memcpy_s(dst, src, rect.width);
         dst += dstRect.wStride;
         src += srcRect.wStride;
     }

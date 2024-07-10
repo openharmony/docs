@@ -22,7 +22,8 @@ Before image development, be familiar with the following basic concepts:
 
 The figure below illustrates the image development process.
 
-**Figure 1** Image development process 
+**Figure 1** Image development process
+
 ![Image development process](figures/image-development-process.png)
 
 1. Image retrieval: Obtain a raw image through the application sandbox.

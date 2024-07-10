@@ -20,7 +20,7 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@kit.Ark
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                | 只读  | 可选  | 说明       |
+| 名称 | 类型                | 可读 | 可写 | 说明       |
 | ------ |-------------------|-----|-----|----------|
 | colors | [Colors](#colors) | 否   | 否   |  主题颜色资源。 |
 
@@ -32,9 +32,9 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@kit.Ark
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                           | 类型                                                 | 只读  | 可选  | 说明               |
+| 名称                           | 类型                                                 | 可读 | 可写 | 说明               |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------------|
-| brand                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 品牌色。           |
+| brand                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 品牌色。             |
 | warning                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 一级警示色。           |
 | alert                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级提示色。           |
 | confirm                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 确认色。             |
@@ -68,7 +68,7 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@kit.Ark
 | compBackgroundPrimaryContrary | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 常亮背景。            |
 | compBackgroundGray            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 灰色背景。            |
 | compBackgroundSecondary       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级背景。            |
-| compBackgroundTertiary        | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 二级背景。            |
+| compBackgroundTertiary        | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 三级背景。            |
 | compBackgroundEmphasize       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 高亮背景。            |
 | compBackgroundNeutral         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 黑色中性高亮背景颜色。      |
 | compEmphasizeSecondary        | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 否   | 20%高亮背景颜色。       |

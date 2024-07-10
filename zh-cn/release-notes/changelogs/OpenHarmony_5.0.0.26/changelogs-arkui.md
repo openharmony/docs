@@ -167,3 +167,128 @@ API version 12及以后，手势菜单复制、粘贴、全选、剪切按钮扩
 **适配指导**
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.6 使用Path2D复制构造Path2D不生效
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+变更前效果未达预期
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：使用Path2D复制构造Path2D不生效
+
+变更后：使用Path2D复制构造Path2D可以创建出一个与原来的Path2D相同路径的Path2D
+
+**起始 API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.26 版本开始。
+
+**变更的接口/组件**
+
+Path2D
+
+**适配指导**
+
+默认效果变更，无需适配。但应注意变更后的效果是否符合预期。
+
+```ts
+@Entry
+@Component
+struct Demo {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private path2Da: Path2D = new Path2D()
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('50%')
+        .onReady(() => {
+          this.path2Da.rect(20, 20, 100, 100)
+          let path2Db = new Path2D(this.path2Da)
+          this.context.stroke(path2Db)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![demo](figures/Path2D.png)
+
+## cl.arkui.7 使用PixelMap构造ImageBitmap不生效
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+变更前效果未达预期
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：使用PixelMap构造ImageBitmap不生效
+
+变更后：使用PixelMap构造ImageBitmap可以创建出ImageBitmap
+
+**起始 API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.26 版本开始。
+
+**变更的接口/组件**
+
+ImageBitmap
+
+**适配指导**
+
+默认效果变更，无需适配。但应注意变更后的效果是否符合预期。
+
+```ts
+@Entry
+@Component
+struct Demo {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('50%')
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          this.context.fillStyle = "#00ff00"
+          this.context.fillRect(0, 0, 100, 100)
+          let pixel = this.context.getPixelMap(0, 0, 100, 100)
+          let image = new ImageBitmap(pixel)
+          this.context.drawImage(image, 100, 100)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+```
+
+![demo](figures/ImageBitmap.png)

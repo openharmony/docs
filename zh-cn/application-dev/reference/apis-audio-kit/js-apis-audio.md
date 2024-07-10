@@ -534,7 +534,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
 | STREAM_USAGE_MEDIA<sup>(deprecated)</sup>                        | 1      | 媒体。<br/> 从API version 7开始支持，从API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME或STREAM_USAGE_AUDIOBOOK替代。 |
 | STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VOIP通话。                                                                                                                                       <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。| 
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VoIP语音通话。                                                                                                                                       <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。| 
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
 | STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
 | STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
@@ -543,10 +543,10 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | 通知。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                       |
 | STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | 无障碍。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                    |
 | STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | 电影或视频。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                   |
-| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏音效。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
+| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                     |
 | STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物（包括听书、相声、评书）、听新闻、播客等。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                    |
 | STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                      |
-| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | 视频通话。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                        |
+| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | VoIP视频通话。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                        |
 
 ## AudioState<sup>8+</sup>
 
@@ -4902,9 +4902,9 @@ type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackRe
 
 **返回值：** 
 
-| 类型 | 说明 |
-| ----- | ------- |
-| AudioDataCallbackResult \| void | 如果返回 void 或 AudioRendererWriteDataCallback.VALID ，表示数据有效并将被播放；如果返回 AudioRendererWriteDataCallback.INVALID ，表示数据无效并将不会被播放。|
+| 类型                                                           | 说明 |
+|--------------------------------------------------------------| ------- |
+| [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | 如果返回 void 或 AudioDataCallbackResult.VALID ，表示数据有效并将被播放；如果返回 AudioDataCallbackResult.INVALID ，表示数据无效并将不会被播放。|
 
 ## AudioRenderer<sup>8+</sup>
 
@@ -7241,7 +7241,7 @@ class Options {
   length?: number;
 }
 
-let writeDataCallback = (buffer: ArrayBuffer): AudioDataCallbackResult => {
+let writeDataCallback = (buffer: ArrayBuffer) => {
   let path = getContext().cacheDir;
   // 确保该路径下存在该资源
   let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
@@ -7296,8 +7296,9 @@ off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 **示例：**
 
 ```ts
-// 确保writeDataCallback已经被注册
-audioRenderer.off('writeData', writeDataCallback);
+audioRenderer.off('writeData', (data: ArrayBuffer) => {
+    console.info(`write data: ${data}`);
+});
 ```
 
 ## AudioCapturer<sup>8+</sup>

@@ -9,7 +9,7 @@ The hdrCapability module provides enums related to the High Dynamic Range (HDR) 
 ## Modules to Import
 
 ```ts
-import hdrCapability from '@ohos.graphics.hdrCapability';
+import { hdrCapability } from '@kit.ArkGraphics2D';
 ```
 
 ## HDRFormat

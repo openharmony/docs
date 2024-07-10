@@ -1124,6 +1124,8 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 | 16000019 | Can not match any component. |
 | 16000069 | The extension cannot start the third party application. |
 | 16200001 | The caller has been released. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000054 | Installation-free service is busy.Try again later. |
 
 **示例：**
 

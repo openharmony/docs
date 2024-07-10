@@ -173,7 +173,7 @@
 
 允许系统应用设置主题内容，包括壁纸、图标、皮肤、AOD 和字体等。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -924,6 +924,18 @@
 **ACL使能**：true
 
 **起始版本**：9
+
+### ohos.permission.MICROPHONE_CONTROL
+
+允许应用进行持久化全局麦克风静音等操作。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ### ohos.permission.START_DLP_CRED
 
@@ -3334,6 +3346,54 @@
 允许应用上报安全事件到云侧。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SCAN_SERVICE
+
+允许系统应用调用扫码直达服务提供的码值分发能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_FACTORY_OTA_DIR
+
+允许系统应用访问无线升级目录。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_MOUSE_CURSOR
+
+允许系统应用设置鼠标光标相关状态。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.FILTER_INPUT_EVENT
+
+允许系统应用过滤输入事件。
+
+**权限级别**：system_core
 
 **授权方式**：system_grant
 

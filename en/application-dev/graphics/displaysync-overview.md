@@ -16,6 +16,7 @@ The variable frame rate capability allows you to specify the frame rate in diffe
 - Configure the frame rate parameter for property animations or explicit animations. For details, see [Requesting Frame Rates for Animations](displaysync-animation.md).
 - Request an independent frame rate for UI components. For details, see [Requesting Frame Rates for UI Components](displaysync-ui.md).
 - Request an independent frame rate for custom content (such as gaming) through the **\<XComponent>** on the native side. For details, see [Requesting Frame Rates for Custom Content](displaysync-xcomponent.md).
+- Request an independent frame rate for drawing of non-UI threads through NativeVsync on the native side. For details, see [NativeDisplaySoloist Development (C/C++)](displaysoloist-native-guidelines.md).
 
 ## Working Principles
 The variable frame rate provides the basic frame rate configuration for animation components, **\<XComponent>**, and UI components.
@@ -25,3 +26,5 @@ After a valid expected frame rate is set, the system collects the configured fra
 ## Constraints
 
 The actual frame rate may be different from the expected one configured. It is limited by the system capability and screen refresh rate.
+
+ <!--no_check--> 

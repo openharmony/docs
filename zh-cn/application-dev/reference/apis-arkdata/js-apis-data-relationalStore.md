@@ -27,6 +27,8 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 
 当用非加密方式打开一个已有的加密数据库时，会返回错误码14800011，表示数据库损坏。此时用加密方式可以正常打开该数据库。
 
+getRdbStore目前不支持多线程并发操作。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -119,6 +121,8 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。
 
 当用非加密方式打开一个已有的加密数据库时，会返回错误码14800011，表示数据库损坏。此时用加密方式可以正常打开该数据库。
+
+getRdbStore目前不支持多线程并发操作。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -527,11 +531,11 @@ class EntryAbility extends UIAbility {
 | name          | string        | 是   | 数据库文件名，也是数据库唯一标识符。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core   |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core|
 | encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取，暂不支持。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | autoCleanDirtyData<sup>11+<sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | allowRebuild<sup>12+<sup> | boolean | 否 | 指定数据库是否支持损坏时自动重建，默认不重建。<br/>true:自动重建。<br/>false:不自动重建。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| isReadOnly<sup>12+<sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true:只允许从数据库读取数据，不允许对数据库进行写操作。<br/>false:允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| isReadOnly<sup>12+<sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true:只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。<br/>false:允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
@@ -871,7 +875,7 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 
 ## RdbPredicates
 
-表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。不支持Sendable跨线程传递。 
+表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。谓词间支持多语句拼接，拼接时默认使用and()连接。不支持Sendable跨线程传递。 
 
 ### constructor
 
@@ -962,7 +966,6 @@ predicates.inDevices(deviceIds);
 
 inAllDevices(): RdbPredicates
 
-
 同步分布式数据库时连接到组网内所有的远程设备。
 
 
@@ -984,7 +987,6 @@ predicates.inAllDevices();
 ### equalTo
 
 equalTo(field: string, value: ValueType): RdbPredicates
-
 
 配置谓词以匹配数据表的field列中值为value的字段。
 
@@ -1024,7 +1026,6 @@ predicates.equalTo("NAME", "Lisa");
 
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
-
 配置谓词以匹配数据表的field列中值不为value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -1062,7 +1063,6 @@ predicates.notEqualTo("NAME", "Lisa");
 ### beginWrap
 
 beginWrap(): RdbPredicates
-
 
 向谓词添加左括号。
 
@@ -7572,7 +7572,7 @@ if(resultSet != undefined) {
 
 getValue(columnIndex: number): ValueType
 
-获取当前指定列的值，值类型如果是ValueType指定的任意类型，则会以对应类型返回指定类的值，否则返回14800000。
+获取当前行中指定列的值，值类型如果是ValueType指定的任意类型，则会以对应类型返回指定类的值，否则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7848,7 +7848,7 @@ if(resultSet != undefined) {
 
 getAsset(columnIndex: number): Asset
 
-以[Asset](#asset10)形式获取当前行中指定列的值，如果当前列中的值为null时，会返回null，如果为其他类型时，则会返回14800000。
+以[Asset](#asset10)形式获取当前行中指定列的值，如果当前列的数据类型为Asset类型，会以Asset类型返回指定值，如果当前列中的值为null时，会返回null，其他类型则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7903,7 +7903,7 @@ if(resultSet != undefined) {
 
 getAssets(columnIndex: number): Assets
 
-以[Assets](#assets10)形式获取当前行中指定列的值，如果当前列中的值为null时，会返回null，如果为其他类型时，则会返回14800000。
+以[Assets](#assets10)形式获取当前行中指定列的值，如果当前列的数据类型为Assets类型，会以Assets类型返回指定值，如果当前列中的值为null时，会返回null，其他类型则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

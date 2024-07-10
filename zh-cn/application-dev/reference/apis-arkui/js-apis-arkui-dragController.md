@@ -17,19 +17,21 @@ import { dragController } from "@kit.ArkUI";
 
 ## dragController.executeDrag
 
-executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: AsyncCallback&lt; {event: DragEvent, extraParams: string}&gt;): void
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:AsyncCallback\<DragEventParam>)
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回结果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                             |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。<br/>**说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
-| dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                       |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
+| dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                                                   |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[DragEventParam](#drageventparam12)&gt; | 是   | 拖拽结束返回结果的回调。                                     |
 
 **错误码：**
 
@@ -117,9 +119,11 @@ struct DragControllerPage {
   ![zh-cn_executeDrag1](figures/executeDrag1.gif)
 ## dragController.executeDrag
 
-executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise\<DragEventParam>
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过Promise返回结果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -132,9 +136,9 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 
 **返回值：** 
 
-| 类型                                                   | 说明               |
-| ------------------------------------------------------ | ------------------ |
-| Promise&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
+| 类型                                               | 说明                     |
+| -------------------------------------------------- | ------------------------ |
+| Promise&lt;[DragEventParam](#drageventparam12)&gt; | 拖拽结束返回结果的回调。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
@@ -291,7 +295,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001   | If some internal handling failed |
+| 100001   | Internal handling failed. |
 
 **示例：**
 
@@ -597,6 +601,19 @@ struct DragControllerPage {
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | duration    | number                                                 | 否   | 动画持续时间，单位为毫秒。<br/>默认值：1000<br/>**说明：**<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。|
 | curve       |&nbsp;[Curve](arkui-ts/ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](js-apis-curve.md#icurve) | 否    | 设置动画曲线。<br/>默认值：Curve.EaseInOut|                          |
+
+## DragEventParam<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+拖拽结束返回结果的回调。
+
+| 名称        | 类型   | 必填 | 说明                           |
+| ----------- | ------ | ---- | ------------------------------ |
+| event       | number | 是   | 拖拽事件信息，仅包括拖拽结果。 |
+| extraParams | string | 是   | 拖拽事件额外信息。             |
 
 ## dragController.getDragPreview<sup>11+</sup>
 

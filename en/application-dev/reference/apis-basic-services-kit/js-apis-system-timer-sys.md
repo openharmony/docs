@@ -1,4 +1,4 @@
-# @ohos.systemTimer (System Timer)
+# @ohos.systemTimer (System Timer) (System API)
 
 The **systemTimer** module provides system timer features. You can use the APIs of this module to implement the alarm clock and other timer services.
 
@@ -11,7 +11,7 @@ The **systemTimer** module provides system timer features. You can use the APIs 
 
 
 ```ts
-import systemTimer from '@ohos.systemTimer';
+import { systemTimer } from '@kit.BasicServicesKit';
 ```
 
 ## Constants
@@ -39,7 +39,7 @@ Defines the initialization options for **createTimer**.
 | repeat    | boolean                                       | Yes  | Whether the timer is a repeating timer.<br>The value **true** means that the timer is a repeating timer, and **false** means that the timer is a one-shot timer.                       |
 | interval  | number                                        | No  | Repeat interval.<br>For a repeating timer, the value must be greater than 5000 ms. For a one-shot timer, the value is **0**.|
 | wantAgent | WantAgent | No  | **WantAgent** object of the notification to be sent when the timer expires. (An application MainAbility can be started, but not a Service ability.)|
-| callback  | number                                        | Yes  | Callback used to return the timer ID.                            |
+| callback  | void                                          | No | Callback to be executed by the user.                           |
 
 
 ## systemTimer.createTimer
@@ -57,10 +57,19 @@ Creates a timer. This API uses an asynchronous callback to return the result.
 | options  | [TimerOptions](#timeroptions) | Yes  | Timer initialization options, including the timer type, whether the timer is a repeating timer, interval, and **WantAgent** options.|
 | callback | AsyncCallback&lt;number>      | Yes  | Callback used to return the timer ID.                                  |
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                                                        |
+|-------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                                                 |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -101,10 +110,19 @@ Creates a timer. This API uses a promise to return the result.
 | --------------------- | ----------------------------- |
 | Promise&lt;number&gt; | Promise used to return the timer ID.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -138,10 +156,19 @@ Starts a timer. This API uses an asynchronous callback to return the result.
 | triggerTime | number                 | Yes  | Time when the timer is triggered, in milliseconds.|
 | callback    | AsyncCallback&lt;void> | Yes  | Callback used to return the result.                    |
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -190,10 +217,19 @@ Starts a timer. This API uses a promise to return the result.
 | -------------- | ------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -234,10 +270,19 @@ Stops a timer. This API uses an asynchronous callback to return the result.
 | timer    | number                 | Yes  | ID of the timer.|
 | callback | AsyncCallback&lt;void> | Yes  | Callback used to return the result.  |
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -251,7 +296,7 @@ try {
     systemTimer.startTimer(timerId, triggerTime);
     systemTimer.stopTimer(timerId, (error: BusinessError) => {
       if (error) {
-        console.info(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
+        console.info(`Failed to stop the timer. Message: ${error.message}, code: ${error.code}`);
         return;
       }
     console.info(`Succeeded in stopping the timer.`);
@@ -286,10 +331,19 @@ Stops a timer. This API uses a promise to return the result.
 | -------------- | ------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -331,10 +385,19 @@ Destroys a timer. This API uses an asynchronous callback to return the result.
 | timer    | number                 | Yes  | ID of the timer.|
 | callback | AsyncCallback&lt;void> | Yes  | Callback used to return the result.  |
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,
@@ -384,10 +447,19 @@ Destroys a timer. This API uses a promise to return the result.
 | -------------- | ------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Time and Time Zone Service Error Codes](./errorcode-time.md).
+
+| ID| Error Message                                                                                                       |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: systemTimer.TimerOptions = {
   type: systemTimer.TIMER_TYPE_REALTIME,

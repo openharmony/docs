@@ -36,8 +36,6 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
    Scenario 1: Create a **WantAgentInfo** object for starting an ability. 
 
    ```ts
-   let wantAgentObj:_wantAgent|null = null; // Save the created WantAgent object for completing the trigger operations at a later time.
-   
    // Set the action type through operationType of WantAgentInfo.
    let wantAgentInfo:wantAgent.WantAgentInfo = {
        wants: [
@@ -60,8 +58,6 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
    Scenario 2: Create a **WantAgentInfo** object for releasing a public event.
 
    ```ts
-   let wantAgentObj:_wantAgent|null = null; // Save the created WantAgent object for completing the trigger operations at a later time.
-   
    // Set the action type through operationType of WantAgentInfo.
    let wantAgentInfo:wantAgent.WantAgentInfo = {
        wants: [
@@ -81,6 +77,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
    Call the geofencing API to add a geofence after obtaining the **WantAgent** object, and have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
 
    ```ts
+   let wantAgentObj : object | undefined = undefined;
    // Create a WantAgent object.
    wantAgent.getWantAgent(wantAgentInfo, (err, data) => {
        if (err) {

@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import IntentionCode from '@ohos.multimodalInput.intentionCode';
+import { IntentionCode } from '@kit.InputKit';
 ```
 
 ## IntentionCode

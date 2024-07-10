@@ -303,6 +303,7 @@ getUIFontConfig() : UIFontConfig
 ```ts
 // xxx.ets
 import { font } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct FontExample {

@@ -207,7 +207,6 @@ struct Index {
 }
 ```
 
-
 ### dispose
 
 dispose(): void
@@ -218,7 +217,7 @@ dispose(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**示例：**
+**示例：** 
 
 ```ts
 import { BusinessError } from '@ohos.base';

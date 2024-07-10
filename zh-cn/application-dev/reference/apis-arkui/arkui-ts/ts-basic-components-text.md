@@ -356,8 +356,6 @@ wordBreak(value: WordBreak)
 
 设置断行规则。WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，maxLines组合使用可实现英文单词按字母截断，超出部分以省略号显示
 
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -382,8 +380,6 @@ selection(selectionStart: number, selectionEnd: number)
 
 当selectionStart或selectionEnd在截断不可见区域时不选中。截断为false时超出父组件的文本选中区域生效。
 
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -402,8 +398,6 @@ ellipsisMode(value: EllipsisMode)
 设置省略位置。ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis以及maxLines使用，单独设置ellipsisMode属性不生效。
 
 EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。
-
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -529,8 +523,6 @@ lineSpacing(value: LengthMetrics)
 
 设置文本的行间距，设置值不大于0时，取默认值0。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -587,9 +579,9 @@ textSelectable(value: TextSelectableMode)
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | value  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | 是   | 文本是否支持可选择、可获焦。 <br />默认值：TextSelectableMode.SELECTABLE_UNFOCUSABLE |
 
-### selectionMenuOptions<sup>12+</sup>
+### editMenuOptions<sup>12+</sup>
 
-selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
+editMenuOptions(editMenu: EditMenuOptions)
 
 设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
 
@@ -601,7 +593,7 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 是   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
 
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 
@@ -622,8 +614,6 @@ onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按文本内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。目前文本复制仅支持文本。
 
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -639,8 +629,6 @@ onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
 文本选择的位置发生变化时，触发该回调。
-
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1044,6 +1032,7 @@ struct TextExample6 {
   @State url: string = 'www.********.com';
   @State email: string = '***@example.com';
   @State address: string = 'XX省XX市XX区XXXX';
+  @State datetime: string = 'XX年XX月XX日XXXX';
   @State enableDataDetector: boolean = true;
   @State types: TextDataDetectorType[] = [];
 
@@ -1054,7 +1043,8 @@ struct TextExample6 {
           '电话号码：' + this.phoneNumber + '\n' +
           '链接：' + this.url + '\n' +
           '邮箱：' + this.email + '\n' +
-          '地址：' + this.address
+          '地址：' + this.address + '\n' +
+          '时间：' + this.datetime
         )
           .fontSize(16)
           .copyOption(CopyOptions.InApp)
@@ -1071,6 +1061,7 @@ struct TextExample6 {
   }
 }
 ```
+
 ![](figures/text7.png)
 
 ### 示例7
@@ -1342,43 +1333,63 @@ struct TextExample10 {
 
 ### 示例11
 
-selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+editMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextExample11 {
-  @State text: string = 'This is ss01 on : 0123456789'
-  @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
-    {
-      content: 'Text扩展1', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
+  @State text: string = 'Text editMenuOptions'
+
+  onCreateMenu(menuItems: Array<TextMenuItem>) {
+    menuItems.forEach((value, index) => {
+      value.icon = $r('app.media.startIcon')
+      if (value.id.equals(TextMenuItemId.COPY)) {
+        value.content = "复制change"
+      }
+      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
+        value.content = "全选change"
+      }
+    })
+    let item1: TextMenuItem = {
+      content: 'custom1',
+      icon: $r('app.media.startIcon'),
+      id: TextMenuItemId.of('custom1'),
     }
-    },
-    {
-      content: 'Text扩展2', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
+    let item2: TextMenuItem = {
+      content: 'custom2',
+      id: TextMenuItemId.of('custom2'),
+      icon: $r('app.media.startIcon'),
     }
-    },
-    {
-      content: 'Text扩展3', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    },
-    {
-      content: 'Text扩展4', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
-      console.log("action start:" + value.start + "; end:" + value.end)
-    }
-    }
-  ]
+    menuItems.push(item1)
+    menuItems.unshift(item2)
+    return menuItems
+  }
 
   build() {
     Column() {
       Text(this.text)
         .fontSize(20)
-        .copyOption(CopyOptions.InApp)
-        .selectionMenuOptions(this.menuOptionArray)
+        .copyOption(CopyOptions.LocalDevice)
+        .editMenuOptions({
+          onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+            if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+              console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+              return true;
+            }
+            if (menuItem.id.equals(TextMenuItemId.COPY)) {
+              console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
+              return true;
+            }
+            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+              console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+              return false;
+            }
+            return false;
+          }
+        })
+        .margin({ top: 100 })
     }
     .width("90%")
     .margin("5%")
@@ -1386,4 +1397,4 @@ struct TextExample11 {
 }
 ```
 
-![textSelectionMenuOptions](figures/textSelectionMenuOptions.png)
+![textEditMenuOptions](figures/textEditMenuOptions.gif)

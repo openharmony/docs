@@ -617,6 +617,38 @@ The error is unidentified.
 
 2. Restart the service.
 
+### 13900045 Connection Failed
+
+**Error Message**
+
+Connection failed
+
+**Possible Causes**
+
+The device is abnormal, or Wi-Fi or Bluetooth is unavailable.
+
+**Solution**
+
+1. Check that the device is in normal status.
+
+2. Check that Wi-Fi and Bluetooth are available.
+
+### 13900046 Connection Interrupted by Software
+
+**Error Message**
+
+Software caused connection abort
+
+**Possible Causes**
+
+The device goes offline, or the Wi-Fi or Bluetooth is disconnected.
+
+**Solution**
+
+1. Check that the device is in normal status.
+
+2. Check that Wi-Fi and Bluetooth are available.
+
 ## User Data Management Error Codes
 
 ### 14000001 Invalid File Name

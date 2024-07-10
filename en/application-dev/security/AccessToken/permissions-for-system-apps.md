@@ -3077,6 +3077,18 @@ Allows a system application to access and write the ring tone public directory.
 
 **Valid since**: 12
 
+### ohos.permission.ACCESS_SCAN_SERVICE
+
+Allows a system application to invoke the code dispatching capability provided by the scan-to-access service.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.ACCESS_SEARCH_SERVICE
 
 Allows a system application to call the local search ability provided by the fusion search service.

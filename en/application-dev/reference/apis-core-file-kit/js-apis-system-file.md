@@ -191,7 +191,7 @@ Obtains information about a local file.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | uri | string | Yes| URI of the file.|
-| recursive | boolean | No| Whether to recursively obtain the file list under a subdirectory. The default value is **false**.|
+| recursive | boolean | No| Whether to obtain the subdirectory file list recursively. The value **true** means to obtain the subdirectory file list recursively; the value **false** means the opposite.|
 | success | Function | No| Called when the file information is obtained.|
 | fail | Function | No| Called when the file information fails to be obtained.|
 | complete | Function | No| Called when the execution is complete.|
@@ -300,7 +300,7 @@ Writes text into a file. Only text files can be read and written.
 | uri | string | Yes| URI of a local file. If it does not exist, a file will be created.|
 | text | string | Yes| Text to write into the file. |
 | encoding | string | No| Encoding format. The default format is **UTF-8**.|
-| append | boolean | No| Whether to enable the append mode. The default value is **false**.|
+| append | boolean | No| Whether to enable the append mode. The default value is **false**. The value **true** means to enable the append mode; the value **false** means the opposite.|
 | success | Function | No| Called when the text is written into the specified file.|
 | fail | Function | No| Called when the text fails to be written into the file.|
 | complete | Function | No| Called when the execution is complete.|
@@ -351,7 +351,7 @@ Writes buffer data into a file. Only text files can be read and written.
 | uri | string | Yes| URI of a local file. If it does not exist, a file will be created.|
 | buffer | Uint8Array | Yes| Buffer from which the data is derived.|
 | position | number | No| Offset to the position where the writing starts. The default value is **0**.|
-| append | boolean | No| Whether to enable the append mode. The default value is **false**. If the value is **true**, the **position** parameter will become invalid.|
+| append | boolean | No| Whether to enable the append mode. The default value is **false**. If the value is **true**, the **position** parameter will become invalid. The value **true** means to enable the append mode; the value **false** means the opposite.|
 | success | Function | No| Called when buffer data is written into the file. |
 | fail | Function | No| Called when buffer data fails to be written into the file.|
 | complete | Function | No| Called when the execution is complete.|
@@ -612,7 +612,7 @@ Deletes a directory.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | uri | string | Yes| URI of the directory to delete.|
-| recursive | boolean | No| Whether to recursively delete files and subdirectories of the specified directory. The default value is **false**.|
+| recursive | boolean | No| Whether to recursively delete files and subdirectories of the specified directory. The default value is **false**. The value **true** means to recursively delete files and subdirectories of the specified directory; the value **false** means the opposite.|
 | success | Function | No| Called when the directory is deleted.|
 | fail | Function | No| Called when the directory fails to be deleted.|
 | complete | Function | No| Called when the execution is complete.|

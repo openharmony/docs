@@ -11,7 +11,7 @@ The **power** module provides APIs for rebooting and shutting down the system, a
 ## Modules to Import
 
 ```js
-import power from '@kit.BasicServicesKit';
+import {power} from '@kit.BasicServicesKit';
 ```
 
 ## power.shutdown
@@ -38,10 +38,10 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 201     | If the permission is denied.         |
-| 202     | If the system permission is denied.  |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 
 **Example:**
@@ -78,10 +78,10 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 201     | If the permission is denied.  |
-| 202     | If the system permission is denied.  |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example:**
 
@@ -115,9 +115,9 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
-| 202     | If the system permission is denied.  |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example:**
 
@@ -152,8 +152,9 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
-| 202     | If the system permission is denied.  |
+| 4900101 | Failed to connect to the service. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example:**
 
@@ -190,10 +191,10 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
-| 201     | If the permission is denied.        |
-| 202     | If the system permission is denied.|
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example:**
 
@@ -237,10 +238,10 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
-| 201     | If the permission is denied.         |
-| 202     | If the system permission is denied.  |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example:**
 
@@ -276,9 +277,9 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
-| 401 | Parameter error. Possible causes: 1. Parameter verification failed. |
-| 202 | If the system permission is denied. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1. Parameter verification failed. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example:**
 
@@ -312,8 +313,9 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
-| 202 | If the system permission is denied. |
+| 4900101 | Failed to connect to the service. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example:**
 

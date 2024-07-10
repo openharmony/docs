@@ -33,19 +33,19 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
-| 1600003  | Failed to connect service.                           |
-| 1600004  | Notification is not enabled.                         |
-| 1600005  | Notification slot is not enabled.                    |
-| 1600007  | The notification is not exist.                       |
-| 1600009  | Over max number notifications per second.            |
+| 1600003  | Failed to connect to the service.                    |
+| 1600004  | Notification disabled.                               |
+| 1600005  | Notification slot disabled.                          |
+| 1600007  | The notification does not exist.                     |
+| 1600009  | The notification sending frequency reaches the upper limit.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No permission.                                   |
+| 1600014  | No permission.                                       |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network unreachable.                              |
+| 2300007  | Network unreachable.                                 |
 
 **示例：**
 
@@ -101,19 +101,19 @@ publish(request: NotificationRequest): Promise\<void\>
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
-| 1600003  | Failed to connect service.                           |
-| 1600004  | Notification is not enabled.                         |
-| 1600005  | Notification slot is not enabled.                    |
-| 1600007  | The notification is not exist.                       |
-| 1600009  | Over max number notifications per second.            |
+| 1600003  | Failed to connect to the service.                    |
+| 1600004  | Notification disabled.                               |
+| 1600005  | Notification slot disabled.                          |
+| 1600007  | The notification does not exist.                     |
+| 1600009  | The notification sending frequency reaches the upper limit.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No permission.                                   |
+| 1600014  | No permission.                                       |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network unreachable.                              |
+| 2300007  | Network unreachable.                                 |
 
 **示例：**
 
@@ -165,8 +165,8 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 
 **示例：**
 
@@ -214,8 +214,8 @@ cancel(id: number, label?: string): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 
 **示例：**
 
@@ -253,8 +253,8 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 
 **示例：**
 
@@ -289,7 +289,7 @@ cancelAll(callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **参数：**
 
@@ -336,7 +336,7 @@ cancelAll(): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -374,7 +374,7 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **示例：**
@@ -422,7 +422,7 @@ addSlot(type: SlotType): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **示例：**
@@ -461,7 +461,7 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -509,7 +509,7 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -549,7 +549,7 @@ getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -590,7 +590,7 @@ getSlots(): Promise\<Array\<NotificationSlot>>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -628,7 +628,7 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -676,7 +676,7 @@ removeSlot(slotType: SlotType): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -714,7 +714,7 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -754,7 +754,7 @@ removeAllSlots(): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -788,12 +788,12 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 | 错误码ID | 错误信息                                  |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600008  | The user does not exist.                   |
 | 17700001 | The specified bundle name was not found. |
 
@@ -833,12 +833,12 @@ isNotificationEnabled(): Promise\<boolean\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
+| 201      | Permission denied.     |  
+| 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600008  | The user does not exist.                   |
 | 17700001 | The specified bundle name was not found. |
 
@@ -913,7 +913,7 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -954,7 +954,7 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -996,7 +996,7 @@ getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -1037,7 +1037,7 @@ getActiveNotificationCount(): Promise\<number\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -1074,7 +1074,7 @@ getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): v
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -1114,7 +1114,7 @@ getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-no
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -1152,7 +1152,7 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -1201,7 +1201,7 @@ cancelGroup(groupName: string): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -1240,7 +1240,7 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -1287,7 +1287,7 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -1329,9 +1329,9 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600004  | Notification is not enabled.          |
-| 1600013  | A notification dialog box is already displayed.          |
+| 1600003  | Failed to connect to the service.          |
+| 1600004  | Notification disabled.          |
+| 1600013  | A notification dialog box is already displayed.           |
 
 **示例：**
 
@@ -1375,9 +1375,9 @@ requestEnableNotification(): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600004  | Notification is not enabled.          |
-| 1600013  | A notification dialog box is already displayed.          |
+| 1600003  | Failed to connect to the service.          |
+| 1600004  | Notification disabled.          |
+| 1600013  | A notification dialog box is already displayed.           |
 
 **示例：**
 
@@ -1417,9 +1417,9 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600004  | Notification is not enabled.          |
-| 1600013  | A notification dialog box is already displayed.          |
+| 1600003  | Failed to connect to the service.          |
+| 1600004  | Notification disabled.          |
+| 1600013  | A notification dialog box is already displayed.           |
 
 **示例：**
 
@@ -1483,9 +1483,9 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600004  | Notification is not enabled.          |
-| 1600013  | A notification dialog box is already displayed.          |
+| 1600003  | Failed to connect to the service.          |
+| 1600004  | Notification disabled.          |
+| 1600013  | A notification dialog box is already displayed.           |
 
 **示例：**
 
@@ -1538,7 +1538,7 @@ isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600010  | Distributed operation failed.       |
 
 **示例：**
@@ -1579,7 +1579,7 @@ isDistributedEnabled(): Promise\<boolean>
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600010  | Distributed operation failed.       |
 
 **示例：**
