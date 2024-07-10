@@ -260,37 +260,7 @@ CreateModalUIExtension防不安全窗口遮挡的默认行为变更，变更前�
 | --- | --- |
 | CreateModalUIExtension默认行为为不防不安全窗口遮挡，允许系统应用设置防不安全窗口遮挡 | CreateModalUIExtension默认行为为防不安全窗口遮挡，且不允许取消防遮挡 |
 
-**起始API Level**
-
-11
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.32开始。
-
-**变更的接口/组件**
-
-CreateModalUIExtension接口。
-
-**适配指导**
-
-CreateModalUIExtension禁止其他组件和非安全窗口遮挡。
-
-## cl.arkui.7 hideNonSecureWindows接口行为变更
-
-**访问级别**
-
-系统接口
-
-**变更原因**
-
-当UIExtensionComponent组件被用来显示敏感内容时，可以调用此接口隐藏不安全窗口，保护敏感内容不会被遮挡。原有不安全窗口的定义不完全，导致UIExtensionComponent仍有可能被宿主创建的Dialog遮挡。
-
-**变更影响**
-
-该变更为不兼容变更。
-
-不安全窗口的定义新增宿主创建的Dialog窗口，变更前后不安全窗口包含的窗口类型如下表所示。
+hideNonSecureWindows接口中不安全窗口的定义新增宿主创建的Dialog窗口，变更前后不安全窗口包含的窗口类型如下表所示。
 
 | 变更前 | 变更后 |
 | --- | --- |
@@ -306,13 +276,13 @@ CreateModalUIExtension禁止其他组件和非安全窗口遮挡。
 
 **变更的接口/组件**
 
-hideNonSecureWindows接口。
+CreateModalUIExtension和hideNonSecureWindows接口。
 
 **适配指导**
 
-接口行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+CreateModalUIExtension禁止其他组件和非安全窗口遮挡。
 
-## cl.arkui.8 AlphabetIndexer组件autoCollapse属性默认值由false改为true
+## cl.arkui.7 AlphabetIndexer组件autoCollapse属性默认值由false改为true
 
 **访问级别**
 
@@ -350,7 +320,7 @@ AlphabetIndexer组件
 
 默认行为变更，默认开启自适应折叠模式，若要关闭自适应折叠模式，可通过设置[autoCollapse](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md#autocollapse11)属性进行适配。
 
-## cl.arkui.9 元服务AppBar调整Z序到弹框之上
+## cl.arkui.8 元服务AppBar调整Z序到弹框之上
 **访问级别**
 
 公开接口
@@ -385,7 +355,7 @@ API version 12及以后：针对元服务，大部分弹框层级都在AppBar之
 
 接口行为变更，无需适配.
 
-## cl.arkui.10 RichEditor组件builderSpan支持绑定自定义菜单
+## cl.arkui.9 RichEditor组件builderSpan支持绑定自定义菜单
 
 **访问级别**
 
@@ -444,7 +414,7 @@ struct Example {
 }
 ```
 
-## cl.arkui.11 文本计算接口fontSize参数默认单位实现修正
+## cl.arkui.10 文本计算接口fontSize参数默认单位实现修正
 
 **访问级别**
 
@@ -514,7 +484,7 @@ struct Index {
 
 若在Text组件上，fontSize设置的是fp类型字号则无需适配，测算接口fontSize参数传入number类型数值和Text组件上使用的字号单位是一致的。
 
-## cl.arkui.12 光标默认样式变更
+## cl.arkui.11 光标默认样式变更
 
 **访问级别**
 
@@ -553,7 +523,7 @@ struct Index {
 
 默认效果变更，无需适配。
 
-## cl.arkui.13 高级组件SelectionMenu默认样式变更
+## cl.arkui.12 高级组件SelectionMenu默认样式变更
 
 **访问级别**
 
@@ -593,7 +563,7 @@ struct Index {
 
 默认效果变更，无需适配。
 
-## cl.arkui.14 Svg根节点视窗外图片内容裁剪
+## cl.arkui.13 Svg根节点视窗外图片内容裁剪
 
 **访问级别**
 
