@@ -70,7 +70,7 @@ struct Index {
   customPickerBuilder(): void {
     Image(this.pickerImage)
           .width('100%')
-          .height('100%')
+      .height('100%')
       .fillColor(Color.Black)
   }
 
