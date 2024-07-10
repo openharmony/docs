@@ -15004,6 +15004,120 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | width  | number   | 是   | 是   | 矩形的宽度。    |
 | height  | number   | 是   | 是   | 矩形的高度。    |
 
+## BackForwardCacheSupportedFeatures<sup>12+<sup>
+
+选择性允许使用以下特性的页面进入前进后退缓存。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+|------|------|------|------|------|
+| nativeEmbed | bool | 否 | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
+| mediaTakeOver | bool | 否 | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
+
+## BackForwardCacheOptions<sup>12+<sup>
+
+前进后退缓存相关设置对象，用来控制web组件前进后退缓存相关选项。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+|------|------|------|------|------|
+| size | number | 否 | 是 | 设置每个web组件允许缓存的最大页面个数。默认为1，最大可设置为50。Web会根据内存压力对缓存进行回收。 |
+| timeToLive | number | 否 | 是 | 设置每个web组件允许页面在前进后退缓存中停留的时间，默认为600秒。|
+
+### enableBackForwardCache<sup>12+</sup>
+
+static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
+
+开启web组件允许页面进入前进后退缓存的功能，可以选择使用特定特性的页面进入前进后退缓存。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| features     |  BackForwardCacheSupportedFeatures | 是   | 允许使用特定特性的页面进入前进后退缓存中。|
+
+**示例：**
+
+```ts
+// xxx.ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        let features = new webview.BackForwardCacheSupportedFeatures();
+        features.nativeEmbed = true;
+        features.mediaTakeOver = true;
+        webview.WebviewController.enableBackForwardCache(features);
+        webview.WebviewController.initializeWebEngine();
+        AppStorage.setOrCreate("abilityWant", want);
+    }
+}
+```
+
+### setBackForwardCacheOptions<sup>12+</sup>
+
+setBackForwardCacheOptions(options: BackForwardCacheOptions): void
+
+可以设置web组件中前进后退缓存的相关选项。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| options     |  BackForwardCacheOptions | 是   | 用来控制web组件前进后退缓存相关选项。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Row() {
+        Button("Add options").onClick((event: ClickEvent) => {
+          let options = new webview.BackForwardCacheOptions();
+          options.size = 3;
+          options.timeToLive = 10;
+          this.controller.setBackForwardCacheOptions(options);
+        })
+        Button("BackWard").onClick((event: ClickEvent) => {
+          this.controller.backward();
+        })
+        Button("Forward").onClick((event: ClickEvent) => {
+          this.controller.forward();
+        })
+      }
+      Web({ src: "https://www.example.com", controller: this.controller })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
 ## AdsBlockManager<sup>12+</sup>
 
 通过AdsBlockManager可以向Web组件中设置自定义的广告过滤配置、关闭特定网站的广告过滤功能，其中每个应用中的所有Web组件都共享一个AdsBlockManager实例。
