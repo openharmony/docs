@@ -814,6 +814,10 @@ on(type: 'cameraStatus', callback: AsyncCallback\<CameraStatusInfo\>): void
 
 相机设备状态回调，通过注册回调函数获取相机的状态变化。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -986,6 +990,10 @@ function setTorchMode(cameraManager: camera.CameraManager, torchMode: camera.Tor
 on(type: 'torchStatusChange', callback: AsyncCallback\<TorchStatusInfo\>): void
 
 手电筒状态变化回调，通过注册回调函数获取手电筒状态变化。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1306,6 +1314,10 @@ on(type: 'error', camera: CameraDevice, callback: ErrorCallback): void
 
 监听CameraInput的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1604,6 +1616,10 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 
 监听预览帧启动，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1660,6 +1676,10 @@ on(type: 'frameEnd', callback: AsyncCallback\<void\>): void
 
 监听预览帧结束，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -1715,6 +1735,10 @@ function unregisterPreviewOutputFrameEnd(previewOutput: camera.PreviewOutput): v
 on(type: 'error', callback: ErrorCallback): void
 
 监听预览输出的错误事件，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2123,6 +2147,10 @@ on(type: 'photoAvailable', callback: AsyncCallback\<Photo\>): void
 
 注册监听全质量图上报。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2190,6 +2218,10 @@ function unRegisterPhotoOutputPhotoAvailable(photoOutput: camera.PhotoOutput): v
 on(type: 'captureStartWithInfo', callback: AsyncCallback\<CaptureStartInfo\>): void
 
 监听拍照开始，通过注册回调函数获取[CaptureStartInfo](#capturestartinfo11)。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2331,6 +2363,10 @@ on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
 
 注册监听photoAsset上报。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2413,7 +2449,9 @@ on(type: 'captureStart', callback: AsyncCallback\<number\>): void
 监听拍照开始，通过注册回调函数获取Capture ID。使用callback异步回调。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[on('captureStartWithInfo')](#oncapturestartwithinfo11)替代。
+> 从 API version 10开始支持，从API version 11开始废弃。建议使用[on('captureStartWithInfo')](#oncapturestartwithinfo11)替代。
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2449,7 +2487,9 @@ off(type: 'captureStart', callback?: AsyncCallback\<number\>): void
 注销监听拍照开始。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[off('captureStartWithInfo')](#offcapturestartwithinfo11)替代。
+> 从 API version 10开始支持，从API version 11开始废弃。建议使用[off('captureStartWithInfo')](#offcapturestartwithinfo11)替代。
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2531,6 +2571,10 @@ on(type: 'captureEnd', callback: AsyncCallback\<CaptureEndInfo\>): void
 
 监听拍照结束，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2588,6 +2632,10 @@ on(type: 'frameShutterEnd', callback: AsyncCallback\<FrameShutterEndInfo\>): voi
 
 监听拍照曝光结束捕获，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2643,6 +2691,10 @@ function unregisterPhotoOutputFrameShutterEnd(photoOutput: camera.PhotoOutput): 
 on(type: 'captureReady', callback: AsyncCallback\<void\>): void
 
 监听可拍下一张，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2700,6 +2752,10 @@ on(type: 'estimatedCaptureDuration', callback: AsyncCallback\<number\>): void
 
 监听预估的拍照时间，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2755,6 +2811,10 @@ function unregisterPhotoOutputEstimatedCaptureDuration(photoOutput: camera.Photo
 on(type: 'error', callback: ErrorCallback): void
 
 监听拍照输出发生错误，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2989,6 +3049,10 @@ on(type: 'frameStart', callback: AsyncCallback\<void\>): void
 
 监听录像开始，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3021,6 +3085,10 @@ function registerVideoOutputFrameStart(videoOutput: camera.VideoOutput): void {
 off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
 
 注销监听录像开始。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3101,6 +3169,10 @@ function unregisterVideoOutputFrameEnd(videoOutput: camera.VideoOutput): void {
 on(type: 'error', callback: ErrorCallback): void
 
 监听录像输出发生错误，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3378,6 +3450,10 @@ on(type: 'metadataObjectsAvailable', callback: AsyncCallback\<Array\<MetadataObj
 
 监听检测到的metadata对象，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3433,6 +3509,10 @@ function unregisterMetadataObjectsAvailable(metadataOutput: camera.MetadataOutpu
 on(type: 'error', callback: ErrorCallback): void
 
 监听metadata流的错误，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6859,7 +6939,9 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[VideoSession.on('focusStateChange')](#onfocusstatechange11-1)替代。
+> 从 API version 10开始支持，从API version 11开始废弃。建议使用[VideoSession.on('focusStateChange')](#onfocusstatechange11-1)替代。
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -6917,6 +6999,10 @@ function unregisterFocusStateChange(captureSession: camera.CaptureSession): void
 on(type: 'error', callback: ErrorCallback): void
 
 监听拍照会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 > **说明：**
 >从 API version 10开始支持，从API version 11开始废弃。建议使用[VideoSession.on('error')](#onerror11-1)替代。
@@ -7112,6 +7198,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 监听普通拍照会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -7163,6 +7253,10 @@ function unregisterSessionError(photoSession: camera.PhotoSession): void {
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
 监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -7219,6 +7313,10 @@ function unregisterFocusStateChange(photoSession: camera.PhotoSession): void {
 on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
 
 监听相机平滑变焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -7282,6 +7380,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 监听普通录像会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -7333,6 +7435,10 @@ function unregisterSessionError(videoSession: camera.VideoSession): void {
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
 监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -7389,6 +7495,10 @@ function unregisterFocusStateChange(videoSession: camera.VideoSession): void {
 on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
 
 监听相机平滑变焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -7491,6 +7601,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 监听安全相机会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
 
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -7542,6 +7656,10 @@ function unregisterSessionError(secureSession: camera.SecureSession): void {
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
 监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
