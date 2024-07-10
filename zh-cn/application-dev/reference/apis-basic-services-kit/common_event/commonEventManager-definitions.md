@@ -225,16 +225,16 @@
   - 订阅者所需权限：无
 
 * [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN](../common_event/commonEvent-account.md#common_event_distributed_account_login)
-（预留事件，暂未支持）表示分布式帐号登录成功的动作。
+（预留事件，暂未支持）表示分布式账号登录成功的动作。
 
 * [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT](../common_event/commonEvent-account.md#common_event_distributed_account_logout)
-（预留事件，暂未支持）表示分布式帐号登出成功的动作。
+（预留事件，暂未支持）表示分布式账号登出成功的动作。
 
 * [COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID](../common_event/commonEvent-account.md#common_event_distributed_account_token_invalid)
-（预留事件，暂未支持）表示分布式帐号token令牌无效的动作。
+（预留事件，暂未支持）表示分布式账号token令牌无效的动作。
 
 * [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF](../common_event/commonEvent-account.md#common_event_distributed_account_logoff)
-（预留事件，暂未支持）表示分布式帐号注销的动作。
+（预留事件，暂未支持）表示分布式账号注销的动作。
 
 * [COMMON_EVENT_WIFI_POWER_STATE](../common_event/commonEvent-wifi.md#common_event_wifi_power_state)
 Wi-Fi状态公共事件的动作，如启用和禁用。
@@ -635,12 +635,12 @@ Wi-Fi P2P群组信息已更改。
 用户已表示希望删除外部存储介质时发送此公共事件。
 
 * COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
-（预留事件，暂未支持）表示帐户可见更改的公共事件的动作。
+（预留事件，暂未支持）表示账户可见更改的公共事件的动作。
   - 值：usual.event.data.VISIBLE_ACCOUNTS_UPDATED
   - 订阅者所需权限：ohos.permission.GET_APP_ACCOUNTS，该权限仅系统应用可申请。
 
 * COMMON_EVENT_ACCOUNT_DELETED
-（预留事件，暂未支持）删除帐户的公共事件的动作。
+（预留事件，暂未支持）删除账户的公共事件的动作。
   - 值：usual.event.data.ACCOUNT_DELETED
   - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -746,16 +746,16 @@ Wi-Fi P2P群组信息已更改。
 指示撤销快速修复的动作。
 
 * [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN](../common_event/commonEvent-account.md#common_event_distributed_account_login)
-表示分布式帐号登录成功的动作。
+表示分布式账号登录成功的动作。
 
 * [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT](../common_event/commonEvent-account.md#common_event_distributed_account_logout)
-表示分布式帐号登出成功的动作。
+表示分布式账号登出成功的动作。
 
 * [COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID](../common_event/commonEvent-account.md#common_event_distributed_account_token_invalid)
-表示分布式帐号token令牌无效的动作。
+表示分布式账号token令牌无效的动作。
 
 * [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF](../common_event/commonEvent-account.md#common_event_distributed_account_logoff)
-表示分布式帐号注销的动作。
+表示分布式账号注销的动作。
 
 * [COMMON_EVENT_USER_INFO_UPDATED<sup>9+</sup> ](../common_event/commonEvent-account.md#common_event_user_info_updated9)
 表示用户信息已更新。
