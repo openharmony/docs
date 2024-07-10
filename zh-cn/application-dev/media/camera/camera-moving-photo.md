@@ -20,7 +20,6 @@
 
    ```ts
    import { camera } from '@kit.CameraKit';
-   import { image } from '@kit.ImageKit';
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
