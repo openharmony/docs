@@ -67,7 +67,7 @@ struct Index {
   }
 
   @Builder
-  customPickerBuidler(): void {
+  customPickerBuilder(): void {
     Image(this.pickerImage)
       .size({ width('100%'), height('100%') })
       .fillColor(Color.Black)
