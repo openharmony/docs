@@ -42,11 +42,11 @@ import fileShare from '@ohos.fileshare';
 
 **系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
-| 名称      | 类型                                   | 说明                |
-|---------|--------------------------------------|-------------------|
-| uri     | string                               | 授予或使能权限失败的URI。         |
-| code    | [PolicyErrorCode](#policyerrorcode11) | 授权策略失败的URI对应的错误码。 |
-| message | string                               | 授权策略失败的URI对应的原因。  |
+| 名称      | 类型                                   | 必填 | 说明                |
+|---------|--------------------------------------|-----|-----------------------|
+| uri     | string                               | 否  | 授予或使能权限失败的URI。         |
+| code    | [PolicyErrorCode](#policyerrorcode11) | 否  | 授权策略失败的URI对应的错误码。 |
+| message | string                               | 否   | 授权策略失败的URI对应的原因。  |
 
 ## PolicyInfo<sup>11+</sup>
 
