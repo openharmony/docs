@@ -548,6 +548,7 @@ enum OH_Huks_Tag
 | OH_HUKS_TAG_KEY_SECURE_SIGN_TYPE | 表示生成或导入密钥时，指定该密钥的签名类型。 | 
 | OH_HUKS_TAG_CHALLENGE_TYPE | 表示密钥使用时生成的challenge类型，类型可在枚举[OH_Huks_ChallengeType](#oh_huks_challengetype)中选择。 | 
 | OH_HUKS_TAG_CHALLENGE_POS | 表示challenge类型为用户自定义类型时，huks产生的challenge有效长度仅为8字节连续的数据的位置，类型可在枚举[OH_Huks_ChallengePosition](#oh_huks_challengeposition)中选择。 | 
+| OH_HUKS_TAG_USER_AUTH_MODE | 表示密钥访问控制中用户认证模式，类型可在枚举[OH_Huks_UserAuthMode](#oh_huks_userauthmode)中选择。<br/>**起始版本：** 12|
 | OH_HUKS_TAG_KEY_AUTH_PURPOSE | 表示密钥认证用途的类型。 | 
 | OH_HUKS_TAG_AUTH_STORAGE_LEVEL | 密钥文件存储访问控制的类别，类型可在枚举[OH_Huks_AuthStorageLevel](#oh_huks_authstoragelevel)中选择。<br/>**起始版本：** 11 | 
 | OH_HUKS_TAG_ATTESTATION_CHALLENGE | 密钥认证相关的标签值: 501 - 600 密钥认证时的挑战值。 | 
