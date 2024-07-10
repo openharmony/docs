@@ -124,11 +124,11 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 | 名称                 | 类型    | 可读 | 可写 | 说明                                                         |
 | -------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
-| bundleName           | string  | 是   | 否   | 窗口归属应用的包名。从API version 11开始，该接口支持在原子化服务中使用。 |
-| title                | string  | 是   | 否   | 窗口的标题信息。从API version 11开始，该接口支持在原子化服务中使用。 |
-| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态。从API version 11开始，该接口支持在原子化服务中使用。 |
+| bundleName           | string  | 是   | 否   | 窗口归属应用的包名。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| title                | string  | 是   | 否   | 窗口的标题信息。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br>从API11开始，名称变更为active。 |
-| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互。从API version 11开始，该接口支持在原子化服务中使用。 |
+| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## UiDirection<sup>10+</sup>
 
