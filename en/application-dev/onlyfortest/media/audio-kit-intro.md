@@ -97,3 +97,15 @@ Four:
 > Description 3rd line
 >
 > <!--Del-->Description 4th line <!--DelEnd-->
+
+**6、website**
+- [postCardAction]()
+    <!--Del-->
+    - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)]()
+    - [@ohos.arkui.performanceMonitor ]()  
+    - [@ohos.arkui.uiExtension (uiExtension)]()
+    <!--DelEnd-->
+    - [@ohos.deviceStatus.dragInteraction]()
+    - [@ohos.pluginComponent (PluginComponentManager)]()
+    - [@ohos.uiAppearance]()
+    - [@ohos.uiExtensionHost]()
