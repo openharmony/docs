@@ -15,8 +15,8 @@ Pseudo-localization testing is used to identify problems that may cause abnormal
 1. Switch to the target locale for pseudo-localization testing, for example, **en-XA**.
    You can switch the locale through the code (system permission required):
    ```ts
-   import I18n from '@ohos.i18n'
-   I18n.System.setSystemLanguage('en-XA')
+   import { i18n } from '@kit.LocalizationKit';
+   i18n.System.setSystemLanguage('en-XA')
    ```
 
 2. Traverse the applications to be tested.
