@@ -53,7 +53,7 @@
 
 ## 拉起导航类应用扩展面板
 
-#### 调用方开发步骤
+### 调用方开发步骤
 
 1. 导入ohos.app.ability.common模块。 
     ```ts
@@ -63,7 +63,7 @@
 
     ```ts
     let context = getContext(this) as common.UIAbilityContext;
-let wantParam: Record<string, Object> = {
+    let wantParam: Record<string, Object> = {
       'sceneType': 1,
       'destinationLatitude': 32.060844,
       'destinationLongitude': 118.78315,
@@ -91,9 +91,9 @@ let wantParam: Record<string, Object> = {
 
 ![示例效果图](./figures/start-navigation-panel.png)
 
-#### 目标方开发步骤
+### 目标方开发步骤
 
-2. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
+1. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
 
     ~~~json
     {
@@ -128,7 +128,7 @@ let wantParam: Record<string, Object> = {
     }
     ~~~
 
-3. 解析参数并做对应处理。
+2. 解析参数并做对应处理。
 
     ```ts
     UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
@@ -190,7 +190,7 @@ export default class EntryAbility extends UIAbility {
 ```
 ## 拉起邮件类应用扩展面板
 
-#### 调用方开发步骤
+### 调用方开发步骤
 1. 导入ohos.app.ability.common模块。 
     ```ts
     import { common } from '@kit.AbilityKit';
@@ -199,7 +199,7 @@ export default class EntryAbility extends UIAbility {
 
     ```ts
     let context = getContext(this) as common.UIAbilityContext;
-let wantParam: Record<string, Object> = {
+    let wantParam: Record<string, Object> = {
       'sceneType': 1,
       'email': ['xxx@example.com','xxx@example.com'], // 收件人邮箱地址，多值以逗号分隔，内容需要经过url编码
       'cc': ['xxx@example.com','xxx@example.com'], // 抄收人邮箱地址，多值以逗号分隔，内容需要经过url编码
@@ -227,8 +227,8 @@ let wantParam: Record<string, Object> = {
 
 ![示例效果图](./figures/start-mail-panel.png)
 
-#### 目标方开发步骤
-2. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
+### 目标方开发步骤
+1. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
 
     ~~~json
     {
@@ -251,7 +251,7 @@ let wantParam: Record<string, Object> = {
     }
     ~~~
     
-3. 解析面板传过来的参数并做对应处理。
+2. 解析面板传过来的参数并做对应处理。
 
     ```ts
     UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
