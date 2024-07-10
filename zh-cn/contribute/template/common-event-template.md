@@ -1,4 +1,4 @@
-# 公共事件定义
+# 系统公共事件定义
 
 ## 写作要求
 
@@ -24,21 +24,18 @@
 ### 事件名称<sup>版本号+</sup>
 
 描述事件含义与功能。
+
 说明事件触发场景/触发条件。
-
-
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** xxx
-
 **系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** xxx
 
 **原子化服务API：** 从API version xx开始，该接口支持在原子化服务中使用。
 
-**取值：** xxx
-
-
+**取值：** "xxx"
 
 
 
@@ -48,13 +45,14 @@
 ### COMMON_EVENT_BOOT_COMPLETED<sup>9+</sup>
 
 表示用户已完成引导并加载系统。
+
 在设备上指定用户已完成引导并加载系统，将会触发事件通知服务发布该系统公共事件。
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.RECEIVER_STARTUP_COMPLETED（该权限仅系统应用可申请）
+**订阅者所需权限：** ohos.permission.RECEIVER_STARTUP_COMPLETED（该权限仅系统应用可申请）
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**取值：** usual.event.BOOT_COMPLETED
+**取值：** "usual.event.BOOT_COMPLETED"
 
