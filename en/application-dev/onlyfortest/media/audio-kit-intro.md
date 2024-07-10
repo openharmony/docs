@@ -97,15 +97,3 @@ Four:
 > Description 3rd line
 >
 > <!--Del-->Description 4th line <!--DelEnd-->
-
- **6. website** 
-- [postCardAction](reference/apis-arkui/js-apis-postCardAction.md)
-<!--Del-->
-- [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis-arkui/js-apis-arkui-drawableDescriptor-sys.md)
-- [@ohos.arkui.performanceMonitor](reference/apis-arkui/js-apis-arkui-performancemonitor-sys.md)
-- [@ohos.arkui.uiExtension (uiExtension)](reference/apis-arkui/js-apis-arkui-uiExtension-sys.md)
-<!--DelEnd-->
-- [@ohos.deviceStatus.dragInteraction](reference/apis-arkui/js-apis-devicestatus-draginteraction-sys.md)
-- [@ohos.pluginComponent (PluginComponentManager)](reference/apis-arkui/js-apis-plugincomponent-sys.md)
-- [@ohos.uiAppearance](reference/apis-arkui/js-apis-uiappearance-sys.md)
-- [@ohos.uiExtensionHost](reference/apis-arkui/js-apis-uiExtensionHost-sys.md)
