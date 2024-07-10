@@ -577,10 +577,10 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| HIGH   | 0    | 任务为高优先级。 |
-| MEDIUM | 1 | 任务为中优先级。 |
-| LOW | 2 | 任务为低优先级。 |
-| IDLE<sup>12+</sup> | 3 | 任务为后台任务。 |
+| HIGH   | 0    | 任务为高优先级。 <br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| MEDIUM | 1 | 任务为中优先级。<br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
+| LOW | 2 | 任务为低优先级。 <br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| IDLE<sup>12+</sup> | 3 | 任务为后台任务。<br/>**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
