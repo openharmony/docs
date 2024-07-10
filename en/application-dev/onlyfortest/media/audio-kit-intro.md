@@ -1,11 +1,12 @@
 # Delete a tag.
 
-* * 1. Delete the link and link content. * *
+ **1. Delete the link and link content.** 
+
 Components that support the drag-out capability by default (data can be dragged from components): Search, TextInput, TextArea, RichEditor, Text, Image, <!--Del-->[FormComponent](), and UIExtensionComponent<!--DelEnd-->Hyperlink
 
 Sets the number of preloaded ListItems/ListItemGroups in a list. This parameter takes effect only in LazyForEach. ListItemGroup is calculated as a whole, and all ListItems in ListItemGroup are loaded at a time. <!--Del-->For details, see [Description of Reducing Application White Blocks] (). <!--DelEnd-->
 
-* * 2. Delete a paragraph (mainly the list) * *
+ **2. Delete a paragraph (mainly the list)** 
 
 One:
 <!--Del-->
@@ -26,7 +27,7 @@ Two:
 2. Use the AudioViewPicker interface to select or save a file. The URI of the selected or saved file is returned. <!--DelEnd-->
 3. Use the PhotoViewPicker.save interface to save the file and return the URI of the saved file.
 
-* * 3. Delete section and subsection**.
+ **3. Delete section and subsection** 
 
 # User Album Resource Usage Guide
 
@@ -50,7 +51,7 @@ The specifications of the name of the album to be created are as follows:
 The following describes how to create a user album.
 <!--DelEnd-->
 
-* * 4. Table * *
+ **4. Table** 
 
 One:
 <!--Del-->
@@ -85,7 +86,7 @@ Four:
 | ECC | 224 | 8+ | No |<!--DelEnd-->
 | SM4 | 128 | 9+ | Yes |
 
-* * 5. Description * *
+ **5. Description** 
 
 > * * Description * *
 >
@@ -97,7 +98,7 @@ Four:
 >
 > <!--Del-->Description 4th line <!--DelEnd-->
 
-**6. website**
+ **6. website** 
 - [postCardAction](reference/apis-arkui/js-apis-postCardAction.md)
 <!--Del-->
 - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis-arkui/js-apis-arkui-drawableDescriptor-sys.md)
