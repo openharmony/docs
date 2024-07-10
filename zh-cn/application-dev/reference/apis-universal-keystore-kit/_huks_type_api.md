@@ -630,5 +630,5 @@ enum OH_Huks_UserAuthMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_HUKS_USER_AUTH_MODE_LOCAL | 用户认证为本地认证模式。 | 
-| HUKS_USER_AUTH_MODE_COAUTH | 用户认证为跨端协同认证模式。 | 
+| OH_HUKS_USER_AUTH_MODE_LOCAL | 本地认证模式。 | 
+| HUKS_USER_AUTH_MODE_COAUTH | 跨端协同认证模式。 | 
