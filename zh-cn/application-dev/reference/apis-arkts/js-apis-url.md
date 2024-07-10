@@ -527,8 +527,6 @@ constructor(url: string, base?: string | URL)
 
 URL的构造函数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
