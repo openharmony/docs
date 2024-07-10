@@ -5,8 +5,6 @@
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 本模块注册监听接口，不支持在 on 监听的回调方法里，调用 off 解注册。
 
 ## 导入模块
 
@@ -815,6 +813,9 @@ function createSession(cameraManager: camera.CameraManager, mode: camera.SceneMo
 on(type: 'cameraStatus', callback: AsyncCallback\<CameraStatusInfo\>): void
 
 相机设备状态回调，通过注册回调函数获取相机的状态变化。使用callback异步回调。
+> **说明：**
+>
+> 本模块注册监听接口，不支持在 on 监听的回调方法里，调用 off 解注册。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
