@@ -2239,7 +2239,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了加解密算法库框架的相关功能，使用[@ohos.security.cryptoFramework](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-cryptoFramework.md%2F) 接口，利用RSA非对称加密、ECC数字签名模拟选购支付功能。
+本示例主要展示了加解密算法库框架的相关功能，使用[@ohos.security.cryptoFramework](reference/apis/js-apis-cryptoFramework.md) 接口，利用RSA非对称加密、ECC数字签名模拟选购支付功能。
 
 ##### 使用
 
