@@ -275,7 +275,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 #### 蓝牙
 ##### 介绍
-本示例通过使用蓝牙低功耗心率服务，结合[bluetooth](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-bluetooth.md%2F) 来接收BLE心率设备发送的心率数据，并使用画布[Canvas](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Farkui-ts%2Fts-components-canvas-canvas.md%2F) 来绘制实时心率图来展示蓝牙相关API用法。
+本示例通过使用蓝牙低功耗心率服务，结合[bluetooth](reference/apis/js-apis-bluetooth.md) 来接收BLE心率设备发送的心率数据，并使用画布[Canvas](reference/arkui-ts/ts-components-canvas-canvas.md) 来绘制实时心率图来展示蓝牙相关API用法。
 ##### 使用
 1.启动应用后，弹出是否允许应用访问位置信息，点击允许后开始操作。
 2.点击界面中搜索设备，如未开启蓝牙会自动开启并搜索心率设备，如已开启直接搜索设备。
