@@ -4902,9 +4902,9 @@ type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackRe
 
 **返回值：** 
 
-| 类型 | 说明 |
-| ----- | ------- |
-| AudioDataCallbackResult \| void | 如果返回 void 或 AudioRendererWriteDataCallback.VALID ，表示数据有效并将被播放；如果返回 AudioRendererWriteDataCallback.INVALID ，表示数据无效并将不会被播放。|
+| 类型                                                           | 说明 |
+|--------------------------------------------------------------| ------- |
+| [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | 如果返回 void 或 AudioDataCallbackResult.VALID ，表示数据有效并将被播放；如果返回 AudioDataCallbackResult.INVALID ，表示数据无效并将不会被播放。|
 
 ## AudioRenderer<sup>8+</sup>
 
@@ -7241,7 +7241,7 @@ class Options {
   length?: number;
 }
 
-let writeDataCallback = (buffer: ArrayBuffer): AudioDataCallbackResult => {
+let writeDataCallback = (buffer: ArrayBuffer) => {
   let path = getContext().cacheDir;
   // 确保该路径下存在该资源
   let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
@@ -7296,8 +7296,9 @@ off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 **示例：**
 
 ```ts
-// 确保writeDataCallback已经被注册
-audioRenderer.off('writeData', writeDataCallback);
+audioRenderer.off('writeData', (data: ArrayBuffer) => {
+    console.info(`write data: ${data}`);
+});
 ```
 
 ## AudioCapturer<sup>8+</sup>
