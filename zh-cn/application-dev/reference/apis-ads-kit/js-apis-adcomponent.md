@@ -17,7 +17,7 @@ import { AdComponent } from '@kit.AdsKit';
 
 ## AdComponent
 
-AdComponent(ads: Array<advertising.Advertisement>, displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener, adRenderer:() => void): void
+AdComponent(ads: Array<advertising.Advertisement>, displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener, adRenderer?:() => void): void
 
 展示非全屏广告。
 
