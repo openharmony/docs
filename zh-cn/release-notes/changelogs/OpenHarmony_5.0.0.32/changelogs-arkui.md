@@ -321,6 +321,41 @@ AlphabetIndexer组件
 
 默认行为变更，默认开启自适应折叠模式，若要关闭自适应折叠模式，可通过设置[autoCollapse](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md#autocollapse11)属性进行适配。
 
+## cl.arkui.8 元服务AppBar调整Z序到弹框之上
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+元服务AppBar按钮在有弹框的情况下，只需点击一次即可拉起服务面板，使用户能够更方便的使用元服务。
+
+**变更影响**
+
+该变更为不兼容性变更，仅涉及UI显示效果，UI显示效果仅在元服务生效。
+
+API version 11及以前：bindMenu，AlertDialog，CustomDialog，bindPopup，bindSheet，bindContentCover等弹框层级都在AppBar之上。蒙层会覆盖AppBar。
+
+![AtomicServiceAppBar_Before](figures/AtomicServiceAppBar_Before.png)
+
+API version 12及以后：针对元服务，大部分弹框层级都在AppBar之下。AppBar按钮悬浮在蒙层之上，只点击一次即可拉起服务面板。
+
+![AtomicServiceAppBar_After](figures/AtomicServiceAppBar_After.png)
+
+涉及的弹框范围：bindMenu，AlertDialog，CustomDialog，bindPopup，bindSheet，bindContentCover等非子窗模式弹框。
+
+**起始API Level**
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.32开始。
+
+
+**适配指导**
+
+接口行为变更，无需适配.
+
 ## cl.arkui.9 RichEditor组件builderSpan支持绑定自定义菜单
 
 **访问级别**
@@ -342,6 +377,7 @@ AlphabetIndexer组件
 **起始API Level**
 
 10
+
 
 **变更发生版本**
 
