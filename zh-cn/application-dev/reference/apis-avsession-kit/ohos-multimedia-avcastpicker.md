@@ -78,7 +78,7 @@ struct Index {
       Column() {
         AVCastPicker({
           normalColor: Color.Red,
-          customPicker: () => this.customPickerBuidler(),
+          customPicker: () => this.customPickerBuilder(),
           onStateChange: this.onStateChange
         })
         .width('40vp')
