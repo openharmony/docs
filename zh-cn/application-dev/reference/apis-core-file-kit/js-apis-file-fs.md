@@ -879,6 +879,8 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
 
 业务调用connectDfs接口，触发建链并将对端设备公共文档目录挂载到沙箱路径下，如果对端设备出现异常，业务执行回调DfsListeners内[onStatus](#onstatus12)通知应用。
 
+**需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -923,6 +925,8 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
 disconnectDfs(networkId: string): Promise&lt;void&gt;
 
 业务调用disconnectDfs接口，传入networkId参数，触发断链并取消公共文档目录挂载。
+
+**需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
