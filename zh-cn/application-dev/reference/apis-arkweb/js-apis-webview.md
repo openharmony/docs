@@ -5056,12 +5056,15 @@ export default class EntryAbility extends UIAbility {
 
 setCustomUserAgent(userAgent: string): void
 
-设置自定义用户代理，会覆盖系统的用户代理，推荐设置的位置是onControllerAttached回调事件，不建议放在onLoadIntercept。
+设置自定义用户代理，会覆盖系统的用户代理。
+
+当Web组件src设置了url时，建议在onControllerAttached回调事件中设置UserAgent，设置方式请参考示例。不建议将UserAgent设置在onLoadIntercept回调事件中，会概率性出现设置失败。
+
+当Web组件src设置为空字符串时，建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
 
 > **说明：**
 >
->setCustomUserAgent设置后与web页面的跳转时序是web跳转后才设置UserAgent，这就导致页面跳转了但新agent关联的页面堆栈数仍只有一个,webviewController.accessBackward()总是返回false。
->若需要setCustomUserAgent，在setCustomUserAgent方法后添加this.controller.loadUrl(this.webUrl)，webUrl为要加载的web页面，在原始的Web组件的src可以设置一个空字符串。
+>当Web组件src设置了url，且未在onControllerAttached回调事件中设置UserAgent。再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置UserAgent不符的异常现象。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -5094,16 +5097,16 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('setCustomUserAgent')
-        .onClick(() => {
-          try {
-            let userAgent = this.controller.getUserAgent() + this.customUserAgent;
-            this.controller.setCustomUserAgent(userAgent);
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
       Web({ src: 'www.example.com', controller: this.controller })
+      .onControllerAttached(() => {
+        console.log("onControllerAttached");
+        try {
+          let userAgent = this.controller.getUserAgent() + this.customUserAgent;
+          this.controller.setCustomUserAgent(userAgent);
+        } catch (error) {
+          console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+        }
+      })
     }
   }
 }
@@ -12877,7 +12880,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct WebComponent {
-  controller: _webview.WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   delegate: webview.WebDownloadDelegate = new webview.WebDownloadDelegate();
   download: webview.WebDownloadItem = new webview.WebDownloadItem();
   failedData: Uint8Array = new Uint8Array();
@@ -14142,7 +14145,7 @@ struct WebComponent {
                 return false;
               }
 
-              let response = new web_webview.WebSchemeHandlerResponse();
+              let response = new webview.WebSchemeHandlerResponse();
               try {
                 response.setNetErrorCode(WebNetErrorList.NET_OK);
                 response.setStatus(200);

@@ -874,8 +874,6 @@ set position(position: Position)
 
 设置当前RenderNode的位置。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1498,6 +1496,75 @@ struct Index {
 }
 ```
 
+### label<sup>12+</sup>
+
+set label(label: string)
+
+设置当前RenderNode的标签。若当前节点是通过new创建的RenderNode，则设置的标签信息会在节点Inspector信息的属性中。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| label  | string | 是   | 将要设置的RenderNode的标签。 |
+
+get label(): string
+
+获取当前RenderNode的标签。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型   | 说明                                           |
+| ------ | ---------------------------------------------- |
+| string | 当前RenderNode的标签，默认值为""。 |
+
+**示例：**
+
+```ts
+import {  RenderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    const renderNode: RenderNode | null = this.rootNode.getRenderNode();
+    if (renderNode !== null) {
+      const renderChildNode: RenderNode = new RenderNode();
+      renderChildNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+      renderChildNode.backgroundColor = 0xffff0000;
+      renderChildNode.label = 'customRenderChildNode';
+      console.log('label:', renderChildNode.label);
+      renderNode.appendChild(renderChildNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+        .width(300)
+        .height(700)
+        .backgroundColor(Color.Gray)
+    }
+  }
+}
+```
 ### shadowAlpha
 
 set shadowAlpha(alpha: number)
@@ -2405,6 +2472,8 @@ renderNode.frame = { x: 100, y: 100, width: 200, height: 200 };
 renderNode.backgroundColor = 0xff0000ff;
 renderNode.markNodeGroup = true;
 renderNode.opacity = 0.5;
+
+const isNodeGroup = renderNode.markNodeGroup;
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;

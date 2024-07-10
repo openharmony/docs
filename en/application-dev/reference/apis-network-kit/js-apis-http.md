@@ -58,10 +58,15 @@ httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up
       certType: http.CertType.PEM, // Certificate type, optional. A certificate in the PEM format is used by default. This field is supported since API version 11.
       keyPassword: "passwordToKey" // Password of the key file, optional. It is supported since API version 11.
     },
-    certificatePinning:{ // Optional. It determines whether to enable dynamic configuration of certificate pinning. This attribute is supported since API version 12.
-      publicKeyHash: '', // Certificate PIN passed by the application. This attribute is supported since API version 12.
-      hashAlgorithm: 'SHA-256', // Encryption algorithm. Currently, it can only be set to SHA-256. This attribute is supported since API version 12.
-    },
+    certificatePinning: [ // Optional. It determines whether to enable dynamic configuration of certificate pinning. This attribute is supported since API version 12.
+      {
+        publicKeyHash: 'Pin1', // Certificate PIN passed by the application. This attribute is supported since API version 12.
+        hashAlgorithm: 'SHA-256' // Encryption algorithm. Currently, it can only be set to SHA-256. This attribute is supported since API version 12.
+      }, {
+        publicKeyHash: 'Pin2', // Certificate PIN passed by the application. This attribute is supported since API version 12.
+        hashAlgorithm: 'SHA-256', // Encryption algorithm. Currently, it can only be set to SHA-256. This attribute is supported since API version 12.
+      }
+    ]
     multiFormDataList: [ // Optional. This field is valid only when content-Type in the header is multipart/form-data. It is supported since API version 11.
       {
         name: "Part1", // Data name. This field is supported since API version 11.
@@ -102,6 +107,8 @@ httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up
 
 > **NOTE**
 > If the data in **console.info()** contains a newline character, the data will be truncated.
+>
+> HTTP responses compressed by the brotli algorithm are supported since API version 12.
 
 ## http.createHttp
 

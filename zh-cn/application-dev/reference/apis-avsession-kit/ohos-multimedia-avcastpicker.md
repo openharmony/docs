@@ -22,9 +22,9 @@ AVCastPicker()
 
 该组件为自定义组件，开发者在使用前需要先了解[@Component](../../quick-start/arkts-create-custom-components.md)。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 ## 属性
 

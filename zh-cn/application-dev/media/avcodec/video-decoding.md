@@ -138,10 +138,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     - OH_AVCodecOnError 解码器运行错误；
     - OH_AVCodecOnStreamChanged 码流信息变化，如码流宽、高变化；
-    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据。数据处理，请参考: [OnNeedInputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNeedInputBuffer)；
-
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。(注：Surface模式buffer参数为空)。 
-    数据处理，请参考: [OnNewOutputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNewOutputBuffer)
+    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据；
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成(注：Surface模式buffer参数为空)。
 
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
 
@@ -264,7 +262,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
 7. 设置Surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
-   具体示例请参考： [OnSurfaceCreatedCB](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/render/plugin_render.cpp/#onSurfaceCreatedCB)
 
     Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
 
@@ -561,8 +558,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     - OH_AVCodecOnError 解码器运行错误；
     - OH_AVCodecOnStreamChanged 码流信息变化，如码流宽、高变化；
-    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据；数据处理，请参考: [OnNeedInputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNeedInputBuffer)
-    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。数据处理，请参考: [OnNewOutputBuffer](https://gitee.com/kairen-13/AVCodecSample/blob/master/entry/src/main/cpp/common/sample_callback.cpp/#onNewOutputBuffer)
+    - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即解码器已准备好，可以输入数据；
+    - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即解码完成。
 
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
 

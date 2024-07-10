@@ -406,17 +406,13 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式，默认关闭。过滚动模式开启后，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
-
-> **说明：**
->
-> 从API version 12开始默认改为开启。
+设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
 
 **参数：**
 
 | 参数名  | 参数类型                                    | 必填   | 默认值                  | 参数描述               |
 | ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
-| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER，从API version 12开始：OverScrollMode.ALWAYS | 设置Web的过滚动模式为关闭或开启。 |
+| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER | 设置Web的过滚动模式为关闭或开启。 |
 
 **示例：**
 
@@ -1601,7 +1597,7 @@ allowWindowOpenMethod(flag: boolean)
             }
             let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({ webviewController1: popController });
+              builder: NewWebViewComp({ webviewController1: popController })
             })
             this.dialogController.open();
             //将新窗口对应WebviewController返回给Web内核。
@@ -1799,7 +1795,7 @@ layoutMode(mode: WebLayoutMode)
 > - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
 > - Web组件创建后不支持动态切换layoutMode模式，且支持规格不超过50万px(屏幕像素点) 物理像素。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
-> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
+> - 由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
@@ -1841,7 +1837,7 @@ nestedScroll(value: NestedScrollOptions)
 > - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
 > - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
-> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
+> - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
@@ -1903,7 +1899,7 @@ enableNativeEmbedMode(mode: boolean)
 ### registerNativeEmbedRule<sup>12+</sup>
 registerNativeEmbedRule(tag: string, type: string)
 
-注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型可使用任意非空字串，不区分大小写。若标准类型与object或embed的标准类型相同，ArkWeb内核将其识别为非同层标签。本接口同样受enableNativeEmbedMode接口控制，在未使能同层渲染时本接口无效。在不使用本接口的情况下，ArkWeb内核默认将"native/"前缀类型的embed标签识别为同层标签。
+注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型只能使用英文非空字串，不区分大小写。若标准类型与object或embed的标准类型相同，ArkWeb内核将其识别为非同层标签。本接口同样受enableNativeEmbedMode接口控制，在未使能同层渲染时本接口无效。在不使用本接口的情况下，ArkWeb内核默认将"native/"前缀类型的embed标签识别为同层标签。
 
 **参数：**
 
@@ -1985,7 +1981,7 @@ defaultTextEncodingFormat(textEncodingFormat: string)
 
 metaViewport(enable: boolean)
 
-设置mete标签的viewport属性是否可用。
+设置meta标签的viewport属性是否可用。
 
 > **说明：**
 >
@@ -1998,7 +1994,7 @@ metaViewport(enable: boolean)
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                         |
 | ------ | -------- | ---- | ------ | -------------------------------- |
-| enable | boolean  | 是   | true   | 是否支持mete标签的viewport属性。 |
+| enable | boolean  | 是   | true   | 是否支持meta标签的viewport属性。 |
 
 **示例：**
 
@@ -2149,6 +2145,55 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
   <body>
     <h1>selectionMenuOptions Demo</h1>
     <span>selection menu options</span>
+  </body>
+  </html>
+  ```
+
+### keyboardAvoidMode<sup>12+</sup>
+
+keyboardAvoidMode(mode: WebKeyboardAvoidMode)
+
+Web组件自定义软件键盘避让模式。
+
+当UIContext设置的键盘避让模式为[KeyboardAvoidMode.RESIZE](../apis-arkui/js-apis-arkui-UIContext.md#keyboardavoidmode11)模式时，该接口功能不生效。
+
+**参数：**
+
+| 参数名              | 类型                              | 必填   | 说明          |
+| ------------------- | ------------------------------   | ------ | ------------- |
+| mode | [WebKeyboardAvoidMode](#webkeyboardavoidmode12) | 是     | Web软键盘避让模式。<br>默认是WebKeyboardAvoidMode.RESIZE_CONTENT避让行为。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State avoidMode: WebKeyboardAvoidMode = WebKeyboardAvoidMode.RESIZE_VISUAL;
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+        .keyboardAvoidMode(this.avoidMode)
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>测试网页</title>
+  </head>
+  <body>
+    <input type="text" placeholder="Text">
   </body>
   </html>
   ```
@@ -4971,6 +5016,7 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   @Entry
   @Component
@@ -4980,14 +5026,27 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        // 点击按钮跳转页面，关闭index页面，使Embed标签销毁。
+        Button('Destroy')
+        .onClick(() => {
+          try {
+            this.controller.loadUrl("www.example.com");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .enableNativeEmbedMode(true)
           .onNativeEmbedLifecycleChange((event) => {
+            // 当加载页面中有Embed标签会触发Create。
             if (event.status == NativeEmbedStatus.CREATE) {
               this.embedStatus = 'Create';
             }
+            // 当页面中Embed标签移动或者缩放时会触发Update。
             if (event.status == NativeEmbedStatus.UPDATE) {
               this.embedStatus = 'Update';
             }
+            // 退出页面时会触发Destroy。
             if (event.status == NativeEmbedStatus.DESTROY) {
               this.embedStatus = 'Destroy';
             }
@@ -5006,6 +5065,25 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
       }
     }
   }
+  ```
+
+  加载的html文件
+  ```
+  <!-- index.html -->
+  <!Document>
+  <html>
+  <head>
+      <title>同层渲染测试html</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+      </div>
+  </div>
+  </body>
+  </html>
   ```
 
 ### onNativeEmbedGestureEvent<sup>11+</sup>
@@ -5101,7 +5179,7 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
       Column() {
         Stack() {
           NodeContainer(this.nodeController)
-          Web({ src: $rawfile("test.html"), controller: this.controller })
+          Web({ src: $rawfile("index.html"), controller: this.controller })
             .enableNativeEmbedMode(true)
             .onNativeEmbedLifecycleChange((embed) => {
               if (embed.status == NativeEmbedStatus.CREATE) {
@@ -5148,6 +5226,7 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
   ```
 加载的html文件
   ```
+  <!-- index.html -->
   <!Document>
 <html>
 <head>
@@ -7808,6 +7887,16 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 显示图标。     |
 | action    | (selectedText: {plainText: string}) => void                                                         | 是     | 选中的文本信息。|
 
+## WebKeyboardAvoidMode<sup>12+</sup>
+
+软键盘避让的模式。
+
+| 名称               | 值 | 描述           |
+| ------------------ | -- | ------------ |
+| RESIZE_VISUAL      | 0 | 软键盘避让时，仅调整可视视口大小，不调整布局视口大小。   |
+| RESIZE_CONTENT     | 1 | 默认值，软键盘避让时，同时调整可视视口和布局视口的大小。 |
+| OVERLAYS_CONTENT   | 2 | 不调整任何视口大小，不会触发软键盘避让。   |
+
 ## OnPageEndEvent<sup>12+</sup>
 
 定义网页加载结束时触发的函数。
@@ -7847,7 +7936,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ---- | ---- | ---------------------------------------- |
 | origin | string | 是 | 指定源的字符串索引。                       |
-| geolocation | JsGeolocation | 是 | 通知Web组件用户操作行为。                       |
+| geolocation | [JsGeolocation](#jsgeolocation) | 是 | 通知Web组件用户操作行为。                       |
 
 ## OnAlertEvent<sup>12+</sup>
 

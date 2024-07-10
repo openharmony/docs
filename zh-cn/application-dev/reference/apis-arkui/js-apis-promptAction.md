@@ -48,6 +48,7 @@ showToast(options: ShowToastOptions): void
 ```ts
 import { promptAction } from '@kit.ArkUI'
 import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct toastExample {
@@ -115,6 +116,7 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 ```ts
 import { promptAction } from '@kit.ArkUI'
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   promptAction.showDialog({
     title: 'Title Info',
@@ -176,6 +178,7 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 ```ts
 import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -211,6 +214,7 @@ try {
 ```ts
 import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
@@ -276,6 +280,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 ```ts
 import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   promptAction.showActionMenu({
     title: 'Title Info',
@@ -341,6 +346,7 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 ```ts
 import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   promptAction.showActionMenu({
     title: 'showActionMenu Title Info',
@@ -697,7 +703,7 @@ Dialog关闭的信息。
 
 ### 属性
 
-| 名称    | 类型                                                         | 可读 | 可选 | 描述                                                         |
+| 名称    | 类型                                                         | 可读 | 可写 | 描述                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | dismiss | Callback&lt;void&gt;                                         | 否   | 否   | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
 | reason  | [DismissReason](arkui-ts/ts-appendix-enums.md#dismissreason12) | 否   | 否   | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |

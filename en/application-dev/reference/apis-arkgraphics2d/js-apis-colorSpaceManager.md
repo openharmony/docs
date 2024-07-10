@@ -9,7 +9,7 @@ The **colorSpaceManager** module provides APIs for creating and managing color s
 ## Modules to Import
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
 ```
 
 ## ColorSpace
@@ -91,10 +91,11 @@ Creates a standard color space object.
 
 **Error codes**
 
-For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
 | 18600001 | Parameter value is abnormal. |
 
 **Example**
@@ -131,10 +132,11 @@ Creates a custom color space object.
 
 **Error codes**
 
-For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
 | 18600001 | Parameter value is abnormal. |
 
 **Example**
