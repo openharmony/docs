@@ -3993,14 +3993,14 @@ gzdopen(fd: number, mode: string): Promise&lt;void&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzdopenDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzdopen");
+  fs.mkdirSync(pathDir + "/gzdopen");
   let path = pathDir + "/gzdopen/test.gz";
-  let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
+  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let gzip = zlib.createGZipSync();
-  await gzip.gzdopen(fd, "wb");
+  await gzip.gzdopen(file.fd, "wb");
   await gzip.gzclose();
 }
 
@@ -4060,11 +4060,11 @@ gzbuffer(size: number):Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 import zlib from '@ohos.zlib'
 
 async function gzbufferDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzbuffer");
+  fs.mkdirSync(pathDir + "/gzbuffer");
   let path = pathDir + "/gzbuffer/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -4133,10 +4133,10 @@ gzopen(path: string, mode: string): Promise&lt;void&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzopenDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzopen");
+  fs.mkdirSync(pathDir + "/gzopen");
   let path = pathDir + "/gzopen/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -4186,10 +4186,10 @@ gzeof(): Promise&lt;number&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzeofDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzeof");
+  fs.mkdirSync(pathDir + "/gzeof");
   let path = pathDir + "/gzeof/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -4250,10 +4250,10 @@ gzdirect(): Promise&lt;number&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzdirectDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzdirect");
+  fs.mkdirSync(pathDir + "/gzdirect");
   let path = pathDir + "/gzdirect/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -4313,10 +4313,10 @@ gzclose(): Promise&lt;ReturnStatus&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzcloseDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzclose");
+  fs.mkdirSync(pathDir + "/gzclose");
   let path = pathDir + "/gzclose/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -4366,10 +4366,10 @@ gzclearerr(): Promise&lt;void&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzclearerrDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzclearerr");
+  fs.mkdirSync(pathDir + "/gzclearerr");
   let path = pathDir + "/gzclearerr/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -4440,10 +4440,10 @@ gzerror(): Promise&lt;GzErrorOutputInfo&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzerrorDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzerror");
+  fs.mkdirSync(pathDir + "/gzerror");
   let path = pathDir + "/gzerror/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -4514,10 +4514,10 @@ gzgetc(): Promise&lt;number&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzgetcDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzgetc");
+  fs.mkdirSync(pathDir + "/gzgetc");
   let path = pathDir + "/gzgetc/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -4586,10 +4586,10 @@ gzflush(flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzflushDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzflush");
+  fs.mkdirSync(pathDir + "/gzflush");
   let path = pathDir + "/gzflush/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -4657,10 +4657,10 @@ gzfwrite(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';;
 
 async function gzfwriteDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzfwrite");
+  fs.mkdirSync(pathDir + "/gzfwrite");
   let path = pathDir + "/gzfwrite/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -4733,10 +4733,10 @@ gzfread(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzfreadDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzfread");
+  fs.mkdirSync(pathDir + "/gzfread");
   let path = pathDir + "/gzfread/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -4805,10 +4805,10 @@ gzclosew(): Promise&lt;ReturnStatus&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzclosewDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzclosew");
+  fs.mkdirSync(pathDir + "/gzclosew");
   let path = pathDir + "/gzclosew/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -4866,10 +4866,10 @@ gzcloser(): Promise&lt;ReturnStatus&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzcloserDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzcloser");
+  fs.mkdirSync(pathDir + "/gzcloser");
   let path = pathDir + "/gzcloser/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -4935,10 +4935,10 @@ gzwrite(buf: ArrayBuffer, len: number): Promise&lt;number&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzwriteDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzwrite");
+  fs.mkdirSync(pathDir + "/gzwrite");
   let path = pathDir + "/gzwrite/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -5007,10 +5007,10 @@ gzungetc(c: number): Promise&lt;number&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzungetcDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzungetc");
+  fs.mkdirSync(pathDir + "/gzungetc");
   let path = pathDir + "/gzungetc/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -5072,10 +5072,10 @@ gztell(): Promise&lt;number&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gztellDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gztell");
+  fs.mkdirSync(pathDir + "/gztell");
   let path = pathDir + "/gztell/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -5142,10 +5142,10 @@ gzsetparams(level: CompressLevel, strategy: CompressStrategy): Promise&lt;Return
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzsetparamsDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzsetparams");
+  fs.mkdirSync(pathDir + "/gzsetparams");
   let path = pathDir + "/gzsetparams/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -5213,10 +5213,10 @@ gzseek(offset: number, whence: OffsetReferencePoint): Promise&lt;number&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzseekDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzseek");
+  fs.mkdirSync(pathDir + "/gzseek");
   let path = pathDir + "/gzseek/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -5275,10 +5275,10 @@ gzrewind(): Promise&lt;ReturnStatus&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzrewindDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzrewind");
+  fs.mkdirSync(pathDir + "/gzrewind");
   let path = pathDir + "/gzrewind/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -5346,10 +5346,10 @@ gzread(buf: ArrayBuffer): Promise&lt;number&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzreadDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzread");
+  fs.mkdirSync(pathDir + "/gzread");
   let path = pathDir + "/gzread/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -5424,10 +5424,10 @@ gzputs(str: string): Promise&lt;number&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzputsDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzputs");
+  fs.mkdirSync(pathDir + "/gzputs");
   let path = pathDir + "/gzputs/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -5493,10 +5493,10 @@ gzputc(char: number): Promise&lt;number&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzputcDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzputc");
+  fs.mkdirSync(pathDir + "/gzputc");
   let path = pathDir + "/gzputc/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -5564,10 +5564,10 @@ gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;numb
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzprintfDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzprintf");
+  fs.mkdirSync(pathDir + "/gzprintf");
   let path = pathDir + "/gzprintf/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -5626,10 +5626,10 @@ gzoffset(): Promise&lt;number&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzoffsetDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzoffset");
+  fs.mkdirSync(pathDir + "/gzoffset");
   let path = pathDir + "/gzoffset/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
@@ -5695,10 +5695,10 @@ gzgets(buf: ArrayBuffer): Promise&lt;string&gt;
 
 ```ts
 import zlib from '@ohos.zlib';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 async function gzgetsDemo(pathDir: string) {
-  fileio.mkdirSync(pathDir + "/gzgets");
+  fs.mkdirSync(pathDir + "/gzgets");
   let path = pathDir + "/gzgets/test.gz";
   let gzip = zlib.createGZipSync();
   await gzip.gzopen(path, "wb");
