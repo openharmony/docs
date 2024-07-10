@@ -332,7 +332,7 @@ AlphabetIndexer组件
 
 **变更影响**
 
-该变更为非兼容性变更，仅涉及UI显示效果，UI显示效果仅在元服务生效。
+该变更为不兼容性变更，仅涉及UI显示效果，UI显示效果仅在元服务生效。
 
 API version 11及以前：bindMenu，AlertDialog，CustomDialog，bindPopup，bindSheet，bindContentCover等弹框层级都在AppBar之上。蒙层会覆盖AppBar。
 
