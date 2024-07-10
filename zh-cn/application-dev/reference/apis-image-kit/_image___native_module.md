@@ -2790,6 +2790,8 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap (uint8_t * data, size_t dataLen
 
 通过属性创建PixelMap，默认采用BGRA_8888格式处理数据。
 
+接口调用完，入参data的数据可释放。
+
 **起始版本：** 12
 
 **参数:**
