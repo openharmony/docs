@@ -577,12 +577,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   - 启停服务
 
   ```
+  开始采集
   # SP_daemon -start -c
   SP_daemon Collection begins
   command exec finished!
   #
   
-
+  结束采集
   # SP_daemon -stop
   SP_daemon Collection ended
   Output Path: data/local/tmp/smartperf/1/t_index_info_csv
@@ -598,9 +599,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >
   >- 先执行start开始采集命令，执行完后操作设备或应用，最后执行stop结束采集命令
   >
-  >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告
+  >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告，示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D：\
   >
-  >- 示例：导出到D盘 hdc file recv data/local/tmp/smartperf/1/t_index_info.csv  D：\
 
   - 获取屏幕分辨率
 
