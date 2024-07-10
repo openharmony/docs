@@ -11,7 +11,7 @@
 
 ### 导航类应用扩展面板参数说明
 
-**startAbilityByType接口中type字段为navigation，对应的wantParam参数:**
+startAbilityByType接口中type字段为navigation，对应的wantParam参数：
 
 | 属性名称             | 含义                                                         | 数据类型 | 是否必填 |
 | -------------------- | ------------------------------------------------------------ | -------- | -------- |
@@ -32,7 +32,7 @@
 
 ### 邮件类应用扩展面板参数说明
 
-**startAbilityByType接口中type字段为mail，对应的wantParam参数:**
+startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
 | 属性名称                              | 含义                                   | 数据类型 | 是否必填                   |
 | ------------------------------------- | -------------------------------------- | -------- | -------------------------- |
@@ -47,7 +47,7 @@
 
 > **说明：**
 >
-> 参数email、cc、bcc、ability.params.stream数组中的内容需要经过url编码，参数subject、body字符串也需要经过url编码，接收方收到这些参数后需要进行url解码。
+> 邮件类应用扩展面板中的string或string[]类型的内容都需要经过url编码，接收方收到这些参数后需要进行url解码。
 
 
 
@@ -201,12 +201,12 @@ export default class EntryAbility extends UIAbility {
     let context = getContext(this) as common.UIAbilityContext;
     let wantParam: Record<string, Object> = {
       'sceneType': 1,
-      'email': ['xxx@example.com','xxx@example.com'], // 收件人邮箱地址，多值以逗号分隔，内容需要经过url编码
-      'cc': ['xxx@example.com','xxx@example.com'], // 抄收人邮箱地址，多值以逗号分隔，内容需要经过url编码
-      'bcc': ['xxx@example.com','xxx@example.com'], // 密送人邮箱地址，多值以逗号分隔，内容需要经过url编码
-      'subject': '邮件主题', // 内容需要经过url编码
-      'body': '邮件正文', // 内容需要经过url编码
-      'ability.params.stream': ['附件uri1','附件uri2'], // 附件uri，多值以逗号分隔，uri需要经过url编码
+      'email': [encodeURI('xxx@example.com'),encodeURI('xxx@example.com')], // 收件人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
+      'cc': [encodeURI('xxx@example.com'),encodeURI('xxx@example.com')], // 抄收人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
+      'bcc': [encodeURI('xxx@example.com'),encodeURI('xxx@example.com')], // 密送人邮箱地址，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
+      'subject': encodeURI('邮件主题'), // 邮件主题，对内容使用encodeURI()方法进行url编码
+      'body': encodeURI('邮件正文'), // 邮件正文，对内容使用encodeURI()方法进行url编码
+      'ability.params.stream': [encodeURI('附件uri1'),encodeURI('附件uri2')], // 附件uri，多值以逗号分隔，对数组内容使用encodeURI()方法进行url编码
       'ability.want.params.uriPermissionFlag': 1
     };
     let abilityStartCallback: common.AbilityStartCallback = {
@@ -285,8 +285,8 @@ let stream: string[] | undefined;
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    subject = decodeURI(want.parameters?.subject as string);// url解码邮件主题，其他字段处理方法相同
-	body = decodeURI(want.parameters?.body as string);// url解码邮件正文，其他字段处理方法相同
+    subject = decodeURI(want.parameters?.subject as string);// 使用decodeURI()方法对邮件主题进行url解码，其他字段处理方法相同
+	body = decodeURI(want.parameters?.body as string);// 使用decodeURI()方法对邮件内容进行url解码，其他字段处理方法相同
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
