@@ -42,3 +42,8 @@ com.clearplay.drm
 atomized service
 
 ## Check whether too many link levels will cause the link to be invalid after reflow.
+
+
+## Samples
+
+The following is an example of developing a long-duration task:[Long-term task](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask)
