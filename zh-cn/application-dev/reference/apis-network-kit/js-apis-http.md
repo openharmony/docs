@@ -141,6 +141,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 
 > **说明：**
 > 此接口仅支持数据大小为5M以内的数据接收。
+> 若url包含中文或其他语言，需先调用encodeURL(url)编码，再发起请求。
 
 **需要权限**：ohos.permission.INTERNET
 
