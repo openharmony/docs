@@ -1,10 +1,7 @@
 # api-info--This requirement can be implemented only in the reference folder.
 
-## Use the value of H1 for api-info. The value is 9.
+Use the value of H1 for api-info. The value is 9.
 
-<!--ArkUI-->
-
-<!--etgeryrt-->
 **Topic results are 9**
 The ExtensionAbility module provides the capability of managing the extensionAbility life cycle and context environment, including creating, destroying, and dumping client information.
 
