@@ -35,7 +35,7 @@ InterstitialDialogAction {
 | uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 是 | UI上下文实例。 |
 | contentNode | ComponentContent\<object\> | 是 | 组件节点对象。 |
 | dialogParam | [DialogParams](#DialogParams类型说明) | 是 | 设置弹框的一些属性。 |
-| bottomOffsetType | [BottomOffset](#BottomOffset枚举说明) | 否 | 设定弹框距离窗口底部的距离类型。 |
+| bottomOffsetType | [BottomOffset](#BottomOffset枚举说明) | 否 | 设定弹框距离窗口底部的距离类型。<br>默认值为[BottomOffset](#BottomOffset枚举说明).OFFSET_FOR_BAR。 |
 | constructor | (dialogOptions: [DialogOptions](#DialogOptions类型说明)) | 是 | InterstitialDialogAction类的构造方法。 |
 | openDialog | void | 否 | 设置弹框打开的接口。 |
 | closeDialog | void | 是 | 设置弹框关闭的接口。 |
@@ -62,8 +62,8 @@ InterstitialDialogAction {
 | subtitleColor | [ResourceColor](ts-types.md#resourcecolor) \| [Color](ts-appendix-enums.md#color) | 否 | 弹框副标题文本颜色。 |
 | backgroundImage | [Resource](ts-types.md#resource) | 否 | 弹框背景图片。 |
 | foregroundImage | [Resource](ts-types.md#resource) | 否 | 弹框前景图片。 |
-| iconStyle | [IconStyle](#IconStyle枚举说明) | 否 | 关闭按钮图标的样式（亮调或者暗调）。<br>默认值：IconStyle.Light |
-| titlePosition | [TitlePosition](#TitlePosition枚举说明) | 否 | 标题在弹框中的位置，在副标题的上方或者在副标题的下方。<br>默认值：TitlePosition.Top |
+| iconStyle | [IconStyle](#IconStyle枚举说明) | 否 | 关闭按钮图标的样式（亮调或者暗调）。<br>默认值：[IconStyle](#IconStyle枚举说明).Light |
+| titlePosition | [TitlePosition](#TitlePosition枚举说明) | 否 | 标题在弹框中的位置，在副标题的上方或者在副标题的下方。<br>默认值：[TitlePosition](#TitlePosition枚举说明).Top |
 | onDialogClock | Callback\<void\>| 否 | 点击弹框任意位置后触发的用户自定义动作。 |
 | onDialogClose | Callback\<void\> | 否 | 点击关闭按钮后触发的用户自定义动作。|
 
