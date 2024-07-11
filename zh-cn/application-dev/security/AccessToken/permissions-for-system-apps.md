@@ -3623,6 +3623,18 @@
 
 **起始版本**：11
 
+### ohos.permission.ACTIVATE_DEVICE_PSI
+
+触发“PSI设备激活”系统服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
@@ -3940,15 +3952,3 @@
 **ACL使能**：true
 
 **起始版本**：11
-
-### ohos.permission.ACTIVATE_DEVICE_PSI
-
-触发“PSI设备激活”系统服务。
-
-**权限级别**：system_basic
-
-**授权方式**：user_grant
-
-**ACL使能**：true
-
-**起始版本**：12
