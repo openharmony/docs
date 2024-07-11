@@ -11,7 +11,7 @@
 |复用类型|描述|复用思路|参考文档|
 |:--:|--|--|--|
 |**标准型**|复用组件之间布局完全相同|标准复用|[组件复用实践](./component-recycle.md)|
-|**有限变化型**|复用组件之间有不同，但是类型有限|使用reuseId或者独立成两个自定义组件|[组件复用四板斧](./component_recycle_case.md)|
+|**有限变化型**|复用组件之间有不同，但是类型有限|使用reuseId或者独立成两个自定义组件|[组件复用性能优化指导](./component_recycle_case.md)|
 |**组合型**|复用组件之间有不同，情况非常多，但是拥有共同的子组件|将复用组件改为Builder，让内部子组件相互之间复用|[组合型组件复用指导](#组合型)|
 |**全局型**|组件可在不同的父组件中复用，并且不适合使用@Builder|使用BuilderNode自定义复用组件池，在整个应用中自由流转|[全局自定义组件复用实现](./node_custom_component_reusable_pool.md)|
 |**嵌套型**|复用组件的子组件的子组件存在差异|采用化归思想将嵌套问题转化为上面四种标准类型来解决|/|
@@ -47,7 +47,7 @@
 
 ```typescript
 class MyDataSource implements IDataSource {
-  ...
+  // ...
 }
 
 @Entry
@@ -126,7 +126,7 @@ struct ReusableComponentTwo {
 
 ```typescript
 class MyDataSource implements IDataSource {
-  ...
+  // ...
 }
 
 @Entry
@@ -200,7 +200,7 @@ struct ReusableComponent {
 
 ```typescript
 class MyDataSource implements IDataSource {
-  ...
+  // ...
 }
 
 @Entry
@@ -229,7 +229,7 @@ struct MyComponent {
         .backgroundColor('#cccccc')
         .width('100%')
         .onAppear(()=>{
-          console.log(`ListItem ${index} onAppear`);
+          console.info(`ListItem ${index} onAppear`);
         })
       })
     }
@@ -246,13 +246,13 @@ struct ReusableComponentOne {
 
   // 组件的生命周期回调，在可复用组件从复用缓存中加入到组件树之前调用
   aboutToReuse(params: ESObject) {
-    console.log(`ReusableComponentOne ${params.item} Reuse ${this.item}`);
+    console.info(`ReusableComponentOne ${params.item} Reuse ${this.item}`);
     this.item = params.item;
   }
 
   // 组件的生命周期回调，在可复用组件从组件树上被加入到复用缓存之前调用
   aboutToRecycle(): void {
-    console.log(`ReusableComponentOne ${this.item} Recycle`);
+    console.info(`ReusableComponentOne ${this.item} Recycle`);
   }
 
   build() {
@@ -270,12 +270,12 @@ struct ReusableComponentTwo {
   @State item: string = '';
 
   aboutToReuse(params: ESObject) {
-    console.log(`ReusableComponentTwo ${params.item} Reuse ${this.item}`);
+    console.info(`ReusableComponentTwo ${params.item} Reuse ${this.item}`);
     this.item = params.item;
   }
 
   aboutToRecycle(): void {
-    console.log(`ReusableComponentTwo ${this.item} Recycle`);
+    console.info(`ReusableComponentTwo ${this.item} Recycle`);
   }
 
   build() {
@@ -293,12 +293,12 @@ struct ReusableComponentThree {
   @State item: string = '';
 
   aboutToReuse(params: ESObject) {
-    console.log(`ReusableComponentThree ${params.item} Reuse ${this.item}`);
+    console.info(`ReusableComponentThree ${params.item} Reuse ${this.item}`);
     this.item = params.item;
   }
 
   aboutToRecycle(): void {
-    console.log(`ReusableComponentThree ${this.item} Recycle`);
+    console.info(`ReusableComponentThree ${this.item} Recycle`);
   }
 
   build() {
@@ -315,12 +315,12 @@ struct ChildComponentA {
   @State item: string = '';
 
   aboutToReuse(params: ESObject) {
-    console.log(`ChildComponentA ${params.item} Reuse ${this.item}`);
+    console.info(`ChildComponentA ${params.item} Reuse ${this.item}`);
     this.item = params.item;
   }
 
   aboutToRecycle(): void {
-    console.log(`ChildComponentA ${this.item} Recycle`);
+    console.info(`ChildComponentA ${this.item} Recycle`);
   }
 
   build() {
@@ -423,7 +423,7 @@ struct ChildComponentD {
 
 ```typescript
 class MyDataSource implements IDataSource {
-  ...
+  // ...
 }
 
 @Entry
@@ -479,7 +479,7 @@ struct MyComponent {
         .backgroundColor('#cccccc')
         .width('100%')
         .onAppear(() => {
-          console.log(`ListItem ${index} onAppear`);
+          console.info(`ListItem ${index} onAppear`);
         })
       }, (item: number) => item.toString())
     }
@@ -495,12 +495,12 @@ struct ChildComponentA {
   @State item: string = '';
 
   aboutToReuse(params: ESObject) {
-    console.log(`ChildComponentA ${params.item} Reuse ${this.item}`);
+    console.info(`ChildComponentA ${params.item} Reuse ${this.item}`);
     this.item = params.item;
   }
 
   aboutToRecycle(): void {
-    console.log(`ChildComponentA ${this.item} Recycle`);
+    console.info(`ChildComponentA ${this.item} Recycle`);
   }
 
   build() {
