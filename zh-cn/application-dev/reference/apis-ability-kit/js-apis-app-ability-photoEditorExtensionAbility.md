@@ -50,7 +50,7 @@ onStartContentEditing(uri: string, want: Want, session: UIExtensionContentSessio
 **参数：**
 | 参数名 |  类型 | 必填  | 说明  |
 | ------------ | ------------ | ------------ | ------------ |
-|  uri |  string |  是 | 待编辑的原始图片[uri](../apis-core-file-kit/js-apis-file-fileuri.md)，格式为file://<bundleName>/<sandboxPath>  |
+|  uri |  string |  是 | 待编辑的原始图片[uri](../apis-core-file-kit/js-apis-file-fileuri.md)，格式为file://\<bundleName>/\<sandboxPath>  |
 | want  | [Want](./js-apis-app-ability-want.md)  | 是  | 当前PhotoEditorExtensionAbility的Want类型信息，包括ability名称、bundle名称等。  |
 |  session |  [UIExtensionContentSession](./js-apis-app-ability-uiExtensionContentSession.md) | 是  |  PhotoEditorExtensionAbility界面内容相关信息。 |
 
