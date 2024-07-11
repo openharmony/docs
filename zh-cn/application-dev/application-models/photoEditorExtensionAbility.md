@@ -7,20 +7,12 @@
 
 例如：用户在图库APP中点击编辑图片，图库APP可以通过startAbilityByType拉起图片编辑面板，由用户选择实现了PhotoEditorExtensionAbility的应用完成图片的编辑。
 
-## 概述
+## 接口说明
 [PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)是基于[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)界面嵌入能力，目标应用可以通过PhotoEditorExtensionAbliity构建图片编辑扩展页面。开发者通过实现onStartContentEditing可获取原图，并根据自身需要实现图片的编辑能力。
 
 [PhotoEditorExtensionContext](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionContext.md)是PhotoEditorExtensionAbility的上下文，继承自ExtensionContext，开发者通过saveEditedContentWithImage接口对编辑完成的图片进行保存。
 
 ## 图片编辑类应用实现PhotoEditorExtensionAbility
-### 生命周期
-[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)提供了onCreate、onForeground、onBackground、onDestroy、onStartContentEditing生命周期回调，根据需要重写对应的回调方法。
-
-- onCreate：当[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)创建时回调，执行初始化业务逻辑操作。
-- onForeground：当[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)从后台转到前台时触发。
-- onBackground：当[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)从前台转到后台时触发。
-- onDestroy：当[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)销毁时回调，可以执行资源清理等操作。
-- onStartContentEditing：当[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)界面内容对象创建后调用，可以执行读取原始图片、加载page等操作。
 
 ### 开发步骤
 在DevEco Studio工程中手动新建一个[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)，具体步骤如下：
@@ -200,7 +192,85 @@
     ```
 ## 调用方拉起图片编辑类应用编辑图片
 开发者可以在UIAbility或者UIExtensionAbility的页面中通过接口startAbilityByType拉起图片编辑面板，系统将自动查找并在面板上展示基于[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)实现的图片编辑应用，并由用户选择某个应用来完成图片编辑的功能，并最终将编辑的结果返回给到调用方。
+1. 导入模块。
+    ```ts
+    import { common, wantConstant } from '@kit.AbilityKit';
+    import { fileUri, picker } from '@kit.CoreFileKit';
+    ```
+2. 图库中选取图片（可选）。
+    ```ts
+    async photoPickerGetUri(): Promise < string > {
+      try {
+        let PhotoSelectOptions = new picker.PhotoSelectOptions();
+        PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+        PhotoSelectOptions.maxSelectNumber = 1;
+        let photoPicker = new picker.PhotoViewPicker();
+        let photoSelectResult: picker.PhotoSelectResult = await photoPicker.select(PhotoSelectOptions);
+        return photoSelectResult.photoUris[0];
+      } catch(error) {
+        let err: BusinessError = error as BusinessError;
+        hilog.info(0x0000, TAG, 'PhotoViewPicker failed with err: ' + JSON.stringify(err));
+      }
+      return "";
+    }
+    ```
+3. 将图片拷贝到本地沙箱路径
+   ```ts
+    let context = getContext(this) as common.UIAbilityContext;
+    let file: fileIo.File | undefined;
+    try {
+      file = fileIo.openSync(uri, fileIo.OpenMode.READ_ONLY);
+      hilog.info(0x0000, TAG, "file: " + file.fd);
 
+      let timeStamp = Date.now();
+      // 将用户图片拷贝到应用沙箱路径
+      fileIo.copyFileSync(file.fd, context.filesDir + `/original-${timeStamp}.jpg`);
+      fileIo.closeSync(file);
+
+      this.filePath = context.filesDir + `/original-${timeStamp}.jpg`;
+      this.originalImage = fileUri.getUriFromPath(this.filePath);
+    } catch (e) {
+      hilog.info(0x0000, TAG, `readImage failed:${e}`);
+    } finally {
+      fileIo.close(file);
+    }
+   ```
+4. 将图片转换为图片url，并调用startAbilityByType拉起图片编辑应用面板。
+   ```ts
+    let uri = fileUri.getUriFromPath(this.filePath);
+    context.startAbilityByType("photoEditor", {
+      "ability.params.stream": [uri], // 原始图片的uri,只支持传入一个uri
+      "ability.want.params.uriPermissionFlag": wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION // 至少需要分享读权限给到图片编辑面板
+    } as Record<string, Object>, abilityStartCallback, (err) => {
+      let tip: string;
+      if (err) {
+        tip = `Start error: ${JSON.stringify(err)}`;
+        hilog.error(0x0000, TAG, `startAbilityByType: fail, err: ${JSON.stringify(err)}`);
+      } else {
+        tip = `Start success`;
+        hilog.info(0x0000, TAG, "startAbilityByType: ", `success`);
+      }
+    });
+   ```
+5. 在startAbilityByType入参的回调函数获取到回调结果中编辑后的图片uri并做对应的处理。
+    ```ts
+      let context = getContext(this) as common.UIAbilityContext;
+      let abilityStartCallback: common.AbilityStartCallback = {
+        onError: (code, name, message) => {
+          const tip: string = `code:` + code + ` name:` + name + ` message:` + message;
+          hilog.error(0x0000, TAG, "startAbilityByType:", tip);
+        },
+        onResult: (result) => {
+          // 获取到回调结果中编辑后的图片uri并做对应的处理
+          let uri = result.want?.uri ?? "";
+          hilog.info(0x0000, TAG, "PhotoEditorCaller result: " + JSON.stringify(result));
+          this.readImage(uri).then(imagePixMap => {
+            this.editedImage = imagePixMap;
+          });
+        }
+      }
+    ```
+示例：  
 ```ts
 import { common, wantConstant } from '@kit.AbilityKit';
 import { fileUri, picker } from '@kit.CoreFileKit';

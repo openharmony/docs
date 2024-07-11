@@ -1,8 +1,12 @@
 # PhotoEditorExtensionContext
 PhotoEditorExtensionContext是PhotoEditorExtensionAbility的上下文，继承自ExtensionContext，提供PhotoEditorExtensionAbility的相关配置信息以及保存图片接口。
-> - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 本模块接口仅可在Stage模型下使用。
-> - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
+> **说明：**
+> 
+> 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 
+> 本模块接口仅可在Stage模型下使用。
+> 
+> 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
 
 ## 导入模块
 ```ts
@@ -13,7 +17,7 @@ import { common } from '@kit.AbilityKit';
 saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
 传入编辑过的图片的沙箱地址并保存。
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
 
@@ -25,11 +29,12 @@ saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
 **返回值：**
 |  类型 | 说明  |
 | ------------ | ------------ |
-| Promise\<AbilityResult\> | Promise对象，返回AbilityResult对象，编辑过的图片地址存在want.uri中。  |
+| Promise\<AbilityResult\> | Promise对象，返回AbilityResult对象，编辑过的图片uri存在want.uri中,[uri](../apis-core-file-kit/js-apis-file-fileuri.md)格式为file://<bundleName>/<sandboxPath>。  |
 
 **错误码：**
 
-以下错误码详细介绍参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)
+以下错误码详细介绍参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 |  错误码ID | 错误信息  |
 | ------------ | ------------ |
 | 401  | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.  |
@@ -97,7 +102,7 @@ struct Index {
 saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>
 传入编辑过的图片的PixMap对象并保存。
 
-**模型约束：** 此接口仅可在Stage模型下使用
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Ability.AppExtension.PhotoEditorExtension
 
@@ -114,7 +119,8 @@ saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption)
 
 **错误码：**
 
-以下错误码详细介绍参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)
+以下错误码详细介绍参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 |  错误码ID | 错误信息  |
 | ------------ | ------------ |
 | 401  | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.  |
