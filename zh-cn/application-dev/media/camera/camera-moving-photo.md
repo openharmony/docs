@@ -10,7 +10,8 @@
 
 > **说明：**
 > 
-> 使能动态照片前需要使能[分段式拍照](camera-deferred-capture.md)能力。
+> - 使能动态照片前需要使能[分段式拍照](camera-deferred-capture.md)能力。
+> - 拍摄动态照片需要麦克风权限ohos.permission.MICROPHONE，权限申请和校验方式，请参考[开发准备](camera-preparation.md)。
 
 ## 开发步骤
 
@@ -20,7 +21,6 @@
 
    ```ts
    import { camera } from '@kit.CameraKit';
-   import { image } from '@kit.ImageKit';
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
@@ -86,6 +86,20 @@
 注册photoAsset监听回调。
 
    ```ts
+   let context = getContext(this);
+   let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+   async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
+     try {
+       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest  (photoAsset);
+       assetChangeRequest.saveCameraPhoto();
+       await phAccessHelper.applyChanges(assetChangeRequest);
+       console.info('apply saveCameraPhoto successfully');
+     } catch (err) {
+       console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
+     }
+   }
+
    function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
      photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
        if (err) {
@@ -93,7 +107,8 @@
          return;
        }
        console.info('photoOutPutCallBack photoAssetAvailable');
-       // 保存或使用照片，需开发者实现
+       // 调用媒体库落盘接口保存一阶段图和动态照片视频
+       mediaLibSavePhoto(photoAsset);
      });
    }
    ```
