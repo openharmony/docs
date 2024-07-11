@@ -268,7 +268,7 @@ export default class EntryAbility extends UIAbility {
     | body   | 邮件内容                             | string | 否  |
     | stream | 邮件附件列表（附件的uri地址列表）                  | string[] | 否  |
     
-    应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，当前为撰写邮件结合接收到的参数开发不同的样式页面。
+    应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如撰写邮件结合接收到的参数开发不同的样式页面。
 
 **完整示例：**
 
