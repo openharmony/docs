@@ -176,7 +176,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
     int32_t keyReleaseResponseLen = sizeof(keyReleaseResponse)/sizeof(uint8_t);
     uint8_t offlineMediaKeyId[5] = {0};
     int32_t offlineMediaKeyIdLen = sizeof(offlineMediaKeyId)/sizeof(uint8_t);
-    ret = OH_MediaKeySession_ProcessOfflineReleaseResponse(keySession, offlineMediaKeyId, offlineMediaKeyIdLen
+    ret = OH_MediaKeySession_ProcessOfflineReleaseResponse(keySession, offlineMediaKeyId, offlineMediaKeyIdLen,
         keyReleaseResponse, keyReleaseResponseLen);
     if (ret != DRM_ERR_OK) {
         printf("OH_MediaKeySession_ProcessOfflineReleaseResponse failed.");
@@ -212,7 +212,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
         return ret;
     }
     uint8_t mediaKeyId[8] = {1, 2, 3, 4, 5, 6, 7, 8};
-    int32_t keyIdLen = sizeof(testRestoreId)/sizeof(uint8_t);
+    int32_t keyIdLen = sizeof(mediaKeyId)/sizeof(uint8_t);
     ret = OH_MediaKeySession_RestoreOfflineMediaKeys(keySession, mediaKeyId, keyIdLen);
     if (ret != DRM_ERR_OK) {
         printf("OH_MediaKeySession_RestoreOfflineMediaKeys failed.");
