@@ -1,7 +1,7 @@
 
 # @ohos.atomicservice.AtomicServiceNavigation (用于元服务的路由导航根视图容器组件)
 
-AtomicServiceNavigation高级组件，为元服务提供定制化诉求，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（NavDestination的子组件），首页和非首页通过路由进行切换。
+AtomicServiceNavigation高级组件，为元服务提供定制化诉求，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（**NavDestination**的子组件），首页和非首页通过路由进行切换。
 
 > **说明：**
 >
@@ -10,24 +10,24 @@ AtomicServiceNavigation高级组件，为元服务提供定制化诉求，一般
 ## 子组件
 
 可以包含子组件。
-从API Version 10开始，推荐使用NavPathStack配合navDestination属性进行页面路由。
+从API Version 10开始，推荐使用[NavPathStack](ts-basic-components-navigation.md#navpathstack10)配合 **NavDestination** 属性进行页面路由。
 ## AtomicServiceNavigation
 
 ```
 AtomicServiceNavigation({
-            navPathStack?: NavPathStack,
-            navigationContent: () => void ,
-            title?: ResourceStr,
-            titleBackgroundColor?: ResourceColor,
-            hideTitleBar?: boolean,
-            navBarWidth?: Length,
-            mode?: NavigationMode,
-            navDestinationBuilder?:(name: string, param?: Object) => void,
-            navBarWidthRange?:[Dimension, Dimension],
-            minContentWidth?:Dimension,
-            stateChangeCallback?:(isVisible: boolean) => void,
-            modeChangeCallback?:(mode: NavigationMode) => void
-          })
+    navPathStack?: NavPathStack,
+    navigationContent: Callback<void> ,
+    title?: ResourceStr,
+    titleBackgroundColor?: ResourceColor,
+    hideTitleBar?: boolean,
+    navBarWidth?: Length,
+    mode?: NavigationMode,
+    navDestinationBuilder?: NavDestinationBuilder,
+    navBarWidthRange?: [Dimension, Dimension],
+    minContentWidth?: Dimension,
+    stateChangeCallback?: Callback<boolean>,
+    modeChangeCallback?: Callback<NavigationMode>
+})
 ```
 
 **装饰器类型：**@Component
@@ -47,7 +47,7 @@ AtomicServiceNavigation({
 | hideTitleBar | boolean | 否 | @Prop | 设置是否隐藏标题栏。|
 | navBarWidth | [Length](ts-types.md#length)| 否 | @Prop | 设置导航栏宽度。<br>仅在Navigation组件分栏时生效。|
 | mode|[NavigationMode](#navigationmode9枚举说明) | 否 | @Prop |设置导航栏的显示模式。<br>支持Stack、Split与Auto模式。|
-| navDestinationBuilder | [NavDestinationBuilder](#NavDestinationBuilder) | 否 | @BuilderParam | 创建NavDestination组件所需要的Builder数据。 |
+| navDestinationBuilder | [NavDestinationBuilder](#NavDestinationBuilder) | 否 | @BuilderParam | 创建**NavDestination**组件所需要的Builder数据。 |
 | navBarWidthRange | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否 | @Prop |设置导航栏最小和最大宽度（双栏模式下生效）。|
 | minContentWidth | [Dimension](ts-types.md#dimension10) | 否 | @Prop | 设置导航栏内容区最小宽度（双栏模式下生效）。|
 | stateChangeCallback | Callback\<boolean\> | 否 | - | 导航栏显示状态切换时触发该回调。|
@@ -176,7 +176,3 @@ export struct PageTwo {
   }
 }
 ```
-
-![](figures/AtomicServiceNavigationDemo01.png)
-![](figures/AtomicServiceNavigationDemo02.png)
-![](figures/AtomicServiceNavigationDemo03.png)
