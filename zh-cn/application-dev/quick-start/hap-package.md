@@ -28,7 +28,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 下面简要介绍如何通过DevEco Studio新建一个HAP模块。
 
-1. 创建工程，详见[构建第一个ArkTS应用](start-with-ets-stage.md)。
+1. 创建工程，构建第一个ArkTS应用。
 2. 在工程目录上单击右键，选择**New > Module**。
 3. 在弹出的对话框中选择**Empty Ability**模板，单击**Next**。
    

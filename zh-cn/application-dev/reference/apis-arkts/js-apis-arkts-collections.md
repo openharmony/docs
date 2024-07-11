@@ -41,6 +41,8 @@ ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自�
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称   | 类型   | 只读 | 可选 | 说明              |
@@ -52,6 +54,8 @@ ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自�
 join(separator?: string): string
 
 将ConcatArray的所有元素连接成一个字符串，元素之间可以用指定的分隔符分隔。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -87,6 +91,8 @@ let joinedString = concatArray.join('-'); // 返回 "a-b-c"
 slice(start?: number, end?: number): ConcatArray\<T>
 
 返回一个新的ConcatArray，该ConcatArray是原始ConcatArray的切片。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -265,8 +271,15 @@ static from\<T>(arrayLike: ArrayLike\<T>): Array\<T>
 **示例：**
 
 ```ts
-let arrayLike = [1, 3, 5];
-let array = collections.Array.from<number>(arrayLike);
+// 正例
+let array : Array<string> = ['str1', 'str2', 'str3']; // 原生Array<T>，T是Sendable数据类型。
+let sendableArray = collections.Array.from<string>(array); // 返回Sendable Array<T>
+```
+
+```ts
+// 反例
+let array : Array<Array<string>> = [['str1', 'str2', 'str3'], ['str4', 'str5', 'str6'], ['str7', 'str8', 'str9']]; // 原生Array<T>，T是非Sendable数据类型。
+let sendableArray = collections.Array.from<Array<string>>(array); // 打印异常信息：Parameter error.Only accept sendable value
 ```
 
 ### pop
@@ -519,7 +532,7 @@ sort(compareFn?: (a: T, b: T) => number): Array\<T>
 **示例：**
 
 ```ts
-let array = new collections.Array<number>(1, 3, 5, 4, 1);
+let array = new collections.Array<number>(1, 3, 5, 4, 2);
 array.sort((a: number, b: number) => a - b); // [1, 2, 3, 4, 5]
 array.sort((a: number, b: number) => b - a); // [5, 4, 3, 2, 1]
 ```
@@ -1128,6 +1141,8 @@ array2.extendTo(1, 10); // array内容不变
 concat(...items: ConcatArray\<T>[]): Array\<T>
 
 拼接两个或多个数组。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2120,7 +2135,7 @@ constructor(byteLength: number)
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------|
-| byteLength  | number | 是   | buffer大小。         |
+| byteLength  | number | 是   | buffer所占的字节数。     |
 
 **错误码：**
 
@@ -2192,6 +2207,12 @@ ArkTS TypedArray映射函数类型。
 | value | FromElementType | 是 | 当前遍历的用于构造ArkTS TypedArray的元素。 |
 | index | number | 是 | 当前遍历的用于构造ArkTS TypedArray的元素下标。 |
 
+**返回值：**
+
+| 类型   | 说明                          |
+| ------ | --------------------------- |
+| ToElementType | 转换后的元素值。 |
+
 ## TypedArrayPredicateFn
 type TypedArrayPredicateFn\<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => boolean
 
@@ -2209,6 +2230,12 @@ ArkTS TypedArray断言测试函数类型。
 | index | number | 是 | 当前遍历的ArkTS TypedArray元素下标。 |
 | array | ArrayType | 是 | 当前遍历的ArkTS TypedArray实例。 |
 
+**返回值：**
+
+| 类型   | 说明                          |
+| ------ | --------------------------- |
+| boolean | 如果值符合条件，则为true，否则为false。 |
+
 ## TypedArrayForEachCallback
 type TypedArrayForEachCallback\<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => void
 
@@ -2225,6 +2252,29 @@ ArkTS TypedArray遍历函数类型。
 | value | ElementType | 是 | 当前遍历的ArkTS TypedArray元素。 |
 | index | number | 是 | 当前遍历的ArkTS TypedArray元素下标。 |
 | array | ArrayType | 是 | 当前遍历的ArkTS TypedArray实例。 |
+
+## TypedArrayMapCallback
+type TypedArrayMapCallback\<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => ElementType
+
+ArkTS TypedArray转换映射函数类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                          |
+| ------- | ------ | ---- | --------------------------- |
+| value | ElementType | 是 | 当前映射的ArkTS TypedArray元素。 |
+| index | number | 是 | 当前映射的ArkTS TypedArray元素下标。 |
+| array | ArrayType | 是 | 当前映射的ArkTS TypedArray实例。 |
+
+**返回值：**
+
+| 类型   | 说明                          |
+| ------ | --------------------------- |
+| ElementType | 转换后的元素值。 |
 
 ## TypedArrayReduceCallback
 type TypedArrayReduceCallback\<AccType, ElementType, ArrayType> = (previousValue: AccType, currentValue: ElementType, currentIndex: number, array: ArrayType) => AccType
@@ -2244,6 +2294,12 @@ ArkTS TypedArray归约函数类型。
 | currentIndex | number | 是 | 当前遍历的ArkTS TypedArray元素下标。 |
 | array | ArrayType | 是 | 当前遍历的ArkTS TypedArray实例。 |
 
+**返回值：**
+
+| 类型   | 说明                          |
+| ------ | --------------------------- |
+| AccType | 归约函数的结果。该结果会作为下一次调用TypedArrayReduceCallback时的previousValue参数。 |
+
 ## TypedArrayCompareFn
 type TypedArrayCompareFn\<ElementType> = (first: ElementType, second: ElementType) => number
 
@@ -2259,6 +2315,12 @@ ArkTS TypedArray排序函数类型。
 | ------- | ------ | ---- | --------------------------- |
 | first | ElementType | 是 | 当前待比较的第一个元素。 |
 | second | ElementType | 是 | 当前待比较的第二个元素。 |
+
+**返回值：**
+
+| 类型   | 说明                          |
+| ------ | --------------------------- |
+| number | 元素比较的结果。如果`first`小于`second`，返回值为负数；如果`first`大于`second`，返回值为正数；如果两个值相等，返回值为0。 |
 
 ## collections.TypedArray
 
@@ -2315,9 +2377,9 @@ constructor(length: number)
 
 构造函数，用于创建一个指定长度的ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2352,15 +2414,15 @@ constructor(array: ArrayLike\<number> | ArrayBuffer)
 
 构造函数，以ArrayLike或ArkTS ArrayBuffer创建一个ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| array |  ArrayLike\<number> \| ArrayBuffer | 是 | 用于构造ArkTS TypedArray的对象。 |
+| array |  ArrayLike\<number> \| ArrayBuffer | 是 | 用于构造ArkTS TypedArray的对象。当参数类型是ArrayBuffer时buffer所占的字节数须是4的整数倍。 |
 
 **错误码：**
 
@@ -2380,7 +2442,7 @@ let array: collections.Uint32Array = new collections.Uint32Array(arrayLike);
 
 ```ts
 // 例2 从一个ArrayBuffer构造对象
-let arrayBuffer: collections.ArrayBuffer = new collections.ArrayBuffer(10);
+let arrayBuffer: collections.ArrayBuffer = new collections.ArrayBuffer(12);
 let array: collections.Uint32Array = new collections.Uint32Array(arrayBuffer);
 ```
 
@@ -2398,15 +2460,15 @@ constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 
 构造函数，以ArrayBuffer创建一个ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名  | 类型   | 必填 | 说明                                         |
 | ------- | ------ | ---- | ------------------------------------------ |
-| buffer | ArrayBuffer | 是 | 用于构造ArkTS TypedArray的ArrayBuffer对象。|
+| buffer | ArrayBuffer | 是 | 用于构造ArkTS TypedArray的ArrayBuffer对象。buffer所占的字节数须是4的整数倍。|
 | byteOffset | number | 否 | 指定buffer的字节偏移，默认为0。 |
 | length | number | 否 | 指定ArkTS TypedArray的长度，默认为0。 |
 
@@ -2433,9 +2495,9 @@ static from(arrayLike: ArrayLike\<number>): TypedArray
 
 从一个ArrayLike或者可迭代对象中创建一个ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2461,9 +2523,9 @@ static from\<T>(arrayLike: ArrayLike\<T>, mapFn: TypedArrayFromMapFn\<T, number>
 
 从一个ArrayLike中创建一个ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名  | 类型   | 必填 | 说明                                        |
@@ -2483,7 +2545,7 @@ static from\<T>(arrayLike: ArrayLike\<T>, mapFn: TypedArrayFromMapFn\<T, number>
 // 例1 从一个对象创建
 let array: collections.Uint32Array = collections.Uint32Array.from<number>(
   { length: 5 }, (v: Object, k: number) => k);
-// Uint32Array [0, 1, 2, 3, 4, 5]
+// Uint32Array [0, 1, 2, 3, 4]
 ```
 
 ```ts
@@ -2505,9 +2567,9 @@ static from(iterable: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, nu
 
 从一个可迭代对象中创建一个ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名  | 类型   | 必填 | 说明                                |
@@ -2543,9 +2605,9 @@ copyWithin(target: number, start: number, end?: number): TypedArray
 
 从ArkTS TypedArray指定范围内的元素依次拷贝到目标位置。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2583,9 +2645,9 @@ some(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 
 测试ArkTS TypedArray中的是否存在元素满足指定条件。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2624,9 +2686,9 @@ every(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 
 测试ArkTS TypedArray中的所有元素是否满足指定条件。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2665,9 +2727,9 @@ fill(value: number, start?: number, end?: number): TypedArray
 
 使用特定值填充ArkTS TypedArray指定范围的全部元素。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2706,9 +2768,9 @@ filter(predicate: TypedArrayPredicateFn\<number, TypedArray>): TypedArray
 
 返回一个新ArkTS TypedArray，其包含满足指定条件的所有元素。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2744,9 +2806,9 @@ find(predicate: TypedArrayPredicateFn\<number, TypedArray>): number | undefined
 
 返回ArkTS TypedArray中第一个满足指定条件的元素的值，如果所有元素都不满足，则返回undefined。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2782,9 +2844,9 @@ findIndex(predicate: TypedArrayPredicateFn\<number, TypedArray>): number
 
 返回ArkTS TypedArray中第一个满足指定条件的元素索引，如果所有元素都不满足，则返回-1。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2819,9 +2881,9 @@ forEach(callbackFn: TypedArrayForEachCallback\<number, TypedArray>): void
 
 对ArkTS TypedArray中的每个元素执行提供的回调函数。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2853,9 +2915,9 @@ indexOf(searchElement: number, fromIndex?: number): number
 
 返回在ArkTS TypedArray中给定元素的第一个索引，如果不存在，则返回-1。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2894,9 +2956,9 @@ join(separator?: string): string
 
 将ArkTS TypedArray的所有元素拼接成一个字符串，元素之间使用指定的分隔符分隔。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2927,18 +2989,18 @@ let joined: string = array.join('-'); // "1-2-3-4-5"
 ```
 
 ### map
-map(callbackFn: TypedArrayForEachCallback\<number, TypedArray>): TypedArray
+map(callbackFn: TypedArrayMapCallback\<number, TypedArray>): TypedArray
 
 对ArkTS TypedArray中的每个元素应用指定的回调函数，并使用结果创建一个新的ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名    | 类型   | 必填 | 说明                                                 |
 | --------- | ------ | ---- | ---------------------------------------------------- |
-| callbackFn | [TypedArrayForEachCallback](#typedarrayforeachcallback)\<number, TypedArray> | 是  | 回调函数。 |
+| callbackFn | [TypedArrayMapCallback](#typedarraymapcallback)\<number, TypedArray> | 是  | 回调函数。 |
 
 
 **返回值：**
@@ -2968,9 +3030,9 @@ reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>): numbe
 
 对ArkTS TypedArray中的每个元素执行归约函数，并返回最终的归约结果。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名     | 类型   | 必填 |  说明     |
@@ -3005,9 +3067,9 @@ reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>, initia
 
 对ArkTS TypedArray中的每个元素执行归约函数，且接收一个初始值作为归约函数首次调用的参数，并返回最终的归约结果。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名    | 类型   | 必填 | 说明                                                 |
@@ -3044,9 +3106,9 @@ reduce\<U>(callbackFn: TypedArrayReduceCallback\<U, number, TypedArray>, initial
 
 对ArkTS TypedArray中的每个元素执行归约函数，且接收一个初始值作为归约函数首次调用的参数，并返回最终的归约结果。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -3083,9 +3145,9 @@ reverse(): TypedArray
 
 反转ArkTS TypedArray。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -3114,9 +3176,9 @@ set(array: ArrayLike\<number>, offset?: number): void
 
 将传入的ArrayLike元素依次写入到指定的起始位置。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名    | 类型   | 必填 | 说明                                                 |
@@ -3146,9 +3208,9 @@ slice(start?: number, end?: number): TypedArray
 
 返回一个新的ArkTS TypedArray对象，其包含原ArkTS TypedArray指定范围的内容。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -3186,9 +3248,9 @@ sort(compareFn?: TypedArrayCompareFn\<number>): TypedArray
 
 对ArkTS TypedArray进行排序，并返回排序后的ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -3225,9 +3287,9 @@ subarray(begin?: number, end?: number): TypedArray
 
 返回一个新的、基于相同ArkTS ArrayBuffer的ArkTS TypedArray对象。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -3264,9 +3326,9 @@ at(index: number): number | undefined
 
 返回指定下标的元素，如果不存在，则返回undefined。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                                         |
@@ -3302,9 +3364,9 @@ includes(searchElement: number, fromIndex?: number): boolean
 
 判断ArkTS TypedArray是否包含特定元素。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                      |
@@ -3342,9 +3404,9 @@ entries(): IterableIterator\<[number, number]>
 
 返回一个新的迭代器对象，该对象包含ArkTS TypedArray中每个元素的键值对。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -3376,9 +3438,9 @@ keys(): IterableIterator\<number>
 
 返回一个新的迭代器对象，该对象包含ArkTS TypedArray中每个元素的键（下标）。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -3410,9 +3472,9 @@ values(): IterableIterator\<number>
 
 返回一个新的迭代器对象，该对象包含ArkTS TypedArray中每个元素的值。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
@@ -3473,7 +3535,7 @@ BitVector的构造函数。
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 ```
 
 
@@ -3512,7 +3574,7 @@ push(element:number): boolean
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3548,7 +3610,7 @@ pop(): number
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3596,7 +3658,7 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3638,7 +3700,7 @@ setBitsByRange(element: number, fromIndex: number, toIndex: number): void
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3676,7 +3738,7 @@ setAllBits(element: number): void
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3722,7 +3784,7 @@ getBitsByRange(fromIndex: number, toIndex: number): BitVector
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3765,7 +3827,7 @@ resize(size: number): void
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3815,7 +3877,7 @@ getBitCountByRange(element: number, fromIndex: number, toIndex: number): number
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3863,7 +3925,7 @@ getIndexOf(element: number, fromIndex: number, toIndex: number): number
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3911,7 +3973,7 @@ getLastIndexOf(element: number, fromIndex: number, toIndex: number): number
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3951,7 +4013,7 @@ flipBitByIndex(index: number): void
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -3991,7 +4053,7 @@ flipBitsByRange(fromIndex: number, toIndex: number): void
 **示例：**
 
 ```ts
-let bitVector ：collections.BitVector = new collections.BitVector(0);
+let bitVector: collections.BitVector = new collections.BitVector(0);
 bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0);
@@ -4028,10 +4090,16 @@ values(): IterableIterator\<number>
 **示例：**
 
 ```ts
-let iter = bitVector.values();
+let bitVector: collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+let iter: IterableIterator<number> = bitVector.values();
 let temp: IteratorResult<number> = iter.next();
 while (!temp.done) {
-    console.info("bitVector value" + temp.value);
-    temp = iter.next();
+  console.info(JSON.stringify(temp.value));
+  temp = iter.next();
 } // 依次输出 0,1,0,1,0
 ```

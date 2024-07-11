@@ -12,7 +12,7 @@
 ## 子组件
 
 
-包含[FlowItem](ts-container-flowitem.md)子组件。
+仅支持[FlowItem](ts-container-flowitem.md)子组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)）。
 
 >  **说明：**
 >
@@ -167,7 +167,7 @@ type GetItemMainSizeByIndex = (index: number) => number
 | 名称 | 描述 |
 | ------ | -------------------- |
 | ALWAYS_TOP_DOWN | 默认的从上到下的布局模式。视窗内的FlowItem依赖视窗上方所有FlowItem的布局信息。因此跳转或切换列数时，需要计算出上方所有的FlowItem的布局信息。 |
-| SLIDING_WINDOW | 移动窗口式的布局模式。只考虑视窗内的布局信息，对视窗上方的FlowItem没有依赖关系，因此跳转或切换列数时只需要布局视窗内的FlowItem。有频繁切换列数或无动画跳转场景的应用建议使用该模式。 <br/>**说明：** <br/>1. 无动画跳转到较远的位置时，会以目标位置为基准，向前或向后布局FlowItem。这之后如果滑回跳转前的位置，内容的布局效果可能和之前不一致。 这个效果会导致跳转后回滑到顶部时，顶部节点可能不对齐。所以该布局模式下会在滑动到顶部后自动调整布局，保证顶部对齐。<br/> 2. 该模式不支持使用滚动条，就算设置了滚动条也无法显示。 <br/> 3. 不支持[scroller](#waterflowoptions对象说明)的[ScrollTo](ts-container-scroll.md#scrollTo)接口。 <br/> 3. 不支持[WaterFlowSection](#waterflowsections12)分段布局。 |
+| SLIDING_WINDOW | 移动窗口式的布局模式。只考虑视窗内的布局信息，对视窗上方的FlowItem没有依赖关系，因此向后跳转或切换列数时只需要布局视窗内的FlowItem。有频繁切换列数的场景的应用建议使用该模式。 <br/>**说明：** <br/>1. 无动画跳转到较远的位置时，会以目标位置为基准，向前或向后布局FlowItem。这之后如果滑回跳转前的位置，内容的布局效果可能和之前不一致。 这个效果会导致跳转后回滑到顶部时，顶部节点可能不对齐。所以该布局模式下会在滑动到每个分组的顶部后自动调整布局，保证顶部对齐。<br/> 2. 该模式不支持使用滚动条，就算设置了滚动条也无法显示。 <br/> 3. 不支持[scroller](#waterflowoptions对象说明)的[scrollTo](ts-container-scroll.md#scrollto)接口。 <br/> 4. 如果在同一帧内调用跳转（如无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)、[scrollEdge](ts-container-scroll.md#scrolledge)）和输入偏移量（如滑动手势或滚动动画），两者都会生效。|
 
 
 ## 属性
@@ -338,7 +338,7 @@ friction(value: number | Resource)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                      |
 | ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。 |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。<br/>从API version 12开始，非可穿戴设备默认值为0.75。 |
 
 ### cachedCount<sup>11+</sup>
 
@@ -554,7 +554,7 @@ onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | Optional&lt;[OnWillScrollCallback](ts-container-list.md#onwillscrollcallback12)&gt; | 是 | 瀑布流滑动前触发的回调。 |
+| handler | Optional&lt;[OnWillScrollCallback](ts-container-list.md#onwillscrollcallback12对象说明)&gt; | 是 | 瀑布流滑动前触发的回调。 |
 
 > **说明：** 
 > 
@@ -572,7 +572,7 @@ onDidScroll(handler: OnScrollCallback)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback对象说明) | 是 | 瀑布流滑动时触发的回调。 |
+| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback12对象说明) | 是 | 瀑布流滑动时触发的回调。 |
 
 ## 示例
 

@@ -751,6 +751,14 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止UIExtensionContext对应的窗口界面对象成功，err为undefined，否则为错误对象。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -836,6 +844,14 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是   | 返回给UIExtensionComponent控件的信息。                 |
 | callback  | AsyncCallback&lt;void&gt;                               | 是   | 回调函数。当停止成功，err为undefined，否则为错误对象。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -894,6 +910,14 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 ```ts
 import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
@@ -1040,9 +1064,8 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 **示例：**
 
 ```ts
-import { UIExtensionAbility, common } from '@kit.AbilityKit';
+import { UIExtensionAbility, common, AtomicServiceOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
 
 export default class EntryAbility extends UIExtensionAbility {
   onForeground() {
@@ -1125,12 +1148,13 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 | 16000019 | Can not match any component. |
 | 16000069 | The extension cannot start the third party application. |
 | 16200001 | The caller has been released. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000054 | Installation-free service is busy.Try again later. |
 
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
+import { UIExtensionAbility, Want, UIExtensionContentSession, OpenLinkOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function log(info: string) {

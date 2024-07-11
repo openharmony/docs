@@ -126,14 +126,14 @@ You can save the file to a local directory as required.
           console.error('onFileReady failed with err: ' + e);
         }
       },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.info('onBundleBegin err: ' + JSON.stringify(err));
         } else {
           console.info('onBundleBegin bundleName: ' + bundleName);
         }
       },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.info('onBundleEnd err: ' + JSON.stringify(err));
         } else {
@@ -150,6 +150,13 @@ You can save the file to a local directory as required.
       onBackupServiceDied: () => {
         console.info('onBackupServiceDied');
       },
+      onResultReport: (err: BusinessError, result: string) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('onResultReport success, result: ' + result);
+      }
     }
     let sessionBackup = new backup.SessionBackup(generalCallbacks);
     return sessionBackup;
@@ -183,10 +190,16 @@ When all the data of the application is ready, the service starts to restore the
   import { BusinessError } from '@ohos.base';
   // Create a SessionRestore instance for data restoration.
   let g_session: backup.SessionRestore;
+  let initMap = new Map<string, number>();
+  testFileNum = 123; // Number of files initialized.
+  let testBundleName = 'com.example.myapplication'; // Test bundle name.
+  initMap.set(testBundleName, testFileNum);
+  let countMap = new Map<string, number>();
+  countMap.set(testBundleName, 0); // Initialization count.
   async function publishFile(file: backup.File): Promise<void> {
     let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
-      uri: file.uri
+      uri: ''
     }
     await g_session.publishFile(fileMeta);
   }
@@ -204,16 +217,19 @@ When all the data of the application is ready, the service starts to restore the
         fs.copyFileSync(bundlePath, file.fd);
         fs.closeSync(file.fd);
         // After the data is transferred, notify the server that the files are ready.
-        publishFile(file);
+        countMap[file.bundleName]++;
+        if (countMap[file.bundleName] == initMap[file.bundleName]) { // Trigger publishFile when all the files of each bundle are received.
+          publishFile(file);
+        }
         console.info('onFileReady success');
       },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         }
@@ -227,6 +243,13 @@ When all the data of the application is ready, the service starts to restore the
       },
       onBackupServiceDied: () => {
         console.info('service died');
+      },
+      onResultReport: (err: BusinessError, result: string) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('onResultReport success, result: ' + result);
       }
     }
     let sessionRestore = new backup.SessionRestore(generalCallbacks);

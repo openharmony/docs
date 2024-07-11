@@ -74,7 +74,7 @@ let preferences: sendablePreferences.Preferences;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: sendablePreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let options: sendablePreferences.Options = { name: 'myStore' };
     let promise = sendablePreferences.getPreferences(this.context, options);
     promise.then((object: sendablePreferences.Preferences) => {
       preferences = object;
@@ -131,7 +131,7 @@ let preferences: sendablePreferences.Preferences;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: sendablePreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let options: sendablePreferences.Options = { name: 'myStore' };
     preferences = sendablePreferences.getPreferencesSync(this.context, options);
   }
 }
@@ -184,7 +184,7 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: sendablePreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let options: sendablePreferences.Options = { name: 'myStore' };
     let promise = sendablePreferences.deletePreferences(this.context, options);
     promise.then(() => {
       console.info("Succeeded in deleting preferences.");
@@ -241,7 +241,7 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: sendablePreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let options: sendablePreferences.Options = { name: 'myStore' };
     let promise = sendablePreferences.removePreferencesFromCache(this.context, options);
     promise.then(() => {
       console.info("Succeeded in removing preferences.");
@@ -291,7 +291,7 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: sendablePreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let options: sendablePreferences.Options = { name: 'myStore' };
     sendablePreferences.removePreferencesFromCacheSync(this.context, options);
   }
 }
@@ -308,7 +308,7 @@ Preferences实例配置选项。
 | 名称        | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | 是   | Preferences实例的名称。                                      |
-| dataGroupId | string\|null | 否   | 应用组ID，需要向应用市场获取。<br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。|
+| dataGroupId | string\|null | 否   | 应用组ID，需要向应用市场获取，暂不支持。<br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。|
 
 
 ## Preferences
@@ -947,7 +947,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { lang } from '@kit.ArkTS';
 
 let observer = (data: lang.ISendable) => {
-  console.info(`observer : ${keyValue}`)
+  console.info(`observer : ${data}`)
 }
 let keys = ['name', 'age'];
 preferences.on('dataChange', keys, observer);

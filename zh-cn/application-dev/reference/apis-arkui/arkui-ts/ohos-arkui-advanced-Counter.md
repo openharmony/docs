@@ -9,7 +9,7 @@ Counter是用于精确调节数值的组件。
 ## 导入模块
 
 ```
-import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent, CounterOptions, DateData } from '@kit.ArkUI';
 ```
 
 ##  子组件
@@ -45,6 +45,7 @@ CounterOptions定义Counter的类型及具体式样参数。
 | 名称        | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
 | type | [CounterType](#countertype) | 是   | 指定当前Counter的类型。 |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Auto |
 | numberOptions | [NumberStyleOptions](#numberstyleoptions) | 否    | 列表型和紧凑型counter的式样。 |
 | inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | 否 | 普通数字内联调节型Counter的式样。 |
 | dateOptions | [DateStyleOptions](#datestyleoptions) | 否 | 日期型内联型counter的式样。 |
@@ -193,7 +194,7 @@ toString(): string
 ### 示例1
 
 ```ts
-import { CounterType, CounterComponent } from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -220,7 +221,7 @@ struct ListCounterExample {
 ![listcounter](figures/listcounter.gif)
 ### 示例2
 ```ts
-import { CounterType, CounterComponent } from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -247,7 +248,7 @@ struct CompactCounterExample {
 ![compactcounter](figures/compactcounter.gif)
 ### 示例3
 ```ts
-import { CounterType, CounterComponent } from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -277,7 +278,7 @@ struct NumberStyleExample {
 ![numberstyle](figures/numberstyle.gif)
 ### 示例4
 ```ts
-import { CounterType, CounterComponent, DateData } from '@ohos.arkui.advanced.Counter';
+import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -301,3 +302,88 @@ struct DataStyleExample {
 }
 ```
 ![datestyle](figures/datestyle.gif)
+
+### 示例5
+列表型、紧凑型、数字内联型、日期内联型Counter布局镜像展示
+
+```ts
+// xxx.ets
+import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct CounterPage {
+  @State currentDirection: Direction = Direction.Auto
+
+  build() {
+    Column({}) {
+
+      //列表型Counter
+      CounterComponent({
+        options: {
+          direction: this.currentDirection,
+          type: CounterType.LIST,
+          numberOptions: {
+            label: "价格",
+            min: 0,
+            value: 5,
+            max: 10,
+          }
+        }
+      })
+        .width('80%')
+
+      //数值型Counter
+      CounterComponent({
+        options: {
+          direction: this.currentDirection,
+          type: CounterType.COMPACT,
+          numberOptions: {
+            label: "数量",
+            value: 10,
+            min: 0,
+            max: 100,
+            step: 10
+          }
+        }
+      }).margin({ top: 20 })
+
+      //数值内联型Counter
+      CounterComponent({
+        options: {
+          type: CounterType.INLINE,
+          direction: this.currentDirection,
+          inlineOptions: {
+            value: 100,
+            min: 10,
+            step: 2,
+            max: 1000,
+            textWidth: 100,
+            onChange: (value: number) => {
+              console.log("onDateChange Date: " + value.toString());
+            }
+          }
+        }
+      }).margin({ top: 20 })
+      //日期内联型counter
+      CounterComponent({
+        options: {
+          direction: this.currentDirection,
+          type: CounterType.INLINE_DATE,
+          dateOptions: {
+            year: 2024,
+            onDateChange: (date: DateData) => {
+              console.log("onDateChange Date: " + date.toString());
+            }
+          }
+        }
+      }).margin({ top: 20 })
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+![datestyle](figures/counter_direction.png)

@@ -111,8 +111,7 @@ allowDrop与draggable属性用法示例
 
 ```ts
 // xxx.ets
-import UDC from '@ohos.data.unifiedDataChannel';
-import UTD from '@ohos.data.uniformTypeDescriptor';
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 
 @Entry
 @Component
@@ -164,7 +163,7 @@ struct ImageExample {
           }
           .height('90%')
           .width('100%')
-          .allowDrop([UTD.UniformDataType.TEXT])
+          .allowDrop([uniformTypeDescriptor.UniformDataType.TEXT])
           .onDrop((event?: DragEvent, extraParams?: string) => {
             this.uri = JSON.parse(extraParams as string).extraInfo;
             this.AblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
@@ -194,14 +193,14 @@ struct ImageExample {
           .border({width: 1})
           .height('90%')
           .width('100%')
-          .allowDrop([UTD.UniformDataType.IMAGE])
+          .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
           .onDrop((event?: DragEvent, extraParams?: string) => {
             console.log("enter onDrop")
             let dragData:UnifiedData = (event as DragEvent).getData() as UnifiedData;
             if(dragData != undefined) {
-              let arr:Array<UDC.UnifiedRecord> = dragData.getRecords();
+              let arr:Array<unifiedDataChannel.UnifiedRecord> = dragData.getRecords();
               if(arr.length > 0) {
-                let image = arr[0] as UDC.Image;
+                let image = arr[0] as unifiedDataChannel.Image;
                 this.uri = image.imageUri;
                 this.BblockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
               } else {
@@ -401,7 +400,7 @@ struct Example {
 dragPreviewOptions属性中ImageModifier参数使用方法用例。
 ```ts
 // xxx.ets
-import { ImageModifier } from '@ohos.arkui.modifier'
+import { ImageModifier } from '@kit.ArkUI'
 
 @Entry
 @Component

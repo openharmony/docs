@@ -97,10 +97,10 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
    ```ts
      Button("userPropertyTest").onClick(()=>{
-       // 在按钮点击函数中设置用户ID
+       // 在按钮点击函数中设置用户属性值
        hiAppEvent.setUserProperty('testUserPropertyName', '123456');
 
-       // 在按钮点击函数中获取刚设置的用户ID
+       // 在按钮点击函数中获取刚设置的用户属性值
        let userProperty = hiAppEvent.getUserProperty('testUserPropertyName');
        hilog.info(0x0000, 'testTag', `userProperty: ${userProperty}`)
      })

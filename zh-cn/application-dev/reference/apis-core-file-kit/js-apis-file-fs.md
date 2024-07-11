@@ -879,6 +879,8 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
 
 业务调用connectDfs接口，触发建链并将对端设备公共文档目录挂载到沙箱路径下，如果对端设备出现异常，业务执行回调DfsListeners内[onStatus](#onstatus12)通知应用。
 
+**需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -923,6 +925,8 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
 disconnectDfs(networkId: string): Promise&lt;void&gt;
 
 业务调用disconnectDfs接口，传入networkId参数，触发断链并取消公共文档目录挂载。
+
+**需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3937,6 +3941,88 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 | processedSize | number | 是    | 否    | 已拷贝的数据大小。 |
 | totalSize | number | 是    | 否    | 待拷贝的数据总大小。 |
 
+## TaskSignal<sup>12+</sup>
+
+拷贝中断信号。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+### cancel<sup>12+</sup>
+
+cancel(): void
+
+取消拷贝任务。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import fs from '@ohos.file.fs';
+import fileuri from '@ohos.file.fileuri';
+let context = getContext(this) as common.UIAbilityContext; 
+let pathDir: string = context.filesDir;
+let srcDirPathLocal: string = pathDir + "/src";
+let dstDirPathLocal: string = pathDir + "/dest";
+let srcDirUriLocal: string = fileuri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileuri.getUriFromPath(dstDirPathLocal);
+let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
+  console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
+  if (progress.processedSize / progress.totalSize > 0.5) {
+    options.copySignal.cancel();
+  }
+};
+let options: fs.CopyOptions = {
+  "progressListener" : progressListener,
+  "copySignal" : new fs.TaskSignal,
+}
+console.info("copyFileWithCancel success.", + options.copySignal.onCancel());
+try {
+  fs.copy(srcDirPathLocal, dstDirUriLocal, options, (err: BusinessError) => {
+    if (err) {
+      console.info("copyFileWithCancel fail.");
+      return;
+    }
+    console.info("copyFileWithCancel success.");
+  })
+} catch (err) {
+  console.error("copyFileWithCancel failed with invalid param.");
+}
+
+```
+
+### onCancel<sup>12+</sup>
+
+onCancel(): Promise&lt;string&gt;
+
+取消拷贝事件监听。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**返回值：**
+
+  | 类型                   | 说明         |
+  | --------------------- | ---------- |
+  | Promise&lt;string&gt; | Promise对象。最后一个拷贝的文件路径。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+```ts
+let copySignal: fs.TaskSignal = new TaskSignal();
+copySignal.onCancel().then(() => {
+    console.info("copyFileWithCancel success.");
+});
+```
+
 ## CopyOptions<sup>11+</sup>
 
 拷贝进度回调监听
@@ -3946,6 +4032,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 | 名称   | 类型   | 可读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | progressListener | [ProgressListener](#progresslistener11) | 是    | 是    | 拷贝进度监听。 |
+| copySignal | [TaskSignal](#tasksignal12) | 是    | 是    | 取消拷贝信号。 |
 
 ## ProgressListener<sup>11+</sup>
 
@@ -3960,11 +4047,13 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 **示例：**
 
   ```ts
+  let copySignal: fs.TaskSignal = new TaskSignal();
   let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
     console.info(`processedSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
   };
   let copyOption: fs.CopyOptions = {
-    "progressListener" : progressListener
+    "progressListener" : progressListener,
+    "copySignal" : copySignal,
   }
   ```
 

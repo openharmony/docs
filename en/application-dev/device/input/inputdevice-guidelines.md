@@ -7,7 +7,7 @@ Input device management provides functions such as listening for device hot swap
 ## Modules to Import
 
 ```js
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import { inputDevice } from '@kit.InputKit';
 ```
 
 ## Available APIs
@@ -15,7 +15,7 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
 The following table lists the common APIs for input device management. For details about the APIs, see [ohos.multimodalInput.inputDevice](../../reference/apis-input-kit/js-apis-inputdevice.md).
 
 | API | Description|
-| ----------- | ------------------------------------------------------------ | -------------------------- |
+| ----------- | ------------------------------------------------------------ | 
 | getDeviceList(): Promise\<Array\<number>> | Obtains the list of input devices.|
 | getKeyboardType(deviceId: number): Promise\<KeyboardType> | Obtains the keyboard type of the input device.|
 | on(type: "change", listener: Callback\<DeviceListener>): void | Enables listening for device hot swap events.|
@@ -32,7 +32,7 @@ When a user enters text, the input method determines whether to launch the virtu
 
 
 ```js
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import { inputDevice } from '@kit.InputKit';
 
 let isPhysicalKeyboardExist = true;
 try {

@@ -50,7 +50,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 **Example**
   ```ts
-  import { BusinessError, CommonEventManager } from '@kit.BasicServicesKit';
+  import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
 
   // Set the system language
   try {
@@ -61,14 +61,14 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
  
   // Subscribe to a common event.
-  let subscriber: CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
-  let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = { // Define the subscriber information.
-    events: [CommonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
+  let subscriber: commonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
+  let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = { // Define subscriber information.
+    events: [commonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
   };
-  CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:CommonEventManager.CommonEventSubscriber) => { // Create a subscriber.
+  commonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:commonEventManager.CommonEventSubscriber) => { // Create a subscriber.
       console.info("createSubscriber");
       subscriber = commonEventSubscriber;
-      CommonEventManager.subscribe(subscriber, (err, data) => {
+      commonEventManager.subscribe(subscriber, (err, data) => {
         if (err) {
           console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
           return;
@@ -377,6 +377,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
@@ -427,6 +428,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
@@ -462,6 +464,14 @@ Obtains the array of time zone city items after sorting.
 |       Type       |         Description         |
 | ----------------- | -------------------- |
 | Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | Array of time zone city items.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
   ```ts

@@ -163,21 +163,18 @@ import { inputMethodEngine } from '@kit.IMEKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let record :Record<string, inputMethodEngine.CommandDataType> = {
+  let record: Record<string, inputMethodEngine.CommandDataType> = {
     "valueString1": "abcdefg",
     "valueString2": true,
     "valueString3": 500,
   }
-  inputClient.sendPrivateCommand(record).then((err) => {
-  }).catch(err => {
-    if (err !== undefined) {
-      let error = err as BusinessError;
-      this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
-    }
+  inputClient.sendPrivateCommand(record).then(() => {
+  }).catch((err: BusinessError) => {
+    console.error(`sendPrivateCommand catch error: ${JSON.stringify(err)}`);
   });
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+  console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -603,7 +600,7 @@ try {
 
 off(type: 'securityModeChange', callback?: Callback< SecurityMode>): void
 
-取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+取消订阅输入法安全模式改变类型事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -660,15 +657,15 @@ import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
-    this.addLog(`private command key: ${key}, value: ${record[key]}`);
+    console.log(`private command key: ${key}, value: ${record[key]}`);
   }
 }
 try {
-  this.addLog(`regist private command `);
+  console.log(`regist private command `);
   inputMethodEngine.getInputMethodAbility().on('privateCommand', privateCommandCallback);
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`regist private command error: ${error.code} ${error.message}`);
+  console.error(`regist private command error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -703,15 +700,15 @@ import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
-    this.addLog(`private command key: ${key}, value: ${record[key]}`);
+    console.log(`private command key: ${key}, value: ${record[key]}`);
   }
 }
 try {
-  this.addLog(`regist private command `);
+  console.log(`regist private command `);
   inputMethodEngine.getInputMethodAbility().off('privateCommand', privateCommandCallback);
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`regist private command error: ${error.code} ${error.message}`);
+  console.error(`regist private command error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -766,7 +763,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12800004   | not an input method extension. |
 
 **示例：**
@@ -816,7 +813,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401        | parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12800004   | not an input method extension. |
 
 **示例：**
@@ -1482,7 +1479,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
-  panel.setUiContent('pages/page2/page2').then(() => {
+  panel.setUiContent('pages/page2/page2', storage).then(() => {
     console.log('Succeeded in setting the content.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
@@ -1803,7 +1800,7 @@ adjustPanelRect(flag: PanelFlag, rect: PanelRect): void
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800013 | window manager service error. |
 
 **示例：**
@@ -3828,16 +3825,16 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textIn
       "valueString2": true,
       "valueString3": 500,
     }
-    textInputClient.sendPrivateCommand(record).then((err) => {
-    }).catch(err => {
+    textInputClient.sendPrivateCommand(record).then(() => {
+    }).catch((err: BusinessError) => {
       if (err !== undefined) {
         let error = err as BusinessError;
-        this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+        console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
       }
     });
   } catch (err) {
     let error = err as BusinessError;
-    this.addLog(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
+    console.error(`sendPrivateCommand catch error: ${error.code} ${error.message}`);
   }
 })
 ```

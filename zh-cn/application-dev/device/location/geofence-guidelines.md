@@ -36,8 +36,6 @@
    场景一：创建拉起Ability的WantAgentInfo信息。
 
    ```ts
-   let wantAgentObj:_wantAgent|null = null; // 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
-   
    // 通过WantAgentInfo的operationType设置动作类型
    let wantAgentInfo:wantAgent.WantAgentInfo = {
        wants: [
@@ -60,8 +58,6 @@
    场景二：创建发布公共事件的WantAgentInfo信息。
 
    ```ts
-   let wantAgentObj:_wantAgent|null = null; // 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
-   
    // 通过WantAgentInfo的operationType设置动作类型
    let wantAgentInfo:wantAgent.WantAgentInfo = {
        wants: [
@@ -81,6 +77,7 @@
    并且在获取到WantAgent对象之后调用地理围栏接口添加围栏，当设备进入或者退出该围栏时，系统会自动触发WantAgent的动作。
 
    ```ts
+   let wantAgentObj : object | undefined = undefined;
    // 创建WantAgent
    wantAgent.getWantAgent(wantAgentInfo, (err, data) => {
        if (err) {

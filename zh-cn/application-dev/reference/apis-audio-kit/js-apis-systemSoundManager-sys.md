@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import systemSoundManager from '@ohos.multimedia.systemSoundManager';
+import { systemSoundManager } from '@kit.AudioKit';
 ```
 
 ## 常量
@@ -399,8 +399,8 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
@@ -446,8 +446,8 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
@@ -485,8 +485,8 @@ getSystemRingtoneUri(context: Context, type: RingtoneType, callback: AsyncCallba
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
@@ -530,8 +530,8 @@ getSystemRingtoneUri(context: Context, type: RingtoneType): Promise&lt;string&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
@@ -568,8 +568,8 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
@@ -615,8 +615,8 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;Ringto
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
@@ -668,8 +668,8 @@ setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&l
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
@@ -719,8 +719,8 @@ getRingtoneUri(context: BaseContext, type: RingtoneType): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
@@ -768,8 +768,8 @@ getRingtonePlayer(context: BaseContext, type: RingtoneType): Promise&lt;Ringtone
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
@@ -821,8 +821,8 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
@@ -872,8 +872,8 @@ getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
@@ -921,8 +921,8 @@ getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;Syst
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
@@ -973,8 +973,8 @@ getDefaultRingtoneAttrs(context: BaseContext, type: RingtoneType): Promise&lt;To
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
@@ -1023,8 +1023,8 @@ getRingtoneAttrList(context: BaseContext, type: RingtoneType): Promise&lt;ToneAt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
@@ -1073,8 +1073,8 @@ getDefaultSystemToneAttrs(context: BaseContext, type: SystemToneType): Promise&l
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
@@ -1123,8 +1123,8 @@ getSystemToneAttrList(context: BaseContext, type: SystemToneType): Promise&lt;To
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
@@ -1172,8 +1172,8 @@ getDefaultAlarmToneAttrs(context: BaseContext): Promise&lt;ToneAttrs&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 
@@ -1211,8 +1211,8 @@ setAlarmToneUri(context: Context, uri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
@@ -1250,8 +1250,8 @@ getAlarmToneUri(context: Context): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 
@@ -1298,8 +1298,8 @@ getAlarmToneAttrList(context: BaseContext): Promise&lt;ToneAttrsArray&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
 
@@ -1348,8 +1348,8 @@ openAlarmTone(context: Context, uri: string): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
@@ -1397,8 +1397,8 @@ close(fd: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let fd = 50; // 需更改为目标铃声的fd
@@ -1450,8 +1450,8 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let title = 'test'; // 需更改为实际名称
@@ -1514,8 +1514,8 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let title = 'test'; // 需更改为实际名称
@@ -1577,8 +1577,8 @@ removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri

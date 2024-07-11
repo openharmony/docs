@@ -57,7 +57,6 @@
   - [hitrace](hitrace.md)
   - [hiperf](hiperf.md)
   - [hisysevent](hisysevent.md)
-  - [toybox](toybox.md)
   <!--Del-->
   - [uinput](uinput.md)
   <!--DelEnd-->

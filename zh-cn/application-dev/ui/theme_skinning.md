@@ -14,7 +14,7 @@
 [CustomTheme](../reference/apis-arkui/js-apis-arkui-theme.md#customtheme)用于自定义主题，属性可选，只需要复写修改的部分，未修改内容继承于系统，参考[系统缺省token色值](#系统缺省token色值)。请参考：
 
   ```ts
-    import { CustomColors, CustomTheme } from '@ohos.arkui.theme'
+    import { CustomColors, CustomTheme } from '@kit.ArkUI'
 
     export class AppColors implements CustomColors {
       //自定义品牌色
@@ -33,7 +33,7 @@
 其中，[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于自定义组件获取当前生效的Theme对象。
 
   ```ts
-    import { Theme, ThemeControl } from '@ohos.arkui.theme'
+    import { Theme, ThemeControl } from '@kit.ArkUI'
     import { gAppTheme } from './AppTheme'
     
     //在页面build前执行ThemeControl
@@ -140,12 +140,9 @@
 - 在Ability中设置[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)，需要在onWindowStageCreate()方法中[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme)。
 
   ```ts
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import hilog from '@ohos.hilog';
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import Want from '@ohos.app.ability.Want';
-    import window from '@ohos.window';
-    import { CustomColors, ThemeControl } from '@ohos.arkui.theme';
+    import {AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { window, CustomColors, ThemeControl } from '@kit.ArkUI';
 
     class AppColors implements CustomColors {
       fontPrimary = 0xFFD53032
@@ -193,7 +190,7 @@
 [onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于自定义组件获取当前生效的Theme对象。
 
   ```ts
-    import { CustomColors, CustomTheme, Theme } from '@ohos.arkui.theme'
+    import { CustomColors, CustomTheme, Theme } from '@kit.ArkUI'
 
     class AppColors implements CustomColors {
       fontPrimary: ResourceColor = $r('app.color.brand_purple')
@@ -259,6 +256,8 @@
 通过[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withetheme)可以设置深浅色模式，[ThemeColorMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#themecolormode10)有三种模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。</br>
 在WithTheme作用域内，组件的样式资源取值跟随指定的模式读取对应的深浅色模式系统和应用资源值，WithTheme作用域内的组件配色跟随指定的深浅模式生效。</br>
 在下面的示例中，通过WithTheme({ colorMode: ThemeColorMode.DARK })将作用域内的组件设置为深色模式。
+
+设置局部深浅色时，需要在resources文件夹下添加dark目录，dark目录添加dark.json资源文件，深浅色模式才会生效。
 
   ```ts
     @Entry

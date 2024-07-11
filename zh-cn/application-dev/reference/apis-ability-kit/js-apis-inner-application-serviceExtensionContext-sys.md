@@ -2390,7 +2390,7 @@ openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
- 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**: 此接口为系统接口。
@@ -2430,12 +2430,13 @@ openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 | 16000013 | The application is controlled by EDM.       |
 | 16000019 | Can not match any component. |
 | 16200001 | The caller has been released. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000054 | Installation-free service is busy.Try again later. |
 
 **示例：**
 
 ```ts
-import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
-import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
+import { ServiceExtensionAbility, Want, OpenLinkOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function log(info: string) {

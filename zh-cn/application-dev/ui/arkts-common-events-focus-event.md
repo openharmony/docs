@@ -54,7 +54,7 @@
 
 ### 走焦规范
 
-根据走焦的触发方式，可以分为主动走焦和线性走焦。
+根据走焦的触发方式，可以分为主动走焦和被动走焦。
 
 
 
@@ -444,7 +444,7 @@ focusBox(style: FocusBoxStyle)
 设置当前组件系统焦点框样式。
 
 ```ts
-import { ColorMetrics, LengthMetrics } from '@ohos.arkui.node'
+import { ColorMetrics, LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -489,7 +489,7 @@ struct RequestFocusExample {
 
 - 使用FocusController中的方法
 
-  需先使用UIContext中的[getFocusController()](https://gitee.com/yihao-lin/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
+  需先使用UIContext中的[getFocusController()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
 
   ```ts
   requestFocus(key: string): void
@@ -508,6 +508,7 @@ struct RequestFocusExample {
 @Component
 struct RequestExample {
   @State btColor: Color = Color.Blue
+  @State btColor2: Color = Color.Blue
 
   build() {
     Column({ space: 20 }) {
@@ -531,12 +532,12 @@ struct RequestExample {
           .height(70)
           .fontColor(Color.White)
           .focusOnTouch(true)
-          .backgroundColor(this.btColor)
+          .backgroundColor(this.btColor2)
           .onFocus(() => {
-            this.btColor = Color.Red
+            this.btColor2 = Color.Red
           })
           .onBlur(() => {
-            this.btColor = Color.Blue
+            this.btColor2 = Color.Blue
           })
           .id("testButton2")
 

@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.StartupTask
 
-本模块提供组件初始化的相关能力。
+本模块提供启动任务的相关能力。
 
 > **说明：**
 >
@@ -18,7 +18,7 @@ import { StartupTask } from '@kit.AbilityKit';
 
 onDependencyCompleted?(dependency: string, result: ESObject): void
 
-当依赖的组件完成初始化时该方法将会被调用。
+当依赖的启动任务执行完成时该方法将会被调用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
 
@@ -26,8 +26,8 @@ onDependencyCompleted?(dependency: string, result: ESObject): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| dependency | string | 是 | 依赖的组件名称。 |
-| result | Object | 是 | 依赖组件初始化的结果。 |
+| dependency | string | 是 | 依赖的启动任务名称。 |
+| result | Object | 是 | 依赖启动任务执行的结果。 |
 
 **示例：**：
 
@@ -72,7 +72,7 @@ init(context: AbilityStageContext): Promise\<ESObject\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Object | void\> | Promise对象，返回组件初始化结果对象。 |
+| Promise\<Object | void\> | Promise对象，返回启动任务执行结果对象。 |
 
 **示例：**：
 

@@ -18,6 +18,8 @@ format(format: string,  ...args: Object[]): string
 
 通过式样化字符串对输入的内容按特定格式输出。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -127,6 +129,8 @@ errnoToString(errno: number): string
 
 获取系统错误码对应的详细信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -177,6 +181,8 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 对异步函数进行回调化处理，回调中第一个参数将是拒绝原因（如果 Promise 已解决，则为 null），第二个参数将是已解决的值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -217,6 +223,8 @@ cb(1, (err : Object, ret : string) => {
 promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 对异步函数处理并返回一个promise的函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -261,7 +269,9 @@ const addCall = util.promisify(util.callbackWrapper(fn));
 
 generateRandomUUID(entropyCache?: boolean): string
 
-使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。
+使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。调用此函数会生成两个UUID，其中一个UUID进行缓存，一个UUID用于输出，首次调用时，参数是true或false无区别；下次调用时，如果参数是true，依旧缓存上次UUID，并生成新的UUID；如果参数是false，将生成两个UUID，其中一个UUID进行缓存，一个UUID进行输出。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -299,6 +309,8 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
 使用加密安全随机数生成器生成随机的RFC 4122版本4的Uint8Array类型UUID。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -335,6 +347,8 @@ console.info(JSON.stringify(uuid));
 parseUUID(uuid: string): Uint8Array
 
 将generateRandomUUID生成的string类型UUID转换为generateRandomBinaryUUID生成的Uint8Array类型UUID，如RFC 4122版本4中所述。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -540,6 +554,8 @@ static addBefore(targetClass: Object, methodName: string, isStatic: boolean, bef
 
 在指定的类对象的原方法执行前插入一个函数。addBefore接口执行完成后，都会先执行插入的函数逻辑，再执行指定类对象的原方法。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -630,6 +646,8 @@ static addAfter(targetClass: Object, methodName: string, isStatic: boolean, afte
 
 在指定的类方法执行后插入一段逻辑。最终返回值是插入函数执行后的返回值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -711,6 +729,8 @@ static replace(targetClass: Object, methodName: string, isStatic: boolean, inste
 
 将指定的类方法的原方法替换为另一个函数。replace接口执行完成后，调用指定的类方法时，只会执行替换后的逻辑。最终返回值为替换函数执行完毕的返回值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -773,6 +793,8 @@ TextDecoder用于将字节数组解码为字符串，可以处理多种编码格
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -786,6 +808,8 @@ TextDecoder用于将字节数组解码为字符串，可以处理多种编码格
 constructor()
 
 TextDecoder的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -984,6 +1008,8 @@ TextEncoder用于将字符串编码为字节数组，支持多种编码格式。
 需要注意的是，在使用TextEncoder进行编码时，不同编码格式下字符所占的字节数是不同的，在使用TextEncoder时需要明确指定要使用的编码格式，以确保编码结果正确。
 
 ### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
@@ -1226,6 +1252,8 @@ constructor()
 
 RationalNumber的构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
@@ -1239,6 +1267,8 @@ let rationalNumber = new util.RationalNumber();
 parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 用于创建具有给定分子和分母的RationalNumber实例。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1268,6 +1298,8 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 static createRationalFromString(rationalString: string): RationalNumber​
 
 基于给定的字符串创建一个RationalNumber对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1302,6 +1334,8 @@ let rational = util.RationalNumber.createRationalFromString("3/4");
 compare(another: RationalNumber): number​
 
 将当前RationalNumber对象与目标RationalNumber对象进行比较，并返回比较结果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1341,6 +1375,8 @@ valueOf(): number
 
 以整数形式或者浮点数的形式获取当前RationalNumber对象的值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1370,6 +1406,8 @@ console.info("result = " + result);
 equals(obj: Object): boolean
 
 将当前的RationalNumber对象与给定的对象进行比较是否相等。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1409,6 +1447,8 @@ getCommonFactor(number1: number,number2: number): number
 
 获取两个指定整数的最大公约数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1446,6 +1486,8 @@ getNumerator(): number
 
 获取当前RationalNumber对象的分子。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1475,6 +1517,8 @@ console.info("result = " + result);
 getDenominator(): number
 
 获取当前RationalNumber对象的分母。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1506,6 +1550,8 @@ isZero():boolean
 
 检查当前RationalNumber对象是否为0。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1535,6 +1581,8 @@ console.info("result = " + result);
 isNaN(): boolean
 
 检查当前RationalNumber对象是否表示非数字(NaN)值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1566,6 +1614,8 @@ isFinite():boolean
 
 检查当前RationalNumber对象是否表示一个有限值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1595,6 +1645,8 @@ console.info("result = " + result);
 toString(): string
 
 获取当前RationalNumber对象的字符串表示形式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1715,6 +1767,8 @@ LRUCache用于在缓存空间不够的时候，将近期最少使用的数据替
 
 ### 属性
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
 | 名称   | 类型   | 可读 | 可写 | 说明                   |
@@ -1736,6 +1790,8 @@ constructor(capacity?: number)
 
 默认构造函数用于创建一个新的LruBuffer实例，默认容量为64。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1756,6 +1812,8 @@ let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
 updateCapacity(newCapacity: number): void
 
 将缓冲区容量更新为指定容量，如果newCapacity小于或等于0，则抛出异常。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1786,6 +1844,8 @@ toString(): string
 
 返回对象的字符串表示形式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1812,6 +1872,8 @@ getCapacity(): number
 
 获取当前缓冲区的容量。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1833,6 +1895,8 @@ clear(): void
 
 从当前缓冲区清除键值对。后续会调用afterRemoval()方法执行后续操作。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
@@ -1849,6 +1913,8 @@ pro.clear();
 getCreateCount(): number
 
 获取创建对象的次数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1884,6 +1950,8 @@ getMissCount(): number
 
 获取查询值不匹配的次数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1906,6 +1974,8 @@ let result = pro.getMissCount();
 getRemovalCount(): number
 
 获取缓冲区键值对回收的次数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1931,6 +2001,8 @@ getMatchCount(): number
 
 获取查询值匹配成功的次数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1954,6 +2026,8 @@ getPutCount(): number
 
 获取将值添加到缓冲区的次数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1976,6 +2050,8 @@ isEmpty(): boolean
 
 检查当前缓冲区是否为空。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1997,6 +2073,8 @@ let result = pro.isEmpty();
 get(key: K): V | undefined
 
 表示要查询的键。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2034,6 +2112,8 @@ put(key: K,value: V): V
 
 将键值对添加到缓冲区。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2070,6 +2150,8 @@ values(): V[]
 
 获取当前缓冲区中所有值从最近访问到最近最少访问的顺序列表 。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -2094,6 +2176,8 @@ keys(): K[]
 
 获取当前缓冲区中所有键从最近访问到最近最少访问的升序列表。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -2115,6 +2199,8 @@ let result = pro.keys();
 remove(key: K): V | undefined
 
 从当前缓冲区中删除指定的键及其关联的值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2151,6 +2237,8 @@ let result = pro.remove(20);
 afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 删除值后执行后续操作。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2199,6 +2287,8 @@ contains(key: K): boolean
 
 检查当前缓冲区是否包含指定的键。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2239,6 +2329,8 @@ createDefault(key: K): V
 
 如果未计算特定键的值，则执行后续操作，参数表示丢失的键，返回与键关联的值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2274,6 +2366,8 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 允许迭代包含在这个对象中的所有键值对。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -2304,6 +2398,8 @@ for (let value of arrayValue) {
 > **说明：**
 >
 > 本接口不支持在.ets文件中使用
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2337,6 +2433,8 @@ ScopeComparable类型的值需要实现compareTo方法，确保传入的数据�
 compareTo(other: ScopeComparable): boolean
 
 比较两个值的大小，返回一个布尔值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2397,6 +2495,8 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 用于创建指定下限和上限的作用域实例的构造函数，返回一个ScopeHelper对象。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2443,6 +2543,8 @@ toString(): string
 
 该字符串化方法返回一个包含当前范围的字符串表示形式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -2481,6 +2583,8 @@ let result = range.toString();
 intersect(range: ScopeHelper): ScopeHelper
 
 获取给定范围和当前范围的交集。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2538,6 +2642,8 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 
 获取当前范围与给定下限和上限范围的交集。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2594,6 +2700,8 @@ getUpper(): ScopeType
 
 获取当前范围的上限。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -2633,6 +2741,8 @@ getLower(): ScopeType
 
 获取当前范围的下限。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -2671,6 +2781,8 @@ let result = range.getLower();
 expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 
 创建并返回包括当前范围和给定下限和上限的并集。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2728,6 +2840,8 @@ expand(range: ScopeHelper): ScopeHelper
 
 创建并返回包括当前范围和给定范围的并集。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2784,6 +2898,8 @@ expand(value: ScopeType): ScopeHelper
 
 创建并返回包括当前范围和给定值的并集。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2838,6 +2954,8 @@ contains(value: ScopeType): boolean
 
 检查给定value是否包含在当前范围内。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2891,6 +3009,8 @@ let result = range.contains(tempMiDF);
 contains(range: ScopeHelper): boolean
 
 检查给定range是否在当前范围内。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2947,6 +3067,8 @@ let result = range.contains(rangeSec);
 clamp(value: ScopeType): ScopeType
 
 将给定值限定到当前范围内。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3184,6 +3306,8 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 通过输入参数异步编码后输出对应文本。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3223,6 +3347,8 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
 通过输入参数异步解码后输出对应Uint8Array对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3396,6 +3522,8 @@ constructor()
 
 Types的构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
@@ -3410,6 +3538,8 @@ Types的构造函数。
 isAnyArrayBuffer(value: Object): boolean
 
 检查输入的value是否是ArrayBuffer类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3441,6 +3571,8 @@ isArrayBufferView(value: Object): boolean
 
 ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint32Array、Float32Array、Float64Array、DataView。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3468,6 +3600,8 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 isArgumentsObject(value: Object): boolean
 
 检查输入的value是否是一个arguments对象类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3500,6 +3634,8 @@ isArrayBuffer(value: Object): boolean
 
 检查输入的value是否是ArrayBuffer类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3527,6 +3663,8 @@ isArrayBuffer(value: Object): boolean
 isAsyncFunction(value: Object): boolean
 
 检查输入的value是否是一个异步函数类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3556,6 +3694,8 @@ isBooleanObject(value: Object): boolean
 
 检查输入的value是否是一个Boolean对象类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3584,6 +3724,8 @@ isBoxedPrimitive(value: Object): boolean
 
 检查输入的value是否是Boolean或Number或String或Symbol对象类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3611,6 +3753,8 @@ isBoxedPrimitive(value: Object): boolean
 isDataView(value: Object): boolean
 
 检查输入的value是否是DataView类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3641,6 +3785,8 @@ isDate(value: Object): boolean
 
 检查输入的value是否是Date类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3668,6 +3814,8 @@ isDate(value: Object): boolean
 isExternal(value: Object): boolean
 
 检查输入的value是否是native External类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3697,6 +3845,8 @@ isFloat32Array(value: Object): boolean
 
 检查输入的value是否是Float32Array数组类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3724,6 +3874,8 @@ isFloat32Array(value: Object): boolean
 isFloat64Array(value: Object): boolean
 
 检查输入的value是否是Float64Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3757,6 +3909,8 @@ isGeneratorFunction(value: Object): boolean
 >
 > 本接口不支持在.ets文件中使用
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3789,6 +3943,8 @@ isGeneratorObject(value: Object): boolean
 >
 > 本接口不支持在.ets文件中使用
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3820,6 +3976,8 @@ isInt8Array(value: Object): boolean
 
 检查输入的value是否是Int8Array数组类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3847,6 +4005,8 @@ isInt8Array(value: Object): boolean
 isInt16Array(value: Object): boolean
 
 检查输入的value是否是Int16Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3876,6 +4036,8 @@ isInt32Array(value: Object): boolean
 
 检查输入的value是否是Int32Array数组类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3904,6 +4066,8 @@ isMap(value: Object): boolean
 
 检查输入的value是否是Map类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3931,6 +4095,8 @@ isMap(value: Object): boolean
 isMapIterator(value: Object): boolean
 
 检查输入的value是否是Map的Iterator类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3962,6 +4128,8 @@ isNativeError(value: Object): boolean
 
 检查输入的value是否是Error类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3989,6 +4157,8 @@ isNativeError(value: Object): boolean
 isNumberObject(value: Object): boolean
 
 检查输入的value是否是Number对象类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4018,6 +4188,8 @@ isPromise(value: Object): boolean
 
 检查输入的value是否是Promise类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -4045,6 +4217,8 @@ isPromise(value: Object): boolean
 isProxy(value: Object): boolean
 
 检查输入的value是否是Proxy类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4078,6 +4252,8 @@ isRegExp(value: Object): boolean
 
 检查输入的value是否是RegExp类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -4105,6 +4281,8 @@ isRegExp(value: Object): boolean
 isSet(value: Object): boolean
 
 检查输入的value是否是Set类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4135,6 +4313,8 @@ isSetIterator(value: Object): boolean
 
 检查输入的value是否是Set的Iterator类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -4163,6 +4343,8 @@ isSetIterator(value: Object): boolean
 isStringObject(value: Object): boolean
 
 检查输入的value是否是String对象类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4196,6 +4378,8 @@ isSymbolObject(value: Object): boolean
 >
 > 本接口不支持在.ets文件中使用
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -4228,6 +4412,8 @@ isTypedArray(value: Object): boolean
 
 TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint16Array、Uint32Array、Float32Array、Float64Array、DataView。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -4255,6 +4441,8 @@ TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Ui
 isUint8Array(value: Object): boolean
 
 检查输入的value是否是Uint8Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4284,6 +4472,8 @@ isUint8ClampedArray(value: Object): boolean
 
 检查输入的value是否是Uint8ClampedArray数组类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -4311,6 +4501,8 @@ isUint8ClampedArray(value: Object): boolean
 isUint16Array(value: Object): boolean
 
 检查输入的value是否是Uint16Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4340,6 +4532,8 @@ isUint32Array(value: Object): boolean
 
 检查输入的value是否是Uint32Array数组类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -4367,6 +4561,8 @@ isUint32Array(value: Object): boolean
 isWeakMap(value: Object): boolean
 
 检查输入的value是否是WeakMap类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4397,6 +4593,8 @@ isWeakSet(value: Object): boolean
 
 检查输入的value是否是WeakSet类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -4425,6 +4623,8 @@ isBigInt64Array(value: Object): boolean
 
 检查输入的value是否是BigInt64Array类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -4452,6 +4652,8 @@ isBigInt64Array(value: Object): boolean
 isBigUint64Array(value: Object): boolean
 
 检查输入的value是否是BigUint64Array类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4485,6 +4687,8 @@ isModuleNamespaceObject(value: Object): boolean
 >
 > 本接口不支持在.ets文件中使用
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -4514,6 +4718,8 @@ isModuleNamespaceObject(value: Object): boolean
 isSharedArrayBuffer(value: Object): boolean
 
 检查输入的value是否是SharedArrayBuffer类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

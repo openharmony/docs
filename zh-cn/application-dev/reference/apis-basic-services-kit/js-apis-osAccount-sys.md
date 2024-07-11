@@ -2461,6 +2461,63 @@ setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
   }
   ```
 
+### prepareRemoteAuth<sup>12+</sup>
+
+prepareRemoteAuth(remoteNetworkId: string): Promise&lt;void&gt;;
+
+准备远端认证。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**参数：**
+
+| 参数名            | 类型   | 必填 | 说明             |
+| --------         | ------ | ---- | --------------- |
+| remoteNetworkId  | string | 是   | 远端网络Id。  |
+
+**返回值：**
+
+| 类型                  | 说明                                                           |
+| :-------------------- | :------------------------------------------------------------ |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid remoteNetworkId. |
+
+**示例：**
+  ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let userAuth = new osAccount.UserAuth();
+  let distributedDeviceMgr = distributedDeviceManager.createDeviceManager("com.example.bundleName");
+  distributedDeviceMgr.getAvailableDeviceList().then((data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
+      try {
+        if (data.length > 0 && data[0].networkId != null) {
+          userAuth.prepareRemoteAuth(data[0].networkId).then(() => {
+            console.log('prepareRemoteAuth successfully');
+          }).catch((err: BusinessError) => {
+            console.log('prepareRemoteAuth failed, error = ' + JSON.stringify(err));
+          });
+        }
+      } catch (e) {
+        console.log('prepareRemoteAuth exception = ' + JSON.stringify(e));
+      }
+    }
+  )
+  ```
+
 ### auth<sup>8+</sup>
 
 auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array;
@@ -5394,6 +5451,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | PIN_SIX    | 10000 | 表示6位凭证。       |
 | PIN_NUMBER | 10001 | 表示自定义数字凭证。 |
 | PIN_MIXED  | 10002 | 表示自定义混合凭据。 |
+| PIN_FOUR<sup>12+</sup>   | 10003 | 表示4位凭证。 |
+| PIN_PATTERN<sup>12+</sup>  | 10004 | 表示图案凭据。 |
 | FACE_2D    | 20000 | 表示2D 人脸凭证。   |
 | FACE_3D    | 20001 | 表示3D 人脸凭证。   |
 | FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | 表示电容式指纹。   |

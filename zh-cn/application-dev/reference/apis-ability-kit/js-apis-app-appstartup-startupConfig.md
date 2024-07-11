@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.StartupConfig
 
-本模块提供组件初始化的配置接口。
+本模块提供启动任务的配置接口。
 
 > **说明：**
 >
@@ -20,8 +20,8 @@ import { StartupConfig } from '@kit.AbilityKit';
 
   | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| timeoutMs | number | 是 | 否 | 执行所有组件初始化的超时时间，默认值为10000毫秒。 |
-| startupListener | [StartupListener](./js-apis-app-appstartup-startupListener.md) | 是 | 否 | 表示启动框架的监听器，该监听器将在所有组件初始化完成时调用。 |
+| timeoutMs | number | 是 | 否 | 执行所有启动任务的超时时间，默认值为10000毫秒。 |
+| startupListener | [StartupListener](./js-apis-app-appstartup-startupListener.md) | 是 | 否 | 表示启动框架的监听器，该监听器将在所有启动任务完成时调用。 |
 
 **示例：**
 

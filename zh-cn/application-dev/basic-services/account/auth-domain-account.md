@@ -16,7 +16,7 @@ import { osAccount } from '@kit.BasicServicesKit';
 
 具体开发实例如下：
 
-1. 申请权限：ohos.permission.ACCESS_USER_AUTH_INTERNAL。申请流程请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+1. 申请权限：ohos.permission.ACCESS_USER_AUTH_INTERNAL。申请流程请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
 2. 获取用户输入，包括域帐号信息和域帐号密码。
 

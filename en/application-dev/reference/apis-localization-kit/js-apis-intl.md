@@ -10,7 +10,7 @@ The [i18n](js-apis-i18n.md) module provides enhanced i18n capabilities through s
 >
 >  - Since API version 11, some APIs of this module are supported in ArkTS widgets.
 >
->  - Since API version 12, the APIs of this module are supported in ArkTS widgets.
+>  - Since API version 12, the APIs of this module are supported in atomic services.
 
 
 ## Modules to Import

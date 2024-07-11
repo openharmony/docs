@@ -29,14 +29,14 @@ Checks whether a SysCap is supported.
 **Example**
 
   ```js
-import geoLocationManager from '@ohos.geoLocationManager'
-import { BusinessError } from '@ohos.base';
+import { geoLocationManager } from '@kit.LocationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const isLocationAvailable = canIUse('SystemCapability.Location.Location.Core');
 if (isLocationAvailable) {
     geoLocationManager.getCurrentLocation((err: BusinessError, location: geoLocationManager.Location) => {
         if (err) {
-            console.log('err=' + JSON.stringify(err));
+            console.error('err=' + JSON.stringify(err));
         }
         if (location) {
             console.log('location=' + JSON.stringify(location));
