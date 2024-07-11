@@ -195,7 +195,7 @@
     }
     ```
 ## 调用方拉起图片编辑类应用编辑图片
-开发者可以在UIAbility或者UIExtensionAbility的页面中通过接口startAbilityByType拉起图片编辑面板，系统将自动查找并在面板上展示基于[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)实现的图片编辑应用，并由用户选择某个应用来完成图片编辑的功能，并最终将编辑的结果返回给到调用方。
+开发者可以在UIAbility或者UIExtensionAbility的页面中通过接口startAbilityByType拉起图片编辑面板，系统将自动查找并在面板上展示基于[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)实现的图片编辑应用，并由用户选择某个应用来完成图片编辑的功能，并最终将编辑的结果返回给到调用方，具体步骤如下：
 1. 导入模块。
     ```ts
     import { common, wantConstant } from '@kit.AbilityKit';
