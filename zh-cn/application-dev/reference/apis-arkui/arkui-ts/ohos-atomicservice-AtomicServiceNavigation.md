@@ -1,7 +1,7 @@
 
 # @ohos.atomicservice.AtomicServiceNavigation (用于元服务的路由导航根视图容器组件)
 
-AtomicServiceNavigation高级组件，为元服务提供定制化诉求，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（**NavDestination**的子组件），首页和非首页通过路由进行切换。
+AtomicServiceNavigation高级组件，为元服务提供定制化诉求，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（[NavDestination](ts-basic-components-navdestination.md)的子组件），首页和非首页通过路由进行切换。
 
 > **说明：**
 >
@@ -10,7 +10,7 @@ AtomicServiceNavigation高级组件，为元服务提供定制化诉求，一般
 ## 子组件
 
 可以包含子组件。
-从API Version 10开始，推荐使用[NavPathStack](ts-basic-components-navigation.md#navpathstack10)配合 **NavDestination** 属性进行页面路由。
+从API Version 10开始，推荐使用[NavPathStack](ts-basic-components-navigation.md#navpathstack10)进行页面路由。
 ## AtomicServiceNavigation
 
 ```
@@ -59,14 +59,14 @@ AtomicServiceNavigation({
 | --------------- | ------ | ---- | ---------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 标题栏背景颜色。 |
 | isBlurEnabled | boolean | 否 | 标题栏是否模糊，默认为true。 |
-| TitleOptions | [BarStyle](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
+| TitleOptions<sup>12+</sup> | [BarStyle](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
 
 ## NavDestinationBuilder类型说明
 
 | 参数名 | 类型 | 必填 | 描述 |
 | --------------- | ------ | ---- | ---------- |
-| name | string | 是 | 构造NavDestinationBuilder所用名称。 |
-| param | Object | 是 | 构造NavDestinationBuilder传入的参数。 |
+| name | string | 是 | NavDestination页面名称。 |
+| param | Object | 是 | NavDestination页面详细参数。 |
 
 ## 示例
 
