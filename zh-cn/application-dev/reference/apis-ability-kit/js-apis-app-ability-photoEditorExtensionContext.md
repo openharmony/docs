@@ -115,7 +115,7 @@ saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption)
 **返回值：**
 |  类型 | 说明  |
 | ------------ | ------------ |
-| Promise\<AbilityResult\> | Promise对象，返回AbilityResult对象，编辑过的图片地址存在want.uri中。  |
+| Promise\<AbilityResult\> | Promise对象，返回AbilityResult对象，编辑过的图片地址存在want.uri中,[uri](../apis-core-file-kit/js-apis-file-fileuri.md)格式为file://<bundleName>/<sandboxPath>。  |
 
 **错误码：**
 
