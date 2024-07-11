@@ -1,4 +1,4 @@
-## cl.arkui.1 UIExtensionComponent以及CreateModalUIExtension增加使用约束
+## cl.arkui.1 UIExtensionComponent增加使用约束
 
 **访问级别**
 
@@ -6,17 +6,17 @@
 
 **变更原因**
 
-UIExtensionComponent以及CreateModalUIExtension增加使用约束。
+变更前文档中UIExtensionComponent为系统接口，但在实现中并未做系统应用访问校验。
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
 UIExtensionComponent增加系统应用访问校验。
 
-CreateModalUIExtension增加禁止其他组件遮挡的校验逻辑。
+**起始API Level**
 
-CreateModalUIExtension更改默认行为为防不安全窗口遮挡，且不允许取消防遮挡。
+10
 
 **变更发生版本**
 
@@ -24,13 +24,11 @@ CreateModalUIExtension更改默认行为为防不安全窗口遮挡，且不允�
 
 **变更的接口/组件**
 
-UIExtensionComponent以及CreateModalUIExtension。
+UIExtensionComponent组件。
 
 **适配指导**
 
 使用UIExtensionComponent的必须为系统应用。
-
-CreateModalUIExtension禁止其他组件和非安全窗口遮挡。
 
 ## cl.arkui.2 DatePickerDialog显示时间时分割线延长
 
@@ -241,7 +239,7 @@ struct ListExample {
 }
 ```
 
-## cl.arkui.6 hideNonSecureWindows接口行为变更
+## cl.arkui.6 CreateModalUIExtension默认行为变更
 
 **访问级别**
 
@@ -249,23 +247,25 @@ struct ListExample {
 
 **变更原因**
 
-不安全窗口类型扩展以及CreateModalUIExtension防不安全窗口遮挡行为变更。
+CreateModalUIExtension创建的UIExtension可能被其他组件或窗口遮挡，造成安全风险。
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
-不安全窗口的定义新增宿主创建的Dialog窗口，变更前后不安全窗口包含的窗口类型如下表所示。
+CreateModalUIExtension增加禁止其他宿主进程组件遮挡的校验逻辑。
+
+CreateModalUIExtension防不安全窗口遮挡的默认行为变更，变更前后行为如下表所示。
 
 | 变更前 | 变更后 |
 | --- | --- |
-| <br>非系统全局悬浮窗 <br>宿主创建的非系统子窗 | <br>非系统全局悬浮窗 <br>宿主创建的非系统子窗 <br>宿主创建的非系统Dialog窗口 |
+| CreateModalUIExtension默认行为为不防不安全窗口遮挡，允许自行设置防不安全窗口遮挡 | CreateModalUIExtension默认行为为防不安全窗口遮挡，且不允许取消防遮挡 |
 
+hideNonSecureWindows接口中不安全窗口的定义新增宿主创建的Dialog窗口，变更前后不安全窗口包含的窗口类型如下表所示。
 
-CreateModalUIExtension防不安全遮挡行为变更，变更前后行为如下表所示
 | 变更前 | 变更后 |
 | --- | --- |
-| CreateModalUIExtension默认行为为不防不安全窗口遮挡，允许系统应用设置防不安全窗口遮挡 | CreateModalUIExtension默认行为为防不安全窗口遮挡，且不允许取消防遮挡 |
+| 非系统全局悬浮窗<br>宿主创建的非系统子窗 | 非系统全局悬浮窗<br>宿主创建的非系统子窗<br>宿主创建的非系统Dialog窗口 |
 
 **起始API Level**
 
@@ -277,11 +277,11 @@ CreateModalUIExtension防不安全遮挡行为变更，变更前后行为如下�
 
 **变更的接口/组件**
 
-hideNonSecureWindows接口。
+CreateModalUIExtension和hideNonSecureWindows接口。
 
 **适配指导**
 
-接口行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
 ## cl.arkui.7 AlphabetIndexer组件autoCollapse属性默认值由false改为true
 
