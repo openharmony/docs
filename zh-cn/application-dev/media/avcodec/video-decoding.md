@@ -241,7 +241,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     参数取值范围可以通过能力查询接口获取，具体示例请参考[获取支持的编解码能力](obtain-supported-codecs.md)。
     
-    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、像素格式。示例中的变量如下：
+    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频像素格式。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
     - DEFAULT_HEIGHT：240像素高度；
