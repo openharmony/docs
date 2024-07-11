@@ -1046,6 +1046,9 @@
           - [使用HiTraceChain打点（C/C++）](dfx/hitracechain-guidelines-ndk.md)
         - HiChecker使用指导<!--hichecker-->
           - [使用HiChecker检测问题（ArkTS/JS）](dfx/hichecker-guidelines-arkts.md)
+        - Hidebug使用指导
+          - [使用Hidebug获取调试信息（ArkTS）](dfx/hidebug-guidelines-arkts.md)
+          - [使用Hidebug获取调试信息（C/C++）](dfx/hidebug-guidelines-ndk.md)
         - 错误管理<!--error-manager-->
           - [错误管理开发指导](dfx/errormanager-guidelines.md)
           - [应用恢复开发指导](dfx/apprecovery-guidelines.md)
