@@ -158,16 +158,16 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     const char *name = "com.clearplay.drm";
     Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+        printf("OH_MediaKeySystem_Create failed.");
     }
     ret = OH_MediaKeySystem_SetMediaKeySystemCallback(keySystem,
         TestSystemCallBack);
     if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_SetMediaKeySystemCallback failed.");
+        printf("OH_MediaKeySystem_SetMediaKeySystemCallback failed.");
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
     if (ret != DRM_OK) {
-     OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
+     printf("OH_MediaKeySystem_Destroy failed.");
      return ret;
     }
     return ret;
@@ -181,22 +181,22 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     const char *name = "com.clearplay.drm";
     Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+        printf("OH_MediaKeySystem_Create failed.");
     }
     DRM_ContentProtectionLevel level = CONTENT_PROTECTION_LEVEL_HW_CRYPTO;
     MediaKeySession *keySession = NULL;
     ret = OH_MediaKeySystem_CreateMediaKeySession(keySystem, &level, &keySession);
     if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_CreateMediaKeySession failed.");
+        printf("OH_MediaKeySystem_CreateMediaKeySession failed.");
     }
     ret = OH_MediaKeySession_Destroy(keySession);
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySession_Destroy failed.");
+      printf("OH_MediaKeySession_Destroy failed.");
       return ret;
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
     if (ret != DRM_OK) {
-     OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
+     printf("OH_MediaKeySystem_Destroy failed.");
      return ret;
     }
    ```
@@ -213,26 +213,26 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
      const char *name = "com.clearplay.drm";
      Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
      if (ret != DRM_OK) {
-       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+       printf("OH_MediaKeySystem_Create failed.");
        return ret;
      }
 
      ret = OH_MediaKeySystem_GenerateKeySystemRequest(keySystem, &request,
       &requestLen, &defaultUrl, MAX_DEFAULT_URL_LEN);
      if (ret != DRM_OK) {
-       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GenerateKeySystemRequest failed.");
+       printf("OH_MediaKeySystem_GenerateKeySystemRequest failed.");
        return ret;
      }
      unsigned char keySystemResponse[50] = {0};
      size_t keySystemResponseLen = sizeof(keySystemResponse);
      ret = OH_MediaKeySystem_ProcessKeySystemResponse(keySystem, keySystemResponse, keySystemResponseLen);
      if (ret != DRM_OK) {
-       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GenerateKeySystemRequest failed.");
+       printf("OH_MediaKeySystem_GenerateKeySystemRequest failed.");
        return ret;
      }
      ret = OH_MediaKeySystem_Destroy(keySystem);
      if (ret != DRM_OK) {
-       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
+       printf("OH_MediaKeySystem_Destroy failed.");
        return ret;
      }
      return ret;
@@ -246,14 +246,14 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     const char *name = "com.clearplay.drm";
     Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+      printf("OH_MediaKeySystem_Create failed.");
       return ret;
     }
     DRM_OfflineMediakeyIdArray offlineMediaKeyIds;
     ret = OH_MediaKeySystem_GetOfflineMediaKeyIds(keySystem, &offlineMediaKeyIds);
     ret = OH_MediaKeySystem_Destroy(keySystem);
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
+      printf("OH_MediaKeySystem_Destroy failed.");
       return ret;
     }
     ```
@@ -265,19 +265,19 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     const char *name = "com.clearplay.drm";
     Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+      printf("OH_MediaKeySystem_Create failed.");
       return ret;
     }
     DRM_OfflineMediaKeyStatus OfflineMediaKeyStatus = OFFLINE_MEDIA_KEY_STATUS_UNKNOWN;
     uint8_t offlineMediaKeyId[16] = "mediaKeyIdTest01";
     ret = OH_MediaKeySystem_GetOfflineMediaKeyStatus(keySystem, offlineMediaKeyId, sizeof(offlineMediaKeyId)/sizeof(uint8_t), &OfflineMediaKeyStatus);
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GetOfflineMediaKeyStatus failed.");
+      printf("OH_MediaKeySystem_GetOfflineMediaKeyStatus failed.");
       return ret;
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
+      printf("OH_MediaKeySystem_Destroy failed.");
       return ret;
     }
     ```
@@ -289,19 +289,19 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     const char *name = "com.clearplay.drm";
     Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+      printf("OH_MediaKeySystem_Create failed.");
       return ret;
     }
     uint8_t meidaKeyId[8] = {1, 2, 3, 4, 5, 6, 7, 8};
     ret = OH_MediaKeySystem_ClearOfflineMediaKeys(keySystem,
         meidaKeyId, sizeof(meidaKeyId)/sizeof(uint8_t));
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_ClearOfflineMediaKeys failed.");
+      printf("OH_MediaKeySystem_ClearOfflineMediaKeys failed.");
       return ret;
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
+      printf("OH_MediaKeySystem_Destroy failed.");
       return ret;
     }
     ```
@@ -313,19 +313,19 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     const char *name = "com.clearplay.drm";
     Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+      printf("OH_MediaKeySystem_Create failed.");
       return ret;
     }
     DRM_CertificateStatus certStatus = CERT_STATUS_INVALID;
     ret = OH_MediaKeySystem_GetCertificateStatus(mediaKeySystem,
         &certStatus);
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GetCertificateStatus failed.");
+      printf("OH_MediaKeySystem_GetCertificateStatus failed.");
       return ret;
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
+      printf("OH_MediaKeySystem_Destroy failed.");
       return ret;
     }
     ```
@@ -337,12 +337,12 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     const char *name = "com.clearplay.drm";
     Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+      printf("OH_MediaKeySystem_Create failed.");
       return ret;
     }
     ret = OH_MediaKeySystem_Destroy(keySystem);
     if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
+      printf("OH_MediaKeySystem_Destroy failed.");
       return ret;
     }
     ```
@@ -353,7 +353,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
       DRM_ErrCode TestSystemCallBackWithObj(MediaKeySystem *mediaKeySystem, DRM_EventType eventType,
       uint8_t *info, int32_t infoLen, char *extra)
       {
-          OH_LOG_INFO(LOG_APP, "TestSystemCallBackWithObj");
+          printf("TestSystemCallBackWithObj");
       }
       DRM_ErrCode MediaKeySystem_SetMediaKeySystemCallbackWithObj()
       {
@@ -361,17 +361,17 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
       const char *name = "com.clearplay.drm";
       Drm_ErrCode ret = OH_MediaKeySystem_Create(name, &keySystem);
       if (ret != DRM_OK) {
-          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+          printf("OH_MediaKeySystem_Create failed.");
       }
       ret = OH_MediaKeySystem_SetCallback(keySystem,
           TestSystemCallBackWithObj);
       if (ret != DRM_OK) {
-          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_SetCallback failed.");
+          printf("OH_MediaKeySystem_SetCallback failed.");
       }
       ret = OH_MediaKeySystem_Destroy(keySystem);
       if (ret != DRM_OK) {
-      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-      return ret;
+          printf("OH_MediaKeySystem_Destroy failed.");
+          return ret;
       }
       return ret;
     }
