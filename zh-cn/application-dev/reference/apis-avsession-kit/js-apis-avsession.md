@@ -318,13 +318,18 @@ setCallMetadata(data: CallMetadata): Promise\<void>
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let calldata: avSession.CallMetadata = {
-  name: "xiaoming",
-  phoneNumber: "111xxxxxxxx",
-  avatar: image.PixelMap
-};
+let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+    let imageSource= await image.createImageSource(value.buffer);
+    let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+    let calldata: avSession.CallMetadata = {
+      name: "xiaoming",
+      phoneNumber: "111xxxxxxxx",
+      avatar: imagePixel
+    };
 currentAVSession.setCallMetadata(calldata).then(() => {
   console.info('setCallMetadata successfully');
 }).catch((err: BusinessError) => {
@@ -1269,7 +1274,6 @@ getAVCastController(callback: AsyncCallback\<AVCastController>): void
 | -------- |---------------------------------------|
 | 6600102  | The session does not exist.           |
 | 6600109| The remote connection does not exist. |
-| 6600110| session is existed. |
 
 **示例：**
 
@@ -1309,7 +1313,6 @@ getAVCastController(): Promise\<AVCastController>
 | -------- | --------------------------------------- |
 | 6600102  | The session does not exist.           |
 | 6600109| The remote connection does not exist. |
-| 6600110| session is existed. |
 
 **示例：**
 
@@ -4706,8 +4709,8 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | ---------- | -------------- | ---- | ---------------------- |
 | castCategory   | AVCastCategory        | 是   | 投播的类别。  <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  |
 | deviceId   | string | 是   | 播放设备的ID。<br> **系统能力：** SystemCapability.Multimedia.AVSession.Core  |
-| deviceName | string | 是   | 播放设备的名称。**系统能力：** SystemCapability.Multimedia.AVSession.Core |
-| deviceType | DeviceType | 是   | 播放设备的类型。**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| deviceName | string | 是   | 播放设备的名称。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
+| deviceType | DeviceType | 是   | 播放设备的类型。<br>**系统能力：** SystemCapability.Multimedia.AVSession.Core |
 | supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype11)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
 | supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 
