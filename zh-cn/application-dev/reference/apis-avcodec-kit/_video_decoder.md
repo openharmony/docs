@@ -466,7 +466,7 @@ OH_AVErrCode OH_VideoDecoder_SetSurface (OH_AVCodec * codec, OHNativeWindow * wi
 **描述**
 指定输出surface以提供视频解码输出。
 
-在初始化阶段，必须在调用Prepare之前调用此接口。在运行态（Executing状态）可以直接调用该接口。
+在初始化阶段，必须在调用Prepare之前调用此接口。在Executing状态可以直接调用该接口。
 
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
