@@ -13,12 +13,8 @@
 
 | **接口名**  | **描述** |
 | -------- | -------- |
-| onStartContentEditing(uri: string, want:Want, session: UIExtensionContentSession):void       | 当PhotoEditorExtensionAbility界面内容对象创建后调用，可以执行读取原始图片、加载页面等操作。|
-| saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | 传入编辑过的图片的PixMap对象并保存。   |
-
-开发者通过实现onStartContentEditing可获取原图，并根据自身需要实现图片的编辑能力。
-
-开发者通过saveEditedContentWithImage接口对编辑完成的图片进行保存。
+| onStartContentEditing(uri: string, want:Want, session: UIExtensionContentSession):void       | 当PhotoEditorExtensionAbility界面内容对象创建后调用，可以执行读取原始图片、加载页面等操作。开发者通过实现onStartContentEditing可获取原图，并根据自身需要实现图片的编辑能力。|
+| saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | 传入编辑过的图片的PixMap对象并保存。开发者通过saveEditedContentWithImage接口对编辑完成的图片进行保存。   |
 
 ## 图片编辑类应用实现PhotoEditorExtensionAbility
 
