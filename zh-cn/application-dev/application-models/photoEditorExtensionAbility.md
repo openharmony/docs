@@ -257,7 +257,7 @@
         }
       }
     ```
-5. 将图片转换为图片url，并调用startAbilityByType拉起图片编辑应用面板。
+5. 将图片转换为图片uri，并调用startAbilityByType拉起图片编辑应用面板。
    ```ts
     let uri = fileUri.getUriFromPath(this.filePath);
     context.startAbilityByType("photoEditor", {
