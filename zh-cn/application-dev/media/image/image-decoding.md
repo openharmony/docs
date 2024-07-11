@@ -151,21 +151,43 @@
       ```
 
 4. 设置解码参数DecodingOptions，解码获取pixelMap图片对象。
-
-   ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
-   let decodingOptions : image.DecodingOptions = {
-       editable: true,
-       desiredPixelFormat: 3,
-   }
-   // 创建pixelMap
-   imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
-      console.log("Succeeded in creating PixelMap")
-   }).catch((err : BusinessError) => {
-      console.error("Failed to create PixelMap")
-   });
-   ```
-
+   - 设置期望的format进行解码：
+      ```ts
+      import { BusinessError } from '@kit.BasicServicesKit';
+      import image from '@ohos.multimedia.image';
+      let img = await getContext(this).resourceManager.getMediaContent($r('app.media.image'));
+      let imageSource:image.ImageSource = image.createImageSource(img.buffer.slice(0));
+      let decodingOptions : image.DecodingOptions = {
+         editable: true,
+         desiredPixelFormat: 3,
+      }
+      // 创建pixelMap
+      imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
+         console.log("Succeeded in creating PixelMap")
+      }).catch((err : BusinessError) => {
+         console.error("Failed to create PixelMap")
+      });
+      ```
+   - HDR图片解码
+      ```ts
+      import { BusinessError } from '@kit.BasicServicesKit';
+      import image from '@ohos.multimedia.image';
+      let img = await getContext(this).resourceManager.getMediaContent($r('app.media.CUVAHdr'));
+      let imageSource:image.ImageSource = image.createImageSource(img.buffer.slice(0));
+      let decodingOptions : image.DecodingOptions = {
+         //设置为AUTO会根据图片资源格式解码，如果图片资源为HDR资源则会解码为HDR的pixelmap。
+         desiredDynamicRange: image.DecodingDynamicRange.AUTO,
+      }
+      // 创建pixelMap
+      imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
+         console.log("Succeeded in creating PixelMap")
+         // 判断pixelmap是否为hdr内容
+         let info = pixelMap.getImageInfoSync();
+         console.log("pixelmap isHdr:" + info.isHdr);
+      }).catch((err : BusinessError) => {
+         console.error("Failed to create PixelMap")
+      });
+      ```
    解码完成，获取到pixelMap对象后，可以进行后续[图片处理](image-transformation.md)。
 
 5. 释放pixelMap。
