@@ -1,0 +1,182 @@
+
+# @ohos.atomicservice.AtomicServiceNavigation (用于元服务的路由导航根视图容器组件)
+
+AtomicServiceNavigation高级组件，为元服务提供定制化诉求，一般作为Page页面的根容器使用，其内部默认包含了标题栏、内容区，其中内容区默认首页显示导航内容或非首页显示（NavDestination的子组件），首页和非首页通过路由进行切换。
+
+> **说明：**
+>
+> 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+## 子组件
+
+可以包含子组件。
+从API Version 10开始，推荐使用NavPathStack配合navDestination属性进行页面路由。
+## AtomicServiceNavigation
+
+```
+AtomicServiceNavigation({
+            navPathStack?: NavPathStack,
+            navigationContent: () => void ,
+            title?: ResourceStr,
+            titleBackgroundColor?: ResourceColor,
+            hideTitleBar?: boolean,
+            navBarWidth?: Length,
+            mode?: NavigationMode,
+            navDestinationBuilder?:(name: string, param?: Object) => void,
+            navBarWidthRange?:[Dimension, Dimension],
+            minContentWidth?:Dimension,
+            stateChangeCallback?:(isVisible: boolean) => void,
+            modeChangeCallback?:(mode: NavigationMode) => void
+          })
+```
+
+**装饰器类型：**@Component
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数**：
+
+| 名称 | 类型 | 必填 | 装饰器类型|描述 |
+| --------------- | ------ | ---- | ----|----------|
+| navPathStack | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 否 | @State | 路由栈信息。 |
+| navigationContent | Callback\<void\> | 否 |  @BuilderParam | Navigation容器内容。 |
+| title | [ResourceStr](ts-types.md#resourcestr) | 否   |@Prop | 设置页面标题。|
+| titleOptions | [TitleOptions](#TitleOptions) | 否 | @Prop | 标题栏选项。|
+| hideTitleBar | boolean | 否 | @Prop | 设置是否隐藏标题栏。|
+| navBarWidth | [Length](ts-types.md#length)| 否 | @Prop | 设置导航栏宽度。<br>仅在Navigation组件分栏时生效。|
+| mode|[NavigationMode](#navigationmode9枚举说明) | 否 | @Prop |设置导航栏的显示模式。<br>支持Stack、Split与Auto模式。|
+| navDestinationBuilder | [NavDestinationBuilder](#NavDestinationBuilder) | 否 | @BuilderParam | 创建NavDestination组件所需要的Builder数据。 |
+| navBarWidthRange | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否 | @Prop |设置导航栏最小和最大宽度（双栏模式下生效）。|
+| minContentWidth | [Dimension](ts-types.md#dimension10) | 否 | @Prop | 设置导航栏内容区最小宽度（双栏模式下生效）。|
+| stateChangeCallback | Callback\<boolean\> | 否 | - | 导航栏显示状态切换时触发该回调。|
+| modeChangeCallback | Callback\<[NavigationMode](#navigationmode9枚举说明)\> | 否 | - | 当Navigation首次显示或者单双栏状态发生变化时触发该回调。|
+
+## TitleOptions类型说明
+
+| 名称 | 类型 | 必填 | 描述 |
+| --------------- | ------ | ---- | ---------- |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 标题栏背景颜色。 |
+| isBlurEnabled | boolean | 否 | 标题栏是否模糊，默认为true。 |
+| TitleOptions | [BarStyle](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
+
+## NavDestinationBuilder类型说明
+
+| 参数名 | 类型 | 必填 | 描述 |
+| --------------- | ------ | ---- | ---------- |
+| name | string | 是 | 构造NavDestinationBuilder所用名称。 |
+| param | Object | 是 | 构造NavDestinationBuilder传入的参数。 |
+
+## 示例
+
+```typescript
+// Index.ets
+import { AtomicServiceNavigation } from '@ohos.atomicservice.AtomicServiceNavigation'
+import { PageOne } from './PageOne';
+import { PageTwo } from './PageTwo';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '首页';
+  childNavStack: NavPathStack = new NavPathStack();
+
+  @Builder
+  navigationContent() {
+    Tabs({ barPosition: BarPosition.End}) {
+      TabContent() {
+        Text('first page')
+          .onClick(() => {
+            this.childNavStack.pushPath({ name: 'page one' })
+          })
+      }.tabBar('first')
+
+      TabContent() {
+        Text('second page')
+      }.tabBar('second')
+
+      TabContent() {
+        Text('third page')
+      }.tabBar('third')
+    }
+    .onTabBarClick((index: number) => {
+      if (index == 0) {
+        this.message = '首页';
+      } else if (index == 1) {
+        this.message = '消息';
+      } else {
+        this.message = '我的';
+      }
+    })
+  }
+
+  @Builder
+  pageMap(name: string) {
+    if (name === 'page one') {
+      PageOne()
+    } else if (name === 'page two') {
+      PageTwo()
+    }
+  }
+
+  build() {
+    Row() {
+      Column() {
+        AtomicServiceNavigation({
+          navigationContent: () => {
+            this.navigationContent()
+          },
+          title: this.message,
+          titleBackgroundColor: Color.Blue,
+          navDestinationBuilder: this.pageMap,
+          navPathStack: this.childNavStack })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+```typescript
+// PageOne.ets
+@Component
+export struct PageOne {
+  pageInfo: NavPathStack = new NavPathStack();
+
+  build() {
+    NavDestination() {
+      Button('Next')
+        .onClick(() => {
+          this.pageInfo.pushPath({ name: 'page two'})
+        })
+    }
+    .title('PageOne')
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfo = context.pathStack;
+    })
+  }
+}
+```
+
+```typescript
+// PageTwo.ets
+@Component
+export struct PageTwo {
+  pageInfo: NavPathStack = new NavPathStack();
+
+  build() {
+    NavDestination() {
+      Button('End')
+    }
+    .title('PageTwo')
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfo = context.pathStack;
+    })
+  }
+}
+```
+
+![](figures/AtomicServiceNavigationDemo01.png)
+![](figures/AtomicServiceNavigationDemo02.png)
+![](figures/AtomicServiceNavigationDemo03.png)
