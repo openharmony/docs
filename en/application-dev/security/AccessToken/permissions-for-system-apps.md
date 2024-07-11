@@ -51,7 +51,7 @@ Allows an application to set the device-level configuration table and user-level
 
 ### ohos.permission.ACCESS_SCREEN_LOCK
 
-Allow an application to access information when the screen is locked.
+Allow an application to access screen lock and unlock information.
 
 **Permission level**: system_basic
 
@@ -1059,7 +1059,7 @@ Allows an application to obtain the MAC address of the peer Wi-Fi device.
 
 ### ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
-Allows an application to obtain detailed risk data.
+Allows an application to obtain detailed security event data.
 
 **Permission level**: system_core
 
@@ -1071,7 +1071,7 @@ Allows an application to obtain detailed risk data.
 
 ### ohos.permission.securityguard.REPORT_SECURITY_INFO
 
-Allows an application to report risk data for security guard.
+Allows an application to report risk data to Security Guard.
 
 **Permission level**: system_basic
 
@@ -3271,7 +3271,7 @@ Allows a system application to inject input events.
 
 ### ohos.permission.QUERY_SECURITY_EVENT
 
-Allows an application to obtain detailed risk data.
+Allows an application to obtain detailed security events.
 
 **Permission level**: system_basic
 
@@ -3283,7 +3283,7 @@ Allows an application to obtain detailed risk data.
 
 ### ohos.permission.REPORT_SECURITY_EVENT
 
-Allows an application to report risk data for security guard.
+Allows an application to report security events to Security Guard.
 
 **Permission level**: system_basic
 
@@ -3379,7 +3379,7 @@ Allows a system application to access the over-the-air update directory.
 
 ### ohos.permission.MANAGE_MOUSE_CURSOR
 
-Allows a system application to set the mouse cursor status.
+Allows a system application to set the mouse cursor status (such as position and state).
 
 **Permission level**: system_core
 
