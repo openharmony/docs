@@ -8,7 +8,7 @@ The Media Kit development guide describes the development methods in various sce
 
  **2. One-sentence replacement**  
 
-One (replacement):
+I (replacement):
 1. Use the DocumentViewPicker interface to select or save a file. The URI of the selected or saved file is returned. <!--RP3-->
 2. Use the AudioViewPicker interface to select or save a file. The URI of the selected or saved file is returned. <!--RP3End-->
 3. Use the PhotoViewPicker.save interface to save the file and return the URI of the saved file.
