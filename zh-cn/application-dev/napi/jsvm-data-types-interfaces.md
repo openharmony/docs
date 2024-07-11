@@ -779,6 +779,7 @@ OH_JSVM_DeleteReference(env, reference);
 |OH_JSVM_CreateMap | 创建一个新的 JavaScript Map对象 |
 |OH_JSVM_CreateRegExp | 根据输入的字符串创建一个JavaScript 正则对象 |
 |OH_JSVM_CreateSet | 创建一个新的 JavaScript Set对象 |
+|OH_JSVM_CreateFunctionWithScript | 根据传入的函数体和函数参数列表，创建一个新的 JavaScript Function对象|
 
 场景示例:
 创建指定长度的数组
@@ -849,6 +850,20 @@ OH_JSVM_CreateRegExp(env, value, JSVM_RegExpFlags::JSVM_REGEXP_GLOBAL, &result);
 ```c++
 JSVM_Value value;
 OH_JSVM_CreateSet(env, &value);
+```
+
+创建Function:
+
+```c++
+JSVM_Value script;
+OH_JSVM_CreateStringUtf8(env, "return a + b;", JSVM_AUTO_LENGTH, &script);
+JSVM_Value param1;
+JSVM_Value param2;
+OH_JSVM_CreateStringUtf8(env, "a", JSVM_AUTO_LENGTH, &param1);
+OH_JSVM_CreateStringUtf8(env, "b", JSVM_AUTO_LENGTH, &param2);
+JSVM_Value argus[] = {param1, param2};
+JSVM_Value func;
+OH_JSVM_CreateFunctionWithScript(env, "add", JSVM_AUTO_LENGTH, 2, argus, script, &func);
 ```
 
 ### 从JS类型获取C类型&获取JS类型信息
