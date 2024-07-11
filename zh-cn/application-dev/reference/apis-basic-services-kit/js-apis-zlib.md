@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```javascript
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 ```
 
 ## zlib.zipFile<sup>(deprecated)</sup>
@@ -140,8 +140,8 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -202,8 +202,8 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xxx/filename.xxx';
 let outFile = '/xxx/xxx.zip';
@@ -260,8 +260,8 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
@@ -321,8 +321,8 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
@@ -376,8 +376,8 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
@@ -429,8 +429,8 @@ getOriginalSize(compressedFile: string): Promise\<number>
 
 ```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp，也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let compressedFile = '/data/storage/el2/base/temp/test.zip';
 
@@ -483,8 +483,8 @@ compressFiles(inFiles: Array&lt;string&gt;, outFile: string, options: Options): 
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp，也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inFile = '/xxx/filename.xxx';
 let pathDir = '';
@@ -527,7 +527,7 @@ createChecksum(): Promise&lt;Checksum&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 zlib.createChecksum().then((data) => {
   console.info('createChecksum success');
@@ -553,7 +553,7 @@ createChecksumSync():  Checksum
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let checksum = zlib.createChecksumSync()
 ```
@@ -596,7 +596,7 @@ adler32(adler: number, buf: ArrayBuffer): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
@@ -648,8 +648,8 @@ adler32Combine(adler1: number, adler2: number, len2: number): Promise&lt;number&
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -711,8 +711,8 @@ crc32(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
@@ -766,8 +766,8 @@ crc32Combine(crc1: number, crc2: number, len2: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -829,8 +829,8 @@ crc64(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
@@ -868,8 +868,8 @@ getCrcTable(): Promise&lt;Array&lt;number&gt;&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 let checksum = zlib.createChecksumSync()
 
@@ -899,8 +899,8 @@ getCrc64Table(): Promise&lt;Array&lt;number&gt;&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 let checksum = zlib.createChecksumSync()
 
@@ -930,8 +930,8 @@ createZip(): Promise&lt;Zip&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 let zip = zlib.createZipSync();
 
@@ -961,7 +961,7 @@ createZipSync(): Zip
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let zip = zlib.createZipSync();
 ```
@@ -989,7 +989,7 @@ getZStream(): Promise&lt;ZStream&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let zip = zlib.createZipSync();
 
@@ -1017,7 +1017,7 @@ zlibVersion(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let zip = zlib.createZipSync();
 
@@ -1045,7 +1045,7 @@ zlibCompileFlags(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let zip = zlib.createZipSync();
 
@@ -1090,8 +1090,8 @@ compress(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
@@ -1149,8 +1149,8 @@ compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLe
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
@@ -1207,8 +1207,8 @@ uncompress(dest:ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&l
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1269,8 +1269,8 @@ uncompress2(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1327,8 +1327,8 @@ compressBound(sourceLen: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
@@ -1382,8 +1382,8 @@ inflateValidate(strm: ZStream, check: number): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1442,8 +1442,8 @@ inflateSyncPoint(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1504,8 +1504,8 @@ inflateSync(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello, hello!';
@@ -1595,8 +1595,8 @@ inflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1657,8 +1657,8 @@ inflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello, hello!';
@@ -1755,8 +1755,8 @@ inflateReset2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1815,8 +1815,8 @@ inflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1877,8 +1877,8 @@ inflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1936,8 +1936,8 @@ inflateMark(strm: ZStream): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -1997,8 +1997,8 @@ inflateInit2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
@@ -2052,8 +2052,8 @@ inflateInit(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
@@ -2109,8 +2109,8 @@ inflateGetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2170,8 +2170,8 @@ inflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;Diction
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2230,8 +2230,8 @@ inflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2295,8 +2295,8 @@ inflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2354,8 +2354,8 @@ inflateCodesUsed(strm: ZStream): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2504,8 +2504,8 @@ InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) 
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let readIn: (inDesc: object) => ArrayBuffer = (inDesc: object): ArrayBuffer => {
@@ -2675,8 +2675,8 @@ inflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2762,8 +2762,8 @@ deflateInit(strm: ZStream, level: CompressLevel): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2827,8 +2827,8 @@ deflateInit2(strm: ZStream, level: CompressLevel, method: CompressMethod, window
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2890,8 +2890,8 @@ deflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -2955,8 +2955,8 @@ deflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3025,8 +3025,8 @@ deflateBound(strm: ZStream, sourceLength: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3091,8 +3091,8 @@ deflateSetHeader(strm: ZStream, head: GzHeader): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3157,8 +3157,8 @@ deflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3223,8 +3223,8 @@ deflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3289,8 +3289,8 @@ deflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;Diction
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3363,8 +3363,8 @@ deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: numb
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3428,8 +3428,8 @@ deflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3493,8 +3493,8 @@ deflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3558,8 +3558,8 @@ deflatePending(strm: ZStream): Promise&lt;DeflatePendingOutputInfo&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3625,8 +3625,8 @@ deflateParams(strm: ZStream, level: CompressLevel, strategy: CompressStrategy): 
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3692,8 +3692,8 @@ deflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
+import { zlib } from '@kit.BasicServicesKit';
+import { base } from '@kit.BasicServicesKit';
 
 async function demo() {
   let str = 'hello world!';
@@ -3922,7 +3922,7 @@ createGZip(): Promise&lt;GZip&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 zlib.createGZip().then((data) => {
   console.info('createGZip success');
@@ -3948,7 +3948,7 @@ createGZipSync():  GZip
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
+import { zlib } from '@kit.BasicServicesKit';
 
 let gzip = zlib.createGZipSync();
 ```
@@ -3992,8 +3992,8 @@ gzdopen(fd: number, mode: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzdopenDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzdopen");
@@ -4060,8 +4060,8 @@ gzbuffer(size: number):Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import zlib from '@ohos.zlib'
+import { fs } from '@kit.CoreFileKit';
+import { zlib } from '@kit.BasicServicesKit'
 
 async function gzbufferDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzbuffer");
@@ -4132,8 +4132,8 @@ gzopen(path: string, mode: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzopenDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzopen");
@@ -4185,8 +4185,8 @@ gzeof(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzeofDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzeof");
@@ -4249,8 +4249,8 @@ gzdirect(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzdirectDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzdirect");
@@ -4312,8 +4312,8 @@ gzclose(): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzcloseDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzclose");
@@ -4365,8 +4365,8 @@ gzclearerr(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzclearerrDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzclearerr");
@@ -4439,8 +4439,8 @@ gzerror(): Promise&lt;GzErrorOutputInfo&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzerrorDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzerror");
@@ -4513,8 +4513,8 @@ gzgetc(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzgetcDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzgetc");
@@ -4585,8 +4585,8 @@ gzflush(flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzflushDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzflush");
@@ -4656,8 +4656,8 @@ gzfwrite(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';;
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';;
 
 async function gzfwriteDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzfwrite");
@@ -4732,8 +4732,8 @@ gzfread(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzfreadDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzfread");
@@ -4804,8 +4804,8 @@ gzclosew(): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzclosewDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzclosew");
@@ -4865,8 +4865,8 @@ gzcloser(): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzcloserDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzcloser");
@@ -4934,8 +4934,8 @@ gzwrite(buf: ArrayBuffer, len: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzwriteDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzwrite");
@@ -5006,8 +5006,8 @@ gzungetc(c: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzungetcDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzungetc");
@@ -5071,8 +5071,8 @@ gztell(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gztellDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gztell");
@@ -5141,8 +5141,8 @@ gzsetparams(level: CompressLevel, strategy: CompressStrategy): Promise&lt;Return
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzsetparamsDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzsetparams");
@@ -5212,8 +5212,8 @@ gzseek(offset: number, whence: OffsetReferencePoint): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzseekDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzseek");
@@ -5274,8 +5274,8 @@ gzrewind(): Promise&lt;ReturnStatus&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzrewindDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzrewind");
@@ -5345,8 +5345,8 @@ gzread(buf: ArrayBuffer): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzreadDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzread");
@@ -5423,8 +5423,8 @@ gzputs(str: string): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzputsDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzputs");
@@ -5492,8 +5492,8 @@ gzputc(char: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzputcDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzputc");
@@ -5563,8 +5563,8 @@ gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;numb
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzprintfDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzprintf");
@@ -5625,8 +5625,8 @@ gzoffset(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzoffsetDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzoffset");
@@ -5694,8 +5694,8 @@ gzgets(buf: ArrayBuffer): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import zlib from '@ohos.zlib';
-import fs from '@ohos.file.fs';
+import { zlib } from '@kit.BasicServicesKit';
+import { fs } from '@kit.CoreFileKit';
 
 async function gzgetsDemo(pathDir: string) {
   fs.mkdirSync(pathDir + "/gzgets");
