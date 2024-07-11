@@ -43,9 +43,9 @@ atomized service
 
 ## Check whether too many link levels will cause the link to be invalid after reflow.
 
-① [链接规范](../reference/apis-ability-kit/js-apis-app-ability-want.md)
+① [链接规范](../reference/test.md)
 
-② [链接不规范](../../application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md)
+② [链接不规范](../../onlyfortest/reference/test.md)
 
 ## Samples
 
