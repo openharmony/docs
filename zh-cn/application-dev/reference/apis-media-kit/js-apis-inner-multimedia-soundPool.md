@@ -35,9 +35,12 @@ import { audio } from '@kit.AudioKit';
 
 音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能, 在调用SoundPool的接口前，需要先通过[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建实例。
 
->**说明：**
+> **说明：**
 >
->在使用SoundPool实例的方法时，建议注册 [on('loadComplete')](#on('loadComplete')) , [on('playFinished')](#on('playFinished')) , [on('error')](on('error')) 等回调接口，用以监听“资源加载完成”，“播放完成”事件以及错误事件。
+> 在使用SoundPool实例的方法时，建议开发者注册相关回调，主动获取当前状态变化。
+> - [on('loadComplete')](#onloadcomplete)：监听资源加载完成。
+> - [on('playFinished')](#onplayfinished)：监听播放完成。
+> - [on('error')](#onerror)：监听错误事件。
 
 ### load
 
