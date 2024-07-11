@@ -43,9 +43,9 @@ atomized service
 
 ## Check whether too many link levels will cause the link to be invalid after reflow.
 
-① [链接规范](../reference/test.md)
+① [link specification](../reference/test.md)
 
-② [链接不规范](../../onlyfortest/reference/test.md)
+② [link not standardized](../../onlyfortest/reference/test.md)
 
 ## Samples
 
