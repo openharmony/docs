@@ -383,6 +383,8 @@ typedef struct OH_DecodingOptions OH_DecodingOptions
 
 解码选项参数结构体,被用于选项参数结构体,被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_DecodingOptions结构体介绍](../../media/image/image-structure-c.md#oh_decodingoptions结构体)。
+
 **起始版本：** 12
 
 
@@ -396,6 +398,8 @@ typedef struct OH_ImageNative OH_ImageNative
 
 为图像接口定义native层图像对象的别名。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageNative结构体介绍](../../media/image/image-structure-c.md#oh_imagenative结构体)。
+
 **起始版本：** 12
 
 
@@ -408,6 +412,8 @@ typedef struct OH_ImagePackerNative OH_ImagePackerNative
 **描述**
 
 ImagePacker结构体类型，用于执行ImagePacker相关操作。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImagePackerNative结构体介绍](../../media/image/image-structure-c.md#oh_imagepackernative结构体)。
 
 **起始版本：** 12
 
@@ -435,6 +441,8 @@ typedef struct OH_ImageReceiverNative OH_ImageReceiverNative
 
 用于定义OH_ImageReceiverNative数据类型名称。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageReceiverNative结构体介绍](../../media/image/image-structure-c.md#oh_imagereceivernative结构体)。
+
 **起始版本：** 12
 
 
@@ -448,6 +456,8 @@ typedef struct OH_ImageReceiverOptions OH_ImageReceiverOptions
 
 用于定义OH_ImageReceiverOptions数据类型名称。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageReceiverOptions结构体介绍](../../media/image/image-structure-c.md#oh_imagereceiveroptions结构体)。
+
 **起始版本：** 12
 
 
@@ -459,7 +469,9 @@ typedef struct OH_ImageSource_Info OH_ImageSource_Info
 
 **描述**
 
-图片源信息结构体 [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create).
+图片源信息结构体 [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create)。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageSource_Info结构体介绍](../../media/image/image-structure-c.md#oh_imagesource_info结构体)。
 
 **起始版本：** 12
 
@@ -474,6 +486,8 @@ typedef struct OH_ImageSourceNative OH_ImageSourceNative
 
 ImageSource结构体类型，用于执行ImageSource相关操作。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_ImageSourceNative结构体介绍](../../media/image/image-structure-c.md#oh_imagesourcenative结构体)。
+
 **起始版本：** 12
 
 
@@ -486,6 +500,8 @@ typedef struct OH_PackingOptions OH_PackingOptions
 **描述**
 
 图像编码选项。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_PackingOptions结构体介绍](../../media/image/image-structure-c.md#oh_packingoptions结构体)。
 
 **起始版本：** 12
 
@@ -500,6 +516,8 @@ typedef struct OH_Pixelmap_ImageInfo OH_Pixelmap_ImageInfo
 
 图像像素信息结构体。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_Pixelmap_ImageInfo结构体介绍](../../media/image/image-structure-c.md#oh_pixelmap_imageinfo结构体)。
+
 **起始版本：** 12
 
 
@@ -513,6 +531,8 @@ typedef struct OH_Pixelmap_InitializationOptions OH_Pixelmap_InitializationOptio
 
 初始化参数结构体。
 
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_Pixelmap_InitializationOptions结构体介绍](../../media/image/image-structure-c.md#oh_pixelmap_initializationoptions结构体)。
+
 **起始版本：** 12
 
 
@@ -525,6 +545,8 @@ typedef struct OH_PixelmapNative OH_PixelmapNative
 **描述**
 
 Pixelmap结构体类型，用于执行Pixelmap相关操作。
+
+此结构体内容不可直接操作，采用函数调用方式操作具体字段，结构体内容和操作方式请参考[OH_PixelmapNative结构体介绍](../../media/image/image-structure-c.md#oh_pixelmapnative结构体)。
 
 **起始版本：** 12
 
