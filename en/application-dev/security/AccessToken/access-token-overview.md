@@ -22,7 +22,7 @@ For more information, see [Application Permission Management Overview](app-permi
 
 The system also provides temporary authorization methods, such as system Pickers and security components, to allow applications to temporarily access restricted resources without applying for permissions from users. These easy-to-use components implement precise permission control and better protect user privacy.
 
-- [System Pickers](use-picker.md)
+- [System Pickers](../../application-models/system-app-startup.md)
 
   A Picker is implemented by an independent system process. It provides a safe, built-in way for users to grant your application access to only selected resources. By starting a Picker component, the application can access the resources, such as images or documents, selected by the user using the Picker. For example, before accessing a user's image, an application normally needs to request user authorization. However, by using **PhotoViewPicker**, the application can directly access the image selected by the user.
 
