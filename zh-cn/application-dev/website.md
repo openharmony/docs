@@ -937,22 +937,22 @@
               <!--DelEnd-->
           - 线程间通信<!--event-itc-->
               - [使用Emitter进行线程间通信](basic-services/common-event/itc-with-emitter.md)
-        - 帐号管理<!--account-management-->
+        - 账号管理<!--account-management-->
           <!--Del-->
-          - [帐号管理概述](basic-services/account/account-overview.md)
-          - 系统帐号 <!--os-account-->       
-            - [管理系统帐号（仅对系统应用开放）](basic-services/account/manage-os-account.md)
-            - [使用约束管控系统帐号](basic-services/account/control-os-account-by-constraints.md)
-            - [管理系统帐号凭据（仅对系统应用开放）](basic-services/account/manage-os-account-credential.md)
-          - 域帐号（仅对系统应用开放）<!--domain-account-->
-            - [管理域帐号](basic-services/account/manage-domain-account.md)
-            - [认证域帐号](basic-services/account/auth-domain-account.md)
-            - [管理域帐号插件](basic-services/account/manage-domain-plugin.md)
-          - 分布式帐号（仅对系统应用开放）<!--distributed-account-->
-            - [管理分布式帐号](basic-services/account/manage-distributed-account.md)
+          - [账号管理概述](basic-services/account/account-overview.md)
+          - 系统账号 <!--os-account-->       
+            - [管理系统账号（仅对系统应用开放）](basic-services/account/manage-os-account.md)
+            - [使用约束管控系统账号](basic-services/account/control-os-account-by-constraints.md)
+            - [管理系统账号凭据（仅对系统应用开放）](basic-services/account/manage-os-account-credential.md)
+          - 域账号（仅对系统应用开放）<!--domain-account-->
+            - [管理域账号](basic-services/account/manage-domain-account.md)
+            - [认证域账号](basic-services/account/auth-domain-account.md)
+            - [管理域账号插件](basic-services/account/manage-domain-plugin.md)
+          - 分布式账号（仅对系统应用开放）<!--distributed-account-->
+            - [管理分布式账号](basic-services/account/manage-distributed-account.md)
           <!--DelEnd-->
-          - 应用帐号<!--application-account-->
-            - [管理应用帐号](basic-services/account/manage-application-account.md)
+          - 应用账号<!--application-account-->
+            - [管理应用账号](basic-services/account/manage-application-account.md)
           - USB服务<!--usb-->
             - [USB服务开发概述](basic-services/usb/usb-overview.md)
             - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
@@ -2783,13 +2783,13 @@
     - 基础功能<!--system-basicfun-api-->
       - Basic Services Kit（基础服务）<!--basic-services-api-->
         - ArkTS API<!--basic-services-arkts-->
-          - 帐号管理
-            - [@ohos.account.appAccount (应用帐号管理)](reference/apis-basic-services-kit/js-apis-appAccount.md)
-            - [@ohos.account.distributedAccount (分布式帐号管理)](reference/apis-basic-services-kit/js-apis-distributed-account.md)
-            - [@ohos.account.osAccount (系统帐号管理)](reference/apis-basic-services-kit/js-apis-osAccount.md)
+          - 账号管理
+            - [@ohos.account.appAccount (应用账号管理)](reference/apis-basic-services-kit/js-apis-appAccount.md)
+            - [@ohos.account.distributedAccount (分布式账号管理)](reference/apis-basic-services-kit/js-apis-distributed-account.md)
+            - [@ohos.account.osAccount (系统账号管理)](reference/apis-basic-services-kit/js-apis-osAccount.md)
             <!--Del-->
-            - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-distributed-account-sys.md)
-            - [@ohos.account.osAccount (系统帐号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-osAccount-sys.md)
+            - [@ohos.account.distributedAccount (分布式账号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-distributed-account-sys.md)
+            - [@ohos.account.osAccount (系统账号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-osAccount-sys.md)
             <!--DelEnd-->
           - 设备管理
             - [@ohos.batteryInfo (电量信息)](reference/apis-basic-services-kit/js-apis-battery-info.md)
@@ -2852,7 +2852,7 @@
               - [文件管理子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-filemanagement.md)
               - [主题框架子系统-锁屏管理公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-screenlock.md)
               - [时间时区子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-time.md)
-              - [帐号子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-account.md)
+              - [账号子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-account.md)
               - [语言子系统公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-locale.md)
               - [Account Kit公共事件定义](reference/apis-basic-services-kit/common_event/commonEvent-accountkit.md)
             <!--Del-->
@@ -2910,7 +2910,7 @@
           - [事件错误码](reference/apis-basic-services-kit/errorcode-CommonEventService.md)
           - [系统参数错误码](reference/apis-basic-services-kit/errorcode-system-parameterV9.md)
           - [系统电源管理错误码](reference/apis-basic-services-kit/errorcode-power.md)
-          - [帐号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
+          - [账号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
           <!--Del-->
           - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
           <!--DelEnd-->
@@ -2974,7 +2974,7 @@
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
       - Mdm Kit（企业设备管理服务）<!--mdm-api-->
         - ArkTS API<!--mdm-arkts-->
-          - [@ohos.enterprise.accountManager（帐户管理）](reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)
+          - [@ohos.enterprise.accountManager（账户管理）](reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)
           - [@ohos.enterprise.adminManager (企业设备管理)](reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)
           - [@ohos.enterprise.applicationManager（应用管理）](reference/apis-mdm-kit/js-apis-enterprise-applicationManager.md)
           - [@ohos.enterprise.bluetoothManager（蓝牙管理）](reference/apis-mdm-kit/js-apis-enterprise-bluetoothManager.md)
@@ -2992,7 +2992,7 @@
           - [@ohos.enterprise.wifiManager（WiFi管理）](reference/apis-mdm-kit/js-apis-enterprise-wifiManager.md)
           - [@ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）](reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)
           <!--Del-->
-          - [@ohos.enterprise.accountManager（帐户管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-accountManager-sys.md)
+          - [@ohos.enterprise.accountManager（账户管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-accountManager-sys.md)
           - [@ohos.enterprise.adminManager (企业设备管理)(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-adminManager-sys.md)
           - [@ohos.enterprise.applicationManager（应用管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-applicationManager-sys.md)
           - [@ohos.enterprise.bluetoothManager（蓝牙管理）(系统接口)](reference/apis-mdm-kit/js-apis-enterprise-bluetoothManager-sys.md)
