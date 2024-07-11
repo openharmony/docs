@@ -8,9 +8,17 @@
 例如：用户在图库APP中点击编辑图片，图库APP可以通过startAbilityByType拉起图片编辑面板，由用户选择实现了PhotoEditorExtensionAbility的应用完成图片的编辑。
 
 ## 接口说明
-[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)是基于[ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)界面嵌入能力，目标应用可以通过PhotoEditorExtensionAbliity构建图片编辑扩展页面。开发者通过实现onStartContentEditing可获取原图，并根据自身需要实现图片的编辑能力。
 
-[PhotoEditorExtensionContext](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionContext.md)是PhotoEditorExtensionAbility的上下文，继承自ExtensionContext，开发者通过saveEditedContentWithImage接口对编辑完成的图片进行保存。
+接口详情参见[PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)和[PhotoEditorExtensionContext](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionContext.md)
+
+| **接口名**  | **描述** |
+| -------- | -------- |
+| onStartContentEditing(uri: string, want:Want, session: UIExtensionContentSession):void       | 当PhotoEditorExtensionAbility界面内容对象创建后调用，可以执行读取原始图片、加载页面等操作。|
+| saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | 传入编辑过的图片的PixMap对象并保存。   |
+
+开发者通过实现onStartContentEditing可获取原图，并根据自身需要实现图片的编辑能力。
+
+开发者通过saveEditedContentWithImage接口对编辑完成的图片进行保存。
 
 ## 图片编辑类应用实现PhotoEditorExtensionAbility
 
@@ -235,24 +243,7 @@
       fileIo.close(file);
     }
    ```
-4. 将图片转换为图片url，并调用startAbilityByType拉起图片编辑应用面板。
-   ```ts
-    let uri = fileUri.getUriFromPath(this.filePath);
-    context.startAbilityByType("photoEditor", {
-      "ability.params.stream": [uri], // 原始图片的uri,只支持传入一个uri
-      "ability.want.params.uriPermissionFlag": wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION // 至少需要分享读权限给到图片编辑面板
-    } as Record<string, Object>, abilityStartCallback, (err) => {
-      let tip: string;
-      if (err) {
-        tip = `Start error: ${JSON.stringify(err)}`;
-        hilog.error(0x0000, TAG, `startAbilityByType: fail, err: ${JSON.stringify(err)}`);
-      } else {
-        tip = `Start success`;
-        hilog.info(0x0000, TAG, "startAbilityByType: ", `success`);
-      }
-    });
-   ```
-5. 在startAbilityByType入参的回调函数获取到回调结果中编辑后的图片uri并做对应的处理。
+4. 在startAbilityByType入参的回调函数获取到回调结果中编辑后的图片uri并做对应的处理。
     ```ts
       let context = getContext(this) as common.UIAbilityContext;
       let abilityStartCallback: common.AbilityStartCallback = {
@@ -270,6 +261,24 @@
         }
       }
     ```
+5. 将图片转换为图片url，并调用startAbilityByType拉起图片编辑应用面板。
+   ```ts
+    let uri = fileUri.getUriFromPath(this.filePath);
+    context.startAbilityByType("photoEditor", {
+      "ability.params.stream": [uri], // 原始图片的uri,只支持传入一个uri
+      "ability.want.params.uriPermissionFlag": wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION // 至少需要分享读权限给到图片编辑面板
+    } as Record<string, Object>, abilityStartCallback, (err) => {
+      let tip: string;
+      if (err) {
+        tip = `Start error: ${JSON.stringify(err)}`;
+        hilog.error(0x0000, TAG, `startAbilityByType: fail, err: ${JSON.stringify(err)}`);
+      } else {
+        tip = `Start success`;
+        hilog.info(0x0000, TAG, "startAbilityByType: ", `success`);
+      }
+    });
+   ```
+
 示例：  
 ```ts
 import { common, wantConstant } from '@kit.AbilityKit';
@@ -345,7 +354,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
 
         Button("selectImg").onClick(event => {
-          // 1、图库中选取图片
+          // 图库中选取图片
           this.photoPickerGetUri().then(uri => {
             hilog.info(0x0000, TAG, "uri: " + uri);
 
@@ -356,7 +365,7 @@ struct Index {
               hilog.info(0x0000, TAG, "file: " + file.fd);
 
               let timeStamp = Date.now();
-              // 2、将用户图片拷贝到应用沙箱路径
+              // 将用户图片拷贝到应用沙箱路径
               fileIo.copyFileSync(file.fd, context.filesDir + `/original-${timeStamp}.jpg`);
               fileIo.closeSync(file);
 
@@ -379,7 +388,7 @@ struct Index {
               hilog.error(0x0000, TAG, "startAbilityByType:", tip);
             },
             onResult: (result) => {
-              // 4、获取到回调结果中编辑后的图片uri并做对应的处理
+              // 获取到回调结果中编辑后的图片uri并做对应的处理
               let uri = result.want?.uri ?? "";
               hilog.info(0x0000, TAG, "PhotoEditorCaller result: " + JSON.stringify(result));
               this.readImage(uri).then(imagePixMap => {
@@ -387,7 +396,7 @@ struct Index {
               });
             }
           }
-          // 3、将图片转换为图片url，并调用startAbilityByType拉起图片编辑应用面板
+          // 将图片转换为图片url，并调用startAbilityByType拉起图片编辑应用面板
           let uri = fileUri.getUriFromPath(this.filePath);
           context.startAbilityByType("photoEditor", {
             "ability.params.stream": [uri], // 原始图片的uri,只支持传入一个uri
