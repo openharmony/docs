@@ -241,7 +241,7 @@ export default class EntryAbility extends UIAbility {
                 "scheme": "mail", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
                 "host": "mail",
                 "path": "",
-                "linkFeature": "ComposeMail" // 声明应用支持邮件功能
+                "linkFeature": "ComposeMail" // 声明应用支持撰写邮件功能
                 }
             ]
             }
@@ -266,9 +266,9 @@ export default class EntryAbility extends UIAbility {
     | bcc    | 密送人邮箱地址（支持多个且以逗号分隔）                                  | string[] | 否  |
     | subject    | 邮件主题                               | string   | 否  |
     | body   | 邮件内容                             | string | 否  |
-    | stream | 邮件附件（附件的uri地址列表）                  | string[] | 否  |
+    | stream | 邮件附件列表（附件的uri地址列表）                  | string[] | 否  |
     
-    应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如邮件结合接收到的参数开发不同的样式页面。
+    应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，当前为撰写邮件结合接收到的参数开发不同的样式页面。
 
 **完整示例：**
 
