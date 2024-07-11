@@ -15,7 +15,7 @@ import { common } from '@kit.AbilityKit';
 
 ## PhotoEditorExtensionContext.saveEditedContentWithUri
 saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
-传入编辑过的图片的沙箱地址并保存。
+传入编辑过的图片的uri并保存。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -115,7 +115,7 @@ saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption)
 **返回值：**
 |  类型 | 说明  |
 | ------------ | ------------ |
-| Promise\<AbilityResult\> | Promise对象，返回AbilityResult对象，编辑过的图片地址存在want.uri中，[uri](../apis-core-file-kit/js-apis-file-fileuri.md)格式为file://\<bundleName>/\<sandboxPath>。  |
+| Promise\<AbilityResult\> | Promise对象，返回AbilityResult对象，编辑过的图片uri存在want.uri中，[uri](../apis-core-file-kit/js-apis-file-fileuri.md)格式为file://\<bundleName>/\<sandboxPath>。  |
 
 **错误码：**
 
