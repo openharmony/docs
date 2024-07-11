@@ -111,7 +111,9 @@ const workerStage3: worker.ThreadWorker = new worker.ThreadWorker('hsp/ets/worke
 
 - 相对路径加载形式：本地HAR加载该包内的Worker线程文件，加载路径规则：创建Worker对象所在文件与Worker线程文件的相对路径。
 
-需要注意的是：如果HAR包会被打包成三方包使用，则HAR包中使用Worker仅支持通过相对路径加载形式创建。
+>**说明：**
+>
+>当开启useNormalizedOHMUrl（即将工程目录中与entry同级别的应用级build-profile.json5文件中strictMode属性的useNormalizedOHMUrl字段配置为true）或HAR包会被打包成三方包使用时，则HAR包中使用Worker仅支持通过相对路径的加载形式创建。
 
 ```ts
 import { worker } from '@kit.ArkTS';
