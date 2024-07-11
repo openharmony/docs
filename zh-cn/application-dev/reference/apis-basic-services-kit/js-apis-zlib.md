@@ -401,6 +401,8 @@ getOriginalSize(compressedFile: string): Promise\<number>
 
 获取压缩文件的原始大小，使用Promise异步返回。成功时返回压缩文件的原始大小，失败时返回错误码。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
@@ -421,7 +423,7 @@ getOriginalSize(compressedFile: string): Promise\<number>
 
 | 错误码ID | 错误信息                               |
 | ------ | ------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 401 | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 900001 | The input source file is invalid.      |
 | 900003 | The input source file is not in ZIP format or is damaged. |
 
@@ -452,6 +454,8 @@ try {
 compressFiles(inFiles: Array&lt;string&gt;, outFile: string, options: Options): Promise&lt;void&gt;
 
 压缩指定的多个文件，使用Promise异步返回。成功时返回null，失败时返回错误码。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -4127,7 +4131,7 @@ gzopen(path: string, mode: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800002 | No such file or No such file or access mode error.           |
+| 17800002 | No such file or access mode error.                           |
 
 **示例：**
 
