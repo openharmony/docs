@@ -21,15 +21,16 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 ## 约束与限制
 
-1.<!--Del-->Device-hap端、<!--DelEnd-->Device-daemon端在API 9版本开始预置使用。
+1. Device-daemon端<!--Del-->、Device-hap端<!--DelEnd-->在API 9版本开始预置使用。
 
-2.<!--Del-->Device-hap端需在有屏幕设备使用，<!--DelEnd-->Device-daemon端执行需连接硬件设备。
+2. Device-daemon端执行需连接硬件设备<!--Del-->，Device-hap端需在有屏幕设备使用<!--DelEnd-->。
 
-3.Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。
+3. Device-daemon端执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。
 
 ## 执行性能测试
 
 <!--Del-->
+
 ## SmartPerf Device-hap端
 
 下面的操作步骤和界面内容以RK3568设备为例。
@@ -59,6 +60,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 ![图片说明](figures/SmartPerfReport1.png)
 ![图片说明](figures/SmartPerfReport2.png)
+
 <!--DelEnd-->
 
 ## SmartPerf Device-daemon端
