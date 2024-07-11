@@ -9,10 +9,10 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 1. 导入NDK相关接口，导入方法如下。
 
    ```c++
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/common/native_drm_common.h"
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/common/native_drm_err.h"
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/include/native_mediakeysession.h"
-    #include "multimedia/drm_framework/interfaces/kits/c/drm_capi/include/native_mediakeysystem.h"
+    #include "multimedia/drm_framework/native_drm_common.h"
+    #include "multimedia/drm_framework/native_drm_err.h"
+    #include "multimedia/drm_framework/native_mediakeysession.h"
+    #include "multimedia/drm_framework/native_mediakeysystem.h"
    ```
 
 2. 在CMake脚本中链接Drm NDK动态库。
