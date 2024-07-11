@@ -68,7 +68,7 @@ let getDelayData: unifiedDataChannel.GetDelayData = ((type: string) => {
 
 ## ValueType<sup>12+</sup>
 
-type ValueType = number | string | image.PixelMap | Want | ArrayBuffer | boolean | object | null | undefined
+type ValueType = number | string | boolean | image.PixelMap | Want | ArrayBuffer | object | null | undefined
 
 用于表示统一数据记录允许的数据字段类型。
 
@@ -80,10 +80,10 @@ type ValueType = number | string | image.PixelMap | Want | ArrayBuffer | boolean
 | -------- | -------- |
 | number | 表示number的类型。 |
 | string | 表示string的类型。 |
+| boolean | 表示boolean的类型。 |
 | image.PixelMap | 表示[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)的类型。 |
 | Want | 表示[Want](../apis-ability-kit/js-apis-app-ability-want.md)的类型。 |
 | ArrayBuffer | 表示ArrayBuffer的类型。 |
-| boolean | 表示boolean的类型。 |
 | object | 表示object的类型。 |
 | null | 表示null。 |
 | undefined | 表示undefined。 |
@@ -409,7 +409,7 @@ constructor(type: string, value: ValueType)
 
 ```ts
 import { image } from '@kit.ImageKit';
-import { uniformTypeDescriptor } from '@kit.ArkData';
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 import { Want } from '@kit.AbilityKit';
 
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, 'this is value of text');
@@ -425,17 +425,17 @@ let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: 
 let pixelMap = image.createPixelMapSync(color, opts);
 let pixelMapRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP, pixelMap);
 
-let plainTextDetails : Record<string, string> = {
-  'key1': 'value1',
-  'key2': 'value2',
+let hyperlinkDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
 }
-let plainText : uniformDataStruct.PlainText = {
-  uniformDataType: uniformTypeDescriptor.UniformDataType.PLAIN_TEXT,
-  textContent: 'This is plainText textContent example',
-  abstract: 'this is abstract',
-  details: plainTextDetails
+let hyperlink : uniformDataStruct.Hyperlink = {
+  uniformDataType:'general.hyperlink',
+  url : 'www.XXX.com',
+  description : 'This is the description of this hyperlink',
+  details : hyperlinkDetails,
 }
-let plainTextRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
+let hyperlinkRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 ```
 
 ### getType
@@ -489,23 +489,23 @@ getValue(): ValueType
 **示例：**
 
 ```ts
-import { uniformTypeDescriptor } from '@kit.ArkData';
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, 'this is value of text');
 let value = text.getValue();
 
-let plainTextDetails : Record<string, string> = {
-  'key1': 'value1',
-  'key2': 'value2',
+let hyperlinkDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
 }
-let plainText : uniformDataStruct.PlainText = {
-  uniformDataType: uniformTypeDescriptor.UniformDataType.PLAIN_TEXT,
-  textContent: 'This is plainText textContent example',
-  abstract: 'this is abstract',
-  details: plainTextDetails
+let hyperlink : uniformDataStruct.Hyperlink = {
+  uniformDataType:'general.hyperlink',
+  url : 'www.XXX.com',
+  description : 'This is the description of this hyperlink',
+  details : hyperlinkDetails,
 }
-let plainTextRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
-let plainTextValue = plainTextRecord.getValue();
+let hyperlinkRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
+let hyperlinkValue = hyperlinkRecord.getValue();
 ```
 
 ## Text
